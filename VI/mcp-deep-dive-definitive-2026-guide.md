@@ -19,7 +19,7 @@ last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
 aliases:
-- /posts/mcp-deep-dive-definitive-2026-guide/
+- /vi/posts/mcp-deep-dive-definitive-2026-guide/
 ---
 
 {</* resource-info */>}
@@ -464,4 +464,23 @@ Code trong bài viết này có thể copy chạy ngay. Đề xuất các bướ
 
 ---
 
+## 🔌 Bỏ Qua Boilerplate JSON Schema
+
+Viết JSON Schema bằng tay cho mỗi tool là phần tẻ nhạt nhất khi phát triển MCP. Thử **[MCP Tool Builder](/vi/tools/mcp-tool-builder/)** miễn phí của dibi8 — dán signature hàm Python hoặc TypeScript, nhận tool definition đúng chuẩn + server boilerplate đầy đủ (FastMCP / TypeScript SDK) + lệnh cURL test. Tiết kiệm 80% công sức boilerplate.
+
+---
+
 *Xuất bản ngày 15 tháng 5 năm 2026. Dựa trên MCP Protocol Specification 2025-11-25 (bản phát hành kỷ niệm 1 năm).*
+
+---
+
+## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
+
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng:
+
+- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+
+*Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
+

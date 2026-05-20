@@ -496,4 +496,22 @@ Your next steps:
 
 ---
 
+## 🔌 Skip the Schema Boilerplate
+
+Writing JSON Schema by hand for every tool is the most tedious part of MCP development. Use dibi8's free **[MCP Tool Builder](/tools/mcp-tool-builder/)** — paste a Python or TypeScript function signature and get a spec-compliant tool definition + full server boilerplate (FastMCP / TypeScript SDK) + a cURL test command. Saves 80% of the setup time.
+
+---
+
+
+---
+
+## Recommended Infrastructure for Self-Hosting
+
+If you want to run this stack reliably 24/7, infrastructure choice matters:
+
+- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+
+*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+
 *Published May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).*

@@ -19,7 +19,7 @@ last_maintained: '2026-05-15'
 featureImage: ''
 draft: false
 aliases:
-- /posts/mcp-deep-dive-definitive-2026-guide/
+- /kr/posts/mcp-deep-dive-definitive-2026-guide/
 ---
 
 {</* resource-info */>}
@@ -464,4 +464,22 @@ MCP는 미래 기술이 아닙니다. **2026년에 이미 활발히 사용되는
 
 ---
 
+## 🔌 JSON Schema 보일러플레이트 건너뛰기
+
+모든 tool에 JSON Schema를 손으로 쓰는 것은 MCP 개발에서 가장 지루한 부분입니다. dibi8의 무료 **[MCP Tool Builder](/kr/tools/mcp-tool-builder/)**를 사용하세요 — Python 또는 TypeScript 함수 시그니처를 붙여넣으면 표준 준수 tool 정의 + 완전한 server 보일러플레이트(FastMCP / TypeScript SDK) + cURL 테스트 명령을 자동 생성. 보일러플레이트 작업 80% 절약.
+
+---
+
 *2026년 5월 15일 발행. MCP 프로토콜 스펙 2025-11-25 주년 버전을 기준으로 작성.*
+
+---
+
+## 자체 호스팅 추천 인프라
+
+24/7 안정 운영을 위해 인프라 선택이 중요하다:
+
+- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+
+*추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
+
