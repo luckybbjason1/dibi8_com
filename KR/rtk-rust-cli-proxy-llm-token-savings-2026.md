@@ -23,9 +23,26 @@ tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-c
 aliases:
 - /kr/posts/rtk/
 - /kr/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
+faqs:
+  - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있나요?'
+    a: 'rtk는 오픈소스 Rust CLI 프록시로, 명령어 출력을 자동 압축하여 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 등 13개 AI 코딩 도구의 토큰 소비를 60-90% 절감합니다. 실측: 월 20만원 Claude API 청구서가 4만원으로 감소, <10ms 지연, MIT 오픈소스, 30초 설치.'
+  - q: 'rtk가 내 코드를 제3자에게 전송하나요?'
+    a: '아니요. rtk는 순수 로컬 바이너리로, 셸과 AI 도구의 context 사이에서만 필터링합니다. 네트워크 전송은 없습니다.'
+  - q: '실측으로 얼마나 절약되나요?'
+    a: '중형 TypeScript 풀스택 프로젝트 실측 기준 80% 토큰 절감. 월 청구서가 $400이라면 rtk로 약 $80까지 떨어집니다. AI가 받는 정보는 줄지 않고 노이즈만 제거됩니다.'
+  - q: 'Claude Code/Cursor 업데이트 시 rtk가 깨질까요?'
+    a: 'hook 메커니즘은 안정적입니다. rtk는 0.10부터 Claude Code의 hook API를 지속 추적해 왔습니다. breaking change가 발생하면 보통 24-48시간 내 업데이트가 나옵니다.'
+  - q: '프로덕션 CI/CD에서 rtk를 써도 안전한가요?'
+    a: 'agent 워크플로에서는 안전합니다. set -e 엄격 모드에서 정확한 출력 텍스트에 의존하는 파이프라인에는 쓰지 마세요. 하지만 AI agent가 출력을 읽고 다음 단계를 결정하는 loop에서는 rtk의 압축 출력이 agent가 실제로 필요한 것입니다.'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있나요?**
+
+**A:** rtk는 오픈소스 Rust CLI 프록시로, 명령어 출력을 자동 압축하여 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 등 13개 AI 코딩 도구의 토큰 소비를 **60-90% 절감**합니다. 실측: 월 20만원 Claude API 청구서가 4만원으로 감소, <10ms 지연, MIT 오픈소스, 30초 설치.
 
 > **한 줄 요약**: rtk는 Rust로 작성된 단일 바이너리 CLI 프록시로, Claude Code·Cursor·Copilot·Codex 등 AI 코딩 도구 사용 시 **60~90% 토큰 소비를 절감**한다. 100개 이상의 개발 명령어를 지원하고 13개 AI 도구와 호환되며, 오버헤드는 10ms 미만. 설치는 30초, 설정은 필요 없다.
 

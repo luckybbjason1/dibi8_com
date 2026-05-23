@@ -23,9 +23,26 @@ tags: ['cursor', 'cursor-alternatives', 'claude-code', 'cline', 'github-copilot'
 aliases:
 - /vi/posts/ai-coding-tools-2026/
 - /vi/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/
+faqs:
+  - q: 'Tại sao developer rời Cursor vào năm 2026?'
+    a: 'Việc Cursor chuyển sang định giá credit giữa năm 2025 đã cắt giảm sử dụng Pro hiệu quả từ ~500 request xuống ~225 request/tháng với cùng giá $20. Thiệt hại về niềm tin quan trọng hơn toán học — developer không ngại trả tiền, họ ghét khi công cụ thay đổi luật chơi giữa dự án.'
+  - q: 'Lựa chọn thay thế Cursor miễn phí tốt nhất?'
+    a: 'Cline (5M+ cài đặt, license Apache 2.0, BYOK). Bạn chỉ trả tiền API gốc (Anthropic/OpenAI), thường rẻ hơn giá bundle của Cursor 3-5 lần. Continue.dev cũng có core mã nguồn mở miễn phí.'
+  - q: 'Claude Code có khách quan tốt hơn Cursor không?'
+    a: 'Trên benchmark thì có (80.8% vs ~65% SWE-bench Verified). Sử dụng hàng ngày tùy workflow — Claude Code không có GUI, nếu bạn dựa vào visual diff và inline editing thì Cursor có thể tự nhiên hơn.'
+  - q: 'Công cụ AI coding trả phí rẻ nhất?'
+    a: 'GitHub Copilot ($10/tháng) là tier trả phí rẻ nhất với 2K completion + 50 chat request miễn phí mỗi tháng. Cline hoàn toàn miễn phí nếu BYOK với API key riêng.'
+  - q: 'Có thể chạy công cụ AI coding hoàn toàn offline không?'
+    a: 'Có - với Cline + model local Ollama/LM Studio. Continue.dev cũng hỗ trợ model local. Không subscription, riêng tư hoàn toàn, nhưng cần 32GB RAM + 16GB VRAM (RTX 4080 / Apple M2 Max) cho chất lượng production.'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: Các lựa chọn thay thế Cursor tốt nhất năm 2026?**
+
+**A:** 7 lựa chọn thay thế hàng đầu 2026: **Claude Code** (terminal CLI, SWE-bench 80.8%, $20-200/tháng), **Cline** (mã nguồn mở 5M+ cài đặt, $0 + BYOK), **GitHub Copilot** (IDE extension từ $10/tháng, hỗ trợ editor rộng nhất), **Windsurf** ($15/tháng, thay thế Cursor trực tiếp), **Continue.dev** (tùy biến, miễn phí + team $20/ghế), **Zed** (editor native 120fps, $0-$10/tháng), và **Cursor** (vẫn ổn nếu đã quen với credit pricing). Hầu hết developer giờ dùng **stack kết hợp** như Claude Code + Cline + rtk để giảm 50% chi phí so với Cursor Pro đơn lẻ.
 
 ## Góc nhìn của dibi8
 

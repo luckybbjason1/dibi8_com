@@ -23,9 +23,26 @@ tags: ['cursor', 'cursor-alternatives', 'claude-code', 'cline', 'github-copilot'
 aliases:
 - /kr/posts/ai-coding-tools-2026/
 - /kr/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/
+faqs:
+  - q: '2026년 개발자들이 Cursor를 떠나는 이유?'
+    a: 'Cursor의 2025년 중반 크레딧 기반 가격 전환으로 Pro 사용자의 월 실효 사용량이 500 req에서 225 req로 떨어졌습니다. 같은 $20에 효용 -55%. 신뢰 손상이 수학 문제보다 더 큽니다 — 개발자는 돈을 내는 것을 꺼리지 않지만 도구가 중간에 규칙을 바꾸는 것을 싫어합니다.'
+  - q: '최고의 무료 Cursor 대안은?'
+    a: 'Cline (5M+ 설치, Apache 2.0 라이선스, BYOK). 기반 API(Anthropic/OpenAI) 비용만 지불하면 되며, 일반적으로 Cursor 번들 가격보다 3-5배 저렴합니다. Continue.dev도 무료 오픈소스 코어가 있습니다.'
+  - q: 'Claude Code가 객관적으로 Cursor보다 나은가요?'
+    a: '벤치마크에서는 그렇습니다 (80.8% vs ~65% SWE-bench Verified). 일상 사용은 워크플로에 따라 다릅니다 — Claude Code에는 GUI가 없어서 비주얼 diff와 인라인 편집에 의존한다면 Cursor가 더 자연스럽게 느껴질 수 있습니다.'
+  - q: '가장 저렴한 유료 AI 코딩 도구는?'
+    a: 'GitHub Copilot ($10/월)이 가장 저렴한 유료 티어이며 매월 2K 자동완성 + 50 chat 요청 무료. Cline은 BYOK로 자체 API 키를 제공하면 완전 무료.'
+  - q: 'AI 코딩 도구를 완전히 오프라인으로 실행할 수 있나요?'
+    a: '네 - Cline + Ollama/LM Studio 로컬 모델로 가능. Continue.dev도 로컬 모델을 지원합니다. 구독 없음, 완전한 프라이버시. 하지만 프로덕션 품질을 위해서는 32GB RAM + 16GB VRAM (RTX 4080 / Apple M2 Max)이 필요합니다.'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: 2026년 최고의 Cursor 대안은?**
+
+**A:** 2026년 7대 대안: **Claude Code**(터미널 CLI, SWE-bench 80.8%, $20-200/월), **Cline**(오픈소스 5M+ 설치, $0 + BYOK), **GitHub Copilot**(IDE 확장 $10/월부터, 가장 넓은 에디터 지원), **Windsurf**($15/월, Cursor 직접 대체), **Continue.dev**(커스터마이즈 가능, 무료 + 팀 $20/석), **Zed**(네이티브 120fps 에디터, $0-$10/월), 그리고 **Cursor 자체**(크레딧 가격에 적응했다면 여전히 견고). 대부분의 개발자는 이제 Claude Code + Cline + rtk 같은 **하이브리드 스택**을 운영하여 Cursor Pro 단독보다 50% 낮은 비용을 달성합니다.
 
 ## dibi8의 관점
 

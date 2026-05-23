@@ -23,9 +23,26 @@ tags: ['ai-agents', 'memory-systems', 'mem0', 'agentmemory', 'hindsight', 'mempa
 aliases:
 - /zh/posts/ai-agent-memory-systems-2026/
 - /zh/resources/dev-utils/ai-agent-memory-systems-2026/
+faqs:
+  - q: 'Mem0、agentmemory、Hindsight、MemPalace 有什么区别？'
+    a: 'Mem0 框架集成最广（21 框架, 20 vector backend）。agentmemory 专注 coding agent 走原生 MCP。Hindsight recall 准确率最高，biomimetic 3 类记忆 + 4 strategy retrieval。MemPalace 社区规模最大（52K+ stars），文档完整稳定。'
+  - q: '生产环境需要 AI agent memory layer 吗？'
+    a: '如果你的 agent 需要跨会话连续性、长期客户关系、积累领域专长，必需。无状态 agent 适合 one-shot 任务，但跑真实任务就撞天花板。Gartner 预测 2026 年底 40% 企业应用集成任务型 AI agent — memory 是前置条件。'
+  - q: '哪个 memory layer 集成 Claude Code？'
+    a: 'agentmemory 是 MCP 原生，专门服务 Claude Code / Cursor / Codex CLI / Windsurf 及 11+ 其它 agent client。用 progressive context injection 在长项目里减 60%+ 重复解释。'
+  - q: 'AI agent memory layer 多少钱？'
+    a: '4 大领头方案（Mem0, agentmemory, Hindsight, MemPalace）都是开源 Apache-2.0 或 MIT。你只付 hosting 费（vector database + Postgres）和检索时的 LLM API token。Mem0 也有托管云版本。'
+  - q: 'Memory layer 能降 LLM token 账单吗？'
+    a: '能 — Mem0 2026-04 算法升级让 LoCoMo 92.5% 准确率只用 ~7K token/query，对比 full-context ~26K token。token 减少 73% 同时准确率反而更高。inference 规模下这是商业模型差异，不是边际改进。'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: 2026 年最佳 AI agent 记忆系统是？**
+
+**A:** 4 个生产级开源 memory layer，各占一个 niche：**Mem0**（48K+ stars, 21 框架集成, LoCoMo 92.5% 准确率, 仅用 26% full-context token）、**agentmemory**（MCP 原生, Claude Code/Cursor 神器, 减 60% 重复解释）、**Hindsight**（biomimetic 3 类记忆 + 4 策略检索, LongMemEval 第一）、**MemPalace**（52K+ stars 社区领军）。**没有单一赢家**——多数生产团队跑 **Mem0 + agentmemory 混合栈**。
 
 ## dibi8 的看法
 

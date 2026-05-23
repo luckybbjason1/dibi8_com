@@ -23,9 +23,26 @@ tags: ['ai-agents', 'memory-systems', 'mem0', 'agentmemory', 'hindsight', 'mempa
 aliases:
 - /kr/posts/ai-agent-memory-systems-2026/
 - /kr/resources/dev-utils/ai-agent-memory-systems-2026/
+faqs:
+  - q: 'Mem0, agentmemory, Hindsight, MemPalace의 차이?'
+    a: 'Mem0는 프레임워크 통합이 가장 넓음(21 프레임워크, 20 벡터 백엔드). agentmemory는 코딩 에이전트에 특화되어 네이티브 MCP 사용. Hindsight는 recall 정확도가 가장 높고 생체모방 3종 메모리 + 4전략 검색. MemPalace는 커뮤니티 규모(52K+ stars) 최고.'
+  - q: '프로덕션에서 AI 에이전트 메모리 레이어가 필요한가요?'
+    a: '네, 에이전트가 멀티 세션 연속성, 장기 고객 관계, 도메인 전문성 축적이 필요하다면. 무상태 에이전트는 단발성 작업엔 괜찮지만 진짜 작업엔 한계. Gartner는 2026년 말까지 엔터프라이즈 앱의 40%가 작업 지향 AI 에이전트를 통합한다고 예측 — 메모리는 전제조건.'
+  - q: '어떤 메모리 레이어가 Claude Code와 통합되나요?'
+    a: 'agentmemory가 MCP 네이티브로 Claude Code, Cursor, Codex CLI, Windsurf 및 11+ 다른 에이전트 클라이언트에 특화. progressive context injection으로 장기 코드베이스 프로젝트에서 60%+ 반복 설명 감소.'
+  - q: 'AI 에이전트 메모리 레이어 비용은?'
+    a: '4대 솔루션(Mem0, agentmemory, Hindsight, MemPalace) 모두 Apache-2.0 또는 MIT 오픈소스. 호스팅(vector DB + Postgres)과 검색 시 LLM API 토큰만 지불. Mem0는 매니지드 클라우드 티어도 제공.'
+  - q: '메모리 레이어로 LLM 토큰 비용을 줄일 수 있나요?'
+    a: '네 — Mem0 2026-04 알고리즘 업그레이드로 LoCoMo 92.5% 정확도를 query당 ~7K 토큰으로 달성 (full-context ~26K 토큰 대비). 토큰 73% 감소하면서 정확도는 더 높음. inference 규모에서는 비즈니스 모델 차이지 한계적 개선이 아님.'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: 2026년 최고의 AI 에이전트 메모리 시스템은?**
+
+**A:** 4가지 프로덕션 레디 오픈소스 메모리 레이어가 각기 다른 영역에서 우승: **Mem0**(48K+ stars, 21개 프레임워크 통합, LoCoMo 92.5% 정확도, full-context의 26% 토큰), **agentmemory**(Claude Code/Cursor용 MCP 네이티브, 반복 설명 60%+ 감소), **Hindsight**(생체모방 3종 메모리 + 4전략 검색, LongMemEval 1위), **MemPalace**(52K+ stars 커뮤니티 리더). **단일 승자 없음** — 대부분의 프로덕션 팀은 **Mem0 + agentmemory 하이브리드 스택** 운영.
 
 ## dibi8의 관점
 

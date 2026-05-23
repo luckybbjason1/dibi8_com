@@ -23,9 +23,26 @@ tags: ['cursor', 'cursor-alternatives', 'claude-code', 'cline', 'github-copilot'
 aliases:
 - /zh/posts/ai-coding-tools-2026/
 - /zh/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/
+faqs:
+  - q: '为什么 2026 年开发者纷纷离开 Cursor？'
+    a: 'Cursor 2025 中转 credit 计费让 Pro 用户月用量从 ~500 req 降到 ~225 req，同价钱效用 55% off。信任崩塌比数学问题更严重——开发者不介意付钱，介意工具中途改规则。'
+  - q: '最好的免费 Cursor 替代品是什么？'
+    a: 'Cline（5M+ 安装, Apache 2.0 协议, 自带 API key）。你只付底层 API 费用（Anthropic/OpenAI），通常比 Cursor 捆绑价便宜 3-5×。Continue.dev 也有免费开源核心。'
+  - q: 'Claude Code 客观上比 Cursor 好吗？'
+    a: 'benchmark 上是（80.8% vs ~65% SWE-bench Verified）。日常使用因人而异——Claude Code 无 GUI，如果你依赖可视化 diff 和内联编辑，Cursor 可能更顺手。'
+  - q: '最便宜的付费 AI 编程工具？'
+    a: 'GitHub Copilot（$10/月）最便宜，每月含 2K 自动完成 + 50 chat 请求免费额度。Cline 自带 API key 完全免费。'
+  - q: 'AI 编程工具能完全离线运行吗？'
+    a: '可以 — Cline + Ollama/LM Studio 本地模型组合。Continue.dev 也支持本地模型。无订阅、完全隐私，但需要 32GB RAM + 16GB VRAM（RTX 4080 / Apple M2 Max）才能跑生产级质量。'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: 2026 年最佳 Cursor 替代品有哪些？**
+
+**A:** 2026 年 7 大替代品：**Claude Code**（终端 CLI, 80.8% SWE-bench, $20-200/月）、**Cline**（开源 5M+ 安装, $0 + 自带 API key）、**GitHub Copilot**（IDE 扩展 $10/月起, 编辑器支持最广）、**Windsurf**（$15/月, Cursor 直接替代）、**Continue.dev**（可自定义, 免费 + 团队 $20/座）、**Zed**（原生 120fps 编辑器, $0-$10/月）、以及 **Cursor 本身**（已习惯 credit 计价的话还是稳）。多数开发者现在采用**混合栈**如 Claude Code + Cline + rtk，月成本比单 Cursor Pro 低 50%。
 
 ## dibi8 的看法
 

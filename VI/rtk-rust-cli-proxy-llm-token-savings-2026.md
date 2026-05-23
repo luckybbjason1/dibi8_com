@@ -23,9 +23,26 @@ tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-c
 aliases:
 - /vi/posts/rtk/
 - /vi/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
+faqs:
+  - q: 'rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?'
+    a: 'rtk là proxy CLI Rust mã nguồn mở, tự động nén output lệnh terminal trước khi đến context window của AI agent. Giảm 60-90% token tiêu thụ cho 13 công cụ AI coding (Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI). Thực tế: hóa đơn Claude API $400/tháng giảm còn ~$80, độ trễ <10ms, mã nguồn mở MIT, cài đặt 30 giây.'
+  - q: 'rtk có gửi code của tôi đến bên thứ ba không?'
+    a: 'Không. rtk là binary chỉ chạy local, chỉ lọc output giữa shell và context window của AI. Không gửi qua mạng.'
+  - q: 'Thực tế tiết kiệm được bao nhiêu?'
+    a: 'Benchmark thực tế trên dự án TypeScript fullstack cỡ vừa cho thấy giảm 80% token. Nếu hóa đơn $400/tháng, rtk giảm còn ~$80. AI nhận được cùng thông tin hành động, chỉ loại bỏ noise.'
+  - q: 'rtk có hỏng khi Claude Code/Cursor cập nhật không?'
+    a: 'Cơ chế hook khá ổn định. rtk đã theo sát hook API của Claude Code từ phiên bản 0.10. Nếu có breaking change, cập nhật rtk thường ra trong 24-48h.'
+  - q: 'rtk có an toàn cho production CI/CD không?'
+    a: 'An toàn trong agent workflow. Không dùng trong pipeline set -e nghiêm ngặt phụ thuộc văn bản output chính xác. Nhưng trong vòng lặp AI agent đọc output để quyết định bước tiếp theo, output nén của rtk chính là cái agent cần.'
 ---
 
 {{</* resource-info */>}}
+
+## Quick Answer
+
+**Q: rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?**
+
+**A:** rtk là proxy CLI Rust mã nguồn mở, tự động nén output lệnh terminal trước khi đến context window của AI agent. Giảm **60-90% token tiêu thụ** cho 13 công cụ AI coding (Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI). Thực tế: hóa đơn Claude API $400/tháng giảm còn ~$80, độ trễ <10ms, mã nguồn mở MIT, cài đặt 30 giây.
 
 > **Tóm tắt một dòng**: rtk là công cụ proxy CLI viết bằng Rust, chỉ một file binary, không phụ thuộc bên ngoài, tự động lọc và nén đầu ra lệnh terminal trước khi gửi vào cửa sổ ngữ cảnh LLM. Giảm **60-90% token tiêu thụ** cho **100+ lệnh phát triển** và **13 công cụ AI coding**, độ trễ **dưới 10ms**. Cài đặt 30 giây, không cần cấu hình.
 

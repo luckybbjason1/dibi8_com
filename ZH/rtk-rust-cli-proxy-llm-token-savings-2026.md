@@ -23,9 +23,26 @@ tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-c
 aliases:
 - /zh/posts/rtk/
 - /zh/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
+faqs:
+  - q: 'rtk 是什么？能省多少 AI 编程账单？'
+    a: 'rtk 是开源 Rust CLI 代理，自动压缩命令输出，让 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 等 13 款 AI 编程工具的 token 消耗降低 60-90%。实测：每月 1200 元 Claude API 账单砍到 240 元，<10ms 延迟，MIT 开源，30 秒安装。'
+  - q: 'rtk 会把我的代码发到第三方吗？'
+    a: '不会。rtk 是纯本地二进制，只在你的 shell 和 AI 工具的 context 之间做过滤。不联网。'
+  - q: 'rtk 实测能省多少？'
+    a: '中型 TypeScript 全栈项目实测：80% token 减少。如果你月账单 1200 元，rtk 砍到约 240 元。AI 拿到的信息没减少，只是去掉了噪声、进度条、重复日志。'
+  - q: '如果 Claude Code / Cursor 升级 rtk 会失效吗？'
+    a: 'hook 机制相对稳定。rtk 自 0.10 起持续跟进 Claude Code 的 hook API。如有 breaking change 通常 24-48 小时内发新版跟上。'
+  - q: 'rtk 能用在生产 CI/CD 吗？'
+    a: '在 agent workflow 里安全。不要用在 set -e 严格依赖具体命令输出的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。'
 ---
 
 {{< resource-info >}}
+
+## Quick Answer
+
+**Q: rtk 是什么？能省多少 AI 编程账单？**
+
+**A:** rtk 是开源 Rust CLI 代理，自动压缩命令输出，让 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 等 13 款 AI 编程工具的 token 消耗降低 **60-90%**。实测：每月 1200 元 Claude API 账单砍到 240 元，<10ms 延迟，MIT 开源，30 秒安装。
 
 > **一句话总结**：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 **60%-90% 的 token 消耗**。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。
 
