@@ -243,7 +243,7 @@ For the complete memory + agent + model stack budget setup, see our [Cheap LLM S
 
 - [rtk — Cut AI Coding Bills by 80%](/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) — Pair with any memory layer to compress query tokens
 - [Best Cursor Alternatives 2026](/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/) — Pick your agent first, then add memory
-- [CC Switch — Multi-AI CLI Management](/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — Multi-AI CLI Management](/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack collection](/collections/cheap-llm-stack/)
 - [Mem0 evaluation framework (open source)](https://github.com/mem0ai/memory-benchmarks)
 - [AGENTS.md open standard](https://agents.md/)

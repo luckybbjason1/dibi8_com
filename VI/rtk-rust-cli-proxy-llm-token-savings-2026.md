@@ -323,7 +323,7 @@ rtk init -g
 
 Quý trước chúng tôi đã audit chi phí AI coding của team. Hóa đơn Claude API $400/tháng vào tháng 3 là thật, và phát hiện đáng ngạc nhiên là **khoảng 70% token là noise** — AI agent dump `git status` vào context, rồi `git diff`, rồi `npm test` output, hầu hết là log lặp lại, progress bar, ASCII directory tree cũ kỹ. rtk là giải pháp trực tiếp nhất chúng tôi từng thấy — nó sống ở command boundary, không cần sửa một file workflow nào.
 
-Nếu bạn dùng nhiều AI CLI cùng lúc, kết hợp với [CC Switch để quản lý thống nhất](/vi/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/).
+Nếu bạn dùng nhiều AI CLI cùng lúc, kết hợp với [CC Switch để quản lý thống nhất](/vi/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/).
 
 ---
 
@@ -344,6 +344,6 @@ Stack LLM giá rẻ hoàn chỉnh xem tại [Cheap LLM Stack collection](/vi/col
 
 - [rtk GitHub Repository](https://github.com/rtk-ai/rtk)
 - [rtk Official Documentation](https://rtk-ai.app/guide)
-- [CC Switch — Quản lý nhiều AI CLI](/vi/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — Quản lý nhiều AI CLI](/vi/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack collection](/vi/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/vi/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)

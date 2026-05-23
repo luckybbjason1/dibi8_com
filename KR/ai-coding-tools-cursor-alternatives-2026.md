@@ -284,6 +284,6 @@ Cline + 로컬 모델, Continue.dev 자체 구성, 또는 원격 Claude Code 서
 ## 추가 자료
 
 - [rtk — AI 코딩 비용 80% 절감](/kr/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) — 강력 추천 조합
-- [CC Switch — 여러 AI CLI 통합 관리](/kr/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — 여러 AI CLI 통합 관리](/kr/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack 컬렉션](/kr/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/kr/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)

@@ -284,6 +284,6 @@ Stack tối ưu hoàn chỉnh xem tại [Cheap LLM Stack collection](/vi/collect
 ## Đọc thêm
 
 - [rtk — Giảm 80% chi phí AI coding](/vi/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) — Khuyến nghị kết hợp
-- [CC Switch — Quản lý nhiều AI CLI](/vi/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — Quản lý nhiều AI CLI](/vi/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack collection](/vi/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/vi/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)

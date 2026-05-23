@@ -239,7 +239,7 @@ Stack memory + agent + model tối ưu chi phí hoàn chỉnh: [Cheap LLM Stack 
 
 - [rtk — Giảm 80% chi phí AI coding](/vi/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) — Kết hợp với mọi memory layer
 - [Best Cursor Alternatives 2026](/vi/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/) — Chọn agent trước, thêm memory sau
-- [CC Switch — Quản lý nhiều AI CLI](/vi/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — Quản lý nhiều AI CLI](/vi/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack collection](/vi/collections/cheap-llm-stack/)
 - [Mem0 evaluation framework (mã nguồn mở)](https://github.com/mem0ai/memory-benchmarks)
 - [AGENTS.md open standard](https://agents.md/)

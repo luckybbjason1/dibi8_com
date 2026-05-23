@@ -147,7 +147,7 @@ rtk's ecosystem coverage is exceptional. It doesn't lock you into one agent:
 
 Switch between tools without losing your token savings. rtk follows your workflow, not the other way around.
 
-If you're juggling multiple AI agents at once (which is common in 2026), pair rtk with [CC Switch](/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/) for unified management.
+If you're juggling multiple AI agents at once (which is common in 2026), pair rtk with [CC Switch](/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/) for unified management.
 
 ---
 
@@ -310,7 +310,7 @@ For a complete budget-conscious LLM stack including rtk, see our [Cheap LLM Stac
 
 - [rtk GitHub Repository](https://github.com/rtk-ai/rtk)
 - [rtk Official Documentation](https://rtk-ai.app/guide)
-- [CC Switch — Manage Multiple AI Coding CLIs](/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — Manage Multiple AI Coding CLIs](/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack — Complete Budget Setup](/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)
 

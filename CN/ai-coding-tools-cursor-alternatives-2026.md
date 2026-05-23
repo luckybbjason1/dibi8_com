@@ -226,7 +226,7 @@ Don't uninstall Cursor immediately. Pick a small feature or bugfix and run it th
 - Export custom snippets and keybindings
 - Audit Cursor-specific extensions and find alternatives
 - Move API key management to a unified vault (e.g., 1Password)
-- If managing multiple AI CLIs, install [CC Switch](/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/) for unified provider control
+- If managing multiple AI CLIs, install [CC Switch](/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/) for unified provider control
 
 ### Phase 3: Team Alignment
 If switching as a team:
@@ -297,7 +297,7 @@ For the complete optimized stack including model selection, see our [Cheap LLM S
 ## Further Reading
 
 - [rtk — Cut AI Coding Bills by 80%](/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) (essential pairing)
-- [CC Switch — Manage Multiple AI CLIs](/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — Manage Multiple AI CLIs](/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack collection](/collections/cheap-llm-stack/)
 - [OpenAI Codex CLI Guide](/resources/llm-frameworks/openai-codex-cli-terminal-ai-coding-agent-2026/)
 - [n8n AI Workflow Automation](/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)

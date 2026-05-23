@@ -141,7 +141,7 @@ rtk 最让人惊喜的是它的生态兼容性。它不是只给 Claude Code 用
 | **Kilo Code** | `rtk init --agent kilocode` | rules 文件 |
 | **Google Antigravity** | `rtk init --agent antigravity` | rules 文件 |
 
-这意味着：**你可以在不同工具之间无缝切换，rtk 的节省效果始终跟随你。** 如果你同时用多款 AI 工具，可以搭配 [CC Switch 统一管理](/zh/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/) 提升切换效率。
+这意味着：**你可以在不同工具之间无缝切换，rtk 的节省效果始终跟随你。** 如果你同时用多款 AI 工具，可以搭配 [CC Switch 统一管理](/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/) 提升切换效率。
 
 ---
 
@@ -267,7 +267,7 @@ rtk init -g
 
 - [rtk GitHub 仓库](https://github.com/rtk-ai/rtk)
 - [rtk 官方文档](https://rtk-ai.app/guide)
-- [CC Switch — 多 AI CLI 统一管理工具](/zh/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — 多 AI CLI 统一管理工具](/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack 合集 — 完整的低成本方案](/zh/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/zh/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)
 

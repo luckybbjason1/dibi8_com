@@ -305,6 +305,6 @@ A：2026年的现实是：它们把程序员从"写代码的人"变成了"指挥
 ## 延伸阅读
 
 - [rtk — AI 编程账单砍 80%](/zh/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) — 强烈推荐配套
-- [CC Switch — 多 AI CLI 统一管理](/zh/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — 多 AI CLI 统一管理](/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/zh/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)

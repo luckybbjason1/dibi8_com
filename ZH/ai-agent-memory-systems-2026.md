@@ -230,7 +230,7 @@ MemPalace是2026年GitHub上Star数最高的开源记忆系统之一。它的定
 
 - [rtk — AI 编程账单砍 80%](/zh/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/) — 配合任意 memory 层进一步压缩查询 token
 - [Best Cursor Alternatives 2026](/zh/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/) — 先选 agent，再加 memory
-- [CC Switch — 多 AI CLI 管理](/zh/resources/llm-frameworks/cc-switch-unified-ai-cli-control-center-2026/)
+- [CC Switch — 多 AI CLI 管理](/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)
 - [Mem0 evaluation framework (开源)](https://github.com/mem0ai/memory-benchmarks)
 - [AGENTS.md 开放标准](https://agents.md/)
