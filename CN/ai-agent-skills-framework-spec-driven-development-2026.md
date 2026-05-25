@@ -1,54 +1,22 @@
----
-title: 'AI Agent Skills Framework Explained 2026: Matt Pocock Skills + GitHub Spec-Kit + Spec-Driven Development'
-description: 'AI Agent Skills are the new paradigm replacing ''naive prompting''. Deep dive into Matt Pocock''s personal .claude skills (+1,618 stars/week), GitHub Spec-Kit (Spec-Driven Development standard), NousResearch Hermes Agent (+1,332 stars). Includes architecture comparison, when to use each, and how to migrate from black-box Claude Code to structured skill patterns.'
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'Various'
-last_maintained: '2026-05-20'
-featureImage: ''
-draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases:
-- /posts/ai-agent-skills-framework-spec-driven-development-2026/
-- /resources/dev-utils/ai-agent-skills-framework-spec-driven-development-2026/
-faqs:
-  - q: 'What are AI Agent Skills and why did they explode in May 2026?'
-    a: 'AI Agent Skills are reusable behavioral patterns, constraints, and workflows for AI agents — a paradigm shift from treating AI as a ''black-box code generator'' to ''engineering reusable patterns''. May 2026 saw 5 of the top 20 fastest-growing GitHub repos contain ''skills'' in their names, including Matt Pocock''s personal .claude directory (+1,618 stars/week) and NousResearch Hermes Agent (+1,332 stars).'
-  - q: 'What is Spec-Driven Development (SDD) and how does GitHub Spec-Kit help?'
-    a: 'Spec-Driven Development is a disciplined workflow: SPECIFICATION → PLAN → TASKS → IMPLEMENTATION. GitHub''s official Spec-Kit provides templates and tooling for this pattern, replacing ''vibe coding'' chaos with engineering rigor. Major teams report 3-5x reduction in costly rework when adopting SDD with skills.'
-  - q: 'How are Skills different from MCP (Model Context Protocol)?'
-    a: 'MCP is the communication protocol (how agents call tools). Skills are the behavioral library (what agents know to do). They''re complementary: MCP gives an agent access to tools; Skills give it knowledge of when and how to use them. Hermes Agent combines both for full memory + skill orchestration.'
-  - q: 'Can I use AI Agent Skills with Claude Code today?'
-    a: 'Yes. Matt Pocock''s skills repo and similar open-source patterns are designed for Claude Code''s native skill loading. Drop them in your project''s .claude/ directory and they''re automatically available. No platform-specific lock-in.'
-  - q: 'Should I adopt Skills/SDD if I''m a solo developer?'
-    a: 'Yes for projects > 2 weeks of effort. Skills'' ROI compounds with project size and team count — a solo project gets 30-50% productivity boost, a 5-person team gets 3-5x cost reduction in agent rework. For one-shot scripts, traditional prompting is still fine.'
----
+# AI Agent Skills Framework Explained: From Matt Pocock's Skills to GitHub Spec-Kit and Spec-Driven Development in 2026
 
-{{</* resource-info */>}}
-
-## Quick Answer
-
-**Q: What's the AI Agent Skills paradigm and why did it explode in 2026?**
-
-**A:** AI Agent Skills are **reusable behavioral patterns** for AI agents — replacing 'black-box prompting' with engineering rigor. May 2026 saw 5 of GitHub's top 20 fastest-growing repos contain 'skills': **Matt Pocock's personal .claude** (+1,618 stars/week), **GitHub Spec-Kit** (Spec-Driven Development standard), **NousResearch Hermes Agent** (+1,332 stars). Teams adopting SDD + Skills report **3-5× reduction** in costly agent rework.
+**Published:** May 20, 2026  
+**Reading Time:** 15 minutes  
+**Audience:** Full-stack developers, tech leads, AI tooling enthusiasts
 
 ---
 
-## Introduction
+## The Problem: Your Claude Code Is Still Too Naive
 
-**dibi8's take** — We started experimenting with Matt Pocock's skill patterns in our own dibi8 build pipeline in early May. The pattern that immediately paid off was 'spec-then-implement' for any task taking > 1 hour: writing a 10-line spec file first cut our Claude Code rework rate by ~60% on a 2-week sprint. The hidden benefit nobody talks about: skills are also **agent-agnostic documentation** — they teach future-you what the previous-you decided.
+GitHub's weekly trending data for May 9–15, 2026, revealed something unprecedented: **5 of the top 20 fastest-growing repositories contained "skills" in their names**. Matt Pocock's personal `.claude` directory went open-source and gained +1,618 stars in a single week. NousResearch's Hermes Agent followed with +1,332 stars. Even Andrej Karpathy's engineering philosophy got packaged into reusable agent skills.
+
+This is not a coincidence. The developer community is undergoing a quiet paradigm shift: from treating AI as a **black-box code generator** to **engineering reusable behavioral patterns, constraints, and workflows** for AI agents. This is the **AI Agent Skills pattern**.
+
+Simultaneously, GitHub's official **Spec-Kit** signals the rise of **Spec-Driven Development (SDD)** — a disciplined `SPECIFICATION → PLAN → TASKS → IMPLEMENTATION` workflow that replaces the chaos of "vibe coding" with engineering rigor.
+
+If you're still prompting your AI with "build me a login page," you're already behind.
+
+---
 
 ## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego
 
@@ -355,27 +323,3 @@ Open your terminal. Create your first `.claude/skills/` directory. Start now.
 ---
 
 *Based on May 2026 GitHub Trending data, Hacker News technical discussions, and community practice. Skill framework versions referenced to Claude Code 2026.05.*
-
-
----
-
-## Recommended Infrastructure
-
-For self-hosting any of the patterns or runtimes discussed in this article:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $5/mo droplet for dev workloads, $200 free credit for new accounts
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong / Singapore VPS for low-latency Asia-Pacific access, USD $4/mo entry
-
-For the complete optimized stack including model selection, see our [Cheap LLM Stack collection](/collections/cheap-llm-stack/).
-
-*This article contains affiliate links. We may earn a commission if you purchase through these links — at no extra cost to you.*
-
----
-
-## Further Reading
-
-- [rtk — Cut AI Coding Bills by 80%](/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/)
-- [Best Cursor Alternatives 2026](/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/)
-- [AI Agent Memory Systems 2026](/resources/llm-frameworks/ai-agent-memory-systems-2026/)
-- [CC Switch — Multi-AI CLI Management](/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
-- [Cheap LLM Stack collection](/collections/cheap-llm-stack/)

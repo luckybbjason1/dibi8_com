@@ -1,30 +1,12 @@
 ---
-title: 'n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감'
-description: '2026년 가장 주목받는 오픈소스 자동화 플랫폼 n8n의 완벽 튜토리얼. n8n 자체 호스팅 배포, AI 에이전트 워크플로우 구축, LangChain 연동, SEO 자동화 실전 사례, Zapier/Make와의 상세 비교까지.'
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: Sustainable Use License
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: 'https://github.com/n8n-io/n8n'
-stars: 87000
-maintainer: 'n8n-io'
-last_maintained: '2026-05-20'
-featureImage: ''
-draft: false
-categories: ['dev-utils']
-tags: ['n8n', 'workflow-automation', 'ai-agents', 'zapier-alternative']
-aliases:
-- /kr/posts/n8n-ai-workflow-automation-self-hosted-2026/
+title: "n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감"
+description: "2026년 가장 주목받는 오픈소스 자동화 플랫폼 n8n의 완벽 튜토리얼. n8n 자체 호스팅 배포, AI 에이전트 워크플로우 구축, LangChain 연동, SEO 자동화 실전 사례, Zapier/Make와의 상세 비교까지."
+keywords: n8n, n8n 튜토리얼, AI 워크플로우 자동화, 오픈소스 자동화 도구, n8n 자체 호스팅, n8n vs Zapier, AI 에이전트 구축, LangChain 연동, 노코드 자동화, 워크플로우 오케스트레이션
+author: Home Hermes
+date: 2026-05-20
 ---
 
-{</* resource-info */>}
+# n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감
 
 2025년 1분기, GitHub에서 단 한 분기 만에 **18,420개의 새로운 Star**를 획득한 오픈소스 프로젝트가 있었다. 그것은 바로 **n8n**이다. 2026년 3월에는 **6,000만 달러(약 800억 원)의 시리즈 B 투자**를 유치하며, 워크플로우 자동화 분야의 주요 인프라로 자리매김했다.
 
@@ -451,17 +433,6 @@ docker run -d \
 첫 번째 실행이 초록색으로 변하는 것을 보면 나머지는 관성이다.
 
 ---
-
-
-
-## 추천 호스팅 및 인프라
-
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
-
-*제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
 
 ## 결론
 

@@ -1,30 +1,12 @@
 ---
-title: 'n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本'
-description: '2026年最热门开源自动化平台n8n完整教程。覆盖n8n自托管部署、AI Agent搭建、LangChain集成、SEO自动化工作流实战，对比Zapier/Make，助你节省70%自动化成本。'
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: Sustainable Use License
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: 'https://github.com/n8n-io/n8n'
-stars: 87000
-maintainer: 'n8n-io'
-last_maintained: '2026-05-20'
-featureImage: ''
-draft: false
-categories: ['dev-utils']
-tags: ['n8n', 'workflow-automation', 'ai-agents', 'zapier-alternative']
-aliases:
-- /zh/posts/n8n-ai-workflow-automation-self-hosted-2026/
+title: "n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本"
+description: "2026年最热门开源自动化平台n8n完整教程。覆盖n8n自托管部署、AI Agent搭建、LangChain集成、SEO自动化工作流实战，对比Zapier/Make，助你节省70%自动化成本。"
+keywords: n8n, AI工作流自动化, n8n教程2026, 开源自动化工具, AI Agent搭建, n8n自托管部署, 工作流自动化平台, n8n vs Zapier, LangChain集成, 无代码自动化
+author: Home Hermes
+date: 2026-05-20
 ---
 
-{</* resource-info */>}
+# n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本
 
 2026年，一个开源项目在GitHub上以单季度18,420颗新增Star的速度横扫开发者社区。它不是某个新晋AI模型，而是**n8n**——一个正在重新定义「工作流自动化」的开源平台。同年3月，n8n宣布完成6000万美元融资，正式跻身自动化领域的一线阵营。
 
@@ -334,17 +316,6 @@ docker run -it --rm \
 你会在30秒内收到一份包含20个主关键词、30个长尾词、15个问答型关键词的完整SEO策略表——而这只是n8n能力的冰山一角。
 
 ---
-
-
-
-## 推荐部署与基础设施
-
-上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。
-
-*Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。*
 
 ## 结语
 

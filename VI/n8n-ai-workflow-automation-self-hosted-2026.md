@@ -1,30 +1,12 @@
 ---
-title: 'Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier'
-description: 'Hướng dẫn n8n toàn diện 2026 — nền tảng tự động hóa mã nguồn mở đang bùng nổ. Cài đặt n8n tự host, xây dựng AI Agent với LangChain, tự động hóa SEO, so sánh chi tiết n8n vs Zapier vs Make.'
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: Sustainable Use License
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: 'https://github.com/n8n-io/n8n'
-stars: 87000
-maintainer: 'n8n-io'
-last_maintained: '2026-05-20'
-featureImage: ''
-draft: false
-categories: ['dev-utils']
-tags: ['n8n', 'workflow-automation', 'ai-agents', 'zapier-alternative']
-aliases:
-- /vi/posts/n8n-ai-workflow-automation-self-hosted-2026/
+title: "Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier"
+description: "Hướng dẫn n8n toàn diện 2026 — nền tảng tự động hóa mã nguồn mở đang bùng nổ. Cài đặt n8n tự host, xây dựng AI Agent với LangChain, tự động hóa SEO, so sánh chi tiết n8n vs Zapier vs Make."
+keywords: n8n, hướng dẫn n8n, tự động hóa workflow AI, công cụ tự động hóa mã nguồn mở, n8n tự host, n8n vs Zapier, xây dựng AI Agent, tích hợp LangChain, tự động hóa SEO, cài đặt Docker n8n
+author: Home Hermes
+date: 2026-05-20
 ---
 
-{</* resource-info */>}
+# Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier
 
 Trong quý 1/2025, một dự án mã nguồn mở đã thu về **18.420 sao GitHub** mới — nhiều hơn tổng của ba nền tảng low-code phát triển nhanh nhất tiếp theo cộng lại. Dự án đó là **n8n**. Đến tháng 3/2026, n8n công bố vòng gọi vốn Series B **60 triệu USD**, khẳng định vị thế là lớp hạ tầng cốt lõi cho tự động hóa AI-native.
 
@@ -449,17 +431,6 @@ Bắt đầu từ thứ gì đó rủi ro thấp: kết nối tài khoản Gmail
 Khi bạn thấy lần thực thi đầu tiên chuyển xanh, phần còn lại là đà.
 
 ---
-
-
-
-## Hosting Và Hạ Tầng Được Đề Xuất
-
-Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng:
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
-
-*Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
 
 ## Kết Luận
 

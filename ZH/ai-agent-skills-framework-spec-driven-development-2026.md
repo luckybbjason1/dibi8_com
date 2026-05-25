@@ -1,54 +1,22 @@
----
-title: 'AI Agent Skills 框架解读 2026：Matt Pocock Skills + GitHub Spec-Kit + Spec-Driven Development 完整指南'
-description: 'AI Agent Skills 是 2026 替代''裸 prompt''的新范式。深度解析 Matt Pocock 个人 .claude skills（每周 +1,618 stars）/ GitHub Spec-Kit（Spec-Driven Development 标准）/ NousResearch Hermes Agent（+1,332 stars）。含架构对比、场景选型、从 Claude Code 黑盒迁移到结构化 skill 模式的完整路径。'
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'Various'
-last_maintained: '2026-05-20'
-featureImage: ''
-draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases:
-- /zh/posts/ai-agent-skills-framework-spec-driven-development-2026/
-- /zh/resources/dev-utils/ai-agent-skills-framework-spec-driven-development-2026/
-faqs:
-  - q: 'AI Agent Skills 是什么？为什么 2026 年 5 月集中爆发？'
-    a: 'AI Agent Skills 是 AI agent 可复用的行为模式、约束和 workflow — 从''把 AI 当黑盒代码生成器''转向''工程化可复用模式''的范式变革。2026 年 5 月 GitHub Trending Top 20 增长最快 5 个仓库名字含 ''skills''，包括 Matt Pocock 个人 .claude 目录（每周 +1,618 stars）和 NousResearch Hermes Agent（+1,332 stars）。'
-  - q: 'Spec-Driven Development (SDD) 是什么？GitHub Spec-Kit 怎么帮？'
-    a: 'Spec-Driven Development 是有纪律的 workflow：SPECIFICATION → PLAN → TASKS → IMPLEMENTATION。GitHub 官方 Spec-Kit 提供这种 pattern 的模板和工具，用工程严谨性替代''vibe coding''混乱。大团队报告采用 SDD + skills 后昂贵的返工减少 3-5×。'
-  - q: 'Skills 跟 MCP (Model Context Protocol) 有什么区别？'
-    a: 'MCP 是通信协议（agent 怎么调工具）。Skills 是行为库（agent 知道做什么）。两者互补：MCP 给 agent 访问工具，Skills 给它知道何时如何用。Hermes Agent 结合两者做完整 memory + skill 编排。'
-  - q: 'Claude Code 现在能用 AI Agent Skills 吗？'
-    a: '可以。Matt Pocock 的 skills repo 和类似开源模式都是为 Claude Code 原生 skill loading 设计。放到项目的 .claude/ 目录里就自动可用。无平台 lock-in。'
-  - q: 'solo 开发者该采用 Skills/SDD 吗？'
-    a: '效力 > 2 周的项目应该。Skills ROI 随项目规模和团队数指数级增长 — solo 项目得 30-50% 效率提升，5 人团队得 3-5× agent 返工成本降低。一次性脚本传统 prompting 还行。'
----
+# AI Agent Skills 模式爆发：2026年开发者必须掌握的 Claude Code 技能框架与规范驱动开发实战指南
 
-{{</* resource-info */>}}
-
-## Quick Answer
-
-**Q: AI Agent Skills 是什么范式？为什么 2026 年集中爆发？**
-
-**A:** AI Agent Skills 是 **AI agent 可复用的行为模式** — 把'裸 prompt'替换为工程化纪律。2026 年 5 月 GitHub Top 20 增长最快有 5 个含 'skills'：**Matt Pocock 个人 .claude**（每周 +1,618 stars）、**GitHub Spec-Kit**（Spec-Driven Development 标准）、**NousResearch Hermes Agent**（+1,332 stars）。采用 SDD + Skills 的团队报告**昂贵的 agent 返工减少 3-5×**。
+**发布时间：** 2026年5月20日  
+**阅读时间：** 15 分钟  
+**目标读者：** 全栈开发者、技术负责人、AI 工具爱好者
 
 ---
 
-## 引言
+## 写在前面：为什么你的 Claude Code 还不够聪明
 
-**dibi8 的看法** — 5 月初我们开始在 dibi8 自家 build pipeline 实验 Matt Pocock 的 skill 模式。立刻见效的模式是 > 1 小时任务前先写 spec：写 10 行 spec 文件让 2 周 sprint 期间 Claude Code 返工率降了 ~60%。无人提的隐藏好处：skills 也是 **agent 无关的文档** — 教未来的你 之前的你做了什么决定。
+2026 年 5 月的 GitHub Trending 榜单出现了一个前所未有的现象：前 20 个增长最快的仓库中，**超过 5 个名字里带着 "skills"**。 Matt Pocock 的个人 `.claude` 目录开源后一周内斩获 +1,618 stars，NousResearch 的 Hermes Agent 紧随其后拿到 +1,332 stars，就连 Andrej Karpathy 的工作流都被打包成了可复用的 agent skills。
+
+这不是巧合。社区正在经历一场静默的范式转移：从把 AI 当成**黑箱代码生成器**，转向为 AI 编码**可复用的行为模式、约束条件和工作流**——这就是 **AI Agent Skills 模式**。
+
+与此同时，GitHub 官方推出的 **Spec-Kit** 标志着另一股力量的崛起：**Spec-Driven Development（规范驱动开发，SDD）**。它用 `SPECIFICATION → PLAN → TASKS → IMPLEMENTATION` 的四步 workflow，把 "vibe coding" 的随性变成了可工程化的纪律。
+
+如果你还在用 "帮我写个登录页" 这样的提示词驱动 AI，你已经落后了。
+
+---
 
 ## 什么是 AI Agent Skills？从黑箱到可组合的行为乐高
 
@@ -355,27 +323,3 @@ AI Agent Skills 模式和 Spec-Driven Development 不是在增加复杂度，而
 ---
 
 *本文基于 2026 年 5 月 GitHub Trending 数据、Hacker News 技术讨论及社区实践撰写。技能框架版本以 Claude Code 2026.05 为准。*
-
-
----
-
-## 推荐基础设施
-
-自部署本文讨论的任何 pattern 或 runtime：
-
-- **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $5/月 droplet 撑 dev 工作流，新用户 $200 免费额度
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 香港 / 新加坡 VPS 亚太低延迟，$4/月起
-
-完整优化栈含模型选型见 [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)。
-
-*本文包含联盟链接。如果你通过这些链接购买，我们可能获得佣金 — 你付的价格不变。*
-
----
-
-## 延伸阅读
-
-- [rtk — AI 编程账单砍 80%](/zh/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/)
-- [Best Cursor Alternatives 2026](/zh/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/)
-- [AI Agent Memory Systems 2026](/zh/resources/llm-frameworks/ai-agent-memory-systems-2026/)
-- [CC Switch — 多 AI CLI 管理](/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
-- [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)
