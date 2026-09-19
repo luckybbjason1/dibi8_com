@@ -1,0 +1,99 @@
+# Hugo Configuration for dibi8.com
+baseURL = "https://dibi8.com/"
+languageCode = "en-us"
+title = "Dibi8 - AI Tools Directory"
+theme = "PaperMod"
+
+# Enable pluralize link titles
+pluralizelisttitles = true
+
+# Content directory
+contentDir = "content"
+
+# Output format
+enableRobotsTXT = true
+enableGitInfo = false
+
+# Sitemap configuration
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Taxonomies
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  collection = "collections"
+
+# Languages configuration
+[languages]
+  [languages.en]
+    weight = 1
+    title = "Dibi8"
+    languageName = "English"
+    contentDir = "CN"
+    
+  [languages.zh]
+    weight = 2
+    title = "Dibi8"
+    languageName = "中文"
+    contentDir = "ZH"
+    
+  [languages.ko]
+    weight = 3
+    title = "Dibi8"
+    languageName = "한국어"
+    contentDir = "KR"
+    
+  [languages.vi]
+    weight = 4
+    title = "Dibi8"
+    languageName = "Tiếng Việt"
+    contentDir = "VI"
+
+# Menu configuration
+[[menu.main]]
+  identifier = "categories"
+  name = "Categories"
+  pageRef = "categories"
+  weight = 10
+
+[[menu.main]]
+  identifier = "tools"
+  name = "🛠 Tools"
+  pageRef = "tools"
+  weight = 20
+
+[[menu.main]]
+  identifier = "collections"
+  name = "Collections"
+  pageRef = "collections"
+  weight = 30
+
+# Params
+[params]
+  env = "production"
+  description = "Curated rankings of the best open-source AI coding agents, LLM frameworks, and developer utilities"
+  defaultTheme = "dark"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  
+  # Social links
+  [params.social]
+    GitHub = "luckybbjason1"
+    Telegram = "https://t.me/DIBI8_Group"
+
+# Markup configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
