@@ -209,3 +209,30 @@ Lựa chọn thương mại vs OSS không phải về giá (chúng gần nhau h�
 ---
 
 **Liên quan**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Các phương án thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Cài đặt OpenCode](https://dibi8.com/vi/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 Coding Agent mã nguồn mở",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/aider-cline-openhands-2026-honest-comparison"
+  }
+}
+</script>

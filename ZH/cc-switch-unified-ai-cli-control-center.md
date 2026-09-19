@@ -2,7 +2,7 @@
 title: 'cc-switch: 统一 6+ AI 编码代理的跨平台桌面 CLI 控制中心 — 2026 实战指南'
 description: 'cc-switch（95,900 GitHub 星标）是一款跨平台桌面工具，将 Claude Code、Codex、OpenCode、Gemini CLI、OpenClaw 和 Hermes Agent 统一为一个控制中心。单二进制文件，零依赖。包含安装教程、架构分析和真实基准测试。'
 date: 2026-06-08
-slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['AI CLI 管理', 'Claude Code 替代方案', 'AI 编码工具', '开发者生产力', '多代理 CLI', 'cc-switch', 'AI 编码代理', 'CLI 代理']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -321,3 +321,30 @@ cc-switch 填补了没有任何其他工具解决的空缺：**统一管���
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 cc-switch 技巧和预设。查看我们的 [opencode 设置](dibi8-internal-link) 和 [MCP 深度解析](dibi8-internal-link) 指南了解相关工具。今天就试试 cc-switch——安装它，设置两个代理预设，看看一周后你能节省多少时间。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "cc-switch: 统一 6+ AI 编码代理的跨平台桌面 CLI 控制中心 — 2026 实战指南",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cc-switch-unified-ai-cli-control-center"
+  }
+}
+</script>

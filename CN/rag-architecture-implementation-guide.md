@@ -703,3 +703,30 @@ To run any of the tools above reliably 24/7, infrastructure matters:
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAG Architecture Implementation Guide 2025: Build Production-Ready Systems",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/rag-architecture-implementation-guide"
+  }
+}
+</script>

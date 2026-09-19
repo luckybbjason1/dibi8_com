@@ -5,7 +5,7 @@ category: llm-frameworks
 tags: ['ray', 'distributed-computing', 'ai-scaling', 'machine-learning', 'python', 'parallel-processing']
 slug: ray-distributed-ai-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/ray-distributed-computing-ai.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/ray-distributed-computing-ai.jpg
 ---
 
 ## TL;DR
@@ -1034,3 +1034,30 @@ Access the Ray Dashboard at `http://<head-node>:8265` for real-time metrics on C
 ## Call to Action
 
 Scale your AI workloads with Ray's unified framework. [Start building](https://dibi8.com/auth/) today with our comprehensive tutorials and production-ready templates.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ray — The Unified Framework for Scaling AI and Python Applications",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ray-distributed-ai-framework-complete-guide"
+  }
+}
+</script>

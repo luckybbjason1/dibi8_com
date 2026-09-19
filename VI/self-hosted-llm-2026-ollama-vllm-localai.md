@@ -198,3 +198,30 @@ Về chất lượng, Llama 3.3 70B đủ tốt cho hầu hết công việc hà
 ---
 
 **Liên quan**: [Hướng Dẫn Thiết Lập Ollama](https://dibi8.com/vi/resources/llm-frameworks/ollama/) · [RAG vs Fine-Tuning 2026](https://dibi8.com/vi/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực Throughput, Chi Phí, Triển Khai",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/self-hosted-llm-2026-ollama-vllm-localai"
+  }
+}
+</script>

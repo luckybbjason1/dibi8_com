@@ -5,7 +5,7 @@ tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automati
 category: dev-utils
 featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
 lang: vi
 ---
@@ -573,3 +573,30 @@ Not entirely — n8n connects tools thay vì replacing them. Nó automates the f
 ---
 
 *Tham gia nhóm Telegram để thảo luận công cụ AI thời gian thực và mẹo deployment: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "n8n AI Automation — Xây dựng Workflows thông minh không cần code",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/n8n-ai-automation-complete-guide"
+  }
+}
+</script>

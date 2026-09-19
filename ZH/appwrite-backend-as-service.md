@@ -521,3 +521,30 @@ Appwrite 1.6 是 2026 年最成熟的 Firebase 开源替代方案。它在一个
 ---
 *文章发布：2026-05-19 | 分类：dev-utils | 工具：Appwrite 1.6.1*
 *加入 dibi8 开发者社区：[English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Appwrite 2026：开源 Firebase 替代方案 — 认证、数据库与存储自托管后端完整指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/appwrite-backend-as-service"
+  }
+}
+</script>

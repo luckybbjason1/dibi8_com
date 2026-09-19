@@ -40,6 +40,8 @@ faqs:
   - q: '这些伦理原则能用代码强制执行吗，还是只是指导方针？'
     a: '其中大部分都能用代码强制执行。最小权限是受限凭证加白名单；可审计是对每次工具调用做结构化日志；可逆性是按风险分级的审批闸加撤销/幂等；有界自主是速率和花费上限；失效保护是置信度阈值加急停开关。只有它们背后的意图——判断哪些动作算高风险——需要人来决定。无法强制执行的伦理只是装饰。'
 ---
+# AI 智能体道德规范（2026）：构建自主智能体的实用治理框架
+
 
 > **关于本文**：这是一份面向工程师的自主 AI 智能体道德规范——针对的是"执行动作"而非"仅生成文字"的系统。它被写成可强制执行的，而非高悬的口号。下面每一条原则都对应你可以在上线前写进代码库的一个控制手段。
 
@@ -165,3 +167,30 @@ faqs:
 ---
 
 *本道德规范以 CC-BY-4.0 发布——欢迎自由地把它改编进你自己的智能体治理文档。如果你的团队正在 2026 年交付自主智能体，接入这些控制的正确时机，是在第一次生产运行之前，而不是第一次事故之后。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 智能体道德规范（2026）：构建自主智能体的实用治理框架",
+  "datePublished": "2026-06-04",
+  "dateModified": "2026-06-04",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-agent-code-of-ethics"
+  }
+}
+</script>

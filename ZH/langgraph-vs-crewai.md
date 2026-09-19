@@ -2,7 +2,7 @@
 title: 'LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队'
 description: 'LangGraph（低层级有状态代理图）与 CrewAI（高层级基于角色的多代理团队）逐项对比——控制力、学习曲线、状态、多代理设计与生产可靠性。2026 更新。'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [langgraph, crewai, ai-agents, multi-agent, agent-framework, orchestration, llm, comparison]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'CrewAI 是构建在 LangChain 或 LangGraph 之上的吗？'
     a: 'CrewAI 是独立框架，并非建立在 LangGraph 之上，尽管它能与 LangChain 工具互操作。相比之下，LangGraph 是 LangChain 生态的官方组成部分，由 LangChain 团队作为其底层编排层维护。所以二者出身不同：LangGraph 把 LangChain 向下延伸为可控的图，而 CrewAI 是对“代理团队”的一种独立、更高层的诠释。'
 ---
+# LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队
+
 ## 快速答案
 
 **LangGraph** 在需要精确、底层控制的有状态代理工作流时胜出。**CrewAI** 则在快速搭建基于角色的代理团队时更占优势。
@@ -117,3 +119,30 @@ CrewAI 位于 *更高处*：它编码了一种主见——代理系统就是一�
 - [Cursor vs Claude Code](https://dibi8.com/vs/cursor-vs-claude-code/)
 
 外部参考：[LangGraph](https://www.langchain.com/langgraph) · [LangGraph 文档](https://langchain-ai.github.io/langgraph/) · [LangGraph GitHub](https://github.com/langchain-ai/langgraph) · [CrewAI](https://www.crewai.com/) · [CrewAI 文档](https://docs.crewai.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/langgraph-vs-crewai"
+  }
+}
+</script>

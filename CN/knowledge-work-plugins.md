@@ -3,7 +3,7 @@ title: "Knowledge Work Plugins: Anthropic's Plugin Ecosystem for Enhanced AI Pro
 description: "Knowledge Work Plugins (20,728 stars) by Anthropic extends Claude with powerful tools for document editing, code analysis, web browsing, and file operations. Build custom plugins for your workflow."
 tags: ["architecture", "llm", "open-source", "system"]
 date: 2026-06-15
-slug: knowledge-work-plugins
+lastmod:  2026-06-15slug: knowledge-work-plugins
 category: dev-utils
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
 license: Apache-2.0
@@ -420,3 +420,30 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **CTA**: Join the DIBI8 developer community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Knowledge Work Plugins: Anthropic's Plugin Ecosystem for Enhanced AI Productivity 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/knowledge-work-plugins"
+  }
+}
+</script>

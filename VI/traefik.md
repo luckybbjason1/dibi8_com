@@ -694,3 +694,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Traefik Community Forum — Performance Benchmarks](https://community.traefik.io/t/traefik-performance-lags-behind-nginx-and-caddy/28919)
 - [Nginx vs Traefik vs HAProxy Comparison — Loft.sh](https://www.loft.sh/blog/nginx-vs-traefik-vs-haproxy-comparing-kubernetes-ingress-controllers)
 - [Caddy vs Traefik vs HAProxy vs Nginx — BigMike.help](https://bigmike.help/en/posts/102/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router Hướng Dẫn Triển Khai Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/traefik"
+  }
+}
+</script>

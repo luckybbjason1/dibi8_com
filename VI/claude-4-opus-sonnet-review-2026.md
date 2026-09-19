@@ -2,7 +2,7 @@
 title: 'Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test Thực Chiến'
 description: 'Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so sánh với GPT-4o, Gemini 1.5 Pro. Cập nhật tháng 6/2026.'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, đánh-giá-llm, ai-lập-trình, mô-hình-suy-luận]
 categories: [review]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Context window của Claude 4 rộng bao nhiêu?'
     a: 'Tất cả model Claude 4 hỗ trợ context window 200K token, cho phép phân tích cả cuốn sách, codebase lớn hay lịch sử hội thoại dài trong một lần gọi. Output window tối đa 32K token — đủ để sinh báo cáo dài, file đầy đủ hay tài liệu nhiều phần trong một lần.'
 ---
+# Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test Thực Chiến
+
 
 ![Claude 4 Opus 4 Sonnet 4 review — Anthropic's latest model family, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
@@ -143,3 +145,30 @@ Tìm hiểu cách dùng Claude 4 với [Model Context Protocol](mcp-deep-dive-de
 ---
 
 *Model ID được xác minh từ [tài liệu chính thức Anthropic](https://docs.anthropic.com/en/docs/about-claude/models/overview). Giá có thể thay đổi — kiểm tra trang giá Anthropic để biết mức hiện tại.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test Thực Chiến",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-4-opus-sonnet-review-2026"
+  }
+}
+</script>

@@ -274,3 +274,30 @@ exo-explore의 exo는 자신의 하드웨어에서 프런티어 AI를 돌릴 수
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "exo: 내 기기들을 묶어 프런티어 AI를 로컬에서 (45K Stars) — 2026 실전 가이드",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/exo-dev-utils-2026"
+  }
+}
+</script>

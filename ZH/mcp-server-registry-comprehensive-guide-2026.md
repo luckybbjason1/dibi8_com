@@ -26,6 +26,8 @@ tags: ['MCP', 'Model Context Protocol', '注册中心', 'Hub文章']
 aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
+# MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个
+
 
 2026 年 1 月，所有公开的 MCP server 还能塞进一个 GitHub README。到 2026 年 5 月，[mcp.so](https://mcp.so) 已经列出 **19,700+** 个。瓶颈不再是 "怎么写一个"，而是 "19,700 个里我到底该插哪个进去？"
 
@@ -196,3 +198,30 @@ aliases:
 ---
 
 *想自托管 5+ 个 MCP server（postgres + filesystem + git + memory + tavily-search）不烧云账单？开一个 $6/月的 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}，用 supervisor（systemd 或 PM2）跑起来，把 Claude Desktop 的 `claude_desktop_config.json` 指过去。一下午搞定。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mcp-server-registry-comprehensive-guide-2026"
+  }
+}
+</script>

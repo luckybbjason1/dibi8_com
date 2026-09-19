@@ -634,3 +634,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links. If you sign up for [DigitalOcean](https://m.do.co/c/eca87ac14ee0) through our link, we receive a commission at no extra cost to you. We only recommend services we use for our own deployments. Vectara offers a free tier with no credit card required, and all ingestion tooling is open-source under the Apache-2.0 license.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vectara 2026: The RAG-as-a-Service Platform with 90%+ Answer Accuracy — API Integration & Benchmarks",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/vectara-rag-as-service-platform"
+  }
+}
+</script>

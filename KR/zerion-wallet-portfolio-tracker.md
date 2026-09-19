@@ -392,3 +392,30 @@ A: 둘 다 선도적인 DeFi 포트폴리오 추적기입니다. Zerion은 더 �
 ---
 
 *면책 조항: 본 문서는 정보 제공 목적으로만 작성되었으며 재무 조언을 구성하지 않습니다. 암호화폐 투자에는 상당한 위험이 따릅니다. 투자 결정을 내리기 전에 항상 자신의 연구를 수행하세요. 본 포스트에는 제휴 링크가 포함되어 있으며, 파트너 링크를 사용하실 때 커미션을 받을 수 있으나 추가 비용은 발생하지 않습니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "zerion-wallet-portfolio-tracker",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/zerion-wallet-portfolio-tracker"
+  }
+}
+</script>

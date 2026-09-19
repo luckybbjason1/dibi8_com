@@ -27,6 +27,8 @@ tags: ['Cheap LLM', 'Free Tier', 'Cost Optimization', 'Stack', 'Collection']
 aliases:
   - /posts/cheap-llm-stack/
 ---
+# The Cheap LLM Stack 2026: How to Run Production AI on $0-15/Month Using Free Tiers and Token Compression
+
 
 Most "LLM cost optimization" advice is just "use the cheaper model." This collection is more ambitious: **a 5-component stack that handles real production workloads — coding agents, content generation, search, basic agents — for $0-15/month total.** Not a hobby setup. Not "good for 100 requests/day." Real, daily-driver inference at SaaS-killer prices.
 
@@ -227,3 +229,30 @@ Stack pays for itself if you currently spend $30+/mo on any AI SaaS. Spin it up 
 ---
 
 *Pair this collection with [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) if you want the full coding stack — they share Ollama + 9Router + RTK as a foundation.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Cheap LLM Stack 2026: How to Run Production AI on $0-15/Month Using Free Tiers and Token Compression",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/cheap-llm-stack"
+  }
+}
+</script>

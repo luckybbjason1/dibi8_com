@@ -195,3 +195,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Camoufox](https://github.com/daijro/camoufox)
 - [Exa MCP Server](https://github.com/exa-labs/exa-mcp-server)
 - [Cursor](https://cursor.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agent Reach: Give Your AI Agent Internet Superpowers",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/agent-reach-ai-agent-internet-access"
+  }
+}
+</script>

@@ -179,3 +179,30 @@ Axolotl = **YAML 驱动的 LLM 微调框架，2026 生产多 GPU 默认**。12k 
 ---
 
 *dibi8 Fine-Tuning Stack 的一部分 —— 配 [Unsloth 单 GPU 快速迭代](/zh/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)。完整 LLM ops 图景见即将上线的 Fine-Tuning Stack 合集。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/axolotl-llm-fine-tuning-framework-2026"
+  }
+}
+</script>

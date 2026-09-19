@@ -791,3 +791,30 @@ Perplexity API đại diện cho một bước tiến đáng kể trong công ng
 Đối với các nhà phát triển xây dựng thế hệ ứng dụng thông minh tiếp theo — từ trợ lý nghiên cứu và công cụ kiểm tra sự thật đến cơ sở kiến thức động và hệ thống xác minh nội dung — Perplexity cung cấp một con đường trực tiếp đến RAG cấp sản xuất mà không cần quản lý cơ sở dữ liệu vector, đường ống embedding hoặc điều chỉnh độ liên quan.
 
 Khi chúng ta bước qua năm 2026, kỳ vọng rằng các ứng dụng AI cung cấp câu trả lờ có nguồn gốc, có thể xác minh đang trở thành tiêu chuẩn, không phải ngoại lệ. Tích hợp API tìm kiếm RAG của Perplexity định vị các ứng dụng của bạn để đáp ứng kỳ vọng này, mang lại trải nghiệm mà ngườ dùng có thể tin tưởng vì mọi câu trả lờ đều dựa trên nền tảng của các nguồn thực, có thể trích dẫn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "perplexity-api-rag-search",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/perplexity-api-rag-search"
+  }
+}
+</script>

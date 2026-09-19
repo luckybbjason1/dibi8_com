@@ -89,3 +89,30 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 > **안전한 AI 인프라 구축:** MCP 서버나 AI 워크로드를 VPS에서 운영한다면 호스트 OS 강화가 최우선입니다. [월 $6 DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0)으로 방화벽, 사용자 격리, 감사 로깅을 직접 설정하세요. 신규 사용자에게 **$200 무료 크레딧** 제공.
 
 **GitHub:** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·에디터 확장 지원",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/bumblebee-supply-chain-scanner-perplexity-2026"
+  }
+}
+</script>

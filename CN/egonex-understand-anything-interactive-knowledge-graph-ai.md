@@ -2,7 +2,7 @@
 title: "Egonex Understand-Anything: Interactive Knowledge Graphs from Any Topic — AI-Powered, Open-Source, Zero Config"
 description: "Learn how to use Egonex's Understand-Anything to generate interactive knowledge graphs from any topic using AI. Step-by-step installation, multi-source synthesis, real-time search, and comparisons with alternatives."
 date: 2026-06-10
-slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: [egonex, understand-anything, knowledge-graph, AI, interactive, open-source, research, visualization, llm]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -543,3 +543,30 @@ Sources & Further Reading
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss knowledge graph generation and research workflows. Check out our guides on [AI agent management](dibi8-internal-link) and [document processing](dibi8-internal-link) for complementary tooling. Start exploring knowledge today — one topic at a time.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Egonex Understand-Anything: Interactive Knowledge Graphs from Any Topic — AI-Powered, Open-Source, Zero Config",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/egonex-understand-anything-interactive-knowledge-graph-ai"
+  }
+}
+</script>

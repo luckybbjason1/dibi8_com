@@ -611,3 +611,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Affiliate Disclosure
 
 Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký [DigitalOcean](https://m.do.co/c/eca87ac14ee0) qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho các triển khai của mình. Superagent riêng là mã nguồn mở và miễn phí sử dụng dưới giấy phép MIT.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1 Lệnh CLI — Hướng Dẫn Tối Thiểu 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/superagent-ai-agent-framework"
+  }
+}
+</script>

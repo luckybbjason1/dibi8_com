@@ -23,6 +23,8 @@ tags: ['prometheus', '监控', 'docker', 'kubernetes', 'grafana', 'devops', '可
 aliases:
 - /zh/posts/prometheus/
 ---
+# Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026
+
 
 {{</* resource-info */>}}
 
@@ -611,3 +613,30 @@ Prometheus 在 2026 年仍是云原生监控的黄金标准。凭借 64,094 个 
 - [PromQL 速查表](https://promlabs.com/promql-cheat-sheet/)
 - [Prometheus vs InfluxDB 对比](https://uptrace.dev/comparisons/prometheus-vs-influxdb)
 - [CNCF Prometheus 项目页面](https://www.cncf.io/projects/prometheus/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/prometheus"
+  }
+}
+</script>

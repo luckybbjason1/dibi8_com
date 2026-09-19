@@ -79,3 +79,30 @@ A: 네! Apple Silicon(M1/M2/M3)은 PyTorch MPS 백엔드를 통해 네이티브�
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/comfyui-vs-midjourney"
+  }
+}
+</script>

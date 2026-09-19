@@ -2,7 +2,7 @@
 lang: en
 title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
 date: 2026-06-15
-slug: apple-container-mac-vm-tool-2026
+lastmod:  2026-06-15slug: apple-container-mac-vm-tool-2026
 description: "Apple released container, a Swift-based tool for running Linux containers on Mac using lightweight VMs. 37K stars, OCI-compatible, macOS 26 required."
 tags: ["apple", "container", "macos", "linux", "virtualization", "swift", "devops", "docker", "open-source"]
 categories: ["ai-tools"]
@@ -399,3 +399,30 @@ A: The freed memory pages are not returned to the host macOS. You may need to re
 ---
 
 *Interested in more AI tool and developer infrastructure reviews? Join our [Telegram community](https://t.me/DIBI8_Group) for daily updates and early access to new articles.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apple's Container: Docker-Like Experience on Mac with 37K Stars",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/apple-container"
+  }
+}
+</script>

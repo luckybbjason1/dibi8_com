@@ -311,7 +311,7 @@ from pydantic import BaseModel, field_validator
 
 class StrictDateRange(BaseModel):
     start_date: str = Field(description="Định dạng YYYY-MM-DD")
-    end_date: str = Field(description="Định dạng YYYY-MM-DD, phải sau ngày bắt đầu")
+lastmod:  str = Field(description="Định dạng YYYY-MM-DD")    end_date: str = Field(description="Định dạng YYYY-MM-DD, phải sau ngày bắt đầu")
     
     @field_validator('start_date', 'end_date')
     @classmethod
@@ -591,3 +591,29 @@ Hỗ trợ đa nhà cung cấp của thư viện nghĩa là bạn không bị m�
 Nếu bạn vẫn đang phân tích đầu ra gốc từ LLM bằng `json.loads()` và hy vọng vào may mắn, thì đến lúc nâng cấp rồi. Cài đặt Instructor ngay hôm nay và trải nghiệm ý nghĩa của việc có **100% JSON hợp lệ, 100% thời gian**.
 
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/instructor-structured-llm-output"
+  }
+}
+</script>

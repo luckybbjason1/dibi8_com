@@ -177,3 +177,30 @@ ComfyUI + ComfyUI Manager 설치 (총 ~15분), OpenArt 커뮤니티 워크플로
 ---
 
 *dibi8의 멀티모달 콘텐츠 스택 일부 — [캐주얼 사용용 Stable Diffusion WebUI](/kr/resources/ai-tools/stable-diffusion-webui-2026/)와 [음성용 ChatTTS](/kr/resources/ai-tools/chattts-dialogue-tts-2026/) 페어. 전체 크리에이터 스택은 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플로우 엔진 완전 가이드",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/comfyui-node-based-ai-image-2026"
+  }
+}
+</script>

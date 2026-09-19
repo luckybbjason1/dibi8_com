@@ -352,3 +352,30 @@ Tìm hiểu thêm tại [postman.com](https://www.postman.com), [insomnia.rest](
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt Nhất Năm 2025",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/api-testing-tools-postman-vs-insomnia-vs-bruno"
+  }
+}
+</script>

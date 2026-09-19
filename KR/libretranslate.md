@@ -796,3 +796,30 @@ LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 �
 ---
 
 > **고지사항**: 이 문서에는 제휴 링크가 포함되어 있습니다. 이 가이드의 추천 링크를 통해 DigitalOcean에 가입하면 추가 비용 없이 커미션을 받을 수 있습니다. 제휴 링크는 이와 같은 오픈소스 문서 프로젝트의 지속적인 유지보수를 지원하는 데 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/libretranslate"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "스크래치 AI 엔지니어링: 프로덕션 LLM 시스템 구축 — 2026 완전 가이드"
 description: "스크래치 AI 엔지니어링(32,771 스타)은 LLM 파인튜닝, RAG, 에이전트 프레임워크, 프로덕션 배포를 아우르는 포괄적인 커리큘럼입니다. AI 시스템을 구축하고, 출시하고, 확장하는 방법을 배워보세요."
 date: 2026-06-15
-slug: ai-engineering-from-scratch
+lastmod:  2026-06-15slug: ai-engineering-from-scratch
 category: llm-frameworks
 tags: ['ai 엔지니어링', 'llm', '파인튜닝', 'rag', '에이전트 프레임워크', '프로덕션 배포', '머신러닝']
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
@@ -403,3 +403,30 @@ pip install -r requirements.txt
 - vLLM 문서: https://docs.vllm.ai/
 
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "스크래치 AI 엔지니어링: 프로덕션 LLM 시스템 구축 — 2026 완전 가이드",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-engineering-from-scratch"
+  }
+}
+</script>

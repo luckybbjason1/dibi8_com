@@ -139,3 +139,30 @@ GEO는 실재하며 기법들은 작동합니다. FAQ schema는 단일 최고 RO
 ---
 
 **관련 읽을거리**: [MCP Servers 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Coding 2026-Q2 슛아웃](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가이드",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/geo-ai-overviews-optimization-2026-practical"
+  }
+}
+</script>

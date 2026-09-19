@@ -5,7 +5,7 @@ tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compu
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-draft: false
+lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
 lang: vi
 ---
@@ -557,3 +557,30 @@ Hiện tại, Modal chỉ hoạt động trên managed cloud infrastructure củ
 ---
 
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Modal Tính Toán GPU Không Máy Chủ — Chạy Luồng ML Không Cơ Sở Hạ Tầng",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/modal-serverless-gpu-compute"
+  }
+}
+</script>

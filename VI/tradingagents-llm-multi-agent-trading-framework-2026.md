@@ -2,7 +2,7 @@
 title: 'TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 Sao — Hướng Dẫn Thực Chiến 2026'
 description: 'TradingAgents là framework đa tác tử LLM mã nguồn mở (82,254 GitHub stars, Apache-2.0) mô phỏng một công ty giao dịch: các tác tử phân tích, nghiên cứu, trader và quản trị rủi ro tranh luận ra quyết định BUY/SELL/HOLD. Dựa trên LangGraph. Bao gồm cài đặt, pipeline tác tử, CLI + Python API, và so sánh thẳng thắn với Qlib và bot đơn tác tử.'
 date: 2026-06-02
-slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
+lastmod:  2026-06-02slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
 tags: ['TradingAgents', 'tác tử LLM', 'giao dịch thuật toán', 'LangGraph', 'đa tác tử', 'AI trading', 'quant', 'AI tài chính']
 github_repo: 'https://github.com/TauricResearch/TradingAgents'
@@ -271,3 +271,30 @@ TradingAgents là dự án mã nguồn mở thú vị nhất 2026 để nghiên 
   công cụ mã nguồn mở liên quan -> ai-tools-directory
   các hướng dẫn liên quan trên dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 Sao — Hướng Dẫn Thực Chiến 2026",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/tradingagents-llm-multi-agent-trading-framework-2026"
+  }
+}
+</script>

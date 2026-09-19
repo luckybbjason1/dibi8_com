@@ -346,3 +346,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Browser Harness：让 LLM 自主操控浏览器的自愈型神器",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/browser-harness-self-healing-llm-web-automation"
+  }
+}
+</script>

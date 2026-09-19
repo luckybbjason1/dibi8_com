@@ -3,7 +3,7 @@ title: "MoneyPrinterTurbo：使用 AI 自动生成视频"
 slug: "moneyprinter-turbo-ai-video-generation-one-command"
 category: "ai-tools"
 publish_date: "2026-06-10"
-author: "DIBI8"
+lastmod:  "2026-06-10"author: "DIBI8"
 tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
@@ -371,3 +371,29 @@ while True:
 ---
 
 DIBI8 是您发现最佳开源工具、AI 创新和开发者资源的门户。订阅我们的 Telegram 频道获取每日更新。
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MoneyPrinterTurbo：使用 AI 自动生成视频",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/moneyprinter-turbo-ai-video-generation-one-command"
+  }
+}
+</script>

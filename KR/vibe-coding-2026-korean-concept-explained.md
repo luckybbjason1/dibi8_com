@@ -150,3 +150,30 @@ AI Claude Code: [미들웨어 생성, 라우트 업데이트, 테스트 추가]
 ---
 
 **관련**: [AI 코딩 2026-Q2 비교](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Aider vs Cline vs OpenHands](https://dibi8.com/kr/resources/dev-utils/aider-cline-openhands-2026-honest-comparison/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "바이브 코딩 2026: 한국 개발자 개념을 모두에게 풀어 설명한다",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/vibe-coding-2026-korean-concept-explained"
+  }
+}
+</script>

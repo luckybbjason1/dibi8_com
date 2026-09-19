@@ -432,3 +432,30 @@ AI 도구 분야는 빠르게 진화하고 있습니다. 매일 새로운 도구
 *마지막 업데이트: 2024년 12월*
 
 *이 가이드는 최신 AI 도구와 트렌드를 반영하여 정기적으로 업데이트됩니다. 이 페이지를 북마크하고 새로운 내용을 확인하세요.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2024 AI 도구 디렉토리: 최고의 AI 도구 완벽 가이드 | Dibi8",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-tools-directory"
+  }
+}
+</script>

@@ -683,3 +683,30 @@ Mastra 填补了 AI 框架领域的明显空白 —— 一个生产级的 TypeSc
 - [LangChain GitHub 仓库](https://github.com/langchain-ai/langchain)
 - [CrewAI GitHub 仓库](https://github.com/crewAIInc/crewAI)
 - [Vercel AI SDK 文档](https://sdk.vercel.ai/docs)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mastra: 24K+ Stars — 节省 Token 成本 4-10 倍的 TypeScript AI 框架 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mastra"
+  }
+}
+</script>

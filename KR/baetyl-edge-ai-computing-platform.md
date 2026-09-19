@@ -467,3 +467,30 @@ Baetyl은 클라우드 AI 학습과 엣지 AI 추론 사이의 격차를 해소�
 ## 제휴 공개
 
 본 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 모든 권장 사항은 실제 테스트를 기반으로 하며 제휴 프로그램의 영향을 받지 않습니다. Baetyl은 Apache-2.0 라이선스에 따라 완전히 오픈소스이며 물론 사용할 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 2026 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/baetyl-edge-ai-computing-platform"
+  }
+}
+</script>

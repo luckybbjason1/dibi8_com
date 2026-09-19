@@ -2,7 +2,7 @@
 title: 'DeepSeek Harness: 229K-Star 플러그인 생태계가 모든 것을 확장 가능하게 — 완전 2026 설정 가이드'
 description: 'DeepSeek Harness(DSH)는 2026년 가장 빠르게 성장하는 AI 에이전트 프레임워크로 GitHub 스타 229K+를 기록했습니다. 커스텀 플러그인 빌드, Claude Code/Cursor/Codex 통합, 몇 분 안에 프로덕션 에이전트 배포 방법을 배우세요.'
 date: 2026-09-19
-slug: 'deepseek-harness-plugin-ecosystem-2026'
+lastmod:  2026-09-19slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
 tags: ['deepseek', 'harness', '플러그인', 'ai-agent', 'dsh', 'automation']
 github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
@@ -391,3 +391,30 @@ DeepSeek Harness는 우리가 AI 코딩 도구에 대해 생각하는 방식의 
 **CTA:** DSH 커뮤니티에 Telegram 가입: https://t.me/DIBI8_Group
 
 [Agent Skills 가이드](dibi8-internal-link) | [Agent-Reach 튜토리얼](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek Harness: 229K-Star 플러그인 생태계가 모든 것을 확장 가능하게 — 완전 2026 설정 가이드",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/deepseek-harness-plugin-ecosystem-2026"
+  }
+}
+</script>

@@ -33,6 +33,8 @@ faqs:
   - q: 'Làm thế nào để bắt đầu trên TikChain?'
     a: 'Đăng ký và tạo tài khoản, kết nối và liên kết các hồ sơ mạng xã hội của bạn, sau đó bắt đầu kiếm token thông qua tương tác, tham gia các sự kiện cộng đồng và quản trị, rồi rút phần thưởng về ví của bạn.'
 ---
+# Khám phá TikChain - Cổng thông tin blockchain mạng xã hội của bạn
+
 
 {</* resource-info */>}
 
@@ -192,3 +194,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Khám phá TikChain - Cổng thông tin blockchain mạng xã hội của bạn",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/discover-tikchain-your-gateway-to-social-media-blockchain"
+  }
+}
+</script>

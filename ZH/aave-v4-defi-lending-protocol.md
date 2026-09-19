@@ -778,3 +778,30 @@ AAVE v4代表了多年DeFi创新的结晶，将强大的借贷机制与现代架
 该协议广泛的文档、经过实战检验的智能合约和活跃的开发者社区为集成提供了坚实的基础。无论您是构建简单的收益聚合器还是与AAVE组合使用的复杂DeFi协议，本指南中概述的模式都将加速您的开发。
 
 准备好在AAVE上开始构建了吗？您需要ETH作为gas费以及要供应的资产。[在Binance注册](https://www.bsmkweb.cc/register?ref=DIBI8)或[注册OKX](https://www.promoohubly.com/join/12190433)为您的开发钱包充值，并获取测试和部署所需的代币。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AAVE v4 2026：管理150亿美元以上存款的DeFi借贷协议 — 智能合约集成指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/aave-v4-defi-lending-protocol"
+  }
+}
+</script>

@@ -249,3 +249,30 @@ pip install hermes-agent
 ---
 
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给编程 agent 专属 stack。[知识库 Stack](/zh/collections/knowledge-base-stack/) 给你的 agent 一个 Glean 等价 RAG 后端。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖成本侧。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-agent-tool-chain"
+  }
+}
+</script>

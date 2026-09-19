@@ -994,3 +994,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tuyên Bố Liên Kết
 
 Bài viết này chứa các liên kết affiliate đến Binance và Minara. Nếu bạn đăng ký và giao dịch qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không có chi phí thêm cho bạn. Các khoản hoa hồng này giúp tài trợ phát triển các công cụ giao dịch mã nguồn mở và nội dung giáo dục. Chúng tôi chỉ giới thiệu các nền tảng mà chúng tôi đã cá nhân kiểm tra. Giao dịch tiền điện tử có rủi ro đáng kể — không bao giờ đầu tư nhiều hơn số tiền bạn có thể chịu mất.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi Tự Động Trên BSC Với Python — Hướng Dẫn Đầy Đủ",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/pancake-trading-bot-defi-bsc"
+  }
+}
+</script>

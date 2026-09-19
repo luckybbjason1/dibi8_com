@@ -75,3 +75,30 @@ A: 당연합니다. DeepSeek V4 GGUF 파일을 다운로드하여 DS4에 올리�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/deepseek-ds4-vs-openai-api"
+  }
+}
+</script>

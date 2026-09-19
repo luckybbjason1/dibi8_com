@@ -616,3 +616,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tuyên Bố Tiếp Thị Liên Kết
 
 Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký dịch vụ thông qua các liên kết được đánh dấu trong bài viết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ mà chúng tôi đã đánh giá cá nhân và tin rằng mang lại giá trị thực sự. Các ý kiến được trình bày là của chúng tôi.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pipeline Sản Xuất — Hướng Dẫn Cài Đặt Đầy Đủ",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/zenml-mlops-pipeline-framework"
+  }
+}
+</script>

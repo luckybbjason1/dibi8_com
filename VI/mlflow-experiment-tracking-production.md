@@ -750,3 +750,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 10. [PostgreSQL](dibi8-internal-link) — Hướng dẫn liên quan về database setup
 
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa các liên kết tiếp thị liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, dibi8.com nhận được hoa hồng mà không phát sinh chi phí bổ sung cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chúng tôi sử dụng cho chính hạ tầng của mình.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi 10,000+ Thử Nghiệm — Hướng Dẫn Cài Đặt",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mlflow-experiment-tracking-production"
+  }
+}
+</script>

@@ -131,3 +131,30 @@ Chọn theo stack ngôn ngữ và phong cách workflow. Năng lực đã hội t
 ---
 
 **Liên quan**: [Hướng Dẫn Sản Xuất 12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [Hệ Thống Bộ Nhớ AI Agent](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng Theo Mức Độ Áp Dụng Trong Sản Xuất",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/open-source-ai-agent-framework-top-10-2026"
+  }
+}
+</script>

@@ -619,3 +619,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0). If you sign up through these links, we may earn a commission at no extra cost to you. All opinions and benchmarks are independently verified. Product recommendations are based on actual technical evaluation, not affiliate availability.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenRouter: The Unified LLM API Gateway Connecting 300+ Models with 40% Cost Savings — 2026 Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openrouter-unified-llm-api-gateway"
+  }
+}
+</script>

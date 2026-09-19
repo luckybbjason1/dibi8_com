@@ -33,6 +33,8 @@ faqs:
   - q: '如何开始使用 TikChain？'
     a: '注册并创建账户，连接并绑定你的社交媒体资料，然后通过互动开始赚取代币，参与社区活动和治理，最后将奖励提取到你的钱包。'
 ---
+# 发现 TikChain - 您的社交媒体区块链网关
+
 
 {</* resource-info */>}
 
@@ -191,3 +193,30 @@ TikChain 支持与 TikTok、Instagram、Twitter、YouTube 等集成。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "发现 TikChain - 您的社交媒体区块链网关",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/discover-tikchain-your-gateway-to-social-media-blockchain"
+  }
+}
+</script>

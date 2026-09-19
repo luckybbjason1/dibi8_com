@@ -136,3 +136,30 @@ The real lesson: most teams over-engineer their retrieval layer. Start with the 
 ---
 
 **Related**: [RAG vs Fine-Tuning 2026 Decision Framework](https://dibi8.com/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [Vector Database Comparison](https://dibi8.com/resources/llm-frameworks/vector-database-comparison/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (Real Workload Test)",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/vector-db-2026-qdrant-weaviate-milvus"
+  }
+}
+</script>

@@ -665,3 +665,30 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 ---
 *Bài viết đăng: 2026-05-19 | Danh mục: dev-utils | Công cụ: Directus 11.3.0*
 *Tham gia cộng đồng dibi8: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng cho AI Content Workflows — Hướng Dẫn Thiết Lập & API 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/directus-headless-cms-ai-content"
+  }
+}
+</script>

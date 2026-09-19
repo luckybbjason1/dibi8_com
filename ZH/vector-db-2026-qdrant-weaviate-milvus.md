@@ -139,3 +139,30 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 ---
 
 **相关阅读**：[2026 RAG vs Fine-Tuning 决策框架](https://dibi8.com/zh/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [向量数据库对比](https://dibi8.com/zh/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 服务器排行榜](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026 向量数据库选型：Qdrant vs Weaviate vs Milvus（真实负载实测）",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/vector-db-2026-qdrant-weaviate-milvus"
+  }
+}
+</script>

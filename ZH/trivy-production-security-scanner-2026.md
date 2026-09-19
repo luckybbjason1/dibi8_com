@@ -2,7 +2,7 @@
 title: 'Trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南'
 description: 'Trivy（aquasecurity/trivy）是一款用于容器、基础设施即代码（IaC）和代码的开源安全扫描工具。可与 Kubernetes、Docker、GitHub Actions 和 CI 流水线无缝集成。扫描 60 万+ CVE 漏洞、密钥泄露和配置错误。涵盖安装、策略即代码和生产环境加固。'
 date: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
+lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -363,3 +363,30 @@ Trivy 已成为云原生团队的首选安全扫描工具，因为它不仅仅�
 - 社区讨论：https://github.com/aquasecurity/trivy/discussions
 
 **披露**：本文包含 Affiliate 链接。如果您通过我们的链接注册，我们可能会获得少量佣金，且不会给您增加任何额外费用。这有助于支持独立的科技新闻报道，并使 dibi8.com 等资源保持免费和无广告。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/trivy-production-security-scanner-2026"
+  }
+}
+</script>

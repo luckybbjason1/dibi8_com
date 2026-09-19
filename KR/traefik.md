@@ -694,3 +694,30 @@ Traefik은 컨테이너화된 환경에서 동적 서비스 검색이라는 실�
 - [Traefik 커뮤니티 포럼 — 성능 벤치마크](https://community.traefik.io/t/traefik-performance-lags-behind-nginx-and-caddy/28919)
 - [Nginx vs Traefik vs HAProxy 비교 — Loft.sh](https://www.loft.sh/blog/nginx-vs-traefik-vs-haproxy-comparing-kubernetes-ingress-controllers)
 - [Caddy vs Traefik vs HAProxy vs Nginx — BigMike.help](https://bigmike.help/en/posts/102/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕션 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/traefik"
+  }
+}
+</script>

@@ -247,3 +247,30 @@ NLP 트랜스포머와의 주요 차이점:
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TabPFN: 표 형식 데이터 기반 모델 — 구조화된 데이터의 AI 혁신",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/tabpfn-foundation-model-tabular-data"
+  }
+}
+</script>

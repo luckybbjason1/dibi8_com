@@ -23,6 +23,8 @@ tags: ['prompt engineering', 'kỹ thuật prompt', 'LangSmith', 'PromptLayer', 
 aliases:
 - /vi/posts/prompt-engineering-frameworks-tools/
 ---
+# Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: So Sánh PromptLayer, LangSmith, W&B Prompts
+
 
 {</* resource-info */>}
 
@@ -279,3 +281,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Weights & Biases](https://wandb.ai)
 - [Pezzo GitHub](https://github.com)
 - [Microsoft Azure AI](https://microsoft.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: So Sánh PromptLayer, LangSmith, W&B Prompts",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/prompt-engineering-frameworks-tools"
+  }
+}
+</script>

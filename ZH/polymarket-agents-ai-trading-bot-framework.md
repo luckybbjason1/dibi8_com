@@ -326,3 +326,30 @@ Polymarket Agents 支持多种 AI 驱动的交易策略：
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Polymarket Agents：构建预测市场 AI 自动交易机器人的开源框架",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/polymarket-agents-ai-trading-bot-framework"
+  }
+}
+</script>

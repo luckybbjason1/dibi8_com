@@ -601,3 +601,30 @@ Continue.dev는 33,277+ GitHub Stars, 모든 LLM 유연성, 완전한 오프라�
 - [VS Code Continue 확장](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 - [JetBrains 마켓플레이스 - Continue](https://plugins.jetbrains.com/plugin/22707-continue)
 - [Continue.dev 블로그](https://blog.continue.dev/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cursor 비교 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/continue"
+  }
+}
+</script>

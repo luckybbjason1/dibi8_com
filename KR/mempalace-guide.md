@@ -77,3 +77,30 @@ A: 네. MemPalace는 데이터를 로컬 SQLite/ChromaDB 디스크에 기록하�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mempalace-guide"
+  }
+}
+</script>

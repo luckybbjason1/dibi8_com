@@ -5,7 +5,7 @@ category: llm-frameworks
 tags: ['fastchat', 'llm-chatbot', 'openai-alternative', 'vicuna', 'alpaca', 'llm-evaluation']
 slug: fastchat-open-source-llm-chatbot-platform
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg
 ---
 
 ## TL;DR
@@ -784,3 +784,30 @@ Yes, FastChat supports function calling through custom conversation templates. Y
 ## Call to Action
 
 Build your own AI assistant with FastChat's open-source platform. [Get started](https://dibi8.com/auth/) with our deployment guides and model training tutorials.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "FastChat — Build Your Own Open-Source ChatGPT Clone with LLM Chatbots",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/fastchat-open-source-llm-chatbot-platform"
+  }
+}
+</script>

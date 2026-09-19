@@ -23,6 +23,8 @@ tags: []
 aliases:
 - /kr/posts/api-documentation-generation-tools/
 ---
+# 2025년 최고의 API 문서 자동 생성 도구 비교: Swagger, Postman Docs, ReadMe, Mintlify
+
 
 {</* resource-info */>}
 
@@ -136,3 +138,30 @@ OpenAPI는 API를 기술하는 표준 사양이고, Swagger는 그 사양을 구
 - [ReadMe 플랫폼](https://readme.com)
 - [Mintlify 문서](https://mintlify.com)
 - [Redocly 플랫폼](https://redocly.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 API 문서 자동 생성 도구 비교: Swagger, Postman Docs, ReadMe, Mintlify",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/api-documentation-generation-tools"
+  }
+}
+</script>

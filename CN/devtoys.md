@@ -495,3 +495,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - DevUtils for macOS: https://devutils.com
 - Boop on GitHub: https://github.com/IvanMathy/Boop
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DevToys: 31,533 GitHub Stars — Complete Setup Guide for Developer Utilities Suite 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/devtoys"
+  }
+}
+</script>

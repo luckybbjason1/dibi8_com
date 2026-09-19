@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/open-source-llm-ranking-guide/
 ---
+# 开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比
+
 
 {</* resource-info */>}
 
@@ -351,3 +353,30 @@ ollama run phi4            # 运行 Phi-4
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/open-source-llm-ranking-guide"
+  }
+}
+</script>

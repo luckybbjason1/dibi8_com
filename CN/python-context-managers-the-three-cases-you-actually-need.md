@@ -206,3 +206,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [contextlib (Python standard library)](https://docs.python.org/3/library/contextlib.html)
 - [CPython](https://github.com/python/cpython)
 - [Python with statement reference](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Python Context Managers: The Three Cases You Actually Need",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/python-context-managers-the-three-cases-you-actually-need"
+  }
+}
+</script>

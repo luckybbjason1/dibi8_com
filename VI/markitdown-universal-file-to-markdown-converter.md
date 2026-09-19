@@ -2,7 +2,7 @@
 title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — Công Cụ Mã Nguồn Mở của Microsoft cho Các Quy Trình LLM 2026"
 description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip install markitdown[all], API Python, tích hợp LangChain, các pipeline RAG và xử lý theo lô."
 date: 2026-06-17
-slug: markitdown-universal-file-to-markdown-converter
+lastmod:  2026-06-17slug: markitdown-universal-file-to-markdown-converter
 category: ai-tools
 tags: ['markitdown', 'file-to-markdown', 'microsoft', 'llm-pipelines', 'rag', 'langchain', 'document-processing', 'pdf-to-markdown', 'office-conversion']
 github_repo: "https://github.com/microsoft/markitdown"
@@ -448,3 +448,30 @@ Vẻ đẹp nằm ở sự đơn giản của nó: `pip install 'markitdown[all]
 - Lưu trữ thay thế: [HTStack](https://my.htstack.com/aff.php?aff=27187)
 - Công cụ giao dịch: [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - Proxy để thu thập dữ liệu web: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — Công Cụ Mã Nguồn Mở của Microsoft cho Các Quy Trình LLM 2026",
+  "datePublished": "2026-06-17",
+  "dateModified": "2026-06-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/markitdown-universal-file-to-markdown-converter"
+  }
+}
+</script>

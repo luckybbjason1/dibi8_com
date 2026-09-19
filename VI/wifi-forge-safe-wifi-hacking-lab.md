@@ -33,6 +33,8 @@ faqs:
   - q: 'Tôi cần gì để cài đặt và chạy WiFi-Forge?'
     a: 'Bạn cần Linux (Ubuntu hoặc Debian là tốt nhất), Python 3 và quyền root vì mininet-wifi sử dụng các tính năng của kernel. Sau khi clone repo, chạy sudo ./install.sh để cài đặt các dependency, rồi chạy sudo python3 wififorge.py để khởi động.'
 ---
+# WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi
+
 {</* resource-info */>}
 
 Nếu bạn từng thử học các cuộc tấn công WiFi theo cách truyền thống, quy trình thường như sau: đặt một USB WiFi adapter hỗ trợ chế độ monitor và packet injection, vật lộn với driver Linux cả buổi tối, dựng một access point thử nghiệm mà bạn thực sự sở hữu, và *sau đó* mới bắt đầu luyện kỹ thuật bạn muốn học. **WiFi-Forge** bỏ qua toàn bộ quá trình chuẩn bị này.
@@ -117,3 +119,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/wifi-forge-safe-wifi-hacking-lab"
+  }
+}
+</script>

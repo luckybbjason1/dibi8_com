@@ -181,3 +181,30 @@ Per-project overrides matter more than global config. Keep sensitive tokens scop
 ---
 
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP Server Security Audit 2026](https://dibi8.com/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code MCP Advanced 2026: The 10-Server Production Stack",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-code-mcp-advanced-10-server-stack-2026"
+  }
+}
+</script>

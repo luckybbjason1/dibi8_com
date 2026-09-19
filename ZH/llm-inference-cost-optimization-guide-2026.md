@@ -3,7 +3,7 @@
 title: '大型语言模型推理成本优化：用几分钱运行任何模型——2026权威指南'
 description: 'LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API costs by 90%+. 3 benchmarks, 6 deployment methods.'
 date: 2026-06-16
-slug: 'llm-inference-cost-optimization-guide-2026'
+lastmod:  2026-06-16slug: 'llm-inference-cost-optimization-guide-2026'
 category: dev-utils
 tags: ['LLM cost optimization', 'cheap LLM inference', 'quantization', 'Ollama', 'vLLM', 'llama.cpp', 'reduce API costs', 'local LLM']
 github_repo: 'https://github.com/ollama/ollama'
@@ -37,3 +37,30 @@ featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennie
 **注意**：
 - 原文中表格内容不完整，仅翻译了可视结构与标题。
 - 代码块、链接、图片等非文本元素均保持原样未修改。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "大型语言模型推理成本优化：用几分钱运行任何模型——2026权威指南",
+  "datePublished": "2026-06-16",
+  "dateModified": "2026-06-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/llm-inference-cost-optimization-guide-2026"
+  }
+}
+</script>

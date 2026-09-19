@@ -667,3 +667,30 @@ Open-Sora 2.0 代表了开源视频生成的一个里程碑：110 亿参数，81
 - 模型权重 (ModelScope)：https://modelscope.cn/models/luchentech/Open-Sora-v2
 - FLUX 文生图模型：https://github.com/black-forest-labs/flux
 - ComfyUI 官方仓库：https://github.com/comfyanonymous/ComfyUI
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open-Sora: 29K+ Stars — 开源视频生成完整安装指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/open-sora"
+  }
+}
+</script>

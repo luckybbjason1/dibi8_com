@@ -702,3 +702,30 @@ pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용
 ## 제휴 공개
 
 이 문서에는 클라우드 호스팅을 위한 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 및 관리형 PostgreSQL을 위한 [Supabase](https://supabase.com) 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 RAG 통합 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/pgvector-postgres-vector-extension"
+  }
+}
+</script>

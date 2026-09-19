@@ -280,3 +280,30 @@ API 접근 필요?
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "무료 LLM API 리소스: 비용 부담 없이 AI 모델 접근",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/free-llm-api-resources-ai-development"
+  }
+}
+</script>

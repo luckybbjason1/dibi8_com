@@ -3,7 +3,7 @@ title: 'NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)'
 description: 'NVIDIA Cosmos is an open platform of world models, datasets, and tools for building Physical AI — robots, autonomous vehicles, smart infrastructure. Cosmos 3 uses Mixture-of-Transformers for unified language, image, video, audio, and action generation. 16B and 64B models available.'
 tags: ["open-source", "self-hosted"]
 date: 2026-06-13
-slug: 'nvidia-cosmos-world-models-platform-2026'
+lastmod:  2026-06-13slug: 'nvidia-cosmos-world-models-platform-2026'
 category: ai-tools
 github_repo: 'https://github.com/NVIDIA/cosmos'
 license: 'Apache-2.0'
@@ -456,3 +456,30 @@ Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https:
 Internal links: [runway-gen3-review-2026](https://dibi8.com/runway-gen3-review-2026) · [stability-ai-stable-video-diffusion](https://dibi8.com/stability-ai-stable-video-diffusion)
 
 **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/nvidia-cosmos-world-models-platform-2026"
+  }
+}
+</script>

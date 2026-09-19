@@ -23,6 +23,8 @@ tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architectu
 aliases:
 - /vi/posts/12-factor-agents-production-llm-software-2026/
 ---
+# Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mềm LLM cấp Production (Hướng dẫn 2026)
+
 
 ## Vì sao "Cứ dùng LangChain" không còn hiệu quả
 
@@ -167,3 +169,30 @@ Kết hợp 12 factor với [lớp symbol hiệu quả token như CodeGraph](htt
 ---
 
 **GitHub**: [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents) · **License**: Apache 2.0 (code) / CC BY-SA 4.0 (content) · **Stars**: 22K+ · **Tác giả**: Dex Horthy / HumanLayer
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mềm LLM cấp Production (Hướng dẫn 2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/12-factor-agents-production-llm-software-2026"
+  }
+}
+</script>

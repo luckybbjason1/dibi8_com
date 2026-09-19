@@ -796,3 +796,30 @@ Mistral AI 모델을 로컬로 배포하면 AI 인프라에 대한 완전한 제
 ---
 
 *게시일: 2026-05-19 | Mistral AI | [GitHub: mistralai/mistral-inference](https://github.com/mistralai/mistral-inference)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mistral AI 2026: 8x7B MoE 아키텍처로 프로덕션급 로컬 LLM 배포 — 완전한 설정 가이드",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mistral-ai-local-llm-deployment"
+  }
+}
+</script>

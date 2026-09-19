@@ -293,3 +293,30 @@ Windows Subsystem for Linux(WSL2)를 설치하면 동일한 환경을 구성할 
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "터미널 및 CLI 생산성 도구: tmux, zsh, fzf, ripgrep 완벽 가이드",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
+  }
+}
+</script>

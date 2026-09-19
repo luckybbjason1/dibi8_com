@@ -2,7 +2,7 @@
 title: 'CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development'
 description: 'Complete guide to CC Switch — the cross-platform desktop app that manages Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, and Hermes Agent in one unified interface. Installation, configuration, and real-world usage.'
 date: 2026-06-20
-tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
+lastmod:  2026-06-20tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
 category: "dev-utils"
 lang: en
 slug: cc-switch-all-in-one-ai-coding-agent-manager
@@ -325,3 +325,30 @@ With over **105,000 GitHub stars** and an active, growing community, CC Switch i
 ---
 
 💬 Join our Telegram group for discussions: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development",
+  "datePublished": "2026-06-20",
+  "dateModified": "2026-06-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/cc-switch-all-in-one-ai-coding-agent-manager"
+  }
+}
+</script>

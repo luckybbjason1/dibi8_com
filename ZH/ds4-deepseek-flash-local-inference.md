@@ -423,3 +423,30 @@ A: 如果你是 24 小时高强度跑多智能体自动写代码，API 费用分
 
 **Q: DS4 的磁盘 KV Cache 到底有多牛？**
 A: Ollama 一关掉对话，所有上下文就丢了，下次还要重新运算。DS4 直接把庞大的 KV Cache 塞进你的 SSD 固态硬盘里！昨天聊了 10 万 token 的代码，今天秒恢复，完全不需要等待 Prompt 重算。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Flash 本地部署指南",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ds4-deepseek-flash-local-inference"
+  }
+}
+</script>

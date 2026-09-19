@@ -738,3 +738,30 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 에이�
 ---
 
 *제휴 마케팅 공개: 본문에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. CrewAI는 오픈소스이자 묶인 사용 가능합니다; CrewAI 프로젝트와 상업적 관계는 없습니다. 의견은 실제 테스트와 프로덕션 배포를 기반으로 합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: 자율적으로 협업하는 다중 에이전트 AI 팀 구축하기 — 프로덕션 설정 및 패턴 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/crewai-multi-agent-orchestration"
+  }
+}
+</script>

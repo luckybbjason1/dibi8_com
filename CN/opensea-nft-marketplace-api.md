@@ -975,3 +975,30 @@ Whether you are building a simple portfolio tracker or a high-frequency trading 
 ---
 
 *This article was written on 2026-05-19. API specifications and rate limits are subject to change. Refer to the [official OpenSea documentation](https://docs.opensea.io/) for the latest updates.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "opensea-nft-marketplace-api",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/opensea-nft-marketplace-api"
+  }
+}
+</script>

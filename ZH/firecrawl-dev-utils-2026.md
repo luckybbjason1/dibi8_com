@@ -34,6 +34,8 @@ faqs:
   - q: 'Firecrawl 免费吗？它用什么协议？'
     a: '源代码在 AGPL-3.0 下免费且开源，官方 SDK 与 UI 组件则采用 MIT。托管云端 API 有免费额度，并提供更高用量的付费套餐。如果自托管，你需自行承担运行的基础设施成本。'
 ---
+# Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南
+
 
 {{< resource-info >}}
 
@@ -337,3 +339,30 @@ Firecrawl 是把开放网络变成「LLM 真正能用的数据」的最实用方
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/firecrawl-dev-utils-2026"
+  }
+}
+</script>

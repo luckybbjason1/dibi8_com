@@ -345,3 +345,30 @@ W&B Sweeps在易用性和功能完备度上领先：内置Bayesian优化、早�
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MLflow vs Weights & Biases vs Neptune：MLOps实验追踪平台全面对比（2026版）",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mlops-platform-comparison-mlflow-wandb-neptune"
+  }
+}
+</script>

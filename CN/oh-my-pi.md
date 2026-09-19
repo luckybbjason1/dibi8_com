@@ -3,7 +3,7 @@ title: "Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12K Star Project
 description: "Oh My Pi (12,554 stars) transforms Raspberry Pi devices into smart home hubs, media centers, and development workstations with one-click setup and automated configuration."
 tags: ["open-source"]
 date: 2026-06-15
-slug: oh-my-pi
+lastmod:  2026-06-15slug: oh-my-pi
 category: dev-utils
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
@@ -403,3 +403,30 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **CTA**: Join the DIBI8 IoT community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12K Star Project 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/oh-my-pi"
+  }
+}
+</script>

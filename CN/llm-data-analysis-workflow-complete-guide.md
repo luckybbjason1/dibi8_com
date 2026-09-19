@@ -176,3 +176,30 @@ To run any of the tools above reliably 24/7, infrastructure matters:
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Using LLMs for Data Analysis: Complete Workflow with PandasAI, Code Interpreter & OpenAI",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/llm-data-analysis-workflow-complete-guide"
+  }
+}
+</script>

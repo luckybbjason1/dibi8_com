@@ -559,3 +559,30 @@ RAGFlow 是唯一的开源 RAG 平台，将深度文档理解、生产级 Web UI
 - [2026 年最佳开源 RAG 框架对比](https://www.firecrawl.dev/blog/best-open-source-rag-frameworks)
 - [RAGFlow 架构详解](https://milvus.io/ai-quick-reference/what-is-ragflow-and-how-does-it-work)
 - [RAGFlow VPS 生产部署](https://zhujibaike.com/2497.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与性能基准测试",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ragflow"
+  }
+}
+</script>

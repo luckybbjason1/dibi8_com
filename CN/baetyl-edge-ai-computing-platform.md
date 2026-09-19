@@ -480,3 +480,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. Baetyl is fully open-source and free to use under the Apache-2.0 license.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Baetyl: The Cloud-Native Edge AI Computing Platform Deploying Models to IoT Devices — 2026 Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/baetyl-edge-ai-computing-platform"
+  }
+}
+</script>

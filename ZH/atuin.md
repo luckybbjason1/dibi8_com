@@ -714,3 +714,30 @@ Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移�
 - [mcfly GitHub 仓库](https://github.com/cantino/mcfly)
 - [fzf GitHub 仓库](https://github.com/junegunn/fzf)
 - [Hstr GitHub 仓库](https://github.com/dvorka/hstr)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/atuin"
+  }
+}
+</script>

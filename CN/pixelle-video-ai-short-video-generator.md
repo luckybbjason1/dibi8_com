@@ -36,6 +36,8 @@ faqs:
   - q: 'What can Pixelle-Video do beyond basic video generation?'
     a: 'It includes three extension modules: a Digital Human Avatar that turns a photo into a lip-synced talking-head video in Korean, Chinese, or English; Image-to-Video that animates static images; and Motion Transfer that maps motion from a reference video onto a still image.'
 ---
+# Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video
+
 {</* resource-info */>}
 
 ![Pixelle-Video web UI showing script, TTS, scene template, generated output](/images/articles/pixelle-video-ai-short-video-generator/webui.png)

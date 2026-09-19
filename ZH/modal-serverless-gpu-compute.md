@@ -5,7 +5,7 @@ tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compu
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-draft: false
+lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
 lang: zh-CN
 ---
@@ -579,3 +579,30 @@ Modal 在 `modal.com/apps` 提供 Web 仪表板，显示实时指标：调用次
 ---
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/modal-serverless-gpu-compute"
+  }
+}
+</script>

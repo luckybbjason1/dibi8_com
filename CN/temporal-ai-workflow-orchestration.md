@@ -5,7 +5,7 @@ tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reli
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
-slug: temporal-ai-workflow-orchestration
+lastmod:  2026-07-15T00:00:00+00:00slug: temporal-ai-workflow-orchestration
 ---
 
 ## TL;DR
@@ -765,3 +765,30 @@ Yes. Temporal workers can run anywhere — EC2, GKE, EKS, or even serverless con
 ---
 
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Temporal AI Workflow Orchestration — Reliable Multi-Step AI Pipelines",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/temporal-ai-workflow-orchestration"
+  }
+}
+</script>

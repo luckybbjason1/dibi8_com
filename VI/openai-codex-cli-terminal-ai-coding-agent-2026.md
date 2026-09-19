@@ -466,3 +466,30 @@ Kỷ nguyên vibe coding không phải đang đến. Nó đã ở đây. Và Cod
 - [Đặc tả Model Context Protocol](https://modelcontextprotocol.io)
 
 *Cập nhật lần cuối: 17/5/2026. Codex CLI đang trong giai đoạn lặp nhanh; xác minh khả năng hiện tại với tài liệu chính thức.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding Agent Native Terminal (Cài Đặt, Workflow Đa Agent, MCP & Bảo Mật)",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/openai-codex-cli-terminal-ai-coding-agent-2026"
+  }
+}
+</script>

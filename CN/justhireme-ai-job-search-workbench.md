@@ -196,3 +196,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Kuzu](https://github.com/kuzudb/kuzu)
 - [LanceDB](https://github.com/lancedb/lancedb)
 - [SQLite](https://www.sqlite.org/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/justhireme-ai-job-search-workbench"
+  }
+}
+</script>

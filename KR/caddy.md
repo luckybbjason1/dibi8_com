@@ -741,3 +741,30 @@ Caddy의 자동 HTTPS, 기본 HTTP/3 지원, 그리고 극도로 단순화된 �
 ---
 
 *공개: 본 문서에는 DigitalOcean 및 HTStack의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다. 모든 벤치마크 데이터와 추천은 독립적인 테스트와 편집 판단을 기반으로 합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/caddy"
+  }
+}
+</script>

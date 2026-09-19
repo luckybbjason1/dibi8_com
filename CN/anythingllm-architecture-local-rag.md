@@ -185,3 +185,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Qdrant](https://github.com/qdrant/qdrant)
 - [Milvus](https://github.com/milvus-io/milvus)
 - [PrivateGPT](https://github.com/zylon-ai/private-gpt)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Do Enterprises Fear ChatGPT?",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/anythingllm-architecture-local-rag"
+  }
+}
+</script>

@@ -1131,3 +1131,30 @@ Zapper는 [docs.zapper.xyz](https://docs.zapper.xyz)에서 포괄적인 문서�
 **관리자:** [Zapper-fi](https://github.com/Zapper-fi)  
 **GitHub 스타:** 300+  
 **웹사이트:** [zapper.xyz](https://zapper.xyz)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "zapper-defi-dashboard-aggregator",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/zapper-defi-dashboard-aggregator"
+  }
+}
+</script>

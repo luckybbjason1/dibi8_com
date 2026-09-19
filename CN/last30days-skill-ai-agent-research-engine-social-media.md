@@ -397,3 +397,30 @@ No. All research stays on your local machine. The skill has zero tracking and ze
 **Ready to search what people actually care about?** Install Last30Days-Skill in under 30 seconds across 50+ AI agent hosts.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/last30days-skill-ai-agent-research-engine-social-media"
+  }
+}
+</script>

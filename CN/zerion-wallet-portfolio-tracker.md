@@ -575,3 +575,30 @@ The MIT-licensed open-source components provide transparency and extensibility t
 ---
 
 *Disclaimer: This article is for informational purposes only and does not constitute financial advice. Cryptocurrency investments carry significant risk. Always do your own research before making investment decisions. This post contains affiliate links — we may receive compensation at no cost to you when you use our partner links.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "zerion-wallet-portfolio-tracker",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/zerion-wallet-portfolio-tracker"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['LLM评估', '基准测试', 'EleutherAI', 'OpenCompass', 'BIG-bench']
 aliases:
 - /zh/posts/llm-evaluation-benchmarking-frameworks/
 ---
+# 2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-bench全面评测
+
 
 {</* resource-info */>}
 
@@ -300,3 +302,30 @@ EleutherAI LM Eval和OpenCompass拥有最活跃的开源社区，GitHub上每天
 - [DeepEval GitHub](https://github.com/confident-ai)
 
 > **总结**：LLM评估是模型开发流程中不可或缺的一环。EleutherAI LM Eval以其全面的基准覆盖成为国际首选，OpenCompass在中文评估领域独占鳌头，AlpacaEval以高效见长，DeepEval则带来了工程化的测试理念。科学的评估不仅需要选对工具，更需要理解各项基准的含义和局限性，结合实际业务场景构建多维度的评估体系。只有这样，才能真正找到最适合你需求的语言模型。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-bench全面评测",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/llm-evaluation-benchmarking-frameworks"
+  }
+}
+</script>

@@ -579,3 +579,30 @@ LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 AP
 - [Portkey vs LiteLLM 对比](https://portkey.ai/lp/portkey-vs-litellm) — 厂商对比页面
 - [OpenRouter 文档](https://openrouter.ai/docs) — 替代网关参考
 - [Helicone 文档](https://docs.helicone.ai) — 可观测性聚焦的替代方案
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 2026 生产级网关配置",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/litellm"
+  }
+}
+</script>

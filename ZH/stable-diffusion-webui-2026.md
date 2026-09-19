@@ -23,6 +23,8 @@ tags: ['Stable Diffusion', 'SDXL', '图像生成', 'AUTOMATIC1111', '开源']
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+# Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成完整指南
+
 
 过去 3 年 Google "stable diffusion install" 第一个结果一直是 **AUTOMATIC1111 stable-diffusion-webui**。163k GitHub 星（史上最多星 AI 项目之一），是 2026 SD 家族图像生成的自托管默认 UI —— txt2img / img2img / 修复 / 扩展 / LoRA / ControlNet / 批量生成，全在 Gradio web UI 后面，4 GB GPU 就能跑。
 
@@ -158,3 +160,30 @@ AUTOMATIC1111 SD WebUI = **2026 个人创作者自托管图像生成默认**。1
 ---
 
 *dibi8 多模态内容 stack 的一部分 —— 见 [ComfyUI 节点式工作流](/zh/resources/ai-tools/comfyui-node-based-ai-image-2026/) 和即将上线的多模态内容 Pipeline 合集。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成完整指南",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/stable-diffusion-webui-2026"
+  }
+}
+</script>

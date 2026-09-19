@@ -607,3 +607,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tuyên Bố Affiliate
 
 Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giới thiệu của chúng tôi, chúng tôi nhận được hoa hồng mà không phát sinh chi phí cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng cho hạ tầng. Lobe Chat là mã nguồn mở (giấy phép MIT) và miễn phí sử dụng —— không cần mua hàng.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cung Cấp LLM & Hệ Thống Plugin — Hướng Dẫn 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/lobe-chat-openai-alternative-ui"
+  }
+}
+</script>

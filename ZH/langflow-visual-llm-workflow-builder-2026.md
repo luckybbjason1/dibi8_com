@@ -2,7 +2,7 @@
 title: 'Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析'
 description: 'Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强化。'
 date: 2026-05-23
-slug: 'langflow'
+lastmod:  2026-05-23slug: 'langflow'
 category: 'llm-frameworks'
 tags: [Langflow, LLM 工作流, 可视化编程, AI 代理, LangChain, 流式编程, 提示工程, 部署, 低代码 AI]
 github_repo: 'https://github.com/langflow-ai/langflow'
@@ -416,3 +416,29 @@ Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令
 ---
 **披露**：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026"
+  }
+}
+</script>

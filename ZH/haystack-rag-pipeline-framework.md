@@ -686,3 +686,30 @@ Haystack 2.x（2024 年 1 月发布）是截至 2026 年 5 月唯一积极维护
 ---
 
 **联盟披露：** 本文中的部分链接是联盟链接。如果你使用我们的 [DigitalOcean 推荐链接](https://m.do.co/c/eca87ac14ee0) 注册，你将获得 $200 信用额度，我们也会获得推荐奖励——不会增加你的额外成本。这支持我们的独立研究并保持内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/haystack-rag-pipeline-framework"
+  }
+}
+</script>

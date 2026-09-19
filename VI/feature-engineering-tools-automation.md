@@ -258,3 +258,30 @@ Có, cả ba đều tích hợp với scikit-learn: AutoFeat có API native tư�
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ Kỹ Thuật Đặc Trưng Tự Động: Hướng Dẫn Featuretools, AutoFeat và tsfresh Năm 2024",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/feature-engineering-tools-automation"
+  }
+}
+</script>

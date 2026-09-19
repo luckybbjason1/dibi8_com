@@ -2,7 +2,7 @@
 title: 'Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường Production — Hướng Dẫn Quét Lỗ Hổng 2026'
 description: 'Trivy (aquasecurity/trivy) là công cụ quét bảo mật mã nguồn mở cho container, IaC và mã. Tương thích với Kubernetes, Docker, GitHub Actions và CI pipelines. Quét 600K+ CVE, khóa bí mật và cấu hình sai. Bao gồm cài đặt, policy-as-code và hardening production.'
 date: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
+lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -363,3 +363,30 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - Community discussion: https://github.com/aquasecurity/trivy/discussions
 
 **Disclosure**: Bài viết này chứa các affiliate links. Nếu bạn đăng ký qua các links của chúng tôi, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không gây thêm chi phí cho bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường Production — Hướng Dẫn Quét Lỗ Hổng 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/trivy-production-security-scanner-2026"
+  }
+}
+</script>

@@ -529,3 +529,30 @@ Here's a complete discovery workflow using PM-Skills commands in sequence:
 **Want better product decisions from your AI agent?** PM-Skills gives you 68 structured frameworks and 42 workflows across 9 plugins — all free and open source.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PM-스킬: AI 에이전트를 위한 68가지 제품 관리 스킬과 42가지 워크플로우",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/pm-skills-68-product-management-skills-ai-agents"
+  }
+}
+</script>

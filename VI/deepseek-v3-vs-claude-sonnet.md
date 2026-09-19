@@ -2,7 +2,7 @@
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context'
 description: 'So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ context, SWE-bench, đa ngôn ngữ, khả dụng API. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Cửa sổ context nào lớn hơn?'
     a: 'Claude Sonnet 4.6 hỗ trợ tới 1M token (1.000.000) context ở biến thể [1M] — đủ chứa cả codebase trung bình hoặc 750K từ tài liệu. DeepSeek V3.5 giới hạn 128K token (khoảng 100K từ). Cho monorepo lớn, tài liệu pháp lý dài, Q&A trọn cuốn sách, Sonnet 1M ở đẳng cấp khác hẳn.'
 ---
+# DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context
+
 
 ## Trả lời nhanh
 
@@ -189,3 +191,30 @@ Cho hầu hết indie dev năm 2026, nước đi khôn là **pattern router**: m
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/deepseek-v3-vs-claude-sonnet"
+  }
+}
+</script>

@@ -3,7 +3,7 @@ title: "Academic Research Skills: Automate Literature Reviews with AI — 31K St
 description: "Academic Research Skills (31,628 stars) automates the research pipeline: search papers, extract insights, synthesize findings, and write literature reviews. Built for Claude Code with modular skill architecture."
 tags: ["ai-agent", "deep-research", "dev-tools", "engine", "open-source", "research", "search"]
 date: 2026-06-15
-slug: academic-research-skills
+lastmod:  2026-06-15slug: academic-research-skills
 category: dev-utils
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
@@ -358,3 +358,30 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **CTA**: Join the DIBI8 research community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Academic Research Skills: Automate Literature Reviews with AI — 31K Star Framework 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/academic-research-skills"
+  }
+}
+</script>

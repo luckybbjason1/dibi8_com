@@ -799,3 +799,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 *Công Bố Affiliate: Bài viết này chứa liên kết affiliate đến DigitalOcean, HTStack, và 虎网云. Nếu bạn mua dịch vụ qua các liên kết này, dibi8.com có thể nhận hoa hồng mà không phát sinh chi phí thêm cho bạn. Tất cả khuyến nghị đều dựa trên đánh giá kỹ thuật thực sự, không phải khả năng affiliate. Xem [chính sách công bố đầy đủ](https://dibi8.com/affiliate-disclosure) để biết chi tiết.*
 
 *Cập nhật lần cuối: 2026-05-19. Đã kiểm tra với Qdrant v1.13.0, qdrant-client 1.13.0, Python 3.12.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector với Độ Trễ 10ms — Hướng Dẫn Tự Triển Khai 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/qdrant-vector-database-rust"
+  }
+}
+</script>

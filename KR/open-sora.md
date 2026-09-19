@@ -667,3 +667,30 @@ Open-Sora 2.0은 오픈소스 비디오 생성의 이정표를 대표합니다: 
 - 모델 가중치 (ModelScope): https://modelscope.cn/models/luchentech/Open-Sora-v2
 - FLUX 텍스트-이미지 모델: https://github.com/black-forest-labs/flux
 - ComfyUI 공식 저장소: https://github.com/comfyanonymous/ComfyUI
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open-Sora: 29K+ Stars — 오픈소스 비디오 생성 완벽 설치 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/open-sora"
+  }
+}
+</script>

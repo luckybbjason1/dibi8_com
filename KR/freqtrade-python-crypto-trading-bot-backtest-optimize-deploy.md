@@ -2,7 +2,7 @@
 title: 'Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, 배포 — 2026 실전 가이드'
 description: 'Freqtrade (51,300 GitHub stars)는 Python으로 작성된 오픈소스 암호화폐 트레이딩 봇입니다. 전략 백테스트, hyperopt 최적화, 20+ 거래소 API 배포. 설정 가이드, 전략 개발, 실제 백테스트 벤치마크 포함.'
 date: 2026-06-08
-slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
+lastmod:  2026-06-08slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
 tags: ['freqtrade', '암호화폐 트레이딩 봇', 'Python 트레이딩', '백테스트 전략', 'hyperopt 최적화', '암호화폐 API', '셀프호스팅 트레이딩', '퀀트 트레이딩']
 github_repo: 'https://github.com/freqtrade/freqtrade'
@@ -268,3 +268,30 @@ Freqtrade는 2016년부터 오픈소스 암호화폐 트레이딩 봇의 표준�
 [dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 Freqtrade 전략과 구성 논의하세요. [Minara AI 트레이딩](dibi8-internal-link) 및 [n8n 워크플로우 자동화](dibi8-internal-link) 가이드 확인. 오늘 시도해보세요 — `freqtrade download-data` 실행하고 첫 백테스트 시작하세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다. 트레이딩에는 리스크가 따르므로 자산을 잃을 수 있는 금액만 투자하세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, 배포 — 2026 실전 가이드",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy"
+  }
+}
+</script>

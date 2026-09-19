@@ -582,3 +582,30 @@ Telegram 커뮤니티에 참여하세요: **t.me/dibi8_comfyui** — 워크플�
 - Wan 비디오 노드: https://github.com/kijai/ComfyUI-WanVideoWrapper
 - Docker 설정 참고: https://github.com/ai-dock/comfyui
 - 양자화 가이드: https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI: 87K+ Stars — 노드 기반 Stable Diffusion 설정 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/comfyui"
+  }
+}
+</script>

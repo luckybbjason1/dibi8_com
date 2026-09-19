@@ -3,13 +3,15 @@ title: 'DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제�
 description: 'Google Labs Code의 DESIGN.md는 AI 코딩 에이전트에 시각적 아이덴티티를 설명하기 위한 오픈소스 형식 사양입니다. GitHub 스타 20.8k. YAML 토큰과 문서 기반 제약 조건을 통해 디자인 시스템과 AI 코드 생성을 연결하는 방법을 알아보세요.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
-slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
+lastmod:  2026-06-27slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: 'https://github.com/google-labs-code/design.md'
 license: Apache-2.0
 lang: ko
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+# DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷
+
 
 
 
@@ -254,3 +256,29 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
 - 기여 가이드라인: https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md
 
 **공개**: 이 글에는 제휴 링크가 포함되어 있습니다. 만약 저희 링크를 통해 가입하시면, 추가 비용 없이 저희가 소정의 커미션을 받을 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com과 같은 리소스를 무료이자 광고 없이 유지하는 데 도움이 됩니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/design-md-google-open-source-format-ai-coding-agents-design-systems"
+  }
+}
+</script>

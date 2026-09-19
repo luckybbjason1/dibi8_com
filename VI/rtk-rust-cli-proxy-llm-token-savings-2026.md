@@ -364,3 +364,30 @@ Stack LLM giá rẻ hoàn chỉnh xem tại [Cheap LLM Stack collection](/vi/col
 - [CC Switch — Quản lý nhiều AI CLI](/vi/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack collection](/vi/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/vi/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding (2026)",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/rtk-rust-cli-proxy-llm-token-savings-2026"
+  }
+}
+</script>

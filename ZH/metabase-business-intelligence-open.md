@@ -623,3 +623,30 @@ v60.2版本通过更好的性能、改进的嵌入和相同的零许可成本模
 - [Metabase 社区论坛](https://discourse.metabase.com/)
 
 *Affiliate Disclosure: 本文包含DigitalOcean的联盟链接。如果你通过我们的推荐链接注册，我们会获得佣金，无需你额外付费。所有观点和基准测试都是独立的，基于实际操作测试。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/metabase-business-intelligence-open"
+  }
+}
+</script>

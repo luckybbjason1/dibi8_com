@@ -2,7 +2,7 @@
 title: 'Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested'
 description: 'Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricing, and how Claude 4 compares to GPT-4o and Gemini 1.5 Pro. Updated June 2026.'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm-review, ai-coding, reasoning]
 categories: [review]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'What is the context window for Claude 4 models?'
     a: 'Claude 4 models support a 200K token context window, enabling analysis of books, large codebases, or long conversation histories in a single call. The output window is up to 32K tokens, sufficient for generating long reports, full files, or multi-section documents in one pass.'
 ---
+# Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested
+
 
 ![Claude 4 model lineup — Opus 4, Sonnet 4, Haiku 4 from Anthropic, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
@@ -145,3 +147,30 @@ Learn how to use Claude 4 with the [Model Context Protocol](mcp-deep-dive-defini
 ---
 
 *Model IDs verified against [Anthropic official documentation](https://docs.anthropic.com/en/docs/about-claude/models/overview). Pricing subject to change — check Anthropic's pricing page for current rates.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-4-opus-sonnet-review-2026"
+  }
+}
+</script>

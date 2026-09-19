@@ -34,6 +34,8 @@ faqs:
   - q: 'markitdown 有哪些已知的局限？'
     a: '有的——一些高级特性和复杂的文档结构可能无法完整保留。项目维护活跃，但它优先保证的是文本准确性，而非视觉还原。'
 ---
+# markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实战指南
+
 
 {{< resource-info >}}
 
@@ -310,3 +312,30 @@ jobs:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实战指南",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/markitdown-dev-utils-2026"
+  }
+}
+</script>

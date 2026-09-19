@@ -321,3 +321,30 @@ agentmemory 的置信度评分是**概率模型**，不是真理仲裁者。低�
 ---
 
 *本文撰写于 2026 年 5 月 17 日。agentmemory 的 Star 数、MCP 规范版本等信息可能随时间变化，请以官方仓库为准。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AgentMemory + MCP：2026 年 AI 编码代理持久化记忆的实战指南",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agentmemory-mcp-persistent-memory-2026"
+  }
+}
+</script>

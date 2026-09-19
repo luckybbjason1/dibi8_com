@@ -972,3 +972,30 @@ Cho dù bạn đang xây dựng trình theo dõi danh mục đầu tư đơn gi�
 ---
 
 *Bài viết này được viết vào 2026-05-19. Thông số kỹ thuật API và giới hạn tốc độ có thể thay đổi. Tham khảo [tài liệu OpenSea chính thức](https://docs.opensea.io/) để biết các cập nhật mới nhất.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "opensea-nft-marketplace-api",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/opensea-nft-marketplace-api"
+  }
+}
+</script>

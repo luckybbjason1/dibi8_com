@@ -39,6 +39,8 @@ faqs:
   - q: 'Claude Code 中多代理流水线的五种失败方式是什么？'
     a: '五种已记录的失败模式分别是：信任陷阱、上下文泄漏、失控扇出、静默截断和孤立 worktree。研究这些内容是区分一个能运行的 demo 和生产就绪流水线的关键所在。'
 ---
+# Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会
+
 
 单线程 AI 编码在 2025 年底撞上了天花板：一个庞大的 Claude 对话读了 30 个文件，用探索性内容塞满了自己的上下文窗口，然后在只剩一半所需工作记忆的情况下开始编辑代码。2026 年的答案是**委派式专业化**——用一小队具有严格信息边界的子智能体，取代单一过载的大脑。
 
@@ -88,3 +90,30 @@ faqs:
 ## 结论
 
 别把子智能体当成五个互不相干的小把戏来学。按顺序走完整个栈——模式 → 编写 → 决策框架 → 技能 → 失败模式——你就能从『一个大对话』毕业，升级为一个你真正能在生产中信任的协调智能体议会。今天就从模式 1 开始；随着你的会话越来越长、任务越来越重，再逐层叠加其余部分。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code-subagent-mastery-stack"
+  }
+}
+</script>

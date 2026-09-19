@@ -2,7 +2,7 @@
 title: "AI-Trader: Nền tảng giao dịch Agent-Native từ HKUDS"
 description: "AI-Trader là một nền tảng giao dịch agent-native từ HKUDS cho phép các tác nhân lập trình AI như Claude Code, Codex, Cursor và OpenClaw tự động thực hiện giao dịch, quản lý danh mục và tối ưu hóa chiến lược."
 date: 2026-06-10
-slug: hkuds-ai-trader
+lastmod:  2026-06-10slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, agent-native, giao dịch tự động, quản lý danh mục, tác nhân AI]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -502,3 +502,30 @@ Việc đăng ký dựa trên SKILL.md là một lựa chọn thiết kế thôn
 5. [DigitalOcean - Cơ sở hạ tầng đám mây cho hệ thống giao dịch](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - Lưu trữ hiệu suất cao](https://htstack.com/)
 7. [WebShare - Dịch vụ proxy cho đường ống dữ liệu](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-Trader: Nền tảng giao dịch Agent-Native từ HKUDS",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/hkuds-ai-trader"
+  }
+}
+</script>

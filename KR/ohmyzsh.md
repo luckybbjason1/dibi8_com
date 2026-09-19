@@ -2,7 +2,7 @@
 title: 'Oh My Zsh: 2026년 더 빠른 개발 워크플로우를 위한 7단계'
 description: '실제 벤치마크, 플러그인 구성 및 설치 가이드와 함께 Oh My Zsh 마스터하기. Starship, Prezto, Zsh 네이티브 설정과 비교. 187k+ 스타.'
 date: 2026-06-11
-slug: 'ohmyzsh'
+lastmod:  2026-06-11slug: 'ohmyzsh'
 category: dev-utils
 tags: [ohmyzsh, zsh, dev-tools, terminal, bash, shell, productivity, linux]
 github_repo: 'https://github.com/ohmyzsh/ohmyzsh'
@@ -549,3 +549,29 @@ Oh My Zsh를 최대한 활용하려면:
 5.  Zsh Documentation: https://zsh.sourceforge.io/Doc/
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다. 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Zsh: 2026년 더 빠른 개발 워크플로우를 위한 7단계",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ohmyzsh"
+  }
+}
+</script>

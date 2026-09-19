@@ -500,3 +500,30 @@ Zoxide 是 2026 年最成熟、性能最强、维护最活跃的目录跳转工�
 - [Neovim 的 telescope-zoxide](https://github.com/jvgrootvelte/telescope-zoxide)
 - [Zoxide NixOS Wiki](https://nixos.wiki/wiki/Zoxide)
 - [navi 速查表与 Zoxide](https://github.com/denisidoro/navi)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zoxide: 36,752 GitHub Stars — 2026 年完整安装配置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/zoxide"
+  }
+}
+</script>

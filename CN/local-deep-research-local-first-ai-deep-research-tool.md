@@ -120,3 +120,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Mistral](https://github.com/mistralai/mistral-inference)
 - [arXiv](https://arxiv.org/)
 - [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Local Deep Research: The Ultimate Local-First AI Deep Research Tool",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/local-deep-research-local-first-ai-deep-research-tool"
+  }
+}
+</script>

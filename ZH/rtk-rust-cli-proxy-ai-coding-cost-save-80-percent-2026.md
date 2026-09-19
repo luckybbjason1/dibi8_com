@@ -4,7 +4,7 @@ description: "2026 年开发者最头疼的问题：AI 编程工具账单暴涨�
 keywords: ["rtk", "Claude Code 省钱", "LLM token 优化", "AI 编程成本", "Rust CLI 工具", "开发者降本", "token 压缩", "AI 代理工具"]
 author: "Home Hermes"
 date: "2026-05-20"
-lang: "zh-CN"
+lastmod:  "2026-05-20"lang: "zh-CN"
 ---
 
 # rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元
@@ -286,3 +286,30 @@ rtk init -g
 ---
 
 *本文基于 rtk v0.28.2 实测撰写。工具持续迭代，具体功能请以最新版本为准。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026"
+  }
+}
+</script>

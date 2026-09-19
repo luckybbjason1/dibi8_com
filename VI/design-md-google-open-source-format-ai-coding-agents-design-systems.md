@@ -3,13 +3,15 @@ title: 'DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống thi�
 description: 'DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho các tác nhân lập trình AI. 20,8 nghìn sao trên GitHub. Tìm hiểu cách nó kết nối các hệ thống thiết kế và tạo mã AI với các token YAML và các ràng buộc dựa trên văn bản.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
-slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
+lastmod:  2026-06-27slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: 'https://github.com/google-labs-code/design.md'
 license: Apache-2.0
 lang: vi
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+# DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống thiết kế của Google qua định dạng mã nguồn mở
+
 
 
 
@@ -255,3 +257,29 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - Hướng dẫn đóng góp: https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md
 
 **Tiết lộ**: Bài viết này chứa các liên kết liên kết. Nếu bạn đăng ký thông qua các liên kết của chúng tôi, chúng tôi có thể kiếm được một khoản hoa hồng nhỏ mà không tốn thêm phí nào đối với bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống thiết kế của Google qua định dạng mã nguồn mở",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/design-md-google-open-source-format-ai-coding-agents-design-systems"
+  }
+}
+</script>

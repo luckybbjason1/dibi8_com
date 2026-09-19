@@ -36,6 +36,8 @@ faq:
   - q: "Khi nào tôi nên viết một subagent thay vì một skill?"
     a: "Hãy viết một skill khi bạn cần dạy một quy trình chạy trong cuộc trò chuyện hiện tại. Hãy viết một subagent khi công việc cần cửa sổ context riêng của nó — khám phá nặng, nghiên cứu song song, hay đánh giá độc lập mà nếu không sẽ làm phình context cha. Chúng kết hợp được với nhau: một subagent có thể nạp một skill để tuân theo phương pháp của bạn trong khi chạy biệt lập. Quy tắc kinh nghiệm từ khung quyết định mở rộng — skill thay đổi hành vi, subagent bảo vệ context, MCP server thêm năng lực."
 ---
+# Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà Claude Chỉ Nạp Khi Cần (2026)
+
 
 ## Giới thiệu
 
@@ -190,3 +192,30 @@ Skill tỏa sáng nhất trong một môi trường ổn định, được chia 
 ## Kết Luận
 
 Skill là điểm mở rộng rẻ nhất, bị đánh giá thấp nhất — một thư mục với một file markdown biến chuyên môn tình huống thành context đúng lúc. Toàn bộ kỹ nghệ này thu gọn về hai điều: một **description** được nhồi đầy những cụm trigger thực tế để nó kích hoạt đúng thời điểm, và **tiết lộ tăng dần** để nó vẫn nhẹ nhàng cho tới khi nhiệm vụ cần đến độ sâu của nó. Viết tốt hai điều đó và bạn đã đóng gói được một quy trình mà cả nhóm bạn — cùng mọi lượt chạy CI — đều nhận được miễn phí, đúng lúc nó phù hợp. Điều đó hoàn thiện bộ ba: skill cho kiến thức, subagent cho context, MCP server cho năng lực.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà Claude Chỉ Nạp Khi Cần (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-skill-authoring-guide-2026"
+  }
+}
+</script>

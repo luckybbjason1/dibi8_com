@@ -2,7 +2,7 @@
 title: 'TurboVec: Rust-Powered Vector Index 10x Faster Than FAISS — AI Search Guide 2026'
 description: 'TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bindings. Drop-in replacements for LangChain, LlamaIndex, Haystack, and Agno. Delivers 10x speedup with quantization. Covers Python integration, benchmarks, and production deployment.'
 date: 2026-06-09
-slug: 'turbovec-rust-vector-index-2026'
+lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ['vector-search', 'rust', 'quantization', 'langchain', 'llamaindex', 'RAG', 'embeddings', 'turboquant']
 github_repo: 'https://github.com/RyanCodrai/turbovec'
@@ -394,3 +394,29 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for discussions
 - Community discussion: https://github.com/RyanCodrai/turbovec/discussions
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TurboVec: Rust-Powered Vector Index 10x Faster Than FAISS — AI Search Guide 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/turbovec-rust-vector-index-2026"
+  }
+}
+</script>

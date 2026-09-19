@@ -750,3 +750,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 10. [PostgreSQL](dibi8-internal-link) — Related guide on database setup
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, dibi8.com receives a commission at no additional cost to you. We only recommend services we use for our own infrastructure.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MLflow 2026: The Open-Source ML Lifecycle Platform Tracking 10,000+ Experiments — Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mlflow-experiment-tracking-production"
+  }
+}
+</script>

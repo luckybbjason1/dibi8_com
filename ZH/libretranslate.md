@@ -796,3 +796,30 @@ LibreTranslate 兑现了其核心承诺：一个具有零每次请求成本和�
 ---
 
 > **披露**：本文包含联盟链接。如果你使用本指南中的推荐链接注册 DigitalOcean，我们可能会收到佣金，而你无需支付额外费用。联盟链接有助于支持此类开源文档项目的持续维护。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LibreTranslate: 14.4K+ Stars 的自托管翻译 API — 2026 生产部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/libretranslate"
+  }
+}
+</script>

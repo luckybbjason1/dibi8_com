@@ -2,7 +2,7 @@
 title: 'Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布'
 description: '全面对比 Dify（企业级 RAG、多模型路由、提示词管理、可自托管）与 Flowise（可视化 LangChain 节点构建器、轻量、开源）— 功能、自托管、AI 流水线及 2026 年适用场景。'
 date: 2026-06-07 00:00:00+08:00
-draft: false
+lastmod:  2026-06-07 00:00:00+08:00draft: false
 tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Flowise 只是一个可视化 LangChain 构建器吗？'
     a: 'Flowise 最初作为拖拽式 LangChain UI 出现，这仍是其核心定位，但已经超越了简单的包装器。它除了 LangChain 之外还支持 LlamaIndex 组件，添加了自己的聊天机器人嵌入小部件、API 端点发布，并培育了社区节点生态系统。最准确的描述是：它是一个抽象了 LangChain 和 LlamaIndex 的可视化 LLM 流水线构建器，而不是纯粹的 LangChain 包装器。'
 ---
+# Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布
+
 
 ## 快速结论
 
@@ -139,3 +141,30 @@ RAG（检索增强生成）是两个平台分歧最明显的地方。
 - [开源 AI Agent 框架 Top 10 2026](https://dibi8.com/zh/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
 外部参考：[Dify](https://dify.ai/) · [Dify GitHub](https://github.com/langgenius/dify) · [Flowise](https://flowiseai.com/) · [Flowise GitHub](https://github.com/FlowiseAI/Flowise)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/dify-vs-flowise-2026"
+  }
+}
+</script>

@@ -611,3 +611,30 @@ Superagent는 "에이전트 프로토타입"과 "프로덕션 API" 사이의 마
 ## Affiliate Disclosure
 
 이 글에는 제휴 링크가 포함되어 있다. [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 링크를 통해 가입하면 추가 비용 없이 우리가 수수료를 받는다. 우리는 자체 배포에 사용하는 서비스만을 추천한다. Superagent 자체는 MIT 라이선스 하에 오픈소스이자 묣으로 사용할 수 있다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/superagent-ai-agent-framework"
+  }
+}
+</script>

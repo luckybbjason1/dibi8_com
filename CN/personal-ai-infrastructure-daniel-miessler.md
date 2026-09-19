@@ -3,7 +3,7 @@ title: 'Personal AI Infrastructure: Daniel Miessler''s Agentic AI Setup for Huma
 description: 'Personal AI Infrastructure (PAI) by Daniel Miessler is a Life Operating System with 45 skills, 171 workflows, a Pulse daemon, and Algorithm v6.3.0. One-line install, MIT licensed. Combines strategy, execution, and reflection into one system.'
 tags: ["ai-agent", "automation", "guide", "open-source", "reference", "tutorial"]
 date: 2026-06-13
-slug: 'personal-ai-infrastructure-daniel-miessler'
+lastmod:  2026-06-13slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
 github_repo: 'https://github.com/danielmiessler/Personal_AI_Infrastructure'
 license: 'MIT'
@@ -530,3 +530,29 @@ For more on personal AI setups:
 ---
 
 **Disclosure**: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Personal AI Infrastructure: Daniel Miessler''s Agentic AI Setup for Humans — 2026 Complete Guide",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/personal-ai-infrastructure-daniel-miessler"
+  }
+}
+</script>

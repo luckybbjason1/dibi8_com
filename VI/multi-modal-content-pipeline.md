@@ -210,3 +210,30 @@ Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} khi sản xuất, t�
 ---
 
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) và [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) cho phía dev. [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí sinh script. [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) để agent điều khiển pipeline này tự trị.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pipeline Nội Dung Đa Phương Thức 2026: Stack 5 Thành Phần Cho Podcast/Video/Nội Dung Trực Quan AI ($30-80/Tháng)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/multi-modal-content-pipeline"
+  }
+}
+</script>

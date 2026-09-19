@@ -162,3 +162,30 @@ For simple cases, the MCP memory server is enough. Don't over-engineer. The comp
 ---
 
 **Related**: [AI Agent Memory Systems 2026](https://dibi8.com/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Open Source AI Agent Frameworks Top 10](https://dibi8.com/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM Real Test",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+  }
+}
+</script>

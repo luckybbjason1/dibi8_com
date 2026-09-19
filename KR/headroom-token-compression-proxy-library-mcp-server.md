@@ -2,7 +2,7 @@
 title: 'Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 — 2026 실전 가이드'
 description: 'Headroom (19,745 GitHub stars)는 도구 출력, 로그, 파일, RAG 청크를 LLM에 전달하기 전 압축합니다. 60-95% 적은 토큰, 동일한 답변. Python 라이브러리, 프록시, MCP 서버 포함. 설치 튜토리얼, 아키텍처 분석, 실제 벤치마킹 포함.'
 date: 2026-06-08
-slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['토큰 압축', 'LLM 토큰 최적화', 'MCP 서버', 'RAG 압축', 'Headroom', '컨텍스트 최적화', '토큰 비용 절감', 'AI 에이전트']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -424,3 +424,30 @@ Claude API 비용 절감을 원하는 개인 개발자든, AI 기반 CI/CD를 �
 [Headroom 구성 논의](https://t.me/DIBI8_Group/9)를 위해 dibi8 한국어 Telegram 그룹에 참여하세요. 보완적인 AI 도구인 [agentmemory 지속적 메모리](dibi8-internal-link)와 [codegraph 지식 그래프](dibi8-internal-link) 가이드도 확인하세요. 오늘 Headroom을 체험해보세요 — 설치하고, 프록시를 설정하고, 토큰 비용을 내려보세요.
 
 위 일부 링크는 제휴 링크입니다. 링크를 통해 가입하면 dibi8.com이 커미션을 받을 수 있으며, 이는 이용자에게 추가 비용이 없습니다. 이 사이트가 무료로 운영될 수 있도록 돕습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 — 2026 실전 가이드",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/headroom-token-compression-proxy-library-mcp-server"
+  }
+}
+</script>

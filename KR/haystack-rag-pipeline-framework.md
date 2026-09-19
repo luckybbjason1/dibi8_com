@@ -672,3 +672,30 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
 ---
 
 **\uc81c\ud734 \uacf5\uac1c:** \ubcf8 \uae00\uc758 \uc77c\ubd80 \ub9c1\ud06c\ub294 \uc81c\ud734 \ub9c1\ud06c\uc774\ub2e4. \uc6b0\ub9ac\uc758 [DigitalOcean \ucd94\ucc9c \ub9c1\ud06c](https://m.do.co/c/eca87ac14ee0)\ub97c \ud1b5\ud574 \uac00\uc785\ud558\uba74 $200 \ud06c\ub808\ub527\uc744 \ubc1b\uace0 \uc6b0\ub9ac\ub3c4 \ucd94\ucc9c \ubcf4\ub108\uc2a4\ub97c \ubc1b\ub2e4 \u2014 \ucda9\uac00 \ube44\uc6a9\uc5c6\uc774. \uc774\ub294 \uc6b0\ub9ac\uc758 \ub3c5\ub9bd\uc801\uc778 \uc5f0\uad6c\uc744 \uc9c0\uc6d0\ud558\uace0 \ucf58\ud150\ucce4\uc744 \ubb34\ub8cc\ub85c \uc720\uc9c0\ud55c\ub2e4.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Haystack 2026: \\ud504\\ub85c\\ub355\\uc158 RAG \\ubc0f \\uc5d0\\uc774\\uc804\\ud2b8 \\ud30c\\uc774\\ud504\\ub77c\\uc778\\uc744 \\uc704\\ud55c \\uc5d4\\ub4dc\\ud22c\\uc5d4\\ub4dc NLP \\ud504\\ub808\\uc784\\uc6cc\\ud06c \\u2014 \\uc124\\uc815 \\uac00\\uc774\\ub4dc",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/haystack-rag-pipeline-framework"
+  }
+}
+</script>

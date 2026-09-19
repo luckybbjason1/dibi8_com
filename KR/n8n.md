@@ -853,3 +853,30 @@ n8n은 상용 플랫폼 비용의 일부로 AI 기능을 갖춘 워크플로 자
 - n8n 가격: https://n8n.io/pricing/
 - n8n 커뮤니티 포럼: https://community.n8n.io
 - n8n 보안 모범 사례: https://docs.n8n.io/hosting/security/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/n8n"
+  }
+}
+</script>

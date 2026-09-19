@@ -604,3 +604,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Web Scraping with Go: Practical Guide](https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production) — Production patterns
 - [Best Open-Source Web Crawlers 2026](https://www.firecrawl.dev/blog/best-open-source-web-crawler) — Ecosystem overview
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — Performance numbers
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Colly: 25,302 GitHub Stars — Benchmark Go Web Scraping Framework 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/colly"
+  }
+}
+</script>

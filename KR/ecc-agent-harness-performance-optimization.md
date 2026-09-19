@@ -2,7 +2,7 @@
 title: 'ECC: 에이전트 허닝 튜닝으로 Claude Code, Codex, Cursor 성능 최적화 — 2026 가이드'
 description: 'ECC (에이전트 허닝 성능 최적화)는 컨텍스트 윈도우 사용량을 줄이고 AI 코딩 에이전트의 응답 속도를 높입니다. Claude Code, Codex, Opencode, Cursor 등에서 호환됩니다. 성능 튜닝, 스킬 시스템, MCP 서버 설정을 다룹니다.'
 date: 2026-06-13
-slug: 'ecc-agent-harness-performance-optimization'
+lastmod:  2026-06-13slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
 github_repo: 'https://github.com/affaan-m/ECC'
@@ -364,3 +364,30 @@ ECC는 모든 AI 코딩 에이전트 사용자가 직면하는 컨텍스트 윈�
 ---
 
 **면책**: 이 글에는 제휴 링크가 포함되어 있습니다. 해당 링크를 통해 가입할 경우 추가 비용 없이 당사 수수료 수익을 올릴 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ECC: 에이전트 허닝 튜닝으로 Claude Code, Codex, Cursor 성능 최적화 — 2026 가이드",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ecc-agent-harness-performance-optimization"
+  }
+}
+</script>

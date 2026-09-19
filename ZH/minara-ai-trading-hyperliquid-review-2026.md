@@ -361,3 +361,30 @@ Spark 有市场价、可流通，所以返佣有真实现金价值，不只是�
 - [RTK —— 开源 Rust CLI 代理给 AI 编码助手省 token](/zh/resources/dev-utils/rtk-rust-cli-proxy-ai-token-saver/)
 
 *最后更新：2026-05-17。Affiliate 披露：本文含 Minara 推荐链接。如你通过这些链接注册，dibi8 会获得佣金（你不会多花钱）。我们只评测我们本来就会推荐的工具，不论佣金。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Minara 深度评测 2026：基于 Hyperliquid 的 AI 交易平台，把 Bloomberg 终端压缩到一个聊天框",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/minara-ai-trading-hyperliquid-review-2026"
+  }
+}
+</script>

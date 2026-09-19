@@ -521,3 +521,30 @@ Appwrite 1.6은 2026년에 사용 가능한 가장 성숙한 Firebase 오픈소�
 ---
 *게시일: 2026-05-19 | 카테고리: dev-utils | 도구: Appwrite 1.6.1*
 *dibi8 개발자 커뮤니티 참여: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Appwrite 2026: Auth, DB, Storage를 갖춘 오픈소스 Firebase 대안 — 셀프호스팅 백엔드 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/appwrite-backend-as-service"
+  }
+}
+</script>

@@ -582,3 +582,30 @@ Scrapy 仍然是 Python 中大规模、生产级网络爬取的最有效选择�
 ---
 
 *本文包含联盟链接。通过本文中的 WebShare 链接购买代理服务时，我们可能会获得佣金，不会向你收取额外费用。所有基准测试数据和推荐均基于独立测试和社区验证的来源。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs BeautifulSoup, Selenium in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/scrapy"
+  }
+}
+</script>

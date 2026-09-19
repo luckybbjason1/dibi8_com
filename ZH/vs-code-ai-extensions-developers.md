@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/vs-code-ai-extensions-developers/
 ---
+# 2025年开发者最佳VS Code AI插件推荐：提升编程效率
+
 
 {</* resource-info */>}
 
@@ -172,3 +174,30 @@ A: 适合，但需要正确使用。AI助手是加速学习的工具而非替代
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025年开发者最佳VS Code AI插件推荐：提升编程效率",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/vs-code-ai-extensions-developers"
+  }
+}
+</script>

@@ -3,7 +3,7 @@ title: 'Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your 
 description: 'Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment.'
 tags: ["open-source", "sast", "scanner", "security"]
 date: 2026-06-10
-slug: 'semgrep-15k-star-sast-security-scanner'
+lastmod:  2026-06-10slug: 'semgrep-15k-star-sast-security-scanner'
 category: dev-utils
 github_repo: 'https://github.com/semgrep/semgrep'
 license: MIT
@@ -434,3 +434,29 @@ Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for disc
 
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/semgrep-15k-star-sast-security-scanner"
+  }
+}
+</script>

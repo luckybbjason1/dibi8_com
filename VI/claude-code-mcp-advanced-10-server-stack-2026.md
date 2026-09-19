@@ -181,3 +181,30 @@ Ghi đè theo dự án quan trọng hơn cấu hình toàn cục. Hãy giới h�
 ---
 
 **Liên quan**: [Xếp Hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Kiểm Toán Bảo Mật MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Hướng Dẫn Cài Đặt Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Production",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-mcp-advanced-10-server-stack-2026"
+  }
+}
+</script>

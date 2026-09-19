@@ -2,7 +2,7 @@
 title: 'paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Quản lý AI Agent quy mô lớn — Hướng dẫn thực tế 2026'
 description: 'paperclip (69.700 sao GitHub) là ứng dụng nơi làm việc AI agent mã nguồn mở. Phối hợp nhiều agent, quản lý task, triển khai workflow tự host. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
-slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['quản lý AI agent', 'phối hợp multi-agent', 'paperclip', 'agent mã nguồn mở', 'workflow agent', 'agent tự host', 'nơi làm việc AI agent', 'orchestration agent']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -208,3 +208,30 @@ Nếu xử lý 2+ AI agent hàng ngày, paperclip cung cấp Kanban board, conve
 Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận về paperclip. Xem [cc-switch unified CLI](dibi8-internal-link) và [Langflow visual workflows](dibi8-internal-link). Thử paperclip hôm nay — `docker compose up`, thêm 2 agent, xem multi-agent pipeline đầu tiên chạy.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Quản lý AI Agent quy mô lớn — Hướng dẫn thực tế 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
+  }
+}
+</script>

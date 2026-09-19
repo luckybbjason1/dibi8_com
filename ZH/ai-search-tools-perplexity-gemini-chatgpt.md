@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-search-tools-perplexity-gemini-chatgpt/
 ---
+# AI搜索工具对比：Perplexity、Google Gemini与ChatGPT搜索全面评测
+
 
 {</* resource-info */>}
 
@@ -236,3 +238,30 @@ Perplexity AI是编程搜索的首选，其代码聚焦模式可以直接检索G
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI搜索工具对比：Perplexity、Google Gemini与ChatGPT搜索全面评测",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-search-tools-perplexity-gemini-chatgpt"
+  }
+}
+</script>

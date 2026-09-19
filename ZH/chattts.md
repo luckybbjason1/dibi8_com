@@ -644,3 +644,30 @@ ChatTTS在开源TTS领域占据独特地位。其对话式设计、token级韵�
 - [Awesome-ChatTTS社区索引](https://github.com/Awesome-ChatTTS) — 社区项目和扩展
 - [ChatTTS基准对比研究 (CSDN, 2026)](https://blog.csdn.net/weixin_30415591/article/details/157480949) — 与Coqui和VITS的详细质量对比
 - [2025开源AI模型综合对比](https://www.e-com-net.com/article/1936044193575137280.htm) — TTS模型全景概览
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS: 39.3K+ Stars — 对话式TTS基准对比 vs Coqui、MeloTTS 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/chattts"
+  }
+}
+</script>

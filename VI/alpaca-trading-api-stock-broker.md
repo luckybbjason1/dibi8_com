@@ -732,3 +732,29 @@ Dù bạn đang xây dựng một bot đầu tư theo phương pháp bình quân
 
 *Cuối cùng được cập nhật: 2026-05-19 | API Alpaca phiên bản: v2*
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/alpaca-trading-api-stock-broker"
+  }
+}
+</script>

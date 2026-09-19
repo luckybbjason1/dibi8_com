@@ -131,3 +131,30 @@ Pick by language stack and workflow style. Capabilities have converged enough th
 ---
 
 **Related**: [12-Factor Agents Production Guide](https://dibi8.com/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [AI Agent Memory Systems](https://dibi8.com/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open Source AI Agent Framework Top 10 (2026): Ranked by Production Adoption",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/open-source-ai-agent-framework-top-10-2026"
+  }
+}
+</script>

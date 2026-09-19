@@ -407,3 +407,59 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 ---
 
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "question": "How much does it cost to run Agency Agents?",
+      "answer": "The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used."
+    },
+    {
+      "question": "Can I add custom agents to the framework?",
+      "answer": "Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the `BaseAgent` interface and registering them with the task router. The framework provides templates for creating new agents."
+    },
+    {
+      "question": "Does it support open-source AI models?",
+      "answer": "Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs."
+    },
+    {
+      "question": "How does it compare to AutoGPT?",
+      "answer": "Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition."
+    },
+    {
+      "question": "Is there a Docker setup?",
+      "answer": "Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with:\n\n```bash\ndocker-compose up -d\ndocker exec -it agency-agents python agency.py --project \"Build a web app\"\n```"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agency Agents: 125K+ Star Open-Source AI Agency Framework",
+  "datePublished": "2026-07-03",
+  "dateModified": "2026-07-03",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/agency-agents-complete-ai-agency-framework"
+  }
+}
+</script>

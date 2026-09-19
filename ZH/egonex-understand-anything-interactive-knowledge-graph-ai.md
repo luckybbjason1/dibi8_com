@@ -2,7 +2,7 @@
 title: "Egonex Understand-Anything：任何主题的交互式知识图谱——AI 驱动、开源、零配置"
 description: "了解如何使用 Egonex 的 Understand-Anything 通过 AI 从任何主题生成交互式知识图谱。包含逐步安装、多源综合、实时搜索和与替代方案的比较。"
 date: 2026-06-10
-slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: [egonex, understand-anything, 知识图谱, AI, 交互式, 开源, 研究, 可视化, llm]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -541,3 +541,30 @@ AI 研究、网络搜索集成和交互式可视化的组合使 Understand-Anyth
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/2) 讨论知识图谱生成和研究工作流。查看我们的 [AI Agent 管理](dibi8-internal-link) 和 [文档处理](dibi8-internal-link) 指南以获取互补工具。今天就开始探索知识——一次一个主题。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Egonex Understand-Anything：任何主题的交互式知识图谱——AI 驱动、开源、零配置",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/egonex-understand-anything-interactive-knowledge-graph-ai"
+  }
+}
+</script>

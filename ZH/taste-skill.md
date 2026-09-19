@@ -2,7 +2,7 @@
 title: "品味技能：让 AI 告别平庸输出——Agent 技能框架 2026"
 description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 ChatGPT Images。"
 date: 2026-06-15
-slug: taste-skill
+lastmod:  2026-06-15slug: taste-skill
 category: dev-utils
 tags: ['ai 设计', 'agent 技能', '反平庸', '前端', 'codex', 'cursor', 'claude code', '提示词工程']
 github_repo: "https://github.com/Leonxlnx/taste-skill"
@@ -399,3 +399,30 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **行动号召**：加入 Taste Skill 的 Telegram 社区 —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "品味技能：让 AI 告别平庸输出——Agent 技能框架 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/taste-skill"
+  }
+}
+</script>

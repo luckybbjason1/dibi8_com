@@ -558,3 +558,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tuyên bố Liên kết Affiliate
 
 Bài viết này chứa liên kết affiliate đến Binance, OKX, Minara và các nền tảng liên quan. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các công cụ chúng tôi dùng cho nghiên cứu quantitative của riêng mình. Thu nhập affiliate hỗ trợ nội dung kỹ thuật mã nguồn mở của chúng tôi.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh Xử lý 1M+ Giao dịch/giây — Hướng dẫn Quant 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/vectorbt-quantitative-backtesting"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰'
 description: 'Impeccable(스타 37,000개 이상)는 AI 코딩 에이전트를 위한 디자인 언어로, 23개 명령어, 41개 감지기 규칙, 실시간 브라우저 반복 기능을 갖추고 있습니다. AI가 생성한 UI의 단조로움을 결정론적 디자인 품질 체크로 해결합니다. Claude Code, Cursor, Codex와 호환됩니다.'
 date: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
+lastmod:  2026-06-13slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 tags: ['impeccable', 'design-language', 'ai-design', 'frontend', 'claude-code', 'cursor']
 github_repo: 'https://github.com/pbakaus/impeccable'
@@ -435,3 +435,30 @@ AI 디자인 도구에 대해 더 알아보기:
 ---
 
 **고지 사항**: 본 글에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입할 경우 추가 비용 없이 우리가 수수료를 받을 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/impeccable-ai-design-language-harness-quality-ui"
+  }
+}
+</script>

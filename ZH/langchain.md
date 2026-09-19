@@ -747,3 +747,30 @@ LangChain的137,000个GitHub星标反映了它作为生产级LLM应用默认框�
 - [LangChain版本控制与发布策略](https://docs.langchain.com/oss/python/versioning)
 - [LangChain定价 — CheckThat.ai](https://checkthat.ai/brands/langchain/pricing)
 )
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangChain: 3种部署生产级AI智能体的方法 — 2026年完整部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/langchain"
+  }
+}
+</script>

@@ -13,7 +13,7 @@ tags:
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16 00:00:00+00:00
-slug: comfyui-workflows-complete-guide
+lastmod:  2026-07-16 00:00:00+00:00slug: comfyui-workflows-complete-guide
 ---
 
 
@@ -507,3 +507,30 @@ ComfyUI is the core application. ComfyUI Manager is an extension that makes inst
 ---
 
 *Join our Telegram group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI Workflows — The Visual Programming Language for AI Image Generation",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/comfyui-workflows-complete-guide"
+  }
+}
+</script>

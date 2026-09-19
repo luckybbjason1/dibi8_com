@@ -33,6 +33,8 @@ faqs:
   - q: 'Bitcoin-Classic（BTCC）是个好的投资标的吗？'
     a: '不是。BTCC 目前市值和流动性几乎为零，没有主流交易所支持，社区规模极小（GitHub 仅约 18-23 个 star）。它最适合作为教育和实验性项目，而非投资标的。'
 ---
+# Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版
+
 {</* resource-info */>}
 
 ## Bitcoin-Classic 是什么？
@@ -181,3 +183,30 @@ Bitcoin-Classic 是一个**教育性质和体验性质**很强的项目。它让
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/bitcoin-classic-btcc-cpu-mining-bitcoin-fork"
+  }
+}
+</script>

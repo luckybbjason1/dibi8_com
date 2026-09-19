@@ -663,3 +663,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công bố Liên kết Affiliate
 
 Bà viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và [AppSumo](https://appsumo.com/s/106nifb/). Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ đề xuất các dịch vụ chúng tôi tích cực sử dụng cho chính các triển khai của mình. Tất cả benchmark và ý kiến đều được sản xuất độc lập và không chịu ảnh hưởng bởi bất kỳ quan hệ đối tác affiliate nào.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triển khai LangChain Agent Trực quan — Hướng dẫn Toàn diện",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/flowise-ai-workflow-builder-lowcode"
+  }
+}
+</script>

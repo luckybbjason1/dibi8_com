@@ -169,3 +169,30 @@ lookback=16: PF 0.87
 ---
 
 **相关阅读**：[Moss Trade Bot Factory 2026 评测](https://dibi8.com/zh/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python 回测框架](https://dibi8.com/zh/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI 交易框架](https://dibi8.com/zh/resources/ai-trading/jesse-ai-trading-framework/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "回测过拟合：5 种典型模式与真实 PF/Sharpe 数据 (2026)",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/backtest-overfit-5-patterns-2026"
+  }
+}
+</script>

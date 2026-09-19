@@ -2,7 +2,7 @@
 title: 'TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Google cho dự báo'
 description: 'Hướng dẫn đầy đủ về TimesFM 2.5 — mô hình chuỗi thời gian tiên tiến nhất của Google Research. Cài đặt, cấu hình, benchmark và các ví dụ thực tế.'
 date: 2026-06-19
-tags: []
+lastmod:  2026-06-19tags: []
 category: "data-science"
 lang: vi
 slug: timesfm-google-time-series-foundation-model
@@ -613,3 +613,30 @@ Với sự tích hợp vào hệ sinh thái của Google, cộng đồng phát t
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Lưu trữ các mô hình ML của bạn 
 - [HTStack](https://my.htstack.com/aff.php?aff=27187) - Lưu trữ máy chủ GPU đáng tin cậy 
 - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - Máy chủ GPU dành cho đào tạo (tiếng Trung)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Google cho dự báo",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/timesfm-google-time-series-foundation-model"
+  }
+}
+</script>

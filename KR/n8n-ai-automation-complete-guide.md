@@ -5,7 +5,7 @@ tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automati
 category: dev-utils
 featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
 lang: ko
 ---
@@ -573,3 +573,30 @@ n8n의 암호화된 자격 증명 저장소, 환경 변수의 비밀, 그리고 
 ---
 
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "n8n AI 자동화 — 코드 없이 지능형 워크플로우 구축",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/n8n-ai-automation-complete-guide"
+  }
+}
+</script>

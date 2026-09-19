@@ -249,3 +249,30 @@ Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/mo droplet" >}},
 ---
 
 *Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for coding-agent-specific stack. [Knowledge Base Stack](/collections/knowledge-base-stack/) gives your agents a Glean-equivalent RAG backend. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the cost side.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent Tool Chain 2026: The 6-Component Stack for Building Production-Grade Autonomous Agents",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-agent-tool-chain"
+  }
+}
+</script>

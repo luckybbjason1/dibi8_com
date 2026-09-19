@@ -33,6 +33,8 @@ faqs:
   - q: 'TikChain을 어떻게 시작하나요?'
     a: '회원가입 후 계정을 만들고, 소셜 미디어 프로필을 연결 및 연동한 다음, 활동을 통해 토큰을 적립하고, 커뮤니티 이벤트와 거버넌스에 참여하여 지갑으로 보상을 출금하면 됩니다.'
 ---
+# TikChain 발견 - 귀하의 소셜 미디어 블록체인 게이트웨이
+
 
 {</* resource-info */>}
 
@@ -191,3 +193,30 @@ TikChain은 TikTok, Instagram, Twitter, YouTube 등과의 통합을 지원합니
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TikChain 발견 - 귀하의 소셜 미디어 블록체인 게이트웨이",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/discover-tikchain-your-gateway-to-social-media-blockchain"
+  }
+}
+</script>

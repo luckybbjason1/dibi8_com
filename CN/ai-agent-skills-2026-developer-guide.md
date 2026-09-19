@@ -375,3 +375,30 @@ mattpocock/skills brings production-tested discipline. obra/superpowers brings c
 - [Dictionary of AI Coding Terms (Matt Pocock)](https://github.com/mattpocock/dictionary-of-ai-coding)
 
 *Star counts and repository statistics reflect GitHub API data as of May 13, 2026. All repositories are actively maintained with recent commits.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent Skills Explained: The 2026 Developer''s Guide to Production-Grade Agent Workflows",
+  "datePublished": "2026-05-16",
+  "dateModified": "2026-05-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-agent-skills-2026-developer-guide"
+  }
+}
+</script>

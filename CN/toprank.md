@@ -117,3 +117,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Google Ads API](https://developers.google.com/google-ads/api/docs/start)
 - [Google Search Console](https://search.google.com/search-console/about)
 - [Schema.org JSON-LD](https://schema.org/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Toprank: Open-Source Claude Code Skills That Automate SEO, GEO, and Ad Campaign Optimization",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/toprank"
+  }
+}
+</script>

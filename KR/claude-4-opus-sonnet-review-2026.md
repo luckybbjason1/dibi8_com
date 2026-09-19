@@ -2,7 +2,7 @@
 title: 'Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트'
 description: 'Claude 4 전 라인업 심층 리뷰 — Opus 4, Sonnet 4, Haiku 4 코딩·추론·컨텍스트·가격, GPT-4o·Gemini 1.5 Pro 비교까지. 2026년 6월 업데이트.'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm리뷰, ai코딩, 추론모델]
 categories: [review]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Claude 4의 컨텍스트 윈도우는 얼마나 큰가요?'
     a: 'Claude 4 전 모델은 200K 토큰 컨텍스트 윈도우를 지원합니다. 한 번의 호출로 책 한 권·대형 코드베이스·긴 대화 이력 분석이 가능합니다. 출력 윈도우는 최대 32K 토큰으로, 긴 보고서·전체 파일·다단원 문서를 한 번에 생성하기에 충분합니다.'
 ---
+# Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트
+
 
 ![Claude 4 Opus 4 Sonnet 4 review — Anthropic's latest model family, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
@@ -143,3 +145,30 @@ Claude 4를 [MCP 모델 컨텍스트 프로토콜](mcp-deep-dive-definitive-2026
 ---
 
 *모델 ID는 [Anthropic 공식 문서](https://docs.anthropic.com/en/docs/about-claude/models/overview) 기준입니다. 가격은 변동될 수 있으니 Anthropic 공식 가격 페이지를 확인하세요.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-4-opus-sonnet-review-2026"
+  }
+}
+</script>

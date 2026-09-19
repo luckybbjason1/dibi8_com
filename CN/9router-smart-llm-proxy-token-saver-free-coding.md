@@ -345,3 +345,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [RTK](https://github.com/rtk-ai/rtk)
 - [Caveman](https://github.com/JuliusBrussee/caveman)
 - [OmniRoute](https://github.com/diegosouzapw/OmniRoute)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "9Router: Smart LLM Proxy with Token Saver — Cut AI Costs by 60%, Never Hit Rate Limits Again",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/9router-smart-llm-proxy-token-saver-free-coding"
+  }
+}
+</script>

@@ -662,3 +662,30 @@ Outline은 엔지니어링 팀에 **셀프호스팅, 실시간 협업 Wiki**를 
 ---
 
 *본 문서에는 제휴 링크가 포함될 수 있습니다. 당사의 추천 링크를 통해 DigitalOcean이나 HTStack에 가입하시면 추가 비용 없이 커미션을 받습니다. 당사는 직접 사용하는 서비스만을 추천합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Outline 완벽 가이드: 엔지니어링 팀을 위한 오픈소스 Wiki 및 지식 베이스 — 2026 셀프호스팅 배포",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/outline-wiki-knowledge-base"
+  }
+}
+</script>

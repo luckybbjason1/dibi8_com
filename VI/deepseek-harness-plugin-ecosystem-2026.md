@@ -2,7 +2,7 @@
 title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide'
 description: 'DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.'
 date: 2026-09-19
-slug: 'deepseek-harness-plugin-ecosystem-2026'
+lastmod:  2026-09-19slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
 tags: ['deepseek', 'harness', 'plugin', 'ai-agent', 'dsh', 'automation']
 github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
@@ -391,3 +391,30 @@ Bạn muốn build plugin nào đầu tiên? Chia sẻ ideas trong comments ho�
 **CTA:** Tham gia DSH community trên Telegram: https://t.me/DIBI8_Group
 
 [Hướng Dẫn Agent Skills](dibi8-internal-link) | [Hướng Dẫn Agent-Reach](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/deepseek-harness-plugin-ecosystem-2026"
+  }
+}
+</script>

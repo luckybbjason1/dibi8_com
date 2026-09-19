@@ -367,3 +367,30 @@ Open Codesign 标志着 AI 设计工具领域的一个有意义的转折点。�
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
 *本文由 dibi8 Tech Team 撰写。更多关于 AI 开发者工具、开源工作流和设计工程的深度内容，请关注我们的博客 [dibi8.com](https://dibi8.com)。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 AI 设计神器",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/open-codesign-claude-design-alternative"
+  }
+}
+</script>

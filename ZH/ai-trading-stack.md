@@ -299,3 +299,30 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 *配套合集：[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 给 AI Trader 的 LLM API 成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 想让自主 agent 驱动交易循环。[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给策略代码开发侧。*
 
 *⚠️ 重申：非投资建议。风险自担。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市场）",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-trading-stack"
+  }
+}
+</script>

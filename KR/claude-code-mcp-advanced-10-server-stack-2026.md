@@ -181,3 +181,30 @@ MCP 서버 10개가 최적점입니다. 위 스택은 코드, 검색, 프로젝�
 ---
 
 **관련 글**: [MCP 서버 2026 순위](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [MCP 서버 보안 감사 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-server-security-audit-2026-real-cases/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-mcp-advanced-10-server-stack-2026"
+  }
+}
+</script>

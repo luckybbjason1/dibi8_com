@@ -23,6 +23,8 @@ tags: ['프롬프트 엔지니어링', '프롬프트 관리', 'LangSmith', 'Prom
 aliases:
 - /kr/posts/prompt-engineering-frameworks-tools/
 ---
+# 2025년 최고의 프롬프트 엔지니어링 프레임워크 및 도구 비교: PromptLayer, LangSmith, W&B Prompts
+
 
 {</* resource-info */>}
 
@@ -161,3 +163,30 @@ Helicone은 "1줄의 코드"로 통합되는 것을 목표로 하는 **LLM 관�
 - [Weights & Biases](https://wandb.ai)
 - [Pezzo GitHub 저장소](https://github.com)
 - [Microsoft Prompt Flow](https://microsoft.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 프롬프트 엔지니어링 프레임워크 및 도구 비교: PromptLayer, LangSmith, W&B Prompts",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/prompt-engineering-frameworks-tools"
+  }
+}
+</script>

@@ -36,6 +36,8 @@ faq:
   - q: "How does Claude Code subagent pricing work — am I paying separately for each one?"
     a: "Each subagent invocation consumes tokens like any other Claude conversation. The cost is roughly the subagent's full context (system prompt + tools schema + task prompt + thinking + final report). For Pro and Max plans, subagent usage counts against the same usage allowance as the parent session. For API users, the cost is straightforward per-token billing. The savings come from offloading exploration that would otherwise bloat your parent context — you pay for the subagent, but your main session stays fast and focused."
 ---
+# Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)
+
 
 ## Introduction
 
@@ -161,3 +163,30 @@ Subagents are not optional in 2026. If you're still doing every task in a single
 Start with Pattern 1 (parallel research fan-out) — it's the lowest friction adoption point and the gains are immediate. Layer in the others as your sessions get longer and your tasks get heavier.
 
 The instinct to "just keep typing into the main session" dies hard. Override it. Spawn the subagent.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-code-subagent-patterns-multi-agent-workflows-2026"
+  }
+}
+</script>

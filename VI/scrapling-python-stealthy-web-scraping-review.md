@@ -37,6 +37,8 @@ faqs:
   - q: 'Scrapling có tuân thủ robots.txt theo mặc định không?'
     a: 'Không. Cài đặt robots_txt_obey là tùy chọn bật thủ công, không bật theo mặc định, vì vậy bạn phải chủ động bật nó. Đây là lựa chọn thiết kế có chủ ý dành cho người dùng sở hữu các trang họ crawl, nhưng quên bật khi crawl trang của bên thứ ba có thể dẫn đến rủi ro pháp lý.'
 ---
+# Đánh giá Scrapling: Một cách tiếp cận nhanh hơn, lén lút hơn cho việc cạo
+
 {</* resource-info */>}
 
 Scrapling tự định vị mình như một người kế nhiệm nhanh hơn, lén lút hơn cho Scrapy và BeautifulSoup. Sau khi đọc tài liệu và điểm chuẩn, đây là đánh giá trung thực về những gì nó thực sự mang lại, nơi nó phù hợp và nơi nó không phù hợp.
@@ -113,3 +115,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh giá Scrapling: Một cách tiếp cận nhanh hơn, lén lút hơn cho việc cạo",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/scrapling-python-stealthy-web-scraping-review"
+  }
+}
+</script>

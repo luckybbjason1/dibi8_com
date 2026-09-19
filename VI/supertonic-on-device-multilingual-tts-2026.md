@@ -23,6 +23,8 @@ tags: ['supertonic', 'text-to-speech', 'tts', 'on-device-ai', 'onnx', 'multiling
 aliases:
 - /vi/posts/supertonic-on-device-multilingual-tts-2026/
 ---
+# Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M tham số qua ONNX, hỗ trợ 31 ngôn ngữ (2026)
+
 
 ## Vấn đề của TTS on-device
 
@@ -185,3 +187,30 @@ Ghép nó với [một runtime LLM on-device](https://dibi8.com/vi/resources/llm
 ---
 
 **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **License**: MIT (code) / OpenRAIL-M (weight) · **Mới nhất**: v2.0.0 (6/1/2026) · **Stars**: 9.9K+ · **Maintainer**: Supertone Inc.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M tham số qua ONNX, hỗ trợ 31 ngôn ngữ (2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/supertonic-on-device-multilingual-tts-2026"
+  }
+}
+</script>

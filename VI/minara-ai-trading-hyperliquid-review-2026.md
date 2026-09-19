@@ -362,3 +362,30 @@ Nếu ignore phần còn lại của review, ít nhất nhớ điều này: **AI
 - [RTK — Proxy CLI Rust Mã Nguồn Mở Giảm Token Cho AI Coding](/vi/resources/dev-utils/rtk-rust-cli-proxy-ai-token-saver/)
 
 *Cập nhật lần cuối: 2026-05-17. Tiết lộ affiliate: bài viết có link giới thiệu Minara. Khi đăng ký qua link này, dibi8 nhận hoa hồng (bạn không trả thêm). Chúng tôi chỉ review công cụ chúng tôi sẽ giới thiệu bất kể hoa hồng.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperliquid Nén Cả Bloomberg Terminal Vào Một Cửa Sổ Chat",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/minara-ai-trading-hyperliquid-review-2026"
+  }
+}
+</script>

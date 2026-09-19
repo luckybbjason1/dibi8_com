@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
+# 代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程
+
 
 {</* resource-info */>}
 
@@ -421,3 +423,30 @@ A: 在CI流水线中添加lint和format检查步骤，使用 `--check` 模式（
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/code-quality-tools-eslint-prettier-black-ruff"
+  }
+}
+</script>

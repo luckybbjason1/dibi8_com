@@ -136,3 +136,30 @@ Start with the 5 templates above. Customize. Share. The compound returns of reus
 ---
 
 **Related**: [Stable Diffusion WebUI Setup](https://dibi8.com/resources/ai-tools/stable-diffusion-webui/) · [Top AI Image Generators 2026](https://dibi8.com/resources/ai-tools/ai-image-generation-tools-2025/) · [Local-First AI Stack 2026](https://dibi8.com/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates"
+  }
+}
+</script>

@@ -599,3 +599,30 @@ Colly는 Go 개발자가 스크래핑 프레임워크에 기대하는 것을 정
 - [Web Scraping with Go: Practical Guide](https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production) — 프로덕션 패턴
 - [Best Open-Source Web Crawlers 2026](https://www.firecrawl.dev/blog/best-open-source-web-crawler) — 생태계 개요
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — 성능 수치
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Colly: 25,302 GitHub Stars — 벤치마크 Go 웹 스크래핑 프레임워크 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/colly"
+  }
+}
+</script>

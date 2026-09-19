@@ -521,3 +521,30 @@ Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.
 ---
 *Bài viết đăng: 2026-05-19 | Danh mục: dev-utils | Công cụ: Appwrite 1.6.1*
 *Tham gia cộng đồng dibi8: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở với Auth, DB & Storage — Hướng Dẫn Tự Host Backend",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/appwrite-backend-as-service"
+  }
+}
+</script>

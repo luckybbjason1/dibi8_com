@@ -5,7 +5,7 @@ category: llm-frameworks
 tags: ['ai-sdk', 'vercel', 'react-server-components', 'streaming', 'tool-calling', 'llm-integration']
 slug: vercel-ai-sdk-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/vercel-ai-sdk.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg
 ---
 
 ## TL;DR
@@ -584,3 +584,30 @@ Deploy to Vercel for the best experience with automatic edge runtime support. Yo
 ## Call to Action
 
 Build your next AI-powered application with the Vercel AI SDK. [Explore the docs](https://dibi8.com/auth/) and join thousands of developers creating amazing AI experiences.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vercel AI SDK — The Universal Framework for Building AI-Powered Applications",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/vercel-ai-sdk-complete-guide"
+  }
+}
+</script>

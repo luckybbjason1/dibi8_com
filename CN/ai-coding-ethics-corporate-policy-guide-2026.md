@@ -156,3 +156,30 @@ The worst outcome is no policy at all — developers will use AI tools regardles
 ---
 
 **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Local-First AI Stack 2026](https://dibi8.com/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/) · [Self-Hosted LLM 2026](https://dibi8.com/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Coding Ethics 2026: Corporate Policy Guide for Allow vs Restrict",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-coding-ethics-corporate-policy-guide-2026"
+  }
+}
+</script>

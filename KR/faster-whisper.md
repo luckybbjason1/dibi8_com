@@ -486,3 +486,30 @@ faster-whisper는 Python 환경에서 OpenAI Whisper의 프로덕션 런타임 �
 - Whisper-Streaming(실시간): https://github.com/ufal/whisper_streaming
 - PyAV(오디오 디코딩): https://github.com/PyAV-Org/PyAV
 - Silero VAD: https://github.com/snakers4/silero-vad
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "faster-whisper: 23K+ Stars로 4배 빠른 음성-텍스트 변환 — 2026년 WhisperX, whisper.cpp과 벤치마크 비교",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/faster-whisper"
+  }
+}
+</script>

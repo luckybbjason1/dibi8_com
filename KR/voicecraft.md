@@ -535,3 +535,30 @@ VoiceCraft 배포 패턴을 논의하고, 미세조정 설정을 공유하고, �
 - [VoiceCraft_API — FastAPI 래퍼](https://github.com/GPU-Net/VoiceCraft_API)
 
 *이 가이드는 dibi8 기술팀이 독립적으로 작성했다. VoiceCraft는 Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed, David Harwath가 개발했다. dibi8과 VoiceCraft 프로젝트 사이에는 상업적 관련이 없다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/voicecraft"
+  }
+}
+</script>

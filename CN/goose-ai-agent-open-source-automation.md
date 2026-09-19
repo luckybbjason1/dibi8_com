@@ -246,3 +246,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Ollama](https://github.com/ollama/ollama)
 - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
 - [MetaGPT](https://github.com/FoundationAgents/MetaGPT)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Goose AI Agent: Open-Source Automation by Linux Foundation AAIF",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/goose-ai-agent-open-source-automation"
+  }
+}
+</script>

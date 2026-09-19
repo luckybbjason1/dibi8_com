@@ -651,3 +651,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [PromQL Cheat Sheet](https://promlabs.com/promql-cheat-sheet/)
 - [Prometheus vs InfluxDB Comparison](https://uptrace.dev/comparisons/prometheus-vs-influxdb)
 - [CNCF Prometheus Project Page](https://www.cncf.io/projects/prometheus/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prometheus: 64,094 GitHub Stars — Docker Deployment Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/prometheus"
+  }
+}
+</script>

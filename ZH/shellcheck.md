@@ -668,3 +668,30 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
 - [shfmt — Shell 格式化工具](https://github.com/mvdan/sh)
 - [checkbashisms — Debian Devscripts](https://packages.debian.org/sid/devscripts)
 - [POSIX.1-2017 Shell 命令语言](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 CI/CD 集成指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/shellcheck"
+  }
+}
+</script>

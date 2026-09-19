@@ -658,3 +658,30 @@ LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生
 - [Portainer vs LazyDocker 对比（OneUptime）](https://oneuptime.com/blog/post/2026-03-20-portainer-vs-lazydocker-terminal/view)
 - [DataCamp LazyDocker 教程](https://www.datacamp.com/tutorial/lazydocker)
 - [LazyDocker Podman 扩展](https://github.com/szchan/lazydocker-podman)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/lazydocker"
+  }
+}
+</script>

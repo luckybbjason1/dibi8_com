@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/langchain-complete-guide/
 ---
+# LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발
+
 
 {</* resource-info */>}
 
@@ -225,3 +227,30 @@ RAG와 데이터 중심 애플리케이션에는 LlamaIndex가, 범용 에이전
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/langchain-complete-guide"
+  }
+}
+</script>

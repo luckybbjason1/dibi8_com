@@ -2,7 +2,7 @@
 title: 'MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零API调用'
 description: 'MemPalace是一个本地优先的AI记忆系统，以逐字形式存储对话历史，并通过语义搜索进行检索。与Claude Code、Cursor、Windsurf及任何MCP兼容的智能体集成。基于ChromaDB后端，支持可插拔存储，零外部API调用。包含设置指南、基准测试和架构解析。'
 date: 2026-06-10
-slug: 'mempalace-open-source-ai-memory-system'
+lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
 github_repo: 'https://github.com/MemPalace/mempalace'
@@ -441,3 +441,29 @@ mempalace init ~/projects/myapp
 - [MCP深度解析](dibi8-internal-link/llm-frameworks/mcp-deep-dive)
 
 *以上部分链接为联盟链接。如果你通过链接注册，dibi8.com可能会获得佣金，而你无需支付额外费用。这有助于维持网站运行和内容免费。*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零API调用",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mempalace-open-source-ai-memory-system"
+  }
+}
+</script>

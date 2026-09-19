@@ -36,6 +36,8 @@ faq:
   - q: "When should I write a subagent instead of a skill?"
     a: "Write a skill when you need to teach a procedure that runs in the current conversation. Write a subagent when the work needs its own context window — heavy exploration, parallel research, or independent review that would otherwise bloat the parent. They compose: a subagent can load a skill to follow your methodology while running in isolation. The rule of thumb from the extension-decision framework — skill changes behavior, subagent protects context, MCP server adds capability."
 ---
+# Claude Code Skill Authoring: How to Package Procedures Claude Loads Only When Relevant (2026)
+
 
 ## Introduction
 
@@ -190,3 +192,30 @@ Skills shine most in a stable, shared environment:
 ## Verdict
 
 Skills are the cheapest, most underrated extension point — a directory with a markdown file that turns situational expertise into just-in-time context. The whole craft reduces to two things: a **description** packed with the real trigger phrases so it fires at the right moment, and **progressive disclosure** so it stays light until the task needs its depth. Write those two well and you've packaged a procedure your whole team — and every CI run — gets for free, exactly when it's relevant. That completes the trio: skill for knowledge, subagent for context, MCP server for capability.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Skill Authoring: How to Package Procedures Claude Loads Only When Relevant (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-code-skill-authoring-guide-2026"
+  }
+}
+</script>

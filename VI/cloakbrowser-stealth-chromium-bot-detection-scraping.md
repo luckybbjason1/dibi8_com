@@ -2,7 +2,7 @@
 title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026'
 description: 'CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark.'
 date: 2026-06-08
-slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
+lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
 tags: ['stealth browser', 'CloakBrowser', 'bot detection', 'web scraping', 'fingerprint spoofing', 'Playwright replacement', 'anti-detection', 'scraping tool']
 github_repo: 'https://github.com/CloakHQ/CloakBrowser'
@@ -432,3 +432,30 @@ Tham gia [nhóm Telegram tiếng Việt dibi8](https://t.me/DIBI8_Group/18) đ�
 - HTStack: Quản lý cơ sở hạ tầng cloud của bạn. Tham gia https://my.htstack.com/aff.php?aff=27187
 
 Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp duy trì trang web và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cloakbrowser-stealth-chromium-bot-detection-scraping"
+  }
+}
+</script>

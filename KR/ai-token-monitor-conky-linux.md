@@ -162,3 +162,30 @@ MIT 라이선스 완전 오픈소스입니다.
 **GitHub:** [github.com/luckybbjason1/ai-token-monitor](https://github.com/luckybbjason1/ai-token-monitor)
 
 작업 도중 레이트 리밋 기습을 피하는 데 도움이 됐다면 Star 부탁드립니다. Issue와 PR 환영합니다 — 특히 macOS 지원이나 새 서비스 통합에 기여해주시면 감사합니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-token-monitor-conky-linux"
+  }
+}
+</script>

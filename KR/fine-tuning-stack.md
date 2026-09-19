@@ -228,3 +228,30 @@ vllm serve yourname/my-finetuned-llama \
 ---
 
 *동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 배포 후 추론 비용 측 커버. [AI 에이전트 도구 체인](/kr/collections/ai-agent-tool-chain/) 자동 파인튜닝 루프. [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 일부 케이스에서 RAG가 파인튜닝 대안.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/fine-tuning-stack"
+  }
+}
+</script>

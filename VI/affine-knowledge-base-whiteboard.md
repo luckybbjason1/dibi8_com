@@ -391,3 +391,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tiết lộ liên kết liên kết
 
 Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không tốn thêm chi phí cho bạn. Tất cả đề xuất đều dựa trên thử nghiệm thực tế và không bị ảnh hưởng bởi chương trình liên kết. AFFiNE hoàn toàn mã nguồn mở và tự lưu trữ miễn phí không yêu cầu thanh toán.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản lý tri thức AI — Hướng dẫn cài đặt",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/affine-knowledge-base-whiteboard"
+  }
+}
+</script>

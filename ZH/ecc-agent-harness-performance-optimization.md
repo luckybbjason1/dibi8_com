@@ -2,7 +2,7 @@
 title: 'ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 — 2026 指南'
 description: 'ECC（Agent Harness 性能优化）可减少上下文窗口用量并加快 AI 编码代理的响应速度。兼容 Claude Code、Codex、Opencode、Cursor 等。涵盖性能调优、技能系统和 MCP 服务器配置。'
 date: 2026-06-13
-slug: 'ecc-agent-harness-performance-optimization'
+lastmod:  2026-06-13slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
 github_repo: 'https://github.com/affaan-m/ECC'
@@ -364,3 +364,30 @@ ECC 代表了一种实用的方法来解决每个 AI 编码代理用户都面临
 ---
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 — 2026 指南",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ecc-agent-harness-performance-optimization"
+  }
+}
+</script>

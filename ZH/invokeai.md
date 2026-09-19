@@ -539,3 +539,30 @@ InvokeAI 在 AI 图像生成生态中填补了特定空白：一款专业级、�
 ---
 
 *本文包含 DigitalOcean 联盟链接。通过此链接注册，我们会在不向你额外收费的情况下获得佣金。这有助于支持网站和我们的开源内容。所有观点和基准测试均为独立制作。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "InvokeAI: 27.2K+ Stars — 2026 完整安装配置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/invokeai"
+  }
+}
+</script>

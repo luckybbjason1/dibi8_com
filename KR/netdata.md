@@ -563,3 +563,30 @@ Netdata는 대부분의 모니터링 도구가 지키지 못하는 약속을 이
 - [암스테르담 대학 에너지 효율성 연구](https://www.ivanomalavolta.com/files/papers/ICSOC_2023.pdf)
 - [Netdata vs Zabbix 공식 비교](https://www.netdata.cloud/comparisons/zabbix/)
 - [릴리스 노트 및 변경 로그](https://github.com/netdata/netdata/releases)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Netdata: 78K+ Star 실시간 모니터링 — 2026 성능 튜닝 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/netdata"
+  }
+}
+</script>

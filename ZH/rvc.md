@@ -655,3 +655,30 @@ RVC 在中等硬件上提供训练时间低于 20 分钟的生产级语音转换
 - [LLVC: CPU 上的低延迟实时语音转换](https://arxiv.org/abs/2311.00873)
 - [RVC 推理设置参考](https://docs.aihub.gg/rvc/resources/inference-settings/)
 - [PetVocalia: 零样本 SVC 基准测试 (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/1135.pdf)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RVC: 35K+ Stars 部署 AI 语音转换 — 2026 年 10 分钟训练指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/rvc"
+  }
+}
+</script>

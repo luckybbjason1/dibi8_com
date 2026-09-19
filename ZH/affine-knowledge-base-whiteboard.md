@@ -391,3 +391,30 @@ AFFiNE 代表了知识管理的范式转变：从依赖云端的订阅制到本�
 ## 联盟营销声明
 
 本文包含 DigitalOcean 和虎网云的联盟营销链接。如果你通过我们的链接注册，我们会获得佣金，但不会额外增加你的费用。所有推荐均基于实际测试，不受联盟计划影响。AFFiNE 完全开源，自托管无需任何付费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/affine-knowledge-base-whiteboard"
+  }
+}
+</script>

@@ -582,3 +582,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Voice Conversion Guide: https://coqui-tts.readthedocs.io/en/latest/models/voice_conversion.html
 
 *This article is for informational purposes. Verify benchmark numbers on your own hardware before making deployment decisions. Coqui TTS licensing terms are subject to change — review the current license before commercial use.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benchmark vs ChatTTS, MeloTTS, Bark in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/coqui-tts"
+  }
+}
+</script>

@@ -559,3 +559,30 @@ RAGFlow는 심층 문서 이해, 프로덕션 준비 웹 UI 및 내장 에이전
 - [2026년 최고의 오픈소스 RAG 프레임워크 비교](https://www.firecrawl.dev/blog/best-open-source-rag-frameworks)
 - [RAGFlow 아키텍처 설명](https://milvus.io/ai-quick-reference/what-is-ragflow-and-how-does-it-work)
 - [RAGFlow VPS 프로덕션 배포](https://zhujibaike.com/2497.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAGFlow: 80K+ Stars를 가진 프로덕션급 RAG 엔진 배포하기 — 2026년 Docker 설정 및 벤치마크",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ragflow"
+  }
+}
+</script>

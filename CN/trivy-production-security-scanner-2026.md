@@ -2,7 +2,7 @@
 title: 'Trivy: Stop Shipping Vulnerable Containers to Production — Security Scanning Guide 2026'
 description: 'Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works with Kubernetes, Docker, GitHub Actions, and CI pipelines. Scans 600K+ CVEs, secrets, and misconfigurations. Covers installation, policy-as-code, and production hardening.'
 date: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
+lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -363,3 +363,29 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 - Community discussion: https://github.com/aquasecurity/trivy/discussions
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trivy: Stop Shipping Vulnerable Containers to Production — Security Scanning Guide 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/trivy-production-security-scanner-2026"
+  }
+}
+</script>

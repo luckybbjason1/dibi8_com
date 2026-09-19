@@ -36,6 +36,8 @@ faq:
   - q: "커스텀 에이전트는 CI와 헤드리스 실행에서도 동작하나요, 아니면 대화형에서만 동작하나요?"
     a: "둘 다에서 동작합니다. 동일한 .claude/agents/ 정의가 Claude Code를 비대화형으로 실행할 때(CI에서 쓰는 -p / print 모드)도 인식됩니다. 저장소에 버전 관리되는 파일이므로 모든 동료와 모든 CI 작업이 완전히 동일한 에이전트 정의를 봅니다 — 리뷰 체크리스트를 아무도 열어보지 않는 위키 페이지가 아니라 에이전트로 코드화하는 것의 핵심이 바로 이것입니다."
 ---
+# Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만들기 (2026)
+
 
 ## 들어가며
 
@@ -227,3 +229,30 @@ cheap, a missed auth hole is not.
 커스텀 에이전트는 팀의 모범 사례를 아무도 읽지 않는 문서에서, 모든 변경에 대해 실행되는 검사로 바꿉니다. 비결은 이렇습니다: 트리거되도록 날카로운 **description**, 본분에 머물도록 하는 최소 권한 **도구 화이트리스트**, 그리고 여러분이 행동에 옮길 수 있는 보고서를 만들어내도록 명시적 체크리스트와 출력 계약을 담은 **시스템 프롬프트**.
 
 하나로 시작하세요 — 위의 마이그레이션 리뷰어가 대부분의 팀에 가장 레버리지가 높은 첫 에이전트입니다. 버그를 심고, 그것을 잡아내는지 확인한 뒤, 파일을 커밋하세요. 그 순간부터 모든 동료는 결코 지치지 않고 결코 단계를 건너뛰지 않는 리뷰어를 갖게 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만들기 (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-custom-agent-authoring-guide-2026"
+  }
+}
+</script>

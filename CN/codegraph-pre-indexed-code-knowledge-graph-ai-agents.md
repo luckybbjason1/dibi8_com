@@ -2,7 +2,7 @@
 title: 'Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026'
 description: 'Codegraph (45,555 GitHub stars) creates pre-indexed code knowledge graphs for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
-slug: 'codegraph-pre-indexed-code-knowledge-graph-ai-agents'
+lastmod:  2026-06-08slug: 'codegraph-pre-indexed-code-knowledge-graph-ai-agents'
 category: 'dev-utils'
 tags: ['code knowledge graph', 'Codegraph', 'LLM token reduction', 'code indexing', 'AI coding agents', 'local code search', 'codebase understanding', 'developer tool']
 github_repo: 'https://github.com/colbymchenry/codegraph'
@@ -390,3 +390,30 @@ Whether you're maintaining a 50K-line monorepo, building with Cursor, or just ti
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Codegraph configurations. Check out our guides on [CLI代理管理](https://dibi8.com/cc-switch-unified-ai-cli-c[AI Agent管理](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-link) for complementary tooling. Try Codegraph today — index your project, run a query, and see how much context you don't need.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/codegraph-pre-indexed-code-knowledge-graph-ai-agents"
+  }
+}
+</script>

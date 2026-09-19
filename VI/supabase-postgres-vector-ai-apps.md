@@ -769,3 +769,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tiết lộ liên kết liên kết
 
 Bài viết này chứa các liên kết liên kết. Nếu bạn mua dịch vụ thông qua các liên kết có đánh dấu ID liên kết (như DigitalOcean hoặc HTStack), chúng tôi có thể kiếm được hoa hồng mà không có chi phí bổ sung cho bạn. Điều này giúp tài trợ cho công việc tài liệu mã nguồn mở của chúng tôi. Tất cả các khuyến nghị đều dựa trên giá trị kỹ thuật thực sự, không phải khả năng có sẵn của liên kết.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở với Postgres Vector Search cho 1M+ ứng dụng AI — Hướng dẫn cài đặt",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/supabase-postgres-vector-ai-apps"
+  }
+}
+</script>

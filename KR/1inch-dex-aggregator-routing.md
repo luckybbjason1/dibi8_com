@@ -742,3 +742,30 @@ const wallet = new ethers.Wallet(
 DeFi 활동에 대한 신뢰할 수 있는 중앙화 거래소를 찾는 트레이더에게 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)는 깊은 유동성과 경쟁력 있는 수수료를 제공하고, [OKX](https://www.promoohubly.com/join/12190433)는 고급 트레이딩 도구와 멀티체인 지원을 제공합니다. 중앙화 거래소의 효율성과 1inch의 탈중앙화 집계의 결합은 2026년의 멀티체인 환경을 위한 완전한 트레이딩 툴킷을 만듭니다.
 
 오늘 1inch로 구축을 시작하여 사용자에게 DeFi가 제공할 수 있는 최상의 가격 실행을 제공하세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "1inch-dex-aggregator-routing",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/1inch-dex-aggregator-routing"
+  }
+}
+</script>

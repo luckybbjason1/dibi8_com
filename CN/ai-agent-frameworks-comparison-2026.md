@@ -2,7 +2,7 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — AI Agent Frameworks Compared (2026)"
 description: "Side-by-side comparison of the top 5 open-source AI agent frameworks in 2026. Real star counts, code examples, performance benchmarks, and practical guidance for choosing the right framework for your project."
 date: 2026-06-30T00:00:00+09:00
-draft: false
+lastmod:  2026-06-30T00:00:00+09:00draft: false
 tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]
 categories: ["llm-frameworks"]
 slug: ai-agent-frameworks-comparison-2026
@@ -1049,3 +1049,30 @@ We build these comparisons because open-source AI deserves transparent, communit
 ---
 
 *Last updated: June 30, 2026. Star counts and metrics are approximate and subject to change. All code examples tested with framework versions current as of publication date.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — AI Agent Frameworks Compared (2026)",
+  "datePublished": "2026-06-30",
+  "dateModified": "2026-06-30",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-agent-frameworks-comparison-2026"
+  }
+}
+</script>

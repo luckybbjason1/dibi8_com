@@ -614,3 +614,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Typesense is free, open-source software — hosting costs are the only expense.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Typesense 2026: The Open-Source Instant Search API Handling 1M Searches/Day — Self-Hosted Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/typesense-instant-search-api"
+  }
+}
+</script>

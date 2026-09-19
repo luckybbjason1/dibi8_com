@@ -420,3 +420,30 @@ Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스
 ---
 
 *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 우리는 직접 사용하는 서비스만 추천합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apache Superset 2026: 50가지 이상 차트 유형을 갖춘 오픈소스 데이터 탐색 플랫폼 — 셀프 호스팅 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/preset-superset-data-exploration"
+  }
+}
+</script>

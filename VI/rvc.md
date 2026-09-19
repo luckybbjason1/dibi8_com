@@ -655,3 +655,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [LLVC: Low-Latency Real-Time Voice Conversion on CPU](https://arxiv.org/abs/2311.00873)
 - [RVC Inference Settings Reference](https://docs.aihub.gg/rvc/resources/inference-settings/)
 - [PetVocalia: Zero-Shot SVC Benchmark (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/1135.pdf)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RVC: Triển khai AI Chuyển đổi Giọng nói với 35K+ Stars — Hướng dẫn Thiết lập Huấn luyện 10 phút cho 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/rvc"
+  }
+}
+</script>

@@ -39,6 +39,8 @@ faqs:
   - q: '이 AI-SEO 및 GEO 도구들을 어떤 순서로 적용해야 하나요?'
     a: '대부분의 사이트가 아직 하지 않은 GEO 레이어부터 시작하세요. llms.txt를 생성하고 AI 크롤러를 고려한 robots.txt를 만드는 것입니다. 그런 다음 기존 온페이지 레이어를 적용하세요. meta 태그, Schema.org JSON-LD, 다국어 사이트라면 hreflang까지요. 마지막으로 공유 레이어를 마무리하며 Open Graph 카드를 미리 확인하세요.'
 ---
+# AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선
+
 
 2026년의 SEO는 한 가지 일이 아니라 두 가지 일입니다. **클래식 검색**(Google, Bing)은 여전히 깔끔한 메타 태그, 구조화 데이터, 올바른 hreflang에 보상을 줍니다. 그러나 **생성형 엔진**(ChatGPT, Claude, Perplexity, Google AI Overviews)은 새로운 표면입니다 — 이들은 `llms.txt`를 통해 당신의 사이트를 읽고, AI 전용 robots 규칙을 보고 당신을 크롤링할지 결정합니다. 이 컬렉션은 두 측면을 모두 아우르는 **무료 브라우저 기반 도구 6개**를 모았습니다. 가입 불필요, 백엔드 불필요, 복사-붙여넣기 준비 완료.
 
@@ -72,3 +74,30 @@ faqs:
 ## 총평
 
 2026년의 SEO = 클래식 온페이지 **더하기** 생성형 엔진 최적화. 대부분의 사이트는 전반부만 하고 후반부는 무시합니다 — 바로 그 점이 파고들어야 할 빈틈입니다. 6개 도구를 순서대로 실행하세요: AI 크롤러가 당신을 보는 방식을 단단히 잠그고(llms.txt + robots), 온페이지 기본기를 확실히 다지고(meta + schema + hreflang), 공유 카드를 다듬으세요. 무료, 브라우저 기반, 10분. 그런 다음 경쟁자들이 최적화를 잊은 AI 엔진들에게 인용되러 가세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-seo-geo-toolkit-stack"
+  }
+}
+</script>

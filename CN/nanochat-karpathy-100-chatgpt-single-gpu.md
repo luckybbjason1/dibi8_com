@@ -2,7 +2,7 @@
 title: 'nanochat: Karpathy''s $100 ChatGPT — Build Your Own AI Chat App on a Single GPU — A Practical Guide 2026'
 description: 'nanochat (54,800 GitHub stars) is Andrej Karpathy''s open-source ChatGPT clone that runs on a single $100 GPU. Train from scratch using SGLang or run pre-trained via vLLM. Includes setup guide, training benchmarks, and deployment examples.'
 date: 2026-06-08
-slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
+lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ['karpathy nanochat', 'train LLM from scratch', 'single GPU chat', 'open source ChatGPT', 'SGLang', 'vLLM', 'local LLM', 'AI chat app']
 github_repo: 'https://github.com/karpathy/nanochat'
@@ -422,3 +422,30 @@ Whether you're a student learning LLM fundamentals, a developer prototyping a cu
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss nanochat experiences and training configurations. Check out our guides on [LLM Token压缩](https://dibi8.com/headroom-token-compre[AI Agent工作平台](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)memory systems]([headroom guide](https://dibi8.com/headroom-*) for complementary tools. Try nanochat today — clone the repo, run `python app.py`, and see your own model respond.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat: Karpathy''s $100 ChatGPT — Build Your Own AI Chat App on a Single GPU — A Practical Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/nanochat-karpathy-100-chatgpt-single-gpu"
+  }
+}
+</script>

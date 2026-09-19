@@ -703,3 +703,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [WebDriver BiDi Specification](https://w3c.github.io/webdriver-bidi/) — Tiêu chuẩn cross-browser automation
 - [Nghiên cứu benchmark Puppeteer vs Playwright](https://getautonoma.com/blog/selenium-playwright-cypress-comparison) — So sánh hiệu năng độc lập
 - [Browserless.io Puppeteer Hosting](https://www.browserless.io/) — Hạ tầng Puppeteer được quản lý
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa Browser Docker 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/puppeteer"
+  }
+}
+</script>

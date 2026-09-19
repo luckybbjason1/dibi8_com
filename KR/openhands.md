@@ -611,3 +611,30 @@ OpenHands는 2026년에 사용 가능한 가장 강력한 오픈소스 AI 소프
 ---
 
 *이 가이드는 독립적으로 유지관리되며 정기적으로 업데이트됩니다. 마지막 검증: 2026년 5월.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenHands: 74K+ Stars — 코드를 작성하고 실행하는 AI 소프트웨어 엔지니어 (2026 설치 가이드)",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openhands"
+  }
+}
+</script>

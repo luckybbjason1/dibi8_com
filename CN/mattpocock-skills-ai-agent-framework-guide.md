@@ -2,7 +2,7 @@
 title: "Matt Pocock's Skills: The CLI Framework That Gives AI Agents Real Superpowers — npm Install, Zero Config"
 description: "Learn how to use Matt Pocock's Skills framework to give AI coding agents like Claude Code, Cursor, and Gemini CLI real capabilities beyond code — databases, filesystem, CI/CD, and more. Step-by-step npx install guide, architecture breakdown, and real benchmarks."
 date: 2026-06-10
-slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI agents, CLI framework, AI coding tools, agent capabilities, developer tools, open-source]
 github_repo: "https://github.com/mattpocock/skills"
@@ -537,3 +537,30 @@ Sources & Further Reading
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Skills configurations and agent workflows. Check out our guides on [document processing with MarkItDown](dibi8-internal-link) and [AI knowledge graphs](dibi8-internal-link) for complementary tooling. Start empowering your AI agents today.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Matt Pocock's Skills: The CLI Framework That Gives AI Agents Real Superpowers — npm Install, Zero Config",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mattpocock-skills-ai-agent-framework-guide"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 — 2026 实战指南'
 description: 'paperclip（69,700 GitHub 星标）是开源的 AI 代理工作场所应用。协调多个代理、管理任务、部署自托管代理工作流。包含安装教程、架构分析和真实基准测试。'
 date: 2026-06-08
-slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['AI 代理管理', '多代理协调', 'paperclip', '开源代理', '代理工作流', '自托管代理', 'AI 代理工作场所', '代理编排']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -370,3 +370,30 @@ paperclip 解决了一个大多数开发者在规模上遇到的真实问题：�
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 paperclip 设置和代理模板。查看我们的 [cc-switch 统一 CLI](dibi8-internal-link) 和 [Langflow 可视化工作流](dibi8-internal-link) 指南了解相关工具。今天就试试 paperclip——`docker compose up`，添加两个代理，看着你的第一个多代理管线运行。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 — 2026 实战指南",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
+  }
+}
+</script>

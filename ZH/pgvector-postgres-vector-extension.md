@@ -702,3 +702,30 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
 ## 附属披露
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 云托管和 [Supabase](https://supabase.com) 托管 PostgreSQL 的附属链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外成本。我们只推荐在自己的生产环境中使用过的服务。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "pgvector 2026：将 PostgreSQL 转变为高性能向量数据库——配置、调优与 RAG 集成指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/pgvector-postgres-vector-extension"
+  }
+}
+</script>

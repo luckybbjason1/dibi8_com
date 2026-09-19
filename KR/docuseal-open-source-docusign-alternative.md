@@ -391,3 +391,30 @@ DocuSeal은 수십억 달러 규모의 SaaS 기업을 직접 대체할 수 있�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DocuSeal 리뷰：이 오픈소스 DocuSign 대안으로 문서 서명 비용 90% 절감",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/docuseal-open-source-docusign-alternative"
+  }
+}
+</script>

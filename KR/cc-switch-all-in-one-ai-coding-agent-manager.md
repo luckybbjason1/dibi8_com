@@ -2,7 +2,7 @@
 title: "CC 스위치: 다중 플랫폼 개발을 위한 궁극의 AI 코딩 에이전트 관리자"
 description: "CC 스위치에 대한 완벽한 가이드 — Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw, Hermes Agent를 하나의 통합된 인터페이스에서 관리하는 크로스플랫폼 데스크톱 앱. 설치, 구성 및 실제 사용법."
 date: 2026-06-20
-tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 lang: kr
 slug: cc-switch-all-in-one-ai-coding-agent-manager
@@ -324,3 +324,29 @@ CC Switch는 AI 코딩 에이전트 관리의 획기적인 도약을 의미합�
 --- 
 
 💬 토론을 위해 텔레그램 그룹에 참여하세요: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CC 스위치: 다중 플랫폼 개발을 위한 궁극의 AI 코딩 에이전트 관리자",
+  "datePublished": "2026-06-20",
+  "dateModified": "2026-06-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cc-switch-all-in-one-ai-coding-agent-manager"
+  }
+}
+</script>

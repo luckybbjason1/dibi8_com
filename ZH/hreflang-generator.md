@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
+# Hreflang 标签生成器 — 多语言与国际化 SEO
+

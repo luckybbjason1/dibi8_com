@@ -435,3 +435,30 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 - [bat-extras — 추가 스크립트](https://github.com/eth-p/bat-extras) —— `batgrep`, `batdiff`, `batman` 래퍼.
 - [TwoDark 테마 참고](https://github.com/erremauro/TwoDark) —— 다크 터미널용 인기 bat 테마.
 - [대안과의 비교](https://github.com/sharkdp/bat#project-goals-and-alternatives) —— bat 관리자의 공식 비교.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "bat: 58K+ Stars 구문 강조 cat 클론 — 2026년 cat, less, ccat 비교",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/bat"
+  }
+}
+</script>

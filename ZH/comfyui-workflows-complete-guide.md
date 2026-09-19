@@ -5,7 +5,7 @@ tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion'
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
 lang: zh-CN
 ---
@@ -499,3 +499,30 @@ ComfyUI 是核心应用程序。ComfyUI Manager 是一个扩展，使安装模�
 ---
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 工作流 — AI 图像生成的可视化编程语言",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/comfyui-workflows-complete-guide"
+  }
+}
+</script>

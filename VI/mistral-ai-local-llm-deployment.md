@@ -796,3 +796,30 @@ Bắt đầu với `mistral-inference` để thử nghiệm, mở rộng sang vL
 ---
 
 *Xuất bản: 2026-05-19 | Mistral AI | [GitHub: mistralai/mistral-inference](https://github.com/mistralai/mistral-inference)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mistral AI 2026: Triển khai LLM Local Cấp Production với Kiến trúc 8x7B MoE — Hướng dẫn Thiết lập Đầy đủ",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mistral-ai-local-llm-deployment"
+  }
+}
+</script>

@@ -623,3 +623,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This guide contains affiliate links for [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), and [Minara](https://minara.ai/r/OSXG4X). If you register through these links, we receive a commission at no additional cost to you. This supports our open-source documentation efforts. We only recommend tools we actively use and test.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hummingbot 2026: The Open-Source Crypto Trading Bot Running 50+ Exchange Connectors — Setup & Strategy Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/hummingbot-crypto-trading-bot"
+  }
+}
+</script>

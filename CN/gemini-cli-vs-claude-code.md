@@ -2,7 +2,7 @@
 title: 'Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?'
 description: 'Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, agent style, multi-modal, tool use, migration tips. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Which has better multi-modal support?'
     a: 'Gemini CLI wins on multi-modal in the terminal — it natively accepts images, PDFs, and video frames as input via flags (e.g. `--image screenshot.png`). Claude Code supports images via the conversation but is more text-first. For workflows like "look at this UI screenshot and write the React component," Gemini CLI is faster out of the box.'
 ---
+# Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?
+
 
 ## Quick Answer
 
@@ -191,3 +193,30 @@ For an indie dev shipping a SaaS solo on the **last-bet budget**? **Gemini CLI f
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/gemini-cli-vs-claude-code"
+  }
+}
+</script>

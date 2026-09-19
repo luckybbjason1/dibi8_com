@@ -769,3 +769,30 @@ Supabase는 프로덕션 AI 애플리케이션을 구축하는 데 필요한 모
 ## 제휴 공개
 
 본 문서에는 제휴 링크가 포함되어 있다. 제휴 ID가 표시된 링크(DigitalOcean, HTStack 등)를 통해 서비스를 구매하면 추가 비용 없이 커미션을 받을 수 있다. 이는 오픈소스 문서 작업에 자금을 지원하는 데 도움이 된다. 모든 권장 사항은 제휴 가용성이 아닌 진정한 기술적 장점을 기반으로 한다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Firebase 대안 — 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/supabase-postgres-vector-ai-apps"
+  }
+}
+</script>

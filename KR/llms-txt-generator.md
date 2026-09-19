@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-llms-txt-generator"
 tool_id: "llms-txt-generator"
 ---
+# llms.txt 생성기 — AI 크롤러(ChatGPT, Claude, Perplexity)가 사이트를 이해하도록
+

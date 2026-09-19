@@ -2,7 +2,7 @@
 title: 'Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 2026 완전 설정 가이드'
 description: 'Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot을 지원합니다. Docker 및 네이티브 Linux/macOS 설치가 가능합니다.'
 date: 2026-06-09
-slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
+lastmod:  2026-06-09slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
 category: ai-tools
 tags: ['odysseus', '자체 호스팅 AI', 'AI 워크스페이스', '로컬 AI', '딥 리서치', 'AI 에이전트', '채팅 인터페이스', '오픈소스 AI', '홈랩 AI']
 github_repo: https://github.com/pewdiepie-archdaemon/odysseus
@@ -510,3 +510,30 @@ Docker 기반 설치는 깊은 Linux 전문 지식이 없는 사용자도 접근
 더 많은 AI 도구 심층 분석을 위해 커뮤니티에 가입하세요:[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **면책 조항:** 이 글은 정보 목적으로만 작성되었습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 2026 완전 설정 가이드",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
+  }
+}
+</script>

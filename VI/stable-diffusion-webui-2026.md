@@ -23,6 +23,8 @@ tags: ['Stable Diffusion', 'SDXL', 'sinh ảnh', 'AUTOMATIC1111', 'mã nguồn m
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+# Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đầy Đủ Sinh Ảnh Self-Host 163k Sao
+
 
 Nếu bạn từng Google "stable diffusion install" kết quả đầu tiên là **AUTOMATIC1111's stable-diffusion-webui** trong 3 năm liên tiếp. Ở 163k GitHub sao (một trong các project AI nhiều sao nhất trong lịch sử), nó là UI self-host mặc định cho sinh ảnh họ SD năm 2026 — text-to-image, image-to-image, inpainting, outpainting, LoRA, ControlNet, sinh batch, tất cả phía sau UI web Gradio bạn có thể chạy trên GPU 4 GB.
 
@@ -158,3 +160,30 @@ Bật instance GPU, chạy cài đặt mục 3, và 15 phút sau bạn có sinh 
 ---
 
 *Một phần của stack nội dung đa phương thức dibi8 — xem [ComfyUI cho workflow dựa node](/vi/resources/ai-tools/comfyui-node-based-ai-image-2026/) và bộ sưu tập Multi-Modal Content Pipeline sắp tới.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đầy Đủ Sinh Ảnh Self-Host 163k Sao",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/stable-diffusion-webui-2026"
+  }
+}
+</script>

@@ -91,3 +91,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [ControlNet](https://github.com/lllyasviel/ControlNet)
 - [IP-Adapter](https://github.com/tencent-ailab/IP-Adapter)
 - [PyTorch](https://github.com/pytorch/pytorch)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source Standard",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/comfyui-vs-midjourney"
+  }
+}
+</script>

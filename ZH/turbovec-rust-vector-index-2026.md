@@ -2,7 +2,7 @@
 title: 'TurboVec：Rust 驱动的向量索引比 FAISS 快 10 倍 — AI 搜索指南 2026'
 description: 'TurboVec (RyanCodrai/turbovec) 是一个基于 TurboQuant 的向量索引，用 Rust 编写并提供 Python 绑定。可无缝替换 LangChain、LlamaIndex、Haystack 和 Agno。通过量化技术实现 10 倍加速。涵盖 Python 集成、基准测试和生产部署。'
 date: 2026-06-09
-slug: 'turbovec-rust-vector-index-2026'
+lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ['vector-search', 'rust', 'quantization', 'langchain', 'llamaindex', 'RAG', 'embeddings', 'turboquant']
 github_repo: 'https://github.com/RyanCodrai/turbovec'
@@ -394,3 +394,30 @@ TurboVec 代表了向量搜索性能的重大进步。通过将 Rust 的系统�
 - 社区讨论：https://github.com/RyanCodrai/turbovec/discussions
 
 **披露**：本文包含附属链接。如果您通过我们的链接注册，我们可能会赚取少量佣金，而您无需支付额外费用。这有助于支持独立技术新闻，并使 dibi8.com 等资源保持免费且无广告。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TurboVec：Rust 驱动的向量索引比 FAISS 快 10 倍 — AI 搜索指南 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/turbovec-rust-vector-index-2026"
+  }
+}
+</script>

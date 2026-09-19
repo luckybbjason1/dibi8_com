@@ -491,3 +491,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 **Affiliate Disclosure:** Some links in this article are affiliate links. If you use our [DigitalOcean referral link](https://m.do.co/c/eca87ac14ee0) to sign up, you receive $200 in credits and we earn a referral bonus — at no extra cost to you. This supports our independent research and keeps the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Arize AI Phoenix: The Open-Source LLM Observability Tool Tracing 100% of Your RAG Pipeline — 2026 Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/arize-ai-observability-llm"
+  }
+}
+</script>

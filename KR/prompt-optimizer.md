@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-prompt-optimizer"
 tool_id: "prompt-optimizer"
 ---
+# Prompt 최적화기 — 5단계 재구성, 불필요 표현 제거, 토큰 절약 (GPT / Claude / Gemini / DeepSeek)
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prompt 최적화기 — 5단계 재구성, 불필요 표현 제거, 토큰 절약 (GPT / Claude / Gemini / DeepSeek)",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/prompt-optimizer"
+  }
+}
+</script>

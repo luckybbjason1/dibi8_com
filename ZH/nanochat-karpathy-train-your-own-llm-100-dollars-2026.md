@@ -91,3 +91,30 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 > **需要 GPU 算力训练模型？** [DigitalOcean 新用户享 $200 免费额度](https://m.do.co/c/eca87ac14ee0)，足够运行多次完整 nanochat 训练实验。GPU Droplet 按需使用，无长期承诺。
 
 **GitHub：** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k ⭐ · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 LLM 训练管道",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/nanochat-karpathy-train-your-own-llm-100-dollars-2026"
+  }
+}
+</script>

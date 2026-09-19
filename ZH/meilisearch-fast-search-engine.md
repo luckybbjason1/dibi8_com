@@ -714,3 +714,30 @@ Meilisearch 1.12 是 2026 年最容易部署的生产级搜索引擎。从 `dock
 ---
 
 *联盟披露：本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外费用。我们基于真实测试独立推荐服务。Meilisearch 是免费开源软件 —— 唯一的费用是托管成本。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/meilisearch-fast-search-engine"
+  }
+}
+</script>

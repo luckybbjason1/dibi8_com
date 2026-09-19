@@ -2,7 +2,7 @@
 title: "AI-Trader：来自 HKUDS 的原生 AI 交易平台"
 description: "AI-Trader 是 HKUDS 推出的原生 AI 交易平台，使 Claude Code、Codex、Cursor 和 OpenClaw 等 AI 编程代理能够自主执行交易、管理投资组合和优化策略。"
 date: 2026-06-10
-slug: hkuds-ai-trader
+lastmod:  2026-06-10slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, 原生代理, 自主交易, 投资组合管理, AI 代理]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -502,3 +502,30 @@ HKUDS 的 AI-Trader 代表了交易平台设计和运营的根本性转变。通
 5. [DigitalOcean - 交易系统的云基础设施](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - 高性能托管](https://htstack.com/)
 7. [WebShare - 数据管道代理服务](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-Trader：来自 HKUDS 的原生 AI 交易平台",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/hkuds-ai-trader"
+  }
+}
+</script>

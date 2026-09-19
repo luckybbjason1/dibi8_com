@@ -563,3 +563,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Nghiên cứu Hiệu quả Năng lượng Đại học Amsterdam](https://www.ivanomalavolta.com/files/papers/ICSOC_2023.pdf)
 - [So sánh Netdata vs Zabbix Chính thức](https://www.netdata.cloud/comparisons/zabbix/)
 - [Ghi chú Phát hành & Nhật ký Thay đổi](https://github.com/netdata/netdata/releases)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Netdata: Giám Sát Thở Gian Thự 78K+ Star — Hướng Dẫn Tinh Chỉnh Hiệu Suất 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/netdata"
+  }
+}
+</script>

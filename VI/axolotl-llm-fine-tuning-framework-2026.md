@@ -179,3 +179,30 @@ Bật instance H100, viết YAML 20 dòng ở mục 3, và 15 phút sau bạn c�
 ---
 
 *Một phần của Fine-Tuning Stack dibi8 — pair với [Unsloth cho iterate single-GPU nhanh](/vi/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/). Cho bức tranh LLM ops đầy đủ xem bộ sưu tập Fine-Tuning Stack sắp tới.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao — Hướng Dẫn Production Đầy Đủ",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/axolotl-llm-fine-tuning-framework-2026"
+  }
+}
+</script>

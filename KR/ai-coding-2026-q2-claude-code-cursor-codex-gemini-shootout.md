@@ -206,3 +206,30 @@ AI 코딩 에이전트 전용 VPS 운영(팀 공유 MCP 서버, 코드 실행 sa
 ---
 
 **관련**: [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/) · [MCP 서버 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
+  }
+}
+</script>

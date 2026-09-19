@@ -2,7 +2,7 @@
 title: 'Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 2026 实用指南'
 description: 'Headroom (19,745 GitHub stars) 压缩工具输出、日志、文件、RAG 块后再送入 LLM。节省 60-95% token，答案不变。含 Python 库、代理、MCP 服务器。附设置教程、架构解析和真实基准数据。'
 date: 2026-06-08
-slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['Token 压缩', 'LLM 节省 Token', 'MCP 服务器', 'RAG 压缩', 'Headroom', '上下文优化', 'Token 成本降低', 'AI 代理']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -347,3 +347,30 @@ Headroom 是每个 AI 代理流水线都需要的缺失基础设施层。与其�
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 Headroom 配置。查看我们的 [agentmemory 持久记忆](dibi8-internal-link) 和 [codegraph 知识图谱](dibi8-internal-link) 指南获取互补工具。今天试试 Headroom — 安装它，设置代理，看着你的 token 账单下降。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 2026 实用指南",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/headroom-token-compression-proxy-library-mcp-server"
+  }
+}
+</script>

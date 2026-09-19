@@ -634,3 +634,30 @@ Vectara 묣 티어는 **50MB 저장소**와 **월 10,000회 쿼리**를 포함�
 ## Affiliate Disclosure
 
 이 글에는 제휴 링크가 포함되어 있다. [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 링크를 통해 가입하면 추가 비용 없이 우리가 수수료를 받는다. 우리는 자체 배포에 사용하는 서비스만을 추천한다. Vectara는 신용카드 없이 묣 티어를 제공하며, 모든 수용 도구는 Apache-2.0 라이선스 하에 오픈소스이다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vectara 2026: 90%+ 답변 정확도를 가진 RAG-as-a-Service 플랫폼 — API 통합 및 벤치마크",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/vectara-rag-as-service-platform"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['LLM 평가', 'LLM 벤치마크', 'EleutherAI', 'OpenCompass', 'BIG-bench
 aliases:
 - /kr/posts/llm-evaluation-benchmarking-frameworks/
 ---
+# 2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCompass, BIG-bench
+
 
 {</* resource-info */>}
 
@@ -168,3 +170,30 @@ EleutherAI LM Eval이 가장 방대한 사용자 기반과 문서를 보유하�
 - [HELM - 스탠퍼드 CRFM](https://crfm.stanford.edu)
 - [BIG-bench 연구 논문](https://arxiv.org)
 - [DeepEval 공식 문서](https://github.com/confident-ai)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCompass, BIG-bench",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/llm-evaluation-benchmarking-frameworks"
+  }
+}
+</script>

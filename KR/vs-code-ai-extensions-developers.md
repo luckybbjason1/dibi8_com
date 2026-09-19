@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/vs-code-ai-extensions-developers/
 ---
+# 2025년 개발자를 위한 최고의 VS Code AI 확장 프로그램: 생산성 향상
+
 
 {</* resource-info */>}
 
@@ -188,3 +190,30 @@ Tabnine의 로컬 모델과 Continue + Ollama 조합만 완전한 오프라인 �
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 개발자를 위한 최고의 VS Code AI 확장 프로그램: 생산성 향상",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/vs-code-ai-extensions-developers"
+  }
+}
+</script>

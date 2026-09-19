@@ -136,3 +136,30 @@ ComfyUI의 학습 곡선은 진짜지만 보상도 진짜입니다. 재사용 �
 ---
 
 **관련 문서**: [Stable Diffusion WebUI 셋업](https://dibi8.com/kr/resources/ai-tools/stable-diffusion-webui/) · [2026 최고의 AI 이미지 생성 도구](https://dibi8.com/kr/resources/ai-tools/ai-image-generation-tools-2025/) · [2026 로컬 퍼스트 AI 스택](https://dibi8.com/kr/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/comfyui-workflow-2026-5-production-templates"
+  }
+}
+</script>

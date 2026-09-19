@@ -332,3 +332,30 @@ For developers building or deploying open-source AI tools, we recommend:
 ## References & Sources
 
 - [AI-Trader (HKUDS)](https://github.com/HKUDS/AI-Trader)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-Trader: 14K⭐ Fully Automated AI Trading Agent — Let AI Trade for You 24/7",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-trader"
+  }
+}
+</script>

@@ -642,3 +642,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [CUDA Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) — Thiết lập GPU cho Linux
 - [CTranslate2 Performance Guide](https://opennmt.net/CTranslate2/performance.html) — Mẹo tối ưu hóa
 - [WhisperX Examples](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — Ví dụ sử dụng đa ngôn ngữ
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/whisperx"
+  }
+}
+</script>

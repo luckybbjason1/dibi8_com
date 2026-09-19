@@ -23,6 +23,8 @@ tags: ['知识图谱', '图数据库', 'Neo4j', '图神经网络', '语义网']
 aliases:
 - /zh/posts/knowledge-graph-tools-frameworks/
 ---
+# 2025年最佳知识图谱构建工具与框架对比：Neo4j、RDFlib、Amazon Neptune、Stardog全面评测
+
 
 {</* resource-info */>}
 
@@ -226,3 +228,30 @@ Neo4j提供**社区版（Community Edition）**，采用GPL协议开源，可以
 ### 如何在Neo4j和Amazon Neptune之间选择？
 
 如果你希望**完全掌控**基础设施且拥有丰富的社区资源，选择**Neo4j**。如果你已经在**AWS生态**中且希望使用全托管服务，选择**Amazon Neptune**。需要同时支持属性图和RDF模型的场景，Neptune的一库双模型支持更具优势。对于需要高级图算法（60+内置算法）的场景，Neo4j的Graph Data Science库是更好的选择。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025年最佳知识图谱构建工具与框架对比：Neo4j、RDFlib、Amazon Neptune、Stardog全面评测",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/knowledge-graph-tools-frameworks"
+  }
+}
+</script>

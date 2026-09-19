@@ -23,6 +23,8 @@ tags: ['AI 프레젠테이션', 'AI 슬라이드 생성기', 'Gamma', 'Beautiful
 aliases:
 - /kr/posts/ai-presentation-tools/
 ---
+# 2025년 최고의 AI 프레젠테이션 도구 비교: Gamma, Beautiful.ai, Tome 등
+
 
 {</* resource-info */>}
 
@@ -164,3 +166,30 @@ Gamma(월 400크레딧)와 Canva(기본 기능 묣질)가 가장 넉넉한 묣�
 - [Tome 공식 웹사이트](https://tome.app)
 - [Canva Magic Design](https://canva.com)
 - [Microsoft Copilot for PowerPoint](https://microsoft.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 프레젠테이션 도구 비교: Gamma, Beautiful.ai, Tome 등",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-presentation-tools"
+  }
+}
+</script>

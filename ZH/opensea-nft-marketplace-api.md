@@ -974,3 +974,30 @@ OpenSea API是2026年最全面且经过实战检验的NFT市场API。凭借对�
 ---
 
 *本文撰写于2026-05-19。API规范和速率限制可能会发生变化。请参阅[官方OpenSea文档](https://docs.opensea.io/)获取最新更新。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "opensea-nft-marketplace-api",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/opensea-nft-marketplace-api"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "테이스트 스킬: AI가 범용적인 저질을 생성하는 것을 막아라 — 에이전트 스킬 프레임워크 2026"
 description: "테이스트 스킬(Taste Skill)은 AI가 구축한 인터페이스의 레이아웃, 타이포그래피, 모션, 여백을 강화하는 포트폴리오형 에이전트 스킬 프레임워크입니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동합니다."
 date: 2026-06-15
-slug: taste-skill
+lastmod:  2026-06-15slug: taste-skill
 category: dev-utils
 tags: ['ai 디자인', '에이전트 스킬', '저질 방지', '프론트엔드', 'codex', 'cursor', 'claude code', '프롬프트 엔지니어링']
 github_repo: "https://github.com/Leonxlnx/taste-skill"
@@ -396,3 +396,30 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **CTA**: Telegram에서 테이스트 스킬 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "테이스트 스킬: AI가 범용적인 저질을 생성하는 것을 막아라 — 에이전트 스킬 프레임워크 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/taste-skill"
+  }
+}
+</script>

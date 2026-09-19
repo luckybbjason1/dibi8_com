@@ -358,3 +358,30 @@ curl -fsSL https://opencode.ai/install | bash
 - Models.dev Directory: https://models.dev
 
 *Last updated: 2026-05-19. The AI tooling landscape evolves rapidly; verify details against official documentation.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenCode: The Open-Source AI Coding Agent That Overtook Claude Code in 2026 — A Complete Setup & Workflow Guide",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/opencode-open-source-claude-code-alternative-2026"
+  }
+}
+</script>

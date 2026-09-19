@@ -658,3 +658,30 @@ AUTOMATIC1111의 Stable Diffusion WebUI는 2026년에도 로컬 AI 이미지 생
 - [InvokeAI — 아티스트 중심 대안](https://github.com/invoke-ai/InvokeAI)
 - [Civitai — 모델 및 LoRA 플랫폼](https://civitai.com)
 - [Hugging Face — 모델 다운로드](https://huggingface.co/models?pipeline_tag=text-to-image)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI: 159K+ Stars — 2026 완전 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/stable-diffusion-webui"
+  }
+}
+</script>

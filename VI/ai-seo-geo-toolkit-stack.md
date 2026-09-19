@@ -39,6 +39,8 @@ faqs:
   - q: 'Tôi nên áp dụng các công cụ AI-SEO và GEO này theo thứ tự nào?'
     a: 'Bắt đầu với lớp GEO — tạo llms.txt và robots.txt có ý thức về AI crawler — vì hầu hết các site chưa làm bước này. Sau đó thêm lớp on-page truyền thống: meta tag, Schema.org JSON-LD và hreflang cho các site đa ngôn ngữ. Kết thúc bằng lớp chia sẻ, xem trước Open Graph card của bạn.'
 ---
+# Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO truyền thống + Tối ưu hóa cho công cụ tạo sinh
+
 
 SEO năm 2026 là hai công việc, không phải một. **Tìm kiếm cổ điển** (Google, Bing) vẫn tưởng thưởng cho meta tags sạch sẽ, dữ liệu có cấu trúc và hreflang chính xác. Nhưng **các công cụ tạo sinh** (ChatGPT, Claude, Perplexity, Google AI Overviews) lại là một bề mặt mới — chúng đọc trang của bạn qua `llms.txt` và quyết định có thu thập dữ liệu hay không thông qua các quy tắc robots dành riêng cho AI. Bộ sưu tập này tập hợp **6 công cụ miễn phí, chạy trên trình duyệt** bao quát cả hai nửa. Không cần đăng ký, không cần backend, sẵn sàng copy-paste.
 
@@ -72,3 +74,30 @@ Các công cụ này tạo ra mã; bạn vẫn cần một site để đặt ch�
 ## Kết luận
 
 SEO năm 2026 = on-page cổ điển **cộng với** tối ưu hóa cho công cụ tạo sinh. Hầu hết các trang làm nửa đầu và bỏ qua nửa sau — và đó chính là khoảng trống để khai thác. Chạy cả 6 công cụ theo thứ tự: kiểm soát chặt chẽ cách các AI crawler nhìn thấy bạn (llms.txt + robots), làm chuẩn các nền tảng on-page (meta + schema + hreflang), trau chuốt thẻ chia sẻ. Miễn phí, chạy trên trình duyệt, mười phút. Rồi đi giành lấy sự trích dẫn từ những công cụ AI mà đối thủ của bạn quên tối ưu hóa.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO truyền thống + Tối ưu hóa cho công cụ tạo sinh",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-seo-geo-toolkit-stack"
+  }
+}
+</script>

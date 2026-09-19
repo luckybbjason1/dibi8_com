@@ -695,3 +695,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Open WebUI GitHub: https://github.com/open-webui/open-webui
 - Tích hợp LangChain Ollama: https://python.langchain.com/docs/integrations/chat/ollama
 - Tài liệu Continue.dev: https://docs.continue.dev
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướng Dẫn Cấu Hình Đầy Đủ 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ollama"
+  }
+}
+</script>

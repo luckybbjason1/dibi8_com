@@ -617,3 +617,30 @@ Schema 变更（添加属性、修改索引）需要通过 Raft 进行集群元�
 ---
 
 *Affiliate 披露：本文包含 DigitalOcean 和 HTStack 的 affiliate 链接。如果您通过这些链接购买基础设施，dibi8.com 将获得佣金，不会额外增加您的费用。我们只推荐已在生产环境中基准测试过的提供商。Affiliate 收入支持独立技术研究和开源工具开发。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/weaviate-vector-search-enterprise"
+  }
+}
+</script>

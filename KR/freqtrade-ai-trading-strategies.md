@@ -696,3 +696,30 @@ Freqtrade with FreqAI는 2026년 현재 ML 강화 암호화폐 트레이딩을 �
 ## 제휴 고지
 
 이 가이드에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), [Minara](https://minara.ai/r/OSXG4X)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 이는 오픈소스 문서 작업을 지원합니다. 우리는 활발히 사용하고 테스트하는 도구만을 추천합니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \\u2014 완전한 봇 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/freqtrade-ai-trading-strategies"
+  }
+}
+</script>

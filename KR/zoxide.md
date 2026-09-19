@@ -500,3 +500,30 @@ Zoxide는 2026년 현재 가장 성숙하고, 성능이 뛰어나며, 활발히 
 - [Neovim용 telescope-zoxide](https://github.com/jvgrootvelte/telescope-zoxide)
 - [Zoxide NixOS Wiki](https://nixos.wiki/wiki/Zoxide)
 - [navi 치트시트와 Zoxide](https://github.com/denisidoro/navi)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zoxide: 36,752 GitHub Stars — 2026 완벽 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/zoxide"
+  }
+}
+</script>

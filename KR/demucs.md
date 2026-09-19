@@ -558,3 +558,30 @@ Demucs는 2026년 현재 오픈 소스 음악 소스 분리의 기준 구현체�
 - [Open-Unmix (Sony)](https://github.com/sigsep/open-unmix-pytorch)
 - [MVSEP 품질 체커 리더보드](https://mvsep.com/quality_checker/)
 - [Audio Developers Conference 2025 — Demucs ONNX 익스포트 발표](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/demucs"
+  }
+}
+</script>

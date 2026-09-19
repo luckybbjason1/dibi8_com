@@ -2,7 +2,7 @@
 title: "Egonex Understand-Anything: Biểu Đồ Tri Thức Tương Tác Từ Bất Kỳ Chủ Đề Nào — AI-Powered, Mã Nguồn Mở, Không Cấu Hình"
 description: "Tìm hiểu cách sử dụng Understand-Anything của Egonex để tạo biểu đồ tri thức tương tác từ bất kỳ chủ đề nào bằng AI. Cài đặt từng bước, tổng hợp đa nguồn, tìm kiếm thời gian thực và so sánh với các giải pháp thay thế."
 date: 2026-06-10
-slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: [egonex, understand-anything, knowledge-graph, AI, interactive, open-source, research, visualization, llm]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -541,3 +541,30 @@ Nguồn Và Đọc Thêm
 Tham gia [nhóm Telegram tiếng Anh dibi8](https://t.me/DIBI8_Group/2) để thảo luận về tạo biểu đồ tri thức và quy trình làm việc nghiên cứu. Xem các hướng dẫn của chúng tôi về [quản lý đại diện AI](dibi8-internal-link) và [xử lý tài liệu](dibi8-internal-link) cho các công cụ bổ trợ. Bắt đầu khám phá tri thức ngay hôm nay — một chủ đề tại một thời điểm.
 
 Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com có thể kiếm hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp giữ trang web hoạt động và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Egonex Understand-Anything: Biểu Đồ Tri Thức Tương Tác Từ Bất Kỳ Chủ Đề Nào — AI-Powered, Mã Nguồn Mở, Không Cấu Hình",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/egonex-understand-anything-interactive-knowledge-graph-ai"
+  }
+}
+</script>

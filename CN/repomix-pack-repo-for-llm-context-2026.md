@@ -184,3 +184,30 @@ repomix doesn't replace any of these — it complements them by providing clean 
 - Work with large codebases that exceed typical snippet-pasting approaches
 
 **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/repomix-pack-repo-for-llm-context-2026"
+  }
+}
+</script>

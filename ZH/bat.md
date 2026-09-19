@@ -435,3 +435,30 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
 - [bat-extras — 额外脚本](https://github.com/eth-p/bat-extras) —— `batgrep`、`batdiff`、`batman` 包装器。
 - [TwoDark 主题参考](https://github.com/erremauro/TwoDark) —— 深色终端下流行的 bat 主题。
 - [与替代品对比](https://github.com/sharkdp/bat#project-goals-and-alternatives) —— bat 维护者的官方对比。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/bat"
+  }
+}
+</script>

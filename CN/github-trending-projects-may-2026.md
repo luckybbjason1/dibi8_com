@@ -283,3 +283,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [OpenRouter](https://openrouter.ai/)
 - [arXiv](https://arxiv.org/)
 - [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek TUI + Anthropic Financial Agents: Top Trending GitHub Projects That Actually Pay Off",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/github-trending-projects-may-2026"
+  }
+}
+</script>

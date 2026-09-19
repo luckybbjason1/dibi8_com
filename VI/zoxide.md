@@ -500,3 +500,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [telescope-zoxide cho Neovim](https://github.com/jvgrootvelte/telescope-zoxide)
 - [Zoxide NixOS Wiki](https://nixos.wiki/wiki/Zoxide)
 - [navi Cheat Sheets với Zoxide](https://github.com/denisidoro/navi)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/zoxide"
+  }
+}
+</script>

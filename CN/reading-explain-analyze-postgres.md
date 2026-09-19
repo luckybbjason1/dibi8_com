@@ -35,6 +35,8 @@ faqs:
   - q: 'What does temp written mean on a Sort or Hash node in a query plan?'
     a: 'It means the sort or hash didn''t fit in work_mem and spilled to disk, which can easily multiply a node''s time by 10x. The fix is to bump work_mem for that session and re-run EXPLAIN.'
 ---
+# Reading EXPLAIN ANALYZE in Postgres Without Getting Lost
+
 
 {</* resource-info */>}
 
@@ -192,3 +194,30 @@ For developers building or deploying open-source AI tools, we recommend:
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Reading EXPLAIN ANALYZE in Postgres Without Getting Lost",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/reading-explain-analyze-postgres"
+  }
+}
+</script>

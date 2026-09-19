@@ -277,3 +277,30 @@ AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전. {{
 ---
 
 *이 페이지 북마크 — 새 오픈소스 릴리스 따라 분기별 컴포넌트 선택 업데이트. 마지막 업데이트: 2026-05-21.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/self-hosted-ai-coding-workflow"
+  }
+}
+</script>

@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/open-source-llm-ranking-guide/
 ---
+# Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen, DeepSeek & Hơn Nữa
+
 
 {</* resource-info */>}
 
@@ -360,3 +362,30 @@ Với quantization 4-bit, Llama 3 70B cần khoảng 40-45GB VRAM — có thể 
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen, DeepSeek & Hơn Nữa",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/open-source-llm-ranking-guide"
+  }
+}
+</script>

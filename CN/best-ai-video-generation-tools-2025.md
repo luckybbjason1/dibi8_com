@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/best-ai-video-generation-tools-2025/
 ---
+# Best AI Video Generation Tools 2025: Sora, Runway, Pika & More Compared
+
 
 {</* resource-info */>}
 
@@ -224,3 +226,30 @@ For developers exploring or deploying the tools above, we recommend:
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best AI Video Generation Tools 2025: Sora, Runway, Pika & More Compared",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/best-ai-video-generation-tools-2025"
+  }
+}
+</script>

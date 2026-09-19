@@ -136,3 +136,30 @@ Bắt đầu với 5 template ở trên. Tùy biến. Chia sẻ. Hiệu ứng l�
 ---
 
 **Bài liên quan**: [Cài đặt Stable Diffusion WebUI](https://dibi8.com/vi/resources/ai-tools/stable-diffusion-webui/) · [Công cụ sinh ảnh AI hàng đầu 2026](https://dibi8.com/vi/resources/ai-tools/ai-image-generation-tools-2025/) · [Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/comfyui-workflow-2026-5-production-templates"
+  }
+}
+</script>

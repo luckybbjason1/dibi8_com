@@ -157,3 +157,30 @@ Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://githu
 ---
 
 **참조**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **참조 repo 합계 stars**: 60K+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mcp-servers-2026-rankings-selection-guide"
+  }
+}
+</script>

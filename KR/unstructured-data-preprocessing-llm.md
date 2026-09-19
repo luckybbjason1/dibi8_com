@@ -567,3 +567,30 @@ Telegram 개발자 커뮤니티에 참여하세요: **t.me/dibi8en** — 전처�
 ---
 
 *제휴 마케팅 공개: 본문에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. Unstructured.io는 오픈소스이자 묶인 사용 가능합니다; Unstructured-IO와 상업적 관계는 없습니다. 의견은 실제 테스트를 기반으로 합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unstructured.io: 어떤 문서든 LLM 준비 데이터 청크로 변환하는 데이터 전처리 파이프라인 — 2026 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/unstructured-data-preprocessing-llm"
+  }
+}
+</script>

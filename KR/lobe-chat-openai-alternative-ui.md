@@ -607,3 +607,30 @@ AI 개발자를 위한 Telegram 커뮤니티에 참여하세요: **@dibi8dev** �
 ## 제휴 마케팅 공개
 
 이 문서에는 제휴 마케팅 링크가 포함되어 있습니다. 당사의 추천 링크를 통해 DigitalOcean에 가입하면, 추가 비용 없이 당사에 커미션이 지급됩니다. 우리는 자체 인프라에도 사용하는 서비스만을 추천합니다. Lobe Chat은 오픈소스(MIT 라이선스)이며 묣으로 사용할 수 있습니다 —— 구매가 필요하지 않습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lobe Chat: 20+ LLM 제공업체와 플러그인 시스템을 갖춘 오픈소스 ChatGPT UI 대안 — 2026 완벽 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/lobe-chat-openai-alternative-ui"
+  }
+}
+</script>

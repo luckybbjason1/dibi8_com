@@ -2,7 +2,7 @@
 title: "RuView: 스마트 빌딩을 위한 WiFi 공간 지능 — Python CLI, 실시간 위치 추적 및 메쉬 네트워크"
 description: "Python 기반 WiFi 공간 지능 플랫폼인 RuView를 사용하여 실시간 위치 추적, 건물 레이아웃 매핑, WiFi 메쉬 네트워크 최적화 방법을 배워보세요. 단계별 pip 설치 가이드, 실시간 추적 및 메쉬 네트워크 구성."
 date: 2026-06-10
-slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
+lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
 tags: [ruvnet, ruview, WiFi, 공간지능, 위치추적, 메쉬네트워크, 스마트빌딩, Python, 오픈소스]
 lang: ko
@@ -453,3 +453,30 @@ RuView는 표준 WiFi 인프라를 강력한 공간 지능 플랫폼으로 변�
 [RuView 구성 및 WiFi 센싱 기술](https://t.me/DIBI8_Group/2) 토론을 위해 [dibi8 한국어 텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요. [스마트 빌딩 자동화](dibi8-internal-link) 및 [AI 에이전트 관리](dibi8-internal-link) 가이드를 확인하세요. 오늘 WiFi를 공간 지능으로 변환하기 시작하세요.
 
 일부 링크는 제휴 링크입니다. dibi8.com은 등록 시 추가 비용 없이 수수료를 받을 수 있습니다. 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RuView: 스마트 빌딩을 위한 WiFi 공간 지능 — Python CLI, 실시간 위치 추적 및 메쉬 네트워크",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ruvnet-ruview-wifi-spatial-intelligence-guide"
+  }
+}
+</script>

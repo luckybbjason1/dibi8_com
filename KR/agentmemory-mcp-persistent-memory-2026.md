@@ -324,3 +324,30 @@ agentmemory의 MCP 기반 전략은 특히 영리하다. 사용자를 특정 생
 ---
 
 *2026년 5월 17일 작성. Star 수와 MCP 스펙 버전은 시점에 따라 변할 수 있으니, 인용 전 공식 출처에서 확인하시기 바랍니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 코딩 에이전트 지속 메모리 완벽 가이드: agentmemory + MCP로 Claude Code 기억력 업그레이드",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/agentmemory-mcp-persistent-memory-2026"
+  }
+}
+</script>

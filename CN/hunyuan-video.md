@@ -480,3 +480,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - xDiT Parallel Inference: https://github.com/xdit-project/xDiT
 - Kijai ComfyUI Wrapper: https://github.com/kijai/ComfyUI-HunyuanVideoWrapper
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HunyuanVideo: 12.1K+ Stars — Production Deployment Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/hunyuan-video"
+  }
+}
+</script>

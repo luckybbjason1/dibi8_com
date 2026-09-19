@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/git-workflow-team-collaboration-tools/
 ---
+# Git工作流与团队协作工具：开发者完整指南
+
 
 {</* resource-info */>}
 
@@ -227,3 +229,30 @@ A: 没有绝对优劣。Trunk-Based适合CI/CD高度成熟、自动化测试覆�
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Git工作流与团队协作工具：开发者完整指南",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/git-workflow-team-collaboration-tools"
+  }
+}
+</script>

@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
+# Hreflang 태그 생성기 — 다국어 및 국제 SEO
+

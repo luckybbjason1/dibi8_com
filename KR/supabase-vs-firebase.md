@@ -2,7 +2,7 @@
 title: 'Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?'
 description: 'Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비교 — 데이터베이스, 인증, 스토리지, 실시간, 엣지 함수, 가격, 종속성, 자체 호스팅. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'AI / 벡터 검색에는 어느 쪽이 더 좋은가?'
     a: 'Supabase의 압승입니다 — pgvector가 기본 탑재되어 임베딩을 앱 데이터와 같은 DB에 저장하고 코사인 유사도 검색을 실행할 수 있습니다. Firebase는 네이티브 벡터 지원이 없고 Vertex AI나 별도 벡터 DB를 붙여야 합니다. 2026년 RAG/AI 앱에는 Supabase가 명백한 선택입니다.'
 ---
+# Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?
+
 
 ## 빠른 결론
 
@@ -194,3 +196,30 @@ Supabase도 Firebase도 맞지 않다면:
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/supabase-vs-firebase"
+  }
+}
+</script>

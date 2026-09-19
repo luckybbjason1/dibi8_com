@@ -793,3 +793,30 @@ Perplexity API代表了开发者可访问的RAG技术的重大进步。通过结
 对于构建下一代智能应用的开发人员——从研究助手和事实核查工具到动态知识库和内容验证系统——Perplexity提供了一条通往生产级RAG的直接路径，无需管理向量数据库、嵌入管道或相关性调优。
 
 随着我们在2026年继续前行，AI应用提供有来源、可验证答案的期望正在成为标准，而非例外。集成Perplexity的RAG搜索API使您的应用能够满足这一期望，提供用户可以信任的体验，因为每个答案都建立在真实、可引用来源的基础之上。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "perplexity-api-rag-search",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/perplexity-api-rag-search"
+  }
+}
+</script>

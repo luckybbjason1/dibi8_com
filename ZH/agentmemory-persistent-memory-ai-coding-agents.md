@@ -2,7 +2,7 @@
 title: 'AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源项目 — 2026 实用指南'
 description: 'AgentMemory（22,038 GitHub 星标）基于真实基准测试为 AI 编程代理提供持久记忆。记住过去的会话，跨天保持上下文，从前次交互中学习。支持 Claude Code、Codex CLI、OpenCode 等。包含安装教程、架构解析和基准测试。'
 date: 2026-06-08
-slug: 'agentmemory-persistent-memory-ai-coding-agents'
+lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
 github_repo: 'https://github.com/rohitg00/agentmemory'
@@ -405,3 +405,30 @@ AgentMemory 是将 AI 编程代理从单会话工具转变为终身协作者的�
 - HTStack: 管理你的云基础设施。加入 https://my.htstack.com/aff.php?aff=27187
 
 以上部分链接为 affiliate 链接。如果你通过链接注册，dibi8.com 可能会获得佣金，对你没有任何额外费用。这有助于保持网站运行和内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源项目 — 2026 实用指南",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agentmemory-persistent-memory-ai-coding-agents"
+  }
+}
+</script>

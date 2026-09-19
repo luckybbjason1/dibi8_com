@@ -628,3 +628,30 @@ Backtrader는 2026년에도 가장 전투에서 검증된 Python 백테스팅 �
 ---
 
 *제휴 공개: dibi8.com은 독자의 지원으로 운영됩니다. 사이트의 링크 — Binance, Minara 및 기타 파트너를 포함하여 — 를 통해 구매하시면 추가 비용 없이 제휴 수수료를 받을 수 있습니다. 이는 편집 콘텐츠에 영향을 미치지 않습니다. 우리는 테스트필 보고 독자에게 가치를 더한다고 믿는 도구만을 추천합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Backtrader 2026: Python 백테스팅 엔진으로 전략을 100배 더 빠르게 검증 — 완벽 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/backtrader-python-backtesting"
+  }
+}
+</script>

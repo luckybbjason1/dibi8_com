@@ -587,3 +587,30 @@ Chatwoot v4.0代表了开源客户支持的重要成熟节点。凭借原生AI�
 ---
 
 *本文包含DigitalOcean和HTStack的联盟链接。如果你通过这些链接购买服务，dibi8.com可能会获得佣金，而你无需额外付费。所有推荐均基于实际测试和真实部署经验。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chatwoot 2026：开源客户支持平台与AI智能体集成 — 自建部署完整指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/chatwoot-open-source-customer-support-ai"
+  }
+}
+</script>

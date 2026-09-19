@@ -677,3 +677,30 @@ Go, Python 또는 TypeScript로 작업하는 팀에게 Dagger는 애플리케이
 - [Dagger CI/CD 튜토리얼: 코드로 파이프라인 작성](https://byteiota.com/dagger-ci-cd-tutorial-write-pipelines-as-code-not-yaml/)
 - [2026년 최고의 CI/CD 도구: 데이터 분석](https://blog.jetbrains.com/teamcity/2026/03/best-ci-tools/)
 - [Dagger for GitHub Action](https://github.com/dagger/dagger-for-github)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab CI 2026 비교",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/dagger"
+  }
+}
+</script>

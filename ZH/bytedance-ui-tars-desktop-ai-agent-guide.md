@@ -2,7 +2,7 @@
 title: "字节跳动 UI-TARS Desktop：看得见并控制你电脑的视觉语言 AI Agent——完整设置指南"
 description: "学习如何部署字节跳动的 UI-TARS Desktop，这是一款视觉语言 AI Agent，可以观看你的屏幕并通过自然语言控制应用程序。包含逐步安装、实际基准测试和与替代方案的比较。"
 date: 2026-06-10
-slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [字节跳动, ui-tars, 视觉语言模型, AI Agent, 桌面自动化, GUI Agent, 开源, 多模态 AI]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -513,3 +513,30 @@ UI-TARS Desktop 以其视觉理解能力脱颖而出。与需要硬编码坐标�
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/2) 讨论 UI-TARS 配置和桌面自动化技术。查看我们的 [AI Agent 管理](dibi8-internal-link) 和 [使用 MarkItDown 进行文档处理](dibi8-internal-link) 指南以获取互补工具。今天就开始自动化你的桌面。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "字节跳动 UI-TARS Desktop：看得见并控制你电脑的视觉语言 AI Agent——完整设置指南",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/bytedance-ui-tars-desktop-ai-agent-guide"
+  }
+}
+</script>

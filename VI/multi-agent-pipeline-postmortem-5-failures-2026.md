@@ -36,6 +36,8 @@ faq:
   - q: "Điều phối đa tác tử có đáng với sự phức tạp khi nó hỏng thường xuyên như vậy không?"
     a: "Có, khi nhiệm vụ thực sự vượt quá một cửa sổ ngữ cảnh hoặc cần kiểm chứng độc lập — nhưng chính năm lỗi này là lý do bạn không nên với tới nó theo phản xạ. Một tác tử đơn lẻ được prompt tốt luôn thắng một pipeline năm tác tử đầy lỗi. Hãy dùng điều phối khi vấn đề là thật (bao phủ toàn diện, làm việc song song độc lập, rà soát đối kháng), và khi làm vậy hãy cài sẵn các bước kiểm chứng và điều kiện dừng để ngăn các kiểu lỗi này. Sự phức tạp bạn không kiểm chứng được còn tệ hơn sự đơn giản mà bạn kiểm chứng được."
 ---
+# Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)
+
 
 ## Giới thiệu
 
@@ -107,3 +109,30 @@ Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng
 ## Phán quyết
 
 Điều phối đa tác tử đáng giá khi nhiệm vụ thực sự vượt quá một cửa sổ ngữ cảnh hoặc cần kiểm chứng độc lập — nhưng hãy với tới nó một cách có chủ đích, không theo phản xạ. Một tác tử đơn lẻ được prompt tốt luôn thắng một pipeline năm tác tử đầy lỗi. Khi bạn điều phối, sự khác biệt giữa sức mạnh và thảm họa nằm ở một thói quen: **kiểm chứng mọi lời tuyên bố dựa trên sự thật cơ sở, và giới hạn mọi vòng lặp.** Sự phức tạp bạn không kiểm chứng được còn tệ hơn sự đơn giản mà bạn kiểm chứng được.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/multi-agent-pipeline-postmortem-5-failures-2026"
+  }
+}
+</script>

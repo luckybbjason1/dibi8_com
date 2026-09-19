@@ -691,3 +691,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *This article contains an affiliate link to DigitalOcean. If you purchase VPS services through this link, dibi8.com may receive a commission at no additional cost to you. All recommendations are based on hands-on testing and real deployment experience.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Plausible Analytics: The Privacy-First Google Analytics Alternative Loading 45x Faster — 2026 Self-Hosted Setup",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/plausible-analytics-privacy-google"
+  }
+}
+</script>

@@ -3,7 +3,7 @@ title: 'OpenHuman이란 무엇인가?'
 lang: ko
 description: 'content/ko/resources/openhuman.md'
 date: 2026-06-13
-layout: article
+lastmod:  2026-06-13layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
@@ -14,7 +14,7 @@ featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.
 title: 'OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 하니스 2026'
 description: 'OpenHuman은 메모리 트리, 옵시디언 금고, 118개 이상의 통합, 내장 모델 라우팅을 갖춘 오픈소스 로컬 AI 에이전트입니다. Homebrew 또는 apt를 통해 설치하세요. Claude Cowork, OpenClaw, Hermes Agent와 비교해보세요.'
 date: 2026-06-13
-slug: 'openhuman-local-ai-agent-rust-2026'
+lastmod:  2026-06-13slug: 'openhuman-local-ai-agent-rust-2026'
 category: 'ai-tools'
 tags: ['openhuman', '로컬-ai', 'ai-에이전트', 'ai-어시스턴트', '메모리-트리', '옵시디언', '에이전틱', '오픈-소스', 'llm', '데스크탑-앱']
 github_repo: 'https://github.com/tinyhumansai/openhuman'
@@ -404,3 +404,29 @@ OpenHuman은 2026년에 로컬 AI 비서에게 일어난 최고의 사건이며,
 내부 링크: [hermes-agent-self-improving-ai-agent](https://dibi8.com/hermes-agent-self-improving-ai-agent) · [claude-code-skill-authoring-guide-2026](https://dibi8.com/claude-code-skill-authoring-guide-2026)
 
 **공지**: 이 글에서는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 긍정적인 리뷰에 대해 금전을 받지 않습니다. 모든 벤치마크는 직접 수행했거나 공식 문서에서 가져왔습니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenHuman이란 무엇인가?",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openhuman"
+  }
+}
+</script>

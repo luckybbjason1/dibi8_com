@@ -741,3 +741,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Tuyên bố: Bài viết này chứa liên kết affiliate đến DigitalOcean và HTStack. Nếu bạn mua dịch vụ qua các liên kết này, dibi8.com nhận được hoa hồng không phát sinh thêm chi phí cho bạn. Tất cả dữ liệu benchmark và đề xuất dựa trên kiểm thử độc lập và phán xét biên tập.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triển Khai Auto HTTPS 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/caddy"
+  }
+}
+</script>

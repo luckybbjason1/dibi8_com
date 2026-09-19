@@ -714,3 +714,30 @@ Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 �
 - [mcfly GitHub 저장소](https://github.com/cantino/mcfly)
 - [fzf GitHub 저장소](https://github.com/junegunn/fzf)
 - [Hstr GitHub 저장소](https://github.com/dvorka/hstr)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Atuin: 29,794 GitHub Stars — 셸 히스토리 동기화 완벽 설정 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/atuin"
+  }
+}
+</script>

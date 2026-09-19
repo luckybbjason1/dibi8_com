@@ -477,3 +477,30 @@ Claude Code는 2026년에 사용할 수 있는 가장 강력한 터미널 네이
 ---
 
 *면책 조항: 본 문서에는 제휴 링크가 포함되어 있지 않습니다. 모든 가격 및 벤치마크 데이터는 2026년 5월 기준 공개 정보를 반영합니다. 구매 결정 전 공식 공급업체 웹사이트에서 현재 가격을 확인하세요.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code: 125K+ Stars — 터미널 AI 코딩 에이전트 대안과의 완전 비교 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code"
+  }
+}
+</script>

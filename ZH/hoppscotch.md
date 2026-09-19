@@ -635,3 +635,30 @@ Hoppscotch 通过构建开发者真正想要的东西赢得了 79,200 个 GitHub
 - [Bruno API 客户端](https://www.usebruno.com)
 - [Postman 定价](https://www.postman.com/pricing)
 - [Insomnia 网站](https://insomnia.rest)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hoppscotch: 79,200 GitHub Stars — 开源API开发平台对比 Postman、Insomnia、Bruno 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/hoppscotch"
+  }
+}
+</script>

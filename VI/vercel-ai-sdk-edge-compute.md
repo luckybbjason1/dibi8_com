@@ -5,7 +5,7 @@ tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-draft: false
+lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: vercel-ai-sdk-edge-compute
 lang: vi
 ---
@@ -661,3 +661,30 @@ Cho production app, combine JWT authentication với rate limiting để prevent
 ---
 
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vercel AI SDK — Xây Dựng Ứng Dụng AI Streaming Với Kiến Trúc Edge-First",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/vercel-ai-sdk-edge-compute"
+  }
+}
+</script>

@@ -577,3 +577,30 @@ Nếu bạn vẫn đang giao dịch thông qua các bộ tổng hợp DEX truy�
 - [CoW Protocol Documentation](https://docs.cow.fi/)
 - [GitHub: cowprotocol/contracts](https://github.com/cowprotocol/contracts) (700+ stars, GPL-3.0)
 - [Binance Exchange](https://www.bsmkweb.cc/register?ref=DIBI8)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết kiệm $100M+ Phí Trượt giá — Hướng Dẫn Cài đặt",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cow-protocol-mev-protection"
+  }
+}
+</script>

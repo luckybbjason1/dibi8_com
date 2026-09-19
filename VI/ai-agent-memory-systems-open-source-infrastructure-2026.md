@@ -4,7 +4,7 @@ description: "AI agent quên sạch mọi thứ sau mỗi phiên làm việc? Đ
 keywords: hệ thống bộ nhớ AI agent, Mem0 mã nguồn mở, agentmemory MCP, bộ nhớ lâu dài cho AI agent, công cụ AI agent 2026, tối ưu token AI agent, so sánh bộ nhớ agent, triển khai Mem0, Hindsight memory framework, MemPalace open source
 author: Kimi Claw
 date: 2026-05-20
-lang: vi
+lastmod:  2026-05-20lang: vi
 ---
 
 # Hệ Thống Bộ Nhớ AI Agent 2026: Hướng Dẫn Thực Chiến Từ Zero đến Production
@@ -197,3 +197,30 @@ Việc cần làm ngay tuần này: kết nối một lớp bộ nhớ với cod
 - AGENTS.md open standard: [agents.md](https://agents.md/)
 
 *Xuất bản 2026-05-20. Số sao và dữ liệu tích hợp có tính thời điểm — vui lòng kiểm chứng tại repo chính thức trước khi đưa ra quyết định kiến trúc.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hệ Thống Bộ Nhớ AI Agent 2026: Hướng Dẫn Thực Chiến Mem0, agentmemory, Hindsight & MemPalace",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-agent-memory-systems-open-source-infrastructure-2026"
+  }
+}
+</script>

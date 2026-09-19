@@ -2,7 +2,7 @@
 title: 'Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở'
 description: 'So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) — giá cả, context, phong cách agent, hiệu quả chi phí. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Aider có đủ mã nguồn mở cho dùng doanh nghiệp không?'
     a: 'Có — Aider giấy phép Apache 2.0 và chạy hoàn toàn trên máy của bạn. Cuộc gọi bên ngoài duy nhất là tới model API bạn cấu hình (OpenAI, Anthropic, Ollama local, v.v.). Cho môi trường air-gapped hoặc nhạy cảm compliance, ghép Aider với model local và bạn có setup AI coding hoàn toàn tự host. Claude Code yêu cầu cloud của Anthropic.'
 ---
+# Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở
+
 
 ## Câu trả lời nhanh
 
@@ -216,3 +218,30 @@ Team nhỏ ship nhanh không có thời gian review diff? **Claude Code Max 5x �
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-vs-aider"
+  }
+}
+</script>

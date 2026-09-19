@@ -324,3 +324,30 @@ If you haven't configured persistent memory yet, today is the day.
 ---
 
 *Written May 17, 2026. Star counts and MCP spec versions are time-sensitive; verify against official sources before citing.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Persistent Memory for AI Coding Agents in 2026: A Complete Guide to agentmemory + MCP",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/agentmemory-mcp-persistent-memory-2026"
+  }
+}
+</script>

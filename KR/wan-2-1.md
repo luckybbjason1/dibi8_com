@@ -563,3 +563,30 @@ Wan 2.1은 접근 가능한 하드웨어에서 프로덕션 품질 출력을 제
 - [TeaCache Wan 2.1 가속](https://github.com/ali-vilab/TeaCache)
 - [VACE 비디오 편집 가이드](https://github.com/ali-vilab/VACE/blob/main/UserGuide.md)
 - [Open-Sora 2.0 기술 보고서](https://arxiv.org/abs/2503.09642)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVideo, CogVideo 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/wan-2-1"
+  }
+}
+</script>

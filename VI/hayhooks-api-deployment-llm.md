@@ -607,3 +607,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tuyên bố Affiliate
 
 Bài viết này chứa các liên kết affiliate đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và [HTStack](https://my.htstack.com/aff.php?aff=27187). Nếu bạn mua dịch vụ qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không có chi phí bổ sung cho bạn. Chúng tôi chỉ giới thiệu các công cụ mà chúng tôi đã đánh giá trực tiếp và tin rằng mang lại giá trị thực sự cho quy trình deployment NLP pipeline. Tất cả các số benchmark và hiệu suất được đo độc lập trên infrastructure của chúng tôi.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hayhooks: Triển khai Haystack Pipeline thành REST API chỉ với một lệnh — Hướng dẫn Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/hayhooks-api-deployment-llm"
+  }
+}
+</script>

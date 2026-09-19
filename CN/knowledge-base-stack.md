@@ -242,3 +242,30 @@ Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/mo droplet" >}} 
 ---
 
 *Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) plugs this knowledge base into your coding agent stack. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the chat-LLM cost side. [Cross-Border AI Marketing Stack](/collections/cross-border-ai-marketing-stack/) for Chinese teams needing China-friendly hosting.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Knowledge Base Stack 2026: Build Your \"Second Brain\" with AnythingLLM + RAGFlow + mem0 ($10-25/Month)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/knowledge-base-stack"
+  }
+}
+</script>

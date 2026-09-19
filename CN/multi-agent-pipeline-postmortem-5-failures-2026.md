@@ -36,6 +36,8 @@ faq:
   - q: "Is multi-agent orchestration worth the complexity if it fails this often?"
     a: "Yes, when the task genuinely exceeds one context window or needs independent verification — but these five failures are exactly why you don't reach for it reflexively. A single well-prompted agent beats a buggy five-agent pipeline every time. Use orchestration when the problem is real (comprehensive coverage, parallel independent work, adversarial review), and when you do, build in the verification and stop conditions that prevent these failure modes. Complexity you can't verify is worse than simplicity you can."
 ---
+# Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)
+
 
 ## Introduction
 
@@ -107,3 +109,30 @@ Reliable pipelines want infrastructure that won't add failures of its own:
 ## Verdict
 
 Multi-agent orchestration is worth it when the task genuinely exceeds one context window or needs independent verification — but reach for it deliberately, not reflexively. A single well-prompted agent beats a buggy five-agent pipeline every time. When you do orchestrate, the difference between power and disaster is one habit: **verify every claim against ground truth, and bound every loop.** Complexity you can't verify is worse than simplicity you can.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/multi-agent-pipeline-postmortem-5-failures-2026"
+  }
+}
+</script>

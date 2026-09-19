@@ -604,3 +604,30 @@ Chroma는 AI 도구 체인에서 중요한 격차를 메운다: 개발자 경험
 ---
 
 *dibi8.com — AI 소스 코드 허브에 게시됨. 최종 업데이트: 2026-05-19*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chroma DB 2026: 개발자 친화적 RAG 벡터 데이터베이스, 50배 더 빠른 임베딩 — Python 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/chroma-vector-database-python"
+  }
+}
+</script>

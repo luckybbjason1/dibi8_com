@@ -200,3 +200,30 @@ Unsloth = **单 GPU LLM 微调速度之王**。64.9k 星，vs HuggingFace TRL �
 ---
 
 *dibi8 Fine-Tuning Stack 的一部分 —— 见即将上线的 Fine-Tuning Stack 合集，覆盖从数据集准备到生产部署的完整管线。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/unsloth-fast-llm-fine-tuning-2026"
+  }
+}
+</script>

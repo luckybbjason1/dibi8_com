@@ -196,3 +196,30 @@ MIT 라이선스, 로컬 우선 아키텍처, 제로 외부 의존성 — 코딩
 ---
 
 **GitHub**: [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · **라이선스**: MIT · **최신**: v0.9.3 (2026-05-22) · **Stars**: 20.2K+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄인 로컬 코드 그래프 (2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/codegraph-pre-indexed-knowledge-graph-2026"
+  }
+}
+</script>

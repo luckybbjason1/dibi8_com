@@ -638,3 +638,30 @@ Ibis 代表了 Python 数据分析的范式转变。通过提供统一的、兼�
 在 2026 年，随着数据量持续爆炸式增长，组织将其分析分布在多个数据库系统上，Ibis 提供了一个在任何地方都能工作的单一、一致的接口。无论您是使用 DuckDB 进行本地开发的数据科学家，还是在 BigQuery 中查询 PB 级数据的工程师，Ibis 都能提供相同优雅的 Python API —— 编译为尽可能快的 SQL，在您的数据所在之处精确运行。
 
 如果您还没有将 Ibis 添加到您的数据工具包中，现在是时候了。从 DuckDB 开始本地开发，您会发现您的分析工作流在一夜之间变得更快、更可移植、更易于维护。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ibis-dataframe-python-sql",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ibis-dataframe-python-sql"
+  }
+}
+</script>

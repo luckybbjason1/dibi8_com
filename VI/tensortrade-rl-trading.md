@@ -523,3 +523,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tuyên Bố Liên Kết
 
 Bài viết này chứa các liên kết affiliate đến Binance và OKX. Nếu bạn đăng ký và giao dịch qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không có chi phí thêm cho bạn. Các khoản hoa hồng này giúp tài trợ phát triển các công cụ giao dịch mã nguồn mở và nội dung giáo dục. Chúng tôi chỉ giới thiệu các sàn giao dịch mà chúng tôi đã cá nhân kiểm tra và xác minh. Luôn tự nghiên cứu trước khi nạp tiền vào bất kỳ sàn giao dịch nào.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi Trường Gym Tùy Chỉnh — Hướng Dẫn 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/tensortrade-rl-trading"
+  }
+}
+</script>

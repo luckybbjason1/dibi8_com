@@ -2,7 +2,7 @@
 title: 'OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?'
 description: 'Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M context) — pricing, sandbox, enterprise, tool integration. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Which is better for enterprise?'
     a: 'Claude Code has the more mature enterprise story in 2026 — Anthropic offers SOC 2 Type II, HIPAA via API, and Claude Enterprise plans with private VPC deployment. OpenAI Codex CLI is newer (open-sourced Nov 2025) and ties into the standard OpenAI enterprise plans, but the CLI itself doesn''t yet have a dedicated enterprise tier. For regulated industries today, Claude Code wins; OpenAI is closing the gap fast.'
 ---
+# OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?
+
 
 ## Quick Answer
 
@@ -196,3 +198,30 @@ The honest answer for most devs in 2026: try both for a week, keep the one whose
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openai-codex-cli-vs-claude-code"
+  }
+}
+</script>

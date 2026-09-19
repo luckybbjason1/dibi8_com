@@ -648,3 +648,30 @@ MeloTTS는 오픈소스 TTS 환경에서 독특한 위치를 차지합니다: �
 - [Clore.ai TTS 엔진 비교](https://docs.clore.ai/guides/audio-and-voice/melotts)
 - [Open-LLM-VTuber TTS 벤치마크](https://blog.csdn.net/gitblog_00912/article/details/154584830)
 - [MeloTTS 성능 심층 분석](https://blog.csdn.net/gitblog_02862/article/details/150221387)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MeloTTS: 7.4K+ Stars — 다국어 TTS 벤치마크 Coqui TTS, ChatTTS, Bark 비교 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/melotts"
+  }
+}
+</script>

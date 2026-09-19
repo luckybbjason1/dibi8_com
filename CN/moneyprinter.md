@@ -2,7 +2,7 @@
 title: 'MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026'
 description: 'MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Script, voice, subtitles, background music — all automated. Includes setup tutorial, pipeline breakdown, and real video benchmarks.'
 date: 2026-06-08
-slug: 'moneyprinter-turbo-ai-video-generation-one-command'
+lastmod:  2026-06-08slug: 'moneyprinter-turbo-ai-video-generation-one-command'
 category: 'ai-tools'
 tags: ['AI video generation', 'MoneyPrinterTurbo', 'short video AI', 'automated video creation', 'AI video tool', 'video automation', 'content generation', 'video editing AI']
 github_repo: 'https://github.com/harry0703/MoneyPrinterTurbo'
@@ -399,3 +399,30 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
 
 
 For batch video generation at scale, configure the `BATCH_SIZE` environment variable and use the `--parallel` flag with `uv run streamlit run ./webui/Main.py`. Each parallel worker uses a separate GPU process, allowing up to 4 concurrent video generations on a single RTX 4090. Monitor GPU usage with `nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv -l 5`.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/moneyprinter"
+  }
+}
+</script>

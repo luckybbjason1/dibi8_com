@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
+# CI/CD 도구 비교: GitHub Actions vs GitLab CI vs Jenkins 2025년 종합 평가
+
 
 {</* resource-info */>}
 
@@ -200,3 +202,30 @@ GitHub Actions가 학습 곡선이 더 완만합니다. GitHub Marketplace의 �
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CI/CD 도구 비교: GitHub Actions vs GitLab CI vs Jenkins 2025년 종합 평가",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+  }
+}
+</script>

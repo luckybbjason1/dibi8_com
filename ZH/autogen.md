@@ -530,3 +530,30 @@ AutoGen 通过解决一个难题赢得了 58,196 颗星：使多个 AI 智能体
 - [LangGraph 文档](https://langchain-ai.github.io/langgraph/)
 - [OpenAI Agents SDK 文档](https://platform.openai.com/docs/guides/agents)
 - [AutoGen vs CrewAI：2026 基准指南](https://dev.to/kunpeng-ai-2026/autogen-vs-crewai-a-comprehensive-benchmark-and-selection-guide-for-2026-2nh1)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/autogen"
+  }
+}
+</script>

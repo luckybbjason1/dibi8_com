@@ -614,3 +614,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So Sánh Portainer vs LazyDocker (OneUptime)](https://oneuptime.com/blog/post/2026-03-20-portainer-vs-lazydocker-terminal/view)
 - [Hướng Dẫn LazyDocker DataCamp](https://www.datacamp.com/tutorial/lazydocker)
 - [Mở Rộng LazyDocker Podman](https://github.com/szchan/lazydocker-podman)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI Docker Terminal Đầy Đủ 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/lazydocker"
+  }
+}
+</script>

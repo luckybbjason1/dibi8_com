@@ -466,3 +466,30 @@ Baetyl 弥合了云端 AI 训练和边缘 AI 推理之间的差距。通过将 K
 ## 联盟营销声明
 
 本文包含 DigitalOcean 和虎网云的联盟营销链接。如果你通过我们的链接注册，我们会获得佣金，但不会额外增加你的费用。所有推荐均基于实际测试，不受联盟计划影响。Baetyl 在 Apache-2.0 许可下完全开源且免费使用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/baetyl-edge-ai-computing-platform"
+  }
+}
+</script>

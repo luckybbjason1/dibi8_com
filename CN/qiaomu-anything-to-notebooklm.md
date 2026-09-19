@@ -2,7 +2,7 @@
 title: "Qiaomu Anything to NotebookLM: Convert Any Content Source to Google NotebookLM"
 description: "Qiaomu Anything to NotebookLM is a Claude Code Skill and Python toolkit that converts 15+ content sources — YouTube videos, podcasts, articles, PDFs — into Google NotebookLM knowledge bases, with paywall bypass capabilities."
 date: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
+lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, content conversion, Claude Code, knowledge management, AI tools]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -502,3 +502,30 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 ---
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qiaomu Anything to NotebookLM: Convert Any Content Source to Google NotebookLM",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/qiaomu-anything-to-notebooklm"
+  }
+}
+</script>

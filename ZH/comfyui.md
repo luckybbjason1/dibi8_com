@@ -596,3 +596,30 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
 - Wan 视频节点：https://github.com/kijai/ComfyUI-WanVideoWrapper
 - Docker 配置参考：https://github.com/ai-dock/comfyui
 - 量化指南：https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI: 87K+ Stars — 节点式 Stable Diffusion 部署指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/comfyui"
+  }
+}
+</script>

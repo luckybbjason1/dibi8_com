@@ -3,7 +3,7 @@ title: "CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn 
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"
 publish_date: "2026-06-10"
-author: "DIBI8"
+lastmod:  "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
@@ -416,3 +416,30 @@ Sẵn sàng biến mã nguồn của bạn thành một đồ thị kiến thứ
 ---
 
 DIBI8 là cổng vào để khám phá các công cụ mã nguồn mở tốt nhất, đổi mới AI và tài nguyên nhà phát triển. Đăng ký kênh Telegram của chúng tôi để nhận cập nhật hàng ngày về các dự án có tác động nhất trong công nghệ.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/codegraph-pre-indexed-code-knowledge-graph-ai-agents"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['supertonic', 'text-to-speech', 'tts', 'on-device-ai', 'onnx', 'multiling
 aliases:
 - /kr/posts/supertonic-on-device-multilingual-tts-2026/
 ---
+# Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)
+
 
 ## 온디바이스 TTS의 문제
 
@@ -185,3 +187,30 @@ Supertonic은 2026년에 출시된 "어디서든 돌아가는 단일 모델" 오
 ---
 
 **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **라이선스**: MIT (코드) / OpenRAIL-M (가중치) · **최신**: v2.0.0 (2026-01-06) · **Stars**: 9.9K+ · **메인테이너**: Supertone Inc.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/supertonic-on-device-multilingual-tts-2026"
+  }
+}
+</script>

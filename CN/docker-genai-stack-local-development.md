@@ -450,3 +450,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links. If you sign up for DigitalOcean using our referral link, we receive a commission at no extra cost to you. We only recommend services we use for our own infrastructure. The Docker GenAI Stack is open-source (MIT license) and free to use — no purchase is required.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM in One Docker Compose — Local Dev Setup 2026",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/docker-genai-stack-local-development"
+  }
+}
+</script>

@@ -598,3 +598,30 @@ Browser Use 凭借 94,731 个 GitHub Star，解决了真实痛点：在现代、
 ---
 
 *本文面向需要生产级浏览器自动化的开发者。所有基准数据来源于公开排行榜和 2026 年 5 月的独立测试。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/browser-use"
+  }
+}
+</script>

@@ -740,3 +740,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa liên kết tiếp thị của DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. CrewAI là mã nguồn mở và miễn phí sử dụng; chúng tôi không có quan hệ thương mại với dự án CrewAI. Các ý kiến dựa trên thử nghiệm thực tế và triển khai production.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự Chủ — Thiết Lập Production & Các Mẫu 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/crewai-multi-agent-orchestration"
+  }
+}
+</script>

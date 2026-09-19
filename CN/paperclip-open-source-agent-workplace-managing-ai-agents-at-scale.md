@@ -2,7 +2,7 @@
 title: 'paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026'
 description: 'paperclip (69,700 GitHub stars) is the open-source app for managing AI agents at work. Coordinate multiple agents, manage tasks, and deploy self-hosted agent workflows. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
-slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['AI agent management', 'multi-agent coordination', 'paperclip', 'open source agent', 'agent workflow', 'self-hosted agents', 'AI agent workplace', 'agent orchestration']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -406,3 +406,30 @@ If you're juggling 2+ AI agents daily — coding, reviewing, researching — pap
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss paperclip setups and agent templates. Check out our guides on [持久记忆增强Agent](https://dibi8.com/agentmemory-persi[CLI统一管理](https://dibi8.com/cc-switch-unified-ai-cli-control-center)ual workflows]([agentmemory guide](https://dibi8.com/agentmemory-*) for related tooling. Try paperclip today — `docker compose up`, add two agents, and see your first multi-agent pipeline run.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
+  }
+}
+</script>

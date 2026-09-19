@@ -2,7 +2,7 @@
 title: 'Oh My Zsh：2026年加速开发工作流的7个步骤'
 description: '掌握 Oh My Zsh，附带真实基准测试、插件配置和安装指南。与 Starship、Prezto 和原生 Zsh 方案对比。拥有 187k+ 星标。'
 date: 2026-06-11
-slug: 'ohmyzsh'
+lastmod:  2026-06-11slug: 'ohmyzsh'
 category: dev-utils
 tags: [ohmyzsh, zsh, dev-tools, terminal, bash, shell, productivity, linux]
 github_repo: 'https://github.com/ohmyzsh/ohmyzsh'
@@ -549,3 +549,29 @@ Oh My Zsh 仍然是希望拥有丰富、插件驱动的 Zsh 体验的开发人�
 5.  Zsh 文档: https://zsh.sourceforge.io/Doc/
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Zsh：2026年加速开发工作流的7个步骤",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ohmyzsh"
+  }
+}
+</script>

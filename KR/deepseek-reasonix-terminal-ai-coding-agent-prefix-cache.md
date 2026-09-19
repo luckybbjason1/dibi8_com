@@ -519,3 +519,30 @@ Reasonix has an active bilingual Discord community with channels for setup help 
 **Want to code with AI at a fraction of the cost?** Reasonix's engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek-Reasonix: DeepSeek 접두사 캐시 안정성을 위해 설계된 터미널 AI 코딩 에이전트",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache"
+  }
+}
+</script>

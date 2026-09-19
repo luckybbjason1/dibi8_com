@@ -401,3 +401,30 @@ VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc 
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd và Các Lựa Chọn Thay Thế Hiện Đại",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives"
+  }
+}
+</script>

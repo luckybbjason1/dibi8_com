@@ -34,6 +34,8 @@ faqs:
   - q: 'Are conduct_research() and write_report() synchronous?'
     a: 'No. Both are async methods. Call them with `await` inside an async function, and run that function with `asyncio.run()`.'
 ---
+# GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide
+
 
 {{< resource-info >}}
 
@@ -293,3 +295,30 @@ Large-scale scraping needs rotating proxies — [WebShare](https://www.webshare.
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/gpt-researcher-llm-frameworks-2026"
+  }
+}
+</script>

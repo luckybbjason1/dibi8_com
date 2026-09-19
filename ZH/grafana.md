@@ -601,3 +601,30 @@ Grafana 凭借解决了一个具体问题而赢得了 73,876 个 GitHub Star —
 - [New Relic 定价](https://newrelic.com/pricing)
 - [DigitalOcean — 云 VPS 主机](https://www.digitalocean.com/)
 - [HTStack — 托管云服务器](https://htstack.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Grafana: 73,876 GitHub Stars — Docker 部署指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/grafana"
+  }
+}
+</script>

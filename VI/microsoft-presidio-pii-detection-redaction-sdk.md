@@ -456,3 +456,30 @@ Dù bạn đang xây dựng các luồng tuân thủ GDPR, ẩn danh dữ liệu
 **Tham gia cộng đồng:** [Thảo luận trên GitHub](https://github.com/microsoft/presidio/discussions) · [Vấn đề trên GitHub](https://github.com/microsoft/presidio/issues)
 
 📢 **Cập nhật thông tin:** Tham gia [nhóm Telegram của chúng tôi](https://t.me/DIBI8_Group/2) để nhận đánh giá công cụ AI hàng ngày và truy cập sớm nội dung mới.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử Lý Dữ Liệu của Microsoft (9,4K Sao)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/microsoft-presidio-pii-detection-redaction-sdk"
+  }
+}
+</script>

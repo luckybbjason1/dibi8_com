@@ -799,3 +799,30 @@ Qdrant为你提供生产级向量搜索，无需供应商锁定或云账单。�
 *Affiliate 披露：本文包含 DigitalOcean、HTStack 和 虎网云 的 affiliate 链接。如果你通过这些链接购买服务，dibi8.com 可能会获得佣金，而你无需支付额外费用。所有推荐均基于真实的技术评估，而非 affiliate 可用性。查看我们的 [完整披露政策](https://dibi8.com/affiliate-disclosure) 了解详情。*
 
 *最后更新：2026-05-19。使用 Qdrant v1.13.0、qdrant-client 1.13.0、Python 3.12 测试。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qdrant：基于Rust的向量数据库，以10ms延迟处理100万+向量 — 2026年自托管部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/qdrant-vector-database-rust"
+  }
+}
+</script>

@@ -380,3 +380,30 @@ The real lock-in isn't technical—it's habit. The teams that thrive will be the
 ---
 
 *Keywords intentionally placed: AI coding agent comparison 2026, Claude Code skills marketplace, Model Context Protocol tutorial, open source AI code assistant, OpenCode setup guide, Hermes Agent vs Claude Code, avoid AI vendor lock-in, local LLM coding assistant, MCP server configuration, AI developer productivity tools*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The 2026 AI Coding Agent Landscape: Why Skills, MCP, and Open Source Are Reshaping How Developers Work",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-coding-agent-landscape-2026-skills-mcp-opensource"
+  }
+}
+</script>

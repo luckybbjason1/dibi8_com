@@ -769,3 +769,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links. If you purchase services through links marked with affiliate IDs (such as DigitalOcean or HTStack), we may earn a commission at no additional cost to you. This helps fund our open-source documentation work. All recommendations are based on genuine technical merit, not affiliate availability.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supabase 2026: The Open-Source Firebase Alternative Powering 1M+ AI Apps with Postgres Vector Search — Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/supabase-postgres-vector-ai-apps"
+  }
+}
+</script>

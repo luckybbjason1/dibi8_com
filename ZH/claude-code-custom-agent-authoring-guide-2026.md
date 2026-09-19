@@ -36,6 +36,8 @@ faq:
   - q: "自定义 agent 在 CI 和无头运行里能用吗，还是只能交互式？"
     a: "两者都能用。同一份 .claude/agents/ 定义在你非交互运行 Claude Code 时（CI 里用的 -p / print 模式）也会被识别。因为它们是仓库里受版本控制的文件，每个队友、每个 CI 任务看到的都是完全相同的 agent 定义——这正是把审查清单编码成 agent、而不是写成一个没人会打开的 wiki 页面的全部意义。"
 ---
+# Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）
+
 
 ## 引言
 
@@ -227,3 +229,30 @@ cheap, a missed auth hole is not.
 自定义 agent 把团队的最佳实践，从没人读的文档，变成在每次改动上都运行的检查。配方是：一个犀利的 **description** 让它触发、一个最小权限的**工具白名单**让它待在本分内、一个带显式清单和输出契约的**系统提示词**让它产出你能据以行动的报告。
 
 从一个开始——上面那个迁移审查器，对多数团队是杠杆最高的第一个 agent。埋一个 bug、确认它能抓到、然后提交文件。从那一刻起，每个队友都有了一个永不疲倦、永不跳步的审查器。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code-custom-agent-authoring-guide-2026"
+  }
+}
+</script>

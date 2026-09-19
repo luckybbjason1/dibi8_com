@@ -5,7 +5,7 @@ tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reli
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
-draft: false
+lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: ko
 ---
@@ -618,3 +618,30 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 ---
 
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Temporal AI 워크플로우 오케스트레이션 — 신뢰할 수 있는 다단계 AI 파이프라인",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/temporal-ai-workflow-orchestration"
+  }
+}
+</script>

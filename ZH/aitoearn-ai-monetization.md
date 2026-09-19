@@ -199,3 +199,30 @@ AiToEarn 代表了**AI 时代创作者经济**的新范式：不再是"人写内
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AiToEarn: 开源 AI 内容变现工具 — 把你的 GPT 对话变成被动收入",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/aitoearn-ai-monetization"
+  }
+}
+</script>

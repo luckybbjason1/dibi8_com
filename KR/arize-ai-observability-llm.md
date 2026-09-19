@@ -486,3 +486,30 @@ LLM 옵저버빌리티는 사치가 아니라 **인프라**다. 신뢰할 수 �
 ---
 
 **제휴 공개:** 이 글의 일부 링크는 제휴 링크이다. 우리의 [DigitalOcean 추천 링크](https://m.do.co/c/eca87ac14ee0)를 통해 가입하면 $200 크레딧을 받고 우리는 추천 본너스를 받는다 — 추가 비용 없이. 이는 우리의 독립적인 연구를 지원하고 콘텐츠를 묶로 유지한다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Arize AI Phoenix: RAG 파이프라인 100% 추적하는 오픈소스 LLM 옵저버빌리티 도구 — 2026 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/arize-ai-observability-llm"
+  }
+}
+</script>

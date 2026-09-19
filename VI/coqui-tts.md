@@ -578,3 +578,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Hướng dẫn chuyển đổi giọng nói: https://coqui-tts.readthedocs.io/en/latest/models/voice_conversion.html
 
 *Bài viết này chỉ mang tính chất thông tin. Xác minh số liệu điểm chuẩn trên phần cứng của bạn trước khi đưa ra quyết định triển khai. Điều khoản cấp phép Coqui TTS có thể thay đổi — xem xét giấy phép hiện tại trước khi sử dụng thương mại.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sánh Hiệu Suất với ChatTTS, MeloTTS 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/coqui-tts"
+  }
+}
+</script>

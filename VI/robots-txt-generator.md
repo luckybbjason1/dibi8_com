@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+# Trình Tạo robots.txt — Kiểm Soát AI Crawler (GPTBot, ClaudeBot, PerplexityBot)
+

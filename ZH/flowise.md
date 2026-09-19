@@ -638,3 +638,30 @@ Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个
 8. [Flowise vs Dify 对比](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) —— ToolHalla 详细对比
 9. [Flowise 嵌入组件文档](https://www.npmjs.com/package/flowise-embed) —— 嵌入聊天机器人的 NPM 包
 10. [DigitalOcean Docker 部署指南](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Ubuntu 服务器 Docker 安装教程
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/flowise"
+  }
+}
+</script>

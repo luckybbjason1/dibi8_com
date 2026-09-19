@@ -355,3 +355,30 @@ mattpocock/skills mang lại kỷ luật production-tested. obra/superpowers man
 - [Dictionary of AI Coding Terms (Matt Pocock)](https://github.com/mattpocock/dictionary-of-ai-coding)
 
 *Số star và thống kê repository dựa trên dữ liệu GitHub API tính đến ngày 13/5/2026. Tất cả repository đang được bảo trì tích cực với commit gần đây.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Claude Code Skills và Các Repository Đang Hot Trên GitHub",
+  "datePublished": "2026-05-16",
+  "dateModified": "2026-05-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-agent-skills-2026-developer-guide"
+  }
+}
+</script>

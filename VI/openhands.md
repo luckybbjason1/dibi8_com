@@ -611,3 +611,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Hướng dẫn này được duy trì độc lập và cập nhật định kỳ. Xác minh lần cuối: Tháng 5 năm 2026.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy code (Hướng dẫn cài đặt 2026)",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/openhands"
+  }
+}
+</script>

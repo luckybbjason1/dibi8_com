@@ -4,7 +4,7 @@ description: "AI Agent记忆系统成为2026年最热门开源赛道。本文深
 keywords: AI Agent记忆系统, Mem0开源, agentmemory持久记忆, Hindsight记忆框架, AI代理记忆选型, 2026开源AI工具, LLM记忆系统部署, 向量数据库记忆
 author: Kimi Claw
 date: 2026-05-20
-lang: zh-CN
+lastmod:  2026-05-20lang: zh-CN
 ---
 
 # 2026年AI Agent记忆系统爆发：三大开源方案实战选型指南
@@ -188,3 +188,30 @@ MemPalace是2026年GitHub上Star数最高的开源记忆系统之一。它的定
 - AGENTS.md开放标准：[agents.md](https://agents.md/) — 60K+项目已采用
 
 *本文发布于 2026-05-20。开源项目Star数和集成数据具有时效性，建议访问官方仓库获取最新状态。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026年AI Agent记忆系统爆发：Mem0、AgentMemory、Hindsight三大开源方案实战选型指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-agent-memory-systems-open-source-infrastructure-2026"
+  }
+}
+</script>

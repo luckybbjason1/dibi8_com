@@ -466,3 +466,30 @@ A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱
 - [Model Context Protocol 명세](https://modelcontextprotocol.io)
 
 *마지막 업데이트: 2026년 5월 17일. Codex CLI는 빠른 반복 중; 현재 기능은 공식 문서와 대조 확인 권장.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Codex CLI 완벽 가이드 2026: 터미널 네이티브 AI 코딩 에이전트 (설치, 멀티 에이전트 워크플로우, MCP, 보안 종합 안내)",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openai-codex-cli-terminal-ai-coding-agent-2026"
+  }
+}
+</script>

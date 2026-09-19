@@ -607,3 +607,30 @@ OpenAI Whisper는 2026년에도 프로덕션 음성 인식의 실용적인 선�
 - [Choosing Between Whisper Variants — Modal.com](https://modal.com/blog/choosing-whisper-variants)
 - [Comparison: WhisperX vs Faster-Whisper vs OpenAI Whisper](https://gist.github.com/danielrosehill/278b1719598093767126e52105ae076e)
 - [Whisper API Blog — 모델 비교](https://whisperapi.com/accuracy-benchmarks-top-free-open-source-speech-to-text-offerings)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Whisper: 99.8K+ Stars — 완전한 ASR 설정 튜토리얼 vs WhisperX, faster-whisper 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openai-whisper"
+  }
+}
+</script>

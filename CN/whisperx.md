@@ -640,3 +640,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [CUDA Installation Guide](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) — GPU setup for Linux
 - [CTranslate2 Performance Guide](https://opennmt.net/CTranslate2/performance.html) — Optimization tips
 - [WhisperX Examples](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — Multilingual usage samples
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WhisperX: 22K+ Stars — Production ASR Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/whisperx"
+  }
+}
+</script>

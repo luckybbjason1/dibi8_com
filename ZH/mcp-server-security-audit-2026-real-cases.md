@@ -149,3 +149,30 @@ MCP 服务器以你的完整本地权限运行。社区生态如今已经大到�
 ---
 
 **相关阅读**：[MCP 服务器 2026 全景排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Claude Code 配置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/) · [AI Agent 安全模式](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mcp-server-security-audit-2026-real-cases"
+  }
+}
+</script>

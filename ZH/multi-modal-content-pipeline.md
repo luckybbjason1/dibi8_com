@@ -210,3 +210,30 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 ---
 
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 和 [知识库 Stack](/zh/collections/knowledge-base-stack/) 给 dev 侧。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖脚本生成成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 让 agent 自主驱动这个管线。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/multi-modal-content-pipeline"
+  }
+}
+</script>

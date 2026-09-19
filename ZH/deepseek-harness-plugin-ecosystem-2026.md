@@ -2,7 +2,7 @@
 title: 'DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南'
 description: 'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'
 date: 2026-09-19
-slug: 'deepseek-harness-plugin-ecosystem-2026-zh'
+lastmod:  2026-09-19slug: 'deepseek-harness-plugin-ecosystem-2026-zh'
 category: 'llm-frameworks'
 tags: ['deepseek', 'harness', 'plugin', 'ai-agent', 'dsh', 'automation', 'claude-code', 'cursor']
 github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
@@ -787,3 +787,30 @@ DeepSeek Harness 代表了我们对 AI 编程工具认知的一次根本转变�
 **最后更新：** 2026年9月 | **验证版本：** DeepSeek Harness v0.8.0+
 
 **CTA：** 加入 DSH 中文社区 Telegram：https://t.me/DIBI8_Group
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/deepseek-harness-plugin-ecosystem-2026"
+  }
+}
+</script>

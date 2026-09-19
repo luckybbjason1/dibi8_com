@@ -207,3 +207,30 @@ Hello-Agents는 오늘날 가장 포괄적이고 이해하기 쉬우며 커뮤�
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로에서 프로덕션급 에이전트 구축을 돕는 방법",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/hello-agents-ai-agent-building-tutorial"
+  }
+}
+</script>

@@ -436,3 +436,30 @@ Aider 是2026年最灵活、最具成本效益的AI结对编程工具。凭借45
 - [Aider 配置参考](https://aider.chat/docs/config.html)
 
 *本文仅供信息参考。Aider 是 Apache-2.0 许可下的开源软件。在部署到生产环境之前，请始终审查AI生成的代码。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完整对比",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/aider"
+  }
+}
+</script>

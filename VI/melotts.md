@@ -648,3 +648,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [TTS Engine Comparison on Clore.ai](https://docs.clore.ai/guides/audio-and-voice/melotts)
 - [Open-LLM-VTuber TTS Benchmark](https://blog.csdn.net/gitblog_00912/article/details/154584830)
 - [MeloTTS Performance Analysis](https://blog.csdn.net/gitblog_02862/article/details/150221387)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui TTS, ChatTTS, Bark 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/melotts"
+  }
+}
+</script>

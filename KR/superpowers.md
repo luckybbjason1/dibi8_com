@@ -2,7 +2,7 @@
 title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026'
 description: 'Superpowers, 200k+ 스타를 보유한 agentic skills framework를 살펴보세요. 몇 분 만에 설정하고, 벤치마킹했으며, 프로덕션에 바로 사용할 수 있습니다. LangChain, LlamaIndex, AutoGen과 비교해 보세요.'
 date: 2026-05-23
-slug: 'superpowers'
+lastmod:  2026-05-23slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ['agentic-ai', 'llm-frameworks', 'shell-scripting', 'software-development', 'ai-agents', 'developer-tools']
 github_repo: 'https://github.com/obra/superpowers'
@@ -698,3 +698,29 @@ Shell 스크립팅에 능숙하거나 에이전트 AI를 위한 가볍고 이식
 ***
 
 *공개: 위 링크 중 일부는 제휴 링크입니다. dibi8.com은 가입 시 수수료를 받을 수 있으며, 이는 귀하의 비용에 영향을 미치지 않습니다. 사이트를 계속 운영하고 콘텐츠를 무료로 제공하는 데 도움이 됩니다.*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/superpowers"
+  }
+}
+</script>

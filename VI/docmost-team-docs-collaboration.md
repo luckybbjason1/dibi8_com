@@ -532,3 +532,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công bố liên kết liên kết
 
 Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Phiên bản Community của Docmost miễn phí và mã nguồn mở theo AGPL-3.0 —— không có mối quan hệ liên kết nào với ngườói duy trì Docmost.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docmost 2026: Phương án thay thế Notion mã nguồn mở cho cộng tác nhóm thờói gian thực — Hướng dẫn tự host",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/docmost-team-docs-collaboration"
+  }
+}
+</script>

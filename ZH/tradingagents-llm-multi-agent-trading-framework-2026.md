@@ -2,7 +2,7 @@
 title: 'TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南'
 description: 'TradingAgents 是开源的 LLM 多智能体框架（82,254 GitHub stars，Apache-2.0），模拟一家交易公司：分析师、研究员、交易员、风控智能体辩论出 BUY/SELL/HOLD 决策。基于 LangGraph。涵盖安装、智能体流水线、CLI + Python API，以及与 Qlib、单智能体 bot 的诚实对比。'
 date: 2026-06-02
-slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
+lastmod:  2026-06-02slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
 tags: ['TradingAgents', 'LLM 智能体', '算法交易', 'LangGraph', '多智能体', 'AI 交易', '量化', '金融 AI']
 github_repo: 'https://github.com/TauricResearch/TradingAgents'
@@ -271,3 +271,30 @@ TradingAgents 是 2026 年研究"一队 LLM 智能体如何推理出一个交易
   相关开源工具 -> ai-tools-directory
   dibi8 上的相关指南 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/tradingagents-llm-multi-agent-trading-framework-2026"
+  }
+}
+</script>

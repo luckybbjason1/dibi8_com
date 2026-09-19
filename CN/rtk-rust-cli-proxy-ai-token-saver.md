@@ -286,3 +286,30 @@ RTK represents a maturation in the tooling stack: **not bigger models, but smart
 ---
 
 *Tags: RTK, AI coding agent, LLM token optimization, Rust CLI tool, open source developer tools, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, token cost reduction, developer productivity 2026*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RTK: The Open-Source Rust CLI Proxy That Slashes AI Coding Agent Token Costs by 60-90% — A Practical Setup Guide",
+  "datePublished": "2026-05-14",
+  "dateModified": "2026-05-14",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/rtk-rust-cli-proxy-ai-token-saver"
+  }
+}
+</script>

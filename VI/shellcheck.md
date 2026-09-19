@@ -668,3 +668,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [shfmt — Shell Formatter](https://github.com/mvdan/sh)
 - [checkbashisms — Debian Devscripts](https://packages.debian.org/sid/devscripts)
 - [POSIX.1-2017 Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và Tích Hợp CI/CD cho Phân Tích Shell Script 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/shellcheck"
+  }
+}
+</script>

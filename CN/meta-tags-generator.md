@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-meta-tags-generator"
 tool_id: "meta-tags-generator"
 ---
+# Meta Tags Generator — SEO Title, Description, Open Graph & Twitter Card
+

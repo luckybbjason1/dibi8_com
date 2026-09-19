@@ -605,3 +605,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [VS Code: GitHub Local Actions Extension](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [catthehacker/docker_images](https://github.com/catthehacker/docker_images) — Community runner images used by act
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "act: 70,410 GitHub Stars — Run GitHub Actions Locally, Production CI/CD Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/act"
+  }
+}
+</script>

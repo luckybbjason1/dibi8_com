@@ -232,3 +232,30 @@ Google AutoML이 진입장벽이 가장 낮습니다. 코드 작성 없이 웹 �
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AutoML 도구 비교: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML 완벽 가이드",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/automl-tools-comparison-guide"
+  }
+}
+</script>

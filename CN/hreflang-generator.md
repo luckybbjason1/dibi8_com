@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
+# Hreflang Tags Generator — Multi-Language & International SEO
+

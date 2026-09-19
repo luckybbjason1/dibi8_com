@@ -500,3 +500,30 @@ Tham gia cộng đồng: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](h
 Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/vi/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/vi/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide)
 
 **Tiết lộ**: Bài viết này đề cập đến các công cụ có thể có quan hệ liên kết. Chúng tôi không chấp nhận thanh toán cho đánh giá. Tất cả ý kiến đều là của riêng chúng tôi.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WorldMonitor: Bảng Điều Khiển Thông Tình Báo Toàn Cầu Theo Thời Gian Thực Cho Giám Sát Địa Chính Trị",
+  "datePublished": "2026-06-25",
+  "dateModified": "2026-06-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/worldmonitor-real-time-global-intelligence-dashboard"
+  }
+}
+</script>

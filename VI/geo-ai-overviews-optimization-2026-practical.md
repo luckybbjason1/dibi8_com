@@ -139,3 +139,30 @@ Bắt đầu với FAQ schema trên top 10 trang. Đo tỷ lệ trích dẫn sau
 ---
 
 **Liên quan**: [Bảng xếp hạng MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [So tài AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ dữ liệu site thực tế",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/geo-ai-overviews-optimization-2026-practical"
+  }
+}
+</script>

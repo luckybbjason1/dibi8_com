@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-voice-tools-text-to-speech-transcription/
 ---
+# 2025年最佳AI语音工具对比：文本转语音与语音转文字
+
 
 {</* resource-info */>}
 
@@ -245,3 +247,30 @@ Whisper提供多种模型尺寸以适应不同硬件：tiny模型可在任何CPU
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025年最佳AI语音工具对比：文本转语音与语音转文字",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-voice-tools-text-to-speech-transcription"
+  }
+}
+</script>

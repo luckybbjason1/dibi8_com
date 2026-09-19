@@ -616,3 +616,30 @@ ZenML은 머신러닝에서 가장 흔한 실패 모드를 해결한다: "내 �
 ## 제휴 마케팅 공개
 
 본 문서에는 제휴 링크가 포함되어 있습니다. 본 문서의 링크를 통해 서비스에 가입하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다. 우리는 직접 평가하고 진정한 가치가 있다고 믿는 도구만을 추천합니다. 표현된 의견은 우리 자신의 것입니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — 완전 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/zenml-mlops-pipeline-framework"
+  }
+}
+</script>

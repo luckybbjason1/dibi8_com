@@ -578,3 +578,30 @@ Coqui TTS 在 2026 年仍然是最通用的开源 TTS 工具包。拥有 45,300 
 - 语音转换指南：https://coqui-tts.readthedocs.io/en/latest/models/voice_conversion.html
 
 *本文仅供信息参考。部署前请在自己的硬件上验证基准数据。Coqui TTS 许可条款可能会变更——商用前请查看当前许可证。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS、Bark 性能基准测试 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/coqui-tts"
+  }
+}
+</script>

@@ -6,6 +6,8 @@ layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00
 ---
+# Công Cụ RAG Hàng Đầu Cho Kho Tri Thức AI
+
 slug: top-rag-tools
 
 ## Công Cụ RAG Hàng Đầu Cho Kho Tri Thức AI
@@ -29,3 +31,30 @@ Những công cụ RAG (Retrieval-Augmented Generation) tốt nhất để xây 
 
 These tools represent the best-in-class solutions for AI image generation, RAG/knowledge bases, and AI coding assistance in 2026. Each one has been tested and verified for quality, performance, and developer experience.
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ RAG Hàng Đầu Cho Kho Tri Thức AI",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/top-rag-tools"
+  }
+}
+</script>

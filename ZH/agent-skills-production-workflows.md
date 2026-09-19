@@ -2,7 +2,7 @@
 title: 'Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架'
 description: '了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'
 date: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
+lastmod:  2026-09-19slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
 tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
 github_repo: 'https://github.com/addyosmani/agent-skills'
@@ -800,3 +800,30 @@ Agent Skills 代表了一位性能工程师为 AI 工具建设所做的思考：
 **CTA：** 加入 DIBI8 Telegram 社区：https://t.me/DIBI8_Group
 
 [DeepSeek Harness 指南](dibi8-internal-link) | [Agent-Reach 教程](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agent-skills-production-workflows"
+  }
+}
+</script>

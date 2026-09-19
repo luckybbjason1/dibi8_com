@@ -1015,3 +1015,30 @@ Start building today and experience why billions in daily volume flow through Hy
 - [Hyperliquid Documentation](https://hyperliquid.gitbook.io/hyperliquid-docs)
 - [GitHub: hyperliquid-dex](https://github.com/hyperliquid-dex)
 - [Hyperliquid Python SDK](https://github.com/hyperliquid-dex/hyperliquid-python-sdk)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hyperliquid 2026: The On-Chain Perpetual DEX Processing $2B+ Daily Volume — Trading Bot Integration",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/hyperliquid-perp-dex-trading"
+  }
+}
+</script>

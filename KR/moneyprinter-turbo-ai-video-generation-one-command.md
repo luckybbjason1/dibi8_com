@@ -3,7 +3,7 @@ title: "MoneyPrinterTurbo: AI로 동영상 자동 생성"
 slug: "moneyprinter-turbo-ai-video-generation-one-command"
 category: "ai-tools"
 publish_date: "2026-06-10"
-author: "DIBI8"
+lastmod:  "2026-06-10"author: "DIBI8"
 tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
@@ -344,3 +344,29 @@ OpenAI GPT(스크립트 생성), Azure Cognitive Services TTS, OpenAI TTS를 지
 ---
 
 DIBI8는 최고의 오픈소스 도구, AI 혁신, 개발자 리소스를 발견하는 관문입니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MoneyPrinterTurbo: AI로 동영상 자동 생성",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/moneyprinter-turbo-ai-video-generation-one-command"
+  }
+}
+</script>

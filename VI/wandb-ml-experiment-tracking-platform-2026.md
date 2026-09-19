@@ -2,7 +2,7 @@
 title: 'Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chuyên Gia — Nền Tảng Thực Nghiệm ML 2026'
 description: 'Weights & Biases (wandb/wandb) là nền tảng nhà phát triển AI để theo dõi, so sánh và triển khai các thực nghiệm ML. Hỗ trợ PyTorch, TensorFlow, Hugging Face và tinh chỉnh LLM. Bao gồm theo dõi thực nghiệm, versioning tập dữ liệu, model registry và giám sát sản xuất.'
 date: 2026-06-09
-slug: 'wandb-ml-experiment-tracking-platform-2026'
+lastmod:  2026-06-09slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
 github_repo: 'https://github.com/wandb/wandb'
@@ -438,3 +438,30 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - Thảo luận cộng đồng: https://community.wandb.ai/
 
 **Tiết lộ**: Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký thông qua các liên kết của chúng tôi, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không có thêm chi phí cho bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không quảng cáo.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chuyên Gia — Nền Tảng Thực Nghiệm ML 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/wandb-ml-experiment-tracking-platform-2026"
+  }
+}
+</script>

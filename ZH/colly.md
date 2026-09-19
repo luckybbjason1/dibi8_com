@@ -599,3 +599,30 @@ Colly 为 Go 开发者提供了抓取框架所需的一切：速度、简洁和�
 - [Web Scraping with Go: Practical Guide](https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production) — 生产模式
 - [Best Open-Source Web Crawlers 2026](https://www.firecrawl.dev/blog/best-open-source-web-crawler) — 生态概览
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — 性能数据
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Colly: 25,302 GitHub Stars — Benchmark Go 网页抓取框架 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/colly"
+  }
+}
+</script>

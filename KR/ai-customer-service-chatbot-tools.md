@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-customer-service-chatbot-tools/
 ---
+# 2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등
+
 
 {</* resource-info */>}
 
@@ -212,3 +214,30 @@ ChatGPT Enterprise 기반 챗봇은 50개 이상의 언어를 지원하며, Inte
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-customer-service-chatbot-tools"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp 10 Lần FAISS — Hướng Dẫn Tìm Kiếm AI 2026'
 description: 'TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Python bindings. Thay thế trực tiếp cho LangChain, LlamaIndex, Haystack và Agno. Tăng tốc 10 lần với quantization. Bao gồm tích hợp Python, benchmark và triển khai sản xuất.'
 date: 2026-06-09
-slug: 'turbovec-rust-vector-index-2026'
+lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ['vector-search', 'rust', 'quantization', 'langchain', 'llamaindex', 'RAG', 'embeddings', 'turboquant']
 github_repo: 'https://github.com/RyanCodrai/turbovec'
@@ -394,3 +394,30 @@ Tham gia cộng đồng DIBI8 trên [Telegram](https://t.me/DIBI8_Group) để t
 - Community discussion: https://github.com/RyanCodrai/turbovec/discussions
 
 **Tiết lộ**: Bài viết này chứa các liên kết affiliate. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể nhận được một khoản hoa hồng nhỏ mà không tốn thêm chi phí cho bạn. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp 10 Lần FAISS — Hướng Dẫn Tìm Kiếm AI 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/turbovec-rust-vector-index-2026"
+  }
+}
+</script>

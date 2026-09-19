@@ -31,6 +31,8 @@ faqs:
   - q: '哪些类型的企业在使用 NowPayments？'
     a: 'NowPayments 的用户涵盖电商店铺、接收国际汇款的自由职业者、处理游戏内购和订阅业务的游戏公司、面向全球募集捐款的非营利组织，以及收取 SaaS 订阅费和授权费的软件公司。'
 ---
+# 所有货币可以支付 - NowPayments
+
 
 {</* resource-info */>}
 
@@ -111,3 +113,30 @@ NowPayments优先考虑安全性，包括：
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "所有货币可以支付 - NowPayments",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/accept-payments-all-currencies"
+  }
+}
+</script>

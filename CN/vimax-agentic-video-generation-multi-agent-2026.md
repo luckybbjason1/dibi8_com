@@ -179,3 +179,30 @@ MIT 协议 + HKUDS 的学术背景 + 几个月攒出来的 7,100 stars，指向�
 ---
 
 **GitHub**：[HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **协议**：MIT · **Stars**：7.1K+ · **作者**：香港大学数据科学实验室 · **状态**：积极开发中，尚无正式 tag release
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026）",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/vimax-agentic-video-generation-multi-agent-2026"
+  }
+}
+</script>

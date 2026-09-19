@@ -2,7 +2,7 @@
 title: "Roboflow 监督：Python计算机视觉标注工具包"
 description: "Roboflow的监督是全面的计算机视觉工具包，简化了CV标注、数据处理和模型评估。通过pip install supervision访问可重复使用的计算机视觉工具用于您的项目。"
 date: 2026-06-10
-slug: roboflow-supervision
+lastmod:  2026-06-10slug: roboflow-supervision
 category: data-science
 tags: [supervision, roboflow, computer vision, annotation, object detection, CV toolkit, data-science]
 github_repo: https://github.com/roboflow/supervision
@@ -195,3 +195,30 @@ Try Supervision today! If you find it useful, consider supporting the project by
 ---
 
 Feel free to integrate these changes into your guide. Let me know if you need any further assistance!
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Roboflow 监督：Python计算机视觉标注工具包",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/roboflow-supervision"
+  }
+}
+</script>

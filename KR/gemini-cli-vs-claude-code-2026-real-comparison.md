@@ -146,3 +146,30 @@ Gemini CLI는 2026년 진지하게 고려할 만한 도구지만 Claude Code의 
 ---
 
 **관련 글**: [AI Coding 2026-Q2 종합 비교](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Claude Code 설정 가이드](https://dibi8.com/kr/resources/llm-frameworks/claude-code/) · [1M 컨텍스트 윈도우 LLM 2026 실측](https://dibi8.com/kr/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/gemini-cli-vs-claude-code-2026-real-comparison"
+  }
+}
+</script>

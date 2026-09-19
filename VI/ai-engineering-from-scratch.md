@@ -2,7 +2,7 @@
 title: "Kỹ Thuật AI Từ Đầu: Xây Dựng Hệ Thống LLM Sản Xuất — Hướng Dẫn Toàn Diện 2026"
 description: "Kỹ Thuật AI Từ Đầu (32.771 sao) là một chương trình giảng dạy toàn diện bao gồm tinh chỉnh LLM, RAG, khung tác nhân và triển khai sản xuất. Học cách xây dựng, vận hành và mở rộng hệ thống AI."
 date: 2026-06-15
-slug: ai-engineering-from-scratch
+lastmod:  2026-06-15slug: ai-engineering-from-scratch
 category: llm-frameworks
 tags: ['kỹ thuật ai', 'llm', 'tinh chỉnh', 'rag', 'khung tác nhân', 'triển khai sản xuất', 'học máy']
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
@@ -397,3 +397,30 @@ pip install -r requirements.txt
 - Tài liệu vLLM: https://docs.vllm.ai/
 
 **Tiết lộ**: Bài viết này chứa liên kết chi phí. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không tốn thêm chi phí cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kỹ Thuật AI Từ Đầu: Xây Dựng Hệ Thống LLM Sản Xuất — Hướng Dẫn Toàn Diện 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-engineering-from-scratch"
+  }
+}
+</script>

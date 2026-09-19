@@ -2,7 +2,7 @@
 title: 'nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng AI Chat của bạn trên một GPU duy nhất — Hướng dẫn thực tế 2026'
 description: 'nanochat (54.800 sao GitHub) là bản clone ChatGPT mã nguồn mở của Andrej Karpathy, chạy trên một GPU $100 duy nhất. Huấn luyện từ đầu bằng SGLang hoặc phục vụ mô hình đã huấn luyện trước qua vLLM. Bao gồm hướng dẫn cài đặt, benchmark huấn luyện và ví dụ triển khai.'
 date: 2026-06-08
-slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
+lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ['karpathy nanochat', 'huấn luyện LLM từ đầu', 'chat GPU đơn', 'ChatGPT mã nguồn mở', 'SGLang', 'vLLM', 'LLM cục bộ', 'ứng dụng AI chat']
 github_repo: 'https://github.com/karpathy/nanochat'
@@ -375,3 +375,30 @@ Dù bạn là sinh viên học LLM fundamentals, developer prototype custom chat
 Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận kinh nghiệm và cấu hình huấn luyện nanochat. Xem hướng dẫn về [Langflow visual workflows](dibi8-internal-link) và [AI Agent memory systems](dibi8-internal-link) cho các công cụ bổ trợ. Thử nanochat ngay hôm nay — clone repo, chạy `python app.py`, và xem model của bạn phản hồi.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng AI Chat của bạn trên một GPU duy nhất — Hướng dẫn thực tế 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/nanochat-karpathy-100-chatgpt-single-gpu"
+  }
+}
+</script>

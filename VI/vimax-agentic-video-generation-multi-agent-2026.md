@@ -179,3 +179,30 @@ Nếu bạn từng sản xuất một video có kịch bản, đây là workflow
 ---
 
 **GitHub**: [HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **License**: MIT · **Stars**: 7.1K+ · **Tác giả**: Hong Kong University Data Science Lab · **Trạng thái**: Đang phát triển tích cực, chưa có tag release
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh giá ViMax: Sinh video đa cảnh theo kiểu agentic từ HKUDS (Đạo diễn · Biên kịch · Nhà sản xuất · Bộ sinh video, 2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/vimax-agentic-video-generation-multi-agent-2026"
+  }
+}
+</script>

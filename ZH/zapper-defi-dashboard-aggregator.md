@@ -1133,3 +1133,30 @@ Zapper提供**RESTful API**，在[docs.zapper.xyz](https://docs.zapper.xyz)有�
 **维护者：** [Zapper-fi](https://github.com/Zapper-fi)  
 **GitHub星标：** 300+  
 **网站：** [zapper.xyz](https://zapper.xyz)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "zapper-defi-dashboard-aggregator",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/zapper-defi-dashboard-aggregator"
+  }
+}
+</script>

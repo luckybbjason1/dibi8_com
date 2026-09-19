@@ -2,7 +2,7 @@
 title: "RuView：智能建筑的 WiFi 空间智能——Python CLI、实时位置追踪和网状网络"
 description: "了解如何使用 RuView，这款基于 Python 的 WiFi 空间智能平台，实现实时位置追踪、建筑布局映射和 WiFi 网状网络优化。包含逐步 pip 安装指南、实时追踪和网状网络配置。"
 date: 2026-06-10
-slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
+lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
 tags: [ruvnet, ruview, WiFi, 空间智能, 位置追踪, 网状网络, 智能建筑, Python, 开源]
 lang: zh
@@ -453,3 +453,30 @@ RuView 将标准 WiFi 基础设施转变为强大的空间智能平台。通过�
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/2) 讨论 RuView 配置和 WiFi 传感技术。查看我们的 [智能建筑自动化](dibi8-internal-link) 和 [AI Agent 管理](dibi8-internal-link) 指南以获取互补工具。今天就开始将你的 WiFi 转变为空间智能。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RuView：智能建筑的 WiFi 空间智能——Python CLI、实时位置追踪和网状网络",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ruvnet-ruview-wifi-spatial-intelligence-guide"
+  }
+}
+</script>

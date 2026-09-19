@@ -5,7 +5,7 @@ category: llm-frameworks
 tags: ['haystack', 'rag', 'retrieval-augmented-generation', 'deepset', 'document-processing', 'llm-pipeline']
 slug: deepset-haystack-rag-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/deepset-haystack-rag.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg
 ---
 
 ## TL;DR
@@ -736,3 +736,30 @@ Yes, Haystack supports BM25, dense vector, hybrid search, and cross-encoder rera
 ## Call to Action
 
 Build production-ready RAG applications with Haystack. [Start building](https://dibi8.com/auth/) today with our deployment guides and pipeline templates.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Deepset Haystack — Build Production-Ready RAG Applications with Python",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/deepset-haystack-rag-framework-complete-guide"
+  }
+}
+</script>

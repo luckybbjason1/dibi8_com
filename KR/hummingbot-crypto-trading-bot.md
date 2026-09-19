@@ -622,3 +622,30 @@ Hummingbot은 2026년 현재 가장 성숙한 오픈소스 마켓 메이킹 프�
 ## 제휴 고지
 
 이 가이드에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), [Minara](https://minara.ai/r/OSXG4X)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 이는 오픈소스 문서 작업을 지원합니다. 우리는 활발히 사용하고 테스트하는 도구만을 추천합니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 — 설치 및 전략 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/hummingbot-crypto-trading-bot"
+  }
+}
+</script>

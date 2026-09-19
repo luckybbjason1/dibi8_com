@@ -693,3 +693,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 10. [MLflow](dibi8-internal-link) — Hướng dẫn liên quan về ML experiment tracking
 
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa các liên kết tiếp thị liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, dibi8.com nhận được hoa hồng mà không phát sinh chi phí bổ sung cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chúng tôi sử dụng cho chính hạ tầng của mình.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kubeflow 2026: Chạy Pipeline ML Hoàn Chỉnh trên Kubernetes — Hướng Dẫn Từ Training đến Triển Khai Production",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/kubeflow-ml-pipeline-kubernetes"
+  }
+}
+</script>

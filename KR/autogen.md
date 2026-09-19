@@ -530,3 +530,30 @@ AutoGen은 어려운 문제를 해결하여 58,196개의 스타를 얻었습니�
 - [LangGraph 문서](https://langchain-ai.github.io/langgraph/)
 - [OpenAI Agents SDK 문서](https://platform.openai.com/docs/guides/agents)
 - [AutoGen vs CrewAI: 2026 벤치마크 가이드](https://dev.to/kunpeng-ai-2026/autogen-vs-crewai-a-comprehensive-benchmark-and-selection-guide-for-2026-2nh1)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AutoGen: 58K+ Stars — 멀티 에이전트 프레임워크 심층 분석: CrewAI, LangGraph와의 비교 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/autogen"
+  }
+}
+</script>

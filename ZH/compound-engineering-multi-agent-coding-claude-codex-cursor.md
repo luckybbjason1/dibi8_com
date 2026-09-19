@@ -2,7 +2,7 @@
 title: 'Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多代理插件指南'
 description: 'Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。'
 date: 2026-06-13
-slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
+lastmod:  2026-06-13slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
 tags: ['compound-engineering', 'multi-agent', 'claude-code', 'codex', 'cursor', 'planning', 'review']
 github_repo: 'https://github.com/EveryInc/compound-engineering-plugin'
@@ -489,3 +489,30 @@ Compound Engineering 解决了 AI 辅助开发中的一个根本性空白：缺�
 ---
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多代理插件指南",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/compound-engineering-multi-agent-coding-claude-codex-cursor"
+  }
+}
+</script>

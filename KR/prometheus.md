@@ -23,6 +23,8 @@ tags: ['prometheus', '모니터링', 'docker', 'kubernetes', 'grafana', 'devops'
 aliases:
 - /kr/posts/prometheus/
 ---
+# Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026
+
 
 {{</* resource-info */>}}
 
@@ -611,3 +613,30 @@ Prometheus는 2026년에도 클라우드 네이티브 모니터링의 표준으�
 - [PromQL 치트 시트](https://promlabs.com/promql-cheat-sheet/)
 - [Prometheus vs InfluxDB 비교](https://uptrace.dev/comparisons/prometheus-vs-influxdb)
 - [CNCF Prometheus 프로젝트 페이지](https://www.cncf.io/projects/prometheus/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/prometheus"
+  }
+}
+</script>

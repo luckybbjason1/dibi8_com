@@ -397,3 +397,30 @@ A：两者都是领先的 DeFi 投资组合追踪器。Zerion 提供更精致的
 ---
 
 *免责声明：本文仅供信息参考，不构成财务建议。加密货币投资存在重大风险。在做出投资决策前，请务必进行自己的研究。本文包含联盟链接 —— 当您使用我们的合作伙伴链接时，我们可能会获得补偿，对您不产生额外费用。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "zerion-wallet-portfolio-tracker",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/zerion-wallet-portfolio-tracker"
+  }
+}
+</script>

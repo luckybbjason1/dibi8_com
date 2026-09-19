@@ -799,3 +799,30 @@ GPU 가속 추론이 필요한 중국 팀의 경우, [虎网云](https://www.huw
 *제휴 공개: 이 기사에는 DigitalOcean, HTStack 및 虎网云的 제휴 링크가 포함되어 있습니다. 이 링크를 통해 서비스를 구매하면 추가 비용 없이 dibi8.com에 수수료가 지급될 수 있습니다. 모든 권장 사항은 진정한 기술 평가를 기반으로 하며, 제휴 가용성에 기반하지 않습니다. 자세한 내용은 [전체 공개 정책](https://dibi8.com/affiliate-disclosure)을 참조하세요.*
 
 *마지막 업데이트: 2026-05-19. Qdrant v1.13.0, qdrant-client 1.13.0, Python 3.12로 테스트됨.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026년 자체 호스팅 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/qdrant-vector-database-rust"
+  }
+}
+</script>

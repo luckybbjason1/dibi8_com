@@ -598,3 +598,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *This article was written for developers who need production-grade browser automation. All benchmark data is sourced from publicly available leaderboards and independent testing as of May 2026.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Browser Use: 94K+ Stars — Benchmarking AI Browser Automation in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/browser-use"
+  }
+}
+</script>

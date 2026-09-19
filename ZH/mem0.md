@@ -748,3 +748,30 @@ Mem0 解决了 AI 智能体开发中最持久的问题之一：跨会话记忆�
 - AWS Agent SDK + Mem0 公告: https://aws.amazon.com/blogs/machine-learning
 - Atlan — 2026 最佳 AI 智能体记忆框架: https://atlan.com/know/best-ai-agent-memory-frameworks-2026/
 - Evermind — Mem0 替代品 2026: https://evermind.ai/blogs/mem0-alternative
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mem0"
+  }
+}
+</script>

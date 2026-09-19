@@ -742,3 +742,30 @@ Có — SDK được cấp phép MIT cho phép điều này một cách rõ ràn
 Đối với các trader tìm kiếm một sàn giao dịch tập trung đáng tin cậy đi kèm với hoạt động DeFi của họ, [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) cung cấp thanh khoản sâu và phí cạnh tranh, trong khi [OKX](https://www.promoohubly.com/join/12190433) cung cấp các công cụ giao dịch nâng cao và hỗ trợ đa chuỗi. Sự kết hợp của hiệu quả sàn giao dịch tập trung với khả năng tổng hợp phi tập trung của 1inch tạo ra một bộ công cụ giao dịch hoàn chỉnh cho bối cảnh đa chuỗi năm 2026.
 
 Bắt đầu xây dựng với 1inch ngay hôm nay và mang đến cho ngườ dùng của bạn khả năng thực thi giá tốt nhất mà DeFi có thể cung cấp.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "1inch-dex-aggregator-routing",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/1inch-dex-aggregator-routing"
+  }
+}
+</script>

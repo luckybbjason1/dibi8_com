@@ -228,3 +228,30 @@ vllm serve yourname/my-finetuned-llama \
 ---
 
 *配套合集：[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 部署后覆盖推理成本侧。[AI Agent 工具链](/zh/collections/ai-agent-tool-chain/) 做自动微调循环。[知识库 Stack](/zh/collections/knowledge-base-stack/) 在某些情况下 RAG 是微调的替代品。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/fine-tuning-stack"
+  }
+}
+</script>

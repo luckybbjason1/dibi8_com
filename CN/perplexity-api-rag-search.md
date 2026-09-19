@@ -793,3 +793,30 @@ The Perplexity API represents a significant advancement in developer-accessible 
 For developers building the next generation of intelligent applications — from research assistants and fact-checking tools to dynamic knowledge bases and content verification systems — Perplexity offers a direct path to production-grade RAG without managing vector databases, embedding pipelines, or relevance tuning.
 
 As we move through 2026, the expectation that AI applications provide sourced, verifiable answers is becoming the standard, not the exception. Integrating Perplexity's RAG search API positions your applications to meet this expectation, delivering experiences that users can trust because every answer stands on a foundation of real, citable sources.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "perplexity-api-rag-search",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/perplexity-api-rag-search"
+  }
+}
+</script>

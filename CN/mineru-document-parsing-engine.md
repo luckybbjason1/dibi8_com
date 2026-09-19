@@ -4,7 +4,7 @@ title: "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready Markdown"
 description: 'MinerU (70,600+ GitHub stars) transforms PDF, DOCX, PPTX, XLSX, images and web pages into structured Markdown and JSON for LLM, RAG and Agent workflows. Supports 109-language OCR, formula-to-LaTeX, table-to-HTML, and runs on CPU or GPU.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-slug: 'mineru-document-parsing-engine'
+lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
@@ -250,3 +250,30 @@ With 70,600+ stars, an active development team, and growing framework integratio
 - Discord community: https://discord.gg/Tdedn9GTXq
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready Markdown",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mineru-document-parsing-engine"
+  }
+}
+</script>

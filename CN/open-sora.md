@@ -668,3 +668,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Model Weights (ModelScope): https://modelscope.cn/models/luchentech/Open-Sora-v2
 - FLUX Text-to-Image Model: https://github.com/black-forest-labs/flux
 - ComfyUI Official Repository: https://github.com/comfyanonymous/ComfyUI
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open-Sora: 29K+ Stars — Open-Source Video Generation Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/open-sora"
+  }
+}
+</script>

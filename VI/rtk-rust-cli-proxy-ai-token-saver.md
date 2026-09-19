@@ -286,3 +286,30 @@ Hơn 45,000 sao GitHub. Apache-2.0. Một binary duy nhất, không phụ thuộ
 ---
 
 *Tags: RTK, AI coding agent, tối ưu token LLM, công cụ CLI Rust, công cụ phát triển mã nguồn mở, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, giảm chi phí token, năng suất lập trình viên 2026*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token LLM cho AI Coding Agent — Hướng Dẫn Cài Đặt và Ứng Dụng Thực Tế",
+  "datePublished": "2026-05-14",
+  "dateModified": "2026-05-14",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/rtk-rust-cli-proxy-ai-token-saver"
+  }
+}
+</script>

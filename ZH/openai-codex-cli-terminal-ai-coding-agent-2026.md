@@ -466,3 +466,30 @@ A：CLI 支持 Windows（推荐 WSL2）。2026 年 4 月起还推出了原生 Wi
 - [MCP 协议规范](https://modelcontextprotocol.io)
 
 *本文最后更新：2026 年 5 月 17 日。Codex CLI 处于快速迭代期，部分功能可能随版本更新而变化，建议以官方文档为准。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Codex CLI 完全指南：2026年最值得入手的终端 AI 编程助手（安装配置 + 多智能体工作流实战教程）",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openai-codex-cli-terminal-ai-coding-agent-2026"
+  }
+}
+</script>

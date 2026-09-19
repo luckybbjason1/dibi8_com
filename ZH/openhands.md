@@ -615,3 +615,30 @@ OpenHands 是 2026 年最出色的开源 AI 软件工程智能体。其 74,000+ 
 ---
 
 *本指南独立维护并定期更新。最后验证时间：2026年5月。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenHands: 74K+ Stars — 能写代码能运行的 AI 软件工程师 (2026 安装教程)",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openhands"
+  }
+}
+</script>

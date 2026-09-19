@@ -622,3 +622,30 @@ Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器
 ## 联盟营销披露
 
 本指南包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8)、[OKX](https://www.promoohubly.com/join/12190433) 和 [Minara](https://minara.ai/r/OSXG4X) 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot"
+  }
+}
+</script>

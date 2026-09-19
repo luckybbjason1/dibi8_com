@@ -3,7 +3,7 @@ title: 'Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Ag
 description: 'Deep dive into codebase-memory-mcp — the fastest code intelligence MCP server that indexes entire repositories in milliseconds. Full installation guide, comparison with alternatives, and real-world usage.'
 tags: ["ai-agent", "ai-tools", "automation", "coding", "development", "mcp", "memory", "model-context-protocol", "open-source", "persistence"]
 date: 2026-06-19
-layout: article
+lastmod:  2026-06-19layout: article
 category: dev-utils
 lang: en
 slug: codebase-memory-mcp-high-performance-code-intelligence
@@ -510,3 +510,30 @@ For developers serious about leveraging AI for software development, codebase-me
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Host your development projects
 - [HTStack](https://my.htstack.com/aff.php?aff=27187) - Reliable hosting for your tools
 - [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) - Proxy solutions for web scraping
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/codebase-memory-mcp-high-performance-code-intelligence"
+  }
+}
+</script>

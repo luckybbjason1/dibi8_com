@@ -456,3 +456,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [GeneFace Repository](https://github.com/yerfor/GeneFace)
 - [GFPGAN Face Restoration](https://github.com/TencentARC/GFPGAN)
 - [Pre-trained Models (Google Drive)](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VideoReTalking: 7.2K+ Stars — AI Lip-Sync Video Editing Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/video-retalking"
+  }
+}
+</script>

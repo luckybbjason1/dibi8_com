@@ -2,7 +2,7 @@
 title: 'TimesFM 2.5: 예측을 위한 구글 혁신적 시계열 기초 모델'
 description: 'TimesFM 2.5 완전 가이드 - 시계열 예측을 위한 구글 리서치 디코더 전용 기초 모델. 설치, 미세 조정, 벤치마크, 실제 응용 사례를 다룹니다.'
 date: 2026-06-19
-tags: []
+lastmod:  2026-06-19tags: []
 category: "data-science"
 lang: kr
 slug: timesfm-google-time-series-foundation-model
@@ -613,3 +613,30 @@ Google 생태계와의 통합, 활발한 개발 커뮤니티, 지속적인 개�
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - ML 모델 호스팅 
 - [HTStack](https://my.htstack.com/aff.php?aff=27187) - 안정적인 GPU 서버 호스팅 
 - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - 훈련용 GPU 서버(중국어)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TimesFM 2.5: 예측을 위한 구글 혁신적 시계열 기초 모델",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/timesfm-google-time-series-foundation-model"
+  }
+}
+</script>

@@ -266,3 +266,30 @@ Anthropic 维护参考服务器：[github.com/modelcontextprotocol/servers](http
 ---
 
 **参考**：[github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**：MCP 2025-06 · **Stars**（生态合计）：参考仓库累计 60K+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP 服务器 2026: 100+ 生态地图 + 选型决策树",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mcp-servers-2026-rankings-selection-guide"
+  }
+}
+</script>

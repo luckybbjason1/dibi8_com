@@ -630,3 +630,30 @@ Lean 是唯一一个将带你从回测到实盘交易而无需重写算法的开
 ## Affiliate 披露
 
 本文包含指向 Binance 和 Minara 的 affiliate 链接。如果你通过这些链接注册，dibi8.com 可能会获得佣金，不会向你收取额外费用。我们只推荐自己用于算法交易研究的工具。Affiliate 收入支持我们的开源技术内容。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/lean-quantconnect-trading-engine"
+  }
+}
+</script>

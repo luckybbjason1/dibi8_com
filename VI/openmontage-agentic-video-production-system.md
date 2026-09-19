@@ -493,3 +493,30 @@ Với 12 đường ống, 52 công cụ, hơn 500 kỹ năng tác nhân và kh�
 **Tham gia cộng đồng:** [Thảo luận trên GitHub](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
 
 📢 **Cập nhật thông tin:** Tham gia [nhóm Telegram của chúng tôi](https://t.me/DIBI8_Group/2) để nhận đánh giá công cụ AI hàng ngày và truy cập sớm nội dung mới.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh giá OpenMontage: Hệ thống Sản xuất Video Tự chủ Mã Nguồn Mở Đầu tiên trên Thế giới (52 Công cụ, 12 Quy trình, Hơn 500 Kỹ năng)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/openmontage-agentic-video-production-system"
+  }
+}
+</script>

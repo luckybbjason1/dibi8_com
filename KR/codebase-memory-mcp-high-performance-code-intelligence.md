@@ -2,7 +2,7 @@
 title: '코드베이스-메모리-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스'
 description: '코드베이스-메모리-MCP에 대한 깊은 탐구 — 전체 저장소를 밀리초 단위로 인덱싱하는 가장 빠른 코드 인텔리전스 MCP 서버입니다.'
 date: 2026-06-19
-tags: []
+lastmod:  2026-06-19tags: []
 category: "dev-utils"
 lang: kr
 slug: codebase-memory-mcp-high-performance-code-intelligence
@@ -509,3 +509,30 @@ Codebase-memory-mcp는 AI 코딩 에이전트가 코드와 상호 작용하는 �
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - 개발 프로젝트 호스팅 
 - [HTStack](https://my.htstack.com/aff.php?aff=27187) - 도구를 위한 안정적인 호스팅 
 - [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) - 웹 스크래핑을 위한 프록시 솔루션
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "코드베이스-메모리-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/codebase-memory-mcp-high-performance-code-intelligence"
+  }
+}
+</script>

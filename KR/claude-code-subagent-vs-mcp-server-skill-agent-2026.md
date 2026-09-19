@@ -36,6 +36,8 @@ faq:
   - q: "스킬, 서브에이전트, MCP 서버가 모두 CI / 헤드리스 모드에서 동작하나?"
     a: "그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다."
 ---
+# 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)
+
 
 ## 들어가며
 
@@ -137,3 +139,30 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 ## 결론
 
 "스킬이냐, 서브에이전트냐, MCP 서버냐?"를 마치 경쟁하는 것처럼 묻는 걸 멈춰라. 대신 이렇게 물어라: 나는 **지식**이 부족한가, **컨텍스트**가 부족한가, **역량**이 부족한가? 지식 → 스킬. 컨텍스트 → 서브에이전트. 역량 → MCP 서버. 풀스택 사례는 셋 모두를 계층으로 쌓아 쓴다. 그리고 의심스러울 때는, 당신의 축을 움직이는 가장 저렴한 아티팩트를 만들어라 — 마크다운 파일은 가능한 한 언제나 배포된 서비스를 이긴다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026"
+  }
+}
+</script>

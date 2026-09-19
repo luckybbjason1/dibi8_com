@@ -617,3 +617,30 @@ Weaviate Cloud(WCD)는 완전 관리형 SaaS 제공 —— 제로 운영, 자동
 ---
 
 *제휴 공개: 본 문서에는 DigitalOcean 및 HTStack 제휴 링크가 포함되어 있습니다. 이 링크를 통해 인프라를 구매하시면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다. 당사는 프로덕션 환경에서 벤치마킹한 제공업처만을 추천합니다. 제휴 수익은 독립적인 기술 연구와 오픈소스 도구 개발을 지원합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/weaviate-vector-search-enterprise"
+  }
+}
+</script>

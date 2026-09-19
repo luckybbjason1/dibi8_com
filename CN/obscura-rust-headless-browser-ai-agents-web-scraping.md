@@ -2,7 +2,7 @@
 title: 'Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026'
 description: 'Obscura (14,788 GitHub stars) is a Rust headless browser engine for AI agents and web scraping. 30MB memory, 85ms page load, built-in anti-detection. Drop-in replacement for headless Chrome with Puppeteer and Playwright support. Docker and binary installs.'
 date: 2026-06-09
-slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
+lastmod:  2026-06-09slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
 tags: ['obscura', 'headless browser', 'Rust browser', 'web scraping', 'AI agent tools', 'Puppeteer alternative', 'Playwright alternative', 'anti-detection', 'stealth browsing']
 github_repo: 'https://github.com/h4ckf0r0day/obscura'
@@ -545,3 +545,30 @@ The upcoming Obscura Cloud hosted service (managed infrastructure + residential 
 Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclaimer:** This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/obscura-rust-headless-browser-ai-agents-web-scraping"
+  }
+}
+</script>

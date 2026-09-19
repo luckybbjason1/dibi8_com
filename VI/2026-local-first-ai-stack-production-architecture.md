@@ -23,6 +23,8 @@ tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-a
 aliases:
 - /vi/posts/2026-local-first-ai-stack-production-architecture/
 ---
+# Local-First AI Stack 2026: Kiến trúc tham chiếu cho production (kèm 14 tool open-source)
+
 
 ## Vì sao "cứ gọi OpenAI là xong" không còn work nữa
 
@@ -242,3 +244,30 @@ Nếu bạn bắt đầu hôm nay, cài rtk và CC Switch trong tuần này, đ�
 | 6 | Voice I/O | [Supertonic](https://dibi8.com/vi/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/) | 9.9K+ | MIT + OpenRAIL-M |
 | 7 | Methodology | [12-Factor Agents](https://dibi8.com/vi/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) | 22K+ | Apache + CC BY-SA |
 | ∗ | Connective | [MCP — Model Context Protocol](https://dibi8.com/vi/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/) | n/a | Anthropic OSS |
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Local-First AI Stack 2026: Kiến trúc tham chiếu cho production (kèm 14 tool open-source)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/2026-local-first-ai-stack-production-architecture"
+  }
+}
+</script>

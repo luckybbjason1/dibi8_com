@@ -2,7 +2,7 @@
 title: 'Codebase-Memory-MCP：AI 编码代理的高性能代码智能'
 description: '深入探讨 codebase-memory-mcp——最快的代码智能 MCP 服务器，可在毫秒内索引整个代码库。完整安装指南、比较和实际用例。'
 date: 2026-06-19
-tags: []
+lastmod:  2026-06-19tags: []
 category: "dev-utils"
 lang: zh
 slug: codebase-memory-mcp-high-performance-code-intelligence
@@ -509,3 +509,30 @@ grep 或 ripgrep 等传统代码搜索工具擅长文本匹配，但缺乏结构
  - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - 托管您的开发项目
  - [HTStack](https://my.htstack.com/aff.php?aff=27187) - 为您的工具提供可靠的托管
  - [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) - 网页抓取的代理解决方案
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Codebase-Memory-MCP：AI 编码代理的高性能代码智能",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/codebase-memory-mcp-high-performance-code-intelligence"
+  }
+}
+</script>

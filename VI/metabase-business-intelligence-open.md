@@ -615,3 +615,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Metabase Community Forum](https://discourse.metabase.com/)
 
 *Affiliate Disclosure: Bài viết này chứa liên kết affiliate tới DigitalOcean. Nếu bạn đăng ký qua link giới thiệu, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Mọi ý kiến và benchmarks đều độc lập và dựa trên thử nghiệm thực tế.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau Với Chi Phí Bằng Không — Hướng Dẫn Cài Đặt",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/metabase-business-intelligence-open"
+  }
+}
+</script>

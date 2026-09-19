@@ -607,3 +607,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Choosing Between Whisper Variants — Modal.com](https://modal.com/blog/choosing-whisper-variants)
 - [Comparison: WhisperX vs Faster-Whisper vs OpenAI Whisper](https://gist.github.com/danielrosehill/278b1719598093767126e52105ae076e)
 - [Whisper API Blog — Model Comparison](https://whisperapi.com/accuracy-benchmarks-top-free-open-source-speech-to-text-offerings)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Whisper: 99.8K+ Stars — Hướng Dẫn Cài Đặt ASR Đầy Đủ vs WhisperX, faster-whisper 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/openai-whisper"
+  }
+}
+</script>

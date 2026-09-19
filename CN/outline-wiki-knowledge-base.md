@@ -665,3 +665,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *This article may contain affiliate links. If you sign up for DigitalOcean or HTStack through our referral links, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Outline: The Open-Source Wiki & Knowledge Base Built for Engineering Teams — 2026 Self-Hosted Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/outline-wiki-knowledge-base"
+  }
+}
+</script>

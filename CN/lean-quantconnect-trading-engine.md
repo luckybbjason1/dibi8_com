@@ -630,3 +630,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links to Binance and Minara. If you register through these links, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we use for our own algorithmic trading research. Affiliate income supports our open-source technical content.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lean: The Open-Source Algorithmic Trading Engine Powering QuantConnect — C# & Python Setup 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/lean-quantconnect-trading-engine"
+  }
+}
+</script>

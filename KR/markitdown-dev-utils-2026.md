@@ -34,6 +34,8 @@ faqs:
   - q: 'markitdown에 알려진 한계가 있나요?'
     a: '네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보존되지 않을 수 있습니다. 프로젝트는 활발히 유지보수되지만, 시각적 재현보다 텍스트 정확성을 우선합니다.'
 ---
+# markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드
+
 
 {{< resource-info >}}
 
@@ -310,3 +312,30 @@ jobs:
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/markitdown-dev-utils-2026"
+  }
+}
+</script>

@@ -675,3 +675,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 5. **Thư viện Python Requests (phụ thuộc của HTTPie)** — https://docs.python-requests.org/
 6. **jq — Bộ xử lý JSON (ngườii bạn đồng hành lý tưởng của HTTPie)** — https://jqlang.github.io/jq/
 7. **CurliPie — Chuyển đổi curl sang HTTPie** — https://curlipie.com/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại So với curl, wget 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/httpie"
+  }
+}
+</script>

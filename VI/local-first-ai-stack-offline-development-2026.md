@@ -157,3 +157,30 @@ Hybrid đúng đắn là local mặc định + API thương mại dự phòng. P
 ---
 
 **Bài liên quan**: [Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/vi/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Hướng Dẫn Cài Đặt Ollama](https://dibi8.com/vi/resources/llm-frameworks/ollama/) · [Kiến Trúc Production Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn Toàn Offline",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/local-first-ai-stack-offline-development-2026"
+  }
+}
+</script>

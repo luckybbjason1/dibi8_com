@@ -27,6 +27,8 @@ tags: ['국경 간', 'AI 마케팅', '글로벌 진출', '스택', '컬렉션']
 aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---
+# 국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업
+
 
 2026년 AI 기반 제품을 글로벌 시장에 출하는 중국 팀은 고유한 마찰 스택에 직면합니다: GDPR vs 중국 데이터법, 규모 있는 다국어 콘텐츠, 제재된 프로바이더 간 결제 처리, 광고 차단기에 막히지 않는 분석, 시트당 USD $80/월 들지 않는 dev 도구. 이 컬렉션은 **각각을 해결하는 7-도구 스택** — 가능한 곳은 오픈소스 사용, 중국 ↔ 글로벌 브리지가 중요한 곳은 자체 인프라(홍콩 VPS) 사용.
 
@@ -259,3 +261,30 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 ---
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) dev 측, [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 비용 극단 추론용.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cross-border-ai-marketing-stack"
+  }
+}
+</script>

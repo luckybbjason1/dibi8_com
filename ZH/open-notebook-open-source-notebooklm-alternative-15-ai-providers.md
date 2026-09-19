@@ -2,7 +2,7 @@
 title: 'open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，28,000 星标 — 设置指南 2026'
 description: 'open-notebook（28,200 GitHub 星标）是 Google NotebookLM 的开源替代方案，支持 15+ AI 提供商。自托管 RAG 知识库，支持多模态音频剧集。包含设置指南、提供商对比和真实基准测试。'
 date: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm 替代方案', '自托管 RAG', 'AI 知识库', '多模态 RAG', '开源笔记本', 'AI 播客生成器', '自托管 LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -389,3 +389,30 @@ open-notebook 证明个人 AI 研究助手不需要生活在 Google 的服务器
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 open-notebook 设置和配置。查看我们的 [LangChain RAG 架构](dibi8-internal-link) 和 [向量数据库比较](dibi8-internal-link) 指南了解互补知识。今天就试试 open-notebook——`docker compose up`，上传一个 PDF，然后问它一个问题。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，28,000 星标 — 设置指南 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+  }
+}
+</script>

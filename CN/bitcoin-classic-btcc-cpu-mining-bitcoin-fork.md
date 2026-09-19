@@ -33,6 +33,8 @@ faqs:
   - q: 'Is Bitcoin-Classic (BTCC) a good investment?'
     a: 'No. BTCC currently has near-zero market cap and liquidity, no major exchange support, and only a tiny community (around 18-23 GitHub stars). It is best treated as an educational and experimental project, not an investment.'
 ---
+# Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinary People Mine with CPU
+
 {</* resource-info */>}
 
 ## What Is Bitcoin-Classic?
@@ -176,3 +178,30 @@ For developers building or deploying open-source AI tools, we recommend:
 
 - [Bitcoin-Classic](https://github.com/Marcus-Vane/Bitcoin-Classic)
 - [Bitcoin Core](https://github.com/bitcoin/bitcoin)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinary People Mine with CPU",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/bitcoin-classic-btcc-cpu-mining-bitcoin-fork"
+  }
+}
+</script>

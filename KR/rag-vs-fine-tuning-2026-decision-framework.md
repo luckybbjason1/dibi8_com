@@ -203,3 +203,30 @@ RAG / 파인튜닝 호스팅용:
 ---
 
 **관련 글**: [MCP 서버 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent 메모리 시스템 2026](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents 가이드](https://dibi8.com/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAG vs 파인튜닝 2026: 실제 비용 수치로 보는 데이터 기반 의사결정 프레임워크",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/rag-vs-fine-tuning-2026-decision-framework"
+  }
+}
+</script>

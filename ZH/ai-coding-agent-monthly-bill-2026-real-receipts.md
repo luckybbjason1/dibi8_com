@@ -171,3 +171,30 @@ Effective cost per hour: $0.98
 ---
 
 **相关阅读**：[AI 编码 2026-Q2 终极对决](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor 替代方案 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [RTK Rust CLI 代理：AI 编码成本省 80%](https://dibi8.com/zh/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro 的 30 天真实账单",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-coding-agent-monthly-bill-2026-real-receipts"
+  }
+}
+</script>

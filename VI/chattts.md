@@ -643,3 +643,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Awesome-ChatTTS Community Index](https://github.com/Awesome-ChatTTS)
 - [ChatTTS Benchmark Comparison Study](https://blog.csdn.net/weixin_30415591/article/details/157480949)
 - [2025 Open Source AI Model Comparison](https://www.e-com-net.com/article/1936044193575137280.htm)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại vs Coqui, MeloTTS 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/chattts"
+  }
+}
+</script>

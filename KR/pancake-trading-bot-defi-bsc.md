@@ -994,3 +994,30 @@ DeFi 개발자 커뮤니티에 참여하라: **t.me/dibi8defi**
 ## 제휴 마케팅 고지
 
 이 기사에는 Binance와 Minara에 대한 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하고 거래하면 추가 비용 없이 커미션을 받을 수 있다. 이 커미션은 오픈소스 트레이딩 도구 및 교육 콘텐츠 개발에 사용된다. 우리는 직접 테스트한 플랫폼만 추천한다. 암호화폐 트레이딩에는 상당한 위험이 수반된다 — 절대 잃을 수 있는 것보다 더 많이 투자하지 마라.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PancakeSwap 트레이딩 봇 2026: Python으로 BSC에서 자동화된 DeFi 전략 구축 — 완전 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/pancake-trading-bot-defi-bsc"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝트 2026"
 description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다."
 date: 2026-06-15
-slug: oh-my-pi
+lastmod:  2026-06-15slug: oh-my-pi
 category: dev-utils
 tags: ['raspberry pi', '스마트 홈', 'iot', '엣지 컴퓨팅', '홈 오토메이션', 'linux', '자동화']
 github_repo: "https://github.com/can1357/oh-my-pi"
@@ -408,3 +408,30 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **CTA**: Telegram에서 DIBI8 IoT 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝트 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/oh-my-pi"
+  }
+}
+</script>

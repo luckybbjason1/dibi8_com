@@ -6,7 +6,7 @@ Meta description: Explore Superpowers, the 200k+ star agentic skills framework. 
 title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026'
 description: 'Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.'
 date: 2026-05-23
-slug: 'superpowers'
+lastmod:  2026-05-23slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ['agentic-ai', 'llm-frameworks', 'shell-scripting', 'software-development', 'ai-agents', 'developer-tools']
 github_repo: 'https://github.com/obra/superpowers'

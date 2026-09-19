@@ -34,6 +34,8 @@ faqs:
   - q: '可以在手机上使用 Odysseus 吗？'
     a: '可以。Odysseus 是一个渐进式 Web 应用（PWA），完全响应式设计。在 iOS 或 Android 上点击"添加到主屏幕"可获得接近原生 App 的体验。Cookbook 和 Agent 功能在手机上同样可用，但 GPU 密集型的本地模型推理仍需桌面/服务器环境。'
 ---
+# Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南
+
 
 Odysseus 于 2026 年 5 月 31 日在 GitHub 上线，到 6 月 8 日已突破 6.3 万 star——平均每天新增约 **7,000 个 star**，是 2026 年增长最快的开源 AI 项目之一。核心理念简单直接：把你每月花 20 美元订阅 ChatGPT Plus 能得到的一切，搬到你自己的硬件上，数据归自己，代码 MIT 协议完全开放。
 
@@ -125,3 +127,30 @@ Odysseus 目前是 1.0 版本，上线不到两周，难免存在不完善之处
 如果你想在自己的硬件上获得媲美 ChatGPT 的体验，同时不想支付月费、不想数据上云，Odysseus 是目前最完整的开源选项。9 天 6.3 万 star 的背后，是真实的社区认可，而非虚假热度。克隆仓库，`docker compose up`，5 分钟内即可拥有一个完整运行的 AI 工作台。
 
 **GitHub：** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-2026"
+  }
+}
+</script>

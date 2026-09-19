@@ -36,6 +36,8 @@ faq:
   - q: "Claude Code subagent 怎么计费 —— 每个都单独收费吗？"
     a: "每次 subagent 调用都和其他 Claude 对话一样消耗 token。成本约等于 subagent 的完整上下文（系统 prompt + 工具 schema + 任务 prompt + 思考 + 最终报告）。Pro 和 Max 套餐里，subagent 使用计入父会话同一个用量额度。API 用户就是按 token 直接计费。省钱点在于把会膨胀父上下文的探索工作卸载出去 —— 你付 subagent 的钱，换主会话保持轻快聚焦。"
 ---
+# Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）
+
 
 ## 引言
 
@@ -161,3 +163,30 @@ Agent({
 从模式 1（并行调研扇出）开始 —— 这是采用门槛最低、收益最快的点。随着会话变长、任务变重，再加上其他模式。
 
 "就继续在主会话里输入"的本能死得艰难。压制它。派出 subagent。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code-subagent-patterns-multi-agent-workflows-2026"
+  }
+}
+</script>

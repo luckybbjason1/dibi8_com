@@ -769,3 +769,30 @@ Supabase 为你提供构建生产级 AI 应用所需的一切：坚如磐石的 
 ## 联盟营销披露
 
 本文包含联盟营销链接。如果你通过带有联盟 ID 的链接购买服务（如 DigitalOcean、HTStack），我们可能会获得佣金，而你无需支付额外费用。这有助于资助我们的开源文档工作。所有推荐均基于真正的技术价值，而非联盟可用性。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI 应用 — 完整部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/supabase-postgres-vector-ai-apps"
+  }
+}
+</script>

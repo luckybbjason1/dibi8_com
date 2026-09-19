@@ -23,6 +23,8 @@ tags: ['Infrastructure as Code', 'Terraform', 'Pulumi', 'AWS CDK', 'Crossplane',
 aliases:
 - /posts/infrastructure-as-code-tools-comparison/
 ---
+# Infrastructure as Code Tools 2025: Terraform vs Pulumi vs AWS CDK vs Crossplane Compared
+
 
 {</* resource-info */>}
 
@@ -280,3 +282,30 @@ Ansible has the gentlest learning curve due to its YAML syntax and agentless arc
 
 ### How do I migrate from Terraform to Pulumi?
 Pulumi provides the `tf2pulumi` tool that converts Terraform HCL to Pulumi code in your chosen language. Alternatively, you can use Pulumi's Terraform bridge to reference existing Terraform state and providers incrementally.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Infrastructure as Code Tools 2025: Terraform vs Pulumi vs AWS CDK vs Crossplane Compared",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/infrastructure-as-code-tools-comparison"
+  }
+}
+</script>

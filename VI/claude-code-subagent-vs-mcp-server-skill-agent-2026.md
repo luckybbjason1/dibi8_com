@@ -36,6 +36,8 @@ faq:
   - q: "Skill, subagent và MCP server có hoạt động trong chế độ CI / headless không?"
     a: "Có, cả ba. Skill và subagent là các tệp được quản lý phiên bản trong repo của bạn, nên CI tự động nhận chúng. MCP server cần được cấu hình và truy cập được từ môi trường CI (thông tin xác thực trong CI secrets, quyền truy cập mạng tới dịch vụ). Chế độ headless -p tôn trọng cả ba; điểm vướng thực tế duy nhất là đảm bảo phần xác thực của MCP server hoạt động được mà không cần đăng nhập tương tác khi chạy không giám sát."
 ---
+# Subagent vs MCP Server vs Skill: Khi nào nên xây từng loại tiện ích mở rộng Claude Code (2026)
+
 
 ## Giới thiệu
 
@@ -137,3 +139,30 @@ Chạy cả ba lớp — đặc biệt là MCP server — ở quy mô lớn đò
 ## Kết luận
 
 Hãy thôi hỏi «skill, subagent, hay MCP server?» như thể chúng cạnh tranh nhau. Thay vào đó hãy hỏi: tôi đang thiếu **kiến thức**, **ngữ cảnh**, hay **năng lực**? Kiến thức → skill. Ngữ cảnh → subagent. Năng lực → MCP server. Các trường hợp full-stack dùng cả ba, xếp chồng lên nhau. Và khi còn phân vân, hãy xây tạo phẩm rẻ nhất tác động được vào trục của bạn — một tệp markdown thắng một dịch vụ đã triển khai mỗi khi nó làm được việc.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Subagent vs MCP Server vs Skill: Khi nào nên xây từng loại tiện ích mở rộng Claude Code (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026"
+  }
+}
+</script>

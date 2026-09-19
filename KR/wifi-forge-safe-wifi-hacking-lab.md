@@ -33,6 +33,8 @@ faqs:
   - q: 'WiFi-Forge를 설치하고 실행하려면 무엇이 필요한가요?'
     a: 'Linux(Ubuntu 또는 Debian 권장), Python 3, 그리고 root 권한이 필요합니다. mininet-wifi가 커널 기능을 사용하기 때문입니다. 저장소를 클론한 후 sudo ./install.sh를 실행해 의존성을 설치하고, sudo python3 wififorge.py로 시작하면 됩니다.'
 ---
+# WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스
+
 {</* resource-info */>}
 
 WiFi 공격을 전통적인 방식으로 배워본 적이 있다면, 흐름은 대개 이렇습니다: 모니터 모드와 패킷 인젝션을 지원하는 USB 무선 어댑터를 주문하고, 한나절 동안 Linux 드라이버와 씨름하고, 본인 소유의 테스트 AP를 세팅하고, *그제서야* 진짜로 배우려던 공격 연습을 시작합니다. **WiFi-Forge**는 이 모든 사전 준비를 통째로 건너뛰게 해줍니다.
@@ -116,3 +118,30 @@ Linux(Ubuntu 또는 Debian 권장), Python 3, root 권한이 필요합니다(min
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/wifi-forge-safe-wifi-hacking-lab"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['Infrastructure as Code', 'Terraform', 'Pulumi', 'AWS CDK', 'Crossplane',
 aliases:
 - /vi/posts/infrastructure-as-code-tools-comparison/
 ---
+# Công Cụ Infrastructure as Code 2025: So Sánh Terraform, Pulumi, AWS CDK, Crossplane
+
 
 {</* resource-info */>}
 
@@ -329,3 +331,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [AWS Cloud Development Kit](https://aws.amazon.com) — Bộ công cụ phát triển hạ tầng AWS.
 - [Crossplane](https://crossplane.io) — Quản lý hạ tầng đa đám mây sử dụng Kubernetes.
 - [Ansible](https://ansible.com) — Tự động hóa IT agentless.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ Infrastructure as Code 2025: So Sánh Terraform, Pulumi, AWS CDK, Crossplane",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/infrastructure-as-code-tools-comparison"
+  }
+}
+</script>

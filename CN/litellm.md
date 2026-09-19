@@ -581,3 +581,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Portkey vs LiteLLM Comparison](https://portkey.ai/lp/portkey-vs-litellm) — Vendor comparison page
 - [OpenRouter Documentation](https://openrouter.ai/docs) — Alternative gateway reference
 - [Helicone Documentation](https://docs.helicone.ai) — Observability-focused alternative
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs with Built-in Fallbacks — Production Gateway Setup for 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/litellm"
+  }
+}
+</script>

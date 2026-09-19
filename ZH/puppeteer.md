@@ -703,3 +703,30 @@ Puppeteer 仍然是需要编程控制 Chrome 的团队的可靠选择。其 94,3
 - [WebDriver BiDi 规范](https://w3c.github.io/webdriver-bidi/) — 跨浏览器自动化标准
 - [Puppeteer vs Playwright 基准测试](https://getautonoma.com/blog/selenium-playwright-cypress-comparison) — 独立性能对比
 - [Browserless.io Puppeteer 托管](https://www.browserless.io/) — 托管 Puppeteer 基础设施
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/puppeteer"
+  }
+}
+</script>

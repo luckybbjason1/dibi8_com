@@ -274,3 +274,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek TUI + Anthropic Financial AI: 3 Dự Án GitHub Trending Tháng 5/2026 Mang Lại Lợi Nhuận Thực",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/github-trending-projects-may-2026"
+  }
+}
+</script>

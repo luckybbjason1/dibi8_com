@@ -614,3 +614,30 @@ Typesense 27.1은 프로덕션급 인스턴트 검색을 위한 가장 빠른 �
 ---
 
 *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하시면 추가 비용 없이 커미션을 받습니다. 우리는 실제 테스트를 기반으로 서비스를 독립적으로 추천합니다. Typesense는 물리 오픈소스 소프트웨어입니다 — 유일한 비용은 호스팅 비용입니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Typesense 2026: 하루 100만 건 처리하는 오픈소스 인스턴트 검색 API — 셀프 호스팅 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/typesense-instant-search-api"
+  }
+}
+</script>

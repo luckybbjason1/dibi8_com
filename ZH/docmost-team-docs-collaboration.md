@@ -532,3 +532,30 @@ Docmost 是 2026 年最令人信服的开源 Notion 替代方案。它掌握了�
 ## 联盟披露
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过我们的链接注册，我们会获得推荐积分，而你无需支付额外费用。我们只推荐自己使用过的基础设施。Docmost 社区版是免费开源的，采用 AGPL-3.0 —— 我们与 Docmost 维护者之间不存在联盟关系。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docmost 2026：实时团队协作的开源 Notion 替代方案 —— 自托管指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/docmost-team-docs-collaboration"
+  }
+}
+</script>

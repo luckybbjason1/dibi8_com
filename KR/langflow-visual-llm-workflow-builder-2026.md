@@ -2,7 +2,7 @@
 title: 'Langflow: 시각적 LLM 워크플로우를 위한 148k 스타 – 2026년 기술 심층 분석'
 description: 'Langflow (LF)는 AI 에이전트 및 워크플로우 구축을 간소화합니다. LangChain, OpenAI, Hugging Face, Anthropic과 통합됩니다. 설정, 통합, 벤치마크 및 프로덕션 강화에 대해 다룹니다.'
 date: 2026-05-23
-slug: 'langflow'
+lastmod:  2026-05-23slug: 'langflow'
 category: 'llm-frameworks'
 tags: [Langflow, LLM 워크플로우, 시각적 프로그래밍, AI 에이전트, LangChain, 흐름 기반 프로그래밍, 프롬프트 엔지니어링, 배포, 로우코드 AI]
 github_repo: 'https://github.com/langflow-ai/langflow'
@@ -416,3 +416,29 @@ AI 도구 및 프레임워크에 대한 더 많은 토론을 위해 [dibi8 한�
 ---
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Langflow: 시각적 LLM 워크플로우를 위한 148k 스타 – 2026년 기술 심층 분석",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/langflow-visual-llm-workflow-builder-2026"
+  }
+}
+</script>

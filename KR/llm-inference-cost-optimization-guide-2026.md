@@ -2,7 +2,7 @@
 title: "LLM 추론 비용 최적화: 페니 단위로 모든 모델 실행 — 2026년 결정 가이드"
 description: 'LLM 추론 비용 최적화 가이드. Ollama, vLLM, llama.cpp 양자화 비교. API 비용을 90%+ 절감. 3 벤치마크, 6 배포 방법.'
 date: 2026-06-16
-slug: 'llm-inference-cost-optimization-guide-2026'
+lastmod:  2026-06-16slug: 'llm-inference-cost-optimization-guide-2026'
 category: dev-utils
 tags: ['LLM cost optimization', 'cheap LLM inference', 'quantization', 'Ollama', 'vLLM', 'llama.cpp', 'reduce API costs', 'local LLM']
 github_repo: 'https://github.com/ollama/ollama'
@@ -154,3 +154,29 @@ A: 코딩용: CodeLlama-7B-Q4. 일반 용도: Llama 3.2 8B-Q4. 추론: Mixtral 8
 - vLLM: https://github.com/vllm-project/vllm 
 - llama.cpp: https://github.com/ggerganov/llama.cpp 
 - OpenAI 가격: https://openai.com/api/pricing/ **공개**: 이 기사는 해당되는 경우 제휴 링크를 사용합니다. 모든 비용과 벤치마크는 3개월 간의 실제 사용량 데이터를 기반으로 합니다. 후원 콘텐츠가 없습니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLM 추론 비용 최적화: 페니 단위로 모든 모델 실행 — 2026년 결정 가이드",
+  "datePublished": "2026-06-16",
+  "dateModified": "2026-06-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/llm-inference-cost-optimization-guide-2026"
+  }
+}
+</script>

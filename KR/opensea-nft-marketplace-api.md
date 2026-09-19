@@ -972,3 +972,30 @@ OpenSea API는 2026년 현재 가장 포괄적이고 실전 검증된 NFT 마켓
 ---
 
 *이 문서는 2026-05-19에 작성되었습니다. API 사양과 속도 제한은 변경될 수 있습니다. 최신 업데이트는 [공식 OpenSea 문서](https://docs.opensea.io/)를 참조하세요.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "opensea-nft-marketplace-api",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/opensea-nft-marketplace-api"
+  }
+}
+</script>

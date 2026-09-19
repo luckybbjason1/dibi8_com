@@ -269,3 +269,30 @@ PandasAI는 오픈소스로 물로 사용할 수 있습니다. 다만 OpenAI GPT
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLM을 활용한 데이터 분석 완벽 워크플로우: PandasAI, Code Interpreter 및 OpenAI 실전 가이드",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/llm-data-analysis-workflow-complete-guide"
+  }
+}
+</script>

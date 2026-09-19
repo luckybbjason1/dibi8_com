@@ -34,6 +34,8 @@ faq:
   - q: "Tôi có thể dùng model Claude với LangGraph hay CrewAI không?"
     a: "Được. LangGraph, CrewAI và AutoGen đều không phụ thuộc vào model (model-agnostic) — bạn có thể chạy Claude, GPT, Gemini, hay các model cục bộ phía sau chúng. Claude Agent SDK (đổi tên từ Claude Code SDK vào cuối năm 2025, nay phát hành dưới dạng cả gói Python lẫn TypeScript) được thiết kế chỉ dành cho Claude, đánh đổi tính linh hoạt về model để lấy các tính năng an toàn nguyên bản và extended thinking. Vậy nên nếu tính linh hoạt đa nhà cung cấp là yêu cầu bắt buộc, hãy chọn một trong các framework agnostic; còn nếu bạn dồn toàn lực vào Claude và muốn tích hợp chặt chẽ nhất, thì Agent SDK là con đường nguyên bản."
 ---
+# Claude Code Subagent so với LangGraph, CrewAI và AutoGen (2026): Khi nào nên chuyển sang một framework độc lập
+
 
 ## Giới thiệu
 
@@ -126,3 +128,30 @@ Dù bạn ở lại với subagent Claude Code hay tốt nghiệp lên một fra
 ## Kết luận
 
 Hãy ngừng đóng khung nó thành "Claude Code vs LangGraph." Subagent tích hợp sẵn và các framework độc lập sống trong những thế giới khác nhau: cái này hoàn thành công việc bên trong agent của bạn, cái kia xuất xưởng một ứng dụng multi-agent. **Hãy ở lại với subagent** cho nghiên cứu song song, ủy thác cho chuyên gia, bảo vệ ngữ cảnh, và các pipeline dev — chúng bao quát hầu hết công việc thực tế với không hạ tầng nào, đúng như chính pipeline đa ngôn ngữ của dibi8 chứng minh. **Hãy tốt nghiệp lên một framework** ngay khi bạn cần trạng thái bền vững, human-in-the-loop, model đa nhà cung cấp, hoặc dấu vết kiểm toán — và khi bạn làm vậy, hãy mặc định chọn **LangGraph** cho khả năng kiểm soát, **CrewAI** cho tốc độ, **Claude Agent SDK** cho production nguyên bản Anthropic. Lớp rẻ nhất giải quyết được vấn đề của bạn luôn luôn thắng.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Subagent so với LangGraph, CrewAI và AutoGen (2026): Khi nào nên chuyển sang một framework độc lập",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-subagents-vs-langgraph-crewai-autogen-2026"
+  }
+}
+</script>

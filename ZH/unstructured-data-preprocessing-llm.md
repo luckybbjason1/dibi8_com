@@ -567,3 +567,30 @@ Unstructured.io 解决了LLM流水线中最被低估的问题：将现实世界�
 ---
 
 *联盟营销披露: 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接注册，我们赚取佣金，不额外收费。Unstructured.io 是开源免费使用的；我们与 Unstructured-IO 没有商业关系。观点基于实际测试。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unstructured.io: 将任何文档转换为LLM就绪数据块的预处理流水线 — 2026指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/unstructured-data-preprocessing-llm"
+  }
+}
+</script>

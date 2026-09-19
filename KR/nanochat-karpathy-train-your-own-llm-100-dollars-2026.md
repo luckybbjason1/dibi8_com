@@ -87,3 +87,30 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 > **GPU 컴퓨팅이 필요하신가요?** [DigitalOcean 신규 사용자는 $200 크레딧을 받습니다](https://m.do.co/c/eca87ac14ee0) — 여러 번의 완전한 nanochat 훈련 실험을 실행하기에 충분합니다.
 
 **GitHub:** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k ⭐ · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,000줄 전체 LLM 파이프라인",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/nanochat-karpathy-train-your-own-llm-100-dollars-2026"
+  }
+}
+</script>

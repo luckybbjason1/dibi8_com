@@ -302,3 +302,30 @@ curl -fsSL https://opencode.ai/install | bash
 - Models.dev: https://models.dev
 
 *본 문서는 2026-05-19에 마지막으로 업데이트되었습니다. AI 도구는 빠르게 변화하므로 최신 정보는 공식 문서를 참조하세요.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenCode 완벽 가이드: 2026년 개발자 필수 AI 코딩 에이전트, Claude Code 대체 오픈소스 도구",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/opencode-open-source-claude-code-alternative-2026"
+  }
+}
+</script>

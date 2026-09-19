@@ -2,7 +2,7 @@
 title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit"
 description: "Complete guide to Spec Kit by GitHub - the open-source toolkit that transforms how developers build software through spec-driven development. Installation, workflow, and real-world examples."
 date: 2026-06-20
-tags: [ai, copilot, development, engineering, prd, spec, spec-driven]
+lastmod:  2026-06-20tags: [ai, copilot, development, engineering, prd, spec, spec-driven]
 category: "dev-utils"
 lang: en
 slug: spec-kit-github-spec-driven-development-toolkit
@@ -481,3 +481,30 @@ With backing from GitHub and rapid adoption by the developer community, Spec Kit
 ---
 
 💬 Join our Telegram group for discussions: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit",
+  "datePublished": "2026-06-20",
+  "dateModified": "2026-06-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/spec-kit-github-spec-driven-development-toolkit"
+  }
+}
+</script>

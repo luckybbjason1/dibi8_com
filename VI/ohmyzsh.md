@@ -2,7 +2,7 @@
 title: 'Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn trong Năm 2026'
 description: 'Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao.'
 date: 2026-06-11
-slug: 'ohmyzsh'
+lastmod:  2026-06-11slug: 'ohmyzsh'
 category: dev-utils
 tags: [ohmyzsh, zsh, dev-tools, terminal, bash, shell, productivity, linux]
 github_repo: 'https://github.com/ohmyzsh/ohmyzsh'
@@ -554,3 +554,29 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) đ�
 5.  Tài Liệu Zsh: https://zsh.sourceforge.io/Doc/
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí. Giúp duy trì trang web và nội dung miễn phí.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn trong Năm 2026",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ohmyzsh"
+  }
+}
+</script>

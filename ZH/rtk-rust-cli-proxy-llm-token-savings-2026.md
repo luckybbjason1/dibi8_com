@@ -306,3 +306,30 @@ rtk 是命令感知的。`git --no-pager log` 还是产出冗长输出。rtk 的
 
 ### rtk 适合用在 production CI/CD 吗？
 在 agent workflow 里安全。不要用在 `set -e` 严格依赖具体命令输出文本的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (2026)",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/rtk-rust-cli-proxy-llm-token-savings-2026"
+  }
+}
+</script>

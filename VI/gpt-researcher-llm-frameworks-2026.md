@@ -34,6 +34,8 @@ faqs:
   - q: 'conduct_research() và write_report() có phải là đồng bộ không?'
     a: 'Không. Cả hai đều là phương thức bất đồng bộ. Hãy gọi chúng bằng `await` bên trong một hàm async, rồi chạy hàm đó bằng `asyncio.run()`.'
 ---
+# GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu chuyên sâu — Hướng dẫn thực hành 2026
+
 
 {{< resource-info >}}
 
@@ -293,3 +295,30 @@ Việc thu thập dữ liệu quy mô lớn cần proxy xoay vòng — [WebShare
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu chuyên sâu — Hướng dẫn thực hành 2026",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/gpt-researcher-llm-frameworks-2026"
+  }
+}
+</script>

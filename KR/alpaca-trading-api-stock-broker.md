@@ -764,3 +764,30 @@ Alpaca와 Interactive Brokers는 서로 다른 사용 사례를 제공합니다.
 ---
 
 *최종 업데이트: 2026-05-19 | Alpaca API 버전: v2*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Alpaca Trading API 2026: 알고리즘 트레이딩을 위한 커미션 없는 주식 중개 API — 설정 가이드",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/alpaca-trading-api-stock-broker"
+  }
+}
+</script>

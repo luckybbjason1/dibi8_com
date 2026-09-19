@@ -559,3 +559,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So sánh các framework RAG mã nguồn mở tốt nhất 2026](https://www.firecrawl.dev/blog/best-open-source-rag-frameworks)
 - [Giải thích kiến trúc RAGFlow](https://milvus.io/ai-quick-reference/what-is-ragflow-and-how-does-it-work)
 - [Triển khai Production RAGFlow trên VPS](https://zhujibaike.com/2497.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars — Hướng dẫn Docker và Benchmark 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ragflow"
+  }
+}
+</script>

@@ -617,3 +617,29 @@ Với hơn 35.000 ngôi sao trên GitHub, giấy phép MIT và việc bảo trì
 **Bạn đã sẵn sàng để bắt đầu giao dịch?** Đăng ký trên [Moralis Docs](https://docs.moralis.io) hoặc [OKX](https://www.promoohubly.com/join/12190433) để nhận API keys của bạn và kết nối bot giao dịch CCXT đầu tiên của mình ngay hôm nay.
 
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ccxt-crypto-exchange-api-unified"
+  }
+}
+</script>

@@ -196,3 +196,30 @@ MIT 协议、本地优先架构、零外部依赖，使它对任何规模化跑�
 ---
 
 **GitHub**：[colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · **协议**：MIT · **最新**：v0.9.3（2026-05-22）· **Stars**：20.2K+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CodeGraph 评测：让 Claude Code / Cursor / Codex 省 35% Token 的本地代码图谱（2026）",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/codegraph-pre-indexed-knowledge-graph-2026"
+  }
+}
+</script>

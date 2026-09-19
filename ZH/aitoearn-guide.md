@@ -77,3 +77,30 @@ A: 非常稳。AiToEarn 提供了开箱即用的 Docker-compose 配置，底层�
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/aitoearn-guide"
+  }
+}
+</script>

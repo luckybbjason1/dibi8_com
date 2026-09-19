@@ -853,3 +853,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Bảng giá n8n: https://n8n.io/pricing/
 - Diễn đàn cộng đồng n8n: https://community.n8n.io
 - Thực hành bảo mật n8n: https://docs.n8n.io/hosting/security/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — Tiết kiệm 70% so với Zapier",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/n8n"
+  }
+}
+</script>

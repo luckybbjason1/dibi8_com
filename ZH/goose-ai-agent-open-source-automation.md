@@ -273,3 +273,30 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
 *Last updated: 2026-05-07*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Goose AI Agent：44K⭐Open Source神器，让 AI 替你写代码、做研究、自动化一切",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/goose-ai-agent-open-source-automation"
+  }
+}
+</script>

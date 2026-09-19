@@ -23,6 +23,8 @@ tags: ['LLM evaluation', 'benchmarking', 'framework đánh giá LLM', 'EleutherA
 aliases:
 - /vi/posts/llm-evaluation-benchmarking-frameworks/
 ---
+# Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh EleutherAI LM Eval, OpenCompass, BIG-bench
+
 
 {</* resource-info */>}
 
@@ -300,3 +302,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [HELM Stanford](https://crfm.stanford.edu)
 - [ArXiv Research Papers](https://arxiv.org)
 - [DeepEval GitHub](https://github.com/confident-ai)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh EleutherAI LM Eval, OpenCompass, BIG-bench",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/llm-evaluation-benchmarking-frameworks"
+  }
+}
+</script>

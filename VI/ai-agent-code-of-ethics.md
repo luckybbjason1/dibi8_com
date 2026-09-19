@@ -40,6 +40,8 @@ faqs:
   - q: 'Những nguyên tắc đạo đức này có thể cưỡng chế bằng mã không, hay chỉ là hướng dẫn?'
     a: 'Phần lớn đều cưỡng chế được bằng mã. Cấp quyền tối thiểu là thông tin xác thực giới hạn phạm vi và danh sách trắng; khả năng kiểm toán là ghi log có cấu trúc cho mọi lệnh gọi công cụ; tính đảo ngược là cổng phê duyệt phân tầng rủi ro cộng hoàn tác/idempotent; tự chủ có giới hạn là trần tốc độ và chi tiêu; an toàn khi lỗi là ngưỡng tin cậy và nút dừng khẩn. Chỉ có ý định đằng sau — quyết định hành động nào là rủi ro cao — mới cần phán đoán của con người. Đạo đức không cưỡng chế được chỉ là trang trí.'
 ---
+# Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành
+
 
 > **Về tài liệu này**: Đây là một bộ quy tắc đạo đức thực tiễn dành cho kỹ sư xây dựng và vận hành các AI agent tự hành — những hệ thống thực hiện hành động, không chỉ sinh văn bản. Nó được viết để cưỡng chế được, không phải để treo cao. Mỗi nguyên tắc dưới đây ánh xạ tới một biện pháp kiểm soát bạn có thể đưa vào codebase trước khi phát hành.
 
@@ -165,3 +167,30 @@ Vài mỏ neo thực tiễn:
 ---
 
 *Bộ quy tắc đạo đức này được phát hành theo giấy phép CC-BY-4.0 — hãy tự do chuyển thể nó vào tài liệu quản trị agent của riêng bạn. Nếu đội của bạn đang phát hành agent tự hành trong năm 2026, thời điểm đúng để gắn những biện pháp kiểm soát này là trước lần chạy production đầu tiên, không phải sau sự cố đầu tiên.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành",
+  "datePublished": "2026-06-04",
+  "dateModified": "2026-06-04",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-agent-code-of-ethics"
+  }
+}
+</script>

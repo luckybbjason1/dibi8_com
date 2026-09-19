@@ -662,3 +662,30 @@ AI 워크플로우 빌더를 위한 Telegram 그룹에 참여하세요: **[@dibi
 ## 제휴 공개
 
 이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 및 [AppSumo](https://appsumo.com/s/106nifb/)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 우리는 자체 배포에 활발히 사용하는 서비스만 추천합니다. 모든 벤치마크와 의견은 독립적으로 제작되었으며 어떤 제휴 파트너십의 영향도 받지 않았습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI 워크플로우 빌더",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/flowise-ai-workflow-builder-lowcode"
+  }
+}
+</script>

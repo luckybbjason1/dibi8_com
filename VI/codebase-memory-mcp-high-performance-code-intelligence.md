@@ -2,7 +2,7 @@
 title: 'Codebase-Memory-MCP: Trí tuệ mã nguồn hiệu suất cao cho các tác nhân lập trình AI'
 description: 'Khám phá codebase-memory-mcp — máy chủ MCP thông minh về mã nhanh nhất, có khả năng lập chỉ mục toàn bộ kho lưu trữ chỉ trong vài mili giây.'
 date: 2026-06-19
-tags: []
+lastmod:  2026-06-19tags: []
 category: "dev-utils"
 lang: vi
 slug: codebase-memory-mcp-high-performance-code-intelligence
@@ -509,3 +509,30 @@ Với điểm chuẩn hiệu suất ấn tượng, hỗ trợ ngôn ngữ rộng
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Lưu trữ các dự án phát triển của bạn 
 - [HTStack](https://my.htstack.com/aff.php?aff=27187) - Lưu trữ đáng tin cậy cho các công cụ của bạn 
 - [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) - Giải pháp proxy để quét web
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Codebase-Memory-MCP: Trí tuệ mã nguồn hiệu suất cao cho các tác nhân lập trình AI",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/codebase-memory-mcp-high-performance-code-intelligence"
+  }
+}
+</script>

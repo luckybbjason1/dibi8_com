@@ -26,6 +26,8 @@ tags: ['MCP', 'Model Context Protocol', '레지스트리', 'Hub 글']
 aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
+# MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법
+
 
 2026년 1월, 공개된 모든 MCP server를 GitHub README 하나에 다 담을 수 있었습니다. 2026년 5월, [mcp.so](https://mcp.so)는 **19,700+** 개를 나열합니다. 병목은 더 이상 "어떻게 하나 만들지"가 아닙니다 — "19,700개 중 뭘 실제로 꽂을지"입니다.
 
@@ -196,3 +198,30 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 ---
 
 *5+ MCP server (postgres + filesystem + git + memory + tavily-search)를 클라우드 청구서 안 태우고 셀프호스트하고 싶으신가요? $6/월 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 하나 띄우고, 슈퍼바이저(systemd 또는 PM2) 아래 돌리고, Claude Desktop `claude_desktop_config.json`을 호스트로 가리키세요. 오후에 완료.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mcp-server-registry-comprehensive-guide-2026"
+  }
+}
+</script>

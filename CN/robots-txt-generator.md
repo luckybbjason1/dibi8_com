@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+# robots.txt Generator — With AI Crawler Controls (GPTBot, ClaudeBot, PerplexityBot)
+

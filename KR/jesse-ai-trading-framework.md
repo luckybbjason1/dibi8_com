@@ -553,3 +553,30 @@ Jesse는 Python 트레이딩 생태계의 중요한 공백을 메운다. 배우�
 ---
 
 *제휴 고지: 이 기사에는 Binance, OKX, Minara, DigitalOcean, HTStack으로의 제휴 링크가 포함되어 있다. 이러한 링크를 통해 가입하면 dibi8.com이 추가 비용 없이 커미션을 받을 수 있다. 우리는 직접 테스트하거나 철저히 조사한 도구만을 추천한다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026년 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/jesse-ai-trading-framework"
+  }
+}
+</script>

@@ -346,3 +346,30 @@ tmux的默认配置更现代，支持鼠标、UTF-8和256色无额外配置。�
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
+  }
+}
+</script>

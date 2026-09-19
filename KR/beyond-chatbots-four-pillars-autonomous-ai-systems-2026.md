@@ -35,6 +35,8 @@ faqs:
   - q: '자율 AI 시스템의 네 가지 기둥은 어떻게 함께 작동하나요?'
     a: '에이전트는 먼저 Local Deep Research를 사용해 검증되고 인용이 포함된 보고서를 생성하고, 그다음 MCP tool calls를 통해 InsForge로 전체 백엔드(데이터베이스, edge functions, 스토리지, 인증)를 프로비저닝하며, Agent Skills의 spec-to-ship 워크플로를 따라 프런트엔드를 구축하고, 그 전 과정에 걸쳐 Karpathy에서 영감을 받은 행동 가드레일을 적용하여 과도한 엔지니어링과 잘못된 가정을 방지합니다. 각 기둥은 자율 개발에서 발생하는 고유한 실패 모드를 다룹니다.'
 ---
+# 챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥
+
 {</* resource-info */>}
 
 ## The Evolution: From Chatbot to Autonomous System
@@ -212,3 +214,30 @@ The future of software development isn't humans replacing AI or AI replacing hum
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026"
+  }
+}
+</script>

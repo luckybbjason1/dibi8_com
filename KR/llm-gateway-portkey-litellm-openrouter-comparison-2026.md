@@ -27,6 +27,8 @@ tags: ['LLM Gateway', 'Portkey', 'LiteLLM', 'OpenRouter', '비교']
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
+# Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)
+
 
 "최고의 LLM 게이트웨이" 글 세 편을 읽으면 답이 세 개 나오고 비교 가능한 숫자는 0개입니다. 이 글에서 그 문제를 해결합니다. **Portkey**, **LiteLLM**, **OpenRouter** — 2026년 실제 프로덕션 AI 트래픽을 처리하는 세 게이트웨이 — 의 정면 대결입니다. 실제 측정한 지연시간, $1,000/월 비용 분석, 30초만에 적용 가능한 결정 트리를 제공합니다.
 
@@ -161,3 +163,30 @@ OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 [OpenRouter 통�
 ---
 
 *위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026"
+  }
+}
+</script>

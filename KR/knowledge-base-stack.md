@@ -242,3 +242,30 @@ $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트�
 ---
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)는 이 지식 베이스를 코딩 에이전트 스택에 연결. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/)은 chat-LLM 비용 측 커버. [국경 간 AI 마케팅 스택](/kr/collections/cross-border-ai-marketing-stack/)은 중국 친화 호스팅 필요한 중국 팀용.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 \"두 번째 뇌\" 구축 ($10-25/월)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/knowledge-base-stack"
+  }
+}
+</script>

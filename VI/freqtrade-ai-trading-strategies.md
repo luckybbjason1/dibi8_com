@@ -740,3 +740,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công Bố Affiliate
 
 Hướng dẫn này chứa liên kết affiliate cho [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433), và [Minara](https://minara.ai/r/OSXG4X). Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Điều này hỗ trợ các nỗ lực tài liệu mã nguồn mở của chúng tôi. Chúng tôi chỉ giới thiệu các công cụ mà chúng tôi tích cực sử dụng và kiểm tra.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Freqtrade 2026: X\\u00e2y D\\u1ef1ng Chi\\u1ebfn L\\u01b0\\u1ee3c Giao D\\u1ecbch Ti\\u1ec1n M\\u00e3 H\\u00f3a AI V\\u1edbi Machine Learning \\u2014 H\\u01b0\\u1edbng D\\u1eabn Thi\\u1ebft L\\u1eadp Bot Ho\\u00e0n Ch\\u1ec9nh",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/freqtrade-ai-trading-strategies"
+  }
+}
+</script>

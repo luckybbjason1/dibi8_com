@@ -379,3 +379,30 @@ Nếu bạn đang theo chiến lược chống vendor lock-in ở Phần 3 và m
 - **[Hostinger](https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN)** — Giải pháp host VPS giá rẻ cho thị trường Việt Nam, giảm tới 60% gói đầu tiên.
 
 Đây là liên kết affiliate, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bức Tranh AI Coding Agent 2026: Kỷ Nguyên Skills, MCP và Sự Trỗi Dậy của Mã Nguồn Mở",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-coding-agent-landscape-2026-skills-mcp-opensource"
+  }
+}
+</script>

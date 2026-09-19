@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
+# Máy Tính Chi Phí LLM API — GPT-4 / Claude / Gemini
+

@@ -478,3 +478,30 @@ HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격�
 - xDiT 병렬 추론: https://github.com/xdit-project/xDiT
 - Kijai ComfyUI 래퍼: https://github.com/kijai/ComfyUI-HunyuanVideoWrapper
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/hunyuan-video"
+  }
+}
+</script>

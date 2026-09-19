@@ -2,7 +2,7 @@
 title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthropic cho Năng suất AI Tăng cường 2026"
 description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh sửa tài liệu, phân tích mã, duyệt web và thao tác tệp. Xây dựng plugin tùy chỉnh cho quy trình làm việc của bạn."
 date: 2026-06-15
-slug: knowledge-work-plugins
+lastmod:  2026-06-15slug: knowledge-work-plugins
 category: dev-utils
 tags: ['anthropic', 'claude', 'plugin', 'năng suất', 'chỉnh sửa tài liệu', 'phân tích mã', 'duyệt web', 'sử dụng công cụ']
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
@@ -425,3 +425,30 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **CTA**: Tham gia cộng đồng nhà phát triển DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthropic cho Năng suất AI Tăng cường 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/knowledge-work-plugins"
+  }
+}
+</script>

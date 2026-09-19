@@ -2,7 +2,7 @@
 title: '奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026'
 description: '奥德赛（65,243个GitHub星标）是一个自助托管的AI工作站，结合了聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历等功能。支持vLLM、llama.cpp、Ollama、OpenRouter、OpenAI和GitHub Copilot。提供Docker和原生Linux/macOS安装方式。'
 date: 2026-06-09
-slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
+lastmod:  2026-06-09slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
 category: 'ai-tools'
 tags: ['odysseus', 'self-hosted AI', 'AI workspace', 'local AI', 'deep research', 'AI agent', 'chat interface', 'open-source AI', 'home lab AI']
 github_repo: 'https://github.com/pewdiepie-archdaemon/odysseus'
@@ -503,3 +503,29 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 加入我们的社区，了解更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **免责声明：** 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
+  }
+}
+</script>

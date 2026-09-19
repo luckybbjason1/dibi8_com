@@ -5,7 +5,7 @@ tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reli
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
-draft: false
+lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: vi
 ---
@@ -734,3 +734,30 @@ Có. Temporal worker có thể chạy ở mọi nơi — EC2, GKE, EKS hoặc th
 ---
 
 *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Temporal AI Workflow Orchestration — Quy Trình AI Đa Bước Đáng Tin Cậy",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/temporal-ai-workflow-orchestration"
+  }
+}
+</script>

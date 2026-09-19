@@ -215,3 +215,30 @@ faq:
 ---
 
 **相关**: [Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Claude Code 设置指南](https://dibi8.com/zh/resources/llm-frameworks/claude-code/) · [MCP 服务器 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
+  }
+}
+</script>

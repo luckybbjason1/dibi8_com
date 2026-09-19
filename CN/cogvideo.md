@@ -678,3 +678,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Wan 2.1 Repository: https://github.com/Wan-Video/Wan2.1
 - HunyuanVideo Repository: https://github.com/Tencent/HunyuanVideo
 - Open-Sora Repository: https://github.com/hpcaitech/Open-Sora
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CogVideo: 12.7K Stars — Complete Text-to-Video Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/cogvideo"
+  }
+}
+</script>

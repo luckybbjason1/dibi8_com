@@ -251,3 +251,30 @@ CC Switch는 특정 AI 도구의 사용법을 개선하는 것이 아니라, "AI
 *본 문서는 CC Switch v2.x 버전을 기준으로 작성되었으며, 기능 세부사항은 버전 업데이트에 따라 변경될 수 있습니다. 최신 정보는 공식 문서를 참조하세요.*
 
 **키워드**: CC Switch, AI CLI 관리, Claude Code, Codex CLI, Gemini CLI, OpenClaw, OpenCode, AI 프로그래밍 도구, Rust, Tauri, MCP 프로토콜, 오픈소스 도구, 개발자 생산성, 2026 개발 도구, 모델 전환, 크로스플랫폼 데스크톱
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CC Switch 완벽 가이드: AI 코딩 에이전트 통합 관리의 새로운 표준 | 2026 최신 오픈소스 추천",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cc-switch-unified-ai-cli-control-center-2026"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026"
 description: "Oh My Pi (12.554 sao) biến thiết bị Raspberry Pi thành hub nhà thông minh, trung tâm media và workstation phát triển với cài đặt một-click và cấu hình tự động."
 date: 2026-06-15
-slug: oh-my-pi
+lastmod:  2026-06-15slug: oh-my-pi
 category: dev-utils
 tags: ['raspberry pi', 'nhà thông minh', 'iot', 'edge computing', 'home automation', 'linux', 'automation']
 github_repo: "https://github.com/can1357/oh-my-pi"
@@ -408,3 +408,30 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **CTA**: Tham gia cộng đồng IoT DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/oh-my-pi"
+  }
+}
+</script>

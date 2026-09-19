@@ -35,6 +35,8 @@ faqs:
   - q: 'Scrapling 默认遵守 robots.txt 吗？'
     a: '不遵守。robots_txt_obey 设置是可选启用的，默认不开启，因此你必须主动启用它。这是为了照顾拥有被抓取站点的用户而做出的有意设计，但在抓取第三方站点时忘记开启可能带来法律风险。'
 ---
+# Scrapling 实测:更快、更隐蔽的 Python 爬虫框架
+
 {</* resource-info */>}
 
 Python 爬虫工具大致经历了四个时代。先是 `urllib` 加正则。然后
@@ -265,3 +267,30 @@ Scrapling 是一个真实存在、设计认真的库 —— 不是噱头,不是�
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Scrapling 实测:更快、更隐蔽的 Python 爬虫框架",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/scrapling-python-stealthy-web-scraping-review"
+  }
+}
+</script>

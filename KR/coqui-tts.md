@@ -578,3 +578,30 @@ Coqui TTS는 2026년 현재까지 가장 다재다능한 오픈소스 TTS 툴킷
 - 음성 변환 가이드: https://coqui-tts.readthedocs.io/en/latest/models/voice_conversion.html
 
 *이 글은 정보 제공 목적으로 작성되었다. 배포 결정 전 자신의 하드웨어에서 벤치마크 수치를 검증하라. Coqui TTS 라이선스 조건은 변경될 수 있으므로 상업적 사용 전 현재 라이선스를 확인하라.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Coqui TTS: 45.3K+ Stars — ChatTTS, MeloTTS, Bark 성능 비교 벤치마크 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/coqui-tts"
+  }
+}
+</script>

@@ -290,3 +290,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Anthropic GitHub](https://github.com/anthropics)
 - [LSEG (London Stock Exchange Group)](https://www.lseg.com/)
 - [S&P Global](https://www.spglobal.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Anthropic Financial Services: How Financial Teams Can Automate Analysis &",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/anthropic-financial-services-ai-finance-automation"
+  }
+}
+</script>

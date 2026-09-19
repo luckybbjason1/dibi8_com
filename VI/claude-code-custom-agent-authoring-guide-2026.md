@@ -36,6 +36,8 @@ faq:
   - q: "Custom agent có hoạt động trong CI và các lần chạy không-giao-diện không, hay chỉ tương tác?"
     a: "Chúng hoạt động ở cả hai. Cùng những định nghĩa trong .claude/agents/ sẽ được nhận diện khi bạn chạy Claude Code phi-tương-tác (chế độ -p / print dùng trong CI). Vì chúng là các tệp được quản lý phiên bản trong repo của bạn, mọi đồng nghiệp và mọi tác vụ CI đều thấy những định nghĩa agent y hệt nhau — đó chính là toàn bộ ý nghĩa của việc mã hóa một danh sách rà soát thành agent thay vì một trang wiki mà chẳng ai buồn mở."
 ---
+# Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử Dụng Để Thực Thi Tiêu Chuẩn Của Bạn (2026)
+
 
 ## Giới thiệu
 
@@ -227,3 +229,30 @@ Một custom agent chính là **tri thức tổ chức có thể thực thi đư
 Custom agent biến các thực hành tốt nhất của đội bạn từ tài liệu không ai đọc thành những lần kiểm tra chạy trên mọi thay đổi. Công thức là: một **description** sắc bén để nó được kích hoạt, một **danh sách công cụ đặc quyền tối thiểu** để nó ở yên trong phần việc của mình, và một **system prompt với danh sách kiểm tra rõ ràng cùng hợp đồng đầu ra** để nó tạo ra một báo cáo bạn có thể hành động dựa trên đó.
 
 Hãy bắt đầu với một cái — trình duyệt migration ở trên là agent đầu tiên có đòn bẩy cao nhất cho phần lớn các đội. Cài một con bug vào, xác nhận nó bắt được, rồi commit tệp đó. Từ giây phút ấy, mọi đồng nghiệp đều có một reviewer không bao giờ mệt mỏi và không bao giờ bỏ qua một bước nào.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử Dụng Để Thực Thi Tiêu Chuẩn Của Bạn (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-custom-agent-authoring-guide-2026"
+  }
+}
+</script>

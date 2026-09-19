@@ -486,3 +486,30 @@ faster-whisper 是 Python 环境中 OpenAI Whisper 的生产级运行时选择�
 - Whisper-Streaming（实时流式）：https://github.com/ufal/whisper_streaming
 - PyAV（音频解码）：https://github.com/PyAV-Org/PyAV
 - Silero VAD：https://github.com/snakers4/silero-vad
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "faster-whisper: 4 倍速语音转文本，23K+ Stars — 2026 年对比 WhisperX、whisper.cpp 基准测试",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/faster-whisper"
+  }
+}
+</script>

@@ -363,3 +363,30 @@ If you're going to ignore the rest of this review, at least remember this: **the
 - [RTK — Open-Source Rust CLI Proxy for AI Coding](/resources/dev-utils/rtk-rust-cli-proxy-ai-token-saver/)
 
 *Last updated: 2026-05-17. Affiliate disclosure: this article contains referral links to Minara. If you sign up via these links, dibi8 earns a commission at no extra cost to you. We only review tools we'd recommend regardless of the commission.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/minara-ai-trading-hyperliquid-review-2026"
+  }
+}
+</script>

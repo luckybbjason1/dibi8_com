@@ -34,6 +34,8 @@ faqs:
   - q: 'Can I use Odysseus on mobile?'
     a: 'Yes. Odysseus ships as a Progressive Web App (PWA) and is fully responsive. On iOS or Android you can "Add to Home Screen" for a near-native feel. The Cookbook and Agent features work on mobile too, though GPU-intensive model serving is still a desktop/server concern.'
 ---
+# Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide
+
 
 Odysseus launched on GitHub on 31 May 2026 and crossed 63,000 stars by 8 June — roughly **7,000 new stars per day**, making it one of the fastest-rising open-source AI projects of 2026. The premise is simple: everything you get from a $20/month ChatGPT Plus subscription, running on your own hardware, with your own data, under an MIT licence.
 
@@ -131,3 +133,30 @@ For production-grade agent deployments, established frameworks (LangGraph, CrewA
 If you want a ChatGPT-like experience on your own hardware without a monthly subscription, Odysseus is the most complete open-source option available today. The 63,000 stars in nine days reflect genuine community excitement, not hype. Clone the repo, `docker compose up`, and you have a fully working AI workspace in under five minutes.
 
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/odysseus-self-hosted-ai-workspace-2026"
+  }
+}
+</script>

@@ -751,3 +751,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. CrewAI is open-source and free to use; we have no commercial relationship with the CrewAI project. Opinions are based on hands-on testing and production deployments.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: Build Multi-Agent AI Teams That Collaborate Autonomously — Production Setup & Patterns 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/crewai-multi-agent-orchestration"
+  }
+}
+</script>

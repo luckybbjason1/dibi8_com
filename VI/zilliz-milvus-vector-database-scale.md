@@ -562,3 +562,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tiết lộ Liên kết Liên kết
 
 Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho lưu trữ đám mây. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phụ thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chúng tôi sử dụng trong môi trường sản xuất của chính mình. Các liên kết liên kết giúp tài trợ cho sự phát triển nội dung mã nguồn mở của dibi8.com.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vector với độ trễ Milligiây — Hướng dẫn Triển khai",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/zilliz-milvus-vector-database-scale"
+  }
+}
+</script>

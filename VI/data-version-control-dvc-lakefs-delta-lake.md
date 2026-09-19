@@ -378,3 +378,30 @@ Lựa chọn đúng phụ thuộc vào ngăn xếp công nghệ hiện có, quy 
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DVC vs LakeFS vs Delta Lake: Hướng Dẫn Chọn Công Cụ Quản Lý Phiên Bản Dữ Liệu Cho ML",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/data-version-control-dvc-lakefs-delta-lake"
+  }
+}
+</script>

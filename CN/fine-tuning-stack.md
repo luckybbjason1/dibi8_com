@@ -232,3 +232,30 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, sc
 ---
 
 *Companion collections: [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the inference cost side post-deployment. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for automated fine-tuning loops. [Knowledge Base Stack](/collections/knowledge-base-stack/) for RAG as an alternative to fine-tuning in some cases.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fine-Tuning Stack 2026: 5-Component Pipeline From Dataset to Production-Deployed LLM",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/fine-tuning-stack"
+  }
+}
+</script>

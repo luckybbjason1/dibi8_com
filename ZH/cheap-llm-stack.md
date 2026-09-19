@@ -27,6 +27,8 @@ tags: ['便宜大模型', '免费层', '成本优化', 'Stack', '合集']
 aliases:
   - /posts/cheap-llm-stack/
 ---
+# 便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15
+
 
 大部分"LLM 成本优化"建议就是"用便宜的模型"。这个合集野心更大：**5 组件 stack 处理真实生产负载（编程 agent、内容生成、搜索、基础 agent）月总成本 $0-15**。不是玩票。不是"100 请求/天还行"。真正的日常生产推理，价格能把 SaaS 干死。
 
@@ -227,3 +229,30 @@ $0-15 stack 撑到你撞上以下任一情况：
 ---
 
 *这个合集和 [自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 配套食用最佳 —— 共享 Ollama + 9Router + RTK 三个底层组件。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cheap-llm-stack"
+  }
+}
+</script>

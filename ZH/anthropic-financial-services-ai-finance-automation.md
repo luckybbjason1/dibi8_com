@@ -278,3 +278,30 @@ Pitch Agent 不是一个简单的模板填充器。它使用多步推理管道�
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/anthropic-financial-services-ai-finance-automation"
+  }
+}
+</script>

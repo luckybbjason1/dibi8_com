@@ -342,3 +342,30 @@ Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节�
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agent Skills：开发团队如何以5倍速度交付生产级代码",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding"
+  }
+}
+</script>

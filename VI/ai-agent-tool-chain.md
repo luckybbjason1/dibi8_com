@@ -249,3 +249,30 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/tháng droplet" >}},
 ---
 
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho stack đặc thù coding agent. [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) cho agent backend RAG tương đương Glean. [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent Tool Chain 2026: Stack 6 Thành Phần Để Xây Agent Tự Trị Cấp Production",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-agent-tool-chain"
+  }
+}
+</script>

@@ -588,3 +588,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Whisper-Streaming (real-time): https://github.com/ufal/whisper_streaming
 - PyAV (audio decoding): https://github.com/PyAV-Org/PyAV
 - Silero VAD: https://github.com/snakers4/silero-vad
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars — Benchmark vs WhisperX, whisper.cpp in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/faster-whisper"
+  }
+}
+</script>

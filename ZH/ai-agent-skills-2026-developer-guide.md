@@ -376,3 +376,30 @@ mattpocock/skills、obra/superpowers和rohitg00/agentmemory代表了三个不同
 - [Agent Skills完整入门指南（2026）](https://explainx.ai/blog/what-are-agent-skills-complete-guide)
 
 *本文基于2026年5月GitHub Trending数据和各仓库公开README撰写，星数统计截至2026-05-13。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026年AI Agent Skills完全指南：Claude Code技能包实战教程与热门仓库盘点",
+  "datePublished": "2026-05-16",
+  "dateModified": "2026-05-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-agent-skills-2026-developer-guide"
+  }
+}
+</script>

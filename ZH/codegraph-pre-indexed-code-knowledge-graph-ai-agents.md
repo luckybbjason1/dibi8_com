@@ -3,7 +3,7 @@ title: "CodeGraph: 从代码库构建知识图谱"
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"
 publish_date: "2026-06-10"
-author: "DIBI8"
+lastmod:  "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
@@ -416,3 +416,30 @@ IDE 工具提供针对当前打开文件的即时分析。CodeGraph 分析整个
 ---
 
 DIBI8 是你探索最佳开源工具、AI 创新和开发者资源的门户。订阅我们的 Telegram 频道，获取科技领域最具影响力项目的每日更新。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CodeGraph: 从代码库构建知识图谱",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/codegraph-pre-indexed-code-knowledge-graph-ai-agents"
+  }
+}
+</script>

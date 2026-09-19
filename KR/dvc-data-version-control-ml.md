@@ -680,3 +680,30 @@ Telegram 그룹에서 이 가이드를 논의하고 DVC 워크플로우를 공�
 ## Affiliate 고지
 
 이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 가입하면 dibi8.com에 추가 비용 없이 커미션이 지급됩니다. 저희는 ML 인프라 배포에 진정한 가치를 제공하는 서비스만 추천합니다. 표현된 의견은 어떤 제휴 관계와도 독립적입니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DVC: 데이터를 위한 Git — ML 파이프라인 데이터 버전 관리와 재현 가능한 실험 2026 완벽 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/dvc-data-version-control-ml"
+  }
+}
+</script>

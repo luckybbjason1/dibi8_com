@@ -742,3 +742,30 @@ LangChain의 137,000개 GitHub 스타는 프로덕션 LLM 애플리케이션의 
 - [LLM 모니터링 도구 비교 — Integrity Studio](https://integritystudio.ai/blog/best-llm-monitoring-tools-2025)
 - [LangChain 버전 관리 및 릴리스 정책](https://docs.langchain.com/oss/python/versioning)
 - [LangChain 가격 — CheckThat.ai](https://checkthat.ai/brands/langchain/pricing)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangChain: 137K+ 스타로 프로덕션 준비된 AI 에이전트를 배포하는 3가지 방법 — 2026년 완전 배포 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/langchain"
+  }
+}
+</script>

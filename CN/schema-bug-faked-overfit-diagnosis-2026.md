@@ -213,3 +213,30 @@ For walk-forward + multi-asset experiment scaffolding:
 ---
 
 **Related**: [Moss Trade Bot Factory 2026 Review](https://dibi8.com/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtest OVERFIT 5 Patterns 2026](https://dibi8.com/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python Backtesting](https://dibi8.com/resources/ai-trading/backtrader-python-backtesting/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Schema Bug Faked My Overfit Diagnosis: The Backtest Postmortem Nobody Talks About",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/schema-bug-faked-overfit-diagnosis-2026"
+  }
+}
+</script>

@@ -36,6 +36,8 @@ faq:
   - q: "Do custom agents work in CI and headless runs, or only interactively?"
     a: "They work in both. The same .claude/agents/ definitions are picked up when you run Claude Code non-interactively (the -p / print mode used in CI). Because they're version-controlled files in your repo, every teammate and every CI job sees the identical agent definitions — that's the whole point of codifying a review checklist as an agent rather than a wiki page everyone forgets to open."
 ---
+# Claude Code Custom Agent Authoring: Build Reusable Subagents That Enforce Your Standards (2026)
+
 
 ## Introduction
 
@@ -227,3 +229,30 @@ To run custom-agent pipelines at scale you want stable infrastructure:
 Custom agents turn your team's best practices from documentation nobody reads into checks that run on every change. The recipe: a sharp **description** so it triggers, a **least-privilege tool allowlist** so it stays in its lane, and a **system prompt with an explicit checklist and output contract** so it produces a report you can act on.
 
 Start with one — the migration reviewer above is the highest-leverage first agent for most teams. Plant a bug, confirm it catches it, then commit the file. From that moment, every teammate has a reviewer that never gets tired and never skips a step.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Custom Agent Authoring: Build Reusable Subagents That Enforce Your Standards (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-code-custom-agent-authoring-guide-2026"
+  }
+}
+</script>

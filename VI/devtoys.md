@@ -495,3 +495,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - DevUtils for macOS: https://devutils.com
 - Boop on GitHub: https://github.com/IvanMathy/Boop
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DevToys: 31,533 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ Bộ Tiện Ích Dành Cho Nhà Phát Triển 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/devtoys"
+  }
+}
+</script>

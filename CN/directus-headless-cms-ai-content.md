@@ -665,3 +665,30 @@ This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87a
 ---
 *Article published: 2026-05-19 | Category: dev-utils | Tool: Directus 11.3.0*
 *Join the dibi8 developer community: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Directus: The Open-Source Headless CMS Powering AI Content Workflows — 2026 Setup & API Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/directus-headless-cms-ai-content"
+  }
+}
+</script>

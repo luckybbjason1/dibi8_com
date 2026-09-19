@@ -495,3 +495,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Bài viết này chứa liên kết tiếp thị. Nếu bạn đăng ký dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu với CrewAI, AutoGen 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/agno"
+  }
+}
+</script>

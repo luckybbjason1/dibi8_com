@@ -688,3 +688,30 @@ CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其�
 - [CrewAI + IBM watsonx 教程](https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md)
 
 *披露声明：本文包含联盟链接。如果你点击链接并进行购买，我们可能会获得佣金，无需额外费用。这有助于支持我们独立的技术研究、测试和免费教育内容的创建。所有推荐均基于我们对工具自行评估的结果。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: 51000+ Star 构建多智能体 AI 团队 — 完整设置指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/crewai"
+  }
+}
+</script>

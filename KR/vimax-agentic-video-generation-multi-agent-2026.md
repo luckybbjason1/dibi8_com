@@ -180,3 +180,30 @@ MIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 star
 ---
 
 **GitHub**: [HKUDS/ViMax](https://github.com/HKUDS/ViMax) · **라이선스**: MIT · **Stars**: 7.1K+ · **저자**: 홍콩과학기술대 데이터사이언스랩(HKUDS) · **상태**: 활발한 개발 중, 태그된 릴리스 아직 없음
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/vimax-agentic-video-generation-multi-agent-2026"
+  }
+}
+</script>

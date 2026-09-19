@@ -27,6 +27,8 @@ tags: ['LLM Gateway', 'Portkey', 'LiteLLM', 'OpenRouter', 'So sánh']
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
+# Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LLM Gateway Thành Thật (Độ Trễ, Chi Phí, Tự Host)
+
 
 Đọc 3 bài blog về "LLM gateway tốt nhất" bạn sẽ có 3 câu trả lời khác nhau và 0 con số để so sánh. Bài này giải quyết vấn đề đó. Đây là cuộc đối đầu trực diện giữa **Portkey**, **LiteLLM**, và **OpenRouter** — ba gateway thực sự đang chạy traffic AI production năm 2026 — với số liệu độ trễ thực tế, phân tích chi phí ở mức $1,000/tháng, và cây quyết định bạn có thể áp dụng trong 30 giây.
 
@@ -161,3 +163,30 @@ Không có LLM gateway "tốt nhất phổ quát". Chỉ có cái khớp với d
 ---
 
 *Muốn test 3 cái này ở production mà không cam kết? Bật một [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) $6/tháng với LiteLLM, trỏ OpenAI SDK hiện có vào đó, và xem các tùy chọn fallback mở rộng mà không động vào code ứng dụng.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LLM Gateway Thành Thật (Độ Trễ, Chi Phí, Tự Host)",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026"
+  }
+}
+</script>

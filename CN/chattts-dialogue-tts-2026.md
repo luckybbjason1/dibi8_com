@@ -190,3 +190,30 @@ Spin up a GPU instance, run the 10-line install in section 3, and you'll hear in
 ---
 
 *Part of dibi8's multi-modal content stack — see the upcoming Multi-Modal Content Pipeline collection for ChatTTS + Whisper + Stable Diffusion + ComfyUI as a full audio/visual creator pipeline.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with Laughter, Pauses, and Token-Level Prosody Control",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/chattts-dialogue-tts-2026"
+  }
+}
+</script>

@@ -5,7 +5,7 @@ tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'priva
 category: dev-utils
 featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: llamafile-portable-local-llm
 lang: ko
 ---
@@ -493,3 +493,30 @@ Ollama는 모델을 다운로드하고 실행하는 관리자입니다. LlamaFil
 ---
 
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LlamaFile — 단일 휴대용 바이너리로 로컬 LLM 실행",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/llamafile-portable-local-llm"
+  }
+}
+</script>

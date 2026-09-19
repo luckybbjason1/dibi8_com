@@ -2,7 +2,7 @@
 title: "학술 연구 스킬: AI로 문헌 검토 자동화 — 3만1천 스타 프레임워크 2026"
 description: "학술 연구 스킬(31,628 스타)은 논문 검색, 통찰 추출, 결과 종합, 문헌 검토 작성을 자동화합니다. Claude Code용으로 모듈형 스킬 아키텍처로 구축되었습니다."
 date: 2026-06-15
-slug: academic-research-skills
+lastmod:  2026-06-15slug: academic-research-skills
 category: dev-utils
 tags: ['학술 연구', '문헌 검토', 'AI 연구', '논문 분석', '종합', 'claude code', '연구 자동화']
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
@@ -364,3 +364,30 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **CTA**: Telegram에서 DIBI8 연구 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "학술 연구 스킬: AI로 문헌 검토 자동화 — 3만1천 스타 프레임워크 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/academic-research-skills"
+  }
+}
+</script>

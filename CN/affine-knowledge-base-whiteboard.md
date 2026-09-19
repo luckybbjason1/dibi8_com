@@ -399,3 +399,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. AFFiNE is fully open-source and free to self-host without any paid requirements.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-Enhanced Knowledge Management — Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/affine-knowledge-base-whiteboard"
+  }
+}
+</script>

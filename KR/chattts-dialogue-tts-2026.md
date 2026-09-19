@@ -190,3 +190,30 @@ GPU 인스턴스 띄우고, 3절의 10줄 설치 실행, 5분 안에 왜 이게 
 ---
 
 *dibi8의 멀티모달 콘텐츠 스택 일부 — ChatTTS + Whisper + Stable Diffusion + ComfyUI를 전체 오디오/비주얼 크리에이터 파이프라인으로 다루는 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 prosody 제어",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/chattts-dialogue-tts-2026"
+  }
+}
+</script>

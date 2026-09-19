@@ -131,3 +131,30 @@ AI 智能体框架格局在 2026 年完成了整合。从两年前的 50+ 个框
 ---
 
 **相关阅读**：[12-Factor Agents 生产指南](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [AI 智能体记忆系统](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP 服务器 2026](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "开源 AI 智能体框架 Top 10（2026）：按生产采用率排名",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/open-source-ai-agent-framework-top-10-2026"
+  }
+}
+</script>

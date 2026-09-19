@@ -2,7 +2,7 @@
 title: 'Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026'
 description: 'Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơn 60-95% token, cùng câu trả lời. Thư viện, proxy và máy chủ MCP. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
-slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['nén token', 'tối ưu token LLM', 'máy chủ MCP', 'nén RAG', 'Headroom', 'tối ưu ngữ cảnh', 'giảm chi phí token', 'AI agent']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -425,3 +425,30 @@ Cho dù bạn là developer đơn muốn giảm hóa đơn API Claude, team ch�
 Tham gia [nhóm Telegram tiếng Việt dibi8](https://t.me/DIBI8_Group/18) để thảo luận cấu hình Headroom. Xem các guide về [agentmemory persistent memory](dibi8-internal-link) và [codegraph knowledge graphs](dibi8-internal-link) cho công cụ AI bổ sung. Dùng thử Headroom hôm nay — cài đặt, điều hướng proxy, và xem hóa đơn token giảm.
 
 Một số link trên là affiliate link. dibi8.com có thể nhận commission nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Giúp giữ site hoạt động và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/headroom-token-compression-proxy-library-mcp-server"
+  }
+}
+</script>

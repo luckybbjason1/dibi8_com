@@ -4,8 +4,7 @@ title: "This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week o
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — data auto-collected by Dibi8 Tribe Intel, analysis by Dibi8 editorial team."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-15T00:00:00+09:00
-draft: true
-categories: ["llm-frameworks"]
+lastmod:  2026-06-15T00:00:00+09:00categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w24
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
@@ -21,6 +20,8 @@ review_checklist:
   - "无 aff 链接 (Tribe 文章纪律)"
 featureImage: /articles/ai-------------2026----------------------------.png/images/articles/ai-------------2026----------------------------.png
 ---
+# This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of June 15, 2026)
+
 
 > **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel — an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
 
@@ -151,3 +152,30 @@ Dibi8 Tribe Intel does this work so you don't have to. We surface; you decide.
 ---
 
 *This roundup is part of an editorial experiment. If you find it useful, [tell us on GitHub](https://github.com/luckybbjason1/home-hermes/issues). If it's not useful, also tell us — we'll kill it. The Tribe serves the reader, not the other way around.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of June 15, 2026)",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/2026-06-15-trending-ai-agents"
+  }
+}
+</script>

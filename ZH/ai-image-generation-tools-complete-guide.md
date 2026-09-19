@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-image-generation-tools-complete-guide/
 ---
+# AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等
+
 
 {</* resource-info */>}
 
@@ -245,3 +247,30 @@ Stable Diffusion 3.5 Large的最低要求是12GB显存（RTX 3060 12GB），推�
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-image-generation-tools-complete-guide"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026'
 description: 'open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nhà cung cấp AI. Thư viện kiến thức RAG self-hosted với podcast audio đa phương tiện. Bao gồm hướng dẫn cài đặt, so sánh nhà cung cấp và benchmark thực tế.'
 date: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm alternative', 'self hosted RAG', 'knowledge base AI', 'multimodal RAG', 'open source notebook', 'AI podcast generator', 'self hosted LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -176,3 +176,30 @@ Dù là researcher, engineer, hay người цен privacy, open-notebook cung c�
 Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18). Xem [LangChain RAG architecture](dibi8-internal-link) và [vector database comparison](dibi8-internal-link). Thử open-notebook hôm nay — `docker compose up`, upload PDF, đặt câu hỏi.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+  }
+}
+</script>

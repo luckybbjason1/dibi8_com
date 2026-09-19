@@ -623,3 +623,30 @@ v60.2는 이미 탄탄한 플랫폼을 더 나은 성능, 개선된 임베딩, �
 - [Metabase 커뮤니티 포럼](https://discourse.metabase.com/)
 
 *Affiliate Disclosure: 이 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 모든 의견과 벤치마크는 독립적이며 실제 테스트를 기반으로 합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/metabase-business-intelligence-open"
+  }
+}
+</script>

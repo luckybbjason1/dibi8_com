@@ -948,3 +948,30 @@ Snapshot通过消除参与的财务障碍，从根本上实现了DAO治理的民
 **维护者：** [Snapshot Labs](https://github.com/snapshot-labs)  
 **GitHub星标：** 9,500+  
 **网站：** [snapshot.org](https://snapshot.org)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "snapshot-dao-governance-voting",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/snapshot-dao-governance-voting"
+  }
+}
+</script>

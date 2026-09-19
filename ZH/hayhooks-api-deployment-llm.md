@@ -608,3 +608,30 @@ Hayhooks 填补了 Haystack 生态中的一个真实缺口。它将生产 NLP �
 ## Affiliate Disclosure（联盟营销声明）
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买服务，我们可能会获得佣金，且不会向你收取额外费用。我们只推荐亲自评估过且认为对 NLP pipeline 部署工作流真正有价值的工具。所有基准测试和性能数据均在我们自己的基础设施上独立测量。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产环境 setup 指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/hayhooks-api-deployment-llm"
+  }
+}
+</script>

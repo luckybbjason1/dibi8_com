@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
+# Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More
+
 
 {</* resource-info */>}
 
@@ -728,3 +730,30 @@ To run any of the tools above reliably 24/7, infrastructure matters:
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff"
+  }
+}
+</script>

@@ -766,3 +766,30 @@ Alpaca和Interactive Brokers服务于不同的用例。Alpaca是希望拥有现�
 ---
 
 *最后更新：2026-05-19 | Alpaca API版本：v2*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Alpaca交易API 2026：面向算法交易的零佣金股票经纪API — 设置指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/alpaca-trading-api-stock-broker"
+  }
+}
+</script>

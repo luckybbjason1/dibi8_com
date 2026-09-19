@@ -266,3 +266,30 @@ AutoGluon、H2O AutoML、TPOT、Auto-sklearn 2.0 和 Google AutoML 分别代表�
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AutoML自动机器学习工具全面对比：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML指南",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/automl-tools-comparison-guide"
+  }
+}
+</script>

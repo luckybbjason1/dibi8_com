@@ -162,3 +162,30 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 ---
 
 **관련 글**: [AI Agent 메모리 시스템 2026](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP Servers 2026 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [오픈소스 AI Agent 프레임워크 Top 10](https://dibi8.com/kr/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+  }
+}
+</script>

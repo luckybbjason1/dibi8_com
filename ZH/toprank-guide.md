@@ -82,3 +82,30 @@ A: 首推 Toprank！它彻底颠覆了昂贵的传统数据看版，提供了一
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026 GEO 优化完全指南：用 Toprank 开源智能体让 ChatGPT 疯狂引用你的网站",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/toprank-guide"
+  }
+}
+</script>

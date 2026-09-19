@@ -663,3 +663,30 @@ Outline 为工程团队提供**自托管、实时协作 Wiki**，在规模扩大
 ---
 
 *本文可能包含联盟链接。如果你通过我们的推荐链接注册 DigitalOcean 或 HTStack，我们会获得佣金，不会增加你的额外费用。我们只推荐自己使用的服务。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/outline-wiki-knowledge-base"
+  }
+}
+</script>

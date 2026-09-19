@@ -706,3 +706,30 @@ Traefik 凭借其在容器化环境中解决动态服务发现这一实际运维
 - [Traefik 社区论坛 — 性能基准测试](https://community.traefik.io/t/traefik-performance-lags-behind-nginx-and-caddy/28919)
 - [Nginx vs Traefik vs HAProxy 对比 — Loft.sh](https://www.loft.sh/blog/nginx-vs-traefik-vs-haproxy-comparing-kubernetes-ingress-controllers)
 - [Caddy vs Traefik vs HAProxy vs Nginx — BigMike.help](https://bigmike.help/en/posts/102/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Traefik: 63,229 GitHub Stars — 云原生边缘路由器 2026 生产部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/traefik"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?'
 description: 'So sánh trực tiếp Google Gemini CLI và Anthropic Claude Code — gói miễn phí, cửa sổ context, phong cách agent, đa phương thức, sử dụng tool, mẹo chuyển đổi. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Hỗ trợ đa phương thức bên nào tốt hơn?'
     a: 'Gemini CLI thắng đa phương thức trong terminal — nhận hình ảnh, PDF, khung video gốc thông qua flag (ví dụ `--image screenshot.png`). Claude Code hỗ trợ ảnh qua hội thoại nhưng thiên về text trước. Với luồng kiểu "nhìn screenshot UI này và viết component React", Gemini CLI nhanh hơn ngay khi mở hộp.'
 ---
+# Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?
+
 
 ## Câu trả lời nhanh
 
@@ -191,3 +193,30 @@ Với indie dev đang ship SaaS một mình trên **ngân sách cuối cùng**? 
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/gemini-cli-vs-claude-code"
+  }
+}
+</script>

@@ -5,7 +5,7 @@ category: ai-tools
 tags: ['stable-diffusion', 'ai-image-generation', 'diffusion-models', 'openai-alternative', 'midjourney-alternative', 'comfyui']
 slug: stable-diffusion-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/stable-diffusion-ai-image-generation.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/stable-diffusion-ai-image-generation.jpg
 ---
 
 ## TL;DR
@@ -995,3 +995,30 @@ Use xFormers for memory-efficient attention, quantize the model to FP16 or INT8,
 ## Call to Action
 
 Ready to build your own AI image generation platform? Explore our collection of production-ready Stable Diffusion deployments and custom model training guides. [Join the community](https://dibi8.com/auth/) for weekly updates on the latest AI tools.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion — The Definitive Guide to Open-Source Image Generation",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/stable-diffusion-complete-guide"
+  }
+}
+</script>

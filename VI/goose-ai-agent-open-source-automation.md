@@ -240,3 +240,30 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026:
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
 *Last updated: 2026-05-07*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Goose AI Agent：44K⭐Công cụ AI mã nguồn mở, tự động hóa mọi thứ từ coding đến nghiên cứu",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/goose-ai-agent-open-source-automation"
+  }
+}
+</script>

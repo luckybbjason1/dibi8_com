@@ -491,3 +491,30 @@ For self-hosted infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87a
 **Join the community:** [GitHub Discussions](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
 
 📢 **Stay updated:** Join our [Telegram group](https://t.me/DIBI8_Group/2) for daily AI tool reviews and early access to new content.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenMontage Review: The World's First Open-Source Agentic Video Production System (52 Tools, 12 Pipelines, 500+ Skills)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openmontage-agentic-video-production-system"
+  }
+}
+</script>

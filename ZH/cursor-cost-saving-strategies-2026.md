@@ -117,3 +117,30 @@ Cursor 的定价改动不致命 —— 它是一次倒逼。上面的策略能�
 ---
 
 **相关阅读**：[Cursor 替代品 2026](https://dibi8.com/zh/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [AI 编程 2026-Q2 横评](https://dibi8.com/zh/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [AI 编程 Agent 月度账单 2026](https://dibi8.com/zh/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cursor 省钱策略 2026：信用点计费改版后的应对方案",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cursor-cost-saving-strategies-2026"
+  }
+}
+</script>

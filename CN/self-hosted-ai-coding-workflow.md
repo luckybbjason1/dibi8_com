@@ -277,3 +277,30 @@ If you're spending $200+/mo on AI coding SaaS, this stack pays for itself in wee
 ---
 
 *Bookmark this page — we update component picks quarterly as new open-source releases land. Last updated: 2026-05-21.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Self-Hosted AI Coding Workflow: The Complete $6/Month Stack for 2026",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/self-hosted-ai-coding-workflow"
+  }
+}
+</script>

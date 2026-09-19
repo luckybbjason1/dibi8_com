@@ -2,7 +2,7 @@
 title: "12-Factor Agents: A Principles-Based Framework for Building Reliable LLM Applications"
 description: "The 12-Factor Agents framework adapts the battle-tested 12-Factor App methodology for LLM-powered applications, providing a principled approach to building reliable, scalable, and observable AI agents."
 date: 2026-06-10
-slug: 12-factor-agents
+lastmod:  2026-06-10slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -431,3 +431,30 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 ---
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12-Factor Agents: A Principles-Based Framework for Building Reliable LLM Applications",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/12-factor-agents"
+  }
+}
+</script>

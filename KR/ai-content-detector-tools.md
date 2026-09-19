@@ -23,6 +23,8 @@ tags: ['AI 콘텐츠 탐지', 'GPTZero', 'Turnitin', 'Copyleaks', 'AI 탐지기'
 aliases:
 - /kr/posts/ai-content-detector-tools/
 ---
+# 2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copyleaks 등
+
 
 {</* resource-info */>}
 
@@ -166,3 +168,30 @@ Sapling은 묣질 버전에서도 2,000자 이상의 텍스트를 분석할 수 
 - [Copyleaks AI 콘텐츠 탐지기](https://copyleaks.com)
 - [Originality.ai](https://originality.ai)
 - [Perplexity 기반 AI 탐지 연구 논문](https://arxiv.org)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copyleaks 등",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-content-detector-tools"
+  }
+}
+</script>

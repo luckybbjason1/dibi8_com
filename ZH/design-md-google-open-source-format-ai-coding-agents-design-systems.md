@@ -3,13 +3,15 @@ title: "DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源�
 description: 'DESIGN.md 由 Google Labs Code 提供，是一种开源格式规范，用于向 AI 编码代理描述视觉识别。拥有 20.8k 个 GitHub 星标。了解它如何通过 YAML 令牌和基于文本的约束桥接设计系统与 AI 代码生成。'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
-slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
+lastmod:  2026-06-27slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
 github_repo: 'https://github.com/google-labs-code/design.md'
 license: Apache-2.0
 lang: zh
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+# DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式
+
 
 ![DESIGN.md Format Specification](https://opengraph.github.com/github/google-labs-code/design.md)
 
@@ -253,3 +255,30 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
 - Contributing guidelines: https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems"
+  }
+}
+</script>

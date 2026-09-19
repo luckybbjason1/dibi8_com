@@ -677,3 +677,30 @@ CopilotKit은 특정한 격차를 메웁니다: 기존 React 애플리케이션 
 ---
 
 **고지 사항:** 이 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하면 dibi8.com에서 추가 비용 없이 커미션을 받을 수 있습니다. 모든 의견과 벤치마크는 독립적으로 수행되었습니다. DigitalOcean은 신규 사용자가 CopilotKit 배포를 시도할 수 있도록 $200의 묶은 크레딧을 제공합니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CopilotKit: 31K+ Stars — React 또는 Angular 앱에 AI Copilot 추가하기 — 2026 완벽 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/copilotkit"
+  }
+}
+</script>

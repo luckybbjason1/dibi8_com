@@ -149,3 +149,30 @@ Mặc định chọn Anthropic khi có. Với server cộng đồng, chạy chec
 ---
 
 **Bài liên quan**: [Bảng xếp hạng MCP Server 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Hướng dẫn cài Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/) · [Mẫu bảo mật AI Agent](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộng Đồng Thực Tế + Mẫu Bẫy",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mcp-server-security-audit-2026-real-cases"
+  }
+}
+</script>

@@ -146,3 +146,30 @@ Stack tốt nhất 2026 cho hầu hết lập trình viên chuyên nghiệp: Cla
 ---
 
 **Liên quan**: [AI Coding 2026-Q2 Đại chiến](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Hướng dẫn cài đặt Claude Code](https://dibi8.com/vi/resources/llm-frameworks/claude-code/) · [LLM cửa sổ ngữ cảnh 1M 2026](https://dibi8.com/vi/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 quy trình làm việc",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/gemini-cli-vs-claude-code-2026-real-comparison"
+  }
+}
+</script>

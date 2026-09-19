@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-search-tools-perplexity-gemini-chatgpt/
 ---
+# AI 검색 도구 비교: Perplexity vs Google Gemini vs ChatGPT Search 2025
+
 
 {</* resource-info */>}
 
@@ -186,3 +188,30 @@ n
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 검색 도구 비교: Perplexity vs Google Gemini vs ChatGPT Search 2025",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-search-tools-perplexity-gemini-chatgpt"
+  }
+}
+</script>

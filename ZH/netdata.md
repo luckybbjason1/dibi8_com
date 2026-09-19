@@ -562,3 +562,30 @@ Netdata 兑现了大多数监控工具未能实现的承诺：即时、每秒粒
 - [阿姆斯特丹大学能效研究](https://www.ivanomalavolta.com/files/papers/ICSOC_2023.pdf)
 - [Netdata vs Zabbix 官方对比](https://www.netdata.cloud/comparisons/zabbix/)
 - [发布说明与变更日志](https://github.com/netdata/netdata/releases)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Netdata: 78K+ Star 的实时监控 — 2026 性能调优指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/netdata"
+  }
+}
+</script>

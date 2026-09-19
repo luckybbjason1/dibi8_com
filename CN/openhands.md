@@ -611,3 +611,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *This guide is independently maintained and updated regularly. Last verified: May 2026.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenHands: 74K+ Stars — AI Software Engineer That Writes and Runs Code (2026 Setup Guide)",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openhands"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "Roboflow Supervision: Python 컴퓨터 비전 주석 도구 모음"
 description: "Roboflow의 Supervision은 CV 주석, 데이터 처리 및 모델 평가를 간소화하는 포괄적인 컴퓨터 비전 도구 모음입니다. pip install supervision을 사용하여 프로젝트에 재사용 가능한 컴퓨터 비전 도구에 액세스하세요."
 date: 2026-06-10
-slug: roboflow-supervision
+lastmod:  2026-06-10slug: roboflow-supervision
 category: data-science
 tags: [supervision, roboflow, computer vision, annotation, object detection, CV toolkit, data-science]
 github_repo: https://github.com/roboflow/supervision
@@ -587,3 +587,30 @@ Roboflow의 Supervision은 컴퓨터 비전 분야에서 작업하는 모든 사
 5. [DigitalOcean - CV 배포를 위한 클라우드 인프라](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - 고성능 호스팅](https://htstack.com/)
 7. [WebShare - 데이터 파이프라인을 위한 프록시 서비스](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Roboflow Supervision: Python 컴퓨터 비전 주석 도구 모음",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/roboflow-supervision"
+  }
+}
+</script>

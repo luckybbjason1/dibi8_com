@@ -2,7 +2,7 @@
 title: "Egonex Understand-Anything: 어떤 주제라도 상호작용 가능한 지식 그래프 — AI 기반, 오픈소스, 설정 불필요"
 description: "Egonex의 Understand-Anything를 사용하여 AI로 어떤 주제라도 상호작용 가능한 지식 그래프를 생성하는 방법을 배워보세요. 단계별 설치, 다중 출처 통합, 실시간 검색 및 대안과 비교."
 date: 2026-06-10
-slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
+lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: [egonex, understand-anything, 지식그래프, AI, 상호작용, 오픈소스, 연구, 시각화, llm]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -541,3 +541,30 @@ AI 연구, 웹 검색 통합 및 상호작용 시각화의 조합은 Understand-
 지식 그래프 생성 및 연구 워크플로우를 논의하기 위해 [dibi8 영어 Telegram 그룹](https://t.me/DIBI8_Group/2)에 참여하세요. 보충 도구로 [AI 에이전트 관리](dibi8-internal-link) 및 [문서 처리](dibi8-internal-link) 가이드를 확인하세요. 오늘 바로 지식 탐색을 시작하세요 — 한 주제씩.
 
 위의 링크에는 제휴 링크가 포함되어 있습니다. dibi8.com은 가입 시 수수료 수익을 얻을 수 있으며, 이는 이용자에게 추가 비용이 없습니다. 사이트 운영과 콘텐츠提供免费를 유지하는 데 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Egonex Understand-Anything: 어떤 주제라도 상호작용 가능한 지식 그래프 — AI 기반, 오픈소스, 설정 불필요",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/egonex-understand-anything-interactive-knowledge-graph-ai"
+  }
+}
+</script>

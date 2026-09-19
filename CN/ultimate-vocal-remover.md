@@ -653,3 +653,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Takahashi et al., Multi-scale Multi-band DenseNets: https://arxiv.org/pdf/1706.09588.pdf
 - ONNX Runtime Documentation: https://onnxruntime.ai/docs/
 - Rubber Band Audio Library: https://breakfastquay.com/rubberband/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ultimate Vocal Remover: 24.7K+ Stars — Complete Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ultimate-vocal-remover"
+  }
+}
+</script>

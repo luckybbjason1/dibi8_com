@@ -641,3 +641,30 @@ WhisperX 填补了开源 ASR 栈中的一个关键空白：以70倍实时速度�
 - [CUDA 安装指南](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) — Linux GPU 设置
 - [CTranslate2 性能指南](https://opennmt.net/CTranslate2/performance.html) — 优化技巧
 - [WhisperX 示例](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — 多语言使用示例
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WhisperX: 22K+ Stars — 生产级ASR部署指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/whisperx"
+  }
+}
+</script>

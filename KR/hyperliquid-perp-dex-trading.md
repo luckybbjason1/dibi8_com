@@ -552,3 +552,30 @@ Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 �
 **관련 리소스:**
 - [Minara AI 트레이딩 봇](https://minara.ai/r/OSXG4X)
 - [Binance 거래소](https://www.bsmkweb.cc/register?ref=DIBI8)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통합 가이드",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading"
+  }
+}
+</script>

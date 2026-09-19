@@ -3,7 +3,7 @@ title: "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장�
 description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집팀이 수행."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-29 00:00:00+09:00
-categories: ["llm-frameworks"]
+lastmod:  2026-06-29 00:00:00+09:00categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w26
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
@@ -15,7 +15,9 @@ sources:
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
-------
+---
+# 이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)
+---
 
 <!-- Dibi8 Tribe Intel — Weekly Trending Report | Week 26 (June 29, 2026) -->
 
@@ -273,3 +275,30 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 *이번 주 오픈소스 AI 에이전트 소식은 Dibi8 Tribe Intel에서 매주 발행합니다. 수집된 데이터: 2026년 6월 29일. 다음 호: 2026년 7월 6일.*
 
 <!-- Disclosure: This article contains no affiliate links. Dibi8 maintains editorial independence. -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)",
+  "datePublished": "2026-06-29",
+  "dateModified": "2026-06-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/2026-06-29-trending-ai-agents"
+  }
+}
+</script>

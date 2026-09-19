@@ -23,6 +23,8 @@ tags: ['AI 트레이딩', '퀀트', '암호화폐', 'Hyperliquid', 'Polymarket',
 aliases:
   - /posts/ai-trading-stack/
 ---
+# AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우
+
 
 > ⚠️ **면책 조항**: 이는 AI 트레이딩 스택 구축 기술 가이드이지 투자 조언 아님. 퀀트 트레이딩은 실질적 자본 손실 위험. 실제 자본 배포 전 페이퍼/테스트넷에서 광범위하게 테스트. 과거 백테스트 성과는 미래 수익 예측 안 함.
 
@@ -251,3 +253,30 @@ pip install hyperliquid-python-sdk
 *동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) AI Trader의 LLM API 비용 측. [AI Agent 도구 체인](/kr/collections/ai-agent-tool-chain/) 자율 에이전트가 트레이딩 루프 구동 원함. [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 전략 코드 개발 측.*
 
 *⚠️ 재진술: 투자 조언 아님. 본인 책임 트레이드.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-trading-stack"
+  }
+}
+</script>

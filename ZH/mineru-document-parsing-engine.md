@@ -5,7 +5,7 @@ title: 'MinerU：70.6K 星 — 将任何文档转换为 LLM 就绪的 Markdown'
 description: 'MinerU（70,600+ GitHub star）将 PDF、DOCX、PPTX、XLSX、图像和网页转换为结构化 Markdown 和 JSON，用于 LLM、RAG 和 Agent 工作流程。 支持 109 种语言的 OCR、公式到 LaTeX、表格到 HTML，并在 CPU 或 GPU 上运行。'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-slug: 'mineru-document-parsing-engine'
+lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
@@ -253,3 +253,29 @@ MinerU 拥有超过 70,600 颗星、活跃的开发团队和不断增长的框�
  - Discord 社区：https://discord.gg/Tdedn9GTXq
 
 **披露**：本文包含附属链接。 如果您通过我们的链接注册，我们可能会赚取少量佣金，而无需您支付额外费用。 这有助于支持独立的科技新闻业，并使 dibi8.com 等资源保持免费且无广告。
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MinerU：70.6K 星 — 将任何文档转换为 LLM 就绪的 Markdown",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mineru-document-parsing-engine"
+  }
+}
+</script>

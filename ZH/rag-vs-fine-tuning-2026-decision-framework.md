@@ -203,3 +203,30 @@ RAG / 微调托管：
 ---
 
 **相关阅读**：[MCP 服务器 2026 排名](https://dibi8.com/zh/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent 记忆系统 2026](https://dibi8.com/zh/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents 指南](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAG 还是微调 2026：基于真实成本数据的决策框架",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/rag-vs-fine-tuning-2026-decision-framework"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng LLM đáng tin cậy"
 description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LLM hỗ trợ, cung cấp cách tiếp cận có nguyên tắc để xây dựng các agent AI đáng tin cậy, có thể mở rộng và quan sát được."
 date: 2026-06-10
-slug: 12-factor-agents
+lastmod:  2026-06-10slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -412,3 +412,30 @@ Cho dù bạn mới bắt đầu với LLM agent hay scaling một hệ thống 
 5. [DigitalOcean - Cơ sở hạ tầng Cloud cho AI](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - Lưu trữ Hiệu suất Cao](https://htstack.com/)
 7. [WebShare - Dịch vụ Proxy cho Pipeline Dữ liệu](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng LLM đáng tin cậy",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/12-factor-agents"
+  }
+}
+</script>

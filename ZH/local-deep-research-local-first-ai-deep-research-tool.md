@@ -107,3 +107,30 @@ Local Deep Research 不仅仅是一个工具，它是 AI 时代我们与信息�
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Local Deep Research：终极本地优先 AI 深度研究工具",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/local-deep-research-local-first-ai-deep-research-tool"
+  }
+}
+</script>

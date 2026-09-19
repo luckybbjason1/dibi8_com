@@ -23,6 +23,8 @@ tags: ['prometheus', 'giám sát', 'docker', 'kubernetes', 'grafana', 'devops', 
 aliases:
 - /vi/posts/prometheus/
 ---
+# Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026
+
 
 {{</* resource-info */>}}
 
@@ -612,3 +614,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [PromQL Cheat Sheet](https://promlabs.com/promql-cheat-sheet/)
 - [Prometheus vs InfluxDB So sánh](https://uptrace.dev/comparisons/prometheus-vs-influxdb)
 - [CNCF Prometheus Project Page](https://www.cncf.io/projects/prometheus/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/prometheus"
+  }
+}
+</script>

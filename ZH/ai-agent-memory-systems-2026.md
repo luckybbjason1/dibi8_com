@@ -35,6 +35,8 @@ faqs:
   - q: 'Memory layer 能降 LLM token 账单吗？'
     a: '能 — Mem0 2026-04 算法升级让 LoCoMo 92.5% 准确率只用 ~7K token/query，对比 full-context ~26K token。token 减少 73% 同时准确率反而更高。inference 规模下这是商业模型差异，不是边际改进。'
 ---
+# 2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / MemPalace 实战选型
+
 
 {{</* resource-info */>}}
 
@@ -251,3 +253,30 @@ MemPalace是2026年GitHub上Star数最高的开源记忆系统之一。它的定
 - [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)
 - [Mem0 evaluation framework (开源)](https://github.com/mem0ai/memory-benchmarks)
 - [AGENTS.md 开放标准](https://agents.md/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / MemPalace 实战选型",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-agent-memory-systems-2026"
+  }
+}
+</script>

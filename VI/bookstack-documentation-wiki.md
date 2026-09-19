@@ -518,3 +518,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công bố liên kết liên kết
 
 Bài viết này chứa liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0). Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Dự án BookStack miễn phí và mã nguồn mở —— không có mối quan hệ liên kết nào với ngườó duy trì BookStack.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn & Đánh giá 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/bookstack-documentation-wiki"
+  }
+}
+</script>

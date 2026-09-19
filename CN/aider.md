@@ -436,3 +436,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Aider Configuration Reference](https://aider.chat/docs/config.html)
 
 *This article is for informational purposes. Aider is open-source software under the Apache-2.0 license. Always review AI-generated code before deploying to production.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Aider: 45K+ Stars — Terminal AI Pair Programming vs Claude Code, Cursor in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/aider"
+  }
+}
+</script>

@@ -35,6 +35,8 @@ faqs:
   - q: '메모리 레이어로 LLM 토큰 비용을 줄일 수 있나요?'
     a: '네 — Mem0 2026-04 알고리즘 업그레이드로 LoCoMo 92.5% 정확도를 query당 ~7K 토큰으로 달성 (full-context ~26K 토큰 대비). 토큰 73% 감소하면서 정확도는 더 높음. inference 규모에서는 비즈니스 모델 차이지 한계적 개선이 아님.'
 ---
+# 2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsight / MemPalace
+
 
 {{</* resource-info */>}}
 
@@ -259,3 +261,30 @@ Hindsight (Postgres + pgvector) / MemPalace / 영구 저장이 필요한 메모�
 - [Cheap LLM Stack 컬렉션](/kr/collections/cheap-llm-stack/)
 - [Mem0 evaluation framework (오픈소스)](https://github.com/mem0ai/memory-benchmarks)
 - [AGENTS.md 오픈 표준](https://agents.md/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsight / MemPalace",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-agent-memory-systems-2026"
+  }
+}
+</script>

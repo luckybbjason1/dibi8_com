@@ -35,6 +35,8 @@ faqs:
   - q: 'Memory layer có giảm hóa đơn token LLM không?'
     a: 'Có — nâng cấp thuật toán Mem0 tháng 4 2026 cho độ chính xác LoCoMo 92.5% với ~7K token/query so với ~26K token full-context. Giảm 73% token đồng thời độ chính xác cao hơn. Ở quy mô inference, đây là khác biệt mô hình kinh doanh, không phải cải tiến biên.'
 ---
+# Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemory / Hindsight / MemPalace
+
 
 {{</* resource-info */>}}
 
@@ -260,3 +262,30 @@ Stack memory + agent + model tối ưu chi phí hoàn chỉnh: [Cheap LLM Stack 
 - [Cheap LLM Stack collection](/vi/collections/cheap-llm-stack/)
 - [Mem0 evaluation framework (mã nguồn mở)](https://github.com/mem0ai/memory-benchmarks)
 - [AGENTS.md open standard](https://agents.md/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemory / Hindsight / MemPalace",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-agent-memory-systems-2026"
+  }
+}
+</script>

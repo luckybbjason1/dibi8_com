@@ -452,3 +452,59 @@ A: Codebase Memory MCP is released under the MIT License, making it free for com
 ---
 
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "question": "What embedding models are supported?",
+      "answer": "Codebase Memory MCP supports any Sentence Transformers model out of the box. The default is `all-MiniLM-L6-v2` for speed, but you can swap in larger models like `all-mpnet-base-v2` for better accuracy, or domain-specific models for specialized codebases."
+    },
+    {
+      "question": "Can I use it with my own vector database?",
+      "answer": "Yes. The storage backend is pluggable. Built-in backends include Chroma, Pinecone, Weaviate, and Qdrant. You can also implement a custom backend by extending the `VectorStore` interface."
+    },
+    {
+      "question": "How does it handle private repositories?",
+      "answer": "All indexing and storage happens locally. Your code never leaves your machine. The only external call is to the embedding model API if you're using a cloud-based model (though local models are recommended for privacy)."
+    },
+    {
+      "question": "Does it support monorepos?",
+      "answer": "Yes. The incremental indexer handles monorepos efficiently by tracking file-level changes. You can index multiple projects in a single vector store or use separate stores per project."
+    },
+    {
+      "question": "What's the licensing?",
+      "answer": "Codebase Memory MCP is released under the MIT License, making it free for commercial use."
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server",
+  "datePublished": "2026-07-03",
+  "dateModified": "2026-07-03",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/codebase-memory-mcp-deep-code-intelligence"
+  }
+}
+</script>

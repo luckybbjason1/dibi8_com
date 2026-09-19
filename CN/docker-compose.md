@@ -533,3 +533,30 @@ Products we recommend that complement this guide:
 - [Docker Compose Production Best Practices](https://eastondev.com/blog/en/posts/dev/20260412-docker-compose-production/)
 - [Nomad vs Docker Compose — hostmycode.com](https://www.hostmycode.com/blog/container-orchestration-beyond-kubernetes-2026-nomad-docker-swarm-podman-vps)
 - [Docker Desktop Pricing and Licensing](https://www.docker.com/pricing/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docker Compose: 37,393 GitHub Stars — Multi-Container Setup Guide 2026",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/docker-compose"
+  }
+}
+</script>

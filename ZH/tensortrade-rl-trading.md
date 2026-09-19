@@ -523,3 +523,30 @@ TensorTrade为Python中的强化学习交易提供了最成熟的生产就绪开
 ## 联盟营销披露
 
 本文包含指向Binance和OKX的联盟链接。如果你通过这些链接注册并交易，我们可能会获得佣金，而你无需支付额外费用。这些佣金有助于资助开源交易工具和教育内容的开发。我们只推荐我们亲自测试和验证过的交易所。在任何交易所存款前，请务必自行调研。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/tensortrade-rl-trading"
+  }
+}
+</script>

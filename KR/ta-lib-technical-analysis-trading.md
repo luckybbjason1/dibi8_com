@@ -529,3 +529,30 @@ TA-Lib은 27년간의 기술 변화 속에서도 하나의 이유로 살아남�
 ---
 
 *제휴 공개: dibi8.com은 독자의 지원으로 운영됩니다. 사이트의 링크 — Binance, OKX 및 기타 파트너를 포함하여 — 를 통해 구매하시면 추가 비용 없이 제휴 수수료를 받을 수 있습니다. 이는 편집 콘텐츠에 영향을 미치지 않습니다. 우리는 테스트필 보고 독자에게 가치를 더한다고 믿는 도구만을 추천합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TA-Lib: 200개 이상의 지표를 가진 업계 표준 기술 분석 라이브러리 — Python 트레이딩 설정 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ta-lib-technical-analysis-trading"
+  }
+}
+</script>

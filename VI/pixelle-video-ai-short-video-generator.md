@@ -36,6 +36,8 @@ faqs:
   - q: 'Pixelle-Video có thể làm gì ngoài tạo video cơ bản?'
     a: 'Công cụ này bao gồm ba mô-đun mở rộng: Digital Human Avatar — biến một bức ảnh thành video đầu người nói có đồng bộ môi bằng tiếng Hàn, tiếng Trung hoặc tiếng Anh; Image-to-Video — chuyển ảnh tĩnh thành video động; và Motion Transfer — ánh xạ chuyển động từ video tham chiếu lên ảnh tĩnh.'
 ---
+# Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động Bằng AI, Nhập Chủ Đề
+
 {</* resource-info */>}
 
 ![Pixelle-Video Web UI: kịch bản / TTS / phân cảnh / video](/images/articles/pixelle-video-ai-short-video-generator/webui.png)

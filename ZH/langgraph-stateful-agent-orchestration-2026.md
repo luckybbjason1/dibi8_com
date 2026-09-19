@@ -206,3 +206,30 @@ LangGraph = **基于图的有状态 agent 运行时**，针对要熬过崩溃、
 ---
 
 *想看 LangGraph 在更大语境？看我们的 [AI Agent 工具链合集](/zh/collections/)（即将上线），讲它怎么和 MCP server / AgentMemory / 代码执行沙箱配合。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/langgraph-stateful-agent-orchestration-2026"
+  }
+}
+</script>

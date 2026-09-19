@@ -2,7 +2,7 @@
 title: 'Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决'
 description: 'Claude Code（Anthropic 商业 CLI）和 Aider（开源、自带 API key）横向对比 — 价格、上下文、agent 风格、成本效率。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Aider 的开源程度够企业用吗？'
     a: '够 — Aider 是 Apache 2.0 协议，完全跑在你机器上。唯一外部调用是你配置的模型 API（OpenAI、Anthropic、本地 Ollama 等）。气隙环境或合规敏感场景下，Aider 配本地模型就是完全自托管的 AI 编码方案。Claude Code 必须走 Anthropic 云。'
 ---
+# Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决
+
 
 ## 快速答案
 
@@ -216,3 +218,30 @@ Aider 的循环是：提议编辑 → 展示 unified diff → 等批准 → 用�
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code-vs-aider"
+  }
+}
+</script>

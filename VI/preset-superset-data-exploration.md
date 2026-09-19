@@ -420,3 +420,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Công bố liên kết liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký bằng liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phát sinh cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn mở với 50+ loại biểu đồ — Hướng dẫn tự host",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/preset-superset-data-exploration"
+  }
+}
+</script>

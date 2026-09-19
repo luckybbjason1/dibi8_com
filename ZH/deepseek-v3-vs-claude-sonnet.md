@@ -2,7 +2,7 @@
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万上下文'
 description: 'DeepSeek V3.5（685B MoE，开源权重）和 Claude Sonnet 4.6 横向对比 — 每百万 token 价格、上下文窗口、SWE-bench、中文能力、API 可用性。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: '哪个上下文窗口更大？'
     a: 'Claude Sonnet 4.6 最大支持 100 万（1M）token 上下文（[1M] 变体）— 足够塞下整个中型代码库或 75 万字的文档。DeepSeek V3.5 上限是 128K（约 10 万字）。要做超大 monorepo、长法律文档、整本书问答，Sonnet 1M 这个价位段没对手。'
 ---
+# DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万上下文
+
 
 ## 快速答案
 
@@ -189,3 +191,30 @@ Anthropic 在 tool use 可靠性上投入很重 — 并行工具调用、结构�
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万上下文",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/deepseek-v3-vs-claude-sonnet"
+  }
+}
+</script>

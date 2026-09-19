@@ -2,7 +2,7 @@
 title: "CC Switch: Trình Quản Lý Tác Nhân Lập Trình AI Tối Ưu cho Phát Triển Đa Nền Tảng"
 description: "Hướng dẫn đầy đủ về CC Switch — ứng dụng desktop đa nền tảng quản lý Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw và Hermes Agent trong một giao diện thống nhất. Cài đặt, cấu hình và cách sử dụng thực tế."
 date: 2026-06-20
-tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 lang: vi
 slug: cc-switch-all-in-one-ai-coding-agent-manager
@@ -324,3 +324,29 @@ Với hơn **105.000 sao GitHub** và một cộng đồng năng động, đang 
 --- 
 
 💬 Tham gia nhóm Telegram của chúng tôi để thảo luận: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CC Switch: Trình Quản Lý Tác Nhân Lập Trình AI Tối Ưu cho Phát Triển Đa Nền Tảng",
+  "datePublished": "2026-06-20",
+  "dateModified": "2026-06-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cc-switch-all-in-one-ai-coding-agent-manager"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['Stable Diffusion', 'SDXL', '이미지 생성', 'AUTOMATIC1111', '오픈�
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+# Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스트 이미지 생성 완전 가이드
+
 
 지난 3년간 "stable diffusion install"을 Google에서 검색하면 첫 결과는 **AUTOMATIC1111의 stable-diffusion-webui**입니다. 163k GitHub 별 (역사상 가장 많은 별의 AI 프로젝트 중 하나)로 2026년 SD 패밀리 이미지 생성의 기본 셀프호스트 UI — text-to-image, image-to-image, inpainting, outpainting, LoRA, ControlNet, 배치 생성, 모두 4 GB GPU에서 실행되는 Gradio 웹 UI 뒤.
 
@@ -158,3 +160,30 @@ GPU 인스턴스 띄우고, 3절 설치 실행, 15분 후 의미 있는 볼륨�
 ---
 
 *dibi8의 멀티모달 콘텐츠 스택 일부 — [노드 기반 워크플로우용 ComfyUI](/kr/resources/ai-tools/comfyui-node-based-ai-image-2026/)와 다가오는 멀티모달 콘텐츠 파이프라인 컬렉션 참조.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스트 이미지 생성 완전 가이드",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/stable-diffusion-webui-2026"
+  }
+}
+</script>

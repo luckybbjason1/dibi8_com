@@ -467,3 +467,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tiết lộ liên kết liên kết
 
 Bài viết này chứa liên kết liên kết cho DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không tốn thêm chi phí cho bạn. Tất cả đề xuất đều dựa trên thử nghiệm thực tế và không bị ảnh hưởng bởi chương trình liên kết. Baetyl hoàn toàn mã nguồn mở và miễn phí sử dụng theo giấy phép Apache-2.0.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Baetyl: Nền tảng điện toán AI biên cloud-native triển khai mô hình đến thiết bị IoT — Hướng dẫn 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/baetyl-edge-ai-computing-platform"
+  }
+}
+</script>

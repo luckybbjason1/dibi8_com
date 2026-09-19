@@ -3,7 +3,7 @@ title: '什么是 OpenHuman？'
 lang: zh
 description: 'content/zh/resources/openhuman.md'
 date: 2026-06-18
-layout: article
+lastmod:  2026-06-18layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
@@ -213,3 +213,30 @@ openhuman config models \
 
 | 指标 | 第一周 | 第四周 | 第八周 |
 |
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "什么是 OpenHuman？",
+  "datePublished": "2026-06-18",
+  "dateModified": "2026-06-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openhuman"
+  }
+}
+</script>

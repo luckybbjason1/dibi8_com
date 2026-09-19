@@ -322,3 +322,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open Design: The Ultimate Local-First AI Design Tool Replacing Claude Design",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/open-design-local-first-ai-design-tool"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['AI Trading', 'Quant', 'Crypto', 'Hyperliquid', 'Polymarket', 'Stack', 'C
 aliases:
   - /posts/ai-trading-stack/
 ---
+# AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Nguồn Mở Cho Crypto + Thị Trường Dự Đoán
+
 
 > ⚠️ **Tuyên bố miễn trừ**: Đây là hướng dẫn kỹ thuật xây stack AI trading, không phải lời khuyên đầu tư. Trading định lượng có rủi ro mất vốn đáng kể. Test rộng rãi trên paper/testnet trước khi triển khai vốn thực. Hiệu suất backtest quá khứ không dự đoán lợi nhuận tương lai.
 
@@ -251,3 +253,30 @@ Bật {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} cho thực thi đ�
 *Bộ sưu tập đồng hành: [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cho phía chi phí LLM API của AI Trader. [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) nếu muốn agent tự trị điều khiển vòng trading. [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho phía phát triển code chiến lược.*
 
 *⚠️ Tái khẳng định: Không phải lời khuyên đầu tư. Trade rủi ro tự chịu.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Nguồn Mở Cho Crypto + Thị Trường Dự Đoán",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-trading-stack"
+  }
+}
+</script>

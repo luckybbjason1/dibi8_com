@@ -582,3 +582,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Bài viết này chứa liên kết affiliate. Khi mua dịch vụ proxy qua các liên kết WebShare trong bài viết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Tất cả dữ liệu benchmark và khuyến nghị dựa trên kiểm thử độc lập và các nguồn đã được cộng đồng xác minh.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs BeautifulSoup, Selenium in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/scrapy"
+  }
+}
+</script>

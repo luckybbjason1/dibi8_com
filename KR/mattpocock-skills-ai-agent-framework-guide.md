@@ -2,7 +2,7 @@
 title: "Matt Pocock의 Skills: AI 에이전트에 진정한 슈퍼파워를 부여하는 CLI 프레임워크 — npm 설치, 설정 불필요"
 description: "Claude Code, Cursor, Gemini CLI와 같은 AI 코딩 에이전트에 코드 이상의 진짜 기능을 부여하는 Matt Pocock의 Skills 프레임워크 사용법을 배워보세요. 데이터베이스, 파일시스템, CI/CD 등. 단계별 npx 설치 가이드, 아키텍처 분석 및 실제 벤치마크."
 date: 2026-06-10
-slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI 에이전트, CLI 프레임워크, AI 코딩 도구, 에이전트 기능, 개발자 도구, 오픈소스]
 lang: ko
@@ -429,3 +429,30 @@ Matt Pocock의 Skills 프레임워크는 AI 보조 개발에서 근본적인 문
 [Skills 구성 및 에이전트 워크플로우](https://t.me/DIBI8_Group/2) 토론을 위해 [dibi8 한국어 텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요. [MarkItDown으로 문서 처리](dibi8-internal-link) 및 [AI 지식그래프](dibi8-internal-link) 가이드를 확인하세요. 오늘 AI 에이전트를 강화하세요.
 
 일부 링크는 제휴 링크입니다. dibi8.com은 등록 시 추가 비용 없이 수수료를 받을 수 있습니다. 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Matt Pocock의 Skills: AI 에이전트에 진정한 슈퍼파워를 부여하는 CLI 프레임워크 — npm 설치, 설정 불필요",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mattpocock-skills-ai-agent-framework-guide"
+  }
+}
+</script>

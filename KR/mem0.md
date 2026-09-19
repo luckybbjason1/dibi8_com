@@ -748,3 +748,30 @@ Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 �
 - AWS Agent SDK + Mem0 발표: https://aws.amazon.com/blogs/machine-learning
 - Atlan — 2026년 최고의 AI 에이전트 메모리 프레임워크: https://atlan.com/know/best-ai-agent-memory-frameworks-2026/
 - Evermind — Mem0 대안 2026: https://evermind.ai/blogs/mem0-alternative
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mem0"
+  }
+}
+</script>

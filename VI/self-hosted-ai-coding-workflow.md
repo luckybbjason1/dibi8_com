@@ -277,3 +277,30 @@ Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn 
 ---
 
 *Đánh dấu trang này — chúng tôi cập nhật lựa chọn thành phần hàng quý khi có bản release mã nguồn mở mới. Cập nhật cuối: 2026-05-21.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng Cho 2026",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/self-hosted-ai-coding-workflow"
+  }
+}
+</script>

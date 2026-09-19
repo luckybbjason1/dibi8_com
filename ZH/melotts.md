@@ -656,3 +656,30 @@ MeloTTS 在开源 TTS 领域占据独特位置：它是唯一将多语言支持�
 - [Clore.ai TTS 引擎对比](https://docs.clore.ai/guides/audio-and-voice/melotts)
 - [Open-LLM-VTuber TTS 基准测试](https://blog.csdn.net/gitblog_00912/article/details/154584830)
 - [MeloTTS 性能深入分析](https://blog.csdn.net/gitblog_02862/article/details/150221387)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MeloTTS: 7.4K+ Stars — 多语言 TTS 基准对比 Coqui TTS、ChatTTS、Bark 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/melotts"
+  }
+}
+</script>

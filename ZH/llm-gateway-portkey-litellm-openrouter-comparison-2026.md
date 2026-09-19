@@ -27,6 +27,8 @@ tags: ['LLM Gateway', 'Portkey', 'LiteLLM', 'OpenRouter', '对比']
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
+# Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、价格与自托管全对比）
+
 
 读三篇 "最佳 LLM 网关" 的文章，你会得到三个不同答案 + 零个可对比数字。这篇把这件事解决了。下面是 **Portkey**、**LiteLLM**、**OpenRouter** —— 2026 年实际跑生产 AI 流量的三家网关 —— 的硬碰硬对比，附带真实延迟实测、$1000/月的成本拆解、以及一棵 30 秒就能用的决策树。
 
@@ -161,3 +163,30 @@ LLM 网关坐在你的应用和 N 个 Provider 之间，对外暴露一个统一
 ---
 
 *想零成本测试上面三家？开一个 $6/月的 [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) 跑 LiteLLM，把现有 OpenAI SDK base URL 改过去，0 代码改动就能拥有完整 fallback 选项。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、价格与自托管全对比）",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026"
+  }
+}
+</script>

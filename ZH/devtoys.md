@@ -505,3 +505,30 @@ DevToys 填补了开发者工具包中的一个真正空白：一个免费、离
 - DevUtils for macOS: https://devutils.com
 - Boop on GitHub: https://github.com/IvanMathy/Boop
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DevToys: 31,533 GitHub 星标 — 开发者工具套件 2026 完整安装指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/devtoys"
+  }
+}
+</script>

@@ -295,3 +295,30 @@ VS Code는 이미 ripgrep을 내장 검색 엔진으로 사용하고 있습니�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "코드 검색 및 교체 도구: grep에서 ripgrep, sd까지 현대적 대안 완벽 가이드",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/code-search-replace-tools-grep-modern-alternatives"
+  }
+}
+</script>

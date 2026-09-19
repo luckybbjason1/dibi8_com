@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/best-ai-video-generation-tools-2025/
 ---
+# 2025년 최고의 AI 비디오 생성 도구: Sora, Runway, Pika 등 비교
+
 
 {</* resource-info */>}
 
@@ -156,3 +158,30 @@ Luma AI의 Dream Machine은 매일 5개의 묣질 생성 크레딧을 제공한�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 비디오 생성 도구: Sora, Runway, Pika 등 비교",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/best-ai-video-generation-tools-2025"
+  }
+}
+</script>

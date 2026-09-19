@@ -36,6 +36,8 @@ faq:
   - q: "스킬 대신 서브에이전트를 작성해야 하는 경우는 언제인가요?"
     a: "현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다."
 ---
+# Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)
+
 
 ## 들어가며
 
@@ -190,3 +192,30 @@ shared state, timing/async, test-order dependence, or external resources.
 ## 결론
 
 스킬은 가장 저렴하고 가장 저평가된 확장 지점입니다 — 마크다운 파일 하나가 든 디렉터리로, 상황에 따른 전문성을 적시 컨텍스트로 바꿔 줍니다. 이 기예 전체는 결국 두 가지로 환원됩니다: 적절한 순간에 발동하도록 실제 트리거 문구로 꽉 채운 **description**, 그리고 작업이 그 깊이를 필요로 할 때까지 가볍게 유지되도록 하는 **점진적 공개**. 이 둘을 잘 쓰면, 당신은 팀 전체가 — 그리고 모든 CI 실행이 — 관련된 바로 그 순간에 공짜로 얻는 절차를 패키징한 것입니다. 그것으로 삼부작이 완성됩니다: 지식엔 스킬, 컨텍스트엔 서브에이전트, 역량엔 MCP 서버.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026"
+  }
+}
+</script>

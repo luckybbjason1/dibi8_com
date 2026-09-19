@@ -2,7 +2,7 @@
 title: 'cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026'
 description: 'cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, and Hermes Agent into one control center. Single binary, zero dependencies. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
-slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['AI CLI management', 'Claude Code alternative', 'ai coding tools', 'developer productivity', 'multi-agent CLI', 'cc-switch', 'ai coding agent', 'CLI proxy']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -438,3 +438,30 @@ If you're using 2+ AI coding agents, switching between them 10+ times a day, cc-
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss cc-switch tips and presets. Check out our guides on [代码知识图谱工具](https://dibi8.com/codegraph-pre[Token压缩代理](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server)nts) and [本地ChatGPT](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu) for related tooling. Try cc-switch today — install it, set up two agent presets, and see how much time you save in a week.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center"
+  }
+}
+</script>

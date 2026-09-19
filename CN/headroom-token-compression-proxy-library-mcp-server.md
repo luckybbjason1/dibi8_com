@@ -2,7 +2,7 @@
 title: 'Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026'
 description: 'Headroom (19,745 GitHub stars) compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, and MCP server. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
-slug: 'headroom-token-compression-proxy-library-mcp-server'
+lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ['token compression', 'LLM token optimization', 'MCP server', 'RAG compression', 'Headroom', 'context optimization', 'token cost reduction', 'AI proxy']
 github_repo: 'https://github.com/chopratejas/headroom'
@@ -450,3 +450,30 @@ Whether you're a single developer trying to reduce Claude API bills, a team runn
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Headroom configurations. Check out our guides on [本地ChatGPT](https://dibi8.com/nanochat-karpathy-100-chatg[AI Agent平台](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-link) for complementary AI tooling. Try Headroom today — install it, point your proxy, and watch your token bills drop.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/headroom-token-compression-proxy-library-mcp-server"
+  }
+}
+</script>

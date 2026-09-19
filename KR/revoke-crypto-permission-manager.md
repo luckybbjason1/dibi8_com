@@ -548,3 +548,30 @@ DeFi에서 보안은 일회성 설정이 아니라 지속적인 관행입니다.
 ---
 
 *면책 조항: 본 문서는 정보 제공 목적으로만 작성되었으며 재무 또는 보안 조언을 구성하지 않습니다. 항상 계약 주소를 확인하고, 상당한 보유 자산에는 하드웨어 지갑을 사용하고, 좋은 운영 보안을 실천하세요. 이 게시물에는 제휴 링크가 포함되어 있으며, 파트너 링크를 사용하실 때 추가 비용 없이 보상을 받을 수 있습니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "revoke-crypto-permission-manager",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/revoke-crypto-permission-manager"
+  }
+}
+</script>

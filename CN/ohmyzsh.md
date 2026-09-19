@@ -3,7 +3,7 @@ title: 'Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026'
 description: 'Master Oh My Zsh with real benchmarks, plugin configs, and setup guides. Compare with Starship, Prezto, and Zsh-native setups. 187k+ stars.'
 tags: ["open-source"]
 date: 2026-06-11
-slug: 'ohmyzsh'
+lastmod:  2026-06-11slug: 'ohmyzsh'
 category: dev-utils
 github_repo: 'https://github.com/ohmyzsh/ohmyzsh'
 license: MIT
@@ -554,3 +554,29 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for more tec
 5.  Zsh Documentation: https://zsh.sourceforge.io/Doc/
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ohmyzsh"
+  }
+}
+</script>

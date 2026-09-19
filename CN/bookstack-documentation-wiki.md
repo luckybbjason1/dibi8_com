@@ -518,3 +518,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0). If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The BookStack project is free and open-source — no affiliate relationship exists with the BookStack maintainers.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup & Review",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/bookstack-documentation-wiki"
+  }
+}
+</script>

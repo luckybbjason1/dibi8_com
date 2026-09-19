@@ -309,3 +309,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 
 - [PageIndex](https://github.com/VectifyAI/PageIndex)
 - [FinanceBench](https://github.com/patronus-ai/financebench)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PageIndex：29K⭐Vectorless RAG System — Document Retrieval Without Vector Database",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/pageindex-vectorless-reasoning-rag"
+  }
+}
+</script>

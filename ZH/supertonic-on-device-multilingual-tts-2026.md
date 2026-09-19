@@ -23,6 +23,8 @@ tags: ['supertonic', 'text-to-speech', 'tts', 'on-device-ai', 'onnx', 'multiling
 aliases:
 - /zh/posts/supertonic-on-device-multilingual-tts-2026/
 ---
+# Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）
+
 
 ## 本地 TTS 的真问题
 
@@ -185,3 +187,30 @@ Supertonic 是 2026 年最有说服力的"一个模型走天下"开源 TTS。990
 ---
 
 **GitHub**：[supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **协议**：MIT（代码）/ OpenRAIL-M（权重）· **最新**：v2.0.0（2026-01-06）· **Stars**：9.9K+ · **维护方**：Supertone Inc.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/supertonic-on-device-multilingual-tts-2026"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "Kỹ Năng Taste: Ngăn AI Tạo Ra Nội Dung Đại Chúng — Khung Kỹ Năng Tác Nhân 2026"
 description: "Taste Skill là một khung kỹ năng tác nhân di động, nâng cấp giao diện do AI xây dựng với bố cục mạnh mẽ hơn, kiểu chữ, chuyển động và khoảng cách. Hoạt động với Codex, Cursor, Claude Code và ChatGPT Images."
 date: 2026-06-15
-slug: taste-skill
+lastmod:  2026-06-15slug: taste-skill
 category: dev-utils
 tags: ['thiết kế ai', 'kỹ năng tác nhân', 'chống-slop', 'frontend', 'codex', 'cursor', 'claude code', 'kỹ thuật prompt']
 github_repo: "https://github.com/Leonxlnx/taste-skill"
@@ -396,3 +396,30 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **CTA**: Tham gia cộng đồng Taste Skill trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Tiết lộ**: Bài viết này chứa liên kết chi phí. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không tốn thêm chi phí cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kỹ Năng Taste: Ngăn AI Tạo Ra Nội Dung Đại Chúng — Khung Kỹ Năng Tác Nhân 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/taste-skill"
+  }
+}
+</script>

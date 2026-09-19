@@ -23,6 +23,8 @@ tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-a
 aliases:
 - /kr/posts/2026-local-first-ai-stack-production-architecture/
 ---
+# 2026년 로컬 우선 AI 스택: 14개 오픈소스 도구로 짜는 프로덕션 아키텍처 레퍼런스
+
 
 ## "그냥 OpenAI 호출하면 되지"가 더 이상 통하지 않는 이유
 
@@ -242,3 +244,30 @@ ASR(음성 입력) 쪽은 Whisper.cpp가 여전히 오랫동안 자리를 지키
 | 6 | 음성 I/O | [Supertonic](https://dibi8.com/kr/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/) | 9.9K+ | MIT + OpenRAIL-M |
 | 7 | 방법론 | [12-Factor Agents](https://dibi8.com/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) | 22K+ | Apache + CC BY-SA |
 | ∗ | 결합 조직 | [MCP — Model Context Protocol](https://dibi8.com/kr/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/) | n/a | Anthropic OSS |
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026년 로컬 우선 AI 스택: 14개 오픈소스 도구로 짜는 프로덕션 아키텍처 레퍼런스",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/2026-local-first-ai-stack-production-architecture"
+  }
+}
+</script>

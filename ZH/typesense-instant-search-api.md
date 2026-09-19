@@ -614,3 +614,30 @@ Typesense 27.1 是构建生产级即时搜索的最快路径。从 Docker 启动
 ---
 
 *联盟披露：本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外费用。我们基于真实测试独立推荐服务。Typesense 是免费开源软件 —— 唯一的费用是托管成本。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Typesense 2026: 开源即时搜索 API 日处理 100 万次查询 — 自托管部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/typesense-instant-search-api"
+  }
+}
+</script>

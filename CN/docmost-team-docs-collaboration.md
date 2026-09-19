@@ -532,3 +532,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0). If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The Docmost Community edition is free and open-source under AGPL-3.0 —— no affiliate relationship exists with the Docmost maintainers.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docmost 2026: The Open-Source Notion Alternative for Real-Time Team Collaboration — Self-Hosted Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/docmost-team-docs-collaboration"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "Ruv Pi：自我扩展编码代理CLI多提供商LLM API"
 description: "Ruv Pi 是来自Earendil Works的自扩展编码代理CLI，提供统一的多提供商LLM API，使开发者能够构建、运行和扩展支持Claude、OpenAI、Gemini等的人工智能编码代理。"
 date: 2026-06-10
-slug: ruv-pi
+lastmod:  2026-06-10slug: ruv-pi
 category: llm-frameworks
 tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
 github_repo: https://github.com/earendil-works/pi
@@ -11,6 +11,8 @@ maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
+# Ruv Pi：自我扩展编码代理CLI多提供商LLM API
+
 ## 介绍
 
 AI编程工具的版图已变得异常碎片化。开发人员在使用Claude Code、Cursor、Copilot、Codex以及不断增多的命令行界面（CLI）工具之间切换——每个工具都有自己的配置、定价和功能。管理多个模型提供商，每家提供商都有不同的API、速率限制和标记成本，已成为构建智能应用程序团队的重要运营负担。
@@ -40,3 +42,30 @@ AI编程工具的版图已变得异常碎片化。开发人员在使用Claude Co
 - 社区讨论: https://github.com/ruv-pi/discussions
 
 *一些上面的链接是关联链接。如果您注册，dibi8.com 可能会在不增加您成本的情况下获得佣金。这有助于保持站点运行和内容免费.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ruv Pi：自我扩展编码代理CLI多提供商LLM API",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ruv-pi"
+  }
+}
+</script>

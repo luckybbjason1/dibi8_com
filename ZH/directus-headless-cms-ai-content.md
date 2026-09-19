@@ -665,3 +665,30 @@ Directus 11.x 是 2026 年需要数据库优先、API 驱动内容平台的团�
 ---
 *文章发布：2026-05-19 | 分类：dev-utils | 工具：Directus 11.3.0*
 *加入 dibi8 开发者社区：[English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/directus-headless-cms-ai-content"
+  }
+}
+</script>

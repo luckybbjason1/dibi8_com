@@ -486,3 +486,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Bài viết này có thể chứa liên kết tiếp thị. Nếu bạn đăng ký DigitalOcean qua liên kết giới thiệu, chúng tôi nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ mà chính chúng tôi sử dụng.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NocoDB 2026 Hướng Dẫn Đầy Đủ: Giải Pháp Thay Thế Airtable Mã Nguồn Mở Biến Mọi Database Thành Bảng Tính Thông Minh",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/noco-db-airtable-alternative"
+  }
+}
+</script>

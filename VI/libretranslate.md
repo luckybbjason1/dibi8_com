@@ -797,3 +797,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 > **Tuyên bố**: Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giớii thiệu trong hướng dẫn này, chúng tôi có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Liên kết affiliate giúp hỗ trợ việc duy trì liên tục các dự án tài liệu mã nguồn mở như thế này.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hướng Dẫn Triển Khai Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/libretranslate"
+  }
+}
+</script>

@@ -685,3 +685,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 **Tuyên bố Liên kết:** Một số liên kết trong bài viết này là liên kết affiliate. Nếu bạn dùng [liên kết giới thiệu DigitalOcean](https://m.do.co/c/eca87ac14ee0) của chúng tôi để đăng ký, bạn nhận được $200 tín dụng và chúng tôi nhận thưởng giới thiệu — không tốn thêm chi phí cho bạn. Điều này hỗ trợ nghiên cứu độc lập của chúng tôi và giữ nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Haystack 2026: Framework NLP End-to-End cho Pipeline RAG & Agent Sản xuất — Hướng dẫn Thiết lập",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/haystack-rag-pipeline-framework"
+  }
+}
+</script>

@@ -1,7 +1,7 @@
 title: 'LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph —— AI 代理框架对比（2026）'
 description: '2026 年前五大开源 AI 代理框架的并排比较。真实的收藏量、代码示例、性能基准，以及为您的项目选择合适框架的实用指南。'
 date: 2026-06-30T00:00:00+09:00
-lang: zh-cn
+lastmod:  2026-06-30T00:00:00+09:00lang: zh-cn
 draft: false
 tags: [" 人工智能代理 "
 " 框架 "

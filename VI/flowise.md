@@ -640,3 +640,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 8. [So sánh Flowise vs Dify](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) —— So sánh chi tiết bởi ToolHalla
 9. [Tài liệu Flowise Embed Widget](https://www.npmjs.com/package/flowise-embed) —— Gói NPM để nhúng chatbot
 10. [Hướng dẫn triển khai Docker trên DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Hướng dẫn cài Docker trên Ubuntu
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng Dẫn Cài Đặt 5 Phút 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/flowise"
+  }
+}
+</script>

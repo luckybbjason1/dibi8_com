@@ -180,3 +180,30 @@ Agent Reach 代表了我们对 AI Agent 能力认知的转变。它不再将互�
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agent Reach：让你的 AI Agent 一键连接互联网",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agent-reach-ai-agent-internet-access"
+  }
+}
+</script>

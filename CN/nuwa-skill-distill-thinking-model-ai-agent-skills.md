@@ -2,7 +2,7 @@
 title: 'Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026'
 description: 'Nuwa-Skill (23,508 GitHub stars) distills thinking models of historical figures, experts, and influencers into reusable AI Agent Skills. Compatible with Claude Code, Codex, Cursor, Hermes, and 50+ runtimes. Install via npx skills add.'
 date: 2026-06-09
-slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
+lastmod:  2026-06-09slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
 tags: ['nuwa-skill', 'agent skills', 'thinking models', 'COT distillation', 'AI agent framework', 'Claude Code skills', 'Codex skills', 'MCP alternatives', 'agent memory']
 github_repo: 'https://github.com/alchaincyf/nuwa-skill'
@@ -452,3 +452,30 @@ The beauty of Nuwa-Skill is its simplicity: one command, 50+ runtimes, and infin
 Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclaimer:** This article is for informational purposes only. Distillations are based on publicly available information and do not represent the actual thoughts of the individuals described. Always verify claims independently. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/nuwa-skill-distill-thinking-model-ai-agent-skills"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 安装，零配置"
 description: "了解如何使用 Matt Pocock 的 Skills 框架为 Claude Code、Cursor 和 Gemini CLI 等 AI 编程 Agent 赋予代码之外的真正能力——数据库、文件系统、CI/CD 等。包含逐步 npx 安装指南、架构分析和实际基准测试。"
 date: 2026-06-10
-slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI Agent, CLI框架, AI编程工具, Agent能力, 开发者工具, 开源]
 lang: zh
@@ -429,3 +429,30 @@ Matt Pocock 的 Skills 框架解决了 AI 辅助开发中的一个根本问题�
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/2) 讨论 Skills 配置和 Agent 工作流。查看我们的 [使用 MarkItDown 进行文档处理](dibi8-internal-link) 和 [AI 知识图谱](dibi8-internal-link) 指南以获取互补工具。今天就开始赋予你的 AI Agent 力量。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 安装，零配置",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mattpocock-skills-ai-agent-framework-guide"
+  }
+}
+</script>

@@ -33,6 +33,8 @@ faqs:
   - q: 'Pixelle-Video 除基础视频生成外还能做什么？'
     a: '它包含三个扩展模块：数字人 Avatar，可将一张照片转换为支持韩语、中文或英语的唇形同步讲话头像视频；Image-to-Video，可将静态图片制作成动态视频；Motion Transfer，可将参考视频中的动作映射到静止图像上。'
 ---
+# Pixelle-Video 评测：AI 全自动短视频生成引擎，输入主题自动生成完整视频
+
 {</* resource-info */>}
 
 ![Pixelle-Video Web UI：视频脚本 / 配音 / 分镜 / 生成结果](/images/articles/pixelle-video-ai-short-video-generator/webui.png)

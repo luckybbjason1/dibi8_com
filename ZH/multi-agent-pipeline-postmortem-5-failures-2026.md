@@ -36,6 +36,8 @@ faq:
   - q: "如果多智能体编排这么频繁出错，那它值得这份复杂度吗？"
     a: "值得——当任务确实超出单个上下文窗口、或需要独立核验时。但这五种失败恰恰就是你不该条件反射地上手编排的原因。一个提示词写得好的单智能体，每一次都胜过一条有 bug 的五智能体流水线。当问题是真实的（需要全面覆盖、并行的独立工作、对抗式审查）时再用编排，而当你用它时，把那些能预防这些失败模式的核验步骤和停止条件内建进去。你无法核验的复杂，比你能核验的简单更糟糕。"
 ---
+# 多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）
+
 
 ## 引言
 
@@ -107,3 +109,30 @@ faq:
 ## 结论
 
 多智能体编排是值得的——当任务确实超出单个上下文窗口、或需要独立核验时。但要刻意地上手它，而不是条件反射地上手。一个提示词写得好的单智能体，每一次都胜过一条有 bug 的五智能体流水线。当你确实要编排时，强大与灾难之间的区别只在一个习惯：**对照基准事实核验每一个声明，给每一个循环设定边界。** 你无法核验的复杂，比你能核验的简单更糟糕。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/multi-agent-pipeline-postmortem-5-failures-2026"
+  }
+}
+</script>

@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-llms-txt-generator"
 tool_id: "llms-txt-generator"
 ---
+# Trình Tạo llms.txt — Giúp AI Crawler (ChatGPT, Claude, Perplexity) Hiểu Trang Của Bạn
+

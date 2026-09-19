@@ -36,6 +36,8 @@ faq:
   - q: "Claude Code subagent 가격은 어떻게 작동하나요 — 각각에 대해 별도로 청구되나요?"
     a: "각 subagent 호출은 다른 Claude 대화처럼 토큰을 소비합니다. 비용은 대략 subagent의 전체 컨텍스트입니다 (시스템 프롬프트 + 도구 스키마 + 작업 프롬프트 + 사고 + 최종 보고서). Pro와 Max 플랜에서 subagent 사용은 부모 세션과 같은 사용 한도에 산입됩니다. API 사용자의 경우 토큰당 직접 청구됩니다. 절약은 부모 컨텍스트를 부풀릴 탐색을 분담함으로써 발생합니다 — subagent에 비용을 지불하지만, 메인 세션은 빠르고 집중된 상태로 유지됩니다."
 ---
+# Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)
+
 
 ## 들어가며
 
@@ -161,3 +163,30 @@ Agent({
 패턴 1(병렬 리서치 fan out)부터 시작하세요 — 가장 낮은 마찰 채택 지점이며 이득은 즉시 옵니다. 세션이 길어지고 작업이 무거워질수록 다른 것들을 계층화하세요.
 
 "메인 세션에 계속 타이핑하라"는 본능은 죽기 어렵습니다. 무시하세요. Subagent를 생성하세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-subagent-patterns-multi-agent-workflows-2026"
+  }
+}
+</script>

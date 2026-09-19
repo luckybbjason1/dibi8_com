@@ -562,3 +562,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for cloud hosting. If you sign up through our link, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments. Affiliate links help fund the development of dibi8.com open-source content.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Milvus/Zilliz 2026: The Vector Database Handling 10 Billion Vectors at Millisecond Latency — Deployment Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/zilliz-milvus-vector-database-scale"
+  }
+}
+</script>

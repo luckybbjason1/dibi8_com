@@ -2,7 +2,7 @@
 title: 'nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 — 2026 实战指南'
 description: 'nanochat（54,800 GitHub 星标）是 Andrej Karpathy 的开源 ChatGPT 克隆项目，可在单张 100 美元 GPU 上运行。使用 SGLang 从头训练或通过 vLLM 提供预训练模型服务。包含设置指南、训练基准和部署示例。'
 date: 2026-06-08
-slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
+lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ['karpathy nanochat', '从头训练 LLM', '单 GPU 聊天', '开源 ChatGPT', 'SGLang', 'vLLM', '本地 LLM', 'AI 聊天应用']
 github_repo: 'https://github.com/karpathy/nanochat'
@@ -375,3 +375,30 @@ nanochat 证明你不需要 20 美元的月 API 订阅或数据中心来运行 C
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/4) 讨论 nanochat 经验和训练配置。查看我们的 [Langflow 可视化工作流](dibi8-internal-link) 和 [AI Agent 记忆系统](dibi8-internal-link) 指南了解互补工具。今天就试试 nanochat——克隆仓库，运行 `python app.py`，看看你自己的模型如何响应。
 
 上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 — 2026 实战指南",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/nanochat-karpathy-100-chatgpt-single-gpu"
+  }
+}
+</script>

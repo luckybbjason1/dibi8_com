@@ -23,6 +23,8 @@ tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-a
 aliases:
 - /zh/posts/2026-local-first-ai-stack-production-architecture/
 ---
+# 2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）
+
 
 ## 为什么"直接调 OpenAI"已经撑不下去
 
@@ -242,3 +244,30 @@ CodeGraph 的架构洞察可以泛化：**任何代理会反复查询的领域�
 | 6 | 语音 I/O | [Supertonic](https://dibi8.com/zh/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/) | 9.9K+ | MIT + OpenRAIL-M |
 | 7 | 方法论 | [12-Factor Agents](https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) | 22K+ | Apache + CC BY-SA |
 | ∗ | 连接组织 | [MCP — Model Context Protocol](https://dibi8.com/zh/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/) | n/a | Anthropic OSS |
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/2026-local-first-ai-stack-production-architecture"
+  }
+}
+</script>

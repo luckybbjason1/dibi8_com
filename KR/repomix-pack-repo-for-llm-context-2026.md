@@ -106,3 +106,30 @@ config/credentials.json
 > **AI 개발 도구를 구축할 서버가 필요하신가요?** [DigitalOcean 신규 사용자는 $200 크레딧을 받습니다](https://m.do.co/c/eca87ac14ee0) — 개발 서버를 실행하거나 AI 지원 코드베이스를 배포하기에 충분합니다.
 
 **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/repomix-pack-repo-for-llm-context-2026"
+  }
+}
+</script>

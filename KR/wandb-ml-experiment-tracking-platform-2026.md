@@ -2,7 +2,7 @@
 title: 'Weights & Biases (W&B): 전문가처럼 실험 추적하기 — ML 실험 플랫폼 2026'
 description: 'Weights & Biases (wandb/wandb)는 ML 실험을 추적, 비교, 배포하기 위한 AI 개발자 플랫폼입니다. PyTorch, TensorFlow, Hugging Face 및 LLM 파인튜닝을 지원합니다. 실험 추적, 데이터세트 버전 관리, 모델 레지스트리, 프로덕션 모니터링을 다룹니다.'
 date: 2026-06-09
-slug: 'wandb-ml-experiment-tracking-platform-2026'
+lastmod:  2026-06-09slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
 github_repo: 'https://github.com/wandb/wandb'
@@ -438,3 +438,30 @@ ML 도구, 실험 추적, MLOps 관행에 대한 지속적인 토론을 위해 [
 - 커뮤니티 토론: https://community.wandb.ai/
 
 **공개**: 이 기사에는 제휴 링크가 포함되어 있습니다. 저희 링크를 통해 가입하시면 추가 비용 없이 당사가 소액의 수수료를 받을 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com과 같은 리소스를 무료 및 광고 없이 유지하는 데 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Weights & Biases (W&B): 전문가처럼 실험 추적하기 — ML 실험 플랫폼 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/wandb-ml-experiment-tracking-platform-2026"
+  }
+}
+</script>

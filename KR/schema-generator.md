@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-schema-generator"
 tool_id: "schema-generator"
 ---
+# Schema.org JSON-LD 생성기 — Article / Organization / FAQ / Product
+

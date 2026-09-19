@@ -738,3 +738,30 @@ CrewAI 让多智能体编排变得触手可及。从简单的 2 智能体顺序�
 ---
 
 *联盟营销披露: 本文包含 DigitalOcean 和 虎网云 的联盟链接。如果你通过这些链接注册，我们赚取佣金，不额外收费。CrewAI 是开源免费使用的；我们与 CrewAI 项目没有商业关系。观点基于实际测试和生产部署。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/crewai-multi-agent-orchestration"
+  }
+}
+</script>

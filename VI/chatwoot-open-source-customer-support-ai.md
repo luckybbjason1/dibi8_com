@@ -587,3 +587,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Bài viết này chứa liên kết tiếp thị đến DigitalOcean và HTStack. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả khuyến nghị đều dựa trên thử nghiệm thực tế và kinh nghiệm triển khai thực tế.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở với Tích Hợp AI Agent — Hướng Dẫn Tự Host",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/chatwoot-open-source-customer-support-ai"
+  }
+}
+</script>

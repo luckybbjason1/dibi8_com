@@ -23,6 +23,8 @@ tags: ['crawl4ai', 'web-scraping', 'llm-rag', 'open-source']
 aliases:
 - /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
+# Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã Nguồn Mở Số 1 GitHub, Xây Dựng Pipeline Dữ Liệu LLM và RAG
+
 
 {</* resource-info */>}
 
@@ -345,3 +347,30 @@ Crawl4AI không phải là giải pháp vạn năng cho mọi nhu cầu crawl. N
 ---
 
 *Xuất bản ngày 2026-05-19. Dữ liệu dựa trên GitHub, tài liệu chính thức, và các benchmark công khai. Crawl4AI phát triển rất nhanh, vui lòng đối chiếu với tài liệu mới nhất.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã Nguồn Mở Số 1 GitHub, Xây Dựng Pipeline Dữ Liệu LLM và RAG",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/crawl4ai-tutorial-llm-ready-web-scraping-2026"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "知识工作插件：Anthropic 的插件生态系统，赋能 AI 生产力 2026"
 description: "Knowledge Work Plugins（20,728 颗星）由 Anthropic 打造，为 Claude 扩展了强大的文档编辑、代码分析、网页浏览和文件操作工具。为你的工作流构建自定义插件。"
 date: 2026-06-15
-slug: knowledge-work-plugins
+lastmod:  2026-06-15slug: knowledge-work-plugins
 category: dev-utils
 tags: ['anthropic', 'claude', '插件', '生产力', '文档编辑', '代码分析', '网页浏览', '工具调用']
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
@@ -425,3 +425,30 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **行动号召**：加入 DIBI8 开发者社区 Telegram —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "知识工作插件：Anthropic 的插件生态系统，赋能 AI 生产力 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/knowledge-work-plugins"
+  }
+}
+</script>

@@ -200,3 +200,30 @@ Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framew
 ---
 
 *Một phần của Fine-Tuning Stack dibi8 — xem bộ sưu tập Fine-Tuning Stack sắp tới cho pipeline đầy đủ từ chuẩn bị dataset đến triển khai production.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2×, VRAM Ít Hơn 70%, Thân Thiện Single-GPU",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/unsloth-fast-llm-fine-tuning-2026"
+  }
+}
+</script>

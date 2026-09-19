@@ -33,6 +33,8 @@ faqs:
   - q: 'Bitcoin-Classic (BTCC) có phải là khoản đầu tư tốt không?'
     a: 'Không. BTCC hiện có vốn hóa thị trường và thanh khoản gần như bằng không, không được hỗ trợ bởi các sàn giao dịch lớn, và cộng đồng rất nhỏ (chỉ khoảng 18-23 GitHub stars). Dự án này phù hợp nhất cho mục đích học tập và thử nghiệm, không nên coi là khoản đầu tư.'
 ---
+# Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU
+
 {</* resource-info */>}
 
 ## Bitcoin-Classic Là Gì?
@@ -179,3 +181,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/bitcoin-classic-btcc-cpu-mining-bitcoin-fork"
+  }
+}
+</script>

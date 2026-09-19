@@ -675,3 +675,30 @@ HTTPie는 특정 문제를 잘 해결함으로써 38,200개의 GitHub Stars를 �
 5. **Python Requests 라이브러리 (HTTPie 의존성)** — https://docs.python-requests.org/
 6. **jq — JSON 프로세서 (HTTPie의 이상적인 동반자)** — https://jqlang.github.io/jq/
 7. **CurliPie — curl을 HTTPie로 변환** — https://curlipie.com/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wget 대비 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/httpie"
+  }
+}
+</script>

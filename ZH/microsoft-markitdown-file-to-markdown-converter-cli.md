@@ -2,7 +2,7 @@
 title: "微软 MarkItDown：将任何文件转换为 Markdown 的完整指南——免费、开源、CLI 工具"
 description: "学习如何使用微软的 MarkItDown 将 PDF、Word 文档、图片、HTML、PPTX 等转换为干净的 Markdown。包含逐步安装、使用示例、Python API、AI 管道集成、基准测试以及与 Pandoc、Calibre 和 LibreOffice 的比较。"
 date: 2026-06-10
-slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [微软, markitdown, markdown, python, cli, pdf转换器, 文档处理, AI, 开源]
 lang: zh
@@ -529,3 +529,30 @@ MarkItDown 的主要优势在于其简单性和原生 Python 集成，使其成�
 加入 [dibi8 中文 Telegram 群](https://t.me/DIBI8_Group/2) 讨论 MarkItDown 使用技巧。查看我们的 [开源文档处理](dibi8-internal-link) 和 [AI Agent 管理](dibi8-internal-link) 指南以获取互补工具。今天就开始转换你的文档——一条命令就足够了。
 
 以上链接中包含联盟链接。dibi8.com 可能会在你注册时赚取佣金，而无需你支付额外费用。这有助于保持网站运行和内容免费。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "微软 MarkItDown：将任何文件转换为 Markdown 的完整指南——免费、开源、CLI 工具",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/microsoft-markitdown-file-to-markdown-converter-cli"
+  }
+}
+</script>

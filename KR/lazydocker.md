@@ -614,3 +614,30 @@ LazyDocker는 특정 틈새를 채웁니다: 빠르고, 가볍고, 터미널 네
 - [Portainer vs LazyDocker 비교(OneUptime)](https://oneuptime.com/blog/post/2026-03-20-portainer-vs-lazydocker-terminal/view)
 - [DataCamp LazyDocker 튜토리얼](https://www.datacamp.com/tutorial/lazydocker)
 - [LazyDocker Podman 확장](https://github.com/szchan/lazydocker-podman)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/lazydocker"
+  }
+}
+</script>

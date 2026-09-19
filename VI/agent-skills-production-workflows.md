@@ -2,7 +2,7 @@
 title: 'Addy Osmani Agent Skills: 96K-Star Framework For Production-Grade AI Coding Workflows'
 description: 'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'
 date: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
+lastmod:  2026-09-19slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
 tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
 github_repo: 'https://github.com/addyosmani/agent-skills'
@@ -545,3 +545,30 @@ Bài học: Build skills, not just prompts. Structure beats magic.
 **CTA:** Tham gia DIBI8 Telegram community: https://t.me/DIBI8_Group
 
 [Hướng Dẫn DeepSeek Harness](dibi8-internal-link) | [Hướng Dẫn Agent-Reach](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Addy Osmani Agent Skills: 96K-Star Framework For Production-Grade AI Coding Workflows",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/agent-skills-production-workflows"
+  }
+}
+</script>

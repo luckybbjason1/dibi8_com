@@ -171,3 +171,30 @@ Hãy theo dõi việc sử dụng của bạn trong 30 ngày trước khi tối 
 ---
 
 **Liên quan**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Lựa chọn thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [RTK Rust CLI Proxy: Tiết kiệm 80% chi phí AI coding](https://dibi8.com/vi/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 30 ngày từ Claude Max, ChatGPT Plus, Cursor Pro",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-coding-agent-monthly-bill-2026-real-receipts"
+  }
+}
+</script>

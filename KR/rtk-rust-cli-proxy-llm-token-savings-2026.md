@@ -364,3 +364,30 @@ AI agent를 지속적으로 원격 실행해야 한다면 (CI runner / 셀프 �
 - [CC Switch — 여러 AI CLI 통합 관리](/kr/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack 컬렉션](/kr/collections/cheap-llm-stack/)
 - [n8n AI Workflow Automation](/kr/resources/llm-frameworks/n8n-ai-workflow-automation-self-hosted-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "개발자 월 20만원 AI 비용을 4만원으로: rtk 완벽 가이드 | LLM 토큰 최적화 2026",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/rtk-rust-cli-proxy-llm-token-savings-2026"
+  }
+}
+</script>

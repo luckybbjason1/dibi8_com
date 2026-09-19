@@ -652,3 +652,30 @@ Ultimate Vocal Remover는 CLI 전용 라이브러리가 할 수 없는 공백을
 - Takahashi et al., Multi-scale Multi-band DenseNets: https://arxiv.org/pdf/1706.09588.pdf
 - ONNX Runtime 문서: https://onnxruntime.ai/docs/
 - Rubber Band 오디오 라이브러리: https://breakfastquay.com/rubberband/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ultimate Vocal Remover: 24.7K+ Stars — 2026 완전 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ultimate-vocal-remover"
+  }
+}
+</script>

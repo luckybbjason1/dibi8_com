@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/vector-database-comparison/
 ---
+# 벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Milvus
+
 
 {</* resource-info */>}
 
@@ -193,3 +195,30 @@ Milvus가 ANN-Benchmarks에서 일관되게 상위 성능을 보입니다. GPU �
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Milvus",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/vector-database-comparison"
+  }
+}
+</script>

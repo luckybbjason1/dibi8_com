@@ -3,7 +3,7 @@ title: 'Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps
 description: 'Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API with vector search, graph search, and session management. Integrates with LangChain, LlamaIndex, CrewAI, and any Python/JS app. Self-hosted, zero external dependencies. Includes setup guide, benchmarks, and production deployment.'
 tags: ["ai-agent", "ai-memory", "api", "memory", "open-source", "persistence", "self-hosted"]
 date: 2026-06-10
-slug: 'supermemory-open-source-ai-memory-api'
+lastmod:  2026-06-10slug: 'supermemory-open-source-ai-memory-api'
 category: llm-frameworks
 github_repo: 'https://github.com/supermemoryai/supermemory'
 license: MIT
@@ -437,3 +437,29 @@ Related articles:
 - [Vector Database Comparison](/resources/llm-frameworks/vector-database-comparison/)
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/supermemory-open-source-ai-memory-api"
+  }
+}
+</script>

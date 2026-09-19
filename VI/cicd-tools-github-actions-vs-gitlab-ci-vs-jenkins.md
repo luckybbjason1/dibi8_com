@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
+# So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025
+
 
 {</* resource-info */>}
 
@@ -283,3 +285,30 @@ Quá trình migration gồm ba bước: (1) Phân tích pipeline Jenkins hiện 
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+  }
+}
+</script>

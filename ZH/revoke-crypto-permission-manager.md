@@ -511,3 +511,30 @@ A：您的代币将无限期地处于风险之中。如果已批准的合约被�
 ---
 
 *免责声明：本文仅供信息参考，不构成财务或安全建议。始终验证合约地址，对重要持仓使用硬件钱包，并保持良好的操作安全。本文包含联盟链接 —— 当您使用我们的合作伙伴链接时，我们可能会获得补偿，对您不产生额外费用。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "revoke-crypto-permission-manager",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/revoke-crypto-permission-manager"
+  }
+}
+</script>

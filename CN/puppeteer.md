@@ -703,3 +703,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [WebDriver BiDi Specification](https://w3c.github.io/webdriver-bidi/) — Cross-browser automation standard
 - [Puppeteer vs Playwright Benchmark Study](https://getautonoma.com/blog/selenium-playwright-cypress-comparison) — Independent performance comparison
 - [Browserless.io Puppeteer Hosting](https://www.browserless.io/) — Managed Puppeteer infrastructure
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Puppeteer: 94,300 GitHub Stars — Production Browser Automation Docker Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/puppeteer"
+  }
+}
+</script>

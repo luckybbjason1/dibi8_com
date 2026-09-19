@@ -4,7 +4,7 @@
 lang: zh
 title: "Apple 的 Container：Mac 上拥有 37K Stars 的类 Docker 体验"
 date: 2026-06-15
-tags:
+lastmod:  2026-06-15tags:
   - apple
   - container
   - macos
@@ -78,3 +78,29 @@ featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.pn
  /usr/local/bin/uninstall-container.sh -d
  ```` ## 与替代方案的比较 让我们将“容器”与替代方案进行比较： | 特色 | 苹果容器| Docker 桌面 | 科利马州 | OrbStack |
  |
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apple 的 Container：Mac 上拥有 37K Stars 的类 Docker 体验",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/apple-container"
+  }
+}
+</script>

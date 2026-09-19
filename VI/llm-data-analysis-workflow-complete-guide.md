@@ -388,3 +388,30 @@ Quan trọng nhất: LLM là công cụ hỗ trợ, không phải thay thế. S�
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sử Dụng LLM Để Phân Tích Dữ Liệu: Hướng Dẫn Toàn Diện Với PandasAI, Code Interpreter và OpenAI",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/llm-data-analysis-workflow-complete-guide"
+  }
+}
+</script>

@@ -677,3 +677,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Hướng dẫn Dagger CI/CD: Viết Pipeline bằng Code](https://byteiota.com/dagger-ci-cd-tutorial-write-pipelines-as-code-not-yaml/)
 - [Công cụ CI/CD tốt nhất 2026: Phân tích dữ liệu](https://blog.jetbrains.com/teamcity/2026/03/best-ci-tools/)
 - [Dagger for GitHub Action](https://github.com/dagger/dagger-for-github)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh với GitHub Actions, GitLab CI 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/dagger"
+  }
+}
+</script>

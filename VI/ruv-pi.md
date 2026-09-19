@@ -2,7 +2,7 @@
 title: "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cung cấp"
 description: "Ruv Pi là CLI đại diện mã tự mở rộng từ Earendil Works, cung cấp API LLM đa nhà cung cấp thống nhất, cho phép nhà phát triển xây dựng, chạy và mở rộng đại diện mã hóa AI với hỗ trợ cho Claude, OpenAI, Gemini và nhiều hơn nữa."
 date: 2026-06-10
-slug: ruv-pi
+lastmod:  2026-06-10slug: ruv-pi
 category: llm-frameworks
 tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
 github_repo: https://github.com/earendil-works/pi
@@ -421,3 +421,30 @@ Visit official documentation tại [https://pi.dev/docs/latest](https://pi.dev/d
 5. [DigitalOcean - Cơ sở hạ tầng Cloud cho AI](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - Lưu trữ Hiệu suất Cao](https://htstack.com/)
 7. [WebShare - Dịch vụ Proxy cho Pipeline Dữ liệu](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cung cấp",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ruv-pi"
+  }
+}
+</script>

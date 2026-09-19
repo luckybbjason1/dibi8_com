@@ -4,7 +4,7 @@ description: "2026년 개발자들의 가장 큰 고민은 AI 코딩 도구 비�
 keywords: ["rtk", "LLM 토큰 최적화", "AI 코딩 비용 절감", "Claude Code 비용", "Rust CLI 도구", "개발자 생산성", "토큰 압축", "AI 에이전트 최적화"]
 author: "Home Hermes"
 date: "2026-05-20"
-lang: "ko"
+lastmod:  "2026-05-20"lang: "ko"
 ---
 
 # 개발자 월 20만원 AI 비용을 4만원으로 줄인 Rust 도구: rtk 완벽 가이드
@@ -300,3 +300,30 @@ rtk init -g
 ---
 
 *rtk v0.28.2 기준으로 작성. 기능은 빠르게 진화하므로 최신 릴리즈 노트를 참고하라.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "개발자 월 20만원 AI 비용을 4만원으로 줄인 Rust 도구: rtk 완벽 가이드 | LLM 토큰 최적화 2026",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026"
+  }
+}
+</script>

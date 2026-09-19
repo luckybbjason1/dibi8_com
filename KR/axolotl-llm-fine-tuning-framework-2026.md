@@ -179,3 +179,30 @@ H100 인스턴스 띄우고, 3절의 20줄 YAML 작성하고, 15분 후 파인�
 ---
 
 *dibi8의 Fine-Tuning Stack 일부 — [빠른 단일 GPU 반복용 Unsloth](/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)와 페어. 전체 LLM ops 그림은 다가오는 Fine-Tuning Stack 컬렉션 참조.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/axolotl-llm-fine-tuning-framework-2026"
+  }
+}
+</script>

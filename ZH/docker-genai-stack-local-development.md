@@ -449,3 +449,30 @@ Docker GenAI Stack 消除了 GenAI 开发中最大的阻力：环境搭建。一
 ## 联盟营销声明
 
 本文包含联盟营销链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会对你产生额外费用。我们只推荐自己也在用的服务。Docker GenAI Stack 是开源软件（MIT 许可证），免费使用 —— 无需购买。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docker GenAI Stack: 一键 Docker Compose 启动 LangChain、向量数据库与 LLM —— 2026 本地开发完整指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/docker-genai-stack-local-development"
+  }
+}
+</script>

@@ -673,3 +673,30 @@ CogVideoX는 오픈소스 배포의 유연성과 함께 프로덕션급 텍스�
 - Wan 2.1 저장소: https://github.com/Wan-Video/Wan2.1
 - HunyuanVideo 저장소: https://github.com/Tencent/HunyuanVideo
 - Open-Sora 저장소: https://github.com/hpcaitech/Open-Sora
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CogVideo: 12.7K Stars — 2026 완전한 텍스트-비디오 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cogvideo"
+  }
+}
+</script>

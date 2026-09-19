@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-image-generation-tools-complete-guide/
 ---
+# AI 이미지 생성 도구 완벽 가이드: Midjourney, DALL-E, Stable Diffusion 비교 2025
+
 
 {</* resource-info */>}
 
@@ -167,3 +169,30 @@ Stable Diffusion 3.5 Medium 기준으로 최소 **RTX 3060 12GB** 이상의 VRAM
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 이미지 생성 도구 완벽 가이드: Midjourney, DALL-E, Stable Diffusion 비교 2025",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-image-generation-tools-complete-guide"
+  }
+}
+</script>

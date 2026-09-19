@@ -286,3 +286,30 @@ RTK 代表了这一波工具演进的方向：**不是堆叠更强大的模型�
 ---
 
 *Tags: RTK, AI coding assistant, LLM token optimization, Rust CLI, open source developer tools, Claude Code, Cursor, GitHub Copilot, Codex, token cost reduction, 2026 developer tools*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RTK：让 AI 编码助手 token 消耗直降 60-90% 的开源神器，45k+ Stars 的 Rust CLI 代理实战指南",
+  "datePublished": "2026-05-14",
+  "dateModified": "2026-05-14",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/rtk-rust-cli-proxy-ai-token-saver"
+  }
+}
+</script>

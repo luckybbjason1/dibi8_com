@@ -2,7 +2,7 @@
 title: "从零开始构建 AI 工程：打造生产级 LLM 系统——2026 完整指南"
 description: "AI Engineering From Scratch（32,771 颗星）是一套全面的课程体系，涵盖 LLM 微调、RAG、Agent 框架和生产部署。学习构建、交付和扩展 AI 系统。"
 date: 2026-06-15
-slug: ai-engineering-from-scratch
+lastmod:  2026-06-15slug: ai-engineering-from-scratch
 category: llm-frameworks
 tags: ['ai 工程', 'llm', '微调', 'rag', 'agent 框架', '生产部署', '机器学习']
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
@@ -397,3 +397,30 @@ pip install -r requirements.txt
 - vLLM 文档：https://docs.vllm.ai/
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "从零开始构建 AI 工程：打造生产级 LLM 系统——2026 完整指南",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-engineering-from-scratch"
+  }
+}
+</script>

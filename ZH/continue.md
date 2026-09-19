@@ -601,3 +601,30 @@ Continue.dev 独树一帜，是唯一一款结合 33,277+ GitHub Stars、任意 
 - [VS Code Continue 扩展](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 - [JetBrains 应用市场 - Continue](https://plugins.jetbrains.com/plugin/22707-continue)
 - [Continue.dev 博客](https://blog.continue.dev/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/continue"
+  }
+}
+</script>

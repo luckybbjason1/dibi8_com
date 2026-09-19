@@ -2,7 +2,7 @@
 title: "AI-Trader：HKUDS のエージェントネイティブ取引プラットフォーム"
 description: "AI-Trader は HKUDS 由来のエージェントネイティブ取引プラットフォームで、Claude Code、Codex、Cursor、OpenClaw などの AI コーディングエージェントが自律的に取引を実行し、ポートフォリオを管理し、戦略を最適化できるようにします。"
 date: 2026-06-10
-slug: hkuds-ai-trader
+lastmod:  2026-06-10slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, エージェントネイティブ, 自律取引, ポートフォリオ管理, AI エージェント]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -502,3 +502,30 @@ SKILL.md ベースの登録は、オンボーディングプロセスの中心�
 5. [DigitalOcean - 取引システム用のクラウドインフラ](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - 高性能ホスティング](https://htstack.com/)
 7. [WebShare - データパイプライン用プロキシサービス](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-Trader：HKUDS のエージェントネイティブ取引プラットフォーム",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/hkuds-ai-trader"
+  }
+}
+</script>

@@ -213,3 +213,30 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 ---
 
 **相关阅读**：[Moss Trade Bot Factory 2026 评测](https://dibi8.com/zh/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [回测 OVERFIT 5 种模式 2026](https://dibi8.com/zh/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtrader Python 回测](https://dibi8.com/zh/resources/ai-trading/backtrader-python-backtesting/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/schema-bug-faked-overfit-diagnosis-2026"
+  }
+}
+</script>

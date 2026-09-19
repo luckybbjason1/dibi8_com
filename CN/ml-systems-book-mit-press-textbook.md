@@ -34,6 +34,8 @@ faqs:
   - q: 'Who is the ML Systems Book intended for?'
     a: 'It targets ML engineers who need to scale training and serve low-latency models in production, software engineers transitioning into ML, researchers wanting to speed up experiments, and engineering managers planning ML infrastructure investments and team structure.'
 ---
+# ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering
+
 
 {</* resource-info */>}
 
@@ -230,3 +232,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [MIT Press](https://mitpress.mit.edu/)
 - [MIT OpenCourseWare](https://ocw.mit.edu/)
 - [r/MachineLearning](https://www.reddit.com/r/MachineLearning/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ml-systems-book-mit-press-textbook"
+  }
+}
+</script>

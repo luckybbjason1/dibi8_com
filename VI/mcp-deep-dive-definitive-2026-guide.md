@@ -484,3 +484,30 @@ Viết JSON Schema bằng tay cho mỗi tool là phần tẻ nhạt nhất khi p
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn Diện: Chuẩn Kết Nối AI Mà Mọi Lập Trình Viên Phải Biết Năm 2026",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mcp-deep-dive-definitive-2026-guide"
+  }
+}
+</script>

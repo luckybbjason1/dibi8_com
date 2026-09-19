@@ -244,3 +244,30 @@ DVC가 가장 진입장벽이 낮습니다. pip로 설치하고, 기존 Git 워�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DVC vs LakeFS vs Delta Lake: ML을 위한 데이터 버전 관리 도구 선택 완벽 가이드",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/data-version-control-dvc-lakefs-delta-lake"
+  }
+}
+</script>

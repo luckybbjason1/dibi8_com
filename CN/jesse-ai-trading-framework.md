@@ -553,3 +553,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *Affiliate Disclosure: This article contains affiliate links to Binance, OKX, Minara, DigitalOcean, and HTStack. If you sign up through these links, dibi8.com may receive a commission at no additional cost to you. We only recommend tools we have tested or thoroughly researched.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Jesse: The Advanced Python Crypto Trading Framework with 30+ Technical Indicators — 2026 Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/jesse-ai-trading-framework"
+  }
+}
+</script>

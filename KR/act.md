@@ -603,3 +603,30 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 - [VS Code: GitHub Local Actions 확장](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions)
 - [GitHub Actions 문서](https://docs.github.com/en/actions)
 - [catthehacker/docker_images](https://github.com/catthehacker/docker_images) — act가 사용하는 커뮤니티 runner 이미지
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "act: 70,410 GitHub Stars — 로컬에서 GitHub Actions 실행, 2026 프로덕션 CI/CD 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/act"
+  }
+}
+</script>

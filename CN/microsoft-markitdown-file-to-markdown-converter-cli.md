@@ -2,7 +2,7 @@
 title: "Microsoft MarkItDown: The Complete Guide to Converting Any File to Markdown — Free, Open-Source, CLI Tool"
 description: "Learn how to use Microsoft's MarkItDown to convert PDFs, Word docs, images, HTML, PPTX, and more into clean Markdown. Step-by-step installation, usage examples, Python API, AI pipeline integration, benchmarks, and comparisons with Pandoc, Calibre, and LibreOffice."
 date: 2026-06-10
-slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [microsoft, markitdown, markdown, python, cli, pdf-converter, document-processing, AI, open-source]
 github_repo: "https://github.com/microsoft/markitdown"
@@ -536,3 +536,30 @@ Sources & Further Reading
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss MarkItDown usage tips. Check out our guides on [open-source document processing](dibi8-internal-link) and [AI agent management](dibi8-internal-link) for complementary tooling. Start converting your documents today — one command is all it takes.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Microsoft MarkItDown: The Complete Guide to Converting Any File to Markdown — Free, Open-Source, CLI Tool",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/microsoft-markitdown-file-to-markdown-converter-cli"
+  }
+}
+</script>

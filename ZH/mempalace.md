@@ -202,3 +202,30 @@ A: 完全可以！它开箱即支持 MCP (Model Context Protocol) 接口，能�
 
 **Q: 本地记忆存储该选 ChromaDB 还是 Pinecone？**
 A: 必须是 ChromaDB！MemPalace 内置 ChromaDB 实现了零延迟和零网络请求成本，对于注重代码隐私的本地 Agent 工作流来说，远超需要联网的 Pinecone。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MemPalace vs Mem0：96.6% 召回率测评！2026年最强开源 AI 记忆系统",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mempalace"
+  }
+}
+</script>

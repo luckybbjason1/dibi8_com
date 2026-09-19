@@ -616,3 +616,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 10. LangChain Documentation — https://python.langchain.com/
 11. Comparison: Dify vs Flowise vs n8n — https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026
 12. Ollama Local LLM Setup — https://ollama.com/download
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dify: Build Production-Grade AI Agents Visually in 5 Minutes — 141K+ Stars Setup Guide for 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/dify"
+  }
+}
+</script>

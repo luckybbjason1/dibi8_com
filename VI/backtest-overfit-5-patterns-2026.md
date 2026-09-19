@@ -169,3 +169,30 @@ Tiến hóa moss-trade-bot gần đây của chúng tôi kết thúc thành over
 ---
 
 **Liên quan**: [Đánh giá Moss Trade Bot Factory 2026](https://dibi8.com/vi/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python Backtesting](https://dibi8.com/vi/resources/ai-trading/backtrader-python-backtesting/) · [Framework Jesse AI Trading](https://dibi8.com/vi/resources/ai-trading/jesse-ai-trading-framework/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sharpe Thực Tế (2026)",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/backtest-overfit-5-patterns-2026"
+  }
+}
+</script>

@@ -34,6 +34,8 @@ faqs:
   - q: '查询计划中 Sort 或 Hash 节点上出现 temp written 是什么意思？'
     a: '这意味着排序或哈希操作超出了 work_mem 的限制，数据溢出到了磁盘，这很容易让该节点的耗时增加 10 倍。解决方法是为该会话调大 work_mem，然后重新运行 EXPLAIN。'
 ---
+# 阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失
+
 
 {</* resource-info */>}
 
@@ -115,3 +117,30 @@ Sort Method: external merge  Disk: 16384kB
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/reading-explain-analyze-postgres"
+  }
+}
+</script>

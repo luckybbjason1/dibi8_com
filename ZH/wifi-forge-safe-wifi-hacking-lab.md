@@ -33,6 +33,8 @@ faqs:
   - q: '安装和运行 WiFi-Forge 需要什么？'
     a: '你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。'
 ---
+# WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒
+
 {</* resource-info */>}
 
 如果你尝试过用传统方式学 WiFi 攻击,流程通常是这样:订一块支持 monitor 模式和包注入的 USB 无线网卡,跟 Linux 驱动斗一晚上,搭一个自己拥有的测试热点,*然后*才开始练你真正想学的攻击。**WiFi-Forge** 把这一整套准备工作直接跳过。
@@ -116,3 +118,30 @@ sudo python3 wififorge.py
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab"
+  }
+}
+</script>

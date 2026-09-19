@@ -13,7 +13,7 @@ tags:
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
 date: 2026-07-16 00:00:00+00:00
-slug: windsurf-ai-ide
+lastmod:  2026-07-16 00:00:00+00:00slug: windsurf-ai-ide
 ---
 
 
@@ -512,3 +512,30 @@ Yes. Windsurf supports SSH, Docker containers, and WSL. You can develop on remot
 ---
 
 *Join our Telegram group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Windsurf AI IDE — The Agentic Code Editor That Thinks With You",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/windsurf-ai-ide"
+  }
+}
+</script>

@@ -683,3 +683,30 @@ AUTOMATIC1111 的 Stable Diffusion WebUI 在 2026 年依然是本地 AI 图像�
 - [虎网云 GPU 云服务器](https://www.huwww.com/)
 - [Civitai — 模型和 LoRA 平台](https://civitai.com)
 - [Hugging Face — 模型下载](https://huggingface.co/models?pipeline_tag=text-to-image)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/stable-diffusion-webui"
+  }
+}
+</script>

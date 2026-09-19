@@ -447,3 +447,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Stable Diffusion](https://github.com/CompVis/stable-diffusion)
 - [MLflow](https://github.com/mlflow/mlflow)
 - [Hugging Face](https://huggingface.co/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Tools Directory 2024: Complete Guide to Best AI Tools | Dibi8",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-tools-directory"
+  }
+}
+</script>

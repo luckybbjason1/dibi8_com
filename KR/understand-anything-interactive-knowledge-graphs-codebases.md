@@ -2,7 +2,7 @@
 title: "언더스탠드-에니씽: 코드베이스를 위한 상호작용 지식 그래프 — 60K+ 스타 2026"
 description: "Understand-Anything은 모든 코드베이스를 탐색하고 검색하며 쿼리할 수 있는 인터랙티브 지식 그래프로 바꿉니다. Claude Code, Codex, Cursor, Copilot, Gemini CLI와 함께 작동합니다. GitHub 스타 60,339개."
 date: 2026-06-15
-slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod:  2026-06-15slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 tags: ['understand-anything', 'knowledge-graph', 'codebase-analysis', 'claude-code', 'codex', 'cursor', 'AI-agents', 'code-visualization', 'semantic-search']
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -423,3 +423,30 @@ AI 코딩 도구에 대해 더 알고 싶다면, [Claude Code 숙련](dibi8-clau
 - Alternative hosting: [HTStack](https://my.htstack.com/aff.php?aff=27187)
 - Trading tools: [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - Proxy for web scraping: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "언더스탠드-에니씽: 코드베이스를 위한 상호작용 지식 그래프 — 60K+ 스타 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/understand-anything-interactive-knowledge-graphs-codebases"
+  }
+}
+</script>

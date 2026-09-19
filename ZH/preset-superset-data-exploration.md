@@ -420,3 +420,30 @@ Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型
 ---
 
 *联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/preset-superset-data-exploration"
+  }
+}
+</script>

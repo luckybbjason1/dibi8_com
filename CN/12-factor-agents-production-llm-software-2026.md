@@ -23,6 +23,8 @@ tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architectu
 aliases:
 - /zh/posts/12-factor-agents-production-llm-software-2026/
 ---
+# 12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）
+
 
 ## 为什么"用 LangChain 就行"已经不灵了
 
@@ -167,3 +169,30 @@ MCP 把因子 4 做到极致（工具就是标准化协议上的结构化输出�
 ---
 
 **GitHub**：[humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents) · **协议**：Apache 2.0（代码）/ CC BY-SA 4.0（内容）· **Stars**：22K+ · **作者**：Dex Horthy / HumanLayer
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/12-factor-agents-production-llm-software-2026"
+  }
+}
+</script>

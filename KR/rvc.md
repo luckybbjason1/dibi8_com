@@ -655,3 +655,30 @@ RVC는 중급 하드웨어에서 20분 이내의 훈련 시간으로 프로덕�
 - [LLVC: CPU에서의 저지연 실시간 음성 변환](https://arxiv.org/abs/2311.00873)
 - [RVC 추론 설정 참조](https://docs.aihub.gg/rvc/resources/inference-settings/)
 - [PetVocalia: 제로샷 SVC 벤치마크 (IJCAI 2025)](https://www.ijcai.org/proceedings/2025/1135.pdf)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RVC: 35K+ Stars AI 음성 변환 구축 — 2026년 10분 훈련 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/rvc"
+  }
+}
+</script>

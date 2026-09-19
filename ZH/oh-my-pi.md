@@ -2,7 +2,7 @@
 title: "Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026"
 description: "Oh My Pi（12,554 颗星）通过一键式设置和自动化配置，将树莓派设备转变为智能家居中心、媒体中心和开发工作站。"
 date: 2026-06-15
-slug: oh-my-pi
+lastmod:  2026-06-15slug: oh-my-pi
 category: dev-utils
 tags: ['树莓派', '智能家居', '物联网', '边缘计算', '家庭自动化', 'linux', '自动化']
 github_repo: "https://github.com/can1357/oh-my-pi"
@@ -408,3 +408,30 @@ curl -sSL https://ohmypi.sh/install | sudo bash
 **行动号召**：加入 DIBI8 IoT 社区 Telegram —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/oh-my-pi"
+  }
+}
+</script>

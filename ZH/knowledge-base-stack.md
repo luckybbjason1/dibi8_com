@@ -242,3 +242,30 @@ docker run -d --name qdrant -p 6333:6333 -p 6334:6334 \
 ---
 
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 把这个知识库插进编程 agent stack。[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 覆盖 chat-LLM 成本侧。[跨境出海 AI 营销 Stack](/zh/collections/cross-border-ai-marketing-stack/) 给需要中国友好 hosting 的中国团队。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭\"第二大脑\"（$10-25/月）",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/knowledge-base-stack"
+  }
+}
+</script>

@@ -150,3 +150,30 @@ Mô hình áp dụng mạnh nhất không phải "vibe code mọi thứ." Mà l�
 ---
 
 **Liên quan**: [So sánh AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Lựa chọn thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [Aider vs Cline vs OpenHands](https://dibi8.com/vi/resources/dev-utils/aider-cline-openhands-2026-honest-comparison/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc, giải thích cho phần còn lại",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/vibe-coding-2026-korean-concept-explained"
+  }
+}
+</script>

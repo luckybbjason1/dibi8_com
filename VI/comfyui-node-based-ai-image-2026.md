@@ -177,3 +177,30 @@ Cài ComfyUI + ComfyUI Manager (~15 phút tổng), thả workflow cộng đồng
 ---
 
 *Một phần của stack nội dung đa phương thức dibi8 — pair với [Stable Diffusion WebUI cho sử dụng casual](/vi/resources/ai-tools/stable-diffusion-webui-2026/) và [ChatTTS cho giọng nói](/vi/resources/ai-tools/chattts-dialogue-tts-2026/). Xem bộ sưu tập Multi-Modal Content Pipeline sắp tới cho stack creator đầy đủ.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh Dựa Node 114k Sao — Hướng Dẫn Đầy Đủ",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/comfyui-node-based-ai-image-2026"
+  }
+}
+</script>

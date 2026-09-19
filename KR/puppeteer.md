@@ -703,3 +703,30 @@ Puppeteer는 프로그래밍 방식의 Chrome 제어가 필요한 팀에게 여�
 - [WebDriver BiDi 명세](https://w3c.github.io/webdriver-bidi/) — 크로스브라우저 자동화 표준
 - [Puppeteer vs Playwright 벤치마크 연구](https://getautonoma.com/blog/selenium-playwright-cypress-comparison) — 독립 성능 비교
 - [Browserless.io Puppeteer 호스팅](https://www.browserless.io/) — 관리형 Puppeteer 인프라
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Puppeteer: 94,300 GitHub Stars — 프로덕션 브라우저 자동화 Docker 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/puppeteer"
+  }
+}
+</script>

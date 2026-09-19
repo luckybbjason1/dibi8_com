@@ -559,3 +559,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Best Open Source RAG Frameworks 2026 Comparison](https://www.firecrawl.dev/blog/best-open-source-rag-frameworks)
 - [RAGFlow Architecture Explained](https://milvus.io/ai-quick-reference/what-is-ragflow-and-how-does-it-work)
 - [RAGFlow Production Deployment on VPS](https://zhujibaike.com/2497.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ Stars — Docker Setup and Benchmarks for 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ragflow"
+  }
+}
+</script>

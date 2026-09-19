@@ -480,3 +480,30 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
 - xDiT 并行推理: https://github.com/xdit-project/xDiT
 - Kijai ComfyUI 封装版: https://github.com/kijai/ComfyUI-HunyuanVideoWrapper
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HunyuanVideo: 12.1K+ Stars — 2026年生产环境部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/hunyuan-video"
+  }
+}
+</script>

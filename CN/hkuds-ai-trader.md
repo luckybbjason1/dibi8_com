@@ -2,7 +2,7 @@
 title: "AI-Trader: The Agent-Native Trading Platform from HKUDS"
 description: "AI-Trader is an agent-native trading platform from HKUDS that enables AI coding agents like Claude Code, Codex, Cursor, and OpenClaw to autonomously execute trades, manage portfolios, and optimize strategies."
 date: 2026-06-10
-slug: hkuds-ai-trader
+lastmod:  2026-06-10slug: hkuds-ai-trader
 category: ai-trading
 tags: [ai-trader, HKUDS, ai-trading, agent-native, autonomous trading, portfolio management, AI agents]
 github_repo: https://github.com/HKUDS/AI-Trader
@@ -537,3 +537,30 @@ Try the tool discussed above. If it's a paid service, check for affiliate offers
 ---
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI-Trader: The Agent-Native Trading Platform from HKUDS",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/hkuds-ai-trader"
+  }
+}
+</script>

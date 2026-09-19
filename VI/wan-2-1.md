@@ -564,3 +564,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Hướng dẫn chỉnh sửa video VACE](https://github.com/ali-vilab/VACE/blob/main/UserGuide.md)
 - [Hướng dẫn GPU Cloud cho Video AI (Spheron)](https://www.spheron.network/blog/gpu-cloud-video-ai-2026/)
 - [Báo cáo kỹ thuật Open-Sora 2.0](https://arxiv.org/abs/2503.09642)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so với HunyuanVideo, CogVideo 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/wan-2-1"
+  }
+}
+</script>

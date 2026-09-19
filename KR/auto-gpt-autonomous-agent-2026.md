@@ -681,3 +681,30 @@ ChatGPT 플러그인은 사용자가 시작하고 단일 턴이다. Auto-GPT는 
 ---
 
 *dibi8.com — AI 소스 코드 허브에 게시됨. 최종 업데이트: 2026-05-19*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Auto-GPT 2026 부활: OG 자율 에이전트 프레임워크가 설정 시간을 80% 줄인 방법 — 신규 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/auto-gpt-autonomous-agent-2026"
+  }
+}
+</script>

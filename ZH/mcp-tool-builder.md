@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-mcp-tool-builder"
 tool_id: "mcp-tool-builder"
 ---
+# MCP Tool Builder — 从 Python / TypeScript 函数生成 Model Context Protocol 工具定义
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP Tool Builder — 从 Python / TypeScript 函数生成 Model Context Protocol 工具定义",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mcp-tool-builder"
+  }
+}
+</script>

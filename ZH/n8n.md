@@ -853,3 +853,30 @@ n8n 以远低于商业平台的成本提供 AI 能力加持的工作流自动化
 - n8n 定价: https://n8n.io/pricing/
 - n8n 社区论坛: https://community.n8n.io
 - n8n 安全最佳实践: https://docs.n8n.io/hosting/security/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/n8n"
+  }
+}
+</script>

@@ -3,7 +3,7 @@ title: "Understand-Anything: Interactive Knowledge Graphs for Codebases — 60K+
 description: "Understand-Anything turns any codebase into an interactive knowledge graph you can explore, search, and query. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60,339 GitHub stars."
 tags: ["open-source"]
 date: 2026-06-15
-slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod:  2026-06-15slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 license: MIT
@@ -423,3 +423,30 @@ For more on AI coding tools, check out our guides on [Claude Code mastery](dibi8
 - Alternative hosting: [HTStack](https://my.htstack.com/aff.php?aff=27187)
 - Trading tools: [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - Proxy for web scraping: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Understand-Anything: Interactive Knowledge Graphs for Codebases — 60K+ Stars 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/understand-anything-interactive-knowledge-graphs-codebases"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['IaC', 'Terraform', 'Pulumi', 'AWS CDK', '基础设施']
 aliases:
 - /zh/posts/infrastructure-as-code-tools-comparison/
 ---
+# 2025年基础设施即代码工具对比：Terraform、Pulumi、AWS CDK、Crossplane全面评测
+
 
 {</* resource-info */>}
 
@@ -215,3 +217,30 @@ Terraform的核心CLI工具在2025年对个人使用和大部分商业场景仍�
 ### 如何从Terraform迁移到Pulumi？
 
 Pulumi提供了**tf2pulumi**迁移工具，可以将Terraform的HCL配置自动转换为Pulumi的代码。此外，Pulumi支持与Terraform状态文件互通，可以逐步迁移。建议先从小型项目开始尝试，验证流程后再进行大规模迁移。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025年基础设施即代码工具对比：Terraform、Pulumi、AWS CDK、Crossplane全面评测",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/infrastructure-as-code-tools-comparison"
+  }
+}
+</script>

@@ -477,3 +477,30 @@ Claude Code 代表了 2026 年最强大的终端原生 AI 编程代理。凭借 
 ---
 
 *免责声明：本文不含联盟营销链接。所有定价和基准测试数据反映截至 2026 年 5 月的公开信息。在购买决策前，请在官方供应商网站上核实当前定价。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code: 125K+ Stars — 终端 AI 编程代理完整对比 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code"
+  }
+}
+</script>

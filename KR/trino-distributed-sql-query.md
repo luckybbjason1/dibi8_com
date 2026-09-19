@@ -617,3 +617,30 @@ Trino는 규모에 맞는 분산 SQL 분석을 위한 가장 성숙한 오픈소
 ## 제휴 공개
 
 이 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)과 [HTStack](https://my.htstack.com/aff.php?aff=27187)의 제휴 링크가 포함되어 있다. 이 링크를 통해 서비스를 구매하면 추가 비용 없이 커미션을 받을 수 있다. 이는 오픈소스 문서 작업을 지원하는 데 도움이 된다. 우리는 직접 테스트한 서비스만 추천하며, 우리 자신의 프로덕션 워크로드에도 사용할 것이다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trino 2026: PB급 데이터 분석 분산 SQL 쿼리 엔진 — 셀프 호스팅 클러스터 구축 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/trino-distributed-sql-query"
+  }
+}
+</script>

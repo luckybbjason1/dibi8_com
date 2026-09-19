@@ -599,3 +599,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Web Scraping with Go: Practical Guide](https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production) — Pattern production
 - [Best Open-Source Web Crawlers 2026](https://www.firecrawl.dev/blog/best-open-source-web-crawler) — Tổng quan hệ sinh thái
 - [Colly Benchmarks](https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers) — Số liệu hiệu năng
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc Độ Cao 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/colly"
+  }
+}
+</script>

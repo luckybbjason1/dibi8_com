@@ -27,6 +27,8 @@ tags: ['跨境', '出海', 'AI 营销', 'Stack', '合集']
 aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---
+# 跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案
+
 
 2026 年中国团队带 AI 产品出海，面对一组独特摩擦：GDPR vs 中国数据法、规模化多语言内容、跨厂商支付清算、不被广告屏蔽过滤掉的分析、不要 $80/月 USD/人的开发工具。这个合集组装的是**专门解决这些摩擦的 7 工具 stack** —— 能开源就开源，关键的中国 ↔ 海外桥接节点用我们自己跑得稳的基础设施（香港 VPS）。
 
@@ -259,3 +261,30 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 ---
 
 *配套合集：[自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 给 dev 侧，[便宜 LLM Stack](/zh/collections/cheap-llm-stack/) 给极致成本推理。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cross-border-ai-marketing-stack"
+  }
+}
+</script>

@@ -4,7 +4,7 @@ description: "Developers are burning $500–2000/month on AI coding tools. rtk i
 keywords: ["rtk", "LLM token optimization", "reduce Claude Code costs", "AI coding cost reduction", "Rust CLI proxy", "developer productivity 2026", "token compression tool", "AI agent efficiency"]
 author: "Home Hermes"
 date: "2026-05-20"
-lang: "en"
+lastmod:  "2026-05-20"lang: "en"
 ---
 
 # I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)
@@ -298,3 +298,30 @@ rtk init -g
 ---
 
 *Reviewed against rtk v0.28.2. Features evolve rapidly; consult the latest release notes for updates.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026"
+  }
+}
+</script>

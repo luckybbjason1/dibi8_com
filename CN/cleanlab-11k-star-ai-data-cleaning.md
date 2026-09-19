@@ -3,7 +3,7 @@ title: 'Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80%
 description: 'Cleanlab is an open-source AI toolkit with 11K+ GitHub stars that finds and fixes data quality issues in ML datasets. Automatic label error detection, missing value imputation, and data cleansing for classification, regression, and clustering tasks. Includes setup guide, benchmarks, and production deployment.'
 tags: ["ai", "data-cleaning", "ml", "open-source", "self-hosted"]
 date: 2026-06-10
-slug: 'cleanlab-11k-star-ai-data-cleaning'
+lastmod:  2026-06-10slug: 'cleanlab-11k-star-ai-data-cleaning'
 category: data-science
 github_repo: 'https://github.com/cleanlab/cleanlab'
 license: MIT
@@ -448,3 +448,29 @@ Related articles:
 - [PaddleOCR Guide](/resources/ai-tools/paddleocr-81k-star-ocr-engine/)
 
 *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/cleanlab-11k-star-ai-data-cleaning"
+  }
+}
+</script>

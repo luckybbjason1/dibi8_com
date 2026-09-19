@@ -23,6 +23,8 @@ tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architectu
 aliases:
 - /kr/posts/12-factor-agents-production-llm-software-2026/
 ---
+# 12-Factor Agents 해설: 프로덕션급 LLM 소프트웨어를 위한 12개 원칙 (2026 완전 가이드)
+
 
 ## "그냥 LangChain 쓰면 되지"가 안 통하게 된 이유
 
@@ -167,3 +169,30 @@ MCP는 Factor 4를 못 박는다(표준화된 프로토콜 위 구조화된 출�
 ---
 
 **GitHub**: [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents) · **라이선스**: Apache 2.0 (코드) / CC BY-SA 4.0 (콘텐츠) · **Stars**: 22K+ · **저자**: Dex Horthy / HumanLayer
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12-Factor Agents 해설: 프로덕션급 LLM 소프트웨어를 위한 12개 원칙 (2026 완전 가이드)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/12-factor-agents-production-llm-software-2026"
+  }
+}
+</script>

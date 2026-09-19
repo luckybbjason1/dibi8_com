@@ -727,3 +727,30 @@ for qa in historical_question_sql_pairs:
 Vanna AI는 데이터베이스 접근 대중화에서 중대한 도약을 대표합니다. 현대적 대형 언어 모델의 성능과 SQL 생성을 위해 특별히 구축된 RAG 아키텍처를 결합함으로써, 자연어 쿼리를 실제 프로덕션 환경에서 실용적으로 만드는 정확도 수준을 제공합니다. 적절한 학습을 통해 달성된 90%+ 정확도와 프라이버시 우선 설계 및 자체 호스팅 기능의 결합은 데이터 보안을 손상시키지 않고 팀에 Text-to-SQL 기능을 제공하려는 조직을 위한 도구로 Vanna를 만듭니다.
 
 2026년, 데이터 분석가와 데이터베이스 전문가 사이의 간격이 계속 좁아지면서, Vanna AI는 최전선에 서 있습니다 — "우리 지역별 Q2 매출은 얼마입니까?"를 몇 분이 아닌 몇 초 내에 실행 가능한 SQL로 변환합니다. SQL 병목 현상을 줄이고 사람들이 생각하는 언어로 질문할 수 있게 하려는 모든 팀에게 Vanna AI는 즉시 배당금을 지불하는 투자입니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "vanna-ai-sql-generation",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/vanna-ai-sql-generation"
+  }
+}
+</script>

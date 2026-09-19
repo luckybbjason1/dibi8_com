@@ -581,3 +581,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - Wan Video Nodes: https://github.com/kijai/ComfyUI-WanVideoWrapper
 - Docker Setup Reference: https://github.com/ai-dock/comfyui
 - Quantization Guide: https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI: 87K+ Stars — Node-Based Stable Diffusion Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/comfyui"
+  }
+}
+</script>

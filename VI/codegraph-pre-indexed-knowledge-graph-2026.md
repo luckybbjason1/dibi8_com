@@ -196,3 +196,30 @@ Kết hợp với [trung tâm điều khiển CLI AI hợp nhất như CC Switch
 ---
 
 **GitHub**: [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · **License**: MIT · **Mới nhất**: v0.9.3 (22/5/2026) · **Stars**: 20.2K+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đánh giá CodeGraph: Đồ thị mã được pre-index giúp Claude Code, Cursor, Codex tiết kiệm 35% token (2026)",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/codegraph-pre-indexed-knowledge-graph-2026"
+  }
+}
+</script>

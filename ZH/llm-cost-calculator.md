@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
+# LLM API 成本计算器 — GPT-4 / Claude / Gemini
+

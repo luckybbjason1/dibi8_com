@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-og-card-preview"
 tool_id: "og-card-preview"
 ---
+# OG 카드 미리보기 — Facebook / Twitter / LinkedIn 공유 시뮬레이터
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OG 카드 미리보기 — Facebook / Twitter / LinkedIn 공유 시뮬레이터",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/og-card-preview"
+  }
+}
+</script>

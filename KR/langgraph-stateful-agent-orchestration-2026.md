@@ -206,3 +206,30 @@ Postgres 있는 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} �
 ---
 
 *더 큰 맥락의 LangGraph를 보고 싶나요? MCP server, AgentMemory, 코드 실행 샌드박스와 어떻게 어우러지는지 [AI Agent 도구 체인 컬렉션](/kr/collections/) 참조 — 곧 공개.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전 가이드)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/langgraph-stateful-agent-orchestration-2026"
+  }
+}
+</script>

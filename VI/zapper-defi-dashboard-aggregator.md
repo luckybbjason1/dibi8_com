@@ -1131,3 +1131,30 @@ Dù bạn là ngườidùng DeFi bình thường theo dõi pool thanh khoản đ
 **Ngườibảo trì:** [Zapper-fi](https://github.com/Zapper-fi)  
 **Sao GitHub:** 300+  
 **Trang web:** [zapper.xyz](https://zapper.xyz)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "zapper-defi-dashboard-aggregator",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/zapper-defi-dashboard-aggregator"
+  }
+}
+</script>

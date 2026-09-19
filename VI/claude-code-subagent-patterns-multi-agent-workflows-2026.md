@@ -36,6 +36,8 @@ faq:
   - q: "Giá cả của Claude Code subagent hoạt động ra sao — tôi có trả riêng cho mỗi cái không?"
     a: "Mỗi lần gọi subagent tiêu thụ token như bất kỳ cuộc trò chuyện Claude nào khác. Chi phí xấp xỉ context đầy đủ của subagent (system prompt + schema công cụ + task prompt + suy nghĩ + báo cáo cuối). Trên gói Pro và Max, sử dụng subagent tính vào cùng quota sử dụng với phiên cha. Với người dùng API, chi phí là tính phí trực tiếp theo token. Tiết kiệm đến từ việc chuyển bớt khám phá đáng lẽ làm phình context cha — bạn trả cho subagent, nhưng phiên chính giữ được nhanh và tập trung."
 ---
+# Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)
+
 
 ## Giới thiệu
 
@@ -161,3 +163,30 @@ Năm 2026, subagent không còn là tùy chọn. Nếu vẫn làm mọi tác v�
 Bắt đầu với Mẫu 1 (fan-out nghiên cứu song song) — đây là điểm áp dụng ít ma sát nhất và lợi ích đến ngay. Xếp lớp các mẫu khác khi phiên dài hơn và task nặng hơn.
 
 Trực giác "cứ gõ tiếp vào phiên chính" chết khó. Đè nén nó. Khởi tạo subagent.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-subagent-patterns-multi-agent-workflows-2026"
+  }
+}
+</script>

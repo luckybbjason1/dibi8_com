@@ -5,7 +5,7 @@ tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inferenc
 category: llm-frameworks
 featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
-slug: sglang-structured-generation-llm
+lastmod:  2026-07-15T00:00:00+00:00slug: sglang-structured-generation-llm
 ---
 
 ## TL;DR
@@ -718,3 +718,30 @@ Requests exceeding the limit are queued and processed when capacity becomes avai
 ---
 
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SGLang — Structured Generation and Fast LLM Serving Engine",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/sglang-structured-generation-llm"
+  }
+}
+</script>

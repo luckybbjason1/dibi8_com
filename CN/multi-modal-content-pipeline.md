@@ -214,3 +214,30 @@ Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, s
 ---
 
 *Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) and [Knowledge Base Stack](/collections/knowledge-base-stack/) for the dev side. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the script-generation cost side. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for letting agents drive this pipeline autonomously.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Multi-Modal Content Pipeline 2026: The 5-Component Stack for AI Podcasts, Videos, and Visual Content ($30-80/Month)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/multi-modal-content-pipeline"
+  }
+}
+</script>

@@ -259,3 +259,30 @@ The bots aren't going to teach you to be honest about your edge. You have to do 
 ---
 
 **GitHub**: [moss-site/moss-trade-bot-skills](https://github.com/moss-site/moss-trade-bot-skills) · **License**: MIT-0 · **Latest**: v1.0.26 (2026-05-25) · **Stars**: 98 · **Maintainer**: moss-site / Moss AI ([moss.site](https://moss.site))
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Moss Trade Bot Factory Review 2026: AI Agent Quant Workbench — Why Pretty Backtests Lie",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/moss-trade-bot-factory-2026-review"
+  }
+}
+</script>

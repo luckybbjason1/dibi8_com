@@ -484,3 +484,30 @@ Tabby 填补了 AI 编程助手市场的关键空白：一个完全开源、自�
 - [MODEL_SPEC.md — 自定义模型格式](https://github.com/TabbyML/tabby/blob/main/MODEL_SPEC.md)
 - [Tabby 搭配 Ollama 后端](https://github.com/TabbyML/tabby/discussions/3285)
 - [虎网云 GPU 云](https://www.htstack.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/tabby"
+  }
+}
+</script>

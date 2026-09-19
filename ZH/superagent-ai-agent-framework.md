@@ -611,3 +611,30 @@ Superagent 消除了"Agent 原型"和"生产 API"之间的摩擦。一条 CLI �
 ## Affiliate Disclosure
 
 本文包含联盟链接。如果你通过我们的链接注册 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Superagent 本身开源，在 MIT 许可证下免费使用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/superagent-ai-agent-framework"
+  }
+}
+</script>

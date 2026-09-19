@@ -558,3 +558,30 @@ Demucs 在 2026 年仍然是开源音乐源分离的参考实现。其混合 Tra
 - [Open-Unmix (Sony)](https://github.com/sigsep/open-unmix-pytorch)
 - [MVSEP 质量检测排行榜](https://mvsep.com/quality_checker/)
 - [Audio Developers Conference 2025 — Demucs ONNX 导出演讲](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/demucs"
+  }
+}
+</script>

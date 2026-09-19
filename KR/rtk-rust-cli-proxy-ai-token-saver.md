@@ -286,3 +286,30 @@ GitHub Star 45,000개 이상. Apache-2.0. 단일 바이너리, 제로 의존성.
 ---
 
 *Tags: RTK, AI 코딩 에이전트, LLM 토큰 최적화, Rust CLI 도구, 오픈소스 개발 도구, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, 토큰 비용 절감, 개발자 생산성 2026*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RTK: AI 코딩 에이전트 토큰 비용을 60-90% 절감하는 오픈소스 Rust CLI 프록시 — 설치부터 실전 적용까지",
+  "datePublished": "2026-05-14",
+  "dateModified": "2026-05-14",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/rtk-rust-cli-proxy-ai-token-saver"
+  }
+}
+</script>

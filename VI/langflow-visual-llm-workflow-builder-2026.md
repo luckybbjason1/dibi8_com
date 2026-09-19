@@ -2,7 +2,7 @@
 title: 'Langflow: 148k sao cho các quy trình làm việc LLM trực quan -- Phân tích chuyên sâu kỹ thuật 2026'
 description: 'Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất.'
 date: 2026-05-23
-slug: 'langflow'
+lastmod:  2026-05-23slug: 'langflow'
 category: 'llm-frameworks'
 tags: [langflow, quy trình làm việc LLM, lập trình trực quan, tác nhân AI, LangChain, lập trình dựa trên luồng, kỹ thuật prompt, triển khai, AI mã thấp]
 github_repo: 'https://github.com/langflow-ai/langflow'
@@ -416,3 +416,29 @@ Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) đ�
 ---
 **Tiết lộ**: Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Langflow: 148k sao cho các quy trình làm việc LLM trực quan -- Phân tích chuyên sâu kỹ thuật 2026",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/langflow-visual-llm-workflow-builder-2026"
+  }
+}
+</script>

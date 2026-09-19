@@ -537,3 +537,30 @@ LlamaIndex 占据了一个特定且有价值的领域：它让构建生产级 RA
 - [Real Python: LlamaIndex 指南](https://realpython.com/llamaindex-examples/)
 - [Haystack GitHub](https://github.com/deepset-ai/haystack)
 - [RAGFlow GitHub](https://github.com/infiniflow/ragflow)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/llamaindex"
+  }
+}
+</script>

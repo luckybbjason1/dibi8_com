@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-llm-recommender"
 tool_id: "llm-recommender"
 ---
+# LLM 모델 추천기 2026 — 사용 사례·예산·컨텍스트·프라이버시로 GPT/Claude/Gemini/DeepSeek 비교
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLM 모델 추천기 2026 — 사용 사례·예산·컨텍스트·프라이버시로 GPT/Claude/Gemini/DeepSeek 비교",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/llm-recommender"
+  }
+}
+</script>

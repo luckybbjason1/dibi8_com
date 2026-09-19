@@ -2,7 +2,7 @@
 title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất'
 description: '10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí.'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [mcp, model-context-protocol, công-cụ-mcp-miễn-phí, mcp-server, claude-mcp, ai-mã-nguồn-mở, công-cụ-ai]
 categories: [tools]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'MCP server khác plugin/extension như thế nào?'
     a: 'Plugin và extension được xây cho một ứng dụng cụ thể (ví dụ: plugin ChatGPT chỉ hoạt động trong ChatGPT). MCP server không phụ thuộc client — cùng một filesystem server hoạt động trong Claude, Cursor và bất kỳ MCP client nào khác mà không cần chỉnh sửa. Đây là ưu điểm then chốt của tiêu chuẩn mở so với hệ thống plugin độc quyền.'
 ---
+# Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất
+
 
 ![Free MCP tools top 10 — Model Context Protocol servers for Claude and Cursor, via dibi8.com](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=760&q=80)
 
@@ -236,3 +238,30 @@ Ba cái này cho bạn: truy cập file cục bộ + duyệt web + bộ nhớ li
 Để tìm hiểu sâu hơn về kiến trúc MCP và cấu hình server nâng cao, xem [hướng dẫn MCP đầy đủ](mcp-deep-dive-definitive-2026-guide.md) và [bảo mật MCP server tốt nhất](mcp-server-security-audit-2026-real-cases.md).
 
 Tất cả server có tại [kho GitHub MCP chính thức](https://github.com/modelcontextprotocol/servers).
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/free-mcp-tools-top10-2026"
+  }
+}
+</script>

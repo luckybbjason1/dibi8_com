@@ -2,7 +2,7 @@
 title: "Apple Container: macOS 용 Docker — 애플이 컨테이너 대신 VM을 선택한 이유 (36K Stars)"
 description: "Apple Container는 경량 VM을 사용해 Mac에서 Linux 컨테이너를 실행하는 오픈소스 도구입니다. 표준 OCI 이미지를 생성하고 macOS 프레임워크와 통합되며, Linux 컨테이너화 분야의 첫 공식 Apple 개발 도구입니다. 별 36K개."
 date: 2026-06-13
-slug: apple-container-mac-vm-tool-2026
+lastmod:  2026-06-13slug: apple-container-mac-vm-tool-2026
 category: dev-utils
 tags: ['apple-container', 'macos-dev', 'linux-containers', 'vm-vs-docker', 'oci', 'apple-silicon', 'swift', 'virtualization', 'devtools']
 github_repo: 'https://github.com/apple/container'
@@ -426,3 +426,30 @@ Apple Container는 Docker의 macOS 컨테이너 접근 방식이 충분하지 �
 관련 글: [Docker 컨테이너 완전 가이드 2026](https://dibi8.com/docker-containers-guide-2026) · [Podman Linux 컨테이너 사용 가이드](https://dibi8.com/podman-linux-containers-guide)
 
 **면책**: 본 글은 제휴 관계를 가질 수 있는 도구를 언급합니다. 저희는 긍정적인 리뷰를 위해 대금을 받지 않습니다. 모든 벤치마크는 자체적으로 수행하거나 공식 문서에서 가져온 것입니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apple Container: macOS 용 Docker — 애플이 컨테이너 대신 VM을 선택한 이유 (36K Stars)",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/apple-container"
+  }
+}
+</script>

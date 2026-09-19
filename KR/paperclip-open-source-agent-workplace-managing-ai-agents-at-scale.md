@@ -2,7 +2,7 @@
 title: 'paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드'
 description: 'paperclip (69,700 GitHub star)은 AI 에이전트를 관리하는 오픈소스 워크플레이스 앱입니다. 멀티 에이전트 조정, 작업 관리, 셀프호스팅 에이전트 워크플로우 배포 포함.'
 date: 2026-06-08
-slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
+lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ['AI 에이전트 관리', '멀티 에이전트 조정', 'paperclip', '오픈소스 에이전트', '에이전트 워크플로우', '셀프호스팅 에이전트', 'AI 에이전트 워크플레이스', '에이전트 오케스트레이션']
 github_repo: 'https://github.com/paperclipai/paperclip'
@@ -214,3 +214,30 @@ paperclip은 여러 AI 에이전트 조정이 관리 레이어 없이 혼란스�
 [dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 paperclip 설정과 에이전트 템플릿을 논의하세요. [cc-switch 통합 CLI](dibi8-internal-link) 및 [Langflow 시각적 워크플로우](dibi8-internal-link) 가이드도 확인하세요. 오늘 paperclip을 시도해보세요 — `docker compose up`, 에이전트 두 개 추가하고 첫 멀티에이전트 파이프라인을 실행해보세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
+  }
+}
+</script>

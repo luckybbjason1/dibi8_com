@@ -2,7 +2,7 @@
 title: 'cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất 6+ công cụ AI mã hóa — Hướng dẫn thực tế 2026'
 description: 'cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw và Hermes Agent vào một trung tâm điều khiển. Một binary duy nhất, không phụ thuộc. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
-slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['quản lý AI CLI', 'thay thế Claude Code', 'công cụ AI mã hóa', 'năng suất nhà phát triển', 'CLI đa agent', 'cc-switch', 'agent AI mã hóa', 'proxy CLI']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -321,3 +321,30 @@ Nếu bạn dùng 2+ công cụ AI mã hóa, chuyển đổi giữa chúng 10+ l
 Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) để thảo luận tips và preset cc-switch. Xem hướng dẫn về [opencode setup](dibi8-internal-link) và [MCP deep dive](dibi8-internal-link) cho công cụ liên quan. Thử cc-switch ngay hôm nay — cài đặt, thiết lập hai agent preset, và xem bạn tiết kiệm được bao nhiêu thời gian trong một tuần.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất 6+ công cụ AI mã hóa — Hướng dẫn thực tế 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cc-switch-unified-ai-cli-control-center"
+  }
+}
+</script>

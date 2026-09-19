@@ -946,3 +946,30 @@ Khi các DAO phát triển hướng tới tự động hóa lớn hơn, chúng t
 **Ngườibảo trì:** [Snapshot Labs](https://github.com/snapshot-labs)  
 **Sao GitHub:** 9.500+  
 **Trang web:** [snapshot.org](https://snapshot.org)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "snapshot-dao-governance-voting",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/snapshot-dao-governance-voting"
+  }
+}
+</script>

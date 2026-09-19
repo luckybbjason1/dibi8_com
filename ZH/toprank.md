@@ -145,3 +145,30 @@ npm run dev
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
 *本文发布于 2026-05-09，最后更新于 2026-05-09。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/toprank"
+  }
+}
+</script>

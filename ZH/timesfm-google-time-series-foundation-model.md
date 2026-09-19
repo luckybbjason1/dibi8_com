@@ -2,7 +2,7 @@
 title: 'TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型'
 description: 'TimesFM 2.5 完整指南——用于时间序列预测的 Google Research 仅解码器基础模型。涵盖安装、微调、基准测试和实际应用。'
 date: 2026-06-19
-tags: []
+lastmod:  2026-06-19tags: []
 category: "data-science"
 lang: zh
 slug: timesfm-google-time-series-foundation-model
@@ -613,3 +613,30 @@ TimesFM 2.5 通过其连续分位数头支持高达 1,000 个时间步的范围�
  - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - 托管您的 ML 模型
  - [HTStack](https://my.htstack.com/aff.php?aff=27187) - 可靠的 GPU 服务器托管
  - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - 用于训练的GPU服务器（中文）
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/timesfm-google-time-series-foundation-model"
+  }
+}
+</script>

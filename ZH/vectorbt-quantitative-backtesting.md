@@ -558,3 +558,30 @@ VectorBT 消除了从想法到验证之间的摩擦。当 180 种组合的参数
 ##  affiliate 披露
 
 本文包含指向 Binance、OKX、Minara 及相关平台的 affiliate 链接。如果你通过这些链接注册，dibi8.com 可能会获得佣金，不会向你收取额外费用。我们只推荐自己用于量化研究的工具。Affiliate 收入支持我们的开源技术内容。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/vectorbt-quantitative-backtesting"
+  }
+}
+</script>

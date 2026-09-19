@@ -131,3 +131,30 @@ AI 에이전트 프레임워크 지형은 2026년에 통합되었습니다. 2년
 ---
 
 **관련 글**: [12-Factor Agents 프로덕션 가이드](https://dibi8.com/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/) · [AI 에이전트 메모리 시스템](https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [MCP 서버 2026](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/open-source-ai-agent-framework-top-10-2026"
+  }
+}
+</script>

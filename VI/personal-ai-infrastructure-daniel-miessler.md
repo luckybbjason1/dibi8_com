@@ -2,7 +2,7 @@
 title: 'Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel Miessler cho con người — Hướng dẫn toàn diện 2026'
 description: 'Cơ sở hạ tầng AI Cá nhân (PAI) của Daniel Miessler là Hệ điều hành Cuộc sống với 45 kỹ năng, 171 quy trình làm việc, daemon Pulse và Algorithm v6.3.0. Cài đặt bằng một lệnh, giấy phép MIT. Kết hợp chiến lược, thực thi và phản ánh thành một hệ thống duy nhất.'
 date: 2026-06-13
-slug: 'personal-ai-infrastructure-daniel-miessler'
+lastmod:  2026-06-13slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
 tags: ['pai', 'personal-ai', 'daniel-miessler', 'life-os', 'algorithm', 'skills', 'automation']
 github_repo: 'https://github.com/danielmiessler/Personal_AI_Infrastructure'
@@ -530,3 +530,29 @@ Cốt lõi của nhận thức — rằng các công cụ AI cần cấu trúc, 
 ---
 
 **Tiết lộ**: Bài viết này chứa các liên kết liên kết. Chúng tôi có thể kiếm được hoa hồng nếu bạn đăng ký thông qua các liên kết của chúng tôi, mà không tốn thêm chi phí cho bạn.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel Miessler cho con người — Hướng dẫn toàn diện 2026",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/personal-ai-infrastructure-daniel-miessler"
+  }
+}
+</script>

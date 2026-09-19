@@ -2,7 +2,7 @@
 title: "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전트 — 완전 설정 가이드"
 description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대안과 비교."
 date: 2026-06-10
-slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [바이트댄스, ui-tars, 비전-언어모델, AI에이전트, 데스크톱자동화, GUI에이전트, 오픈소스, 멀티모달AI]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -513,3 +513,30 @@ AI 에이전트 인프라와 GPU 워크로드를 호스팅하려면, 저렴한 G
 [dibi8 영어 Telegram 그룹](https://t.me/DIBI8_Group/2)에 참여하여 UI-TARS 구성 및 데스크톱 자동화 기술을 논의하세요. 보충 도구로 [AI 에이전트 관리](dibi8-internal-link) 및 [MarkItDown을 사용한 문서 처리](dibi8-internal-link) 가이드를 확인하세요. 오늘 바로 데스크톱 자동화를 시작하세요.
 
 위의 링크에는 제휴 링크가 포함되어 있습니다. dibi8.com은 가입 시 수수료 수익을 얻을 수 있으며, 이는 이용자에게 추가 비용이 없습니다. 사이트 운영과 콘텐츠提供免费를 유지하는 데 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전트 — 완전 설정 가이드",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/bytedance-ui-tars-desktop-ai-agent-guide"
+  }
+}
+</script>

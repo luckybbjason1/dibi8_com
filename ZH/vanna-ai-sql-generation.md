@@ -729,3 +729,30 @@ for qa in historical_question_sql_pairs:
 Vanna AI 代表了在普及数据库访问方面的重大飞跃。通过将现代大型语言模型的力量与专为 SQL 生成而构建的 RAG 架构相结合，它提供了一种使自然语言查询在现实世界生产环境中实用的准确性水平。通过适当训练实现的 90%+ 准确性，结合其隐私优先设计和自托管功能，使 Vanna 成为希望在不损害数据安全的情况下让团队获得 Text-to-SQL 能力的组织的首选工具。
 
 2026年，随着数据分析师和数据库专家之间的差距继续缩小，Vanna AI 站在最前沿 — 将"我们各区域第二季度的销售额是多少？"在几秒钟内转化为可执行的 SQL，而不是几分钟。对于任何希望减少 SQL 瓶颈并让人们在思考所用的语言中提问的团队来说，Vanna AI 是一项立即就能带来回报的投资。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "vanna-ai-sql-generation",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/vanna-ai-sql-generation"
+  }
+}
+</script>

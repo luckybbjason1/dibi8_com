@@ -34,6 +34,8 @@ faqs:
   - q: 'Is Firecrawl free, and what is its license?'
     a: 'The source code is free and open under AGPL-3.0, with the official SDKs and UI components under MIT. The hosted cloud API has a free tier plus paid plans for higher volume. If you self-host, you run it at your own infrastructure cost.'
 ---
+# Firecrawl: Turn Any Website into LLM-Ready Data (127K Stars) — Practical 2026 Guide
+
 
 {{< resource-info >}}
 
@@ -337,3 +339,30 @@ Large-scale scraping needs rotating proxies — [WebShare](https://www.webshare.
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Firecrawl: Turn Any Website into LLM-Ready Data (127K Stars) — Practical 2026 Guide",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/firecrawl-dev-utils-2026"
+  }
+}
+</script>

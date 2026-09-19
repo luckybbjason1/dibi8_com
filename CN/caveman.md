@@ -36,6 +36,8 @@ faqs:
   - q: 'What intensity levels and commands does Caveman offer?'
     a: 'Caveman has three levels: Lite (removes filler, keeps grammar), Full (default mode, drops articles and uses fragments), and Ultra (maximum telegraphic compression). It also ships sub-commands like /caveman-commit, /caveman-review, /caveman-stats, and /caveman:compress for rewriting memory files such as CLAUDE.md.'
 ---
+# Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens
+
 {</* resource-info */>}
 
 If you use Claude Code daily, you have probably noticed the token counter climbing fast. Long explanations, polite filler sentences, and repeated context all add up. More tokens mean slower responses and a higher bill at the end of the month.
@@ -274,3 +276,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)
 - [Cline](https://github.com/cline/cline)
 - [Docker](https://docs.docker.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/caveman"
+  }
+}
+</script>

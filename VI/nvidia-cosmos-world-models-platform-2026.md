@@ -2,7 +2,7 @@
 title: 'NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)'
 description: 'NVIDIA Cosmos là một nền tảng mã nguồn mở của các mô hình thế giới, tập dữ liệu và công cụ để xây dựng Physical AI — robot, xe tự hành, cơ sở hạ tầng thông minh. Cosmos 3 sử dụng Mixture-of-Transformers để tạo ngôn ngữ, hình ảnh, video, âm thanh và hành động đồng thời. Có sẵn mô hình 16B và 64B.'
 date: 2026-06-13
-slug: 'nvidia-cosmos-world-models-platform-2026'
+lastmod:  2026-06-13slug: 'nvidia-cosmos-world-models-platform-2026'
 category: ai-tools
 tags: ['nvidia-cosmos', 'world-models', 'physical-ai', 'robotics', 'video-generation', 'multimodal', 'mixture-of-transformers', 'open-source', 'ai-simulation']
 github_repo: 'https://github.com/NVIDIA/cosmos'
@@ -456,3 +456,30 @@ Tham gia cộng đồng: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](h
 Internal links: [Runway Gen-3 Review 2026](https://dibi8.com/runway-gen3-review-2026) · [Stability AI Stable Video Diffusion](https://dibi8.com/stability-ai-stable-video-diffusion)
 
 ** Disclosure**: Bài viết này đề cập đến các công cụ có thể có quan hệ affiliate. Chúng tôi không chấp nhận thanh toán cho đánh giá tích cực. Tất cả benchmark đều do tự thực hiện hoặc sourced từ tài liệu chính thức.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/nvidia-cosmos-world-models-platform-2026"
+  }
+}
+</script>

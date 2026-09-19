@@ -2,7 +2,7 @@
 title: 'Weights & Biases (W&B): Track Every Experiment Like a Pro — ML Experiment Platform 2026'
 description: 'Weights & Biases (wandb/wandb) is the AI developer platform for tracking, comparing, and deploying ML experiments. Supports PyTorch, TensorFlow, Hugging Face, and LLM fine-tuning. Covers experiment tracking, dataset versioning, model registry, and production monitoring.'
 date: 2026-06-09
-slug: 'wandb-ml-experiment-tracking-platform-2026'
+lastmod:  2026-06-09slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
 github_repo: 'https://github.com/wandb/wandb'
@@ -438,3 +438,29 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for ongoing dis
 - Community discussion: https://community.wandb.ai/
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Weights & Biases (W&B): Track Every Experiment Like a Pro — ML Experiment Platform 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/wandb-ml-experiment-tracking-platform-2026"
+  }
+}
+</script>

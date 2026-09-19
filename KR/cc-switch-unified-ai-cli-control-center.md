@@ -2,7 +2,7 @@
 title: 'cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센터 — 2026 실전 가이드'
 description: 'cc-switch는 (95,900 GitHub star) Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent를 하나의 제어 센터로 통합하는 크로스 플랫폼 데스크톱 도구입니다. 단일 바이너리, 의존성 없음. 설정 튜토리얼, 아키텍처 분석, 실제 벤치마크 포함.'
 date: 2026-06-08
-slug: 'cc-switch-unified-ai-cli-control-center'
+lastmod:  2026-06-08slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ['AI CLI 관리', 'Claude Code 대안', 'AI 코딩 도구', '개발자 생산성', '멀티 에이전트 CLI', 'cc-switch', 'AI 코딩 에이전트', 'CLI 프록시']
 github_repo: 'https://github.com/farion1231/cc-switch'
@@ -321,3 +321,30 @@ cc-switch는 다른 어느 도구도 해결하지 않는 구멍을 메운다: **
 [dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 cc-switch 팁과 프리셋을 논의하자. [opencode 설정](dibi8-internal-link) 및 [MCP 딥 다이브](dibi8-internal-link) 가이드도 확인하자. 오늘 cc-switch를 설치해보자 — 에이전트 프리셋 2개를 설정하고 일주일 후 얼마나 시간을 아끼는지 확인해보자.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센터 — 2026 실전 가이드",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cc-switch-unified-ai-cli-control-center"
+  }
+}
+</script>

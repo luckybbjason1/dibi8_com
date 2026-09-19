@@ -2,7 +2,7 @@
 title: 'OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？'
 description: 'OpenAI Codex CLI（gpt-5-codex）与 Anthropic Claude Code（Sonnet 4.6，1M 上下文）横向对比 — 价格、沙箱、企业版、工具集成。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: '企业用哪个更好？'
     a: '2026 年 Claude Code 的企业版故事更成熟 — Anthropic 提供 SOC 2 Type II、API 层 HIPAA、Claude Enterprise 私有 VPC 部署。OpenAI Codex CLI 更新（2025 年 11 月开源），接入标准 OpenAI 企业套餐，但 CLI 本身还没专门的企业层。监管行业目前 Claude Code 胜出；OpenAI 在快速追赶。'
 ---
+# OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？
+
 
 ## 快速答案
 
@@ -196,3 +198,30 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openai-codex-cli-vs-claude-code"
+  }
+}
+</script>

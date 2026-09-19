@@ -156,3 +156,30 @@ Kết cục tệ nhất là không có chính sách nào — lập trình viên 
 ---
 
 **Liên quan**: [Đấu trường AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Stack AI Local-First 2026](https://dibi8.com/vi/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/) · [LLM tự host 2026](https://dibi8.com/vi/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệp Cho phép vs Hạn chế",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-coding-ethics-corporate-policy-guide-2026"
+  }
+}
+</script>

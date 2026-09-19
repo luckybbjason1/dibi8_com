@@ -5,7 +5,7 @@ lang: zh
 title: 'JuiceFS (14K⭐): 将云存储转化为本地存储的分布式 POSIX 文件系统'
 description: 'JuiceFS（13,900+ 星标）将任何 S3 兼容的对象存储转换为符合 POSIX 标准的分布式文件系统。由 Redis 驱动元数据，它提供了具有本地文件系统语义的云原生性能——完美适用于 AI 训练、大数据和云工作负载。'
 date: 2026-06-15
-slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
+lastmod:  2026-06-15slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
 category: dev-utils
 tags: ['juicefs', 'distributed-file-system', 'cloud-storage', 's3', 'redis', 'posix', 'ai-training', 'big-data', 'go', 'cloud-native']
 github_repo: 'https://github.com/juicedata/juicefs'
@@ -200,3 +200,29 @@ JuiceFS 在不同工作负载类型下都能提供令人印象深刻的性能：
 | 工作负载类型 | JuiceFS | 本地 SSD | 云存储（原始） |
 
 |
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JuiceFS (14K⭐): 将云存储转化为本地存储的分布式 POSIX 文件系统",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
+  }
+}
+</script>

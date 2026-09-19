@@ -741,3 +741,30 @@ Caddy 的自动 HTTPS、默认 HTTP/3 支持和大幅简化的配置使其成为
 ---
 
 *披露：本文包含 DigitalOcean 和 HTStack 的联盟链接。如果你通过这些链接购买服务，dibi8.com 将获得佣金，不会向你收取额外费用。所有基准数据和推荐均基于独立测试和编辑判断。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Caddy: 72K+ Stars 的生产级 Web 服务器 — 2026 自动 HTTPS 部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/caddy"
+  }
+}
+</script>

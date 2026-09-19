@@ -5,7 +5,7 @@ tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-slug: vercel-ai-sdk-edge-compute
+lastmod:  2026-07-15T00:00:00+00:00slug: vercel-ai-sdk-edge-compute
 ---
 
 ## TL;DR
@@ -727,3 +727,30 @@ For production apps, combine JWT authentication with rate limiting to prevent ab
 ---
 
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vercel AI SDK — Build Streaming AI Apps with Edge-First Architecture",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/vercel-ai-sdk-edge-compute"
+  }
+}
+</script>

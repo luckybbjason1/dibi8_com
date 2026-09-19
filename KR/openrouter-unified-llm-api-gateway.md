@@ -557,3 +557,30 @@ OpenRouter는 **하나의 API 키**, **하나의 SDK**, **5분의 설정**으로
 ## 제휴 공개
 
 본 문서에는 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)의 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하면 추가 비용 없이 커미션을 받을 수 있다. 모든 의견과 벤치마크는 독립적으로 검증되었다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenRouter: 300개 이상 모델을 연결하는 통합 LLM API 게이트웨이, 40% 비용 절감 — 2026년 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openrouter-unified-llm-api-gateway"
+  }
+}
+</script>

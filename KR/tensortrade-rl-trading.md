@@ -523,3 +523,30 @@ TensorTrade는 Python에서 강화학습 트레이딩을 위한 가장 프로덕
 ## 제휴 마케팅 고지
 
 이 기사에는 Binance와 OKX에 대한 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하고 거래하면 추가 비용 없이 커미션을 받을 수 있다. 이 커미션은 오픈소스 트레이딩 도구 및 교육 콘텐츠 개발에 사용된다. 우리는 직접 테스트하고 검증한 거래소만 추천한다. 어떤 거래소에 자금을 입금하기 전에 항상 직접 연구하라.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TensorTrade: 커스텀 Gym 환경을 갖춘 강화학습 트레이딩 프레임워크 — 2026 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/tensortrade-rl-trading"
+  }
+}
+</script>

@@ -200,3 +200,30 @@ For developers building or deploying open-source AI tools, we recommend:
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AiToEarn: Open-Source AI Content Monetization — Turn Your GPT Conversations into Passive Income",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/aitoearn-ai-monetization"
+  }
+}
+</script>

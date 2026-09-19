@@ -530,3 +530,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Tài Liệu LangGraph](https://langchain-ai.github.io/langgraph/)
 - [Tài Liệu OpenAI Agents SDK](https://platform.openai.com/docs/guides/agents)
 - [AutoGen vs CrewAI: Hướng Dẫn Benchmark 2026](https://dev.to/kunpeng-ai-2026/autogen-vs-crewai-a-comprehensive-benchmark-and-selection-guide-for-2026-2nh1)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AutoGen: 58K+ Stars — Khám Phá Sâu Framework Multi-Agent So Với CrewAI, LangGraph 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/autogen"
+  }
+}
+</script>

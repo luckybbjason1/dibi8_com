@@ -618,3 +618,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 10. Tài liệu LangChain — https://python.langchain.com/
 11. So sánh: Dify vs Flowise vs n8n — https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026
 12. Thiết lập LLM cục bộ Ollama — https://ollama.com/download
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dify: Xây dựng AI Agent cấp sản xuất bằng giao diện trực quan trong 5 phút — Hướng dẫn cài đặt 141K+ Stars 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/dify"
+  }
+}
+</script>

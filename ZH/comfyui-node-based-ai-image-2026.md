@@ -177,3 +177,30 @@ ComfyUI = **节点式 AI 媒体生成工作流引擎，2026 单图 txt2img 之�
 ---
 
 *dibi8 多模态内容 stack 的一部分 —— 配 [Stable Diffusion WebUI 轻度用](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 和 [ChatTTS 做语音](/zh/resources/ai-tools/chattts-dialogue-tts-2026/)。见即将上线的多模态内容 Pipeline 合集拿完整创作者 stack。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/comfyui-node-based-ai-image-2026"
+  }
+}
+</script>

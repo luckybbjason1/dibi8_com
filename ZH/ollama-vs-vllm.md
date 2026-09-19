@@ -2,7 +2,7 @@
 title: 'Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐'
 description: 'Ollama（简单的本地 LLM 运行器）与 vLLM（高吞吐生产推理引擎）逐项对比 — 易用性、吞吐、硬件、并发、规模化成本。2026 更新。'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [ollama, vllm, local-llm, inference, llm-serving, comparison, dev-tools, self-hosted]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'vLLM 比 Ollama 更难配置吗？'
     a: '是的。Ollama 以简单著称 — 装上二进制，运行一条 ollama run 之类的命令就能拉取并对话。vLLM 需要 GPU 环境、Python 依赖，以及对模型、并行和服务设置的配置，不过之后它会暴露一个易于调用的 OpenAI 兼容 API。给 Ollama 预留几分钟，给首次生产级 vLLM 部署预留一个下午（外加 GPU 准备）。'
 ---
+# Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐
+
 
 ## 快速结论
 
@@ -108,3 +110,30 @@ vLLM 暴露 OpenAI 兼容 API，所以基于 OpenAI SDK 写的应用代码只需
 - [向量数据库对比 2026](https://dibi8.com/zh/resources/llm-frameworks/vector-database-comparison/)
 
 外部参考：[Ollama](https://ollama.com/) · [vLLM 文档](https://docs.vllm.ai/) · [vLLM GitHub](https://github.com/vllm-project/vllm)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ollama-vs-vllm"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích hợp — 65.000 Sao — Hướng dẫn Thiết lập Đầy đủ 2026'
 description: 'Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS.'
 date: 2026-06-09
-slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
+lastmod:  2026-06-09slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
 category: ai-tools
 tags: ['odysseus', 'AI tự lưu trữ', 'Không gian AI', 'AI cục bộ', 'nghiên cứu chuyên sâu', 'tác nhân AI', 'giao diện trò chuyện', 'AI mã nguồn mở', 'AI lab tại gia']
 github_repo: https://github.com/pewdiepie-archdaemon/odysseus
@@ -510,3 +510,30 @@ Việc cài đặt dựa trên Docker khiến nó dễ tiếp cận ngay cả v�
 Tham gia cộng đồng của chúng tôi để tìm hiểu sâu hơn về các công cụ AI:[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Tuyên bố miễn trừ trách nhiệm:** Bài viết này chỉ nhằm mục đích thông tin.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích hợp — 65.000 Sao — Hướng dẫn Thiết lập Đầy đủ 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
+  }
+}
+</script>

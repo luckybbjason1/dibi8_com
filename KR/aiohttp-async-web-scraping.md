@@ -556,3 +556,30 @@ aiohttp는 HTTP 클라이언트이자 서버이다. 서버 측에서는 Flask, F
 ## 제휴 공개
 
 이 글에는 DigitalOcean 및 WebShare의 제휴 링크가 포함되어 있다. 이 링크를 통해 서비스를 구매하면 추가 비용 없이 커미션을 받을 수 있다. 이 추천은 프로덕션 스크래핑 워크플로에 대한 진정한 유용성을 기반으로 한다. 모든 벤치마크는 독립적으로 수행되었다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "aiohttp 2026: 초당 10K+ 요청을 처리하는 고성능 비동기 웹 스크래퍼 구축 — Python 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/aiohttp-async-web-scraping"
+  }
+}
+</script>

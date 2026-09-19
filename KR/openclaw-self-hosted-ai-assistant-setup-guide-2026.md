@@ -340,3 +340,30 @@ OpenClaw의 폭발은 또 하나의 덧없는 'AI 하이프'가 아니다. '통�
 - [Ollama 로컬 LLM 배포 완벽 가이드](https://ollama.com/blog)
 - [MCP 프로토콜: AI 에이전트 도구 호출의 새로운 표준](https://modelcontextprotocol.io)
 - [2026년 주간 오픈소스 AI 도구 다이제스트](https://buildmvpfast.com/blog)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenClaw 완벽 가이드: 2026년 최고의 오픈소스 AI 어시스턴트 자체 호스팅 설치 방법｜무료로 프라이빗 AI 비서 구축하기",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openclaw-self-hosted-ai-assistant-setup-guide-2026"
+  }
+}
+</script>

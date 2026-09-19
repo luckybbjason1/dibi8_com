@@ -2,7 +2,7 @@
 title: 'AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026'
 description: 'AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-world benchmarks. Remember past sessions, maintain context across days, learn from previous interactions. Works with Claude Code, Codex CLI, OpenCode, and more. Includes setup tutorial, architecture breakdown, and benchmarks.'
 date: 2026-06-08
-slug: 'agentmemory-persistent-memory-ai-coding-agents'
+lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
 github_repo: 'https://github.com/rohitg00/agentmemory'
@@ -459,3 +459,30 @@ Whether you're a solo developer who returns to projects weekly, a team sharing c
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss AgentMemory configurations. Check out our guides on [AI Agent工作平台](https://dibi8.com/paperclip-open-source[Token压缩](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server) [本地ChatGPT](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu) for complementary AI tooling. Try AgentMemory today — install it, let it learn from a few sessions, and watch your agent get smarter over time.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/agentmemory-persistent-memory-ai-coding-agents"
+  }
+}
+</script>

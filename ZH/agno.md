@@ -656,3 +656,30 @@ Agno 在 Agent 框架领域中填补了特定的空白：它为 Python 团队提
 ---
 
 *本文包含推广链接。如果你通过这些链接注册服务，dibi8.com 可能会获得佣金，而你无需支付额外费用。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agno: 40K+ Stars — 轻量级 AI Agent 框架深度解析 vs CrewAI, AutoGen 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agno"
+  }
+}
+</script>

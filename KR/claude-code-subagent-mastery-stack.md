@@ -39,6 +39,8 @@ faqs:
   - q: 'Claude Code에서 다중 에이전트 파이프라인이 실패하는 다섯 가지 방식은 무엇인가요?'
     a: '다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.'
 ---
+# Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로
+
 
 단일 스레드 AI 코딩은 2025년 말에 벽에 부딪혔습니다. 하나의 거대한 Claude 대화가 30개의 파일을 읽고, 탐색으로 컨텍스트 윈도를 가득 채운 뒤, 정작 편집을 시작할 때는 필요한 작업 메모리의 절반밖에 남아 있지 않습니다. 2026년의 해답은 **위임된 전문화(delegated specialization)** 입니다. 과부하된 단일 두뇌 대신, 엄격한 정보 경계를 가진 소규모 서브에이전트 협의회를 두는 것입니다.
 
@@ -88,3 +90,30 @@ faqs:
 ## 결론
 
 서브에이전트를 다섯 개의 단절된 트릭으로 배우지 마세요. 스택을 순서대로 밟으세요 — 패턴 → 작성 → 의사결정 프레임워크 → 스킬 → 실패 모드 — 그러면 "하나의 거대한 대화"에서 프로덕션에서 실제로 신뢰할 수 있는, 협업하는 에이전트 협의회로 졸업하게 됩니다. 오늘 패턴 1부터 시작하세요. 세션이 길어지고 작업이 무거워질수록 나머지를 한 층씩 쌓아 올리면 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack"
+  }
+}
+</script>

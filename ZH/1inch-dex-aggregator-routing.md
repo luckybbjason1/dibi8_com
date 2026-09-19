@@ -744,3 +744,30 @@ const wallet = new ethers.Wallet(
 对于寻求与其 DeFi 活动配合使用的可靠中心化交易所的交易者，[Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 提供深厚的流动性和有竞争力的费用，而 [OKX](https://www.promoohubly.com/join/12190433) 提供先进的交易工具和多链支持。中心化交易所的效率与 1inch 的去中心化聚合相结合，为 2026 年的多链格局打造了完整的交易工具包。
 
 今天就开始使用 1inch 构建，为你的用户提供 DeFi 所能提供的最佳价格执行。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "1inch-dex-aggregator-routing",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/1inch-dex-aggregator-routing"
+  }
+}
+</script>

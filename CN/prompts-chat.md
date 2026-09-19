@@ -3,7 +3,7 @@ title: 'prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 description: 'Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library.'
 tags: ["ai-tools", "collection", "guide", "library", "llm", "open-source", "prompt-engineering", "reference", "self-hosted", "tutorial"]
 date: 2026-06-12
-slug: 'prompts-chat'
+lastmod:  2026-06-12slug: 'prompts-chat'
 category: llm-frameworks
 github_repo: 'https://github.com/f/prompts.chat'
 license: NOASSERTION
@@ -354,3 +354,29 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss y
 ---
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026",
+  "datePublished": "2026-06-12",
+  "dateModified": "2026-06-12",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/prompts-chat"
+  }
+}
+</script>

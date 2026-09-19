@@ -204,3 +204,30 @@ Ollama는 llama.cpp 위에 구축. LM Studio는 llama.cpp 위에 구축. 그래�
 ---
 
 *동반 콘텐츠: [저렴한 LLM 스택 컬렉션](/kr/collections/cheap-llm-stack/)은 기본 로컬 러너로 Ollama 사용. [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 모두 로컬 추론에 Ollama 타고 있음. 여러 러너 앞 게이트웨이 레이어용 [Portkey vs LiteLLM vs OpenRouter](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: 정직한 로컬 LLM 러너 결정 가이드",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/local-llm-runner-comparison-2026"
+  }
+}
+</script>

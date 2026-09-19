@@ -33,6 +33,8 @@ faqs:
   - q: 'What do I need to install and run WiFi-Forge?'
     a: 'You need Linux (Ubuntu or Debian works best), Python 3, and root privileges since mininet-wifi uses kernel features. After cloning the repo, run sudo ./install.sh to install dependencies, then sudo python3 wififorge.py to start.'
 ---
+# WiFi-Forge — A Safe, Legal Sandbox for Learning WiFi Hacking
+
 {</* resource-info */>}
 
 If you've ever tried to learn WiFi attacks the traditional way, the workflow looks something like this: order a USB WiFi adapter that supports monitor mode and packet injection, fight with Linux drivers for an evening, set up a test access point you actually own, and *then* finally start practicing the attack you wanted to learn. **WiFi-Forge** skips that entire setup tax.
@@ -122,3 +124,30 @@ For developers building or deploying open-source AI tools, we recommend:
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WiFi-Forge — A Safe, Legal Sandbox for Learning WiFi Hacking",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/wifi-forge-safe-wifi-hacking-lab"
+  }
+}
+</script>

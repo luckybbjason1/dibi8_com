@@ -611,3 +611,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Bruno API Client](https://www.usebruno.com)
 - [Giá Postman](https://www.postman.com/pricing)
 - [Trang web Insomnia](https://insomnia.rest)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hoppscotch: 79,200 GitHub Stars — Nền tảng phát triển API mã nguồn mở so với Postman, Insomnia, Bruno 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/hoppscotch"
+  }
+}
+</script>

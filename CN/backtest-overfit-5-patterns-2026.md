@@ -169,3 +169,30 @@ Our recent moss-trade-bot evolution ended up textbook overfit (2.21 ratio). That
 ---
 
 **Related**: [Moss Trade Bot Factory 2026 Review](https://dibi8.com/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python Backtesting](https://dibi8.com/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI Trading Framework](https://dibi8.com/resources/ai-trading/jesse-ai-trading-framework/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe Numbers (2026)",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/backtest-overfit-5-patterns-2026"
+  }
+}
+</script>

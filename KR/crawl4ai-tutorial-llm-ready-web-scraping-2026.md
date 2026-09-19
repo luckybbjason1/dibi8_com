@@ -23,6 +23,8 @@ tags: ['crawl4ai', 'web-scraping', 'llm-rag', 'open-source']
 aliases:
 - /kr/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
+# Crawl4AI 완벽 가이드 2026: GitHub 63k+ Stars 오픈소스 웹 크롤러로 LLM 데이터 파이프라인 구축하기
+
 
 {</* resource-info */>}
 
@@ -344,3 +346,30 @@ Crawl4AI는 모든 스크래핑 니즈의 만능 해결사는 아닙니다. 하�
 ---
 
 *2026-05-19 발행. 데이터는 GitHub, 공식 문서, 공개 벤치마크를 기반으로 합니다. Crawl4AI는 빠르게 업데이트되므로 최신 문서와 상호 참조하시기 바랍니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Crawl4AI 완벽 가이드 2026: GitHub 63k+ Stars 오픈소스 웹 크롤러로 LLM 데이터 파이프라인 구축하기",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/crawl4ai-tutorial-llm-ready-web-scraping-2026"
+  }
+}
+</script>

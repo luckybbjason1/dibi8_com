@@ -34,6 +34,8 @@ faqs:
   - q: '모바일에서도 Odysseus를 사용할 수 있나요?'
     a: '네. Odysseus는 PWA(프로그레시브 웹 앱)로 완전한 반응형 디자인을 지원합니다. iOS나 Android에서 "홈 화면에 추가"하면 네이티브 앱에 가까운 경험을 얻을 수 있습니다. Cookbook과 에이전트 기능도 모바일에서 동작하지만, GPU 집약적인 로컬 모델 서빙은 데스크탑/서버 환경이 필요합니다.'
 ---
+# Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드
+
 
 Odysseus는 2026년 5월 31일 깃허브에 공개된 후 6월 8일까지 63,000개의 스타를 달성했습니다. 하루 평균 약 **7,000개의 스타**가 증가한 셈으로, 2026년 가장 빠르게 성장한 오픈소스 AI 프로젝트 중 하나입니다. 핵심 아이디어는 명확합니다: 월 $20의 ChatGPT Plus 구독으로 얻을 수 있는 모든 것을 내 서버에서, 내 데이터로, MIT 라이선스로 실행하는 것입니다.
 
@@ -115,3 +117,30 @@ Odysseus는 현재 버전 1.0으로, 출시된 지 2주도 채 되지 않았습�
 월 구독료 없이, 데이터를 클라우드에 올리지 않고, 내 하드웨어에서 ChatGPT 수준의 AI 워크스페이스를 원한다면 Odysseus가 현재 가장 완성도 높은 오픈소스 선택지입니다. 9일 만에 63,000 스타를 달성한 것은 과장된 홍보가 아닌 커뮤니티의 진심 어린 반응입니다. 레포를 클론하고 `docker compose up`을 실행하면 5분 안에 완전한 AI 워크스페이스가 실행됩니다.
 
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/odysseus-self-hosted-ai-workspace-2026"
+  }
+}
+</script>

@@ -34,6 +34,8 @@ faqs:
   - q: 'conduct_research()와 write_report()는 동기 방식인가요?'
     a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고, 그 함수를 `asyncio.run()`으로 실행하세요.'
 ---
+# GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드
+
 
 {{< resource-info >}}
 
@@ -293,3 +295,30 @@ GPT Researcher는 유능하지만, 다음 트레이드오프를 알아 두어야
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/gpt-researcher-llm-frameworks-2026"
+  }
+}
+</script>

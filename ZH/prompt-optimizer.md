@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-prompt-optimizer"
 tool_id: "prompt-optimizer"
 ---
+# Prompt 优化器 — 五段重构、删冗余、省 Token（GPT / Claude / Gemini / DeepSeek）
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prompt 优化器 — 五段重构、删冗余、省 Token（GPT / Claude / Gemini / DeepSeek）",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/prompt-optimizer"
+  }
+}
+</script>

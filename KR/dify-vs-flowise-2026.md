@@ -2,7 +2,7 @@
 title: 'Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스'
 description: 'Dify(엔터프라이즈 RAG, 멀티 모델, 프롬프트 관리, 셀프호스팅)와 Flowise(시각적 LangChain 빌더, 경량, 오픈소스)를 항목별 비교 — 기능, 셀프호스팅, AI 파이프라인, 2026년 팀별 적합 선택.'
 date: 2026-06-07 00:00:00+08:00
-draft: false
+lastmod:  2026-06-07 00:00:00+08:00draft: false
 tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Flowise는 단지 시각적 LangChain 빌더인가요?'
     a: 'Flowise는 드래그앤드롭 LangChain UI로 시작했고 이것이 여전히 핵심 정체성이지만, 단순한 래퍼를 넘어 발전했습니다. LangChain 외에도 LlamaIndex 컴포넌트를 지원하고, 자체 챗봇 임베드 위젯, API 엔드포인트 게시를 추가했으며, 커뮤니티 노드 생태계를 성장시켰습니다. 순수한 LangChain 래퍼가 아닌, LangChain과 LlamaIndex를 추상화한 시각적 LLM 파이프라인 빌더로 가장 잘 설명됩니다.'
 ---
+# Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스
+
 
 ## 한눈에 결론
 
@@ -139,3 +141,30 @@ RAG(검색 증강 생성)는 플랫폼이 가장 명확하게 갈리는 부분�
 - [오픈소스 AI 에이전트 프레임워크 Top 10 2026](https://dibi8.com/kr/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
 외부 참조: [Dify](https://dify.ai/) · [Dify GitHub](https://github.com/langgenius/dify) · [Flowise](https://flowiseai.com/) · [Flowise GitHub](https://github.com/FlowiseAI/Flowise)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/dify-vs-flowise-2026"
+  }
+}
+</script>

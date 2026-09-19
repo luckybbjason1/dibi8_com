@@ -2,7 +2,7 @@
 title: 'TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전 가이드'
 description: 'TradingAgents는 오픈소스 LLM 멀티 에이전트 프레임워크입니다(82,254 GitHub stars, Apache-2.0). 트레이딩 회사를 시뮬레이션해 분석가·리서처·트레이더·리스크 에이전트가 BUY/SELL/HOLD 결정을 토론합니다. LangGraph 기반. 설치, 에이전트 파이프라인, CLI + Python API, Qlib·단일 에이전트 봇과의 솔직한 비교를 다룹니다.'
 date: 2026-06-02
-slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
+lastmod:  2026-06-02slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
 tags: ['TradingAgents', 'LLM 에이전트', '알고리즘 트레이딩', 'LangGraph', '멀티 에이전트', 'AI 트레이딩', '퀀트', '금융 AI']
 github_repo: 'https://github.com/TauricResearch/TradingAgents'
@@ -271,3 +271,30 @@ TradingAgents는 2026년, LLM 에이전트 팀이 어떻게 트레이딩 결정�
   관련 오픈소스 도구 -> ai-tools-directory
   dibi8의 관련 가이드 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전 가이드",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/tradingagents-llm-multi-agent-trading-framework-2026"
+  }
+}
+</script>

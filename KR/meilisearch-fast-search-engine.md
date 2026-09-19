@@ -714,3 +714,30 @@ Meilisearch 1.12는 2026년에 배포하기 가장 쉬운 프로덕션급 검색
 ---
 
 *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 당사 링크를 통해 가입하시면 추가 비용 없이 커미션을 받습니다. 우리는 실제 테스트를 기반으로 서비스를 독립적으로 추천합니다. Meilisearch는 물리 오픈소스 소프트웨어입니다 — 유일한 비용은 호스팅 비용입니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Meilisearch: 번개처럼 빠른 오픈소스 오타 허용 검색 엔진 — 2026 설정 및 벤치마크",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/meilisearch-fast-search-engine"
+  }
+}
+</script>

@@ -340,3 +340,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [clob-client](https://github.com/Polymarket/clob-client)
 - [LangChain](https://github.com/langchain-ai/langchain)
 - [Chroma](https://docs.trychroma.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Polymarket Agents: Build AI Trading Bots for Prediction Markets",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/polymarket-agents-ai-trading-bot-framework"
+  }
+}
+</script>

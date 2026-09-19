@@ -2,7 +2,7 @@
 title: 'Agent-Reach: 83K-Star 인터넷 접근 도구 (제로 API 비용)'
 description: 'Agent-Reach는 Python CLI 도구로, AI 에이전트가 Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu 등을 API 비용 없이 검색하고 스크래핑할 수 있게 합니다. 2026년 워크플로우 통합 가이드.'
 date: 2026-09-19
-slug: 'agent-reach-internet-access-for-ai-agents-2026'
+lastmod:  2026-09-19slug: 'agent-reach-internet-access-for-ai-agents-2026'
 category: 'llm-frameworks'
 tags: ['agent-reach', 'ai-agent', '스크래핑', '자동화', 'python', 'no-api-cost']
 github_repo: 'https://github.com/Panniantong/Agent-Reach'
@@ -414,3 +414,30 @@ Agent-Reach를 사용해 보셨나요? 가장 좋아하는 사용 사례는 무�
 **CTA:** DIBI8 Telegram 커뮤니티 가입: https://t.me/DIBI8_Group
 
 [DeepSeek Harness 가이드](dibi8-internal-link) | [2026 AI Agent 보안](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agent-Reach: 83K-Star 인터넷 접근 도구 (제로 API 비용)",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/agent-reach-internet-access-ai-agents"
+  }
+}
+</script>

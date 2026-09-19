@@ -436,3 +436,30 @@ Aider는 2026년에 사용할 수 있는 가장 유연하고 비용 효율적인
 - [Aider 설정 참조](https://aider.chat/docs/config.html)
 
 *이 문서는 정보 제공 목적으로 작성되었다. Aider는 Apache-2.0 라이선스 하의 오픈소스 소프트웨어이다. 프로덕션에 배포하기 전에 항상 AI가 생성한 코드를 검토하라.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Aider: 45K+ Stars — 터미널 AI 페어 프로그래밍 vs Claude Code, Cursor 2026 완벽 비교",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/aider"
+  }
+}
+</script>

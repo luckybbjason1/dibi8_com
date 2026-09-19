@@ -493,3 +493,30 @@ OpenMontage 代表了 AI 视频制作的范式转变。它不是在模型层面�
 **加入社区：** [GitHub 讨论](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
 
 📢 **保持更新：** 加入我们的 [Telegram 群组](https://t.me/DIBI8_Group/2)，获取每日 AI 工具评测和新内容的抢先体验。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenMontage 评测：世界上第一个开源自主视频制作系统（52 个工具，12 个流程，500 多项技能）",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openmontage-agentic-video-production-system"
+  }
+}
+</script>

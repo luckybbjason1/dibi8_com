@@ -714,3 +714,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [mcfly GitHub Repository](https://github.com/cantino/mcfly)
 - [fzf GitHub Repository](https://github.com/junegunn/fzf)
 - [Hstr GitHub Repository](https://github.com/dvorka/hstr)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ Shell History 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/atuin"
+  }
+}
+</script>

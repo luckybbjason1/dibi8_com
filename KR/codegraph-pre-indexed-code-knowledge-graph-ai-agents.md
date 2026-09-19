@@ -3,7 +3,7 @@ title: "CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축"
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"
 publish_date: "2026-06-10"
-author: "DIBI8"
+lastmod:  "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
@@ -416,3 +416,30 @@ IDE 도구는 현재 열려 있는 파일에 대한 실시간 분석을 제공�
 ---
 
 DIBI8는 최고의 오픈소스 도구, AI 혁신, 개발자 리소스를 발견하는 당신의 게이트웨이입니다. 기술 분야에서 가장 영향력 있는 프로젝트에 대한 일일 업데이트를 위해 Telegram 채널을 구독하세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/codegraph-pre-indexed-code-knowledge-graph-ai-agents"
+  }
+}
+</script>

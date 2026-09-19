@@ -598,3 +598,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Bài viết này dành cho developer cần tự động hóa trình duyệt cấp production. Mọi dữ liệu benchmark đều từ leaderboard công khai và testing độc lập tháng 5/2026.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser Automation 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/browser-use"
+  }
+}
+</script>

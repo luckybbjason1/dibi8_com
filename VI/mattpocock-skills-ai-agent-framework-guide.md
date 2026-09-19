@@ -2,7 +2,7 @@
 title: "Matt Pocock's Skills: Framework CLI mang đến Siêu năng lực thực sự cho AI Agents — Cài đặt npm, Không cấu hình"
 description: "Tìm hiểu cách sử dụng framework Skills của Matt Pocock để trang bị cho các AI coding agents như Claude Code, Cursor và Gemini CLI các khả năng thực sự vượt xa code — cơ sở dữ liệu, filesystem, CI/CD và hơn nữa. Hướng dẫn cài đặt npx từng bước, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-10
-slug: "mattpocock-skills-ai-agent-framework-guide"
+lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
 tags: [matt-pocock, skills, AI agents, CLI framework, AI coding tools, agent capabilities, developer tools, open-source]
 github_repo: "https://github.com/mattpocock/skills"
@@ -434,3 +434,30 @@ Nguồn & Đọc thêm
 Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để thảo luận về Skills configurations và agent workflows. Xem các hướng dẫn của chúng tôi về [document processing với MarkItDown](dibi8-internal-link) và [AI knowledge graphs](dibi8-internal-link) cho các công cụ bổ trợ. Bắt đầu empowerment AI agents của bạn ngay hôm nay.
 
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Matt Pocock's Skills: Framework CLI mang đến Siêu năng lực thực sự cho AI Agents — Cài đặt npm, Không cấu hình",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mattpocock-skills-ai-agent-framework-guide"
+  }
+}
+</script>

@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-llms-txt-generator"
 tool_id: "llms-txt-generator"
 ---
+# llms.txt 生成器 — 帮助 AI 爬虫（ChatGPT、Claude、Perplexity）读懂你的网站
+

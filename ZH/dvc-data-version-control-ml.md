@@ -680,3 +680,30 @@ dvc add your-dataset.csv
 ##  Affiliate 声明
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过这些链接注册，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐经过评估、认为能为 ML 基础设施部署提供真正价值的服务。所表达的观点独立于任何联盟关系。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DVC: 面向数据的 Git — ML 流水线数据版本控制与可复现实验 2026 完整指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/dvc-data-version-control-ml"
+  }
+}
+</script>

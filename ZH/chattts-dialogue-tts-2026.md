@@ -190,3 +190,30 @@ ChatTTS = **第一个把对话处理得有说服力的开源 TTS**。39.3k 星�
 ---
 
 *dibi8 多模态内容 stack 的一部分 —— 看即将上线的多模态内容 Pipeline 合集，ChatTTS + Whisper + Stable Diffusion + ComfyUI 完整音视频创作管线。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/chattts-dialogue-tts-2026"
+  }
+}
+</script>

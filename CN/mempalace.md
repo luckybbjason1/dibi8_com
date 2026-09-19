@@ -214,3 +214,30 @@ A: MemPalace uses ChromaDB locally to ensure zero latency and zero API costs, ma
 - [Mastra](https://github.com/mastra-ai/mastra)
 - [Pinecone](https://www.pinecone.io/)
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memory Framework (2026)",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mempalace"
+  }
+}
+</script>

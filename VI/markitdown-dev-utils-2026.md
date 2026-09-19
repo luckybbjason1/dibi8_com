@@ -34,6 +34,8 @@ faqs:
   - q: 'markitdown có hạn chế nào đã biết không?'
     a: 'Có — một số tính năng nâng cao và cấu trúc tài liệu phức tạp có thể không được giữ lại đầy đủ. Dự án được bảo trì tích cực, nhưng nó ưu tiên độ chính xác văn bản hơn là tái tạo hình thức.'
 ---
+# markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026
+
 
 {{< resource-info >}}
 
@@ -310,3 +312,30 @@ Tiếp theo, hãy thử cài nó bằng pip và nghịch thử khả năng chuy�
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/markitdown-dev-utils-2026"
+  }
+}
+</script>

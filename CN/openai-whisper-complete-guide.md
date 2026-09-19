@@ -5,7 +5,7 @@ category: ai-tools
 tags: ['speech-recognition', 'openai', 'whisper', 'transcription', 'multilingual', 'voice-to-text']
 slug: openai-whisper-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/openai-whisper-speech-recognition.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/openai-whisper-speech-recognition.jpg
 ---
 
 ## TL;DR
@@ -776,3 +776,30 @@ Whisper is optimized for speech recognition and performs poorly on music, sound 
 ## Call to Action
 
 Ready to build voice-powered applications with Whisper? Join our community of developers sharing tips, custom models, and production deployment strategies. [Subscribe to our newsletter](https://dibi8.com/auth/) for weekly updates on the latest AI tools and frameworks.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Whisper — The Ultimate Open-Source Speech-to-Text Engine",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openai-whisper-complete-guide"
+  }
+}
+</script>

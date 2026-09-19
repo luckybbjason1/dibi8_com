@@ -484,3 +484,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Whisper-Streaming (real-time): https://github.com/ufal/whisper_streaming
 - PyAV (giải mã audio): https://github.com/PyAV-Org/PyAV
 - Silero VAD: https://github.com/snakers4/silero-vad
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp 4x với 23K+ Stars — Benchmark vs WhisperX, whisper.cpp 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/faster-whisper"
+  }
+}
+</script>

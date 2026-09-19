@@ -2,7 +2,7 @@
 title: 'MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로'
 description: 'MemPalace는 대화 기록을 그대로 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. Claude Code, Cursor, Windsurf 및 모든 MCP 호환 에이전트와 통합됩니다. ChromaDB 백엔드, 플러그인 가능 저장소, 외부 API 호출 제로. 설정 가이드, 벤치마크, 아키텍처 분석 포함.'
 date: 2026-06-10
-slug: 'mempalace-open-source-ai-memory-system'
+lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
 github_repo: 'https://github.com/MemPalace/mempalace'
@@ -441,3 +441,29 @@ dibi8 **한국어 Telegram 그룹** https://t.me/DIBI8_Group/9에 참여하여 A
 - [MCP 심층 분석](dibi8-internal-link/llm-frameworks/mcp-deep-dive)
 
 *위의 일부 링크는 제휴 링크입니다. dibi8.com은 추가 비용 없이 가입할 경우 커미션을 받을 수 있습니다. 이는 사이트 운영과 콘텐츠를 무료로 유지하는 데 도움이 됩니다.*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mempalace-open-source-ai-memory-system"
+  }
+}
+</script>

@@ -253,3 +253,30 @@ SaaS (Datadog, New Relic, Grafana Cloud) phù hợp khi bạn muốn tập trung
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ Giám Sát Log & Khả Năng Quan Sát cho Nhà Phát Triển: Hướng Dẫn 2025",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/log-monitoring-observability-tools-developers"
+  }
+}
+</script>

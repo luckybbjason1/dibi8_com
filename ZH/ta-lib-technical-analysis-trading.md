@@ -529,3 +529,30 @@ TA-Lib历经27年技术变迁而屹立不倒，只有一个原因: 它只做一�
 ---
 
 *联盟营销披露: dibi8.com由读者支持。当你通过我们网站上的链接购买产品或服务时 —— 包括Binance、OKX等合作伙伴 —— 我们可能会获得联盟佣金，而你无需支付额外费用。这不会影响我们的编辑内容。我们只推荐经过测试并相信能为读者带来价值的工具。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TA-Lib: 拥有200+技术指标的行业标准技术分析库 —— 2026年Python量化交易完整配置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ta-lib-technical-analysis-trading"
+  }
+}
+</script>

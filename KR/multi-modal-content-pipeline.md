@@ -210,3 +210,30 @@ SaaS 등가물 비교: ElevenLabs Creator ($22) + Midjourney Standard ($30) + De
 ---
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 [지식 베이스 스택](/kr/collections/knowledge-base-stack/) dev 측. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 스크립트 생성 비용 측 커버. [AI Agent 도구 체인](/kr/collections/ai-agent-tool-chain/) 에이전트가 이 파이프라인 자율 구동하게.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "멀티모달 콘텐츠 파이프라인 2026: AI 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-80/월)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/multi-modal-content-pipeline"
+  }
+}
+</script>

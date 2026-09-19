@@ -2,7 +2,7 @@
 title: "Microsoft MarkItDown: Hướng dẫn toàn diện để chuyển đổi bất kỳ tệp nào sang Markdown — Công cụ CLI miễn phí, mã nguồn mở"
 description: "Tìm hiểu cách sử dụng MarkItDown của Microsoft để chuyển đổi PDF, tài liệu Word, hình ảnh, HTML, PPTX và nhiều định dạng khác sang Markdown sạch sẽ. Hướng dẫn cài đặt từng bước, ví dụ sử dụng, Python API, tích hợp AI pipeline, benchmark và so sánh với Pandoc, Calibre và LibreOffice."
 date: 2026-06-10
-slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [microsoft, markitdown, markdown, python, cli, pdf-converter, document-processing, AI, open-source]
 github_repo: "https://github.com/microsoft/markitdown"
@@ -534,3 +534,30 @@ Nguồn & Đọc thêm
 Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để thảo luận về các mẹo sử dụng MarkItDown. Xem các hướng dẫn của chúng tôi về [open-source document processing](dibi8-internal-link) và [AI agent management](dibi8-internal-link) cho các công cụ bổ trợ. Bắt đầu chuyển đổi tài liệu của bạn ngay hôm nay — chỉ cần một lệnh là đủ.
 
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Microsoft MarkItDown: Hướng dẫn toàn diện để chuyển đổi bất kỳ tệp nào sang Markdown — Công cụ CLI miễn phí, mã nguồn mở",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/microsoft-markitdown-file-to-markdown-converter-cli"
+  }
+}
+</script>

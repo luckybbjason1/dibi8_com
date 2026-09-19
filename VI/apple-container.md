@@ -2,7 +2,7 @@
 lang: vi
 title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
 date: 2026-06-15
-tags:
+lastmod:  2026-06-15tags:
   - apple
   - container
   - macos
@@ -27,9 +27,11 @@ faqs:
     a: "No. container runs Linux containers only. It produces OCI-compatible Linux images."
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
+# Apple's Container: Docker-Like Experience on Mac with 37K Stars
+
 title: "Apple Container: Trải nghiệm giống Docker trên Mac với 37K sao"
 date: 2026-06-15
-tags:
+lastmod:  2026-06-15tags:
   - apple
   - container
   - macos
@@ -39,3 +41,30 @@ tags:
 slug: apple-container-mac-vm-tool-2026
 description: "Apple phát hành container, một công cụ viết bằng Swift để chạy container Linux trên Mac sử dụng máy ảo nhẹ. 37K sao, tương thích OCI, yêu cầu macOS 26."
 image: ""
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Apple's Container: Docker-Like Experience on Mac with 37K Stars",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/apple-container"
+  }
+}
+</script>

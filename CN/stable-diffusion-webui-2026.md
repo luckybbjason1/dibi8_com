@@ -27,6 +27,8 @@ tags: ['Stable Diffusion', 'SDXL', 'image generation', 'AUTOMATIC1111', 'open-so
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+# Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generation — Complete Guide
+
 
 If you've ever Googled "stable diffusion install" the first result has been **AUTOMATIC1111's stable-diffusion-webui** for three years running. At 163k GitHub stars (one of the most-starred AI projects ever), it's the default self-hosted UI for SD-family image generation in 2026 — text-to-image, image-to-image, inpainting, outpainting, LoRA, ControlNet, batch generation, all behind a Gradio web UI you can run on a 4 GB GPU.
 
@@ -162,3 +164,30 @@ Spin up a GPU instance, run section 3's install, and 15 minutes later you have l
 ---
 
 *Part of dibi8's multi-modal content stack — see also [ComfyUI for node-based workflows](/resources/ai-tools/comfyui-node-based-ai-image-2026/) and the upcoming Multi-Modal Content Pipeline collection.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generation — Complete Guide",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/stable-diffusion-webui-2026"
+  }
+}
+</script>

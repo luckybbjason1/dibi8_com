@@ -277,3 +277,30 @@ stack 超过 $6 tier 时（不止 1 个 dev / 不止 1 个项目 / 持久化 sta
 ---
 
 *收藏这页 —— 每季度根据新开源版本更新组件选择。最后更新：2026-05-21。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "自托管 AI 编程工作流：2026 年 $6/月 完整 stack",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/self-hosted-ai-coding-workflow"
+  }
+}
+</script>

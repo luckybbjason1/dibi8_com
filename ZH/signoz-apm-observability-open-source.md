@@ -714,3 +714,30 @@ SigNoz提供了规模化工程团队真正需要的东西：**一个生产级APM
 ---
 
 *联盟营销披露：本文包含DigitalOcean和HTStack的联盟链接。如果你通过这些链接购买服务，dibi8.com将获得佣金，不会额外增加你的成本。所有推荐均基于实践测试，而非联盟可用性。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指南2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/signoz-apm-observability-open-source"
+  }
+}
+</script>

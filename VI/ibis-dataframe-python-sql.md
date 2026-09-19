@@ -636,3 +636,30 @@ Ibis đại diện cho một sự chuyển đổi paradigm trong phân tích d�
 Năm 2026, khi khối lượng dữ liệu tiếp tục bùng nổ và các tổ chức phân phối phân tích của họ trên nhiều hệ thống cơ sở dữ liệu, Ibis cung cấp một giao diện duy nhất, nhất quán hoạt động ở mọi nơi. Dù bạn là nhà khoa học dữ liệu khám phá gigabyte cục bộ với DuckDB, hay kỹ sư truy vấn petabyte trong BigQuery, Ibis mang lại cùng một API Python thanh lịch — được biên dịch thành SQL nhanh nhất có thể, chạy chính xác nơi dữ liệu của bạn tồn tại.
 
 Nếu bạn chưa thêm Ibis vào bộ công cụ dữ liệu của mình, bây giờ là lúc. Bắt đầu với DuckDB cho phát triển cục bộ, và chứng kiến các quy trình phân tích của bạn trở nên nhanh hơn, có khả năng mang đi hơn, và dễ bảo trì hơn chỉ sau một đêm.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ibis-dataframe-python-sql",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ibis-dataframe-python-sql"
+  }
+}
+</script>

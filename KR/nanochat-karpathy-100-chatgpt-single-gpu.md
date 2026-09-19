@@ -2,7 +2,7 @@
 title: 'nanochat: Karpathy의 $100 ChatGPT — 단일 GPU에서 자체 AI 채팅 앱 구축 — 2026 실전 가이드'
 description: 'nanochat (54,800 GitHub star)은 Andrej Karpathy의 오픈소스 ChatGPT 클론으로, 단일 $100 GPU에서 실행됩니다. SGLang으로 처음부터 훈련하거나 vLLM으로 사전 훈련된 모델을 서빙합니다. 설정 가이드, 훈련 벤치마크, 배포 예시 포함.'
 date: 2026-06-08
-slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
+lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ['karpathy nanochat', 'LLM 처음부터 훈련', '단일 GPU 채팅', '오픈소스 ChatGPT', 'SGLang', 'vLLM', '로컬 LLM', 'AI 채팅 앱']
 github_repo: 'https://github.com/karpathy/nanochat'
@@ -375,3 +375,30 @@ LLM 기초를 배우는 학생이든, 커스텀 챗봇을 프로토타이핑하�
 [dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 nanochat 경험과 훈련 구성을 논의하세요. 보완적인 도구를 위한 [Langflow 시각적 워크플로우](dibi8-internal-link) 및 [AI Agent 메모리 시스템](dibi8-internal-link) 가이드를 확인하세요. 오늘 nanochat을 시도해보세요 — 레포를 클론하고 `python app.py`를 실행하며 자신의 모델이 응답하는 것을 확인해보세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat: Karpathy의 $100 ChatGPT — 단일 GPU에서 자체 AI 채팅 앱 구축 — 2026 실전 가이드",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/nanochat-karpathy-100-chatgpt-single-gpu"
+  }
+}
+</script>

@@ -5,7 +5,7 @@ tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compu
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-slug: modal-serverless-gpu-compute
+lastmod:  2026-07-15T00:00:00+00:00slug: modal-serverless-gpu-compute
 ---
 
 ## TL;DR
@@ -558,3 +558,30 @@ Currently, Modal operates exclusively on their managed cloud infrastructure. The
 ---
 
 *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Modal Serverless GPU Compute — Run ML Pipelines Without Infrastructure",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/modal-serverless-gpu-compute"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "RuView: WiFi Spatial Intelligence for Smart Buildings — Python CLI, Real-Time Position Tracking, and Mesh Networks"
 description: "Learn how to use RuView, the Python-based WiFi spatial intelligence platform that tracks real-time positions, maps building layouts, and optimizes WiFi mesh networks. Step-by-step pip install guide, real-time tracking, and mesh network configuration."
 date: 2026-06-10
-slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
+lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
 tags: [ruvnet, ruview, wifi, spatial-intelligence, position-tracking, mesh-network, smart-buildings, python, open-source]
 github_repo: "https://github.com/ruvnet/RuView"
@@ -463,3 +463,30 @@ Sources & Further Reading
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss RuView configurations and WiFi sensing techniques. Check out our guides on [smart building automation](dibi8-internal-link) and [AI agent management](dibi8-internal-link) for complementary tooling. Start transforming your WiFi into spatial intelligence today.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RuView: WiFi Spatial Intelligence for Smart Buildings — Python CLI, Real-Time Position Tracking, and Mesh Networks",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ruvnet-ruview-wifi-spatial-intelligence-guide"
+  }
+}
+</script>

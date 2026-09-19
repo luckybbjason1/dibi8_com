@@ -34,6 +34,8 @@ faqs:
   - q: 'Are there any known limitations with markitdown?'
     a: 'Yes — advanced features and complex document structures may not be fully preserved. The project is actively maintained, but it prioritizes text fidelity over visual reproduction.'
 ---
+# markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide
+
 
 {{< resource-info >}}
 
@@ -310,3 +312,30 @@ Next, consider installing it via pip and experimenting with its conversion capab
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/markitdown-dev-utils-2026"
+  }
+}
+</script>

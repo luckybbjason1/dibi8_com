@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-image-generation-tools-complete-guide/
 ---
+# Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney, DALL-E, Stable Diffusion
+
 
 {</* resource-info */>}
 
@@ -194,3 +196,30 @@ Cho việc triển khai/sử dụng các công cụ trên:
 
 *Affiliate link — không tăng chi phí, hỗ trợ dibi8.com.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney, DALL-E, Stable Diffusion",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-image-generation-tools-complete-guide"
+  }
+}
+</script>

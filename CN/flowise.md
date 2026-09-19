@@ -640,3 +640,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 8. [Flowise vs Dify Comparison](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) — Detailed head-to-head by ToolHalla
 9. [Flowise Embed Widget Docs](https://www.npmjs.com/package/flowise-embed) — NPM package for embedding chatbots
 10. [DigitalOcean Docker Deployment Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) — Docker setup for Ubuntu servers
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise: Build AI Agents Visually with 52K+ Stars — 5-Minute Drag-and-Drop Setup Guide for 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/flowise"
+  }
+}
+</script>

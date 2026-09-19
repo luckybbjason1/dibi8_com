@@ -2,7 +2,7 @@
 title: 'Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南'
 description: 'Nuwa-Skill（23,508 顆 GitHub 星）將歷史人物、專家和影響者的思維模型提煉為可複用的 AI Agent 技能。相容 Claude Code、Codex、Cursor、Hermes 等 50+ 執行環境。透過 npx skills add 安裝。'
 date: 2026-06-09
-slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
+lastmod:  2026-06-09slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
 tags: ['nuwa-skill', 'Agent 技能', '思維模型', 'COT 提煉', 'AI Agent 框架', 'Claude Code 技能', 'Codex 技能', 'MCP 替代方案', 'Agent 記憶體']
 github_repo: 'https://github.com/alchaincyf/nuwa-skill'
@@ -452,3 +452,30 @@ Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限�
 加入我們的社群，取得更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **免責聲明：** 本文僅供資訊用途。提煉基於公開可用的資訊，不代表所描述人物的真實想法。請獨立驗證所有聲明。附屬披露：上述部分連結可能包含附屬代碼。我們可能會獲得佣金，不會為你帶來額外成本。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/nuwa-skill-distill-thinking-model-ai-agent-skills"
+  }
+}
+</script>

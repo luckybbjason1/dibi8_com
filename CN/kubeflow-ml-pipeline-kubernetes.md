@@ -693,3 +693,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 10. [MLflow](dibi8-internal-link) — Related guide on ML experiment tracking
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean and 虎网云. If you sign up through these links, dibi8.com receives a commission at no additional cost to you. We only recommend services we use for our own infrastructure.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kubeflow 2026: Run Complete ML Pipelines on Kubernetes — From Training to Production Deployment Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/kubeflow-ml-pipeline-kubernetes"
+  }
+}
+</script>

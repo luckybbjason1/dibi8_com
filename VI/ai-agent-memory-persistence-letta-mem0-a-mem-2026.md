@@ -162,3 +162,30 @@ Với case đơn giản, MCP memory server là đủ. Đừng over-engineer. Đ�
 ---
 
 **Liên quan**: [Hệ thống bộ nhớ AI Agent 2026](https://dibi8.com/vi/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [Xếp hạng MCP Servers 2026](https://dibi8.com/vi/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Top 10 Framework AI Agent mã nguồn mở](https://dibi8.com/vi/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bộ nhớ bền vững cho AI Agent 2026: So sánh thực chiến Letta vs Mem0 vs A-MEM",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+  }
+}
+</script>

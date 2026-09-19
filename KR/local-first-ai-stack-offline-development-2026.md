@@ -157,3 +157,30 @@ model = SentenceTransformer("BAAI/bge-m3")
 ---
 
 **관련 글**: [셀프 호스팅 LLM 2026: Ollama vs vLLM vs LocalAI](https://dibi8.com/kr/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/) · [Ollama 설치 가이드](https://dibi8.com/kr/resources/llm-frameworks/ollama/) · [2026 로컬 우선 AI 스택 프로덕션 아키텍처](https://dibi8.com/kr/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "로컬 우선 AI 스택 2026: 완전 오프라인 AI 개발 환경",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/local-first-ai-stack-offline-development-2026"
+  }
+}
+</script>

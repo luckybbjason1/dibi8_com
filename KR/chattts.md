@@ -642,3 +642,30 @@ LLM 음성 어시스턴트를 구축하는 팀에게 ChatTTS 설치는 간단합
 - [Awesome-ChatTTS 커뮤니티 인덱스](https://github.com/Awesome-ChatTTS)
 - [ChatTTS 벤치마크 비교 연구](https://blog.csdn.net/weixin_30415591/article/details/157480949)
 - [2025 오픈소스 AI 모델 비교](https://www.e-com-net.com/article/1936044193575137280.htm)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS: 39.3K+ Stars — Coqui, MeloTTS와의 대화형 TTS 벤치마크 비교 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/chattts"
+  }
+}
+</script>

@@ -356,3 +356,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Selenium](https://github.com/SeleniumHQ/selenium)
 - [Scrapy](https://github.com/scrapy/scrapy)
 - [Crawl4AI](https://github.com/unclecode/crawl4ai)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Browser Harness：让 LLM 自主操控浏览器的自愈型神器",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/browser-harness-self-healing-llm-web-automation"
+  }
+}
+</script>

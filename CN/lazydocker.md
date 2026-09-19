@@ -614,3 +614,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Portainer vs LazyDocker Comparison (OneUptime)](https://oneuptime.com/blog/post/2026-03-20-portainer-vs-lazydocker-terminal/view)
 - [DataCamp LazyDocker Tutorial](https://www.datacamp.com/tutorial/lazydocker)
 - [LazyDocker Podman Extension](https://github.com/szchan/lazydocker-podman)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LazyDocker: 51,092 GitHub Stars — Complete Terminal Docker UI Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/lazydocker"
+  }
+}
+</script>

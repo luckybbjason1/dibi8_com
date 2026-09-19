@@ -556,3 +556,30 @@ aiohttp 既是 HTTP 客户端也是服务器。在服务器端，它与 Flask �
 ## 联盟披露
 
 本文包含 DigitalOcean 和 WebShare 的联盟链接。如果你通过这些链接购买服务，我们可能会获得佣金，不会向你收取额外费用。这些推荐基于对生产抓取工作流的真实实用性。所有基准测试均为独立进行。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "aiohttp 2026: 构建每秒处理10K+请求的高性能异步网页抓取器 — Python指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/aiohttp-async-web-scraping"
+  }
+}
+</script>

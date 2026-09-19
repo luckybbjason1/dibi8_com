@@ -632,3 +632,30 @@ Dagster는 데이터 팀이 파이프라인을 구축하고 관리하는 방식�
 - [Stripe 데이터 플랫폼 마이그레이션 사례](https://dagster.io/case-studies)
 
 *Affiliate Disclosure: 이 기사에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 우리의 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 모든 의견과 벤치마크는 독립적이며 실제 테스트를 기반으로 합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dagster: 에셋 기반 데이터 파이프라인 오케스트레이터 — 2026 프로덕션 구축 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/dagster-data-pipeline-orchestrator"
+  }
+}
+</script>

@@ -340,3 +340,30 @@ OpenClaw 的爆发不是又一个「AI  hype」的昙花一现，而是开发者
 - [Ollama 本地大模型部署完全指南](https://ollama.com/blog)
 - [MCP 协议：AI Agent 的工具调用新标准](https://modelcontextprotocol.io)
 - [2026 年开源 AI 工具周更摘要](https://buildmvpfast.com/blog)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenClaw 完全指南：2026 年最强开源 AI 助手自托管部署教程｜零订阅费打造私人智能助理",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openclaw-self-hosted-ai-assistant-setup-guide-2026"
+  }
+}
+</script>

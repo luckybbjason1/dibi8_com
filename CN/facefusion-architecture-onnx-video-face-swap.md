@@ -178,3 +178,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [ONNX Runtime Execution Providers](https://onnxruntime.ai/docs/execution-providers/)
 - [FFmpeg](https://ffmpeg.org/)
 - [GFPGAN](https://github.com/TencentARC/GFPGAN)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Did the Classic 'Roop' Die?",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/facefusion-architecture-onnx-video-face-swap"
+  }
+}
+</script>

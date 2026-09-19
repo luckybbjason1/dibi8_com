@@ -582,3 +582,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Wan Video Nodes: https://github.com/kijai/ComfyUI-WanVideoWrapper
 - Docker Setup Reference: https://github.com/ai-dock/comfyui
 - Quantization Guide: https://github.com/comfyanonymous/ComfyUI/blob/master/QUANTIZATION.md
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusion Dạng Node 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/comfyui"
+  }
+}
+</script>

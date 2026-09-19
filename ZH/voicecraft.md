@@ -535,3 +535,30 @@ VoiceCraft 填补了大多数 TTS 工具忽视的空白：编辑现有语音，�
 - [VoiceCraft_API — FastAPI 封装](https://github.com/GPU-Net/VoiceCraft_API)
 
 *本指南由 dibi8 技术团队独立撰写。VoiceCraft 由 Puyuan Peng、Po-Yao Huang、Shang-Wen Li、Abdelrahman Mohamed 和 David Harwath 开发。dibi8 与 VoiceCraft 项目之间不存在商业关联。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VoiceCraft: 8.5K+ Stars — 零样本语音编辑对比 GPT-SoVITS、XTTS 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/voicecraft"
+  }
+}
+</script>

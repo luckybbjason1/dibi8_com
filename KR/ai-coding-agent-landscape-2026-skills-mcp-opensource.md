@@ -378,3 +378,30 @@ Part 3에서 다룬 락인 방지 전략에 따라 Hermes Agent, OpenCode, 또�
 ---
 
 *의도적으로 배치된 키워드: AI 코딩 에이전트 비교 2026, 클로드 코드 스킬 마켓플레이스, 모델 컨텍스트 프로토콜 튜토리얼, 오픈소스 AI 코드 어시스턴트, 오픈코드 설치 가이드, 헤르메스 에이전트 vs 클로드 코드, AI 벤더 종속 탈출, 로컬 LLM 코딩 어시스턴트, MCP 서버 설정, AI 개발자 생산성 도구*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026년 AI 코딩 에이전트 혁명: 클로드 코드 스킬 생태계 폭발, MCP 표준화, 그리고 오픈소스의 반격",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-coding-agent-landscape-2026-skills-mcp-opensource"
+  }
+}
+</script>

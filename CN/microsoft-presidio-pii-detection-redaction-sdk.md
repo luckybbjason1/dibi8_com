@@ -454,3 +454,30 @@ For infrastructure, consider [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for 
 **Join the community:** [GitHub Discussions](https://github.com/microsoft/presidio/discussions) · [GitHub Issues](https://github.com/microsoft/presidio/issues)
 
 📢 **Stay updated:** Join our [Telegram group](https://t.me/DIBI8_Group/2) for daily AI tool reviews and early access to new content.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Presidio Review: Microsoft's Open-Source PII Detection and Data Redaction Framework (9.4K Stars)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/microsoft-presidio-pii-detection-redaction-sdk"
+  }
+}
+</script>

@@ -33,6 +33,8 @@ faqs:
   - q: 'Bitcoin-Classic (BTCC)은 투자 가치가 있나요?'
     a: '아닙니다. BTCC는 현재 시가총액과 유동성이 거의 없고, 주요 거래소 지원도 없으며, 커뮤니티 규모도 매우 작습니다(GitHub 스타 약 18-23개). 투자 대상이 아닌 교육 및 실험적 프로젝트로 보는 것이 가장 적합합니다.'
 ---
+# Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 복제판
+
 {</* resource-info */>}
 
 ## Bitcoin-Classic란?
@@ -179,3 +181,30 @@ Bitcoin-Classic은 **교육적이고 체험적인** 성격이 강한 프로젝�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bitcoin-Classic (BTCC): 일반인도 CPU로 채굴할 수 있는 비트코인 복제판",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/bitcoin-classic-btcc-cpu-mining-bitcoin-fork"
+  }
+}
+</script>

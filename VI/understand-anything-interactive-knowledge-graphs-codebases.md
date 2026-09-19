@@ -2,7 +2,7 @@
 title: "Hiểu Mọi Thứ: Đồ Thị Kiến Thức Tương Tác cho Các Cơ Sở Mã — Hơn 60K Sao 2026"
 description: "Understand-Anything biến bất kỳ cơ sở mã nào thành đồ thị tri thức tương tác mà bạn có thể khám phá, tìm kiếm và truy vấn. Hoạt động với Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60.339 sao trên GitHub."
 date: 2026-06-17
-slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod:  2026-06-17slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 tags: ['understand-anything', 'knowledge-graph', 'codebase-analysis', 'claude-code', 'codex', 'cursor', 'AI-agents', 'code-visualization', 'semantic-search']
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -422,3 +422,30 @@ Hãy thử nó trong dự án tiếp theo của bạn. Sao chép một kho lưu 
 - Lưu trữ thay thế: [HTStack](https://my.htstack.com/aff.php?aff=27187)
 - Công cụ giao dịch: [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - Proxy để thu thập dữ liệu web: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hiểu Mọi Thứ: Đồ Thị Kiến Thức Tương Tác cho Các Cơ Sở Mã — Hơn 60K Sao 2026",
+  "datePublished": "2026-06-17",
+  "dateModified": "2026-06-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/understand-anything-interactive-knowledge-graphs-codebases"
+  }
+}
+</script>

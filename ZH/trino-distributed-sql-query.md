@@ -617,3 +617,30 @@ Trino 代表了大规模分布式 SQL 分析最成熟的开源选择。凭借 **
 ## 联盟披露
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 和 [HTStack](https://my.htstack.com/aff.php?aff=27187) 的联盟链接。如果你通过这些链接购买服务，我们可能会获得佣金，你无需额外付费。这有助于支持我们的开源文档工作。我们只推荐亲自测试过的服务，并且我们自己的生产工作负载也会使用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trino 2026: PB级分布式 SQL 查询引擎 — 自托管集群搭建完全指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/trino-distributed-sql-query"
+  }
+}
+</script>

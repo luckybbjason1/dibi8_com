@@ -668,3 +668,30 @@ ShellCheck은 셸 스크립트용 가장 성숙하고 널리 채택된 정적 �
 - [shfmt — 셸 포매터](https://github.com/mvdan/sh)
 - [checkbashisms — Debian Devscripts](https://packages.debian.org/sid/devscripts)
 - [POSIX.1-2017 셸 명령어 언어](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ShellCheck: 39,456 GitHub Stars — 셸 스크립트 분석을 위한 완전 설치 및 설정 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/shellcheck"
+  }
+}
+</script>

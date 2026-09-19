@@ -341,3 +341,30 @@ Nếu bạn vẫn đang tìm kiếm một trợ lý AI đủ nghiêm túc, đủ
 Với cấu hình đề xuất (4 vCPU / 8GB RAM), cả hai nhà cung cấp ở khoảng $24–40/tháng — vẫn nằm trong luận điểm "zero-subscription" của OpenClaw khi cộng dồn phí API tiết kiệm được.
 
 Đây là liên kết affiliate, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenClaw Hướng Dẫn Chi Tiết: Cách Tự Lưu Trữ Trợ Lý AI Mã Nguồn Mở Tốt Nhất 2026｜Xây Dựng AI Riêng Miễn Phí",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/openclaw-self-hosted-ai-assistant-setup-guide-2026"
+  }
+}
+</script>

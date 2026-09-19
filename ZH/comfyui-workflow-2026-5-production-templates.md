@@ -136,3 +136,30 @@ ComfyUI 的学习曲线很真实，但回报同样真实。当你拥有 5 套可
 ---
 
 **相关阅读**：[Stable Diffusion WebUI 搭建](https://dibi8.com/zh/resources/ai-tools/stable-diffusion-webui/) · [2026 年顶级 AI 图像生成工具](https://dibi8.com/zh/resources/ai-tools/ai-image-generation-tools-2025/) · [2026 本地优先 AI 技术栈](https://dibi8.com/zh/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/comfyui-workflow-2026-5-production-templates"
+  }
+}
+</script>

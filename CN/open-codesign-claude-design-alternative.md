@@ -371,3 +371,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 
 *Written by the dibi8 Tech Team. For more deep dives into AI developer tools, open-source workflows, and design engineering, follow our blog at [dibi8.com](https://dibi8.com).*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Open Codesign: The Open-Source Claude Design Alternative with 5,790+ Stars",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/open-codesign-claude-design-alternative"
+  }
+}
+</script>

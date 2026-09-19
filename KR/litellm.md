@@ -579,3 +579,30 @@ LiteLLM은 프로덕션 멀티 LLM 배포의 지저분한 현실을 해결한다
 - [Portkey vs LiteLLM 비교](https://portkey.ai/lp/portkey-vs-litellm) — 벤더 비교 페이지
 - [OpenRouter 문서](https://openrouter.ai/docs) — 대안 게이트웨이 참조
 - [Helicone 문서](https://docs.helicone.ai) — 관찰 가능성 중심 대안
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오버 — 2026 프로덕션 게이트웨이 설정",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/litellm"
+  }
+}
+</script>

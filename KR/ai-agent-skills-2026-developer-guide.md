@@ -379,3 +379,30 @@ mattpocock/skills은 프로덕션 검증된 규율을, obra/superpowers는 커�
 - [Agent Skills 완전 입문 가이드 (explainx.ai)](https://explainx.ai/blog/what-are-agent-skills-complete-guide)
 
 *스타 수와 저장소 통계는 2026년 5월 13일 기준 깃허브 API 데이터입니다. 모든 저장소는 최근 커밋으로 활발히 유지보수되고 있습니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개",
+  "datePublished": "2026-05-16",
+  "dateModified": "2026-05-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-agent-skills-2026-developer-guide"
+  }
+}
+</script>

@@ -34,6 +34,8 @@ faq:
   - q: "我能在 LangGraph 或 CrewAI 里用 Claude 模型吗？"
     a: "可以。LangGraph、CrewAI 和 AutoGen 都是模型无关的——你可以在它们背后跑 Claude、GPT、Gemini 或本地模型。Claude Agent SDK（2025 年底从 Claude Code SDK 改名而来，现在同时以 Python 和 TypeScript 包发布）设计上只支持 Claude，用模型灵活性换取了原生的安全特性和扩展思考。所以如果多厂商灵活性是硬性要求，就选其中一个模型无关的框架；如果你全押 Claude 并想要最紧密的集成，Agent SDK 就是原生路径。"
 ---
+# Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时候该升级到独立框架
+
 
 ## 引言
 
@@ -124,3 +126,30 @@ faq:
 ## 结论
 
 别再把它框定成「Claude Code vs LangGraph」。内置 subagent 和独立框架活在不同的世界里：一个是在你的智能体内部把活干完，另一个是交付一个多智能体应用。**留在 subagent 上**做并行研究、专家委派、上下文保护和开发流水线——它们以零基础设施覆盖了大多数真实工作，正如 dibi8 自己的多语言流水线所证明的那样。**升级到框架**——就在你需要持久状态、human-in-the-loop、多厂商模型或审计轨迹的那一刻；而当你升级时，控制选 **LangGraph**、速度选 **CrewAI**、Anthropic 原生生产选 **Claude Agent SDK**。能解决你问题的最廉价那一层，永远是赢家。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时候该升级到独立框架",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code-subagents-vs-langgraph-crewai-autogen-2026"
+  }
+}
+</script>

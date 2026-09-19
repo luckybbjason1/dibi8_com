@@ -683,3 +683,30 @@ Next.js 애플리케이션, Node.js 서비스, 또는 TypeScript 프로젝트에
 - [LangChain GitHub 저장소](https://github.com/langchain-ai/langchain)
 - [CrewAI GitHub 저장소](https://github.com/crewAIInc/crewAI)
 - [Vercel AI SDK 문서](https://sdk.vercel.ai/docs)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI 프레임워크 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mastra"
+  }
+}
+</script>

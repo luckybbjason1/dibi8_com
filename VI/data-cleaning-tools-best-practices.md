@@ -721,3 +721,30 @@ Nhớ rằng: "Garbage in, garbage out" — không có mô hình ML nào có th�
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Công Cụ Làm Sạch Dữ Liệu & Thực Hành Tốt Nhất: OpenRefine, Thư Viện Python và Giải Pháp Tự Động Hóa",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/data-cleaning-tools-best-practices"
+  }
+}
+</script>

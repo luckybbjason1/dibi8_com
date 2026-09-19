@@ -2,7 +2,7 @@
 title: 'Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 프레임워크'
 description: 'Addy Osmani가 Claude Code, Cursor 및 기타 AI 에디터를 강력하고 구성된 작업 공간으로 변환하는 스킬 시스템을 어떻게 구축했는지 배우세요. 완전한 구현, 배포 및 고급 패턴 가이드.'
 date: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
+lastmod:  2026-09-19slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
 tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
 github_repo: 'https://github.com/addyosmani/agent-skills'
@@ -545,3 +545,30 @@ Agent Skills는 성능 엔지니어가 AI용 도구링을 구축할 때 발생�
 **CTA:** DIBI8 Telegram 커뮤니티 가입: https://t.me/DIBI8_Group
 
 [DeepSeek Harness 가이드](dibi8-internal-link) | [Agent-Reach 튜토리얼](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 프레임워크",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/agent-skills-production-workflows"
+  }
+}
+</script>

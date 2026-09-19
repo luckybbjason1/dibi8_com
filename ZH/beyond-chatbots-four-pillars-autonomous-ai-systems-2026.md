@@ -35,6 +35,8 @@ faqs:
   - q: '自主 AI 系统的四大支柱如何协同运作？'
     a: 'agent 首先使用 Local Deep Research 生成一份经过验证、带引用的报告，然后通过 MCP tool calls 使用 InsForge 配置完整的后端（数据库、edge functions、存储、认证），接着遵循 Agent Skills 的 spec-to-ship 工作流构建前端，并在整个过程中应用受 Karpathy 启发的行为护栏，以防止过度工程化和错误假设。每个支柱各自应对自主开发中一种独特的失败模式。'
 ---
+# 超越聊天机器人：2026年自主AI系统的四大支柱
+
 {</* resource-info */>}
 
 ## The Evolution: From Chatbot to Autonomous System
@@ -212,3 +214,30 @@ The future of software development isn't humans replacing AI or AI replacing hum
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "超越聊天机器人：2026年自主AI系统的四大支柱",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026"
+  }
+}
+</script>

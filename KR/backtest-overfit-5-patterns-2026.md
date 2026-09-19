@@ -169,3 +169,30 @@ lookback=16: PF 0.87
 ---
 
 **관련**: [Moss Trade Bot Factory 2026 리뷰](https://dibi8.com/kr/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [Backtrader Python 백테스팅](https://dibi8.com/kr/resources/ai-trading/backtrader-python-backtesting/) · [Jesse AI 트레이딩 프레임워크](https://dibi8.com/kr/resources/ai-trading/jesse-ai-trading-framework/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/backtest-overfit-5-patterns-2026"
+  }
+}
+</script>

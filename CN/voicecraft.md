@@ -514,3 +514,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [VoiceCraft_API — FastAPI Wrapper](https://github.com/GPU-Net/VoiceCraft_API)
 
 *This guide is independently written by the dibi8 technical team. VoiceCraft is developed by Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed, and David Harwath. No commercial affiliation exists between dibi8 and the VoiceCraft project.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GPT-SoVITS, XTTS in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/voicecraft"
+  }
+}
+</script>

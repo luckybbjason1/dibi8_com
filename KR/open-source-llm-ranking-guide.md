@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/open-source-llm-ranking-guide/
 ---
+# 오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교
+
 
 {</* resource-info */>}
 
@@ -239,3 +241,30 @@ FP16 기준으로 140GB VRAM이 필요합니다. 4비트 양자화 시 약 40GB�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/open-source-llm-ranking-guide"
+  }
+}
+</script>

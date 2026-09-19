@@ -478,3 +478,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - Suy luận Song song xDiT: https://github.com/xdit-project/xDiT
 - Wrapper ComfyUI của Kijai: https://github.com/kijai/ComfyUI-HunyuanVideoWrapper
 - DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/hunyuan-video"
+  }
+}
+</script>

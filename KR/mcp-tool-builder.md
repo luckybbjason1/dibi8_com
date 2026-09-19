@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-mcp-tool-builder"
 tool_id: "mcp-tool-builder"
 ---
+# MCP Tool Builder — Python / TypeScript 함수에서 Model Context Protocol 도구 정의 자동 생성
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP Tool Builder — Python / TypeScript 함수에서 Model Context Protocol 도구 정의 자동 생성",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mcp-tool-builder"
+  }
+}
+</script>

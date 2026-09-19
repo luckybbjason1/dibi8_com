@@ -31,6 +31,8 @@ faqs:
   - q: '어떤 업종에서 NowPayments를 사용하나요?'
     a: 'NowPayments는 전 세계 주문을 처리하는 이커머스 스토어, 해외 고객에게서 대금을 받는 프리랜서, 인게임 결제와 구독을 관리하는 게임 회사, 글로벌 기부금을 모으는 비영리 단체, SaaS 구독료와 라이선스 비용을 청구하는 소프트웨어 회사 등이 활용합니다.'
 ---
+# 모든 통화로 결제 수락 - NowPayments
+
 
 {</* resource-info */>}
 
@@ -111,3 +113,30 @@ NowPayments는 다음과 같은 보안을 우선시합니다:
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "모든 통화로 결제 수락 - NowPayments",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/accept-payments-all-currencies"
+  }
+}
+</script>

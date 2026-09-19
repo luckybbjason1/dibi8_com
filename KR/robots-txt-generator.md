@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+# robots.txt 생성기 — AI 크롤러 제어 (GPTBot, ClaudeBot, PerplexityBot)
+

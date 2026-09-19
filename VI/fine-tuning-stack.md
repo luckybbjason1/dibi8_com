@@ -228,3 +228,30 @@ Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} cho experiment, scal
 ---
 
 *Bộ sưu tập đồng hành: [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí suy luận sau deploy. [AI Agent Tool Chain](/vi/collections/ai-agent-tool-chain/) cho vòng fine-tuning tự động. [Stack Knowledge Base](/vi/collections/knowledge-base-stack/) cho RAG như thay thế fine-tuning trong một số trường hợp.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset Đến LLM Triển Khai Production",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/fine-tuning-stack"
+  }
+}
+</script>

@@ -748,3 +748,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - AWS Agent SDK + Mem0 Announcement: https://aws.amazon.com/blogs/machine-learning
 - Atlan — Best AI Agent Memory Frameworks 2026: https://atlan.com/know/best-ai-agent-memory-frameworks-2026/
 - Evermind — Mem0 Alternatives 2026: https://evermind.ai/blogs/mem0-alternative
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mem0"
+  }
+}
+</script>

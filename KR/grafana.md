@@ -601,3 +601,30 @@ Grafana는 구체적인 문제를 해결함으로써 73,876개의 GitHub Star를
 - [New Relic 가격](https://newrelic.com/pricing)
 - [DigitalOcean — 클라우드 VPS 호스팅](https://www.digitalocean.com/)
 - [HTStack — 관리형 클라우드 서버](https://htstack.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Grafana: 73,876 GitHub Stars — Docker 배포 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/grafana"
+  }
+}
+</script>

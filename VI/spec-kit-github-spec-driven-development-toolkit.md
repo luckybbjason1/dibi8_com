@@ -2,7 +2,7 @@
 title: "Bộ công cụ đặc biệt: GitHub"
 description: "Hướng dẫn đầy đủ về Spec Kit của GitHub - bộ công cụ nguồn mở thay đổi cách các nhà phát triển xây dựng phần mềm thông qua phát triển theo đặc tả. Cài đặt, quy trình làm việc và các ví dụ thực tế."
 date: 2026-06-20
-tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 lang: vi
 slug: spec-kit-github-spec-driven-development-toolkit
@@ -481,3 +481,29 @@ Với sự hỗ trợ từ GitHub và sự chấp nhận nhanh chóng của cộ
 --- 
 
 💬 Tham gia Telegram của chúng tôinhóm thảo luận: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bộ công cụ đặc biệt: GitHub",
+  "datePublished": "2026-06-20",
+  "dateModified": "2026-06-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/spec-kit-github-spec-driven-development-toolkit"
+  }
+}
+</script>

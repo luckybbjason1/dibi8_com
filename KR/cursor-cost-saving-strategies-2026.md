@@ -117,3 +117,30 @@ Cursor의 가격 변경은 치명적이지 않았습니다 — 강제로 합리�
 ---
 
 **관련 글**: [Cursor 대안 2026](https://dibi8.com/kr/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [AI 코딩 2026-Q2 비교](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [AI 코딩 에이전트 월별 청구서 2026](https://dibi8.com/kr/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cursor-cost-saving-strategies-2026"
+  }
+}
+</script>

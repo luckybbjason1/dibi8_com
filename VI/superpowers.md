@@ -2,7 +2,7 @@
 title: 'Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luận Kỹ năng Tác nhân 2026'
 description: 'Khám phá Superpowers, framework kỹ năng tác nhân với hơn 200k stars. Thiết lập trong vài phút, có benchmark và sẵn sàng cho sản xuất. So sánh với LangChain, LlamaIndex và AutoGen.'
 date: 2026-05-23
-slug: 'superpowers'
+lastmod:  2026-05-23slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ['agentic-ai', 'llm-frameworks', 'shell-scripting', 'software-development', 'ai-agents', 'developer-tools']
 github_repo: 'https://github.com/obra/superpowers'
@@ -698,3 +698,29 @@ Sẵn sàng đi sâu hơn và xây dựng các tác nhân thông minh của riê
 ***
 
 *Tuyên bố miễn trừ trách nhiệm: Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí. Giúp duy trì trang web và nội dung miễn phí.*
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luận Kỹ năng Tác nhân 2026",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/superpowers"
+  }
+}
+</script>

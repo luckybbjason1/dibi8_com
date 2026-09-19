@@ -80,3 +80,30 @@ A: Vô tư! Chip Apple Silicon (M1/M2/M3) được hỗ trợ tận răng thông
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Miễn Phí",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/comfyui-vs-midjourney"
+  }
+}
+</script>

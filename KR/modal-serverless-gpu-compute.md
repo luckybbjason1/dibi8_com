@@ -5,7 +5,7 @@ tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compu
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
-draft: false
+lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
 lang: ko
 ---
@@ -557,3 +557,30 @@ Modal은 `modal.com/apps`에서 실시간 메트릭(호출 횟수, 지연 시간
 ---
 
 *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Modal 서버리스 GPU 컴퓨팅 — 인프라 없이 ML 파이프라인 실행",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/modal-serverless-gpu-compute"
+  }
+}
+</script>

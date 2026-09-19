@@ -2,7 +2,7 @@
 title: 'Trivy: 프로덕션에 취약한 컨테이너를 보내는 것 멈추기 — 2026 보안 스캔 가이드'
 description: 'Trivy(aquasecurity/trivy)는 컨테이너, IaC, 코드를 위한 오픈소스 보안 스캐너입니다. Kubernetes, Docker, GitHub Actions, CI 파이프라인과 연동됩니다. 60만 개 이상의 CVE, 시크릿, 오설정 스캔. 설치, 정책-as-코드, 프로덕션 하드닝을 다룹니다.'
 date: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
+lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
 github_repo: 'https://github.com/aquasecurity/trivy'
@@ -363,3 +363,30 @@ Trivy는 CVE 데이터베이스를 확인하는 것을 넘어선다는 이유로
 - 커뮤니티 논의: https://github.com/aquasecurity/trivy/discussions
 
 **고지**: 이 기고에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하면 추가 비용 없이 소정의 수수료를 받을 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com 같은 리소스를 무료 및 무광고로 유지하는 데 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trivy: 프로덕션에 취약한 컨테이너를 보내는 것 멈추기 — 2026 보안 스캔 가이드",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/trivy-production-security-scanner-2026"
+  }
+}
+</script>

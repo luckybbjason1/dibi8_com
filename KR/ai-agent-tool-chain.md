@@ -249,3 +249,30 @@ pip install hermes-agent
 ---
 
 *동반 컬렉션: [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 코딩 에이전트 특화 스택. [지식 베이스 스택](/kr/collections/knowledge-base-stack/) 에이전트에 Glean 등가 RAG 백엔드 제공. [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) 비용 측 커버.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-agent-tool-chain"
+  }
+}
+</script>

@@ -96,3 +96,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [React](https://github.com/facebook/react)
 - [Vue](https://github.com/vuejs/core)
 - [Svelte](https://github.com/sveltejs/svelte)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/open-codesign-vs-vercel-v0"
+  }
+}
+</script>

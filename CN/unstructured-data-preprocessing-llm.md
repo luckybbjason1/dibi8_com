@@ -567,3 +567,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, we earn a commission at no extra cost to you. Unstructured.io is open-source and free to use; we have no commercial relationship with Unstructured-IO. Opinions are based on hands-on testing.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unstructured.io: The Data Preprocessing Pipeline Converting Any Document to LLM-Ready Chunks — 2026 Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/unstructured-data-preprocessing-llm"
+  }
+}
+</script>

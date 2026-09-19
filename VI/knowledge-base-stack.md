@@ -242,3 +242,30 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/tháng droplet" >}} 
 ---
 
 *Bộ sưu tập đồng hành: [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cắm knowledge base này vào stack coding agent. [Stack LLM Rẻ](/vi/collections/cheap-llm-stack/) cover phía chi phí chat-LLM. [Stack Marketing AI Xuyên Biên Giới](/vi/collections/cross-border-ai-marketing-stack/) cho team Trung Quốc cần host thân thiện Trung Quốc.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stack Knowledge Base 2026: Xây \"Bộ Não Thứ Hai\" Với AnythingLLM + RAGFlow + mem0 ($10-25/Tháng)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/knowledge-base-stack"
+  }
+}
+</script>

@@ -556,3 +556,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công bố Liên kết Liên kết
 
 Bài viết này chứa các liên kết liên kết đến DigitalOcean và WebShare. Nếu bạn mua dịch vụ qua các liên kết này, chúng tôi có thể nhận hoa hồng mà không có chi phí bổ sung. Các khuyến nghị dựa trên tính hữu ích thực tế cho các workflow scraping production. Mọi benchmark đều được thực hiện độc lập.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất Cao Xử lý 10K+ Request/Giây — Hướng dẫn Python",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/aiohttp-async-web-scraping"
+  }
+}
+</script>

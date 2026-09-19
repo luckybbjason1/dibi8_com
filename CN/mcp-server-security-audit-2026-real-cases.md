@@ -149,3 +149,30 @@ Default to Anthropic when available. For community servers, run the 8-point chec
 ---
 
 **Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/) · [AI Agent Security Patterns](https://dibi8.com/resources/llm-frameworks/ai-agent-skills-framework-spec-driven-development-2026/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP Server Security Audit 2026: 5 Real Community Server Reviews + Trap Patterns",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mcp-server-security-audit-2026-real-cases"
+  }
+}
+</script>

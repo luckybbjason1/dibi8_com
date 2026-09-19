@@ -668,3 +668,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [shfmt — Shell Formatter](https://github.com/mvdan/sh)
 - [checkbashisms — Debian Devscripts](https://packages.debian.org/sid/devscripts)
 - [POSIX.1-2017 Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ShellCheck: 39,456 GitHub Stars — Complete Setup Guide for Shell Script Analysis in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/shellcheck"
+  }
+}
+</script>

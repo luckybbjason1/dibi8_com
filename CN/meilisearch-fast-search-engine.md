@@ -714,3 +714,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ---
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Meilisearch is free, open-source software — hosting costs are the only expense.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Meilisearch: The Lightning-Fast Open-Source Search Engine with Typo Tolerance — Setup & Benchmarks 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/meilisearch-fast-search-engine"
+  }
+}
+</script>

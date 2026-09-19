@@ -303,3 +303,30 @@ Spin up an {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} for low-laten
 *Companion collections: [Cheap LLM Stack](/collections/cheap-llm-stack/) for the LLM API cost side of AI Trader. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) if you want autonomous agents driving the trading loop. [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for the strategy code development side.*
 
 *⚠️ Re-stating: Not investment advice. Trade at your own risk.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The AI Trading Stack 2026: 7-Component Open-Source Quant Workflow for Crypto + Prediction Markets",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-trading-stack"
+  }
+}
+</script>

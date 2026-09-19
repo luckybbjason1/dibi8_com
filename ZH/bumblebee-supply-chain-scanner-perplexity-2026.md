@@ -97,3 +97,30 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 如果你使用 Claude Desktop、Cursor 或任何 MCP 工具，定期运行 `bumblebee scan --profile baseline` 应该成为你的习惯。它是迄今为止唯一一个同时覆盖全局包、编辑器扩展和 MCP 配置的供应链扫描器。
 
 **GitHub：** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bumblebee 2026：Perplexity AI 开源内部供应链扫描器，覆盖 MCP 配置与编辑器扩展",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/bumblebee-supply-chain-scanner-perplexity-2026"
+  }
+}
+</script>

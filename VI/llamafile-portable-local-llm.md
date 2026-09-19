@@ -5,7 +5,7 @@ tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'priva
 category: dev-utils
 featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: llamafile-portable-local-llm
 lang: vi
 ---
@@ -493,3 +493,30 @@ Not directly — LlamaFiles are frozen. Nhưng bạn có thể fine-tune models 
 ---
 
 *Tham gia nhóm Telegram để thảo luận công cụ AI thời gian thực và mẹo deployment: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LlamaFile — Chạy Local LLMs với một Portable Binary duy nhất",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/llamafile-portable-local-llm"
+  }
+}
+</script>

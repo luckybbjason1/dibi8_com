@@ -27,6 +27,8 @@ tags: ['LLM Gateway', 'Portkey', 'LiteLLM', 'OpenRouter', 'Comparison']
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
+# Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost & Self-Hosting)
+
 
 If you read three blog posts on "best LLM gateway" you'll get three different answers and zero comparable numbers. We'll fix that here. This is a head-to-head between **Portkey**, **LiteLLM**, and **OpenRouter** — the three gateways that actually run production AI traffic in 2026 — with real latency numbers, an at-$1,000/month cost breakdown, and a decision tree you can apply in 30 seconds.
 
@@ -161,3 +163,30 @@ There's no universally best LLM gateway. There's the one that matches your row i
 ---
 
 *Want to test these in production without commitment? Spin up a $6/month [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) with LiteLLM, point your existing OpenAI SDK at it, and watch your fallback options expand without touching application code.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost & Self-Hosting)",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026"
+  }
+}
+</script>

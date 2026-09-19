@@ -162,3 +162,30 @@ if key:
 **GitHub：** [github.com/luckybbjason1/ai-token-monitor](https://github.com/luckybbjason1/ai-token-monitor)
 
 如果这个工具帮你避免了任务中途被限流的困扰，欢迎 Star 支持。也欢迎提 Issue 和 PR——特别期待 macOS 支持和新服务集成的贡献。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ai-token-monitor-conky-linux"
+  }
+}
+</script>

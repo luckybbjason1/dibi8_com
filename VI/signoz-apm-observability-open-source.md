@@ -714,3 +714,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Công bố liên kết liên kết: Bài viết này chứa các liên kết liên kết đến DigitalOcean và HTStack. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com sẽ nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả các khuyến nghị đều dựa trên kiểm thử thực tế, không phải khả năng có liên kết liên kết.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí — Hướng dẫn thiết lập Distributed Tracing 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/signoz-apm-observability-open-source"
+  }
+}
+</script>

@@ -5,7 +5,7 @@ category: data-science
 tags: ['jax', 'google', 'machine-learning', 'automatic-differentiation', 'jit-compilation', 'neural-networks']
 slug: google-jax-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/google-jax-ml-framework.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg
 ---
 
 ## TL;DR
@@ -803,3 +803,30 @@ Yes, JAX is excellent for RL due to its vectorization capabilities. Libraries li
 ## Call to Action
 
 Build high-performance ML systems with JAX. [Get started](https://dibi8.com/auth/) with our tutorials and production deployment guides.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Google JAX — The Complete Guide to High-Performance ML Research and Production",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/google-jax-complete-guide"
+  }
+}
+</script>

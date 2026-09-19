@@ -238,3 +238,30 @@ Năm 2026, câu hỏi không còn là "nên dùng AI coding agent nào?" — mà
 *Bài viết dựa trên CC Switch v2.x. Tính năng có thể thay đổi — tham khảo tài liệu chính thức để cập nhật mới nhất.*
 
 **Từ Khóa**: CC Switch, quản lý AI CLI, Claude Code, Codex CLI, Gemini CLI, OpenClaw, OpenCode, công cụ lập trình AI, Rust, Tauri, giao thức MCP, open source, năng suất developer, công cụ 2026, chuyển đổi model, ứng dụng desktop đa nền tảng
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu | Công Cụ Open Source 2026",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cc-switch-unified-ai-cli-control-center-2026"
+  }
+}
+</script>

@@ -435,3 +435,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [bat-extras — Scripts bổ sung](https://github.com/eth-p/bat-extras) —— Wrappers `batgrep`, `batdiff`, `batman`.
 - [TwoDark Theme Reference](https://github.com/erremauro/TwoDark) —— Theme bat phổ biến cho terminal tối.
 - [So sánh với Alternatives](https://github.com/sharkdp/bat#project-goals-and-alternatives) —— So sánh chính thức từ maintainers của bat.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So sánh với cat, less 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/bat"
+  }
+}
+</script>

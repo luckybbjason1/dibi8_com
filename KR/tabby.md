@@ -485,3 +485,30 @@ Tabby는 AI 코딩 어시스턴트 시장에서 핵심적인 격차를 메웁니
 - [Tabby Ollama 백엔드와 함께 사용](https://github.com/TabbyML/tabby/discussions/3285)
 - [DigitalOcean 클라우드 호스팅](https://www.digitalocean.com/)
 - [HTStack GPU 클라우드](https://www.htstack.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tabby: 33K+ Stars 자체 호스팅 AI 코딩 어시스턴트 — 2026년 프라이버시 우선 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/tabby"
+  }
+}
+</script>

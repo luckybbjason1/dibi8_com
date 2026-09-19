@@ -714,3 +714,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Meilisearch là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nhanh với Khả Năng Chịu Lỗi — Cài Đặt & Đánh Giá 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/meilisearch-fast-search-engine"
+  }
+}
+</script>

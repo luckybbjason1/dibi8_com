@@ -2,7 +2,7 @@
 title: "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google NotebookLM に変換"
 description: "Qiaomu Anything to NotebookLM は、YouTube ビデオ、ポッドキャスト、記事、PDF など 15 種類以上のコンテンツソースを Google NotebookLM のナレッジベースに変換する Claude Code スキルおよび Python ツールキットで、ペイウォール回避機能も備えています。"
 date: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
+lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, コンテンツ変換, Claude Code, ナレッジマネジメント, AI ツール]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -471,3 +471,30 @@ pip install qiaomu-notebooklm
 4. [DigitalOcean - AI 用のクラウドインフラ](https://www.digitalocean.com/try/affiliate)
 5. [HTStack - 高性能ホスティング](https://htstack.com/)
 6. [WebShare - データパイプライン用プロキシサービス](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google NotebookLM に変換",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/qiaomu-anything-to-notebooklm"
+  }
+}
+</script>

@@ -500,3 +500,30 @@ CoW Protocol从根本上重新定义了交易者对DEX聚合器的期望。通�
 - [CoW Protocol文档](https://docs.cow.fi/)
 - [GitHub: cowprotocol/contracts](https://github.com/cowprotocol/contracts) (700+ stars, GPL-3.0)
 - [Binance交易所](https://www.bsmkweb.cc/register?ref=DIBI8)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CoW Protocol 2026：MEV保护型DEX聚合器为交易者节省超1亿美元滑点 — 设置指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cow-protocol-mev-protection"
+  }
+}
+</script>

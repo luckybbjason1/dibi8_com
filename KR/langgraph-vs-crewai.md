@@ -2,7 +2,7 @@
 title: '2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀'
 description: 'LangGraph(저수준 상태 기반 에이전트 그래프)와 CrewAI(고수준 역할 기반 멀티 에이전트 팀) 정면 비교 — 제어, 학습 곡선, 상태, 멀티 에이전트 설계, 프로덕션 안정성. 2026년 업데이트.'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [langgraph, crewai, ai-agents, multi-agent, agent-framework, orchestration, llm, comparison]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'CrewAI는 LangChain이나 LangGraph 위에 만들어졌나요?'
     a: 'CrewAI는 LangGraph 위의 계층이 아니라 독립된 프레임워크이며, 다만 LangChain 도구와 상호 운용은 됩니다. 반면 LangGraph는 LangChain 생태계의 공식 구성 요소로, LangChain 팀이 저수준 오케스트레이션 계층으로 유지보수합니다. 즉 계보가 다릅니다: LangGraph는 LangChain을 제어 가능한 그래프로 아래로 확장하고, CrewAI는 "에이전트 팀"에 대한 독립적이고 더 고수준의 해석입니다.'
 ---
+# 2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀
+
 ## 빠른 답변
 
 **LangGraph**는 상태 기반 에이전트 워크플로를 정밀하게, 저수준에서 제어해야 할 때 우세합니다. **CrewAI**는 역할 기반 에이전트 팀을 빠르게 꾸릴 때 우세합니다.
@@ -110,3 +112,30 @@ CrewAI는 *더 높은 곳*에 있습니다: 에이전트 시스템은 역할을 
 - [Cursor vs Claude Code](https://dibi8.com/vs/cursor-vs-claude-code/)
 
 외부 참고: [LangGraph](https://www.langchain.com/langgraph) · [LangGraph 문서](https://langchain-ai.github.io/langgraph/) · [LangGraph GitHub](https://github.com/langchain-ai/langgraph) · [CrewAI](https://www.crewai.com/) · [CrewAI 문서](https://docs.crewai.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/langgraph-vs-crewai"
+  }
+}
+</script>

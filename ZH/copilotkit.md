@@ -677,3 +677,30 @@ CopilotKit 填补了一个特定的空白：在现有 React 应用中嵌入 AI C
 ---
 
 **披露声明：** 本文包含 DigitalOcean 的联盟链接。如果你通过我们的链接注册，dibi8.com 可能会获得佣金，无需你额外付费。所有观点和基准测试均为独立评估。DigitalOcean 为新用户提供 $200 免费额度用于试用 CopilotKit 部署。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CopilotKit: 31K+ Stars — 为任何 React 或 Angular 应用添加 AI Copilot — 2026 完整安装教程",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/copilotkit"
+  }
+}
+</script>

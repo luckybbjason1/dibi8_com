@@ -495,3 +495,30 @@ DevToys는 개발자 툴킷에서 진정한 공백을 메운다: 프라이버시
 - DevUtils for macOS: https://devutils.com
 - Boop on GitHub: https://github.com/IvanMathy/Boop
 - DevToys SDK NuGet: https://www.nuget.org/packages/DevToys.Sdk
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DevToys: 31,533 GitHub Stars — 개발자 유틸리티 제품군 2026 완벽 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/devtoys"
+  }
+}
+</script>

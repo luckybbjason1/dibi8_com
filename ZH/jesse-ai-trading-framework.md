@@ -553,3 +553,30 @@ Jesse填补了Python交易生态系统中的关键空白。它不是最容易学
 ---
 
 *联盟营销披露: 本文包含指向Binance、OKX、Minara、DigitalOcean和HTStack的联盟链接。如果你通过这些链接注册，dibi8.com可能会获得佣金，且不会向你收取额外费用。我们只推荐亲自测试或深入研究的工具。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026年完整部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/jesse-ai-trading-framework"
+  }
+}
+</script>

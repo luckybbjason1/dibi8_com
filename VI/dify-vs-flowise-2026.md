@@ -2,7 +2,7 @@
 title: 'Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canvas LLM Nhẹ'
 description: 'So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng LangChain trực quan, nhẹ, mã nguồn mở) — tính năng, tự host, pipeline AI và lựa chọn phù hợp năm 2026.'
 date: 2026-06-07 00:00:00+08:00
-draft: false
+lastmod:  2026-06-07 00:00:00+08:00draft: false
 tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Flowise chỉ là một LangChain builder trực quan thôi sao?'
     a: 'Flowise bắt đầu là giao diện LangChain kéo thả và đó vẫn là bản sắc cốt lõi, nhưng nó đã phát triển vượt ra ngoài một wrapper đơn giản. Nó hỗ trợ cả thành phần LlamaIndex ngoài LangChain, thêm widget nhúng chatbot riêng, xuất bản API endpoint và đã xây dựng hệ sinh thái node cộng đồng. Mô tả chính xác nhất là công cụ xây dựng pipeline LLM trực quan trừu tượng hóa LangChain và LlamaIndex, không phải wrapper LangChain thuần túy.'
 ---
+# Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canvas LLM Nhẹ
+
 
 ## Kết Luận Nhanh
 
@@ -139,3 +141,30 @@ Phân chia thẳng thắn: **Dify để ra sản phẩm, Flowise để hiểu s�
 - [Framework AI Agent Mã Nguồn Mở Top 10 2026](https://dibi8.com/vi/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/)
 
 Tài liệu tham khảo ngoài: [Dify](https://dify.ai/) · [Dify GitHub](https://github.com/langgenius/dify) · [Flowise](https://flowiseai.com/) · [Flowise GitHub](https://github.com/FlowiseAI/Flowise)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canvas LLM Nhẹ",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/dify-vs-flowise-2026"
+  }
+}
+</script>

@@ -623,3 +623,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Metabase Community Forum](https://discourse.metabase.com/)
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up using our referral link, we receive a commission at no extra cost to you. All opinions and benchmarks are independent and based on hands-on testing.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Metabase 2026: The Open-Source Business Intelligence Tool Replacing Tableau at Zero License Cost — Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/metabase-business-intelligence-open"
+  }
+}
+</script>

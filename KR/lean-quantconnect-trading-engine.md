@@ -630,3 +630,30 @@ AI 기반 자동 트레이딩 실행을 위해 [Minara](https://minara.ai/r/OSXG
 ## 제휴 공개
 
 본 문서에는 Binance 및 Minara에 대한 제휴 링크가 포함되어 있습니다. 이 링크를 통해 등록하면 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 우리는 자체 알고리즘 트레이딩 연구에 사용하는 도구만을 추천합니다. 제휴 수익은 오픈소스 기술 콘텐츠를 지원합니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python 설정 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/lean-quantconnect-trading-engine"
+  }
+}
+</script>

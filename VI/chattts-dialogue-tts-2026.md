@@ -190,3 +190,30 @@ Bật instance GPU, chạy cài đặt 10 dòng ở mục 3, và bạn sẽ nghe
 ---
 
 *Một phần của stack nội dung đa phương thức dibi8 — xem bộ sưu tập Multi-Modal Content Pipeline sắp tới cho ChatTTS + Whisper + Stable Diffusion + ComfyUI như pipeline sáng tạo audio/visual đầy đủ.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cười, Tạm Dừng, Điều Khiển Prosody Cấp Token",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/chattts-dialogue-tts-2026"
+  }
+}
+</script>

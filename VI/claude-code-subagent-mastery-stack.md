@@ -39,6 +39,8 @@ faqs:
   - q: 'Năm cách mà multi-agent pipeline thất bại trong Claude Code là gì?'
     a: 'Năm failure mode đã được ghi chép là: trust trap, context bleed, runaway fan-out, silent truncation và orphaned worktree. Nghiên cứu những điều này là yếu tố phân biệt một bản demo hoạt động được với một pipeline sẵn sàng cho môi trường production.'
 ---
+# Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng
+
 
 Lập trình AI đơn luồng đã chạm tới giới hạn vào cuối năm 2025: một cuộc hội thoại Claude khổng lồ đọc 30 tập tin, lấp đầy cửa sổ ngữ cảnh của nó bằng việc khám phá, rồi bắt đầu chỉnh sửa với chỉ một nửa bộ nhớ làm việc mà nó cần. Câu trả lời của năm 2026 là **chuyên môn hóa được ủy thác** — một hội đồng nhỏ gồm các subagent với ranh giới thông tin nghiêm ngặt, thay vì một bộ óc đơn lẻ bị quá tải.
 
@@ -88,3 +90,30 @@ Hãy làm chủ các mô hình trước; rồi dùng bộ ba bài này để quy
 ## Kết Luận
 
 Đừng học subagent như năm mánh khóe rời rạc. Hãy đi qua bộ kỹ năng theo thứ tự — mô hình → viết agent → khung quyết định → skill → các kiểu thất bại — và bạn sẽ tốt nghiệp từ "một cuộc hội thoại lớn" lên một hội đồng agent phối hợp nhịp nhàng mà bạn thực sự có thể tin tưởng trong production. Hãy bắt đầu với Mô Hình 1 ngay hôm nay; xếp chồng phần còn lại khi các phiên làm việc dài ra và các tác vụ nặng dần lên.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng",
+  "datePublished": "2026-05-29",
+  "dateModified": "2026-05-29",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code-subagent-mastery-stack"
+  }
+}
+</script>

@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-developer-tools-ide-plugins-2025/
 ---
+# 2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서
+
 
 {</* resource-info */>}
 
@@ -270,3 +272,30 @@ CodeRabbit이 PR 자동 리뷰에 가장 특화되어 있다. GitHub/GitLab PR�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-developer-tools-ide-plugins-2025"
+  }
+}
+</script>

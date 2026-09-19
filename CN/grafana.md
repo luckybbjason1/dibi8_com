@@ -601,3 +601,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [New Relic Pricing](https://newrelic.com/pricing)
 - [DigitalOcean — Cloud VPS Hosting](https://www.digitalocean.com/)
 - [HTStack — Managed Cloud Servers](https://htstack.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/grafana"
+  }
+}
+</script>

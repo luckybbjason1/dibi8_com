@@ -607,3 +607,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links. If you sign up for DigitalOcean using our referral link, we receive a commission at no extra cost to you. We only recommend services we use for our own infrastructure. Lobe Chat is open-source (MIT license) and free to use — no purchase is required.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lobe Chat: The Open-Source ChatGPT UI Alternative with 20+ LLM Providers & Plugin System — 2026 Setup",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/lobe-chat-openai-alternative-ui"
+  }
+}
+</script>

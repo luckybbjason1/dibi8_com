@@ -173,3 +173,30 @@ tsfresh는 `RelevantFeatureAugmenter`와 `FeatureAugmenter` 클래스가 기본�
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "자동화 특성 엔지니어링 도구 가이드: Featuretools, AutoFeat, tsfresh 완벽 튜토리얼 (2024)",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/feature-engineering-tools-automation"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결'
 description: 'Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API 키) 정면 비교 — 가격, 컨텍스트, 에이전트 스타일, 비용 효율. 2026 업데이트.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Aider는 엔터프라이즈에서 쓸 만큼 오픈소스적인가요?'
     a: '네 — Aider는 Apache 2.0 라이선스에 본인 머신에서 완전히 실행. 외부 호출은 설정한 모델 API(OpenAI, Anthropic, 로컬 Ollama 등)뿐. 에어갭 또는 컴플라이언스 민감 환경에서는 Aider + 로컬 모델 조합이 완전 셀프호스팅 AI 코딩 셋업. Claude Code는 Anthropic 클라우드 필수.'
 ---
+# Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결
+
 
 ## 빠른 답변
 
@@ -216,3 +218,30 @@ diff 리뷰할 시간 없이 빠르게 출시하는 소규모 팀? **Claude Code
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/claude-code-vs-aider"
+  }
+}
+</script>

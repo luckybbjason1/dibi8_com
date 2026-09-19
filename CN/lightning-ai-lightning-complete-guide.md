@@ -5,7 +5,7 @@ category: data-science
 tags: ['lightning', 'pytorch-lightning', 'production-ml', 'model-training', 'inference', 'deployment']
 slug: lightning-ai-pytorch-lightning-complete-guide
 date: 2026-07-17 00:00:00+00:00
-featureImage: /images/articles/lightning-ai-pytorch.jpg
+lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/lightning-ai-pytorch.jpg
 ---
 
 ## TL;DR
@@ -1084,3 +1084,30 @@ Use Integrated Gradients, SHAP, or LIME with Lightning models. The modular struc
 ## Call to Action
 
 Build production-ready ML systems with Lightning AI. [Get started](https://dibi8.com/auth/) with our tutorials and deployment guides.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lightning AI — The PyTorch Lightweight Toolkit for Production ML",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/lightning-ai-lightning-complete-guide"
+  }
+}
+</script>

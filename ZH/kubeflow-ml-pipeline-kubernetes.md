@@ -693,3 +693,30 @@ Kubeflow 仍然是 Kubernetes 上运行 ML 工作负载最完整的开源平台�
 10. [MLflow](dibi8-internal-link) — ML 实验追踪相关指南
 
 *联盟营销披露: 本文包含 DigitalOcean 和 虎网云 的联盟链接。如果你通过这些链接注册，dibi8.com 会获得佣金，而你无需支付额外费用。我们只推荐用于自己基础设施的服务。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kubeflow 2026: 在 Kubernetes 上运行完整 ML 流水线 — 从训练到生产部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/kubeflow-ml-pipeline-kubernetes"
+  }
+}
+</script>

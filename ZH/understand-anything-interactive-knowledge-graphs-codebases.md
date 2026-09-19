@@ -2,7 +2,7 @@
 title: "Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026"
 description: "Understand-Anything 将任何代码库转变为一个可交互的知识图谱，您可以在其中探索、搜索和查询。支持 Claude Code、Codex、Cursor、Copilot、Gemini CLI。在 GitHub 上拥有 60,339 个星标。"
 date: 2026-06-17
-slug: understand-anything-interactive-knowledge-graphs-codebases
+lastmod:  2026-06-17slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
 tags: ['understand-anything', 'knowledge-graph', 'codebase-analysis', 'claude-code', 'codex', 'cursor', 'AI-agents', 'code-visualization', 'semantic-search']
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
@@ -422,3 +422,30 @@ Understand-Anything 很强大，但也有明显的局限性：
 - 替代托管：[HTStack](https://my.htstack.com/aff.php?aff=27187)
 - 交易工具：[币安](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - 网络爬虫代理：[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026",
+  "datePublished": "2026-06-17",
+  "dateModified": "2026-06-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/understand-anything-interactive-knowledge-graphs-codebases"
+  }
+}
+</script>

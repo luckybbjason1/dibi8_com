@@ -34,6 +34,8 @@ faqs:
   - q: 'Pixelle-Video는 기본 영상 생성 외에 어떤 기능이 있나요?'
     a: '세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴먼 아바타는 사진 한 장을 한국어·중국어·영어 립싱크가 지원되는 토킹헤드 영상으로 변환합니다. Image-to-Video는 정지 이미지를 동영상으로 만들어 줍니다. Motion Transfer는 참조 영상의 움직임을 정지 이미지에 적용합니다.'
 ---
+# Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상
+
 {</* resource-info */>}
 
 ![Pixelle-Video 웹 UI: 스크립트 / TTS / 분할 / 생성 결과](/images/articles/pixelle-video-ai-short-video-generator/webui.png)

@@ -683,3 +683,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Repo GitHub LangChain](https://github.com/langchain-ai/langchain)
 - [Repo GitHub CrewAI](https://github.com/crewAIInc/crewAI)
 - [Tai Lieu Vercel AI SDK](https://sdk.vercel.ai/docs)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Phí Token 4-10 Lần 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mastra"
+  }
+}
+</script>

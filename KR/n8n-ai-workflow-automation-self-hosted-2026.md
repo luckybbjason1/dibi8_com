@@ -4,7 +4,7 @@ description: "2026년 가장 주목받는 오픈소스 자동화 플랫폼 n8n�
 keywords: n8n, n8n 튜토리얼, AI 워크플로우 자동화, 오픈소스 자동화 도구, n8n 자체 호스팅, n8n vs Zapier, AI 에이전트 구축, LangChain 연동, 노코드 자동화, 워크플로우 오케스트레이션
 author: Home Hermes
 date: 2026-05-20
----
+lastmod:  2026-05-20---
 
 # n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감
 
@@ -452,3 +452,30 @@ n8n을 배포하라. 하나의 AI 워크플로우를 구축하라. 거기서 반
 - GitHub: [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n)
 
 *마지막 업데이트: 2026년 5월 20일. n8n 버전 참조: 1.84+.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/n8n-ai-workflow-automation-self-hosted-2026"
+  }
+}
+</script>

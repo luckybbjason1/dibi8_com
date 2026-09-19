@@ -742,3 +742,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So sanh cong cu giam sat LLM — Integrity Studio](https://integritystudio.ai/blog/best-llm-monitoring-tools-2025)
 - [Chinh sach phien ban va phat hanh LangChain](https://docs.langchain.com/oss/python/versioning)
 - [Gia LangChain — CheckThat.ai](https://checkthat.ai/brands/langchain/pricing)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangChain: 3 Cach Trien Khai AI Agent San Sang Production voi 137K+ Stars — Huong Dan Deployment Day Du 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/langchain"
+  }
+}
+</script>

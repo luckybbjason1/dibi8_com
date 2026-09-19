@@ -463,3 +463,59 @@ A: Strix AI supports HTML, PDF, JSON, and SARIF (Static Analysis Results Interch
 ---
 
 *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "question": "Is Strix AI legal to use?",
+      "answer": "Yes, Strix AI is legal to use for authorized security testing. You must have written permission from the target owner before scanning any system. The framework includes built-in safeguards to prevent unauthorized use."
+    },
+    {
+      "question": "Can I use it for bug bounty programs?",
+      "answer": "Yes. Many bug bounty platforms explicitly allow AI-assisted scanning. Always check the program's scope and rules before using Strix AI."
+    },
+    {
+      "question": "Does it work offline?",
+      "answer": "Basic scanning features work offline. AI-powered analysis (false positive filtering, remediation advice) requires an AI model — either hosted locally or accessed via API."
+    },
+    {
+      "question": "How does it handle rate limiting?",
+      "answer": "Strix AI includes built-in rate limiting and throttling to avoid overwhelming target servers. You can configure request rates, delays between scans, and concurrent connection limits."
+    },
+    {
+      "question": "What reporting formats are supported?",
+      "answer": "Strix AI supports HTML, PDF, JSON, and SARIF (Static Analysis Results Interchange Format) for integration with CI/CD pipelines."
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Strix AI: 31K+ Star Open-Source Penetration Testing Framework",
+  "datePublished": "2026-07-03",
+  "dateModified": "2026-07-03",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/strix-ai-open-source-penetration-testing"
+  }
+}
+</script>

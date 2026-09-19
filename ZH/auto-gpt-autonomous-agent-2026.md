@@ -681,3 +681,30 @@ ChatGPT 插件是用户发起且单轮的。Auto-GPT 是自主的且多步的。
 ---
 
 *发表于 dibi8.com —— AI 源代码中心。最后更新：2026-05-19*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Auto-GPT 2026 复兴：原创自主智能体框架如何将设置时间缩短 80% — 全新安装指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/auto-gpt-autonomous-agent-2026"
+  }
+}
+</script>

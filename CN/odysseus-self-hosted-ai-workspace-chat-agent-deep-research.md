@@ -2,7 +2,7 @@
 title: 'Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026'
 description: 'Odysseus (65,243 GitHub stars) is a self-hosted AI workspace combining chat, agent automation, deep research, document editing, email triage, calendar, and more. Supports vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, and GitHub Copilot. Docker and native Linux/macOS installs available.'
 date: 2026-06-09
-slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
+lastmod:  2026-06-09slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
 category: 'ai-tools'
 tags: ['odysseus', 'self-hosted AI', 'AI workspace', 'local AI', 'deep research', 'AI agent', 'chat interface', 'open-source AI', 'home lab AI']
 github_repo: 'https://github.com/pewdiepie-archdaemon/odysseus'
@@ -509,3 +509,30 @@ The Docker-based installation makes it accessible even to users without deep Lin
 Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclaimer:** This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
+  }
+}
+</script>

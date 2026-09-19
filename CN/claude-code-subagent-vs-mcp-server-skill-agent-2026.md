@@ -36,6 +36,8 @@ faq:
   - q: "Do skills, subagents, and MCP servers all work in CI / headless mode?"
     a: "Yes, all three. Skills and subagents are version-controlled files in your repo, so CI picks them up automatically. MCP servers need to be configured and reachable from the CI environment (credentials in CI secrets, network access to the service). The headless -p mode respects all three; the only practical gotcha is making sure your MCP server's auth works without an interactive login when running unattended."
 ---
+# Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)
+
 
 ## Introduction
 
@@ -137,3 +139,30 @@ Running all three layers — especially MCP servers — at scale wants stable in
 ## Verdict
 
 Stop asking "skill, subagent, or MCP server?" as if they compete. Ask instead: am I short on **knowledge**, **context**, or **capability**? Knowledge → skill. Context → subagent. Capability → MCP server. The full-stack cases use all three, layered. And when in doubt, build the cheapest artifact that moves your axis — a markdown file beats a deployed service every time it can.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026"
+  }
+}
+</script>

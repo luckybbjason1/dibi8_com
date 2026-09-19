@@ -601,3 +601,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Định giá New Relic](https://newrelic.com/pricing)
 - [DigitalOcean — Cloud VPS Hosting](https://www.digitalocean.com/)
 - [HTStack — Máy chủ Cloud Quản lý](https://htstack.com/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/grafana"
+  }
+}
+</script>

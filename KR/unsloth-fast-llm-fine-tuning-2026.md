@@ -200,3 +200,30 @@ Unsloth = **단일 GPU LLM 파인튜닝 속도 왕**. 64.9k 별, HuggingFace TRL
 ---
 
 *dibi8의 Fine-Tuning Stack 일부 — 데이터셋 준비에서 프로덕션 배포까지 전체 파이프라인은 다가오는 Fine-Tuning Stack 컬렉션 참조.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unsloth 2026: 64.9k 별 빠른 LLM 파인튜닝 — 2× 속도, 70% 적은 VRAM, 단일 GPU 친화",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/unsloth-fast-llm-fine-tuning-2026"
+  }
+}
+</script>

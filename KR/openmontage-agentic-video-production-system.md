@@ -493,3 +493,30 @@ OpenMontage는 AI 비디오 제작에서 패러다임 전환을 나타냅니다.
 **커뮤니티에 참여하세요:** [GitHub Discussions](https://github.com/calesthio/OpenMontage/discussions) · [YouTube](https://www.youtube.com/@OpenMontage) · [X](https://x.com/calesthioailabs)
 
 📢 **최신 정보를 받아보세요:** 일일 AI 도구 리뷰와 새로운 콘텐츠에 대한 조기 접근을 위해 저희 [텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenMontage 리뷰: 세계 최초의 오픈소스 에이전트 영상 제작 시스템 (52개 도구, 12개 파이프라인, 500개 이상의 기술)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/openmontage-agentic-video-production-system"
+  }
+}
+</script>

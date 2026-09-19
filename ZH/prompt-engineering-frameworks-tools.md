@@ -23,6 +23,8 @@ tags: ['提示词工程', 'LangSmith', 'PromptLayer', 'W&B', 'LLM开发']
 aliases:
 - /zh/posts/prompt-engineering-frameworks-tools/
 ---
+# 2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测
+
 
 {</* resource-info */>}
 
@@ -272,3 +274,30 @@ LangSmith提供每月5,000次追踪的免费额度，足以支撑小型项目的
 - [Azure Prompt Flow 文档](https://microsoft.com)
 
 > **总结**：提示词工程框架是LLM应用从原型走向生产的必备基础设施。LangSmith以生态集成取胜，PromptLayer以A/B测试见长，Pezzo以开源自主可控为特色。选择时需综合考虑团队技术栈、数据安全要求、预算和现有基础设施。无论选择哪款工具，将提示管理工程化、流程化，都是提升LLM应用质量和团队效率的关键一步。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/prompt-engineering-frameworks-tools"
+  }
+}
+</script>

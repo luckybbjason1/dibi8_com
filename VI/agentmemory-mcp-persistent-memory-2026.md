@@ -324,3 +324,30 @@ Nếu chưa cấu hình bộ nhớ liên tục, hôm nay là ngày đó.
 ---
 
 *Viết ngày 17 tháng 5 năm 2026. Số sao và phiên bản MCP spec nhạy cảm với thời gian; hãy kiểm chứng với nguồn chính thức trước khi trích dẫn.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bộ Nhớ Liên Tục cho AI Coding Agent 2026: Hướng Dẫn Toàn Diện agentmemory + MCP",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/agentmemory-mcp-persistent-memory-2026"
+  }
+}
+</script>

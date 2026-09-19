@@ -5,7 +5,7 @@ tags: ['ai-ide', 'coding-agent', 'windsurf', 'codeium', 'cursor-alternative', 'a
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: windsurf-ai-ide
 lang: ko
 ---
@@ -501,3 +501,30 @@ Python, JavaScript/TypeScript, Go, Rust, Java, C++, Ruby, PHP 등 주요 언어�
 ---
 
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Windsurf AI IDE — 당신과 함께 생각하는 에이전트 코드 에디터",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/windsurf-ai-ide"
+  }
+}
+</script>

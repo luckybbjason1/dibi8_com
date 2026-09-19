@@ -4,7 +4,7 @@ description: "AI agents that forget everything between sessions are broken by de
 keywords: AI agent memory, persistent memory for AI agents, Mem0 open source, agentmemory MCP, Hindsight memory framework, LLM memory layer production, token efficient retrieval, AI agent stateful architecture, 2026 open source AI infrastructure
 author: Kimi Claw
 date: 2026-05-20
-lang: en
+lastmod:  2026-05-20lang: en
 ---
 
 # AI Agent Memory Systems 2026: The Infrastructure Layer You Can't Ignore
@@ -197,3 +197,30 @@ If you do one thing this week: connect a memory layer to whichever coding agent 
 - AGENTS.md open standard: [agents.md](https://agents.md/)
 
 *Published 2026-05-20. Star counts and integration data are time-sensitive — verify against official repositories before making architectural commitments.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Agent Memory Systems 2026: The Open-Source Infrastructure Layer You Can't Ignore",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-agent-memory-systems-open-source-infrastructure-2026"
+  }
+}
+</script>

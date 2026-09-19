@@ -539,3 +539,30 @@ InvokeAI는 AI 이미지 생성 생태계에서 특정 틈새를 채운다. 전�
 ---
 
 *이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 이 링크를 통해 가입하면 추가 비용 없이 우리에게 커미션이 지급된다. 이는 사이트와 오픈소스 콘텐츠 지원에 도움이 된다. 모든 의견과 벤치마크는 독립적으로 제작되었다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "InvokeAI: 27.2K+ Stars — 2026 완벽 설치 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/invokeai"
+  }
+}
+</script>

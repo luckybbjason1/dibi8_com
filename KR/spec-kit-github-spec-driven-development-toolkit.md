@@ -2,7 +2,7 @@
 title: "스펙 키트: GitHub"
 description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통해 개발자가 소프트웨어를 구축하는 방식을 변화시키는 오픈 소스 도구 키트. 설치, 워크플로우 및 실제 예제."
 date: 2026-06-20
-tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 lang: kr
 slug: spec-kit-github-spec-driven-development-toolkit
@@ -481,3 +481,29 @@ GitHub의 지원과 개발자 커뮤니티의 신속한 채택을 통해 Spec Ki
 --- 
 
 💬 텔레그램에 가입하세요토론 그룹: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "스펙 키트: GitHub",
+  "datePublished": "2026-06-20",
+  "dateModified": "2026-06-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/spec-kit-github-spec-driven-development-toolkit"
+  }
+}
+</script>

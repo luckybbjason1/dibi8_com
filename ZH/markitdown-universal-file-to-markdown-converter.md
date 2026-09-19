@@ -2,7 +2,7 @@
 title: "MarkItDown：通用文件到 Markdown 转换器——微软面向 LLM 流水线的开源工具 2026"
 description: "微软 AutoGen 团队的 MarkItDown 可以将 20 多种文件类型转换为供 LLM 使用的 Markdown。使用 pip install markitdown[all]，提供 Python API、LangChain 集成、RAG 流水线和批量处理功能。"
 date: 2026-06-17
-slug: markitdown-universal-file-to-markdown-converter
+lastmod:  2026-06-17slug: markitdown-universal-file-to-markdown-converter
 category: ai-tools
 tags: ['markitdown', 'file-to-markdown', 'microsoft', 'llm-pipelines', 'rag', 'langchain', 'document-processing', 'pdf-to-markdown', 'office-conversion']
 github_repo: "https://github.com/microsoft/markitdown"
@@ -448,3 +448,30 @@ MarkItDown 是面向 AI 时代的多功能文件转文本工具。微软开发�
 - 替代托管：[HTStack](https://my.htstack.com/aff.php?aff=27187)
 - 交易工具：[币安](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - 网络爬虫代理：[WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MarkItDown：通用文件到 Markdown 转换器——微软面向 LLM 流水线的开源工具 2026",
+  "datePublished": "2026-06-17",
+  "dateModified": "2026-06-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/markitdown-universal-file-to-markdown-converter"
+  }
+}
+</script>

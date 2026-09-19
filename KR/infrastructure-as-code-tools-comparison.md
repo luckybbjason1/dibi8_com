@@ -23,6 +23,8 @@ tags: []
 aliases:
 - /kr/posts/infrastructure-as-code-tools-comparison/
 ---
+# 2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, Crossplane
+
 
 {</* resource-info */>}
 
@@ -133,3 +135,30 @@ Pulumi는 `pulumi import` 명령어와 Terraform 상태 파일 변환 도구를 
 - [AWS CDK 문서](https://aws.amazon.com/cdk)
 - [Crossplane 공식 사이트](https://crossplane.io)
 - [Ansible 공식 사이트](https://ansible.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, Crossplane",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/infrastructure-as-code-tools-comparison"
+  }
+}
+</script>

@@ -799,3 +799,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean, HTStack, and 虎网云. If you purchase services through these links, dibi8.com may earn a commission at no additional cost to you. All recommendations are based on genuine technical evaluation, not affiliate availability. See our [full disclosure policy](https://dibi8.com/affiliate-disclosure) for details.*
 
 *Last updated: 2026-05-19. Tested with Qdrant v1.13.0, qdrant-client 1.13.0, Python 3.12.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qdrant: The Rust-Powered Vector Database Handling 1M+ Vectors at 10ms Latency — Self-Hosted Deployment Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/qdrant-vector-database-rust"
+  }
+}
+</script>

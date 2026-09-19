@@ -239,3 +239,30 @@ GraphRAG là một hệ thống RAG mô-đun, dựa trên đồ thị, được 
   related open-source tools -> ai-tools-directory
   related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource
 -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft cho câu trả lời LLM tốt hơn (33K Stars) — Hướng dẫn thực chiến 2026",
+  "datePublished": "2026-06-02",
+  "dateModified": "2026-06-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/graphrag-llm-frameworks-2026"
+  }
+}
+</script>

@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/ai-voice-tools-text-to-speech-transcription/
 ---
+# 2025년 최고의 AI 음성 도구: 텍스트 음성 변환 및 음성 텍스트 변환 비교
+
 
 {</* resource-info */>}
 
@@ -160,3 +162,30 @@ whisper audio.mp4 --model large-v3 --language Korean
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 음성 도구: 텍스트 음성 변환 및 음성 텍스트 변환 비교",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-voice-tools-text-to-speech-transcription"
+  }
+}
+</script>

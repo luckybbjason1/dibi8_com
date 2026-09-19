@@ -702,3 +702,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Tiết lộ Liên kết Liên kết
 
 Bài viết này chứa các liên kết liên kết đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho lưu trữ đám mây và [Supabase](https://supabase.com) cho PostgreSQL được quản lý. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi nhận được hoa hồng mà không có chi phí phụ thêm cho bạn. Chúng tôi chỉ giới thiệu các dịch vụ chúng tôi sử dụng trong môi trường sản xuất của chính mình.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vector Hiệu năng cao — Hướng dẫn Thiết lập, Tối ưu & Tích hợp RAG",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/pgvector-postgres-vector-extension"
+  }
+}
+</script>

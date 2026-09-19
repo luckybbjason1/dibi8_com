@@ -108,3 +108,30 @@ config/credentials.json
 > **需要服务器来构建 AI 开发工具？** [DigitalOcean 新用户享 $200 免费额度](https://m.do.co/c/eca87ac14ee0)，足够运行开发服务器或部署 AI 辅助代码库。
 
 **GitHub：** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/repomix-pack-repo-for-llm-context-2026"
+  }
+}
+</script>

@@ -5,7 +5,7 @@ tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'priva
 category: dev-utils
 featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: llamafile-portable-local-llm
 lang: zh-CN
 ---
@@ -493,3 +493,30 @@ Ollama 是一个管理器，用于下载和运行模型。LlamaFile 就是模型
 ---
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LlamaFile — 用单个可执行文件在本地运行大语言模型",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/llamafile-portable-local-llm"
+  }
+}
+</script>

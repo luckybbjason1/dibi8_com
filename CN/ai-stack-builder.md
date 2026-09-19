@@ -6,3 +6,32 @@ lastmod: 2026-05-19
 layout: "tool-ai-stack-builder"
 tool_id: "ai-stack-builder"
 ---
+# AI Stack Builder — Find Your Perfect LLM + Vector DB + Framework Combo
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Stack Builder — Find Your Perfect LLM + Vector DB + Framework Combo",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-stack-builder"
+  }
+}
+</script>

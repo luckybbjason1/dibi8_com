@@ -180,3 +180,30 @@ Install ComfyUI + ComfyUI Manager (~15 minutes total), drop a community workflow
 ---
 
 *Part of dibi8's multi-modal content stack — pairs with [Stable Diffusion WebUI for casual use](/resources/ai-tools/stable-diffusion-webui-2026/) and [ChatTTS for voice](/resources/ai-tools/chattts-dialogue-tts-2026/). See the upcoming Multi-Modal Content Pipeline collection for the full creator stack.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio Workflow Engine — Complete Guide",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/comfyui-node-based-ai-image-2026"
+  }
+}
+</script>

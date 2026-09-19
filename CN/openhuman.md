@@ -3,7 +3,7 @@ title: 'What Is OpenHuman?'
 lang: en
 description: 'content/en/resources/openhuman.md'
 date: 2026-06-13
-layout: article
+lastmod:  2026-06-13layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
@@ -16,7 +16,7 @@ featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.
 title: 'OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026'
 description: 'OpenHuman is an open-source local AI agent with Memory Tree, Obsidian vault, 118+ integrations, and built-in model routing. Install via Homebrew or apt. Compare with Claude Cowork, OpenClaw, and Hermes Agent.'
 date: 2026-06-13
-slug: 'openhuman-local-ai-agent-rust-2026'
+lastmod:  2026-06-13slug: 'openhuman-local-ai-agent-rust-2026'
 category: 'ai-tools'
 tags: ['openhuman', 'local-ai', 'ai-agent', 'ai-assistant', 'memory-tree', 'obsidian', 'agentic', 'open-source', 'llm', 'desktop-app']
 github_repo: 'https://github.com/tinyhumansai/openhuman'
@@ -405,3 +405,30 @@ Join the community: [Telegram](https://t.me/DIBI8_Group) · [Discord](https://di
 Internal links: [hermes-agent-self-improving-ai-agent](https://dibi8.com/hermes-agent-self-improving-ai-agent) · [claude-code-skill-authoring-guide-2026](https://dibi8.com/claude-code-skill-authoring-guide-2026)
 
 **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is OpenHuman?",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openhuman"
+  }
+}
+</script>

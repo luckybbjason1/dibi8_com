@@ -213,3 +213,30 @@ Cho khung thí nghiệm walk-forward + đa tài sản:
 ---
 
 **Liên quan**: [Đánh giá Moss Trade Bot Factory 2026](https://dibi8.com/vi/resources/ai-trading/moss-trade-bot-factory-2026-review/) · [5 mô hình OVERFIT trong Backtest 2026](https://dibi8.com/vi/resources/ai-trading/backtest-overfit-5-patterns-2026/) · [Backtesting Python với Backtrader](https://dibi8.com/vi/resources/ai-trading/backtrader-python-backtesting/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cáo postmortem backtest mà không ai nói đến",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/schema-bug-faked-overfit-diagnosis-2026"
+  }
+}
+</script>

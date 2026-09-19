@@ -36,6 +36,8 @@ faq:
   - q: "我什么时候该写子代理而不是 skill？"
     a: "当你需要教会一个在当前对话中运行的流程时，写 skill。当工作需要自己独立的上下文窗口时——大量探索、并行研究、或会拖垮父代理的独立审查——写子代理。两者可以组合：一个子代理可以在隔离运行时加载某个 skill 来遵循你的方法论。扩展决策框架里的经验法则是——skill 改变行为，子代理保护上下文，MCP server 增加能力。"
 ---
+# Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）
+
 
 ## 引言
 
@@ -190,3 +192,30 @@ skill 在一个稳定、共享的环境里最能发光：
 ## 结论
 
 skill 是最便宜、最被低估的扩展点——一个带 markdown 文件的目录，把情境性专业知识变成即时调用的上下文。整门手艺归结为两件事：一个塞满真实触发短语的 **description**，让它在恰当时刻触发；以及**渐进式披露**，让它在任务需要其深度之前都保持轻量。把这两点写好，你就打包出了一个流程，你的整个团队——以及每一次 CI 运行——都能免费获得它，恰好在它相关的时候出现。这便补齐了三件套：skill 管知识，子代理管上下文，MCP server 管能力。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-code-skill-authoring-guide-2026"
+  }
+}
+</script>

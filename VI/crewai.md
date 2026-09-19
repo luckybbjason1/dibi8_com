@@ -688,3 +688,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [CrewAI + IBM watsonx Tutorial](https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md)
 
 *Tiết lộ: Bài viết này chứa liên kết affiliate. Nếu bạn nhấp vào liên kết và thực hiện giao dịch mua, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ nghiên cứu kỹ thuật độc lập, thử nghiệm và tạo nội dung giáo dục miễn phí của chúng tôi. Tất cả các khuyến nghị đều dựa trên đánh giá riêng của chúng tôi về các công cụ.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướng dẫn thiết lập đầy đủ 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/crewai"
+  }
+}
+</script>

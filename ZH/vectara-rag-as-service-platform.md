@@ -634,3 +634,30 @@ Vectara 免费层包含 **50MB 存储**和**每月 10,000 次查询**。这足�
 ## Affiliate Disclosure
 
 本文包含联盟链接。如果你通过我们的链接注册 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Vectara 提供免费层，无需信用卡，所有摄取工具在 Apache-2.0 许可证下开源。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/vectara-rag-as-service-platform"
+  }
+}
+</script>

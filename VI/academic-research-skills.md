@@ -2,7 +2,7 @@
 title: "Kỹ Năng Nghiên Cứu Học Thuật: Tự Động Hóa Tổng Quan Tài Liệu Với AI — Framework 31K Star 2026"
 description: "Academic Research Skills (31.628 sao) tự động hóa quy trình nghiên cứu: tìm kiếm bài báo, trích xuất thông tin, tổng hợp kết quả và viết tổng quan tài liệu. Được xây dựng cho Claude Code với kiến trúc kỹ thuật mô-đun."
 date: 2026-06-15
-slug: academic-research-skills
+lastmod:  2026-06-15slug: academic-research-skills
 category: dev-utils
 tags: ['nghiên cứu học thuật', 'tổng quan tài liệu', 'nghiên cứu AI', 'phân tích bài báo', 'tổng hợp', 'claude code', 'tự động hóa nghiên cứu']
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
@@ -364,3 +364,30 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **CTA**: Tham gia cộng đồng nghiên cứu DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kỹ Năng Nghiên Cứu Học Thuật: Tự Động Hóa Tổng Quan Tài Liệu Với AI — Framework 31K Star 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/academic-research-skills"
+  }
+}
+</script>

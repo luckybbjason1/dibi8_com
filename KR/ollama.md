@@ -695,3 +695,30 @@ Ollama는 로컬 LLM 배포의 마찰을 제거합니다. 하나의 명령으로
 - Open WebUI GitHub: https://github.com/open-webui/open-webui
 - LangChain Ollama 통합: https://python.langchain.com/docs/integrations/chat/ollama
 - Continue.dev 문서: https://docs.continue.dev
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ollama: 137K+ Stars — 한 줄 명령으로 로컬에서 LLM 실행, 2026 완벽 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ollama"
+  }
+}
+</script>

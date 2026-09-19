@@ -138,3 +138,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [Ollama](https://github.com/ollama/ollama)
 - [DeepSeek](https://github.com/deepseek-ai/DeepSeek-V3)
 - [Docker](https://github.com/docker)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Top 10 Open-Source AI Tools for Developers in 2026 (Free Alternatives)",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/top-10-open-source-ai-tools-2026"
+  }
+}
+</script>

@@ -148,3 +148,30 @@ If Bumblebee surfaces a finding in your npm packages, [socket.dev](https://socke
 Bumblebee solves a specific, underserved problem: auditing the full surface of a developer machine — global packages, editor extensions, browser extensions, and MCP configs — for supply-chain exposure, without executing anything that could make the situation worse. If you use Claude Desktop, Cursor, or any MCP-enabled AI tool, running `bumblebee scan --profile baseline` should be part of your weekly routine.
 
 **GitHub:** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bumblebee 2026: Perplexity AI Open-Sources Its Internal Supply-Chain Scanner for Developer Machines",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/bumblebee-supply-chain-scanner-perplexity-2026"
+  }
+}
+</script>

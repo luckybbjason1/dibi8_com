@@ -2,7 +2,7 @@
 title: 'Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá Rẻ — Hướng Dẫn Toàn Diện 2026'
 description: 'Hướng dẫn tối ưu chi phí inference LLM. So sánh Ollama, vLLM, quantization llama.cpp. Giảm 90%+ chi phí API. 3 benchmark, 6 phương pháp triển khai.'
 date: 2026-06-16
-slug: 'llm-inference-cost-optimization-guide-2026'
+lastmod:  2026-06-16slug: 'llm-inference-cost-optimization-guide-2026'
 category: dev-utils
 tags: ['tối ưu chi phí LLM', 'inference LLM giá rẻ', 'quantization', 'Ollama', 'vLLM', 'llama.cpp', 'giảm chi phí API', 'LLM cục bộ']
 github_repo: 'https://github.com/ollama/ollama'
@@ -466,3 +466,30 @@ Tham gia thảo luận: [Telegram Group](https://t.me/DIBI8_Group)
 - OpenAI Pricing: https://openai.com/api/pricing/
 
 **Miễn Trừ Trách Nhiệm**: Bài viết này sử dụng affiliate links khi applicable. Tất cả chi phí và benchmark dựa trên dữ liệu usage thực tế trong 3 tháng. Không sponsored content.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá Rẻ — Hướng Dẫn Toàn Diện 2026",
+  "datePublished": "2026-06-16",
+  "dateModified": "2026-06-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/llm-inference-cost-optimization-guide-2026"
+  }
+}
+</script>

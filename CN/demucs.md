@@ -558,3 +558,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Open-Unmix (Sony)](https://github.com/sigsep/open-unmix-pytorch)
 - [MVSEP Quality Checker Leaderboard](https://mvsep.com/quality_checker/)
 - [Audio Developers Conference 2025 — Demucs ONNX Export Talk](https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Demucs: Music Source Separation with 10K+ Stars — Comparison vs UVR, Spleeter in 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/demucs"
+  }
+}
+</script>

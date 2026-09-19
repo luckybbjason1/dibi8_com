@@ -31,6 +31,8 @@ faqs:
   - q: 'Những loại hình doanh nghiệp nào đang sử dụng NowPayments?'
     a: 'NowPayments được sử dụng bởi các cửa hàng thương mại điện tử, freelancer nhận thanh toán quốc tế, công ty game xử lý mua hàng trong game và đăng ký, tổ chức phi lợi nhuận thu quyên góp toàn cầu, cũng như các công ty phần mềm thu phí đăng ký SaaS và phí bản quyền.'
 ---
+# Chấp nhận thanh toán bằng tất cả các loại tiền tệ với NowPayments
+
 
 {</* resource-info */>}
 
@@ -177,3 +179,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chấp nhận thanh toán bằng tất cả các loại tiền tệ với NowPayments",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/accept-payments-all-currencies"
+  }
+}
+</script>

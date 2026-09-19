@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
+# CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测
+
 
 {</* resource-info */>}
 
@@ -237,3 +239,30 @@ Jenkins的Master-Agent架构让它能轻松扩展到数百个构建节点。但�
 
 *推广链接，不增加你的成本，能支持 dibi8.com 运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+  }
+}
+</script>

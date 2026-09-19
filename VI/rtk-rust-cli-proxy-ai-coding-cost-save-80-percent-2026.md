@@ -4,7 +4,7 @@ description: "Lập trình viên Việt Nam đang đối mặt với hóa đơn 
 keywords: ["rtk", "tiết kiệm token LLM", "giảm chi phí AI coding", "Claude Code tiết kiệm", "công cụ CLI Rust", "tối ưu hóa token", "lập trình AI giá rẻ", "công cụ phát triển 2026"]
 author: "Home Hermes"
 date: "2026-05-20"
-lang: "vi"
+lastmod:  "2026-05-20"lang: "vi"
 ---
 
 # Giảm 80% Chi Phí AI Coding Với rtk: Công Cụ CLI Bằng Rust Giúp Lập Trình Viên Tiết Kiệm Hàng Triệu Đồng Mỗi Tháng
@@ -300,3 +300,30 @@ rtk init -g
 ---
 
 *Đánh giá dựa trên rtk v0.28.2. Các tính năng tiến hóa nhanh; vui lòng tham khảo release notes mới nhất để cập nhật.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Giảm 80% Chi Phí AI Coding Với rtk: Công Cụ CLI Bằng Rust Giúp Lập Trình Viên Tiết Kiệm Hàng Triệu Đồng Mỗi Tháng | Hướng Dẫn LLM Token Optimization 2026",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026"
+  }
+}
+</script>

@@ -574,3 +574,30 @@ Tài nguyên tham khảo: [eslint.org](https://eslint.org), [prettier.io](https:
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black, Ruff và Hơn Nữa",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/code-quality-tools-eslint-prettier-black-ruff"
+  }
+}
+</script>

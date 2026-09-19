@@ -849,3 +849,30 @@ Prefect 3.x 代表了数据团队构建和运营工作流方式的根本性转�
 ## 联盟营销披露
 
 本文包含联盟链接。如果你通过本文中的链接注册服务，dibi8.com 可能会获得佣金，而不会向你收取额外费用。我们只推荐我们亲自评估并认为具有真正价值的工具。所表达的观点是我们自己的。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prefect 2026: 面向数据与 AI 流水线的现代工作流编排引擎 —— 自托管设置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/prefect-workflow-orchestration"
+  }
+}
+</script>

@@ -274,3 +274,30 @@ With 10,913 developers already using it in production, the question isn't whethe
 - [AI Agent Memory Systems 2026](/zh/resources/llm-frameworks/ai-agent-memory-systems-2026/)
 - [CC Switch — 多 AI CLI 管理](/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/)
 - [Cheap LLM Stack 合集](/zh/collections/cheap-llm-stack/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ds4 实测 2026：开源 DeepSeek 运行时新选择",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ds4-open-source-deepseek-alternative-2026"
+  }
+}
+</script>

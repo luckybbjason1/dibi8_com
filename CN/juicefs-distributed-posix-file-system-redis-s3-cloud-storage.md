@@ -4,7 +4,7 @@ title: 'JuiceFS (14K⭐): The Distributed POSIX File System That Turns Cloud Sto
 description: 'JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distributed file system. Powered by Redis for metadata, it delivers cloud-native performance with local filesystem semantics — perfect for AI training, big data, and cloud workloads.'
 tags: ["architecture", "distributed", "filesystem", "knowledge-base", "llm", "local", "offline", "open-source", "privacy", "rag", "retrieval", "storage", "system"]
 date: 2026-06-15
-slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
+lastmod:  2026-06-15slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
 category: dev-utils
 github_repo: 'https://github.com/juicedata/juicefs'
 license: 'Apache-2.0'
@@ -480,3 +480,30 @@ For more on cloud-native storage:
 **Join our community**: https://t.me/DIBI8_Group
 
 ---
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "JuiceFS (14K⭐): The Distributed POSIX File System That Turns Cloud Storage Into Local Storage",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
+  }
+}
+</script>

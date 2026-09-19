@@ -563,3 +563,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công bố Liên kết Liên kết
 
 Bài viết này chứa các liên kết liên kết đến DigitalOcean. Nếu bạn mua dịch vụ qua các liên kết này, chúng tôi có thể nhận hoa hồng mà không có chi phí bổ sung. Khuyến nghị này dựa trên tính hữu ích thực sự cho CI/CD và infrastructure tự động hóa trình duyệt. Mọi benchmark đều được thực hiện độc lập.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhanh hơn Selenium 3 lần — Hướng dẫn Cài đặt",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/playwright-browser-automation-testing"
+  }
+}
+</script>

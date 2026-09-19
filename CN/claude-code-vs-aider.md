@@ -2,7 +2,7 @@
 title: 'Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown'
 description: 'Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — pricing, context, agent style, cost efficiency. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Is Aider open source enough for enterprise use?'
     a: 'Yes — Aider is Apache 2.0 licensed and runs entirely on your machine. The only external call is to whichever model API you configure (OpenAI, Anthropic, local Ollama, etc.). For air-gapped or compliance-sensitive environments, pair Aider with a local model and you have a fully self-hosted AI coding setup. Claude Code requires Anthropic''s cloud.'
 ---
+# Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown
+
 
 ## Quick Answer
 
@@ -216,3 +218,30 @@ For a small team shipping fast with no time for diff review? **Claude Code Max 5
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/claude-code-vs-aider"
+  }
+}
+</script>

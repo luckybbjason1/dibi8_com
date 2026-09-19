@@ -362,3 +362,30 @@ Spark는 시장가 있고 거래 가능, 즉 리베이트는 수수료 할인 �
 - [RTK — AI 코딩 에이전트 토큰 절감 오픈소스 Rust CLI 프록시](/kr/resources/dev-utils/rtk-rust-cli-proxy-ai-token-saver/)
 
 *마지막 업데이트: 2026-05-17. Affiliate 공시: 이 글은 Minara 추천 링크를 포함합니다. 이 링크를 통해 가입 시 dibi8이 수수료를 받습니다(당신의 비용은 동일). 수수료와 무관하게 추천할 도구만 리뷰합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Minara 리뷰 2026: Hyperliquid 위에서 동작하는 AI 트레이딩 플랫폼이 블룸버그 터미널을 하나의 채팅창으로 압축한다",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/minara-ai-trading-hyperliquid-review-2026"
+  }
+}
+</script>

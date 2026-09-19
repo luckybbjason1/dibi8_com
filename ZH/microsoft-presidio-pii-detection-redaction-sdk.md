@@ -456,3 +456,30 @@ Microsoft Presidio 是最全面的开源个人身份信息（PII）检测和脱�
 **加入社区：** [GitHub 讨论](https://github.com/microsoft/presidio/discussions) · [GitHub 问题](https://github.com/microsoft/presidio/issues)
 
 📢 **保持更新：** 加入我们的 [Telegram 群组](https://t.me/DIBI8_Group/2)，获取每日 AI 工具评测和新内容的抢先体验。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Presidio 评论：微软的开源个人身份信息检测和数据脱敏框架（9.4K 星）",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/microsoft-presidio-pii-detection-redaction-sdk"
+  }
+}
+</script>

@@ -677,3 +677,30 @@ Dagger 为 CI/CD 带来了根本不同的方法：流水线作为真正的代码
 - [Dagger CI/CD 教程：用代码编写流水线](https://byteiota.com/dagger-ci-cd-tutorial-write-pipelines-as-code-not-yaml/)
 - [2026 年最佳 CI/CD 工具：数据解读](https://blog.jetbrains.com/teamcity/2026/03/best-ci-tools/)
 - [Dagger for GitHub Action](https://github.com/dagger/dagger-for-github)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dagger: 可编程 CI/CD 15K+ Stars — 对比 GitHub Actions、GitLab CI 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/dagger"
+  }
+}
+</script>

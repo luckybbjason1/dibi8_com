@@ -455,3 +455,30 @@ Hyperliquid已牢固确立其作为2026年首屈一指的链上永续合约期�
 - [Minara AI交易机器人](https://minara.ai/r/OSXG4X) —— AI驱动的自动化交易
 - [Binance交易所](https://www.bsmkweb.cc/register?ref=DIBI8) —— 全球领先的加密货币交易所
 - [Hyperliquid文档](https://hyperliquid.gitbook.io/hyperliquid-docs)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hyperliquid 2026：日交易量超20亿美元的链上永续合约DEX — 交易机器人集成指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/hyperliquid-perp-dex-trading"
+  }
+}
+</script>

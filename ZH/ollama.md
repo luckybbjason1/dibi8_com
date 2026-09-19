@@ -695,3 +695,30 @@ Ollama 消除了本地 LLM 部署的摩擦。一条命令安装，一条命令�
 - Open WebUI GitHub：https://github.com/open-webui/open-webui
 - LangChain Ollama 集成：https://python.langchain.com/docs/integrations/chat/ollama
 - Continue.dev 文档：https://docs.continue.dev
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ollama: 137K+ Stars — 一条命令本地运行大模型，2026 完整配置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/ollama"
+  }
+}
+</script>

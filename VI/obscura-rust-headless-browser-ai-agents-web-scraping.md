@@ -2,7 +2,7 @@
 title: 'Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南'
 description: 'Obscura（14,788 顆 GitHub 星）是一款為 AI 代理和網頁爬蟲設計的 Rust 無頭瀏覽器引擎。30MB 記憶體、85ms 頁面載入，內建反偵測功能。為 Puppeteer 和 Playwright 提供即插即用取代方案，支援 Docker 和二進位安裝。'
 date: 2026-06-09
-slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
+lastmod:  2026-06-09slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
 tags: ['obscura', '無頭瀏覽器', 'Rust 瀏覽器', '網頁爬蟲', 'AI 代理工具', 'Puppeteer 替代方案', 'Playwright 替代方案', '反偵測', '隱密瀏覽']
 github_repo: 'https://github.com/h4ckf0r0day/obscura'
@@ -545,3 +545,30 @@ Obscura 代表了無頭瀏覽器技術的重大進步。在 30MB 記憶體、85m
 加入我們的社群以獲得更多 AI 工具深度解析：[t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **免責聲明：** 本文僅供資訊用途。在生產環境中運行第三方軟體前，請務必檢閱原始碼。附屬披露：以上部分連結可能包含附屬代碼。我們可能會賺取佣金，而對您不會產生額外費用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/obscura-rust-headless-browser-ai-agents-web-scraping"
+  }
+}
+</script>

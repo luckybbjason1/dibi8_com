@@ -3,7 +3,7 @@ title: 'AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks — The 5-Layer M
 description: 'We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, here is the 5-layer method that got us cited by Google SGE, Perplexity, and ChatGPT.'
 tags: ["open-source"]
 date: 2026-06-15
-slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
+lastmod:  2026-06-15slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
 github_repo: 'https://github.com/dibi8-com/dibi8'
 license: 'MIT'
@@ -451,3 +451,30 @@ Join our community: [Telegram Group](https://t.me/DIBI8_Group)
 - ChatGPT Web Browsing: https://openai.com/index/chatgpt
 
 *Disclosure: This article may contain affiliate links. If you register through our links, we may receive a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks — The 5-Layer Methodology",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-seo-geo-dibi8-methodology-google-sge-perplexity"
+  }
+}
+</script>

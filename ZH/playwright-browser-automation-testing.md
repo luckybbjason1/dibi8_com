@@ -563,3 +563,30 @@ playwright install
 ## 联盟披露
 
 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接购买服务，我们可能会获得佣金，不会向你收取额外费用。此推荐基于对 CI/CD 和浏览器自动化基础设施的真实实用性。所有基准测试均为独立进行。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Playwright 2026: 比 Selenium 快 3 倍的跨浏览器自动化工具 — 安装指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/playwright-browser-automation-testing"
+  }
+}
+</script>

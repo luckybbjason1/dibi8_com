@@ -789,3 +789,30 @@ Perplexity는 쿼리 볼륨과 토큰 소비를 기반으로 하는 결합 가�
 Perplexity API는 개발자가 접근할 수 있는 RAG 기술의 중요한 발전을 나타냅니다. 실시간 웹 인덱싱, 여러 전문 Sonar 모델, 투명한 인용, OpenAI 호환 인터페이스를 결합함으로써 벡터 데이터베이스, 임베딩 파이프라인 또는 관련성 조정을 관리할 필요 없이 프로덕션급 RAG로의 직접적인 경로를 제공합니다.
 
 연구 어시스턴트, 팩트 체크 도구, 동적 지식 베이스, 콘텐츠 검증 시스템을 포함한 차세대 지능형 애플리케이션을 구축하는 개발자에게 Perplexity는 이 기대를 충족할 수 있는 애플리케이션을 배치하여 사용자가 신뢰할 수 있는 경험을 제공합니다. 모든 답변은 실제이며 인용 가능한 출처의 기반 위에 서 있기 때문입니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "perplexity-api-rag-search",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/perplexity-api-rag-search"
+  }
+}
+</script>

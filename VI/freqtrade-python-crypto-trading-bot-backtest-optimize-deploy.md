@@ -2,7 +2,7 @@
 title: 'Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu, Triển khai — Hướng dẫn thực tế 2026'
 description: 'Freqtrade (51.300 sao GitHub) là bot giao dịch crypto mã nguồn mở viết bằng Python. Backtest chiến lược, tối ưu hyperopt, triển khai API 20+ exchange. Bao gồm cài đặt, phát triển chiến lược và benchmark backtest thực tế.'
 date: 2026-06-08
-slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
+lastmod:  2026-06-08slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
 tags: ['freqtrade', 'bot giao dịch crypto', 'giao dịch Python', 'backtest chiến lược', 'tối ưu hyperopt', 'API crypto', 'giao dịch self-hosted', 'giao dịch định lượng']
 github_repo: 'https://github.com/freqtrade/freqtrade'
@@ -253,3 +253,30 @@ Dù là algorithmic day-trading, swing trading, hay học quantitative finance, 
 Tham gia [nhóm Telegram dibi8 tiếng Việt](https://t.me/DIBI8_Group/18) thảo luận Freqtrade strategies. Xem [Minara AI trading](dibi8-internal-link) và [n8n workflow automation](dibi8-internal-link). Thử hôm nay — `freqtrade download-data` và start first backtest.
 
 Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đăng ký qua các liên kết này, dibi8.com có thể nhận hoa hồng mà bạn không tốn thêm chi phí. Giao dịch có rủi ro, chỉ đầu tư số tiền bạn có thể mất.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu, Triển khai — Hướng dẫn thực tế 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy"
+  }
+}
+</script>

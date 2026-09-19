@@ -162,3 +162,30 @@ Hoàn toàn mã nguồn mở theo giấy phép MIT.
 **GitHub:** [github.com/luckybbjason1/ai-token-monitor](https://github.com/luckybbjason1/ai-token-monitor)
 
 Nếu công cụ này giúp bạn tránh được bất ngờ rate limit giữa chừng công việc, hãy Star repository. Issues và PR luôn được chào đón — đặc biệt cho hỗ trợ macOS hoặc tích hợp dịch vụ mới.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Grok, Kimi trực tiếp trên Linux",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-token-monitor-conky-linux"
+  }
+}
+</script>

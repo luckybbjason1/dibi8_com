@@ -2,7 +2,7 @@
 title: 'Supabase vs Firebase 2026：哪个 BaaS 更值得选？'
 description: '基于 Postgres 的开源 Supabase 和 Google NoSQL Firebase 横向对比 — 数据库、认证、存储、实时、边缘函数、定价、锁定、自托管。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00
-draft: false
+lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
 categories: [vs]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: '哪个更适合 AI / 向量搜索？'
     a: 'Supabase 完胜 — 内置 pgvector，可以把 Embedding 存到和业务数据同一个库里，用一行 SQL 跑余弦相似度查询。Firebase 没有原生向量支持，需要外挂 Vertex AI 或单独的向量数据库。做 2026 年的 RAG/AI 应用，Supabase 是显而易见的选择。'
 ---
+# Supabase vs Firebase 2026：哪个 BaaS 更值得选？
+
 
 ## 快速结论
 
@@ -194,3 +196,30 @@ Firebase Auth 是 BaaS 圈里匿名认证和 SMS 手机认证最成熟的。社�
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Supabase vs Firebase 2026：哪个 BaaS 更值得选？",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/supabase-vs-firebase"
+  }
+}
+</script>

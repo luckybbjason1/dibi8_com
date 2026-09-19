@@ -156,3 +156,30 @@ AI가 GPL 코드를 독점 코드베이스에 토해낼 수 있고, 그 결과 �
 ---
 
 **관련 글**: [AI 코딩 2026-Q2 격돌](https://dibi8.com/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [로컬 우선 AI 스택 2026](https://dibi8.com/kr/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/) · [셀프 호스팅 LLM 2026](https://dibi8.com/kr/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 코딩 윤리 2026: 기업 \"허용 vs 제한\" 정책 가이드",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-coding-ethics-corporate-policy-guide-2026"
+  }
+}
+</script>

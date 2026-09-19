@@ -87,3 +87,30 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 > **Triển khai hạ tầng AI an toàn:** Nếu bạn chạy MCP server hoặc workload AI trên VPS, hardening hệ điều hành máy chủ là tuyến phòng thủ đầu tiên. [DigitalOcean Droplet $6/tháng](https://m.do.co/c/eca87ac14ee0) cho phép bạn cấu hình firewall, user isolation và audit log riêng. Người dùng mới nhận **$200 credit miễn phí**.
 
 **GitHub:** [perplexityai/bumblebee](https://github.com/perplexityai/bumblebee) · v0.1.1 · Apache-2.0
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cung Ứng Nội Bộ — Hỗ Trợ MCP và Extension Editor",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/bumblebee-supply-chain-scanner-perplexity-2026"
+  }
+}
+</script>

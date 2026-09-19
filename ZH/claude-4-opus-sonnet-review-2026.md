@@ -2,7 +2,7 @@
 title: 'Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试'
 description: 'Claude 4 全系横评：Opus 4、Sonnet 4、Haiku 4 — 编程、推理、上下文、定价，以及与 GPT-4o、Gemini 1.5 Pro 的对比。2026 年 6 月更新。'
 date: 2026-06-06 00:00:00+08:00
-draft: false
+lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm评测, ai编程, 推理模型]
 categories: [review]
 faqs:
@@ -17,6 +17,8 @@ faqs:
   - q: 'Claude 4 的上下文窗口有多大？'
     a: 'Claude 4 全系支持 200K token 上下文窗口，可在单次调用中分析整本书、大型代码库或超长对话历史。输出窗口最大 32K token，一次生成长报告、完整文件或多章节文档完全够用。'
 ---
+# Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试
+
 
 ![Claude 4 Opus 4 Sonnet 4 review — Anthropic's latest model family, via dibi8.com](https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80)
 
@@ -143,3 +145,30 @@ print(message.content)
 ---
 
 *模型 ID 以 [Anthropic 官方文档](https://docs.anthropic.com/en/docs/about-claude/models/overview) 为准。定价可能变动，请查阅 Anthropic 官网最新价格。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试",
+  "datePublished": "2026-06-06",
+  "dateModified": "2026-06-06",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/claude-4-opus-sonnet-review-2026"
+  }
+}
+</script>

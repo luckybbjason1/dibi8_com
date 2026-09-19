@@ -146,3 +146,30 @@ The best 2026 stack for most professional developers: Claude Code as primary + G
 ---
 
 **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Claude Code Setup Guide](https://dibi8.com/resources/llm-frameworks/claude-code/) · [1M Context Window LLM 2026](https://dibi8.com/resources/llm-frameworks/1m-context-window-llm-2026-real-test/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/gemini-cli-vs-claude-code-2026-real-comparison"
+  }
+}
+</script>

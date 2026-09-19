@@ -4,7 +4,7 @@ description: "Hướng dẫn n8n toàn diện 2026 — nền tảng tự động
 keywords: n8n, hướng dẫn n8n, tự động hóa workflow AI, công cụ tự động hóa mã nguồn mở, n8n tự host, n8n vs Zapier, xây dựng AI Agent, tích hợp LangChain, tự động hóa SEO, cài đặt Docker n8n
 author: Home Hermes
 date: 2026-05-20
----
+lastmod:  2026-05-20---
 
 # Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier
 
@@ -450,3 +450,30 @@ Triển khai n8n. Xây một workflow AI. Lặp lại từ đó.
 - GitHub: [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n)
 
 *Cập nhật lần cuối: 20 tháng 5, 2026. Tham khảo phiên bản n8n: 1.84+.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/n8n-ai-workflow-automation-self-hosted-2026"
+  }
+}
+</script>

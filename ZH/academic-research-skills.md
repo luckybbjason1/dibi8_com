@@ -2,7 +2,7 @@
 title: "学术研究技能：用 AI 自动化文献综述——31K 星框架 2026"
 description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。"
 date: 2026-06-15
-slug: academic-research-skills
+lastmod:  2026-06-15slug: academic-research-skills
 category: dev-utils
 tags: ['学术研究', '文献综述', 'AI 研究', '论文分析', '综合', 'claude code', '研究自动化']
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
@@ -364,3 +364,30 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
 **行动号召**：加入 DIBI8 研究社区 Telegram —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "学术研究技能：用 AI 自动化文献综述——31K 星框架 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/academic-research-skills"
+  }
+}
+</script>

@@ -824,3 +824,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links for [DigitalOcean](https://m.do.co/c/eca87ac14ee0). If you sign up through these links, dibi8.com receives a commission at no extra cost to you. We only recommend services we have evaluated and believe provide genuine value for ML infrastructure deployments. Opinions expressed are independent of any affiliate relationship.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Feast: The Open-Source Feature Store Serving ML Features at Sub-Second Latency — 2026 Setup Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/feast-feature-store-ml"
+  }
+}
+</script>

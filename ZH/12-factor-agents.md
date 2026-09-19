@@ -2,7 +2,7 @@
 title: "12-Factor Agents：构建可靠 LLM 应用程序的原则性框架"
 description: "12-Factor Agents 框架将经过实战检验的 12-Factor App 方法论适配到 LLM 驱动的应用程序，提供了一种构建可靠、可伸缩、可观测的 AI 代理的原则性方法。"
 date: 2026-06-10
-slug: 12-factor-agents
+lastmod:  2026-06-10slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -413,3 +413,30 @@ DSPy 采取了完全不同的方法，专注于提示和思维链推理的程序
 5. [DigitalOcean - AI 云基础设施](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - 高性能托管](https://htstack.com/)
 7. [WebShare - 数据管道的代理服务](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12-Factor Agents：构建可靠 LLM 应用程序的原则性框架",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/12-factor-agents"
+  }
+}
+</script>

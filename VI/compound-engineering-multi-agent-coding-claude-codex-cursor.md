@@ -2,7 +2,7 @@
 title: 'Compound Engineering: Điều phối Claude Code, Codex và Cursor cùng lúc — Hướng dẫn Plugin Đa Agent'
 description: 'Compound Engineering (20K sao) là một plugin đa agent cho Claude Code, Codex và Cursor. 9 lệnh để động não, lập kế hoạch, rà soát, gỡ lỗi và tích lũy kiến thức. Quy trình 80% lập kế hoạch, 20% thực thi.'
 date: 2026-06-13
-slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
+lastmod:  2026-06-13slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
 tags: ['compound-engineering', 'multi-agent', 'claude-code', 'codex', 'cursor', 'planning', 'review']
 github_repo: 'https://github.com/EveryInc/compound-engineering-plugin'
@@ -489,3 +489,30 @@ Thêm về quy trình đa agent:
 ---
 
 **Tiết lộ**: Bài viết này chứa các liên kết liên kết. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua liên kết của chúng tôi, không phát sinh chi phí thêm cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Compound Engineering: Điều phối Claude Code, Codex và Cursor cùng lúc — Hướng dẫn Plugin Đa Agent",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/compound-engineering-multi-agent-coding-claude-codex-cursor"
+  }
+}
+</script>

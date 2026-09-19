@@ -750,3 +750,30 @@ MLflow 仍然是 ML 生命周期管理最实用的开源解决方案。其零摩
 10. [PostgreSQL](dibi8-internal-link) — 数据库设置相关指南
 
 *联盟营销披露: 本文包含 DigitalOcean 的联盟链接。如果你通过这些链接注册，dibi8.com 会获得佣金，而你无需支付额外费用。我们只推荐用于自己基础设施的服务。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/mlflow-experiment-tracking-production"
+  }
+}
+</script>

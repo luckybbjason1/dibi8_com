@@ -2,7 +2,7 @@
 title: 'Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测'
 description: 'Impeccable（3.7 万星标）是为 AI 编码代理设计的编程语言，包含 23 个命令、41 个检测规则和实时浏览器迭代。通过确定性的设计质量检查修复 AI 生成的 UI 粗糙问题。兼容 Claude Code、Cursor 和 Codex。'
 date: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
+lastmod:  2026-06-13slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 tags: ['impeccable', 'design-language', 'ai-design', 'frontend', 'claude-code', 'cursor']
 github_repo: 'https://github.com/pbakaus/impeccable'
@@ -420,3 +420,30 @@ Impeccable 解决了一个每个 AI 编码代理用户都经历过的真实问�
 ---
 
 **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，对你不会产生额外费用。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/impeccable-ai-design-language-harness-quality-ui"
+  }
+}
+</script>

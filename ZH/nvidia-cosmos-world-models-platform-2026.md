@@ -2,7 +2,7 @@
 title: 'NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）'
 description: 'NVIDIA Cosmos 是一个开源的世界模型平台，包含数据集和工具，用于构建物理AI——机器人、自动驾驶汽车、智能基础设施。Cosmos 3 采用混合Transformer架构，统一支持语言、图像、视频、音频和行动生成。提供16B和64B两种模型。'
 date: 2026-06-13
-slug: 'nvidia-cosmos-world-models-platform-2026'
+lastmod:  2026-06-13slug: 'nvidia-cosmos-world-models-platform-2026'
 category: ai-tools
 tags: ['nvidia-cosmos', 'world-models', 'physical-ai', 'robotics', 'video-generation', 'multimodal', 'mixture-of-transformers', 'open-source', 'ai-simulation']
 github_repo: 'https://github.com/NVIDIA/cosmos'
@@ -456,3 +456,30 @@ NVIDIA Cosmos代表了我们在AI和物理世界交互方式上的根本性转�
 内部链接：[Runway Gen-3 深度评测 2026](https://dibi8.com/runway-gen3-review-2026) · [Stability AI Stable Video Diffusion 详解](https://dibi8.com/stability-ai-stable-video-diffusion)
 
 **披露声明**：本文提及的工具可能存在联盟关系。我们不接受付费正面评价。所有基准测试均为自行实施或源自官方文档。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/nvidia-cosmos-world-models-platform-2026"
+  }
+}
+</script>

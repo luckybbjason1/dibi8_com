@@ -456,3 +456,30 @@ VideoReTalking 为音频驱动唇形同步提供了一个实用的自托管解�
 - [GeneFace 仓库](https://github.com/yerfor/GeneFace)
 - [GFPGAN 人脸修复](https://github.com/TencentARC/GFPGAN)
 - [预训练模型 (Google Drive)](https://drive.google.com/drive/folders/18rhjMpxK8LVVxf7PI6XwOidt8Vouv_H0)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/video-retalking"
+  }
+}
+</script>

@@ -601,3 +601,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [VS Code Continue Extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 - [JetBrains Marketplace - Continue](https://plugins.jetbrains.com/plugin/22707-continue)
 - [Continue.dev Blog](https://blog.continue.dev/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Continue.dev: 33K+ Stars — Open-Source AI Code Assistant vs Copilot, Cursor 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/continue"
+  }
+}
+</script>

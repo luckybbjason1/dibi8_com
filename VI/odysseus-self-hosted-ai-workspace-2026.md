@@ -34,6 +34,8 @@ faqs:
   - q: 'Có thể dùng Odysseus trên điện thoại không?'
     a: 'Có. Odysseus là PWA (Progressive Web App) với thiết kế đáp ứng hoàn toàn. Trên iOS hoặc Android, bạn có thể "Thêm vào màn hình chính" để có trải nghiệm gần như ứng dụng native. Các tính năng Cookbook và Agent cũng hoạt động trên di động, nhưng việc chạy mô hình cục bộ cần GPU vẫn đòi hỏi máy tính hoặc server.'
 ---
+# Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026
+
 
 Odysseus ra mắt trên GitHub ngày 31 tháng 5 năm 2026 và đạt 63.000 sao vào ngày 8 tháng 6 — trung bình khoảng **7.000 sao mới mỗi ngày**, trở thành một trong những dự án AI mã nguồn mở tăng trưởng nhanh nhất năm 2026. Ý tưởng cốt lõi đơn giản: tất cả những gì bạn nhận được từ gói ChatGPT Plus $20/tháng, chạy trên phần cứng của chính bạn, với dữ liệu của riêng bạn, dưới giấy phép MIT.
 
@@ -115,3 +117,30 @@ Với triển khai agent cấp độ sản xuất, các framework đã được 
 Nếu bạn muốn trải nghiệm AI như ChatGPT trên phần cứng của chính mình, không tốn phí hàng tháng, không đẩy dữ liệu lên cloud, Odysseus là lựa chọn mã nguồn mở hoàn chỉnh nhất hiện tại. 63.000 sao trong 9 ngày phản ánh sự ủng hộ thực sự từ cộng đồng, không phải hype. Clone repo, chạy `docker compose up`, 5 phút sau bạn có đầy đủ không gian làm việc AI.
 
 **GitHub:** [pewdiepie-archdaemon/odysseus](https://github.com/pewdiepie-archdaemon/odysseus)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/odysseus-self-hosted-ai-workspace-2026"
+  }
+}
+</script>

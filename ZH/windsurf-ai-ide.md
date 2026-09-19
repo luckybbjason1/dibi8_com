@@ -5,7 +5,7 @@ tags: ['ai-ide', 'coding-agent', 'windsurf', 'codeium', 'cursor-alternative', 'a
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: windsurf-ai-ide
 lang: zh-CN
 ---
@@ -502,3 +502,30 @@ Windsurf 支持所有主要语言：Python、JavaScript/TypeScript、Go、Rust�
 ---
 
 *加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：[t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Windsurf AI IDE — 与你一起思考的智能编程编辑器",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/windsurf-ai-ide"
+  }
+}
+</script>

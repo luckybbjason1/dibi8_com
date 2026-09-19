@@ -204,3 +204,30 @@ Pair with [Axolotl](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-
 ---
 
 *Part of dibi8's Fine-Tuning Stack — see the upcoming Fine-Tuning Stack collection for the full pipeline from dataset prep to production deployment.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unsloth 2026: 64.9k-Star Fast LLM Fine-Tuning — 2× Speed, 70% Less VRAM, Single-GPU Friendly",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/unsloth-fast-llm-fine-tuning-2026"
+  }
+}
+</script>

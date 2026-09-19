@@ -5,7 +5,7 @@ title: 'MinerU: 별 70.6K개 — 모든 문서를 LLM 지원 마크다운으로 
 description: 'MinerU(70,600개 이상의 GitHub 스타)는 LLM, RAG 및 에이전트 워크플로를 위해 PDF, DOCX, PPTX, XLSX, 이미지 및 웹 페이지를 구조화된 Markdown 및 JSON으로 변환합니다. 109개 언어 OCR, 수식-LaTeX, 테이블-HTML을 지원하고 CPU 또는 GPU에서 실행됩니다.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-slug: 'mineru-document-parsing-engine'
+lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
@@ -253,3 +253,29 @@ RAG 시스템을 구축하든, 도메인별 LLM을 교육하든, AI 에이전트
 - 디스코드 커뮤니티: https://discord.gg/Tdedn9GTXq
 
 **공개**: 이 기사에는 제휴사 링크가 포함되어 있습니다. 당사 링크를 통해 가입하시면 추가 비용 없이 소액의 커미션을 받으실 수 있습니다. 이는 독립적인 기술 저널리즘을 지원하고 dibi8.com과 같은 리소스를 광고 없이 무료로 유지하는 데 도움이 됩니다.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MinerU: 별 70.6K개 — 모든 문서를 LLM 지원 마크다운으로 변환",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/mineru-document-parsing-engine"
+  }
+}
+</script>

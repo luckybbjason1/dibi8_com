@@ -2,7 +2,7 @@
 title: 'open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026'
 description: 'open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, 멀티모달 오디오 에피소드 포함.'
 date: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm 대안', '셀프호스팅 RAG', '지식베이스 AI', '멀티모달 RAG', '오픈소스 노트북', 'AI 팟캐스트 생성기', '셀프호스팅 LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -180,3 +180,30 @@ open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없�
 [dibi8 한국어 Telegram 그룹](https://t.me/DIBI8_Group/9)에 참여하여 open-notebook 설정을 논의하세요. [LangChain RAG 아키텍처](dibi8-internal-link) 및 [벡터 데이터베이스 비교](dibi8-internal-link) 가이드 확인. 오늘 시도해보세요 — `docker compose up`, PDF 업로드, 질문하세요.
 
 위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+  }
+}
+</script>

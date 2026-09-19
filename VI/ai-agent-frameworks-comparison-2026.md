@@ -1,7 +1,7 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — So sánh các khung tác nhân AI (2026)"
 description: "So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, điểm chuẩn hiệu suất và hướng dẫn thực tế để chọn khung phù hợp cho dự án của bạn."
 date: 2026-06-30T00:00:00+09:00
-lang: vi
+lastmod:  2026-06-30T00:00:00+09:00lang: vi
 draft: false
 tags: ["ai-agents", "frameworks", "comparison", "langchain", "crewai", "autogen", "llamaindex", "langgraph"]
 categories: ["llm-frameworks"]

@@ -150,3 +150,30 @@ If you just want to talk to a locally-served open model without training your ow
 nanochat demystifies the entire LLM stack. In a world where most AI tooling hides complexity behind abstractions, it goes the opposite direction: every algorithm visible, every file readable, every component replaceable. The 54,700 stars reflect genuine community appreciation for what Karpathy has always done best — teaching by showing the code.
 
 **GitHub:** [karpathy/nanochat](https://github.com/karpathy/nanochat) · 54.7k stars · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "nanochat 2026: Andrej Karpathy''s Open-Source \"ChatGPT for $100\" — Full LLM Pipeline in 8,000 Lines",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/nanochat-karpathy-train-your-own-llm-100-dollars-2026"
+  }
+}
+</script>

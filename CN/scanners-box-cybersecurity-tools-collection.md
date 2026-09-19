@@ -280,3 +280,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [fern-wifi-cracker](https://github.com/savio-code/fern-wifi-cracker)
 - [subfinder](https://github.com/projectdiscovery/subfinder)
 - [API-Security-Checklist](https://github.com/shieldfy/API-Security-Checklist)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Scanners-Box: 200+ Cybersecurity Tools Collection for Security Professionals",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/scanners-box-cybersecurity-tools-collection"
+  }
+}
+</script>

@@ -27,6 +27,8 @@ tags: ['저렴한 LLM', '무료 티어', '비용 최적화', '스택', '컬렉�
 aliases:
   - /posts/cheap-llm-stack/
 ---
+# 저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법
+
 
 대부분의 "LLM 비용 최적화" 조언은 "더 싼 모델을 써라"입니다. 이 컬렉션은 더 야심찹니다: **실제 프로덕션 워크로드(코딩 에이전트, 콘텐츠 생성, 검색, 기본 에이전트)를 총 $0-15/월로 처리하는 5컴포넌트 스택.** 취미 셋업이 아니고, "하루 100 요청 정도 괜찮"이 아닙니다. 진짜 매일 쓰는 추론을 SaaS-킬러 가격에.
 
@@ -227,3 +229,30 @@ $0-15 스택은 다음 중 하나 부딪힐 때까지:
 ---
 
 *이 컬렉션을 [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/)와 함께 — Ollama + 9Router + RTK 세 기초 컴포넌트 공유.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/cheap-llm-stack"
+  }
+}
+</script>

@@ -459,3 +459,30 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
 **커뮤니티에 참여하세요:** [GitHub 토론](https://github.com/microsoft/presidio/discussions) · [GitHub 이슈](https://github.com/microsoft/presidio/issues)
 
 📢 **최신 정보를 받아보세요:** 일일 AI 도구 리뷰와 새로운 콘텐츠에 대한 조기 접근을 위해 저희 [텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "프레시디오 리뷰: 마이크로소프트의 오픈 소스 PII 감지 및 데이터 삭제 프레임워크 (9.4K 스타)",
+  "datePublished": "2026-01-01",
+  "dateModified": "2026-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/microsoft-presidio-pii-detection-redaction-sdk"
+  }
+}
+</script>

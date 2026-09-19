@@ -533,3 +533,30 @@ Docker Compose는 2026년에도 멀티 컨테이너 배포를 위한 가장 실�
 - [Docker Compose 프로덕션 모범 사례](https://eastondev.com/blog/en/posts/dev/20260412-docker-compose-production/)
 - [Nomad vs Docker Compose — hostmycode.com](https://www.hostmycode.com/blog/container-orchestration-beyond-kubernetes-2026-nomad-docker-swarm-podman-vps)
 - [Docker Desktop 가격 및 라이선스](https://www.docker.com/pricing/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docker Compose: 37,393 GitHub Stars — 멀티 컨테이너 앱 완벽 설정 가이드 2026",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/docker-compose"
+  }
+}
+</script>

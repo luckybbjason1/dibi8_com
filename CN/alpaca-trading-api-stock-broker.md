@@ -766,3 +766,30 @@ For traders who want to accelerate their journey into automated trading without 
 ---
 
 *Last updated: 2026-05-19 | Alpaca API version: v2*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Alpaca Trading API 2026: The Commission-Free Stock Brokerage API for Algorithmic Trading — Setup Guide",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/alpaca-trading-api-stock-broker"
+  }
+}
+</script>

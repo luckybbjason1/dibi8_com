@@ -2,7 +2,7 @@
 title: "Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM"
 description: "Qiaomu 万物转 NotebookLM 是一个 Claude Code 技能和 Python 工具包，可将 15 多种内容源——YouTube 视频、播客、文章、PDF——转换为 Google NotebookLM 知识库，并具有绕过付费墙的能力。"
 date: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
+lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, 内容转换, Claude Code, 知识管理, AI 工具]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -471,3 +471,30 @@ pip install qiaomu-notebooklm
 4. [DigitalOcean - AI 的云基础设施](https://www.digitalocean.com/try/affiliate)
 5. [HTStack - 高性能托管](https://htstack.com/)
 6. [WebShare - 数据管道代理服务](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/qiaomu-anything-to-notebooklm"
+  }
+}
+</script>

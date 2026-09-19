@@ -2,7 +2,7 @@
 title: 'Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026'
 description: 'Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging Face, Anthropic. Covers setup, integrations, benchmarks, and production hardening.'
 date: 2026-05-23
-slug: 'langflow'
+lastmod:  2026-05-23slug: 'langflow'
 category: 'llm-frameworks'
 tags: [langflow, llm workflows, visual programming, AI agents, LangChain, flow-based programming, prompt engineering, deployment, low-code AI]
 github_repo: 'https://github.com/langflow-ai/langflow'
@@ -416,3 +416,29 @@ Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for more dis
 ---
 **Disclosure**: Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/langflow-visual-llm-workflow-builder-2026"
+  }
+}
+</script>

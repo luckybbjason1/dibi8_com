@@ -549,3 +549,30 @@ VớI hơn **1 tỷ USD tài sản được bảo vệ** và các cảnh báo b�
 ---
 
 *Tuyên bố Miễn trừ: Bài viết này chỉ nhằm mục đích thông tin và không cấu thành lờI khuyên tài chính hoặc bảo mật. Luôn xác minh địa chỉ hợp đồng, sử dụng ví phần cứng cho các khoản nắm giữ đáng kể và thực hành bảo mật vận hành tốt. Bài đăng này chứa các liên kết liên kết — chúng tôi có thể nhận được khoản bồi thường khi bạn sử dụng liên kết đối tác của chúng tôi mà không phát sinh thêm chi phí cho bạn.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "revoke-crypto-permission-manager",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/revoke-crypto-permission-manager"
+  }
+}
+</script>

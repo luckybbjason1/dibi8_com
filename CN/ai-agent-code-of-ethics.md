@@ -40,6 +40,8 @@ faqs:
   - q: 'Can these ethics principles be enforced in code, or are they just guidelines?'
     a: 'Most of them are enforceable in code. Least privilege is scoped credentials and allowlists; auditability is structured logging of every tool call; reversibility is risk-tiered approval gates plus undo/idempotency; bounded autonomy is rate and spend limits; fail-safe is confidence thresholds and a kill switch. Only the intent behind them — deciding which actions are high-risk — requires human judgment. Ethics that cannot be enforced are decoration.'
 ---
+# The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents
+
 
 > **About this document**: This is a practical code of ethics for engineers building and operating autonomous AI agents — systems that take actions, not just generate text. It is written to be enforceable, not aspirational. Every principle below maps to a control you can put in your codebase before you ship.
 
@@ -165,3 +167,30 @@ Ethics for autonomous agents is not a statement you publish. It is a set of cont
 ---
 
 *This code of ethics is released under CC-BY-4.0 — adapt it into your own agent governance docs freely. If your team is shipping autonomous agents in 2026, the right time to wire in these controls is before the first production run, not after the first incident.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents",
+  "datePublished": "2026-06-04",
+  "dateModified": "2026-06-04",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-agent-code-of-ethics"
+  }
+}
+</script>

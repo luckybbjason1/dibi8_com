@@ -603,3 +603,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [VS Code: GitHub Local Actions Extension](https://marketplace.visualstudio.com/items?itemName=SanjulaGanepola.github-local-actions)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [catthehacker/docker_images](https://github.com/catthehacker/docker_images) — Community runner images mà act sử dụng
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hướng Dẫn CI/CD Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/act"
+  }
+}
+</script>

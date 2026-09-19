@@ -352,3 +352,30 @@ PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG:
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
 *Last updated: 2026-05-07*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PageIndex：29K⭐Hệ thống RAG cách mạng, tìm kiếm tài liệu không cần vector database",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/pageindex-vectorless-reasoning-rag"
+  }
+}
+</script>

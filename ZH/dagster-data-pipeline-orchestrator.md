@@ -632,3 +632,30 @@ Dagster代表了数据团队构建和管理管道的根本性转变。通过将�
 - [Stripe 数据平台迁移案例](https://dagster.io/case-studies)
 
 *Affiliate Disclosure: 本文包含DigitalOcean的联盟链接。如果你通过我们的推荐链接注册，我们会获得佣金，无需你额外付费。所有观点和基准测试都是独立的，基于实际操作测试。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/dagster-data-pipeline-orchestrator"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: 'open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026'
 description: 'open-notebook (28,200 GitHub stars) is the open-source alternative to Google NotebookLM with support for 15+ AI providers. Self-hosted RAG knowledge base with multimodal audio episodes. Includes setup guide, provider comparison, and real benchmarks.'
 date: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
+lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ['open notebook', 'notebook lm alternative', 'self hosted RAG', 'knowledge base AI', 'multimodal RAG', 'open source notebook', 'AI podcast generator', 'self hosted LLM']
 github_repo: 'https://github.com/lfnovo/open-notebook'
@@ -420,3 +420,30 @@ Whether you're a researcher managing hundreds of papers, an engineer building an
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](https://dibi8.com/agentmemory-persistent-m[知识图谱](https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory guide](https://dibi8.com/agentmemory-*) for complementary knowledge. Try open-notebook today — `docker compose up`, upload a PDF, and ask it a question.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+  }
+}
+</script>

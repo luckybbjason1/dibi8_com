@@ -266,3 +266,30 @@ The cure is selection, not abundance. Pick your five core stdio servers, add 2-3
 ---
 
 **Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars (ecosystem total)**: 60K+ across reference repos
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones",
+  "datePublished": "2026-05-26",
+  "dateModified": "2026-05-26",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/mcp-servers-2026-rankings-selection-guide"
+  }
+}
+</script>

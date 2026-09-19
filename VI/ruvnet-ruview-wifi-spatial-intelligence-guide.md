@@ -2,7 +2,7 @@
 title: "RuView: Trí tuệ không gian WiFi cho Smart Buildings — Python CLI, Theo dõi vị trí thời gian thực và Mesh Networks"
 description: "Tìm hiểu cách sử dụng RuView, nền tảng trí tuệ không gian WiFi dựa trên Python theo dõi vị trí thời gian thực, lập bản đồ layout tòa nhà và tối ưu hóa WiFi mesh networks. Hướng dẫn cài đặt pip từng bước, theo dõi thời gian thực và cấu hình mesh network."
 date: 2026-06-10
-slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
+lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
 tags: [ruvnet, ruview, wifi, spatial-intelligence, position-tracking, mesh-network, smart-buildings, python, open-source]
 github_repo: "https://github.com/ruvnet/RuView"
@@ -458,3 +458,30 @@ Nguồn & Đọc thêm
 Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để thảo luận về RuView configurations và WiFi sensing techniques. Xem các hướng dẫn của chúng tôi về [smart building automation](dibi8-internal-link) và [AI agent management](dibi8-internal-link) cho các công cụ bổ trợ. Bắt đầu biến đổi WiFi của bạn thành spatial intelligence ngay hôm nay.
 
 Một số liên kết trên là affiliate links. dibi8.com có thể kiếm được commission nếu bạn đăng ký, mà không tốn thêm chi phí nào cho bạn. Giúp giữ cho trang web hoạt động và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RuView: Trí tuệ không gian WiFi cho Smart Buildings — Python CLI, Theo dõi vị trí thời gian thực và Mesh Networks",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ruvnet-ruview-wifi-spatial-intelligence-guide"
+  }
+}
+</script>

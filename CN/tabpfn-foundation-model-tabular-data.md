@@ -259,3 +259,30 @@ For developers building or deploying open-source AI tools, we recommend:
 - [auto-sklearn](https://github.com/automl/auto-sklearn)
 - [FLAML](https://github.com/microsoft/FLAML)
 - [pandas](https://github.com/pandas-dev/pandas)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TabPFN: Foundation Model for Tabular Data — AI Breakthrough for Structured",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/tabpfn-foundation-model-tabular-data"
+  }
+}
+</script>

@@ -23,6 +23,8 @@ tags: ['AI 회의 어시스턴트', 'AI 회의 기록', 'Otter.ai', 'Fireflies',
 aliases:
 - /kr/posts/ai-meeting-assistant-tools/
 ---
+# 2025년 최고의 AI 회의 어시스턴트 도구 비교: Otter.ai, Fireflies, Fathom 등
+
 
 {</* resource-info */>}
 
@@ -158,3 +160,30 @@ Fathom이 Zoom에 가장 최적화되어 있으며, Otter.ai와 Fireflies도 Zoo
 - [Fathom 공식 웹사이트](https://fathom.video)
 - [Notion AI](https://notion.so)
 - [Microsoft Copilot for Teams](https://microsoft.com)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2025년 최고의 AI 회의 어시스턴트 도구 비교: Otter.ai, Fireflies, Fathom 등",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ai-meeting-assistant-tools"
+  }
+}
+</script>

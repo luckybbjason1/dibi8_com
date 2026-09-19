@@ -567,3 +567,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Tuyên bố tiếp thị liên kết: Bài viết này chứa liên kết tiếp thị của DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Unstructured.io là mã nguồn mở và miễn phí sử dụng; chúng tôi không có quan hệ thương mại với Unstructured-IO. Các ý kiến dựa trên thử nghiệm thực tế.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi Mọi Tài Liệu Thành LLM-Ready Chunks — Hướng Dẫn 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/unstructured-data-preprocessing-llm"
+  }
+}
+</script>

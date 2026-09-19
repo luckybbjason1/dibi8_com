@@ -5,7 +5,7 @@ tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion'
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
-draft: false
+lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
 lang: ko
 ---
@@ -499,3 +499,30 @@ ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드
 ---
 
 *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ComfyUI 워크플로우 — AI 이미지 생성을 위한 시각적 프로그래밍 언어",
+  "datePublished": "2026-07-16",
+  "dateModified": "2026-07-16",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/comfyui-workflows-complete-guide"
+  }
+}
+</script>

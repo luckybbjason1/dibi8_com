@@ -641,3 +641,30 @@ WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 �
 - [CUDA 설치 가이드](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) — Linux GPU 설정
 - [CTranslate2 성능 가이드](https://opennmt.net/CTranslate2/performance.html) — 최적화 팁
 - [WhisperX 예제](https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md) — 다국어 사용 샘플
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WhisperX: 22K+ Stars — 프로덕션 ASR 배포 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/whisperx"
+  }
+}
+</script>

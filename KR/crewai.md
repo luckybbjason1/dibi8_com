@@ -688,3 +688,30 @@ Telegram에서 토론에 참여하세요: [dibi8.com 커뮤니티 가입](https:
 - [CrewAI + IBM watsonx 튜토리얼](https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md)
 
 *공개: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 클릭하고 구매하면 추가 비용 없이 수수료를 받을 수 있습니다. 이는 우리의 독립적인 기술 연구, 테스트 및 물론 교육 콘텐츠 작성을 지원하는 데 도움이 됩니다. 모든 추천은 도구에 대한 우리 자체 평가를 기반으로 합니다.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CrewAI: 51K+ Star로 멀티 에이전트 AI 팀 구축 — 2026 완전 설정 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/crewai"
+  }
+}
+</script>

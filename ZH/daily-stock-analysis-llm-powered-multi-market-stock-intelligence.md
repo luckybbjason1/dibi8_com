@@ -488,3 +488,30 @@ notifier.send_webhook(
 内部链接: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/zh/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/zh/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide)
 
 **披露声明**: 本文提及的工具可能存在联盟关系。我们不接受付费评测。所有观点均为我们自己独立撰写。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "每日股票分析：LLM驱动的多市场股票情报系统",
+  "datePublished": "2026-06-25",
+  "dateModified": "2026-06-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/daily-stock-analysis-llm-powered-multi-market-stock-intelligence"
+  }
+}
+</script>

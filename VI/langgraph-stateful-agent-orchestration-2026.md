@@ -206,3 +206,30 @@ Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} với Postg
 ---
 
 *Muốn thấy LangGraph trong context lớn hơn? Xem [bộ sưu tập AI Agent Tool Chain](/vi/collections/) (sắp ra mắt) để xem nó vừa với MCP server, AgentMemory, sandbox thực thi code thế nào.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LangGraph 1.2 Trong Production: Orchestration Agent Có Trạng Thái Sống Sót Qua Crash (Hướng Dẫn 2026)",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/langgraph-stateful-agent-orchestration-2026"
+  }
+}
+</script>

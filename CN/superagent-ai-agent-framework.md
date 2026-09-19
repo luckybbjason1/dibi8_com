@@ -611,3 +611,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links. If you sign up for [DigitalOcean](https://m.do.co/c/eca87ac14ee0) through our link, we receive a commission at no extra cost to you. We only recommend services we use for our own deployments. Superagent itself is open-source and free to use under the MIT license.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Superagent: Deploy AI Agents to Production with 1 CLI Command — The Minimal Setup Guide for 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/superagent-ai-agent-framework"
+  }
+}
+</script>

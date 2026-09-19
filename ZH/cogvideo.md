@@ -675,3 +675,30 @@ CogVideoX 提供生产级文本生成视频能力，同时具备开源部署的�
 - Wan 2.1 仓库：https://github.com/Wan-Video/Wan2.1
 - HunyuanVideo 仓库：https://github.com/Tencent/HunyuanVideo
 - Open-Sora 仓库：https://github.com/hpcaitech/Open-Sora
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/cogvideo"
+  }
+}
+</script>

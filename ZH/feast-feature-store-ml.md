@@ -737,3 +737,30 @@ feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S")
 ## Affiliate 声明
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过这些链接注册，dibi8.com 将获得佣金，不会增加你的额外费用。我们只推荐经过评估、认为能为 ML 基础设施部署提供真正价值的服务。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Feast: 开源特征存储亚秒级特征服务 — 2026 完整部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/feast-feature-store-ml"
+  }
+}
+</script>

@@ -675,3 +675,30 @@ HTTPie 凭借 38,200 个 GitHub Stars，通过解决一个特定问题赢得了�
 5. **Python Requests 库（HTTPie 依赖）** — https://docs.python-requests.org/
 6. **jq — JSON 处理器（HTTPie 最佳搭档）** — https://jqlang.github.io/jq/
 7. **CurliPie — curl 转 HTTPie 转换工具** — https://curlipie.com/
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wget 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/httpie"
+  }
+}
+</script>

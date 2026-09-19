@@ -466,3 +466,30 @@ The era of vibe coding is not coming. It is here. And Codex CLI is your invitati
 - [Model Context Protocol Specification](https://modelcontextprotocol.io)
 
 *Last updated: May 17, 2026. Codex CLI is under rapid iteration; verify current capabilities against the official documentation.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-Native AI Coding Agents (Install, Multi-Agent Workflows, MCP & Security)",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-05-17",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/openai-codex-cli-terminal-ai-coding-agent-2026"
+  }
+}
+</script>

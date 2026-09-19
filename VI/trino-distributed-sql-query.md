@@ -617,3 +617,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ## Công bố Liên kết Affiliate
 
 Bài viết này chứa liên kết affiliate đến [DigitalOcean](https://m.do.co/c/eca87ac14ee0) và [HTStack](https://my.htstack.com/aff.php?aff=27187). Nếu bạn mua dịch vụ qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ công việc tài liệu open-source của chúng tôi. Chúng tôi chỉ đề xuất các dịch vụ đã tự kiểm tra và sẽ sử dụng cho chính workload production của mình.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Liệu Quy Mô PB — Hướng Dẫn Triển Khai Cluster Tự Host",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/trino-distributed-sql-query"
+  }
+}
+</script>

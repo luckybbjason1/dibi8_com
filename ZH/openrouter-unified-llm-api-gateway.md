@@ -619,3 +619,30 @@ OpenRouter消除了多提供商LLM开发中最大的摩擦：集成复杂性。�
 ## 联盟披露
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 的联盟链接。如果你通过这些链接注册，我们可能会获得佣金，而不会向你收取额外费用。所有意见和基准测试均经过独立验证。产品推荐基于实际技术评估，而非联盟可用性。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/openrouter-unified-llm-api-gateway"
+  }
+}
+</script>

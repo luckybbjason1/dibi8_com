@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
+# CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jenkins in 2025
+
 
 {</* resource-info */>}
 
@@ -179,3 +181,30 @@ To run any of the tools above reliably 24/7, infrastructure matters:
 
 *Affiliate links — no extra cost to you, helps keep dibi8.com running.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jenkins in 2025",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+  }
+}
+</script>

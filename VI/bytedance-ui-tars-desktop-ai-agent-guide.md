@@ -2,7 +2,7 @@
 title: "ByteDance UI-TARS Desktop: Đại Diện AI Ngôn Ngữ-Thị Giác Nhìn Thấy Và Điều Khiển Máy Tính Của Bạn — Hướng Dẫn Cài Đặt Đầy Đủ"
 description: "Tìm hiểu cách triển khai UI-TARS Desktop của ByteDance, một đại diện AI ngôn ngữ-thị giác có thể xem màn hình của bạn và điều khiển ứng dụng thông qua ngôn ngữ tự nhiên. Cài đặt từng bước, benchmark thực tế và so sánh với các giải pháp thay thế."
 date: 2026-06-10
-slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [bytedance, ui-tars, vision-language-model, AI-agent, desktop-automation, GUI-agent, open-source, multimodal-ai]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -513,3 +513,30 @@ Nguồn Và Đọc Thêm
 Tham gia [nhóm Telegram tiếng Anh dibi8](https://t.me/DIBI8_Group/2) để thảo luận về cấu hình UI-TARS và các kỹ thuật tự động hóa máy tính để bàn. Xem các hướng dẫn của chúng tôi về [quản lý đại diện AI](dibi8-internal-link) và [xử lý tài liệu với MarkItDown](dibi8-internal-link) cho các công cụ bổ trợ. Bắt đầu tự động hóa máy tính để bàn của bạn ngay hôm nay.
 
 Một số liên kết trên là liên kết tiếp thị liên kết. dibi8.com có thể kiếm hoa hồng nếu bạn đăng ký, không tốn thêm chi phí cho bạn. Điều này giúp giữ trang web hoạt động và nội dung miễn phí.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ByteDance UI-TARS Desktop: Đại Diện AI Ngôn Ngữ-Thị Giác Nhìn Thấy Và Điều Khiển Máy Tính Của Bạn — Hướng Dẫn Cài Đặt Đầy Đủ",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/bytedance-ui-tars-desktop-ai-agent-guide"
+  }
+}
+</script>

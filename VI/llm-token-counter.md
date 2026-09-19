@@ -6,3 +6,5 @@ lastmod: 2026-05-19
 layout: "tool-llm-token-counter"
 tool_id: "llm-token-counter"
 ---
+# LLM Token Counter — So Sánh Token Hóa GPT-4 / Claude / Gemini
+

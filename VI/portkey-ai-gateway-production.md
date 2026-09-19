@@ -842,3 +842,30 @@ Bắt đầu với Docker nhanh chóng, cấu hình các nhà cung cấp của b
 ---
 
 *Xuất bản: 2026-05-19 | Portkey AI Gateway v2.5.0 | [GitHub: Portkey-AI/gateway](https://github.com/Portkey-AI/gateway)*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình với Khả năng Quan sát — Thiết lập Production",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/portkey-ai-gateway-production"
+  }
+}
+</script>

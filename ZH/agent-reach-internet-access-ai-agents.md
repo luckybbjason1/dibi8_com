@@ -2,7 +2,7 @@
 title: 'Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）'
 description: 'Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。'
 date: 2026-09-19
-slug: 'agent-reach-internet-access-for-ai-agents-2026'
+lastmod:  2026-09-19slug: 'agent-reach-internet-access-for-ai-agents-2026'
 category: 'llm-frameworks'
 tags: ['agent-reach', 'ai-agent', 'scraping', 'automation', 'python', 'no-api-cost']
 github_repo: 'https://github.com/Panniantong/Agent-Reach'
@@ -604,3 +604,30 @@ Agent-Reach 让 AI Agent 的互联网访问变得民主化。在这个工具出�
 **CTA：**加入 DIBI8 Telegram 社区：https://t.me/DIBI8_Group
 
 [DeepSeek Harness 指南](dibi8-internal-link) | [2026 AI Agent 安全](dibi8-internal-link)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/agent-reach-internet-access-ai-agents"
+  }
+}
+</script>

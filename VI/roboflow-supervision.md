@@ -2,7 +2,7 @@
 title: "Roboflow Supervision: Bộ công cụ chú thích thị giác máy tính Python"
 description: "Supervision của Roboflow là một bộ công cụ thị giác máy tính toàn diện giúp đơn giản hóa chú thích CV, xử lý dữ liệu và đánh giá mô hình. pip install supervision để truy cập các công cụ thị giác máy tính tái sử dụng cho dự án của bạn."
 date: 2026-06-10
-slug: roboflow-supervision
+lastmod:  2026-06-10slug: roboflow-supervision
 category: data-science
 tags: [supervision, roboflow, computer vision, annotation, object detection, CV toolkit, data-science]
 github_repo: https://github.com/roboflow/supervision
@@ -587,3 +587,30 @@ Bắt đầu với `pip install supervision` và explore [interactive Colab demo
 5. [DigitalOcean - Cơ sở hạ tầng Cloud cho CV Deployment](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - Lưu trữ Hiệu suất Cao](https://htstack.com/)
 7. [WebShare - Dịch vụ Proxy cho Pipeline Dữ liệu](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Roboflow Supervision: Bộ công cụ chú thích thị giác máy tính Python",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/roboflow-supervision"
+  }
+}
+</script>

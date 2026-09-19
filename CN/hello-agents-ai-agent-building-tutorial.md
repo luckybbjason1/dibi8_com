@@ -405,3 +405,30 @@ If you want to run this stack reliably 24/7, infrastructure choice matters:
 - [Weaviate](https://github.com/weaviate/weaviate)
 - [SWE-bench](https://github.com/SWE-bench/SWE-bench)
 - [AgentBench](https://github.com/THUDM/AgentBench)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hello-Agents: How Datawhale''s Open-Source AI Agent Tutorial Helps You Build",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/hello-agents-ai-agent-building-tutorial"
+  }
+}
+</script>

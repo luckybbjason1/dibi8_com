@@ -638,3 +638,30 @@ Flowise는 아이디어와 배포된 AI Agent 사이의 장벽을 제거합니�
 8. [Flowise vs Dify 비교](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) —— ToolHalla 상세 비교
 9. [Flowise 임베드 위젯 문서](https://www.npmjs.com/package/flowise-embed) —— 챗봇 임베딩을 위한 NPM 패키지
 10. [DigitalOcean Docker 배포 가이드](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Ubuntu 서버 Docker 설치 튜토리얼
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완성 가이드",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/flowise"
+  }
+}
+</script>

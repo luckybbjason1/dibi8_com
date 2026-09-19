@@ -3,7 +3,7 @@ title: "Taste Skill: Stop AI From Generating Generic Slop — Agent Skill Framew
 description: "Taste Skill is a portable agent skill framework that upgrades AI-built interfaces with stronger layout, typography, motion, and spacing. Works with Codex, Cursor, Claude Code, and ChatGPT Images."
 tags: ["ai-agent", "automation", "open-source"]
 date: 2026-06-15
-slug: taste-skill
+lastmod:  2026-06-15slug: taste-skill
 category: dev-utils
 github_repo: "https://github.com/Leonxlnx/taste-skill"
 license: MIT
@@ -390,3 +390,30 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
 **CTA**: Join the Taste Skill community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Taste Skill: Stop AI From Generating Generic Slop — Agent Skill Framework 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/taste-skill"
+  }
+}
+</script>

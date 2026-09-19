@@ -2,7 +2,7 @@
 title: 'Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo ra thực sự trông đẹp — Đánh giá 2026'
 description: 'Impeccable (37K sao) là một ngôn ngữ thiết kế dành cho các tác nhân mã hóa AI với 23 lệnh, 41 quy tắc kiểm tra, và khả năng lặp trực tiếp trên trình duyệt. Khắc phục vấn đề giao diện AI tạo ra trông giống template với các kiểm tra chất lượng thiết kế xác định. Tương thích với Claude Code, Cursor và Codex.'
 date: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
+lastmod:  2026-06-13slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 tags: ['impeccable', 'design-language', 'ai-design', 'frontend', 'claude-code', 'cursor']
 github_repo: 'https://github.com/pbakaus/impeccable'
@@ -420,3 +420,30 @@ Hơn 37.000 sao GitHub và bảo trì tích cực khiến nó trở thành một
 ---
 
 **Tiết lộ**: Bài viết này chứa liên kết tiếp thị liên kết. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua liên kết của chúng tôi, mà không tốn thêm chi phí cho bạn.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo ra thực sự trông đẹp — Đánh giá 2026",
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/impeccable-ai-design-language-harness-quality-ui"
+  }
+}
+</script>

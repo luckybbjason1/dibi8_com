@@ -2,7 +2,7 @@
 title: "지식 작업 플러그인: 향상된 AI 생산성을 위한 Anthropic 플러그인 생태계 2026"
 description: "지식 작업 플러그인(20,728 스타)은 Anthropic의 Claude 확장용으로 문서 편집, 코드 분석, 웹 브라우징, 파일 작업을 위한 강력한 도구 모음을 제공합니다. 워크플로우에 맞는 사용자 지정 플러그인을 구축하세요."
 date: 2026-06-15
-slug: knowledge-work-plugins
+lastmod:  2026-06-15slug: knowledge-work-plugins
 category: dev-utils
 tags: ['anthropic', 'claude', '플러그인', '생산성', '문서 편집', '코드 분석', '웹 브라우징', '도구 사용']
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
@@ -425,3 +425,30 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
 **CTA**: Telegram에서 DIBI8 개발자 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
 
 **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "지식 작업 플러그인: 향상된 AI 생산성을 위한 Anthropic 플러그인 생태계 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/knowledge-work-plugins"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent That Sees and Controls Your Computer — Full Setup Guide"
 description: "Learn how to deploy ByteDance's UI-TARS Desktop, a vision-language AI agent that sees your screen and controls applications through natural language. Step-by-step installation, real-world benchmarks, and comparisons with alternatives."
 date: 2026-06-10
-slug: "bytedance-ui-tars-desktop-ai-agent-guide"
+lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: [bytedance, ui-tars, vision-language-model, AI-agent, desktop-automation, GUI-agent, open-source, multimodal-ai]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
@@ -515,3 +515,30 @@ Sources & Further Reading
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss UI-TARS configurations and desktop automation techniques. Check out our guides on [AI agent management](dibi8-internal-link) and [document processing with MarkItDown](dibi8-internal-link) for complementary tooling. Start automating your desktop today.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ByteDance UI-TARS Desktop: The Vision-Language AI Agent That Sees and Controls Your Computer — Full Setup Guide",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/bytedance-ui-tars-desktop-ai-agent-guide"
+  }
+}
+</script>

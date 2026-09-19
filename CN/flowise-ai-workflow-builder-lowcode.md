@@ -664,3 +664,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 ## Affiliate Disclosure
 
 This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [AppSumo](https://appsumo.com/s/106nifb/). If you sign up using these links, we earn a commission at no additional cost to you. We only recommend services we actively use for our own deployments. All benchmarks and opinions are independently produced and not influenced by any affiliate partnership.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flowise: The Low-Code AI Workflow Builder Deploying LangChain Agents Visually — 2026 Complete Guide",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/flowise-ai-workflow-builder-lowcode"
+  }
+}
+</script>

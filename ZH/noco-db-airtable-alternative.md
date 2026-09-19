@@ -487,3 +487,30 @@ NocoDB 填补了一个特定的空白：为非技术团队提供 Airtable 的易
 ---
 
 *本文可能包含联盟链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会增加你的额外费用。我们只推荐自己使用的服务。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "NocoDB 2026 完整指南：将任何数据库变成智能电子表格的开源 Airtable 替代品",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/noco-db-airtable-alternative"
+  }
+}
+</script>

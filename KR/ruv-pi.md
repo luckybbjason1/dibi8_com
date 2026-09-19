@@ -2,7 +2,7 @@
 title: 'Ruv Pi: 확장 가능한 개발 에이전트 CLI 를 위한 다중 제공자 대형 언어 모델 API'
 description: 'Ruv Pi 는 Earendil Works 에서 개발한 확장 가능한 코드 에이전트 CLI 로, Claude, OpenAI, Gemini 등 다양한 공급자의 지능형 LLM API 를 통합하여 제공합니다. 이를 통해 개발자들은 AI 기반의 코드 에이전트를 구축, 실행 및 확장할 수 있습니다.'
 date: 2026-06-10
-slug: ruv-pi
+lastmod:  2026-06-10slug: ruv-pi
 category: llm-frameworks
 tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
 github_repo: https://github.com/earendil-works/pi
@@ -208,3 +208,30 @@ Ruv Pi 는 코드 생성 에이전트 도구들 중 가장 최신 세대입니�
 
 코드 생성 에이전트를 경험하는 가장 유연한 방법입니다. Pi 를 지금 설치하세요. **[설치Now](https://github.com/earendil-works/pi) | [문서 읽기](https://pi.dev/docs/latest)]**
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ruv Pi: 확장 가능한 개발 에이전트 CLI 를 위한 다중 제공자 대형 언어 모델 API",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/ruv-pi"
+  }
+}
+</script>

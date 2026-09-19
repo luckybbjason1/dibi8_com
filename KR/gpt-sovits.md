@@ -625,3 +625,30 @@ GPT-SoVITS는 최소한의 데이터 요구사항, MIT 라이선싱, 성숙한 �
 - [오픈소스 TTS 비교 가이드](https://www.codesota.com/guides/tts-models)
 - [GPT-SoVITS DeepWiki 아키텍처 가이드](https://deepwiki.com/RVC-Boss/GPT-SoVITS)
 - [GPT-SoVITS v3 기술 논문 참고](https://arxiv.org/pdf/2504.19146)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GPT-SoVITS: 57.5K+ Stars — AI 음성 클로닝 프로덕션 배포 가이드 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/gpt-sovits"
+  }
+}
+</script>

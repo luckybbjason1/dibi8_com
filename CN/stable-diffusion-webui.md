@@ -690,3 +690,30 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [DigitalOcean GPU Droplets Documentation](https://www.digitalocean.com/products/gpu-droplets)
 - [Civitai — Model and LoRA Hub](https://civitai.com)
 - [Hugging Face — Model Downloads](https://huggingface.co/models?pipeline_tag=text-to-image)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stable Diffusion WebUI: 159K+ Stars — The Complete Setup Guide 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/stable-diffusion-webui"
+  }
+}
+</script>

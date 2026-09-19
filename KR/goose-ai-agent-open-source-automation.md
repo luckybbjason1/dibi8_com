@@ -239,3 +239,30 @@ Goose는 2026년 가장 주목할 만한 오픈소스 AI Agent입니다:
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 
 *Last updated: 2026-05-07*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Goose AI Agent：44K⭐오픈소스 AI 에이전트, 코딩부터 자동화까지 전부 처리",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/goose-ai-agent-open-source-automation"
+  }
+}
+</script>

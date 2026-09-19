@@ -611,3 +611,30 @@ Instructor将LLM从不可预测的文本生成器转变为可靠的结构化数�
 该库的多提供商支持意味着你永远不会被锁定在单一LLM供应商。它与FastAPI、异步模式和流式传输的无缝集成使其适用于从后台批处理作业到实时API的所有场景。凭借11,000+星标和活跃的社区，Instructor已赢得作为现代AI开发者工具包中基本工具的地位。
 
 如果你仍然在用`json.loads()`解析原始LLM输出并祈祷它能正常工作，那么是时候升级了。今天安装Instructor，体验**100%有效的JSON，100%的时间**意味着什么。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/instructor-structured-llm-output"
+  }
+}
+</script>

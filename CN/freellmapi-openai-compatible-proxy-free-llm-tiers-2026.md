@@ -467,3 +467,30 @@ freellmapi health --providers
 **Want to try FreeLLMAPI?** Deploy it in under 2 minutes with Docker. No credit card, no API key management, no vendor lock-in. Just one endpoint for 16 free LLM providers.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/freellmapi-openai-compatible-proxy-free-llm-tiers-2026"
+  }
+}
+</script>

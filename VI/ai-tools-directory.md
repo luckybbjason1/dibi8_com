@@ -433,3 +433,30 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở:
 *Cập nhật lần cuối: Tháng 12 năm 2024*
 
 *Hướng dẫn này được cập nhật定期 để phản ánh các công cụ và xu hướng AI mới nhất. Đánh dấu trang này và kiểm tra thường xuyên để biết nội dung mới.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Thư Mục Công Cụ AI 2024: Hướng Dẫn Hoàn Chỉnh Về Các Công Cụ AI Tốt Nhất | Dibi8",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/ai-tools-directory"
+  }
+}
+</script>

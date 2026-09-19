@@ -607,3 +607,30 @@ Lobe Chat 提供了 ChatGPT 不会给的东西：对数据的完全控制、对�
 ## 联盟营销声明
 
 本文包含联盟营销链接。如果你通过我们的推荐链接注册 DigitalOcean，我们会获得佣金，不会对你产生额外费用。我们只推荐自己也在用的服务。Lobe Chat 是开源软件（MIT 许可证），免费使用 —— 无需购买。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lobe Chat: 支持 20+ LLM 提供商与插件系统的开源 ChatGPT UI 替代品 —— 2026 完整部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/lobe-chat-openai-alternative-ui"
+  }
+}
+</script>

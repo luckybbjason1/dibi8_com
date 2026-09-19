@@ -591,3 +591,30 @@ Bắt đầu xây dựng ngay hôm nay và trải nghiệm lý do tại sao hàn
 **Tài nguyên liên quan:**
 - [Minara AI Trading Bot](https://minara.ai/r/OSXG4X)
 - [Binance Exchange](https://www.bsmkweb.cc/register?ref=DIBI8)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối Lượng $2B+ Mỗi Ngày — Hướng Dẫn Tích Hợp Bot Giao Dịch",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/hyperliquid-perp-dex-trading"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "12-Factor Agents: 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 원칙 기반 프레임워크"
 description: "12-Factor Agents 프레임워크는 검증된 12-Factor App 방법을 LLM 기반 애플리케이션에 맞게 조정하여, 신뢰할 수 있고 확장 가능하며 관찰 가능한 AI 에이전트를 빌드하기 위한 원칙적인 접근 방식을 제공합니다."
 date: 2026-06-10
-slug: 12-factor-agents
+lastmod:  2026-06-10slug: 12-factor-agents
 category: llm-frameworks
 tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
 github_repo: https://github.com/humanlayer/12-factor-agents
@@ -413,3 +413,30 @@ LLM 에이전트를 시작하거나 기존 시스템을 확장하든, 12-팩터 
 5. [DigitalOcean - AI를 위한 클라우드 인프라](https://www.digitalocean.com/try/affiliate)
 6. [HTStack - 고성능 호스팅](https://htstack.com/)
 7. [WebShare - 데이터 파이프라인을 위한 프록시 서비스](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "12-Factor Agents: 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 원칙 기반 프레임워크",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/12-factor-agents"
+  }
+}
+</script>

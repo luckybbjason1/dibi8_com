@@ -27,6 +27,8 @@ tags: ['LLM Rẻ', 'Free Tier', 'Tối ưu chi phí', 'Stack', 'Collection']
 aliases:
   - /posts/cheap-llm-stack/
 ---
+# Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằng Free Tier + Nén Token
+
 
 Hầu hết lời khuyên "tối ưu chi phí LLM" chỉ là "dùng model rẻ hơn." Bộ sưu tập này tham vọng hơn: **stack 5 thành phần xử lý workload production thực tế (coding agent, sinh content, search, agent cơ bản) tổng $0-15/tháng.** Không phải setup chơi. Không phải "ổn cho 100 request/ngày." Suy luận daily-driver thực sự ở giá giết SaaS.
 
@@ -227,3 +229,30 @@ Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất k�
 ---
 
 *Ghép bộ sưu tập này với [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho stack coding đầy đủ — chúng chia sẻ Ollama + 9Router + RTK làm nền tảng.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằng Free Tier + Nén Token",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cheap-llm-stack"
+  }
+}
+</script>

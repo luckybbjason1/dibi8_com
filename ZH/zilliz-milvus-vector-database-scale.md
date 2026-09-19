@@ -562,3 +562,30 @@ Milvus 2.5 是十亿级工作负载中最强大的开源向量数据库。如果
 ## 附属披露
 
 本文包含 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 云托管服务的附属链接。如果你通过我们的链接注册，我们会获得佣金，不会增加你的额外成本。我们只推荐在自己的生产环境中使用过的服务。附属链接支持 dibi8.com 开源内容的持续开发。
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Milvus/Zilliz 2026：毫秒级延迟处理百亿向量的向量数据库——部署指南",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/zilliz-milvus-vector-database-scale"
+  }
+}
+</script>

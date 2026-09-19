@@ -533,3 +533,30 @@ Docker Compose 在 2026 年仍然是最实用的多容器部署工具。它将�
 - [Docker Compose 生产最佳实践](https://eastondev.com/blog/en/posts/dev/20260412-docker-compose-production/)
 - [Nomad vs Docker Compose — hostmycode.com](https://www.hostmycode.com/blog/container-orchestration-beyond-kubernetes-2026-nomad-docker-swarm-podman-vps)
 - [Docker Desktop 定价和许可](https://www.docker.com/pricing/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/docker-compose"
+  }
+}
+</script>

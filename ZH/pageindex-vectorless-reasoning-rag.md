@@ -351,3 +351,30 @@ PageIndex 是 RAG 技术的下一代演进：
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 
 *Last updated: 2026-05-07*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PageIndex：29K⭐革命性 RAG 系统，不用向量数据库也能做文档检索",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/pageindex-vectorless-reasoning-rag"
+  }
+}
+</script>

@@ -356,3 +356,30 @@ rtk is command-aware. `git --no-pager log` still produces verbose output. rtk's 
 ### Is rtk safe for production CI/CD?
 
 Yes when used in agent workflows. Don't use it in `set -e` strict-mode pipelines that depend on exact command output text — but for AI agent loops that read output and decide next steps, rtk's compressed output is what the agent actually needs.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills by 80% (2026)",
+  "datePublished": "2026-05-22",
+  "dateModified": "2026-05-22",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/rtk-rust-cli-proxy-llm-token-savings-2026"
+  }
+}
+</script>

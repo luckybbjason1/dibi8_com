@@ -451,3 +451,30 @@ A: Unlike Ollama which dumps context, DS4 saves the KV cache to your SSD. You ca
 - [GGML](https://github.com/ggml-org/ggml)
 - [Ollama](https://github.com/ollama/ollama)
 - [Claude Code](https://github.com/anthropics/claude-code)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Inference Benchmark on",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ds4-deepseek-flash-local-inference"
+  }
+}
+</script>

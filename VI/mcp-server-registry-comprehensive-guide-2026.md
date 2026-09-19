@@ -26,6 +26,8 @@ tags: ['MCP', 'Model Context Protocol', 'Registry', 'Hub article']
 aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
+# Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cái Chính Thức, Tìm Đúng Cái Trong 60 Giây
+
 
 Tháng 1/2026, bạn có thể nhét toàn bộ MCP server công khai vào một README GitHub. Tháng 5/2026, [mcp.so](https://mcp.so) liệt kê **19,700+** cái. Nút thắt cổ chai không còn là "làm thế nào để xây một cái" — mà là "trong 19,700 cái, tôi thực sự cắm cái nào?"
 
@@ -196,3 +198,30 @@ Phần khó không còn là tìm server. Mà là **chọn đúng cái** — dùn
 ---
 
 *Muốn self-host 5+ MCP server (postgres + filesystem + git + memory + tavily-search) mà không đốt bill cloud? Bật một {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} $6/tháng, chạy chúng dưới một supervisor duy nhất (systemd hoặc PM2), và trỏ `claude_desktop_config.json` của Claude Desktop vào host. Xong trong một buổi chiều.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cái Chính Thức, Tìm Đúng Cái Trong 60 Giây",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mcp-server-registry-comprehensive-guide-2026"
+  }
+}
+</script>

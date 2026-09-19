@@ -611,3 +611,30 @@ Hoppscotch는 개발자들이 진정으로 원하는 것을 구축하여 79,200�
 - [Bruno API 클라이언트](https://www.usebruno.com)
 - [Postman 가격](https://www.postman.com/pricing)
 - [Insomnia 웹사이트](https://insomnia.rest)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hoppscotch: 79,200 GitHub Stars — Postman, Insomnia, Bruno과 비교하는 오픈소스 API 개발 플랫폼 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/hoppscotch"
+  }
+}
+</script>

@@ -21,6 +21,8 @@ draft: false
 aliases:
 - /posts/litellm-unified-api-tutorial/
 ---
+# Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM
+
 
 {</* resource-info */>}
 
@@ -424,3 +426,30 @@ Hoàn toàn có. LiteLLM hỗ trợ Ollama, vLLM, llama.cpp, Hugging Face TGI v�
 
 *Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/litellm-unified-api-tutorial"
+  }
+}
+</script>

@@ -367,3 +367,30 @@ Crawl4AI 不是银弹，但它在「LLM 时代的数据采集」这个细分领�
 ---
 
 *本文发布于 2026-05-19，数据基于 GitHub、官方文档及公开评测。Crawl4AI 版本迭代较快，建议阅读时核对最新文档。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭建 LLM 数据采集与 RAG 知识库",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/crawl4ai-tutorial-llm-ready-web-scraping-2026"
+  }
+}
+</script>

@@ -579,3 +579,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [So sánh Portkey vs LiteLLM](https://portkey.ai/lp/portkey-vs-litellm) — Trang so sánh nhà cung cấp
 - [Tài liệu OpenRouter](https://openrouter.ai/docs) — Tài liệu gateway thay thế
 - [Tài liệu Helicone](https://docs.helicone.ai) — Giải pháp thay thế tập trung quan sát
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM, Tích hợp Failover — Cấu hình Gateway Production 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/litellm"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "Qiaomu Anything to NotebookLM：Chuyển đổi bất kỳ nguồn nội dung nào sang Google NotebookLM"
 description: "Qiaomu Anything to NotebookLM là một kỹ năng Claude Code và bộ công cụ Python chuyển đổi hơn 15 nguồn nội dung -- video YouTube, podcast, bài viết, PDF -- thành các thư viện kiến thức Google NotebookLM, với khả năng vượt tường lửa."
 date: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
+lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: [qiaomu-notebooklm, notebooklm, chuyển đổi nội dung, Claude Code, quản lý kiến thức, công cụ AI]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
@@ -471,3 +471,30 @@ pip install qiaomu-notebooklm
 4. [DigitalOcean - Cơ sở hạ tầng đám mây cho AI](https://www.digitalocean.com/try/affiliate)
 5. [HTStack - Lưu trữ hiệu suất cao](https://htstack.com/)
 6. [WebShare - Dịch vụ proxy cho đường ống dữ liệu](https://webshare.io/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Qiaomu Anything to NotebookLM：Chuyển đổi bất kỳ nguồn nội dung nào sang Google NotebookLM",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/qiaomu-anything-to-notebooklm"
+  }
+}
+</script>

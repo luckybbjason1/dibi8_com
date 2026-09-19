@@ -93,3 +93,30 @@ config/credentials.json
 > **Cần máy chủ để xây dựng công cụ AI?** [Người dùng mới DigitalOcean nhận $200 tín dụng miễn phí](https://m.do.co/c/eca87ac14ee0) — đủ để chạy máy chủ phát triển hoặc triển khai codebase hỗ trợ AI.
 
 **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy Nhất Cho LLM — Không Cần Cấu Hình",
+  "datePublished": "2026-06-09",
+  "dateModified": "2026-06-09",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/repomix-pack-repo-for-llm-context-2026"
+  }
+}
+</script>

@@ -2,7 +2,7 @@
 title: "MarkItDown: 유니버설 파일-투-마크다운 변환기 — LLM 파이프라인을 위한 마이크로소프트의 오픈 소스 도구 2026"
 description: "Microsoft AutoGen 팀의 MarkItDown은 20개 이상의 파일 유형을 LLM 소비를 위해 Markdown으로 변환합니다. pip install markitdown[all], Python API, LangChain 통합, RAG 파이프라인 및 배치 처리."
 date: 2026-06-15
-slug: markitdown-universal-file-to-markdown-converter
+lastmod:  2026-06-15slug: markitdown-universal-file-to-markdown-converter
 category: ai-tools
 tags: ['markitdown', 'file-to-markdown', 'microsoft', 'llm-pipelines', 'rag', 'langchain', 'document-processing', 'pdf-to-markdown', 'office-conversion']
 github_repo: "https://github.com/microsoft/markitdown"
@@ -449,3 +449,30 @@ RAG 파이프라인, 문서 처리 시스템 또는 AI 기반 지식 기반을 �
 - Alternative hosting: [HTStack](https://my.htstack.com/aff.php?aff=27187)
 - Trading tools: [Binance](https://www.bsmkweb.cc/register?ref=DIBI8), [OKX](https://www.promoohubly.com/join/12190433)
 - Proxy for web scraping: [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MarkItDown: 유니버설 파일-투-마크다운 변환기 — LLM 파이프라인을 위한 마이크로소프트의 오픈 소스 도구 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/markitdown-universal-file-to-markdown-converter"
+  }
+}
+</script>

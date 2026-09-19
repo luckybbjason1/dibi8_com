@@ -2,7 +2,7 @@
 title: "마이크로소프트 MarkItDown: 모든 파일을 Markdown으로 변환하는 완전 가이드 — 무료, 오픈소스, CLI 도구"
 description: "마이크로소프트의 MarkItDown을 사용하여 PDF, Word 문서, 이미지, HTML, PPTX 등을 깨끗한 Markdown으로 변환하는 방법을 배워보세요. 단계별 설치, 사용 예시, Python API, AI 파이프라인 통합, 벤치마크 및 Pandoc, Calibre, LibreOffice와의 비교."
 date: 2026-06-10
-slug: "microsoft-markitdown-file-to-markdown-converter-cli"
+lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: [마이크로소프트, markitdown, markdown, python, cli, pdf변환기, 문서처리, AI, 오픈소스]
 lang: ko
@@ -529,3 +529,30 @@ A: 예, MarkItDown은 ZIP 아카이브 내의 각 파일을 자동으로 추출�
 [마이크로소프트 MarkItDown 사용 팁](https://t.me/DIBI8_Group/2) 토론을 위해 [dibi8 한국어 텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요. [오픈소스 문서 처리](dibi8-internal-link) 및 [AI 에이전트 관리](dibi8-internal-link) 가이드를 확인하세요. 오늘 문서 변환을 시작하세요 — 명령어 하나면 충분합니다.
 
 일부 링크는 제휴 링크입니다. dibi8.com은 등록 시 추가 비용 없이 수수료를 받을 수 있습니다. 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "마이크로소프트 MarkItDown: 모든 파일을 Markdown으로 변환하는 완전 가이드 — 무료, 오픈소스, CLI 도구",
+  "datePublished": "2026-06-10",
+  "dateModified": "2026-06-10",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/resources/microsoft-markitdown-file-to-markdown-converter-cli"
+  }
+}
+</script>

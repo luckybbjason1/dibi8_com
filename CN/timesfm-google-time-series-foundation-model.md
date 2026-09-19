@@ -3,7 +3,7 @@ title: 'TimesFM 2.5: Google Revolutionary Time Series Foundation Model for Forec
 description: 'Complete guide to TimesFM 2.5 - Google Research decoder-only foundation model for time series forecasting. Covers installation, fine-tuning, benchmarks, and real-world applications.'
 tags: ["open-source"]
 date: 2026-06-19
-layout: article
+lastmod:  2026-06-19layout: article
 category: data-science
 lang: en
 slug: timesfm-google-time-series-foundation-model
@@ -614,3 +614,30 @@ For anyone working with temporal data, investing time in learning and deploying 
 - [DigitalOcean](https://m.do.co/c/eca87ac14ee0) - Host your ML models
 - [HTStack](https://my.htstack.com/aff.php?aff=27187) - Reliable GPU server hosting
 - [虎网云](https://www.huwangyun.cn/gpu-server/?aff_id=f872dfc7e2864e62822c83c023354367) - GPU servers for training (Chinese)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TimesFM 2.5: Google Revolutionary Time Series Foundation Model for Forecasting",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/timesfm-google-time-series-foundation-model"
+  }
+}
+</script>

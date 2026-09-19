@@ -477,3 +477,30 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Tuyên bố miễn trừ: Bài viết này không chứa liên kết liên kết. Mọi dữ liệu giá và benchmark phản ánh thông tin công khai tính đến tháng 5 năm 2026. Xác minh giá hiện tại trên trang web nhà cung cấp chính thức trước khi đưa ra quyết định mua hàng.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code: 125K+ Stars — Tác Nhân Lập Trình AI Trong Terminal So Sánh Toàn Diện 2026",
+  "datePublished": "2026-05-19",
+  "dateModified": "2026-05-19",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/claude-code"
+  }
+}
+</script>

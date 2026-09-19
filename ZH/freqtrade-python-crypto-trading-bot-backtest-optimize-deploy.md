@@ -2,7 +2,7 @@
 title: 'Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2026 实战指南'
 description: 'Freqtrade（51,300 GitHub Stars）是一款用 Python 编写的开源加密货币交易机器人。支持策略回测、hyperopt 参数优化、对接交易所 API 实盘交易。包含安装指南、策略开发实战和真实回测基准数据。'
 date: 2026-06-08
-slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
+lastmod:  2026-06-08slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
 tags: ['freqtrade', '加密货币交易机器人', 'Python 交易', '策略回测', 'hyperopt 优化', '加密货币 API', '自托管交易', '量化交易']
 github_repo: 'https://github.com/freqtrade/freqtrade'
@@ -492,3 +492,30 @@ A：可以使用 `--timerange` 参数限制下载范围，或只下载你需要�
 *以上部分链接为联盟推广链接。如果你通过我的链接注册，dibi8.com 可能获得佣金，这不会向你收取额外费用。这有助于维持网站运营和内容免费。*
 
 *免责声明：加密货币交易存在高风险，可能损失全部投资。回测结果不代表未来表现，策略优化可能导致过拟合。本文章仅供参考，不构成投资建议。请根据自身风险承受能力做出决策。*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2026 实战指南",
+  "datePublished": "2026-06-08",
+  "dateModified": "2026-06-08",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/resources/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy"
+  }
+}
+</script>

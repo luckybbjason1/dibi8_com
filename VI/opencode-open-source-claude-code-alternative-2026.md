@@ -372,3 +372,30 @@ curl -fsSL https://opencode.ai/install | bash
 - Models.dev: https://models.dev
 
 *Bài viết cập nhật lần cuối: 2026-05-19. Công cụ AI thay đổi nhanh—luôn kiểm tra tài liệu chính thức để có thông tin mới nhất.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn Mở Miễn Phí Thay Thế Claude Code — Cài Đặt Chi Tiết và Thủ Thuật Nâng Cao",
+  "datePublished": "2026-05-20",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/opencode-open-source-claude-code-alternative-2026"
+  }
+}
+</script>

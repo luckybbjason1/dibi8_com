@@ -209,3 +209,30 @@ Cuộc cách mạng agent không phải sắp đến — nó đã ở đây. Hel
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Hello-Agents: Cách Hướng Dẫn AI Agent Mã Nguồn Mở Của Datawhale Giúp Bạn Xây Dựng Agent Cấp Sản Xuất Từ Con Số 0",
+  "datePublished": "2026-05-15",
+  "dateModified": "2026-05-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/hello-agents-ai-agent-building-tutorial"
+  }
+}
+</script>

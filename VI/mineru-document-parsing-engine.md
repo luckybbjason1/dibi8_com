@@ -5,7 +5,7 @@ title: 'MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang M
 description: 'MinerU (70.600+ sao GitHub) chuyển đổi PDF, DOCX, PPTX, XLSX, hình ảnh và trang web thành Markdown và JSON có cấu trúc cho quy trình làm việc LLM, RAG và Đại lý. Hỗ trợ OCR 109 ngôn ngữ, chuyển công thức sang LaTeX, chuyển bảng sang HTML và chạy trên CPU hoặc GPU.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-slug: 'mineru-document-parsing-engine'
+lastmod:  2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: 'https://github.com/opendatalab/MinerU'
 license: MinerU Open Source License (Apache 2.0-based)
@@ -253,3 +253,29 @@ Với hơn 70.600 sao, đội ngũ phát triển tích cực và khả năng tí
 - Cộng đồng bất hòa: https://discord.gg/Tdedn9GTXq
 
 **Tiết lộ**: Bài viết này có chứa các liên kết liên kết. Nếu bạn đăng ký thông qua các liên kết của chúng tôi, chúng tôi có thể kiếm được một khoản hoa hồng nhỏ mà bạn không phải trả thêm phí. Điều này giúp hỗ trợ báo chí công nghệ độc lập và giữ cho các tài nguyên như dibi8.com miễn phí và không có quảng cáo.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang Markdown sẵn sàng cho LLM",
+  "datePublished": "2026-06-27",
+  "dateModified": "2026-06-27",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/mineru-document-parsing-engine"
+  }
+}
+</script>

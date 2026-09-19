@@ -117,3 +117,30 @@ Với đa số developer chuyên nghiệp, đáp án đúng trong 2026 không ph
 ---
 
 **Liên quan**: [Lựa chọn thay thế Cursor 2026](https://dibi8.com/vi/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [So sánh AI Coding 2026-Q2](https://dibi8.com/vi/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Hóa đơn hàng tháng AI Coding Agent 2026](https://dibi8.com/vi/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/)
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chiến lược tiết kiệm chi phí Cursor 2026: Sau khi đổi sang tính theo credit",
+  "datePublished": "2026-05-25",
+  "dateModified": "2026-05-25",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/cursor-cost-saving-strategies-2026"
+  }
+}
+</script>

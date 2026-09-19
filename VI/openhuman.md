@@ -3,7 +3,7 @@ title: 'OpenHuman là gì?'
 lang: vi
 description: 'content/vi/resources/openhuman.md'
 date: 2026-06-18
-layout: article
+lastmod:  2026-06-18layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
@@ -213,3 +213,30 @@ Trong các bài kiểm tra, Memory Tree của OpenHuman cho thấy sự cải th
 
 || Chỉ số | Tuần 1 | Tuần 4 | Tuần 8 |
 ||
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenHuman là gì?",
+  "datePublished": "2026-06-18",
+  "dateModified": "2026-06-18",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/resources/openhuman"
+  }
+}
+</script>

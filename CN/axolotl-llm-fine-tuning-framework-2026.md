@@ -183,3 +183,30 @@ Spin up an H100 instance, write the 20-line YAML in section 3, and 15 minutes la
 ---
 
 *Part of dibi8's Fine-Tuning Stack — pairs with [Unsloth for fast single-GPU iteration](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/). For the full LLM ops picture see the upcoming Fine-Tuning Stack collection.*
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Production Guide",
+  "datePublished": "2026-05-21",
+  "dateModified": "2026-05-21",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/axolotl-llm-fine-tuning-framework-2026"
+  }
+}
+</script>

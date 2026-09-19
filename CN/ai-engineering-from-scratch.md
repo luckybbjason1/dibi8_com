@@ -3,7 +3,7 @@ title: "AI Engineering From Scratch: Build Production LLM Systems — Complete G
 description: "AI Engineering From Scratch (32,771 stars) is a comprehensive curriculum covering LLM fine-tuning, RAG, agent frameworks, and production deployment. Learn to build, ship, and scale AI systems."
 tags: ["architecture", "guide", "llm", "open-source", "reference", "system", "tutorial"]
 date: 2026-06-15
-slug: ai-engineering-from-scratch
+lastmod:  2026-06-15slug: ai-engineering-from-scratch
 category: llm-frameworks
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
 license: MIT
@@ -397,3 +397,30 @@ pip install -r requirements.txt
 - vLLM documentation: https://docs.vllm.ai/
 
 **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Engineering From Scratch: Build Production LLM Systems — Complete Guide 2026",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "author": {
+    "@type": "Organization",
+    "name": "Dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/resources/ai-engineering-from-scratch"
+  }
+}
+</script>
