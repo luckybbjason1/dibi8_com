@@ -22,6 +22,8 @@ categories: ['dev-utils']
 tags: ['act', 'github-actions', 'ci-cd', 'docker', 'local-development', 'devops', 'testing', 'automation']
 aliases:
 - /posts/act/
+image: "https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png"
+
 ---
 
 {{</* resource-info */>}}

@@ -22,6 +22,8 @@ categories: ['llm-frameworks']
 tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', 'humanlayer', 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
 aliases:
 - /zh/posts/12-factor-agents-production-llm-software-2026/
+image: "https://github.com/humanlayer/12-factor-agents/blob/main/img/110-natural-language-tool-calls.png"
+
 ---
 # 12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）
 

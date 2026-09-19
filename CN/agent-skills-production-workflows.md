@@ -11,6 +11,8 @@ maintainer: 'addyosmani'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: en
+image: "https://addyosmani.com/assets/images/addys-agent-skills.jpg"
+
 ---
 
 # Addy Osmani's Agent Skills: The Production-Grade Approach
