@@ -482,3 +482,17 @@ Related articles:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [mineru-document-parsing-engine](paddleocr-81k-star-ocr-engine)
+- [mineru-document-parsing-engine](paddleocr-81k-star-ocr-engine)
+- [paddleocr-81k-star-ocr-engine](paddleocr-81k-star-ocr-engine)
+- [mineru-document-parsing-engine](paddleocr-81k-star-ocr-engine)
+- [paddleocr-81k-star-ocr-engine](paddleocr-81k-star-ocr-engine)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

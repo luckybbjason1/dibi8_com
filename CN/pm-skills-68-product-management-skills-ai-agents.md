@@ -557,3 +557,17 @@ Here's a complete discovery workflow using PM-Skills commands in sequence:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [2026-06-15-trending-ai-agents](pm-skills-68-product-management-skills-ai-agents)
+- [2026-06-22-trending-ai-agents](pm-skills-68-product-management-skills-ai-agents)
+- [agency-agents-complete-ai-agency-framework](pm-skills-68-product-management-skills-ai-agents)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](pm-skills-68-product-management-skills-ai-agents)
+- [impeccable-ai-design-language-harness-quality-ui](pm-skills-68-product-management-skills-ai-agents)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

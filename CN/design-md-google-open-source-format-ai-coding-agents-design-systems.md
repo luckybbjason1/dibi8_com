@@ -282,3 +282,17 @@ Join the DIBI8 community on [Telegram](https://t.me/DIBI8_Group) for daily discu
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [personal-ai-infrastructure-daniel-miessler](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [prompts-chat](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [llm-inference-cost-optimization-guide-2026](design-md-google-open-source-format-ai-coding-agents-design-systems)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

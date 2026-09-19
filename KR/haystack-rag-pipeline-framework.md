@@ -699,3 +699,17 @@ Haystack 2.x(2024\ub144 1\uc6d4 \ubc1c\ub839)\ub294 2026\ub144 5\uc6d4 \uae30\uc
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [deepset-haystack-rag-framework-complete-guide](haystack-rag-pipeline-framework)
+- [12-factor-agents-production-llm-software-2026](haystack-rag-pipeline-framework)
+- [12-factor-agents](haystack-rag-pipeline-framework)
+- [1m-context-window-llm-2026-real-test](haystack-rag-pipeline-framework)
+- [9router-smart-llm-proxy-token-saver-free-coding](haystack-rag-pipeline-framework)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

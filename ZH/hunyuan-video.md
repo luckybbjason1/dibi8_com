@@ -507,3 +507,17 @@ HunyuanVideo 是一个生产级视频生成框架，架起了闭源商业 API �
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [bytedance-ui-tars-desktop-ai-agent-guide](hunyuan-video)
+- [open-notebook-open-source-notebooklm-alternative-15-ai-providers](hunyuan-video)
+- [stable-diffusion-complete-guide](hunyuan-video)
+- [comfyui-workflows-complete-guide](hunyuan-video)
+- [comfyui-workflows-complete-guide](hunyuan-video)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

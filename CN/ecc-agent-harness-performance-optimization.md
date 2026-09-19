@@ -391,3 +391,17 @@ For more on developer tools:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](ecc-agent-harness-performance-optimization)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](ecc-agent-harness-performance-optimization)
+- [design-md-google-open-source-format-ai-coding-agents-design-systems](ecc-agent-harness-performance-optimization)
+- [personal-ai-infrastructure-daniel-miessler](ecc-agent-harness-performance-optimization)
+- [prompts-chat](ecc-agent-harness-performance-optimization)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

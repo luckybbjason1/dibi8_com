@@ -385,3 +385,17 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
+- [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
+- [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](academic-research-skills)
+- [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
+- [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

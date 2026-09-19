@@ -536,3 +536,17 @@ Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [oh-my-pi](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [academic-research-skills](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

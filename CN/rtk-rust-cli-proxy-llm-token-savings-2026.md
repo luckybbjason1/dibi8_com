@@ -383,3 +383,17 @@ Yes when used in agent workflows. Don't use it in `set -e` strict-mode pipelines
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [claude-code-vs-cline](rtk-rust-cli-proxy-llm-token-savings-2026)
+- [gemini-cli-vs-claude-code](rtk-rust-cli-proxy-llm-token-savings-2026)
+- [cc-switch-all-in-one-ai-coding-agent-manager](rtk-rust-cli-proxy-llm-token-savings-2026)
+- [claude-code-vs-aider](rtk-rust-cli-proxy-llm-token-savings-2026)
+- [cursor-vs-claude-code](rtk-rust-cli-proxy-llm-token-savings-2026)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

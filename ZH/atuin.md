@@ -741,3 +741,17 @@ Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ohmyzsh](atuin)
+- [ohmyzsh](atuin)
+- [ohmyzsh](atuin)
+- [cc-switch-all-in-one-ai-coding-agent-manager](atuin)
+- [zed-vs-cursor](atuin)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

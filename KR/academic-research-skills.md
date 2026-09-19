@@ -391,3 +391,17 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [egonex-understand-anything-interactive-knowledge-graph-ai](academic-research-skills)
+- [agent-reach-internet-access-ai-agents](academic-research-skills)
+- [oh-my-pi](academic-research-skills)
+- [academic-research-skills](academic-research-skills)
+- [cc-switch-unified-ai-cli-control-center](academic-research-skills)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

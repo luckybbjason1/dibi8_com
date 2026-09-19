@@ -715,3 +715,17 @@ CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [tradingagents-llm-multi-agent-trading-framework-2026](crewai)
+- [tradingagents-llm-multi-agent-trading-framework-2026](crewai)
+- [ai-engineering-from-scratch](crewai)
+- [ray-distributed-ai-framework-complete-guide](crewai)
+- [cleanlab-11k-star-ai-data-cleaning](crewai)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

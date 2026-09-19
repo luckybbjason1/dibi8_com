@@ -423,3 +423,17 @@ npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-fro
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [langflow-visual-llm-workflow-builder-2026](taste-skill)
+- [12-factor-agents](taste-skill)
+- [2026-05-25-trending-ai-agents](taste-skill)
+- [2026-06-01-trending-ai-agents](taste-skill)
+- [2026-06-08-trending-ai-agents](taste-skill)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

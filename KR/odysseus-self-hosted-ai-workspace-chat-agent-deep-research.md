@@ -537,3 +537,17 @@ Docker 기반 설치는 깊은 Linux 전문 지식이 없는 사용자도 접근
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [nanochat-karpathy-100-chatgpt-single-gpu](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [12-factor-agents](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [2026-05-25-trending-ai-agents](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [2026-06-01-trending-ai-agents](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [2026-06-08-trending-ai-agents](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

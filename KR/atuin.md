@@ -741,3 +741,17 @@ Atuin은 셸 히스토리를 평평한 텍스트 파일에서 구조화되고 �
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ohmyzsh](atuin)
+- [ohmyzsh](atuin)
+- [ohmyzsh](atuin)
+- [cc-switch-all-in-one-ai-coding-agent-manager](atuin)
+- [zed-vs-cursor](atuin)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

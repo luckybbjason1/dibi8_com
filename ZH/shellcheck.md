@@ -695,3 +695,17 @@ ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [apple-container](shellcheck)
+- [trivy-production-security-scanner-2026](shellcheck)
+- [trivy-production-security-scanner-2026](shellcheck)
+- [2026-06-15-trending-ai-agents](shellcheck)
+- [2026-06-22-trending-ai-agents](shellcheck)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -729,3 +729,17 @@ pgvector 0.8.2 是已经在运行 PostgreSQL 的团队最务实的向量数据�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [alpaca-trading-api-stock-broker](pgvector-postgres-vector-extension)
+- [appwrite-backend-as-service](pgvector-postgres-vector-extension)
+- [arize-ai-observability-llm](pgvector-postgres-vector-extension)
+- [cognee-ai-memory-platform](pgvector-postgres-vector-extension)
+- [flowise](pgvector-postgres-vector-extension)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

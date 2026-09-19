@@ -462,3 +462,17 @@ docker run --rm -v $(pwd):/files bat-viewer /files/README.md
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [knowledge-work-plugins](bat)
+- [mattpocock-skills-ai-agent-framework-guide](bat)
+- [claude-code-vs-aider](bat)
+- [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](bat)
+- [cc-switch-unified-ai-cli-control-center](bat)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

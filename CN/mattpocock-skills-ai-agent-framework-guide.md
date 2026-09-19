@@ -564,3 +564,17 @@ Some links above are affiliate links. dibi8.com may earn a commission if you sig
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
+- [agent-skills-production-workflows](mattpocock-skills-ai-agent-framework-guide)
+- [personal-ai-infrastructure-daniel-miessler](mattpocock-skills-ai-agent-framework-guide)
+- [pm-skills-68-product-management-skills-ai-agents](mattpocock-skills-ai-agent-framework-guide)
+- [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

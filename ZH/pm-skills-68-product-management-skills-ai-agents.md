@@ -556,3 +556,17 @@ Here's a complete discovery workflow using PM-Skills commands in sequence:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [mattpocock-skills-ai-agent-framework-guide](pm-skills-68-product-management-skills-ai-agents)
+- [agent-skills-production-workflows](pm-skills-68-product-management-skills-ai-agents)
+- [personal-ai-infrastructure-daniel-miessler](pm-skills-68-product-management-skills-ai-agents)
+- [mattpocock-skills-ai-agent-framework-guide](pm-skills-68-product-management-skills-ai-agents)
+- [personal-ai-infrastructure-daniel-miessler](pm-skills-68-product-management-skills-ai-agents)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

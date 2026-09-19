@@ -516,3 +516,17 @@ Thêm về quy trình đa agent:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [claude-code-vs-cline](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [gemini-cli-vs-claude-code](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [cc-switch-all-in-one-ai-coding-agent-manager](compound-engineering-multi-agent-coding-claude-codex-cursor)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

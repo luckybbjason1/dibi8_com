@@ -168,3 +168,17 @@ Tài liệu tham khảo ngoài: [Dify](https://dify.ai/) · [Dify GitHub](https:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [dify-vs-flowise-2026](dify-vs-flowise-2026)
+- [dify-vs-flowise-2026](dify-vs-flowise-2026)
+- [supermemory-open-source-ai-memory-api](dify-vs-flowise-2026)
+- [claude-code-vs-cline](dify-vs-flowise-2026)
+- [cursor-vs-windsurf](dify-vs-flowise-2026)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

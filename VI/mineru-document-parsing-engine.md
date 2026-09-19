@@ -279,3 +279,17 @@ Với hơn 70.600 sao, đội ngũ phát triển tích cực và khả năng tí
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
+- [mineru-document-parsing-engine](mineru-document-parsing-engine)
+- [mineru-document-parsing-engine](mineru-document-parsing-engine)
+- [paddleocr-81k-star-ocr-engine](mineru-document-parsing-engine)
+- [mineru-document-parsing-engine](mineru-document-parsing-engine)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -348,3 +348,17 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [cc-switch-unified-ai-cli-control-center](cc-switch-unified-ai-cli-control-center)
+- [hkuds-ai-trader](cc-switch-unified-ai-cli-control-center)
+- [academic-research-skills](cc-switch-unified-ai-cli-control-center)
+- [taste-skill](cc-switch-unified-ai-cli-control-center)
+- [nuwa-skill-distill-thinking-model-ai-agent-skills](cc-switch-unified-ai-cli-control-center)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -623,3 +623,17 @@ ComfyUI 是扩散模型工作流中最强大的开源界面。它的节点式架
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](comfyui)
+- [12-factor-agents](comfyui)
+- [2026-05-25-trending-ai-agents](comfyui)
+- [2026-06-01-trending-ai-agents](comfyui)
+- [2026-06-08-trending-ai-agents](comfyui)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

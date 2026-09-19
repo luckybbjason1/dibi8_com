@@ -556,3 +556,17 @@ For more on personal AI setups:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](personal-ai-infrastructure-daniel-miessler)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](personal-ai-infrastructure-daniel-miessler)
+- [design-md-google-open-source-format-ai-coding-agents-design-systems](personal-ai-infrastructure-daniel-miessler)
+- [prompts-chat](personal-ai-infrastructure-daniel-miessler)
+- [llm-inference-cost-optimization-guide-2026](personal-ai-infrastructure-daniel-miessler)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

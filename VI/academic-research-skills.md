@@ -391,3 +391,17 @@ npx skills add https://github.com/Imbad0202/academic-research-skills
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [academic-research-skills](academic-research-skills)
+- [cc-switch-unified-ai-cli-control-center](academic-research-skills)
+- [taste-skill](academic-research-skills)
+- [nuwa-skill-distill-thinking-model-ai-agent-skills](academic-research-skills)
+- [pm-skills-68-product-management-skills-ai-agents](academic-research-skills)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

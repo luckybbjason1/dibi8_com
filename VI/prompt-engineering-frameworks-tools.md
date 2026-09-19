@@ -308,3 +308,14 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](prompt-engineering-frameworks-tools)
+- [spec-kit-github-spec-driven-development-toolkit](prompt-engineering-frameworks-tools)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

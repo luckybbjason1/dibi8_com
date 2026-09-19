@@ -271,3 +271,17 @@ ASR(음성 입력) 쪽은 Whisper.cpp가 여전히 오랫동안 자리를 지키
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [12-factor-agents](2026-local-first-ai-stack-production-architecture)
+- [12-factor-agents](2026-local-first-ai-stack-production-architecture)
+- [12-factor-agents](2026-local-first-ai-stack-production-architecture)
+- [12-factor-agents](2026-local-first-ai-stack-production-architecture)
+- [cc-switch-unified-ai-cli-control-center](2026-local-first-ai-stack-production-architecture)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -520,3 +520,17 @@ OpenMontage는 AI 비디오 제작에서 패러다임 전환을 나타냅니다.
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [knowledge-work-plugins](openmontage-agentic-video-production-system)
+- [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](openmontage-agentic-video-production-system)
+- [12-factor-agents](openmontage-agentic-video-production-system)
+- [2026-05-25-trending-ai-agents](openmontage-agentic-video-production-system)
+- [2026-06-01-trending-ai-agents](openmontage-agentic-video-production-system)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -256,3 +256,17 @@ Hãy bắt đầu với một cái — trình duyệt migration ở trên là ag
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [claude-code-vs-cline](claude-code-custom-agent-authoring-guide-2026)
+- [gemini-cli-vs-claude-code](claude-code-custom-agent-authoring-guide-2026)
+- [cc-switch-all-in-one-ai-coding-agent-manager](claude-code-custom-agent-authoring-guide-2026)
+- [claude-code-vs-aider](claude-code-custom-agent-authoring-guide-2026)
+- [cursor-vs-claude-code](claude-code-custom-agent-authoring-guide-2026)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

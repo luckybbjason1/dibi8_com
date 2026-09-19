@@ -516,3 +516,17 @@ For more on multi-agent workflows:
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [design-md-google-open-source-format-ai-coding-agents-design-systems](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [personal-ai-infrastructure-daniel-miessler](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [prompts-chat](compound-engineering-multi-agent-coding-claude-codex-cursor)
+- [llm-inference-cost-optimization-guide-2026](compound-engineering-multi-agent-coding-claude-codex-cursor)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

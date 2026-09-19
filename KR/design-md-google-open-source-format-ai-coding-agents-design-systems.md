@@ -282,3 +282,17 @@ AI 지원 디자인 워크플로를 구축하는 팀에게는 시도해볼 가�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [design-md-google-open-source-format-ai-coding-agents-design-systems](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [personal-ai-infrastructure-daniel-miessler](design-md-google-open-source-format-ai-coding-agents-design-systems)
+- [prompts-chat](design-md-google-open-source-format-ai-coding-agents-design-systems)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -529,3 +529,17 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [oh-my-pi](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [academic-research-skills](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+- [last30days-skill-ai-agent-research-engine-social-media](odysseus-self-hosted-ai-workspace-chat-agent-deep-research)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

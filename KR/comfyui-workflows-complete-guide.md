@@ -526,3 +526,17 @@ ComfyUI는 핵심 애플리케이션입니다. ComfyUI Manager는 모델, 노드
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [stable-diffusion-complete-guide](comfyui-workflows-complete-guide)
+- [comfyui-workflows-complete-guide](comfyui-workflows-complete-guide)
+- [comfyui-workflows-complete-guide](comfyui-workflows-complete-guide)
+- [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
+- [temporal-ai-workflow-orchestration](comfyui-workflows-complete-guide)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

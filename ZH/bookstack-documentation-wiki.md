@@ -545,3 +545,17 @@ BookStack 官方支持 MySQL 和 MariaDB。已讨论过 PostgreSQL 支持但尚�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [markitdown-universal-file-to-markdown-converter](bookstack-documentation-wiki)
+- [microsoft-markitdown-file-to-markdown-converter-cli](bookstack-documentation-wiki)
+- [microsoft-markitdown-file-to-markdown-converter-cli](bookstack-documentation-wiki)
+- [open-notebook-open-source-notebooklm-alternative-15-ai-providers](bookstack-documentation-wiki)
+- [2026-06-22-trending-ai-agents](bookstack-documentation-wiki)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

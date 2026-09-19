@@ -559,3 +559,17 @@ dibi8.com 커뮤니티에 참여하세요: 5,000명 이상의 개발자와 매�
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [open-notebook-open-source-notebooklm-alternative-15-ai-providers](docmost-team-docs-collaboration)
+- [knowledge-work-plugins](docmost-team-docs-collaboration)
+- [egonex-understand-anything-interactive-knowledge-graph-ai](docmost-team-docs-collaboration)
+- [bytedance-ui-tars-desktop-ai-agent-guide](docmost-team-docs-collaboration)
+- [mattpocock-skills-ai-agent-framework-guide](docmost-team-docs-collaboration)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

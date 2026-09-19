@@ -763,3 +763,17 @@ Build production-ready RAG applications with Haystack. [Start building](https://
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [markitdown-universal-file-to-markdown-converter](deepset-haystack-rag-framework-complete-guide)
+- [alpaca-trading-api-stock-broker](deepset-haystack-rag-framework-complete-guide)
+- [appwrite-backend-as-service](deepset-haystack-rag-framework-complete-guide)
+- [arize-ai-observability-llm](deepset-haystack-rag-framework-complete-guide)
+- [cognee-ai-memory-platform](deepset-haystack-rag-framework-complete-guide)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

@@ -452,3 +452,17 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [deepseek-harness-plugin-ecosystem-2026](knowledge-work-plugins)
+- [compound-engineering-multi-agent-coding-claude-codex-cursor](knowledge-work-plugins)
+- [deepseek-v3-vs-claude-sonnet](knowledge-work-plugins)
+- [gemini-cli-vs-claude-code](knowledge-work-plugins)
+- [chatgpt-pro-vs-claude-pro](knowledge-work-plugins)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

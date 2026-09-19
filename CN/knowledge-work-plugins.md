@@ -447,3 +447,17 @@ npx skills add https://github.com/anthropics/knowledge-work-plugins
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [ai-engineering-from-scratch](knowledge-work-plugins)
+- [12-factor-agents-production-llm-software-2026](knowledge-work-plugins)
+- [12-factor-agents](knowledge-work-plugins)
+- [1m-context-window-llm-2026-real-test](knowledge-work-plugins)
+- [9router-smart-llm-proxy-token-saver-free-coding](knowledge-work-plugins)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

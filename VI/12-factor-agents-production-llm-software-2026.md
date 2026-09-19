@@ -196,3 +196,17 @@ Kết hợp 12 factor với [lớp symbol hiệu quả token như CodeGraph](htt
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [12-factor-agents](12-factor-agents-production-llm-software-2026)
+- [12-factor-agents](12-factor-agents-production-llm-software-2026)
+- [12-factor-agents](12-factor-agents-production-llm-software-2026)
+- [12-factor-agents](12-factor-agents-production-llm-software-2026)
+- [prompts-chat](12-factor-agents-production-llm-software-2026)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*

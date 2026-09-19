@@ -456,3 +456,17 @@ Matt Pocock의 Skills 프레임워크는 AI 보조 개발에서 근본적인 문
   }
 }
 </script>
+
+---
+
+## Related Articles
+
+- [mattpocock-skills-ai-agent-framework-guide](mattpocock-skills-ai-agent-framework-guide)
+- [agent-skills-production-workflows](mattpocock-skills-ai-agent-framework-guide)
+- [personal-ai-infrastructure-daniel-miessler](mattpocock-skills-ai-agent-framework-guide)
+- [pm-skills-68-product-management-skills-ai-agents](mattpocock-skills-ai-agent-framework-guide)
+- [personal-ai-infrastructure-daniel-miessler](mattpocock-skills-ai-agent-framework-guide)
+
+---
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
