@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prometheus" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prometheus" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prometheus" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prometheus" />
 title: 'Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026'
 description: 'Prometheus(Prom)는 오픈소스 모니터링 시스템 및 시계열 데이터베이스입니다. Docker, Kubernetes, Grafana, Alertmanager와 호환됩니다. 설치 튜토리얼, PromQL 쿼리, 프로덕션 하드닝, 성능 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/prometheus/prometheus'
 stars: 64094
-maintainer: 'prometheus'
+maintainer: prometheus
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['prometheus', '모니터링', 'docker', 'kubernetes', 'grafana', 'devops', '관측가능성', '시계열']
+tags: [prometheus, 모니터링, docker, kubernetes, grafana, devops, 관측가능성, 시계열]
 aliases:
 - /kr/posts/prometheus/
 ---
@@ -75,7 +80,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
 ```
@@ -182,7 +187,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['prometheus:9090']
 
@@ -190,7 +195,7 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  - job_name: 'cadvisor'
+  - job_name: cadvisor
     static_configs:
       - targets: ['cadvisor:8080']
 ```
@@ -346,11 +351,11 @@ groups:
 `alertmanager.yml` 생성:
 ```yaml
 global:
-  slack_api_url: 'YOUR_SLACK_WEBHOOK_URL'
+  slack_api_url: YOUR_SLACK_WEBHOOK_URL
 
 route:
   receiver: 'slack-notifications'
-  group_by: ['alertname', 'severity']
+  group_by: [alertname, severity]
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h

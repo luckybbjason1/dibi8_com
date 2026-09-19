@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-4-opus-sonnet-review-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-4-opus-sonnet-review-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-4-opus-sonnet-review-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-4-opus-sonnet-review-2026" />
 title: 'Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트'
 description: 'Claude 4 전 라인업 심층 리뷰 — Opus 4, Sonnet 4, Haiku 4 코딩·추론·컨텍스트·가격, GPT-4o·Gemini 1.5 Pro 비교까지. 2026년 6월 업데이트.'
 date: 2026-06-06 00:00:00+08:00

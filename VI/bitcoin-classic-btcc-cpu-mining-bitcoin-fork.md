@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 title: "Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU"
 description: "Bitcoin-Classic (BTCC) là đồng tiền số phi tập trung được xây dựng lại từ Bitcoin Core v28.1. Hỗ trợ đào bằng CPU với giao diện đồ họa tích hợp, giúp ngườithường trải nghiệm đào coin thờikỳ đầu của Bitcoin."
 date: 2026-05-15T04:20:25+09:00

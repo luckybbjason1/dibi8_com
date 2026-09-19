@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/rag-vs-fine-tuning-2026-decision-framework" />
 title: 'RAG vs Fine-Tuning 2026: A Data-Driven Decision Framework with Real Cost Numbers'
 description: 'When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-task, latency, data freshness, and a clear decision tree based on data volume, query latency budget, and update frequency.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['RAG', 'Fine-Tuning', 'LangChain', 'LlamaIndex', 'OpenAI', 'Anthropic']
+tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
 source_version: '2026 Q2 pricing'
 licensing_model: Mixed
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['rag', 'fine-tuning', 'llm', 'cost-optimization', 'decision-framework', '2026']
+tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
 aliases:
 - /posts/rag-vs-fine-tuning-2026-decision-framework/
 faq:

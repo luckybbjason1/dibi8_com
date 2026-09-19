@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-aider" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-aider" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-aider" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-aider" />
 title: 'Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결'
 description: 'Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API 키) 정면 비교 — 가격, 컨텍스트, 에이전트 스타일, 비용 효율. 2026 업데이트.'
 date: 2026-05-22 00:00:00+08:00

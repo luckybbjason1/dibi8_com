@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/git-workflow-team-collaboration-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/git-workflow-team-collaboration-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/git-workflow-team-collaboration-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/git-workflow-team-collaboration-tools" />
 title: 'Git 워크플로우 및 팀 협업 도구: 개발자를 위한 완벽한 가이드'
 description: 'GitFlow, GitHub Flow, Trunk-Based Development 등 주요 브랜칭 전략을 비교하고 팀 협업 도구를 소개합니다. 코드 리뷰, 커밋 규칙, 머지 충돌 해결까지 상세히 다룹니다.'
 date: 2026-05-18 00:00:00+08:00

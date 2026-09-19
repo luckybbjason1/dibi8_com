@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
 title: 'CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự Chủ — Thiết Lập Production & Các Mẫu 2026'
 description: 'Hướng dẫn thực hành 2026 về CrewAI — framework Python để xây dựng hệ thống AI đa tác tự với các tác tự dựa trên vai trò, phân công nhiệm vụ, chia sẻ bộ nhớ và các mẫu hợp tác tự chủ.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'joaomdmoura/crewAI'
 stars: 28000
-maintainer: 'joaomdmoura'
+maintainer: joaomdmoura
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', 'multi-agent', 'ai-agents', 'orchestration', 'autonomous-agents', 'llm', 'python', 'mã-nguồn-mở']
+tags: [crewai, 'multi-agent', 'ai-agents', orchestration, 'autonomous-agents', llm, python, 'mã-nguồn-mở']
 aliases:
 - /vi/posts/crewai-multi-agent-orchestration/
 ---
@@ -356,7 +361,7 @@ def check_stock_price(ticker: str) -> str:
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
-    return f"{ticker}: ${data['price']} (thay đổi: {data['change']}%)"
+    return f"{ticker}: ${data[price]} (thay đổi: {data[change]}%)"
 
 analyst = Agent(
     role="Financial Analyst",

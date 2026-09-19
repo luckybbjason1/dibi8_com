@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/real-time-data-streaming-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/real-time-data-streaming-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/real-time-data-streaming-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/real-time-data-streaming-tools" />
 title: 'Các Công Cụ Xử Lý Dữ Liệu Truyền Phát ThờI Gian Thực Tốt Nhất 2025: So Sánh Apache Kafka, Flink, Spark Streaming, Redpanda'
 description: 'So sánh chi tiết các công cụ xử lý dữ liệu truyền phát thờI gian thực hàng đầu năm 2025. Tìm hiểu Apache Kafka, Flink, Spark Streaming, Redpanda, Pulsar và ksqlDB để xây dựng pipeline xử lý luồng hiệu quả.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['data streaming', 'Apache Kafka', 'Flink', 'Spark Streaming', 'Redpanda', 'real-time analytics', 'big data']
+tags: ['data streaming', 'apache kafka', flink, 'spark streaming', redpanda, 'real-time analytics', 'big data']
 aliases:
 - /vi/posts/real-time-data-streaming-tools/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
 title: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)"
 description: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)"
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-llm-api-resources-ai-development" />
 title: '무료 LLM API 리소스: 비용 부담 없이 AI 모델 접근'
 description: API 비용 없이 AI 애플리케이션을 구축할 수 있는 무료 LLM 추론 API 리소스의 선별된 목록을 확인하세요.
 date: 2026-05-15 04:20:25+09:00

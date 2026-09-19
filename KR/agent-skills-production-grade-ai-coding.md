@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：개발팀이 프로덕션급 코드를 5배 빠르게 출시하는 방법
 description: Addy Osmani의 Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령을 제공하여 AI 코딩
   에이전트를 시니어 소프트웨어 엔지니어로 변환합니다.

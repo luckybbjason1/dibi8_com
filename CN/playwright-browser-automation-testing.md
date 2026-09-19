@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/playwright-browser-automation-testing" />
 title: 'Playwright 2026: The Cross-Browser Automation Tool Testing 3x Faster than Selenium — Setup Guide'
 description: 'Master Playwright 1.51 for cross-browser automation. Chrome, Firefox, WebKit support. Auto-wait, tracing, codegen, and parallel testing. 3x faster than Selenium with complete setup guide.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/playwright'
 stars: 72000
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Playwright', 'browser automation', 'testing', 'web scraping', 'python', 'e2e']
+tags: [playwright, 'browser automation', testing, 'web scraping', python, e2e]
 aliases:
 - /posts/playwright-browser-automation-testing/
 ---
@@ -104,12 +106,12 @@ def test_login_flow():
         page.goto("https://httpbin.org/forms/post")
         
         # Fill form fields (auto-waits for elements)
-        page.fill("[name='custname']", "John Doe")
-        page.fill("[name='custtel']", "555-1234")
-        page.fill("[name='custemail']", "john@example.com")
+        page.fill("[name=custname]", "John Doe")
+        page.fill("[name=custtel]", "555-1234")
+        page.fill("[name=custemail]", "john@example.com")
         
         # Submit the form
-        page.click("input[type='submit']")
+        page.click("input[type=submit]")
         
         # Assert on result
         assert "John Doe" in page.content()
@@ -162,8 +164,8 @@ def test_add_to_cart(page):
 
 def test_search_results(page):
     page.goto("https://example.com")
-    page.fill("[name='q']", "laptop")
-    page.press("[name='q']", "Enter")
+    page.fill("[name=q]", "laptop")
+    page.press("[name=q]", "Enter")
     
     # Wait for results to load
     page.wait_for_selector(".search-result")
@@ -399,7 +401,7 @@ def test_mobile_viewport():
         page.screenshot(path="mobile-view.png")
         
         # Test hamburger menu interaction
-        page.click("[aria-label='Menu']")
+        page.click("[aria-label=Menu]")
         assert page.is_visible("nav.mobile-menu")
         
         browser.close()
@@ -454,7 +456,7 @@ def scrape_with_stealth():
         # Inject stealth script to hide automation flags
         page = context.new_page()
         page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', {
+            Object.defineProperty(navigator, webdriver, {
                 get: () => undefined
             });
         """)

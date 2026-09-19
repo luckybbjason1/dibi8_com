@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ultimate-vocal-remover" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ultimate-vocal-remover" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ultimate-vocal-remover" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ultimate-vocal-remover" />
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — 2026 완전 설치 가이드'
 description: 'Ultimate Vocal Remover (UVR)는 심층 신경망을 사용하여 보컬을 분리하는 GUI 애플리케이션입니다. demucs, RVC, GPT-SoVITS와 호환됩니다. Windows, macOS, Linux 설치, 모델 선택, 배치 처리 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/Anjok07/ultimatevocalremovergui'
 stars: 24700
-maintainer: 'Anjok07'
+maintainer: Anjok07
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['보컬-제거', '오디오-분리', '딥러닝', 'pytorch', 'demucs', 'mdx-net', 'ai-오디오', '노래방', '음악-제작']
+tags: ['보컬-제거', '오디오-분리', 딥러닝, pytorch, demucs, 'mdx-net', 'ai-오디오', 노래방, '음악-제작']
 aliases:
 - /kr/posts/ultimate-vocal-remover/
 ---
@@ -216,7 +221,7 @@ RUN . venv/bin/activate && pip install -r requirements.txt
 RUN . venv/bin/activate && python -c "
 import wget
 import os
-os.makedirs('models', exist_ok=True)
+os.makedirs(models, exist_ok=True)
 "
 
 ENTRYPOINT ["venv/bin/python", "separate.py"]

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/act" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
 title: 'act: 70,410 GitHub Stars — 로컬에서 GitHub Actions 실행, 2026 프로덕션 CI/CD 가이드'
 description: 'act (nektos/act)는 Docker 컨테이너에서 GitHub Actions 워크플로우를 로컬로 실행하는 CLI 도구입니다. Docker, GitHub Actions, Go, VS Code와 호환됩니다. 설치, 설정, 시크릿 관리, runner 이미지, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/nektos/act'
 stars: 70410
-maintainer: 'nektos'
+maintainer: nektos
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['act', 'github-actions', 'ci-cd', 'docker', '로컬-개발', 'devops', '테스트', '자동화']
+tags: [act, 'github-actions', 'ci-cd', docker, '로컬-개발', devops, 테스트, 자동화]
 aliases:
 - /kr/posts/act/
 ---
@@ -298,7 +303,7 @@ export MY_SECRET=supersecurevalue
 act -s MY_SECRET
 
 # 옵션 3: 시크릿 파일 (.secrets, .env와 동일한 형식)
-cat > .secrets << 'EOF'
+cat > .secrets << EOF
 MY_SECRET=supersecurevalue
 AWS_ACCESS_KEY_ID=AKIA...
 AWS_SECRET_ACCESS_KEY=...
@@ -325,7 +330,7 @@ GitHub의 `vars` 컨텍스트가 저장소 수준 설정을 위해 지원됩니�
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
 # 또는 변수 파일 사용
-cat > .variables << 'EOF'
+cat > .variables << EOF
 DEPLOY_ENV=staging
 API_VERSION=v2
 EOF
@@ -338,7 +343,7 @@ act --var-file .variables
 
 ```bash
 # pull_request 이벤트 시뮬레이션
-cat > pull-request.json << 'EOF'
+cat > pull-request.json << EOF
 {
   "pull_request": {
     "head": { "ref": "feature/new-login" },
@@ -352,7 +357,7 @@ act pull_request -e pull-request.json
 
 ```bash
 # 태그와 함께 push 시뮬레이션
-cat > tag-push.json << 'EOF'
+cat > tag-push.json << EOF
 { "ref": "refs/tags/v1.2.3" }
 EOF
 act push -e tag-push.json
@@ -360,7 +365,7 @@ act push -e tag-push.json
 
 ```bash
 # workflow_dispatch 입력과 함께 시뮬레이션
-cat > workflow-inputs.json << 'EOF'
+cat > workflow-inputs.json << EOF
 {
   "inputs": {
     "environment": "production",
@@ -392,7 +397,7 @@ act -n -v
 
 ```bash
 # 프로젝트 루트의 .actrc
-cat > .actrc << 'EOF'
+cat > .actrc << EOF
 --container-architecture linux/amd64
 --action-offline-mode
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
@@ -433,7 +438,7 @@ jobs:
 이벤트를 통해 act 플래그 전달:
 
 ```bash
-cat > event.json << 'EOF'
+cat > event.json << EOF
 { "act": true }
 EOF
 act -e event.json

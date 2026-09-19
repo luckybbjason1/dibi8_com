@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: 초당 10K+ 요청을 처리하는 고성능 비동기 웹 스크래퍼 구축 — Python 가이드'
 description: 'aiohttp 3.11을 마스터하여 Python으로 고성능 비동기 웹 스크래퍼를 구축하세요. 연결 풀링, 세션 관리, 속도 제한, 프로덕션 배포까지 지원합니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['aiohttp', '비동기', '웹 스크래핑', 'python', 'http 클라이언트', 'asyncio']
+tags: [aiohttp, 비동기, '웹 스크래핑', python, 'http 클라이언트', asyncio]
 aliases:
 - /kr/posts/aiohttp-async-web-scraping/
 ---
@@ -150,7 +155,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         results = await scrape_titles(session, urls)
         for r in results:
-            print(f"{r['url']}: {r['title']}")
+            print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```

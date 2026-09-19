@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
 title: 'Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대'
 description: Ladybird를 발견하세요 — 처음부터 구축된 진정한 독립 웹 브라우저. Chrome 의존성 없음, 기업 영향 없음, 순수
   오픈소스.

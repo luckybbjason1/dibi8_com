@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wan-2-1" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVideo, CogVideo 2026'
 description: 'Wan 2.1은 Alibaba의 오픈소스 비디오 기반 모델로 SOTA 성능 제공. ComfyUI, Diffusers, Gradio 지원. T2V, I2V, 비디오 편집, 텍스트 생성을 1.3B 및 14B 파라미터로 제공.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['wan-2-1', '비디오-생성', '디퓨전-트랜스포머', 'ai-비디오', '오픈소스', '알리바바', 'comfyui', 'diffusers']
+tags: ['wan-2-1', '비디오-생성', '디퓨전-트랜스포머', 'ai-비디오', 오픈소스, 알리바바, comfyui, diffusers]
 aliases:
 - /kr/posts/wan-2-1/
 ---
@@ -165,7 +170,7 @@ cd gradio
 
 # 단일 GPU로 T2V 14B 실행
 python t2v_14B_singleGPU.py \
-  --prompt_extend_method 'dashscope' \
+  --prompt_extend_method dashscope \
   --ckpt_dir ./Wan2.1-T2V-14B
 
 # T2V 1.3B 실행(가벼움, 소비자용 GPU용)
@@ -224,7 +229,7 @@ vae = AutoencoderKLWan.from_pretrained(
 # 스케줄러 구성
 flow_shift = 5.0  # 720P는 5.0, 480P는 3.0
 scheduler = UniPCMultistepScheduler(
-    prediction_type='flow_prediction',
+    prediction_type=flow_prediction,
     use_flow_sigmas=True,
     num_train_timesteps=1000,
     flow_shift=flow_shift
@@ -320,7 +325,7 @@ DASH_API_KEY=your_key python generate.py \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "피아노를 치는 고양이" \
   --use_prompt_extend \
-  --prompt_extend_method 'dashscope'
+  --prompt_extend_method dashscope
 ```
 
 ## 벤치마크 / 실제 사용 사례

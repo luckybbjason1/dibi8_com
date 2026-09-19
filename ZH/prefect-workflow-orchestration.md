@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prefect-workflow-orchestration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prefect-workflow-orchestration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prefect-workflow-orchestration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prefect-workflow-orchestration" />
 title: 'Prefect 2026: 面向数据与 AI 流水线的现代工作流编排引擎 —— 自托管设置指南'
 description: '关于 Prefect 3.x 的实战指南——这款 Python 原生工作流编排器支持异步执行、内置重试和自托管服务器。在 5 分钟内部署你的数据流水线。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'PrefectHQ/prefect'
 stars: 18000
-maintainer: 'PrefectHQ'
+maintainer: PrefectHQ
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -129,7 +134,7 @@ prefect server start
 
 ```bash
 # 选项 B：使用 PostgreSQL 的 Docker Compose
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 services:
   prefect-server:
     image: prefecthq/prefect:3.3.0-python3.12

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vscode-copilot-vs-cursor" />
 title: 'VS Code Copilot vs Cursor in 2026: Which AI Coding Tool Wins?'
 description: 'Side-by-side breakdown of GitHub Copilot in VS Code (Microsoft) and Cursor — pricing $10 vs $20/mo, autocomplete vs agentic, enterprise integration. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00

@@ -1,6 +1,8 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
-description: '{''en'': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', ''zh'': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', ''ko'': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', ''vi'': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
+description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/1inch/1inch-sdk'
 stars: 400
-maintainer: '1inch'
+maintainer: 1inch
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['1inch']
+tags: [1inch]
 aliases:
 - /posts/1inch-dex-aggregator-routing/
 ---
@@ -87,9 +89,9 @@ const oneInch = new OneInchApi({
 
 // Get the optimal route for swapping 1 ETH to USDC
 const quote = await oneInch.getQuote({
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-  amount: '1000000000000000000', // 1 ETH in wei
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+  amount: 1000000000000000000, // 1 ETH in wei
   includeTokensInfo: true,
   includeProtocols: true,
   includeGas: true,
@@ -131,8 +133,8 @@ Initialize the SDK with your configuration:
 
 ```typescript
 import { OneInchSdk } from '@1inch/sdk';
-import { ethers } from 'ethers';
-import * as dotenv from 'dotenv';
+import { ethers } from ethers;
+import * as dotenv from dotenv;
 
 dotenv.config();
 
@@ -189,9 +191,9 @@ async function executeSwap() {
 
   // Define swap parameters
   const swapParams = {
-    src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // Native ETH
-    dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '500000000000000000', // 0.5 ETH
+    src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // Native ETH
+    dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 500000000000000000, // 0.5 ETH
     from: wallet.address,
     slippage: 1, // 1% max slippage
     disableEstimate: false,
@@ -239,21 +241,21 @@ Slippage tolerance is critical in volatile markets. The SDK provides granular co
 ```typescript
 // Conservative settings for large trades
 const largeTradeParams = {
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0',
-  amount: '50000000000000000000', // 50 ETH — large order!
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0,
+  amount: 50000000000000000000, // 50 ETH — large order!
   from: wallet.address,
   slippage: 0.5, // Tight 0.5% slippage for precision
   allowPartialFill: false, // All-or-nothing execution
   // Enable MEV protection (recommended for large trades)
-  referrer: 'your_app_name',
+  referrer: your_app_name,
   fee: 0, // No additional fee
 };
 
 // For smaller, more urgent trades, you can relax slippage
 const quickTradeParams = {
   ...largeTradeParams,
-  amount: '1000000000000000000', // 1 ETH
+  amount: 1000000000000000000, // 1 ETH
   slippage: 3, // 3% slippage acceptable for speed
   allowPartialFill: true, // Accept partial execution
   // Prioritize speed over optimal price
@@ -270,14 +272,14 @@ const quickTradeParams = {
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
   dstChain: 42161,    // Arbitrum
-  srcToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC on Ethereum
-  dstToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH on Arbitrum
-  amount: '1000000000', // 1000 USDC (6 decimals)
+  srcToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC on Ethereum
+  dstToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH on Arbitrum
+  amount: 1000000000, // 1000 USDC (6 decimals)
   walletAddress: wallet.address,
 });
 
 console.log('Bridge route:', bridgeQuote.selectedRoute);
-console.log('Estimated duration:', bridgeQuote.estimatedTime, 'seconds');
+console.log('Estimated duration:', bridgeQuote.estimatedTime, seconds);
 console.log('Destination amount:', bridgeQuote.dstTokenAmount);
 
 // Execute the bridge transaction
@@ -316,14 +318,14 @@ async function executeFusionSwap() {
 
   // Create a Fusion+ order (gasless for the user!)
   const fusionOrder = await fusionSdk.createOrder({
-    srcToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-    dstToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '1000000000000000000', // 1 ETH
+    srcToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+    dstToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 1000000000000000000, // 1 ETH
     walletAddress: wallet.address,
     // Fusion+ parameters
-    preset: 'fast', // 'fast', 'medium', or 'slow'
+    preset: fast, // fast, medium, or slow
     // The minimum return you'll accept (fusion finds the best actual rate)
-    minReturn: '1800000000', // Minimum 1800 USDC
+    minReturn: 1800000000, // Minimum 1800 USDC
     // Auction duration — how long resolvers compete
     auctionDuration: 180, // 180 seconds
   });
@@ -350,8 +352,8 @@ async function executeFusionSwap() {
   // Poll for execution status
   const checkStatus = async () => {
     const status = await fusionSdk.getOrderStatus(submitted.orderHash);
-    console.log('Order status:', status.status); // 'pending', 'filled', 'expired'
-    if (status.status === 'filled') {
+    console.log('Order status:', status.status); // pending, filled, expired
+    if (status.status === filled) {
       console.log('Transaction hash:', status.txHash);
       console.log('Actual output:', status.dstTokenAmount);
       return true;
@@ -379,21 +381,21 @@ async function executeFusionSwap() {
 // Monitor Fusion order lifecycle
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
-orderEvents.on('created', (data) => {
+orderEvents.on(created, (data) => {
   console.log('Order broadcast to resolvers');
 });
 
-orderEvents.on('auctionStarted', (data) => {
+orderEvents.on(auctionStarted, (data) => {
   console.log('Dutch auction active, current rate:', data.currentRate);
 });
 
-orderEvents.on('filled', (data) => {
+orderEvents.on(filled, (data) => {
   console.log('Order filled by resolver:', data.resolver);
   console.log('Final output amount:', data.dstAmount);
   console.log('You paid ZERO gas!');
 });
 
-orderEvents.on('expired', () => {
+orderEvents.on(expired, () => {
   console.log('Order expired without fill — retry with better minReturn');
 });
 ```
@@ -407,10 +409,10 @@ Beyond market swaps, 1inch offers a robust **limit order protocol** that allows 
 ```typescript
 // Create a limit order to buy DAI with ETH at a specific price
 const limitOrder = await sdk.limitOrder.createOrder({
-  makerAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH (what you sell)
-  takerAsset: '0x6B175474E89094C44Da98b954EedeAC495271d0F', // DAI (what you buy)
-  makingAmount: '500000000000000000', // 0.5 ETH
-  takingAmount: '900000000000000000000', // Expect 900 DAI minimum
+  makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH (what you sell)
+  takerAsset: 0x6B175474E89094C44Da98b954EedeAC495271d0F, // DAI (what you buy)
+  makingAmount: 500000000000000000, // 0.5 ETH
+  takingAmount: 900000000000000000000, // Expect 900 DAI minimum
   // Order expires in 24 hours
   expiration: Math.floor(Date.now() / 1000) + 86400,
   // Allow partial fills (DCA-like behavior)
@@ -450,14 +452,14 @@ const watcher = new LimitOrderWatcher({
 
 // Watch your specific order
 watcher.watchOrder(placedOrder.orderHash, (event) => {
-  if (event.type === 'filled') {
+  if (event.type === filled) {
     console.log('Order completely filled!');
     console.log('Transaction:', event.txHash);
     console.log('Amount filled:', event.filledAmount);
-  } else if (event.type === 'partiallyFilled') {
+  } else if (event.type === partiallyFilled) {
     console.log('Partial fill:', event.filledRatio, '%');
     console.log('Remaining:', event.remainingAmount);
-  } else if (event.type === 'expired') {
+  } else if (event.type === expired) {
     console.log('Order expired — place a new one if still interested');
   }
 });
@@ -475,7 +477,7 @@ The **Portfolio API** provides comprehensive tracking of token balances, transac
 ```typescript
 // Get all token balances across supported chains
 const portfolio = await sdk.balance.getBalances({
-  walletAddress: '0xYourWalletAddress',
+  walletAddress: 0xYourWalletAddress,
   chainIds: [1, 42161, 137, 10, 8453], // Multi-chain query
   // Include metadata for each token
   includeMetadata: true,
@@ -493,7 +495,7 @@ for (const chainBalance of portfolio.balances) {
 
 // Total portfolio value across all chains
 const totalValue = portfolio.balances.reduce((sum, chain) => {
-  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || '0'), 0);
+  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
 console.log(`\nTotal Portfolio Value: $${totalValue.toFixed(2)}`);
@@ -509,11 +511,11 @@ const history = await sdk.history.getTransactions({
   limit: 100,
   offset: 0,
   // Filter by transaction type
-  types: ['swap', 'approval', 'limitOrder'],
+  types: [swap, approval, limitOrder],
 });
 
 // Analyze swap performance
-const swaps = history.transactions.filter(tx => tx.type === 'swap');
+const swaps = history.transactions.filter(tx => tx.type === swap);
 
 const swapAnalysis = swaps.map(swap => ({
   timestamp: swap.timestamp,
@@ -530,7 +532,7 @@ console.table(swapAnalysis);
 
 // Calculate cumulative volume
 const totalVolume = swaps.reduce((sum, tx) => {
-  return sum + parseFloat(tx.srcUsdValue || '0');
+  return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
 console.log(`Total swap volume: $${totalVolume.toFixed(2)}`);
 ```
@@ -546,13 +548,13 @@ const ws = new PortfolioWebSocket({
   walletAddress: wallet.address,
 });
 
-ws.on('balanceUpdate', (update) => {
+ws.on(balanceUpdate, (update) => {
   console.log(`Balance update: ${update.tokenSymbol} = ${update.newBalance}`);
   console.log(`USD value change: $${update.usdValueChange}`);
   // Update your dashboard UI here
 });
 
-ws.on('newTransaction', (tx) => {
+ws.on(newTransaction, (tx) => {
   console.log('New transaction detected:', tx.hash);
   console.log('Type:', tx.type);
   console.log('Value:', tx.usdValue);
@@ -621,7 +623,7 @@ async function executeSwapWithRetry(
 
 ```typescript
 // Rate-limited API client for high-frequency usage
-import { RateLimiter } from 'limiter';
+import { RateLimiter } from limiter;
 
 class OneInchRateLimitedClient {
   private limiter: RateLimiter;
@@ -629,7 +631,7 @@ class OneInchRateLimitedClient {
 
   constructor(apiKey: string, requestsPerSecond = 5) {
     this.sdk = new OneInchSdk({ apiKey, networkId: 1 });
-    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: 'second' });
+    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: second });
   }
 
   async getQuote(params: any) {
@@ -771,3 +773,13 @@ Start building with 1inch today and give your users the best price execution DeF
   }
 }
 </script>
+
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [Aave V4 Defi Lending Protocol](/cn/aave-v4-defi-lending-protocol)
+2. [Alpaca Trading Api Stock Broker](/cn/alpaca-trading-api-stock-broker)
+
+---

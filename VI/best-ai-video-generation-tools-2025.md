@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-video-generation-tools-2025" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-video-generation-tools-2025" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-video-generation-tools-2025" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-video-generation-tools-2025" />
 title: 'Các Công Cụ Tạo Video AI Tốt Nhất 2025: So Sánh Sora, Runway, Pika'
 description: 'Đánh giá chi tiết 6 công cụ tạo video AI hàng đầu 2025: OpenAI Sora, Runway Gen-3 Alpha, Pika 2.0, Kling AI, HeyGen và Luma Dream Machine. So sánh chất lượng, giá cả.'
 date: 2026-05-18 00:00:00+08:00

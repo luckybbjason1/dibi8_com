@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-open-source-deepseek-alternative-2026" />
 title: 'ds4 리뷰 2026: 개발자들이 전환하는 오픈소스 DeepSeek'
 description: 'ds4는 2026년 가장 빠르게 성장하는 오픈소스 DeepSeek 호환 LLM 런타임. Apache-2.0 라이선스, OpenAI API 호환, vLLM 대비 40% 낮은 지연으로 DeepSeek V3 / V3.1 / V4 weights 실행. 완전한 셋업 가이드, vLLM/Ollama/TGI 벤치마크 비교, 프로덕션 강화, 도구 통합(Claude Code, Cursor, LangChain, Continue.dev) 포함.'
 date: 2026-05-22 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'Various'
+maintainer: Various
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false

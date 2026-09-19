@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/libretranslate" />
 title: 'LibreTranslate: Self-Hosted Translation API with 14.4K+ Stars — Production Deployment Guide 2026'
 description: 'LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Supports Docker, CUDA GPU, 30+ languages, and offline deployment. Covers setup, benchmarks, monitoring, and integration with OpenAI Whisper, Coqui TTS, and Argos Translate.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/LibreTranslate/LibreTranslate'
 stars: 14400
-maintainer: 'LibreTranslate'
+maintainer: LibreTranslate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['LibreTranslate', 'machine-translation', 'self-hosted', 'docker', 'api', 'open-source', 'argos-translate', 'nlp']
+tags: [libretranslate, 'machine-translation', 'self-hosted', docker, api, 'open-source', 'argos-translate', nlp]
 aliases:
 - /posts/libretranslate/
 ---
@@ -194,7 +196,7 @@ curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
 
 # Create production compose file
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: '3.8'
 services:
   libretranslate:
@@ -335,7 +337,7 @@ def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
 
 # Run pipeline
 output = transcribe_and_translate("meeting.mp3", target_lang="es")
-print(f"ES: {output['translated']}")
+print(f"ES: {output[translated]}")
 ```
 
 ### Coqui TTS Integration (Translation + Speech Synthesis)
@@ -550,8 +552,8 @@ from prometheus_client import start_http_server, Counter, Histogram
 import requests
 import time
 
-TRANSLATION_COUNTER = Counter('libretranslate_requests_total', 'Total translations')
-LATENCY_HISTOGRAM = Histogram('libretranslate_latency_seconds', 'Translation latency')
+TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 'Total translations')
+LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Translation latency')
 
 def monitor():
     start_http_server(9090)

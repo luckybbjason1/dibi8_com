@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 title: "Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版"
 description: "Bitcoin-Classic (BTCC) 是一个基于 Bitcoin Core v28.1 重建的去中心化数字货币，支持 CPU 挖矿，自带图形界面和内置矿机，让普通人也能体验早期比特币挖矿的乐趣。"
 date: 2026-05-15T04:20:25+09:00

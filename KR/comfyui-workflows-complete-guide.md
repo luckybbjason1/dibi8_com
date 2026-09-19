@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflows-complete-guide" />
 title: ComfyUI 워크플로우 — AI 이미지 생성을 위한 시각적 프로그래밍 언어
 description: 'ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프라인 구축, 의존성 관리, 공유 가능한 워크플로우 템플릿 생성으로 전문 AI 이미지 생성 구현.'
 tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']

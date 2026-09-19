@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/semgrep-15k-star-sast-security-scanner" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/semgrep-15k-star-sast-security-scanner" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/semgrep-15k-star-sast-security-scanner" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/semgrep-15k-star-sast-security-scanner" />
 
 
 title: 'Semgrep：15K+ Stars 的 SAST 工具，30 秒内在你的代码库中发现 500+ 漏洞'

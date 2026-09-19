@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/appwrite-backend-as-service" />
 title: 'Appwrite 2026: The Open-Source Firebase Alternative with Auth, DB & Storage — Self-Hosted Backend Guide'
 description: 'Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, storage, functions, and real-time subscriptions. Docker setup, SDK integration, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'appwrite/appwrite'
 stars: 47200
-maintainer: 'appwrite'
+maintainer: appwrite
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Appwrite', 'Backend-as-a-Service', 'Firebase Alternative', 'Docker', 'Open Source', 'Authentication', 'Database', 'Cloud Functions', 'Self-Hosted']
+tags: [appwrite, 'backend-as-a-service', 'firebase alternative', docker, 'open source', authentication, database, 'cloud functions', 'self-hosted']
 aliases:
 - /posts/appwrite-backend-as-service/
 ---
@@ -148,7 +150,7 @@ npm install appwrite@16.1.0
 Initialize the client and create a document:
 
 ```javascript
-import { Client, Account, Databases, ID } from 'appwrite';
+import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
   .setEndpoint('https://api.yourdomain.com/v1')  // Your API endpoint
@@ -166,7 +168,7 @@ const doc = await databases.createDocument(
   'your-database-id',
   'your-collection-id',
   ID.unique(),
-  { title: 'Hello Appwrite', status: 'active', priority: 3 }
+  { title: 'Hello Appwrite', status: active, priority: 3 }
 );
 console.log('Document ID:', doc.$id);
 ```
@@ -194,7 +196,7 @@ doc = databases.create_document(
     database_id='your-database-id',
     collection_id='your-collection-id',
     document_id=ID.unique(),
-    data={'title': 'From Python', 'status': 'active', 'score': 95.5}
+    data={title: 'From Python', status: active, score: 95.5}
 )
 print(f"Created document: {doc['$id']}")
 
@@ -204,7 +206,7 @@ results = databases.list_documents(
     collection_id='your-collection-id',
     queries=['equal("status", "active")', 'greaterThan("score", 90)', 'limit(10)']
 )
-print(f"Found {results['total']} matching documents")
+print(f"Found {results[total]} matching documents")
 ```
 
 ### Flutter SDK
@@ -242,9 +244,9 @@ class AppwriteService {
   Future<Document> createTask(String title) async {
     return await databases.createDocument(
       databaseId: 'your-database-id',
-      collectionId: 'tasks',
+      collectionId: tasks,
       documentId: ID.unique(),
-      data: {'title': title, 'done': false, 'created_at': DateTime.now().toIso8601String()},
+      data: {title: title, done: false, created_at: DateTime.now().toIso8601String()},
     );
   }
 }
@@ -403,13 +405,13 @@ find $BACKUP_DIR -mtime +7 -delete
 // Grant team-based permissions
 await databases.createDocument(
   'prod-db',
-  'projects',
+  projects,
   ID.unique(),
   { name: 'Secret Project', budget: 50000 },
   [
-    Permission.read(Role.team('managers')),
-    Permission.update(Role.team('managers')),
-    Permission.delete(Role.team('admins')),
+    Permission.read(Role.team(managers)),
+    Permission.update(Role.team(managers)),
+    Permission.delete(Role.team(admins)),
     Permission.create(Role.users())
   ]
 );
@@ -422,7 +424,7 @@ Appwrite exposes metrics at `/_metrics` for Prometheus scraping:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'appwrite'
+  - job_name: appwrite
     static_configs:
       - targets: ['appwrite:80']
     metrics_path: '/_metrics'

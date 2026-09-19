@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/coqui-tts" />
 title: 'Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benchmark vs ChatTTS, MeloTTS, Bark in 2026'
 description: 'Coqui TTS is an open-source deep learning toolkit for Text-to-Speech. Supports 1100+ languages, XTTS v2 voice cloning, VITS end-to-end synthesis. Benchmarks against ChatTTS, MeloTTS, Bark with real RTF numbers, Docker deployment, and production configs.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Coqui TTS', 'text-to-speech', 'voice-cloning', 'XTTS', 'VITS', 'deep-learning', 'Docker', 'Python']
+tags: ['coqui tts', 'text-to-speech', 'voice-cloning', xtts, vits, 'deep-learning', docker, python]
 aliases:
 - /posts/coqui-tts/
 ---
@@ -268,7 +270,7 @@ services:
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
       - TTS_HOME=/home/appuser/.local/share/tts
-    shm_size: '2gb'
+    shm_size: 2gb
     command: >
       sh -c "python3 /app/config/server.py"
 
@@ -455,9 +457,9 @@ python TTS/bin/train_tts.py \
 from prometheus_client import Counter, Histogram, generate_latest
 
 # Metrics
-TTS_REQUESTS = Counter('tts_requests_total', 'Total TTS requests', ['language'])
-TTS_LATENCY = Histogram('tts_latency_seconds', 'Request latency')
-TTS_ERRORS = Counter('tts_errors_total', 'Total errors', ['error_type'])
+TTS_REQUESTS = Counter(tts_requests_total, 'Total TTS requests', [language])
+TTS_LATENCY = Histogram(tts_latency_seconds, 'Request latency')
+TTS_ERRORS = Counter(tts_errors_total, 'Total errors', [error_type])
 
 @app.route("/metrics")
 def metrics():

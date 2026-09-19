@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/instructor-structured-llm-output" />
 title: 'Instructor: The Python Library That Forces LLMs to Output Valid JSON 100% of the Time — 2026 Guide'
 description: 'Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guarantee valid, type-safe JSON responses using Pydantic models. Features retry logic, multi-provider support, and streaming.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jxnl/instructor'
 stars: 11000
-maintainer: 'jxnl'
+maintainer: jxnl
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Instructor']
+tags: [instructor]
 aliases:
 - /posts/instructor-structured-llm-output/
 ---
@@ -90,8 +92,8 @@ profile = extract_profile(
 )
 
 print(profile)
-# UserProfile(name='Sarah', age=28, email='sarah.chen@example.com', 
-#             interests=['hiking', 'photography', 'reading sci-fi novels'])
+# UserProfile(name=Sarah, age=28, email='sarah.chen@example.com', 
+#             interests=[hiking, photography, 'reading sci-fi novels'])
 
 # Access typed fields directly
 print(f"Name: {profile.name}, Age: {profile.age}")
@@ -114,15 +116,15 @@ class ValidatedProduct(BaseModel):
     price: float = Field(description="Price in USD, must be positive")
     category: str = Field(description="One of: electronics, clothing, food, books")
     
-    @field_validator('category')
+    @field_validator(category)
     @classmethod
     def validate_category(cls, v):
-        allowed = {'electronics', 'clothing', 'food', 'books'}
+        allowed = {electronics, clothing, food, books}
         if v.lower() not in allowed:
             raise ValueError(f"Category must be one of: {allowed}")
         return v.lower()
     
-    @field_validator('price')
+    @field_validator(price)
     @classmethod
     def validate_price(cls, v):
         if v <= 0:
@@ -147,7 +149,7 @@ product = parse_product(
 )
 print(product)
 # ValidatedProduct(name='Wireless Bluetooth Headphones', 
-#                  price=79.99, category='electronics')
+#                  price=79.99, category=electronics)
 ```
 
 ---
@@ -412,17 +414,17 @@ class StrictDateRange(BaseModel):
     start_date: str = Field(description="YYYY-MM-DD format")
     end_date: str = Field(description="YYYY-MM-DD format, must be after start")
     
-    @field_validator('start_date', 'end_date')
+    @field_validator(start_date, end_date)
     @classmethod
     def validate_date_format(cls, v):
         from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
-    @field_validator('end_date')
+    @field_validator(end_date)
     @classmethod
     def validate_order(cls, end, info):
-        start = info.data.get('start_date')
+        start = info.data.get(start_date)
         if start and end <= start:
             raise ValueError("end_date must be after start_date")
         return end
@@ -608,9 +610,9 @@ def generate_search(user_request: str) -> SearchQuery:
 query = generate_search(
     "Find wireless earbuds under $100 with good battery life, newest first"
 )
-print(query.keywords)  # ['wireless earbuds', 'bluetooth']
-print(query.filters)   # {'max_price': '100'}
-print(query.sort_by)   # 'date'
+print(query.keywords)  # ['wireless earbuds', bluetooth]
+print(query.filters)   # {max_price: 100}
+print(query.sort_by)   # date
 ```
 
 ---

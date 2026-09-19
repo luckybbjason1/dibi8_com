@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wandb-ml-experiment-tracking-platform-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wandb-ml-experiment-tracking-platform-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wandb-ml-experiment-tracking-platform-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wandb-ml-experiment-tracking-platform-2026" />
 title: 'Weights & Biases (W&B): 전문가처럼 실험 추적하기 — ML 실험 플랫폼 2026'
 description: 'Weights & Biases (wandb/wandb)는 ML 실험을 추적, 비교, 배포하기 위한 AI 개발자 플랫폼입니다. PyTorch, TensorFlow, Hugging Face 및 LLM 파인튜닝을 지원합니다. 실험 추적, 데이터세트 버전 관리, 모델 레지스트리, 프로덕션 모니터링을 다룹니다.'
 date: 2026-06-09

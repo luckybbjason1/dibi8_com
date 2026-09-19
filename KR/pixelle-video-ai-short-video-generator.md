@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pixelle-video-ai-short-video-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pixelle-video-ai-short-video-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pixelle-video-ai-short-video-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pixelle-video-ai-short-video-generator" />
 title: 'Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상'
 description: Pixelle-Video는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. 주제를 입력하면 자동으로 스크립트, AI
   이미지, 음성 해설, 배경음악이 포함된 완성된 영상을 생성합니다.

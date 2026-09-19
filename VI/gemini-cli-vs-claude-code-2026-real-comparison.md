@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gemini-cli-vs-claude-code-2026-real-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gemini-cli-vs-claude-code-2026-real-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gemini-cli-vs-claude-code-2026-real-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gemini-cli-vs-claude-code-2026-real-comparison" />
 title: 'Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 quy trình làm việc'
 description: 'Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: nơi Gemini thắng (gói miễn phí, ngữ cảnh 1M), nơi Claude Code thắng (độ tin cậy khi dùng công cụ, vòng lặp agentic) và khi nào nên dùng cái nào.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Gemini CLI', 'Claude Code', 'Google', 'Anthropic']
+tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: Công cụ phát triển
 source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
 licensing_model: 'Hỗn hợp'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', '2026']
+tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
 aliases:
 - /vi/posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq:

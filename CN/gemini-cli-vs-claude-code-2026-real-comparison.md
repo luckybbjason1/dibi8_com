@@ -1,13 +1,15 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/gemini-cli-vs-claude-code-2026-real-comparison" />
 title: 'Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows'
 description: 'Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Gemini wins (free tier, 1M context), where Claude Code wins (tool-use reliability, agentic loops), and which to use when.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Gemini CLI', 'Claude Code', 'Google', 'Anthropic']
+tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: Dev Utils
 source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
-licensing_model: 'Mixed'
-license_type: 'Proprietary'
+licensing_model: Mixed
+license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', '2026']
+tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
 aliases:
 - /posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq:

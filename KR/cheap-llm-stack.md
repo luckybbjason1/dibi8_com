@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cheap-llm-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cheap-llm-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cheap-llm-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cheap-llm-stack" />
 title: '저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법'
 description: '실제 AI 워크로드를 $0-15/월로 돌리는 5컴포넌트 스택: Ollama 로컬 + DeepSeek API + Gemini 무료층 + RTK 압축 + 9Router 오케스트레이션. 실제 비용 수학, 작업 유형별 모델 선택, 조립 순서.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['저렴한 LLM', '무료 티어', '비용 최적화', '스택', '컬렉션']
+categories: [collections]
+tags: ['저렴한 llm', '무료 티어', '비용 최적화', 스택, 컬렉션]
 aliases:
   - /posts/cheap-llm-stack/
 ---

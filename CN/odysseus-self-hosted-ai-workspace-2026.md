@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide'
 description: 'Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docker command gives you chat, agents, deep research, email triage, calendar, notes, and a model cookbook — all on your own hardware. This guide covers installation, key features, and how it stacks up against ChatGPT Plus and Claude.ai.'
 date: 2026-06-09 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-06-08'
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
 categories: ['ai-tools']
-tags: ['Odysseus', 'self-hosted AI', 'AI workspace', 'local LLM', 'privacy', 'Docker', 'open source', 'ChatGPT alternative', 'Ollama', 'deep research']
+tags: [odysseus, 'self-hosted ai', 'ai workspace', 'local llm', privacy, docker, 'open source', 'chatgpt alternative', ollama, 'deep research']
 aliases:
 - /posts/odysseus-self-hosted-ai-workspace-2026/
 faqs:

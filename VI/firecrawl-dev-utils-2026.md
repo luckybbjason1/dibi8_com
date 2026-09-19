@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
 title: 'Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026'
 description: 'Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch hoặc JSON có cấu trúc, sẵn sàng cho LLM. 127,747 sao GitHub, giấy phép AGPL-3.0. Bao gồm cài đặt, các SDK chính thức, code thực tế, self-host và so sánh thẳng thắn với Puppeteer, Scrapy, Axios.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'firecrawl/firecrawl'
 stars: 127747
-maintainer: 'firecrawl'
+maintainer: firecrawl
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
@@ -70,12 +75,12 @@ Firecrawl phơi bày một nhóm nhỏ các endpoint, mỗi cái giải quyết 
 Một lần scrape tối giản với Node SDK trông như sau:
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 
 const doc = await app.scrape('https://example.com', {
-  formats: ['markdown'],
+  formats: [markdown],
 });
 
 console.log(doc.markdown);
@@ -98,7 +103,7 @@ npm install firecrawl
 ```
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 ```
@@ -151,12 +156,12 @@ Dưới đây là các thao tác phổ biến nhất với API được lưu tr�
 ### Scrape một trang đơn lẻ
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 
 const doc = await app.scrape('https://example.com', {
-  formats: ['markdown', 'html'],
+  formats: [markdown, html],
 });
 
 console.log(doc.markdown);
@@ -169,7 +174,7 @@ console.log(doc.markdown);
 ```typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
-  scrapeOptions: { formats: ['markdown'] },
+  scrapeOptions: { formats: [markdown] },
 });
 
 for (const page of result.data) {
@@ -184,12 +189,12 @@ Truyền vào một JSON schema và Firecrawl trả về dữ liệu có kiểu 
 ```typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
-    type: 'json',
+    type: json,
     schema: {
-      type: 'object',
+      type: object,
       properties: {
-        title: { type: 'string' },
-        description: { type: 'string' },
+        title: { type: string },
+        description: { type: string },
       },
     },
   }],
@@ -209,12 +214,12 @@ Vì Firecrawl về cơ bản chỉ là một HTTP API với các SDK mỏng, nó
 Một mẫu điển hình là bọc thao tác scrape sau endpoint của chính bạn:
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
 
 export async function scrapeHandler(url: string) {
-  const doc = await app.scrape(url, { formats: ['markdown'] });
+  const doc = await app.scrape(url, { formats: [markdown] });
   return doc.markdown;
 }
 ```
@@ -240,7 +245,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
       - name: Install dependencies
         run: npm install firecrawl

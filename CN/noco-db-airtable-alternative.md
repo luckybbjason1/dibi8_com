@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/noco-db-airtable-alternative" />
 title: 'NocoDB 2026: The Open-Source Airtable Alternative Turning Any Database into a Smart Spreadsheet — Complete Setup Guide'
 description: 'Deploy NocoDB in 5 minutes with Docker. Turn MySQL, PostgreSQL, or SQLite into a collaborative spreadsheet with auto-generated REST APIs, Kanban boards, and role-based access control.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'nocodb/nocodb'
 stars: 53000
-maintainer: 'nocodb'
+maintainer: nocodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['nocodb', 'airtable-alternative', 'open-source', 'database', 'spreadsheet', 'self-hosted', 'docker', 'mysql', 'postgresql']
+tags: [nocodb, 'airtable-alternative', 'open-source', database, spreadsheet, 'self-hosted', docker, mysql, postgresql]
 aliases:
 - /posts/noco-db-airtable-alternative/
 ---
@@ -305,7 +307,7 @@ sudo nginx -t && sudo systemctl restart nginx
 ```bash
 # Create a secrets file
 sudo mkdir -p /opt/nocodb
-sudo tee /opt/nocodb/.env > /dev/null << 'EOF'
+sudo tee /opt/nocodb/.env > /dev/null << EOF
 NC_DB=pg://db:5432?u=nocodb&p=CHANGE_ME&d=nocodb_meta
 NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING
 NC_REDIS_URL=redis://redis:6379

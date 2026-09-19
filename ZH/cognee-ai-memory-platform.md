@@ -1,4 +1,7 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cognee-ai-memory-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cognee-ai-memory-platform" />
 lang: zh
 description: 'Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time.'
 date: 2026-07-03T09:00:00+09:00

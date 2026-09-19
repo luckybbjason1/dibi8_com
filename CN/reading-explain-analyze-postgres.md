@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
 title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost
 description: Reading EXPLAIN ANALYZE in PostgreSQL without getting lost. Learn to
   interpret query plans, identify bottlenecks and optimize database performance.

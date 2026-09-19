@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/accept-payments-all-currencies" />
 title: "모든 통화로 결제 수락 - NowPayments"
 description: "모든 통화로 결제 수락 - NowPayments. 100개 이상의 암호화폐와 법정 화폐 지원, 낮은 수수료와 즉시 정산."
 date: 2026-05-15T04:20:25+09:00

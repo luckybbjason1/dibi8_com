@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/kubeflow-ml-pipeline-kubernetes" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/kubeflow-ml-pipeline-kubernetes" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/kubeflow-ml-pipeline-kubernetes" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/kubeflow-ml-pipeline-kubernetes" />
 title: 'Kubeflow 2026: Chạy Pipeline ML Hoàn Chỉnh trên Kubernetes — Hướng Dẫn Từ Training đến Triển Khai Production'
 description: 'Hướng dẫn đầy đủ để triển khai Kubeflow trên Kubernetes cho pipeline ML. Bao gồm cài đặt, thành phần, benchmark, cứng hóa production và mô hình triển khai thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'kubeflow/kubeflow'
 stars: 14000
-maintainer: 'kubeflow'
+maintainer: kubeflow
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Kubeflow', 'Kubernetes', 'Machine Learning', 'ML Pipeline', 'MLOps', 'Kubeflow Pipelines', 'KServe', 'Katib', 'Khoa học dữ liệu']
+tags: [kubeflow, kubernetes, 'machine learning', 'ml pipeline', mlops, 'kubeflow pipelines', kserve, katib, 'khoa học dữ liệu']
 aliases:
 - /vi/posts/kubeflow-ml-pipeline-kubernetes/
 ---

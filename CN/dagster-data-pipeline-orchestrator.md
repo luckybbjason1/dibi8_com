@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/dagster-data-pipeline-orchestrator" />
 title: 'Dagster: The Data Pipeline Orchestrator with Asset-Based Scheduling — 2026 Production Setup Guide'
 description: 'Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partitioning, backfills, and self-hosted deployment with Docker Compose.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Dagster', 'data-pipeline', 'orchestration', 'ETL', 'Apache-Airflow', 'dbt', 'Python', 'Docker', 'data-engineering', 'asset-centric']
+tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric']
 aliases:
 - /posts/dagster-data-pipeline-orchestrator/
 ---

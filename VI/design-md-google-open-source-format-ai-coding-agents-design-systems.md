@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: 'DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống thiết kế của Google qua định dạng mã nguồn mở'
 description: 'DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho các tác nhân lập trình AI. 20,8 nghìn sao trên GitHub. Tìm hiểu cách nó kết nối các hệ thống thiết kế và tạo mã AI với các token YAML và các ràng buộc dựa trên văn bản.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]

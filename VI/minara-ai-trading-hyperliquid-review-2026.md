@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/minara-ai-trading-hyperliquid-review-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/minara-ai-trading-hyperliquid-review-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/minara-ai-trading-hyperliquid-review-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/minara-ai-trading-hyperliquid-review-2026" />
 title: 'Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperliquid Nén Cả Bloomberg Terminal Vào Một Cửa Sổ Chat'
 description: 'Minara là nền tảng giao dịch AI-native được xây dựng trên Hyperliquid, cho phép bạn đặt câu hỏi, nhận phân tích thị trường thời gian thực và thực hiện giao dịch crypto / cổ phiếu / hàng hóa trong một giao diện chat duy nhất. Đánh giá thực tế 2 tuần: hướng dẫn đăng ký, năm trường hợp sử dụng thực, phân tích giá, và mô hình kinh tế 10% hoa hồng giới thiệu + 20% Spark token rebate.'
 date: 2026-05-17 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-design-local-first-ai-design-tool" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
 title: "Open Design: Công Cụ Thiết Kế AI Ưu Tiên Local Thay Thế Claude Design Tối Ưu Nhất"
 description: "Khám phá Open Design, giải pháp thay thế Claude Design mã nguồn mở ưu tiên local với 19 kỹ năng AI, 71 hệ thống thiết kế, hỗ trợ tạo prototype, slide, video và xuất đa định dạng."
 date: 2026-05-15T04:20:25+09:00

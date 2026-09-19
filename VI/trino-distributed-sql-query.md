@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trino-distributed-sql-query" />
 title: 'Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Liệu Quy Mô PB — Hướng Dẫn Triển Khai Cluster Tự Host'
 description: 'Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấu hình 40+ connector, tối ưu hiệu suất và benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'trinodb/trino'
 stars: 11000
-maintainer: 'trinodb'
+maintainer: trinodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Trino', 'Presto', 'SQL phân tán', 'Big Data', 'Phân tích dữ liệu', 'Data Lake', 'Hive', 'Iceberg', 'Query Engine', 'Tự Host']
+tags: [trino, presto, 'sql phân tán', 'big data', 'phân tích dữ liệu', 'data lake', hive, iceberg, 'query engine', 'tự host']
 aliases:
 - /vi/posts/trino-distributed-sql-query/
 ---
@@ -225,7 +230,7 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
 ./trino --server http://trino-coordinator:8080 \
   --catalog iceberg \
   --schema default \
-  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL '7' DAY"
+  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL 7 DAY"
 ```
 
 ## Tích hợp với Công cụ Dữ liệu Chính thống
@@ -519,7 +524,7 @@ Truy vấn runtime metrics trực tiếp:
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
 -- Bộ nhớ sử dụng mỗi truy vấn
-SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = 'RUNNING';
+SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = RUNNING;
 ```
 
 ## So sánh với Các lựa chọn Khác

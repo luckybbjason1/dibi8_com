@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openmontage-agentic-video-production-system" />
 lang: vi
 slug: openmontage-agentic-video-production-system
 title: "Đánh giá OpenMontage: Hệ thống Sản xuất Video Tự chủ Mã Nguồn Mở Đầu tiên trên Thế giới (52 Công cụ, 12 Quy trình, Hơn 500 Kỹ năng)"
@@ -24,7 +29,7 @@ github_repo: 'https://github.com/calesthio/OpenMontage'
 last_maintained: '2026-06-21'
 draft: false
 categories: ['ai-tools']
-tags: ["mởmontage", "video có tính chủ động", "sản xuất video bằng AI", "sự di chuyển", "khung siêu", "tạo video", "mã nguồn mở", "claude-code", "con trỏ", "đa tác nhân", "phim tài liệu", "hoạt hình"]
+tags: ["mởmontage", "video có tính chủ động", "sản xuất video bằng ai", "sự di chuyển", "khung siêu", "tạo video", "mã nguồn mở", "claude-code", "con trỏ", "đa tác nhân", "phim tài liệu", "hoạt hình"]
 aliases:
 - /posts/openmontage-agentic-video-production-system/
 faqs:

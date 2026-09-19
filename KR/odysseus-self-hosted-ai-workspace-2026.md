@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드'
 description: 'Odysseus는 오픈소스 프라이버시 우선 AI 워크스페이스입니다 (9일 63,000 스타, MIT 라이선스). Docker 명령어 하나로 채팅, AI 에이전트, 딥 리서치, 이메일 분류, 캘린더, 메모, 모델 쿡북을 내 서버에서 직접 실행할 수 있습니다. 설치 방법, 주요 기능, ChatGPT Plus 비교를 상세히 정리했습니다.'
 date: 2026-06-09 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-06-08'
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
 categories: ['ai-tools']
-tags: ['Odysseus', '셀프호스팅 AI', 'AI 워크스페이스', '로컬 LLM', '프라이버시', 'Docker', '오픈소스', 'ChatGPT 대안', 'Ollama', '딥 리서치']
+tags: [odysseus, '셀프호스팅 ai', 'ai 워크스페이스', '로컬 llm', 프라이버시, docker, 오픈소스, 'chatgpt 대안', ollama, '딥 리서치']
 aliases:
 - /kr/posts/odysseus-self-hosted-ai-workspace-2026/
 faqs:

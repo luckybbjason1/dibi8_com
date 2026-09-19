@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/scrapling-python-stealthy-web-scraping-review" />
 title: 'Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping'
 description: 'Scrapling review: Python stealthy web scraping library. Bypass anti-bot
   measures, handle dynamic content and scrape at scale with ease.'

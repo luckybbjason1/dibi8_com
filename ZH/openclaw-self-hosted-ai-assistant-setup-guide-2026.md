@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
 title: 'OpenClaw 完全指南：2026 年最强开源 AI 助手自托管部署教程｜零订阅费打造私人智能助理'
 description: 'GitHub 362K+ Star 的 OpenClaw 如何从零到现象级？本文详解 OpenClaw 开源 AI 助手的架构原理、自托管部署全流程、多平台接入实战，以及如何用零订阅费方案构建隐私优先的本地 AI 助理。'
 date: 2026-05-18 00:00:00+08:00

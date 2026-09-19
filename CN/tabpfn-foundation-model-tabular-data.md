@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/tabpfn-foundation-model-tabular-data" />
 title: 'TabPFN: Foundation Model for Tabular Data — AI Breakthrough for Structured
   Data'
 description: Discover TabPFN, the foundation model for tabular data that outperforms

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zerion-wallet-portfolio-tracker" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zerion-wallet-portfolio-tracker" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zerion-wallet-portfolio-tracker" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zerion-wallet-portfolio-tracker" />
 title: 'zerion-wallet-portfolio-tracker'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/zeriontech'
 stars: 200
-maintainer: 'zeriontech'
+maintainer: zeriontech
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Zerion']
+tags: [zerion]
 aliases:
 - /zh/posts/zerion-wallet-portfolio-tracker/
 ---

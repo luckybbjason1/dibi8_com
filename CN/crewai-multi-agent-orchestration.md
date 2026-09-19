@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
 title: 'CrewAI: Build Multi-Agent AI Teams That Collaborate Autonomously — Production Setup & Patterns 2026'
 description: 'A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role-based agents, task delegation, memory sharing, and autonomous collaboration patterns.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'joaomdmoura/crewAI'
 stars: 28000
-maintainer: 'joaomdmoura'
+maintainer: joaomdmoura
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', 'multi-agent', 'ai-agents', 'orchestration', 'autonomous-agents', 'llm', 'python', 'open-source']
+tags: [crewai, 'multi-agent', 'ai-agents', orchestration, 'autonomous-agents', llm, python, 'open-source']
 aliases:
 - /posts/crewai-multi-agent-orchestration/
 ---
@@ -356,7 +358,7 @@ def check_stock_price(ticker: str) -> str:
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
-    return f"{ticker}: ${data['price']} (change: {data['change']}%)"
+    return f"{ticker}: ${data[price]} (change: {data[change]}%)"
 
 @tool("Weather Lookup")
 def get_weather(city: str) -> str:

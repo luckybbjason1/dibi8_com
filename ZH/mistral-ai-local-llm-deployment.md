@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mistral-ai-local-llm-deployment" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mistral-ai-local-llm-deployment" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mistral-ai-local-llm-deployment" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mistral-ai-local-llm-deployment" />
 title: 'Mistral AI 2026: 使用8x7B MoE架构部署生产级本地LLM — 完整设置指南'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/mistralai/mistral-inference'
 stars: 9500
-maintainer: 'mistralai'
+maintainer: mistralai
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Mistral AI']
+tags: ['mistral ai']
 aliases:
 - /zh/posts/mistral-ai-local-llm-deployment/
 ---

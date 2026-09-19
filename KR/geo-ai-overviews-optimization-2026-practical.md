@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/geo-ai-overviews-optimization-2026-practical" />
 title: 'GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가이드'
 description: '생성형 엔진 최적화(GEO)는 새로운 SEO입니다. Google AI Overviews, ChatGPT Search, Perplexity 인용을 위한 최적화 방법. dibi8.com에서 실제로 운영한 최적화 기법 — FAQ schema, 인용 가능성 점수, llms.txt.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['SEO', 'GEO', 'Schema.org', 'JSON-LD', 'llms.txt']
+tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: 개발자 도구
 source_version: '2026 Q2'
 licensing_model: 'N/A'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['seo', 'geo', 'ai-overviews', 'optimization', '2026']
+tags: [seo, geo, 'ai-overviews', optimization, 2026]
 aliases:
 - /kr/posts/geo-ai-overviews-optimization-2026-practical/
 faq:

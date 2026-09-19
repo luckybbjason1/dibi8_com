@@ -1,6 +1,11 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zapper-defi-dashboard-aggregator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zapper-defi-dashboard-aggregator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zapper-defi-dashboard-aggregator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zapper-defi-dashboard-aggregator" />
 title: 'zapper-defi-dashboard-aggregator'
-description: '{''en'': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', ''zh'': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', ''ko'': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', ''vi'': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
+description: '{'en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', 'zh': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', 'ko': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['zapper', 'defi', 'dashboard', 'portfolio', 'yield-farming', 'nft', 'api', 'zap-in', 'zap-out', 'aggregator']
+tags: [zapper, defi, dashboard, portfolio, 'yield-farming', nft, api, 'zap-in', 'zap-out', aggregator]
 aliases:
 - /kr/posts/zapper-defi-dashboard-aggregator/
 ---
@@ -67,7 +72,7 @@ interface ProtocolPosition {
   tokens: TokenBalance[];
   
   // 포지션 메타데이터
-  positionType: 'lending' | 'liquidity-pool' | 'staking' | 'yield-farming' | 'locked';
+  positionType: lending | 'liquidity-pool' | staking | 'yield-farming' | locked;
   
   // 재무 지표
   balances: {
@@ -113,7 +118,7 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     client.v2.apps.getApps(),
     client.v2.balances.getBalances({
       addresses: [address],
-      networks: ['ethereum', 'polygon', 'arbitrum', 'optimism', 'base']
+      networks: [ethereum, polygon, arbitrum, optimism, base]
     })
   ]);
 
@@ -137,21 +142,21 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     
     // 포지션 카테고리화
     switch (position.appId) {
-      case 'tokens':
+      case tokens:
         portfolio.categories.wallet.push(position);
         break;
       case 'aave-v3':
-      case 'compound':
-      case 'morpho':
+      case compound:
+      case morpho:
         portfolio.categories.lending.push(position);
         break;
       case 'uniswap-v3':
       case 'balancer-v2':
-      case 'curve':
+      case curve:
         portfolio.categories.liquidity.push(position);
         break;
       default:
-        if (position.positionType === 'staking') {
+        if (position.positionType === staking) {
           portfolio.categories.staking.push(position);
         }
     }
@@ -174,7 +179,7 @@ console.log(`LP 포지션: ${portfolio.categories.liquidity.length}`);
 async function getTokenPrices(
   client: ZapperClient,
   tokens: string[],
-  network: string = 'ethereum'
+  network: string = ethereum
 ): Promise<Map<string, number>> {
   const prices = new Map<string, number>();
   
@@ -200,14 +205,14 @@ async function getTokenPrices(
 const tokenPrices = await getTokenPrices(
   client,
   [
-    '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // USDC
-    '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'  // UNI
+    0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2, // WETH
+    0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48, // USDC
+    0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984  // UNI
   ]
 );
 
-console.log('WETH:', tokenPrices.get('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'));
-console.log('USDC:', tokenPrices.get('0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'));
+console.log('WETH:', tokenPrices.get(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2));
+console.log('USDC:', tokenPrices.get(0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48));
 ```
 
 ---
@@ -248,7 +253,7 @@ import os
 from zapper_api import ZapperClient
 
 client = ZapperClient(
-    api_key=os.getenv('ZAPPER_API_KEY'),
+    api_key=os.getenv(ZAPPER_API_KEY),
     base_url='https://api.zapper.xyz'
 )
 
@@ -277,7 +282,7 @@ curl -X GET "https://api.zapper.xyz/v2/balances?addresses[]=0x...&networks[]=eth
 async function getFullPortfolio(address: string) {
   const response = await client.v2.balances.getBalances({
     addresses: [address],
-    networks: ['ethereum', 'polygon', 'arbitrum', 'optimism', 'base', 'avalanche'],
+    networks: [ethereum, polygon, arbitrum, optimism, base, avalanche],
     includeMeta: true
   });
 
@@ -295,7 +300,7 @@ async function getFullPortfolio(address: string) {
     const category = categorizePosition(position);
     
     switch (category) {
-      case 'wallet':
+      case wallet:
         breakdown.wallet.value += position.balanceUSD;
         breakdown.wallet.tokens.push({
           symbol: position.symbol,
@@ -304,7 +309,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case 'lending':
+      case lending:
         const supplied = position.balances?.supplied?.balanceUSD || 0;
         const borrowed = position.balances?.borrowed?.balanceUSD || 0;
         breakdown.lending.supplied += supplied;
@@ -313,7 +318,7 @@ async function getFullPortfolio(address: string) {
         breakdown.lending.protocols.push(position.appName);
         break;
         
-      case 'liquidity':
+      case liquidity:
         breakdown.liquidityPools.value += position.balanceUSD;
         breakdown.liquidityPools.pools.push({
           protocol: position.appName,
@@ -323,7 +328,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case 'staking':
+      case staking:
         breakdown.staking.value += position.balanceUSD;
         breakdown.staking.positions.push(position);
         break;
@@ -335,11 +340,11 @@ async function getFullPortfolio(address: string) {
 
 // 헬퍼 함수
 function categorizePosition(position: any): string {
-  if (position.appId === 'tokens') return 'wallet';
-  if (['aave-v3', 'compound', 'morpho', 'spark'].includes(position.appId)) return 'lending';
-  if (['uniswap-v3', 'balancer-v2', 'curve', 'sushi'].includes(position.appId)) return 'liquidity';
-  if (position.positionType === 'staking') return 'staking';
-  return 'other';
+  if (position.appId === tokens) return wallet;
+  if (['aave-v3', compound, morpho, spark].includes(position.appId)) return lending;
+  if (['uniswap-v3', 'balancer-v2', curve, sushi].includes(position.appId)) return liquidity;
+  if (position.positionType === staking) return staking;
+  return other;
 }
 ```
 
@@ -350,7 +355,7 @@ function categorizePosition(position: any): string {
 async function getNFTPortfolio(address: string) {
   const nfts = await client.v2.nfts.getNftsForAddress({
     address,
-    networks: ['ethereum', 'polygon'],
+    networks: [ethereum, polygon],
     includeFloorPrice: true,
     includeMetadata: true
   });
@@ -433,8 +438,8 @@ interface RewardInfo {
 async function getYieldPositions(address: string): Promise<YieldPosition[]> {
   const balances = await client.v2.balances.getBalances({
     addresses: [address],
-    networks: ['ethereum', 'arbitrum', 'optimism'],
-    appId: ['uniswap-v3', 'balancer-v2', 'curve', 'convex', 'yearn', 'pendle']
+    networks: [ethereum, arbitrum, optimism],
+    appId: ['uniswap-v3', 'balancer-v2', curve, convex, yearn, pendle]
   });
 
   const yieldPositions: YieldPosition[] = [];
@@ -512,7 +517,7 @@ console.log(`월간 예상: $${(totalDailyYield * 30).toFixed(2)}`);
 ```typescript
 // 새로운 수익 기회 발견
 async function discoverYields(
-  network: string = 'ethereum',
+  network: string = ethereum,
   minTvl: number = 1_000_000,  // 최소 $100만 TVL
   minApy: number = 5            // 최소 5% APY
 ) {
@@ -520,8 +525,8 @@ async function discoverYields(
     network,
     minTvl,
     minApy,
-    sortBy: 'apy',
-    sortDirection: 'desc',
+    sortBy: apy,
+    sortDirection: desc,
     limit: 50
   });
 
@@ -541,7 +546,7 @@ async function discoverYields(
 }
 
 // 최고 수익 기회 찾기
-const bestYields = await discoverYields('ethereum', 10_000_000, 10);
+const bestYields = await discoverYields(ethereum, 10_000_000, 10);
 
 console.log('\n🏆 최고 수익 기회 (TVL > $1000만, APY > 10%)\n');
 bestYields.slice(0, 10).forEach((opp, i) => {
@@ -603,9 +608,9 @@ async function zapInUniswapV3(
 
 // 예시: 1 ETH를 ETH/USDC 풀에 Zap In
 const txHash = await zapInUniswapV3(
-  '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-  ethers.parseEther('1').toString(),
-  '0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8',     // ETH/USDC 0.3% 풀
+  0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+  ethers.parseEther(1).toString(),
+  0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8,     // ETH/USDC 0.3% 풀
   -887220,                                            // 풀 범위 하한
   887220                                              // 풀 범위 상한
 );
@@ -654,8 +659,8 @@ async function zapOutPosition(
 // Uniswap V3 포지션에서 완전 종료
 const exitTx = await zapOutPosition(
   'uniswap-v3',
-  '12345',  // NFT 토큰 ID
-  '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'  // USDC 수령
+  12345,  // NFT 토큰 ID
+  0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48  // USDC 수령
 );
 ```
 
@@ -728,16 +733,16 @@ const ws = new ZapperWebSocket({
 // 주소 업데이트 구독
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case 'balance_change':
+    case balance_change:
       console.log(`💰 잔액 업데이트: ${update.token} = ${update.newBalance}`);
       break;
-    case 'new_position':
+    case new_position:
       console.log(`📈 새 포지션 감지: ${update.protocol} — ${update.valueUSD}`);
       break;
-    case 'yield_claimed':
+    case yield_claimed:
       console.log(`🎁 보상 청구: ${update.amount} ${update.token}`);
       break;
-    case 'nft_transfer':
+    case nft_transfer:
       console.log(`🖼️ NFT 전송: ${update.collection} #${update.tokenId}`);
       break;
   }
@@ -759,7 +764,7 @@ async function getHistoricalPerformance(
 ) {
   const history = await client.v2.analytics.getHistoricalBalances({
     address,
-    granularity: 'daily',
+    granularity: daily,
     daysBack: days
   });
 
@@ -836,7 +841,7 @@ async function batchPortfolioQuery(addresses: string[]) {
 
     const response = await client.v2.balances.getBalances({
       addresses: batch,
-      networks: ['ethereum', 'arbitrum', 'polygon']
+      networks: [ethereum, arbitrum, polygon]
     });
 
     results.push(...response.data);
@@ -891,7 +896,7 @@ sortedExposure.forEach(([protocol, value]) => {
 
 ```tsx
 // Zapper 포트폴리오 데이터용 React 훅
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from react;
 import { ZapperClient } from '@zapper-fi/zapper-api';
 
 const client = new ZapperClient({ apiKey: process.env.REACT_APP_ZAPPER_KEY });
@@ -911,7 +916,7 @@ export function usePortfolio(address: string | undefined) {
       try {
         const response = await client.v2.balances.getBalances({
           addresses: [address],
-          networks: ['ethereum', 'polygon', 'arbitrum']
+          networks: [ethereum, polygon, arbitrum]
         });
 
         setPortfolio(response.data);
@@ -985,10 +990,10 @@ function PositionCard({ position }: { position: any }) {
 import { schedule } from 'node-cron';
 
 interface YieldAlert {
-  condition: 'apy_drop' | 'apy_spike' | 'il_warning' | 'reward_change';
+  condition: apy_drop | apy_spike | il_warning | reward_change;
   threshold: number;
   protocol?: string;
-  action: 'notify' | 'auto_compound' | 'exit';
+  action: notify | auto_compound | exit;
 }
 
 class YieldMonitor {
@@ -1014,19 +1019,19 @@ class YieldMonitor {
         if (alert.protocol && alert.protocol !== position.protocol) continue;
 
         switch (alert.condition) {
-          case 'apy_drop':
+          case apy_drop:
             if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
               await this.sendAlert(`🚨 ${position.poolName}의 APY가 ${alert.threshold}% 하락: ${position.apy.total.toFixed(2)}%`);
             }
             break;
 
-          case 'il_warning':
+          case il_warning:
             if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
               await this.sendAlert(`⚠️ ${position.poolName}의 IL 경고: ${position.impermanentLoss.toFixed(2)}%`);
             }
             break;
 
-          case 'reward_change':
+          case reward_change:
             const rewardChange = position.rewardTokens.reduce(
               (sum, r) => sum + r.dailyValueUSD, 0
             );
@@ -1045,7 +1050,7 @@ class YieldMonitor {
   private async sendAlert(message: string) {
     // Telegram, Discord, 또는 이메일로 전송
     await fetch(process.env.ALERT_WEBHOOK_URL, {
-      method: 'POST',
+      method: POST,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: message })
     });
@@ -1062,15 +1067,15 @@ class YieldMonitor {
 const monitor = new YieldMonitor(process.env.ZAPPER_API_KEY);
 
 monitor.addAlert({
-  condition: 'apy_drop',
+  condition: apy_drop,
   threshold: 20,  // APY가 20% 하락하면 알림
-  action: 'notify'
+  action: notify
 });
 
 monitor.addAlert({
-  condition: 'il_warning',
+  condition: il_warning,
   threshold: 5,   // IL이 5% 초과하면 알림
-  action: 'notify'
+  action: notify
 });
 
 monitor.startMonitoring('0xMyAddress...');

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/open-sora" />
 title: 'Open-Sora: 29K+ Stars — Open-Source Video Generation Setup Guide 2026'
 description: 'Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ComfyUI integration, Stable Diffusion compatibility, production deployment, benchmarks vs HunyuanVideo, CogVideo, and Wan.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hpcaitech/Open-Sora'
 stars: 29000
-maintainer: 'hpcaitech'
+maintainer: hpcaitech
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['open-sora', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', 'docker', 'cuda', 'comfyui']
+tags: ['open-sora', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', docker, cuda, comfyui]
 aliases:
 - /posts/open-sora/
 ---
@@ -519,9 +521,9 @@ import psutil
 from prometheus_client import Counter, Histogram, start_http_server
 
 # Metrics
-GENERATION_COUNTER = Counter('opensora_generations_total', 'Total video generations')
-GENERATION_DURATION = Histogram('opensora_generation_seconds', 'Generation time')
-VRAM_USAGE = Histogram('opensora_vram_usage_bytes', 'Peak VRAM usage')
+GENERATION_COUNTER = Counter(opensora_generations_total, 'Total video generations')
+GENERATION_DURATION = Histogram(opensora_generation_seconds, 'Generation time')
+VRAM_USAGE = Histogram(opensora_vram_usage_bytes, 'Peak VRAM usage')
 
 def generate_with_monitoring(prompt, config):
     process = psutil.Process()
@@ -541,10 +543,10 @@ def generate_with_monitoring(prompt, config):
         VRAM_USAGE.observe(peak_vram)
         
         return {
-            'video': video,
-            'duration': duration,
-            'peak_vram_gb': peak_vram / 1e9,
-            'peak_ram_gb': (process.memory_info().rss - start_mem) / 1e9,
+            video: video,
+            duration: duration,
+            peak_vram_gb: peak_vram / 1e9,
+            peak_ram_gb: (process.memory_info().rss - start_mem) / 1e9,
         }
     except Exception as e:
         # Log to your error tracking service

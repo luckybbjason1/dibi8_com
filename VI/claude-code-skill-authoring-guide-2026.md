@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
 title: 'Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà Claude Chỉ Nạp Khi Cần (2026)'
 description: 'Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khiển việc nạp, tiết lộ tăng dần (progressive disclosure), và khi nào một skill vượt trội hơn CLAUDE.md hay một subagent. Kèm ví dụ thực tế và những sai lầm cần tránh.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'skills', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
+tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
 aliases:
 - /posts/claude-code-skill-authoring/
 faq:

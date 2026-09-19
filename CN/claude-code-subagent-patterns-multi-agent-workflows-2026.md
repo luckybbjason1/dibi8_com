@@ -1,25 +1,27 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)'
 description: 'Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist delegation, context protection, and pipeline orchestration — with real prompts and tradeoffs from production use.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Bash']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
+tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
 aliases:
 - /posts/claude-code-subagent-patterns/
 faq:

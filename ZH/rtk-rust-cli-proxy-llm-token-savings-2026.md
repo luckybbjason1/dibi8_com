@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: 'rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (2026)'
 description: 'rtk 是 Rust 单二进制 CLI 代理，自动过滤压缩命令输出，降低 60-90% LLM token 消耗。支持 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 等 13 款 AI 编程工具，<10ms 开销，MIT 开源，30 秒安装零配置。'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['Rust', 'CLI', 'Shell hooks']
+tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
 source_version: '0.28.2'
 licensing_model: Open Source
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-code', 'cursor', 'copilot', 'cost-optimization', 'open-source', 'developer-tools']
+tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
 aliases:
 - /zh/posts/rtk/
 - /zh/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
 title: "Toprank: Tăng Trưởng Doanh Thu 300% với Claude Code + SEO + Geo-Ads"
 description: "Khám phá Toprank - nền tảng tăng trưởng doanh thu tự động kết hợp Claude Code AI, SEO thông minh và Geo-Ads địa phương. Giải pháp toàn diện cho doanh nghiệp Việt Nam."
 date: 2026-05-15T04:20:25+09:00

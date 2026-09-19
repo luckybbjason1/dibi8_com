@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-tools-cursor-alternatives-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-tools-cursor-alternatives-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-tools-cursor-alternatives-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-tools-cursor-alternatives-2026" />
 title: '2026 AI 코딩 도구 대전: Cursor 독주 종료 — 7가지 최고 대안 완벽 비교'
 description: 'Cursor의 2025년 credit 가격 전환으로 신뢰가 무너졌다. 2026년 7가지 최강 대안 비교: Claude Code (80.8% SWE-bench), Cline (5M+ 설치 무료), GitHub Copilot ($10/월), Windsurf ($15/월), Continue.dev, Zed. 가격, 성능, 에이전트 모드, 마이그레이션 전략까지.'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['VS Code', 'JetBrains', 'Terminal CLI', 'Native editors']
+tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
 application_domain: Llm Frameworks
 source_version: ''
 licensing_model: Mixed
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'Various'
+maintainer: Various
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['cursor', 'cursor-alternatives', 'claude-code', 'cline', 'github-copilot', 'windsurf', 'continue-dev', 'zed', 'ai-coding', 'ai-ide', 'developer-tools', 'comparison']
+tags: [cursor, 'cursor-alternatives', 'claude-code', cline, 'github-copilot', windsurf, 'continue-dev', zed, 'ai-coding', 'ai-ide', 'developer-tools', comparison]
 aliases:
 - /kr/posts/ai-coding-tools-2026/
 - /kr/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/

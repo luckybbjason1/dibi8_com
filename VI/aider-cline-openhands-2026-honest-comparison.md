@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider-cline-openhands-2026-honest-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider-cline-openhands-2026-honest-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider-cline-openhands-2026-honest-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider-cline-openhands-2026-honest-comparison" />
 title: 'Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 Coding Agent mã nguồn mở'
 description: 'Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu benchmark cụ thể, nơi mỗi cái thắng, nơi mỗi cái thua, và thực tế chi phí BYO API key so với các phương án thương mại.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Aider', 'Cline', 'OpenHands', 'Python', 'TypeScript']
+tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
 source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', 'aider', 'cline', 'openhands', '2026']
+tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
 aliases:
 - /vi/posts/aider-cline-openhands-2026-honest-comparison/
 faq:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/whisperx" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/whisperx" />
 title: 'WhisperX: 22K+ Stars — 프로덕션 ASR 배포 가이드 2026'
 description: 'WhisperX는 단어 수준 타임스탬프와 화자 분리를 제공하는 오픈소스 ASR 툴킷입니다. faster-whisper, pyannote.audio, OpenAI Whisper 모델과 호환됩니다. Docker 배포, Python API, 벤치마크, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['whisperx', 'asr', '음성인식', '화자분리', '단어타임스탬프', 'faster-whisper', 'pyannote', 'docker']
+tags: [whisperx, asr, 음성인식, 화자분리, 단어타임스탬프, 'faster-whisper', pyannote, docker]
 aliases:
 - /kr/posts/whisperx/
 ---
@@ -108,7 +113,7 @@ uvx git+https://github.com/m-bain/whisperX.git
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
 # WhisperX용 Dockerfile 생성
-cat > Dockerfile.whisperx << 'EOF'
+cat > Dockerfile.whisperx << EOF
 FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -405,7 +410,7 @@ whisperx audio.wav \
 
 ```bash
 # 콜드 스타트 지연 방지를 위한 모델 사전 다운로드
-python3 << 'PYEOF'
+python3 << PYEOF
 import whisperx
 import torch
 

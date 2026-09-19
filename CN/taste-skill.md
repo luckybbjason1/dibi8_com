@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/taste-skill" />
 title: "Taste Skill: Stop AI From Generating Generic Slop — Agent Skill Framework 2026"
 description: "Taste Skill is a portable agent skill framework that upgrades AI-built interfaces with stronger layout, typography, motion, and spacing. Works with Codex, Cursor, Claude Code, and ChatGPT Images."
 tags: ["ai-agent", "automation", "open-source"]

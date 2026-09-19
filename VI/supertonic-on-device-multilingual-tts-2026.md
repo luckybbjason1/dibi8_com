@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supertonic-on-device-multilingual-tts-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supertonic-on-device-multilingual-tts-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supertonic-on-device-multilingual-tts-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supertonic-on-device-multilingual-tts-2026" />
 title: 'Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M tham số qua ONNX, hỗ trợ 31 ngôn ngữ (2026)'
 description: 'Supertonic (9.9K+ stars trên GitHub) của Supertone Inc. là model text-to-speech đa ngôn ngữ siêu nhanh chạy local trên CPU qua ONNX Runtime — không cloud, không API, không cần GPU. 99M tham số, 31 ngôn ngữ bao gồm tiếng Hàn/Nhật/Việt/Trung, audio chất lượng studio 44.1kHz, 10 expression tag, runtime cho Python, Node.js, browser (WebGPU/WASM), iOS, Android, Rust, Flutter. Phân tích đầy đủ tính năng, hướng dẫn cài đặt, ví dụ code và so sánh bối cảnh TTS on-device 2026.'
 date: 2026-05-23 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-01-06'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['supertonic', 'text-to-speech', 'tts', 'on-device-ai', 'onnx', 'multilingual', 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
+tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
 aliases:
 - /vi/posts/supertonic-on-device-multilingual-tts-2026/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-vs-vllm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-vs-vllm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-vs-vllm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-vs-vllm" />
 title: 'Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughput Production'
 description: 'So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughput cao) — dễ dùng, throughput, phần cứng, đồng thời, chi phí ở quy mô. Cập nhật 2026.'
 date: 2026-06-06 00:00:00+08:00

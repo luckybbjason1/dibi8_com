@@ -1,6 +1,8 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/perplexity-api-rag-search" />
 title: 'perplexity-api-rag-search'
-description: '{''en'': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', ''zh'': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', ''ko'': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', ''vi'': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
+description: '{'en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/perplexity'
 stars: 0
-maintainer: 'perplexity'
+maintainer: perplexity
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Perplexity API']
+tags: ['perplexity api']
 aliases:
 - /posts/perplexity-api-rag-search/
 ---
@@ -278,14 +280,14 @@ answer, sources = perplexity_stream(
 // Node.js streaming example using fetch
 async function streamPerplexity(query) {
   const response = await fetch('https://api.perplexity.ai/chat/completions', {
-    method: 'POST',
+    method: POST,
     headers: {
-      'Authorization': `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+      Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       model: 'sonar-pro',
-      messages: [{ role: 'user', content: query }],
+      messages: [{ role: user, content: query }],
       stream: true
     })
   });

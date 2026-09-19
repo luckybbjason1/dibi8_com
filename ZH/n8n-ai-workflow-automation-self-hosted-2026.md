@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-workflow-automation-self-hosted-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-workflow-automation-self-hosted-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-workflow-automation-self-hosted-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-workflow-automation-self-hosted-2026" />
 title: "n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本"
 description: "2026年最热门开源自动化平台n8n完整教程。覆盖n8n自托管部署、AI Agent搭建、LangChain集成、SEO自动化工作流实战，对比Zapier/Make，助你节省70%自动化成本。"
 keywords: n8n, AI工作流自动化, n8n教程2026, 开源自动化工具, AI Agent搭建, n8n自托管部署, 工作流自动化平台, n8n vs Zapier, LangChain集成, 无代码自动化

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/copilotkit" />
 title: 'CopilotKit: 31K+ Stars — Add AI Copilots to Any React or Angular App — Complete Setup Guide for 2026'
 description: 'CopilotKit is the open-source frontend stack for in-app AI copilots and generative UI. Build React Angular AI assistants with prebuilt components, useCopilotAction hooks, and production-ready deployment. Covers installation, LangChain integration, self-hosting, and benchmarks vs Vercel AI SDK.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/CopilotKit/CopilotKit'
 stars: 31536
-maintainer: 'CopilotKit'
+maintainer: CopilotKit
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['copilotkit', 'react-ai', 'generative-ui', 'ai-copilot', 'langchain', 'frontend-agents', 'typescript', 'open-source']
+tags: [copilotkit, 'react-ai', 'generative-ui', 'ai-copilot', langchain, 'frontend-agents', typescript, 'open-source']
 aliases:
 - /posts/copilotkit/
 ---

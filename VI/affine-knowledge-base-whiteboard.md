@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản lý tri thức AI — Hướng dẫn cài đặt'
 description: 'Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ, bảng vẽ edgeless, trợ lý viết AI, triển khai Docker trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'toeverything/AFFiNE'
 stars: 47000
-maintainer: 'toeverything'
+maintainer: toeverything
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AFFiNE', 'knowledge-base', 'whiteboard', 'tự-lưu-trữ', 'Docker', 'thay-thế-Notion', 'thay-thế-Miro', 'CRDT', 'ưu-tiên-cục-bộ', 'AI-viết']
+tags: [affine, 'knowledge-base', whiteboard, 'tự-lưu-trữ', docker, 'thay-thế-notion', 'thay-thế-miro', crdt, 'ưu-tiên-cục-bộ', 'ai-viết']
 aliases:
 - /vi/posts/affine-knowledge-base-whiteboard/
 ---
@@ -79,7 +84,7 @@ wget -O .env https://github.com/toeverything/affine/releases/latest/download/.en
 
 ```bash
 # Chỉnh sửa tệp .env
-cat > .env << 'EOF'
+cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
 AFFINE_ADMIN_PASSWORD=ChangeMeNow2026!
 DB_PASSWORD=postgres_secret_2026
@@ -225,7 +230,7 @@ Các đặc tính hiệu suất của AFFiNE quan trọng cho triển khai sản
 
 ```bash
 # Sử dụng Caddy làm reverse proxy
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 affine.yourdomain.com {
     reverse_proxy localhost:3010
     tls admin@yourdomain.com
@@ -237,7 +242,7 @@ EOF
 
 ```bash
 # Sao lưu tự động hàng ngày
-cat > backup-affine.sh << 'EOF'
+cat > backup-affine.sh << EOF
 #!/bin/bash
 set -euo pipefail
 BACKUP_DIR="/backups/affine-$(date +%Y%m%d)"

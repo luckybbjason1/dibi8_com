@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
 title: 'CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026'
 description: 'CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'joaomdmoura/crewAI'
 stars: 28000
-maintainer: 'joaomdmoura'
+maintainer: joaomdmoura
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', '多智能体', 'ai-agent', '编排', '自主智能体', 'llm', 'python', '开源']
+tags: [crewai, 多智能体, 'ai-agent', 编排, 自主智能体, llm, python, 开源]
 aliases:
 - /zh/posts/crewai-multi-agent-orchestration/
 ---
@@ -354,7 +359,7 @@ def check_stock_price(ticker: str) -> str:
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
-    return f"{ticker}: ${data['price']} (变动: {data['change']}%)"
+    return f"{ticker}: ${data[price]} (变动: {data[change]}%)"
 
 analyst = Agent(
     role="金融分析师",

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-ds4-vs-openai-api" />
 title: "OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기"
 description: "OpenAI 요금제 해지: DeepSeek(DS4) 로컬 추론으로 토큰 비용 박살내기"
 date: 2026-05-15T04:20:25+09:00

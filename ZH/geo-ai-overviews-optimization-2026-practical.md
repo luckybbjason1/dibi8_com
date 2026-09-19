@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/geo-ai-overviews-optimization-2026-practical" />
 title: 'GEO / AI Overviews 优化 2026：来自真实站点数据的实战指南'
 description: '生成式引擎优化（GEO）就是新的 SEO。如何针对 Google AI Overviews、ChatGPT Search 和 Perplexity 引用进行优化。来自 dibi8.com 实战优化的真实技巧——FAQ schema、可引用性评分、llms.txt。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['SEO', 'GEO', 'Schema.org', 'JSON-LD', 'llms.txt']
+tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: 开发工具
 source_version: '2026 Q2'
 licensing_model: 'N/A'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['seo', 'geo', 'ai-overviews', 'optimization', '2026']
+tags: [seo, geo, 'ai-overviews', optimization, 2026]
 aliases:
 - /zh/posts/geo-ai-overviews-optimization-2026-practical/
 faq:

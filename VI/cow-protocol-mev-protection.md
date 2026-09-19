@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cow-protocol-mev-protection" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cow-protocol-mev-protection" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cow-protocol-mev-protection" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cow-protocol-mev-protection" />
 title: 'CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết kiệm $100M+ Phí Trượt giá — Hướng Dẫn Cài đặt'
 description: 'Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh solver để giúp tiết kiệm $100M+ phí trượt giá. Bao gồm tích hợp SDK, thiết lập bot giao dịch.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/cowprotocol/contracts'
 stars: 700
-maintainer: 'cowprotocol'
+maintainer: cowprotocol
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['CoW Protocol', 'MEV protection', 'DEX aggregator', 'batch auction', 'sandwich attack', 'Coincidence of Wants', 'solver', 'DeFi trading', 'gasless orders', 'anti-MEV']
+tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'sandwich attack', 'coincidence of wants', solver, 'defi trading', 'gasless orders', 'anti-mev']
 aliases:
 - /vi/posts/cow-protocol-mev-protection/
 ---
@@ -107,8 +112,8 @@ COW_API_URL=https://api.cow.fi/mainnet
 
 ```typescript
 import { CowSdk, OrderKind, SigningScheme } from '@cowprotocol/cow-sdk';
-import { Wallet } from 'ethers';
-import * as dotenv from 'dotenv';
+import { Wallet } from ethers;
+import * as dotenv from dotenv;
 
 dotenv.config();
 
@@ -130,7 +135,7 @@ class CowProtocolTrader {
             sellAmountBeforeFee: sellAmount,
             userAddress: this.wallet.address,
             validTo: Math.floor(Date.now() / 1000) + 3600,
-            appData: '0x0000000000000000000000000000000000000000000000000000000000000000',
+            appData: 0x0000000000000000000000000000000000000000000000000000000000000000,
             partiallyFillable: false,
             from: this.wallet.address,
         });
@@ -165,7 +170,7 @@ const trader = new CowProtocolTrader();
             buyAmount: quote.quote.buyAmount,
             feeAmount: quote.quote.feeAmount,
             validTo: Math.floor(Date.now() / 1000) + 3600,
-            appData: '0x0000000000000000000000000000000000000000000000000000000000000000',
+            appData: 0x0000000000000000000000000000000000000000000000000000000000000000,
             partiallyFillable: false,
             kind,
             receiver: this.wallet.address,
@@ -215,13 +220,13 @@ const trader = new CowProtocolTrader();
             const orderData = await this.cowSdk.cowApi.getOrder(orderId);
             console.log(`Trạng thái: ${orderData.status} (kiểm tra ${i + 1}/${maxAttempts})`);
             
-            if (orderData.status === 'fulfilled') {
+            if (orderData.status === fulfilled) {
                 console.log('Lệnh đã được thực thi!');
                 console.log(`Giao dịch: ${orderData.executionTxHash}`);
                 return orderData;
             }
             
-            if (['expired', 'cancelled', 'presignaturePending'].includes(orderData.status)) {
+            if ([expired, cancelled, presignaturePending].includes(orderData.status)) {
                 console.log(`Lệnh ${orderData.status}`);
                 return orderData;
             }
@@ -238,7 +243,7 @@ const trader = new CowProtocolTrader();
 ### Giám sát Giá Thờ gian Thực
 
 ```typescript
-import axios from 'axios';
+import axios from axios;
 
 interface PriceMonitor {
     tokenIn: string;
@@ -257,7 +262,7 @@ class CowProtectedBot {
     }
 
     async addMonitor(name: string, tokenIn: string, tokenOut: string, threshold: number) {
-        const quote = await this.trader.getQuote(tokenIn, tokenOut, '1000000');
+        const quote = await this.trader.getQuote(tokenIn, tokenOut, 1000000);
         const currentPrice = parseFloat(quote.quote.buyAmount) / parseFloat(quote.quote.sellAmount);
 
         this.monitors.set(name, { tokenIn, tokenOut, threshold, lastPrice: currentPrice });
@@ -269,7 +274,7 @@ class CowProtectedBot {
     async checkPrices() {
         for (const [name, monitor] of this.monitors) {
             try {
-                const quote = await this.trader.getQuote(monitor.tokenIn, monitor.tokenOut, '1000000');
+                const quote = await this.trader.getQuote(monitor.tokenIn, monitor.tokenOut, 1000000);
                 const currentPrice = parseFloat(quote.quote.buyAmount) / parseFloat(quote.quote.sellAmount);
                 const priceChange = (currentPrice - monitor.lastPrice) / monitor.lastPrice;
                 
@@ -293,7 +298,7 @@ class CowProtectedBot {
         console.log(`  Giá kích hoạt: ${triggerPrice}`);
 
         const orderId = await this.trader.placeOrder(
-            monitor.tokenIn, monitor.tokenOut, '1000000000000000000', OrderKind.SELL
+            monitor.tokenIn, monitor.tokenOut, 1000000000000000000, OrderKind.SELL
         );
         console.log(`Lệnh bảo vệ đã đặt: ${orderId}`);
     }
@@ -335,7 +340,7 @@ class BatchOrderManager {
         this.trader = trader;
     }
 
-    async submitBatchOrders(orders: Omit<BatchOrder, 'id'>[]) {
+    async submitBatchOrders(orders: Omit<BatchOrder, id>[]) {
         console.log(`Gửi lô ${orders.length} lệnh...`);
         const orderIds: string[] = [];
         
@@ -367,9 +372,9 @@ class BatchOrderManager {
             orderIds.map(async (id) => {
                 try {
                     const order = await this.trader.cowSdk.cowApi.getOrder(id);
-                    return { id, status: order.status, filled: order.status === 'fulfilled' };
+                    return { id, status: order.status, filled: order.status === fulfilled };
                 } catch {
-                    return { id, status: 'unknown', filled: false };
+                    return { id, status: unknown, filled: false };
                 }
             })
         );
@@ -408,9 +413,9 @@ class BatchOrderManager {
             sellToken, buyToken,
             sellAmount,
             buyAmount: minBuyAmount,  // Sản lượng tối thiểu chấp nhận được
-            feeAmount: '0',
+            feeAmount: 0,
             validTo,
-            appData: '0x0000000000000000000000000000000000000000000000000000000000000000',
+            appData: 0x0000000000000000000000000000000000000000000000000000000000000000,
             partiallyFillable: true,  // Cho phép khớp một phần
             kind: OrderKind.SELL,
             receiver: this.wallet.address,
@@ -500,7 +505,7 @@ class BatchOrderManager {
 
 ```typescript
     async getTradeHistory(startBlock?: number, endBlock?: number) {
-        const SETTLEMENT_CONTRACT = '0x9008D19f58AAbD9eD0D60971565AA8510560ab41';
+        const SETTLEMENT_CONTRACT = 0x9008D19f58AAbD9eD0D60971565AA8510560ab41;
         const settlementAbi = [
             'event Settlement(address indexed solver, bytes32 indexed orderUid)',
         ];
@@ -508,7 +513,7 @@ class BatchOrderManager {
         const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
         const settlement = new ethers.Contract(SETTLEMENT_CONTRACT, settlementAbi, provider);
         const filter = settlement.filters.Settlement();
-        const events = await settlement.queryFilter(filter, startBlock || -10000, endBlock || 'latest');
+        const events = await settlement.queryFilter(filter, startBlock || -10000, endBlock || latest);
 
         console.log(`Tìm thấy ${events.length} giao dịch thanh toán`);
 

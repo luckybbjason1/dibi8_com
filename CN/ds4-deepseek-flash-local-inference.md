@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
 title: 'DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Inference Benchmark on
   128GB Mac'
 description: Discover DS4 by antirez (Redis creator) — a native inference engine for

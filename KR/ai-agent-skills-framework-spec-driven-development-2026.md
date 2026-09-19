@@ -1,4 +1,9 @@
 # AI 에이전트 스킬 프레임워크 완벽 가이드: 2026년 개발자 생산성 혁명과 스펙 기반 개발 실전
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-framework-spec-driven-development-2026" />
 
 **발행일:** 2026년 5월 20일  
 **독서 시간:** 15분  

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-tools-directory" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-tools-directory" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-tools-directory" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-tools-directory" />
 title: "Thư Mục Công Cụ AI 2024: Hướng Dẫn Hoàn Chỉnh Về Các Công Cụ AI Tốt Nhất | Dibi8"
 description: "Khám phá các công cụ AI tốt nhất năm 2024. Thư mục hoàn chỉnh với hơn 200 công cụ AI cho viết, tạo hình ảnh, lập trình, marketing và nhiều hơn nữa. Tùy chọn miễn phí và trả phí với đánh giá chi tiết."
 date: 2026-05-15T04:20:25+09:00

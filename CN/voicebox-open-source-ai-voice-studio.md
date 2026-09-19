@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/voicebox-open-source-ai-voice-studio" />
   title: 'VoiceBox: The Open-Source AI Voice Studio for Cloning, Dictation, and Generation'
   description: 'A full-stack open-source AI voice studio that lets you clone any voice, generate speech, and dictate into any app. 33K stars. Runs locally on your machine with CUDA or Apple Silicon support.'
   date: 2026-06-25

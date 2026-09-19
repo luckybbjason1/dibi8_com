@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-agent-sdk-vs-openai-agents-sdk" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-agent-sdk-vs-openai-agents-sdk" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-agent-sdk-vs-openai-agents-sdk" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-agent-sdk-vs-openai-agents-sdk" />
 title: 'Claude Agent SDK vs OpenAI Agents SDK năm 2026: Nên xây dựng trên nền tảng nào?'
 description: 'Phân tích song song hai SDK agent hàng đầu — kiến trúc (hooks+subagents vs handoffs+guardrails), công cụ tích hợp sẵn, quyền truy cập OS, giọng nói, khóa nhà cung cấp, và khi nào chọn loại nào. Cập nhật 2026.'
 date: 2026-05-29 00:00:00+08:00

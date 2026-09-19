@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南'
 description: '部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'baetyl/baetyl'
 stars: 3200
-maintainer: 'baetyl'
+maintainer: baetyl
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Baetyl', '边缘计算', 'IoT', 'Kubernetes', 'K3s', 'AI推理', 'MQTT', '边缘AI', 'OTA更新', 'LF-Edge']
+tags: [baetyl, 边缘计算, iot, kubernetes, k3s, ai推理, mqtt, 边缘ai, ota更新, 'lf-edge']
 aliases:
 - /zh/posts/baetyl-edge-ai-computing-platform/
 ---
@@ -122,7 +127,7 @@ mysql -u root -p < scripts/sql/tables.sql
 mysql -u root -p < scripts/sql/data.sql
 
 # 配置数据库连接
-cat > scripts/charts/baetyl-cloud/conf/cloud.yml << 'EOF'
+cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
 database:
   type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
@@ -341,7 +346,7 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 
 ```bash
 # 部署 SQLite 用于边缘本地数据缓存
-cat > sqlite-app.yml << 'EOF'
+cat > sqlite-app.yml << EOF
 name: local-cache
 services:
   - name: sqlite

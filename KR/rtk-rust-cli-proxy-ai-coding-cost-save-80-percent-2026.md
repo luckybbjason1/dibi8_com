@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
 title: "개발자 월 20만원 AI 비용을 4만원으로 줄인 Rust 도구: rtk 완벽 가이드 | LLM 토큰 최적화 2026"
 description: "2026년 개발자들의 가장 큰 고민은 AI 코딩 도구 비용. Rust로 작성된 단일 바이너리 CLI 프록시 rtk는 명령어 출력을 압축하여 LLM 토큰 소비를 60-90% 절감한다. Claude Code, Cursor, GitHub Copilot, Gemini CLI 등 13개 도구를 지원하며 설치는 30초, 설정은 0개."
 keywords: ["rtk", "LLM 토큰 최적화", "AI 코딩 비용 절감", "Claude Code 비용", "Rust CLI 도구", "개발자 생산성", "토큰 압축", "AI 에이전트 최적화"]

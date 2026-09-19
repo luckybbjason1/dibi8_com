@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dagster-data-pipeline-orchestrator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagster-data-pipeline-orchestrator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagster-data-pipeline-orchestrator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagster-data-pipeline-orchestrator" />
 title: 'Dagster: Trình Điều Phối Pipeline Dữ Liệu Dựa Trên Asset — Hướng Dẫn Triển Khai Production 2026'
 description: 'Hướng dẫn production đầy đủ cho Dagster 1.13: điều phối dựa trên asset, lập lịch nhận thức dữ liệu, phân vùng, backfill và triển khai tự host với Docker Compose.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Dagster', 'data-pipeline', 'orchestration', 'ETL', 'Apache-Airflow', 'dbt', 'Python', 'Docker', 'data-engineering', 'asset-centric', 'pipeline-du-lieu', 'dieu-phoi-du-lieu']
+tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric', 'pipeline-du-lieu', 'dieu-phoi-du-lieu']
 aliases:
 - /vi/posts/dagster-data-pipeline-orchestrator/
 ---

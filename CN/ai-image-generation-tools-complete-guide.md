@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-image-generation-tools-complete-guide" />
 title: 'AI Image Generation Tools: Complete Guide to Midjourney, DALL-E, Stable Diffusion & More'
 description: 'Complete guide to AI image generation tools in 2025. Compare Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX, and Leonardo.ai with features and pricing.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
 title: 'ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cười, Tạm Dừng, Điều Khiển Prosody Cấp Token'
 description: 'ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, tối thiểu 4 GB VRAM, RTF 0.3 trên RTX 4090, điều khiển prosody tinh tế bao gồm cười và tạm dừng. Hướng dẫn cài đặt + thiết lập production 2026 đầy đủ.'
 date: 2026-05-21 00:00:00+08:00
@@ -17,12 +22,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/2noise/ChatTTS'
 stars: 39300
-maintainer: '2noise'
+maintainer: 2noise
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ChatTTS', 'TTS', 'giọng nói', 'hội thoại', 'mã nguồn mở']
+tags: [chattts, tts, 'giọng nói', 'hội thoại', 'mã nguồn mở']
 aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---

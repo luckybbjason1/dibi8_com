@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/accept-payments-all-currencies" />
 title: "所有货币可以支付 - NowPayments"
 description: "u4f7fu7528NowPaymentsu63a5u53d7u6240u6709u8d27u5e01u652fu4ed8u3002u652fu6301100u591au79cdu52a0u5bc6u8d27u5e01u548cu6cd5u5b9au8d27u5e01uff0cu4f4eu624bu7eedu8d39u5373u65f6u7ed3u7b97u3002"
 date: 2026-05-15T04:20:25+09:00

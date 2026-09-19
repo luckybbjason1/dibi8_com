@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicebox-open-source-ai-voice-studio" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicebox-open-source-ai-voice-studio" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicebox-open-source-ai-voice-studio" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicebox-open-source-ai-voice-studio" />
 title: VoiceBox：开源AI语音工作室，用于克隆、听写和生成
 description: 一个全栈开源AI语音工作室，让您克隆任意语音、生成语音并听写到任何应用。33K stars。在您的机器上本地运行，支持CUDA或Apple Silicon。
 date: 2026-06-25

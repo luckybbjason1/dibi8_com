@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-100-chatgpt-single-gpu" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-100-chatgpt-single-gpu" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nanochat-karpathy-100-chatgpt-single-gpu" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-100-chatgpt-single-gpu" />
 title: 'nanochat: Karpathy의 $100 ChatGPT — 단일 GPU에서 자체 AI 채팅 앱 구축 — 2026 실전 가이드'
 description: 'nanochat (54,800 GitHub star)은 Andrej Karpathy의 오픈소스 ChatGPT 클론으로, 단일 $100 GPU에서 실행됩니다. SGLang으로 처음부터 훈련하거나 vLLM으로 사전 훈련된 모델을 서빙합니다. 설정 가이드, 훈련 벤치마크, 배포 예시 포함.'
 date: 2026-06-08

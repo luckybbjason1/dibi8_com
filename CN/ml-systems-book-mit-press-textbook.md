@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ml-systems-book-mit-press-textbook" />
 title: "ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering"
 description: "The ML Systems Book is an MIT Press textbook covering distributed training, model serving, hardware acceleration, and ML infrastructure. Essential reading for ML engineers."
 date: 2026-05-15T04:20:25+09:00

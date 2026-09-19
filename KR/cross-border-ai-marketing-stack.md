@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cross-border-ai-marketing-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cross-border-ai-marketing-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cross-border-ai-marketing-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cross-border-ai-marketing-stack" />
 title: '국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업'
 description: '국경 간 운영을 위해 특별 제작된 7컴포넌트 AI 스택 — 다국어 콘텐츠 자동화, 글로벌 시장 정보 스크래핑, GDPR 호환 분석, 결제 마찰 우회, 전체를 홍콩 VPS에서 실행. 총 $35-80/월, OSS 또는 aff 친화적.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['국경 간', 'AI 마케팅', '글로벌 진출', '스택', '컬렉션']
+categories: [collections]
+tags: ['국경 간', 'ai 마케팅', '글로벌 진출', 스택, 컬렉션]
 aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---

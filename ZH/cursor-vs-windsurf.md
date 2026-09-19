@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-vs-windsurf" />
 title: 'Cursor vs Windsurf 2026：哪款 AI IDE 更值得选？'
 description: 'Cursor 和 Windsurf（Codeium 出品）横向对比 — Composer vs Cascade、价格、性能、迁移建议。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

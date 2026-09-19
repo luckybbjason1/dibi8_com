@@ -1,4 +1,9 @@
 好的，这是为您翻译的英文技术文章，遵循了您提供的所有规则：
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superpowers" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superpowers" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superpowers" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superpowers" />
 
 ---
 title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026'

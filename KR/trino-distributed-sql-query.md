@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trino-distributed-sql-query" />
 title: 'Trino 2026: PB급 데이터 분석 분산 SQL 쿼리 엔진 — 셀프 호스팅 클러스터 구축 가이드'
 description: 'Trino 464+를 배포하여 PB급 분산 SQL 분석을 구현하세요. 단계별 클러스터 배포, 40+ 커넥터 구성, 성능 튜닝 및 실제 벤치마크를 포함합니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'trinodb/trino'
 stars: 11000
-maintainer: 'trinodb'
+maintainer: trinodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Trino', 'Presto', '분산SQL', '빅데이터', '데이터분석', '데이터레이크', 'Hive', 'Iceberg', '쿼리엔진', '셀프호스팅']
+tags: [trino, presto, 분산sql, 빅데이터, 데이터분석, 데이터레이크, hive, iceberg, 쿼리엔진, 셀프호스팅]
 aliases:
 - /kr/posts/trino-distributed-sql-query/
 ---
@@ -225,7 +230,7 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
 ./trino --server http://trino-coordinator:8080 \
   --catalog iceberg \
   --schema default \
-  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL '7' DAY"
+  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL 7 DAY"
 ```
 
 ## 주요 데이터 도구와의 통합
@@ -519,7 +524,7 @@ connector.name=jmx
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
 -- 쿼리당 메모리 사용량
-SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = 'RUNNING';
+SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = RUNNING;
 ```
 
 ## 대안과의 비교

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research: The Ultimate Local-First AI Deep Research Tool"
 description: "Master Local Deep Research (LDR) — the local-first AI research assistant. Learn how to perform deep, iterative research with Ollama and SearXNG while maintaining 100% privacy."
 date: 2026-05-15T04:20:25+09:00

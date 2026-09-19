@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ragflow" />
 title: 'RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ Stars — Docker Setup and Benchmarks for 2026'
 description: 'RAGFlow is an open-source retrieval-augmented generation (RAG) engine with deep document understanding and built-in agent capabilities. Compatible with Ollama, OpenAI, Qdrant, Elasticsearch, and Redis. Covers Docker deployment, document ingestion, retrieval tuning, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/infiniflow/ragflow'
 stars: 80853
-maintainer: 'infiniflow'
+maintainer: infiniflow
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ragflow', 'rag-engine', 'document-understanding', 'docker-deployment', 'llm-agent', 'production-rag', 'open-source-ai']
+tags: [ragflow, 'rag-engine', 'document-understanding', 'docker-deployment', 'llm-agent', 'production-rag', 'open-source-ai']
 aliases:
 - /posts/ragflow/
 ---
@@ -406,7 +408,7 @@ Key metrics to monitor:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'ragflow'
+  - job_name: ragflow
     static_configs:
       - targets: ['ragflow-server:9380']
     metrics_path: /metrics

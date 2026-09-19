@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflows-complete-guide" />
 title: ComfyUI 工作流 — AI 图像生成的可视化编程语言
 description: ComfyUI 完全指南：用于专业 AI 图像生成的节点式工作流。构建复杂管线、管理依赖关系并创建可共享的工作流模板。
 tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']

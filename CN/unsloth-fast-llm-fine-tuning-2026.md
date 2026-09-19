@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/unsloth-fast-llm-fine-tuning-2026" />
 title: 'Unsloth 2026: 64.9k-Star Fast LLM Fine-Tuning — 2× Speed, 70% Less VRAM, Single-GPU Friendly'
 description: 'Unsloth fine-tunes LLMs 2× faster with 70% less VRAM than HuggingFace TRL baselines. 64.9k GitHub stars, dual Apache 2.0 + AGPL-3.0 license. Supports Llama 3, Mistral, Qwen 3, Gemma, DeepSeek for LoRA / QLoRA / DPO / GRPO. Complete 2026 single-GPU fine-tuning guide.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unslothai/unsloth'
 stars: 64900
-maintainer: 'unslothai'
+maintainer: unslothai
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Unsloth', 'fine-tuning', 'LoRA', 'QLoRA', 'GRPO', 'fast training']
+tags: [unsloth, 'fine-tuning', lora, qlora, grpo, 'fast training']
 aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---

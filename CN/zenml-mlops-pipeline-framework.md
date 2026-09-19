@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: The MLOps Framework Connecting 20+ Tools into Production Pipelines — Complete Setup Guide'
 description: 'A comprehensive guide to ZenML — the open-source MLOps framework that connects 20+ tools into unified, reproducible ML pipelines. Self-hosted setup, real benchmarks, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -415,12 +417,12 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
     
     # This step executes on ml.p3.2xlarge via SageMaker
     model = tf.keras.Sequential([
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dense(64, activation='relu'),
-        tf.keras.layers.Dense(3, activation='softmax')
+        tf.keras.layers.Dense(128, activation=relu),
+        tf.keras.layers.Dense(64, activation=relu),
+        tf.keras.layers.Dense(3, activation=softmax)
     ])
     
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+    model.compile(optimizer=adam, loss=sparse_categorical_crossentropy)
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model

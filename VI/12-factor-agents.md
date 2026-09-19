@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents" />
 title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng LLM đáng tin cậy"
 description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LLM hỗ trợ, cung cấp cách tiếp cận có nguyên tắc để xây dựng các agent AI đáng tin cậy, có thể mở rộng và quan sát được."
 date: 2026-06-10

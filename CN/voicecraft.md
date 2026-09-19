@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/voicecraft" />
 title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GPT-SoVITS, XTTS in 2026'
 description: 'VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Compatible with GPT-SoVITS, Coqui TTS, and RVC. Covers setup, benchmarks, Docker deployment, and comparison tables.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jasonppy/VoiceCraft'
 stars: 8500
-maintainer: 'jasonppy'
+maintainer: jasonppy
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['voicecraft', 'zero-shot-tts', 'speech-editing', 'neural-codec', 'voice-cloning', 'ai-audio', 'docker', 'python']
+tags: [voicecraft, 'zero-shot-tts', 'speech-editing', 'neural-codec', 'voice-cloning', 'ai-audio', docker, python]
 aliases:
 - /posts/voicecraft/
 ---

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/tensortrade-rl-trading" />
 title: 'TensorTrade: The Reinforcement Learning Trading Framework with Custom Gym Environments — 2026 Guide'
 description: 'Master TensorTrade for RL-based algorithmic trading. Build custom Gym environments, integrate Stable Baselines3, and deploy production-ready portfolio management strategies with real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['TensorTrade', 'Reinforcement Learning', 'Algorithmic Trading', 'OpenAI Gym', 'Stable Baselines3', 'Portfolio Management', 'Python', 'Machine Learning', 'Crypto Trading', 'Quantitative Finance']
+tags: [tensortrade, 'reinforcement learning', 'algorithmic trading', 'openai gym', 'stable baselines3', 'portfolio management', python, 'machine learning', 'crypto trading', 'quantitative finance']
 aliases:
 - /posts/tensortrade-rl-trading/
 ---

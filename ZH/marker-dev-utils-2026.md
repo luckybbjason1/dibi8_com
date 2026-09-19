@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/marker-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/marker-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/marker-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/marker-dev-utils-2026" />
 title: 'Marker：快速将 PDF、DOCX 与 EPUB 转为 Markdown/JSON —— 2026 实用指南'
 description: 'Marker（datalab-to/marker）能快速、准确地把 PDF、DOCX、EPUB 等文档转成 Markdown、JSON、HTML 和 chunks。35,694 个 GitHub star，代码采用 GPL-3.0 许可。涵盖安装、CLI 与 Python API、真实代码示例、LLM 模式，以及与同类工具的客观对比。'
 date: 2026-06-02 00:00:00+08:00

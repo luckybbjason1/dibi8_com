@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-vs-windsurf" />
 title: 'Cursor vs Windsurf 2026: AI IDE nào tốt hơn?'
 description: 'So sánh trực tiếp Cursor và Windsurf (Codeium) — Composer vs Cascade, giá cả, hiệu năng, mẹo chuyển đổi. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

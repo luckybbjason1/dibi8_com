@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-ai-agent-internet-access" />
 title: 'Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다'
 description: Agent Reach는 오픈소스 스캐폴딩 도구로, 하나의 명령으로 AI 에이전트가 YouTube, Twitter, Reddit,
   샤오홍슈, Bilibili 등 15개 이상의 플랫폼에 즉시 접근할 수 있게 합니다.

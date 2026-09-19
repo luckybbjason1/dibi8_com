@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and RAG Pipelines with the Fastest-Growing Open-Source Crawler'
 description: 'Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friendly web scrapers, RAG data pipelines, and AI Agent tools with this open-source Python crawler. Includes installation guide, LLM extraction strategies, deep crawl configs, and comparison with Firecrawl and ScrapeGraphAI.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unclecode/crawl4ai'
 stars: 63000
-maintainer: 'unclecode'
+maintainer: unclecode
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crawl4ai', 'web-scraping', 'llm-rag', 'open-source']
+tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
 aliases:
 - /posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
@@ -158,12 +160,12 @@ async def main():
         word_count_threshold=1,
         extraction_strategy=LLMExtractionStrategy(
             provider="openai/gpt-4o",
-            api_token=os.getenv('OPENAI_API_KEY'),
+            api_token=os.getenv(OPENAI_API_KEY),
             schema=ModelPricing.model_json_schema(),
             extraction_type="schema",
             instruction=(
                 "Extract all mentioned model names along with their input and output token prices. "
-                "Format each entry as: {'model_name': 'GPT-4o', 'input_cost': 'US$5.00 / 1M tokens', ...}"
+                "Format each entry as: {model_name: 'GPT-4o', input_cost: 'US$5.00 / 1M tokens', ...}"
             ),
             input_format="markdown",
             verbose=True
@@ -220,7 +222,7 @@ async def main():
         print(f"Total pages crawled: {len(results)}")
         
         for r in results[:5]:
-            print(f"URL: {r.url} | Depth: {r.metadata.get('depth', 0)}")
+            print(f"URL: {r.url} | Depth: {r.metadata.get(depth, 0)}")
 
 if __name__ == "__main__":
     asyncio.run(main())

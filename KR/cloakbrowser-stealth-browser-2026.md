@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-browser-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-browser-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-browser-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-browser-2026" />
 title: 'CloakBrowser 완벽 가이드 2026: 무료 오픈소스 스텔스 브라우저로 봇 감지 완벽 우회하기 — Playwright 대체 1줄 코드'
 description: '2026년 5월 GitHub Trending 2위 CloakBrowser. C++ 소스코드 레벨 49개 지문 패치, reCAPTCHA v3 0.9점, 30개 이상 봇 감지 통과. 월 $299 상용 툴을 무료로 대체하는 최강 오픈소스 스텔스 브라우저.'
 date: 2026-05-14 00:00:00+08:00

@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moneyprinterturbo-one-click-ai-video-generator" />
 title: 'MoneyPrinterTurbo: Trình Tạo Video AI Chỉ Với Một Nhấp Chuột với Hơn 90K Sao'
 description: 'Đưa cho MoneyPrinterTurbo một chủ đề video hoặc từ khóa và nó tự động tạo kịch bản, video có sẵn, phụ đề, nhạc nền và video ngắn HD. Hỗ trợ TikTok, YouTube Shorts, Instagram Reels. Hơn 90.000 sao trên GitHub.'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Video Generation', 'Short Videos', 'Automation', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
 categories: ['ai-tools']
 slug: moneyprinterturbo-one-click-ai-video-generator
 featureImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/moneyprinterturbo']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
@@ -21,13 +26,13 @@ description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-genera
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Video Generation', 'Short Videos', 'Automation', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
 categories: ['ai-tools']
 slug: moneyprinterturbo-one-click-ai-video-generator
 
 aliases: ['/moneyprinterturbo']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'

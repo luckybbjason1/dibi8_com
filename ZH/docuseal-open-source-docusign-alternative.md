@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docuseal-open-source-docusign-alternative" />
 title: DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%
 description: DocuSeal是一个拥有15.7k星的开源平台，可用自托管数字文档签署、PDF表单构建和白标电子签名工作流替代DocuSign。
 date: 2026-05-15 04:20:25+09:00

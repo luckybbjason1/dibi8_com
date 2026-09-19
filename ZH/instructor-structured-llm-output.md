@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/instructor-structured-llm-output" />
 title: 'Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南'
 description: '停止与不稳定的LLM输出作斗争。了解Instructor如何修补OpenAI客户端，使用Pydantic模型保证有效、类型安全的JSON响应。具有重试逻辑、多提供商支持和流式传输功能。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jxnl/instructor'
 stars: 11000
-maintainer: 'jxnl'
+maintainer: jxnl
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Instructor']
+tags: [instructor]
 aliases:
 - /zh/posts/instructor-structured-llm-output/
 ---
@@ -90,8 +95,8 @@ profile = extract_profile(
 )
 
 print(profile)
-# UserProfile(name='Sarah', age=28, email='sarah.chen@example.com', 
-#             interests=['hiking', 'photography', 'reading sci-fi novels'])
+# UserProfile(name=Sarah, age=28, email='sarah.chen@example.com', 
+#             interests=[hiking, photography, 'reading sci-fi novels'])
 
 # 直接访问类型化字段
 print(f"姓名: {profile.name}, 年龄: {profile.age}")
@@ -114,15 +119,15 @@ class ValidatedProduct(BaseModel):
     price: float = Field(description="美元价格，必须为正数")
     category: str = Field(description="以下之一: electronics, clothing, food, books")
     
-    @field_validator('category')
+    @field_validator(category)
     @classmethod
     def validate_category(cls, v):
-        allowed = {'electronics', 'clothing', 'food', 'books'}
+        allowed = {electronics, clothing, food, books}
         if v.lower() not in allowed:
             raise ValueError(f"类别必须是以下之一: {allowed}")
         return v.lower()
     
-    @field_validator('price')
+    @field_validator(price)
     @classmethod
     def validate_price(cls, v):
         if v <= 0:
@@ -146,8 +151,8 @@ product = parse_product(
     "电子产品类别。"
 )
 print(product)
-# ValidatedProduct(name='无线蓝牙降噪耳机', 
-#                  price=79.99, category='electronics')
+# ValidatedProduct(name=无线蓝牙降噪耳机, 
+#                  price=79.99, category=electronics)
 ```
 
 ---
@@ -358,17 +363,17 @@ class StrictDateRange(BaseModel):
     start_date: str = Field(description="YYYY-MM-DD格式")
     end_date: str = Field(description="YYYY-MM-DD格式，必须在开始日期之后")
     
-    @field_validator('start_date', 'end_date')
+    @field_validator(start_date, end_date)
     @classmethod
     def validate_date_format(cls, v):
         from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
-    @field_validator('end_date')
+    @field_validator(end_date)
     @classmethod
     def validate_order(cls, end, info):
-        start = info.data.get('start_date')
+        start = info.data.get(start_date)
         if start and end <= start:
             raise ValueError("end_date必须在start_date之后")
         return end
@@ -520,9 +525,9 @@ def generate_search(user_request: str) -> SearchQuery:
 query = generate_search(
     "找100美元以下的无线耳机，电池续航好，最新的优先"
 )
-print(query.keywords)  # ['wireless earbuds', 'bluetooth']
-print(query.filters)   # {'max_price': '100'}
-print(query.sort_by)   # 'date'
+print(query.keywords)  # ['wireless earbuds', bluetooth]
+print(query.filters)   # {max_price: 100}
+print(query.sort_by)   # date
 ```
 
 ---

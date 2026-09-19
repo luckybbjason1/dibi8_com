@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-4-opus-sonnet-review-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-4-opus-sonnet-review-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-4-opus-sonnet-review-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-4-opus-sonnet-review-2026" />
 title: 'Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test Thực Chiến'
 description: 'Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so sánh với GPT-4o, Gemini 1.5 Pro. Cập nhật tháng 6/2026.'
 date: 2026-06-06 00:00:00+08:00

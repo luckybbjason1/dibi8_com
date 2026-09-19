@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zoxide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zoxide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zoxide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zoxide" />
 title: 'Zoxide: 36,752 GitHub Stars — 2026 완벽 설치 가이드'
 description: 'Zoxide는 디렉토리 사용 패턴을 학습하는 더 똑똑한 cd 명령어입니다. Bash, Zsh, Fish, Nushell, PowerShell을 지원합니다. 설치, 셸 통합, fzf 설정, 알고리즘 낶부, autojump/fasd 마이그레이션을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/ajeetdsouza/zoxide'
 stars: 36752
-maintainer: 'ajeetdsouza'
+maintainer: ajeetdsouza
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['zoxide', 'cli', '셸', 'cd대체', 'rust', '터미널', '생산성', 'fzf']
+tags: [zoxide, cli, 셸, cd대체, rust, 터미널, 생산성, fzf]
 aliases:
 - /kr/posts/zoxide/
 ---

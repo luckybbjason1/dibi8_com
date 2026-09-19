@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/melotts" />
 title: 'MeloTTS: 7.4K+ Stars — Multi-Lingual TTS Benchmark vs Coqui TTS, ChatTTS, Bark in 2026'
 description: 'MeloTTS is a high-quality multi-lingual text-to-speech library with 7.4K+ stars. Compare benchmarks with Coqui TTS, ChatTTS, and Bark. Covers Python setup, Docker deployment, real-time inference, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['melotts', 'text-to-speech', 'tts', 'multilingual', 'python', 'voice-synthesis', 'open-source', 'cpu-inference']
+tags: [melotts, 'text-to-speech', tts, multilingual, python, 'voice-synthesis', 'open-source', 'cpu-inference']
 aliases:
 - /posts/melotts/
 ---
@@ -121,10 +123,10 @@ from melo.api import TTS
 
 # Speed is adjustable
 speed = 1.0
-device = 'auto'  # auto-detects GPU, falls back to CPU
+device = auto  # auto-detects GPU, falls back to CPU
 
 text = "MeloTTS is working correctly on this machine."
-model = TTS(language='EN', device=device)
+model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'test_output.wav'
@@ -150,10 +152,10 @@ melo --list-speakers
 from melo.api import TTS
 
 speed = 1.0
-device = 'auto'
+device = auto
 
 text = "Did you ever hear a folk tale about a giant turtle?"
-model = TTS(language='EN', device=device)
+model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 # American accent
@@ -163,7 +165,7 @@ model.tts_to_file(text, speaker_ids['EN-US'], 'en-us.wav', speed=speed)
 model.tts_to_file(text, speaker_ids['EN-BR'], 'en-br.wav', speed=speed)
 
 # Indian accent
-model.tts_to_file(text, speaker_ids['EN_INDIA'], 'en-india.wav', speed=speed)
+model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # Australian accent
 model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
@@ -175,15 +177,15 @@ model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
 from melo.api import TTS
 
 speed = 1.0
-device = 'cpu'
+device = cpu
 
 # Chinese speaker handles English words seamlessly
 text = "我最近在学习machine learning，希望能够在未来的artificial intelligence领域有所建树。"
-model = TTS(language='ZH', device=device)
+model = TTS(language=ZH, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
-model.tts_to_file(text, speaker_ids['ZH'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
 ```
 
 ### Japanese
@@ -192,14 +194,14 @@ model.tts_to_file(text, speaker_ids['ZH'], output_path, speed=speed)
 from melo.api import TTS
 
 speed = 1.0
-device = 'cpu'
+device = cpu
 
 text = "こんにちは、これは日本語の音声合成テストです。"
-model = TTS(language='JA', device=device)
+model = TTS(language=JA, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
-model.tts_to_file(text, speaker_ids['JA'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
 ```
 
 ### FastAPI REST API
@@ -215,12 +217,12 @@ app = FastAPI()
 
 # Pre-load models for supported languages
 models = {}
-for lang in ['EN', 'ZH', 'ES', 'FR', 'JA', 'KO']:
-    models[lang] = TTS(language=lang, device='auto')
+for lang in [EN, ZH, ES, FR, JA, KO]:
+    models[lang] = TTS(language=lang, device=auto)
 
 class TTSRequest(BaseModel):
     text: str
-    language: str = 'EN'
+    language: str = EN
     speaker: str = 'EN-Default'
     speed: float = 1.0
 
@@ -285,15 +287,15 @@ import json
 from melo.api import TTS
 from melo.utils import get_streaming_tts
 
-model = TTS(language='EN', device='auto')
+model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 
 async def tts_stream(websocket, path):
     async for message in websocket:
         data = json.loads(message)
-        text = data.get('text', '')
-        speaker = data.get('speaker', 'EN-Default')
-        speed = data.get('speed', 1.0)
+        text = data.get(text, '')
+        speaker = data.get(speaker, 'EN-Default')
+        speed = data.get(speed, 1.0)
         
         # Stream audio chunks
         for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed):
@@ -310,7 +312,7 @@ asyncio.get_event_loop().run_forever()
 import gradio as gr
 from melo.api import TTS
 
-model = TTS(language='EN', device='auto')
+model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 speaker_names = list(speaker_ids.keys())
 
@@ -411,10 +413,10 @@ import functools
 @functools.lru_cache(maxsize=6)
 def get_model(language):
     """Cached model loader — models are loaded once and reused."""
-    return TTS(language=language, device='auto')
+    return TTS(language=language, device=auto)
 
 # Pre-warm all languages at startup
-for lang in ['EN', 'ZH', 'ES', 'FR', 'JA', 'KO']:
+for lang in [EN, ZH, ES, FR, JA, KO]:
     get_model(lang)
 print("All models loaded and ready.")
 ```
@@ -425,7 +427,7 @@ print("All models loaded and ready.")
 from melo.api import TTS
 import concurrent.futures
 
-model = TTS(language='EN', device='cuda:0')
+model = TTS(language=EN, device='cuda:0')
 speaker_ids = model.hps.data.spk2id
 
 texts = [
@@ -498,8 +500,8 @@ from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
 # Metrics
-tts_requests = Counter('melotts_requests_total', 'Total TTS requests', ['language', 'speaker'])
-tts_duration = Histogram('melotts_duration_seconds', 'TTS generation duration')
+tts_requests = Counter(melotts_requests_total, 'Total TTS requests', [language, speaker])
+tts_duration = Histogram(melotts_duration_seconds, 'TTS generation duration')
 
 @app.get("/metrics")
 async def metrics():
@@ -595,7 +597,7 @@ Yes. MeloTTS is released under the MIT license, which permits commercial use, mo
 
 ### Q3: How does Chinese-English mixed input work?
 
-The Chinese model (`language='ZH'`) automatically detects English words within Chinese text and routes them through the English G2P pipeline while maintaining prosodic continuity. No manual tagging or model switching is required.
+The Chinese model (`language=ZH`) automatically detects English words within Chinese text and routes them through the English G2P pipeline while maintaining prosodic continuity. No manual tagging or model switching is required.
 
 ### Q4: What is the maximum text length MeloTTS can handle?
 

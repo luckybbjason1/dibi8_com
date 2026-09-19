@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caddy" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caddy" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caddy" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caddy" />
 title: 'Caddy: 72K+ Stars 的生产级 Web 服务器 — 2026 自动 HTTPS 部署指南'
 description: 'Caddy (Caddyserver) 是一个快速、可扩展的多平台 HTTP/1-2-3 Web 服务器，支持自动 HTTPS。兼容 Docker、Let''''s Encrypt、Prometheus 和 Grafana。涵盖 Caddyfile 教程、Docker 安装配置、生产环境加固和监控。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/caddyserver/caddy'
 stars: 72595
-maintainer: 'caddyserver'
+maintainer: caddyserver
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['caddy', 'web服务器', '反向代理', '自动https', 'docker', '运维', 'ssl', 'http3']
+tags: [caddy, web服务器, 反向代理, 自动https, docker, 运维, ssl, http3]
 aliases:
 - /zh/posts/caddy/
 ---
@@ -331,7 +336,7 @@ app.example.com {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
-        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'"
+        Content-Security-Policy "default-src self; script-src self 'unsafe-inline'"
     }
 }
 
@@ -363,7 +368,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'caddy'
+  - job_name: caddy
     static_configs:
       - targets: ['caddy:2019']
     metrics_path: /metrics

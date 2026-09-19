@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/aider-cline-openhands-2026-honest-comparison" />
 title: 'Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Coding Agent Comparison'
 description: 'Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete benchmark numbers, where each wins, where each falls short, and the BYO-API-key cost reality vs commercial alternatives.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Aider', 'Cline', 'OpenHands', 'Python', 'TypeScript']
+tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
 source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
 licensing_model: Open Source
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', 'aider', 'cline', 'openhands', '2026']
+tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
 aliases:
 - /posts/aider-cline-openhands-2026-honest-comparison/
 faq:

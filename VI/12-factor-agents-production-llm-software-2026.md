@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents-production-llm-software-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents-production-llm-software-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents-production-llm-software-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents-production-llm-software-2026" />
 title: 'Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mềm LLM cấp Production (Hướng dẫn 2026)'
 description: '12-Factor Agents của HumanLayer (22K+ stars GitHub) định nghĩa các design pattern phân định prototype LLM cấp demo với agent cấp production mà khách hàng thực sự phụ thuộc. Phân tích đầy đủ 12 nguyên tắc — sở hữu prompt, sở hữu context window, mô hình stateless reducer, sở hữu control flow, human-in-the-loop qua tool call, error gọn, agent nhỏ tập trung, và hơn nữa. Kèm hướng dẫn áp dụng thực tế cho Claude Code, Codex, OpenCode và stack agent dựa trên MCP.'
 date: 2026-05-23 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/humanlayer/12-factor-agents'
 stars: 22000
-maintainer: 'humanlayer'
+maintainer: humanlayer
 last_maintained: '2026-05-22'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', 'humanlayer', 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
+tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', humanlayer, 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
 aliases:
 - /vi/posts/12-factor-agents-production-llm-software-2026/
 ---

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/juicefs-distributed-posix-file-system-redis-s3-cloud-storage" />
 lang: en
 title: 'JuiceFS (14K⭐): The Distributed POSIX File System That Turns Cloud Storage Into Local Storage'
 description: 'JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distributed file system. Powered by Redis for metadata, it delivers cloud-native performance with local filesystem semantics — perfect for AI training, big data, and cloud workloads.'

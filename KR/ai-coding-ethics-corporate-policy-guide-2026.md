@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-ethics-corporate-policy-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-ethics-corporate-policy-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-ethics-corporate-policy-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-ethics-corporate-policy-guide-2026" />
 title: 'AI 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드'
 description: '2026년 기업은 AI 허용 / AI 제한 / AI 금지 세 진영으로 갈립니다. 우리가 추적한 실제 기업 도입 패턴을 바탕으로 각 정책의 모습, 선택 기준, 법률/IP/컴플라이언스 함정을 실무적으로 정리합니다.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['정책', '컴플라이언스', 'Claude Code', 'Cursor']
+tech_stack: [정책, 컴플라이언스, 'Claude Code', Cursor]
 application_domain: 개발 도구
 source_version: '2026 Q2'
 licensing_model: '해당 없음'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', '윤리', '정책', '컴플라이언스', '2026']
+tags: ['ai-coding', 윤리, 정책, 컴플라이언스, 2026]
 aliases:
 - /kr/posts/ai-coding-ethics-corporate-policy-guide-2026/
 faq:
@@ -25,7 +30,7 @@ faq:
     a: "세 가지: (1) 학습 데이터 유출 — 프롬프트에 독점 코드가 포함되면 벤더가 학습에 활용할 수 있음(엔터프라이즈 플랜에서는 드묾). (2) 산출물 책임 — AI 생성 코드의 소유권은 누구에게 있는가? 2026년 대체로 사용자 측에 정리되었지만 계약 문구가 중요. (3) 라이선스 오염 — AI가 GPL 코드를 재현해 독점 코드베이스를 오염시킬 가능성."
   - q: "기업은 '감사 하 허용'을 실제로 어떻게 운영하나요?"
     a: "패턴: 승인 도구 목록(Claude Code, Cursor, GitHub Copilot), AI 생성 코드에 대한 필수 PR 리뷰, 일부는 커밋에 AI-assisted 라벨링, 프롬프트 위생 교육(시크릿 붙여넣기 금지, 컨텍스트 범위 제한). 대부분은 앞의 세 가지에서 멈추며, 라벨링/교육은 회사마다 차이가 큽니다."
-  - q: "'정답'이 있나요, 아니면 상황 의존적인가요?"
+  - q: "정답이 있나요, 아니면 상황 의존적인가요?"
     a: "상황 의존적입니다. 순수 웹 SaaS 업무: 가벼운 감사 하 허용이 거의 항상 정답. 헬스케어/금융 규제 업무: DPA 포함 엔터프라이즈 티어 + 제한적 사용이 기본선. 국방/기밀: 클라우드 AI 금지, 로컬만 허용. 정책 불일치는 컴플라이언스 리스크 또는 생산성 손실을 야기합니다."
 ---
 

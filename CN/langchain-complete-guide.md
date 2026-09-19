@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/langchain-complete-guide" />
 title: 'LangChain Complete Guide 2025: From Zero to Production-Ready AI Apps'
 description: 'Master LangChain in 2025 with this complete guide. Learn core components, build RAG apps, create agents, and deploy production-ready AI applications.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace" />
 title: "MemPalace vs Mem0：96.6% 召回率测评！2026年最强开源 AI 记忆系统"
 description: "MemPalace 是目前评测表现最好的开源 AI 记忆系统，51K+ Stars，免费且强大。本文详解其原理、安装与实战代码。"
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ohmyzsh" />
 title: 'Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026'
 description: 'Master Oh My Zsh with real benchmarks, plugin configs, and setup guides. Compare with Starship, Prezto, and Zsh-native setups. 187k+ stars.'
 tags: ["open-source"]

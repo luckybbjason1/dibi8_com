@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wan-2-1" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so với HunyuanVideo, CogVideo 2026'
 description: 'Wan 2.1 là bộ mô hình video nền mở của Alibaba với hiệu suất SOTA. Hỗ trợ ComfyUI, Diffusers và Gradio. Bao gồm T2V, I2V, chỉnh sửa video và tạo văn bản với các biến thể 1.3B và 14B.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['wan-2-1', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', 'alibaba', 'comfyui', 'diffusers']
+tags: ['wan-2-1', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', alibaba, comfyui, diffusers]
 aliases:
 - /vi/posts/wan-2-1/
 ---
@@ -165,7 +170,7 @@ cd gradio
 
 # Chạy T2V 14B với GPU đơn
 python t2v_14B_singleGPU.py \
-  --prompt_extend_method 'dashscope' \
+  --prompt_extend_method dashscope \
   --ckpt_dir ./Wan2.1-T2V-14B
 
 # Chạy T2V 1.3B (nhẹ hơn, cho GPU phổ thông)
@@ -224,7 +229,7 @@ vae = AutoencoderKLWan.from_pretrained(
 # Cấu hình scheduler
 flow_shift = 5.0  # 5.0 cho 720P, 3.0 cho 480P
 scheduler = UniPCMultistepScheduler(
-    prediction_type='flow_prediction',
+    prediction_type=flow_prediction,
     use_flow_sigmas=True,
     num_train_timesteps=1000,
     flow_shift=flow_shift
@@ -320,7 +325,7 @@ DASH_API_KEY=your_key python generate.py \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "Một con mèo chơi piano" \
   --use_prompt_extend \
-  --prompt_extend_method 'dashscope'
+  --prompt_extend_method dashscope
 ```
 
 ## Benchmark / Các trường hợp sử dụng thực tế

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-local-first-ai-stack-production-architecture" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-local-first-ai-stack-production-architecture" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-local-first-ai-stack-production-architecture" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-local-first-ai-stack-production-architecture" />
 title: 'Local-First AI Stack 2026: Kiến trúc tham chiếu cho production (kèm 14 tool open-source)'
 description: 'Kiến trúc tham chiếu hoàn chỉnh để build ứng dụng AI cấp production trong năm 2026 mà không bị khóa vào cloud — 7 layer, 14 tool open-source, kèm số liệu hiệu năng thực tế. Bao quát local LLM runtime, symbol-level code intelligence (CodeGraph), unified CLI control (CC Switch), cost-aware proxy (rtk), persistent agent memory (agentmemory/MemPalace), on-device TTS (Supertonic), và phương pháp luận 12-Factor Agents. Toàn bộ stack giúp bạn ship tính năng LLM theo cách scale được về mặt kinh tế.'
 date: 2026-05-23 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-23'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-architecture', 'ai-stack-2026', 'agent-infrastructure', 'codegraph', '12-factor-agents', 'supertonic', 'cc-switch', 'rtk', 'agentmemory', 'mempalace', 'mcp', 'ds4', 'opencode', 'hermes-agent']
+tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-architecture', 'ai-stack-2026', 'agent-infrastructure', codegraph, '12-factor-agents', supertonic, 'cc-switch', rtk, agentmemory, mempalace, mcp, ds4, opencode, 'hermes-agent']
 aliases:
 - /vi/posts/2026-local-first-ai-stack-production-architecture/
 ---

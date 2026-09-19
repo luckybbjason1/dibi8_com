@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-vs-crewai" />
 title: '2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀'
 description: 'LangGraph(저수준 상태 기반 에이전트 그래프)와 CrewAI(고수준 역할 기반 멀티 에이전트 팀) 정면 비교 — 제어, 학습 곡선, 상태, 멀티 에이전트 설계, 프로덕션 안정성. 2026년 업데이트.'
 date: 2026-06-06 00:00:00+08:00

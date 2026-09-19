@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/netdata" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/netdata" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/netdata" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/netdata" />
 title: 'Netdata: Giám Sát Thở Gian Thự 78K+ Star — Hướng Dẫn Tinh Chỉnh Hiệu Suất 2026'
 description: 'Netdata (ND) là agent giám sát thở gian thực hiệu suất cao với metrics từng giây và khả năng trực quan hóa. Tương thích với Docker, Kubernetes, Prometheus và Grafana. Bao gồm hướng dẫn netdata, cài đặt netdata, giám sát thở gian thực, netdata vs prometheus, và tinh chỉnh hiệu suất netdata.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/netdata/netdata'
 stars: 78874
-maintainer: 'netdata'
+maintainer: netdata
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['netdata', 'giám-sát', 'khả-năng-quan-sát', 'tinh-chỉnh-hiệu-suất', 'docker', 'kubernetes', 'metrics-thở-gian-thự']
+tags: [netdata, 'giám-sát', 'khả-năng-quan-sát', 'tinh-chỉnh-hiệu-suất', docker, kubernetes, 'metrics-thở-gian-thự']
 aliases:
 - /vi/posts/netdata/
 ---

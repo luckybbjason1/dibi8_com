@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-mcp-advanced-10-server-stack-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-mcp-advanced-10-server-stack-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-mcp-advanced-10-server-stack-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-mcp-advanced-10-server-stack-2026" />
 title: 'Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Production'
 description: 'Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 server cấp production, cân bằng giữa sức mạnh, bảo mật và thời gian khởi động. Bài viết phân tích từng server, lý do được chọn, chức năng, và cách cấu hình cho cá nhân so với nhóm.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'MCP', 'TypeScript', 'Python', 'Docker']
+tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 / Claude Code 1.0'
 licensing_model: 'Hỗn hợp'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'mcp', 'configuration', 'production', '2026']
+tags: ['claude-code', mcp, configuration, production, 2026]
 aliases:
 - /vi/posts/claude-code-mcp-advanced-10-server-stack-2026/
 faq:

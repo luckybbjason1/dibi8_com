@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-token-saver" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-token-saver" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-token-saver" />
 title: 'RTK：让 AI 编码助手 token 消耗直降 60-90% 的开源神器，45k+ Stars 的 Rust CLI 代理实战指南'
 description: 'RTK（Rust Token Killer）是一款开源 Rust CLI 代理，可将 Claude Code、Cursor、Copilot 等 AI 编码助手的 LLM token 消耗降低 60-90%。单二进制文件、零依赖、安装只需一条命令。本文含完整安装教程、原理解析与实测数据。'
 date: 2026-05-14 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feast-feature-store-ml" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
 title: 'Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드'
 description: 'Feast 완벽 가이드 — 가장 널리 사용되는 오픈소스 피처 스토어. 피처 레지스트리, 온라인/오프라인 스토어, 서브세컨드 서빙, Redis/BigQuery 백엔드, 배치 및 실시간 피처, 프로덕션 배포를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Feast', 'Feature Store', 'MLOps', 'ML Pipeline', 'Redis', 'BigQuery', 'Online Store', 'Offline Store', 'Real-time ML', 'Feature Engineering']
+tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
 aliases:
 - /kr/posts/feast-feature-store-ml/
 ---
@@ -121,7 +126,7 @@ features = store.get_online_features(
     entity_rows=[{"user_id": "user_12345"}],
 ).to_dict()
 
-# 반환: {'avg_order_amount_30d': [245.50], 'total_transactions_90d': [12]}
+# 반환: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
 ```
 
 ### 4. 피처 서버

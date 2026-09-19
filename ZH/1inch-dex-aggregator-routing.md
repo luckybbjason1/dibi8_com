@@ -1,6 +1,11 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
-description: '{''en'': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', ''zh'': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', ''ko'': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', ''vi'': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
+description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/1inch/1inch-sdk'
 stars: 400
-maintainer: '1inch'
+maintainer: 1inch
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['1inch']
+tags: [1inch]
 aliases:
 - /zh/posts/1inch-dex-aggregator-routing/
 ---
@@ -87,9 +92,9 @@ const oneInch = new OneInchApi({
 
 // 获取将 1 ETH 兑换为 USDC 的最佳路由
 const quote = await oneInch.getQuote({
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-  amount: '1000000000000000000', // 1 ETH（wei 单位）
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+  amount: 1000000000000000000, // 1 ETH（wei 单位）
   includeTokensInfo: true,
   includeProtocols: true,
   includeGas: true,
@@ -131,8 +136,8 @@ RPC_URL=https://mainnet.infura.io/v3/your_project_id
 
 ```typescript
 import { OneInchSdk } from '@1inch/sdk';
-import { ethers } from 'ethers';
-import * as dotenv from 'dotenv';
+import { ethers } from ethers;
+import * as dotenv from dotenv;
 
 dotenv.config();
 
@@ -147,7 +152,7 @@ const sdk = new OneInchSdk({
   walletAddress: wallet.address,
 });
 
-console.log('1inch SDK 已为', wallet.address, '初始化');
+console.log('1inch SDK 已为', wallet.address, 初始化);
 ```
 
 ### 3.2 SDK 架构概览
@@ -189,9 +194,9 @@ async function executeSwap() {
 
   // 定义兑换参数
   const swapParams = {
-    src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // 原生 ETH
-    dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '500000000000000000', // 0.5 ETH
+    src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // 原生 ETH
+    dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 500000000000000000, // 0.5 ETH
     from: wallet.address,
     slippage: 1, // 最大 1% 滑点
     disableEstimate: false,
@@ -239,21 +244,21 @@ executeSwap().catch(console.error);
 ```typescript
 // 大额交易的保守设置
 const largeTradeParams = {
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0',
-  amount: '50000000000000000000', // 50 ETH — 大额订单！
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0,
+  amount: 50000000000000000000, // 50 ETH — 大额订单！
   from: wallet.address,
   slippage: 0.5, // 严格的 0.5% 滑点以确保精确
   allowPartialFill: false, // 全有或全无执行
   // 启用 MEV 保护（大额交易推荐）
-  referrer: 'your_app_name',
+  referrer: your_app_name,
   fee: 0, // 无额外费用
 };
 
 // 对于较小的、更紧急的交易，可以放宽滑点
 const quickTradeParams = {
   ...largeTradeParams,
-  amount: '1000000000000000000', // 1 ETH
+  amount: 1000000000000000000, // 1 ETH
   slippage: 3, // 可接受 3% 滑点以换取速度
   allowPartialFill: true, // 接受部分执行
   // 优先速度而非最优价格
@@ -270,14 +275,14 @@ const quickTradeParams = {
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // 以太坊
   dstChain: 42161,    // Arbitrum
-  srcToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // 以太坊上的 USDC
-  dstToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // Arbitrum 上的 ETH
-  amount: '1000000000', // 1000 USDC（6 位小数）
+  srcToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // 以太坊上的 USDC
+  dstToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // Arbitrum 上的 ETH
+  amount: 1000000000, // 1000 USDC（6 位小数）
   walletAddress: wallet.address,
 });
 
 console.log('桥接路由:', bridgeQuote.selectedRoute);
-console.log('预估时间:', bridgeQuote.estimatedTime, '秒');
+console.log('预估时间:', bridgeQuote.estimatedTime, 秒);
 console.log('目标金额:', bridgeQuote.dstTokenAmount);
 
 // 执行桥接交易
@@ -316,14 +321,14 @@ async function executeFusionSwap() {
 
   // 创建 Fusion+ 订单（用户无需 Gas！）
   const fusionOrder = await fusionSdk.createOrder({
-    srcToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-    dstToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '1000000000000000000', // 1 ETH
+    srcToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+    dstToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 1000000000000000000, // 1 ETH
     walletAddress: wallet.address,
     // Fusion+ 参数
-    preset: 'fast', // 'fast', 'medium', 或 'slow'
+    preset: fast, // fast, medium, 或 slow
     // 你愿意接受的最低回报（fusion 会找到最优实际汇率）
-    minReturn: '1800000000', // 最少 1800 USDC
+    minReturn: 1800000000, // 最少 1800 USDC
     // 拍卖持续时间 — 解析器竞争的时间
     auctionDuration: 180, // 180 秒
   });
@@ -350,8 +355,8 @@ async function executeFusionSwap() {
   // 轮询执行状态
   const checkStatus = async () => {
     const status = await fusionSdk.getOrderStatus(submitted.orderHash);
-    console.log('订单状态:', status.status); // 'pending', 'filled', 'expired'
-    if (status.status === 'filled') {
+    console.log('订单状态:', status.status); // pending, filled, expired
+    if (status.status === filled) {
       console.log('交易哈希:', status.txHash);
       console.log('实际输出:', status.dstTokenAmount);
       return true;
@@ -379,21 +384,21 @@ async function executeFusionSwap() {
 // 监控 Fusion 订单生命周期
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
-orderEvents.on('created', (data) => {
-  console.log('订单已广播给解析器');
+orderEvents.on(created, (data) => {
+  console.log(订单已广播给解析器);
 });
 
-orderEvents.on('auctionStarted', (data) => {
+orderEvents.on(auctionStarted, (data) => {
   console.log('荷兰拍卖进行中，当前汇率:', data.currentRate);
 });
 
-orderEvents.on('filled', (data) => {
+orderEvents.on(filled, (data) => {
   console.log('订单已被解析器填充:', data.resolver);
   console.log('最终输出金额:', data.dstAmount);
   console.log('你支付了零 Gas！');
 });
 
-orderEvents.on('expired', () => {
+orderEvents.on(expired, () => {
   console.log('订单过期未成交 — 使用更好的 minReturn 重试');
 });
 ```
@@ -407,10 +412,10 @@ orderEvents.on('expired', () => {
 ```typescript
 // 创建限价单以特定价格用 ETH 买入 DAI
 const limitOrder = await sdk.limitOrder.createOrder({
-  makerAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH（你卖出的）
-  takerAsset: '0x6B175474E89094C44Da98b954EedeAC495271d0F', // DAI（你买入的）
-  makingAmount: '500000000000000000', // 0.5 ETH
-  takingAmount: '900000000000000000000', // 期望最少 900 DAI
+  makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH（你卖出的）
+  takerAsset: 0x6B175474E89094C44Da98b954EedeAC495271d0F, // DAI（你买入的）
+  makingAmount: 500000000000000000, // 0.5 ETH
+  takingAmount: 900000000000000000000, // 期望最少 900 DAI
   // 订单 24 小时后过期
   expiration: Math.floor(Date.now() / 1000) + 86400,
   // 允许部分成交（类似 DCA 的行为）
@@ -450,14 +455,14 @@ const watcher = new LimitOrderWatcher({
 
 // 监听你的特定订单
 watcher.watchOrder(placedOrder.orderHash, (event) => {
-  if (event.type === 'filled') {
+  if (event.type === filled) {
     console.log('订单完全成交！');
     console.log('交易:', event.txHash);
     console.log('成交金额:', event.filledAmount);
-  } else if (event.type === 'partiallyFilled') {
+  } else if (event.type === partiallyFilled) {
     console.log('部分成交:', event.filledRatio, '%');
     console.log('剩余:', event.remainingAmount);
-  } else if (event.type === 'expired') {
+  } else if (event.type === expired) {
     console.log('订单过期 — 如果仍有意下单请重新提交');
   }
 });
@@ -475,7 +480,7 @@ watcher.start();
 ```typescript
 // 获取跨支持链的所有代币余额
 const portfolio = await sdk.balance.getBalances({
-  walletAddress: '0xYourWalletAddress',
+  walletAddress: 0xYourWalletAddress,
   chainIds: [1, 42161, 137, 10, 8453], // 多链查询
   // 包含每个代币的元数据
   includeMetadata: true,
@@ -493,7 +498,7 @@ for (const chainBalance of portfolio.balances) {
 
 // 跨所有链的投资组合总价值
 const totalValue = portfolio.balances.reduce((sum, chain) => {
-  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || '0'), 0);
+  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
 console.log(`\n投资组合总价值: $${totalValue.toFixed(2)}`);
@@ -509,11 +514,11 @@ const history = await sdk.history.getTransactions({
   limit: 100,
   offset: 0,
   // 按交易类型筛选
-  types: ['swap', 'approval', 'limitOrder'],
+  types: [swap, approval, limitOrder],
 });
 
 // 分析兑换表现
-const swaps = history.transactions.filter(tx => tx.type === 'swap');
+const swaps = history.transactions.filter(tx => tx.type === swap);
 
 const swapAnalysis = swaps.map(swap => ({
   timestamp: swap.timestamp,
@@ -530,7 +535,7 @@ console.table(swapAnalysis);
 
 // 计算累计交易量
 const totalVolume = swaps.reduce((sum, tx) => {
-  return sum + parseFloat(tx.srcUsdValue || '0');
+  return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
 console.log(`总兑换交易量: $${totalVolume.toFixed(2)}`);
 ```
@@ -546,13 +551,13 @@ const ws = new PortfolioWebSocket({
   walletAddress: wallet.address,
 });
 
-ws.on('balanceUpdate', (update) => {
+ws.on(balanceUpdate, (update) => {
   console.log(`余额更新: ${update.tokenSymbol} = ${update.newBalance}`);
   console.log(`USD 价值变化: $${update.usdValueChange}`);
   // 在此处更新你的仪表板 UI
 });
 
-ws.on('newTransaction', (tx) => {
+ws.on(newTransaction, (tx) => {
   console.log('检测到新交易:', tx.hash);
   console.log('类型:', tx.type);
   console.log('价值:', tx.usdValue);
@@ -584,7 +589,7 @@ async function executeSwapWithRetry(
 
       // 检查价格是否变动过大
       if (parseFloat(freshQuote.dstAmount) < params.minExpectedOutput!) {
-        throw new Error('价格超出可接受阈值');
+        throw new Error(价格超出可接受阈值);
       }
 
       const tx = await sdk.swap.buildTx({ ...params });
@@ -621,7 +626,7 @@ async function executeSwapWithRetry(
 
 ```typescript
 // 用于高频使用的速率限制 API 客户端
-import { RateLimiter } from 'limiter';
+import { RateLimiter } from limiter;
 
 class OneInchRateLimitedClient {
   private limiter: RateLimiter;
@@ -629,7 +634,7 @@ class OneInchRateLimitedClient {
 
   constructor(apiKey: string, requestsPerSecond = 5) {
     this.sdk = new OneInchSdk({ apiKey, networkId: 1 });
-    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: 'second' });
+    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: second });
   }
 
   async getQuote(params: any) {
@@ -657,12 +662,12 @@ const client = new OneInchRateLimitedClient(
 function validateSwapParams(params: SwapParams): void {
   // 验证代币地址
   if (!ethers.isAddress(params.src) || !ethers.isAddress(params.dst)) {
-    throw new Error('代币地址格式无效');
+    throw new Error(代币地址格式无效);
   }
 
   // 验证金额为正
   if (BigInt(params.amount) <= 0n) {
-    throw new Error('金额必须为正数');
+    throw new Error(金额必须为正数);
   }
 
   // 滑点合理性检查（0.1% 至 50%）
@@ -672,12 +677,12 @@ function validateSwapParams(params: SwapParams): void {
 
   // 防止常见错误：代币自我兑换
   if (params.src.toLowerCase() === params.dst.toLowerCase()) {
-    throw new Error('源代币和目标代币不能相同');
+    throw new Error(源代币和目标代币不能相同);
   }
 
   // 验证代币不是已知的诈骗/貔貅币（使用外部列表）
   if (isTokenBlacklisted(params.dst)) {
-    throw new Error('目标代币已被拉黑');
+    throw new Error(目标代币已被拉黑);
   }
 }
 
@@ -771,3 +776,13 @@ const wallet = new ethers.Wallet(
   }
 }
 </script>
+
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [Aave V4 Defi Lending Protocol](/zh/aave-v4-defi-lending-protocol)
+2. [Alpaca Trading Api Stock Broker](/zh/alpaca-trading-api-stock-broker)
+
+---

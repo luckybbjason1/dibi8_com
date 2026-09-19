@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026: Perplexity AI Open-Sources Its Internal Supply-Chain Scanner for Developer Machines'
 description: 'Bumblebee is Perplexity AI''s open-source, read-only supply-chain scanner that checks npm, PyPI, Go modules, MCP configs, editor extensions, and browser extensions for known compromised packages — without executing a single line of your code.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Go', 'Security', 'CLI']
+tech_stack: [Go, Security, CLI]
 application_domain: Dev Utils
 source_version: '0.1.1'
 licensing_model: Open Source
@@ -14,12 +16,12 @@ download_url: 'https://github.com/perplexityai/bumblebee'
 backup_url: ''
 github_repo: 'perplexityai/bumblebee'
 stars: 1500
-maintainer: 'perplexityai'
+maintainer: perplexityai
 last_maintained: '2026-05-22'
 featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['bumblebee', 'supply-chain', 'security', 'MCP', 'developer-tools', 'Go', 'npm', 'PyPI', 'perplexity-ai']
+tags: [bumblebee, 'supply-chain', security, mcp, 'developer-tools', go, npm, pypi, 'perplexity-ai']
 aliases:
 - /posts/bumblebee-supply-chain-scanner-perplexity-2026/
 faqs:

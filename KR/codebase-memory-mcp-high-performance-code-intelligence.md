@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codebase-memory-mcp-high-performance-code-intelligence" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codebase-memory-mcp-high-performance-code-intelligence" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codebase-memory-mcp-high-performance-code-intelligence" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codebase-memory-mcp-high-performance-code-intelligence" />
 title: '코드베이스-메모리-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스'
 description: '코드베이스-메모리-MCP에 대한 깊은 탐구 — 전체 저장소를 밀리초 단위로 인덱싱하는 가장 빠른 코드 인텔리전스 MCP 서버입니다.'
 date: 2026-06-19

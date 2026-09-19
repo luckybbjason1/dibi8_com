@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
 title: 'Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南'
 description: 'Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'directus/directus'
 stars: 29100
-maintainer: 'directus'
+maintainer: directus
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Directus', 'Headless CMS', '内容管理', 'API', 'Docker', '开源', 'AI', 'GraphQL', 'REST', '自托管']
+tags: [directus, 'headless cms', 内容管理, api, docker, 开源, ai, graphql, rest, 自托管]
 aliases:
 - /zh/posts/directus-headless-cms-ai-content/
 ---
@@ -91,7 +96,7 @@ Directus 位于现有 SQL 数据库（PostgreSQL、MySQL、SQLite、Oracle、MS 
 mkdir ~/directus && cd ~/directus
 
 # 创建 compose 文件
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: "3"
 services:
   directus:
@@ -155,7 +160,7 @@ curl -s http://localhost:8055/server/health | jq .
 
 ```bash
 # 生产环境 .env 文件
-cat > .env << 'EOF'
+cat > .env << EOF
 # 安全
 SECRET=super-random-64-char-secret-for-jwt-signing
 KEY=your-instance-unique-key
@@ -297,21 +302,21 @@ const client = createDirectus('http://localhost:8055')
 
 // 带过滤获取文章
 const articles = await client.request(
-  readItems('articles', {
-    filter: { status: { _eq: 'published' } },
+  readItems(articles, {
+    filter: { status: { _eq: published } },
     sort: ['-published_at'],
     limit: 10,
-    fields: ['id', 'title', 'seo_score', 'published_at']
+    fields: [id, title, seo_score, published_at]
   })
 );
 console.log(`Found ${articles.length} articles`);
 
 // 创建文章
 const newArticle = await client.request(
-  createItem('articles', {
+  createItem(articles, {
     title: 'AI 驱动的内容策略',
     content: '使用 GPT-4 生成...',
-    status: 'draft',
+    status: draft,
     ai_generated: true,
     seo_score: 92
   })
@@ -348,16 +353,16 @@ import { defineHook } from '@directus/extensions-sdk';
 export default defineHook(({ filter, action }) => {
   filter('articles.items.create', async (payload, meta, context) => {
     if (payload.ai_generate === true && !payload.content) {
-      const { OpenAI } = await import('openai');
+      const { OpenAI } = await import(openai);
       const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
       const response = await openai.chat.completions.create({
         model: 'gpt-4o',
         messages: [
-          { role: 'system', content: 'You are a technical content writer.' },
-          { role: 'user', content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: system, content: 'You are a technical content writer.' },
+          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
         ],
-        response_format: { type: 'json_object' },
+        response_format: { type: json_object },
         max_tokens: 2000
       });
 
@@ -366,7 +371,7 @@ export default defineHook(({ filter, action }) => {
       payload.excerpt = result.excerpt;
       payload.seo_keywords = result.seo_keywords;
       payload.ai_generated = true;
-      payload.status = 'review'; // 强制审核状态
+      payload.status = review; // 强制审核状态
     }
     return payload;
   });
@@ -374,10 +379,10 @@ export default defineHook(({ filter, action }) => {
   // 记录 AI 生成事件
   action('articles.items.create', async (meta, context) => {
     if (meta.payload.ai_generated) {
-      await context.database('activity').insert({
-        action: 'ai_generate',
+      await context.database(activity).insert({
+        action: ai_generate,
         user: meta.user,
-        collection: 'articles',
+        collection: articles,
         item: meta.key,
         timestamp: new Date()
       });
@@ -403,21 +408,21 @@ cp -r dist/* /directus/extensions/hooks/ai-content/
 ```javascript
 // 获取待审核的文章
 const pendingReview = await client.request(
-  readItems('articles', {
+  readItems(articles, {
     filter: {
       _and: [
-        { status: { _eq: 'review' } },
+        { status: { _eq: review } },
         { ai_generated: { _eq: true } }
       ]
     },
-    fields: ['id', 'title', 'excerpt', 'seo_score', 'seo_keywords', 'date_created']
+    fields: [id, title, excerpt, seo_score, seo_keywords, date_created]
   })
 );
 
 // 内容编辑者审批
 await client.request(
-  updateItem('articles', articleId, {
-    status: 'published',
+  updateItem(articles, articleId, {
+    status: published,
     published_at: new Date().toISOString()
   })
 );
@@ -504,12 +509,12 @@ export default defineEndpoint((router, { services, database }) => {
   const { ItemsService } = services;
 
   router.get('/content-stats', async (req, res) => {
-    const articles = new ItemsService('articles', { schema: req.schema, accountability: req.accountability });
+    const articles = new ItemsService(articles, { schema: req.schema, accountability: req.accountability });
 
     const [total, published, draft, aiGenerated] = await Promise.all([
       articles.count(),
-      articles.count({ status: { _eq: 'published' } }),
-      articles.count({ status: { _eq: 'draft' } }),
+      articles.count({ status: { _eq: published } }),
+      articles.count({ status: { _eq: draft } }),
       articles.count({ ai_generated: { _eq: true } })
     ]);
 
@@ -532,19 +537,19 @@ export default defineEndpoint((router, { services, database }) => {
 ```javascript
 // 授予编辑角色对 SEO 字段只读，对内容完全访问
 const rolePermissions = {
-  collection: 'articles',
+  collection: articles,
   role: 'editor-role-id',
-  action: 'read',
-  permissions: { status: { _eq: 'published' } },
-  fields: ['id', 'title', 'content', 'published_at'], // 不包含 seo_score, ai_generated
+  action: read,
+  permissions: { status: { _eq: published } },
+  fields: [id, title, content, published_at], // 不包含 seo_score, ai_generated
   validation: null
 };
 
 // 管理员角色可查看所有内容
 const adminPermissions = {
-  collection: 'articles',
+  collection: articles,
   role: 'admin-role-id',
-  action: 'read',
+  action: read,
   permissions: {},
   fields: ['*'], // 所有字段
   validation: null
@@ -564,7 +569,7 @@ export default defineEndpoint((router, { database }) => {
     const metrics = await database.raw(`
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
-      WHERE schemaname = 'public'
+      WHERE schemaname = public
     `);
 
     let output = '';
@@ -619,7 +624,7 @@ Directus 每次你点击 "另存为版本" 时保存内容的快照。你可以�
 可以，配合适当的架构。API 服务器是无状态的 — 通过在负载均衡器后添加容器副本进行水平扩展。使用 Redis 进行缓存和会话。使用 PostgreSQL 读副本处理读密集型工作负载。单个 4 vCPU / 8GB 实例可处理约 2,000 请求/秒的缓存读取。文件服务应通过 CDN。
 
 **Q: 集成 AI 内容生成的最佳方式是什么？**
-使用 Directus Flows（可视化自动化）结合自定义钩子扩展。Flows 处理触发逻辑（例如，"当文章状态变为 'generate' 时"），钩子调用你的 LLM API（OpenAI、Claude、本地模型）。将 AI 输出存储为草稿版本供人工审核后发布。这创建了一个完整的 AI-人工协作管道。
+使用 Directus Flows（可视化自动化）结合自定义钩子扩展。Flows 处理触发逻辑（例如，"当文章状态变为 generate 时"），钩子调用你的 LLM API（OpenAI、Claude、本地模型）。将 AI 输出存储为草稿版本供人工审核后发布。这创建了一个完整的 AI-人工协作管道。
 
 **Q: 如何从 WordPress 迁移到 Directus？**
 通过 WP REST API 或 XML 导出 WordPress 内容，将数据转换为匹配 Directus 模式，并使用 Directus REST API 或 SDK 批量导入。图片需要重新上传到 Directus 存储。旧 WordPress URL 的重定向应在反向代理层处理。根据内容量，完整的迁移计划 1-2 周。

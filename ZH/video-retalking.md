@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/video-retalking" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 2026'
 description: 'VideoReTalking (VRT) 是一款基于音频的唇形同步系统，用于说话人脸视频编辑。兼容 RVC、GPT-SoVITS 和 Coqui TTS。涵盖安装、推理、Gradio WebUI、生产部署，以及与 Wav2Lip 和 SadTalker 的对比测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/OpenTalker/video-retalking'
 stars: 7200
-maintainer: 'OpenTalker'
+maintainer: OpenTalker
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['唇形同步', '视频编辑', '数字人', '深度学习', 'ffmpeg', 'pytorch', 'gradio', 'AI视频']
+tags: [唇形同步, 视频编辑, 数字人, 深度学习, ffmpeg, pytorch, gradio, ai视频]
 aliases:
 - /zh/posts/video-retalking/
 ---
@@ -132,7 +137,7 @@ numpy==1.23.4
 ### 第六步：验证安装
 
 ```bash
-python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
+python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
 GPU 系统上的预期输出：

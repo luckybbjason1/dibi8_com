@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/eigenlayer-restaking-defi" />
 title: 'eigenlayer-restaking-defi'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['EigenLayer']
+tags: [eigenlayer]
 aliases:
 - /posts/eigenlayer-restaking-defi/
 ---
@@ -832,20 +834,20 @@ For users who don't want to run their own validator infrastructure, Liquid Resta
 
 ```typescript
 // TypeScript SDK for LRT interactions
-import { ethers, Contract } from 'ethers';
+import { ethers, Contract } from ethers;
 import { EigenLayerSDK } from '@eigenlayer/sdk';
 
 const sdk = new EigenLayerSDK({
   provider: new ethers.JsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY'),
-  network: 'mainnet'
+  network: mainnet
 });
 
 // Deposit stETH into Renzo (ezETH)
 async function depositForLRT(stethAmount: bigint) {
-  const renzo = await sdk.getLRTProtocol('renzo');
+  const renzo = await sdk.getLRTProtocol(renzo);
   
   const tx = await renzo.deposit({
-    token: 'stETH',
+    token: stETH,
     amount: stethAmount,
     receiver: walletAddress,
   });

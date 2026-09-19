@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
 title: 'Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau Với Chi Phí Bằng Không — Hướng Dẫn Cài Đặt'
 description: 'Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard, SQL editor, alerts, embedding và Docker self-hosting. 41,000+ sao GitHub.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'metabase/metabase'
 stars: 41000
-maintainer: 'metabase'
+maintainer: metabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Metabase', 'BI', 'business-intelligence', 'open-source', 'Tableau', 'dashboards', 'SQL', 'Docker', 'self-hosted', 'analytics', 'data-visualization', 'Apache-Superset', 'tri-tue-kinh-doanh', 'phan-tich-du-lieu', 'ma-nguon-mo']
+tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset', 'tri-tue-kinh-doanh', 'phan-tich-du-lieu', 'ma-nguon-mo']
 aliases:
 - /vi/posts/metabase-business-intelligence-open/
 ---
@@ -65,7 +70,7 @@ SELECT
     COUNT(*) AS order_count,
     SUM(total) AS revenue
 FROM orders
-WHERE created_at >= DATE_TRUNC('day', NOW() - INTERVAL '30 days')
+WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
 ```
@@ -79,14 +84,14 @@ Cùng một question có thể được save, thêm vào dashboard, convert sang
 WITH cohort_users AS (
     SELECT 
         user_id,
-        DATE_TRUNC('month', created_at) AS cohort_month
+        DATE_TRUNC(month, created_at) AS cohort_month
     FROM users
     WHERE created_at >= '2024-01-01'
 ),
 retention AS (
     SELECT 
         c.cohort_month,
-        DATE_TRUNC('month', o.created_at) - c.cohort_month AS period,
+        DATE_TRUNC(month, o.created_at) - c.cohort_month AS period,
         COUNT(DISTINCT o.user_id) AS retained_users,
         COUNT(DISTINCT c.user_id) AS total_users
     FROM cohort_users c
@@ -246,7 +251,7 @@ docker-compose up -d
 apt install -y nginx certbot python3-certbot-nginx
 
 # 6. Configure Nginx
-cat > /etc/nginx/sites-available/metabase << 'EOF'
+cat > /etc/nginx/sites-available/metabase << EOF
 server {
     listen 80;
     server_name analytics.yourdomain.com;
@@ -379,7 +384,7 @@ Configure auto-refresh: Every 5 minutes
 -- Với date filter variable
 
 SELECT 
-    DATE_TRUNC('month', created_at) AS cohort_month,
+    DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
 WHERE created_at >= {{start_date}}  -- Dashboard filter
@@ -428,7 +433,7 @@ Công ty fintech Series B (ẩn danh) deploy Metabase thay thế Tableau Desktop
 
 ```javascript
 // JWT token generation cho signed embedding (Node.js)
-const jwt = require('jsonwebtoken');
+const jwt = require(jsonwebtoken);
 
 const token = jwt.sign({
   resource: { dashboard: 123 },
@@ -485,7 +490,7 @@ Cho frequently accessed dashboards, caching giảm database load 60-80%.
 -- Admin > Permissions > Data > Sandboxes
 
 SELECT * FROM orders
-WHERE region = user_attribute('region');
+WHERE region = user_attribute(region);
 ```
 
 Hàm `user_attribute` resolve per-user tại query time, enforcing data isolation không cần separate database views.

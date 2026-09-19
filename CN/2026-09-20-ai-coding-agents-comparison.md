@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/2026-09-20-ai-coding-agents-comparison" />
 title: "AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison"
 description: "In-depth comparison of the three leading AI coding agents in 2026. Learn which tool fits your workflow: terminal-first Claude Code, IDE-native Cursor, or cloud-autonomous Codex. Real benchmarks, pricing analysis, and team recommendations."
 date: 2026-09-20

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/open-codesign-vs-vercel-v0" />
 title: 'Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign'
 description: 'Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign'
 date: 2026-05-15 04:20:25+09:00

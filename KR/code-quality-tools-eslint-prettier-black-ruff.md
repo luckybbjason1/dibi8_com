@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-quality-tools-eslint-prettier-black-ruff" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-quality-tools-eslint-prettier-black-ruff" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-quality-tools-eslint-prettier-black-ruff" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-quality-tools-eslint-prettier-black-ruff" />
 title: '코드 품질 도구 가이드: ESLint, Prettier, Black, Ruff 및 기타 도구'
 description: 'JavaScript/TypeScript와 Python의 코드 품질 도구를 상세히 비교합니다. ESLint, Prettier, Black, Ruff의 설정 방법과 통합 전략, 그리고 Go와 Rust의 포맷터까지 완벽 정리했습니다.'
 date: 2026-05-18 00:00:00+08:00

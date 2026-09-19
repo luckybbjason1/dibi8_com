@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-graph-tools-frameworks" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-graph-tools-frameworks" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-graph-tools-frameworks" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-graph-tools-frameworks" />
 title: '2025년 최고의 지식 그래프 도구 및 프레임워크 비교: Neo4j, RDFlib, Amazon Neptune, Stardog'
 description: '지식 그래프 도구와 프레임워크를 비교합니다. Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph, Dgraph의 특징과 쿼리 언어를 알아보고 프로젝트에 적합한 그래프 데이터베이스를 선택하세요.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false

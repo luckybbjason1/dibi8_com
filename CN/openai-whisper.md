@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/openai-whisper" />
 title: 'OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutorial vs WhisperX, faster-whisper in 2026'
 description: 'OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with WhisperX, faster-whisper, LibreTranslate. Covers whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/openai/whisper'
 stars: 99800
-maintainer: 'openai'
+maintainer: openai
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['whisper', 'speech-recognition', 'ASR', 'openai', 'faster-whisper', 'whisperx', 'python', 'docker', 'machine-learning']
+tags: [whisper, 'speech-recognition', asr, openai, 'faster-whisper', whisperx, python, docker, 'machine-learning']
 aliases:
 - /posts/openai-whisper/
 ---
@@ -139,7 +141,7 @@ print(result["text"])
 
 # Get segments with timestamps
 for segment in result["segments"]:
-    print(f"[{segment['start']:.2f}s -> {segment['end']:.2f}s] {segment['text']}")
+    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
 ```
 
 ### CLI Usage Examples
@@ -491,7 +493,7 @@ import json
 from faster_whisper import WhisperModel
 import time
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+r = redis.Redis(host=localhost, port=6379, db=0)
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 def worker():
@@ -506,7 +508,7 @@ def worker():
                 "text": " ".join([s.text for s in segments]),
                 "language": info.language
             }
-            r.setex(f"result:{task['job_id']}", 3600, json.dumps(result))
+            r.setex(f"result:{task[job_id]}", 3600, json.dumps(result))
         time.sleep(0.1)
 
 if __name__ == "__main__":

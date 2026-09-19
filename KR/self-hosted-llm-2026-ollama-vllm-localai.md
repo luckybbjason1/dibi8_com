@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-llm-2026-ollama-vllm-localai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-llm-2026-ollama-vllm-localai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-llm-2026-ollama-vllm-localai" />
 title: '2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI — 처리량·비용·구축 비교'
 description: '동일한 RTX 4090에서 Llama 3.3 70B로 Ollama, vLLM, LocalAI를 테스트했습니다. 실제 토큰/초, 메모리 사용량, 구축 시간, 그리고 취미용과 프로덕션 셀프 호스팅에서 무엇이 적합한지.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Ollama', 'vLLM', 'LocalAI', 'Llama 3.3', 'CUDA']
+tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM 프레임워크
 source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
 licensing_model: 오픈 소스
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['self-hosted', 'llm', 'ollama', 'vllm', 'localai', 'inference', '2026']
+tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
 aliases:
 - /kr/posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq:
@@ -26,7 +31,7 @@ faq:
   - q: "셀프 호스팅 LLM이 API보다 실제로 저렴한가요?"
     a: "월 약 1천만 토큰 이상 사용 시 그렇습니다. 단일 H100 분할 상각 + 전기료 + 유지보수 = 약 $0.0001/1K 토큰. Anthropic Sonnet API는 $0.003/1K 입력. 월 500만 토큰 미만이면 활용도 부족으로 API가 유리합니다. 2026년 가격으로 손익분기점이 이동했습니다."
   - q: "셀프 호스팅 모델이 상용 API 품질에 도달할 수 있나요?"
-    a: "코딩/추론에서는 아닙니다. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro가 벤치마크에서 Llama 3.3 70B를 15-25% 앞섭니다. '최고'보다 '충분히 좋음'이 이기는 프라이버시 민감 워크로드에서는 가능합니다. Llama 3.3 + 출시 예정인 Llama 4가 격차를 더 좁힐 것입니다."
+    a: "코딩/추론에서는 아닙니다. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro가 벤치마크에서 Llama 3.3 70B를 15-25% 앞섭니다. 최고보다 '충분히 좋음'이 이기는 프라이버시 민감 워크로드에서는 가능합니다. Llama 3.3 + 출시 예정인 Llama 4가 격차를 더 좁힐 것입니다."
   - q: "각 솔루션의 구축 시간은 얼마나 걸리나요?"
     a: "Ollama: 10분(curl 명령 1개 + ollama pull). LocalAI: 30-45분(Docker compose + 모델 설정). vLLM: 1-2시간(Python 환경 + CUDA 매칭 + 서빙 설정). 초기 구축의 고통은 프로덕션 역량과 반비례합니다."
   - q: "OpenAI API 대체용으로는 무엇이 가장 좋나요?"

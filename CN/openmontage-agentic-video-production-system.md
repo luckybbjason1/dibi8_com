@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/openmontage-agentic-video-production-system" />
 lang: en
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage Review: The World's First Open-Source Agentic Video Production System (52 Tools, 12 Pipelines, 500+ Skills)"

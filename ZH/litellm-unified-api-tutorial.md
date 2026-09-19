@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm-unified-api-tutorial" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm-unified-api-tutorial" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm-unified-api-tutorial" />
 title: 'LiteLLM统一调用多模型教程2025：一个API接入100+大模型'
 description: 'LiteLLM完整教程：用统一API调用OpenAI、Anthropic、Gemini等100+模型。涵盖代理部署、负载均衡、成本优化等企业级实践。'
 date: 2026-05-18 00:00:00+08:00

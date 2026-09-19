@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lean-quantconnect-trading-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lean-quantconnect-trading-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lean-quantconnect-trading-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lean-quantconnect-trading-engine" />
 title: 'Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python 설정 2026'
 description: '2026년 Lean 완벽 가이드, QuantConnect의 알고리즘 트레이딩 엔진. 다중 자산 백테스팅, 실제 트레이딩, C# 및 Python API, 프로덕션 배포 튜토리얼.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'QuantConnect/Lean'
 stars: 10500
-maintainer: 'QuantConnect'
+maintainer: QuantConnect
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -370,7 +375,7 @@ class MLPredictionAlgorithm(QCAlgorithm):
         
         # 사전 훈련된 모델 로드
         model_path = "./models/spy_predictor.pkl"
-        with open(model_path, 'rb') as f:
+        with open(model_path, rb) as f:
             self.model = pickle.load(f)
         
         # 특성 가격 이력

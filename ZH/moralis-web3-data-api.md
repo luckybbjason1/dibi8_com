@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moralis-web3-data-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moralis-web3-data-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moralis-web3-data-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moralis-web3-data-api" />
 title: 'Moralis 2026: 为100K+ DApp提供实时链上数据的Web3数据API — 设置指南'
 description: '2026年Moralis Web3数据API完整指南。学习如何使用JavaScript、Python和Unity SDK跨10多条链获取实时区块链数据、NFT元数据、代币价格和钱包余额。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/MoralisWeb3/Moralis-JS'
 stars: 3200
-maintainer: 'MoralisWeb3'
+maintainer: MoralisWeb3
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Moralis']
+tags: [moralis]
 aliases:
 - /zh/posts/moralis-web3-data-api/
 ---
@@ -88,7 +93,7 @@ MORALIS_API_KEY=your_api_key_here
 
 ```javascript
 // server.js
-require('dotenv').config();
+require(dotenv).config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
   throw new Error('MORALIS_API_KEY is not defined');
@@ -109,7 +114,7 @@ npm install moralis
 
 ```javascript
 // 在Node.js应用中初始化Moralis
-const Moralis = require('moralis').default;
+const Moralis = require(moralis).default;
 
 await Moralis.start({
   apiKey: process.env.MORALIS_API_KEY,
@@ -129,7 +134,7 @@ pip install moralis
 from moralis import evm_api
 import os
 
-api_key = os.environ.get('MORALIS_API_KEY')
+api_key = os.environ.get(MORALIS_API_KEY)
 if not api_key:
     raise ValueError("MORALIS_API_KEY environment variable is required")
 
@@ -168,8 +173,8 @@ Token API是Moralis中最常用的组件之一。它提供查询ERC-20代币余�
 
 ```javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
-  address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-  chain: '0x1', // 以太坊主网
+  address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+  chain: 0x1, // 以太坊主网
 });
 
 console.log('Token Price:', priceResponse.result.usdPrice);
@@ -182,8 +187,8 @@ console.log('Price Change 24h:', priceResponse.result.usdPricePercentChange24h);
 
 ```javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
 });
 
 balances.result.forEach((token) => {
@@ -197,8 +202,8 @@ balances.result.forEach((token) => {
 
 ```javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
   limit: 10,
 });
 
@@ -214,10 +219,10 @@ transfers.result.forEach((tx) => {
 ```javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
   addresses: [
-    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-    '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+    0x6B175474E89094C44Da98b954EedeAC495271d0F,
   ],
-  chain: '0x1',
+  chain: 0x1,
 });
 
 metadata.result.forEach((token) => {
@@ -235,8 +240,8 @@ NFT API提供对查询NFT所有权、元数据、转账和收藏级统计的全�
 
 ```javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
   limit: 20,
 });
 
@@ -250,9 +255,9 @@ nfts.result.forEach((nft) => {
 
 ```javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  tokenId: '1',
-  chain: '0x1',
+  address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
+  tokenId: 1,
+  chain: 0x1,
 });
 
 console.log('Name:', nftMetadata.result.name);
@@ -264,8 +269,8 @@ console.log('Attributes:', nftMetadata.result.metadata?.attributes);
 
 ```javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  chain: '0x1',
+  address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
+  chain: 0x1,
   limit: 10,
 });
 
@@ -289,7 +294,7 @@ result = evm_api.nft.get_nft_floor_price(
     params=params,
 )
 
-print(f"Floor Price: {result['floor_price']} ETH")
+print(f"Floor Price: {result[floor_price]} ETH")
 ```
 
 ---
@@ -306,7 +311,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
   description: 'Track USDC transfers',
-  tag: 'usdc_transfers',
+  tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',
   includeContractLogs: true,
@@ -314,17 +319,17 @@ const stream = {
     {
       anonymous: false,
       inputs: [
-        { indexed: true, name: 'from', type: 'address' },
-        { indexed: true, name: 'to', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' },
+        { indexed: true, name: from, type: address },
+        { indexed: true, name: to, type: address },
+        { indexed: false, name: value, type: uint256 },
       ],
-      name: 'Transfer',
-      type: 'event',
+      name: Transfer,
+      type: event,
     },
   ],
   topic0: ['Transfer(address,address,uint256)'],
   filter: {
-    'address': '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   },
   includeInternalTxs: false,
 };
@@ -339,8 +344,8 @@ console.log('Stream created:', newStream.result.id);
 
 ```javascript
 // Express webhook处理程序
-const express = require('express');
-const crypto = require('crypto');
+const express = require(express);
+const crypto = require(crypto);
 const app = express();
 app.use(express.json());
 
@@ -349,12 +354,12 @@ app.post('/webhooks/moralis', (req, res) => {
   const signature = req.headers['x-signature'];
   const body = JSON.stringify(req.body);
   const hash = crypto
-    .createHmac('sha256', process.env.MORALIS_STREAM_SECRET)
+    .createHmac(sha256, process.env.MORALIS_STREAM_SECRET)
     .update(body)
-    .digest('hex');
+    .digest(hex);
 
   if (signature !== hash) {
-    return res.status(401).send('Unauthorized');
+    return res.status(401).send(Unauthorized);
   }
 
   const events = req.body.confirmed || req.body.unconfirmed;
@@ -367,7 +372,7 @@ app.post('/webhooks/moralis', (req, res) => {
     });
   });
 
-  res.status(200).send('OK');
+  res.status(200).send(OK);
 });
 
 app.listen(3000, () => console.log('Webhook server running on port 3000'));
@@ -386,8 +391,8 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const authMessage = await Moralis.Auth.requestMessage({
   chain: EvmChain.ETHEREUM,
-  address: '0x1234567890123456789012345678901234567890',
-  network: 'evm',
+  address: 0x1234567890123456789012345678901234567890,
+  network: evm,
   domain: 'your-app.com',
   statement: 'Sign this message to authenticate with Your App',
   uri: 'https://your-app.com/login',
@@ -402,7 +407,7 @@ console.log('Sign-in message:', authMessage.result.message);
 
 ```javascript
 const authResult = await Moralis.Auth.verify({
-  network: 'evm',
+  network: evm,
   message: authMessage.result.message,
   signature: '0x...signed_message...',
 });
@@ -420,8 +425,8 @@ Moralis的一个强大方面是能够编写跨链兼容的代码。无论您定�
 ### 多链投资组合追踪器
 
 ```javascript
-const chains = ['0x1', '0x89', '0x38', '0xa4b1']; // ETH, MATIC, BNB, ARB
-const address = '0x1234567890123456789012345678901234567890';
+const chains = [0x1, 0x89, 0x38, 0xa4b1]; // ETH, MATIC, BNB, ARB
+const address = 0x1234567890123456789012345678901234567890;
 
 const portfolio = {};
 
@@ -431,10 +436,10 @@ for (const chain of chains) {
     chain,
   });
   
-  const chainName = chain === '0x1' ? 'Ethereum'
-    : chain === '0x89' ? 'Polygon'
-    : chain === '0x38' ? 'BNB Chain'
-    : 'Arbitrum';
+  const chainName = chain === 0x1 ? Ethereum
+    : chain === 0x89 ? Polygon
+    : chain === 0x38 ? 'BNB Chain'
+    : Arbitrum;
   
   portfolio[chainName] = balances.result.map((t) => ({
     symbol: t.symbol,
@@ -462,8 +467,8 @@ const allTransfers = [];
 
 do {
   const response = await Moralis.EvmApi.token.getWalletTokenTransfers({
-    address: '0x1234567890123456789012345678901234567890',
-    chain: '0x1',
+    address: 0x1234567890123456789012345678901234567890,
+    chain: 0x1,
     limit: 100,
     cursor,
   });
@@ -478,7 +483,7 @@ console.log(`Retrieved ${allTransfers.length} transfers`);
 ### 速率限制管理
 
 ```javascript
-const axios = require('axios');
+const axios = require(axios);
 const rateLimit = require('axios-rate-limit');
 
 const http = rateLimit(axios.create(), {
@@ -505,7 +510,7 @@ async function safeApiCall(apiFunction) {
 对于高流量应用，实施缓存层以减少冗余API调用。
 
 ```javascript
-const Redis = require('ioredis');
+const Redis = require(ioredis);
 const redis = new Redis();
 
 async function getCachedTokenPrice(tokenAddress, chain) {

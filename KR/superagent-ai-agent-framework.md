@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superagent-ai-agent-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superagent-ai-agent-framework" />
 title: 'Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설정 가이드'
 description: 'Superagent로 AI 에이전트를 배포하는 실전 가이드. 하나의 CLI 명령, 다중 LLM 지원, RAG 워크플로우, 벡터 DB 통합, REST API 배포. 실제 벤치마크 데이터 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Superagent', 'AI 에이전트', 'LLM', 'RAG', '벡터 데이터베이스', 'OpenAI', 'LangChain', 'Python', 'TypeScript']
+tags: [superagent, 'ai 에이전트', llm, rag, '벡터 데이터베이스', openai, langchain, python, typescript]
 aliases:
 - /kr/posts/superagent-ai-agent-framework/
 ---
@@ -115,7 +120,7 @@ pip install -e .
 
 ```bash
 # 프로젝트 루트에 .env 파일 생성
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-openai-key-here
 SUPERAGENT_API_URL=https://api.superagent.sh
 SUPERAGENT_API_KEY=sa-your-superagent-key
@@ -393,7 +398,7 @@ def get_stock_price(symbol: str) -> str:
         headers={"Authorization": f"Bearer {API_KEY}"}
     )
     data = resp.json()
-    return f"{symbol}: ${data['price']} (change: {data['change']})"
+    return f"{symbol}: ${data[price]} (change: {data[change]})"
 
 # 커스텀 도구 등록
 client.tool.create(

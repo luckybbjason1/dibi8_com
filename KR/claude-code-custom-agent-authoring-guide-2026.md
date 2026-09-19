@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만들기 (2026)'
 description: 'Claude Code 커스텀 서브에이전트를 작성하는 완벽 가이드 — frontmatter 필드, 시스템 프롬프트 설계, 도구 화이트리스트, 그리고 바로 투입 가능한 두 가지 예제(마이그레이션 리뷰어, 보안 게이트)와 피해야 할 실수까지.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/claude-code-custom-agent-authoring/
 faq:

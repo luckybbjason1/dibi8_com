@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones'
 description: 'The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['MCP', 'Claude Code', 'Cursor', 'TypeScript', 'Python']
+tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 spec'
 licensing_model: Open Source / Mixed
@@ -19,7 +21,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mcp', 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', 'integration', '2026']
+tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', integration, 2026]
 aliases:
 - /posts/mcp-servers-2026-rankings-selection-guide/
 faq:

@@ -1,6 +1,11 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/opensea-nft-marketplace-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/opensea-nft-marketplace-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/opensea-nft-marketplace-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/opensea-nft-marketplace-api" />
 title: 'opensea-nft-marketplace-api'
-description: '{''en'': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', ''zh'': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', ''ko'': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', ''vi'': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
+description: '{'en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', 'zh': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', 'ko': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', 'vi': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/ProjectOpenSea/opensea-js'
 stars: 1200
-maintainer: 'ProjectOpenSea'
+maintainer: ProjectOpenSea
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['en', 'zh', 'ko', 'vi']
+tags: [en, zh, ko, vi]
 aliases:
 - /kr/posts/opensea-nft-marketplace-api/
 ---
@@ -92,7 +97,7 @@ response = requests.get(
 )
 
 print(f"상태: {response.status_code}")
-print(f"컬렉션: {len(response.json()['collections'])}")
+print(f"컬렉션: {len(response.json()[collections])}")
 ```
 
 ### 4단계: SDK 설치
@@ -139,7 +144,7 @@ def get_collection_details(collection_slug: str):
 
 # 사용 예시
 crypto_punks = get_collection_details("cryptopunks")
-print(f"CryptoPunks 바닥: {crypto_punks['floor_price']} ETH")
+print(f"CryptoPunks 바닥: {crypto_punks[floor_price]} ETH")
 ```
 
 ### 자산 조회 엔드포인트
@@ -170,8 +175,8 @@ bored_ape = get_asset_details(
     address="0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
     token_id="1234"
 )
-print(f"자산: {bored_ape['name']}")
-print(f"특성 개수: {len(bored_ape['traits'])}")
+print(f"자산: {bored_ape[name]}")
+print(f"특성 개수: {len(bored_ape[traits])}")
 ```
 
 ### 상장 및 주문 엔드포인트
@@ -202,7 +207,7 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20):
 # 가장 저렴한 상장 가져오기
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
 for listing in sorted(listings, key=lambda x: float(x["price"])):
-    print(f"가격: {listing['price']} | 토큰: {listing['token']['identifier']}")
+    print(f"가격: {listing[price]} | 토큰: {listing[token][identifier]}")
 ```
 
 ### 계정 및 활동 엔드포인트
@@ -234,7 +239,7 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
 for event in events:
-    print(f"{event['timestamp']}: {event['asset']}이(가) {event['payment']}에 판매됨")
+    print(f"{event[timestamp]}: {event[asset]}이(가) {event[payment]}에 판매됨")
 ```
 
 ---
@@ -366,8 +371,8 @@ sdk = OpenSeaAPI()
 
 # 컬렉션 통계 가져오기
 stats = sdk.get_collection_stats("boredapeyachtclub")
-print(f"바닥: {stats['total']['floor_price']}")
-print(f"거래량: {stats['total']['volume']}")
+print(f"바닥: {stats[total][floor_price]}")
+print(f"거래량: {stats[total][volume]}")
 ```
 
 ---
@@ -571,13 +576,13 @@ async def handle_event(event: dict):
     payload = event.get("payload", {})
     
     if event_type == "item_listed":
-        print(f"[상장] {payload['name']} 가격 {payload['base_price']} ETH")
+        print(f"[상장] {payload[name]} 가격 {payload[base_price]} ETH")
     elif event_type == "item_sold":
-        print(f"[판매] {payload['name']}이(가) {payload['sale_price']} ETH에 판매됨")
+        print(f"[판매] {payload[name]}이(가) {payload[sale_price]} ETH에 판매됨")
     elif event_type == "item_cancelled":
-        print(f"[취소] {payload['name']}")
+        print(f"[취소] {payload[name]}")
     elif event_type == "collection_offer":
-        print(f"[오퍼] {payload['collection_slug']}에 대한 컬렉션 오퍼")
+        print(f"[오퍼] {payload[collection_slug]}에 대한 컬렉션 오퍼")
 
 
 # 이벤트 스트림 실행
@@ -812,7 +817,7 @@ class NFTArbitrageBot:
                     listed_price=price,
                     estimated_value=floor_price,
                     profit_margin=((floor_price - price) / price) * 100,
-                    listing_url=f"https://opensea.io/assets/ethereum/{collection['contract']}/{listing['token_id']}"
+                    listing_url=f"https://opensea.io/assets/ethereum/{collection[contract]}/{listing[token_id]}"
                 )
                 opportunities.append(opp)
                 
@@ -832,9 +837,9 @@ class NFTArbitrageBot:
                     try:
                         opps = self.analyze_collection(collection)
                         if opps:
-                            logger.info(f"{collection['slug']}에서 {len(opps)}개의 기회 발견")
+                            logger.info(f"{collection[slug]}에서 {len(opps)}개의 기회 발견")
                     except Exception as e:
-                        logger.error(f"{collection['slug']} 분석 중 오류: {e}")
+                        logger.error(f"{collection[slug]} 분석 중 오류: {e}")
                 
                 time.sleep(interval)
         except KeyboardInterrupt:

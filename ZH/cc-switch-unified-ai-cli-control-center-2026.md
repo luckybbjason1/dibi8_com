@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cc-switch-unified-ai-cli-control-center-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-unified-ai-cli-control-center-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-unified-ai-cli-control-center-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-unified-ai-cli-control-center-2026" />
 title: 'CC Switch：多AI CLI工具统一管理的终极解决方案 | 2026开源工具推荐'
 description: 'CC Switch是一款开源跨平台桌面应用，支持统一管理Claude Code、Codex、OpenCode、OpenClaw、Gemini CLI等AI编程工具。74K+ GitHub Stars，Rust+Tauri构建，内置50+供应商预设、MCP统一管理、系统托盘快捷切换。本文深度评测功能特性、安装配置与实战技巧。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/farion1231/cc-switch'
 stars: 74754
-maintainer: 'farion1231'
+maintainer: farion1231
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false

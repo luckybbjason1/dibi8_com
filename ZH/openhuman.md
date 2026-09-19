@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openhuman" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhuman" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhuman" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhuman" />
 title: '什么是 OpenHuman？'
 lang: zh
 description: 'content/zh/resources/openhuman.md'

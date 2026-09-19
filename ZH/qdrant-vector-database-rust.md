@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qdrant-vector-database-rust" />
 title: 'Qdrant：基于Rust的向量数据库，以10ms延迟处理100万+向量 — 2026年自托管部署指南'
 description: '部署Qdrant向量数据库用于生产级相似度搜索。涵盖HNSW索引、负载过滤、多租户、Docker部署以及Python/Go/JS客户端的完整指南，附带真实基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'qdrant/qdrant'
 stars: 22000
-maintainer: 'qdrant'
+maintainer: qdrant
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Qdrant', '向量数据库', 'Rust', 'HNSW', '相似度搜索', 'Docker', '自托管', 'AI']
+tags: [qdrant, 向量数据库, rust, hnsw, 相似度搜索, docker, 自托管, ai]
 aliases:
 - /zh/posts/qdrant-vector-database-rust/
 ---
@@ -563,7 +568,7 @@ def create_snapshot(collection: str) -> str:
     url = f"http://localhost:6333/collections/{collection}/snapshots"
     resp = requests.post(url)
     result = resp.json()["result"]
-    print(f"快照已创建: {result['name']}")
+    print(f"快照已创建: {result[name]}")
     return result["name"]
 
 # 每日快照（通过cron运行）

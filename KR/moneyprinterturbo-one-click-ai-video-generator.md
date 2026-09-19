@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moneyprinterturbo-one-click-ai-video-generator" />
 title: 'MoneyPrinterTurbo: 9만 개 이상의 별을 가진 원클릭 AI 비디오 생성기'
 description: 'MoneyPrinterTurbo에 비디오 주제나 키워드를 제공하면 스크립트, 스톡 영상, 자막, 배경 음악, HD 짧은 동영상을 자동으로 생성합니다. TikTok, YouTube Shorts, Instagram Reels를 지원합니다. GitHub 별점 9만 이상.'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Video Generation', 'Short Videos', 'Automation', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
 categories: ['ai-tools']
 slug: moneyprinterturbo-one-click-ai-video-generator
 featureImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/moneyprinterturbo']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
@@ -21,13 +26,13 @@ description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-genera
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Video Generation', 'Short Videos', 'Automation', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
 categories: ['ai-tools']
 slug: moneyprinterturbo-one-click-ai-video-generator
 
 aliases: ['/moneyprinterturbo']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'

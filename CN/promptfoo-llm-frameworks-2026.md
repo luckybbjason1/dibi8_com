@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/promptfoo-llm-frameworks-2026" />
 title: 'Promptfoo: Test, Evaluate & Red-Team Your LLM Prompts — Practical 2026 Guide'
 description: 'Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Claude, Gemini, and DeepSeek with simple declarative configs that plug into your CLI and CI/CD. This 2026 guide covers install, promptfooconfig.yaml, assertions, and red teaming.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'promptfoo/promptfoo'
 stars: 21825
-maintainer: 'promptfoo'
+maintainer: promptfoo
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
@@ -240,7 +242,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Run promptfoo eval
         env:

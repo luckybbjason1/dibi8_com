@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/anythingllm-architecture-local-rag" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anythingllm-architecture-local-rag" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anythingllm-architecture-local-rag" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anythingllm-architecture-local-rag" />
 title: "기업들은 왜 ChatGPT를 두려워하는가?"
 description: "기업들은 왜 ChatGPT를 두려워하는가?"
 date: 2026-05-15T04:20:25+09:00

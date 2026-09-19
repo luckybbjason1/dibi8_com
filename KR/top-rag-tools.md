@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/top-rag-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/top-rag-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/top-rag-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/top-rag-tools" />
 title: 'AI 지식 베이스를 위한 최고의 RAG 도구'
 lang: ko
 description: 'AI 지식 베이스 구축을 위한 최고의 RAG(검색 증강 생성) 도구 — LangChain부터 LlamaIndex, ChromaDB부터 Weaviate까지.'

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
 title: 'Directus: The Open-Source Headless CMS Powering AI Content Workflows — 2026 Setup & API Guide'
 description: 'Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content versioning, AI content workflows, and self-hosted Docker deployment. REST and GraphQL API benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'directus/directus'
 stars: 29100
-maintainer: 'directus'
+maintainer: directus
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Directus', 'Headless CMS', 'Content Management', 'API', 'Docker', 'Open Source', 'AI', 'GraphQL', 'REST', 'Self-Hosted']
+tags: [directus, 'headless cms', 'content management', api, docker, 'open source', ai, graphql, rest, 'self-hosted']
 aliases:
 - /posts/directus-headless-cms-ai-content/
 ---
@@ -91,7 +93,7 @@ Key architectural decisions:
 mkdir ~/directus && cd ~/directus
 
 # Create compose file
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: "3"
 services:
   directus:
@@ -155,7 +157,7 @@ Access the admin panel at `http://localhost:8055`. Login with the admin credenti
 
 ```bash
 # .env file for production
-cat > .env << 'EOF'
+cat > .env << EOF
 # Security
 SECRET=super-random-64-char-secret-for-jwt-signing
 KEY=your-instance-unique-key
@@ -297,21 +299,21 @@ const client = createDirectus('http://localhost:8055')
 
 // Fetch articles with filters
 const articles = await client.request(
-  readItems('articles', {
-    filter: { status: { _eq: 'published' } },
+  readItems(articles, {
+    filter: { status: { _eq: published } },
     sort: ['-published_at'],
     limit: 10,
-    fields: ['id', 'title', 'seo_score', 'published_at']
+    fields: [id, title, seo_score, published_at]
   })
 );
 console.log(`Found ${articles.length} articles`);
 
 // Create article
 const newArticle = await client.request(
-  createItem('articles', {
+  createItem(articles, {
     title: 'AI-Powered Content Strategy',
     content: 'Generated with GPT-4...',
-    status: 'draft',
+    status: draft,
     ai_generated: true,
     seo_score: 92
   })
@@ -348,16 +350,16 @@ import { defineHook } from '@directus/extensions-sdk';
 export default defineHook(({ filter, action }) => {
   filter('articles.items.create', async (payload, meta, context) => {
     if (payload.ai_generate === true && !payload.content) {
-      const { OpenAI } = await import('openai');
+      const { OpenAI } = await import(openai);
       const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
       const response = await openai.chat.completions.create({
         model: 'gpt-4o',
         messages: [
-          { role: 'system', content: 'You are a technical content writer.' },
-          { role: 'user', content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: system, content: 'You are a technical content writer.' },
+          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
         ],
-        response_format: { type: 'json_object' },
+        response_format: { type: json_object },
         max_tokens: 2000
       });
 
@@ -366,7 +368,7 @@ export default defineHook(({ filter, action }) => {
       payload.excerpt = result.excerpt;
       payload.seo_keywords = result.seo_keywords;
       payload.ai_generated = true;
-      payload.status = 'review'; // Force review status
+      payload.status = review; // Force review status
     }
     return payload;
   });
@@ -374,10 +376,10 @@ export default defineHook(({ filter, action }) => {
   // Log AI generation events
   action('articles.items.create', async (meta, context) => {
     if (meta.payload.ai_generated) {
-      await context.database('activity').insert({
-        action: 'ai_generate',
+      await context.database(activity).insert({
+        action: ai_generate,
         user: meta.user,
-        collection: 'articles',
+        collection: articles,
         item: meta.key,
         timestamp: new Date()
       });
@@ -403,21 +405,21 @@ cp -r dist/* /directus/extensions/hooks/ai-content/
 ```javascript
 // Fetch articles pending review
 const pendingReview = await client.request(
-  readItems('articles', {
+  readItems(articles, {
     filter: {
       _and: [
-        { status: { _eq: 'review' } },
+        { status: { _eq: review } },
         { ai_generated: { _eq: true } }
       ]
     },
-    fields: ['id', 'title', 'excerpt', 'seo_score', 'seo_keywords', 'date_created']
+    fields: [id, title, excerpt, seo_score, seo_keywords, date_created]
   })
 );
 
 // Content editor approves
 await client.request(
-  updateItem('articles', articleId, {
-    status: 'published',
+  updateItem(articles, articleId, {
+    status: published,
     published_at: new Date().toISOString()
   })
 );
@@ -504,12 +506,12 @@ export default defineEndpoint((router, { services, database }) => {
   const { ItemsService } = services;
 
   router.get('/content-stats', async (req, res) => {
-    const articles = new ItemsService('articles', { schema: req.schema, accountability: req.accountability });
+    const articles = new ItemsService(articles, { schema: req.schema, accountability: req.accountability });
 
     const [total, published, draft, aiGenerated] = await Promise.all([
       articles.count(),
-      articles.count({ status: { _eq: 'published' } }),
-      articles.count({ status: { _eq: 'draft' } }),
+      articles.count({ status: { _eq: published } }),
+      articles.count({ status: { _eq: draft } }),
       articles.count({ ai_generated: { _eq: true } })
     ]);
 
@@ -532,19 +534,19 @@ export default defineEndpoint((router, { services, database }) => {
 ```javascript
 // Grant editor role read-only on SEO fields, full access to content
 const rolePermissions = {
-  collection: 'articles',
+  collection: articles,
   role: 'editor-role-id',
-  action: 'read',
-  permissions: { status: { _eq: 'published' } },
-  fields: ['id', 'title', 'content', 'published_at'], // No seo_score, no ai_generated
+  action: read,
+  permissions: { status: { _eq: published } },
+  fields: [id, title, content, published_at], // No seo_score, no ai_generated
   validation: null
 };
 
 // Admin role sees everything
 const adminPermissions = {
-  collection: 'articles',
+  collection: articles,
   role: 'admin-role-id',
-  action: 'read',
+  action: read,
   permissions: {},
   fields: ['*'], // All fields
   validation: null
@@ -564,7 +566,7 @@ export default defineEndpoint((router, { database }) => {
     const metrics = await database.raw(`
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
-      WHERE schemaname = 'public'
+      WHERE schemaname = public
     `);
 
     let output = '';
@@ -619,7 +621,7 @@ Directus saves a snapshot of your content every time you hit "Save as Version." 
 Yes, with proper architecture. The API server is stateless — scale horizontally by adding container replicas behind a load balancer. Use Redis for caching and sessions. Use PostgreSQL read replicas for read-heavy workloads. A single 4 vCPU / 8GB instance handles ~2,000 requests/second for cached reads. File serving should go through a CDN.
 
 **Q: What is the best way to integrate AI content generation?**
-Use Directus Flows (visual automation) combined with custom hook extensions. Flows handle the trigger logic (e.g., "when article status changes to 'generate'"), and hooks call your LLM API (OpenAI, Claude, local models). Store the AI output as a draft version for human review before publishing. This creates a complete AI-human collaborative pipeline.
+Use Directus Flows (visual automation) combined with custom hook extensions. Flows handle the trigger logic (e.g., "when article status changes to generate"), and hooks call your LLM API (OpenAI, Claude, local models). Store the AI output as a draft version for human review before publishing. This creates a complete AI-human collaborative pipeline.
 
 **Q: How do I migrate from WordPress to Directus?**
 Export WordPress content via WP REST API or XML export, transform the data to match your Directus schema, and bulk-import using the Directus REST API or SDK. Images need to be re-uploaded to Directus storage. Redirects from old WordPress URLs should be handled at the reverse proxy level. Plan 1-2 weeks for a complete migration depending on content volume.

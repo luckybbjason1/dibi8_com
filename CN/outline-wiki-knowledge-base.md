@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
 title: 'Outline: The Open-Source Wiki & Knowledge Base Built for Engineering Teams — 2026 Self-Hosted Setup Guide'
 description: 'Deploy Outline with Docker in 10 minutes. Build a real-time collaborative wiki for your engineering team with Markdown editor, Slack integration, full-text search, and granular permissions.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'outline/outline'
 stars: 32000
-maintainer: 'outline'
+maintainer: outline
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['outline', 'wiki', 'knowledge-base', 'team-docs', 'open-source', 'self-hosted', 'docker', 'collaboration', 'markdown']
+tags: [outline, wiki, 'knowledge-base', 'team-docs', 'open-source', 'self-hosted', docker, collaboration, markdown]
 aliases:
 - /posts/outline-wiki-knowledge-base/
 ---
@@ -172,7 +174,7 @@ echo "UTILS_SECRET=$UTILS_SECRET"
 Add these to a `.env` file:
 
 ```bash
-cat << 'EOF' > .env
+cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
 SLACK_CLIENT_ID=

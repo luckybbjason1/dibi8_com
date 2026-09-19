@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: 'Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026'
 description: 'Odysseus (65,243 GitHub stars) is a self-hosted AI workspace combining chat, agent automation, deep research, document editing, email triage, calendar, and more. Supports vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, and GitHub Copilot. Docker and native Linux/macOS installs available.'
 date: 2026-06-09

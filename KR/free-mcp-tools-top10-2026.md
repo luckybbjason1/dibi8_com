@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-mcp-tools-top10-2026" />
 title: '2026 무료 MCP 툴 Top 10: 최고의 Model Context Protocol 서버 추천'
 description: 'Claude, Cursor, 모든 MCP 호환 AI 클라이언트를 위한 최고의 무료 MCP 서버 10선 — 파일시스템, 웹 검색, 메모리, GitHub, 데이터베이스 등. 전부 오픈소스, 비용 제로.'
 date: 2026-06-06 00:00:00+08:00

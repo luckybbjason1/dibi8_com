@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docmost-team-docs-collaboration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docmost-team-docs-collaboration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docmost-team-docs-collaboration" />
 title: 'Docmost 2026: Phương án thay thế Notion mã nguồn mở cho cộng tác nhóm thờói gian thực — Hướng dẫn tự host'
 description: 'Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian thực, trình chỉnh sửa khối kiểu Notion, trang lồng nhau và backend PostgreSQL. Triển khai trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'docmost/docmost'
 stars: 20100
-maintainer: 'docmost'
+maintainer: docmost
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Docmost', 'Thay thế Notion', 'Wiki', 'Cộng tác thờói gian thực', 'Tự host', 'Tài liệu', 'PostgreSQL', 'Docker', 'Mã nguồn mở', 'Tài liệu nhóm']
+tags: [docmost, 'thay thế notion', wiki, 'cộng tác thờói gian thực', 'tự host', 'tài liệu', postgresql, docker, 'mã nguồn mở', 'tài liệu nhóm']
 aliases:
 - /vi/posts/docmost-team-docs-collaboration/
 ---

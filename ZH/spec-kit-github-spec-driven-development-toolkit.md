@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/spec-kit-github-spec-driven-development-toolkit" />
 title: "规格套件：GitHub"
 description: "GitHub 的 Spec Kit 完整指南——通过规范驱动开发改变开发者构建软件方式的开源工具包。安装、工作流程和实际案例。"
 date: 2026-06-20

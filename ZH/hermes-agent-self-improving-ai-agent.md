@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：一个会自我进化的 AI 代理，越用越懂你
 description: Hermes Agent 是 Nous Research 打造的Open Source AI 代理，拥有自我学习循环——从经验中创建技能、持续改进、记住你的偏好，越用越懂你。
 date: 2026-05-15 04:20:25+09:00

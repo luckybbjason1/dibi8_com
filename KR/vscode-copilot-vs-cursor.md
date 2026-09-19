@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vscode-copilot-vs-cursor" />
 title: 'VS Code Copilot vs Cursor 2026: 어느 AI 코딩 도구가 이길까?'
 description: 'GitHub Copilot in VS Code(Microsoft)와 Cursor 비교 — 가격 $10 vs $20/월, 자동완성 vs 에이전트, 엔터프라이즈 통합. 2026 업데이트.'
 date: 2026-05-22 00:00:00+08:00

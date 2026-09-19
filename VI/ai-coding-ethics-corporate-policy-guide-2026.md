@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-ethics-corporate-policy-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-ethics-corporate-policy-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-ethics-corporate-policy-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-ethics-corporate-policy-guide-2026" />
 title: 'Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệp Cho phép vs Hạn chế'
 description: 'Năm 2026, các doanh nghiệp phân hóa thành ba phe: AI-cho phép / AI-hạn chế / AI-cấm. Hướng dẫn thực tế về diện mạo của từng chính sách, cách lựa chọn và những cạm bẫy pháp lý/IP/tuân thủ — dựa trên các mô hình áp dụng thực tế mà chúng tôi đã theo dõi.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Chính sách', 'Tuân thủ', 'Claude Code', 'Cursor']
+tech_stack: ['Chính sách', 'Tuân thủ', 'Claude Code', Cursor]
 application_domain: Công cụ phát triển
 source_version: '2026 Q2'
 licensing_model: 'Không áp dụng'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'đạo đức', 'chính sách', 'tuân thủ', '2026']
+tags: ['ai-coding', 'đạo đức', 'chính sách', 'tuân thủ', 2026]
 aliases:
 - /vi/posts/ai-coding-ethics-corporate-policy-guide-2026/
 faq:
@@ -25,7 +30,7 @@ faq:
     a: "Ba rủi ro: (1) Rò rỉ dữ liệu huấn luyện — nếu prompt chứa mã độc quyền, nhà cung cấp có thể dùng để huấn luyện (ít gặp ở gói Enterprise). (2) Trách nhiệm với đầu ra — mã do AI tạo ra thuộc về ai? Năm 2026 phần lớn đã ngả về phía bạn nhưng ngôn ngữ hợp đồng vẫn quan trọng. (3) Ô nhiễm giấy phép — AI có thể tái tạo mã GPL khiến codebase độc quyền của bạn bị ô nhiễm."
   - q: "Doanh nghiệp triển khai 'cho phép kèm kiểm toán' thực tế ra sao?"
     a: "Mô hình: danh mục công cụ được phê duyệt (Claude Code, Cursor, GitHub Copilot), bắt buộc review PR đối với mã do AI sinh, đôi khi gắn nhãn AI-assisted cho commit, đào tạo vệ sinh prompt (không dán secret, kiểm soát phạm vi context). Đa số doanh nghiệp dừng ở ba mục đầu; phần gắn nhãn/đào tạo thì khác nhau."
-  - q: "Có một câu trả lời 'đúng' duy nhất hay phụ thuộc vào bối cảnh?"
+  - q: "Có một câu trả lời đúng duy nhất hay phụ thuộc vào bối cảnh?"
     a: "Phụ thuộc bối cảnh. Đối với công việc Web SaaS thuần túy: cho phép kèm kiểm toán nhẹ gần như luôn đúng. Đối với công việc bị quản chế ở y tế/tài chính: tier doanh nghiệp có DPA + sử dụng hạn chế là tiêu chuẩn. Đối với quốc phòng/mật: cấm AI đám mây, chỉ cho phép cục bộ. Chính sách lệch tạo ra rủi ro tuân thủ hoặc thất thoát năng suất."
 ---
 

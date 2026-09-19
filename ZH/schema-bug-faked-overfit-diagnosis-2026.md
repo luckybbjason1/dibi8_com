@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
 title: 'schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘'
 description: '跑了 7 个量化实验，发现「教科书级 overfit」（Train PF 2.08 → OOS 0.94，比值 2.21）。然后才发现诊断本身就是错的 —— schema 字段静默错配导致 optimizer 用默认 10x leverage 跑，而不是进化出来的 2x。修正版本健康（比值 1.01）。这个 meta 教训比原诊断本身更难看。'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader', 'pydantic']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: 'moss-trade-bot-skills v1.0.26'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-26'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'schema-drift', 'walk-forward', 'postmortem', '2026']
+tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
 aliases:
 - /zh/posts/schema-bug-faked-overfit-diagnosis-2026/
 faq:

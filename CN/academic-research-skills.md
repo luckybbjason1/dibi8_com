@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/academic-research-skills" />
 title: "Academic Research Skills: Automate Literature Reviews with AI — 31K Star Framework 2026"
 description: "Academic Research Skills (31,628 stars) automates the research pipeline: search papers, extract insights, synthesize findings, and write literature reviews. Built for Claude Code with modular skill architecture."
 tags: ["ai-agent", "deep-research", "dev-tools", "engine", "open-source", "research", "search"]

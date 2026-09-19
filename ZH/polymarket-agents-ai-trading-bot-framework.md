@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework" />
 title: Polymarket Agents：构建预测市场 AI 自动交易机器人的开源框架
 description: Polymarket Agents 是一个开源开发者框架，用于构建在 Polymarket 预测市场上进行 AI 自主交易的智能代理。
 date: 2026-05-15 04:20:25+09:00

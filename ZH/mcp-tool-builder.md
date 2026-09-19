@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-tool-builder" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-tool-builder" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tool-builder" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tool-builder" />
 title: "MCP Tool Builder — 从 Python / TypeScript 函数生成 Model Context Protocol 工具定义"
 description: "免费在线 MCP Tool 定义生成器。粘贴 Python 或 TypeScript 函数签名，自动产出符合 MCP 协议的 tool JSON、完整 Python（FastMCP）和 TypeScript（@modelcontextprotocol/sdk）server 模板、以及可直接复制的 cURL 测试命令。纯前端，函数代码不上云。"
 date: 2026-05-19

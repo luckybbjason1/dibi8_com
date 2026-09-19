@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qdrant-vector-database-rust" />
 title: 'Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026년 자체 호스팅 배포 가이드'
 description: '프로덕션 유사도 검색을 위한 Qdrant 벡터 데이터베이스를 배포하세요. HNSW 인덱싱, 페이로드 필터링, 멀티 테넌시, Docker 배포, Python/Go/JS 클라이언트 및 실제 벤치마크를 다루는 완전한 가이드.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'qdrant/qdrant'
 stars: 22000
-maintainer: 'qdrant'
+maintainer: qdrant
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Qdrant', '벡터 데이터베이스', 'Rust', 'HNSW', '유사도 검색', 'Docker', '자체 호스팅', 'AI']
+tags: [qdrant, '벡터 데이터베이스', rust, hnsw, '유사도 검색', docker, '자체 호스팅', ai]
 aliases:
 - /kr/posts/qdrant-vector-database-rust/
 ---
@@ -563,7 +568,7 @@ def create_snapshot(collection: str) -> str:
     url = f"http://localhost:6333/collections/{collection}/snapshots"
     resp = requests.post(url)
     result = resp.json()["result"]
-    print(f"스냅샷 생성됨: {result['name']}")
+    print(f"스냅샷 생성됨: {result[name]}")
     return result["name"]
 
 # 일일 스냅샷 (cron을 통해 실행)

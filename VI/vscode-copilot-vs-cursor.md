@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vscode-copilot-vs-cursor" />
 title: 'VS Code Copilot vs Cursor 2026: Công cụ AI Coding nào thắng?'
 description: 'So sánh GitHub Copilot trong VS Code (Microsoft) và Cursor — giá $10 vs $20/tháng, autocomplete vs agentic, tích hợp doanh nghiệp. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

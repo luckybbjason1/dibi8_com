@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-sovits" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-sovits" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-sovits" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-sovits" />
 title: 'GPT-SoVITS: 57.5K+ Stars — AI 음성 클로닝 프로덕션 배포 가이드 2026'
 description: 'GPT-SoVITS (GSV)는 제로샷 기능을 갖춘 퓨샷 음성 클로닝 및 TTS 도구. ComfyUI, RVC, MeloTTS와 통합 가능. Docker 배포, 음성 학습, API 설정 및 프로덕션 하드닝 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['음성클로닝', '텍스트음성변환', 'gpt-sovits', 'TTS', 'AI음성', 'Docker', 'RVC', 'Python']
+tags: [음성클로닝, 텍스트음성변환, 'gpt-sovits', tts, ai음성, docker, rvc, python]
 aliases:
 - /kr/posts/gpt-sovits/
 ---
@@ -166,7 +171,7 @@ docker compose run --service-ports GPT-SoVITS-CU128
 # 프로덕션용 docker-compose.override.yaml
 services:
   GPT-SoVITS-CU128:
-    shm_size: '16g'
+    shm_size: 16g
     environment:
       - is_half=true
     ports:

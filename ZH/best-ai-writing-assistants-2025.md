@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-writing-assistants-2025" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-writing-assistants-2025" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-writing-assistants-2025" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-writing-assistants-2025" />
 title: '2025年最佳AI写作助手对比：Jasper、Copy.ai、Writesonic与ChatGPT全面评测'
 description: '2025年AI写作助手全面对比评测，深入分析Jasper、Copy.ai、Writesonic、ChatGPT、Claude、Notion AI等工具的功能、定价与最佳使用场景。'
 date: 2026-05-18 00:00:00+08:00

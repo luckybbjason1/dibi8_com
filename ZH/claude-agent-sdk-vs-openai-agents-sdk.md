@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-agent-sdk-vs-openai-agents-sdk" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-agent-sdk-vs-openai-agents-sdk" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-agent-sdk-vs-openai-agents-sdk" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-agent-sdk-vs-openai-agents-sdk" />
 title: '2026 年 Claude Agent SDK 与 OpenAI Agents SDK 对比：该选哪个来开发？'
 description: '两大主流 agent SDK 的逐项对比——架构（hooks+subagents 对 handoffs+guardrails）、内置工具、操作系统访问、语音、厂商锁定，以及各自的适用场景。2026 年更新。'
 date: 2026-05-29 00:00:00+08:00

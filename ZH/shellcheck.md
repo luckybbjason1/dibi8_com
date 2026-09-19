@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/shellcheck" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
 title: 'ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 CI/CD 集成指南 2026'
 description: 'ShellCheck (SC) 是一款针对 bash/sh 的静态分析工具。支持 Docker、GitHub Actions、VS Code 集成，涵盖安装配置、CI/CD 流水线集成和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/koalaman/shellcheck'
 stars: 39456
-maintainer: 'koalaman'
+maintainer: koalaman
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['shellcheck', 'bash', '静态分析', '代码检查', 'shell脚本', 'devops', 'ci-cd', 'docker']
+tags: [shellcheck, bash, 静态分析, 代码检查, shell脚本, devops, 'ci-cd', docker]
 aliases:
 - /zh/posts/shellcheck/
 ---
@@ -206,19 +211,19 @@ repos:
 ```vim
 " .vimrc 或 init.vim
 let g:ale_linters = {
-\   'sh': ['shellcheck'],
+\   sh: [shellcheck],
 \}
 
 " 保存时和输入时运行
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_on_text_changed = always
 ```
 
 Neovim 中使用原生 LSP：
 
 ```lua
 -- init.lua (nvim-lspconfig)
-require('lspconfig').bashls.setup {
+require(lspconfig).bashls.setup {
   settings = {
     bashIde = {
       shellcheckPath = "shellcheck"
@@ -330,7 +335,7 @@ pipeline {
     agent any
 
     stages {
-        stage('ShellCheck') {
+        stage(ShellCheck) {
             steps {
                 sh '''
                     #!/bin/bash

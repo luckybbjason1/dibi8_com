@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-ai-agent-internet-access" />
 title: Agent Reach：让你的 AI Agent 一键连接互联网
 description: Agent Reach 是一个开源脚手架工具，只需一条命令就能让 AI Agent 访问 YouTube、Twitter、Reddit、小红书、B站等
   15+ 平台。

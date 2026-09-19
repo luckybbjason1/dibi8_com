@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-Enhanced Knowledge Management — Setup Guide'
 description: 'Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edgeless whiteboard, AI writing assistant, Docker setup in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'toeverything/AFFiNE'
 stars: 47000
-maintainer: 'toeverything'
+maintainer: toeverything
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AFFiNE', 'knowledge-base', 'whiteboard', 'self-hosted', 'Docker', 'Notion-alternative', 'Miro-alternative', 'CRDT', 'local-first', 'AI-writing']
+tags: [affine, 'knowledge-base', whiteboard, 'self-hosted', docker, 'notion-alternative', 'miro-alternative', crdt, 'local-first', 'ai-writing']
 aliases:
 - /posts/affine-knowledge-base-whiteboard/
 ---
@@ -83,7 +85,7 @@ wget -O .env https://github.com/toeverything/affine/releases/latest/download/.en
 
 ```bash
 # Edit .env file
-cat > .env << 'EOF'
+cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
 AFFINE_ADMIN_PASSWORD=ChangeMeNow2026!
 DB_PASSWORD=postgres_secret_2026
@@ -231,7 +233,7 @@ AFFiNE's performance characteristics matter for production deployment:
 
 ```bash
 # Using Caddy as a reverse proxy
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 affine.yourdomain.com {
     reverse_proxy localhost:3010
     tls admin@yourdomain.com
@@ -243,7 +245,7 @@ EOF
 
 ```bash
 # Automated daily backups
-cat > backup-affine.sh << 'EOF'
+cat > backup-affine.sh << EOF
 #!/bin/bash
 set -euo pipefail
 BACKUP_DIR="/backups/affine-$(date +%Y%m%d)"

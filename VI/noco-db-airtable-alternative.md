@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/noco-db-airtable-alternative" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/noco-db-airtable-alternative" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/noco-db-airtable-alternative" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/noco-db-airtable-alternative" />
 title: 'NocoDB 2026 Hướng Dẫn Đầy Đủ: Giải Pháp Thay Thế Airtable Mã Nguồn Mở Biến Mọi Database Thành Bảng Tính Thông Minh'
 description: 'Triển khai NocoDB trong 5 phút với Docker. Biến MySQL, PostgreSQL hoặc SQLite thành bảng tính cộng tác với REST API tự động, bảng Kanban và kiểm soát truy cập dựa trên vai trò.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'nocodb/nocodb'
 stars: 53000
-maintainer: 'nocodb'
+maintainer: nocodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['nocodb', 'thay-the-airtable', 'ma-nguon-mo', 'co-so-du-lieu', 'bang-tinh', 'tu-luu-tru', 'docker', 'mysql', 'postgresql']
+tags: [nocodb, 'thay-the-airtable', 'ma-nguon-mo', 'co-so-du-lieu', 'bang-tinh', 'tu-luu-tru', docker, mysql, postgresql]
 aliases:
 - /vi/posts/noco-db-airtable-alternative/
 ---
@@ -305,7 +310,7 @@ sudo nginx -t && sudo systemctl restart nginx
 ```bash
 # Tạo file secrets
 sudo mkdir -p /opt/nocodb
-sudo tee /opt/nocodb/.env > /dev/null << 'EOF'
+sudo tee /opt/nocodb/.env > /dev/null << EOF
 NC_DB=pg://db:5432?u=nocodb&p=CHANGE_ME&d=nocodb_meta
 NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING
 NC_REDIS_URL=redis://redis:6379

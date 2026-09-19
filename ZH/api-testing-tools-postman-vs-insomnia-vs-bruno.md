@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/api-testing-tools-postman-vs-insomnia-vs-bruno" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/api-testing-tools-postman-vs-insomnia-vs-bruno" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/api-testing-tools-postman-vs-insomnia-vs-bruno" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/api-testing-tools-postman-vs-insomnia-vs-bruno" />
 title: 'Postman vs Insomnia vs Bruno：2025年最佳API测试工具对比'
 description: '2025年三大主流API测试工具深度对比，涵盖Postman、Insomnia和Bruno的功能、定价、协议支持与Git集成，附带迁移指南与CI/CD配置方案。'
 date: 2026-05-18 00:00:00+08:00

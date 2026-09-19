@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: The End-to-End NLP Framework for Production RAG & Agent Pipelines \u2014 Setup Guide'
 description: 'Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document stores, retrievers, agents, evaluation tools, and Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Haystack', 'NLP', 'RAG', 'Python', 'LLM', 'Document Store', 'Retriever', 'Agent', 'OpenAI', 'Docker', 'Pipeline']
+tags: [haystack, nlp, rag, python, llm, 'document store', retriever, agent, openai, docker, pipeline]
 aliases:
 - /posts/haystack-rag-pipeline-framework/
 ---
@@ -264,7 +266,7 @@ pipeline = Pipeline()
 
 # Router decides path based on query type
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ 'technical' in query.lower() }}",
+    "condition": "{{ technical in query.lower() }}",
     "output": "{{ query }}",
     "output_type": str,
 }))
@@ -376,8 +378,8 @@ pipe.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
 pipe.connect("counter.text", "generator.prompt")
 
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
-print(f"Tokens: {result['counter']['token_count']}")
-print(f"Response: {result['generator']['replies'][0]}")
+print(f"Tokens: {result[counter][token_count]}")
+print(f"Response: {result[generator][replies][0]}")
 ```
 
 ### Web Search Tool for Agents
@@ -523,7 +525,7 @@ sas_result = sas_evaluator.run(
     ground_truth_answers=[g["expected"] for g in ground_truth],
     predicted_answers=predictions,
 )
-print(f"SAS Score: {sas_result['score']:.3f}")
+print(f"SAS Score: {sas_result[score]:.3f}")
 ```
 
 ### Docker Deployment

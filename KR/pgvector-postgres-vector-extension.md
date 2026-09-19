@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 RAG 통합 가이드'
 description: 'pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'pgvector/pgvector'
 stars: 15000
-maintainer: 'pgvector'
+maintainer: pgvector
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['pgvector', 'PostgreSQL', '벡터-데이터베이스', 'HNSW', 'ANN', 'RAG', '유사도-검색', '전문-검색']
+tags: [pgvector, postgresql, '벡터-데이터베이스', hnsw, ann, rag, '유사도-검색', '전문-검색']
 aliases:
 - /kr/posts/pgvector-postgres-vector-extension/
 ---
@@ -119,7 +124,7 @@ docker run -d \
   pgvector/pgvector:0.8.2-pg18
 
 # 확인
-docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = 'vector';"
+docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
 ```
 
 ### 옵션 B: 기존 PostgreSQL
@@ -145,7 +150,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 버전 확인
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 반환: 0.8.2
 ```
 
@@ -156,14 +161,14 @@ SELECT extversion FROM pg_extension WHERE extname = 'vector';
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 필요시 사용 가능한 확장 확인
-SELECT * FROM pg_available_extensions WHERE name = 'vector';
+SELECT * FROM pg_available_extensions WHERE name = vector;
 ```
 
 ### 설치 확인
 
 ```sql
 -- pgvector 버전 확인
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 예상: 0.8.2
 
 -- 벡터 타입 테스트
@@ -238,7 +243,7 @@ print(f"{batch_size}개 문서 삽입 완료")
 
 ```sql
 -- 병렬 인덱스 빌드용 파라미터 설정
-SET maintenance_work_mem = '8GB';
+SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
 
 -- 튜닝된 파라미터로 HNSW 인덱스 구축
@@ -250,7 +255,7 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
   );
 
 -- 인덱스 크기 확인
-SELECT pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw'));
+SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- 일반적: 1536 차원의 10만 벡터에 대해 ~450 MB
 ```
 
@@ -270,7 +275,7 @@ SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
   AND created_at > NOW() - INTERVAL '30 days'
-  AND metadata->>'category' = 'tech'
+  AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
 ```
@@ -335,8 +340,8 @@ LIMIT 10;
 
 -- 공간 절약 확인
 SELECT
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw')) AS full_size,
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_half_hnsw')) AS half_size;
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size는 일반적으로 full_size의 ~45-50%
 ```
 
@@ -498,7 +503,7 @@ CREATE POLICY tenant_isolation ON documents
     USING (tenant_id = current_setting('app.current_tenant')::INTEGER);
 
 -- 세션별 테넌트 설정
-SET app.current_tenant = '42';
+SET app.current_tenant = 42;
 
 -- 이제 모든 쿼리가 자동으로 테넌트별로 필터링됨
 SELECT * FROM documents;  -- 테넌트 42의 문서만 표시
@@ -520,7 +525,7 @@ LIMIT 10;
 
 ```bash
 # postgresql.conf에서 pg_stat_statements 활성화
-shared_preload_libraries = 'pg_stat_statements'
+shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
 ```

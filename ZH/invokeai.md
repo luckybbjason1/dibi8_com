@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/invokeai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/invokeai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/invokeai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/invokeai" />
 title: 'InvokeAI: 27.2K+ Stars — 2026 完整安装配置指南'
 description: 'InvokeAI（Invoke）是 Stable Diffusion 模型的领先创意引擎，拥有业界领先的 WebUI。兼容 SD 1.5、SDXL、FLUX 和 ControlNet。涵盖 Docker 安装、工作流配置、与 AUTOMATIC1111 和 ComfyUI 的性能对比，以及生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['InvokeAI', 'Stable Diffusion', 'AI图像生成', 'Docker', 'FLUX', 'SDXL', 'WebUI', '开源']
+tags: [invokeai, 'stable diffusion', ai图像生成, docker, flux, sdxl, webui, 开源]
 aliases:
 - /zh/posts/invokeai/
 ---

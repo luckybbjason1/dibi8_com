@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mineru-document-parsing-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mineru-document-parsing-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mineru-document-parsing-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mineru-document-parsing-engine" />
 
 lang: en
 title: 'MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang Markdown sẵn sàng cho LLM'

@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-memory-systems-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-memory-systems-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-memory-systems-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-memory-systems-2026" />
 title: '2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / MemPalace 实战选型'
 description: 'AI Agent 每次新会话就失忆是 2026 年生产环境的硬伤。4 大开源记忆层深度对比：Mem0（48K+ stars，21 框架集成，LoCoMo 92.5%）、agentmemory（MCP 原生，Claude Code/Cursor 神器，re-explanation -60%）、Hindsight（biomimetic 三类记忆 + 4 策略检索）、MemPalace（52K+ stars 社区领军）。含基准 / pitfall / 决策树。'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['Python', 'TypeScript', 'PostgreSQL', 'Vector databases', 'MCP']
+tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
 application_domain: Llm Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'Various'
+maintainer: Various
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ai-agents', 'memory-systems', 'mem0', 'agentmemory', 'hindsight', 'mempalace', 'mcp', 'rag', 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
+tags: ['ai-agents', 'memory-systems', mem0, agentmemory, hindsight, mempalace, mcp, rag, 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
 aliases:
 - /zh/posts/ai-agent-memory-systems-2026/
 - /zh/resources/dev-utils/ai-agent-memory-systems-2026/

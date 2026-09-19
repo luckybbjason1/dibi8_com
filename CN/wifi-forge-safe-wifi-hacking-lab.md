@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — A Safe, Legal Sandbox for Learning WiFi Hacking"
 description: "WiFi Forge: safe WiFi hacking lab for security research. Learn penetration testing, wireless security and ethical hacking in a controlled environment."
 date: 2026-05-15T04:20:25+09:00

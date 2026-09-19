@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ragflow" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ragflow" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ragflow" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ragflow" />
 title: 'RAGFlow: 80K+ Stars를 가진 프로덕션급 RAG 엔진 배포하기 — 2026년 Docker 설정 및 벤치마크'
 description: 'RAGFlow는 심층 문서 이해와 내장 에이전트 기능을 갖춘 오픈소스 검색 증강 생성(RAG) 엔진입니다. Ollama, OpenAI, Qdrant, Elasticsearch, Redis와 호환됩니다. Docker 배포, 문서 수집, 검색 튜닝 및 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/infiniflow/ragflow'
 stars: 80853
-maintainer: 'infiniflow'
+maintainer: infiniflow
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ragflow', 'RAG엔진', '문서이해', 'Docker배포', 'LLM에이전트', '프로덕션RAG', '오픈소스AI']
+tags: [ragflow, rag엔진, 문서이해, docker배포, llm에이전트, 프로덕션rag, 오픈소스ai]
 aliases:
 - /kr/posts/ragflow/
 ---
@@ -406,7 +411,7 @@ services:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'ragflow'
+  - job_name: ragflow
     static_configs:
       - targets: ['ragflow-server:9380']
     metrics_path: /metrics

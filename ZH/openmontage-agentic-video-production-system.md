@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openmontage-agentic-video-production-system" />
 lang: zh
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage 评测：世界上第一个开源自主视频制作系统（52 个工具，12 个流程，500 多项技能）"

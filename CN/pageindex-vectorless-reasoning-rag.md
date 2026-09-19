@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/pageindex-vectorless-reasoning-rag" />
 title: "PageIndex：29K⭐Vectorless RAG System — Document Retrieval Without Vector Database"
 description: "PageIndex is a vectorless, reasoning-driven RAG system open-sourced by VectifyAI. 29K+ Stars, achieves human-like retrieval through document tree structures, reaching 98.7% accuracy on FinanceBench."
 date: 2026-05-15T04:20:25+09:00

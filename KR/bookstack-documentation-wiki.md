@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
 title: 'BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰'
 description: 'BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프 호스팅.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'BookStackApp/BookStack'
 stars: 18700
-maintainer: 'BookStackApp'
+maintainer: BookStackApp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['BookStack', '문서화', 'Wiki', '셀프 호스팅', 'PHP', 'Laravel', '지식 베이스', 'Markdown', 'Docker', '오픈소스']
+tags: [bookstack, 문서화, wiki, '셀프 호스팅', php, laravel, '지식 베이스', markdown, docker, 오픈소스]
 aliases:
 - /kr/posts/bookstack-documentation-wiki/
 ---
@@ -316,7 +321,7 @@ BACKUP_DIR="/backups/bookstack"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # 데이터베이스 백업
-docker exec bookstack_db mysqldump -u bookstack -p'your_password' bookstackdb \
+docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \
   | gzip > "$BACKUP_DIR/bookstack_db_$DATE.sql.gz"
 
 # 애플리케이션 데이터 백업 (업로드, 구성)
@@ -393,7 +398,7 @@ use BookStack\Theming\ThemeEvents;
 use BookStack\Theming\ThemeViews;
 
 Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) {
-    $themeViews->renderAfter('layouts.parts.header', 'welcome', 10);
+    $themeViews->renderAfter('layouts.parts.header', welcome, 10);
 });
 
 # views/welcome.blade.php

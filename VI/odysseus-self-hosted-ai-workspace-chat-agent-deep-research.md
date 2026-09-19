@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: 'Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích hợp — 65.000 Sao — Hướng dẫn Thiết lập Đầy đủ 2026'
 description: 'Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS.'
 date: 2026-06-09

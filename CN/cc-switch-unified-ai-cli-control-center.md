@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/cc-switch-unified-ai-cli-control-center" />
 title: 'cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026'
 description: 'cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, and Hermes Agent into one control center. Single binary, zero dependencies. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08

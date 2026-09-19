@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/openai-codex-cli-vs-claude-code" />
 title: 'OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?'
 description: 'Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M context) — pricing, sandbox, enterprise, tool integration. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00

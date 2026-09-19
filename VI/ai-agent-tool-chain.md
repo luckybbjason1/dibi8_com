@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-tool-chain" />
 title: 'AI Agent Tool Chain 2026: Stack 6 Thành Phần Để Xây Agent Tự Trị Cấp Production'
 description: 'Stack AI agent production hoàn chỉnh: LangGraph cho orchestration có trạng thái + MCP servers cho tool + mem0 cho memory + OpenClaw cho phối hợp multi-agent + Hermes Agent cho tự cải thiện + e2b cho thực thi code sandboxed. $20-60/tháng self-host. Lắp ráp thực tế với deep dive đã link nội bộ.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI Agent', 'Tool Chain', 'LangGraph', 'MCP', 'Stack', 'Collection']
+categories: [collections]
+tags: ['ai agent', 'tool chain', langgraph, mcp, stack, collection]
 aliases:
   - /posts/ai-agent-tool-chain/
 ---

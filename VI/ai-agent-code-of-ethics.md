@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-code-of-ethics" />
 title: 'Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành'
 description: 'Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu tượng, mà là bảy quy tắc bắt buộc, mỗi quy tắc đi kèm một biện pháp kiểm soát kỹ thuật cụ thể: cấp quyền tối thiểu, khả năng kiểm toán đầy đủ, tính đảo ngược có con người trong vòng lặp, tự chủ có giới hạn, chuỗi trách nhiệm không gián đoạn, mặc định an toàn khi lỗi, và thiết kế ưu tiên quyền riêng tư. Kèm danh sách kiểm tra trước khi triển khai dành cho lập trình viên năm 2026.'
 date: 2026-06-04 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-06-04'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI Agent', 'Đạo đức AI', 'AI có trách nhiệm', 'Quản trị AI', 'An toàn Agent', 'Căn chỉnh', 'Quy tắc đạo đức']
+categories: [collections]
+tags: ['ai agent', 'đạo đức ai', 'ai có trách nhiệm', 'quản trị ai', 'an toàn agent', 'căn chỉnh', 'quy tắc đạo đức']
 aliases:
   - /vi/posts/ai-agent-code-of-ethics/
 faqs:

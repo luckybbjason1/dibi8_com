@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: 'Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)'
 description: 'Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ cảnh, fan-out mất kiểm soát, cắt cụt âm thầm, và worktree mồ côi — mỗi kiểu kèm triệu chứng, nguyên nhân gốc và cách khắc phục.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Git', 'CLI']
+tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'agent-sdk', 'debugging', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/multi-agent-pipeline-postmortem/
 faq:

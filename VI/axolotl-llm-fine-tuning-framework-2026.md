@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/axolotl-llm-fine-tuning-framework-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/axolotl-llm-fine-tuning-framework-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/axolotl-llm-fine-tuning-framework-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/axolotl-llm-fine-tuning-framework-2026" />
 title: 'Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao — Hướng Dẫn Production Đầy Đủ'
 description: 'Axolotl là framework fine-tuning LLM mã nguồn mở với config YAML đơn cho full / LoRA / QLoRA / DPO / GRPO. 12k GitHub sao, Apache 2.0. Hỗ trợ Llama / Mistral / Qwen / GLM / 10+ họ. Hướng dẫn cài đặt 2026 đầy đủ + khi nào Axolotl thắng Unsloth và HuggingFace TRL raw.'
 date: 2026-05-21 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Axolotl', 'fine-tuning', 'LoRA', 'QLoRA', 'DPO', 'mã nguồn mở']
+tags: [axolotl, 'fine-tuning', lora, qlora, dpo, 'mã nguồn mở']
 aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---

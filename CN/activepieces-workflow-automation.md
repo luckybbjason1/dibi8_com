@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/activepieces-workflow-automation" />
 title: 'Activepieces: The Open-Source Zapier Alternative with 200+ Apps & AI Actions — Self-Hosted Guide 2026'
 description: 'Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integrations, AI actions, and a visual builder — at a fraction of Zapier''s cost.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'activepieces/activepieces'
 stars: 13000
-maintainer: 'activepieces'
+maintainer: activepieces
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Activepieces', 'workflow automation', 'Zapier alternative', 'self-hosted', 'Docker', 'no-code', 'open-source', 'TypeScript', 'AI actions', 'webhooks']
+tags: [activepieces, 'workflow automation', 'zapier alternative', 'self-hosted', docker, 'no-code', 'open-source', typescript, 'ai actions', webhooks]
 aliases:
 - /posts/activepieces-workflow-automation/
 ---
@@ -237,7 +239,7 @@ Activepieces v0.46.0 includes a native OpenAI piece supporting GPT-4o, GPT-4.1, 
 Trigger: Webhook ("New lead form submission")
   → Step 1: Extract form data (name, email, company, message)
   → Step 2: OpenAI "Ask AI" action
-       Prompt: "Evaluate this lead. Return ONLY 'hot', 'warm', or 'cold'.
+       Prompt: "Evaluate this lead. Return ONLY hot, warm, or cold.
                Lead: {{step_1.name}}, Company: {{step_1.company}},
                Message: {{step_1.message}}"
        Model: gpt-4.1-mini

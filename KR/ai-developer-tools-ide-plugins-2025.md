@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-developer-tools-ide-plugins-2025" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-developer-tools-ide-plugins-2025" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-developer-tools-ide-plugins-2025" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-developer-tools-ide-plugins-2025" />
 title: '2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서'
 description: '2025년 최고의 AI 개발 도구와 IDE 플러그인을 소개합니다. GitHub Copilot, Sourcegraph Cody, Codeium, JetBrains AI 등 코드 작성부터 검토, 디버깅까지 완벽 분석.'
 date: 2026-05-18 00:00:00+08:00

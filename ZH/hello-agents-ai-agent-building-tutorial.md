@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hello-agents-ai-agent-building-tutorial" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hello-agents-ai-agent-building-tutorial" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hello-agents-ai-agent-building-tutorial" />
 title: "Hello-Agents: Datawhale 开源 AI 智能体教程如何帮你从零构建生产级 Agent"
 description: "Datawhale Hello-Agents 是 GitHub 上最火的 AI 智能体开源教程，涵盖 ReAct、AutoGen、LangGraph、MCP、Agentic RL 等 16 章完整课程，拥有 45,600+ Stars。"
 date: 2026-05-15T04:20:25+09:00

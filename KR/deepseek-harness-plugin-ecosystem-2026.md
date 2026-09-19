@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-harness-plugin-ecosystem-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-harness-plugin-ecosystem-2026" />
 title: 'DeepSeek Harness: 229K-Star 플러그인 생태계가 모든 것을 확장 가능하게 — 완전 2026 설정 가이드'
 description: 'DeepSeek Harness(DSH)는 2026년 가장 빠르게 성장하는 AI 에이전트 프레임워크로 GitHub 스타 229K+를 기록했습니다. 커스텀 플러그인 빌드, Claude Code/Cursor/Codex 통합, 몇 분 안에 프로덕션 에이전트 배포 방법을 배우세요.'
 date: 2026-09-19

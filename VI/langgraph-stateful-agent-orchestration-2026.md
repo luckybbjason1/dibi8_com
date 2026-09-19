@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-stateful-agent-orchestration-2026" />
 title: 'LangGraph 1.2 Trong Production: Orchestration Agent Có Trạng Thái Sống Sót Qua Crash (Hướng Dẫn 2026)'
 description: 'LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars, v1.2.1. Hướng dẫn deploy thực tế bao gồm thiết kế graph, thực thi bền vững, checkpoint human-in-loop, debug LangSmith, và khi nào LangGraph thắng CrewAI / AutoGen / LangChain thuần.'
 date: 2026-05-21 00:00:00+08:00
@@ -23,14 +28,14 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['LangGraph', 'agent', 'có trạng thái', 'orchestration', 'LangChain', 'production']
+tags: [langgraph, agent, 'có trạng thái', orchestration, langchain, production]
 aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
 Nếu bạn xây agent LLM đơn giản và thấy nó quên mọi thứ khi process restart, mất nửa tiến độ khi một tool call timeout, hoặc lặng lẽ làm hỏng trạng thái khi hai event xảy ra đồng thời — bạn đụng tường mà **LangGraph** thiết kế để phá vỡ.
 
-LangGraph là **framework orchestration cấp thấp của team LangChain cho agent có trạng thái dài hạn**. Khi LangChain cung cấp component ("đây là wrapper LLM, đây là tool, tự kết hợp") và CrewAI cung cấp trừu tượng vai trò cấp cao ("đây là agent 'researcher', đây là 'writer'"), LangGraph nằm giữa: state machine dựa graph nơi bạn mô hình hóa rõ ràng node (hàm / agent), edge (chuyển tiếp), và state object bền vững. Thực thi bền vững + human-in-loop + theo dõi state là mối quan tâm hạng nhất, không phải suy nghĩ sau.
+LangGraph là **framework orchestration cấp thấp của team LangChain cho agent có trạng thái dài hạn**. Khi LangChain cung cấp component ("đây là wrapper LLM, đây là tool, tự kết hợp") và CrewAI cung cấp trừu tượng vai trò cấp cao ("đây là agent researcher, đây là writer"), LangGraph nằm giữa: state machine dựa graph nơi bạn mô hình hóa rõ ràng node (hàm / agent), edge (chuyển tiếp), và state object bền vững. Thực thi bền vững + human-in-loop + theo dõi state là mối quan tâm hạng nhất, không phải suy nghĩ sau.
 
 Đến giữa 2026 nó có **32.6k GitHub stars** và ship v1.2.1, làm nó framework phổ biến nhất cụ thể cho workflow agent production cần sống sót qua crash, restart, và chạy nhiều giờ.
 
@@ -91,7 +96,7 @@ app = graph.compile(checkpointer=MemorySaver())
 # Chạy với thread_id cho state persistence
 config = {"configurable": {"thread_id": "demo-1"}}
 result = app.invoke({"counter": 0}, config=config)
-print(result)  # {'counter': 5}
+print(result)  # {counter: 5}
 ```
 
 Đổi `MemorySaver()` thành `PostgresSaver(connection_string)` và cùng graph sống sót qua container restart.

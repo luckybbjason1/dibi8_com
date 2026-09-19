@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dvc-data-version-control-ml" />
 title: 'DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipeline & Thí Nghiệm Tái Tạo Được — Hướng Dẫn 2026'
 description: 'Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với workflow kiểu Git. Bao gồm cài đặt, backend S3/GCS/Azure, tích hợp CI/CD, benchmark và hardening production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/iterative/dvc'
 stars: 15600
-maintainer: 'Iterative'
+maintainer: Iterative
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['DVC', 'Data Version Control', 'MLOps', 'Git', 'Machine Learning', 'Tái tạo được', 'S3', 'GCS', 'Azure', 'Pipeline', 'Quản lý phiên bản dữ liệu', 'Khoa học dữ liệu']
+tags: [dvc, 'data version control', mlops, git, 'machine learning', 'tái tạo được', s3, gcs, azure, pipeline, 'quản lý phiên bản dữ liệu', 'khoa học dữ liệu']
 aliases:
 - /vi/posts/dvc-data-version-control-ml/
 ---
@@ -223,8 +228,8 @@ dvc remote modify myremote credentialpath /path/to/service-account.json
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # Đặt account name và key
-dvc remote modify myremote account_name 'myaccount'
-dvc remote modify myremote account_key 'mykey'
+dvc remote modify myremote account_name myaccount
+dvc remote modify myremote account_key mykey
 ```
 
 Sau khi cấu hình, push dữ liệu lên remote:
@@ -615,7 +620,7 @@ Có. Dùng `dvc.api` để đọc datasets trực tiếp từ DVC remotes bên t
 ```python
 import dvc.api
 
-with dvc.api.open('data/dataset.csv', remote='myremote') as f:
+with dvc.api.open('data/dataset.csv', remote=myremote) as f:
     df = pd.read_csv(f)
 ```
 

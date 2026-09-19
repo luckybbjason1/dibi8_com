@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 title: 'nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT for $100" — Full LLM Pipeline in 8,000 Lines'
 description: 'nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretraining, finetuning, evaluation, inference, and chat UI — designed to train a GPT-2-level chatbot from scratch for under $100 on a single 8×H100 node.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Python', 'PyTorch', 'Rust', 'LLM Training']
+tech_stack: [Python, PyTorch, Rust, 'LLM Training']
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +16,12 @@ download_url: 'https://github.com/karpathy/nanochat'
 backup_url: ''
 github_repo: 'karpathy/nanochat'
 stars: 54700
-maintainer: 'karpathy'
+maintainer: karpathy
 last_maintained: '2026-06-01'
 featureImage: '/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg'
 draft: false
 categories: ['llm-frameworks']
-tags: ['nanochat', 'karpathy', 'LLM-training', 'PyTorch', 'GPT', 'self-hosted-LLM', 'open-source', 'transformer', 'fine-tuning']
+tags: [nanochat, karpathy, 'llm-training', pytorch, gpt, 'self-hosted-llm', 'open-source', transformer, 'fine-tuning']
 aliases:
 - /posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
 faqs:

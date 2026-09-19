@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/n8n" />
 title: 'n8n AI Workflow Automation: Self-Hosted Setup with 188K+ Stars — Save 70% vs Zapier in 2026'
 description: 'n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations. Compatible with Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Covers Docker setup, AI node configuration, webhook deployment, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['n8n', 'workflow-automation', 'self-hosted', 'ai-agents', 'docker', 'langchain', 'open-source', 'low-code']
+tags: [n8n, 'workflow-automation', 'self-hosted', 'ai-agents', docker, langchain, 'open-source', 'low-code']
 aliases:
 - /posts/n8n/
 - /resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
@@ -274,7 +276,7 @@ services:
       replicas: 2
       resources:
         limits:
-          cpus: '2'
+          cpus: 2
           memory: 2G
     depends_on:
       - postgres
@@ -335,7 +337,7 @@ server {
         proxy_pass http://127.0.0.1:5678;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
+        proxy_set_header Connection upgrade;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -630,11 +632,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 ```sql
 -- PostgreSQL tuning for n8n production
-ALTER SYSTEM SET shared_buffers = '512MB';
-ALTER SYSTEM SET effective_cache_size = '2GB';
+ALTER SYSTEM SET shared_buffers = 512MB;
+ALTER SYSTEM SET effective_cache_size = 2GB;
 ALTER SYSTEM SET random_page_cost = 1.1;
 ALTER SYSTEM SET checkpoint_completion_target = 0.9;
-ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET wal_buffers = 16MB;
 ALTER SYSTEM SET default_statistics_target = 100;
 
 -- Add indexes for faster queries
@@ -684,7 +686,7 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'n8n'
+  - job_name: n8n
     static_configs:
       - targets: ['n8n-main:5678']
     metrics_path: /metrics

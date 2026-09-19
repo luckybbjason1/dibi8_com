@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/libretranslate" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
 title: 'LibreTranslate: 14.4K+ Stars 的自托管翻译 API — 2026 生产部署指南'
 description: 'LibreTranslate (LT) 是一个基于 Argos Translate 的免费开源机器翻译 API。支持 Docker、CUDA GPU、30+ 种语言及离线部署。涵盖安装配置、性能基准测试、监控以及与 OpenAI Whisper、Coqui TTS、Argos Translate 的集成。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/LibreTranslate/LibreTranslate'
 stars: 14400
-maintainer: 'LibreTranslate'
+maintainer: LibreTranslate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['LibreTranslate', '机器翻译', '自托管', 'Docker', 'API', '开源', 'Argos Translate', '自然语言处理']
+tags: [libretranslate, 机器翻译, 自托管, docker, api, 开源, 'argos translate', 自然语言处理]
 aliases:
 - /zh/posts/libretranslate/
 ---
@@ -194,7 +199,7 @@ curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
 
 # 创建生产 compose 文件
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: '3.8'
 services:
   libretranslate:
@@ -335,7 +340,7 @@ def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
 
 # 运行流水线
 output = transcribe_and_translate("meeting.mp3", target_lang="es")
-print(f"ES: {output['translated']}")
+print(f"ES: {output[translated]}")
 ```
 
 ### Coqui TTS 集成（翻译 + 语音合成）
@@ -550,8 +555,8 @@ from prometheus_client import start_http_server, Counter, Histogram
 import requests
 import time
 
-TRANSLATION_COUNTER = Counter('libretranslate_requests_total', '总翻译次数')
-LATENCY_HISTOGRAM = Histogram('libretranslate_latency_seconds', '翻译延迟')
+TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 总翻译次数)
+LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 翻译延迟)
 
 def monitor():
     start_http_server(9090)

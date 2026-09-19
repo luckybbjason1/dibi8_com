@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher：自主深度研究报告智能体——2026 实战指南'
 description: 'GPT Researcher 是一个开源深度研究智能体，能针对任意任务执行联网与本地研究并生成带引用的报告。27,473 GitHub 星标，Apache-2.0 许可。涵盖安装、异步 Python API、Docker 与真实代码示例。'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'assafelovic/gpt-researcher'
 stars: 27473
-maintainer: 'assafelovic'
+maintainer: assafelovic
 last_maintained: '2026-06-02'
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false

@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 title: 'AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI'
 description: '2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 TypeScript 代码库 5 工作流实测、MCP 支持、上下文窗口经济学、定价分析、各自真正胜出场景。'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Codex CLI', 'Gemini CLI', 'MCP']
+tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
 source_version: 'Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0'
 licensing_model: 'Commercial / Mixed'
@@ -19,7 +24,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['claude-code', 'cursor', 'codex-cli', 'gemini-cli', 'ai 编程', 'agent', '2026']
+tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai 编程', agent, 2026]
 aliases:
 - /zh/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
 faq:

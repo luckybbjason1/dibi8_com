@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caddy" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caddy" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caddy" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caddy" />
 title: 'Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triển Khai Auto HTTPS 2026'
 description: 'Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương thích Docker, Let''''s Encrypt, Prometheus, Grafana. Bao gồm hướng dẫn Caddyfile, cài đặt Docker, production hardening và giám sát.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/caddyserver/caddy'
 stars: 72595
-maintainer: 'caddyserver'
+maintainer: caddyserver
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['caddy', 'web-server', 'reverse-proxy', 'auto-https', 'docker', 'devops', 'ssl', 'http3']
+tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
 aliases:
 - /vi/posts/caddy/
 ---
@@ -331,7 +336,7 @@ app.example.com {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
-        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'"
+        Content-Security-Policy "default-src self; script-src self 'unsafe-inline'"
     }
 }
 
@@ -363,7 +368,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'caddy'
+  - job_name: caddy
     static_configs:
       - targets: ['caddy:2019']
     metrics_path: /metrics

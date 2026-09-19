@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bat" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bat" />
 title: 'bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less'
 description: 'bat 是带语法高亮和 Git 集成的 cat(1) 克隆。兼容 Rust、Git、Homebrew、Cargo。涵盖安装教程、性能基准测试、配置文件以及与 cat、less、ccat 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/sharkdp/bat'
 stars: 58940
-maintainer: 'sharkdp'
+maintainer: sharkdp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['bat', 'cat 替代品', '语法高亮', '命令行工具', 'rust', '终端工具', '文件查看器', 'CLI']
+tags: [bat, 'cat 替代品', 语法高亮, 命令行工具, rust, 终端工具, 文件查看器, cli]
 aliases:
 - /zh/posts/bat/
 ---
@@ -77,7 +82,7 @@ bat --version
 # Ubuntu 22.04+ / Debian 12+
 sudo apt install bat
 
-# 某些 Debian/Ubuntu 系统中，二进制文件名为 'batcat' 以避免冲突
+# 某些 Debian/Ubuntu 系统中，二进制文件名为 batcat 以避免冲突
 # 如需要可创建别名：
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -199,7 +204,7 @@ man bash
 alias cat='bat --paging=never'
 
 # 或在脚本中保留 cat，显式使用 bat
-alias b='bat'
+alias b=bat
 ```
 
 对于 zsh 用户，全局别名可以为 `--help` 输出添加颜色：

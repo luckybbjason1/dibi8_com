@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
 title: 'Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전한 봇 설정 가이드'
 description: 'FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅, Telegram 통합 및 프로덕션 배포를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'freqtrade/freqtrade'
 stars: 37000
-maintainer: 'freqtrade'
+maintainer: freqtrade
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -137,48 +142,48 @@ class SampleStrategy(IStrategy):
     trailing_stop = True
     trailing_stop_positive = 0.02
     trailing_stop_positive_offset = 0.03
-    timeframe = '5m'     # 5분 캔들
+    timeframe = 5m     # 5분 캔들
     can_short = False    # 현물 거래만
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         # RSI 지표
-        dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+        dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
         
         # MACD 지표
         macd = ta.MACD(dataframe)
-        dataframe['macd'] = macd['macd']
-        dataframe['macdsignal'] = macd['macdsignal']
-        dataframe['macdhist'] = macd['macdhist']
+        dataframe[macd] = macd[macd]
+        dataframe[macdsignal] = macd[macdsignal]
+        dataframe[macdhist] = macd[macdhist]
         
         # 볼린저 밴드
         bollinger = ta.BBANDS(dataframe, timeperiod=20, nbdevup=2.0, nbdevdn=2.0)
-        dataframe['bb_lower'] = bollinger['lowerband']
-        dataframe['bb_middle'] = bollinger['middleband']
-        dataframe['bb_upper'] = bollinger['upperband']
+        dataframe[bb_lower] = bollinger[lowerband]
+        dataframe[bb_middle] = bollinger[middleband]
+        dataframe[bb_upper] = bollinger[upperband]
         
         # 변동성 ATR
-        dataframe['atr'] = ta.ATR(dataframe, timeperiod=14)
+        dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
         
         return dataframe
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] < 30) &                    # 과매도 조건
-                (dataframe['macd'] > dataframe['macdsignal']) &  # MACD 골든크로스
-                (dataframe['close'] < dataframe['bb_lower'])   # 볼린저 하단 아래
+                (dataframe[rsi] < 30) &                    # 과매도 조건
+                (dataframe[macd] > dataframe[macdsignal]) &  # MACD 골든크로스
+                (dataframe[close] < dataframe[bb_lower])   # 볼린저 하단 아래
             ),
-            'enter_long'
+            enter_long
         ] = 1
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] > 70) &                    # 과매수 조건
-                (dataframe['macd'] < dataframe['macdsignal'])  # MACD 데드크로스
+                (dataframe[rsi] > 70) &                    # 과매수 조건
+                (dataframe[macd] < dataframe[macdsignal])  # MACD 데드크로스
             ),
-            'exit_long'
+            exit_long
         ] = 1
         return dataframe
 ```
@@ -256,13 +261,13 @@ class FreqAISrategy(IStrategy):
     """
     minimal_roi = {"0": 0.15, "60": 0.05, "120": 0}
     stoploss = -0.08
-    timeframe = '5m'
+    timeframe = 5m
     can_short = False
     
     def feature_engineering_expand_all(self, dataframe, metadata, **kwargs):
         """FreqAI가 사용할 커스텀 특징 추가."""
         dataframe["rsi"] = ta.RSI(dataframe, timeperiod=14)
-        dataframe["macdhist"] = ta.MACD(dataframe)['macdhist']
+        dataframe["macdhist"] = ta.MACD(dataframe)[macdhist]
         dataframe["atr"] = ta.ATR(dataframe, timeperiod=14)
         
         dataframe["volatility"] = dataframe["close"].rolling(24).std()
@@ -361,10 +366,10 @@ data = load_pair_history(
 
 # 전략 로드 및 실행
 strategy = StrategyResolver.load_strategy("SampleStrategy")
-dataframe = strategy.analyze_ticker(data, {'pair': pair})
+dataframe = strategy.analyze_ticker(data, {pair: pair})
 
 # 신호 확인
-signals = dataframe[dataframe['enter_long'] == 1]
+signals = dataframe[dataframe[enter_long] == 1]
 print(f"{len(signals)}개 진입 신호 발견")
 ```
 
@@ -473,7 +478,7 @@ Q1 총 수익률: +12.1%
 
 ```python
 # 동적 스톱로스를 위한 전략에 추가
-def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
+def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float:
     """ATR 기반 동적 스톱로스."""
     dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
@@ -481,7 +486,7 @@ def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
         return self.stoploss
     
     last_candle = dataframe.iloc[-1]
-    atr = last_candle['atr']
+    atr = last_candle[atr]
     
     # 2x ATR에서 스톱로스
     stoploss_price = trade.open_rate - (2 * atr)
@@ -504,14 +509,14 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe)
     
     # 1시간 추세 계산
-    informative['ema50_1h'] = ta.EMA(informative, timeperiod=50)
-    informative['ema200_1h'] = ta.EMA(informative, timeperiod=200)
-    informative['trend_1h'] = np.where(
-        informative['ema50_1h'] > informative['ema200_1h'], 1, -1
+    informative[ema50_1h] = ta.EMA(informative, timeperiod=50)
+    informative[ema200_1h] = ta.EMA(informative, timeperiod=200)
+    informative[trend_1h] = np.where(
+        informative[ema50_1h] > informative[ema200_1h], 1, -1
     )
     
     dataframe = merge_informative_pair(dataframe, informative, self.timeframe, inf_timeframe)
-    dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+    dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
 ```

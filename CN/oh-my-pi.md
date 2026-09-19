@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/oh-my-pi" />
 title: "Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12K Star Project 2026"
 description: "Oh My Pi (12,554 stars) transforms Raspberry Pi devices into smart home hubs, media centers, and development workstations with one-click setup and automated configuration."
 tags: ["open-source"]

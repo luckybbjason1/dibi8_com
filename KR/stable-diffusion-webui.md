@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui" />
 title: 'Stable Diffusion WebUI: 159K+ Stars — 2026 완전 설치 가이드'
 description: 'Stable Diffusion WebUI (AUTOMATIC1111)는 가장 인기 있는 로컬 AI 이미지 생성 웹 인터페이스입니다. ControlNet, LoRA, ComfyUI 워크플로우와 호환됩니다. Windows, Linux, Docker 설치, 확장 구성, 프로덕션 하드닝 및 GPU 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
 stars: 159000
-maintainer: 'AUTOMATIC1111'
+maintainer: AUTOMATIC1111
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['stable-diffusion', 'automatic1111', '이미지-생성', 'ai-webui', 'controlnet', 'lora', 'docker', 'gpu']
+tags: ['stable-diffusion', automatic1111, '이미지-생성', 'ai-webui', controlnet, lora, docker, gpu]
 aliases:
 - /kr/posts/stable-diffusion-webui/
 ---
@@ -436,7 +441,7 @@ result = response.json()
 
 # 생성된 이미지 저장
 import base64
-for i, img_data in enumerate(result['images']):
+for i, img_data in enumerate(result[images]):
     with open(f"output_{i}.png", "wb") as f:
         f.write(base64.b64decode(img_data))
 ```
@@ -466,7 +471,7 @@ def generate_image(prompt, filename, width=1024, height=1024):
     result = response.json()
     
     with open(filename, "wb") as f:
-        f.write(base64.b64decode(result['images'][0]))
+        f.write(base64.b64decode(result[images][0]))
     
     return filename
 
@@ -475,7 +480,7 @@ with open("prompts.csv", "r") as f:
     reader = csv.DictReader(f)
     for i, row in enumerate(reader):
         filename = f"output_{i:04d}.png"
-        generate_image(row['prompt'], filename)
+        generate_image(row[prompt], filename)
         print(f"생성됨: {filename}")
 ```
 

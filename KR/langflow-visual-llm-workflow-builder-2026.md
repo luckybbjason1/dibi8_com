@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langflow-visual-llm-workflow-builder-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langflow-visual-llm-workflow-builder-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langflow-visual-llm-workflow-builder-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langflow-visual-llm-workflow-builder-2026" />
 title: 'Langflow: 시각적 LLM 워크플로우를 위한 148k 스타 – 2026년 기술 심층 분석'
 description: 'Langflow (LF)는 AI 에이전트 및 워크플로우 구축을 간소화합니다. LangChain, OpenAI, Hugging Face, Anthropic과 통합됩니다. 설정, 통합, 벤치마크 및 프로덕션 강화에 대해 다룹니다.'
 date: 2026-05-23

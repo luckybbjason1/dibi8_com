@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/codegraph-pre-indexed-knowledge-graph-2026" />
 title: 'CodeGraph 评测：让 Claude Code / Cursor / Codex 省 35% Token 的本地代码图谱（2026）'
 description: 'CodeGraph（GitHub 20.2K+ stars）是一个为 Claude Code、Cursor、Codex CLI、OpenCode、Hermes Agent 预索引代码知识图谱的开源工具。SQLite 本地存储、19 种语言、14 个 framework 路由识别、零外部 API，相比原生 grep/glob/Read 减少约 35% token 消耗、约 70% 工具调用。完整功能拆解、安装步骤、真实工作流以及与 LSP、MCP 服务的对比。'
 date: 2026-05-23 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/colbymchenry/codegraph'
 stars: 20200
-maintainer: 'colbymchenry'
+maintainer: colbymchenry
 last_maintained: '2026-05-22'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['codegraph', 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings', 'mcp', 'hermes-agent', 'cursor', 'codex-cli', 'opencode', 'developer-productivity']
+tags: [codegraph, 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings', mcp, 'hermes-agent', cursor, 'codex-cli', opencode, 'developer-productivity']
 aliases:
 - /zh/posts/codegraph-pre-indexed-knowledge-graph-2026/
 ---

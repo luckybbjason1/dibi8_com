@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/understand-anything-interactive-knowledge-graphs-codebases" />
 title: "Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026"
 description: "Understand-Anything 将任何代码库转变为一个可交互的知识图谱，您可以在其中探索、搜索和查询。支持 Claude Code、Codex、Cursor、Copilot、Gemini CLI。在 GitHub 上拥有 60,339 个星标。"
 date: 2026-06-17

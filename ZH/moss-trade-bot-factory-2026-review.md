@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moss-trade-bot-factory-2026-review" />
 title: 'Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人'
 description: 'moss-trade-bot-skills v1.0.26 完整实测：基于 Hyperliquid 永续合约的自然语言量化 agent 工厂。工业级 Decimal 精度回测引擎 + 20 档深度成交建模 — 但 Sharpe 年化常数有 bug，进化模式开启后会陷入教科书级 OVERFIT 陷阱。安装实测、Sharpe bug 修复、5 策略对比、OOS 70/30 验证全过程。'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'ccxt', 'Hyperliquid']
+tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
 source_version: 'v1.0.26'
 licensing_model: Open Source
@@ -19,7 +24,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['ai-agent', '量化', '回测', 'hyperliquid', '永续合约', '开源', '过拟合', 'OOS 验证']
+tags: ['ai-agent', 量化, 回测, hyperliquid, 永续合约, 开源, 过拟合, 'oos 验证']
 aliases:
 - /zh/posts/moss-trade-bot-factory-2026-review/
 faq:

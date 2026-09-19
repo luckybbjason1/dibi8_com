@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/multi-modal-content-pipeline" />
 title: 'Multi-Modal Content Pipeline 2026: The 5-Component Stack for AI Podcasts, Videos, and Visual Content ($30-80/Month)'
 description: 'Self-hosted multi-modal content stack: faster-whisper (STT) + ChatTTS (dialogue TTS) + Stable Diffusion WebUI (images) + ComfyUI (workflow engine + video) + FFmpeg (assembly). Produce podcasts, short videos, AI-illustrated articles for $30-80/mo vs $200-500/mo of SaaS.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Multi-Modal', 'Content Pipeline', 'Podcast', 'Video', 'TTS', 'Stack', 'Collection']
+categories: [collections]
+tags: ['multi-modal', 'content pipeline', podcast, video, tts, stack, collection]
 aliases:
   - /posts/multi-modal-content-pipeline/
 ---

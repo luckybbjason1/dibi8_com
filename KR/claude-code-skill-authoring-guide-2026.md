@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)'
 description: 'Claude Code 스킬 작성 완전 가이드 — SKILL.md 구조, 로딩을 제어하는 트리거 description, 점진적 공개(progressive disclosure), 그리고 스킬이 CLAUDE.md나 서브에이전트보다 나은 경우. 실전 예제와 피해야 할 실수까지.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'skills', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
+tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
 aliases:
 - /posts/claude-code-skill-authoring/
 faq:

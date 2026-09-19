@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수'
 description: Scanners-Box를 탐색하세요 — 침투 테스트, 취약점 스캐닝, 보안 연구를 포함한 200개 이상의 오픈소스 사이버보안
   도구 모음.

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/cursor-vs-claude-code" />
 title: 'Cursor vs Claude Code in 2026: Which AI Coding Tool Wins?'
 description: 'Side-by-side breakdown of Cursor and Claude Code — pricing, performance, ideal use cases, migration tips. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00

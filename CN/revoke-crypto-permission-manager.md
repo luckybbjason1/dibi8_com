@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/revoke-crypto-permission-manager" />
 title: 'revoke-crypto-permission-manager'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/RevokeCash/revoke.cash'
 stars: 2500
-maintainer: 'RevokeCash'
+maintainer: RevokeCash
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Revoke.cash']
+tags: ['revoke.cash']
 aliases:
 - /posts/revoke-crypto-permission-manager/
 ---
@@ -166,7 +168,7 @@ function revokeApproval(address token, address spender) external {
 // Alternative: approve with a specific limited amount
 function setLimitedApproval(address token, address spender, uint256 amount) external {
     IERC20(token).approve(spender, amount);
-    // Spender can only spend up to 'amount' tokens
+    // Spender can only spend up to amount tokens
 }
 ```
 
@@ -382,7 +384,7 @@ function permit(
     bytes32 r,
     bytes32 s
 ) external {
-    // After this call, 'spender' can spend 'value' tokens
+    // After this call, spender can spend value tokens
     // The user NEVER sent a transaction — only signed a message!
 }
 ```

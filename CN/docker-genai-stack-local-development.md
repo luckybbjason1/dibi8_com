@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM in One Docker Compose — Local Dev Setup 2026'
 description: 'Set up a complete local GenAI development environment with Docker GenAI Stack. Includes LangChain, Neo4j, Ollama, and vector databases in a single docker-compose. Production-ready tutorial for 2026.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/docker/genai-stack'
 stars: 5500
-maintainer: 'docker'
+maintainer: docker
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Docker GenAI Stack']
+tags: ['docker genai stack']
 aliases:
 - /posts/docker-genai-stack-local-development/
 ---
@@ -149,7 +151,7 @@ chain = GraphCypherQAChain.from_llm(
 )
 
 result = chain.invoke({"query": "What companies work in the AI sector?"})
-print(result['result'])
+print(result[result])
 ```
 
 ### Neo4j Knowledge Graph Setup
@@ -162,7 +164,7 @@ The stack auto-creates vector indexes on Neo4j startup. You can inspect and exte
 
 # Cypher: check vector index
 SHOW INDEXES YIELD name, type, entityType
-WHERE type = 'VECTOR'
+WHERE type = VECTOR
 ```
 
 ```cypher
@@ -171,7 +173,7 @@ CREATE VECTOR INDEX document_embeddings FOR (d:Document)
 ON (d.embedding)
 OPTIONS {indexConfig: {
  `vector.dimensions`: 384,
- `vector.similarity_function`: 'cosine'
+ `vector.similarity_function`: cosine
 }}
 ```
 

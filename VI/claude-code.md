@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code" />
 title: 'Claude Code: 125K+ Stars — Tác Nhân Lập Trình AI Trong Terminal So Sánh Toàn Diện 2026'
 description: 'Claude Code là công cụ tác nhân lập trình trong terminal của Anthropic, hỗ trợ VS Code, Cursor, GitHub, GitLab. Bao gồm hướng dẫn cài đặt, benchmark, và so sánh với Aider, OpenHands, Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 125050
-maintainer: 'anthropics'
+maintainer: anthropics
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', 'anthropic', 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
+tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', anthropic, 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
 aliases:
 - /vi/posts/claude-code/
 ---

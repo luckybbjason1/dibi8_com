@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dify-vs-flowise-2026" />
 title: 'Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布'
 description: '全面对比 Dify（企业级 RAG、多模型路由、提示词管理、可自托管）与 Flowise（可视化 LangChain 节点构建器、轻量、开源）— 功能、自托管、AI 流水线及 2026 年适用场景。'
 date: 2026-06-07 00:00:00+08:00

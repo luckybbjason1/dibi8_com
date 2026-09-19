@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hkuds-ai-trader" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hkuds-ai-trader" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hkuds-ai-trader" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hkuds-ai-trader" />
 title: "AI-Trader：HKUDS のエージェントネイティブ取引プラットフォーム"
 description: "AI-Trader は HKUDS 由来のエージェントネイティブ取引プラットフォームで、Claude Code、Codex、Cursor、OpenClaw などの AI コーディングエージェントが自律的に取引を実行し、ポートフォリオを管理し、戦略を最適化できるようにします。"
 date: 2026-06-10

@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-first-ai-stack-offline-development-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-first-ai-stack-offline-development-2026" />
 title: '로컬 우선 AI 스택 2026: 완전 오프라인 AI 개발 환경'
 description: '2026년 완전 오프라인 AI 코딩 환경 구축하기: LLM은 Ollama, 코딩 에이전트는 Aider, RAG는 ChromaDB — 전부 로컬. 설치 가이드, 하드웨어 실상, 오프라인이 진짜 의미 있는 상황(프라이버시, 컴플라이언스, 에어갭, 출장).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Ollama', 'Aider', 'ChromaDB', 'Llama 3.3', 'Local-first AI']
+tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
 application_domain: LLM Frameworks
 source_version: '2026 Q2'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['local-first', 'offline', 'ollama', 'ai-coding', 'privacy', '2026']
+tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
 aliases:
 - /kr/posts/local-first-ai-stack-offline-development-2026/
 faq:

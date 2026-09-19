@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-workflows" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-workflows" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-workflows" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-workflows" />
 title: 'Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 프레임워크'
 description: 'Addy Osmani가 Claude Code, Cursor 및 기타 AI 에디터를 강력하고 구성된 작업 공간으로 변환하는 스킬 시스템을 어떻게 구축했는지 배우세요. 완전한 구현, 배포 및 고급 패턴 가이드.'
 date: 2026-09-19

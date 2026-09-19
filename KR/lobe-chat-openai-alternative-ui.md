@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: 20+ LLM 제공업체와 플러그인 시스템을 갖춘 오픈소스 ChatGPT UI 대안 — 2026 완벽 설치 가이드'
 description: 'Lobe Chat을 자체 호스팅 ChatGPT 대안으로 배포하세요. 20+ LLM 제공업체, 플러그인 시스템, PWA, 다국어 UI 지원. 벤치마크와 비교가 포함된 완전한 Docker 설치 가이드.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'lobehub/lobe-chat'
 stars: 60000
-maintainer: 'lobehub'
+maintainer: lobehub
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Lobe Chat', 'ChatGPT', 'OpenAI 대안', 'LLM', '셀프 호스팅', 'Docker', 'PWA', '플러그인 시스템', 'AI', '챗 UI']
+tags: ['lobe chat', chatgpt, 'openai 대안', llm, '셀프 호스팅', docker, pwa, '플러그인 시스템', ai, '챗 ui']
 aliases:
 - /kr/posts/lobe-chat-openai-alternative-ui/
 ---
@@ -157,7 +162,7 @@ docker compose up -d
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # .env 파일 생성
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-key
 ACCESS_CODE=secure-team-password
 EOF
@@ -166,7 +171,7 @@ EOF
 docker compose up -d
 
 # Caddy를 통한 HTTPS 역방향 프록시 설정
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 chat.yourdomain.com {
     reverse_proxy localhost:3210
 }

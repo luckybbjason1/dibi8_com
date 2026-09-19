@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/stable-diffusion-webui" />
 title: 'Stable Diffusion WebUI: 159K+ Stars — The Complete Setup Guide 2026'
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) is the most popular web interface for local AI image generation. Compatible with ControlNet, LoRA, ComfyUI workflows. Covers Windows, Linux, Docker install, extension setup, production hardening, and GPU benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
 stars: 159000
-maintainer: 'AUTOMATIC1111'
+maintainer: AUTOMATIC1111
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['stable-diffusion', 'automatic1111', 'image-generation', 'ai-webui', 'controlnet', 'lora', 'docker', 'gpu']
+tags: ['stable-diffusion', automatic1111, 'image-generation', 'ai-webui', controlnet, lora, docker, gpu]
 aliases:
 - /posts/stable-diffusion-webui/
 ---
@@ -461,7 +463,7 @@ result = response.json()
 
 # Save the generated image
 import base64
-for i, img_data in enumerate(result['images']):
+for i, img_data in enumerate(result[images]):
     with open(f"output_{i}.png", "wb") as f:
         f.write(base64.b64decode(img_data))
 ```
@@ -491,7 +493,7 @@ def generate_image(prompt, filename, width=1024, height=1024):
     result = response.json()
     
     with open(filename, "wb") as f:
-        f.write(base64.b64decode(result['images'][0]))
+        f.write(base64.b64decode(result[images][0]))
     
     return filename
 
@@ -500,7 +502,7 @@ with open("prompts.csv", "r") as f:
     reader = csv.DictReader(f)
     for i, row in enumerate(reader):
         filename = f"output_{i:04d}.png"
-        generate_image(row['prompt'], filename)
+        generate_image(row[prompt], filename)
         print(f"Generated: {filename}")
 ```
 

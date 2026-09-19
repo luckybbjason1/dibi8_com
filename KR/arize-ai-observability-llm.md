@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/arize-ai-observability-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/arize-ai-observability-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/arize-ai-observability-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/arize-ai-observability-llm" />
 title: 'Arize AI Phoenix: RAG 파이프라인 100% 추적하는 오픈소스 LLM 옵저버빌리티 도구 — 2026 가이드'
 description: '2026년 Arize Phoenix 완벽 가이드: 오픈소스 LLM 옵저버빌리티, RAG 추적, 프롬프트 버전 관리, 토큰 사용량 추적, LangChain 및 LlamaIndex 프로덕션 배포.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['LLM', '옵저버빌리티', 'Arize Phoenix', 'RAG', 'LangChain', 'LlamaIndex', 'OpenTelemetry', 'Python', 'Docker', 'AI 인프라']
+tags: [llm, 옵저버빌리티, 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'ai 인프라']
 aliases:
 - /kr/posts/arize-ai-observability-llm/
 ---

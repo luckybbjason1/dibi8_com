@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zed-vs-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zed-vs-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zed-vs-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zed-vs-cursor" />
 title: 'Zed vs Cursor 2026 비교: 네이티브 속도 vs AI 깊이 — 솔직한 비교'
 description: 'Zed(Rust 네이티브·GPU 가속·오픈소스)와 Cursor(VS Code 포크·AI 우선)를 항목별 비교 — 속도, AI 기능, 가격, 생태계, 플랫폼. 2026 업데이트.'
 date: 2026-06-06 00:00:00+08:00

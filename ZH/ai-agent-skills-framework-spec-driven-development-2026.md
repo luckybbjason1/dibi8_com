@@ -1,4 +1,9 @@
 # AI Agent Skills 模式爆发：2026年开发者必须掌握的 Claude Code 技能框架与规范驱动开发实战指南
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-framework-spec-driven-development-2026" />
 
 **发布时间：** 2026年5月20日  
 **阅读时间：** 15 分钟  

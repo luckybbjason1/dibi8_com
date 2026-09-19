@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드'
 description: 'GPT Researcher는 어떤 작업이든 웹·로컬 리서치를 수행해 인용이 포함된 보고서를 작성하는 오픈소스 심층 리서치 에이전트입니다. GitHub 스타 27,473개, Apache-2.0 라이선스. 설치, 비동기 Python API, Docker, 실제 코드 예제를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'assafelovic/gpt-researcher'
 stars: 27473
-maintainer: 'assafelovic'
+maintainer: assafelovic
 last_maintained: '2026-06-02'
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/academic-research-skills" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/academic-research-skills" />
 title: "학술 연구 스킬: AI로 문헌 검토 자동화 — 3만1천 스타 프레임워크 2026"
 description: "학술 연구 스킬(31,628 스타)은 논문 검색, 통찰 추출, 결과 종합, 문헌 검토 작성을 자동화합니다. Claude Code용으로 모듈형 스킬 아키텍처로 구축되었습니다."
 date: 2026-06-15

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vs-code-ai-extensions-developers" />
 title: 'Best VS Code AI Extensions for Developers in 2025: Boost Productivity'
 description: 'Discover the best VS Code AI extensions for 2025. Compare GitHub Copilot, Codeium, Tabnine, Cody, and more with pricing, features, and privacy breakdowns.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
 title: 'Claude Code Subagent Mastery Stack 2026: From One Conversation to a Coordinated Agent Council'
 description: 'The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent patterns + custom agent authoring + the skill/subagent/MCP decision framework + orchestration failure modes + skill authoring. The full path from single-threaded coding to a reliable agent pipeline.'
 date: 2026-05-29 00:00:00+08:00
@@ -12,19 +14,19 @@ tech_stack:
 application_domain: Collections
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Claude Code', 'Subagents', 'Multi-Agent', 'Agent SDK', 'MCP', 'Stack', 'Collection']
+categories: [collections]
+tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
 aliases:
   - /posts/claude-code-subagent-mastery-stack/
 faqs:

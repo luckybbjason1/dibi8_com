@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-researcher-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu chuyên sâu — Hướng dẫn thực hành 2026'
 description: 'GPT Researcher là một tác nhân nghiên cứu chuyên sâu mã nguồn mở, thực hiện nghiên cứu trên web và cục bộ cho mọi tác vụ rồi viết báo cáo có trích dẫn. 27.473 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, API Python bất đồng bộ, Docker và ví dụ mã thực tế.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'assafelovic/gpt-researcher'
 stars: 27473
-maintainer: 'assafelovic'
+maintainer: assafelovic
 last_maintained: '2026-06-02'
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false

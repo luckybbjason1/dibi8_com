@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/timesfm-google-time-series-foundation-model" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/timesfm-google-time-series-foundation-model" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/timesfm-google-time-series-foundation-model" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/timesfm-google-time-series-foundation-model" />
 title: 'TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Google cho dự báo'
 description: 'Hướng dẫn đầy đủ về TimesFM 2.5 — mô hình chuỗi thời gian tiên tiến nhất của Google Research. Cài đặt, cấu hình, benchmark và các ví dụ thực tế.'
 date: 2026-06-19

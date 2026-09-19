@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtrader-python-backtesting" />
 title: 'Backtrader 2026: Công Cụ Backtesting Python Xác Thực Chiến Lược Giao Dịch Nhanh Hơn 100 Lần — Hướng Dẫn Đầy Đủ'
 description: 'Hướng dẫn đầy đủ về Backtrader event-driven backtesting engine. Xây dựng, kiểm thử, và tối ưu hóa chiến lược giao dịch bằng Python. Tích hợp, benchmark, và triển khai live trading 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'mementum/backtrader'
 stars: 15600
-maintainer: 'mementum'
+maintainer: mementum
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -263,9 +268,9 @@ exchange = ccxt.binance()
 ohlcv = exchange.fetch_ohlcv("BTC/USDT", timeframe="1d", since=1577836800000)
 
 # Chuyển đổi sang pandas DataFrame
-df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-df.set_index('timestamp', inplace=True)
+df = pd.DataFrame(ohlcv, columns=[timestamp, open, high, low, close, volume])
+df[timestamp] = pd.to_datetime(df[timestamp], unit=ms)
+df.set_index(timestamp, inplace=True)
 
 data = bt.feeds.PandasData(dataname=df)
 cerebro.adddata(data)
@@ -310,16 +315,16 @@ cerebro.broker.setcash(10000.0)
 cerebro.broker.setcommission(commission=0.001)  # 0.1% mỗi giao dịch
 
 # Thêm analyzers
-cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='sharpe')
-cerebro.addanalyzer(bt.analyzers.DrawDown, _name='drawdown')
-cerebro.addanalyzer(bt.analyzers.Returns, _name='returns')
+cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name=sharpe)
+cerebro.addanalyzer(bt.analyzers.DrawDown, _name=drawdown)
+cerebro.addanalyzer(bt.analyzers.Returns, _name=returns)
 
 # Chạy tối ưu hóa (dùng tất cả core CPU)
 results = cerebro.run(maxcpus=4)
 
 # Trích xuất kết quả tốt nhất theo Sharpe ratio
-best = max(results, key=lambda r: r[0].analyzers.sharpe.get_analysis()['sharperatio'] or 0)
-print(f"Sharpe Tốt Nhất: {best[0].analyzers.sharpe.get_analysis()['sharperatio']:.2f}")
+best = max(results, key=lambda r: r[0].analyzers.sharpe.get_analysis()[sharperatio] or 0)
+print(f"Sharpe Tốt Nhất: {best[0].analyzers.sharpe.get_analysis()[sharperatio]:.2f}")
 print(f"Tham số tốt nhất: fast={best[0].params.fast}, slow={best[0].params.slow}")
 ```
 
@@ -373,8 +378,8 @@ cerebro.addstrategy(LiveStrategy)
 
 # Sử dụng CCXT broker wrapper
 from ccxtbt import CCXTStore
-store = CCXTStore(exchange='binance', currency='USDT',
-                  config={'apiKey': 'YOUR_KEY', 'secret': 'YOUR_SECRET'})
+store = CCXTStore(exchange=binance, currency=USDT,
+                  config={apiKey: YOUR_KEY, secret: YOUR_SECRET})
 broker = store.getbroker()
 cerebro.setbroker(broker)
 
@@ -476,7 +481,7 @@ Phân tích walk-forward là tiêu chuẩn vàng để phát hiện overfitting.
 
 ```python
 class EquityCurve(bt.observer.Observer):
-    lines = ('equity',)
+    lines = (equity,)
     plotinfo = dict(plot=True, subplot=True)
 
     def next(self):
@@ -572,7 +577,7 @@ Có, nhưng cần thận trọng. Backtrader hỗ trợ live trading thông qua 
 
 ```python
 class CustomIndicator(bt.Indicator):
-    lines = ('myline',)
+    lines = (myline,)
     params = dict(period=20)
 
     def __init__(self):

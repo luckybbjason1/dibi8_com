@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: The Open-Source Firebase Alternative Powering 1M+ AI Apps with Postgres Vector Search — Setup Guide'
 description: 'Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI apps. Auth, storage, realtime, edge functions, RAG pipeline integration, self-hosted Docker deployment, and Row Level Security.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'supabase/supabase'
 stars: 80000
-maintainer: 'supabase'
+maintainer: supabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Supabase', 'Postgres', 'Vector Search', 'Firebase Alternative', 'pgvector', 'AI Apps', 'RAG', 'Open Source', 'Docker', 'Edge Functions']
+tags: [supabase, postgres, 'vector search', 'firebase alternative', pgvector, 'ai apps', rag, 'open source', docker, 'edge functions']
 aliases:
 - /posts/supabase-postgres-vector-ai-apps/
 ---
@@ -161,7 +163,7 @@ const supabase = createClient(
 )
 
 // Test connection
-const { data, error } = await supabase.from('test').select('*')
+const { data, error } = await supabase.from(test).select('*')
 console.log(data)
 ```
 
@@ -175,7 +177,7 @@ supabase = create_client(
 )
 
 # Test connection
-response = supabase.table('test').select('*').execute()
+response = supabase.table(test).select('*').execute()
 print(response.data)
 ```
 
@@ -188,7 +190,7 @@ print(response.data)
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Verify the extension is installed
-SELECT * FROM pg_extension WHERE extname = 'vector';
+SELECT * FROM pg_extension WHERE extname = vector;
 ```
 
 ### Create a Table with Vector Columns
@@ -213,7 +215,7 @@ WITH (m = 16, ef_construction = 64);
 
 -- Add full-text search index for hybrid search
 CREATE INDEX idx_documents_fts ON documents
-USING GIN (to_tsvector('english', content));
+USING GIN (to_tsvector(english, content));
 ```
 
 The `vector(1536)` dimension matches OpenAI's `text-embedding-3-large` output. For other embedding models, adjust accordingly: Cohere embed-v4 uses **1,024** dimensions, and Jina AI embeddings use **768**.
@@ -237,12 +239,12 @@ def insert_document(title: str, content: str, source_url: str = None):
     embedding = response.data[0].embedding
 
     # Insert into Supabase
-    result = supabase.table('documents').insert({
-        'title': title,
-        'content': content,
-        'source_url': source_url,
-        'embedding': embedding,
-        'metadata': {'word_count': len(content.split())}
+    result = supabase.table(documents).insert({
+        title: title,
+        content: content,
+        source_url: source_url,
+        embedding: embedding,
+        metadata: {word_count: len(content.split())}
     }).execute()
     return result
 
@@ -280,11 +282,11 @@ async def search_similar_documents(query: str, top_k: int = 5):
 
     # Query Supabase
     result = await supabase.rpc(
-        'match_documents',
+        match_documents,
         {
-            'query_embedding': query_embedding,
-            'match_threshold': 0.7,
-            'match_count': top_k
+            query_embedding: query_embedding,
+            match_threshold: 0.7,
+            match_count: top_k
         }
     ).execute()
     return result.data
@@ -350,15 +352,15 @@ class SupabaseRAG:
         """Store document chunks with embeddings."""
         for chunk in chunks:
             embedding = self.openai.embeddings.create(
-                input=chunk['text'],
+                input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
 
-            self.supabase.table('documents').insert({
-                'title': chunk['title'],
-                'content': chunk['text'],
-                'embedding': embedding,
-                'metadata': chunk.get('metadata', {})
+            self.supabase.table(documents).insert({
+                title: chunk[title],
+                content: chunk[text],
+                embedding: embedding,
+                metadata: chunk.get(metadata, {})
             }).execute()
 
     def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
@@ -369,11 +371,11 @@ class SupabaseRAG:
         ).data[0].embedding
 
         results = self.supabase.rpc(
-            'match_documents',
+            match_documents,
             {
-                'query_embedding': query_embedding,
-                'match_threshold': 0.75,
-                'match_count': top_k
+                query_embedding: query_embedding,
+                match_threshold: 0.75,
+                match_count: top_k
             }
         ).execute()
         return results.data
@@ -381,7 +383,7 @@ class SupabaseRAG:
     def generate(self, query: str, context: list[dict]) -> str:
         """Generate response using retrieved context."""
         context_text = "\n\n".join([
-            f"[Source: {doc['title']}]\n{doc['content']}"
+            f"[Source: {doc[title]}]\n{doc[content]}"
             for doc in context
         ])
 
@@ -407,16 +409,16 @@ class SupabaseRAG:
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
-            'query': query,
-            'answer': answer,
-            'sources': [doc['title'] for doc in context],
-            'similarity_scores': [doc['similarity'] for doc in context]
+            query: query,
+            answer: answer,
+            sources: [doc[title] for doc in context],
+            similarity_scores: [doc[similarity] for doc in context]
         }
 
 # Usage
 rag = SupabaseRAG(SUPABASE_URL, SUPABASE_KEY, OPENAI_KEY)
 result = rag.chat("What are Docker best practices?")
-print(result['answer'])
+print(result[answer])
 ```
 
 ## Authentication & Row Level Security (RLS)
@@ -458,7 +460,7 @@ const accessToken = session.session?.access_token
 
 // Query with auth context (RLS automatically enforced)
 const { data } = await supabase
-  .from('documents')
+  .from(documents)
   .select('*')
 ```
 
@@ -467,7 +469,7 @@ const { data } = await supabase
 supabase_admin = create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 
 # Bypass RLS for admin operations
-all_docs = supabase_admin.table('documents').select('*').execute()
+all_docs = supabase_admin.table(documents).select('*').execute()
 ```
 
 ## Realtime Subscriptions for Live AI Features
@@ -477,8 +479,8 @@ all_docs = supabase_admin.table('documents').select('*').execute()
 const channel = supabase
   .channel('documents-changes')
   .on(
-    'postgres_changes',
-    { event: 'INSERT', schema: 'public', table: 'documents' },
+    postgres_changes,
+    { event: INSERT, schema: public, table: documents },
     (payload) => {
       console.log('New document inserted:', payload.new)
       // Trigger re-indexing, notification, or UI update
@@ -498,11 +500,11 @@ async def subscribe_to_changes():
     channel = supabase.channel('documents-changes')
     
     def handle_insert(payload):
-        print(f"New document: {payload['new']['title']}")
+        print(f"New document: {payload[new][title]}")
     
     channel.on(
-        'postgres_changes',
-        {'event': 'INSERT', 'schema': 'public', 'table': 'documents'},
+        postgres_changes,
+        {event: INSERT, schema: public, table: documents},
         handle_insert
     ).subscribe()
 
@@ -530,14 +532,14 @@ serve(async (req) => {
 
   // Call OpenAI API from the edge
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
+    method: POST,
     headers: {
-      'Authorization': `Bearer ${Deno.env.get('OPENAI_API_KEY')}`,
+      Authorization: `Bearer ${Deno.env.get(OPENAI_API_KEY)}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       model: 'gpt-4.1-mini',
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: user, content: prompt }],
       max_tokens: 500
     })
   })

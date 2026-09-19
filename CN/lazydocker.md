@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/lazydocker" />
 title: 'LazyDocker: 51,092 GitHub Stars — Complete Terminal Docker UI Setup Guide 2026'
 description: 'LazyDocker (LD) is a terminal UI for managing Docker containers, images, volumes, and logs. Compatible with Docker, Docker Compose, Go, and Terminal. Covers installation, keybindings, configuration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jesseduffield/lazydocker'
 stars: 51092
-maintainer: 'jesseduffield'
+maintainer: jesseduffield
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['lazydocker', 'docker', 'terminal-ui', 'devops', 'containers', 'cli-tools', 'docker-compose', 'tui']
+tags: [lazydocker, docker, 'terminal-ui', devops, containers, 'cli-tools', 'docker-compose', tui]
 aliases:
 - /posts/lazydocker/
 ---

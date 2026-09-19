@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui-2026" />
 title: 'Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成完整指南'
 description: 'AUTOMATIC1111 stable-diffusion-webui 是 163k 星的自托管 SD/SDXL 图像生成事实标准 UI。2026 完整安装+生产指南：txt2img / img2img / 修复 / 扩展 / LoRA / ControlNet、硬件要求、替代品（Forge / SD.Next）。'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
 stars: 163000
-maintainer: 'AUTOMATIC1111'
+maintainer: AUTOMATIC1111
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Stable Diffusion', 'SDXL', '图像生成', 'AUTOMATIC1111', '开源']
+tags: ['stable diffusion', sdxl, 图像生成, automatic1111, 开源]
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---

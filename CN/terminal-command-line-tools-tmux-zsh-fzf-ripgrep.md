@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: 'Terminal & CLI Productivity Tools: tmux, zsh, fzf, ripgrep & More for Developers'
 description: 'Transform your terminal with zsh, tmux, fzf, ripgrep, and modern CLI alternatives. Step-by-step setup guide for macOS and Linux in 2025.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rvc" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rvc" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rvc" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rvc" />
 title: 'RVC: Triển khai AI Chuyển đổi Giọng nói với 35K+ Stars — Hướng dẫn Thiết lập Huấn luyện 10 phút cho 2026'
 description: 'RVC (Retrieval-based Voice Conversion) là khung chuyển đổi giọng nói dựa trên VITS, tương thích với GPT-SoVITS, Coqui TTS và demucs. Hướng dẫn này bao gồm triển khai Docker, pipeline huấn luyện, tích hợp API và củng cố production.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['rvc', 'chuyen-doi-giong-noi', 'ai-voice-clone', 'vits', ' tong-hop-giong-noi', 'docker', 'huong-dan', 'retrieval-vc']
+tags: [rvc, 'chuyen-doi-giong-noi', 'ai-voice-clone', vits, ' tong-hop-giong-noi', docker, 'huong-dan', 'retrieval-vc']
 aliases:
 - /vi/posts/rvc/
 ---
@@ -522,9 +527,9 @@ def list_available_models(models_dir="./models"):
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-conversion_count = Counter('rvc_conversions_total', 'Tổng số lần chuyển đổi')
-conversion_duration = Histogram('rvc_conversion_seconds', 'Độ trễ chuyển đổi')
-error_count = Counter('rvc_errors_total', 'Tổng số lỗi', ['error_type'])
+conversion_count = Counter(rvc_conversions_total, 'Tổng số lần chuyển đổi')
+conversion_duration = Histogram(rvc_conversion_seconds, 'Độ trễ chuyển đổi')
+error_count = Counter(rvc_errors_total, 'Tổng số lỗi', [error_type])
 
 def monitored_convert(audio_path, model_name):
     start = time.time()

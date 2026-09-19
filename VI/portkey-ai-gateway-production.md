@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/portkey-ai-gateway-production" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/portkey-ai-gateway-production" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/portkey-ai-gateway-production" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/portkey-ai-gateway-production" />
 title: 'Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình với Khả năng Quan sát — Thiết lập Production'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Portkey AI Gateway']
+tags: ['portkey ai gateway']
 aliases:
 - /vi/posts/portkey-ai-gateway-production/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
 title: 'Outline 완벽 가이드: 엔지니어링 팀을 위한 오픈소스 Wiki 및 지식 베이스 — 2026 셀프호스팅 배포'
 description: 'Docker로 10분 만에 Outline 배포. Markdown 편집기, Slack 통합, 전문 검색, 세분화된 권한 제어로 팀을 위한 실시간 협업 Wiki를 구축하세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'outline/outline'
 stars: 32000
-maintainer: 'outline'
+maintainer: outline
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['outline', 'wiki', '지식베이스', '팀문서', '오픈소스', '셀프호스팅', 'docker', '협업', 'markdown']
+tags: [outline, wiki, 지식베이스, 팀문서, 오픈소스, 셀프호스팅, docker, 협업, markdown]
 aliases:
 - /kr/posts/outline-wiki-knowledge-base/
 ---
@@ -171,7 +176,7 @@ echo "UTILS_SECRET=$UTILS_SECRET"
 `.env` 파일에 추가:
 
 ```bash
-cat << 'EOF' > .env
+cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
 SLACK_CLIENT_ID=

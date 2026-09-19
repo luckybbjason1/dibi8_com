@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/open-source-llm-ranking-guide" />
 title: 'Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek & More'
 description: 'Discover the best open-source LLMs of 2025. Compare Llama 3, Mistral, Qwen, DeepSeek, Gemma, and Phi with benchmarks, hardware requirements, and use cases.'
 date: 2026-05-18 00:00:00+08:00

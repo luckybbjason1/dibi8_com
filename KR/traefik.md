@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/traefik" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/traefik" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/traefik" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/traefik" />
 title: 'Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕션 배포 가이드'
 description: 'Traefik은 자동 서비스 검색을 지원하는 클라우드 네이티브 애플리케이션 프록시 및 엣지 라우터입니다. Docker, Kubernetes, Consul, Docker Compose와 호환됩니다. 설치, 미들웨어, TLS, 모니터링 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/traefik/traefik'
 stars: 63229
-maintainer: 'traefik'
+maintainer: traefik
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['traefik', 'docker', 'kubernetes', '리버스 프록시', '엣지 라우터', 'ingress', 'devops', '클우드 네이티브']
+tags: [traefik, docker, kubernetes, '리버스 프록시', '엣지 라우터', ingress, devops, '클우드 네이티브']
 aliases:
 - /kr/posts/traefik/
 ---
@@ -546,7 +551,7 @@ Prometheus 스크랩 구성:
 
 ```yaml
 scrape_configs:
-  - job_name: 'traefik'
+  - job_name: traefik
     scrape_interval: 15s
     static_configs:
       - targets: ['traefik:8080']

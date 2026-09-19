@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/noco-db-airtable-alternative" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/noco-db-airtable-alternative" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/noco-db-airtable-alternative" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/noco-db-airtable-alternative" />
 title: 'NocoDB 2026 완벽 가이드: 모든 데이터베이스를 스마트 스프레드시트로 만드는 오픈소스 Airtable 대안'
 description: 'Docker로 5분 만에 NocoDB 배포. MySQL, PostgreSQL, SQLite를 협업형 스프레드시트로 변환하고 REST API, 칸반 보드, 역할 기반 접근 제어를 자동 생성하세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'nocodb/nocodb'
 stars: 53000
-maintainer: 'nocodb'
+maintainer: nocodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['nocodb', 'airtable대안', '오픈소스', '데이터베이스', '스프레드시트', '셀프호스팅', 'docker', 'mysql', 'postgresql']
+tags: [nocodb, airtable대안, 오픈소스, 데이터베이스, 스프레드시트, 셀프호스팅, docker, mysql, postgresql]
 aliases:
 - /kr/posts/noco-db-airtable-alternative/
 ---
@@ -305,7 +310,7 @@ sudo nginx -t && sudo systemctl restart nginx
 ```bash
 # 비밀 파일 생성
 sudo mkdir -p /opt/nocodb
-sudo tee /opt/nocodb/.env > /dev/null << 'EOF'
+sudo tee /opt/nocodb/.env > /dev/null << EOF
 NC_DB=pg://db:5432?u=nocodb&p=CHANGE_ME&d=nocodb_meta
 NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING
 NC_REDIS_URL=redis://redis:6379

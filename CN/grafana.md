@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/grafana" />
 title: 'Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2026'
 description: 'Grafana is the open-source visualization and analytics platform for monitoring. Covers Prometheus, Loki, InfluxDB, Elasticsearch integration. Includes Docker setup, production hardening, and comparison with Datadog, Kibana, New Relic.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/grafana/grafana'
 stars: 73876
-maintainer: 'grafana'
+maintainer: grafana
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['grafana', 'docker', 'monitoring', 'prometheus', 'observability', 'dashboard', 'devops']
+tags: [grafana, docker, monitoring, prometheus, observability, dashboard, devops]
 aliases:
 - /posts/grafana/
 ---
@@ -168,7 +170,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
 
@@ -176,7 +178,7 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  - job_name: 'grafana'
+  - job_name: grafana
     static_configs:
       - targets: ['grafana:3000']
 ```
@@ -474,7 +476,7 @@ Store dashboards as JSON in your repository and provision them automatically:
 apiVersion: 1
 
 providers:
-  - name: 'default'
+  - name: default
     orgId: 1
     folder: ''
     type: file

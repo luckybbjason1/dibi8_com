@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/billions-wallet-promotion" />
 title: Discover Billions Wallet - Your Ultimate Crypto Companion
 description: 'Billions Wallet promotion: secure crypto wallet with advanced features.
   Manage Bitcoin, Ethereum and 100+ cryptocurrencies safely.'

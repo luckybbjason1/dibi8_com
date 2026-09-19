@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/cleanlab-11k-star-ai-data-cleaning" />
 title: 'Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python'
 description: 'Cleanlab is an open-source AI toolkit with 11K+ GitHub stars that finds and fixes data quality issues in ML datasets. Automatic label error detection, missing value imputation, and data cleansing for classification, regression, and clustering tasks. Includes setup guide, benchmarks, and production deployment.'
 tags: ["ai", "data-cleaning", "ml", "open-source", "self-hosted"]

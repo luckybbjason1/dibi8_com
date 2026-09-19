@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agno" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agno" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agno" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agno" />
 title: 'Agno: 40K+ Stars — 轻量级 AI Agent 框架深度解析 vs CrewAI, AutoGen 2026'
 description: 'Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 Agent 系统、基准测试、生产加固，以及与 CrewAI、AutoGen、LangChain 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['agno', 'ai-agent', 'python-sdk', '多智能体', '开源', '轻量级框架', 'agent平台', 'ollama', 'openai']
+tags: [agno, 'ai-agent', 'python-sdk', 多智能体, 开源, 轻量级框架, agent平台, ollama, openai]
 aliases:
 - /zh/posts/agno/
 ---

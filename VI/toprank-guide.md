@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank-guide" />
 title: "Bí Kíp Tối Ưu GEO: Ép ChatGPT Trích Dẫn Web Của Bạn Bằng Toprank (Miễn Phí)"
 description: "Bí Kíp Tối Ưu GEO: Ép ChatGPT Trích Dẫn Web Của Bạn Bằng Toprank (Miễn Phí)"
 date: 2026-05-15T04:20:25+09:00

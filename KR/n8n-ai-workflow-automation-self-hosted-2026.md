@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-workflow-automation-self-hosted-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-workflow-automation-self-hosted-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-workflow-automation-self-hosted-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-workflow-automation-self-hosted-2026" />
 title: "n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감"
 description: "2026년 가장 주목받는 오픈소스 자동화 플랫폼 n8n의 완벽 튜토리얼. n8n 자체 호스팅 배포, AI 에이전트 워크플로우 구축, LangChain 연동, SEO 자동화 실전 사례, Zapier/Make와의 상세 비교까지."
 keywords: n8n, n8n 튜토리얼, AI 워크플로우 자동화, 오픈소스 자동화 도구, n8n 자체 호스팅, n8n vs Zapier, AI 에이전트 구축, LangChain 연동, 노코드 자동화, 워크플로우 오케스트레이션

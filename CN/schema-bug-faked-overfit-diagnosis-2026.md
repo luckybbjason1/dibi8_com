@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
 title: 'Schema Bug Faked My Overfit Diagnosis: The Backtest Postmortem Nobody Talks About'
 description: 'Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then discovered the diagnosis itself was wrong — silent schema field mismatch made the optimizer run with default 10x leverage instead of the evolved 2x. The corrected version is healthy (ratio 1.01). The meta-lesson is uglier than the original.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader', 'pydantic']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: 'moss-trade-bot-skills v1.0.26'
 licensing_model: Open Source
@@ -15,21 +17,21 @@ last_maintained: '2026-05-26'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'schema-drift', 'walk-forward', 'postmortem', '2026']
+tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
 aliases:
 - /posts/schema-bug-faked-overfit-diagnosis-2026/
 faq:
   - q: "What is schema drift and why does it fake backtest results?"
     a: "Schema drift means parameter field names in your config no longer match the runtime schema. The deserializer silently drops unknown fields and uses defaults. If those defaults are aggressive (like 10x leverage when you intended 2x), backtest results swing massively. The numbers look real but they came from a different strategy than the one you wrote."
   - q: "How did the original overfit diagnosis look so convincing?"
-    a: "Textbook signature: Train PF 2.08, OOS PF 0.94, ratio 2.21. Every quant trader has seen this pattern in literature — the optimizer fits noise that doesn't repeat. The conclusion 'overfit' fit the data shape perfectly. The hidden 10x leverage just amplified everything, making both numbers extreme. With the correct 2x leverage, the same parameters give Train 1.494 / OOS 1.478 ratio 1.01 — boringly stable."
+    a: "Textbook signature: Train PF 2.08, OOS PF 0.94, ratio 2.21. Every quant trader has seen this pattern in literature — the optimizer fits noise that doesn't repeat. The conclusion overfit fit the data shape perfectly. The hidden 10x leverage just amplified everything, making both numbers extreme. With the correct 2x leverage, the same parameters give Train 1.494 / OOS 1.478 ratio 1.01 — boringly stable."
   - q: "What's the meta-lesson for backtest validation?"
     a: "Before trusting any backtest result, validate that your parameter dictionary actually loaded the values you wrote. `print(vars(params))` after `from_dict()`. If a field silently dropped, you're running a different strategy than you think. This single 5-second check would have saved 7 follow-up experiments."
   - q: "Does this mean overfit doesn't exist in this strategy?"
     a: "Not exactly. The corrected version on BTC 304d is stable (ratio 1.01). But cross-asset testing on 8 pairs showed mostly noise (ratio_stdev > mean). One asset (DOT) looked great until walk-forward decomposition revealed IS/OOS ratio 6.47 — actual textbook overfit hiding inside a 'cross-asset success' story. The strategy is break-even, just for different reasons than originally diagnosed."
   - q: "How do you defend against schema drift in production?"
     a: "Three layers: (1) Use strict deserialization (pydantic strict mode, dataclass with kw_only=True + frozen=True, or explicit Field validator that rejects unknown keys). (2) Pin parameter file schema version alongside framework version. (3) Print effective params right before backtest and assert key values (leverage, sl_atr_mult, weights). The strict deserializer alone catches 90% of these silently."
-  - q: "What's the new 'Seven Don'ts' list after this?"
+  - q: "What's the new 'Seven Donts list after this?"
     a: "Expanded from 7 to 13. The new entries: don't trust experiments without schema validation, don't make calls on datasets under 200 trading days, don't accept PF > 3 with under 30 trades, don't ship strategies without cross-asset validation, don't ignore stdev/mean ratio (over 1 = noise), don't report PF without per-segment decomposition, don't accept reports without IS/OOS ratio."
 ---
 

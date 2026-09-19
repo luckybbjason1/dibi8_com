@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/code-search-replace-tools-grep-modern-alternatives" />
 title: 'Code Search & Replace Tools: From grep to ripgrep, sd, and Modern Alternatives'
 description: 'Explore modern code search tools from grep to ripgrep, fzf, sd, and Sourcegraph. Benchmarks, workflows, and setup guide for developer search in 2025.'
 date: 2026-05-18 00:00:00+08:00

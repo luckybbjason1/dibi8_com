@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectorbt-quantitative-backtesting" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectorbt-quantitative-backtesting" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectorbt-quantitative-backtesting" />
 title: 'VectorBT: 1초에 100만+ 거래를 처리하는 초고속 Python 백테스팅 라이브러리 — 2026 퀀트 가이드'
 description: 'VectorBT로 Python 퀀트 백테스팅을 마스터하세요. 벡터화된 Numba 가속 시뮬레이션으로 트레이딩 전략을 구축, 테스트, 최적화합니다. 코드 예제가 포함된 완전한 2026 가이드.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'polakowo/vectorbt'
 stars: 8900
-maintainer: 'polakowo'
+maintainer: polakowo
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

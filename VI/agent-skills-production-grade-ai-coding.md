@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：Các đội phát triển giao mã cấp sản xuất nhanh gấp 5 lần như thế
   nào
 description: Agent Skills của Addy Osmani cung cấp 20 kỹ năng kỹ thuật cấp sản xuất

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mattpocock-skills-ai-agent-framework-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mattpocock-skills-ai-agent-framework-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mattpocock-skills-ai-agent-framework-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mattpocock-skills-ai-agent-framework-guide" />
 title: "Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 安装，零配置"
 description: "了解如何使用 Matt Pocock 的 Skills 框架为 Claude Code、Cursor 和 Gemini CLI 等 AI 编程 Agent 赋予代码之外的真正能力——数据库、文件系统、CI/CD 等。包含逐步 npx 安装指南、架构分析和实际基准测试。"
 date: 2026-06-10

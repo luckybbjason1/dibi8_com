@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n" />
 title: 'n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%'
 description: 'n8n（fair-code）是具有原生 AI 能力的可视化工作流自动化平台，支持 400+ 集成。兼容 Claude Code、OpenAI、Anthropic、Slack、Discord、Telegram。涵盖 Docker 部署、AI 节点配置、Webhook 部署和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['n8n', '工作流自动化', '自托管', 'AI 智能体', 'Docker', 'LangChain', '开源', '低代码']
+tags: [n8n, 工作流自动化, 自托管, 'ai 智能体', docker, langchain, 开源, 低代码]
 aliases:
 - /zh/posts/n8n/
 - /zh/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
@@ -274,7 +279,7 @@ services:
       replicas: 2
       resources:
         limits:
-          cpus: '2'
+          cpus: 2
           memory: 2G
     depends_on:
       - postgres
@@ -335,7 +340,7 @@ server {
         proxy_pass http://127.0.0.1:5678;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
+        proxy_set_header Connection upgrade;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -630,11 +635,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 ```sql
 -- n8n 生产环境 PostgreSQL 优化
-ALTER SYSTEM SET shared_buffers = '512MB';
-ALTER SYSTEM SET effective_cache_size = '2GB';
+ALTER SYSTEM SET shared_buffers = 512MB;
+ALTER SYSTEM SET effective_cache_size = 2GB;
 ALTER SYSTEM SET random_page_cost = 1.1;
 ALTER SYSTEM SET checkpoint_completion_target = 0.9;
-ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET wal_buffers = 16MB;
 ALTER SYSTEM SET default_statistics_target = 100;
 
 -- 添加索引加速查询
@@ -684,7 +689,7 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'n8n'
+  - job_name: n8n
     static_configs:
       - targets: ['n8n-main:5678']
     metrics_path: /metrics

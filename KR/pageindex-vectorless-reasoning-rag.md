@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pageindex-vectorless-reasoning-rag" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pageindex-vectorless-reasoning-rag" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pageindex-vectorless-reasoning-rag" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pageindex-vectorless-reasoning-rag" />
 title: "PageIndex：29K⭐벡터 없는 RAG 시스템, 문서 검색의 혁명"
 description: "PageIndex는 VectifyAI가 개발한 오픈소스 벡터 없는 RAG 시스템입니다. 29K+ Stars, 문서 트리 구조를 통해 인간과 같은 검색을 구현하며 FinanceBench에서 98.7% 정확도를 달성했습니다."
 date: 2026-05-15T04:20:25+09:00

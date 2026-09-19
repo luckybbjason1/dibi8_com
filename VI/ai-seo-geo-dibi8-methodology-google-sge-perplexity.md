@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
 
 title: 'AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương Pháp 5 Lớp'
 description: 'Chúng tôi ngừng viết để lấy clicks. Bắt đầu viết để lấy citations. Sau 72 bài viết trên 4 ngôn ngữ, đây là phương pháp 5 lớp giúp chúng tôi được Google SGE, Perplexity và ChatGPT trích dẫn.'

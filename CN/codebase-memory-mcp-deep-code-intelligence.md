@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/codebase-memory-mcp-deep-code-intelligence" />
 lang: en
 title: 'Codebase Memory MCP: 24K+ Star AI Code Intelligence Server'
 description: 'Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant.'

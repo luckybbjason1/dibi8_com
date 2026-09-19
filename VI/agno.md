@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agno" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agno" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agno" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agno" />
 title: 'Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu với CrewAI, AutoGen 2026'
 description: 'Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenAI, Anthropic, Ollama, Docker, AWS. Bao gồm cài đặt, hệ thống đa Agent, benchmark, so sánh với CrewAI, AutoGen, LangChain.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['agno', 'ai-agent', 'python-sdk', 'multi-agent', 'mã-nguồn-mở', 'framework-nhẹ', 'nền-tảng-agent', 'ollama', 'openai']
+tags: [agno, 'ai-agent', 'python-sdk', 'multi-agent', 'mã-nguồn-mở', 'framework-nhẹ', 'nền-tảng-agent', ollama, openai]
 aliases:
 - /vi/posts/agno/
 ---

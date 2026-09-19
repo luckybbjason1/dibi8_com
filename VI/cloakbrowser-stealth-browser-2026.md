@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-browser-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-browser-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-browser-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-browser-2026" />
 title: 'CloakBrowser 2026: Trình Duyệt Ẩn Danh Miễn Phí Vượt Qua Mọi Bot Detection — Thay Thế Playwright Chỉ Với 1 Dòng Code'
 description: 'CloakBrowser là dự án GitHub hot nhất tháng 5/2026: 49 bản vá C++ cấp nguồn, điểm reCAPTCHA v3 là 0.9, vượt qua 30+ dịch vụ bot detection. Miễn phí 100%, thay thế hoàn hảo cho công cụ thương mại $299/tháng.'
 date: 2026-05-14 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-deep-research-local-first-ai-deep-research-tool" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên Local Tối Thượng"
 description: "Làm chủ Local Deep Research (LDR) — trợ lý nghiên cứu AI ưu tiên local. Tìm hiểu cách thực hiện nghiên cứu sâu, lặp lại với Ollama và SearXNG trong khi duy trì quyền riêng tư 100%."
 date: 2026-05-15T04:20:25+09:00

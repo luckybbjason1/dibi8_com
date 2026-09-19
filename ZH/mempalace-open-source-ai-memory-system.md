@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-open-source-ai-memory-system" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-open-source-ai-memory-system" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-open-source-ai-memory-system" />
 title: 'MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零API调用'
 description: 'MemPalace是一个本地优先的AI记忆系统，以逐字形式存储对话历史，并通过语义搜索进行检索。与Claude Code、Cursor、Windsurf及任何MCP兼容的智能体集成。基于ChromaDB后端，支持可插拔存储，零外部API调用。包含设置指南、基准测试和架构解析。'
 date: 2026-06-10

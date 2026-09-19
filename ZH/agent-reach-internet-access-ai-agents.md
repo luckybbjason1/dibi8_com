@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-reach-internet-access-ai-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-internet-access-ai-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-internet-access-ai-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-internet-access-ai-agents" />
 title: 'Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）'
 description: 'Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。'
 date: 2026-09-19

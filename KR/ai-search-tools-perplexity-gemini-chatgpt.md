@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-search-tools-perplexity-gemini-chatgpt" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-search-tools-perplexity-gemini-chatgpt" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-search-tools-perplexity-gemini-chatgpt" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-search-tools-perplexity-gemini-chatgpt" />
 title: 'AI 검색 도구 비교: Perplexity vs Google Gemini vs ChatGPT Search 2025'
 description: '2025년 최고의 AI 검색 도구를 비교합니다. Perplexity, Google Gemini, ChatGPT Search, Microsoft Copilot의 특징, 장단점, 사용 사례를 상세히 분석합니다.'
 date: 2026-05-18 00:00:00+08:00

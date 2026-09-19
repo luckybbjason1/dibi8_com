@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-data-analysis-workflow-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-data-analysis-workflow-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-data-analysis-workflow-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-data-analysis-workflow-complete-guide" />
 title: '使用大语言模型进行数据分析的完整工作流：PandasAI、Code Interpreter与OpenAI实战指南'
 description: '全面解析LLM数据分析工作流，深度对比PandasAI、ChatGPT Code Interpreter与OpenAI API三种方案，含实战代码与安全最佳实践。'
 date: 2026-05-18 00:00:00+08:00

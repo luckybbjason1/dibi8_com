@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
 title: 'Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南'
 description: 'Firecrawl 是开源的网页数据 API，能把网页抓取、爬取、映射、搜索成干净、可直接喂给 LLM 的 Markdown 或结构化 JSON。127,747 GitHub stars，AGPL-3.0。涵盖安装、官方 SDK、真实代码、自托管，以及与 Puppeteer、Scrapy、Axios 的客观对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'firecrawl/firecrawl'
 stars: 127747
-maintainer: 'firecrawl'
+maintainer: firecrawl
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
@@ -70,12 +75,12 @@ Firecrawl 暴露了一小组端点，每个只解决一件事。你用 Bearer AP
 用 Node SDK 做一次最简抓取是这样的：
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 
 const doc = await app.scrape('https://example.com', {
-  formats: ['markdown'],
+  formats: [markdown],
 });
 
 console.log(doc.markdown);
@@ -98,7 +103,7 @@ npm install firecrawl
 ```
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 ```
@@ -151,12 +156,12 @@ cp apps/api/.env.example apps/api/.env
 ### 抓取单个页面
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 
 const doc = await app.scrape('https://example.com', {
-  formats: ['markdown', 'html'],
+  formats: [markdown, html],
 });
 
 console.log(doc.markdown);
@@ -169,7 +174,7 @@ console.log(doc.markdown);
 ```typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
-  scrapeOptions: { formats: ['markdown'] },
+  scrapeOptions: { formats: [markdown] },
 });
 
 for (const page of result.data) {
@@ -184,12 +189,12 @@ for (const page of result.data) {
 ```typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
-    type: 'json',
+    type: json,
     schema: {
-      type: 'object',
+      type: object,
       properties: {
-        title: { type: 'string' },
-        description: { type: 'string' },
+        title: { type: string },
+        description: { type: string },
       },
     },
   }],
@@ -209,12 +214,12 @@ console.log(doc.json);
 一种典型做法是把抓取封装在你自己的端点之后：
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
 
 export async function scrapeHandler(url: string) {
-  const doc = await app.scrape(url, { formats: ['markdown'] });
+  const doc = await app.scrape(url, { formats: [markdown] });
   return doc.markdown;
 }
 ```
@@ -240,7 +245,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
       - name: Install dependencies
         run: npm install firecrawl

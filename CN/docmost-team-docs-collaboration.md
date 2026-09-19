@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
 title: 'Docmost 2026: The Open-Source Notion Alternative for Real-Time Team Collaboration — Self-Hosted Guide'
 description: 'Complete self-hosting guide for Docmost, the open-source collaborative wiki with real-time editing, Notion-like block editor, nested pages, and PostgreSQL backend. Deploy in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'docmost/docmost'
 stars: 20100
-maintainer: 'docmost'
+maintainer: docmost
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Docmost', 'Notion Alternative', 'Wiki', 'Real-time Collaboration', 'Self-Hosted', 'Documentation', 'PostgreSQL', 'Docker', 'Open Source', 'Team Docs']
+tags: [docmost, 'notion alternative', wiki, 'real-time collaboration', 'self-hosted', documentation, postgresql, docker, 'open source', 'team docs']
 aliases:
 - /posts/docmost-team-docs-collaboration/
 ---

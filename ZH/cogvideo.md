@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cogvideo" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cogvideo" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cogvideo" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cogvideo" />
 title: 'CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程'
 description: 'CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成。涵盖安装、Docker、推理、微调和基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['cogvideo', 'cogvideox', '文本生成视频', '扩散Transformer', '智谱AI', '视频生成', '开源AI', 'comfyui']
+tags: [cogvideo, cogvideox, 文本生成视频, 扩散transformer, 智谱ai, 视频生成, 开源ai, comfyui]
 aliases:
 - /zh/posts/cogvideo/
 ---
@@ -531,9 +536,9 @@ uvicorn api_server:app --host 0.0.0.0 --port 8000 --workers 1
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-INFERENCE_COUNT = Counter('cogvideo_inferences_total', '总推理次数')
-INFERENCE_TIME = Histogram('cogvideo_inference_seconds', '推理延迟')
-VRAM_USAGE = Histogram('cogvideo_vram_bytes', '峰值显存占用')
+INFERENCE_COUNT = Counter(cogvideo_inferences_total, 总推理次数)
+INFERENCE_TIME = Histogram(cogvideo_inference_seconds, 推理延迟)
+VRAM_USAGE = Histogram(cogvideo_vram_bytes, 峰值显存占用)
 
 start_http_server(9090)
 

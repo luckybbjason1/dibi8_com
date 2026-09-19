@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ultimate-vocal-remover" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ultimate-vocal-remover" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ultimate-vocal-remover" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ultimate-vocal-remover" />
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — 2026 完整安装配置指南'
 description: 'Ultimate Vocal Remover (UVR) 是一个基于深度神经网络的人声分离 GUI 工具。兼容 demucs、RVC、GPT-SoVITS。涵盖 Windows、macOS、Linux 安装、模型选择、批量处理和生产级配置。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/Anjok07/ultimatevocalremovergui'
 stars: 24700
-maintainer: 'Anjok07'
+maintainer: Anjok07
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['人声移除', '音频分离', '深度学习', 'pytorch', 'demucs', 'mdx-net', 'ai音频', '卡拉ok', '音乐制作']
+tags: [人声移除, 音频分离, 深度学习, pytorch, demucs, 'mdx-net', ai音频, 卡拉ok, 音乐制作]
 aliases:
 - /zh/posts/ultimate-vocal-remover/
 ---
@@ -216,7 +221,7 @@ RUN . venv/bin/activate && pip install -r requirements.txt
 RUN . venv/bin/activate && python -c "
 import wget
 import os
-os.makedirs('models', exist_ok=True)
+os.makedirs(models, exist_ok=True)
 "
 
 ENTRYPOINT ["venv/bin/python", "separate.py"]

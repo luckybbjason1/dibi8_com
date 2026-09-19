@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã Nguồn Mở Số 1 GitHub, Xây Dựng Pipeline Dữ Liệu LLM và RAG'
 description: 'Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn tiếng Việt chi tiết về cài đặt, trích xuất dữ liệu bằng LLM (GPT-4o, Claude, DeepSeek), crawl sâu toàn site, so sánh với Firecrawl và ScrapeGraphAI, triển khai Docker production.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unclecode/crawl4ai'
 stars: 63000
-maintainer: 'unclecode'
+maintainer: unclecode
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crawl4ai', 'web-scraping', 'llm-rag', 'open-source']
+tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
 aliases:
 - /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
@@ -150,12 +155,12 @@ async def main():
         word_count_threshold=1,
         extraction_strategy=LLMExtractionStrategy(
             provider="openai/gpt-4o",
-            api_token=os.getenv('OPENAI_API_KEY'),
+            api_token=os.getenv(OPENAI_API_KEY),
             schema=ModelPricing.model_json_schema(),
             extraction_type="schema",
             instruction=(
                 "Trích xuất tất cả tên mô hình và giá token đầu vào/đầu ra từ nội dung trang. "
-                "Định dạng mỗi mục: {'model_name': 'GPT-4o', 'input_cost': 'US$5.00 / 1M tokens', ...}"
+                "Định dạng mỗi mục: {model_name: 'GPT-4o', input_cost: 'US$5.00 / 1M tokens', ...}"
             ),
             input_format="markdown",
             verbose=True
@@ -212,7 +217,7 @@ async def main():
         print(f"Tổng số trang đã crawl: {len(results)}")
         
         for r in results[:5]:
-            print(f"URL: {r.url} | Độ sâu: {r.metadata.get('depth', 0)}")
+            print(f"URL: {r.url} | Độ sâu: {r.metadata.get(depth, 0)}")
 
 if __name__ == "__main__":
     asyncio.run(main())

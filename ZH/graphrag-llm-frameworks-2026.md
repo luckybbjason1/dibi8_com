@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG：微软基于知识图谱的 RAG，让大模型答得更准（33K Stars）——2026 实战指南'
 description: 'GraphRAG 是微软推出的模块化、基于知识图谱的 RAG 系统（33,403 个 GitHub star，MIT 协议）。本指南讲解安装、init/index/query 工作流、真实 CLI 示例，以及与 LangChain、Haystack 的诚实对比。'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/graphrag'
 stars: 33403
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-06-02'
 featureImage: ''
 draft: false

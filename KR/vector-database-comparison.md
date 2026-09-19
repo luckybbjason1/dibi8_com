@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-database-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-database-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-database-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-database-comparison" />
 title: '벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Milvus'
 description: 'Pinecone, Weaviate, Chroma, Milvus 벡터 데이터베이스를 기능, 성능, 가격 측면에서 상세 비교합니다. RAG 프로젝트에 최적의 벡터 DB 선택 가이드.'
 date: 2026-05-18 00:00:00+08:00

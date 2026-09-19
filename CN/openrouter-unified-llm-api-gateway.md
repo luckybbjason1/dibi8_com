@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter: The Unified LLM API Gateway Connecting 300+ Models with 40% Cost Savings — 2026 Setup Guide'
 description: 'Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn setup, integration, benchmarks, and production deployment in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'openrouter/openrouter'
 stars: 15000
-maintainer: 'alexanderatallah'
+maintainer: alexanderatallah
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['OpenRouter', 'LLM', 'API Gateway', 'AI', 'OpenAI', 'Claude', 'Machine Learning', 'Cost Optimization']
+tags: [openrouter, llm, 'api gateway', ai, openai, claude, 'machine learning', 'cost optimization']
 aliases:
 - /posts/openrouter-unified-llm-api-gateway/
 ---
@@ -487,7 +489,7 @@ Deploy this to a [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) for a pr
 # Track usage and costs programmatically
 import requests
 
-headers = {"Authorization": f"Bearer {os.environ.get('OPENROUTER_API_KEY')}"}
+headers = {"Authorization": f"Bearer {os.environ.get(OPENROUTER_API_KEY)}"}
 
 # Get usage stats
 usage = requests.get(
@@ -495,8 +497,8 @@ usage = requests.get(
     headers=headers
 ).json()
 
-print(f"Remaining credits: ${usage['data']['total_credits'] - usage['data']['total_usage']}")
-print(f"Total used: ${usage['data']['total_usage']}")
+print(f"Remaining credits: ${usage[data][total_credits] - usage[data][total_usage]}")
+print(f"Total used: ${usage[data][total_usage]}")
 ```
 
 ## Comparison with Alternatives

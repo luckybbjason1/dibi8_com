@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/metabase-business-intelligence-open" />
 title: 'Metabase 2026: The Open-Source Business Intelligence Tool Replacing Tableau at Zero License Cost — Setup Guide'
 description: 'Complete guide to Metabase v60.2: open-source BI with visual query builder, dashboards, SQL editor, alerts, embedding, and Docker self-hosting. 41,000+ GitHub stars.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'metabase/metabase'
 stars: 41000
-maintainer: 'metabase'
+maintainer: metabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Metabase', 'BI', 'business-intelligence', 'open-source', 'Tableau', 'dashboards', 'SQL', 'Docker', 'self-hosted', 'analytics', 'data-visualization', 'Apache-Superset']
+tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset']
 aliases:
 - /posts/metabase-business-intelligence-open/
 ---
@@ -65,7 +67,7 @@ SELECT
     COUNT(*) AS order_count,
     SUM(total) AS revenue
 FROM orders
-WHERE created_at >= DATE_TRUNC('day', NOW() - INTERVAL '30 days')
+WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
 ```
@@ -81,14 +83,14 @@ For analysts who need full control, the native SQL editor supports:
 WITH cohort_users AS (
     SELECT 
         user_id,
-        DATE_TRUNC('month', created_at) AS cohort_month
+        DATE_TRUNC(month, created_at) AS cohort_month
     FROM users
     WHERE created_at >= '2024-01-01'
 ),
 retention AS (
     SELECT 
         c.cohort_month,
-        DATE_TRUNC('month', o.created_at) - c.cohort_month AS period,
+        DATE_TRUNC(month, o.created_at) - c.cohort_month AS period,
         COUNT(DISTINCT o.user_id) AS retained_users,
         COUNT(DISTINCT c.user_id) AS total_users
     FROM cohort_users c
@@ -250,7 +252,7 @@ docker-compose up -d
 apt install -y nginx certbot python3-certbot-nginx
 
 # 6. Configure Nginx
-cat > /etc/nginx/sites-available/metabase << 'EOF'
+cat > /etc/nginx/sites-available/metabase << EOF
 server {
     listen 80;
     server_name analytics.yourdomain.com;
@@ -383,7 +385,7 @@ Configure auto-refresh: Every 5 minutes
 -- With a date filter variable
 
 SELECT 
-    DATE_TRUNC('month', created_at) AS cohort_month,
+    DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
 WHERE created_at >= {{start_date}}  -- Dashboard filter
@@ -434,7 +436,7 @@ Metabase's embedding API allows whitelabeling dashboards in your product:
 
 ```javascript
 // JWT token generation for signed embedding (Node.js)
-const jwt = require('jsonwebtoken');
+const jwt = require(jsonwebtoken);
 
 const token = jwt.sign({
   resource: { dashboard: 123 },
@@ -493,7 +495,7 @@ For frequently accessed dashboards, caching reduces database load by 60-80%.
 -- Admin > Permissions > Data > Sandboxes
 
 SELECT * FROM orders
-WHERE region = user_attribute('region');
+WHERE region = user_attribute(region);
 ```
 
 The `user_attribute` function resolves per-user at query time, enforcing data isolation without separate database views.

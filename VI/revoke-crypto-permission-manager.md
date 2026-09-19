@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/revoke-crypto-permission-manager" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/revoke-crypto-permission-manager" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/revoke-crypto-permission-manager" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/revoke-crypto-permission-manager" />
 title: 'revoke-crypto-permission-manager'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/RevokeCash/revoke.cash'
 stars: 2500
-maintainer: 'RevokeCash'
+maintainer: RevokeCash
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Revoke.cash']
+tags: ['revoke.cash']
 aliases:
 - /vi/posts/revoke-crypto-permission-manager/
 ---
@@ -165,7 +170,7 @@ function revokeApproval(address token, address spender) external {
 // Thay thế: phê duyệt vớI một số lượng giớI hạn cụ thể
 function setLimitedApproval(address token, address spender, uint256 amount) external {
     IERC20(token).approve(spender, amount);
-    // NgườI chi tiêu chỉ có thể chi tiêu tối đa 'amount' token
+    // NgườI chi tiêu chỉ có thể chi tiêu tối đa amount token
 }
 ```
 
@@ -343,7 +348,7 @@ function permit(
     bytes32 r,
     bytes32 s
 ) external {
-    // Sau lệnh gọi này, 'spender' có thể chi tiêu 'value' token
+    // Sau lệnh gọi này, spender có thể chi tiêu value token
     // NGƯỜI DÙNG KHÔNG BAO GIỜ gửi giao dịch — chỉ ký một thông điệp!
 }
 ```

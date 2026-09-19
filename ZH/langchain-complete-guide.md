@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain-complete-guide" />
 title: 'LangChain完整入门指南2025：从零构建生产级AI应用'
 description: 'LangChain 2025完整指南：深入解析核心组件、LangGraph与LangSmith生态，含代码示例与生产部署最佳实践。'
 date: 2026-05-18 00:00:00+08:00

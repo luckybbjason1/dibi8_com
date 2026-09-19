@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/tabby" />
 title: 'Tabby: Self-Hosted AI Coding Assistant with 33K+ Stars — Privacy-First Setup Guide for 2026'
 description: 'Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docker setup, IDE integration, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/TabbyML/tabby'
 stars: 33530
-maintainer: 'TabbyML'
+maintainer: TabbyML
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['tabby', 'ai-coding-assistant', 'self-hosted', 'github-copilot-alternative', 'code-completion', 'docker', 'open-source']
+tags: [tabby, 'ai-coding-assistant', 'self-hosted', 'github-copilot-alternative', 'code-completion', docker, 'open-source']
 aliases:
 - /posts/tabby/
 ---
@@ -238,9 +240,9 @@ For Neovim with `nvim-cmp` and `cmp-tabby`:
 
 ```lua
 -- In your Neovim config (e.g., init.lua)
-require('cmp').setup({
+require(cmp).setup({
   sources = {
-    { name = 'tabby' },
+    { name = tabby },
   },
 })
 

@@ -1,4 +1,9 @@
 # Kỹ Năng AI Agent: Hướng Dẫn Toàn Diện Về Claude Code Skills Framework và Phát Triển Dựa Trên Spec Năm 2026
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-framework-spec-driven-development-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-framework-spec-driven-development-2026" />
 
 **Ngày xuất bản:** 20 tháng 5 năm 2026  
 **Thời gian đọc:** 15 phút  

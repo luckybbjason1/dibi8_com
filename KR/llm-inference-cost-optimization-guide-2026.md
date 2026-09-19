@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-inference-cost-optimization-guide-2026" />
 title: "LLM 추론 비용 최적화: 페니 단위로 모든 모델 실행 — 2026년 결정 가이드"
 description: 'LLM 추론 비용 최적화 가이드. Ollama, vLLM, llama.cpp 양자화 비교. API 비용을 90%+ 절감. 3 벤치마크, 6 배포 방법.'
 date: 2026-06-16

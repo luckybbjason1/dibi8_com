@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-meeting-assistant-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-meeting-assistant-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-meeting-assistant-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-meeting-assistant-tools" />
 title: '2025년 최고의 AI 회의 어시스턴트 도구 비교: Otter.ai, Fireflies, Fathom 등'
 description: '2025년 최신 AI 회의 어시스턴트 도구를 전사 정확도, 통합 기능, 가격 중심으로 비교합니다. Otter.ai, Fireflies, Fathom, Notion AI 등 주요 도구의 특징과 용도별 추천을 확인하세요.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['AI 회의 어시스턴트', 'AI 회의 기록', 'Otter.ai', 'Fireflies', 'Fathom', '회의 자동화']
+tags: ['ai 회의 어시스턴트', 'ai 회의 기록', 'otter.ai', fireflies, fathom, '회의 자동화']
 aliases:
 - /kr/posts/ai-meeting-assistant-tools/
 ---

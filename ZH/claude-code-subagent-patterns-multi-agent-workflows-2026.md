@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）'
 description: '5 个生产环境实测过的 Claude Code subagent 模式 —— 并行调研、worktree 隔离、专家委派、上下文保护、流水线编排，含真实 prompt 和取舍说明。'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Bash']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: 商业（Anthropic）
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
+tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
 aliases:
 - /posts/claude-code-subagent-patterns/
 faq:

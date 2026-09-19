@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/log-monitoring-observability-tools-developers" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/log-monitoring-observability-tools-developers" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/log-monitoring-observability-tools-developers" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/log-monitoring-observability-tools-developers" />
 title: '日志监控与可观测性工具：2025年开发者完整指南'
 description: '从Grafana Loki到ELK Stack，从Datadog到开源SigNoz，全面对比日志监控与可观测性工具，覆盖三大支柱与部署方案。'
 date: 2026-05-18 00:00:00+08:00

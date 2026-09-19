@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
 title: 'Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhanh hơn Selenium 3 lần — Hướng dẫn Cài đặt'
 description: 'Làm chủ Playwright 1.51 để tự động hóa đa trình duyệt. Hỗ trợ Chrome, Firefox, WebKit. Tự động chờ, tracing, codegen và kiểm thử song song. Nhanh hơn Selenium 3 lần.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/playwright'
 stars: 72000
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Playwright', 'tự động hóa trình duyệt', 'kiểm thử', 'web scraping', 'python', 'e2e']
+tags: [playwright, 'tự động hóa trình duyệt', 'kiểm thử', 'web scraping', python, e2e]
 aliases:
 - /vi/posts/playwright-browser-automation-testing/
 ---
@@ -104,12 +109,12 @@ def test_login_flow():
         page.goto("https://httpbin.org/forms/post")
         
         # Điền form fields (auto-waits for elements)
-        page.fill("[name='custname']", "John Doe")
-        page.fill("[name='custtel']", "555-1234")
-        page.fill("[name='custemail']", "john@example.com")
+        page.fill("[name=custname]", "John Doe")
+        page.fill("[name=custtel]", "555-1234")
+        page.fill("[name=custemail]", "john@example.com")
         
         # Submit form
-        page.click("input[type='submit']")
+        page.click("input[type=submit]")
         
         # Assert kết quả
         assert "John Doe" in page.content()
@@ -162,8 +167,8 @@ def test_add_to_cart(page):
 
 def test_search_results(page):
     page.goto("https://example.com")
-    page.fill("[name='q']", "laptop")
-    page.press("[name='q']", "Enter")
+    page.fill("[name=q]", "laptop")
+    page.press("[name=q]", "Enter")
     
     # Wait for results to load
     page.wait_for_selector(".search-result")
@@ -399,7 +404,7 @@ def test_mobile_viewport():
         page.screenshot(path="mobile-view.png")
         
         # Test tương tác hamburger menu
-        page.click("[aria-label='Menu']")
+        page.click("[aria-label=Menu]")
         assert page.is_visible("nav.mobile-menu")
         
         browser.close()
@@ -454,7 +459,7 @@ def scrape_with_stealth():
         # Inject stealth script để ẩn automation flags
         page = context.new_page()
         page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', {
+            Object.defineProperty(navigator, webdriver, {
                 get: () => undefined
             });
         """)

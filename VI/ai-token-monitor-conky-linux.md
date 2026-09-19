@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Grok, Kimi trực tiếp trên Linux'
 description: 'Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trình kiểu HP bar trong Conky. Hỗ trợ Claude, Gemini, Grok, Kimi với polling API thực và đếm ngược reset.'
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
-tech_stack: ['Python', 'Conky', 'Linux']
+tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
 source_version: '1.0.0'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'luckybbjason1/ai-token-monitor'
 stars: 0
-maintainer: 'luckybbjason1'
+maintainer: luckybbjason1
 last_maintained: '2026-06-06'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AI token monitor', 'Claude hạn ngạch', 'Gemini quota tracker', 'Grok token', 'Kimi API', 'Conky widget', 'Linux desktop', 'mã nguồn mở', 'Python', 'công cụ developer']
+tags: ['ai token monitor', 'claude hạn ngạch', 'gemini quota tracker', 'grok token', 'kimi api', 'conky widget', 'linux desktop', 'mã nguồn mở', python, 'công cụ developer']
 aliases:
 - /vi/posts/ai-token-monitor-conky-linux/
 faqs:
@@ -125,27 +130,27 @@ Thêm block vào `api_fetcher.py`:
 
 ```python
 # ── Dịch vụ tùy chỉnh ────────────────────────────
-key = keys.get('yourservice')
+key = keys.get(yourservice)
 if key:
     try:
         r = requests.get('https://api.yourservice.com/v1/usage',
-                         headers={'Authorization': f'Bearer {key}'}, timeout=8)
+                         headers={Authorization: f'Bearer {key}'}, timeout=8)
         if r.status_code == 200:
             data = r.json()
-            remain = data['quota_remaining']
-            total  = data['quota_total']
-            cache['YourService'] = {
-                'ok': True,
-                'label': f'{remain//1000}K còn lại',
-                'pct': remain / total
+            remain = data[quota_remaining]
+            total  = data[quota_total]
+            cache[YourService] = {
+                ok: True,
+                label: f'{remain//1000}K còn lại',
+                pct: remain / total
             }
         else:
-            cache['YourService'] = {'ok': False, 'label': 'Lỗi API'}
+            cache[YourService] = {ok: False, label: 'Lỗi API'}
     except Exception:
         pass
 ```
 
-Sau đó thêm `{'name': 'YourService', 'reset_h': 24}` vào danh sách `SERVICES` trong `conky_ai.py`.
+Sau đó thêm `{name: YourService, reset_h: 24}` vào danh sách `SERVICES` trong `conky_ai.py`.
 
 ## Công cụ liên quan trên dibi8
 

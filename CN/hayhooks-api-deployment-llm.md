@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/hayhooks-api-deployment-llm" />
 title: 'Hayhooks: Deploy Haystack Pipelines as REST APIs with One Command — 2026 Production Setup Guide'
 description: 'A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers one-command deployment, container support, auto-generated OpenAPI docs, and production patterns with real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Hayhooks', 'Haystack', 'NLP', 'REST API', 'LLM', 'Pipeline Deployment', 'Docker', 'Python', 'OpenAPI']
+tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline deployment', docker, python, openapi]
 aliases:
 - /posts/hayhooks-api-deployment-llm/
 ---
@@ -273,8 +275,8 @@ Add Prometheus metrics for production monitoring:
 from prometheus_client import Counter, Histogram, make_asgi_app
 from hayhooks import Hayhooks
 
-REQUEST_COUNT = Counter('hayhooks_requests_total', 'Total requests', ['pipeline'])
-REQUEST_DURATION = Histogram('hayhooks_request_duration_seconds', 'Request duration', ['pipeline'])
+REQUEST_COUNT = Counter(hayhooks_requests_total, 'Total requests', [pipeline])
+REQUEST_DURATION = Histogram(hayhooks_request_duration_seconds, 'Request duration', [pipeline])
 
 app = Hayhooks()
 metrics_app = make_asgi_app()

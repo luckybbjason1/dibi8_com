@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·에디터 확장 지원'
 description: 'Bumblebee는 Perplexity AI의 오픈소스 읽기 전용 공급망 스캐너입니다. npm, PyPI, Go 모듈, MCP 설정, 에디터 확장, 브라우저 확장에서 알려진 침해 패키지를 검사하며, 코드를 단 한 줄도 실행하지 않습니다.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Go', 'Security', 'CLI']
+tech_stack: [Go, Security, CLI]
 application_domain: Dev Utils
 source_version: '0.1.1'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: 'https://github.com/perplexityai/bumblebee'
 backup_url: ''
 github_repo: 'perplexityai/bumblebee'
 stars: 1500
-maintainer: 'perplexityai'
+maintainer: perplexityai
 last_maintained: '2026-05-22'
 featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['bumblebee', '공급망-보안', 'MCP', 'security', 'Go', 'npm', 'PyPI', 'perplexity-ai']
+tags: [bumblebee, '공급망-보안', mcp, security, go, npm, pypi, 'perplexity-ai']
 aliases:
 - /kr/posts/bumblebee-supply-chain-scanner-perplexity-2026/
 faqs:

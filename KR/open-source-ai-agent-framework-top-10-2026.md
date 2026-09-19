@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-ai-agent-framework-top-10-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-ai-agent-framework-top-10-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-ai-agent-framework-top-10-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-ai-agent-framework-top-10-2026" />
 title: '오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹'
 description: '2026년 프로덕션 채택률 기준 10대 오픈소스 AI 에이전트 프레임워크: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. 강점, 함정, 그리고 용도별 선택 가이드.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['LangGraph', 'CrewAI', 'AutoGen', 'Python', 'TypeScript']
+tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: LLM 프레임워크
 source_version: '2026 Q2'
 licensing_model: 오픈소스
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ai-agent', 'framework', 'langgraph', 'crewai', 'autogen', '2026']
+tags: ['ai-agent', framework, langgraph, crewai, autogen, 2026]
 aliases:
 - /kr/posts/open-source-ai-agent-framework-top-10-2026/
 faq:

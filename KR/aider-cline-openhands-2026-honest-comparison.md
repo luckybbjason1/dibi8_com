@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider-cline-openhands-2026-honest-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider-cline-openhands-2026-honest-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider-cline-openhands-2026-honest-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider-cline-openhands-2026-honest-comparison" />
 title: 'Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교'
 description: '동일한 5K LOC TypeScript 코드베이스에서 세 가지 오픈소스 AI 코딩 에이전트를 모두 테스트했습니다. 구체적인 벤치마크 수치, 각자가 빛나는 지점, 각자의 한계, 그리고 BYO API 키 비용의 현실과 상용 대안 비교.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Aider', 'Cline', 'OpenHands', 'Python', 'TypeScript']
+tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
 source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', 'aider', 'cline', 'openhands', '2026']
+tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
 aliases:
 - /kr/posts/aider-cline-openhands-2026-honest-comparison/
 faq:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-cline" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-cline" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-cline" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-cline" />
 title: 'Claude Code 对比 Cline（2026）：自主还是掌控？'
 description: 'Claude Code 与 Cline 逐项对比——终端自主执行 vs VS Code 逐步审批、模型支持、定价，以及各自的适用场景。智能体编程中"掌控 vs 自主"的抉择。2026 更新。'
 date: 2026-05-29 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-work-plugins" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-work-plugins" />
 title: "지식 작업 플러그인: 향상된 AI 생산성을 위한 Anthropic 플러그인 생태계 2026"
 description: "지식 작업 플러그인(20,728 스타)은 Anthropic의 Claude 확장용으로 문서 편집, 코드 분석, 웹 브라우징, 파일 작업을 위한 강력한 도구 모음을 제공합니다. 워크플로우에 맞는 사용자 지정 플러그인을 구축하세요."
 date: 2026-06-15

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: 一键 Docker Compose 启动 LangChain、向量数据库与 LLM —— 2026 本地开发完整指南'
 description: '使用 Docker GenAI Stack 搭建完整的本地 GenAI 开发环境。包含 LangChain、Neo4j、Ollama 和向量数据库的单一 docker-compose 配置。2026 年生产级教程。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/docker/genai-stack'
 stars: 5500
-maintainer: 'docker'
+maintainer: docker
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Docker GenAI Stack']
+tags: ['docker genai stack']
 aliases:
 - /zh/posts/docker-genai-stack-local-development/
 ---
@@ -149,7 +154,7 @@ chain = GraphCypherQAChain.from_llm(
 )
 
 result = chain.invoke({"query": "What companies work in the AI sector?"})
-print(result['result'])
+print(result[result])
 ```
 
 ### Neo4j 知识图谱配置
@@ -162,7 +167,7 @@ Stack 在 Neo4j 启动时自动创建向量索引。你可以查看和扩展图�
 
 # Cypher：查看向量索引
 SHOW INDEXES YIELD name, type, entityType
-WHERE type = 'VECTOR'
+WHERE type = VECTOR
 ```
 
 ```cypher
@@ -171,7 +176,7 @@ CREATE VECTOR INDEX document_embeddings FOR (d:Document)
 ON (d.embedding)
 OPTIONS {indexConfig: {
  `vector.dimensions`: 384,
- `vector.similarity_function`: 'cosine'
+ `vector.similarity_function`: cosine
 }}
 ```
 

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/httpie" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại So với curl, wget 2026'
 description: 'HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tương thích Python, pip, Homebrew, Docker. Bao gồm cài đặt, so sánh benchmark, bảo mật production và FAQ.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/httpie/cli'
 stars: 38200
-maintainer: 'httpie'
+maintainer: httpie
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['httpie', 'cli', 'http-client', 'api-testing', 'curl-thay-the', 'json', 'terminal', 'cong-cu-lap-trinh']
+tags: [httpie, cli, 'http-client', 'api-testing', 'curl-thay-the', json, terminal, 'cong-cu-lap-trinh']
 aliases:
 - /vi/posts/httpie/
 ---
@@ -354,7 +359,7 @@ http --offline POST api.example.com/v2/users \
     Authorization:"Bearer <token>" \
     name="Jane Doe" \
     email="jane@example.com" \
-    role:="['admin', 'editor']" \
+    role:="[admin, editor]" \
     active:=true
 ```
 

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — Open Video Generation Deep Dive vs HunyuanVideo, CogVideo in 2026'
 description: 'Wan 2.1 is an open suite of video foundation models by Alibaba with SOTA performance. Supports ComfyUI, Diffusers, and Gradio. Covers T2V, I2V, video editing, and text generation with 1.3B and 14B parameter variants.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['wan-2-1', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', 'alibaba', 'comfyui', 'diffusers']
+tags: ['wan-2-1', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', alibaba, comfyui, diffusers]
 aliases:
 - /posts/wan-2-1/
 ---
@@ -165,7 +167,7 @@ cd gradio
 
 # Run T2V 14B with single GPU
 python t2v_14B_singleGPU.py \
-  --prompt_extend_method 'dashscope' \
+  --prompt_extend_method dashscope \
   --ckpt_dir ./Wan2.1-T2V-14B
 
 # Run T2V 1.3B (lighter, for consumer GPUs)
@@ -226,7 +228,7 @@ vae = AutoencoderKLWan.from_pretrained(
 # Configure scheduler
 flow_shift = 5.0  # 5.0 for 720P, 3.0 for 480P
 scheduler = UniPCMultistepScheduler(
-    prediction_type='flow_prediction',
+    prediction_type=flow_prediction,
     use_flow_sigmas=True,
     num_train_timesteps=1000,
     flow_shift=flow_shift
@@ -327,7 +329,7 @@ DASH_API_KEY=your_key python generate.py \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "A cat playing piano" \
   --use_prompt_extend \
-  --prompt_extend_method 'dashscope'
+  --prompt_extend_method dashscope
 ```
 
 ## Benchmarks / Real-World Use Cases

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-cline" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-cline" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-cline" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-cline" />
 title: 'Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?'
 description: 'So sánh trực tiếp Claude Code và Cline — tính tự chủ trên terminal so với cách phê duyệt từng bước trong VS Code, hỗ trợ mô hình, giá cả và khi nào nên chọn cái nào. Quyết định kiểm soát-hay-tự chủ cho lập trình agentic. Cập nhật 2026.'
 date: 2026-05-29 00:00:00+08:00

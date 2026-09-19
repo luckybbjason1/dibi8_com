@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabby" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
 title: 'Tabby: 33K+ Stars 자체 호스팅 AI 코딩 어시스턴트 — 2026년 프라이버시 우선 설치 가이드'
 description: 'Tabby는 자체 호스팅 AI 코딩 어시스턴트입니다. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek 지원. Docker 설치, IDE 통합, 벤치마크, 프로덕션 하드닝.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/TabbyML/tabby'
 stars: 33530
-maintainer: 'TabbyML'
+maintainer: TabbyML
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['tabby', 'AI코딩어시스턴트', '자체호스팅', 'GitHubCopilot대체', '코드자동완성', 'Docker', '오픈소스']
+tags: [tabby, ai코딩어시스턴트, 자체호스팅, githubcopilot대체, 코드자동완성, docker, 오픈소스]
 aliases:
 - /kr/posts/tabby/
 ---
@@ -234,9 +239,9 @@ curl http://localhost:8080/v1/health
 
 ```lua
 -- Neovim 설정에서 (예: init.lua)
-require('cmp').setup({
+require(cmp).setup({
   sources = {
-    { name = 'tabby' },
+    { name = tabby },
   },
 })
 

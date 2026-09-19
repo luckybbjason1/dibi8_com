@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtest-overfit-5-patterns-2026" />
 title: '백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)'
 description: '옵티마이저 산출 전략 50+ 건의 실거래 결과를 바탕으로 5가지 뚜렷한 과적합 패턴을 정리했다: walk-forward 괴리, 레짐 플립, 파라미터 절벽, 인디케이터 스태킹, 생존 편향. 각 패턴마다 재현 가능한 합성 예시 + 탐지 신호를 함께 정리했다.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: 'pandas 2.2+ / vectorbt 0.27+'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'walk-forward', 'machine-learning', '2026']
+tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
 aliases:
 - /kr/posts/backtest-overfit-5-patterns-2026/
 faq:

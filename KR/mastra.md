@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mastra" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
 title: 'Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI 프레임워크 2026'
 description: 'Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토리얼, 워크플로우, RAG, 메모리, 관측 가능성, 벤치마크, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mastra', 'typescript', 'ai프레임워크', '에이전트', 'llm', 'mastra튜토리얼', 'mastra-vs-langchain', '오픈소스']
+tags: [mastra, typescript, ai프레임워크, 에이전트, llm, mastra튜토리얼, 'mastra-vs-langchain', 오픈소스]
 aliases:
 - /kr/posts/mastra/
 ---
@@ -158,7 +163,7 @@ npx mastra dev
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
 import { createTool } from '@mastra/core';
-import { z } from 'zod';
+import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
@@ -173,7 +178,7 @@ const searchTool = createTool({
 });
 
 export const supportAgent = new Agent({
-  name: 'SupportAgent',
+  name: SupportAgent,
   instructions: `당신은 기술 지원 에이전트입니다. 검색 도구를 사용하여
     질문에 답하세요. 간결하고 출처를 인용하세요.`,
   model: openai('gpt-4o'),
@@ -189,8 +194,8 @@ const result = await supportAgent.generate(
   '이 티켓을 분류하세요: "Vercel에 배포할 수 없습니다"',
   {
     output: z.object({
-      category: z.enum(['deployment', 'billing', 'bug', 'feature']),
-      priority: z.enum(['low', 'medium', 'high', 'critical']),
+      category: z.enum([deployment, billing, bug, feature]),
+      priority: z.enum([low, medium, high, critical]),
       summary: z.string(),
       actionItems: z.array(z.string()),
     }),
@@ -198,7 +203,7 @@ const result = await supportAgent.generate(
 );
 
 // result.object는 완전히 타입화됨 — TypeScript가 구조를 알고 있음
-console.log(result.object.priority); // 'high' | 'low' | 'medium' | 'critical'
+console.log(result.object.priority); // high | low | medium | critical
 ```
 
 ### 스트리밍 응답
@@ -219,14 +224,14 @@ for await (const chunk of stream.textStream) {
 ```typescript
 // src/mastra/workflows/ticket.ts
 import { Workflow, Step } from '@mastra/core';
-import { z } from 'zod';
+import { z } from zod;
 
 const classifyStep = new Step({
-  id: 'classify',
+  id: classify,
   inputSchema: z.object({ ticketText: z.string() }),
   outputSchema: z.object({ category: z.string(), priority: z.string() }),
   execute: async ({ input, mastra }) => {
-    const agent = mastra.getAgent('supportAgent');
+    const agent = mastra.getAgent(supportAgent);
     const result = await agent.generate(
       `분류: ${input.ticketText}`,
       { output: z.object({ category: z.string(), priority: z.string() }) }
@@ -236,7 +241,7 @@ const classifyStep = new Step({
 });
 
 const escalateStep = new Step({
-  id: 'escalate',
+  id: escalate,
   outputSchema: z.object({ escalated: z.boolean() }),
   execute: async ({ input }) => {
     await sendSlackAlert(`높은 우선순위: ${input.ticketText}`);
@@ -259,10 +264,10 @@ export const ticketPipeline = new Workflow({
 })
   .step(classifyStep)
   .then(escalateStep, {
-    when: { 'classify.priority': 'high' },
+    when: { 'classify.priority': high },
   })
   .then(autoRespondStep, {
-    when: { 'classify.priority': ['low', 'medium'] },
+    when: { 'classify.priority': [low, medium] },
   });
 ```
 
@@ -275,7 +280,7 @@ import { Workflow, Step } from '@mastra/core';
 const stepA = new Step({ id: 'fetch-user', /* ... */ });
 const stepB = new Step({ id: 'fetch-orders', /* ... */ });
 const stepC = new Step({ id: 'fetch-preferences', /* ... */ });
-const stepD = new Step({ id: 'combine', /* ... */ });
+const stepD = new Step({ id: combine, /* ... */ });
 
 const parallelWorkflow = new Workflow({
   name: 'parallel-fetch',
@@ -299,7 +304,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   const { message } = await req.json();
-  const agent = mastra.getAgent('supportAgent');
+  const agent = mastra.getAgent(supportAgent);
 
   const stream = await agent.stream(message);
 
@@ -334,7 +339,7 @@ import { google } from '@ai-sdk/google';
 
 // 한 줄로 제공자 전환
 const agent = new Agent({
-  name: 'MultiProviderAgent',
+  name: MultiProviderAgent,
   instructions: '당신은 유용한 도우미입니다.',
   model: openai('gpt-4o'), // 또는 anthropic('claude-sonnet-4') 또는 google('gemini-2.0-pro')
   tools: { searchTool, calcTool },
@@ -350,12 +355,12 @@ import { MCPClient } from '@mastra/core';
 const mcpClient = new MCPClient({
   servers: {
     slack: {
-      command: 'npx',
+      command: npx,
       args: ['-y', '@modelcontextprotocol/server-slack'],
       env: { SLACK_BOT_TOKEN: process.env.SLACK_TOKEN },
     },
     github: {
-      command: 'npx',
+      command: npx,
       args: ['-y', '@modelcontextprotocol/server-github'],
       env: { GITHUB_PERSONAL_ACCESS_TOKEN: process.env.GITHUB_TOKEN },
     },
@@ -365,7 +370,7 @@ const mcpClient = new MCPClient({
 // MCP 도구가 에이전트에 자동으로 사용 가능해짐
 const tools = await mcpClient.tools();
 const agent = new Agent({
-  name: 'MCPAgent',
+  name: MCPAgent,
   model: openai('gpt-4o'),
   tools, // 모든 MCP 도구가 이제 사용 가능
 });
@@ -507,7 +512,7 @@ const piiGuard = createGuardrail({
 });
 
 const agent = new Agent({
-  name: 'SafeAgent',
+  name: SafeAgent,
   model: openai('gpt-4o'),
   tools: { searchTool },
   guardrails: [promptInjectionGuard, piiGuard],

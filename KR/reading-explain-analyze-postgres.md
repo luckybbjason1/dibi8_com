@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/reading-explain-analyze-postgres" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
 title: PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게
 description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,
   bottleneck detection, and database performance optimization.

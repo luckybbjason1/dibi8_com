@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-coding-assistants" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-coding-assistants" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-coding-assistants" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-coding-assistants" />
 title: '2026 最佳 AI 编程助手'
 lang: zh-cn
 description: '2026 年开发者最好的 AI 编程助手 — 从 Claude Code 和 Cursor 到 GitHub Copilot 和 Devin。比较功能、价格和性能。'

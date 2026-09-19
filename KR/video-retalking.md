@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/video-retalking" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — AI 입술 동기화 영상 편집 완벽 설치 가이드 2026'
 description: 'VideoReTalking (VRT)은 말하는 얼굴 영상 편집을 위한 오디오 기반 입술 동기화 시스템이다. RVC, GPT-SoVITS, Coqui TTS와 호환. 설치, 추론, Gradio WebUI, 프로덕션 배포, Wav2Lip 및 SadTalker와의 벤치마크 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/OpenTalker/video-retalking'
 stars: 7200
-maintainer: 'OpenTalker'
+maintainer: OpenTalker
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['립싱크', '영상편집', '토킹헤드', '딥페이크', 'ffmpeg', 'pytorch', 'gradio', 'AI영상']
+tags: [립싱크, 영상편집, 토킹헤드, 딥페이크, ffmpeg, pytorch, gradio, ai영상]
 aliases:
 - /kr/posts/video-retalking/
 ---
@@ -132,7 +137,7 @@ numpy==1.23.4
 ### 6단계: 설치 검증
 
 ```bash
-python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
+python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
 GPU 시스템의 예상 출력:

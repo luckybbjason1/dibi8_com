@@ -1,4 +1,8 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/windsurf-vs-github-copilot-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/windsurf-vs-github-copilot-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/windsurf-vs-github-copilot-2026" />
 title: 'Windsurf vs GitHub Copilot 2026 심층 비교: 어떤 AI 코딩 툴이 더 나을까?'
 description: 'Windsurf Cascade vs GitHub Copilot Agent Mode — 가격, 멀티파일 편집, 엔터프라이즈 보안, 2026년 6월 과금 논란까지. 실제 데이터, 군더더기 없이.'
 date: 2026-06-07 00:00:00+08:00

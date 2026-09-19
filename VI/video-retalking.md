@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/video-retalking" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — Hướng Dẫn Cài Đặt Chỉnh Sửa Video Lip-Sync AI 2026'
 description: 'VideoReTalking (VRT) là hệ thống đồng bộ môi dựa trên âm thanh để chỉnh sửa video talking head. Tương thích với RVC, GPT-SoVITS và Coqui TTS. Bao gồm cài đặt, inference, Gradio WebUI, triển khai production và so sánh benchmark với Wav2Lip và SadTalker.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/OpenTalker/video-retalking'
 stars: 7200
-maintainer: 'OpenTalker'
+maintainer: OpenTalker
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['lip-sync', 'chinh-sua-video', 'talking-head', 'deepfake', 'ffmpeg', 'pytorch', 'gradio', 'ai-video']
+tags: ['lip-sync', 'chinh-sua-video', 'talking-head', deepfake, ffmpeg, pytorch, gradio, 'ai-video']
 aliases:
 - /vi/posts/video-retalking/
 ---
@@ -132,7 +137,7 @@ Tải checkpoints pre-trained từ [Google Drive](https://drive.google.com/drive
 ### Bước 6: Xác minh cài đặt
 
 ```bash
-python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
+python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
 Đầu ra dự kiến trên hệ thống GPU:

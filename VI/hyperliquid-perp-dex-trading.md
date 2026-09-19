@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
 title: 'Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối Lượng $2B+ Mỗi Ngày — Hướng Dẫn Tích Hợp Bot Giao Dịch'
 description: 'Hướng dẫn toàn diện về Hyperliquid, sàn Perpetual DEX hoàn toàn on-chain xử lý khối lượng $2B+ hàng ngày với 100+ cặp giao dịch, đòn bẩy 50x, HyperEVM và Python SDK.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hyperliquid-dex'
 stars: 0
-maintainer: 'hyperliquid'
+maintainer: hyperliquid
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Hyperliquid', 'perpetual DEX', 'on-chain trading', 'leverage trading', 'trading bot', 'HyperEVM', 'Python SDK', 'WebSocket API', 'CLOB', 'DeFi trading', 'algorithmic trading']
+tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'trading bot', hyperevm, 'python sdk', 'websocket api', clob, 'defi trading', 'algorithmic trading']
 aliases:
 - /vi/posts/hyperliquid-perp-dex-trading/
 ---
@@ -119,23 +124,23 @@ class HyperliquidTrader:
     """Client giao dịch Hyperliquid sẵn sàng production."""
     
     def __init__(self, use_testnet=True):
-        self.private_key = os.getenv('PRIVATE_KEY')
-        self.wallet_address = os.getenv('WALLET_ADDRESS')
+        self.private_key = os.getenv(PRIVATE_KEY)
+        self.wallet_address = os.getenv(WALLET_ADDRESS)
         self.base_url = constants.TESTNET_API_URL if use_testnet else constants.MAINNET_API_URL
         
         self.exchange = Exchange(self.wallet_address, self.private_key, self.base_url)
         self.info = Info(self.base_url)
         
-        print(f"Đã kết nối Hyperliquid {'Testnet' if use_testnet else 'Mainnet'}")
+        print(f"Đã kết nối Hyperliquid {Testnet if use_testnet else Mainnet}")
         print(f"Ví: {self.wallet_address}")
     
     def get_account_summary(self):
         """Lấy thông tin tài khoản tổng hợp."""
         user_state = self.info.user_state(self.wallet_address)
         
-        account_value = float(user_state['marginSummary']['accountValue'])
-        total_margin_used = float(user_state['marginSummary']['totalMarginUsed'])
-        withdrawable = float(user_state['withdrawable'])
+        account_value = float(user_state[marginSummary][accountValue])
+        total_margin_used = float(user_state[marginSummary][totalMarginUsed])
+        withdrawable = float(user_state[withdrawable])
         
         print(f"Giá trị tài khoản: ${account_value:,.2f}")
         print(f"Margin đã dùng: ${total_margin_used:,.2f}")
@@ -154,19 +159,19 @@ trader.get_account_summary()
     def get_all_assets(self):
         """Lấy tất cả các thị trường perpetual có sẵn."""
         meta = self.info.meta()
-        universe = meta['universe']
+        universe = meta[universe]
         
         assets = []
         for asset in universe:
             assets.append({
-                'name': asset['name'],
-                'max_leverage': asset['maxLeverage'],
-                'sz_decimals': asset['szDecimals'],
+                name: asset[name],
+                max_leverage: asset[maxLeverage],
+                sz_decimals: asset[szDecimals],
             })
         
         print(f"\nThị trường khả dụng: {len(assets)}")
         for asset in assets[:10]:
-            print(f"  {asset['name']}: đòn bẩy tối đa {asset['max_leverage']}x")
+            print(f"  {asset[name]}: đòn bẩy tối đa {asset[max_leverage]}x")
         
         return assets
 ```
@@ -213,19 +218,19 @@ class HyperliquidWebSocketFeed:
             msg = json.loads(message)
             
             if msg.get("channel") == "l2Book":
-                await self._handle_orderbook(msg['data'])
+                await self._handle_orderbook(msg[data])
             elif msg.get("channel") == "trades":
-                await self._handle_trades(msg['data'])
+                await self._handle_trades(msg[data])
     
     async def _handle_orderbook(self, data):
         """Xử lý cập nhật orderbook L2."""
-        coin = data['coin']
-        levels = data['levels']
+        coin = data[coin]
+        levels = data[levels]
         
         self.orderbook_cache[coin] = {
-            'bids': [{'px': float(b['px']), 'sz': float(b['sz'])} for b in levels[0]],
-            'asks': [{'px': float(a['px']), 'sz': float(a['sz'])} for a in levels[1]],
-            'timestamp': data.get('time', 0)
+            bids: [{px: float(b[px]), sz: float(b[sz])} for b in levels[0]],
+            asks: [{px: float(a[px]), sz: float(a[sz])} for a in levels[1]],
+            timestamp: data.get(time, 0)
         }
     
     async def subscribe_orderbook(self, coin):
@@ -249,8 +254,8 @@ class HyperliquidWebSocketFeed:
         
         result = self.exchange.order(coin, is_buy, sz, 0, order_type, reduce_only=False)
         
-        print(f"Thị trường {'MUA' if is_buy else 'BÁN'} {sz} {coin}")
-        print(f"Trạng thái: {result['status']}")
+        print(f"Thị trường {MUA if is_buy else BÁN} {sz} {coin}")
+        print(f"Trạng thái: {result[status]}")
         return result
     
     def place_limit_order(self, coin: str, is_buy: bool, sz: float, px: float, tif: str = "Gtc"):
@@ -265,7 +270,7 @@ class HyperliquidWebSocketFeed:
         
         result = self.exchange.order(coin, is_buy, sz, px, order_type, reduce_only=False)
         
-        print(f"Giới hạn {'MUA' if is_buy else 'BÁN'} {sz} {coin} @ {px}")
+        print(f"Giới hạn {MUA if is_buy else BÁN} {sz} {coin} @ {px}")
         return result
     
     def place_stop_loss_order(self, coin: str, is_buy: bool, sz: float,
@@ -281,7 +286,7 @@ class HyperliquidWebSocketFeed:
         
         result = self.exchange.order(coin, is_buy, sz, limit_px, order_type, reduce_only=True)
         
-        print(f"Cắt lỗ {'MUA' if is_buy else 'BÁN'} {sz} {coin}")
+        print(f"Cắt lỗ {MUA if is_buy else BÁN} {sz} {coin}")
         print(f"Trigger: {trigger_px}, Giới hạn: {limit_px}")
         return result
 ```
@@ -292,26 +297,26 @@ class HyperliquidWebSocketFeed:
     def get_positions(self):
         """Lấy tất cả vị thế mở với chi tiết P&L."""
         user_state = self.info.user_state(self.wallet_address)
-        positions = user_state.get('assetPositions', [])
+        positions = user_state.get(assetPositions, [])
         
         active_positions = []
         for pos in positions:
-            position = pos['position']
-            entry_px = float(position['entryPx'])
-            current_px = float(position['markPx'])
-            size = float(position['szi'])
+            position = pos[position]
+            entry_px = float(position[entryPx])
+            current_px = float(position[markPx])
+            size = float(position[szi])
             
             pnl = (current_px - entry_px) * size if size > 0 else (entry_px - current_px) * abs(size)
             
             active_positions.append({
-                'coin': position['coin'],
-                'size': size,
-                'entry_price': entry_px,
-                'mark_price': current_px,
-                'unrealized_pnl': pnl,
-                'leverage': float(position['leverage']['value']),
-                'margin_used': float(position['marginUsed']),
-                'liquidation_price': float(position.get('liquidationPx', 0))
+                coin: position[coin],
+                size: size,
+                entry_price: entry_px,
+                mark_price: current_px,
+                unrealized_pnl: pnl,
+                leverage: float(position[leverage][value]),
+                margin_used: float(position[marginUsed]),
+                liquidation_price: float(position.get(liquidationPx, 0))
             })
         
         return active_positions
@@ -326,9 +331,9 @@ class HyperliquidWebSocketFeed:
         """Đóng toàn bộ vị thế cho thị trường cụ thể."""
         positions = self.get_positions()
         for pos in positions:
-            if pos['coin'] == coin and pos['size'] != 0:
-                is_buy = pos['size'] < 0
-                sz = abs(pos['size'])
+            if pos[coin] == coin and pos[size] != 0:
+                is_buy = pos[size] < 0
+                sz = abs(pos[size])
                 return self.place_market_order(coin, is_buy, sz)
         print(f"Không có vị thế mở cho {coin}")
         return None
@@ -360,7 +365,7 @@ class TrendFollowingBot:
             startTime=int((datetime.now() - timedelta(hours=12)).timestamp() * 1000),
             endTime=int(datetime.now().timestamp() * 1000)
         )
-        closes = pd.Series([float(c['c']) for c in candles if 'c' in c])
+        closes = pd.Series([float(c[c]) for c in candles if c in c])
         
         if len(closes) < self.slow_ema_period + 5:
             return "GIỮ"
@@ -396,7 +401,7 @@ class TrendFollowingBot:
             return
         
         account = self.trader.get_account_summary()
-        account_value = float(account['marginSummary']['accountValue'])
+        account_value = float(account[marginSummary][accountValue])
         sz = round(account_value * self.risk_per_trade / current_px, 4)
         
         if signal == "MUA":
@@ -419,7 +424,7 @@ class TrendFollowingBot:
                 
                 positions = self.trader.get_positions()
                 for pos in positions:
-                    print(f"  {pos['coin']}: {pos['size']} | PnL: ${pos['unrealized_pnl']:+.2f}")
+                    print(f"  {pos[coin]}: {pos[size]} | PnL: ${pos[unrealized_pnl]:+.2f}")
                 
                 time.sleep(check_interval)
             except Exception as e:
@@ -437,22 +442,22 @@ class TrendFollowingBot:
     def get_funding_rates(self):
         """Lấy tỷ lệ funding cho tất cả thị trường."""
         meta = self.info.meta()
-        assets = meta['universe']
+        assets = meta[universe]
         
         funding_data = []
         for asset in assets[:20]:
-            name = asset['name']
+            name = asset[name]
             ctx = self.info.funding_history(name, 1)
             if ctx:
                 funding_data.append({
-                    'coin': name,
-                    'funding_rate': float(ctx[0].get('fundingRate', 0)),
+                    coin: name,
+                    funding_rate: float(ctx[0].get(fundingRate, 0)),
                 })
         
-        funding_data.sort(key=lambda x: abs(x['funding_rate']), reverse=True)
+        funding_data.sort(key=lambda x: abs(x[funding_rate]), reverse=True)
         print("\nTỷ lệ Funding hàng đầu:")
         for f in funding_data[:10]:
-            print(f"  {f['coin']}: {f['funding_rate']*100:+.4f}%")
+            print(f"  {f[coin]}: {f[funding_rate]*100:+.4f}%")
         return funding_data
 ```
 
@@ -466,7 +471,7 @@ class MultiAssetWebSocketManager:
         self.assets = assets
         self.ws_url = "wss://api.hyperliquid.xyz/ws"
         self.handlers = {}
-        self.data_cache = {asset: {'mid': 0, 'spread': 0} for asset in assets}
+        self.data_cache = {asset: {mid: 0, spread: 0} for asset in assets}
     
     async def subscribe_all(self, ws):
         for asset in self.assets:
@@ -481,9 +486,9 @@ class MultiAssetWebSocketManager:
             async for message in ws:
                 msg = json.loads(message)
                 if msg.get("channel") == "allMids":
-                    for asset, price in msg['data'].items():
+                    for asset, price in msg[data].items():
                         if asset in self.data_cache:
-                            self.data_cache[asset]['mid'] = float(price)
+                            self.data_cache[asset][mid] = float(price)
 ```
 
 ---
@@ -518,7 +523,7 @@ class RiskManager:
     
     def check_daily_limit(self) -> bool:
         account = self.trader.get_account_summary()
-        account_value = float(account['marginSummary']['accountValue'])
+        account_value = float(account[marginSummary][accountValue])
         return True  # Thêm logic kiểm tra
     
     def validate_order(self, coin: str, size: float, leverage: int) -> bool:
@@ -531,8 +536,8 @@ class RiskManager:
         print("ĐÓNG KHẨN CẤP TẤT CẢ VỊ THẾ")
         positions = self.trader.get_positions()
         for pos in positions:
-            if pos['size'] != 0:
-                self.trader.close_position(pos['coin'])
+            if pos[size] != 0:
+                self.trader.close_position(pos[coin])
                 time.sleep(0.5)
 ```
 

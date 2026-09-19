@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mem0" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mem0" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mem0" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mem0" />
 title: 'Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026'
 description: 'Mem0 (mem0ai)은 AI 에이전트를 위한 범용 메모리 레이어입니다. Claude Code, OpenAI, LangChain, CrewAI, Cursor와 호환됩니다. mem0 튜토리얼, 지속 메모리 설정, 벡터 스토어 튜닝, 프로덕션 배포 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/mem0ai/mem0'
 stars: 56205
-maintainer: 'mem0ai'
+maintainer: mem0ai
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mem0', 'ai-agent-memory', '지속-메모리', 'langchain', '벡터-스토어', '메모리-튜닝', 'mem0-튜토리얼', 'mem0-vs-langchain', 'crewai', '오픈소스']
+tags: [mem0, 'ai-agent-memory', '지속-메모리', langchain, '벡터-스토어', '메모리-튜닝', 'mem0-튜토리얼', 'mem0-vs-langchain', crewai, 오픈소스]
 aliases:
 - /kr/posts/mem0/
 ---
@@ -356,7 +361,7 @@ mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 def retrieve_user_context(user_id: str, query: str) -> str:
     """개인화를 위한 사용자에 대한 메모리를 검색합니다."""
     results = mem0.search(query, user_id=user_id, limit=5)
-    return "\n".join([f"- {r['memory']}" for r in results])
+    return "\n".join([f"- {r[memory]}" for r in results])
 
 @tool
 def store_interaction(user_id: str, content: str) -> str:

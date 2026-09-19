@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/autogen" />
 title: 'AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs CrewAI, LangGraph in 2026'
 description: 'AutoGen (Microsoft) is an event-driven programming framework for building multi-agent AI systems. Compatible with OpenAI, Azure, Ollama, Docker, and VS Code. Covers installation, group chat setup, production hardening, and honest comparison with alternatives.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/microsoft/autogen'
 stars: 58196
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['AutoGen', 'multi-agent', 'Microsoft', 'LLM framework', 'agentic AI', 'Python', 'CrewAI alternative', 'LangGraph alternative']
+tags: [autogen, 'multi-agent', microsoft, 'llm framework', 'agentic ai', python, 'crewai alternative', 'langgraph alternative']
 aliases:
 - /posts/autogen/
 - /resources/llm-frameworks/autogen-multi-agent-framework/
@@ -291,7 +293,7 @@ async def main():
         name="reviewer",
         model_client=model_client,
         system_message="You are an editor. Review content for accuracy and clarity. "
-                       "Respond with 'APPROVED' when the content is good."
+                       "Respond with APPROVED when the content is good."
     )
 
     # Termination: stop after 20 messages or when reviewer approves

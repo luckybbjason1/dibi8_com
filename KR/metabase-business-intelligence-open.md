@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/metabase-business-intelligence-open" />
 title: 'Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축 가이드'
 description: 'Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'metabase/metabase'
 stars: 41000
-maintainer: 'metabase'
+maintainer: metabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Metabase', 'BI', 'business-intelligence', 'open-source', 'Tableau', 'dashboards', 'SQL', 'Docker', 'self-hosted', 'analytics', 'data-visualization', 'Apache-Superset', '비즈니스인텔리전스', '데이터분석', '오픈소스']
+tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset', 비즈니스인텔리전스, 데이터분석, 오픈소스]
 aliases:
 - /kr/posts/metabase-business-intelligence-open/
 ---
@@ -65,7 +70,7 @@ SELECT
     COUNT(*) AS order_count,
     SUM(total) AS revenue
 FROM orders
-WHERE created_at >= DATE_TRUNC('day', NOW() - INTERVAL '30 days')
+WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
 ```
@@ -81,14 +86,14 @@ ORDER BY revenue DESC;
 WITH cohort_users AS (
     SELECT 
         user_id,
-        DATE_TRUNC('month', created_at) AS cohort_month
+        DATE_TRUNC(month, created_at) AS cohort_month
     FROM users
     WHERE created_at >= '2024-01-01'
 ),
 retention AS (
     SELECT 
         c.cohort_month,
-        DATE_TRUNC('month', o.created_at) - c.cohort_month AS period,
+        DATE_TRUNC(month, o.created_at) - c.cohort_month AS period,
         COUNT(DISTINCT o.user_id) AS retained_users,
         COUNT(DISTINCT c.user_id) AS total_users
     FROM cohort_users c
@@ -250,7 +255,7 @@ docker-compose up -d
 apt install -y nginx certbot python3-certbot-nginx
 
 # 6. Nginx 설정
-cat > /etc/nginx/sites-available/metabase << 'EOF'
+cat > /etc/nginx/sites-available/metabase << EOF
 server {
     listen 80;
     server_name analytics.yourdomain.com;
@@ -383,7 +388,7 @@ SSL: 필수
 -- 날짜 필터 변수 포함
 
 SELECT 
-    DATE_TRUNC('month', created_at) AS cohort_month,
+    DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
 WHERE created_at >= {{start_date}}  -- 대시보드 필터
@@ -434,7 +439,7 @@ Metabase의 임베딩 API를 통해 제품에 대시보드를 화이트라벨링
 
 ```javascript
 // 서명 임베딩용 JWT 토큰 생성 (Node.js)
-const jwt = require('jsonwebtoken');
+const jwt = require(jsonwebtoken);
 
 const token = jwt.sign({
   resource: { dashboard: 123 },
@@ -493,7 +498,7 @@ Slack 채널: #data-alerts, #executive-summary
 -- 관리 > 권한 > 데이터 > 샌드박스
 
 SELECT * FROM orders
-WHERE region = user_attribute('region');
+WHERE region = user_attribute(region);
 ```
 
 `user_attribute` 함수는 쿼리 시간에 사용자별로 해석되어, 별도의 데이터베이스 뷰 없이 데이터 격리를 집행한다.

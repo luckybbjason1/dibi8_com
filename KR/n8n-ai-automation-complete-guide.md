@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-automation-complete-guide" />
 title: n8n AI 자동화 — 코드 없이 지능형 워크플로우 구축
 description: n8n의 AI 기반 워크플로우 자동화 완전 가이드. AI 노드로 400개 이상 앱 연결, 자율 에이전트 구축, 복잡한 비즈니스 프로세스 자동화. 가격, 템플릿 및 실제 예제 포함.
 tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']

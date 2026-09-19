@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-mcp-tools-top10-2026" />
 title: '2026 年最佳免费 MCP 工具 Top 10：精选 Model Context Protocol 服务器'
 description: '2026 年 10 款最佳免费 MCP 服务器——文件系统、网页搜索、记忆、GitHub、数据库等，全部开源零成本，适配 Claude、Cursor 和所有支持 MCP 的 AI 客户端。'
 date: 2026-06-06 00:00:00+08:00

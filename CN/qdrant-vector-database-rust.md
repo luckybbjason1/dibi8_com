@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/qdrant-vector-database-rust" />
 title: 'Qdrant: The Rust-Powered Vector Database Handling 1M+ Vectors at 10ms Latency — Self-Hosted Deployment Guide 2026'
 description: 'Deploy Qdrant vector database for production similarity search. Complete guide to HNSW indexing, payload filtering, multi-tenancy, Docker deployment, and Python/Go/JS clients with real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'qdrant/qdrant'
 stars: 22000
-maintainer: 'qdrant'
+maintainer: qdrant
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Qdrant', 'Vector Database', 'Rust', 'HNSW', 'Similarity Search', 'Docker', 'Self-Hosted', 'AI']
+tags: [qdrant, 'vector database', rust, hnsw, 'similarity search', docker, 'self-hosted', ai]
 aliases:
 - /posts/qdrant-vector-database-rust/
 ---
@@ -563,7 +565,7 @@ def create_snapshot(collection: str) -> str:
     url = f"http://localhost:6333/collections/{collection}/snapshots"
     resp = requests.post(url)
     result = resp.json()["result"]
-    print(f"Snapshot created: {result['name']}")
+    print(f"Snapshot created: {result[name]}")
     return result["name"]
 
 # Daily snapshot (run via cron)

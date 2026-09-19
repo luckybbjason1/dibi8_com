@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moralis-web3-data-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moralis-web3-data-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moralis-web3-data-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moralis-web3-data-api" />
 title: 'Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API — 설정 가이드'
 description: '2026년 Moralis Web3 Data API 완벽 가이드. JavaScript, Python, Unity SDK로 10개 이상의 체인에서 실시간 블록체인 데이터, NFT 메타데이터, 토큰 가격, 지갑 잔액을 가져오는 방법을 배우세요.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/MoralisWeb3/Moralis-JS'
 stars: 3200
-maintainer: 'MoralisWeb3'
+maintainer: MoralisWeb3
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Moralis']
+tags: [moralis]
 aliases:
 - /kr/posts/moralis-web3-data-api/
 ---
@@ -88,7 +93,7 @@ MORALIS_API_KEY=your_api_key_here
 
 ```javascript
 // server.js
-require('dotenv').config();
+require(dotenv).config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
   throw new Error('MORALIS_API_KEY is not defined');
@@ -109,7 +114,7 @@ npm install moralis
 
 ```javascript
 // Node.js 애플리케이션에서 Moralis 초기화
-const Moralis = require('moralis').default;
+const Moralis = require(moralis).default;
 
 await Moralis.start({
   apiKey: process.env.MORALIS_API_KEY,
@@ -129,7 +134,7 @@ pip install moralis
 from moralis import evm_api
 import os
 
-api_key = os.environ.get('MORALIS_API_KEY')
+api_key = os.environ.get(MORALIS_API_KEY)
 if not api_key:
     raise ValueError("MORALIS_API_KEY environment variable is required")
 
@@ -168,8 +173,8 @@ Token API는 Moralis에서 가장 자주 사용되는 구성 요소 중 하나�
 
 ```javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
-  address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-  chain: '0x1', // Ethereum 메인넷
+  address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+  chain: 0x1, // Ethereum 메인넷
 });
 
 console.log('Token Price:', priceResponse.result.usdPrice);
@@ -182,8 +187,8 @@ console.log('Price Change 24h:', priceResponse.result.usdPricePercentChange24h);
 
 ```javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
 });
 
 balances.result.forEach((token) => {
@@ -197,8 +202,8 @@ balances.result.forEach((token) => {
 
 ```javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
   limit: 10,
 });
 
@@ -214,10 +219,10 @@ transfers.result.forEach((tx) => {
 ```javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
   addresses: [
-    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-    '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+    0x6B175474E89094C44Da98b954EedeAC495271d0F,
   ],
-  chain: '0x1',
+  chain: 0x1,
 });
 
 metadata.result.forEach((token) => {
@@ -235,8 +240,8 @@ NFT API는 NFT 소유권, 메타데이터, 전송 및 컬렉션 수준 통계를
 
 ```javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
   limit: 20,
 });
 
@@ -250,9 +255,9 @@ nfts.result.forEach((nft) => {
 
 ```javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  tokenId: '1',
-  chain: '0x1',
+  address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
+  tokenId: 1,
+  chain: 0x1,
 });
 
 console.log('Name:', nftMetadata.result.name);
@@ -264,8 +269,8 @@ console.log('Attributes:', nftMetadata.result.metadata?.attributes);
 
 ```javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  chain: '0x1',
+  address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
+  chain: 0x1,
   limit: 10,
 });
 
@@ -289,7 +294,7 @@ result = evm_api.nft.get_nft_floor_price(
     params=params,
 )
 
-print(f"Floor Price: {result['floor_price']} ETH")
+print(f"Floor Price: {result[floor_price]} ETH")
 ```
 
 ---
@@ -306,7 +311,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
   description: 'Track USDC transfers',
-  tag: 'usdc_transfers',
+  tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',
   includeContractLogs: true,
@@ -314,17 +319,17 @@ const stream = {
     {
       anonymous: false,
       inputs: [
-        { indexed: true, name: 'from', type: 'address' },
-        { indexed: true, name: 'to', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' },
+        { indexed: true, name: from, type: address },
+        { indexed: true, name: to, type: address },
+        { indexed: false, name: value, type: uint256 },
       ],
-      name: 'Transfer',
-      type: 'event',
+      name: Transfer,
+      type: event,
     },
   ],
   topic0: ['Transfer(address,address,uint256)'],
   filter: {
-    'address': '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   },
   includeInternalTxs: false,
 };
@@ -339,8 +344,8 @@ console.log('Stream created:', newStream.result.id);
 
 ```javascript
 // Express 웹훅 핸들러
-const express = require('express');
-const crypto = require('crypto');
+const express = require(express);
+const crypto = require(crypto);
 const app = express();
 app.use(express.json());
 
@@ -349,12 +354,12 @@ app.post('/webhooks/moralis', (req, res) => {
   const signature = req.headers['x-signature'];
   const body = JSON.stringify(req.body);
   const hash = crypto
-    .createHmac('sha256', process.env.MORALIS_STREAM_SECRET)
+    .createHmac(sha256, process.env.MORALIS_STREAM_SECRET)
     .update(body)
-    .digest('hex');
+    .digest(hex);
 
   if (signature !== hash) {
-    return res.status(401).send('Unauthorized');
+    return res.status(401).send(Unauthorized);
   }
 
   const events = req.body.confirmed || req.body.unconfirmed;
@@ -367,7 +372,7 @@ app.post('/webhooks/moralis', (req, res) => {
     });
   });
 
-  res.status(200).send('OK');
+  res.status(200).send(OK);
 });
 
 app.listen(3000, () => console.log('Webhook server running on port 3000'));
@@ -386,8 +391,8 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const authMessage = await Moralis.Auth.requestMessage({
   chain: EvmChain.ETHEREUM,
-  address: '0x1234567890123456789012345678901234567890',
-  network: 'evm',
+  address: 0x1234567890123456789012345678901234567890,
+  network: evm,
   domain: 'your-app.com',
   statement: 'Sign this message to authenticate with Your App',
   uri: 'https://your-app.com/login',
@@ -402,7 +407,7 @@ console.log('Sign-in message:', authMessage.result.message);
 
 ```javascript
 const authResult = await Moralis.Auth.verify({
-  network: 'evm',
+  network: evm,
   message: authMessage.result.message,
   signature: '0x...signed_message...',
 });
@@ -420,8 +425,8 @@ Moralis의 강력한 측면 중 하나는 크로스체인 호환 코드를 작�
 ### 멀티체인 포트폴리오 추적기
 
 ```javascript
-const chains = ['0x1', '0x89', '0x38', '0xa4b1']; // ETH, MATIC, BNB, ARB
-const address = '0x1234567890123456789012345678901234567890';
+const chains = [0x1, 0x89, 0x38, 0xa4b1]; // ETH, MATIC, BNB, ARB
+const address = 0x1234567890123456789012345678901234567890;
 
 const portfolio = {};
 
@@ -431,10 +436,10 @@ for (const chain of chains) {
     chain,
   });
   
-  const chainName = chain === '0x1' ? 'Ethereum'
-    : chain === '0x89' ? 'Polygon'
-    : chain === '0x38' ? 'BNB Chain'
-    : 'Arbitrum';
+  const chainName = chain === 0x1 ? Ethereum
+    : chain === 0x89 ? Polygon
+    : chain === 0x38 ? 'BNB Chain'
+    : Arbitrum;
   
   portfolio[chainName] = balances.result.map((t) => ({
     symbol: t.symbol,
@@ -462,8 +467,8 @@ const allTransfers = [];
 
 do {
   const response = await Moralis.EvmApi.token.getWalletTokenTransfers({
-    address: '0x1234567890123456789012345678901234567890',
-    chain: '0x1',
+    address: 0x1234567890123456789012345678901234567890,
+    chain: 0x1,
     limit: 100,
     cursor,
   });
@@ -478,7 +483,7 @@ console.log(`Retrieved ${allTransfers.length} transfers`);
 ### 속도 제한 관리
 
 ```javascript
-const axios = require('axios');
+const axios = require(axios);
 const rateLimit = require('axios-rate-limit');
 
 const http = rateLimit(axios.create(), {
@@ -505,7 +510,7 @@ async function safeApiCall(apiFunction) {
 고트래픽 애플리케이션의 경우 중복 API 호출을 줄이기 위해 캐싱 레이어를 구현합니다.
 
 ```javascript
-const Redis = require('ioredis');
+const Redis = require(ioredis);
 const redis = new Redis();
 
 async function getCachedTokenPrice(tokenAddress, chain) {

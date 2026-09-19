@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/developer-api-gateway-tools" />
 title: '2025年最佳开发者API网关工具对比：Kong、NGINX Plus、Traefik、Apigee全面评测'
 description: '深入对比Kong、NGINX Plus、Traefik、Google Apigee、AWS API Gateway等主流API网关工具，从性能、扩展性、生态等维度进行全面评测。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['API网关', 'Kong', 'NGINX', 'Traefik', '微服务']
+tags: [api网关, kong, nginx, traefik, 微服务]
 aliases:
 - /zh/posts/developer-api-gateway-tools/
 ---

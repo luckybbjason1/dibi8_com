@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/feast-feature-store-ml" />
 title: 'Feast: The Open-Source Feature Store Serving ML Features at Sub-Second Latency — 2026 Setup Guide'
 description: 'Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/offline stores, sub-second serving, Redis/BigQuery backends, batch & real-time features, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Feast', 'Feature Store', 'MLOps', 'ML Pipeline', 'Redis', 'BigQuery', 'Online Store', 'Offline Store', 'Real-time ML', 'Feature Engineering']
+tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
 aliases:
 - /posts/feast-feature-store-ml/
 ---
@@ -121,7 +123,7 @@ features = store.get_online_features(
     entity_rows=[{"user_id": "user_12345"}],
 ).to_dict()
 
-# Returns: {'avg_order_amount_30d': [245.50], 'total_transactions_90d': [12]}
+# Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
 ```
 
 ### 4. Feature Server

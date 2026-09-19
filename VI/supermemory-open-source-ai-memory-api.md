@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supermemory-open-source-ai-memory-api" />
 
 title: 'Supermemory: API Bộ nhớ AI Mã nguồn Mở Nhanh nhất để Xây dựng Ứng dụng LLM Nhớ Mọi thứ'
 description: 'Supermemory là một công cụ và ứng dụng bộ nhớ mã nguồn mở cho ứng dụng AI. API bộ nhớ nhanh, mở rộng được với tìm kiếm vector, tìm kiếm đồ thị và quản lý phiên. Tích hợp với LangChain, LlamaIndex, CrewAI và mọi ứng dụng Python/JS. Tự lưu trữ, không phụ thuộc bên ngoài. Bao gồm hướng dẫn cài đặt, benchmark và triển khai production.'

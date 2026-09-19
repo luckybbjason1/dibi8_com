@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-dev-utils-2026" />
 title: 'markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026'
 description: 'markitdown là công cụ Python của Microsoft dùng để chuyển các loại file và tài liệu Office sang Markdown. 141.153 sao GitHub, giấy phép MIT. Bài viết bao gồm cài đặt, cách dùng CLI và Python cốt lõi, ví dụ code thực tế, cùng so sánh thẳng thắn với pandoc và docx2txt.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/markitdown'
 stars: 141153
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-06-02'
 featureImage: ''
 draft: false
@@ -151,7 +156,7 @@ from markitdown import MarkItDown
 md = MarkItDown()
 result = md.convert('example.docx')
 
-with open('output.md', 'w') as file:
+with open('output.md', w) as file:
     file.write(result.text_content)
 ```
 

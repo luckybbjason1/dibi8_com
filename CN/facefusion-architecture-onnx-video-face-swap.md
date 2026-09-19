@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/facefusion-architecture-onnx-video-face-swap" />
 title: Why Did the Classic 'Roop' Die?
 description: Why Did the Classic 'Roop' Die?
 date: 2026-05-15 04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-vs-midjourney" />
 title: "Midjourney 终极免费平替 (2026)：为什么专业团队都在转向 ComfyUI？"
 description: "Midjourney 终极免费平替 (2026)：为什么专业团队都在转向 ComfyUI？"
 date: 2026-05-15T04:20:25+09:00

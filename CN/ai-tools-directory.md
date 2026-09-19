@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-tools-directory" />
 title: 'AI Tools Directory 2024: Complete Guide to Best AI Tools | Dibi8'
 description: Discover the best AI tools of 2024. Complete directory of 200+ AI tools
   for writing, image generation, coding, marketing, and more. Free and paid options

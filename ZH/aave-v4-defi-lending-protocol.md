@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aave-v4-defi-lending-protocol" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aave-v4-defi-lending-protocol" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aave-v4-defi-lending-protocol" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aave-v4-defi-lending-protocol" />
 title: 'AAVE v4 2026：管理150亿美元以上存款的DeFi借贷协议 — 智能合约集成指南'
 description: '2026年AAVE v4 DeFi借贷协议集成完整指南。学习如何存入和借入30多种加密资产、使用闪电贷、实施隔离模式，以及在您的DApp中集成GHO稳定币。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/aave/aave-v3-core'
 stars: 2100
-maintainer: 'aave'
+maintainer: aave
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['AAVE']
+tags: [aave]
 aliases:
 - /zh/posts/aave-v4-defi-lending-protocol/
 ---
@@ -32,6 +37,15 @@ aliases:
 
 > **联盟营销披露：** 本文包含[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)和[OKX](https://www.promoohubly.com/join/12190433)的联盟链接。当您通过我们的链接注册时，我们可能会赚取佣金，而不会给您带来额外费用。
 
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [1Inch Dex Aggregator Routing](/zh/1inch-dex-aggregator-routing)
+2. [Alpaca Trading Api Stock Broker](/zh/alpaca-trading-api-stock-broker)
+
+---
 ---
 
 ## AAVE是什么
@@ -100,7 +114,7 @@ PRIVATE_KEY=your_private_key
 ```javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require(dotenv).config();
 
 module.exports = {
   solidity: '0.8.24',
@@ -254,12 +268,12 @@ contract AaveDataReader {
 对于前端和脚本集成，ethers.js提供了便捷的接口。
 
 ```javascript
-const { ethers } = require('ethers');
-require('dotenv').config();
+const { ethers } = require(ethers);
+require(dotenv).config();
 
 // 以太坊主网上的AAVE v4池合约
-const POOL_ADDRESS = '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2';
-const POOL_DATA_PROVIDER = '0x7B4EB56E7CD4b454BA8ff71E4518426Fede81A62';
+const POOL_ADDRESS = 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2;
+const POOL_DATA_PROVIDER = 0x7B4EB56E7CD4b454BA8ff71E4518426Fede81A62;
 
 const provider = new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC);
 
@@ -676,19 +690,19 @@ async function scanForLiquidations(usersToCheck) {
 
 ```typescript
 // hooks/useAave.ts
-import { useContractWrite, usePrepareContractWrite } from 'wagmi';
-import { parseUnits } from 'viem';
+import { useContractWrite, usePrepareContractWrite } from wagmi;
+import { parseUnits } from viem;
 
 const POOL_ABI = [
   {
-    name: 'supply',
-    type: 'function',
-    stateMutability: 'nonpayable',
+    name: supply,
+    type: function,
+    stateMutability: nonpayable,
     inputs: [
-      { name: 'asset', type: 'address' },
-      { name: 'amount', type: 'uint256' },
-      { name: 'onBehalfOf', type: 'address' },
-      { name: 'referralCode', type: 'uint16' },
+      { name: asset, type: address },
+      { name: amount, type: uint256 },
+      { name: onBehalfOf, type: address },
+      { name: referralCode, type: uint16 },
     ],
     outputs: [],
   },
@@ -696,13 +710,13 @@ const POOL_ABI = [
 
 export function useSupplyAsset(asset: string, amount: string, decimals: number) {
   const { config } = usePrepareContractWrite({
-    address: '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2',
+    address: 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2,
     abi: POOL_ABI,
-    functionName: 'supply',
+    functionName: supply,
     args: [
       asset as `0x${string}`,
       parseUnits(amount, decimals),
-      '0xYourAddress' as `0x${string}`,
+      0xYourAddress as `0x${string}`,
       0,
     ],
   });
@@ -724,7 +738,7 @@ export function SupplyButton({ asset, amount }: { asset: string; amount: string 
       disabled={isLoading}
       className="supply-btn"
     >
-      {isLoading ? '供应中...' : '供应到AAVE'}
+      {isLoading ? '供应中...' : 供应到AAVE}
     </button>
   );
 }

@@ -1,4 +1,6 @@
 # AI Agent Skills Framework Explained: From Matt Pocock's Skills to GitHub Spec-Kit and Spec-Driven Development in 2026
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-agent-skills-framework-spec-driven-development-2026" />
 
 **Published:** May 20, 2026  
 **Reading Time:** 15 minutes  

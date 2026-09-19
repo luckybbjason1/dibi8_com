@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
 
 
 title: 'AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引用你的内容 — 五层方法论'

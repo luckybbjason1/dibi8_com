@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/2026-06-22-trending-ai-agents" />
 title: "This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of June 22, 2026)"
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — data auto-collected by Dibi8 Tribe Intel, analysis by Dibi8 editorial team."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]

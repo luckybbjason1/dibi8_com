@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
 title: 'Ladybird: 真正独立的浏览器 — 浏览器独立的新时代'
 description: 探索 Ladybird，一个从头开始构建的真正独立的 Web 浏览器。不依赖 Chrome，不受企业影响，纯开源。
 date: 2026-05-15 04:20:25+09:00

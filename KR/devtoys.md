@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/devtoys" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/devtoys" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/devtoys" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/devtoys" />
 title: 'DevToys: 31,533 GitHub Stars — 개발자 유틸리티 제품군 2026 완벽 설치 가이드'
 description: 'DevToys는 물론이고 오프라인 개발자용 스위스 아미 나이프입니다. JSON, Base64, JWT, 정규식 등 30개 이상의 도구를 Windows, macOS, Linux에서 사용할 수 있는 크로스 플랫폼 유틸리티로 스마트 감지 및 CLI 지원 기능을 갖추고 있습니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['DevToys', '개발자도구', '오프라인도구', 'JSON포맷터', 'Base64인코더', 'JWT디코더', '정규식테스트', '크로스플랫폼', '오픈소스']
+tags: [devtoys, 개발자도구, 오프라인도구, json포맷터, base64인코더, jwt디코더, 정규식테스트, 크로스플랫폼, 오픈소스]
 aliases:
 - /kr/posts/devtoys/
 ---

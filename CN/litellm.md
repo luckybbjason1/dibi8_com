@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/litellm" />
 title: 'LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs with Built-in Fallbacks — Production Gateway Setup for 2026'
 description: 'LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/BerriAI/litellm'
 stars: 22500
-maintainer: 'BerriAI'
+maintainer: BerriAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['litellm', 'llm-gateway', 'open-source', 'docker', 'production', 'ai-infrastructure', 'proxy-server', 'multi-model']
+tags: [litellm, 'llm-gateway', 'open-source', docker, production, 'ai-infrastructure', 'proxy-server', 'multi-model']
 aliases:
 - /posts/litellm/
 - /resources/llm-frameworks/litellm-unified-api-tutorial/
@@ -94,7 +96,7 @@ mkdir -p litellm-gateway && cd litellm-gateway
 curl -O https://raw.githubusercontent.com/BerriAI/litellm/main/docker-compose.yml
 
 # Create environment file
-cat > .env << 'EOF'
+cat > .env << EOF
 LITELLM_MASTER_KEY="sk-litellm-admin-$(openssl rand -hex 16)"
 LITELLM_SALT_KEY="sk-salt-$(openssl rand -hex 32)"
 OPENAI_API_KEY="sk-your-openai-key"

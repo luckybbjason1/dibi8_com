@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scrapling-python-stealthy-web-scraping-review" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapling-python-stealthy-web-scraping-review" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapling-python-stealthy-web-scraping-review" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scrapling-python-stealthy-web-scraping-review" />
 title: 'Scrapling 리뷰: 더 빠르고 더 은밀한 Python 스크래핑'
 description: 'Scrapling 리뷰: Python 스텔스 웹 스크래핑 라이브러리. 안티봇 조치를 우회하고, 동적 콘텐츠를 처리하며, 대규모로
   쉽게 스크래핑하세요.'

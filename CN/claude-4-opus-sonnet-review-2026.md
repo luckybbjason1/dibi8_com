@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-4-opus-sonnet-review-2026" />
 title: 'Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested'
 description: 'Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricing, and how Claude 4 compares to GPT-4o and Gemini 1.5 Pro. Updated June 2026.'
 date: 2026-06-06 00:00:00+08:00

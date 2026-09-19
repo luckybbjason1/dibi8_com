@@ -1,13 +1,18 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
 title: 'Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộng Đồng Thực Tế + Mẫu Bẫy'
 description: 'Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, Brave Search, Fetch. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm kiểm tra trước khi cài đặt, mỗi server chỉ mất 5 phút.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['MCP', 'Security', 'Claude Code', 'TypeScript', 'Python']
+tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 spec'
 licensing_model: Open Source / Mixed
-license_type: 'Various'
+license_type: Various
 github_repo: 'https://github.com/modelcontextprotocol/servers'
 stars: 60000
 maintainer: 'Community + Anthropic'
@@ -15,14 +20,14 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mcp', 'security', 'audit', 'claude-code', 'supply-chain', 'agent-security', '2026']
+tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
 aliases:
 - /vi/posts/mcp-server-security-audit-2026-real-cases/
 faq:
   - q: "MCP server do Anthropic bảo trì có an toàn hơn server cộng đồng không?"
     a: "Có, đáng kể. Các server tham chiếu của Anthropic (filesystem, git, github, fetch, sequentialthinking) đều được review nội bộ, có release đã ký, và có security model rõ ràng. Server cộng đồng thì khác nhau rất nhiều — một số được kiểm toán, đa số thì không. Ưu tiên Anthropic khi có phiên bản tương ứng; coi các lựa chọn cộng đồng là mã nguồn không tin cậy với quyền local đầy đủ cho đến khi bạn chứng minh được điều ngược lại."
   - q: "Mẫu tấn công MCP thực tế lớn nhất năm 2026 là gì?"
-    a: "Ba mẫu đồng hạng nhất: (1) Typosquatting — package giả như `github-mcp-server-v2` đánh cắp token. (2) Chuyển giao maintainer + telemetry — một server cộng đồng phổ biến đổi chủ, thêm 'analytics' rò rỉ đường dẫn file hoặc biến môi trường. (3) Prompt injection qua nội dung được fetch — server `fetch` kéo về markdown thù địch, agent sau đó rò rỉ `~/.ssh/id_rsa` vì prompt đã đánh lừa nó."
+    a: "Ba mẫu đồng hạng nhất: (1) Typosquatting — package giả như `github-mcp-server-v2` đánh cắp token. (2) Chuyển giao maintainer + telemetry — một server cộng đồng phổ biến đổi chủ, thêm analytics rò rỉ đường dẫn file hoặc biến môi trường. (3) Prompt injection qua nội dung được fetch — server `fetch` kéo về markdown thù địch, agent sau đó rò rỉ `~/.ssh/id_rsa` vì prompt đã đánh lừa nó."
   - q: "Một lần kiểm toán trước cài đặt đúng chuẩn mất bao lâu?"
     a: "Năm phút nếu bạn biết phải tìm gì. Checklist 8 điểm trong bài này bao quát độ tươi của maintainer, cây dependency, các lệnh gọi mạng, phạm vi file system, cách xử lý secret, dấu vết chuỗi cung ứng, lịch sử lỗ hổng, và tương thích sandbox. Hầu hết server cộng đồng đều rớt ít nhất 2 trên 8."
   - q: "Có nên dùng fine-grained GitHub PAT với MCP server không?"

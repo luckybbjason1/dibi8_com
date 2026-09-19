@@ -1,7 +1,12 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamafile-portable-local-llm" />
 title: LlamaFile — Chạy Local LLMs với một Portable Binary duy nhất
 description: Hướng dẫn toàn diện về LlamaFile của Meta/MLC AI. Chạy 100+ open-source LLMs local mà không cần cài đặt, yêu cầu GPU hay setup phức tạp. Một binary, mọi nền tảng.
-tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'privacy']
+tags: [llamafile, 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', privacy]
 category: dev-utils
 featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00

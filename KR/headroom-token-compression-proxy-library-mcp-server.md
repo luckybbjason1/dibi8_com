@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/headroom-token-compression-proxy-library-mcp-server" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/headroom-token-compression-proxy-library-mcp-server" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/headroom-token-compression-proxy-library-mcp-server" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/headroom-token-compression-proxy-library-mcp-server" />
 title: 'Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 — 2026 실전 가이드'
 description: 'Headroom (19,745 GitHub stars)는 도구 출력, 로그, 파일, RAG 청크를 LLM에 전달하기 전 압축합니다. 60-95% 적은 토큰, 동일한 답변. Python 라이브러리, 프록시, MCP 서버 포함. 설치 튜토리얼, 아키텍처 분석, 실제 벤치마킹 포함.'
 date: 2026-06-08

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/comfyui" />
 title: 'ComfyUI: 87K+ Stars — Node-Based Stable Diffusion Setup Guide 2026'
 description: 'ComfyUI tutorial and setup guide for node-based image generation. ComfyUI Docker deployment, custom nodes, API integration, comfyui vs automatic1111 benchmarks for 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 87200
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ComfyUI', 'Stable Diffusion', 'AI Image Generation', 'Node-Based UI', 'Docker', 'Flux', 'SDXL', 'Machine Learning']
+tags: [comfyui, 'stable diffusion', 'ai image generation', 'node-based ui', docker, flux, sdxl, 'machine learning']
 aliases:
 - /posts/comfyui/
 - /resources/ai-tools/comfyui-architecture-node-based-ai-image/

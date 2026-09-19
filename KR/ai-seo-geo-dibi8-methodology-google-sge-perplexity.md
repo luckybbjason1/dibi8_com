@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
 
 title: 'AI SEO & GEO: dibi8가 클릭을 쫓는 법을 멈춘 방법 — 5단계 방법론'
 description: '우리는 클릭을 위해 쓰는 것을 멈췄습니다. 인용을 위해 쓰기 시작했습니다. 4개 언어로 72개의 기고를 만든 후, Google SGE, Perplexity, ChatGPT에서 인용된 5단계 방법을 공개합니다.'

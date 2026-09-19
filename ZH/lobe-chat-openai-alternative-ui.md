@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: 支持 20+ LLM 提供商与插件系统的开源 ChatGPT UI 替代品 —— 2026 完整部署指南'
 description: '将 Lobe Chat 部署为自托管的 ChatGPT 替代品。支持 20+ LLM 提供商、插件系统、PWA、多语言 UI。包含基准测试和对比的完整 Docker 部署指南。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'lobehub/lobe-chat'
 stars: 60000
-maintainer: 'lobehub'
+maintainer: lobehub
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Lobe Chat', 'ChatGPT', 'OpenAI 替代品', 'LLM', '自托管', 'Docker', 'PWA', '插件系统', 'AI', '聊天 UI']
+tags: ['lobe chat', chatgpt, 'openai 替代品', llm, 自托管, docker, pwa, 插件系统, ai, '聊天 ui']
 aliases:
 - /zh/posts/lobe-chat-openai-alternative-ui/
 ---
@@ -157,7 +162,7 @@ docker compose up -d
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # 创建 .env 文件
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-key
 ACCESS_CODE=secure-team-password
 EOF
@@ -166,7 +171,7 @@ EOF
 docker compose up -d
 
 # 通过 Caddy 设置反向代理和 HTTPS
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 chat.yourdomain.com {
     reverse_proxy localhost:3210
 }

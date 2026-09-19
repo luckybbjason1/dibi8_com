@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supermemory-open-source-ai-memory-api" />
 
 title: 'Supermemory: LLM 앱을 구축하기 위한 가장 빠른 오픈소스 AI 메모리 API'
 description: 'Supermemory는 AI 애플리케이션을 위한 오픈소스 메모리 엔진 및 앱입니다. 벡터 검색, 그래프 검색, 세션 관리를 갖춘 빠르고 확장 가능한 메모리 API를 제공합니다. LangChain, LlamaIndex, CrewAI 및 모든 Python/JS 앱과 통합됩니다. 자체 호스팅, 외부 의존성 없음. 설정 가이드, 벤치마크 및 프로덕션 배포 포함.'

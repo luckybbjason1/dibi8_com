@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배포 가이드'
 description: 'Milvus 2.5 프로덕션 가이드: 10억 규모 벡터 검색, GPU 가속 인덱싱, Kubernetes 배포, 하이브리드 검색, Zilliz Cloud 설정.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Milvus', 'Zilliz', '벡터-데이터베이스', 'ANN', '유사도-검색', 'kubernetes', 'GPU-인덱싱', 'AI-인프라']
+tags: [milvus, zilliz, '벡터-데이터베이스', ann, '유사도-검색', kubernetes, 'gpu-인덱싱', 'ai-인프라']
 aliases:
 - /kr/posts/zilliz-milvus-vector-database-scale/
 ---
@@ -106,7 +111,7 @@ pip install pymilvus==2.5.10
 # 연결 테스트
 python -c "
 from pymilvus import connections, utility
-connections.connect(host='localhost', port='19530')
+connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
 ```

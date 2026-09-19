@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/dvc-data-version-control-ml" />
 title: 'DVC: The Git for Data Versioning ML Pipelines — Reproducible Experiments at Any Scale — 2026 Guide'
 description: 'Complete guide to DVC (Data Version Control) — version datasets, models, and ML pipelines with Git-like workflows. Covers installation, S3/GCS/Azure backends, CI/CD integration, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/iterative/dvc'
 stars: 15600
-maintainer: 'Iterative'
+maintainer: Iterative
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['DVC', 'Data Version Control', 'MLOps', 'Git', 'Machine Learning', 'Reproducibility', 'S3', 'GCS', 'Azure', 'Pipeline']
+tags: [dvc, 'data version control', mlops, git, 'machine learning', reproducibility, s3, gcs, azure, pipeline]
 aliases:
 - /posts/dvc-data-version-control-ml/
 ---
@@ -223,8 +225,8 @@ dvc remote modify myremote credentialpath /path/to/service-account.json
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # Set account name and key
-dvc remote modify myremote account_name 'myaccount'
-dvc remote modify myremote account_key 'mykey'
+dvc remote modify myremote account_name myaccount
+dvc remote modify myremote account_key mykey
 ```
 
 After configuring, push data to remote:
@@ -643,7 +645,7 @@ Yes. Use `dvc.api` to read datasets directly from DVC remotes inside notebooks w
 ```python
 import dvc.api
 
-with dvc.api.open('data/dataset.csv', remote='myremote') as f:
+with dvc.api.open('data/dataset.csv', remote=myremote) as f:
     df = pd.read_csv(f)
 ```
 

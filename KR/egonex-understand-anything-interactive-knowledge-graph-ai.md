@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/egonex-understand-anything-interactive-knowledge-graph-ai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/egonex-understand-anything-interactive-knowledge-graph-ai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/egonex-understand-anything-interactive-knowledge-graph-ai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/egonex-understand-anything-interactive-knowledge-graph-ai" />
 title: "Egonex Understand-Anything: 어떤 주제라도 상호작용 가능한 지식 그래프 — AI 기반, 오픈소스, 설정 불필요"
 description: "Egonex의 Understand-Anything를 사용하여 AI로 어떤 주제라도 상호작용 가능한 지식 그래프를 생성하는 방법을 배워보세요. 단계별 설치, 다중 출처 통합, 실시간 검색 및 대안과 비교."
 date: 2026-06-10

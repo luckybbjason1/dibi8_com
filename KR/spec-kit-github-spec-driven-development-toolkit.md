@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/spec-kit-github-spec-driven-development-toolkit" />
 title: "스펙 키트: GitHub"
 description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통해 개발자가 소프트웨어를 구축하는 방식을 변화시키는 오픈 소스 도구 키트. 설치, 워크플로우 및 실제 예제."
 date: 2026-06-20

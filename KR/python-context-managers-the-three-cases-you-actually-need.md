@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/python-context-managers-the-three-cases-you-actually-need" />
 title: '파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우'
 description: '파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여
   더 나은 리소스 관리를 구현하세요.'

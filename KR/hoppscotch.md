@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hoppscotch" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — Postman, Insomnia, Bruno과 비교하는 오픈소스 API 개발 플랫폼 2026'
 description: 'Hoppscotch (HOPP)는 오픈소스 API 개발 생태계입니다. Docker, GitHub Actions, Node.js, Vue.js와 호환됩니다. hoppscotch 튜토리얼, 셀프호스팅, CLI 자동화, 대안과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hoppscotch/hoppscotch'
 stars: 79200
-maintainer: 'hoppscotch'
+maintainer: hoppscotch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['hoppscotch', 'api테스트', 'postman대체', '오픈소스', 'docker', 'cli', 'rest-api', 'graphql']
+tags: [hoppscotch, api테스트, postman대체, 오픈소스, docker, cli, 'rest-api', graphql]
 aliases:
 - /kr/posts/hoppscotch/
 ---
@@ -95,7 +100,7 @@ hopp --version
 docker pull hoppscotch/hoppscotch:latest
 
 # 환경 파일 생성
-cat > .env << 'EOF'
+cat > .env << EOF
 # 데이터베이스
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/hoppscotch
 

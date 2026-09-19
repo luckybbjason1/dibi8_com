@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/superagent-ai-agent-framework" />
 title: 'Superagent: Deploy AI Agents to Production with 1 CLI Command — The Minimal Setup Guide for 2026'
 description: 'A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG workflows, vector DB integration, and REST API deployment. Backed by real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Superagent', 'AI Agent', 'LLM', 'RAG', 'Vector DB', 'OpenAI', 'LangChain', 'Python', 'TypeScript']
+tags: [superagent, 'ai agent', llm, rag, 'vector db', openai, langchain, python, typescript]
 aliases:
 - /posts/superagent-ai-agent-framework/
 ---
@@ -115,7 +117,7 @@ pip install -e .
 
 ```bash
 # Create a .env file in your project root
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-openai-key-here
 SUPERAGENT_API_URL=https://api.superagent.sh
 SUPERAGENT_API_KEY=sa-your-superagent-key
@@ -393,7 +395,7 @@ def get_stock_price(symbol: str) -> str:
         headers={"Authorization": f"Bearer {API_KEY}"}
     )
     data = resp.json()
-    return f"{symbol}: ${data['price']} (change: {data['change']})"
+    return f"{symbol}: ${data[price]} (change: {data[change]})"
 
 # Register the custom tool
 client.tool.create(

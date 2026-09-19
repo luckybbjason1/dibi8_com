@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: 'rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills by 80% (2026)'
 description: 'rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context. 60–90% token savings across 100+ commands and 13 AI coding tools (Claude Code, Cursor, Copilot, Codex, Gemini CLI). MIT licensed, <10ms overhead, 30-second install.'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['Rust', 'CLI', 'Shell hooks']
+tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
 source_version: '0.28.2'
 licensing_model: Open Source
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-code', 'cursor', 'copilot', 'cost-optimization', 'open-source', 'developer-tools']
+tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
 aliases:
 - /posts/rtk/
 - /resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/

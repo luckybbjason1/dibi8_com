@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-modal-content-pipeline" />
 title: '多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）'
 description: '自托管多模态内容 stack：faster-whisper（STT）+ ChatTTS（对话式 TTS）+ Stable Diffusion WebUI（图像）+ ComfyUI（工作流引擎 + 视频）+ FFmpeg（合成）。$30-80/月做播客 / 短视频 / AI 插画文章，vs SaaS $200-500/月。'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['多模态', '内容 Pipeline', '播客', '视频', 'TTS', 'Stack', '合集']
+categories: [collections]
+tags: [多模态, '内容 pipeline', 播客, 视频, tts, stack, 合集]
 aliases:
   - /posts/multi-modal-content-pipeline/
 ---

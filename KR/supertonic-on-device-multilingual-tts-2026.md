@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supertonic-on-device-multilingual-tts-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supertonic-on-device-multilingual-tts-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supertonic-on-device-multilingual-tts-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supertonic-on-device-multilingual-tts-2026" />
 title: 'Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)'
 description: 'Supertone Inc.가 만든 Supertonic(GitHub 9.9K+ stars)은 ONNX Runtime을 통해 CPU에서 로컬로 돌아가는 초고속 다국어 TTS 모델이다 — 클라우드 없음, API 없음, GPU 불필요. 99M 파라미터, 한국어/일본어/베트남어/중국어 포함 31개 언어, 44.1kHz 스튜디오 음질, 10개 표현 태그, Python·Node.js·브라우저(WebGPU/WASM)·iOS·Android·Rust·Flutter 런타임 지원. 기능 분석·설치·코드 예제·2026년 온디바이스 TTS 지형 비교까지 정리.'
 date: 2026-05-23 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-01-06'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['supertonic', 'text-to-speech', 'tts', 'on-device-ai', 'onnx', 'multilingual', 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
+tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
 aliases:
 - /kr/posts/supertonic-on-device-multilingual-tts-2026/
 ---

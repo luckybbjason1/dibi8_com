@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex" />
 title: 'LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026'
 description: 'LlamaIndex 是构建生产级 RAG 系统的数据框架，支持 OpenAI、Anthropic、Ollama、Qdrant、Weaviate、Chroma。涵盖 Docker 部署、查询引擎、Agent、与 LangChain/Haystack/RAGFlow 的基准对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['llamaindex', 'rag', 'llm', '向量数据库', '检索增强生成', 'openai', 'ollama', 'qdrant', 'python', 'docker']
+tags: [llamaindex, rag, llm, 向量数据库, 检索增强生成, openai, ollama, qdrant, python, docker]
 aliases:
 - /zh/posts/llamaindex/
 ---

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/langgraph-stateful-agent-orchestration-2026" />
 title: 'LangGraph 1.2 in Production: Stateful Agent Orchestration That Survives Crashes (Complete 2026 Guide)'
 description: 'LangGraph is a low-level orchestration framework for long-running, stateful AI agents. 32.6k GitHub stars, v1.2.1. Real deploy guide covering graph design, durable execution, human-in-loop checkpoints, LangSmith debugging, and when LangGraph beats CrewAI / AutoGen / pure LangChain.'
 date: 2026-05-21 00:00:00+08:00
@@ -23,14 +25,14 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['LangGraph', 'agent', 'stateful', 'orchestration', 'LangChain', 'production']
+tags: [langgraph, agent, stateful, orchestration, langchain, production]
 aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
 If you've built a simple LLM agent and watched it forget everything when the process restarts, lose half its progress when one tool call times out, or silently corrupt state when two events fire concurrently — you've hit the wall **LangGraph** is designed to break through.
 
-LangGraph is the LangChain team's **low-level orchestration framework for stateful, long-running agents**. Where LangChain provides components ("here's an LLM wrapper, here's a tool, compose them yourself") and CrewAI provides high-level role abstractions ("here's a 'researcher' agent and a 'writer' agent"), LangGraph sits in between: a graph-based state machine where you explicitly model nodes (functions / agents), edges (transitions), and persistent state. Durable execution + human-in-loop + state tracking are first-class concerns, not afterthoughts.
+LangGraph is the LangChain team's **low-level orchestration framework for stateful, long-running agents**. Where LangChain provides components ("here's an LLM wrapper, here's a tool, compose them yourself") and CrewAI provides high-level role abstractions ("here's a researcher agent and a writer agent"), LangGraph sits in between: a graph-based state machine where you explicitly model nodes (functions / agents), edges (transitions), and persistent state. Durable execution + human-in-loop + state tracking are first-class concerns, not afterthoughts.
 
 By mid-2026 it has **32.6k GitHub stars** and shipped v1.2.1, making it the most popular framework specifically for production agent workflows that need to survive crashes, restarts, and multi-hour runs.
 
@@ -91,7 +93,7 @@ app = graph.compile(checkpointer=MemorySaver())
 # Run with a thread_id for state persistence
 config = {"configurable": {"thread_id": "demo-1"}}
 result = app.invoke({"counter": 0}, config=config)
-print(result)  # {'counter': 5}
+print(result)  # {counter: 5}
 ```
 
 Swap `MemorySaver()` for `PostgresSaver(connection_string)` and the same graph survives container restarts.

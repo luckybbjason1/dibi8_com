@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-node-based-ai-image-2026" />
 title: 'ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh Dựa Node 114k Sao — Hướng Dẫn Đầy Đủ'
 description: 'ComfyUI là engine workflow trực quan dựa node 114k sao cho SD/SDXL/Flux/Wan/Hunyuan và hơn nữa. Hỗ trợ sinh hình ảnh, video, âm thanh, và 3D. Hướng dẫn cài đặt 2026 đầy đủ bao gồm cơ bản node, import workflow JSON, ComfyUI Manager, và khi ComfyUI thắng AUTOMATIC1111.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 114000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ComfyUI', 'sinh ảnh', 'sinh video', 'dựa node', 'workflow', 'mã nguồn mở']
+tags: [comfyui, 'sinh ảnh', 'sinh video', 'dựa node', workflow, 'mã nguồn mở']
 aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: The Open-Source ChatGPT UI Alternative with 20+ LLM Providers & Plugin System — 2026 Setup'
 description: 'Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system, PWA, multi-language UI. Complete Docker setup guide with benchmarks and comparisons.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'lobehub/lobe-chat'
 stars: 60000
-maintainer: 'lobehub'
+maintainer: lobehub
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Lobe Chat', 'ChatGPT', 'OpenAI Alternative', 'LLM', 'Self-hosted', 'Docker', 'PWA', 'Plugin System', 'AI', 'Chat UI']
+tags: ['lobe chat', chatgpt, 'openai alternative', llm, 'self-hosted', docker, pwa, 'plugin system', ai, 'chat ui']
 aliases:
 - /posts/lobe-chat-openai-alternative-ui/
 ---
@@ -157,7 +159,7 @@ docker compose up -d
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # Create .env file
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-key
 ACCESS_CODE=secure-team-password
 EOF
@@ -166,7 +168,7 @@ EOF
 docker compose up -d
 
 # Set up reverse proxy with HTTPS via Caddy
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 chat.yourdomain.com {
     reverse_proxy localhost:3210
 }

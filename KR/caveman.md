@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caveman" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caveman" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
 title: "Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드"
 description: "GitHub 57K Star Claude Code 스킬 Caveman으로 AI 코딩 비용 절반 이상 줄이는 방법. 설치, 사용법, 벤치마크, MCP 미들웨어까지 상세 정리."
 date: 2026-05-15T04:20:25+09:00

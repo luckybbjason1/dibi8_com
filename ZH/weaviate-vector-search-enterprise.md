@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南'
 description: 'Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'weaviate/weaviate'
 stars: 11500
-maintainer: 'weaviate'
+maintainer: weaviate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -109,14 +114,14 @@ services:
       - "50051:50051"
     environment:
       QUERY_DEFAULTS_LIMIT: 100
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: false
+      AUTHENTICATION_APIKEY_ENABLED: true
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'your-api-key-here'
-      AUTHENTICATION_APIKEY_USERS: 'admin'
+      AUTHENTICATION_APIKEY_USERS: admin
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
+      DEFAULT_VECTORIZER_MODULE: none
       ENABLE_MODULES: ''
-      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_HOSTNAME: node1
     volumes:
       - weaviate_data:/var/lib/weaviate
     deploy:
@@ -222,7 +227,7 @@ results = products.query.hybrid(
 )
 
 for obj in results.objects:
-    print(f"{obj.properties['name']}: ${obj.properties['price']}")
+    print(f"{obj.properties[name]}: ${obj.properties[price]}")
 ```
 
 `alpha` 参数权衡向量与关键词分数。`alpha=0.7` 表示 70% 向量，30% BM25。从 0.75 开始并根据数据调整。
@@ -292,7 +297,7 @@ results = collection.query.near_image(near_image=img_b64, limit=5)
 ```yaml
 # 监控的额外环境变量
 environment:
-  PROMETHEUS_MONITORING_ENABLED: 'true'
+  PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
 ```
 

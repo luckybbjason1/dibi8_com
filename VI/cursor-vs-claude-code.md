@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-vs-claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-vs-claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-vs-claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-vs-claude-code" />
 title: 'Cursor vs Claude Code 2026: Công cụ AI lập trình nào tốt hơn?'
 description: 'So sánh trực tiếp Cursor và Claude Code — giá cả, hiệu năng, tình huống sử dụng, mẹo chuyển đổi. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

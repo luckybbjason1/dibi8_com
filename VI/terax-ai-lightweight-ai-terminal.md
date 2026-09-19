@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI: Trình Giả Lập Terminal AI Nhẹ Hiểu Bạn"
 description: "Khám phá Terax AI, trình giả lập terminal AI native 7 MB được xây dựng trên Tauri 2 + Rust. Tính năng chuyển đổi ngôn ngữ tự nhiên thành lệnh Shell, hỗ trợ AI nội tuyến, tự động hoàn thành thông minh, hỗ trợ bash, zsh, fish và PowerShell."
 date: 2026-05-15T04:20:25+09:00

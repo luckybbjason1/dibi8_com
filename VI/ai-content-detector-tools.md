@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-content-detector-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-content-detector-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-content-detector-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-content-detector-tools" />
 title: 'Các Công Cụ Phát Hiện Nội Dung AI Tốt Nhất 2025: So Sánh GPTZero, Turnitin AI, Copyleaks Và Hơn Thế Nữa'
 description: 'Khám phá các công cụ phát hiện nội dung AI hàng đầu năm 2025. So sánh chi tiết GPTZero, Turnitin AI, Copyleaks, Originality.ai về độ chính xác, tốc độ và giá cả để chọn công cụ phù hợp nhất.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['AI content detector', 'GPTZero', 'Turnitin', 'Copyleaks', 'Originality.ai', 'phát hiện văn bản AI']
+tags: ['ai content detector', gptzero, turnitin, copyleaks, 'originality.ai', 'phát hiện văn bản ai']
 aliases:
 - /vi/posts/ai-content-detector-tools/
 ---

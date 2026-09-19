@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/data-cleaning-tools-best-practices" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/data-cleaning-tools-best-practices" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/data-cleaning-tools-best-practices" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/data-cleaning-tools-best-practices" />
 title: '数据清洗工具与最佳实践：OpenRefine、Python库与自动化解决方案完全指南'
 description: '系统梳理数据清洗工具栈，深度对比OpenRefine、Pandas、Great Expectations与Cleanlab，附可复用的数据清洗流水线搭建指南与最佳实践清单。'
 date: 2026-05-18 00:00:00+08:00

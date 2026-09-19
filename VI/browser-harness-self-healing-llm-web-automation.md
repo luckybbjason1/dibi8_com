@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/browser-harness-self-healing-llm-web-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-harness-self-healing-llm-web-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-harness-self-healing-llm-web-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-harness-self-healing-llm-web-automation" />
 title: "Browser Harness：让 LLM 自主操控浏览器的自愈型神器"
 description: "Browser Harness là framework điều khiển trình duyệt tự phục hồi, cho phép LLM tự động hoàn thành mọi tác vụ web. 11K+ Stars, viết bằng Python, hỗ trợ Playwright và Selenium."
 date: 2026-05-15T04:20:25+09:00

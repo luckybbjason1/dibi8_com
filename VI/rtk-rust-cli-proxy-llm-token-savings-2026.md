@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: 'rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding (2026)'
 description: 'rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claude Code / Cursor / Copilot / Codex / Gemini CLI và 9 công cụ AI khác. <10ms overhead, MIT open source, cài đặt 30 giây không cấu hình.'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['Rust', 'CLI', 'Shell hooks']
+tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
 source_version: '0.28.2'
 licensing_model: Open Source
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-code', 'cursor', 'copilot', 'cost-optimization', 'open-source', 'developer-tools']
+tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
 aliases:
 - /vi/posts/rtk/
 - /vi/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cheap-llm-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cheap-llm-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cheap-llm-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cheap-llm-stack" />
 title: 'Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằng Free Tier + Nén Token'
 description: 'Stack 5 thành phần chạy workload AI thực tế $0-15/tháng: Ollama local + DeepSeek API + Gemini free tier + nén RTK + orchestration 9Router. Toán chi phí thực, lựa model theo loại task, thứ tự lắp ráp.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['LLM Rẻ', 'Free Tier', 'Tối ưu chi phí', 'Stack', 'Collection']
+categories: [collections]
+tags: ['llm rẻ', 'free tier', 'tối ưu chi phí', stack, collection]
 aliases:
   - /posts/cheap-llm-stack/
 ---

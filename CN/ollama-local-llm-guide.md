@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ollama-local-llm-guide" />
 title: 'Ollama Complete Guide 2025: Run LLMs Locally on Any Hardware'
 description: 'Master Ollama in 2025. Install, configure, and run LLMs locally. Model guide, API reference, hardware requirements, and production deployment tips.'
 date: 2026-05-18 00:00:00+08:00

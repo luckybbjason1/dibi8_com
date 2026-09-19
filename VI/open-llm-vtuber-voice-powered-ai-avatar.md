@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-llm-vtuber-voice-powered-ai-avatar" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-llm-vtuber-voice-powered-ai-avatar" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-llm-vtuber-voice-powered-ai-avatar" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-llm-vtuber-voice-powered-ai-avatar" />
 
 title: 'Open-LLM-VTuber: Trò chuyện LLM bằng giọng nói với nhân vật Live2D — Sử dụng miễn phí avatar AI mã nguồn mở với 10K+ sao'
 description: 'Open-LLM-VTuber là nền tảng avatar AI mã nguồn mở với tương tác giọng nói, nhân vật Live2D và ngắt giọng nói rảnh tay. Hoạt động với mọi LLM — cục bộ hoặc đám mây. Không cần cài đặt phức tạp, đa nền tảng. Bao gồm hướng dẫn bắt đầu nhanh, danh sách tích hợp đầy đủ và tùy chọn triển khai sản xuất.'

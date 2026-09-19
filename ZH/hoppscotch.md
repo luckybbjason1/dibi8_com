@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hoppscotch" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — 开源API开发平台对比 Postman、Insomnia、Bruno 2026'
 description: 'Hoppscotch (HOPP) 是一个开源API开发生态系统。兼容 Docker、GitHub Actions、Node.js、Vue.js。涵盖 hoppscotch 教程、自托管、CLI 自动化以及与替代方案对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hoppscotch/hoppscotch'
 stars: 79200
-maintainer: 'hoppscotch'
+maintainer: hoppscotch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['hoppscotch', 'api测试', 'postman替代品', '开源', 'docker', '命令行', 'rest-api', 'graphql']
+tags: [hoppscotch, api测试, postman替代品, 开源, docker, 命令行, 'rest-api', graphql]
 aliases:
 - /zh/posts/hoppscotch/
 ---
@@ -95,7 +100,7 @@ hopp --version
 docker pull hoppscotch/hoppscotch:latest
 
 # 创建环境文件
-cat > .env << 'EOF'
+cat > .env << EOF
 # 数据库
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/hoppscotch
 

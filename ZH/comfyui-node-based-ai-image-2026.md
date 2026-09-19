@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-node-based-ai-image-2026" />
 title: 'ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南'
 description: 'ComfyUI 是 114k 星节点式可视化工作流引擎，支持 SD/SDXL/Flux/Wan/Hunyuan 等。支持图像、视频、音频、3D 生成。2026 完整安装指南：节点基础、workflow JSON 导入、ComfyUI Manager、何时 ComfyUI 胜过 AUTOMATIC1111。'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 114000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ComfyUI', '图像生成', '视频生成', '节点式', '工作流', '开源']
+tags: [comfyui, 图像生成, 视频生成, 节点式, 工作流, 开源]
 aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---

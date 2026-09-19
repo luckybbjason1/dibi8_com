@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-vs-firebase" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-vs-firebase" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-vs-firebase" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-vs-firebase" />
 title: 'Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?'
 description: 'Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비교 — 데이터베이스, 인증, 스토리지, 실시간, 엣지 함수, 가격, 종속성, 자체 호스팅. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00
@@ -135,7 +140,7 @@ Firebase Auth는 BaaS 세계에서 가장 성숙한 익명 인증과 SMS 전화 
 - `firebase-tools`로 Firestore 데이터를 JSON으로 내보내기 (`firebase firestore:export`)
 - 먼저 Postgres 스키마 설계 — Firestore를 관계형 테이블로 비정규화
 - Supabase의 `psql` 벌크 임포트 또는 Studio CSV 업로더 사용
-- Firestore 리스너를 `supabase.channel().on('postgres_changes', ...)`로 교체
+- Firestore 리스너를 `supabase.channel().on(postgres_changes, ...)`로 교체
 - Firebase Auth 사용자를 Supabase의 `auth.admin.createUser()` API로 마이그레이션 (비밀번호는 재해시 필요 — 비밀번호 재설정 이메일 발송)
 - 한 결제 주기 동안 두 스택을 병렬로 실행해 청구서 비교
 

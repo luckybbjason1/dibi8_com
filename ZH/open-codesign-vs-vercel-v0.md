@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-codesign-vs-vercel-v0" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-vs-vercel-v0" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-vs-vercel-v0" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-vs-vercel-v0" />
 title: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI"
 description: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI"
 date: 2026-05-15T04:20:25+09:00

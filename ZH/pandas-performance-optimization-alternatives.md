@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pandas-performance-optimization-alternatives" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pandas-performance-optimization-alternatives" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pandas-performance-optimization-alternatives" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pandas-performance-optimization-alternatives" />
 title: 'Pandas性能优化完全指南：何时应该切换到Polars或DuckDB（2026版）'
 description: '从Pandas代码级优化到Polars、DuckDB替代方案，附基准测试数据和迁移策略，帮你突破大数据处理性能瓶颈。'
 date: 2026-05-18 00:00:00+08:00

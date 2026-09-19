@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/preset-superset-data-exploration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/preset-superset-data-exploration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/preset-superset-data-exploration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/preset-superset-data-exploration" />
 title: 'Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn mở với 50+ loại biểu đồ — Hướng dẫn tự host'
 description: 'Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, xây dựng 50+ loại biểu đồ, và triển khai dashboard sẵn sàng production với phân quyền theo vai trò.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'apache/superset'
 stars: 66000
-maintainer: 'apache'
+maintainer: apache
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Apache Superset', 'Trực quan hóa dữ liệu', 'BI', 'Dashboard', 'Mã nguồn mở', 'Docker', 'SQL', 'Phân tích']
+tags: ['apache superset', 'trực quan hóa dữ liệu', bi, dashboard, 'mã nguồn mở', docker, sql, 'phân tích']
 aliases:
 - /vi/posts/preset-superset-data-exploration/
 ---

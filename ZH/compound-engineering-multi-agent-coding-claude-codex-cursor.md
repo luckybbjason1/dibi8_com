@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/compound-engineering-multi-agent-coding-claude-codex-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/compound-engineering-multi-agent-coding-claude-codex-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/compound-engineering-multi-agent-coding-claude-codex-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/compound-engineering-multi-agent-coding-claude-codex-cursor" />
 title: 'Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多代理插件指南'
 description: 'Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。'
 date: 2026-06-13

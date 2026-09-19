@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabby" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
 title: 'Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng dẫn Cài đặt Ưu tiên Riêng tư 2026'
 description: 'Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Cài đặt Docker, tích hợp IDE, benchmark, và hardening production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/TabbyML/tabby'
 stars: 33530
-maintainer: 'TabbyML'
+maintainer: TabbyML
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['tabby', 'tro-ly-lap-trinh-ai', 'tu-luu-tru', 'thay-the-github-copilot', 'hoan-thanh-code', 'docker', 'ma-nguon-mo']
+tags: [tabby, 'tro-ly-lap-trinh-ai', 'tu-luu-tru', 'thay-the-github-copilot', 'hoan-thanh-code', docker, 'ma-nguon-mo']
 aliases:
 - /vi/posts/tabby/
 ---
@@ -234,9 +239,9 @@ Cho Neovim với `nvim-cmp` và `cmp-tabby`:
 
 ```lua
 -- Trong config Neovim (ví dụ: init.lua)
-require('cmp').setup({
+require(cmp).setup({
   sources = {
-    { name = 'tabby' },
+    { name = tabby },
   },
 })
 

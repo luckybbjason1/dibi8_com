@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anthropic-financial-services-ai-finance-automation" />
 title: Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%
 description: 了解Anthropic Financial Services如何帮助投资银行、股票研究和财富管理团队利用Claude AI智能体自动化 pitch
   deck、DCF模型和KYC筛查。

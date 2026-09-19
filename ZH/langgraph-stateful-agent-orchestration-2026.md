@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-stateful-agent-orchestration-2026" />
 title: 'LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）'
 description: 'LangGraph 是长跑、有状态 AI agent 的底层编排框架。GitHub 32.6k stars，v1.2.1。真实部署指南覆盖图设计、持久化执行、human-in-loop 检查点、LangSmith 调试、以及 LangGraph 何时胜过 CrewAI / AutoGen / 纯 LangChain。'
 date: 2026-05-21 00:00:00+08:00
@@ -23,14 +28,14 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['LangGraph', 'agent', '有状态', '编排', 'LangChain', '生产']
+tags: [langgraph, agent, 有状态, 编排, langchain, 生产]
 aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
 你写过简单 LLM agent，看过它进程重启就忘光、一个 tool call 超时就丢半进度、两个事件并发就静默搞坏状态 —— 那你撞到的就是 **LangGraph** 要打穿的墙。
 
-LangGraph 是 LangChain 团队出的 **有状态、长跑 agent 的底层编排框架**。LangChain 给你组件（"这是 LLM 包装，这是工具，自己组合"），CrewAI 给你高层角色抽象（"这是 'researcher' agent，这是 'writer' agent"），LangGraph 居中：**基于图的状态机**，你显式建模 node（函数 / agent）、edge（转移）、持久化的 state 对象。持久化执行 + human-in-loop + 状态追踪是一等公民，不是事后补的。
+LangGraph 是 LangChain 团队出的 **有状态、长跑 agent 的底层编排框架**。LangChain 给你组件（"这是 LLM 包装，这是工具，自己组合"），CrewAI 给你高层角色抽象（"这是 researcher agent，这是 writer agent"），LangGraph 居中：**基于图的状态机**，你显式建模 node（函数 / agent）、edge（转移）、持久化的 state 对象。持久化执行 + human-in-loop + 状态追踪是一等公民，不是事后补的。
 
 到 2026 年中，它有 **32.6k GitHub stars**，发布了 v1.2.1，是专门为"要熬过崩溃 / 重启 / 多小时长跑"的生产 agent 工作流而出现的最热门框架。
 
@@ -91,7 +96,7 @@ app = graph.compile(checkpointer=MemorySaver())
 # 用 thread_id 跑，状态持久化
 config = {"configurable": {"thread_id": "demo-1"}}
 result = app.invoke({"counter": 0}, config=config)
-print(result)  # {'counter': 5}
+print(result)  # {counter: 5}
 ```
 
 把 `MemorySaver()` 换成 `PostgresSaver(connection_string)`，同一个图就能熬过容器重启。

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác Trả Lờ 90%+ — Tích Hợp API & Benchmark'
 description: 'Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang retrieval, tích hợp API, hỗ trợ đa ngôn ngữ, tìm kiếm hybrid và benchmark production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'vectara/vectara-ingest'
 stars: 800
-maintainer: 'vectara'
+maintainer: vectara
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Vectara', 'RAG', 'Tìm kiếm Vector', 'LLM', 'Embedding', 'Boomerang', 'HHEM', 'Phát hiện Hallucination', 'AI Doanh nghiệp']
+tags: [vectara, rag, 'tìm kiếm vector', llm, embedding, boomerang, hhem, 'phát hiện hallucination', 'ai doanh nghiệp']
 aliases:
 - /vi/posts/vectara-rag-as-service-platform/
 ---
@@ -285,7 +290,7 @@ response = client.query(
     corpus_id="your-corpus-id",
     query="API rate limits",
     num_results=10,
-    metadata_filter="doc.version >= '2.0' AND doc.category = 'technical'",
+    metadata_filter="doc.version >= '2.0' AND doc.category = technical",
     generate=True
 )
 

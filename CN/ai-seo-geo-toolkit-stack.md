@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-seo-geo-toolkit-stack" />
 title: 'AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Traditional SEO + Generative Engine Optimization'
 description: 'The complete free toolkit for SEO in the AI era: llms.txt generator + AI-crawler robots.txt + meta tags + Schema.org JSON-LD + hreflang + OG card preview. Covers both classic search (Google/Bing) and generative engines (ChatGPT, Claude, Perplexity). All browser-based, no signup.'
 date: 2026-05-29 00:00:00+08:00
@@ -19,12 +21,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['SEO', 'GEO', 'llms.txt', 'Schema', 'Meta Tags', 'Stack', 'Collection']
+categories: [collections]
+tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
 aliases:
   - /posts/ai-seo-geo-toolkit-stack/
 faqs:

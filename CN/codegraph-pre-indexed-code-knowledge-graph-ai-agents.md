@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
 title: 'Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026'
 description: 'Codegraph (45,555 GitHub stars) creates pre-indexed code knowledge graphs for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08

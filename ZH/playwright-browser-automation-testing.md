@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
 title: 'Playwright 2026: 比 Selenium 快 3 倍的跨浏览器自动化工具 — 安装指南'
 description: '掌握 Playwright 1.51 进行跨浏览器自动化。支持 Chrome、Firefox、WebKit。自动等待、追踪、代码生成和并行测试。比 Selenium 快 3 倍。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/playwright'
 stars: 72000
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Playwright', '浏览器自动化', '测试', '网页抓取', 'python', '端到端测试']
+tags: [playwright, 浏览器自动化, 测试, 网页抓取, python, 端到端测试]
 aliases:
 - /zh/posts/playwright-browser-automation-testing/
 ---
@@ -104,12 +109,12 @@ def test_login_flow():
         page.goto("https://httpbin.org/forms/post")
         
         # 填写表单字段（自动等待元素）
-        page.fill("[name='custname']", "John Doe")
-        page.fill("[name='custtel']", "555-1234")
-        page.fill("[name='custemail']", "john@example.com")
+        page.fill("[name=custname]", "John Doe")
+        page.fill("[name=custtel]", "555-1234")
+        page.fill("[name=custemail]", "john@example.com")
         
         # 提交表单
-        page.click("input[type='submit']")
+        page.click("input[type=submit]")
         
         # 验证结果
         assert "John Doe" in page.content()
@@ -162,8 +167,8 @@ def test_add_to_cart(page):
 
 def test_search_results(page):
     page.goto("https://example.com")
-    page.fill("[name='q']", "laptop")
-    page.press("[name='q']", "Enter")
+    page.fill("[name=q]", "laptop")
+    page.press("[name=q]", "Enter")
     
     # 等待结果加载
     page.wait_for_selector(".search-result")
@@ -399,7 +404,7 @@ def test_mobile_viewport():
         page.screenshot(path="mobile-view.png")
         
         # 测试汉堡菜单交互
-        page.click("[aria-label='Menu']")
+        page.click("[aria-label=Menu]")
         assert page.is_visible("nav.mobile-menu")
         
         browser.close()
@@ -454,7 +459,7 @@ def scrape_with_stealth():
         # 注入隐身脚本以隐藏自动化标志
         page = context.new_page()
         page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', {
+            Object.defineProperty(navigator, webdriver, {
                 get: () => undefined
             });
         """)

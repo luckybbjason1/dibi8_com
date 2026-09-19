@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/og-card-preview" />
 title: "OG Card Preview — Facebook / Twitter / LinkedIn Social Share Tester"
 description: "Live preview how your link looks when shared on Facebook, Twitter, LinkedIn, and Slack. Paste a URL or fill in OG meta fields manually. See exact rendering for all major platforms before you publish."
 date: 2026-05-18

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스"
 description: "WiFi Forge: 보안 연구를 위한 안전한 WiFi 해킹 연구소. 통제된 환경에서 침투 테스트, 무선 보안 및 윤리적 해킹을 배우세요."
 date: 2026-05-15T04:20:25+09:00

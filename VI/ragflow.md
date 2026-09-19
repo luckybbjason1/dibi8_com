@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ragflow" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ragflow" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ragflow" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ragflow" />
 title: 'RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars — Hướng dẫn Docker và Benchmark 2026'
 description: 'RAGFlow là engine RAG mã nguồn mở với khả năng hiểu sâu tài liệu và tích hợp Agent. Tương thích với Ollama, OpenAI, Qdrant, Elasticsearch, Redis. Bao gồm triển khai Docker, nhập tài liệu, tối ưu tìm kiếm và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/infiniflow/ragflow'
 stars: 80853
-maintainer: 'infiniflow'
+maintainer: infiniflow
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ragflow', 'rag-engine', 'hieu-tai-lieu', 'docker-trien-khai', 'llm-agent', 'rag-production', 'ai-ma-nguon-mo']
+tags: [ragflow, 'rag-engine', 'hieu-tai-lieu', 'docker-trien-khai', 'llm-agent', 'rag-production', 'ai-ma-nguon-mo']
 aliases:
 - /vi/posts/ragflow/
 ---
@@ -406,7 +411,7 @@ Các chỉ số chính cần giám sát:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'ragflow'
+  - job_name: ragflow
     static_configs:
       - targets: ['ragflow-server:9380']
     metrics_path: /metrics

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/demucs" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
 title: 'Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Spleeter 2026'
 description: 'Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimate Vocal Remover, RVC, GPT-SoVITS. Hướng dẫn demucs, demucs vs uvr, cài đặt docker demucs, và benchmark production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/facebookresearch/demucs'
 stars: 10100
-maintainer: 'facebookresearch'
+maintainer: facebookresearch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['demucs', 'tach-nguon-nhac', 'ai-audio', 'tach-stem', 'pytorch', 'docker', 'ma-nguon-mo']
+tags: [demucs, 'tach-nguon-nhac', 'ai-audio', 'tach-stem', pytorch, docker, 'ma-nguon-mo']
 aliases:
 - /vi/posts/demucs/
 ---
@@ -227,7 +232,7 @@ def preprocess_for_rvc(input_song, output_dir):
 
     # Bước 1: Tách bằng Demucs
     subprocess.run([
-        'demucs', '-n', 'htdemucs_ft',
+        demucs, '-n', htdemucs_ft,
         '--two-stems=vocals',
         '-o', output_dir,
         input_song
@@ -236,7 +241,7 @@ def preprocess_for_rvc(input_song, output_dir):
     # Bước 2: Trả về đường dẫn vocal đã tách
     base = os.path.splitext(os.path.basename(input_song))[0]
     vocals_path = os.path.join(
-        output_dir, 'htdemucs_ft', base, 'vocals.wav'
+        output_dir, htdemucs_ft, base, 'vocals.wav'
     )
     return vocals_path
 
@@ -374,7 +379,7 @@ with torch.no_grad():
     )[0]
 
 # sources shape: (num_sources, channels, samples)
-source_names = model.sources  # ['drums', 'bass', 'other', 'vocals']
+source_names = model.sources  # [drums, bass, other, vocals]
 
 # Lưu từng stem riêng lẻ
 for i, name in enumerate(source_names):
@@ -399,10 +404,10 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # Xử lý tất cả file trong một lần gọi Demucs
     subprocess.run([
-        'demucs', '-n', model,
+        demucs, '-n', model,
         '-o', str(output_dir),
         '--mp3',
-        '--mp3-bitrate', '320',
+        '--mp3-bitrate', 320,
         *[str(f) for f in files]
     ], check=True)
 
@@ -412,19 +417,19 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
         base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
-            'drums': str(stem_dir / 'drums.mp3'),
-            'bass': str(stem_dir / 'bass.mp3'),
-            'other': str(stem_dir / 'other.mp3'),
-            'vocals': str(stem_dir / 'vocals.mp3'),
+            drums: str(stem_dir / 'drums.mp3'),
+            bass: str(stem_dir / 'bass.mp3'),
+            other: str(stem_dir / 'other.mp3'),
+            vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', 'w') as fp:
+    with open(output_dir / 'manifest.json', w) as fp:
         json.dump(manifest, fp, indent=2)
 
     return manifest
 
 # Sử dụng
-batch_separate('./raw_songs/', './stems/', model='htdemucs_ft')
+batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 ```
 
 ### Tối ưu bộ nhớ cho file dài
@@ -434,7 +439,7 @@ Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VR
 ```python
 # Ép offload CPU cho file lớn
 import os
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
 
 # Dùng segment nhỏ hơn
 sources = apply_model(
@@ -454,7 +459,7 @@ import logging
 import time
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('demucs')
+logger = logging.getLogger(demucs)
 
 def separate_with_metrics(input_path, output_dir):
     start = time.time()

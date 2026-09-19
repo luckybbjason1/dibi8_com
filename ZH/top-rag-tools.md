@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/top-rag-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/top-rag-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/top-rag-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/top-rag-tools" />
 title: 'AI 知识库最佳 RAG 工具'
 lang: zh-cn
 description: '构建 AI 知识库的最佳 RAG（检索增强生成）工具 — 从 LangChain 到 LlamaIndex，ChromaDB 到 Weaviate。'

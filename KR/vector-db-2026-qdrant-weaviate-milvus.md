@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
 title: '2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드 테스트)'
 description: '동일한 500만 벡터 워크로드로 Qdrant, Weaviate, Milvus를 실측했습니다. 레이턴시, 처리량, 메모리, 설치 난이도. 프로토타입과 프로덕션 각각 어디에 적합한지, 그리고 언제 벡터 DB 대신 SQLite FTS5를 써야 하는지 정리합니다.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Qdrant', 'Weaviate', 'Milvus', 'Vector Search', 'Embeddings']
+tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
 source_version: 'Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['vector-database', 'qdrant', 'weaviate', 'milvus', 'rag', '2026']
+tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
 aliases:
 - /kr/posts/vector-db-2026-qdrant-weaviate-milvus/
 faq:

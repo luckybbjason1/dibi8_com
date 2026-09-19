@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: 200+ Cybersecurity Tools Collection for Security Professionals'
 description: Discover Scanners-Box - a comprehensive collection of 200+ open-source
   cybersecurity tools for penetration testing, vulnerability scanning, and security

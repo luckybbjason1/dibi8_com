@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — 완전 설정 가이드'
 description: '20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포.'
 date: 2026-05-19 00:00:00+08:00
@@ -415,12 +420,12 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
     
     # 이 단계는 SageMaker에서 ml.p3.2xlarge에서 실행
     model = tf.keras.Sequential([
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dense(64, activation='relu'),
-        tf.keras.layers.Dense(3, activation='softmax')
+        tf.keras.layers.Dense(128, activation=relu),
+        tf.keras.layers.Dense(64, activation=relu),
+        tf.keras.layers.Dense(3, activation=softmax)
     ])
     
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+    model.compile(optimizer=adam, loss=sparse_categorical_crossentropy)
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model

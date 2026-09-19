@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/nuwa-skill-distill-thinking-model-ai-agent-skills" />
 title: 'Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026'
 description: 'Nuwa-Skill (23,508 GitHub stars) distills thinking models of historical figures, experts, and influencers into reusable AI Agent Skills. Compatible with Claude Code, Codex, Cursor, Hermes, and 50+ runtimes. Install via npx skills add.'
 date: 2026-06-09

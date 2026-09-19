@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/traefik" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/traefik" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/traefik" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/traefik" />
 title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router Hướng Dẫn Triển Khai Production 2026'
 description: 'Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích với Docker, Kubernetes, Consul và Docker Compose. Bao gồm cài đặt, middleware, TLS, giám sát và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/traefik/traefik'
 stars: 63229
-maintainer: 'traefik'
+maintainer: traefik
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['traefik', 'docker', 'kubernetes', 'reverse-proxy', 'edge-router', 'ingress', 'devops', 'cloud-native']
+tags: [traefik, docker, kubernetes, 'reverse-proxy', 'edge-router', ingress, devops, 'cloud-native']
 aliases:
 - /vi/posts/traefik/
 ---
@@ -546,7 +551,7 @@ Prometheus scrape config:
 
 ```yaml
 scrape_configs:
-  - job_name: 'traefik'
+  - job_name: traefik
     scrape_interval: 15s
     static_configs:
       - targets: ['traefik:8080']

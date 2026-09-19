@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở với Postgres Vector Search cho 1M+ ứng dụng AI — Hướng dẫn cài đặt'
 description: 'Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứng dụng AI. Xác thực, lưu trữ, realtime, edge functions, tích hợp RAG, triển khai Docker tự host, Row Level Security.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'supabase/supabase'
 stars: 80000
-maintainer: 'supabase'
+maintainer: supabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Supabase', 'Postgres', 'Tìm kiếm Vector', 'Thay thế Firebase', 'pgvector', 'Ứng dụng AI', 'RAG', 'Mã nguồn mở', 'Docker', 'Edge Functions']
+tags: [supabase, postgres, 'tìm kiếm vector', 'thay thế firebase', pgvector, 'ứng dụng ai', rag, 'mã nguồn mở', docker, 'edge functions']
 aliases:
 - /vi/posts/supabase-postgres-vector-ai-apps/
 ---
@@ -161,7 +166,7 @@ const supabase = createClient(
 )
 
 // Test kết nối
-const { data, error } = await supabase.from('test').select('*')
+const { data, error } = await supabase.from(test).select('*')
 console.log(data)
 ```
 
@@ -175,7 +180,7 @@ supabase = create_client(
 )
 
 # Test kết nối
-response = supabase.table('test').select('*').execute()
+response = supabase.table(test).select('*').execute()
 print(response.data)
 ```
 
@@ -188,7 +193,7 @@ print(response.data)
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Xác minh tiện ích mở rộng đã được cài đặt
-SELECT * FROM pg_extension WHERE extname = 'vector';
+SELECT * FROM pg_extension WHERE extname = vector;
 ```
 
 ### Tạo bảng với cột Vector
@@ -213,7 +218,7 @@ WITH (m = 16, ef_construction = 64);
 
 -- Thêm chỉ mục tìm kiếm toàn văn cho tìm kiếm hybrid
 CREATE INDEX idx_documents_fts ON documents
-USING GIN (to_tsvector('english', content));
+USING GIN (to_tsvector(english, content));
 ```
 
 `vector(1536)` chiều khớp với đầu ra của OpenAI `text-embedding-3-large`. Đối với các mô hình embedding khác, điều chỉnh cho phù hợp: Cohere embed-v4 sử dụng **1.024** chiều, và Jina AI embeddings sử dụng **768**.
@@ -237,12 +242,12 @@ def insert_document(title: str, content: str, source_url: str = None):
     embedding = response.data[0].embedding
 
     # Chèn vào Supabase
-    result = supabase.table('documents').insert({
-        'title': title,
-        'content': content,
-        'source_url': source_url,
-        'embedding': embedding,
-        'metadata': {'word_count': len(content.split())}
+    result = supabase.table(documents).insert({
+        title: title,
+        content: content,
+        source_url: source_url,
+        embedding: embedding,
+        metadata: {word_count: len(content.split())}
     }).execute()
     return result
 
@@ -280,11 +285,11 @@ async def search_similar_documents(query: str, top_k: int = 5):
 
     # Truy vấn Supabase
     result = await supabase.rpc(
-        'match_documents',
+        match_documents,
         {
-            'query_embedding': query_embedding,
-            'match_threshold': 0.7,
-            'match_count': top_k
+            query_embedding: query_embedding,
+            match_threshold: 0.7,
+            match_count: top_k
         }
     ).execute()
     return result.data
@@ -350,15 +355,15 @@ class SupabaseRAG:
         """Lưu trữ các chunk tài liệu với embedding."""
         for chunk in chunks:
             embedding = self.openai.embeddings.create(
-                input=chunk['text'],
+                input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
 
-            self.supabase.table('documents').insert({
-                'title': chunk['title'],
-                'content': chunk['text'],
-                'embedding': embedding,
-                'metadata': chunk.get('metadata', {})
+            self.supabase.table(documents).insert({
+                title: chunk[title],
+                content: chunk[text],
+                embedding: embedding,
+                metadata: chunk.get(metadata, {})
             }).execute()
 
     def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
@@ -369,11 +374,11 @@ class SupabaseRAG:
         ).data[0].embedding
 
         results = self.supabase.rpc(
-            'match_documents',
+            match_documents,
             {
-                'query_embedding': query_embedding,
-                'match_threshold': 0.75,
-                'match_count': top_k
+                query_embedding: query_embedding,
+                match_threshold: 0.75,
+                match_count: top_k
             }
         ).execute()
         return results.data
@@ -381,7 +386,7 @@ class SupabaseRAG:
     def generate(self, query: str, context: list[dict]) -> str:
         """Tạo phản hồi sử dụng ngữ cảnh đã truy xuất."""
         context_text = "\n\n".join([
-            f"[Nguồn: {doc['title']}]\n{doc['content']}"
+            f"[Nguồn: {doc[title]}]\n{doc[content]}"
             for doc in context
         ])
 
@@ -407,16 +412,16 @@ class SupabaseRAG:
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
-            'query': query,
-            'answer': answer,
-            'sources': [doc['title'] for doc in context],
-            'similarity_scores': [doc['similarity'] for doc in context]
+            query: query,
+            answer: answer,
+            sources: [doc[title] for doc in context],
+            similarity_scores: [doc[similarity] for doc in context]
         }
 
 # Sử dụng
 rag = SupabaseRAG(SUPABASE_URL, SUPABASE_KEY, OPENAI_KEY)
 result = rag.chat("Các phương pháp hay nhất của Docker là gì?")
-print(result['answer'])
+print(result[answer])
 ```
 
 ## Xác thực & Row Level Security (RLS)
@@ -458,7 +463,7 @@ const accessToken = session.session?.access_token
 
 -- Truy vấn với ngữ cảnh xác thực (RLS tự động thực thi)
 const { data } = await supabase
-  .from('documents')
+  .from(documents)
   .select('*')
 ```
 
@@ -467,7 +472,7 @@ const { data } = await supabase
 supabase_admin = create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 
 -- Bỏ qua RLS cho các thao tác quản trị
-all_docs = supabase_admin.table('documents').select('*').execute()
+all_docs = supabase_admin.table(documents).select('*').execute()
 ```
 
 ## Đăng ký Thờ gian thực cho các tính năng AI trực tiếp
@@ -477,8 +482,8 @@ all_docs = supabase_admin.table('documents').select('*').execute()
 const channel = supabase
   .channel('documents-changes')
   .on(
-    'postgres_changes',
-    { event: 'INSERT', schema: 'public', table: 'documents' },
+    postgres_changes,
+    { event: INSERT, schema: public, table: documents },
     (payload) => {
       console.log('Tài liệu mới được chèn:', payload.new)
       // Kích hoạt lập chỉ mục lại, thông báo, hoặc cập nhật UI
@@ -498,11 +503,11 @@ async def subscribe_to_changes():
     channel = supabase.channel('documents-changes')
     
     def handle_insert(payload):
-        print(f"Tài liệu mới: {payload['new']['title']}")
+        print(f"Tài liệu mới: {payload[new][title]}")
     
     channel.on(
-        'postgres_changes',
-        {'event': 'INSERT', 'schema': 'public', 'table': 'documents'},
+        postgres_changes,
+        {event: INSERT, schema: public, table: documents},
         handle_insert
     ).subscribe()
 
@@ -530,14 +535,14 @@ serve(async (req) => {
 
   // Gọi OpenAI API từ edge
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
+    method: POST,
     headers: {
-      'Authorization': `Bearer ${Deno.env.get('OPENAI_API_KEY')}`,
+      Authorization: `Bearer ${Deno.env.get(OPENAI_API_KEY)}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       model: 'gpt-4.1-mini',
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: user, content: prompt }],
       max_tokens: 500
     })
   })

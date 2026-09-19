@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider" />
 title: 'Aider: 45K+ Stars — Lập Trình Cặp AI trong Terminal vs Claude Code, Cursor 2026'
 description: 'Aider là công cụ lập trình cặp AI trong terminal, chỉnh sửa code trong git repository cục bộ. Hỗ trợ OpenAI, Claude, DeepSeek, Gemini. Hướng dẫn cài đặt Aider, tutorial, tích hợp Git, benchmark và so sánh với Claude Code, Cursor, Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['aider', 'ai-pair-programming', 'terminal-ai', 'cli-coding', 'git-ai', 'llm-tools', 'mã-nguồn-mở']
+tags: [aider, 'ai-pair-programming', 'terminal-ai', 'cli-coding', 'git-ai', 'llm-tools', 'mã-nguồn-mở']
 aliases:
 - /vi/posts/aider/
 ---

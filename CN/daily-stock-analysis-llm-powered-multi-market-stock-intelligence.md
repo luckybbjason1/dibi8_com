@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
   title: 'Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence System'
   description: 'An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and automated notifications. 48K stars. Supports zero-cost scheduled runs.'
   date: 2026-06-25

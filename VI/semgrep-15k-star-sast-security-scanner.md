@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/semgrep-15k-star-sast-security-scanner" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/semgrep-15k-star-sast-security-scanner" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/semgrep-15k-star-sast-security-scanner" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/semgrep-15k-star-sast-security-scanner" />
 
 title: 'Semgrep: Công cụ SAST 15K-Star Tìm 500+ Lỗ Hổng Trong Mã Của Bạn Dưới 30 Giây'
 description: 'Semgrep là công cụ phân tích tĩnh mã nguồn mã nguồn mở với hơn 15K star trên GitHub, tìm kiếm hơn 500 mẫu lỗ hổng trong Python, JavaScript, TypeScript, Go, Java và nhiều ngôn ngữ khác. Nhanh, nhẹ, tích hợp CI/CD. Bao gồm hướng dẫn thiết lập, benchmark và triển khai sản xuất.'

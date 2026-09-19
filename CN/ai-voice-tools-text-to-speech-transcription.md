@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-voice-tools-text-to-speech-transcription" />
 title: 'Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Text Comparison'
 description: 'Compare the best AI voice tools of 2025 for text-to-speech and transcription. ElevenLabs, Murf.ai, Whisper, Otter.ai, and more with pricing, accuracy, and use cases.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false

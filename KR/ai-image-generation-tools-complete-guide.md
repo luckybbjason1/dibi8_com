@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-image-generation-tools-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-image-generation-tools-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-image-generation-tools-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-image-generation-tools-complete-guide" />
 title: 'AI 이미지 생성 도구 완벽 가이드: Midjourney, DALL-E, Stable Diffusion 비교 2025'
 description: '2025년 최신 AI 이미지 생성 도구를 완벽하게 비교합니다. Midjourney v7, DALL-E 3, Stable Diffusion 3.5, FLUX의 특징, 가격, 프롬프트 작성법을 상세히 알아보세요.'
 date: 2026-05-18 00:00:00+08:00

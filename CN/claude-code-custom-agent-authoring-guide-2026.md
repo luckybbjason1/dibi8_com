@@ -1,25 +1,27 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Claude Code Custom Agent Authoring: Build Reusable Subagents That Enforce Your Standards (2026)'
 description: 'A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt design, tool allowlists, and two production-ready examples (migration reviewer, security gate) with the mistakes to avoid.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/claude-code-custom-agent-authoring/
 faq:
@@ -28,7 +30,7 @@ faq:
   - q: "What's the difference between the description field and the system prompt body?"
     a: "The description is the routing signal: it's what the parent agent reads when deciding whether to delegate to this subagent, so it must say WHEN to use the agent, not just what it is. The system prompt body is the instruction set the subagent runs under once it's invoked — its role, its method, its output contract. A great description with a vague body gets invoked at the right time but does mediocre work; a great body with a vague description does excellent work that never gets triggered."
   - q: "Should I give my custom agent access to all tools or restrict them?"
-    a: "Restrict them. Omitting the tools field grants the full inherited toolset, which is convenient but risky for agents that should never write or execute — a code-reviewer with Write and Bash access can 'helpfully' apply its own suggestions, defeating the point of an independent review. Declare the minimum: a reviewer gets Read, Grep, Glob; a migration auditor gets those plus a read-only database query tool if you have one. Least privilege makes the agent's behavior predictable."
+    a: "Restrict them. Omitting the tools field grants the full inherited toolset, which is convenient but risky for agents that should never write or execute — a code-reviewer with Write and Bash access can helpfully apply its own suggestions, defeating the point of an independent review. Declare the minimum: a reviewer gets Read, Grep, Glob; a migration auditor gets those plus a read-only database query tool if you have one. Least privilege makes the agent's behavior predictable."
   - q: "How do I test a custom agent without polluting a real project?"
     a: "Create a throwaway branch or a git worktree with a known-bad example (a migration with a missing index, an auth change with a logic hole) and invoke the agent against it. You're checking two things: does it get triggered by a natural request (description quality), and does it catch the planted problem (system prompt quality). Iterate on the frontmatter and body separately — they fail for different reasons."
   - q: "Can a custom agent call other subagents, or spawn its own?"

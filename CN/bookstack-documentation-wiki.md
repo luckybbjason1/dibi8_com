@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/bookstack-documentation-wiki" />
 title: 'BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup & Review'
 description: 'A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'BookStackApp/BookStack'
 stars: 18700
-maintainer: 'BookStackApp'
+maintainer: BookStackApp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['BookStack', 'Documentation', 'Wiki', 'Self-Hosted', 'PHP', 'Laravel', 'Knowledge Base', 'Markdown', 'Docker', 'Open Source']
+tags: [bookstack, documentation, wiki, 'self-hosted', php, laravel, 'knowledge base', markdown, docker, 'open source']
 aliases:
 - /posts/bookstack-documentation-wiki/
 ---
@@ -316,7 +318,7 @@ BACKUP_DIR="/backups/bookstack"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # Backup database
-docker exec bookstack_db mysqldump -u bookstack -p'your_password' bookstackdb \
+docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \
   | gzip > "$BACKUP_DIR/bookstack_db_$DATE.sql.gz"
 
 # Backup application data (uploads, config)
@@ -393,7 +395,7 @@ use BookStack\Theming\ThemeEvents;
 use BookStack\Theming\ThemeViews;
 
 Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) {
-    $themeViews->renderAfter('layouts.parts.header', 'welcome', 10);
+    $themeViews->renderAfter('layouts.parts.header', welcome, 10);
 });
 
 # views/welcome.blade.php

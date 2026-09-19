@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-mcp-tools-top10-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-mcp-tools-top10-2026" />
 title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất'
 description: '10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí.'
 date: 2026-06-06 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/egonex-understand-anything-interactive-knowledge-graph-ai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/egonex-understand-anything-interactive-knowledge-graph-ai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/egonex-understand-anything-interactive-knowledge-graph-ai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/egonex-understand-anything-interactive-knowledge-graph-ai" />
 title: "Egonex Understand-Anything: Biểu Đồ Tri Thức Tương Tác Từ Bất Kỳ Chủ Đề Nào — AI-Powered, Mã Nguồn Mở, Không Cấu Hình"
 description: "Tìm hiểu cách sử dụng Understand-Anything của Egonex để tạo biểu đồ tri thức tương tác từ bất kỳ chủ đề nào bằng AI. Cài đặt từng bước, tổng hợp đa nguồn, tìm kiếm thời gian thực và so sánh với các giải pháp thay thế."
 date: 2026-06-10

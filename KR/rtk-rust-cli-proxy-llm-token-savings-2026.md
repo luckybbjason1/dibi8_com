@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
 title: '개발자 월 20만원 AI 비용을 4만원으로: rtk 완벽 가이드 | LLM 토큰 최적화 2026'
 description: 'rtk는 Rust로 작성된 단일 바이너리 CLI 프록시. Claude Code·Cursor·Copilot·Codex 등 13개 AI 코딩 도구의 토큰 소비를 60-90% 절감. 100+ 명령어 지원, <10ms 오버헤드, MIT 오픈소스, 30초 설치 0설정.'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['Rust', 'CLI', 'Shell hooks']
+tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
 source_version: '0.28.2'
 licensing_model: Open Source
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['rtk', 'rust', 'cli', 'llm', 'token-optimization', 'ai-coding', 'claude-code', 'cursor', 'copilot', 'cost-optimization', 'open-source', 'developer-tools']
+tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
 aliases:
 - /kr/posts/rtk/
 - /kr/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
@@ -81,7 +86,7 @@ faqs:
 
 하지진 가장 큰 문제는 **이 비용의 상당 부분이 낭비되고 있다**는 점이다.
 
-`git status`를 실행했는데 Claude Code가 2,000토큰짜리 원본 출력을 받아본다. `cargo test` 결과에 진행 바(progress bar), ASCII 아트, 반복되는 로그가 수백 토큰을 차지한다. 이 모든 '잡음'이 LLM의 컨텍스트 윈도우에 밀려 들어가며 매번 비용을 발생시킨다.
+`git status`를 실행했는데 Claude Code가 2,000토큰짜리 원본 출력을 받아본다. `cargo test` 결과에 진행 바(progress bar), ASCII 아트, 반복되는 로그가 수백 토큰을 차지한다. 이 모든 잡음이 LLM의 컨텍스트 윈도우에 밀려 들어가며 매번 비용을 발생시킨다.
 
 **rtk는 바로 이 낭비 구간을 제거하는 도구다.**
 
@@ -140,7 +145,7 @@ rtk 공식 문서의 벤치마크를 한국의 중견 TypeScript 풀스택 프�
 
 ## rtk의 4가지 핵심 압축 전략
 
-rtk는 단순한 '자르기'가 아니라 명령어 유형별 최적 전략을 적용한다:
+rtk는 단순한 자르기가 아니라 명령어 유형별 최적 전략을 적용한다:
 
 ### 1. Smart Filtering (스마트 필터링)
 
@@ -307,7 +312,7 @@ rtk의 독보적인 장점: **명령어 계층에서 작동하며 코드 변경,
 
 ## 결론: 올해 설치할 가장 ROI 높은 도구
 
-2026년 개발자 도구 시장에서는 모두 '더 많은 기능'을 만들고 있다——더 강력한 모델, 더 많은 통합, 더 화려한 UI. rtk는 드물게 '덜' 만들되 '더 잘' 만든 예외다. AI 에이전트를 대체하지 않고, 단지 먹이를 더 저렴하게 만든다.
+2026년 개발자 도구 시장에서는 모두 '더 많은 기능'을 만들고 있다——더 강력한 모델, 더 많은 통합, 더 화려한 UI. rtk는 드물게 덜 만들되 '더 잘' 만든 예외다. AI 에이전트를 대체하지 않고, 단지 먹이를 더 저렴하게 만든다.
 
 - **워크플로우 변경 없음**
 - **코드 변경 없음**

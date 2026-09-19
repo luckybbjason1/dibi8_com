@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/last30days-skill-ai-agent-research-engine-social-media" />
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
 description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts.'
 tags: ["ai-agent", "automation", "dev-tools", "engine", "open-source", "search"]
@@ -10,7 +12,7 @@ slug: last30days-skill-ai-agent-research-engine-social-media
 featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
@@ -22,13 +24,13 @@ description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in 
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'

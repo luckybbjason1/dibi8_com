@@ -1,4 +1,8 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/windsurf-vs-github-copilot-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/windsurf-vs-github-copilot-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/windsurf-vs-github-copilot-2026" />
 title: 'Windsurf vs GitHub Copilot 2026: So Sánh Chuyên Sâu, Chọn Cái Nào?'
 description: 'Windsurf Cascade vs GitHub Copilot Agent Mode — giá cả, chỉnh sửa đa file, bảo mật doanh nghiệp, và scandal thay đổi tính phí tháng 6/2026. Dữ liệu thực tế, không vòng vo.'
 date: 2026-06-07 00:00:00+08:00

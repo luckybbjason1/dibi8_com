@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 title: 'Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时候该升级到独立框架'
 description: '你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub 星标的真相，以及"内置已经够用"与"该升级了"之间那条诚实的分界线。'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'LangGraph', 'CrewAI', 'AutoGen', 'Python']
+tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'langgraph', 'crewai', 'autogen', 'multi-agent', 'agent-sdk', 'llm-frameworks', 'orchestration']
+tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
 aliases:
 - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq:

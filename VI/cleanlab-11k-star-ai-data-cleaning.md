@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cleanlab-11k-star-ai-data-cleaning" />
 
 title: 'Cleanlab: Bộ công cụ AI 11K+ sao giúp giảm 80% chi phí chú thích dữ liệu — Dọn dẹp dữ liệu nguồn mở bằng Python'
 description: 'Cleanlab là một bộ công cụ AI nguồn mở với hơn 11K+ sao trên GitHub, giúp tìm và khắc phục các vấn đề chất lượng dữ liệu trong tập dữ liệu ML. Phát hiện lỗi nhãn tự động, điền giá trị thiếu và làm sạch dữ liệu cho các tác vụ phân loại, hồi quy và cụm. Bao gồm hướng dẫn cài đặt, benchmarks và triển khai sản xuất.'

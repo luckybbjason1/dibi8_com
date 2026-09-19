@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/compound-engineering-multi-agent-coding-claude-codex-cursor" />
 title: 'Compound Engineering: Orchestrate Claude Code, Codex, and Cursor Together — Multi-Agent Plugin Guide'
 description: 'Compound Engineering (20K stars) is a multi-agent plugin for Claude Code, Codex, and Cursor. 9 commands for brainstorm, plan, review, debug, and compound learnings. 80% planning, 20% execution workflow.'
 tags: ["ai-agent", "ai-editor", "anthropic", "automation", "claude", "coding-agent", "cursor", "guide", "open-source", "reference", "tutorial"]

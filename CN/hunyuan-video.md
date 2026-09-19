@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — Production Deployment Guide 2026'
 description: 'HunyuanVideo (HYV) is an open-source video generation framework by Tencent with 13B parameters. Supports ComfyUI, Diffusers, Gradio API. Covers Docker setup, FP8 quantization, multi-GPU inference, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['video-generation', 'diffusion-transformer', 'tencent', 'hunyuanvideo', 'comfyui', 'docker', 'fp8', 'multimodal']
+tags: ['video-generation', 'diffusion-transformer', tencent, hunyuanvideo, comfyui, docker, fp8, multimodal]
 aliases:
 - /posts/hunyuan-video/
 ---
@@ -361,9 +363,9 @@ server {
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-inference_count = Counter('hunyuan_inferences_total', 'Total inferences')
-inference_duration = Histogram('hunyuan_inference_seconds', 'Inference latency')
-queue_depth = Gauge('hunyuan_queue_depth', 'Current queue depth')
+inference_count = Counter(hunyuan_inferences_total, 'Total inferences')
+inference_duration = Histogram(hunyuan_inference_seconds, 'Inference latency')
+queue_depth = Gauge(hunyuan_queue_depth, 'Current queue depth')
 
 @inference_duration.time()
 def generate_video(prompt, height, width, frames, steps):

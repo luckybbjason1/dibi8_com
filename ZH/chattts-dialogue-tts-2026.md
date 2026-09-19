@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
 title: 'ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制'
 description: 'ChatTTS 是专为对话（不是朗读）打造的开源 TTS。GitHub 39.3k 星，最低 4 GB VRAM，RTX 4090 上 RTF 0.3，含笑声 / 停顿的精细 prosody 控制。2026 完整安装 + 生产设置指南。'
 date: 2026-05-21 00:00:00+08:00
@@ -17,12 +22,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/2noise/ChatTTS'
 stars: 39300
-maintainer: '2noise'
+maintainer: 2noise
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ChatTTS', 'TTS', '语音', '对话', '开源']
+tags: [chattts, tts, 语音, 对话, 开源]
 aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---

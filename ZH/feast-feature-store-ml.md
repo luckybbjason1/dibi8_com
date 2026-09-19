@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feast-feature-store-ml" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
 title: 'Feast: 开源特征存储亚秒级特征服务 — 2026 完整部署指南'
 description: 'Feast 完整指南 — 领先的开源特征存储。涵盖特征注册中心、在线/离线存储、亚秒级服务、Redis/BigQuery 后端、批处理与实时特征以及生产部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Feast', 'Feature Store', 'MLOps', 'ML Pipeline', 'Redis', 'BigQuery', '在线存储', '离线存储', '实时ML', '特征工程']
+tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 在线存储, 离线存储, 实时ml, 特征工程]
 aliases:
 - /zh/posts/feast-feature-store-ml/
 ---
@@ -121,7 +126,7 @@ features = store.get_online_features(
     entity_rows=[{"user_id": "user_12345"}],
 ).to_dict()
 
-# 返回: {'avg_order_amount_30d': [245.50], 'total_transactions_90d': [12]}
+# 返回: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
 ```
 
 ### 4. 特征服务器

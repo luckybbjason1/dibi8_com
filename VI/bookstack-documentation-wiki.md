@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
 title: 'BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn & Đánh giá 2026'
 description: 'Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Markdown, cấu trúc kệ sách/chương/trang, và hỗ trợ LDAP/SSO. Tự host trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'BookStackApp/BookStack'
 stars: 18700
-maintainer: 'BookStackApp'
+maintainer: BookStackApp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['BookStack', 'Tài liệu', 'Wiki', 'Tự host', 'PHP', 'Laravel', 'Cơ sở kiến thức', 'Markdown', 'Docker', 'Mã nguồn mở']
+tags: [bookstack, 'tài liệu', wiki, 'tự host', php, laravel, 'cơ sở kiến thức', markdown, docker, 'mã nguồn mở']
 aliases:
 - /vi/posts/bookstack-documentation-wiki/
 ---
@@ -316,7 +321,7 @@ BACKUP_DIR="/backups/bookstack"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # Sao lưu cơ sở dữ liệu
-docker exec bookstack_db mysqldump -u bookstack -p'your_password' bookstackdb \
+docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \
   | gzip > "$BACKUP_DIR/bookstack_db_$DATE.sql.gz"
 
 # Sao lưu dữ liệu ứng dụng (upload, cấu hình)
@@ -393,7 +398,7 @@ use BookStack\Theming\ThemeEvents;
 use BookStack\Theming\ThemeViews;
 
 Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) {
-    $themeViews->renderAfter('layouts.parts.header', 'welcome', 10);
+    $themeViews->renderAfter('layouts.parts.header', welcome, 10);
 });
 
 # views/welcome.blade.php

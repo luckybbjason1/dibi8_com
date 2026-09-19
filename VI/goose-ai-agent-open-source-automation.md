@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐Công cụ AI mã nguồn mở, tự động hóa mọi thứ từ coding đến nghiên cứu"
 description: "Goose là AI Agent mã nguồn mở được Linux Foundation hỗ trợ, 44K+ Stars, hỗ trợ 15+ nhà cung cấp LLM và 70+ tiện ích mở rộng MCP. Ứng dụng desktop + CLI + API được xây dựng bằng Rust, hiệu suất vượt trội."
 date: 2026-05-15T04:20:25+09:00

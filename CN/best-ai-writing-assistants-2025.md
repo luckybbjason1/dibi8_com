@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/best-ai-writing-assistants-2025" />
 title: 'Best AI Writing Assistants 2025: Jasper, Copy.ai, Writesonic & ChatGPT Compared'
 description: 'Compare the best AI writing assistants of 2025: Jasper, Copy.ai, Writesonic, ChatGPT, Claude, and Notion AI. Find the right tool for your content needs with pricing and features.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-ds4-vs-openai-api" />
 title: "彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API"
 description: "彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API"
 date: 2026-05-15T04:20:25+09:00

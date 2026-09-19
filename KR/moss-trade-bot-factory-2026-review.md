@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moss-trade-bot-factory-2026-review" />
 title: 'Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백테스트는 거짓말을 하는가'
 description: 'moss-trade-bot-skills v1.0.26 핸즈온 리뷰: Hyperliquid 퍼페추얼용 자연어 퀀트 agent 빌더. Decimal 정밀도 + 20단계 호가창 모델링 — 그러나 Sharpe 연간화 상수 버그와 진화 모드 활성화 시 교과서적 OVERFIT 트랩. 보안 감사, 버그 픽스, 5 전략 비교, 70/30 train/OOS 검증 결과 전 과정.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'ccxt', 'Hyperliquid']
+tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
 source_version: 'v1.0.26'
 licensing_model: Open Source
@@ -19,7 +24,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['ai-agent', '퀀트', '백테스트', 'hyperliquid', '퍼페추얼', '오픈소스', '과적합', 'OOS 검증']
+tags: ['ai-agent', 퀀트, 백테스트, hyperliquid, 퍼페추얼, 오픈소스, 과적합, 'oos 검증']
 aliases:
 - /kr/posts/moss-trade-bot-factory-2026-review/
 faq:

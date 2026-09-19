@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/apple-container" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/apple-container" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/apple-container" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/apple-container" />
 title: "Apple Container: macOS 용 Docker — 애플이 컨테이너 대신 VM을 선택한 이유 (36K Stars)"
 description: "Apple Container는 경량 VM을 사용해 Mac에서 Linux 컨테이너를 실행하는 오픈소스 도구입니다. 표준 OCI 이미지를 생성하고 macOS 프레임워크와 통합되며, Linux 컨테이너화 분야의 첫 공식 Apple 개발 도구입니다. 별 36K개."
 date: 2026-06-13

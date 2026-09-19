@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/facefusion-architecture-onnx-video-face-swap" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/facefusion-architecture-onnx-video-face-swap" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/facefusion-architecture-onnx-video-face-swap" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/facefusion-architecture-onnx-video-face-swap" />
 title: "왜 전설적인 Roop은 결국 죽음을 맞이했는가?"
 description: "왜 전설적인 Roop은 결국 죽음을 맞이했는가?"
 date: 2026-05-15T04:20:25+09:00

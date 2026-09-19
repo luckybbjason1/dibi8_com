@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/discover-tikchain-your-gateway-to-social-media-blockchain" />
 title: "Khám phá TikChain - Cổng thông tin blockchain mạng xã hội của bạn"
 description: "Khám phá TikChain: cổng vào blockchain mạng xã hội. Kiếm phần thưởng bằng cách tạo nội dung và tương tác với mạng xã hội phi tập trung."
 date: 2026-05-15T04:20:25+09:00

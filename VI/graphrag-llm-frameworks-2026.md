@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft cho câu trả lời LLM tốt hơn (33K Stars) — Hướng dẫn thực chiến 2026'
 description: 'GraphRAG là hệ thống RAG mô-đun, dựa trên đồ thị tri thức của Microsoft (33.403 sao GitHub, giấy phép MIT). Hướng dẫn này trình bày cách cài đặt, quy trình init/index/query, ví dụ CLI thực tế và so sánh thẳng thắn với LangChain và Haystack.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/graphrag'
 stars: 33403
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-06-02'
 featureImage: ''
 draft: false

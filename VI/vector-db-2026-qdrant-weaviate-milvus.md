@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
 title: 'Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (Test Workload Thực Tế)'
 description: 'Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ phức tạp cài đặt. Loại nào hợp cho prototype vs production, và khi nào nên bỏ qua vector DB để dùng SQLite FTS5.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Qdrant', 'Weaviate', 'Milvus', 'Vector Search', 'Embeddings']
+tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
 source_version: 'Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['vector-database', 'qdrant', 'weaviate', 'milvus', 'rag', '2026']
+tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
 aliases:
 - /vi/posts/vector-db-2026-qdrant-weaviate-milvus/
 faq:

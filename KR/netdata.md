@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/netdata" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/netdata" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/netdata" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/netdata" />
 title: 'Netdata: 78K+ Star 실시간 모니터링 — 2026 성능 튜닝 가이드'
 description: 'Netdata (ND)는 초당 메트릭과 시각화를 제공하는 고성능 실시간 모니터링 에이전트입니다. Docker, Kubernetes, Prometheus, Grafana와 호환됩니다. netdata 튜토리얼, netdata 설치, 실시간 모니터링, netdata vs prometheus, netdata 성능 튜닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/netdata/netdata'
 stars: 78874
-maintainer: 'netdata'
+maintainer: netdata
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['netdata', '모니터링', '관측 가능성', '성능 튜닝', 'docker', 'kubernetes', '실시간-메트릭']
+tags: [netdata, 모니터링, '관측 가능성', '성능 튜닝', docker, kubernetes, '실시간-메트릭']
 aliases:
 - /kr/posts/netdata/
 ---

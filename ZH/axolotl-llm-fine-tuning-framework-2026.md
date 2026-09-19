@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/axolotl-llm-fine-tuning-framework-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/axolotl-llm-fine-tuning-framework-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/axolotl-llm-fine-tuning-framework-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/axolotl-llm-fine-tuning-framework-2026" />
 title: 'Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南'
 description: 'Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama / Mistral / Qwen / GLM / 10+ 家族。完整 2026 安装指南 + 何时 Axolotl 胜过 Unsloth 和原生 HF TRL。'
 date: 2026-05-21 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Axolotl', '微调', 'LoRA', 'QLoRA', 'DPO', '开源']
+tags: [axolotl, 微调, lora, qlora, dpo, 开源]
 aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---

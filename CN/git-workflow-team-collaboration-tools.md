@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/git-workflow-team-collaboration-tools" />
 title: 'Git Workflow & Team Collaboration Tools: A Developer''s Complete Guide'
 description: 'Master Git workflow best practices for teams. Compare GitHub Flow, GitFlow, and trunk-based development with code review tools and collaboration platforms.'
 date: 2026-05-18 00:00:00+08:00

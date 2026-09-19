@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: 构建每秒处理10K+请求的高性能异步网页抓取器 — Python指南'
 description: '掌握 aiohttp 3.11，用 Python 构建高性能异步网页抓取器。支持连接池、会话管理、速率限制和生产环境部署，每秒处理10K+请求。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['aiohttp', '异步', '网页抓取', 'python', 'http客户端', 'asyncio']
+tags: [aiohttp, 异步, 网页抓取, python, http客户端, asyncio]
 aliases:
 - /zh/posts/aiohttp-async-web-scraping/
 ---
@@ -150,7 +155,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         results = await scrape_titles(session, urls)
         for r in results:
-            print(f"{r['url']}: {r['title']}")
+            print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```

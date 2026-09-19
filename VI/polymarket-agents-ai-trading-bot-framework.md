@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework" />
 title: 'Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trường Dự Đoán'
 description: Polymarket Agents là một khung phát triển mã nguồn mở để xây dựng các
   tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket.

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prefect-workflow-orchestration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prefect-workflow-orchestration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prefect-workflow-orchestration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prefect-workflow-orchestration" />
 title: 'Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — 셀프 호스팅 설정 가이드'
 description: 'Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배포하세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'PrefectHQ/prefect'
 stars: 18000
-maintainer: 'PrefectHQ'
+maintainer: PrefectHQ
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -129,7 +134,7 @@ PostgreSQL을 사용한 팀 배포:
 
 ```bash
 # 옵션 B: PostgreSQL이 있는 Docker Compose
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 services:
   prefect-server:
     image: prefecthq/prefect:3.3.0-python3.12

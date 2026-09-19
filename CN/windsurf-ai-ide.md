@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/windsurf-ai-ide" />
 title: Windsurf AI IDE — The Agentic Code Editor That Thinks With You
 description: Complete guide to Windsurf, the agentic AI IDE from Codeium that writes
   code, debugs, and ships features autonomously. Pricing, benchmarks, and real-world

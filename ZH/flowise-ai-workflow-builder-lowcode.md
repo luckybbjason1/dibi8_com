@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise 2026 完整指南：低代码 AI 工作流构建器 — 可视化部署 LangChain Agent'
 description: 'Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'FlowiseAI/Flowise'
 stars: 45000
-maintainer: 'FlowiseAI'
+maintainer: FlowiseAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Flowise', 'LangChain', '低代码', 'AI工作流', 'Docker', '自托管', 'Agent构建器', '无代码', '开源', '聊天机器人']
+tags: [flowise, langchain, 低代码, ai工作流, docker, 自托管, agent构建器, 无代码, 开源, 聊天机器人]
 aliases:
 - /zh/posts/flowise-ai-workflow-builder-lowcode/
 ---
@@ -101,7 +106,7 @@ Flowise 的架构由三层组成：
 mkdir -p ~/flowise && cd ~/flowise
 
 # 创建 docker-compose.yml
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 services:
   flowise:
     image: flowiseai/flowise:2.2.0
@@ -375,24 +380,24 @@ const { Tool } = require('langchain/tools');
 class JiraTicketTool extends Tool {
   constructor() {
     super();
-    this.name = 'jira_create_ticket';
+    this.name = jira_create_ticket;
     this.description = '创建 Jira 工单。输入: summary, description, issueType 的 JSON 字符串。';
   }
 
   async _call(input) {
     const { summary, description, issueType } = JSON.parse(input);
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
-      method: 'POST',
+      method: POST,
       headers: {
-        'Authorization': `Basic ${Buffer.from('email:token').toString('base64')}`,
+        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         fields: {
-          project: { key: 'PROJ' },
+          project: { key: PROJ },
           summary,
           description,
-          issuetype: { name: issueType || 'Task' }
+          issuetype: { name: issueType || Task }
         }
       })
     });

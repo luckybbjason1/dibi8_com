@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-sora" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-sora" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-sora" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-sora" />
 title: 'Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generation Mã Nguồn Mở 2026'
 description: 'Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp ComfyUI, triển khai production, so sánh hiệu suất với HunyuanVideo, CogVideo, và Wan.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hpcaitech/Open-Sora'
 stars: 29000
-maintainer: 'hpcaitech'
+maintainer: hpcaitech
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['open-sora', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', 'docker', 'cuda', 'comfyui']
+tags: ['open-sora', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', docker, cuda, comfyui]
 aliases:
 - /vi/posts/open-sora/
 ---
@@ -519,9 +524,9 @@ import psutil
 from prometheus_client import Counter, Histogram, start_http_server
 
 # Metrics
-GENERATION_COUNTER = Counter('opensora_generations_total', 'Tổng số video tạo')
-GENERATION_DURATION = Histogram('opensora_generation_seconds', 'Thờ gian tạo')
-VRAM_USAGE = Histogram('opensora_vram_usage_bytes', 'VRAM sử dụng đỉnh')
+GENERATION_COUNTER = Counter(opensora_generations_total, 'Tổng số video tạo')
+GENERATION_DURATION = Histogram(opensora_generation_seconds, 'Thờ gian tạo')
+VRAM_USAGE = Histogram(opensora_vram_usage_bytes, 'VRAM sử dụng đỉnh')
 
 def generate_with_monitoring(prompt, config):
     process = psutil.Process()
@@ -541,10 +546,10 @@ def generate_with_monitoring(prompt, config):
         VRAM_USAGE.observe(peak_vram)
         
         return {
-            'video': video,
-            'duration': duration,
-            'peak_vram_gb': peak_vram / 1e9,
-            'peak_ram_gb': (process.memory_info().rss - start_mem) / 1e9,
+            video: video,
+            duration: duration,
+            peak_vram_gb: peak_vram / 1e9,
+            peak_ram_gb: (process.memory_info().rss - start_mem) / 1e9,
         }
     except Exception as e:
         raise

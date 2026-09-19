@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)'
 description: '프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Bash']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: 상용 (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
+tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
 aliases:
 - /posts/claude-code-subagent-patterns/
 faq:

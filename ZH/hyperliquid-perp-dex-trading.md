@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
 title: 'Hyperliquid 2026：日交易量超20亿美元的链上永续合约DEX — 交易机器人集成指南'
 description: 'Hyperliquid综合指南：完全链上永续合约DEX，日交易量超20亿美元，100多个交易对，最高50倍杠杆，HyperEVM智能合约及Python SDK机器人集成。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hyperliquid-dex'
 stars: 0
-maintainer: 'hyperliquid'
+maintainer: hyperliquid
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Hyperliquid', 'perpetual DEX', 'on-chain trading', 'leverage trading', 'trading bot', 'HyperEVM', 'Python SDK', 'WebSocket API', 'CLOB', 'DeFi trading', 'algorithmic trading']
+tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'trading bot', hyperevm, 'python sdk', 'websocket api', clob, 'defi trading', 'algorithmic trading']
 aliases:
 - /zh/posts/hyperliquid-perp-dex-trading/
 ---
@@ -128,8 +133,8 @@ class HyperliquidTrader:
     """生产级Hyperliquid交易客户端。"""
     
     def __init__(self, use_testnet=True):
-        self.private_key = os.getenv('PRIVATE_KEY')
-        self.wallet_address = os.getenv('WALLET_ADDRESS')
+        self.private_key = os.getenv(PRIVATE_KEY)
+        self.wallet_address = os.getenv(WALLET_ADDRESS)
         
         # 根据环境选择端点
         if use_testnet:
@@ -145,16 +150,16 @@ class HyperliquidTrader:
         )
         self.info = Info(self.base_url)
         
-        print(f"已连接到Hyperliquid {'测试网' if use_testnet else '主网'}")
+        print(f"已连接到Hyperliquid {测试网 if use_testnet else 主网}")
         print(f"钱包: {self.wallet_address}")
     
     def get_account_summary(self):
         """获取综合账户信息。"""
         user_state = self.info.user_state(self.wallet_address)
         
-        account_value = float(user_state['marginSummary']['accountValue'])
-        total_margin_used = float(user_state['marginSummary']['totalMarginUsed'])
-        withdrawable = float(user_state['withdrawable'])
+        account_value = float(user_state[marginSummary][accountValue])
+        total_margin_used = float(user_state[marginSummary][totalMarginUsed])
+        withdrawable = float(user_state[withdrawable])
         
         print(f"账户价值: ${account_value:,.2f}")
         print(f"已用保证金: ${total_margin_used:,.2f}")
@@ -212,19 +217,19 @@ class HyperliquidWebSocketFeed:
             msg = json.loads(message)
             
             if msg.get("channel") == "l2Book":
-                await self._handle_orderbook(msg['data'])
+                await self._handle_orderbook(msg[data])
             elif msg.get("channel") == "trades":
-                await self._handle_trades(msg['data'])
+                await self._handle_trades(msg[data])
     
     async def _handle_orderbook(self, data):
         """处理L2订单簿更新。"""
-        coin = data['coin']
-        levels = data['levels']
+        coin = data[coin]
+        levels = data[levels]
         
         self.orderbook_cache[coin] = {
-            'bids': [{'px': float(b['px']), 'sz': float(b['sz'])} for b in levels[0]],
-            'asks': [{'px': float(a['px']), 'sz': float(a['sz'])} for a in levels[1]],
-            'timestamp': data.get('time', 0)
+            bids: [{px: float(b[px]), sz: float(b[sz])} for b in levels[0]],
+            asks: [{px: float(a[px]), sz: float(a[sz])} for a in levels[1]],
+            timestamp: data.get(time, 0)
         }
     
     async def subscribe_orderbook(self, coin):
@@ -252,8 +257,8 @@ SDK支持自动策略所需的多种订单类型：
             coin, is_buy, sz, 0, order_type, reduce_only=False
         )
         
-        print(f"市价{'买入' if is_buy else '卖出'} {sz} {coin}")
-        print(f"状态: {result['status']}")
+        print(f"市价{买入 if is_buy else 卖出} {sz} {coin}")
+        print(f"状态: {result[status]}")
         return result
     
     def place_limit_order(self, coin: str, is_buy: bool, 
@@ -267,7 +272,7 @@ SDK支持自动策略所需的多种订单类型：
         """
         order_type = {"limit": {"tif": tif}}
         result = self.exchange.order(coin, is_buy, sz, px, order_type)
-        print(f"限价{'买入' if is_buy else '卖出'} {sz} {coin} @ {px}")
+        print(f"限价{买入 if is_buy else 卖出} {sz} {coin} @ {px}")
         return result
 ```
 
@@ -300,7 +305,7 @@ class TrendFollowingBot:
             startTime=int((datetime.now() - timedelta(hours=12)).timestamp() * 1000),
             endTime=int(datetime.now().timestamp() * 1000)
         )
-        closes = pd.Series([float(c['c']) for c in candles if 'c' in c])
+        closes = pd.Series([float(c[c]) for c in candles if c in c])
         
         if len(closes) < self.slow_ema_period + 5:
             return "持有"
@@ -327,7 +332,7 @@ class TrendFollowingBot:
                     mids = self.trader.info.all_mids()
                     px = float(mids.get(self.coin, 0))
                     account = self.trader.get_account_summary()
-                    acct_val = float(account['marginSummary']['accountValue'])
+                    acct_val = float(account[marginSummary][accountValue])
                     sz = round(acct_val * 0.02 / px, 4)
                     self.trader.place_market_order(self.coin, True, sz)
                     self.in_position = True
@@ -382,7 +387,7 @@ class RiskManager:
     def check_daily_limit(self) -> bool:
         """检查是否达到日亏损限制。"""
         account = self.trader.get_account_summary()
-        account_value = float(account['marginSummary']['accountValue'])
+        account_value = float(account[marginSummary][accountValue])
         # 实现日亏损检查逻辑
         return True
     
@@ -398,8 +403,8 @@ class RiskManager:
         print("紧急平掉所有仓位")
         positions = self.trader.get_positions()
         for pos in positions:
-            if pos['size'] != 0:
-                self.trader.close_position(pos['coin'])
+            if pos[size] != 0:
+                self.trader.close_position(pos[coin])
 ```
 
 ---

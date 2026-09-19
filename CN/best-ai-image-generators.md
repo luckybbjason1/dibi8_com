@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/best-ai-image-generators" />
 title: 'Best AI Image Generators 2026'
 lang: en
 description: 'The best open-source and freemium AI image generators in 2026 — from Stable Diffusion to Flux, ComfyUI to SDXL. Compare quality, speed, and pricing.'

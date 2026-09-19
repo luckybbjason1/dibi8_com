@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026：将 PostgreSQL 转变为高性能向量数据库——配置、调优与 RAG 集成指南'
 description: 'pgvector 0.8.2 生产指南：HNSW/IVFFlat 索引、向量相似性搜索、性能调优，以及与 LangChain 和 LlamaIndex 的 RAG 集成。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'pgvector/pgvector'
 stars: 15000
-maintainer: 'pgvector'
+maintainer: pgvector
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['pgvector', 'PostgreSQL', '向量数据库', 'HNSW', 'ANN', 'RAG', '相似性搜索', '全文搜索']
+tags: [pgvector, postgresql, 向量数据库, hnsw, ann, rag, 相似性搜索, 全文搜索]
 aliases:
 - /zh/posts/pgvector-postgres-vector-extension/
 ---
@@ -119,7 +124,7 @@ docker run -d \
   pgvector/pgvector:0.8.2-pg18
 
 # 验证
-docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = 'vector';"
+docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
 ```
 
 ### 方案 B：现有 PostgreSQL
@@ -145,7 +150,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 验证版本
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 返回: 0.8.2
 ```
 
@@ -156,14 +161,14 @@ SELECT extversion FROM pg_extension WHERE extname = 'vector';
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 如需查看可用扩展
-SELECT * FROM pg_available_extensions WHERE name = 'vector';
+SELECT * FROM pg_available_extensions WHERE name = vector;
 ```
 
 ### 验证安装
 
 ```sql
 -- 检查 pgvector 版本
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- 预期: 0.8.2
 
 -- 测试向量类型
@@ -238,7 +243,7 @@ print(f"已插入 {batch_size} 条文档")
 
 ```sql
 -- 设置并行索引构建参数
-SET maintenance_work_mem = '8GB';
+SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
 
 -- 使用调优参数构建 HNSW 索引
@@ -250,7 +255,7 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
   );
 
 -- 检查索引大小
-SELECT pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw'));
+SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- 典型值: 100K 条 1536 维向量约 ~450 MB
 ```
 
@@ -270,7 +275,7 @@ SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
   AND created_at > NOW() - INTERVAL '30 days'
-  AND metadata->>'category' = 'tech'
+  AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
 ```
@@ -335,8 +340,8 @@ LIMIT 10;
 
 -- 检查空间节省
 SELECT
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw')) AS full_size,
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_half_hnsw')) AS half_size;
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size 通常为 full_size 的 ~45-50%
 ```
 
@@ -498,7 +503,7 @@ CREATE POLICY tenant_isolation ON documents
     USING (tenant_id = current_setting('app.current_tenant')::INTEGER);
 
 -- 每会话设置租户
-SET app.current_tenant = '42';
+SET app.current_tenant = 42;
 
 -- 现在所有查询自动按租户过滤
 SELECT * FROM documents;  -- 仅可见租户 42 的文档
@@ -520,7 +525,7 @@ LIMIT 10;
 
 ```bash
 # 在 postgresql.conf 中启用 pg_stat_statements
-shared_preload_libraries = 'pg_stat_statements'
+shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
 ```

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
 title: 'BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测'
 description: '完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'BookStackApp/BookStack'
 stars: 18700
-maintainer: 'BookStackApp'
+maintainer: BookStackApp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['BookStack', '文档', 'Wiki', '自托管', 'PHP', 'Laravel', '知识库', 'Markdown', 'Docker', '开源']
+tags: [bookstack, 文档, wiki, 自托管, php, laravel, 知识库, markdown, docker, 开源]
 aliases:
 - /zh/posts/bookstack-documentation-wiki/
 ---
@@ -316,7 +321,7 @@ BACKUP_DIR="/backups/bookstack"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 # 备份数据库
-docker exec bookstack_db mysqldump -u bookstack -p'your_password' bookstackdb \
+docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \
   | gzip > "$BACKUP_DIR/bookstack_db_$DATE.sql.gz"
 
 # 备份应用数据（上传、配置）
@@ -393,7 +398,7 @@ use BookStack\Theming\ThemeEvents;
 use BookStack\Theming\ThemeViews;
 
 Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) {
-    $themeViews->renderAfter('layouts.parts.header', 'welcome', 10);
+    $themeViews->renderAfter('layouts.parts.header', welcome, 10);
 });
 
 # views/welcome.blade.php

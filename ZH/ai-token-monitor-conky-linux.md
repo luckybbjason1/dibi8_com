@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额'
 description: '开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。'
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
-tech_stack: ['Python', 'Conky', 'Linux']
+tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
 source_version: '1.0.0'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'luckybbjason1/ai-token-monitor'
 stars: 0
-maintainer: 'luckybbjason1'
+maintainer: luckybbjason1
 last_maintained: '2026-06-06'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AI Token监控', 'Claude配额', 'Gemini配额追踪', 'Grok token', 'Kimi API', 'Conky小工具', 'Linux桌面', '开源', 'Python', '开发者工具']
+tags: ['ai token监控', claude配额, gemini配额追踪, 'grok token', 'kimi api', conky小工具, linux桌面, 开源, python, 开发者工具]
 aliases:
 - /zh/posts/ai-token-monitor-conky-linux/
 faqs:
@@ -125,27 +130,27 @@ API key 存储在 `~/.config/.ai_monitor_keys`，文件权限为 `chmod 600`，�
 
 ```python
 # ── 自定义服务 ────────────────────────────────────
-key = keys.get('yourservice')
+key = keys.get(yourservice)
 if key:
     try:
         r = requests.get('https://api.yourservice.com/v1/usage',
-                         headers={'Authorization': f'Bearer {key}'}, timeout=8)
+                         headers={Authorization: f'Bearer {key}'}, timeout=8)
         if r.status_code == 200:
             data = r.json()
-            remain = data['quota_remaining']
-            total  = data['quota_total']
-            cache['YourService'] = {
-                'ok': True,
-                'label': f'{remain//1000}K剩',
-                'pct': remain / total
+            remain = data[quota_remaining]
+            total  = data[quota_total]
+            cache[YourService] = {
+                ok: True,
+                label: f'{remain//1000}K剩',
+                pct: remain / total
             }
         else:
-            cache['YourService'] = {'ok': False, 'label': 'API 错误'}
+            cache[YourService] = {ok: False, label: 'API 错误'}
     except Exception:
         pass
 ```
 
-然后在 `conky_ai.py` 的 `SERVICES` 列表中添加 `{'name': 'YourService', 'reset_h': 24}`。
+然后在 `conky_ai.py` 的 `SERVICES` 列表中添加 `{name: YourService, reset_h: 24}`。
 
 ## dibi8 相关工具
 

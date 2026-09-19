@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-persistent-memory-ai-coding-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-persistent-memory-ai-coding-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-persistent-memory-ai-coding-agents" />
 title: 'AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã Hóa AI — 22.000 Sao Với Đánh Giá Thực Tế — Hướng Dẫn Thực Tế 2026'
 description: 'AgentMemory (22.038 sao GitHub) cung cấp bộ nhớ bền vững cho đại lý mã hóa AI dựa trên các đánh giá thực tế. Nhớ các phiên trước, duy trì ngữ cảnh qua nhiều ngày, học từ các tương tác trước. Hỗ trợ Claude Code, Codex CLI, OpenCode và hơn thế. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và đánh giá.'
 date: 2026-06-08

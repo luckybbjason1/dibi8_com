@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/gpt-researcher-llm-frameworks-2026" />
 title: 'GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide'
 description: 'GPT Researcher is an open deep-research agent that runs web and local research on any task and writes cited reports. 27,473 GitHub stars, Apache-2.0. Covers installation, the async Python API, Docker, and real code examples.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'assafelovic/gpt-researcher'
 stars: 27473
-maintainer: 'assafelovic'
+maintainer: assafelovic
 last_maintained: '2026-06-02'
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false

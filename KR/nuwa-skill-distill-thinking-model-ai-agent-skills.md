@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nuwa-skill-distill-thinking-model-ai-agent-skills" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nuwa-skill-distill-thinking-model-ai-agent-skills" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nuwa-skill-distill-thinking-model-ai-agent-skills" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nuwa-skill-distill-thinking-model-ai-agent-skills" />
 title: 'Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南'
 description: 'Nuwa-Skill（23,508 顆 GitHub 星）將歷史人物、專家和影響者的思維模型提煉為可複用的 AI Agent 技能。相容 Claude Code、Codex、Cursor、Hermes 等 50+ 執行環境。透過 npx skills add 安裝。'
 date: 2026-06-09

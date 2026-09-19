@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-code-of-ethics" />
 title: 'AI 에이전트 윤리 강령 (2026): 자율 에이전트를 위한 실전 거버넌스 프레임워크'
 description: '자율 AI 에이전트를 위한 엔지니어용 윤리 강령 — 추상적인 구호가 아니라, 각 항목마다 구체적인 엔지니어링 통제가 따라붙는 일곱 개의 강제 가능한 규칙: 최소 권한 인가, 완전한 감사 가능성, 사람이 개입하는 가역성, 제한된 자율성, 끊기지 않는 책임 사슬, 페일세이프 기본값, 프라이버시 우선 설계. 2026년 에이전트 배포 전 개발자 체크리스트 포함.'
 date: 2026-06-04 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-06-04'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI에이전트', 'AI윤리', '책임있는AI', 'AI거버넌스', '에이전트보안', '정렬', '윤리강령']
+categories: [collections]
+tags: [ai에이전트, ai윤리, 책임있는ai, ai거버넌스, 에이전트보안, 정렬, 윤리강령]
 aliases:
   - /kr/posts/ai-agent-code-of-ethics/
 faqs:

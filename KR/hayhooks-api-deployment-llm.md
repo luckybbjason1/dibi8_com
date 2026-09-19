@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hayhooks-api-deployment-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hayhooks-api-deployment-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hayhooks-api-deployment-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hayhooks-api-deployment-llm" />
 title: 'Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 2026 프로덕션 설정 가이드'
 description: 'Hayhooks를 사용하여 Haystack NLP pipeline을 프로덕션급 REST API로 배포하는 완벽한 가이드. 원클릭 배포, 컨테이너 지원, 자동 OpenAPI 문서 생성 및 실제 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Hayhooks', 'Haystack', 'NLP', 'REST API', 'LLM', 'Pipeline 배포', 'Docker', 'Python', 'OpenAPI']
+tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline 배포', docker, python, openapi]
 aliases:
 - /kr/posts/hayhooks-api-deployment-llm/
 ---
@@ -272,8 +277,8 @@ app.add_pipeline("normalize_generate", pipeline)
 from prometheus_client import Counter, Histogram, make_asgi_app
 from hayhooks import Hayhooks
 
-REQUEST_COUNT = Counter('hayhooks_requests_total', '총 요청 수', ['pipeline'])
-REQUEST_DURATION = Histogram('hayhooks_request_duration_seconds', '요청 지속 시간', ['pipeline'])
+REQUEST_COUNT = Counter(hayhooks_requests_total, '총 요청 수', [pipeline])
+REQUEST_DURATION = Histogram(hayhooks_request_duration_seconds, '요청 지속 시간', [pipeline])
 
 app = Hayhooks()
 metrics_app = make_asgi_app()

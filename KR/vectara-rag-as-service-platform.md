@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: 90%+ 답변 정확도를 가진 RAG-as-a-Service 플랫폼 — API 통합 및 벤치마크'
 description: '관리형 RAG 플랫폼 Vectara의 실전 가이드. 90%+ 정확도, Boomerang 검색, API 통합, 다국어 지원, 하이브리드 검색 및 프로덕션 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'vectara/vectara-ingest'
 stars: 800
-maintainer: 'vectara'
+maintainer: vectara
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Vectara', 'RAG', '벡터 검색', 'LLM', '임베딩', 'Boomerang', 'HHEM', '할루시네이션 감지', '엔터프라이즈 AI']
+tags: [vectara, rag, '벡터 검색', llm, 임베딩, boomerang, hhem, '할루시네이션 감지', '엔터프라이즈 ai']
 aliases:
 - /kr/posts/vectara-rag-as-service-platform/
 ---
@@ -285,7 +290,7 @@ response = client.query(
     corpus_id="your-corpus-id",
     query="API rate limits",
     num_results=10,
-    metadata_filter="doc.version >= '2.0' AND doc.category = 'technical'",
+    metadata_filter="doc.version >= '2.0' AND doc.category = technical",
     generate=True
 )
 

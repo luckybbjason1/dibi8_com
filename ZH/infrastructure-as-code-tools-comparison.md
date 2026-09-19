@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/infrastructure-as-code-tools-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/infrastructure-as-code-tools-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/infrastructure-as-code-tools-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/infrastructure-as-code-tools-comparison" />
 title: '2025年基础设施即代码工具对比：Terraform、Pulumi、AWS CDK、Crossplane全面评测'
 description: '深入对比Terraform、Pulumi、AWS CDK、Crossplane等主流IaC工具，从多云支持、状态管理、开发者体验等维度进行全面评测，助力团队选择最佳基础设施管理方案。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['IaC', 'Terraform', 'Pulumi', 'AWS CDK', '基础设施']
+tags: [iac, terraform, pulumi, 'aws cdk', 基础设施]
 aliases:
 - /zh/posts/infrastructure-as-code-tools-comparison/
 ---

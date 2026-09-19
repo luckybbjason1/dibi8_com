@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/compound-engineering-multi-agent-coding-claude-codex-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/compound-engineering-multi-agent-coding-claude-codex-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/compound-engineering-multi-agent-coding-claude-codex-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/compound-engineering-multi-agent-coding-claude-codex-cursor" />
 title: 'Compound Engineering: Điều phối Claude Code, Codex và Cursor cùng lúc — Hướng dẫn Plugin Đa Agent'
 description: 'Compound Engineering (20K sao) là một plugin đa agent cho Claude Code, Codex và Cursor. 9 lệnh để động não, lập kế hoạch, rà soát, gỡ lỗi và tích lũy kiến thức. Quy trình 80% lập kế hoạch, 20% thực thi.'
 date: 2026-06-13

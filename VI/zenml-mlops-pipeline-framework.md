@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
 title: 'ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pipeline Sản Xuất — Hướng Dẫn Cài Đặt Đầy Đủ'
 description: 'Hướng dẫn toàn diện về ZenML — framework MLOps mã nguồn mở kết nối 20+ công cụ thành pipeline ML thống nhất, có thể tái tạo. Tự host, benchmark thực tế, triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -415,12 +420,12 @@ def train_deep_learning_model(X_train: pd.DataFrame, y_train: pd.Series):
     
     # Step này thực thi trên ml.p3.2xlarge qua SageMaker
     model = tf.keras.Sequential([
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dense(64, activation='relu'),
-        tf.keras.layers.Dense(3, activation='softmax')
+        tf.keras.layers.Dense(128, activation=relu),
+        tf.keras.layers.Dense(64, activation=relu),
+        tf.keras.layers.Dense(3, activation=softmax)
     ])
     
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+    model.compile(optimizer=adam, loss=sparse_categorical_crossentropy)
     model.fit(X_train, y_train, epochs=50, batch_size=32)
     
     return model

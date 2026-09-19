@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflows-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflows-complete-guide" />
 title: ComfyUI Workflows — Ngôn ngữ lập trình trực quan cho AI image generation
 description: Hướng dẫn toàn diện về ComfyUI workflows để tạo AI images chuyên nghiệp. Xây dựng pipeline phức tạp với nodes, quản lý dependencies và tạo template workflows có thể chia sẻ.
 tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']

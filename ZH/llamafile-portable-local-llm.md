@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamafile-portable-local-llm" />
 title: LlamaFile — 用单个可执行文件在本地运行大语言模型
 description: Meta/MLC AI 的 LlamaFile 完全指南。无需安装、GPU 需求或复杂设置即可在本地运行 100+ 开源 LLM。一个二进制文件，任意平台。
 tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'privacy']

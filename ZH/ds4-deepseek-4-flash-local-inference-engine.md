@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-4-flash-local-inference-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-4-flash-local-inference-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-4-flash-local-inference-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-4-flash-local-inference-engine" />
 title: 'ds4：2026年开发者正在切换的开源工具 — 完整配置指南'
 description: 'ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor'
 date: 2026-05-20 00:00:00+08:00

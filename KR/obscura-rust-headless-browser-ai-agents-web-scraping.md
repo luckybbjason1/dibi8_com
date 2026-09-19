@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/obscura-rust-headless-browser-ai-agents-web-scraping" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/obscura-rust-headless-browser-ai-agents-web-scraping" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/obscura-rust-headless-browser-ai-agents-web-scraping" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/obscura-rust-headless-browser-ai-agents-web-scraping" />
 title: 'Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南'
 description: 'Obscura（14,788 顆 GitHub 星）是一款為 AI 代理和網頁爬蟲設計的 Rust 無頭瀏覽器引擎。30MB 記憶體、85ms 頁面載入，內建反偵測功能。為 Puppeteer 和 Playwright 提供即插即用取代方案，支援 Docker 和二進位安裝。'
 date: 2026-06-09

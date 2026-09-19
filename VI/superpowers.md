@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superpowers" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superpowers" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superpowers" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superpowers" />
 title: 'Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luận Kỹ năng Tác nhân 2026'
 description: 'Khám phá Superpowers, framework kỹ năng tác nhân với hơn 200k stars. Thiết lập trong vài phút, có benchmark và sẵn sàng cho sản xuất. So sánh với LangChain, LlamaIndex và AutoGen.'
 date: 2026-05-23

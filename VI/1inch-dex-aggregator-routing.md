@@ -1,6 +1,11 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
-description: '{''en'': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', ''zh'': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', ''ko'': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', ''vi'': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
+description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/1inch/1inch-sdk'
 stars: 400
-maintainer: '1inch'
+maintainer: 1inch
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['1inch']
+tags: [1inch]
 aliases:
 - /vi/posts/1inch-dex-aggregator-routing/
 ---
@@ -87,9 +92,9 @@ const oneInch = new OneInchApi({
 
 // Lấy tuyến đường tối ưu để hoán đổi 1 ETH sang USDC
 const quote = await oneInch.getQuote({
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-  amount: '1000000000000000000', // 1 ETH (wei)
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+  amount: 1000000000000000000, // 1 ETH (wei)
   includeTokensInfo: true,
   includeProtocols: true,
   includeGas: true,
@@ -131,8 +136,8 @@ Khởi tạo SDK với cấu hình của bạn:
 
 ```typescript
 import { OneInchSdk } from '@1inch/sdk';
-import { ethers } from 'ethers';
-import * as dotenv from 'dotenv';
+import { ethers } from ethers;
+import * as dotenv from dotenv;
 
 dotenv.config();
 
@@ -189,9 +194,9 @@ async function executeSwap() {
 
   // Định nghĩa tham số hoán đổi
   const swapParams = {
-    src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH gốc
-    dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '500000000000000000', // 0.5 ETH
+    src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH gốc
+    dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 500000000000000000, // 0.5 ETH
     from: wallet.address,
     slippage: 1, // Trượt giá tối đa 1%
     disableEstimate: false,
@@ -239,21 +244,21 @@ Dung sai trượt giá là quan trọng trong thị trường biến động. SD
 ```typescript
 // Cài đặt bảo thủ cho giao dịch lớn
 const largeTradeParams = {
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0',
-  amount: '50000000000000000000', // 50 ETH — lệnh lớn!
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0,
+  amount: 50000000000000000000, // 50 ETH — lệnh lớn!
   from: wallet.address,
   slippage: 0.5, // Trượt giá chặt chẽ 0.5% để đảm bảo độ chính xác
   allowPartialFill: false, // Thực thi tất cả hoặc không gì
   // Bật bảo vệ MEV (khuyến nghị cho giao dịch lớn)
-  referrer: 'your_app_name',
+  referrer: your_app_name,
   fee: 0, // Không phí bổ sung
 };
 
 // Đối với các giao dịch nhỏ hơn, khẩn cấp hơn, bạn có thể nới lỏng trượt giá
 const quickTradeParams = {
   ...largeTradeParams,
-  amount: '1000000000000000000', // 1 ETH
+  amount: 1000000000000000000, // 1 ETH
   slippage: 3, // Chấp nhận trượt giá 3% để đổi lấy tốc độ
   allowPartialFill: true, // Chấp nhận thực thi một phần
   // Ưu tiên tốc độ hơn giá tối ưu
@@ -270,14 +275,14 @@ Khả năng tổng hợp của 1inch mở rộng vượt ra ngoài single chain.
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
   dstChain: 42161,    // Arbitrum
-  srcToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC trên Ethereum
-  dstToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH trên Arbitrum
-  amount: '1000000000', // 1000 USDC (6 số thập phân)
+  srcToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC trên Ethereum
+  dstToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH trên Arbitrum
+  amount: 1000000000, // 1000 USDC (6 số thập phân)
   walletAddress: wallet.address,
 });
 
 console.log('Tuyến bridge:', bridgeQuote.selectedRoute);
-console.log('Thởi gian ước tính:', bridgeQuote.estimatedTime, 'giây');
+console.log('Thởi gian ước tính:', bridgeQuote.estimatedTime, giây);
 console.log('Lượng đích:', bridgeQuote.dstTokenAmount);
 
 // Thực thi giao dịch bridge
@@ -316,14 +321,14 @@ async function executeFusionSwap() {
 
   // Tạo lệnh Fusion+ (không cần gas cho ngườ dùng!)
   const fusionOrder = await fusionSdk.createOrder({
-    srcToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-    dstToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '1000000000000000000', // 1 ETH
+    srcToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+    dstToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 1000000000000000000, // 1 ETH
     walletAddress: wallet.address,
     // Tham số Fusion+
-    preset: 'fast', // 'fast', 'medium', hoặc 'slow'
+    preset: fast, // fast, medium, hoặc slow
     // Mức hoàn trả tối thiểu bạn chấp nhận (fusion tìm mức giá thực tế tốt nhất)
-    minReturn: '1800000000', // Tối thiểu 1800 USDC
+    minReturn: 1800000000, // Tối thiểu 1800 USDC
     // Thởi gian đấu giá — thởi gian resolver cạnh tranh
     auctionDuration: 180, // 180 giây
   });
@@ -350,8 +355,8 @@ async function executeFusionSwap() {
   // Poll trạng thái thực thi
   const checkStatus = async () => {
     const status = await fusionSdk.getOrderStatus(submitted.orderHash);
-    console.log('Trạng thái lệnh:', status.status); // 'pending', 'filled', 'expired'
-    if (status.status === 'filled') {
+    console.log('Trạng thái lệnh:', status.status); // pending, filled, expired
+    if (status.status === filled) {
       console.log('Hash giao dịch:', status.txHash);
       console.log('Đầu ra thực tế:', status.dstTokenAmount);
       return true;
@@ -379,21 +384,21 @@ async function executeFusionSwap() {
 // Theo dõi vòng đờ lệnh Fusion
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
-orderEvents.on('created', (data) => {
+orderEvents.on(created, (data) => {
   console.log('Lệnh đã phát sóng đến các resolver');
 });
 
-orderEvents.on('auctionStarted', (data) => {
+orderEvents.on(auctionStarted, (data) => {
   console.log('Đấu giá Hà Lan đang hoạt động, tỷ giá hiện tại:', data.currentRate);
 });
 
-orderEvents.on('filled', (data) => {
+orderEvents.on(filled, (data) => {
   console.log('Lệnh đã được resolver khớp:', data.resolver);
   console.log('Lượng đầu ra cuối cùng:', data.dstAmount);
   console.log('Bạn đã trả KHÔNG gas!');
 });
 
-orderEvents.on('expired', () => {
+orderEvents.on(expired, () => {
   console.log('Lệnh hết hạn không được khớp — thử lại với minReturn tốt hơn');
 });
 ```
@@ -407,10 +412,10 @@ Ngoài các hoán đổi thị trường, 1inch cung cấp một **giao thức l
 ```typescript
 // Tạo lệnh giới hạn để mua DAI bằng ETH ở giá cụ thể
 const limitOrder = await sdk.limitOrder.createOrder({
-  makerAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH (bạn bán)
-  takerAsset: '0x6B175474E89094C44Da98b954EedeAC495271d0F', // DAI (bạn mua)
-  makingAmount: '500000000000000000', // 0.5 ETH
-  takingAmount: '900000000000000000000', // Kỳ vọng tối thiểu 900 DAI
+  makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH (bạn bán)
+  takerAsset: 0x6B175474E89094C44Da98b954EedeAC495271d0F, // DAI (bạn mua)
+  makingAmount: 500000000000000000, // 0.5 ETH
+  takingAmount: 900000000000000000000, // Kỳ vọng tối thiểu 900 DAI
   // Lệnh hết hạn sau 24 giờ
   expiration: Math.floor(Date.now() / 1000) + 86400,
   // Cho phép khớp một phần (hành vi tương tự DCA)
@@ -450,14 +455,14 @@ const watcher = new LimitOrderWatcher({
 
 // Theo dõi lệnh cụ thể của bạn
 watcher.watchOrder(placedOrder.orderHash, (event) => {
-  if (event.type === 'filled') {
+  if (event.type === filled) {
     console.log('Lệnh đã được khớp hoàn toàn!');
     console.log('Giao dịch:', event.txHash);
     console.log('Lượng đã khớp:', event.filledAmount);
-  } else if (event.type === 'partiallyFilled') {
+  } else if (event.type === partiallyFilled) {
     console.log('Khớp một phần:', event.filledRatio, '%');
     console.log('Còn lại:', event.remainingAmount);
-  } else if (event.type === 'expired') {
+  } else if (event.type === expired) {
     console.log('Lệnh hết hạn — đặt lệnh mới nếu vẫn quan tâm');
   }
 });
@@ -475,7 +480,7 @@ watcher.start();
 ```typescript
 // Lấy tất cả số dư token trên các chuỗi được hỗ trợ
 const portfolio = await sdk.balance.getBalances({
-  walletAddress: '0xYourWalletAddress',
+  walletAddress: 0xYourWalletAddress,
   chainIds: [1, 42161, 137, 10, 8453], // Truy vấn multi-chain
   // Bao gồm metadata cho mỗi token
   includeMetadata: true,
@@ -493,7 +498,7 @@ for (const chainBalance of portfolio.balances) {
 
 // Tổng giá trị portfolio trên tất cả các chuỗi
 const totalValue = portfolio.balances.reduce((sum, chain) => {
-  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || '0'), 0);
+  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
 console.log(`\nTổng Giá trị Portfolio: $${totalValue.toFixed(2)}`);
@@ -509,11 +514,11 @@ const history = await sdk.history.getTransactions({
   limit: 100,
   offset: 0,
   // Lọc theo loại giao dịch
-  types: ['swap', 'approval', 'limitOrder'],
+  types: [swap, approval, limitOrder],
 });
 
 // Phân tích hiệu suất hoán đổi
-const swaps = history.transactions.filter(tx => tx.type === 'swap');
+const swaps = history.transactions.filter(tx => tx.type === swap);
 
 const swapAnalysis = swaps.map(swap => ({
   timestamp: swap.timestamp,
@@ -530,7 +535,7 @@ console.table(swapAnalysis);
 
 // Tính khối lượng tích lũy
 const totalVolume = swaps.reduce((sum, tx) => {
-  return sum + parseFloat(tx.srcUsdValue || '0');
+  return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
 console.log(`Tổng khối lượng hoán đổi: $${totalVolume.toFixed(2)}`);
 ```
@@ -546,13 +551,13 @@ const ws = new PortfolioWebSocket({
   walletAddress: wallet.address,
 });
 
-ws.on('balanceUpdate', (update) => {
+ws.on(balanceUpdate, (update) => {
   console.log(`Cập nhật số dư: ${update.tokenSymbol} = ${update.newBalance}`);
   console.log(`Thay đổi giá trị USD: $${update.usdValueChange}`);
   // Cập nhật UI bảng điều khiển của bạn tại đây
 });
 
-ws.on('newTransaction', (tx) => {
+ws.on(newTransaction, (tx) => {
   console.log('Phát hiện giao dịch mới:', tx.hash);
   console.log('Loại:', tx.type);
   console.log('Giá trị:', tx.usdValue);
@@ -621,7 +626,7 @@ async function executeSwapWithRetry(
 
 ```typescript
 // Client API giới hạn tốc độ cho sử dụng tần suất cao
-import { RateLimiter } from 'limiter';
+import { RateLimiter } from limiter;
 
 class OneInchRateLimitedClient {
   private limiter: RateLimiter;
@@ -629,7 +634,7 @@ class OneInchRateLimitedClient {
 
   constructor(apiKey: string, requestsPerSecond = 5) {
     this.sdk = new OneInchSdk({ apiKey, networkId: 1 });
-    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: 'second' });
+    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: second });
   }
 
   async getQuote(params: any) {

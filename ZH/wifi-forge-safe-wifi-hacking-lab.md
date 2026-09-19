@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒"
 description: "WiFi Forge：安全的WiFi黑客实验室，用于安全研究。在受控环境中学习渗透测试、无线安全和道德黑客技术。"
 date: 2026-05-15T04:20:25+09:00

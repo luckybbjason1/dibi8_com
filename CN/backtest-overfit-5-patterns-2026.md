@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/backtest-overfit-5-patterns-2026" />
 title: 'Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe Numbers (2026)'
 description: 'After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward divergence, regime-flip, parameter-cliff, indicator-stacking, and survivorship. Each with reproducible synthetic example + the detection signal.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: 'pandas 2.2+ / vectorbt 0.27+'
 licensing_model: Open Source
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'walk-forward', 'machine-learning', '2026']
+tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
 aliases:
 - /posts/backtest-overfit-5-patterns-2026/
 faq:

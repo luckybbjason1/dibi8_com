@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/comfyui-vs-midjourney" />
 title: 'Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source Standard'
 description: 'Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source
   Standard'

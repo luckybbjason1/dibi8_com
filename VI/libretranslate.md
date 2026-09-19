@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/libretranslate" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
 title: 'LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hướng Dẫn Triển Khai Production 2026'
 description: 'LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CUDA GPU, 30+ ngôn ngữ và triển khai offline. Bao gồm cài đặt, benchmark hiệu suất, giám sát và tích hợp với OpenAI Whisper, Coqui TTS, Argos Translate.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/LibreTranslate/LibreTranslate'
 stars: 14400
-maintainer: 'LibreTranslate'
+maintainer: LibreTranslate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['LibreTranslate', 'dịch máy', 'tự host', 'Docker', 'API', 'mã nguồn mở', 'Argos Translate', 'xử lý ngôn ngữ tự nhiên']
+tags: [libretranslate, 'dịch máy', 'tự host', docker, api, 'mã nguồn mở', 'argos translate', 'xử lý ngôn ngữ tự nhiên']
 aliases:
 - /vi/posts/libretranslate/
 ---
@@ -195,7 +200,7 @@ curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
 
 # Tạo file compose production
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: '3.8'
 services:
   libretranslate:
@@ -336,7 +341,7 @@ def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
 
 # Chạy pipeline
 output = transcribe_and_translate("meeting.mp3", target_lang="es")
-print(f"ES: {output['translated']}")
+print(f"ES: {output[translated]}")
 ```
 
 ### Tích Hợp Coqui TTS (Dịch + Tổng Hợp Giọng Nói)
@@ -551,8 +556,8 @@ from prometheus_client import start_http_server, Counter, Histogram
 import requests
 import time
 
-TRANSLATION_COUNTER = Counter('libretranslate_requests_total', 'Tổng số bản dịch')
-LATENCY_HISTOGRAM = Histogram('libretranslate_latency_seconds', 'Độ trễ dịch')
+TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 'Tổng số bản dịch')
+LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Độ trễ dịch')
 
 def monitor():
     start_http_server(9090)

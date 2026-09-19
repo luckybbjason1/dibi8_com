@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
 title: 'Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1ee3c Giao D\u1ecbch Ti\u1ec1n M\u00e3 H\u00f3a AI V\u1edbi Machine Learning \u2014 H\u01b0\u1edbng D\u1eabn Thi\u1ebft L\u1eadp Bot Ho\u00e0n Ch\u1ec9nh'
 description: 'H\u01b0\u1edbng d\u1eabn tri\u1ec3n khai th\u1ef1c t\u1ebf Freqtrade v\u1edbi FreqAI, bot giao d\u1ecbch ti\u1ec1n m\u00e3 h\u00f3a Python m\u00e3 ngu\u1ed3n m\u1edf v\u1edbi t\u00edch h\u1ee3p ML. Bao g\u1ed3m thi\u1ebft l\u1eadp Docker, t\u1ed1i \u01b0u hyperparameter, backtest, t\u00edch h\u1ee3p Telegram v\u00e0 tri\u1ec3n khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'freqtrade/freqtrade'
 stars: 37000
-maintainer: 'freqtrade'
+maintainer: freqtrade
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -137,48 +142,48 @@ class SampleStrategy(IStrategy):
     trailing_stop = True
     trailing_stop_positive = 0.02
     trailing_stop_positive_offset = 0.03
-    timeframe = '5m'     # Nến 5 phút
+    timeframe = 5m     # Nến 5 phút
     can_short = False    # Chỉ giao dịch spot
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         # Chỉ báo RSI
-        dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+        dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
         
         # Chỉ báo MACD
         macd = ta.MACD(dataframe)
-        dataframe['macd'] = macd['macd']
-        dataframe['macdsignal'] = macd['macdsignal']
-        dataframe['macdhist'] = macd['macdhist']
+        dataframe[macd] = macd[macd]
+        dataframe[macdsignal] = macd[macdsignal]
+        dataframe[macdhist] = macd[macdhist]
         
         # Bollinger Bands
         bollinger = ta.BBANDS(dataframe, timeperiod=20, nbdevup=2.0, nbdevdn=2.0)
-        dataframe['bb_lower'] = bollinger['lowerband']
-        dataframe['bb_middle'] = bollinger['middleband']
-        dataframe['bb_upper'] = bollinger['upperband']
+        dataframe[bb_lower] = bollinger[lowerband]
+        dataframe[bb_middle] = bollinger[middleband]
+        dataframe[bb_upper] = bollinger[upperband]
         
         # ATR cho biến động
-        dataframe['atr'] = ta.ATR(dataframe, timeperiod=14)
+        dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
         
         return dataframe
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] < 30) &                    # Điều kiện quá bán
-                (dataframe['macd'] > dataframe['macdsignal']) &  # MACD cắt lên
-                (dataframe['close'] < dataframe['bb_lower'])   # Giá dưới BB dưới
+                (dataframe[rsi] < 30) &                    # Điều kiện quá bán
+                (dataframe[macd] > dataframe[macdsignal]) &  # MACD cắt lên
+                (dataframe[close] < dataframe[bb_lower])   # Giá dưới BB dưới
             ),
-            'enter_long'
+            enter_long
         ] = 1
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] > 70) &                    # Điều kiện quá mua
-                (dataframe['macd'] < dataframe['macdsignal'])  # MACD cắt xuống
+                (dataframe[rsi] > 70) &                    # Điều kiện quá mua
+                (dataframe[macd] < dataframe[macdsignal])  # MACD cắt xuống
             ),
-            'exit_long'
+            exit_long
         ] = 1
         return dataframe
 ```
@@ -274,13 +279,13 @@ class FreqAISrategy(IStrategy):
     """
     minimal_roi = {"0": 0.15, "60": 0.05, "120": 0}
     stoploss = -0.08
-    timeframe = '5m'
+    timeframe = 5m
     can_short = False
     
     def feature_engineering_expand_all(self, dataframe, metadata, **kwargs):
         """Thêm features tùy chỉnh cho FreqAI sử dụng."""
         dataframe["rsi"] = ta.RSI(dataframe, timeperiod=14)
-        dataframe["macdhist"] = ta.MACD(dataframe)['macdhist']
+        dataframe["macdhist"] = ta.MACD(dataframe)[macdhist]
         dataframe["atr"] = ta.ATR(dataframe, timeperiod=14)
         
         # Thêm features biến động
@@ -394,12 +399,12 @@ data = load_pair_history(
 
 # Tải và chạy chiến lược
 strategy = StrategyResolver.load_strategy("SampleStrategy")
-dataframe = strategy.analyze_ticker(data, {'pair': pair})
+dataframe = strategy.analyze_ticker(data, {pair: pair})
 
 # Xem tín hiệu
-signals = dataframe[dataframe['enter_long'] == 1]
+signals = dataframe[dataframe[enter_long] == 1]
 print(f"Tìm thấy {len(signals)} tín hiệu vào lệnh")
-print(signals[['date', 'close', 'rsi', 'macdhist']].head(10))
+print(signals[[date, close, rsi, macdhist]].head(10))
 ```
 
 ### REST API Cho Tích Hợp Bên Ngoài
@@ -512,7 +517,7 @@ Q1 total return: +12.1%
 
 ```python
 # Thêm vào chiến lược để có stoploss động
-def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
+def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float:
     """Stoploss động dựa trên ATR."""
     dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
@@ -520,7 +525,7 @@ def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
         return self.stoploss
     
     last_candle = dataframe.iloc[-1]
-    atr = last_candle['atr']
+    atr = last_candle[atr]
     
     # Stoploss tại 2x ATR
     stoploss_price = trade.open_rate - (2 * atr)
@@ -545,17 +550,17 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe)
     
     # Tính xu hướng 1h
-    informative['ema50_1h'] = ta.EMA(informative, timeperiod=50)
-    informative['ema200_1h'] = ta.EMA(informative, timeperiod=200)
-    informative['trend_1h'] = np.where(
-        informative['ema50_1h'] > informative['ema200_1h'], 1, -1
+    informative[ema50_1h] = ta.EMA(informative, timeperiod=50)
+    informative[ema200_1h] = ta.EMA(informative, timeperiod=200)
+    informative[trend_1h] = np.where(
+        informative[ema50_1h] > informative[ema200_1h], 1, -1
     )
     
     # Merge vào dataframe 5m
     dataframe = merge_informative_pair(dataframe, informative, self.timeframe, inf_timeframe)
     
     # Chỉ giao dịch theo hướng xu hướng 1h
-    dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+    dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
 ```

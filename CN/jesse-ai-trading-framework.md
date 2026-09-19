@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/jesse-ai-trading-framework" />
 title: 'Jesse: The Advanced Python Crypto Trading Framework with 30+ Technical Indicators — 2026 Setup Guide'
 description: 'A production-ready guide to Jesse AI trading framework — install, backtest with 30+ indicators, build custom strategies, and deploy live crypto trading bots in Python.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Jesse', 'crypto trading', 'Python', 'backtesting', 'technical indicators', 'algorithmic trading', 'AI trading', 'quantitative trading']
+tags: [jesse, 'crypto trading', python, backtesting, 'technical indicators', 'algorithmic trading', 'ai trading', 'quantitative trading']
 aliases:
 - /posts/jesse-ai-trading-framework/
 ---
@@ -121,13 +123,13 @@ Edit `config.py` to set your database connection:
 ```python
 # config.py — database configuration
 DATABASES = {
-    'default': {
-        'driver': 'postgres',
-        'host': 'localhost',
-        'port': 5432,
-        'dbname': 'jesse_db',
-        'user': 'jesse_user',
-        'password': 'your_secure_password'
+    default: {
+        driver: postgres,
+        host: localhost,
+        port: 5432,
+        dbname: jesse_db,
+        user: jesse_user,
+        password: your_secure_password
     }
 }
 ```
@@ -136,9 +138,9 @@ For quick testing with SQLite:
 
 ```python
 DATABASES = {
-    'default': {
-        'driver': 'sqlite',
-        'path': 'storage/jesse.db'
+    default: {
+        driver: sqlite,
+        path: 'storage/jesse.db'
     }
 }
 ```
@@ -152,12 +154,12 @@ Edit `routes.py` to specify which pairs and timeframes your bot will trade:
 from jesse.enums import timeframes
 
 routes = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
-    {'exchange': 'Binance', 'symbol': 'ETH-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 1h, strategy: SimpleMA},
+    {exchange: Binance, symbol: 'ETH-USDT', timeframe: 1h, strategy: SimpleMA},
 ]
 
 extra_candles = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '4h'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 4h},
 ]
 ```
 
@@ -276,11 +278,11 @@ class MLStrategy(Strategy):
 ```python
 # config.py — Telegram notification setup
 NOTIFICATIONS = {
-    'enabled': True,
-    'provider': 'telegram',
-    'telegram_bot_token': 'YOUR_BOT_TOKEN',
-    'telegram_chat_id': 'YOUR_CHAT_ID',
-    'events': ['order_executed', 'trade_completed', 'error']
+    enabled: True,
+    provider: telegram,
+    telegram_bot_token: YOUR_BOT_TOKEN,
+    telegram_chat_id: YOUR_CHAT_ID,
+    events: [order_executed, trade_completed, error]
 }
 ```
 
@@ -332,9 +334,9 @@ volumes:
 # metrics.py — export metrics for Prometheus
 from prometheus_client import Counter, Gauge, start_http_server
 
-trades_total = Counter('jesse_trades_total', 'Total trades executed')
-position_size = Gauge('jesse_position_size', 'Current position size')
-pnl_current = Gauge('jesse_pnl_percent', 'Current P&L percentage')
+trades_total = Counter(jesse_trades_total, 'Total trades executed')
+position_size = Gauge(jesse_position_size, 'Current position size')
+pnl_current = Gauge(jesse_pnl_percent, 'Current P&L percentage')
 
 # Start metrics server on port 9090
 start_http_server(9090)
@@ -386,10 +388,10 @@ Running Jesse in production requires more than a working strategy. Here are the 
 ```python
 # config.py — risk management settings
 RISK_MANAGEMENT = {
-    'max_risk_per_trade': 0.02,      # 2% max risk per trade
-    'max_drawdown_stop': 0.15,       # Stop trading at 15% drawdown
-    'daily_loss_limit': 0.05,        # 5% daily loss limit
-    'position_size_limit': 0.25,     # Max 25% in single position
+    max_risk_per_trade: 0.02,      # 2% max risk per trade
+    max_drawdown_stop: 0.15,       # Stop trading at 15% drawdown
+    daily_loss_limit: 0.05,        # 5% daily loss limit
+    position_size_limit: 0.25,     # Max 25% in single position
 }
 ```
 
@@ -400,7 +402,7 @@ RISK_MANAGEMENT = {
 class MultiTFStrategy(Strategy):
     def prepare(self):
         # Access 4h candles for trend bias
-        self.h4_candles = self.get_candles('Binance', 'BTC-USDT', '4h')
+        self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
     def should_long(self):
         h4_sma50 = ta.sma(self.h4_candles, 50)
@@ -510,10 +512,10 @@ Never commit API keys to version control. Use environment variables:
 import os
 
 EXCHANGES = {
-    'Binance': {
-        'api_key': os.environ['BINANCE_API_KEY'],
-        'api_secret': os.environ['BINANCE_API_SECRET'],
-        'sandbox': False
+    Binance: {
+        api_key: os.environ[BINANCE_API_KEY],
+        api_secret: os.environ[BINANCE_API_SECRET],
+        sandbox: False
     }
 }
 ```

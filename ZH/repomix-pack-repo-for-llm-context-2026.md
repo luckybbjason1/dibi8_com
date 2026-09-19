@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/repomix-pack-repo-for-llm-context-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件'
 description: 'repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Node.js', 'TypeScript', 'CLI']
+tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: 'v0.3'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
 github_repo: 'yamadashy/repomix'
 stars: 14200
-maintainer: 'yamadashy'
+maintainer: yamadashy
 last_maintained: '2026-06-01'
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['repomix', 'repopack', 'AI编程', 'LLM上下文', '代码库打包', 'Claude', 'ChatGPT', '开发者工具', '开源']
+tags: [repomix, repopack, ai编程, llm上下文, 代码库打包, claude, chatgpt, 开发者工具, 开源]
 aliases:
 - /zh/posts/repomix-pack-repo-for-llm-context-2026/
 faqs:

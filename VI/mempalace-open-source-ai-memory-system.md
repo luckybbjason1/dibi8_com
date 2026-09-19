@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-open-source-ai-memory-system" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-open-source-ai-memory-system" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-open-source-ai-memory-system" />
 title: 'MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark tốt nhất, tiết kiệm 96.6% R@5 trên LongMemEval — Không gọi API'
 description: 'MemPalace là hệ thống bộ nhớ AI ưu tiên cục bộ, lưu trữ lịch sử cuộc trò chuyện dưới dạng văn bản nguyên bản và truy xuất bằng tìm kiếm ngữ nghĩa. Tích hợp với Claude Code, Cursor, Windsurf và bất kỳ agent tương thích MCP. Backend ChromaDB, lưu trữ có thể tháo rời, không gọi API ngoài. Bao gồm hướng dẫn cài đặt, benchmark và phân tích kiến trúc.'
 date: 2026-06-10

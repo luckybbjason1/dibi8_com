@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-presidio-pii-detection-redaction-sdk" />
 lang: zh
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: Presidio 评论：微软的开源个人身份信息检测和数据脱敏框架（9.4K 星）
@@ -23,7 +28,7 @@ github_repo: 'https://github.com/microsoft/presidio'
 last_maintained: '2026-06-21'
 draft: false
 categories: ['dev-utils']
-tags: ["要塞", "个人身份信息检测", "数据脱敏", "数据匿名化", "微软", "自然语言处理", "命名实体识别", "图像编辑", "DICOM", "通用数据保护法规", "健康保险可携性和责任法案", "打开-ssf", "隐私", "数据保护"]
+tags: ["要塞", "个人身份信息检测", "数据脱敏", "数据匿名化", "微软", "自然语言处理", "命名实体识别", "图像编辑", "dicom", "通用数据保护法规", "健康保险可携性和责任法案", "打开-ssf", "隐私", "数据保护"]
 aliases:
 - /posts/microsoft-presidio-pii-detection-redaction-sdk/
 faqs:
@@ -148,7 +153,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 
 text = "John Smith's SSN is 123-45-6789 and his email is john@example.com"
-results = analyzer.analyze(text=text, language='en')
+results = analyzer.analyze(text=text, language=en)
 
 for result in results:
     print(f"Entity: {result.entity_type}, "
@@ -241,7 +246,7 @@ registry = RecognizerRegistry()
 registry.add_recognizer(EmployeeIdRecognizer())
 
 analyzer = AnalyzerEngine(registry=registry)
-results = analyzer.analyze("Employee ID: EMP-1234-5678", language='en')
+results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
 ```
 
 自定义识别器可以利用：
@@ -427,7 +432,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 results = analyzer.analyze(
     text='Call John at 555-123-4567 or email john@example.com',
-    language='en'
+    language=en
 )
 for r in results:
     print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')

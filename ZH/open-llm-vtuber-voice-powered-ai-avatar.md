@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-llm-vtuber-voice-powered-ai-avatar" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-llm-vtuber-voice-powered-ai-avatar" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-llm-vtuber-voice-powered-ai-avatar" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-llm-vtuber-voice-powered-ai-avatar" />
 
 
 title: 'Open-LLM-VTuber：语音驱动的LLM聊天与Live2D角色 —— 免费运行10K+ Stars开源AI虚拟角色'

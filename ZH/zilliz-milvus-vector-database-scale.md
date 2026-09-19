@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026：毫秒级延迟处理百亿向量的向量数据库——部署指南'
 description: 'Milvus 2.5 生产指南：十亿级向量检索、GPU 加速索引构建、Kubernetes 部署、混合搜索与 Zilliz Cloud 配置。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Milvus', 'Zilliz', '向量数据库', 'ANN', '相似性搜索', 'kubernetes', 'GPU索引', 'AI基础设施']
+tags: [milvus, zilliz, 向量数据库, ann, 相似性搜索, kubernetes, gpu索引, ai基础设施]
 aliases:
 - /zh/posts/zilliz-milvus-vector-database-scale/
 ---
@@ -106,7 +111,7 @@ pip install pymilvus==2.5.10
 # 测试连接
 python -c "
 from pymilvus import connections, utility
-connections.connect(host='localhost', port='19530')
+connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
 ```

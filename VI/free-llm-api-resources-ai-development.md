@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-llm-api-resources-ai-development" />
 title: 'Tài nguyên API LLM Miễn phí: Truy cập Mô hình AI mà không Cần Chi trả Quá
   nhiều'
 description: Danh sách được chọn lọc các tài nguyên API suy luận LLM miễn phí. Xây

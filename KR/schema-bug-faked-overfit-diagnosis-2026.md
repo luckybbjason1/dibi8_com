@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
 title: '스키마 버그가 가짜로 만든 Overfit 진단: 아무도 말하지 않는 백테스트 사후 분석'
 description: '7번의 퀀트 실험을 돌려 「교과서적 overfit」을 발견했습니다 (Train PF 2.08 → OOS 0.94, ratio 2.21). 그런데 진단 자체가 틀렸다는 사실이 밝혀졌습니다 — 조용한 schema 필드 불일치 때문에 옵티마이저가 진화된 2x leverage 가 아니라 기본값 10x leverage 로 돌아갔던 것입니다. 교정된 버전은 건강합니다 (ratio 1.01). 메타 교훈은 원본보다 더 추합니다.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader', 'pydantic']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: 'moss-trade-bot-skills v1.0.26'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-26'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'schema-drift', 'walk-forward', 'postmortem', '2026']
+tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
 aliases:
 - /kr/posts/schema-bug-faked-overfit-diagnosis-2026/
 faq:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zoxide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zoxide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zoxide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zoxide" />
 title: 'Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
 description: 'Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerShell. Bao gồm cài đặt, tích hợp shell, cấu hình fzf, thuật toán bên trong, và chuyển đổi từ autojump/fasd.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/ajeetdsouza/zoxide'
 stars: 36752
-maintainer: 'ajeetdsouza'
+maintainer: ajeetdsouza
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['zoxide', 'cli', 'shell', 'cd-thay-the', 'rust', 'terminal', 'năng-suất', 'fzf']
+tags: [zoxide, cli, shell, 'cd-thay-the', rust, terminal, 'năng-suất', fzf]
 aliases:
 - /vi/posts/zoxide/
 ---

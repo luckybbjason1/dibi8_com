@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supermemory-open-source-ai-memory-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supermemory-open-source-ai-memory-api" />
 
 
 title: 'Supermemory：构建具有全持久记忆能力的 LLM 应用的最快开源 AI 记忆 API'

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-image-generators" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-image-generators" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-image-generators" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-image-generators" />
 title: '2026 최고의 AI 이미지 생성기'
 lang: ko
 description: '2026 년 최고의 오픈소스 및 무료 AI 이미지 생성기 — Stable Diffusion부터 Flux, ComfyUI부터 SDXL까지. 품질, 속도, 가격을 비교하세요.'

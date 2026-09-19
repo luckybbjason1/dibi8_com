@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-registry-comprehensive-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-registry-comprehensive-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-registry-comprehensive-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-registry-comprehensive-guide-2026" />
 title: 'Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cái Chính Thức, Tìm Đúng Cái Trong 60 Giây'
 description: 'Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star, so sánh registry Smithery vs mcp.so, top server từng category, và cây quyết định lựa chọn — không phải MCP là gì, mà là cái gì bạn có thể cắm vào MCP host của mình.'
 date: 2026-05-20 00:00:00+08:00
@@ -17,12 +22,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/modelcontextprotocol/servers'
 stars: 86000
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['MCP', 'Model Context Protocol', 'Registry', 'Hub article']
+tags: [mcp, 'model context protocol', registry, 'hub article']
 aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---

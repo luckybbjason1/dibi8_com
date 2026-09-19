@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hkuds-ai-trader" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hkuds-ai-trader" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hkuds-ai-trader" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hkuds-ai-trader" />
 title: "AI-Trader: Nền tảng giao dịch Agent-Native từ HKUDS"
 description: "AI-Trader là một nền tảng giao dịch agent-native từ HKUDS cho phép các tác nhân lập trình AI như Claude Code, Codex, Cursor và OpenClaw tự động thực hiện giao dịch, quản lý danh mục và tối ưu hóa chiến lược."
 date: 2026-06-10

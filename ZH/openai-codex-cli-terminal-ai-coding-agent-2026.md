@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-terminal-ai-coding-agent-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-terminal-ai-coding-agent-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-terminal-ai-coding-agent-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-terminal-ai-coding-agent-2026" />
 title: 'OpenAI Codex CLI 完全指南：2026年最值得入手的终端 AI 编程助手（安装配置 + 多智能体工作流实战教程）'
 description: '深入解析 OpenAI Codex CLI——2026年 GitHub 上增长最快的开源 AI 编程工具之一。本文涵盖从零安装配置、AGENTS.md 高级用法、多智能体并行开发到与 Claude Code 的实测对比，助你掌握终端原生 AI 编程的完整工作流。'
 date: 2026-05-17 00:00:00+08:00

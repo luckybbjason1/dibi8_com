@@ -1,21 +1,26 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-cost-saving-strategies-2026" />
 title: 'Chiến lược tiết kiệm chi phí Cursor 2026: Sau khi đổi sang tính theo credit'
 description: 'Cursor đã đổi giá năm 2025 — người dùng Pro mất khoảng 55% mức sử dụng hiệu dụng với cùng mức giá. Đây là 7 chiến lược tiết kiệm cụ thể hoạt động trong 2026: chọn model, kỷ luật context, stack lai, và khi nào nên bỏ Cursor.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Cursor', 'Claude Code', 'OpenAI API', 'Anthropic API']
+tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'Cursor 2026.05 / Sau khi đổi sang credit'
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
-maintainer: 'Anysphere'
+maintainer: Anysphere
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['cursor', 'cost-optimization', 'ai-coding', '2026']
+tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
 aliases:
 - /vi/posts/cursor-cost-saving-strategies-2026/
 faq:

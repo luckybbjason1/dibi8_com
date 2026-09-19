@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-deep-research-local-first-ai-deep-research-tool" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-deep-research-local-first-ai-deep-research-tool" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research：终极本地优先 AI 深度研究工具"
 description: "掌握 Local Deep Research (LDR) —— 本地优先的 AI 研究助手。了解如何结合 Ollama 和 SearXNG 进行深度迭代研究，同时保持 100% 的隐私。"
 date: 2026-05-15T04:20:25+09:00

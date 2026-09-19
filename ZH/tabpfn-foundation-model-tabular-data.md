@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabpfn-foundation-model-tabular-data" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabpfn-foundation-model-tabular-data" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabpfn-foundation-model-tabular-data" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabpfn-foundation-model-tabular-data" />
 title: 'TabPFN: 表格数据基础模型 — 结构化数据的 AI 突破'
 description: 探索 TabPFN，表格数据的基础模型，超越传统机器学习方法。无需超参数调优，秒级运行。
 date: 2026-05-15 04:20:25+09:00

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/continue" />
 title: 'Continue.dev: 33K+ Stars — Open-Source AI Code Assistant vs Copilot, Cursor 2026'
 description: 'Continue.dev (open-source AI code assistant) VS Code/JetBrains plugin. Supports any LLM: Ollama, OpenAI, Anthropic, Gemini. Comparison vs GitHub Copilot, Cursor, Tabby. Setup tutorial, config examples, benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/continuedev/continue'
 stars: 33277
-maintainer: 'continuedev'
+maintainer: continuedev
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['continue.dev', 'ai-code-assistant', 'vs-code', 'jetbrains', 'open-source', 'ollama', 'copilot-alternative', 'local-llm', 'mcp']
+tags: ['continue.dev', 'ai-code-assistant', 'vs-code', jetbrains, 'open-source', ollama, 'copilot-alternative', 'local-llm', mcp]
 aliases:
 - /posts/continue/
 ---
@@ -102,7 +104,7 @@ Create your global configuration file:
 ```bash
 # macOS / Linux
 mkdir -p ~/.continue
-cat > ~/.continue/config.yaml << 'EOF'
+cat > ~/.continue/config.yaml << EOF
 name: My Dev Setup
 version: 1.0.0
 schema: v1

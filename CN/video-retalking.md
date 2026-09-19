@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/video-retalking" />
 title: 'VideoReTalking: 7.2K+ Stars — AI Lip-Sync Video Editing Setup Guide 2026'
 description: 'VideoReTalking (VRT) is an audio-based lip synchronization system for talking head video editing. Compatible with RVC, GPT-SoVITS, and Coqui TTS. Covers installation, inference, Gradio WebUI, production deployment, and benchmarks vs Wav2Lip and SadTalker.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/OpenTalker/video-retalking'
 stars: 7200
-maintainer: 'OpenTalker'
+maintainer: OpenTalker
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['lip-sync', 'video-editing', 'talking-head', 'deepfake', 'ffmpeg', 'pytorch', 'gradio', 'ai-video']
+tags: ['lip-sync', 'video-editing', 'talking-head', deepfake, ffmpeg, pytorch, gradio, 'ai-video']
 aliases:
 - /posts/video-retalking/
 ---
@@ -132,7 +134,7 @@ Download the pre-trained checkpoints from [Google Drive](https://drive.google.co
 ### Step 6: Verify Installation
 
 ```bash
-python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'CPU')"
+python -c "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else CPU)"
 ```
 
 Expected output on a GPU system:

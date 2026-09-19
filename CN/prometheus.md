@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/prometheus" />
 title: 'Prometheus: 64,094 GitHub Stars — Docker Deployment Guide 2026'
 description: 'Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Docker, Kubernetes, Grafana, and Alertmanager. Covers installation, PromQL queries, production hardening, and performance benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/prometheus/prometheus'
 stars: 64094
-maintainer: 'prometheus'
+maintainer: prometheus
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['prometheus', 'monitoring', 'docker', 'kubernetes', 'grafana', 'devops', 'observability', 'time-series']
+tags: [prometheus, monitoring, docker, kubernetes, grafana, devops, observability, 'time-series']
 aliases:
 - /posts/prometheus/
 ---
@@ -73,7 +75,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
 ```
@@ -180,7 +182,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['prometheus:9090']
 
@@ -188,7 +190,7 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  - job_name: 'cadvisor'
+  - job_name: cadvisor
     static_configs:
       - targets: ['cadvisor:8080']
 ```
@@ -363,11 +365,11 @@ alerting:
 Create `alertmanager.yml`:
 ```yaml
 global:
-  slack_api_url: 'YOUR_SLACK_WEBHOOK_URL'
+  slack_api_url: YOUR_SLACK_WEBHOOK_URL
 
 route:
   receiver: 'slack-notifications'
-  group_by: ['alertname', 'severity']
+  group_by: [alertname, severity]
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h

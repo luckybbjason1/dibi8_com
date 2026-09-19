@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/9router-smart-llm-proxy-token-saver-free-coding" />
 title: "9Router: Proxy LLM Thông Minh — Tiết Kiệm 60% Token, Không Còn Gặp Giới Hạn API"
 description: "Khám phá 9Router — proxy mã nguồn mở thông minh, tiết kiệm 20-40% token qua RTK, tự động chuyển đổi giữa 40+ nhà cung cấp, kết hợp lập trình chi phí bằng 0."
 date: 2026-05-15T04:20:25+09:00

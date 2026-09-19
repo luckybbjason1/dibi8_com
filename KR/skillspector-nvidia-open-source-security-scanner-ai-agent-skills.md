@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
 title: 'SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스캐너'
 description: 에이전트 스킬 설치 전 취약점, 악성 패턴 및 보안 위험을 감지하는 AI 에이전트 스킬 전용 보안 스캐너. NVIDIA에서 10K 스타 획득. Claude Code, Codex CLI 및 기타 에이전트 프레임워크를 보호하세요.
 date: 2026-06-25

@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
 title: 'Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cáo postmortem backtest mà không ai nói đến'
 description: 'Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đó phát hiện chính chẩn đoán đó là sai — lỗi không khớp tên trường schema âm thầm khiến optimizer chạy với leverage mặc định 10x thay vì 2x đã được tiến hóa. Phiên bản đã sửa thì lành mạnh (tỷ lệ 1.01). Bài học meta còn xấu xí hơn bản gốc.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader', 'pydantic']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: 'moss-trade-bot-skills v1.0.26'
 licensing_model: Mã nguồn mở
@@ -15,7 +20,7 @@ last_maintained: '2026-05-26'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'schema-drift', 'walk-forward', 'postmortem', '2026']
+tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
 aliases:
 - /vi/posts/schema-bug-faked-overfit-diagnosis-2026/
 faq:

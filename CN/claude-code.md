@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-code" />
 title: 'Claude Code: 125K+ Stars — The Terminal AI Coding Agent Complete Comparison vs Alternatives 2026'
 description: 'Claude Code is Anthropic agentic coding tool that lives in your terminal. Supports VS Code, Cursor, GitHub, GitLab. Covers installation, benchmarks, and comparison with Aider, OpenHands, and Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 125050
-maintainer: 'anthropics'
+maintainer: anthropics
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', 'anthropic', 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
+tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', anthropic, 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
 aliases:
 - /posts/claude-code/
 ---

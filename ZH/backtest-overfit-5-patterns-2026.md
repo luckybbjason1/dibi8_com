@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtest-overfit-5-patterns-2026" />
 title: '回测过拟合：5 种典型模式与真实 PF/Sharpe 数据 (2026)'
 description: '基于 50+ 笔优化器输出的实盘交易，我们梳理出 5 种典型的过拟合模式：walk-forward 背离、市场状态翻转、参数悬崖、指标堆叠和幸存者偏差。每种模式均附可复现的合成示例与检测信号。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: 'pandas 2.2+ / vectorbt 0.27+'
 licensing_model: Open Source
@@ -15,12 +20,12 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'walk-forward', 'machine-learning', '2026']
+tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
 aliases:
 - /zh/posts/backtest-overfit-5-patterns-2026/
 faq:
   - q: "为什么回测中的过拟合检测如此困难？"
-    a: "两个原因。第一，每次回测都只是单一样本——你无法'重新运行整个宇宙'。第二，优化器非常擅长把单一样本中看起来像信号的噪声也拟合进去。Walk-forward 分析能切分样本，但大多数零售回测工具完全跳过了这一步。"
+    a: "两个原因。第一，每次回测都只是单一样本——你无法重新运行整个宇宙。第二，优化器非常擅长把单一样本中看起来像信号的噪声也拟合进去。Walk-forward 分析能切分样本，但大多数零售回测工具完全跳过了这一步。"
   - q: "哪种过拟合模式最隐蔽？"
     a: "参数悬崖：策略在参数 A=14 时表现稳健，但 A=15 时却反向且无任何经济学解释。这说明优化器找到的是噪声中的局部极值，不是真实信号。检测方法是参数敏感性扫描——如果 PF 平滑衰减，说明有信号；如果出现悬崖式断裂，那就是噪声。"
   - q: "回测要多少笔交易才值得信赖？"

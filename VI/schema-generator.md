@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/schema-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-generator" />
 title: "Trình Tạo Schema.org JSON-LD — Article / Organization / FAQ / Product"
 description: "Tạo dữ liệu có cấu trúc Schema.org JSON-LD sẵn sàng copy-paste cho Article, Organization, FAQPage, Product, BreadcrumbList. Google, Bing, AI search đều dùng — công cụ SEO bắt buộc."
 date: 2026-05-18

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lazydocker" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lazydocker" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lazydocker" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lazydocker" />
 title: 'LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026'
 description: 'LazyDocker (LD) 是一个用于管理 Docker 容器、镜像、卷和日志的终端 UI。兼容 Docker、Docker Compose、Go 和 Terminal。涵盖安装、快捷键、配置和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jesseduffield/lazydocker'
 stars: 51092
-maintainer: 'jesseduffield'
+maintainer: jesseduffield
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['lazydocker', 'docker', '终端界面', 'devops', '容器', '命令行工具', 'docker-compose', 'tui']
+tags: [lazydocker, docker, 终端界面, devops, 容器, 命令行工具, 'docker-compose', tui]
 aliases:
 - /zh/posts/lazydocker/
 ---

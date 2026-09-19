@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/portkey-ai-gateway-production" />
 title: 'Portkey AI Gateway 2026: The LLM Gateway Managing 200+ Models with Observability — Production Setup'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Portkey AI Gateway']
+tags: ['portkey ai gateway']
 aliases:
 - /posts/portkey-ai-gateway-production/
 ---

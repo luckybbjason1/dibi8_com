@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
 title: 'Appwrite 2026: Auth, DB, Storage를 갖춘 오픈소스 Firebase 대안 — 셀프호스팅 백엔드 가이드'
 description: 'Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치마크, 프로덕션 하드닝.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'appwrite/appwrite'
 stars: 47200
-maintainer: 'appwrite'
+maintainer: appwrite
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Appwrite', 'Backend-as-a-Service', 'Firebase 대안', 'Docker', '오픈소스', '인증', '데이터베이스', '클우드 함수', '셀프호스팅']
+tags: [appwrite, 'backend-as-a-service', 'firebase 대안', docker, 오픈소스, 인증, 데이터베이스, '클우드 함수', 셀프호스팅]
 aliases:
 - /kr/posts/appwrite-backend-as-service/
 ---
@@ -148,7 +153,7 @@ npm install appwrite@16.1.0
 클리언트 초기화 및 문서 생성:
 
 ```javascript
-import { Client, Account, Databases, ID } from 'appwrite';
+import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
   .setEndpoint('https://api.yourdomain.com/v1')  // API 엔드포인트
@@ -166,7 +171,7 @@ const doc = await databases.createDocument(
   'your-database-id',
   'your-collection-id',
   ID.unique(),
-  { title: 'Hello Appwrite', status: 'active', priority: 3 }
+  { title: 'Hello Appwrite', status: active, priority: 3 }
 );
 console.log('Document ID:', doc.$id);
 ```
@@ -194,7 +199,7 @@ doc = databases.create_document(
     database_id='your-database-id',
     collection_id='your-collection-id',
     document_id=ID.unique(),
-    data={'title': 'From Python', 'status': 'active', 'score': 95.5}
+    data={title: 'From Python', status: active, score: 95.5}
 )
 print(f"Created document: {doc['$id']}")
 
@@ -204,7 +209,7 @@ results = databases.list_documents(
     collection_id='your-collection-id',
     queries=['equal("status", "active")', 'greaterThan("score", 90)', 'limit(10)']
 )
-print(f"Found {results['total']} matching documents")
+print(f"Found {results[total]} matching documents")
 ```
 
 ### Flutter SDK
@@ -242,9 +247,9 @@ class AppwriteService {
   Future<Document> createTask(String title) async {
     return await databases.createDocument(
       databaseId: 'your-database-id',
-      collectionId: 'tasks',
+      collectionId: tasks,
       documentId: ID.unique(),
-      data: {'title': title, 'done': false, 'created_at': DateTime.now().toIso8601String()},
+      data: {title: title, done: false, created_at: DateTime.now().toIso8601String()},
     );
   }
 }
@@ -403,13 +408,13 @@ find $BACKUP_DIR -mtime +7 -delete
 // 팀 기반 권한 부여
 await databases.createDocument(
   'prod-db',
-  'projects',
+  projects,
   ID.unique(),
   { name: 'Secret Project', budget: 50000 },
   [
-    Permission.read(Role.team('managers')),
-    Permission.update(Role.team('managers')),
-    Permission.delete(Role.team('admins')),
+    Permission.read(Role.team(managers)),
+    Permission.update(Role.team(managers)),
+    Permission.delete(Role.team(admins)),
     Permission.create(Role.users())
   ]
 );
@@ -422,7 +427,7 @@ Appwrite는 Prometheus 수집을 위한 `/_metrics` 엔드포인트를 노출한
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'appwrite'
+  - job_name: appwrite
     static_configs:
       - targets: ['appwrite:80']
     metrics_path: '/_metrics'

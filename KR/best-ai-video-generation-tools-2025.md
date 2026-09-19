@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-video-generation-tools-2025" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-video-generation-tools-2025" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-video-generation-tools-2025" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-video-generation-tools-2025" />
 title: '2025년 최고의 AI 비디오 생성 도구: Sora, Runway, Pika 등 비교'
 description: '2025년 최신 AI 비디오 생성 도구를 비교합니다. OpenAI Sora, Runway Gen-3, Pika 2.0, Kling AI의 기능, 가격, 품질을 상세 분석하고 용도별 추천 가이드를 제공합니다.'
 date: 2026-05-18 00:00:00+08:00

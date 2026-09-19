@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭建 LLM 数据采集与 RAG 知识库'
 description: 'Crawl4AI 是 2026 年 GitHub 排名第一的开源网页爬虫，63k+ Stars，专为 LLM、AI Agent 和 RAG 管道设计。本文提供完整中文教程，涵盖安装、LLM 结构化提取、深度爬取、对比 Firecrawl 与 ScrapeGraphAI，以及生产环境部署方案。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unclecode/crawl4ai'
 stars: 63000
-maintainer: 'unclecode'
+maintainer: unclecode
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crawl4ai', 'web-scraping', 'llm-rag', 'open-source']
+tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
 aliases:
 - /zh/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
@@ -159,12 +164,12 @@ async def main():
         word_count_threshold=1,
         extraction_strategy=LLMExtractionStrategy(
             provider="openai/gpt-4o",
-            api_token=os.getenv('OPENAI_API_KEY'),
+            api_token=os.getenv(OPENAI_API_KEY),
             schema=OpenAIModelFee.model_json_schema(),
             extraction_type="schema",
             instruction=(
                 "从页面内容提取所有模型名称及其输入/输出 Token 费用。"
-                "格式示例：{'model_name': 'GPT-4o', 'input_fee': 'US$5.00 / 1M tokens', ...}"
+                "格式示例：{model_name: 'GPT-4o', input_fee: 'US$5.00 / 1M tokens', ...}"
             ),
             input_format="markdown",
             verbose=True
@@ -197,7 +202,7 @@ if __name__ == "__main__":
 ```python
 extraction_strategy = LLMExtractionStrategy(
     provider="groq/deepseek-r1-distill-llama-70b",
-    api_token=os.getenv('GROQ_API_KEY'),
+    api_token=os.getenv(GROQ_API_KEY),
     schema=ProductSchema.model_json_schema(),
     extraction_type="schema",
     instruction="提取产品名称、图片 URL、描述、评分和评论数。",
@@ -235,7 +240,7 @@ async def main():
         print(f"共抓取 {len(results)} 个页面")
         
         for r in results[:3]:
-            print(f"URL: {r.url} | 深度: {r.metadata.get('depth', 0)}")
+            print(f"URL: {r.url} | 深度: {r.metadata.get(depth, 0)}")
 
 if __name__ == "__main__":
     asyncio.run(main())

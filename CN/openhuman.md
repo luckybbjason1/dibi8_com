@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/openhuman" />
 title: 'What Is OpenHuman?'
 lang: en
 description: 'content/en/resources/openhuman.md'

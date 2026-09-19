@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docuseal-open-source-docusign-alternative" />
 title: DocuSeal 리뷰：이 오픈소스 DocuSign 대안으로 문서 서명 비용 90% 절감
 description: DocuSeal은 15.7k star를 보유한 오픈소스 플랫폼으로, DocuSign을 대체하여 셀프 호스팅 디지털 문서 서명,
   PDF 폼 빌딩 및 화이트라벨 전자서명 워크플로우를 제공합니다.

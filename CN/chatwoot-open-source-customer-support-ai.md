@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026: The Open-Source Customer Support Platform with AI Agent Integration — Self-Hosted Guide'
 description: 'Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integrate AI agents, connect multi-channels. Real benchmarks and production setup.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'chatwoot/chatwoot'
 stars: 23000
-maintainer: 'chatwoot'
+maintainer: chatwoot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['chatwoot', 'customer-support', 'open-source', 'ai-chatbot', 'self-hosted', 'docker', 'ruby-on-rails', 'live-chat']
+tags: [chatwoot, 'customer-support', 'open-source', 'ai-chatbot', 'self-hosted', docker, 'ruby-on-rails', 'live-chat']
 aliases:
 - /posts/chatwoot-open-source-customer-support-ai/
 ---
@@ -411,10 +413,10 @@ services:
 production:
   primary:
     <<: *default
-    host: <%= ENV['POSTGRES_HOST'] %>
+    host: <%= ENV[POSTGRES_HOST] %>
   primary_replica:
     <<: *default
-    host: <%= ENV['POSTGRES_REPLICA_HOST'] %>
+    host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
 ```
 
@@ -459,7 +461,7 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # Add to your prometheus.yml
 
 scrape_configs:
-  - job_name: 'chatwoot'
+  - job_name: chatwoot
     static_configs:
       - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
@@ -478,7 +480,7 @@ RATE_LIMIT_PERIOD=60  # seconds per IP
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-add_header Content-Security-Policy "default-src 'self'" always;
+add_header Content-Security-Policy "default-src self" always;
 ```
 
 ## Comparison with Alternatives

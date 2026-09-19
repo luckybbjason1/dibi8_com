@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/huggingface-transformers-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/huggingface-transformers-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/huggingface-transformers-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/huggingface-transformers-guide" />
 title: 'Hugging Face Transformers库使用指南2025：开发者完整教程'
 description: 'Hugging Face Transformers 2025完整指南：Pipeline API、模型微调、Tokenization、量化部署，覆盖NLP开发全流程。'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nvidia-cosmos-world-models-platform-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nvidia-cosmos-world-models-platform-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nvidia-cosmos-world-models-platform-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nvidia-cosmos-world-models-platform-2026" />
 title: 'NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Physical AI (10K Sao)'
 description: 'NVIDIA Cosmos là một nền tảng mã nguồn mở của các mô hình thế giới, tập dữ liệu và công cụ để xây dựng Physical AI — robot, xe tự hành, cơ sở hạ tầng thông minh. Cosmos 3 sử dụng Mixture-of-Transformers để tạo ngôn ngữ, hình ảnh, video, âm thanh và hành động đồng thời. Có sẵn mô hình 16B và 64B.'
 date: 2026-06-13

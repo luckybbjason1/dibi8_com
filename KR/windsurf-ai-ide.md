@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/windsurf-ai-ide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/windsurf-ai-ide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/windsurf-ai-ide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/windsurf-ai-ide" />
 title: Windsurf AI IDE — 당신과 함께 생각하는 에이전트 코드 에디터
 description: Codeium 의 에이전트 AI IDE, Windsurf 완전 가이드. 코드를 작성하고, 디버깅하고, 에이전트처럼 기능을 배포합니다. 가격, 벤치마크, 실제 워크플로우 포함.
 tags: ['ai-ide', 'coding-agent', 'windsurf', 'codeium', 'cursor-alternative', 'agentic-ai']

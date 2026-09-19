@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-inference-cost-optimization-guide-2026" />
 title: 'Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá Rẻ — Hướng Dẫn Toàn Diện 2026'
 description: 'Hướng dẫn tối ưu chi phí inference LLM. So sánh Ollama, vLLM, quantization llama.cpp. Giảm 90%+ chi phí API. 3 benchmark, 6 phương pháp triển khai.'
 date: 2026-06-16

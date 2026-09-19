@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-vs-firebase" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-vs-firebase" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-vs-firebase" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-vs-firebase" />
 title: 'Supabase vs Firebase 2026：哪个 BaaS 更值得选？'
 description: '基于 Postgres 的开源 Supabase 和 Google NoSQL Firebase 横向对比 — 数据库、认证、存储、实时、边缘函数、定价、锁定、自托管。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00
@@ -135,7 +140,7 @@ Firebase Auth 是 BaaS 圈里匿名认证和 SMS 手机认证最成熟的。社�
 - 用 `firebase-tools` 导出 Firestore 数据为 JSON（`firebase firestore:export`）
 - 先设计 Postgres schema — 把 Firestore 反范式化拆成关系表
 - 用 Supabase 的 `psql` 批量导入或 Studio CSV 上传器
-- 把 Firestore 监听换成 `supabase.channel().on('postgres_changes', ...)`
+- 把 Firestore 监听换成 `supabase.channel().on(postgres_changes, ...)`
 - Firebase Auth 用户通过 Supabase 的 `auth.admin.createUser()` API 迁移（密码要重哈希 — 发密码重置邮件给用户）
 - 并行跑两套一个计费周期，对比账单
 

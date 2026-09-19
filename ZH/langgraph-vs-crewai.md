@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-vs-crewai" />
 title: 'LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队'
 description: 'LangGraph（低层级有状态代理图）与 CrewAI（高层级基于角色的多代理团队）逐项对比——控制力、学习曲线、状态、多代理设计与生产可靠性。2026 更新。'
 date: 2026-06-06 00:00:00+08:00

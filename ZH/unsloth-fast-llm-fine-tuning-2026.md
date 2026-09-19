@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unsloth-fast-llm-fine-tuning-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unsloth-fast-llm-fine-tuning-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unsloth-fast-llm-fine-tuning-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unsloth-fast-llm-fine-tuning-2026" />
 title: 'Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好'
 description: 'Unsloth 微调 LLM 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。GitHub 64.9k 星，双 Apache 2.0 + AGPL-3.0 license。支持 Llama 3 / Mistral / Qwen 3 / Gemma / DeepSeek 的 LoRA / QLoRA / DPO / GRPO。2026 完整单 GPU 微调指南。'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unslothai/unsloth'
 stars: 64900
-maintainer: 'unslothai'
+maintainer: unslothai
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Unsloth', '微调', 'LoRA', 'QLoRA', 'GRPO', '快速训练']
+tags: [unsloth, 微调, lora, qlora, grpo, 快速训练]
 aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---

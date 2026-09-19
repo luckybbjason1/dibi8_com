@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: '터미널 및 CLI 생산성 도구: tmux, zsh, fzf, ripgrep 완벽 가이드'
 description: '개발자의 터미널 생산성을 극대화하는 tmux, zsh, fzf, ripgrep 등 필수 CLI 도구의 설치부터 설정, 활용법까지 상세히 다룹니다.'
 date: 2026-05-18 00:00:00+08:00

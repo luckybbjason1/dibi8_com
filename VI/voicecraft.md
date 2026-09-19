@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicecraft" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicecraft" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicecraft" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicecraft" />
 title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so với GPT-SoVITS, XTTS 2026'
 description: 'VoiceCraft là mô hình ngôn ngữ codec thần kinh zero-shot speech editing và TTS, tương thích với GPT-SoVITS, Coqui TTS, RVC. Hướng dẫn cài đặt, benchmark, triển khai Docker và bảng so sánh.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jasonppy/VoiceCraft'
 stars: 8500
-maintainer: 'jasonppy'
+maintainer: jasonppy
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['voicecraft', 'zero-shot-tts', 'chinh-sua-giong-noi', 'neural-codec', 'voice-cloning', 'ai-audio', 'docker', 'python']
+tags: [voicecraft, 'zero-shot-tts', 'chinh-sua-giong-noi', 'neural-codec', 'voice-cloning', 'ai-audio', docker, python]
 aliases:
 - /vi/posts/voicecraft/
 ---

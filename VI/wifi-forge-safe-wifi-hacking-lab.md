@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — Sandbox An Toàn và Hợp Pháp Để Học Hack WiFi"
 description: "WiFi Forge: phòng thí nghiệm hack WiFi an toàn cho nghiên cứu bảo mật. Học kiểm thử xâm nhập, bảo mật không dây và hack đạo đức trong môi trường được kiểm soát."
 date: 2026-05-15T04:20:25+09:00

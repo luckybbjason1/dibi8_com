@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-stateful-agent-orchestration-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-stateful-agent-orchestration-2026" />
 title: 'LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전 가이드)'
 description: 'LangGraph는 장기 실행, 상태 유지 AI 에이전트용 저수준 오케스트레이션 프레임워크. GitHub 32.6k stars, v1.2.1. 그래프 디자인, 영구 실행, human-in-loop 체크포인트, LangSmith 디버깅, LangGraph가 CrewAI / AutoGen / 순수 LangChain을 이기는 때까지 다루는 실제 배포 가이드.'
 date: 2026-05-21 00:00:00+08:00
@@ -23,14 +28,14 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['LangGraph', '에이전트', '상태 유지', '오케스트레이션', 'LangChain', '프로덕션']
+tags: [langgraph, 에이전트, '상태 유지', 오케스트레이션, langchain, 프로덕션]
 aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
 간단한 LLM 에이전트를 만들고 프로세스가 재시작되면 모든 걸 잊고, 툴 콜 하나가 타임아웃되면 진행의 절반을 잃고, 두 이벤트가 동시에 발생하면 상태가 조용히 손상되는 걸 봤다면 — **LangGraph**가 뚫으려는 벽에 부딪힌 것입니다.
 
-LangGraph는 LangChain 팀의 **상태 유지, 장기 실행 에이전트용 저수준 오케스트레이션 프레임워크**입니다. LangChain이 컴포넌트("LLM 래퍼, 도구, 직접 조합")를 제공하고 CrewAI가 고수준 역할 추상화("'리서처' 에이전트, '작가' 에이전트")를 제공한다면, LangGraph는 그 사이: 노드(함수 / 에이전트), 에지(전환), 영구 상태를 명시적으로 모델링하는 그래프 기반 상태 머신. 영구 실행 + human-in-loop + 상태 추적은 사후 고려가 아닌 1급 관심사.
+LangGraph는 LangChain 팀의 **상태 유지, 장기 실행 에이전트용 저수준 오케스트레이션 프레임워크**입니다. LangChain이 컴포넌트("LLM 래퍼, 도구, 직접 조합")를 제공하고 CrewAI가 고수준 역할 추상화("리서처 에이전트, 작가 에이전트")를 제공한다면, LangGraph는 그 사이: 노드(함수 / 에이전트), 에지(전환), 영구 상태를 명시적으로 모델링하는 그래프 기반 상태 머신. 영구 실행 + human-in-loop + 상태 추적은 사후 고려가 아닌 1급 관심사.
 
 2026년 중반에 **32.6k GitHub stars**, v1.2.1 출시, 크래시/재시작/장시간 실행을 견뎌야 하는 프로덕션 에이전트 워크플로우에 가장 인기 있는 프레임워크.
 
@@ -91,7 +96,7 @@ app = graph.compile(checkpointer=MemorySaver())
 # 상태 지속성용 thread_id로 실행
 config = {"configurable": {"thread_id": "demo-1"}}
 result = app.invoke({"counter": 0}, config=config)
-print(result)  # {'counter': 5}
+print(result)  # {counter: 5}
 ```
 
 `MemorySaver()`를 `PostgresSaver(connection_string)`로 바꾸면 같은 그래프가 컨테이너 재시작을 견딤.

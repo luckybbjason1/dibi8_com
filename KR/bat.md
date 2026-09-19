@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bat" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bat" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
 title: 'bat: 58K+ Stars 구문 강조 cat 클론 — 2026년 cat, less, ccat 비교'
 description: 'bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, less, ccat과의 비교를 다룸.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/sharkdp/bat'
 stars: 58940
-maintainer: 'sharkdp'
+maintainer: sharkdp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['bat', 'cat 대체', '구문 강조', 'cli 도구', 'rust', '터미널', '파일 뷰어', '명령줄']
+tags: [bat, 'cat 대체', '구문 강조', 'cli 도구', rust, 터미널, '파일 뷰어', 명령줄]
 aliases:
 - /kr/posts/bat/
 ---
@@ -77,7 +82,7 @@ bat --version
 # Ubuntu 22.04+ / Debian 12+
 sudo apt install bat
 
-# 일부 Debian/Ubuntu 시스템에서는 이진 파일 이름이 'batcat'으로冲돌을 피함
+# 일부 Debian/Ubuntu 시스템에서는 이진 파일 이름이 batcat으로冲돌을 피함
 # 필요한 경우 별칭 생성:
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -199,7 +204,7 @@ man bash
 alias cat='bat --paging=never'
 
 # 또는 스크립트에서는 cat 유지, bat은 명시적 사용
-alias b='bat'
+alias b=bat
 ```
 
 zsh 사용자는 글로벌 별칭으로 `--help` 출력에 색상을 추가할 수 있다:

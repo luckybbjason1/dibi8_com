@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
 title: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)"
 description: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)"
 date: 2026-05-15T04:20:25+09:00

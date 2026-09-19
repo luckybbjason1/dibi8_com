@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
 title: 'Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026'
 description: 'Freqtrade (51,300 GitHub stars) is the open-source crypto trading bot written in Python. Backtest strategies, optimize with hyperopt, deploy to exchange APIs. Includes setup guide, strategy development, and real backtest benchmarks.'
 date: 2026-06-08

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui" />
 title: 'Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南'
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) 是最流行的本地 AI 图像生成 Web 界面。兼容 ControlNet、LoRA、ComfyUI 工作流。涵盖 Windows、Linux、Docker 安装、扩展配置、生产环境加固和 GPU 基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
 stars: 159000
-maintainer: 'AUTOMATIC1111'
+maintainer: AUTOMATIC1111
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['stable-diffusion', 'automatic1111', '图像生成', 'ai-webui', 'controlnet', 'lora', 'docker', 'gpu']
+tags: ['stable-diffusion', automatic1111, 图像生成, 'ai-webui', controlnet, lora, docker, gpu]
 aliases:
 - /zh/posts/stable-diffusion-webui/
 ---
@@ -460,7 +465,7 @@ result = response.json()
 
 # 保存生成的图像
 import base64
-for i, img_data in enumerate(result['images']):
+for i, img_data in enumerate(result[images]):
     with open(f"output_{i}.png", "wb") as f:
         f.write(base64.b64decode(img_data))
 ```
@@ -490,7 +495,7 @@ def generate_image(prompt, filename, width=1024, height=1024):
     result = response.json()
     
     with open(filename, "wb") as f:
-        f.write(base64.b64decode(result['images'][0]))
+        f.write(base64.b64decode(result[images][0]))
     
     return filename
 
@@ -499,7 +504,7 @@ with open("prompts.csv", "r") as f:
     reader = csv.DictReader(f)
     for i, row in enumerate(reader):
         filename = f"output_{i:04d}.png"
-        generate_image(row['prompt'], filename)
+        generate_image(row[prompt], filename)
         print(f"已生成: {filename}")
 ```
 

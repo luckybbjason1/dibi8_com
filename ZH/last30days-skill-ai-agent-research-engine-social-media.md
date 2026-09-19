@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/last30days-skill-ai-agent-research-engine-social-media" />
 title: '过去30天技能：AI代理搜索引擎，通过真实互动评分社交媒体'
 description: '并行搜索 Reddit、X、YouTube、TikTok、Polymarket、GitHub 等。根据点赞数、喜欢数和真钱评分结果——而不是编辑评分。支持 Claude Code、Codex、Cursor 及 50 多种代理主机。'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
@@ -21,13 +26,13 @@ description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in 
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'

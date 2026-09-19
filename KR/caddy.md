@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caddy" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caddy" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caddy" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caddy" />
 title: 'Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드'
 description: 'Caddy(Caddyserver)는 자동 HTTPS를 갖춘 빠르고 확장 가능한 다중 플랫폼 HTTP/1-2-3 웹 서버다. Docker, Let''''s Encrypt, Prometheus, Grafana와 호환된다. Caddyfile 튜토리얼, Docker 설치, 프로덕션 하드닝 및 모니터링을 다룬다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/caddyserver/caddy'
 stars: 72595
-maintainer: 'caddyserver'
+maintainer: caddyserver
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['caddy', 'web-server', 'reverse-proxy', 'auto-https', 'docker', 'devops', 'ssl', 'http3']
+tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
 aliases:
 - /kr/posts/caddy/
 ---
@@ -331,7 +336,7 @@ app.example.com {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
-        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'"
+        Content-Security-Policy "default-src self; script-src self 'unsafe-inline'"
     }
 }
 
@@ -363,7 +368,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'caddy'
+  - job_name: caddy
     static_configs:
       - targets: ['caddy:2019']
     metrics_path: /metrics

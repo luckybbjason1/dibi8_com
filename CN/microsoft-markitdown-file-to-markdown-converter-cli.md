@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/microsoft-markitdown-file-to-markdown-converter-cli" />
 title: "Microsoft MarkItDown: The Complete Guide to Converting Any File to Markdown — Free, Open-Source, CLI Tool"
 description: "Learn how to use Microsoft's MarkItDown to convert PDFs, Word docs, images, HTML, PPTX, and more into clean Markdown. Step-by-step installation, usage examples, Python API, AI pipeline integration, benchmarks, and comparisons with Pandoc, Calibre, and LibreOffice."
 date: 2026-06-10

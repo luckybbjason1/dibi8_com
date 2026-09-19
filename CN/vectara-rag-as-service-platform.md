@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: The RAG-as-a-Service Platform with 90%+ Answer Accuracy — API Integration & Benchmarks'
 description: 'A hands-on guide to Vectara, the managed RAG platform with 90%+ answer accuracy. Covers Boomerang retrieval, API integration, multi-language support, hybrid search, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'vectara/vectara-ingest'
 stars: 800
-maintainer: 'vectara'
+maintainer: vectara
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Vectara', 'RAG', 'Vector Search', 'LLM', 'Embedding', 'Boomerang', 'HHEM', 'Hallucination Detection', 'Enterprise AI']
+tags: [vectara, rag, 'vector search', llm, embedding, boomerang, hhem, 'hallucination detection', 'enterprise ai']
 aliases:
 - /posts/vectara-rag-as-service-platform/
 ---
@@ -285,7 +287,7 @@ response = client.query(
     corpus_id="your-corpus-id",
     query="API rate limits",
     num_results=10,
-    metadata_filter="doc.version >= '2.0' AND doc.category = 'technical'",
+    metadata_filter="doc.version >= '2.0' AND doc.category = technical",
     generate=True
 )
 

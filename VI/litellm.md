@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
 title: 'LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM, Tích hợp Failover — Cấu hình Gateway Production 2026'
 description: 'LiteLLM (litellm) là cổng AI mã nguồn mở cung cấp API thống nhất cho 100+ LLM. Tương thích với OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Bao gồm triển khai Docker, khóa ảo, cân bằng tải, bộ nhớ đệm và cứng hóa production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/BerriAI/litellm'
 stars: 22500
-maintainer: 'BerriAI'
+maintainer: BerriAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['litellm', 'llm-gateway', 'mã-nguồn-mở', 'docker', 'production', 'hạ-tầng-ai', 'proxy-server', 'đa-mô-hình']
+tags: [litellm, 'llm-gateway', 'mã-nguồn-mở', docker, production, 'hạ-tầng-ai', 'proxy-server', 'đa-mô-hình']
 aliases:
 - /vi/posts/litellm/
 - /vi/resources/llm-frameworks/litellm-unified-api-tutorial/
@@ -94,7 +99,7 @@ mkdir -p litellm-gateway && cd litellm-gateway
 curl -O https://raw.githubusercontent.com/BerriAI/litellm/main/docker-compose.yml
 
 # Tạo tệp môi trường
-cat > .env << 'EOF'
+cat > .env << EOF
 LITELLM_MASTER_KEY="sk-litellm-admin-$(openssl rand -hex 16)"
 LITELLM_SALT_KEY="sk-salt-$(openssl rand -hex 32)"
 OPENAI_API_KEY="sk-your-openai-key"

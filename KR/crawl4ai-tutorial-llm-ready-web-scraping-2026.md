@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crawl4ai-tutorial-llm-ready-web-scraping-2026" />
 title: 'Crawl4AI 완벽 가이드 2026: GitHub 63k+ Stars 오픈소스 웹 크롤러로 LLM 데이터 파이프라인 구축하기'
 description: '2026년 GitHub 트렌딩 1위 오픈소스 웹 크롤러 Crawl4AI를 소개합니다. LLM·RAG·AI 에이전트에 최적화된 Markdown 출력, LLM 기반 구조화 추출, 딥 크롤링, Firecrawl·ScrapeGraphAI와의 상세 비교, Docker 프로덕션 배포까지 한국어 실전 튜토리얼로 정리했습니다.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unclecode/crawl4ai'
 stars: 63000
-maintainer: 'unclecode'
+maintainer: unclecode
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crawl4ai', 'web-scraping', 'llm-rag', 'open-source']
+tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
 aliases:
 - /kr/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
@@ -150,12 +155,12 @@ async def main():
         word_count_threshold=1,
         extraction_strategy=LLMExtractionStrategy(
             provider="openai/gpt-4o",
-            api_token=os.getenv('OPENAI_API_KEY'),
+            api_token=os.getenv(OPENAI_API_KEY),
             schema=ModelPricing.model_json_schema(),
             extraction_type="schema",
             instruction=(
                 "페이지 내 모든 모델명과 입력·출력 토큰 가격을 추출하라. "
-                "형식: {'model_name': 'GPT-4o', 'input_cost': 'US$5.00 / 1M tokens', ...}"
+                "형식: {model_name: 'GPT-4o', input_cost: 'US$5.00 / 1M tokens', ...}"
             ),
             input_format="markdown",
             verbose=True
@@ -212,7 +217,7 @@ async def main():
         print(f"총 {len(results)}개 페이지 크롤링 완료")
         
         for r in results[:5]:
-            print(f"URL: {r.url} | 깊이: {r.metadata.get('depth', 0)}")
+            print(f"URL: {r.url} | 깊이: {r.metadata.get(depth, 0)}")
 
 if __name__ == "__main__":
     asyncio.run(main())

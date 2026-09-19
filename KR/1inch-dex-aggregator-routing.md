@@ -1,6 +1,11 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1inch-dex-aggregator-routing" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1inch-dex-aggregator-routing" />
 title: '1inch-dex-aggregator-routing'
-description: '{''en'': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', ''zh'': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', ''ko'': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', ''vi'': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
+description: '{'en': ''Master 1inch DEX aggregator in 2026. Learn how Pathfinder routes trades across 300+ liquidity sources, implement Fusion+ gasless swaps, limit orders, and portfolio tracking with the TypeScript SDK.'', 'zh': ''掌握 2026 年 1inch DEX 聚合器。了解 Pathfinder 如何跨 300+ 流动性来源路由交易，使用 TypeScript SDK 实现 Fusion+ 无 Gas 兑换、限价单和 portfolio 追踪。'', 'ko': ''2026년 1inch DEX 집계기를 마스터하세요. Pathfinder가 300개 이상의 유동성 소스에서 거래를 라우팅하는 방법, Fusion+ 가스 없는 스왑, 한도 주문 및 TypeScript SDK를 사용한 포트폴리오 추적을 구현하세요.'', 'vi': ''Làm chủ trình tổng hợp DEX 1inch năm 2026. Tìm hiểu cách Pathfinder định tuyến giao dịch qua 300+ nguồn thanh khoản, triển khai hoán đổi không gas Fusion+, lệnh giới hạn và theo dõi danh mục với SDK TypeScript.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/1inch/1inch-sdk'
 stars: 400
-maintainer: '1inch'
+maintainer: 1inch
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['1inch']
+tags: [1inch]
 aliases:
 - /kr/posts/1inch-dex-aggregator-routing/
 ---
@@ -87,9 +92,9 @@ const oneInch = new OneInchApi({
 
 // 1 ETH를 USDC로 스왑하기 위한 최적 경로 가져오기
 const quote = await oneInch.getQuote({
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-  amount: '1000000000000000000', // 1 ETH (wei 단위)
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+  amount: 1000000000000000000, // 1 ETH (wei 단위)
   includeTokensInfo: true,
   includeProtocols: true,
   includeGas: true,
@@ -131,8 +136,8 @@ RPC_URL=https://mainnet.infura.io/v3/your_project_id
 
 ```typescript
 import { OneInchSdk } from '@1inch/sdk';
-import { ethers } from 'ethers';
-import * as dotenv from 'dotenv';
+import { ethers } from ethers;
+import * as dotenv from dotenv;
 
 dotenv.config();
 
@@ -189,9 +194,9 @@ async function executeSwap() {
 
   // 스왑 매개변수 정의
   const swapParams = {
-    src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // 기본 ETH
-    dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '500000000000000000', // 0.5 ETH
+    src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // 기본 ETH
+    dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 500000000000000000, // 0.5 ETH
     from: wallet.address,
     slippage: 1, // 최대 1% 슬리피지
     disableEstimate: false,
@@ -239,21 +244,21 @@ executeSwap().catch(console.error);
 ```typescript
 // 대량 거래를 위한 보수적 설정
 const largeTradeParams = {
-  src: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
-  dst: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0',
-  amount: '50000000000000000000', // 50 ETH — 대량 주문!
+  src: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE,
+  dst: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0,
+  amount: 50000000000000000000, // 50 ETH — 대량 주문!
   from: wallet.address,
   slippage: 0.5, // 정밀도를 위한 타이트한 0.5% 슬리피지
   allowPartialFill: false, // 전부 또는 전무 실행
   // MEV 보호 활성화 (대량 거래에 권장)
-  referrer: 'your_app_name',
+  referrer: your_app_name,
   fee: 0, // 추가 수수료 없음
 };
 
 // 더 작고 긴급한 거래의 경우 슬리피지를 완화할 수 있음
 const quickTradeParams = {
   ...largeTradeParams,
-  amount: '1000000000000000000', // 1 ETH
+  amount: 1000000000000000000, // 1 ETH
   slippage: 3, // 속도를 위해 3% 슬리피지 허용 가능
   allowPartialFill: true, // 부분 실행 허용
   // 최적 가격보다 속도 우선
@@ -270,14 +275,14 @@ const quickTradeParams = {
 const bridgeQuote = await sdk.crossChain.getQuote({
   srcChain: 1,        // Ethereum
   dstChain: 42161,    // Arbitrum
-  srcToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // Ethereum의 USDC
-  dstToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // Arbitrum의 ETH
-  amount: '1000000000', // 1000 USDC (6 소수점)
+  srcToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // Ethereum의 USDC
+  dstToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // Arbitrum의 ETH
+  amount: 1000000000, // 1000 USDC (6 소수점)
   walletAddress: wallet.address,
 });
 
 console.log('브리지 경로:', bridgeQuote.selectedRoute);
-console.log('예상 소요 시간:', bridgeQuote.estimatedTime, '초');
+console.log('예상 소요 시간:', bridgeQuote.estimatedTime, 초);
 console.log('대상 금액:', bridgeQuote.dstTokenAmount);
 
 // 브리지 트랜잭션 실행
@@ -316,14 +321,14 @@ async function executeFusionSwap() {
 
   // Fusion+ 주문 생성 (사용자에게 가스가 필요 없음!)
   const fusionOrder = await fusionSdk.createOrder({
-    srcToken: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-    dstToken: '0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0', // USDC
-    amount: '1000000000000000000', // 1 ETH
+    srcToken: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+    dstToken: 0xA0b86a33E6441e0A421e56E4773C3C0b8C6E51f0, // USDC
+    amount: 1000000000000000000, // 1 ETH
     walletAddress: wallet.address,
     // Fusion+ 매개변수
-    preset: 'fast', // 'fast', 'medium', 또는 'slow'
+    preset: fast, // fast, medium, 또는 slow
     // 허용하는 최소 반환 (fusion이 최상의 실제 비율을 찾음)
-    minReturn: '1800000000', // 최소 1800 USDC
+    minReturn: 1800000000, // 최소 1800 USDC
     // 경매 지속 시간 — 리졸버가 경쟁하는 시간
     auctionDuration: 180, // 180초
   });
@@ -350,8 +355,8 @@ async function executeFusionSwap() {
   // 실행 상태 폴
   const checkStatus = async () => {
     const status = await fusionSdk.getOrderStatus(submitted.orderHash);
-    console.log('주문 상태:', status.status); // 'pending', 'filled', 'expired'
-    if (status.status === 'filled') {
+    console.log('주문 상태:', status.status); // pending, filled, expired
+    if (status.status === filled) {
       console.log('트랜잭션 해시:', status.txHash);
       console.log('실제 출력:', status.dstTokenAmount);
       return true;
@@ -379,21 +384,21 @@ async function executeFusionSwap() {
 // Fusion 주문 라이프사이클 모니터링
 const orderEvents = fusionSdk.subscribeToOrderEvents(fusionOrder.orderHash);
 
-orderEvents.on('created', (data) => {
+orderEvents.on(created, (data) => {
   console.log('리졸버에 주문 브로드캐스트됨');
 });
 
-orderEvents.on('auctionStarted', (data) => {
+orderEvents.on(auctionStarted, (data) => {
   console.log('네덜란드 경매 활성화, 현재 비율:', data.currentRate);
 });
 
-orderEvents.on('filled', (data) => {
+orderEvents.on(filled, (data) => {
   console.log('리졸버가 주문 채움:', data.resolver);
   console.log('최종 출력 금액:', data.dstAmount);
   console.log('가스를 ZERO로 지불했습니다!');
 });
 
-orderEvents.on('expired', () => {
+orderEvents.on(expired, () => {
   console.log('주문이 채워지지 않고 만료됨 — 더 나은 minReturn으로 재시도');
 });
 ```
@@ -407,10 +412,10 @@ orderEvents.on('expired', () => {
 ```typescript
 // 특정 가격으로 ETH로 DAI를 매수하는 지정가 주문 생성
 const limitOrder = await sdk.limitOrder.createOrder({
-  makerAsset: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH (판매하는 것)
-  takerAsset: '0x6B175474E89094C44Da98b954EedeAC495271d0F', // DAI (구매하는 것)
-  makingAmount: '500000000000000000', // 0.5 ETH
-  takingAmount: '900000000000000000000', // 최소 900 DAI 기대
+  makerAsset: 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH (판매하는 것)
+  takerAsset: 0x6B175474E89094C44Da98b954EedeAC495271d0F, // DAI (구매하는 것)
+  makingAmount: 500000000000000000, // 0.5 ETH
+  takingAmount: 900000000000000000000, // 최소 900 DAI 기대
   // 주문은 24시간 후 만료
   expiration: Math.floor(Date.now() / 1000) + 86400,
   // 부분 채우기 허용 (DCA와 유사한 동작)
@@ -450,14 +455,14 @@ const watcher = new LimitOrderWatcher({
 
 // 특정 주문 감시
 watcher.watchOrder(placedOrder.orderHash, (event) => {
-  if (event.type === 'filled') {
+  if (event.type === filled) {
     console.log('주문이 완전히 채워짐!');
     console.log('트랜잭션:', event.txHash);
     console.log('채워진 금액:', event.filledAmount);
-  } else if (event.type === 'partiallyFilled') {
+  } else if (event.type === partiallyFilled) {
     console.log('부분 체결:', event.filledRatio, '%');
     console.log('남은 금액:', event.remainingAmount);
-  } else if (event.type === 'expired') {
+  } else if (event.type === expired) {
     console.log('주문 만료 — 여전히 관심이 있다면 새로운 주문을 배치하세요');
   }
 });
@@ -475,7 +480,7 @@ watcher.start();
 ```typescript
 // 지원되는 모든 체인에서 토큰 잔액 가져오기
 const portfolio = await sdk.balance.getBalances({
-  walletAddress: '0xYourWalletAddress',
+  walletAddress: 0xYourWalletAddress,
   chainIds: [1, 42161, 137, 10, 8453], // 멀티체인 쿼리
   // 각 토큰에 대한 메타데이터 포함
   includeMetadata: true,
@@ -493,7 +498,7 @@ for (const chainBalance of portfolio.balances) {
 
 // 모든 체인에서의 총 포트폴리오 가치
 const totalValue = portfolio.balances.reduce((sum, chain) => {
-  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || '0'), 0);
+  return sum + chain.tokens.reduce((s, t) => s + parseFloat(t.usdValue || 0), 0);
 }, 0);
 
 console.log(`\n총 포트폴리오 가치: $${totalValue.toFixed(2)}`);
@@ -509,11 +514,11 @@ const history = await sdk.history.getTransactions({
   limit: 100,
   offset: 0,
   // 거래 유형으로 필터링
-  types: ['swap', 'approval', 'limitOrder'],
+  types: [swap, approval, limitOrder],
 });
 
 // 스왑 성과 분석
-const swaps = history.transactions.filter(tx => tx.type === 'swap');
+const swaps = history.transactions.filter(tx => tx.type === swap);
 
 const swapAnalysis = swaps.map(swap => ({
   timestamp: swap.timestamp,
@@ -530,7 +535,7 @@ console.table(swapAnalysis);
 
 // 누적 거래량 계산
 const totalVolume = swaps.reduce((sum, tx) => {
-  return sum + parseFloat(tx.srcUsdValue || '0');
+  return sum + parseFloat(tx.srcUsdValue || 0);
 }, 0);
 console.log(`총 스왑 거래량: $${totalVolume.toFixed(2)}`);
 ```
@@ -546,13 +551,13 @@ const ws = new PortfolioWebSocket({
   walletAddress: wallet.address,
 });
 
-ws.on('balanceUpdate', (update) => {
+ws.on(balanceUpdate, (update) => {
   console.log(`잔액 업데이트: ${update.tokenSymbol} = ${update.newBalance}`);
   console.log(`USD 가치 변동: $${update.usdValueChange}`);
   // 대시보드 UI를 여기서 업데이트
 });
 
-ws.on('newTransaction', (tx) => {
+ws.on(newTransaction, (tx) => {
   console.log('새 트랜잭션 감지됨:', tx.hash);
   console.log('유형:', tx.type);
   console.log('가치:', tx.usdValue);
@@ -621,7 +626,7 @@ async function executeSwapWithRetry(
 
 ```typescript
 // 고빈도 사용을 위한 속도 제한 API 클라이언트
-import { RateLimiter } from 'limiter';
+import { RateLimiter } from limiter;
 
 class OneInchRateLimitedClient {
   private limiter: RateLimiter;
@@ -629,7 +634,7 @@ class OneInchRateLimitedClient {
 
   constructor(apiKey: string, requestsPerSecond = 5) {
     this.sdk = new OneInchSdk({ apiKey, networkId: 1 });
-    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: 'second' });
+    this.limiter = new RateLimiter({ tokensPerInterval: requestsPerSecond, interval: second });
   }
 
   async getQuote(params: any) {

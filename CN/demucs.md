@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/demucs" />
 title: 'Demucs: Music Source Separation with 10K+ Stars — Comparison vs UVR, Spleeter in 2026'
 description: 'Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ultimate Vocal Remover, RVC, GPT-SoVITS. Covers demucs tutorial, demucs vs uvr, demucs docker setup, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/facebookresearch/demucs'
 stars: 10100
-maintainer: 'facebookresearch'
+maintainer: facebookresearch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['demucs', 'music-source-separation', 'ai-audio', 'stem-separation', 'pytorch', 'docker', 'open-source']
+tags: [demucs, 'music-source-separation', 'ai-audio', 'stem-separation', pytorch, docker, 'open-source']
 aliases:
 - /posts/demucs/
 ---
@@ -227,7 +229,7 @@ def preprocess_for_rvc(input_song, output_dir):
 
     # Step 1: Separate with Demucs
     subprocess.run([
-        'demucs', '-n', 'htdemucs_ft',
+        demucs, '-n', htdemucs_ft,
         '--two-stems=vocals',
         '-o', output_dir,
         input_song
@@ -236,7 +238,7 @@ def preprocess_for_rvc(input_song, output_dir):
     # Step 2: Return path to isolated vocals
     base = os.path.splitext(os.path.basename(input_song))[0]
     vocals_path = os.path.join(
-        output_dir, 'htdemucs_ft', base, 'vocals.wav'
+        output_dir, htdemucs_ft, base, 'vocals.wav'
     )
     return vocals_path
 
@@ -374,7 +376,7 @@ with torch.no_grad():
     )[0]
 
 # sources shape: (num_sources, channels, samples)
-source_names = model.sources  # ['drums', 'bass', 'other', 'vocals']
+source_names = model.sources  # [drums, bass, other, vocals]
 
 # Save individual stems
 for i, name in enumerate(source_names):
@@ -399,10 +401,10 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # Process all files in a single Demucs invocation
     subprocess.run([
-        'demucs', '-n', model,
+        demucs, '-n', model,
         '-o', str(output_dir),
         '--mp3',
-        '--mp3-bitrate', '320',
+        '--mp3-bitrate', 320,
         *[str(f) for f in files]
     ], check=True)
 
@@ -412,19 +414,19 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
         base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
-            'drums': str(stem_dir / 'drums.mp3'),
-            'bass': str(stem_dir / 'bass.mp3'),
-            'other': str(stem_dir / 'other.mp3'),
-            'vocals': str(stem_dir / 'vocals.mp3'),
+            drums: str(stem_dir / 'drums.mp3'),
+            bass: str(stem_dir / 'bass.mp3'),
+            other: str(stem_dir / 'other.mp3'),
+            vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', 'w') as fp:
+    with open(output_dir / 'manifest.json', w) as fp:
         json.dump(manifest, fp, indent=2)
 
     return manifest
 
 # Usage
-batch_separate('./raw_songs/', './stems/', model='htdemucs_ft')
+batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 ```
 
 ### Memory Optimization for Long Files
@@ -434,7 +436,7 @@ Demucs loads the entire audio file into GPU memory. For long tracks or limited V
 ```python
 # Force CPU offloading for large files
 import os
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
 
 # Use smaller segments
 sources = apply_model(
@@ -454,7 +456,7 @@ import logging
 import time
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('demucs')
+logger = logging.getLogger(demucs)
 
 def separate_with_metrics(input_path, output_dir):
     start = time.time()

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pixelle-video-ai-short-video-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pixelle-video-ai-short-video-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pixelle-video-ai-short-video-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pixelle-video-ai-short-video-generator" />
 title: 'Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động Bằng AI, Nhập Chủ Đề
   Nhận Video Hoàn Chỉnh'
 description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã

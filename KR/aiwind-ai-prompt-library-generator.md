@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiwind-ai-prompt-library-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiwind-ai-prompt-library-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiwind-ai-prompt-library-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
 description: AiWind는 GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney 등 주요 모델을
   위한 1000+ 전문 AI 그림 프롬프트를 무료로 제공하는 AI 프롬프트 라이브러리입니다.

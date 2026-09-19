@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐Open Source神器，让 AI 替你写代码、做研究、自动化一切"
 description: "Goose 是 Linux 基金会支持的Open Source AI Agent，44K+ Stars，支持 15+ LLM 提供商和 70+ MCP 扩展。桌面应用 + CLI + API 三位一体，用 Rust 构建，性能卓越。"
 date: 2026-05-15T04:20:25+09:00

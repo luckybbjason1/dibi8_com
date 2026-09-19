@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/copilotkit" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/copilotkit" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/copilotkit" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/copilotkit" />
 title: 'CopilotKit: 31K+ Stars — React 또는 Angular 앱에 AI Copilot 추가하기 — 2026 완벽 설치 가이드'
 description: 'CopilotKit은 인앱 AI Copilot과 생성형 UI를 위한 오픈소스 프론트엔드 스택입니다. 사전 제작 컴포넌트, useCopilotAction Hooks, 프로덕션 배포로 React Angular AI 어시스턴트를 구축하세요. 설치, LangChain 통합, 셀프 호스팅, Vercel AI SDK와의 성능 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/CopilotKit/CopilotKit'
 stars: 31536
-maintainer: 'CopilotKit'
+maintainer: CopilotKit
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['copilotkit', 'react-ai', '생성형UI', 'ai-copilot', 'langchain', '프론트엔드-에이전트', 'typescript', '오픈소스']
+tags: [copilotkit, 'react-ai', 생성형ui, 'ai-copilot', langchain, '프론트엔드-에이전트', typescript, 오픈소스]
 aliases:
 - /kr/posts/copilotkit/
 ---

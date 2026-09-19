@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/melotts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/melotts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/melotts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/melotts" />
 title: 'MeloTTS: 7.4K+ Stars — 多语言 TTS 基准对比 Coqui TTS、ChatTTS、Bark 2026'
 description: 'MeloTTS 是一个高质量多语言文本转语音库，拥有 7.4K+ Stars。与 Coqui TTS、ChatTTS 和 Bark 进行基准对比。涵盖 Python 安装、Docker 部署、实时推理和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['melotts', '文本转语音', 'tts', '多语言', 'python', '语音合成', '开源', 'cpu推理']
+tags: [melotts, 文本转语音, tts, 多语言, python, 语音合成, 开源, cpu推理]
 aliases:
 - /zh/posts/melotts/
 ---
@@ -123,10 +128,10 @@ from melo.api import TTS
 
 # 语速可调
 speed = 1.0
-device = 'auto'  # 自动检测 GPU，无则回退到 CPU
+device = auto  # 自动检测 GPU，无则回退到 CPU
 
 text = "MeloTTS is working correctly on this machine."
-model = TTS(language='EN', device=device)
+model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'test_output.wav'
@@ -152,10 +157,10 @@ melo --list-speakers
 from melo.api import TTS
 
 speed = 1.0
-device = 'auto'
+device = auto
 
 text = "Did you ever hear a folk tale about a giant turtle?"
-model = TTS(language='EN', device=device)
+model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 # 美式口音
@@ -165,7 +170,7 @@ model.tts_to_file(text, speaker_ids['EN-US'], 'en-us.wav', speed=speed)
 model.tts_to_file(text, speaker_ids['EN-BR'], 'en-br.wav', speed=speed)
 
 # 印度口音
-model.tts_to_file(text, speaker_ids['EN_INDIA'], 'en-india.wav', speed=speed)
+model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # 澳式口音
 model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
@@ -177,15 +182,15 @@ model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
 from melo.api import TTS
 
 speed = 1.0
-device = 'cpu'
+device = cpu
 
 # 中文说话人无缝处理英文单词
 text = "我最近在学习machine learning，希望能够在未来的artificial intelligence领域有所建树。"
-model = TTS(language='ZH', device=device)
+model = TTS(language=ZH, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
-model.tts_to_file(text, speaker_ids['ZH'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
 ```
 
 ### 日语
@@ -194,14 +199,14 @@ model.tts_to_file(text, speaker_ids['ZH'], output_path, speed=speed)
 from melo.api import TTS
 
 speed = 1.0
-device = 'cpu'
+device = cpu
 
 text = "こんにちは、これは日本語の音声合成テストです。"
-model = TTS(language='JA', device=device)
+model = TTS(language=JA, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
-model.tts_to_file(text, speaker_ids['JA'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
 ```
 
 ### FastAPI REST API
@@ -217,12 +222,12 @@ app = FastAPI()
 
 # 预加载支持的语言模型
 models = {}
-for lang in ['EN', 'ZH', 'ES', 'FR', 'JA', 'KO']:
-    models[lang] = TTS(language=lang, device='auto')
+for lang in [EN, ZH, ES, FR, JA, KO]:
+    models[lang] = TTS(language=lang, device=auto)
 
 class TTSRequest(BaseModel):
     text: str
-    language: str = 'EN'
+    language: str = EN
     speaker: str = 'EN-Default'
     speed: float = 1.0
 
@@ -286,15 +291,15 @@ import websockets
 import json
 from melo.api import TTS
 
-model = TTS(language='EN', device='auto')
+model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 
 async def tts_stream(websocket, path):
     async for message in websocket:
         data = json.loads(message)
-        text = data.get('text', '')
-        speaker = data.get('speaker', 'EN-Default')
-        speed = data.get('speed', 1.0)
+        text = data.get(text, '')
+        speaker = data.get(speaker, 'EN-Default')
+        speed = data.get(speed, 1.0)
         
         # 流式传输音频块
         for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed):
@@ -311,7 +316,7 @@ asyncio.get_event_loop().run_forever()
 import gradio as gr
 from melo.api import TTS
 
-model = TTS(language='EN', device='auto')
+model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 speaker_names = list(speaker_ids.keys())
 
@@ -412,10 +417,10 @@ import functools
 @functools.lru_cache(maxsize=6)
 def get_model(language):
     """缓存模型加载器 —— 模型只加载一次并复用。"""
-    return TTS(language=language, device='auto')
+    return TTS(language=language, device=auto)
 
 # 启动时预热所有语言
-for lang in ['EN', 'ZH', 'ES', 'FR', 'JA', 'KO']:
+for lang in [EN, ZH, ES, FR, JA, KO]:
     get_model(lang)
 print("所有模型已加载完毕。")
 ```
@@ -426,7 +431,7 @@ print("所有模型已加载完毕。")
 from melo.api import TTS
 import concurrent.futures
 
-model = TTS(language='EN', device='cuda:0')
+model = TTS(language=EN, device='cuda:0')
 speaker_ids = model.hps.data.spk2id
 
 texts = [
@@ -499,8 +504,8 @@ from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
 # 指标
-tts_requests = Counter('melotts_requests_total', 'TTS 请求总数', ['language', 'speaker'])
-tts_duration = Histogram('melotts_duration_seconds', 'TTS 生成耗时')
+tts_requests = Counter(melotts_requests_total, 'TTS 请求总数', [language, speaker])
+tts_duration = Histogram(melotts_duration_seconds, 'TTS 生成耗时')
 
 @app.get("/metrics")
 async def metrics():
@@ -596,7 +601,7 @@ MeloTTS 并非万能方案。以下是需要考虑的具体局限：
 
 ### Q3: 中英混合输入如何工作？
 
-中文模型（`language='ZH'`）自动检测中文文本中的英文单词，并通过英语 G2P 管线路由，同时保持韵律连贯性。无需手动标记或切换模型。
+中文模型（`language=ZH`）自动检测中文文本中的英文单词，并通过英语 G2P 管线路由，同时保持韵律连贯性。无需手动标记或切换模型。
 
 ### Q4: MeloTTS 能处理的最大文本长度是多少？
 

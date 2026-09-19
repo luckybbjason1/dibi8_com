@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paddleocr-81k-star-ocr-engine" />
 
 
 title: 'PaddleOCR：81K星开源OCR引擎，零成本超越云服务'

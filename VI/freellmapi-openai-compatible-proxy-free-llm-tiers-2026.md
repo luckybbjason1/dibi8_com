@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
 title: 'FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điểm cuối tương thích với OpenAI'
 description: 'Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa thành một proxy duy nhất. ~1,7 tỷ token/tháng. Cài đặt Docker, tích hợp Claude Code, gọi công cụ, phát trực tiếp, chuỗi dự phòng.'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'LLM Proxy', 'Free Tier', 'OpenAI Compatible', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'llm proxy', 'free tier', 'openai compatible', 'self-hosted', docker]
 categories: ['ai-tools']
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 featureImage: 'https://images.pexels.com/photos/8644020/pexels-photo-8644020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/freellmapi']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'
@@ -21,13 +26,13 @@ description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and 
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'LLM Proxy', 'Free Tier', 'OpenAI Compatible', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'llm proxy', 'free tier', 'openai compatible', 'self-hosted', docker]
 categories: ['ai-tools']
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 
 aliases: ['/freellmapi']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'

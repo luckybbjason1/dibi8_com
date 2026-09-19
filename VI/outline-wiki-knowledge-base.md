@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
 title: 'Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn Mở Cho Team Kỹ Sư — 2026 Self-Hosted'
 description: 'Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'outline/outline'
 stars: 32000
-maintainer: 'outline'
+maintainer: outline
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['outline', 'wiki', 'knowledge-base', 'team-docs', 'ma-nguon-mo', 'tu-luu-tru', 'docker', 'cong-tac', 'markdown']
+tags: [outline, wiki, 'knowledge-base', 'team-docs', 'ma-nguon-mo', 'tu-luu-tru', docker, 'cong-tac', markdown]
 aliases:
 - /vi/posts/outline-wiki-knowledge-base/
 ---
@@ -171,7 +176,7 @@ echo "UTILS_SECRET=$UTILS_SECRET"
 Thêm vào file `.env`:
 
 ```bash
-cat << 'EOF' > .env
+cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
 SLACK_CLIENT_ID=

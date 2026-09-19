@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama" />
 title: 'Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướng Dẫn Cấu Hình Đầy Đủ 2026'
 description: 'Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thích với LangChain, OpenWebUI, Continue.dev và Dify. Bao gồm thiết lập Docker, tùy chỉnh Modelfile, REST API, production hardening và benchmark hiệu năng.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/ollama/ollama'
 stars: 137000
-maintainer: 'ollama'
+maintainer: ollama
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ollama', 'llm-local', 'llama.cpp', 'deepseek', 'mistral', 'docker', 'modelfile', 'open-source']
+tags: [ollama, 'llm-local', 'llama.cpp', deepseek, mistral, docker, modelfile, 'open-source']
 aliases:
 - /vi/posts/ollama/
 - /vi/resources/llm-frameworks/ollama-local-llm-guide/
@@ -533,24 +538,24 @@ app = Flask(__name__)
 OLLAMA_URL = "http://localhost:11434"
 VALID_KEYS = {"sk-your-api-key-here"}
 
-@app.route('/', defaults={'path': ''}, methods=['GET', 'POST', 'PUT', 'DELETE'])
-@app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@app.route('/', defaults={path: ''}, methods=[GET, POST, PUT, DELETE])
+@app.route('/<path:path>', methods=[GET, POST, PUT, DELETE])
 def proxy(path):
-    api_key = request.headers.get('Authorization', '').replace('Bearer ', '')
+    api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
     if api_key not in VALID_KEYS:
         return {"error": "API key không hợp lệ"}, 401
     
     resp = requests.request(
         method=request.method,
         url=f"{OLLAMA_URL}/{path}",
-        headers={k: v for k, v in request.headers if k != 'Host'},
+        headers={k: v for k, v in request.headers if k != Host},
         data=request.get_data(),
         stream=True
     )
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == '__main__':
+if __name__ == __main__:
     app.run(host='0.0.0.0', port=11435)
 ```
 

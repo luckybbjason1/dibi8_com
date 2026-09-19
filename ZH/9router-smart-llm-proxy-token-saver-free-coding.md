@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/9router-smart-llm-proxy-token-saver-free-coding" />
 title: "9Router：智能AI代理网关——节省60%令牌开销，告别API限流"
 description: "发现9Router——开源智能AI代理网关，利用RTK无损压缩引擎节省20-40%输入令牌，通过三层智能回退系统无缝连接40+语言模型提供商，让每位开发者都能以零成本获取世界一流的AI编程体验与效率提升。"
 date: 2026-05-15T04:20:25+09:00

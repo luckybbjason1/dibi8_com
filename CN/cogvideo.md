@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/cogvideo" />
 title: 'CogVideo: 12.7K Stars — Complete Text-to-Video Setup Guide 2026'
 description: 'CogVideo (CogVideoX) is a text and image-to-video generation model from Zhipu AI. Supports ComfyUI, Diffusers, SAT, and Wan/HunyuanVideo/Open-Sora integration. Covers installation, Docker, inference, fine-tuning, and benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['cogvideo', 'cogvideox', 'text-to-video', 'diffusion-transformer', 'zhipu-ai', 'comfyui', 'open-source-ai', 'video-generation']
+tags: [cogvideo, cogvideox, 'text-to-video', 'diffusion-transformer', 'zhipu-ai', comfyui, 'open-source-ai', 'video-generation']
 aliases:
 - /posts/cogvideo/
 ---
@@ -534,9 +536,9 @@ Track inference metrics in production:
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-INFERENCE_COUNT = Counter('cogvideo_inferences_total', 'Total inferences')
-INFERENCE_TIME = Histogram('cogvideo_inference_seconds', 'Inference latency')
-VRAM_USAGE = Histogram('cogvideo_vram_bytes', 'Peak VRAM usage')
+INFERENCE_COUNT = Counter(cogvideo_inferences_total, 'Total inferences')
+INFERENCE_TIME = Histogram(cogvideo_inference_seconds, 'Inference latency')
+VRAM_USAGE = Histogram(cogvideo_vram_bytes, 'Peak VRAM usage')
 
 start_http_server(9090)
 

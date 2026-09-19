@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter: 300개 이상 모델을 연결하는 통합 LLM API 게이트웨이, 40% 비용 절감 — 2026년 설정 가이드'
 description: 'OpenRouter 완벽 가이드: 60개 이상 제공업체의 300개 이상 AI 모델에 단일 OpenAI 호환 엔드포인트로 액세스합니다. 5분 안에 설정, 통합, 벤치마크, 프로덕션 배포를 학습하세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'openrouter/openrouter'
 stars: 15000
-maintainer: 'alexanderatallah'
+maintainer: alexanderatallah
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['OpenRouter', 'LLM', 'API 게이트웨이', '인공지능', 'OpenAI', 'Claude', '머신러닝', '비용 최적화']
+tags: [openrouter, llm, 'api 게이트웨이', 인공지능, openai, claude, 머신러닝, '비용 최적화']
 aliases:
 - /kr/posts/openrouter-unified-llm-api-gateway/
 ---
@@ -448,15 +453,15 @@ services:
 # 사용량과 비용을 프로그래밍 방식으로 추적
 import requests
 
-headers = {"Authorization": f"Bearer {os.environ.get('OPENROUTER_API_KEY')}"}
+headers = {"Authorization": f"Bearer {os.environ.get(OPENROUTER_API_KEY)}"}
 
 usage = requests.get(
     "https://openrouter.ai/api/v1/credits",
     headers=headers
 ).json()
 
-print(f"남은 크레딧: ${usage['data']['total_credits'] - usage['data']['total_usage']}")
-print(f"총 사용량: ${usage['data']['total_usage']}")
+print(f"남은 크레딧: ${usage[data][total_credits] - usage[data][total_usage]}")
+print(f"총 사용량: ${usage[data][total_usage]}")
 ```
 
 ## 대안과의 비교

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ccxt-crypto-exchange-api-unified" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ccxt-crypto-exchange-api-unified" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ccxt-crypto-exchange-api-unified" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ccxt-crypto-exchange-api-unified" />
 # CCXT 2026: API Giao Dịch Tiền Điện Tử Thống Nhất Hơn 100 Sàn — Hướng Dẫn 2026
 
 *Cuối cùng được cập nhật: 19 tháng 5, 2026*

@@ -1,4 +1,7 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codebase-memory-mcp-deep-code-intelligence" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codebase-memory-mcp-deep-code-intelligence" />
 lang: zh
 description: 'Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant.'
 date: 2026-07-03T09:00:00+09:00

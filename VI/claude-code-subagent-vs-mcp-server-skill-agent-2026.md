@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 title: 'Subagent vs MCP Server vs Skill: Khi nào nên xây từng loại tiện ích mở rộng Claude Code (2026)'
 description: 'Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán khác nhau. Một khung quyết định để chọn đúng loại, kèm các kịch bản thực tế và những anti-pattern khiến bạn mất thời gian vô ích.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'MCP', 'CLI']
+tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'mcp', 'subagents', 'skills', 'agent-sdk', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/claude-code-subagent-vs-mcp-vs-skill/
 faq:

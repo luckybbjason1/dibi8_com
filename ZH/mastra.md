@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mastra" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
 title: 'Mastra: 24K+ Stars — 节省 Token 成本 4-10 倍的 TypeScript AI 框架 2026'
 description: 'Mastra 是 Gatsby 团队打造的 TypeScript 原生 AI 框架，用于构建 AI 驱动的应用和智能体。涵盖 Mastra vs LangChain、安装教程、工作流、RAG、记忆系统、可观测性、基准测试和生产加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mastra', 'typescript', 'ai框架', '智能体', 'llm', 'mastra教程', 'mastra-vs-langchain', '开源']
+tags: [mastra, typescript, ai框架, 智能体, llm, mastra教程, 'mastra-vs-langchain', 开源]
 aliases:
 - /zh/posts/mastra/
 ---
@@ -158,13 +163,13 @@ npx mastra dev
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
 import { createTool } from '@mastra/core';
-import { z } from 'zod';
+import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: '搜索内部文档',
+  description: 搜索内部文档,
   inputSchema: z.object({
-    query: z.string().describe('搜索查询'),
+    query: z.string().describe(搜索查询),
   }),
   execute: async ({ context }) => {
     const results = await searchInternalDocs(context.query);
@@ -173,7 +178,7 @@ const searchTool = createTool({
 });
 
 export const supportAgent = new Agent({
-  name: 'SupportAgent',
+  name: SupportAgent,
   instructions: `你是一个技术支持智能体。使用搜索工具回答问题。
     保持简洁并引用来源。`,
   model: openai('gpt-4o'),
@@ -189,8 +194,8 @@ const result = await supportAgent.generate(
   '分类这张工单："无法部署到 Vercel"',
   {
     output: z.object({
-      category: z.enum(['deployment', 'billing', 'bug', 'feature']),
-      priority: z.enum(['low', 'medium', 'high', 'critical']),
+      category: z.enum([deployment, billing, bug, feature]),
+      priority: z.enum([low, medium, high, critical]),
       summary: z.string(),
       actionItems: z.array(z.string()),
     }),
@@ -198,7 +203,7 @@ const result = await supportAgent.generate(
 );
 
 // result.object 是完全类型化的 —— TypeScript 知道其结构
-console.log(result.object.priority); // 'high' | 'low' | 'medium' | 'critical'
+console.log(result.object.priority); // high | low | medium | critical
 ```
 
 ### 流式响应
@@ -219,14 +224,14 @@ for await (const chunk of stream.textStream) {
 ```typescript
 // src/mastra/workflows/ticket.ts
 import { Workflow, Step } from '@mastra/core';
-import { z } from 'zod';
+import { z } from zod;
 
 const classifyStep = new Step({
-  id: 'classify',
+  id: classify,
   inputSchema: z.object({ ticketText: z.string() }),
   outputSchema: z.object({ category: z.string(), priority: z.string() }),
   execute: async ({ input, mastra }) => {
-    const agent = mastra.getAgent('supportAgent');
+    const agent = mastra.getAgent(supportAgent);
     const result = await agent.generate(
       `分类：${input.ticketText}`,
       { output: z.object({ category: z.string(), priority: z.string() }) }
@@ -236,7 +241,7 @@ const classifyStep = new Step({
 });
 
 const escalateStep = new Step({
-  id: 'escalate',
+  id: escalate,
   outputSchema: z.object({ escalated: z.boolean() }),
   execute: async ({ input }) => {
     await sendSlackAlert(`高优先级：${input.ticketText}`);
@@ -259,10 +264,10 @@ export const ticketPipeline = new Workflow({
 })
   .step(classifyStep)
   .then(escalateStep, {
-    when: { 'classify.priority': 'high' },
+    when: { 'classify.priority': high },
   })
   .then(autoRespondStep, {
-    when: { 'classify.priority': ['low', 'medium'] },
+    when: { 'classify.priority': [low, medium] },
   });
 ```
 
@@ -275,7 +280,7 @@ import { Workflow, Step } from '@mastra/core';
 const stepA = new Step({ id: 'fetch-user', /* ... */ });
 const stepB = new Step({ id: 'fetch-orders', /* ... */ });
 const stepC = new Step({ id: 'fetch-preferences', /* ... */ });
-const stepD = new Step({ id: 'combine', /* ... */ });
+const stepD = new Step({ id: combine, /* ... */ });
 
 const parallelWorkflow = new Workflow({
   name: 'parallel-fetch',
@@ -299,7 +304,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   const { message } = await req.json();
-  const agent = mastra.getAgent('supportAgent');
+  const agent = mastra.getAgent(supportAgent);
 
   const stream = await agent.stream(message);
 
@@ -334,7 +339,7 @@ import { google } from '@ai-sdk/google';
 
 // 一行代码切换提供商
 const agent = new Agent({
-  name: 'MultiProviderAgent',
+  name: MultiProviderAgent,
   instructions: '你是一个有用的助手。',
   model: openai('gpt-4o'), // 或 anthropic('claude-sonnet-4') 或 google('gemini-2.0-pro')
   tools: { searchTool, calcTool },
@@ -350,12 +355,12 @@ import { MCPClient } from '@mastra/core';
 const mcpClient = new MCPClient({
   servers: {
     slack: {
-      command: 'npx',
+      command: npx,
       args: ['-y', '@modelcontextprotocol/server-slack'],
       env: { SLACK_BOT_TOKEN: process.env.SLACK_TOKEN },
     },
     github: {
-      command: 'npx',
+      command: npx,
       args: ['-y', '@modelcontextprotocol/server-github'],
       env: { GITHUB_PERSONAL_ACCESS_TOKEN: process.env.GITHUB_TOKEN },
     },
@@ -365,7 +370,7 @@ const mcpClient = new MCPClient({
 // MCP 工具自动对你的智能体可用
 const tools = await mcpClient.tools();
 const agent = new Agent({
-  name: 'MCPAgent',
+  name: MCPAgent,
   model: openai('gpt-4o'),
   tools, // 所有 MCP 工具现在可用
 });
@@ -494,7 +499,7 @@ const promptInjectionGuard = createGuardrail({
   id: 'no-prompt-injection',
   check: async ({ input }) => {
     const suspicious = /ignore previous|disregard instructions/i.test(input);
-    return { passed: !suspicious, message: suspicious ? '检测到注入' : undefined };
+    return { passed: !suspicious, message: suspicious ? 检测到注入 : undefined };
   },
 });
 
@@ -507,7 +512,7 @@ const piiGuard = createGuardrail({
 });
 
 const agent = new Agent({
-  name: 'SafeAgent',
+  name: SafeAgent,
   model: openai('gpt-4o'),
   tools: { searchTool },
   guardrails: [promptInjectionGuard, piiGuard],

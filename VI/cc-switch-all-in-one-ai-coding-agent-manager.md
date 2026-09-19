@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cc-switch-all-in-one-ai-coding-agent-manager" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-all-in-one-ai-coding-agent-manager" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-all-in-one-ai-coding-agent-manager" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-all-in-one-ai-coding-agent-manager" />
 title: "CC Switch: Trình Quản Lý Tác Nhân Lập Trình AI Tối Ưu cho Phát Triển Đa Nền Tảng"
 description: "Hướng dẫn đầy đủ về CC Switch — ứng dụng desktop đa nền tảng quản lý Claude Code, Codex, Gemini CLI, OpenCode, OpenClaw và Hermes Agent trong một giao diện thống nhất. Cài đặt, cấu hình và cách sử dụng thực tế."
 date: 2026-06-20

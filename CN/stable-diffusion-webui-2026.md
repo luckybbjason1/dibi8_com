@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/stable-diffusion-webui-2026" />
 title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generation — Complete Guide'
 description: 'AUTOMATIC1111 stable-diffusion-webui is the 163k-star de-facto standard self-hosted UI for SD/SDXL image generation. Complete 2026 install + production guide covering txt2img / img2img / inpainting / outpainting / LoRA / ControlNet, hardware requirements, alternatives (Forge, SD.Next).'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
 stars: 163000
-maintainer: 'AUTOMATIC1111'
+maintainer: AUTOMATIC1111
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Stable Diffusion', 'SDXL', 'image generation', 'AUTOMATIC1111', 'open-source']
+tags: ['stable diffusion', sdxl, 'image generation', automatic1111, 'open-source']
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
 title: 'Playwright 2026: Selenium보다 3배 빠른 크로스 브라우저 자동화 도구 — 설치 가이드'
 description: 'Playwright 1.51로 크로스 브라우저 자동화를 마스터하세요. Chrome, Firefox, WebKit 지원. 자동 대기, 추적, 코드 생성, 병렬 테스트. Selenium보다 3배 빠릅니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/playwright'
 stars: 72000
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Playwright', '브라우저 자동화', '테스팅', '웹 스크래핑', 'python', 'E2E']
+tags: [playwright, '브라우저 자동화', 테스팅, '웹 스크래핑', python, e2e]
 aliases:
 - /kr/posts/playwright-browser-automation-testing/
 ---
@@ -104,12 +109,12 @@ def test_login_flow():
         page.goto("https://httpbin.org/forms/post")
         
         # 양식 필드 채우기 (요소 자동 대기)
-        page.fill("[name='custname']", "John Doe")
-        page.fill("[name='custtel']", "555-1234")
-        page.fill("[name='custemail']", "john@example.com")
+        page.fill("[name=custname]", "John Doe")
+        page.fill("[name=custtel]", "555-1234")
+        page.fill("[name=custemail]", "john@example.com")
         
         # 양식 제출
-        page.click("input[type='submit']")
+        page.click("input[type=submit]")
         
         # 결과 검증
         assert "John Doe" in page.content()
@@ -162,8 +167,8 @@ def test_add_to_cart(page):
 
 def test_search_results(page):
     page.goto("https://example.com")
-    page.fill("[name='q']", "laptop")
-    page.press("[name='q']", "Enter")
+    page.fill("[name=q]", "laptop")
+    page.press("[name=q]", "Enter")
     
     # 결과 로딩 대기
     page.wait_for_selector(".search-result")
@@ -399,7 +404,7 @@ def test_mobile_viewport():
         page.screenshot(path="mobile-view.png")
         
         # 햄버거 메뉴 상호작용 테스트
-        page.click("[aria-label='Menu']")
+        page.click("[aria-label=Menu]")
         assert page.is_visible("nav.mobile-menu")
         
         browser.close()
@@ -454,7 +459,7 @@ def scrape_with_stealth():
         # 자동화 플래그를 숨기는 스텔스 스크립트 주입
         page = context.new_page()
         page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', {
+            Object.defineProperty(navigator, webdriver, {
                 get: () => undefined
             });
         """)

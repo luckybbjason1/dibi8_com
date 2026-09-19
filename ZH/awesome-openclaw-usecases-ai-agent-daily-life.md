@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/awesome-openclaw-usecases-ai-agent-daily-life" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/awesome-openclaw-usecases-ai-agent-daily-life" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/awesome-openclaw-usecases-ai-agent-daily-life" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/awesome-openclaw-usecases-ai-agent-daily-life" />
 title: OpenClaw 42 个真实用例：人们如何在日常生活中使用 AI 代理
 description: 探索 OpenClaw AI 代理的 42 个真实用例 — 从社交媒体自动化到游戏开发、播客制作和自主交易。
 date: 2026-05-15 04:20:25+09:00

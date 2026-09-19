@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm-unified-api-tutorial" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm-unified-api-tutorial" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm-unified-api-tutorial" />
 title: 'Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM'
 description: 'Hướng dẫn chi tiết LiteLLM 2025 — cách dùng một API thống nhất để kết nối 100+ mô hình LLM từ OpenAI, Anthropic, Google, Azure và nguồn mở.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,20 +1,25 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
 title: 'DeepSeek-Reasonix：为 DeepSeek 前缀缓存稳定性设计的终端 AI 编码代理'
 description: '一个 DeepSeek 原生的 AI 编程代理，具有工程化的前缀缓存稳定性 —— 缓存命中率 99.82%，重度使用约 $12/天，而无缓存约 $61/天。MIT 许可。使用 DeepSeek 模型的 Claude Code 替代方案。'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Coding Agent', 'DeepSeek', 'Terminal', 'Self-Hosted', 'Open Source']
+tags: ['ai tools', 'coding agent', deepseek, terminal, 'self-hosted', 'open source']
 categories: ['ai-tools']
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 featureImage: /images/articles/deepseek-tui-anthropic-financial-agents--117cfa-1.png
 aliases: ['/deepseek-reasonix']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: 'Website'
+  - name: Website
     url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: 'Discord'
+  - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
 lang: zh
 ---
@@ -23,17 +28,17 @@ description: 'A DeepSeek-native AI coding agent with engineered prefix-cache sta
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Coding Agent', 'DeepSeek', 'Terminal', 'Self-Hosted', 'Open Source']
+tags: ['ai tools', 'coding agent', deepseek, terminal, 'self-hosted', 'open source']
 categories: ['ai-tools']
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 
 aliases: ['/deepseek-reasonix']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: 'Website'
+  - name: Website
     url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: 'Discord'
+  - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
 ---
 

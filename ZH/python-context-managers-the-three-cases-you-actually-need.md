@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/python-context-managers-the-three-cases-you-actually-need" />
 title: Python 上下文管理器：你真正需要的三个场景
 description: Python 上下文管理器：你真正需要的三个场景。掌握 with 语句、contextlib 和自定义上下文管理器，实现更好的资源管理。
 date: 2026-05-15 04:20:25+09:00

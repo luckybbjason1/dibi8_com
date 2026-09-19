@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feature-engineering-tools-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feature-engineering-tools-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feature-engineering-tools-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feature-engineering-tools-automation" />
 title: 'Công Cụ Kỹ Thuật Đặc Trưng Tự Động: Hướng Dẫn Featuretools, AutoFeat và tsfresh Năm 2024'
 description: 'Hướng dẫn sử dụng Featuretools, AutoFeat và tsfresh cho kỹ thuật đặc trưng tự động. So sánh tính năng, ví dụ code, chiến lược kết hợp với ML pipeline.'
 date: 2026-05-18 00:00:00+08:00

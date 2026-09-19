@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aave-v4-defi-lending-protocol" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aave-v4-defi-lending-protocol" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aave-v4-defi-lending-protocol" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aave-v4-defi-lending-protocol" />
 title: 'AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트랙트 통합 가이드'
 description: '2026년 AAVE v4 DeFi 대출 프로토콜 통합 완벽 가이드. 30개 이상의 암호화폐 자산을 공급하고 차입하며, 플래시 론을 사용하고, 격리 모드를 구현하며, DApp에서 GHO 스테이블코인을 통합하는 방법을 배우세요.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/aave/aave-v3-core'
 stars: 2100
-maintainer: 'aave'
+maintainer: aave
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['AAVE']
+tags: [aave]
 aliases:
 - /kr/posts/aave-v4-defi-lending-protocol/
 ---
@@ -100,7 +105,7 @@ PRIVATE_KEY=your_private_key
 ```javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require(dotenv).config();
 
 module.exports = {
   solidity: '0.8.24',
@@ -254,12 +259,12 @@ contract AaveDataReader {
 프론트엔드 및 스크립팅 통합을 위해 ethers.js는 편리한 인터페이스를 제공합니다.
 
 ```javascript
-const { ethers } = require('ethers');
-require('dotenv').config();
+const { ethers } = require(ethers);
+require(dotenv).config();
 
 // Ethereum 메인넷의 AAVE v4 풀 컨트랙트
-const POOL_ADDRESS = '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2';
-const POOL_DATA_PROVIDER = '0x7B4EB56E7CD4b454BA8ff71E4518426Fede81A62';
+const POOL_ADDRESS = 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2;
+const POOL_DATA_PROVIDER = 0x7B4EB56E7CD4b454BA8ff71E4518426Fede81A62;
 
 const provider = new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC);
 
@@ -676,19 +681,19 @@ async function scanForLiquidations(usersToCheck) {
 
 ```typescript
 // hooks/useAave.ts
-import { useContractWrite, usePrepareContractWrite } from 'wagmi';
-import { parseUnits } from 'viem';
+import { useContractWrite, usePrepareContractWrite } from wagmi;
+import { parseUnits } from viem;
 
 const POOL_ABI = [
   {
-    name: 'supply',
-    type: 'function',
-    stateMutability: 'nonpayable',
+    name: supply,
+    type: function,
+    stateMutability: nonpayable,
     inputs: [
-      { name: 'asset', type: 'address' },
-      { name: 'amount', type: 'uint256' },
-      { name: 'onBehalfOf', type: 'address' },
-      { name: 'referralCode', type: 'uint16' },
+      { name: asset, type: address },
+      { name: amount, type: uint256 },
+      { name: onBehalfOf, type: address },
+      { name: referralCode, type: uint16 },
     ],
     outputs: [],
   },
@@ -696,13 +701,13 @@ const POOL_ABI = [
 
 export function useSupplyAsset(asset: string, amount: string, decimals: number) {
   const { config } = usePrepareContractWrite({
-    address: '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2',
+    address: 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2,
     abi: POOL_ABI,
-    functionName: 'supply',
+    functionName: supply,
     args: [
       asset as `0x${string}`,
       parseUnits(amount, decimals),
-      '0xYourAddress' as `0x${string}`,
+      0xYourAddress as `0x${string}`,
       0,
     ],
   });

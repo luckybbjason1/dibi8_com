@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dvc-data-version-control-ml" />
 title: 'DVC: 데이터를 위한 Git — ML 파이프라인 데이터 버전 관리와 재현 가능한 실험 2026 완벽 가이드'
 description: 'DVC (Data Version Control) 완벽 가이드 — Git 방식 워크플로우로 데이터셋, 모델, ML 파이프라인을 버전 관리합니다. 설치, S3/GCS/Azure 백엔드, CI/CD 통합, 벤치마크, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/iterative/dvc'
 stars: 15600
-maintainer: 'Iterative'
+maintainer: Iterative
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['DVC', 'Data Version Control', 'MLOps', 'Git', '머신러닝', '재현성', 'S3', 'GCS', 'Azure', '파이프라인', '데이터 버전 관리', '데이터 사이언스']
+tags: [dvc, 'data version control', mlops, git, 머신러닝, 재현성, s3, gcs, azure, 파이프라인, '데이터 버전 관리', '데이터 사이언스']
 aliases:
 - /kr/posts/dvc-data-version-control-ml/
 ---
@@ -223,8 +228,8 @@ dvc remote modify myremote credentialpath /path/to/service-account.json
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # 계정 이름과 키 설정
-dvc remote modify myremote account_name 'myaccount'
-dvc remote modify myremote account_key 'mykey'
+dvc remote modify myremote account_name myaccount
+dvc remote modify myremote account_key mykey
 ```
 
 구성 후 원격에 데이터 푸시:
@@ -615,7 +620,7 @@ Git LFS는 별도 서버에 대용량 파일을 저장하지만 여전히 Git �
 ```python
 import dvc.api
 
-with dvc.api.open('data/dataset.csv', remote='myremote') as f:
+with dvc.api.open('data/dataset.csv', remote=myremote) as f:
     df = pd.read_csv(f)
 ```
 

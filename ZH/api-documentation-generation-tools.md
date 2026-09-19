@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/api-documentation-generation-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/api-documentation-generation-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/api-documentation-generation-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/api-documentation-generation-tools" />
 title: '2025年最佳API文档自动生成工具对比：Swagger、Postman Docs、ReadMe、Mintlify全面评测'
 description: '深入对比2025年主流API文档生成工具，包括Swagger、Postman Docs、ReadMe、Mintlify、Stoplight和Redocly，帮助开发团队选择最适合的文档自动化方案。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['API文档', 'Swagger', 'Postman', 'Mintlify', '开发者工具']
+tags: [api文档, swagger, postman, mintlify, 开发者工具]
 aliases:
 - /zh/posts/api-documentation-generation-tools/
 ---
@@ -281,3 +286,14 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
+
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [Act](/zh/act)
+2. [Activepieces Workflow Automation](/zh/activepieces-workflow-automation)
+3. [Affine Knowledge Base Whiteboard](/zh/affine-knowledge-base-whiteboard)
+
+---

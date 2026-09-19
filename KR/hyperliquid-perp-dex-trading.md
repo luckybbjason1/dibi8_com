@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hyperliquid-perp-dex-trading" />
 title: 'Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통합 가이드'
 description: '일일 거래량 $2B+, 100개 이상 거래 페어, 최대 50배 레버리지, HyperEVM 스마트 컨트랙트 및 봇 통합용 Python SDK를 갖춘 완전 온체인 영구 DEX Hyperliquid에 대한 종합 가이드.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hyperliquid-dex'
 stars: 0
-maintainer: 'hyperliquid'
+maintainer: hyperliquid
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Hyperliquid', 'perpetual DEX', 'on-chain trading', 'leverage trading', 'trading bot', 'HyperEVM', 'Python SDK', 'WebSocket API', 'CLOB', 'DeFi trading', 'algorithmic trading']
+tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'trading bot', hyperevm, 'python sdk', 'websocket api', clob, 'defi trading', 'algorithmic trading']
 aliases:
 - /kr/posts/hyperliquid-perp-dex-trading/
 ---
@@ -111,20 +116,20 @@ class HyperliquidTrader:
     """프로덕션 레디 Hyperliquid 트레이딩 클라이언트."""
     
     def __init__(self, use_testnet=True):
-        self.private_key = os.getenv('PRIVATE_KEY')
-        self.wallet_address = os.getenv('WALLET_ADDRESS')
+        self.private_key = os.getenv(PRIVATE_KEY)
+        self.wallet_address = os.getenv(WALLET_ADDRESS)
         self.base_url = constants.TESTNET_API_URL if use_testnet else constants.MAINNET_API_URL
         
         self.exchange = Exchange(self.wallet_address, self.private_key, self.base_url)
         self.info = Info(self.base_url)
         
-        print(f"Hyperliquid {'테스트넷' if use_testnet else '메인넷'}에 연결됨")
+        print(f"Hyperliquid {테스트넷 if use_testnet else 메인넷}에 연결됨")
     
     def get_account_summary(self):
         """종합 계정 정보 조회."""
         user_state = self.info.user_state(self.wallet_address)
-        account_value = float(user_state['marginSummary']['accountValue'])
-        total_margin_used = float(user_state['marginSummary']['totalMarginUsed'])
+        account_value = float(user_state[marginSummary][accountValue])
+        total_margin_used = float(user_state[marginSummary][totalMarginUsed])
         
         print(f"계정 가치: ${account_value:,.2f}")
         print(f"사용 마진: ${total_margin_used:,.2f}")
@@ -175,17 +180,17 @@ class HyperliquidWebSocketFeed:
         async for message in self.ws:
             msg = json.loads(message)
             if msg.get("channel") == "l2Book":
-                await self._handle_orderbook(msg['data'])
+                await self._handle_orderbook(msg[data])
             elif msg.get("channel") == "trades":
-                await self._handle_trades(msg['data'])
+                await self._handle_trades(msg[data])
     
     async def _handle_orderbook(self, data):
         """L2 오더북 업데이트 처리."""
-        coin = data['coin']
-        levels = data['levels']
+        coin = data[coin]
+        levels = data[levels]
         self.orderbook_cache[coin] = {
-            'bids': [{'px': float(b['px']), 'sz': float(b['sz'])} for b in levels[0]],
-            'asks': [{'px': float(a['px']), 'sz': float(a['sz'])} for a in levels[1]],
+            bids: [{px: float(b[px]), sz: float(b[sz])} for b in levels[0]],
+            asks: [{px: float(a[px]), sz: float(a[sz])} for a in levels[1]],
         }
     
     async def subscribe_orderbook(self, coin):
@@ -217,8 +222,8 @@ class HyperliquidWebSocketFeed:
         """슬리피지 보호가 있는 시장가 주문 실행."""
         order_type = {"limit": {"tif": "Ioc"}}  # Immediate-or-Cancel
         result = self.exchange.order(coin, is_buy, sz, 0, order_type, reduce_only=False)
-        print(f"시장가 {'매수' if is_buy else '매도'} {sz} {coin}")
-        print(f"상태: {result['status']}")
+        print(f"시장가 {매수 if is_buy else 매도} {sz} {coin}")
+        print(f"상태: {result[status]}")
         return result
     
     def place_limit_order(self, coin: str, is_buy: bool, sz: float, px: float, tif: str = "Gtc"):
@@ -231,7 +236,7 @@ class HyperliquidWebSocketFeed:
         """
         order_type = {"limit": {"tif": tif}}
         result = self.exchange.order(coin, is_buy, sz, px, order_type, reduce_only=False)
-        print(f"지정가 {'매수' if is_buy else '매도'} {sz} {coin} @ {px}")
+        print(f"지정가 {매수 if is_buy else 매도} {sz} {coin} @ {px}")
         return result
     
     def place_stop_loss_order(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float):
@@ -244,28 +249,28 @@ class HyperliquidWebSocketFeed:
             }
         }
         result = self.exchange.order(coin, is_buy, sz, limit_px, order_type, reduce_only=True)
-        print(f"손절 {'매수' if is_buy else '매도'} {sz} {coin}")
+        print(f"손절 {매수 if is_buy else 매도} {sz} {coin}")
         return result
     
     def get_positions(self):
         """손익 세부 정보가 포함된 모든 미결 포지션 조회."""
         user_state = self.info.user_state(self.wallet_address)
-        positions = user_state.get('assetPositions', [])
+        positions = user_state.get(assetPositions, [])
         active_positions = []
         for pos in positions:
-            position = pos['position']
-            entry_px = float(position['entryPx'])
-            current_px = float(position['markPx'])
-            size = float(position['szi'])
+            position = pos[position]
+            entry_px = float(position[entryPx])
+            current_px = float(position[markPx])
+            size = float(position[szi])
             pnl = (current_px - entry_px) * size if size > 0 else (entry_px - current_px) * abs(size)
             active_positions.append({
-                'coin': position['coin'],
-                'size': size,
-                'entry_price': entry_px,
-                'mark_price': current_px,
-                'unrealized_pnl': pnl,
-                'leverage': float(position['leverage']['value']),
-                'liquidation_price': float(position.get('liquidationPx', 0))
+                coin: position[coin],
+                size: size,
+                entry_price: entry_px,
+                mark_price: current_px,
+                unrealized_pnl: pnl,
+                leverage: float(position[leverage][value]),
+                liquidation_price: float(position.get(liquidationPx, 0))
             })
         return active_positions
     
@@ -273,9 +278,9 @@ class HyperliquidWebSocketFeed:
         """특정 시장의 전체 포지션 청산."""
         positions = self.get_positions()
         for pos in positions:
-            if pos['coin'] == coin and pos['size'] != 0:
-                is_buy = pos['size'] < 0
-                sz = abs(pos['size'])
+            if pos[coin] == coin and pos[size] != 0:
+                is_buy = pos[size] < 0
+                sz = abs(pos[size])
                 return self.place_market_order(coin, is_buy, sz)
         print(f"{coin}에 미결 포지션이 없습니다")
         return None
@@ -307,7 +312,7 @@ class TrendFollowingBot:
             startTime=int((datetime.now() - timedelta(hours=12)).timestamp() * 1000),
             endTime=int(datetime.now().timestamp() * 1000)
         )
-        closes = pd.Series([float(c['c']) for c in candles if 'c' in c])
+        closes = pd.Series([float(c[c]) for c in candles if c in c])
         
         if len(closes) < self.slow_ema_period + 5:
             return "HOLD"
@@ -341,7 +346,7 @@ class TrendFollowingBot:
             return
         
         account = self.trader.get_account_summary()
-        account_value = float(account['marginSummary']['accountValue'])
+        account_value = float(account[marginSummary][accountValue])
         sz = round(account_value * self.risk_per_trade / current_px, 4)
         
         if signal == "BUY":
@@ -365,7 +370,7 @@ class TrendFollowingBot:
                 
                 positions = self.trader.get_positions()
                 for pos in positions:
-                    print(f"  {pos['coin']}: {pos['size']} | PnL: ${pos['unrealized_pnl']:+.2f}")
+                    print(f"  {pos[coin]}: {pos[size]} | PnL: ${pos[unrealized_pnl]:+.2f}")
                 
                 time.sleep(check_interval)
             except Exception as e:
@@ -383,21 +388,21 @@ class TrendFollowingBot:
     def get_funding_rates(self):
         """모든 시장의 현재 펀딩 비율 조회."""
         meta = self.info.meta()
-        assets = meta['universe']
+        assets = meta[universe]
         funding_data = []
         for asset in assets[:20]:
-            name = asset['name']
+            name = asset[name]
             ctx = self.info.funding_history(name, 1)
             if ctx:
                 funding_data.append({
-                    'coin': name,
-                    'funding_rate': float(ctx[0].get('fundingRate', 0)),
-                    'predicted_rate': float(ctx[0].get('predictedFundingRate', 0))
+                    coin: name,
+                    funding_rate: float(ctx[0].get(fundingRate, 0)),
+                    predicted_rate: float(ctx[0].get(predictedFundingRate, 0))
                 })
-        funding_data.sort(key=lambda x: abs(x['funding_rate']), reverse=True)
+        funding_data.sort(key=lambda x: abs(x[funding_rate]), reverse=True)
         print("\n펀딩 비율 상위:")
         for f in funding_data[:10]:
-            print(f"  {f['coin']}: {f['funding_rate']*100:+.4f}%")
+            print(f"  {f[coin]}: {f[funding_rate]*100:+.4f}%")
         return funding_data
 ```
 
@@ -411,7 +416,7 @@ class MultiAssetWebSocketManager:
         self.assets = assets
         self.ws_url = "wss://api.hyperliquid.xyz/ws"
         self.handlers = {}
-        self.data_cache = {asset: {'mid': 0, 'spread': 0} for asset in assets}
+        self.data_cache = {asset: {mid: 0, spread: 0} for asset in assets}
     
     async def subscribe_all(self, ws):
         """일괄로 모든 자산 구독."""
@@ -427,16 +432,16 @@ class MultiAssetWebSocketManager:
             async for message in ws:
                 msg = json.loads(message)
                 if msg.get("channel") == "allMids":
-                    for asset, price in msg['data'].items():
+                    for asset, price in msg[data].items():
                         if asset in self.data_cache:
-                            self.data_cache[asset]['mid'] = float(price)
+                            self.data_cache[asset][mid] = float(price)
                 elif msg.get("channel") == "l2Book":
-                    coin = msg['data']['coin']
+                    coin = msg[data][coin]
                     if coin in self.data_cache:
-                        bids = msg['data']['levels'][0]
-                        asks = msg['data']['levels'][1]
+                        bids = msg[data][levels][0]
+                        asks = msg[data][levels][1]
                         if bids and asks:
-                            self.data_cache[coin]['spread'] = float(asks[0]['px']) - float(bids[0]['px'])
+                            self.data_cache[coin][spread] = float(asks[0][px]) - float(bids[0][px])
 ```
 
 ---
@@ -480,7 +485,7 @@ class RiskManager:
             self.daily_pnl = 0
             self.last_reset = today
         account = self.trader.get_account_summary()
-        account_value = float(account['marginSummary']['accountValue'])
+        account_value = float(account[marginSummary][accountValue])
         loss_pct = abs(min(self.daily_pnl, 0)) / account_value if account_value > 0 else 0
         if loss_pct >= self.max_daily_loss:
             print(f"일일 손실 한도 도달: {loss_pct*100:.2f}%")
@@ -492,8 +497,8 @@ class RiskManager:
         print("모든 포지션 긴급 청산")
         positions = self.trader.get_positions()
         for pos in positions:
-            if pos['size'] != 0:
-                self.trader.close_position(pos['coin'])
+            if pos[size] != 0:
+                self.trader.close_position(pos[coin])
                 time.sleep(0.5)
 ```
 

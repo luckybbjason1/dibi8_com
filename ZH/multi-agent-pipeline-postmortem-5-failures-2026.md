@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: '多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）'
 description: 'Claude Code 多智能体流水线的五种真实失败模式——轻信未经核验的报告、上下文串台、失控的扇出、静默截断、孤儿 worktree——每一种都附带症状、根因和修复方案。'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Git', 'CLI']
+tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'agent-sdk', 'debugging', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/multi-agent-pipeline-postmortem/
 faq:

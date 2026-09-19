@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-automation-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
 title: n8n AI 自动化 — 无需代码构建智能工作流
 description: n8n AI 驱动的工作流自动化完全指南。通过 AI 节点连接 400+ 应用、构建自主代理并自动化复杂业务流程。定价、模板和实际示例。
 tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']

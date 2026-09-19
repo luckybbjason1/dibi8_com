@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/academic-research-skills" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/academic-research-skills" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
 title: "学术研究技能：用 AI 自动化文献综述——31K 星框架 2026"
 description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。"
 date: 2026-06-15

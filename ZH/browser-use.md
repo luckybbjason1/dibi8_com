@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/browser-use" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-use" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-use" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-use" />
 title: 'Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战'
 description: 'Browser Use 是一款开源 Python 框架，通过 Playwright 连接 LLM 与真实浏览器。支持 OpenAI、Anthropic、Gemini 及本地模型。涵盖安装配置、WebVoyager 基准测试、Selenium 对比、生产环境加固与 Docker 部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['browser-use', 'ai智能体', 'playwright', '浏览器自动化', '网络爬虫', '大语言模型', 'python', '开源']
+tags: ['browser-use', ai智能体, playwright, 浏览器自动化, 网络爬虫, 大语言模型, python, 开源]
 aliases:
 - /zh/posts/browser-use/
 ---

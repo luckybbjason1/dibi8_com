@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex-vs-langchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex-vs-langchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex-vs-langchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex-vs-langchain" />
 title: 'LlamaIndex vs LangChain 2025: 당신에게 맞는 LLM 프레임워크는?'
 description: '2025년 기준 LangChain과 LlamaIndex의 상세 비교. 아키텍처, RAG 성능, 에이전트 지원, 학습 곡선, 통합성을 표와 코드 예제로 분석한다.'
 date: 2026-05-18 00:00:00+08:00

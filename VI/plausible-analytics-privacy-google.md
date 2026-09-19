@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
 title: 'Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền Riêng Tư Thay Thế Google Analytics — Nhanh Hơn 45 Lần, Hướng Dẫn Tự Host 2026'
 description: 'Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, script tracking <1KB. Nhanh hơn Google Analytics 45 lần. Benchmark thực tế và Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'plausible/analytics'
 stars: 21000
-maintainer: 'plausible'
+maintainer: plausible
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['plausible', 'analytics', 'quyền-riêng-tư', 'gdpr', 'thay-thế-google-analytics', 'tự-host', 'docker', 'elixir', 'nhẹ']
+tags: [plausible, analytics, 'quyền-riêng-tư', gdpr, 'thay-thế-google-analytics', 'tự-host', docker, elixir, nhẹ]
 aliases:
 - /vi/posts/plausible-analytics-privacy-google/
 ---
@@ -127,7 +132,7 @@ export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
 
 # Tạo file biến môi trường
-cat > plausible-conf.env << 'EOF'
+cat > plausible-conf.env << EOF
 BASE_URL=https://analytics.yourdomain.com
 SECRET_KEY_BASE=${SECRET_KEY_BASE}
 TOTP_VAULT_KEY=${TOTP_VAULT_KEY}
@@ -243,14 +248,14 @@ export default function PlausibleAnalytics() {
 // Cho SPA route changes trong Next.js 13+
 // app/layout.js
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect } from react;
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.plausible) {
-      window.plausible('pageview');
+    if (typeof window !== undefined && window.plausible) {
+      window.plausible(pageview);
     }
   }, [pathname]);
 
@@ -278,8 +283,8 @@ export default defineNuxtPlugin(() => {
   // Theo dõi SPA navigation
   const router = useRouter();
   router.afterEach((to) => {
-    if (typeof window !== 'undefined' && window.plausible) {
-      window.plausible('pageview', { u: window.location.origin + to.fullPath });
+    if (typeof window !== undefined && window.plausible) {
+      window.plausible(pageview, { u: window.location.origin + to.fullPath });
     }
   });
 });
@@ -294,7 +299,7 @@ export default defineNuxtPlugin(() => {
 
 # Tùy chọn 2: Thủ công — thêm vào header.php của theme
 <?php if (!is_user_logged_in()): ?>
-<script defer data-domain="<?php echo $_SERVER['HTTP_HOST']; ?>"
+<script defer data-domain="<?php echo $_SERVER[HTTP_HOST]; ?>"
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
 ```
@@ -314,10 +319,10 @@ export default defineNuxtPlugin(() => {
 export default defineConfig({
   integrations: [
     {
-      name: 'plausible',
+      name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript('head', `
+          injectScript(head, `
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
           `);
@@ -332,23 +337,23 @@ export default defineConfig({
 
 ```javascript
 // Theo dõi click nút, submit form, hoặc bất kỳ sự kiện tùy chỉnh
-document.getElementById('signup-button').addEventListener('click', () => {
+document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
     props: {
-      plan: 'pro',
-      source: 'header'
+      plan: pro,
+      source: header
     }
   });
 });
 
 // Theo dõi chuyển đổi e-commerce
-plausible('Purchase', {
+plausible(Purchase, {
   props: {
     product: 'Widget Pro',
     price: 99.00,
-    currency: 'USD'
+    currency: USD
   },
-  revenue: { currency: 'USD', amount: 9900 }  // tính bằng cent
+  revenue: { currency: USD, amount: 9900 }  // tính bằng cent
 });
 ```
 
@@ -480,7 +485,7 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]:
-    print(f"{entry['date']}: {entry['visitors']} visitors, {entry['pageviews']} pageviews")
+    print(f"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews")
 ```
 
 ### Chiến lược Sao lưu
@@ -542,7 +547,7 @@ services:
 ```yaml
 # Thêm vào prometheus.yml
 scrape_configs:
-  - job_name: 'plausible'
+  - job_name: plausible
     static_configs:
       - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
@@ -630,7 +635,7 @@ Có. Plausible cung cấp trình nhập Google Analytics kéo dữ liệu qua GA
 ```bash
 # Chạy trình nhập GA (từ container Plausible)
 docker compose exec plausible bin/plausible \
-  "Plausible.Google.Import.start('your-ga-property-id', 'YOUR_API_KEY')"
+  "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
 ```
 
 **Điều gì xảy ra khi trang web của tôi vượt quá dung lượng VPS?**

@@ -1,6 +1,8 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/snapshot-dao-governance-voting" />
 title: 'snapshot-dao-governance-voting'
-description: '{''en'': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', ''zh'': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', ''ko'': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', ''vi'': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
+description: '{'en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', 'zh': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', 'ko': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['snapshot', 'dao', 'governance', 'voting', 'off-chain', 'eip-712', 'ipfs', 'delegation', 'defi', 'web3']
+tags: [snapshot, dao, governance, voting, 'off-chain', 'eip-712', ipfs, delegation, defi, web3]
 aliases:
 - /posts/snapshot-dao-governance-voting/
 ---
@@ -248,10 +250,10 @@ def verify_snapshot_space(space_id: str) -> dict:
 
     if data.get("data", {}).get("space"):
         space = data["data"]["space"]
-        print(f"Space '{space['name']}' verified successfully!")
-        print(f"Network: {space['network']}")
-        print(f"Strategies: {[s['name'] for s in space['strategies']]}")
-        print(f"Min Score: {space['filters']['minScore']}")
+        print(f"Space '{space[name]}' verified successfully!")
+        print(f"Network: {space[network]}")
+        print(f"Strategies: {[s[name] for s in space[strategies]]}")
+        print(f"Min Score: {space[filters][minScore]}")
         return space
     else:
         raise ValueError(f"Space '{space_id}' not found")
@@ -326,7 +328,7 @@ async function getVotingPower(
   snapshot: number  // block number
 ): Promise<bigint> {
   const response = await fetch('https://score.snapshot.org/api/scores', {
-    method: 'POST',
+    method: POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       params: {
@@ -492,7 +494,7 @@ yarn add @snapshot-labs/snapshot.js ethers
 ```typescript
 // Initialize Snapshot client
 import snapshot from '@snapshot-labs/snapshot.js';
-import { Wallet } from 'ethers';
+import { Wallet } from ethers;
 
 const hub = 'https://hub.snapshot.org';  // Mainnet hub
 const client = new snapshot.Client712(hub);
@@ -635,7 +637,7 @@ async function getProposalVotes(
   `;
 
   const response = await fetch('https://hub.snapshot.org/graphql', {
-    method: 'POST',
+    method: POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query,
@@ -732,7 +734,7 @@ console.log("Cross-chain voting power:", scores);
 
 ```typescript
 // Set up webhook for proposal events
-import express from 'express';
+import express from express;
 
 const app = express();
 app.use(express.json());
@@ -750,13 +752,13 @@ app.post('/webhooks/snapshot', (req, res) => {
       console.log(`Voting ended: ${event.id}`);
       tallyResults(event);
       break;
-    case 'vote':
+    case vote:
       console.log(`New vote on ${event.proposal.id}`);
       updateLeaderboard(event);
       break;
   }
 
-  res.status(200).send('OK');
+  res.status(200).send(OK);
 });
 
 function notifyDiscord(proposal: any) {
@@ -767,8 +769,8 @@ function notifyDiscord(proposal: any) {
       url: `https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}`,
       description: proposal.body.substring(0, 200) + '...',
       fields: [
-        { name: 'Space', value: proposal.space.name, inline: true },
-        { name: 'Author', value: proposal.author, inline: true },
+        { name: Space, value: proposal.space.name, inline: true },
+        { name: Author, value: proposal.author, inline: true },
         { name: 'End Date', value: new Date(proposal.end * 1000).toISOString(), inline: true }
       ],
       timestamp: new Date().toISOString()
@@ -776,7 +778,7 @@ function notifyDiscord(proposal: any) {
   };
 
   fetch(process.env.DISCORD_WEBHOOK_URL, {
-    method: 'POST',
+    method: POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(message)
   });

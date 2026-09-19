@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bat" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bat" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
 title: 'bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So sánh với cat, less 2026'
 description: 'bat là bản sao cat(1) với syntax highlighting và tích hợp Git. Tương thích với Rust, Git, Homebrew, Cargo. Hướng dẫn cài đặt, benchmark hiệu năng, file cấu hình và so sánh với cat, less, ccat.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/sharkdp/bat'
 stars: 58940
-maintainer: 'sharkdp'
+maintainer: sharkdp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['bat', 'thay thế cat', 'syntax highlighting', 'công cụ cli', 'rust', 'terminal', 'trình xem file', 'dòng lệnh']
+tags: [bat, 'thay thế cat', 'syntax highlighting', 'công cụ cli', rust, terminal, 'trình xem file', 'dòng lệnh']
 aliases:
 - /vi/posts/bat/
 ---
@@ -77,7 +82,7 @@ bat --version
 # Ubuntu 22.04+ / Debian 12+
 sudo apt install bat
 
-# Trên một số hệ thống Debian/Ubuntu, binary tên là 'batcat' để tránh xung đột
+# Trên một số hệ thống Debian/Ubuntu, binary tên là batcat để tránh xung đột
 # Tạo alias nếu cần:
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -199,7 +204,7 @@ Hầu hết ngườ dùng alias `cat` thành `bat` cho session tương tác:
 alias cat='bat --paging=never'
 
 # Hoặc giữ cat cho script, dùng bat rõ ràng
-alias b='bat'
+alias b=bat
 ```
 
 Với ngườ dùng zsh, global alias có thể tô màu output `--help`:

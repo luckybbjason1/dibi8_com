@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook: 297 Recipes for Programmers - The Open Source Cookbook"
 description: "Discover HowToCook - an open-source cookbook with 297 recipes designed for programmers. Clear, precise cooking instructions like code."
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rag-architecture-implementation-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-architecture-implementation-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-architecture-implementation-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-architecture-implementation-guide" />
 title: 'RAG检索增强生成架构实现指南2025：构建生产级系统'
 description: '2025年RAG架构完整实现指南：从Naive RAG到Advanced RAG、Agentic RAG，涵盖分块策略、Embedding选型、向量数据库、重排序等全流程优化。'
 date: 2026-05-18 00:00:00+08:00

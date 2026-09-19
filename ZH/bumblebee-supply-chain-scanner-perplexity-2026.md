@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026：Perplexity AI 开源内部供应链扫描器，覆盖 MCP 配置与编辑器扩展'
 description: 'Bumblebee 是 Perplexity AI 的开源只读供应链扫描器，检查 npm、PyPI、Go 模块、MCP 配置、编辑器扩展和浏览器扩展中的已知受损包——不会执行您代码的任何一行。'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Go', 'Security', 'CLI']
+tech_stack: [Go, Security, CLI]
 application_domain: Dev Utils
 source_version: '0.1.1'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: 'https://github.com/perplexityai/bumblebee'
 backup_url: ''
 github_repo: 'perplexityai/bumblebee'
 stars: 1500
-maintainer: 'perplexityai'
+maintainer: perplexityai
 last_maintained: '2026-05-22'
 featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['bumblebee', '供应链安全', 'MCP', 'security', 'Go', 'npm', 'PyPI', 'perplexity-ai']
+tags: [bumblebee, 供应链安全, mcp, security, go, npm, pypi, 'perplexity-ai']
 aliases:
 - /zh/posts/bumblebee-supply-chain-scanner-perplexity-2026/
 faqs:

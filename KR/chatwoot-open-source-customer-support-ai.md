@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026: 오픈소스 AI 통합 고객 지원 플랫폼 — 셀프 호스팅 완벽 가이드'
 description: 'Chatwoot v4 완벽 가이드 — 오픈소스 고객 지원 플랫폼. Docker로 셀프 호스팅하고 AI 에이전트를 통합하며 다중 채널을 연결하세요. 실제 벤치마크와 프로덕션 설정.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'chatwoot/chatwoot'
 stars: 23000
-maintainer: 'chatwoot'
+maintainer: chatwoot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['chatwoot', '고객지원', '오픈소스', 'AI챗봇', '셀프호스팅', 'docker', 'ruby-on-rails', '라이브챗']
+tags: [chatwoot, 고객지원, 오픈소스, ai챗봇, 셀프호스팅, docker, 'ruby-on-rails', 라이브챗]
 aliases:
 - /kr/posts/chatwoot-open-source-customer-support-ai/
 ---
@@ -411,10 +416,10 @@ services:
 production:
   primary:
     <<: *default
-    host: <%= ENV['POSTGRES_HOST'] %>
+    host: <%= ENV[POSTGRES_HOST] %>
   primary_replica:
     <<: *default
-    host: <%= ENV['POSTGRES_REPLICA_HOST'] %>
+    host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
 ```
 
@@ -459,7 +464,7 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # prometheus.yml에 추가
 
 scrape_configs:
-  - job_name: 'chatwoot'
+  - job_name: chatwoot
     static_configs:
       - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
@@ -478,7 +483,7 @@ RATE_LIMIT_PERIOD=60  # IP당 초
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-add_header Content-Security-Policy "default-src 'self'" always;
+add_header Content-Security-Policy "default-src self" always;
 ```
 
 ## 대안과 비교

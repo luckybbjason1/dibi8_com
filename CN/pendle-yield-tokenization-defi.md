@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Pendle']
+tags: [pendle]
 aliases:
 - /posts/pendle-yield-tokenization-defi/
 ---
@@ -398,7 +400,7 @@ contract PendleMarket is IPendleMarket {
 ```typescript
 // TypeScript SDK for Pendle trading
 import { PendleSDK } from '@pendle/sdk-v2';
-import { ethers } from 'ethers';
+import { ethers } from ethers;
 
 const provider = new ethers.JsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY');
 const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
@@ -817,10 +819,10 @@ class PendleStrategyAnalyzer {
       if (snapshot.impliedApy > underlyingApy * 1.2) {
         opportunities.push({
           market: market.address,
-          strategy: 'LONG_PT',
+          strategy: LONG_PT,
           reason: 'Implied yield 20%+ above underlying',
           expectedReturn: snapshot.impliedApy,
-          risk: 'low',
+          risk: low,
         });
       }
       
@@ -828,10 +830,10 @@ class PendleStrategyAnalyzer {
       if (snapshot.impliedApy < underlyingApy * 0.8) {
         opportunities.push({
           market: market.address,
-          strategy: 'LONG_YT',
+          strategy: LONG_YT,
           reason: 'Implied yield 20%+ below underlying',
           expectedReturn: underlyingApy - snapshot.impliedApy,
-          risk: 'medium',
+          risk: medium,
         });
       }
     }
@@ -1066,17 +1068,17 @@ class InstitutionalYieldManager:
             sharpe_ratio = self._calculate_sharpe(snapshot)
             
             opportunities.append({
-                'market': market.address,
-                'asset': market.underlying_symbol,
-                'maturity': snapshot.expiry_date,
-                'pt_apy': snapshot.pt_implied_apy,
-                'underlying_apy': snapshot.underlying_apy,
-                'liquidity_usd': snapshot.liquidity_usd,
-                'sharpe_ratio': sharpe_ratio,
-                'recommendation': self._generate_recommendation(snapshot)
+                market: market.address,
+                asset: market.underlying_symbol,
+                maturity: snapshot.expiry_date,
+                pt_apy: snapshot.pt_implied_apy,
+                underlying_apy: snapshot.underlying_apy,
+                liquidity_usd: snapshot.liquidity_usd,
+                sharpe_ratio: sharpe_ratio,
+                recommendation: self._generate_recommendation(snapshot)
             })
         
-        return sorted(opportunities, key=lambda x: x['sharpe_ratio'], reverse=True)
+        return sorted(opportunities, key=lambda x: x[sharpe_ratio], reverse=True)
     
     async def execute_yield_portfolio(self, total_capital: Decimal):
         """Deploy capital across multiple PT strategies"""
@@ -1084,17 +1086,17 @@ class InstitutionalYieldManager:
         
         # Filter for liquid markets with positive carry
         viable = [o for o in opportunities 
-                  if o['liquidity_usd'] > 1_000_000 
-                  and o['pt_apy'] > 0.03]
+                  if o[liquidity_usd] > 1_000_000 
+                  and o[pt_apy] > 0.03]
         
         # Deploy capital top 5 opportunities
         for opp in viable[:5]:
             allocation = total_capital * Decimal('0.2')
             
-            print(f"Deploying ${allocation} to {opp['asset']} PT "
-                  f"({opp['maturity']}) @ {opp['pt_apy']:.2%} APY")
+            print(f"Deploying ${allocation} to {opp[asset]} PT "
+                  f"({opp[maturity]}) @ {opp[pt_apy]:.2%} APY")
             
-            await self._buy_pt(opp['market'], allocation)
+            await self._buy_pt(opp[market], allocation)
         
         return await self.get_portfolio_summary()
     
@@ -1113,13 +1115,13 @@ class InstitutionalYieldManager:
         )
         
         return {
-            'total_value': total_value,
-            'total_cost': total_cost,
-            'unrealized_pnl': unrealized_pnl,
-            'unrealized_pnl_pct': unrealized_pnl / total_cost,
-            'weighted_avg_apy': weighted_yield,
-            'positions': len(positions),
-            'maturities': list(set(p.maturity for p in positions))
+            total_value: total_value,
+            total_cost: total_cost,
+            unrealized_pnl: unrealized_pnl,
+            unrealized_pnl_pct: unrealized_pnl / total_cost,
+            weighted_avg_apy: weighted_yield,
+            positions: len(positions),
+            maturities: list(set(p.maturity for p in positions))
         }
     
     def _calculate_sharpe(self, snapshot: MarketSnapshot) -> Decimal:
@@ -1223,7 +1225,7 @@ async function quickstart() {
   
   // 2. Tokenize: Split stETH into PT + YT
   const { ptOut, ytOut } = await market.tokenizeYield(
-    ethers.parseEther('10'), // 10 stETH
+    ethers.parseEther(10), // 10 stETH
     0 // min output
   );
   console.log(`Received ${ptOut} PT + ${ytOut} YT`);

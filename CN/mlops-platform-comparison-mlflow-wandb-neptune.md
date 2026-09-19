@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mlops-platform-comparison-mlflow-wandb-neptune" />
 title: 'MLflow vs Weights & Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024'
 description: 'Compare MLflow, Weights & Biases, and Neptune for MLOps experiment tracking. Pricing, features, deployment options, and LLM support analyzed.'
 date: 2026-05-18 00:00:00+08:00

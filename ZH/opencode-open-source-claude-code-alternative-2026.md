@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/opencode-open-source-claude-code-alternative-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/opencode-open-source-claude-code-alternative-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/opencode-open-source-claude-code-alternative-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/opencode-open-source-claude-code-alternative-2026" />
 title: 'OpenCode 完全指南：2026年最强开源AI编程助手，160K+ Stars背后的技术解析与实战教程'
 description: 'OpenCode 是2026年GitHub增长最快的开源AI编码代理，支持75+模型提供商，免费替代Claude Code。本文从安装配置到高阶技巧，提供中文版深度实战教程。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/sst/opencode'
 stars: 162000
-maintainer: 'sst'
+maintainer: sst
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['opencode', 'ai-coding-agent', 'claude-code-alternative', 'open-source']
+tags: [opencode, 'ai-coding-agent', 'claude-code-alternative', 'open-source']
 aliases:
 - /zh/posts/opencode-open-source-claude-code-alternative-2026/
 ---

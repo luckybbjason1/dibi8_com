@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/continue" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
 title: 'Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh Copilot, Cursor 2026'
 description: 'Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthropic, Gemini. So sánh với GitHub Copilot, Cursor, Tabby. Hướng dẫn cài đặt, ví dụ cấu hình, benchmark.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/continuedev/continue'
 stars: 33277
-maintainer: 'continuedev'
+maintainer: continuedev
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['continue.dev', 'tro-ly-lap-trinh-ai', 'vs-code', 'jetbrains', 'ma-nguon-mo', 'ollama', 'thay-the-copilot', 'llm-local', 'mcp']
+tags: ['continue.dev', 'tro-ly-lap-trinh-ai', 'vs-code', jetbrains, 'ma-nguon-mo', ollama, 'thay-the-copilot', 'llm-local', mcp]
 aliases:
 - /vi/posts/continue/
 ---
@@ -102,7 +107,7 @@ Tạo file cấu hình toàn cục:
 ```bash
 # macOS / Linux
 mkdir -p ~/.continue
-cat > ~/.continue/config.yaml << 'EOF'
+cat > ~/.continue/config.yaml << EOF
 name: Môi trường Dev của tôi
 version: 1.0.0
 schema: v1

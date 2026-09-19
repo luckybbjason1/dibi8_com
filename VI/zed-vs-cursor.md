@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zed-vs-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zed-vs-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zed-vs-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zed-vs-cursor" />
 title: 'Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So Sánh Thẳng Thắn'
 description: 'So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) — tốc độ, tính năng AI, giá, hệ sinh thái, nền tảng. Cập nhật 2026.'
 date: 2026-06-06 00:00:00+08:00

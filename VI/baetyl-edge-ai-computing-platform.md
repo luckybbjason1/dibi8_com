@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl: Nền tảng điện toán AI biên cloud-native triển khai mô hình đến thiết bị IoT — Hướng dẫn 2026'
 description: 'Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình AI, hỗ trợ MQTT/BACnet, cập nhật OTA, runtime K3s, đồng bộ cloud-biên.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'baetyl/baetyl'
 stars: 3200
-maintainer: 'baetyl'
+maintainer: baetyl
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Baetyl', 'điện-toán-biên', 'IoT', 'Kubernetes', 'K3s', 'suy-luận-AI', 'MQTT', 'AI-biên', 'cập-nhật-OTA', 'LF-Edge']
+tags: [baetyl, 'điện-toán-biên', iot, kubernetes, k3s, 'suy-luận-ai', mqtt, 'ai-biên', 'cập-nhật-ota', 'lf-edge']
 aliases:
 - /vi/posts/baetyl-edge-ai-computing-platform/
 ---
@@ -122,7 +127,7 @@ mysql -u root -p < scripts/sql/tables.sql
 mysql -u root -p < scripts/sql/data.sql
 
 # Cấu hình kết nối cơ sở dữ liệu
-cat > scripts/charts/baetyl-cloud/conf/cloud.yml << 'EOF'
+cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
 database:
   type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
@@ -342,7 +347,7 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 
 ```bash
 # Triển khai SQLite để lưu trữ dữ liệu cục bộ tại biên
-cat > sqlite-app.yml << 'EOF'
+cat > sqlite-app.yml << EOF
 name: local-cache
 services:
   - name: sqlite

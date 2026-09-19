@@ -1,21 +1,26 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-cost-saving-strategies-2026" />
 title: 'Cursor 省钱策略 2026：信用点计费改版后的应对方案'
 description: 'Cursor 在 2025 年改了定价 —— Pro 用户同样的价格实际可用量缩水约 55%。这里整理了 7 条 2026 年真正有效的省钱策略：模型选择、上下文纪律、混合工具栈，以及何时该撤退。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Cursor', 'Claude Code', 'OpenAI API', 'Anthropic API']
+tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'Cursor 2026.05 / 信用点计费后'
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
-maintainer: 'Anysphere'
+maintainer: Anysphere
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['cursor', 'cost-optimization', 'ai-coding', '2026']
+tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
 aliases:
 - /zh/posts/cursor-cost-saving-strategies-2026/
 faq:

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/marker-dev-utils-2026" />
 title: 'Marker: Convert PDF, DOCX & EPUB to Markdown/JSON Fast — Practical 2026 Guide'
 description: 'Marker (datalab-to/marker) converts PDF, DOCX, EPUB and more to Markdown, JSON, HTML and chunks quickly and accurately. 35,694 GitHub stars, GPL-3.0 code license. Covers installation, the CLI and Python API, real code examples, LLM mode, and an honest comparison with alternatives.'
 date: 2026-06-02 00:00:00+08:00

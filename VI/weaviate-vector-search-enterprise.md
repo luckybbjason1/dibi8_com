@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10B+ Đối Tượng — Hướng Dẫn Triển Khai Doanh Nghiệp'
 description: 'Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search, multi-modal, RBAC, monitoring, và benchmarks cho 10B+ đối tượng.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'weaviate/weaviate'
 stars: 11500
-maintainer: 'weaviate'
+maintainer: weaviate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -109,14 +114,14 @@ services:
       - "50051:50051"
     environment:
       QUERY_DEFAULTS_LIMIT: 100
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: false
+      AUTHENTICATION_APIKEY_ENABLED: true
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'your-api-key-here'
-      AUTHENTICATION_APIKEY_USERS: 'admin'
+      AUTHENTICATION_APIKEY_USERS: admin
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
+      DEFAULT_VECTORIZER_MODULE: none
       ENABLE_MODULES: ''
-      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_HOSTNAME: node1
     volumes:
       - weaviate_data:/var/lib/weaviate
     deploy:
@@ -222,7 +227,7 @@ results = products.query.hybrid(
 )
 
 for obj in results.objects:
-    print(f"{obj.properties['name']}: ${obj.properties['price']}")
+    print(f"{obj.properties[name]}: ${obj.properties[price]}")
 ```
 
 Tham số `alpha` cân bằng vector vs. keyword scores. `alpha=0.7` nghĩa là 70% vector, 30% BM25. Bắt đầu với 0.75 và tune dựa trên data.
@@ -292,7 +297,7 @@ Enable Prometheus metrics trong Weaviate:
 ```yaml
 # Biến môi trường bổ sung cho monitoring
 environment:
-  PROMETHEUS_MONITORING_ENABLED: 'true'
+  PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
 ```
 

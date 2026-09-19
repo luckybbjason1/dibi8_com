@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aitoearn-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-guide" />
 title: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교"
 description: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교"
 date: 2026-05-15T04:20:25+09:00

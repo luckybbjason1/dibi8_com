@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-mcp-persistent-memory-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-mcp-persistent-memory-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-mcp-persistent-memory-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-mcp-persistent-memory-2026" />
 title: 'Bộ Nhớ Liên Tục cho AI Coding Agent 2026: Hướng Dẫn Toàn Diện agentmemory + MCP'
 description: 'Dừng việc dạy lại Claude Code quy ước dự án. Tìm hiểu cách agentmemory và Giao thức Ngữ cảnh Mô hình (MCP) cấp bộ nhớ liên tục xuyên phiên cho AI coding agent, kèm hướng dẫn cài đặt và chiến lược chia sẻ nhóm.'
 date: 2026-05-17 00:00:00+08:00

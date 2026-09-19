@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabby" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
 title: 'Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南'
 description: 'Tabby 是自托管 AI 编程助手。支持 VS Code、JetBrains、Vim、Neovim、Ollama、DeepSeek。Docker 安装、IDE 集成、基准测试和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/TabbyML/tabby'
 stars: 33530
-maintainer: 'TabbyML'
+maintainer: TabbyML
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['tabby', 'AI编程助手', '自托管', 'GitHub Copilot替代品', '代码补全', 'Docker', '开源']
+tags: [tabby, ai编程助手, 自托管, 'github copilot替代品', 代码补全, docker, 开源]
 aliases:
 - /zh/posts/tabby/
 ---
@@ -234,9 +239,9 @@ curl http://localhost:8080/v1/health
 
 ```lua
 -- 在你的 Neovim 配置中（如 init.lua）
-require('cmp').setup({
+require(cmp).setup({
   sources = {
-    { name = 'tabby' },
+    { name = tabby },
   },
 })
 

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/understand-anything-interactive-knowledge-graphs-codebases" />
 title: "Hiểu Mọi Thứ: Đồ Thị Kiến Thức Tương Tác cho Các Cơ Sở Mã — Hơn 60K Sao 2026"
 description: "Understand-Anything biến bất kỳ cơ sở mã nào thành đồ thị tri thức tương tác mà bạn có thể khám phá, tìm kiếm và truy vấn. Hoạt động với Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60.339 sao trên GitHub."
 date: 2026-06-17

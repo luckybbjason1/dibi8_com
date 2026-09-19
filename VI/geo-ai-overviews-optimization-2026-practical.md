@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/geo-ai-overviews-optimization-2026-practical" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/geo-ai-overviews-optimization-2026-practical" />
 title: 'Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ dữ liệu site thực tế'
 description: 'Tối ưu hóa Engine Sinh (GEO) chính là SEO mới. Cách tối ưu cho Google AI Overviews, ChatGPT Search và trích dẫn Perplexity. Kỹ thuật thực tế từ tối ưu hóa dibi8.com — FAQ schema, chấm điểm khả năng được trích dẫn, llms.txt.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['SEO', 'GEO', 'Schema.org', 'JSON-LD', 'llms.txt']
+tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: Công cụ dev
 source_version: '2026 Q2'
 licensing_model: 'N/A'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['seo', 'geo', 'ai-overviews', 'optimization', '2026']
+tags: [seo, geo, 'ai-overviews', optimization, 2026]
 aliases:
 - /vi/posts/geo-ai-overviews-optimization-2026-practical/
 faq:

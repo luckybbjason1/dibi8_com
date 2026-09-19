@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/alpaca-trading-api-stock-broker" />
 title: 'Alpaca Trading API 2026: 알고리즘 트레이딩을 위한 커미션 없는 주식 중개 API — 설정 가이드'
 description: '커미션 없는 알고리즘 트레이딩을 위한 Alpaca Trading API 완벽 가이드. 설정, 주문 실행, WebSocket 스트리밍, 소수 주식, 모의 투자를 Python 코드 예제와 함께 학습하세요.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/alpacahq/alpaca-trade-api-python'
 stars: 4500
-maintainer: 'alpacahq'
+maintainer: alpacahq
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Alpaca Trading API']
+tags: ['alpaca trading api']
 aliases:
 - /kr/posts/alpaca-trading-api-stock-broker/
 ---
@@ -89,15 +94,15 @@ Alpaca의 모의 투자 환경은 단순화된 데모가 아닙니다——실�
 
 ```python
 # API 자격 증명은 다음과 같이 보입니다:
-API_KEY = 'PKABCDEF1234567890EXAMPLE'
-API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example'
+API_KEY = PKABCDEF1234567890EXAMPLE
+API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example
 BASE_URL = 'https://paper-api.alpaca.markets'  # 모의 투자 엔드포인트
 ```
 
 ```javascript
 // JavaScript/Node.js 자격 증명 설정
-const API_KEY = 'PKABCDEF1234567890EXAMPLE';
-const API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example';
+const API_KEY = PKABCDEF1234567890EXAMPLE;
+const API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example;
 const BASE_URL = 'https://paper-api.alpaca.markets';
 ```
 
@@ -109,8 +114,8 @@ import os
 from alpaca_trade_api import REST
 
 api = REST(
-    key_id=os.getenv('ALPACA_API_KEY'),
-    secret_key=os.getenv('ALPACA_SECRET_KEY'),
+    key_id=os.getenv(ALPACA_API_KEY),
+    secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
 ```
@@ -147,18 +152,18 @@ from alpaca_trade_api import REST
 import os
 
 api = REST(
-    key_id=os.getenv('ALPACA_API_KEY'),
-    secret_key=os.getenv('ALPACA_SECRET_KEY'),
+    key_id=os.getenv(ALPACA_API_KEY),
+    secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
 
 # 시장가 주문 —— 최적의 가용 가격으로 즉시 실행
 market_order = api.submit_order(
-    symbol='AAPL',
+    symbol=AAPL,
     qty=10,
-    side='buy',
-    type='market',
-    time_in_force='day'
+    side=buy,
+    type=market,
+    time_in_force=day
 )
 print(f"시장가 주문 제출됨: {market_order.id}")
 ```
@@ -166,12 +171,12 @@ print(f"시장가 주문 제출됨: {market_order.id}")
 ```python
 # 지정가 주문 —— 지정된 가격 또는 더 나은 가격에서만 실행
 limit_order = api.submit_order(
-    symbol='TSLA',
+    symbol=TSLA,
     qty=5,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=180.00,
-    time_in_force='gtc'  # 취소 전까지 유효
+    time_in_force=gtc  # 취소 전까지 유효
 )
 print(f"지정가 주문 제출됨: {limit_order.id}")
 ```
@@ -179,37 +184,37 @@ print(f"지정가 주문 제출됨: {limit_order.id}")
 ```python
 # 손절 주문 —— 가격이 손절가에 도달하면 시장가 매도가 트리거됨
 stop_order = api.submit_order(
-    symbol='MSFT',
+    symbol=MSFT,
     qty=20,
-    side='sell',
-    type='stop',
+    side=sell,
+    type=stop,
     stop_price=380.00,
-    time_in_force='day'
+    time_in_force=day
 )
 ```
 
 ```python
 # 스톱 지정가 주문 —— 스톱 트리거와 지정가 실행을 결합
 stop_limit_order = api.submit_order(
-    symbol='GOOGL',
+    symbol=GOOGL,
     qty=2,
-    side='sell',
-    type='stop_limit',
+    side=sell,
+    type=stop_limit,
     stop_price=165.00,
     limit_price=164.50,
-    time_in_force='day'
+    time_in_force=day
 )
 ```
 
 ```python
 # 트레일링 스톱 주문 —— 스톱 가격이 설정된 거리로 시장을 따라감
 trailing_stop = api.submit_order(
-    symbol='AMZN',
+    symbol=AMZN,
     qty=3,
-    side='sell',
-    type='trailing_stop',
+    side=sell,
+    type=trailing_stop,
     trail_percent=5.0,  # 5% 추적 거리
-    time_in_force='gtc'
+    time_in_force=gtc
 )
 ```
 
@@ -220,30 +225,30 @@ Alpaca의 대표 기능 중 하나는 **소수 주식 거래**로, 주식 전체
 ```python
 # $500 어치의 Apple 주식 매수 —— 주가와 관계없이
 fractional_order = api.submit_order(
-    symbol='AAPL',
+    symbol=AAPL,
     notional=500.00,  # 주식 수 대신 달러 금액
-    side='buy',
-    type='market',
-    time_in_force='day'
+    side=buy,
+    type=market,
+    time_in_force=day
 )
 ```
 
 ```python
 # 정확한 달러 배분으로 균형 잡힌 포트폴리오 구축
 portfolio = {
-    'VTI': 2000.00,   # 미국 전체 주식 시장
-    'VXUS': 1000.00,  # 국제 주식
-    'BND': 1000.00,   # 미국 채권
-    'VNQ': 500.00     # 부동산
+    VTI: 2000.00,   # 미국 전체 주식 시장
+    VXUS: 1000.00,  # 국제 주식
+    BND: 1000.00,   # 미국 채권
+    VNQ: 500.00     # 부동산
 }
 
 for symbol, amount in portfolio.items():
     order = api.submit_order(
         symbol=symbol,
         notional=amount,
-        side='buy',
-        type='market',
-        time_in_force='day'
+        side=buy,
+        type=market,
+        time_in_force=day
     )
     print(f"${amount}의 {symbol} 주문 완료")
 ```
@@ -255,12 +260,12 @@ Alpaca는 **주 5일, 24시간 거래**를 지원하여 정규 거래 시간(미
 ```python
 # 연장 시간 실행을 위한 주문 제출
 extended_hours_order = api.submit_order(
-    symbol='SPY',
+    symbol=SPY,
     qty=50,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=520.00,
-    time_in_force='day',
+    time_in_force=day,
     extended_hours=True  # 프리마켓(오전 4:00)과 애프터아워즈(오후 8:00) 활성화
 )
 ```
@@ -269,10 +274,10 @@ extended_hours_order = api.submit_order(
 # 종목의 거래 가능 시간 확인
 from alpaca_trade_api import REST
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 clock = api.get_clock()
 
-print(f"시장이 {'열림' if clock.is_open else '닫힘'}")
+print(f"시장이 {열림 if clock.is_open else 닫힘}")
 print(f"다음 개장: {clock.next_open}")
 print(f"다음 폐장: {clock.next_close}")
 ```
@@ -301,16 +306,16 @@ async def handle_bar(bar):
 
 # 스트림 초기화
 stream = Stream(
-    key_id='YOUR_API_KEY',
-    secret_key='YOUR_SECRET_KEY',
+    key_id=YOUR_API_KEY,
+    secret_key=YOUR_SECRET_KEY,
     base_url='https://paper-api.alpaca.markets',
-    data_feed='iex'  # 'iex' (묶은) 또는 'sip' (프리미엄)
+    data_feed=iex  # iex (묶은) 또는 sip (프리미엄)
 )
 
 # 채널 구독
-stream.subscribe_trades(handle_trade, 'AAPL', 'TSLA', 'MSFT')
-stream.subscribe_quotes(handle_quote, 'AAPL', 'TSLA')
-stream.subscribe_bars(handle_bar, 'SPY', 'QQQ')
+stream.subscribe_trades(handle_trade, AAPL, TSLA, MSFT)
+stream.subscribe_quotes(handle_quote, AAPL, TSLA)
+stream.subscribe_bars(handle_bar, SPY, QQQ)
 
 # 스트림 실행
 print("WebSocket 스트림 시작...")
@@ -324,9 +329,9 @@ from alpaca_trade_api.stream import Stream
 
 async def run_streaming_strategy():
     stream = Stream(
-        key_id='YOUR_API_KEY',
-        secret_key='YOUR_SECRET_KEY',
-        data_feed='iex'
+        key_id=YOUR_API_KEY,
+        secret_key=YOUR_SECRET_KEY,
+        data_feed=iex
     )
     
     async def on_bar(bar):
@@ -334,7 +339,7 @@ async def run_streaming_strategy():
         if bar.close > bar.vwap * 1.02:
             print(f"잠재적 돌파: {bar.symbol} @ ${bar.close}")
     
-    stream.subscribe_bars(on_bar, 'AAPL', 'MSFT', 'GOOGL', 'AMZN')
+    stream.subscribe_bars(on_bar, AAPL, MSFT, GOOGL, AMZN)
     
     # 적절한 정리와 함께 실행
     await stream._run_forever()
@@ -347,8 +352,8 @@ async def run_streaming_strategy():
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 
 const alpaca = new Alpaca({
-    keyId: 'YOUR_API_KEY',
-    secretKey: 'YOUR_SECRET_KEY',
+    keyId: YOUR_API_KEY,
+    secretKey: YOUR_SECRET_KEY,
     paper: true
 });
 
@@ -376,7 +381,7 @@ client.connect();
 from alpaca_trade_api import REST
 import pandas as pd
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 # 계좌 정보 가져오기
 account = api.get_account()
@@ -400,7 +405,7 @@ for pos in positions:
 
 ```python
 # 특정 종목의 포지션 가져오기
-aapl_position = api.get_position('AAPL')
+aapl_position = api.get_position(AAPL)
 print(f"AAPL 포지션: {aapl_position.qty}주")
 print(f"시장 가치: ${aapl_position.market_value}")
 print(f"미실현 손익: ${aapl_position.unrealized_pl}")
@@ -410,14 +415,14 @@ print(f"미실현 손익: ${aapl_position.unrealized_pl}")
 
 ```python
 # 모든 미체결 주문 목록
-open_orders = api.list_orders(status='open')
+open_orders = api.list_orders(status=open)
 for order in open_orders:
     print(f"주문 {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
 ```
 
 ```python
 # 특정 주문 취소
-api.cancel_order('ORDER_ID_HERE')
+api.cancel_order(ORDER_ID_HERE)
 print("주문이 취소됨")
 ```
 
@@ -430,7 +435,7 @@ print("모든 주문이 취소됨")
 ```python
 # 주문 내역 (체결된 주문) 가져오기
 closed_orders = api.list_orders(
-    status='closed',
+    status=closed,
     limit=100,
     after='2026-05-01T00:00:00Z'
 )
@@ -449,18 +454,18 @@ for order in closed_orders:
 from alpaca_trade_api import REST
 from datetime import datetime, timedelta
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 # 지난 6개월간의 일봉 가져오기
 end_date = datetime.now()
 start_date = end_date - timedelta(days=180)
 
 bars = api.get_bars(
-    'AAPL',
-    timeframe='1Day',
+    AAPL,
+    timeframe=1Day,
     start=start_date.isoformat(),
     end=end_date.isoformat(),
-    feed='iex'
+    feed=iex
 ).df
 
 print(f"{len(bars)}개의 봉 데이터를 가져옴")
@@ -470,41 +475,41 @@ print(bars.head())
 ```python
 # 일중 전략을 위한 분봉 가져오기
 minute_bars = api.get_bars(
-    'SPY',
-    timeframe='1Min',
+    SPY,
+    timeframe=1Min,
     start='2026-05-15T09:30:00Z',
     end='2026-05-15T16:00:00Z',
-    feed='iex'
+    feed=iex
 ).df
 
 # 단순 이동평균 계산
-minute_bars['SMA_20'] = minute_bars['close'].rolling(20).mean()
-minute_bars['SMA_50'] = minute_bars['close'].rolling(50).mean()
+minute_bars[SMA_20] = minute_bars[close].rolling(20).mean()
+minute_bars[SMA_50] = minute_bars[close].rolling(50).mean()
 
 # 시그널 생성
-minute_bars['signal'] = 0
-minute_bars.loc[minute_bars['SMA_20'] > minute_bars['SMA_50'], 'signal'] = 1
-minute_bars.loc[minute_bars['SMA_20'] < minute_bars['SMA_50'], 'signal'] = -1
+minute_bars[signal] = 0
+minute_bars.loc[minute_bars[SMA_20] > minute_bars[SMA_50], signal] = 1
+minute_bars.loc[minute_bars[SMA_20] < minute_bars[SMA_50], signal] = -1
 
-print(minute_bars[['close', 'SMA_20', 'SMA_50', 'signal']].tail(10))
+print(minute_bars[[close, SMA_20, SMA_50, signal]].tail(10))
 ```
 
 ```python
 # 여러 종목을 효율적으로 가져오기
 import pandas as pd
 
-symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META']
+symbols = [AAPL, MSFT, GOOGL, AMZN, META]
 all_bars = {}
 
 for symbol in symbols:
     bars = api.get_bars(
         symbol,
-        timeframe='1Day',
+        timeframe=1Day,
         start='2026-01-01T00:00:00Z',
         end='2026-05-19T00:00:00Z',
-        feed='iex'
+        feed=iex
     ).df
-    all_bars[symbol] = bars['close']
+    all_bars[symbol] = bars[close]
 
 # 모든 종가를 포함하는 DataFrame 생성
 prices_df = pd.DataFrame(all_bars)
@@ -533,11 +538,11 @@ import pandas as pd
 from alpaca_trade_api import REST, Stream
 
 # 설정
-API_KEY = os.getenv('ALPACA_API_KEY')
-API_SECRET = os.getenv('ALPACA_SECRET_KEY')
+API_KEY = os.getenv(ALPACA_API_KEY)
+API_SECRET = os.getenv(ALPACA_SECRET_KEY)
 BASE_URL = 'https://paper-api.alpaca.markets'
 
-WATCHLIST = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA']
+WATCHLIST = [AAPL, MSFT, GOOGL, AMZN, NVDA]
 POSITION_SIZE = 1000  # 거래당 금액
 SMA_PERIOD = 20
 
@@ -567,37 +572,37 @@ class MomentumTrader:
         # 매수 신호: 가격이 SMA 위로 돌파
         if prev_price <= prev_sma and current_price > sma:
             if symbol not in self.positions_held:
-                return 'buy'
+                return buy
         
         # 매도 신호: 가격이 SMA 아래로 하락
         if prev_price >= prev_sma and current_price < sma:
             if symbol in self.positions_held:
-                return 'sell'
+                return sell
         
         return None
     
     def execute_trade(self, symbol, signal):
         """신호에 따라 거래 실행"""
         try:
-            if signal == 'buy':
+            if signal == buy:
                 order = self.api.submit_order(
                     symbol=symbol,
                     notional=POSITION_SIZE,
-                    side='buy',
-                    type='market',
-                    time_in_force='day'
+                    side=buy,
+                    type=market,
+                    time_in_force=day
                 )
                 self.positions_held.add(symbol)
                 print(f"매수 {symbol}: ${POSITION_SIZE} | 주문 ID: {order.id}")
             
-            elif signal == 'sell':
+            elif signal == sell:
                 position = self.api.get_position(symbol)
                 order = self.api.submit_order(
                     symbol=symbol,
                     qty=position.qty,
-                    side='sell',
-                    type='market',
-                    time_in_force='day'
+                    side=sell,
+                    type=market,
+                    time_in_force=day
                 )
                 self.positions_held.discard(symbol)
                 print(f"매도 {symbol}: {position.qty}주 | 주문 ID: {order.id}")
@@ -631,7 +636,7 @@ class MomentumTrader:
                 print(f"메인 루프 오류: {e}")
                 time.sleep(60)
 
-if __name__ == '__main__':
+if __name__ == __main__:
     trader = MomentumTrader()
     trader.run()
 ```
@@ -647,13 +652,13 @@ Alpaca Elite를 사용하면 정교한 주문 유형에 접근할 수 있습니�
 ```python
 # 원 캔슬스 아더(OCO) 브래킷 주문
 bracket_order = api.submit_order(
-    symbol='TSLA',
+    symbol=TSLA,
     qty=10,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=200.00,
-    time_in_force='gtc',
-    order_class='bracket',
+    time_in_force=gtc,
+    order_class=bracket,
     take_profit=dict(limit_price=220.00),
     stop_loss=dict(stop_price=185.00, limit_price=184.50)
 )
@@ -662,12 +667,12 @@ bracket_order = api.submit_order(
 ```python
 # 즉시 체결 또는 취소(IOC) 주문
 ioc_order = api.submit_order(
-    symbol='SPY',
+    symbol=SPY,
     qty=100,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=520.00,
-    time_in_force='ioc'  # 즉시 체결되지 않으면 취소
+    time_in_force=ioc  # 즉시 체결되지 않으면 취소
 )
 ```
 
@@ -679,38 +684,38 @@ from flask import Flask, request, jsonify
 from alpaca_trade_api import REST
 
 app = Flask(__name__)
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
-@app.route('/webhook/trading-signal', methods=['POST'])
+@app.route('/webhook/trading-signal', methods=[POST])
 def handle_trading_signal():
     data = request.json
-    symbol = data.get('symbol')
-    signal = data.get('signal')  # 'buy' 또는 'sell'
+    symbol = data.get(symbol)
+    signal = data.get(signal)  # buy 또는 sell
     
-    if signal == 'buy':
+    if signal == buy:
         order = api.submit_order(
             symbol=symbol,
             notional=1000,
-            side='buy',
-            type='market',
-            time_in_force='day'
+            side=buy,
+            type=market,
+            time_in_force=day
         )
-        return jsonify({'status': 'success', 'order_id': order.id})
+        return jsonify({status: success, order_id: order.id})
     
-    elif signal == 'sell':
+    elif signal == sell:
         position = api.get_position(symbol)
         order = api.submit_order(
             symbol=symbol,
             qty=position.qty,
-            side='sell',
-            type='market',
-            time_in_force='day'
+            side=sell,
+            type=market,
+            time_in_force=day
         )
-        return jsonify({'status': 'success', 'order_id': order.id})
+        return jsonify({status: success, order_id: order.id})
     
-    return jsonify({'status': 'unknown_signal'}), 400
+    return jsonify({status: unknown_signal}), 400
 
-if __name__ == '__main__':
+if __name__ == __main__:
     app.run(host='0.0.0.0', port=5000)
 ```
 

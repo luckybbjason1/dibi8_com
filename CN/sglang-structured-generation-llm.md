@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/sglang-structured-generation-llm" />
 title: SGLang — Structured Generation and Fast LLM Serving Engine
 description: Complete guide to SGLang (Structured Generation Language). High-performance LLM serving with constrained decoding, JSON schema enforcement, parallel execution, and 25x speedup over vLLM for structured outputs.
 tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']

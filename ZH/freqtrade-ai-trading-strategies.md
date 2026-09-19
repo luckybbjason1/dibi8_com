@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
 title: 'Freqtrade 2026：使用机器学习构建AI驱动的加密货币交易策略 — 完整机器人设置指南'
 description: 'Freqtrade与FreqAI实战部署指南，开源Python加密货币交易机器人，集成机器学习。涵盖Docker设置、超参数优化、回测、Telegram集成和生产环境部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'freqtrade/freqtrade'
 stars: 37000
-maintainer: 'freqtrade'
+maintainer: freqtrade
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -147,48 +152,48 @@ class SampleStrategy(IStrategy):
     trailing_stop = True
     trailing_stop_positive = 0.02
     trailing_stop_positive_offset = 0.03
-    timeframe = '5m'     # 5分钟K线
+    timeframe = 5m     # 5分钟K线
     can_short = False    # 仅现货交易
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         # RSI指标
-        dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+        dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
         
         # MACD指标
         macd = ta.MACD(dataframe)
-        dataframe['macd'] = macd['macd']
-        dataframe['macdsignal'] = macd['macdsignal']
-        dataframe['macdhist'] = macd['macdhist']
+        dataframe[macd] = macd[macd]
+        dataframe[macdsignal] = macd[macdsignal]
+        dataframe[macdhist] = macd[macdhist]
         
         # 布林带
         bollinger = ta.BBANDS(dataframe, timeperiod=20, nbdevup=2.0, nbdevdn=2.0)
-        dataframe['bb_lower'] = bollinger['lowerband']
-        dataframe['bb_middle'] = bollinger['middleband']
-        dataframe['bb_upper'] = bollinger['upperband']
+        dataframe[bb_lower] = bollinger[lowerband]
+        dataframe[bb_middle] = bollinger[middleband]
+        dataframe[bb_upper] = bollinger[upperband]
         
         # ATR波动率指标
-        dataframe['atr'] = ta.ATR(dataframe, timeperiod=14)
+        dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
         
         return dataframe
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] < 30) &                    # 超卖条件
-                (dataframe['macd'] > dataframe['macdsignal']) &  # MACD金叉
-                (dataframe['close'] < dataframe['bb_lower'])   # 价格低于布林带下轨
+                (dataframe[rsi] < 30) &                    # 超卖条件
+                (dataframe[macd] > dataframe[macdsignal]) &  # MACD金叉
+                (dataframe[close] < dataframe[bb_lower])   # 价格低于布林带下轨
             ),
-            'enter_long'
+            enter_long
         ] = 1
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] > 70) &                    # 超买条件
-                (dataframe['macd'] < dataframe['macdsignal'])  # MACD死叉
+                (dataframe[rsi] > 70) &                    # 超买条件
+                (dataframe[macd] < dataframe[macdsignal])  # MACD死叉
             ),
-            'exit_long'
+            exit_long
         ] = 1
         return dataframe
 ```
@@ -284,13 +289,13 @@ class FreqAISrategy(IStrategy):
     """
     minimal_roi = {"0": 0.15, "60": 0.05, "120": 0}
     stoploss = -0.08
-    timeframe = '5m'
+    timeframe = 5m
     can_short = False
     
     def feature_engineering_expand_all(self, dataframe, metadata, **kwargs):
         """Add custom features for FreqAI to use."""
         dataframe["rsi"] = ta.RSI(dataframe, timeperiod=14)
-        dataframe["macdhist"] = ta.MACD(dataframe)['macdhist']
+        dataframe["macdhist"] = ta.MACD(dataframe)[macdhist]
         dataframe["atr"] = ta.ATR(dataframe, timeperiod=14)
         
         # 添加波动率特征
@@ -447,12 +452,12 @@ data = load_pair_history(
 
 # 加载并运行策略
 strategy = StrategyResolver.load_strategy("SampleStrategy")
-dataframe = strategy.analyze_ticker(data, {'pair': pair})
+dataframe = strategy.analyze_ticker(data, {pair: pair})
 
 # 查看信号
-signals = dataframe[dataframe['enter_long'] == 1]
+signals = dataframe[dataframe[enter_long] == 1]
 print(f"发现 {len(signals)} 个入场信号")
-print(signals[['date', 'close', 'rsi', 'macdhist']].head(10))
+print(signals[[date, close, rsi, macdhist]].head(10))
 ```
 
 ### 用于外部集成的REST API
@@ -565,7 +570,7 @@ Q1总收益: +12.1%
 
 ```python
 # 添加到策略中实现动态止损
-def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
+def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float:
     """基于ATR的动态止损."""
     dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
@@ -573,7 +578,7 @@ def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
         return self.stoploss
     
     last_candle = dataframe.iloc[-1]
-    atr = last_candle['atr']
+    atr = last_candle[atr]
     
     # 在2x ATR处止损
     stoploss_price = trade.open_rate - (2 * atr)
@@ -598,16 +603,16 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe)
     
     # 计算1小时趋势
-    informative['ema50_1h'] = ta.EMA(informative, timeperiod=50)
-    informative['ema200_1h'] = ta.EMA(informative, timeperiod=200)
-    informative['trend_1h'] = np.where(
-        informative['ema50_1h'] > informative['ema200_1h'], 1, -1
+    informative[ema50_1h] = ta.EMA(informative, timeperiod=50)
+    informative[ema200_1h] = ta.EMA(informative, timeperiod=200)
+    informative[trend_1h] = np.where(
+        informative[ema50_1h] > informative[ema200_1h], 1, -1
     )
     
     # 合并到5分钟数据框
     dataframe = merge_informative_pair(dataframe, informative, self.timeframe, inf_timeframe)
     
-    dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+    dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
 ```

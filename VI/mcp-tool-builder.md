@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-tool-builder" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tool-builder" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-tool-builder" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tool-builder" />
 title: "MCP Tool Builder — Tạo Định Nghĩa Model Context Protocol Từ Hàm Python / TypeScript"
 description: "Công cụ tạo MCP Tool Definition trực tuyến miễn phí. Dán signature hàm Python hoặc TypeScript, nhận ngay tool JSON chuẩn MCP, server boilerplate Python (FastMCP) và TypeScript (@modelcontextprotocol/sdk) đầy đủ, cùng lệnh cURL test sẵn sàng dùng. Hoàn toàn phía client, code không lên cloud."
 date: 2026-05-19

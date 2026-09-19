@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/best-ai-coding-assistants" />
 title: 'Best AI Coding Assistants 2026'
 lang: en
 description: 'The best AI coding assistants for developers in 2026 — from Claude Code and Cursor to GitHub Copilot and Devin. Compare features, pricing, and performance.'

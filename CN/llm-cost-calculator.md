@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/llm-cost-calculator" />
 title: "LLM API Cost Calculator — GPT-4, Claude, Gemini"
 description: "Calculate LLM API monthly cost. Enter your input/output tokens, requests per day, and pick a model — get instant cost projection across OpenAI, Anthropic, and Google models."
 date: 2026-05-18

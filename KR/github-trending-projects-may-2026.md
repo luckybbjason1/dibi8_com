@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/github-trending-projects-may-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/github-trending-projects-may-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/github-trending-projects-may-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/github-trending-projects-may-2026" />
 title: "DeepSeek TUI + Anthropic 금융 AI: 2026년 5월 GitHub에서 실제로 수익으로 이어지는 트렌드 프로젝트"
 description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 프로젝트 3선을 분석합니다."
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG: Microsoft''s Graph-Based RAG for Better LLM Answers (33K Stars) — Practical 2026 Guide'
 description: 'GraphRAG is Microsoft''''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT license). This guide covers installation, the init/index/query workflow, real CLI examples, and an honest comparison with LangChain and Haystack.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/graphrag'
 stars: 33403
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-06-02'
 featureImage: ''
 draft: false

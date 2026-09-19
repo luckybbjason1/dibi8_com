@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/turbovec-rust-vector-index-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/turbovec-rust-vector-index-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/turbovec-rust-vector-index-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/turbovec-rust-vector-index-2026" />
 title: 'TurboVec：Rust 驱动的向量索引比 FAISS 快 10 倍 — AI 搜索指南 2026'
 description: 'TurboVec (RyanCodrai/turbovec) 是一个基于 TurboQuant 的向量索引，用 Rust 编写并提供 Python 绑定。可无缝替换 LangChain、LlamaIndex、Haystack 和 Agno。通过量化技术实现 10 倍加速。涵盖 Python 集成、基准测试和生产部署。'
 date: 2026-06-09

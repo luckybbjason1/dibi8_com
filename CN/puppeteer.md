@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/puppeteer" />
 title: 'Puppeteer: 94,300 GitHub Stars — Production Browser Automation Docker Guide 2026'
 description: 'Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub Actions, Jest, Mocha, TypeScript. Covers puppeteer docker setup, production deployment, browser automation tutorial, and CI/CD integration.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/puppeteer/puppeteer'
 stars: 94300
-maintainer: 'puppeteer'
+maintainer: puppeteer
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['puppeteer', 'browser-automation', 'headless-chrome', 'web-scraping', 'docker', 'testing', 'typescript']
+tags: [puppeteer, 'browser-automation', 'headless-chrome', 'web-scraping', docker, testing, typescript]
 aliases:
 - /posts/puppeteer/
 ---
@@ -71,7 +73,7 @@ npm install puppeteer-core
 
 ```javascript
 // quickstart.mjs — verify Puppeteer launches correctly
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
@@ -95,7 +97,7 @@ import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
   executablePath: '/usr/bin/chromium',
-  headless: 'new',
+  headless: new,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
 ```
@@ -175,7 +177,7 @@ services:
     environment:
       - NODE_ENV=production
       - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
-    shm_size: '2gb'
+    shm_size: 2gb
     deploy:
       resources:
         limits:
@@ -198,9 +200,9 @@ Modern SPAs load content after the initial HTML response. Puppeteer waits for se
 
 ```javascript
 // scraper.mjs — extract data from a JavaScript-rendered page
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 await page.setViewport({ width: 1366, height: 768 });
@@ -209,7 +211,7 @@ await page.setUserAgent(
 );
 
 await page.goto('https://quotes.toscrape.com/js/', {
-  waitUntil: 'networkidle2',
+  waitUntil: networkidle2,
   timeout: 30000
 });
 
@@ -234,20 +236,20 @@ Puppeteer excels at rendering visual artifacts from HTML — a common requiremen
 
 ```javascript
 // screenshot.mjs — full-page capture and PDF export
-import puppeteer from 'puppeteer';
-import fs from 'fs';
-import path from 'path';
+import puppeteer from puppeteer;
+import fs from fs;
+import path from path;
 
 const OUTPUT_DIR = './output';
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 await page.setViewport({ width: 1280, height: 800 });
 
 // Screenshot: full-page PNG
-await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+await page.goto('https://example.com', { waitUntil: networkidle2 });
 await page.screenshot({
   path: path.join(OUTPUT_DIR, 'page.png'),
   fullPage: true
@@ -256,9 +258,9 @@ await page.screenshot({
 // PDF: A4 with background graphics
 await page.pdf({
   path: path.join(OUTPUT_DIR, 'page.pdf'),
-  format: 'A4',
+  format: A4,
   printBackground: true,
-  margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' }
+  margin: { top: 1cm, right: 1cm, bottom: 1cm, left: 1cm }
 });
 
 console.log('Screenshot and PDF saved to', OUTPUT_DIR);
@@ -271,15 +273,15 @@ Blocking unnecessary resources cuts page load time by 40–60% in scraping scena
 
 ```javascript
 // blocker.mjs — block images and CSS for faster scraping
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 // Intercept and block image/stylesheet/media requests
 await page.setRequestInterception(true);
-page.on('request', (req) => {
-  const block = ['image', 'stylesheet', 'font', 'media'];
+page.on(request, (req) => {
+  const block = [image, stylesheet, font, media];
   if (block.includes(req.resourceType())) {
     req.abort();
   } else {
@@ -288,7 +290,7 @@ page.on('request', (req) => {
 });
 
 const start = Date.now();
-await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+await page.goto('https://example.com', { waitUntil: networkidle2 });
 console.log(`Loaded in ${Date.now() - start}ms (resources blocked)`);
 
 await browser.close();
@@ -318,8 +320,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -342,7 +344,7 @@ jobs:
 ```javascript
 // jest.config.js
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: node,
   testMatch: ['**/*.test.mjs'],
   testTimeout: 30000,
   globals: {
@@ -353,15 +355,15 @@ module.exports = {
 
 ```javascript
 // homepage.test.mjs — Jest + Puppeteer integration
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-describe('Homepage', () => {
+describe(Homepage, () => {
   let browser;
   let page;
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: new,
       args: (process.env.PUPPETEER_ARGS || '').split(' ').filter(Boolean)
     });
     page = await browser.newPage();
@@ -379,7 +381,7 @@ describe('Homepage', () => {
 
   test('navigation loads within 3 seconds', async () => {
     const start = Date.now();
-    await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+    await page.goto('https://example.com', { waitUntil: networkidle2 });
     expect(Date.now() - start).toBeLessThan(3000);
   });
 });
@@ -405,7 +407,7 @@ describe('Homepage', () => {
 
 ```typescript
 // src/scraper.ts — TypeScript with Puppeteer
-import puppeteer, { Browser, Page } from 'puppeteer';
+import puppeteer, { Browser, Page } from puppeteer;
 
 interface Product {
   name: string;
@@ -414,16 +416,16 @@ interface Product {
 }
 
 async function scrapeProducts(url: string): Promise<Product[]> {
-  const browser: Browser = await puppeteer.launch({ headless: 'new' });
+  const browser: Browser = await puppeteer.launch({ headless: new });
   const page: Page = await browser.newPage();
 
-  await page.goto(url, { waitUntil: 'networkidle2' });
+  await page.goto(url, { waitUntil: networkidle2 });
 
   const products: Product[] = await page.evaluate(() => {
     return Array.from(document.querySelectorAll('.product')).map(el => ({
       name: el.querySelector('.name')?.textContent?.trim() || '',
       price: el.querySelector('.price')?.textContent?.trim() || '',
-      url: el.querySelector('a')?.href || ''
+      url: el.querySelector(a)?.href || ''
     }));
   });
 
@@ -440,7 +442,7 @@ console.log(`Found ${results.length} products`);
 ```javascript
 // .mocharc.cjs
 module.exports = {
-  extension: ['mjs'],
+  extension: [mjs],
   spec: 'test/**/*.test.mjs',
   timeout: 30000,
   exit: true
@@ -449,8 +451,8 @@ module.exports = {
 
 ```javascript
 // test/scraper.test.mjs — Mocha + Puppeteer
-import puppeteer from 'puppeteer';
-import assert from 'assert';
+import puppeteer from puppeteer;
+import assert from assert;
 
 describe('Scraper Suite', function() {
   this.timeout(30000);
@@ -458,7 +460,7 @@ describe('Scraper Suite', function() {
   let browser;
   before(async () => {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: new,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   });
@@ -468,7 +470,7 @@ describe('Scraper Suite', function() {
   it('should extract product data', async () => {
     const page = await browser.newPage();
     await page.goto('https://example.com');
-    const heading = await page.$eval('h1', el => el.textContent);
+    const heading = await page.$eval(h1, el => el.textContent);
     assert.strictEqual(heading, 'Example Domain');
     await page.close();
   });
@@ -503,7 +505,7 @@ Launching one browser per request is wasteful. A connection pool reuses browser 
 
 ```javascript
 // pool.mjs — reusable browser pool with max concurrency
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
 class BrowserPool {
   constructor(maxBrowsers = 5) {
@@ -515,7 +517,7 @@ class BrowserPool {
   async init() {
     for (let i = 0; i < this.maxBrowsers; i++) {
       const browser = await puppeteer.launch({
-        headless: 'new',
+        headless: new,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
       });
       this.pool.push({ browser, inUse: false });
@@ -569,7 +571,7 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       await page.goto(url, {
-        waitUntil: 'networkidle2',
+        waitUntil: networkidle2,
         timeout: 30000
       });
       return;
@@ -605,7 +607,7 @@ setInterval(async () => {
     if (!healthy) {
       console.warn('Unhealthy browser detected, restarting...');
       await entry.browser.close();
-      entry.browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox'] });
       entry.inUse = false;
     }
   }

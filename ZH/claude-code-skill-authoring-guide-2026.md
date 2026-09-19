@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）'
 description: '一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'skills', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
+tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
 aliases:
 - /posts/claude-code-skill-authoring/
 faq:

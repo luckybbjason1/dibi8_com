@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-fine-tuning-frameworks-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-fine-tuning-frameworks-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-fine-tuning-frameworks-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-fine-tuning-frameworks-comparison" />
 title: 'LLM微调框架对比2025：LoRA、QLoRA、PEFT与Unsloth深度解析'
 description: '2025年LLM微调技术全面对比：LoRA、QLoRA、PEFT和Unsloth框架的原理、性能、显存占用与实战指南，助你高效微调大语言模型。'
 date: 2026-05-18 00:00:00+08:00

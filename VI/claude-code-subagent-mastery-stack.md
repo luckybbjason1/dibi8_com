@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-mastery-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-mastery-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-mastery-stack" />
 title: 'Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng'
 description: 'Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + cách viết agent tùy chỉnh + khung quyết định skill/subagent/MCP + các kiểu thất bại khi điều phối + cách viết skill. Lộ trình đầy đủ từ lập trình đơn luồng đến một pipeline agent đáng tin cậy.'
 date: 2026-05-29 00:00:00+08:00
@@ -12,19 +17,19 @@ tech_stack:
 application_domain: Collections
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Claude Code', 'Subagents', 'Multi-Agent', 'Agent SDK', 'MCP', 'Stack', 'Collection']
+categories: [collections]
+tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
 aliases:
   - /posts/claude-code-subagent-mastery-stack/
 faqs:

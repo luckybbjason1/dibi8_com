@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-aider" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-aider" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-aider" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-aider" />
 title: 'Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决'
 description: 'Claude Code（Anthropic 商业 CLI）和 Aider（开源、自带 API key）横向对比 — 价格、上下文、agent 风格、成本效率。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

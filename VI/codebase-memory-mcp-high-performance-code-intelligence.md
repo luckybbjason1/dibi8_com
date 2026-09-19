@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codebase-memory-mcp-high-performance-code-intelligence" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codebase-memory-mcp-high-performance-code-intelligence" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codebase-memory-mcp-high-performance-code-intelligence" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codebase-memory-mcp-high-performance-code-intelligence" />
 title: 'Codebase-Memory-MCP: Trí tuệ mã nguồn hiệu suất cao cho các tác nhân lập trình AI'
 description: 'Khám phá codebase-memory-mcp — máy chủ MCP thông minh về mã nhanh nhất, có khả năng lập chỉ mục toàn bộ kho lưu trữ chỉ trong vài mili giây.'
 date: 2026-06-19

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/atuin" />
 title: 'Atuin: 29,794 GitHub Stars — Shell History Sync Setup Guide 2026'
 description: 'Atuin replaces shell history with a SQLite database, records command context (exit code, cwd, duration), and syncs encrypted history across machines. Supports Bash, Zsh, Fish, Nushell. Covers install, self-hosting, config, and Atuin vs mcfly vs fzf vs Hstr.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/atuinsh/atuin'
 stars: 29794
-maintainer: 'atuinsh'
+maintainer: atuinsh
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['atuin', 'shell-history', 'cli-tools', 'sqlite', 'rust', 'sync', 'bash', 'zsh', 'fish']
+tags: [atuin, 'shell-history', 'cli-tools', sqlite, rust, sync, bash, zsh, fish]
 aliases:
 - /posts/atuin/
 ---

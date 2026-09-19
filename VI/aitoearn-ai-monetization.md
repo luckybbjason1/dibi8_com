@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aitoearn-ai-monetization" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-ai-monetization" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-ai-monetization" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
 title: "AiToEarn: Công Cụ Kiếm Tiền Từ Nội Dung AI Mã Nguồn Mở — Biến Cuộc Trò Chuyện GPT Thành Thu Nhập Thụ Động"
 description: "AiToEarn là nền tảng kiếm tiền từ nội dung AI mã nguồn mở giúp người sáng tạo biến nội dung do AI tạo ra thành sản phẩm có lợi nhuận. Hỗ trợ phân phối đa nền tảng, thanh toán đăng ký và kiếm tiền từ quảng cáo."
 date: 2026-05-15T04:20:25+09:00

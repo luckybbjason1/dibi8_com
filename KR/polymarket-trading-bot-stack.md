@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-trading-bot-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-trading-bot-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-trading-bot-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-trading-bot-stack" />
 title: 'Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기'
 description: 'Polymarket 예측 시장 차익거래 봇의 완전한 기술 스택 심층 분석: 28개 도구, 6개 레이어, 그리고 지연 차익거래로
   첫 수익을 내는 방법.'

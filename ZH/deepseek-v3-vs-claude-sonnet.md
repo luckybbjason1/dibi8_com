@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-v3-vs-claude-sonnet" />
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万上下文'
 description: 'DeepSeek V3.5（685B MoE，开源权重）和 Claude Sonnet 4.6 横向对比 — 每百万 token 价格、上下文窗口、SWE-bench、中文能力、API 可用性。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

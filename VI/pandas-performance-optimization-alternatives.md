@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pandas-performance-optimization-alternatives" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pandas-performance-optimization-alternatives" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pandas-performance-optimization-alternatives" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pandas-performance-optimization-alternatives" />
 title: 'Hướng Dẫn Tối Ưu Hiệu Suất Pandas: Khi Nào Chuyển Sang Polars Hoặc DuckDB Năm 2024'
 description: 'Hướng dẫn tối ưu hiệu suất Pandas và so sánh chi tiết với Polars, DuckDB. Bảng benchmark, kỹ thuật tối ưu code, chiến lược di chuyển cho xử lý dữ liệu lớn.'
 date: 2026-05-18 00:00:00+08:00

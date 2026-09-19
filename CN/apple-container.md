@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/apple-container" />
 lang: en
 title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
 date: 2026-06-15
@@ -353,7 +355,7 @@ container logs webserver
 
 # 6. Build your own image
 mkdir myapp && cd myapp
-echo -e "FROM docker.io/python:alpine\nCMD ['python', '--version']" > Dockerfile
+echo -e "FROM docker.io/python:alpine\nCMD [python, '--version']" > Dockerfile
 container build --tag myapp:latest .
 container run --rm myapp:latest
 

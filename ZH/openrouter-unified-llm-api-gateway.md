@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南'
 description: 'OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'openrouter/openrouter'
 stars: 15000
-maintainer: 'alexanderatallah'
+maintainer: alexanderatallah
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['OpenRouter', 'LLM', 'API网关', '人工智能', 'OpenAI', 'Claude', '机器学习', '成本优化']
+tags: [openrouter, llm, api网关, 人工智能, openai, claude, 机器学习, 成本优化]
 aliases:
 - /zh/posts/openrouter-unified-llm-api-gateway/
 ---
@@ -487,7 +492,7 @@ services:
 # 以编程方式跟踪使用和成本
 import requests
 
-headers = {"Authorization": f"Bearer {os.environ.get('OPENROUTER_API_KEY')}"}
+headers = {"Authorization": f"Bearer {os.environ.get(OPENROUTER_API_KEY)}"}
 
 # 获取使用统计
 usage = requests.get(
@@ -495,8 +500,8 @@ usage = requests.get(
     headers=headers
 ).json()
 
-print(f"剩余信用额: ${usage['data']['total_credits'] - usage['data']['total_usage']}")
-print(f"总使用量: ${usage['data']['total_usage']}")
+print(f"剩余信用额: ${usage[data][total_credits] - usage[data][total_usage]}")
+print(f"总使用量: ${usage[data][total_usage]}")
 ```
 
 ## 与替代品对比

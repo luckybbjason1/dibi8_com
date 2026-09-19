@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
 title: 'Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30+ Chỉ Báo Kỹ Thuật — Hướng Dẫn Thiết Lập 2026'
 description: 'Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chiến lược tùy chỉnh và triển khai bot giao dịch crypto trực tiếp bằng Python.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Jesse', 'giao dịch crypto', 'Python', 'backtest', 'chỉ báo kỹ thuật', 'giao dịch thuật toán', 'AI trading', 'giao dịch định lượng']
+tags: [jesse, 'giao dịch crypto', python, backtest, 'chỉ báo kỹ thuật', 'giao dịch thuật toán', 'ai trading', 'giao dịch định lượng']
 aliases:
 - /vi/posts/jesse-ai-trading-framework/
 ---
@@ -121,13 +126,13 @@ Chỉnh sửa `config.py` để thiết lập kết nối cơ sở dữ liệu:
 ```python
 # config.py — cấu hình cơ sở dữ liệu
 DATABASES = {
-    'default': {
-        'driver': 'postgres',
-        'host': 'localhost',
-        'port': 5432,
-        'dbname': 'jesse_db',
-        'user': 'jesse_user',
-        'password': 'your_secure_password'
+    default: {
+        driver: postgres,
+        host: localhost,
+        port: 5432,
+        dbname: jesse_db,
+        user: jesse_user,
+        password: your_secure_password
     }
 }
 ```
@@ -136,9 +141,9 @@ Dùng SQLite để test nhanh:
 
 ```python
 DATABASES = {
-    'default': {
-        'driver': 'sqlite',
-        'path': 'storage/jesse.db'
+    default: {
+        driver: sqlite,
+        path: 'storage/jesse.db'
     }
 }
 ```
@@ -152,12 +157,12 @@ Chỉnh sửa `routes.py` để chỉ định cặp giao dịch và khung thờ 
 from jesse.enums import timeframes
 
 routes = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
-    {'exchange': 'Binance', 'symbol': 'ETH-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 1h, strategy: SimpleMA},
+    {exchange: Binance, symbol: 'ETH-USDT', timeframe: 1h, strategy: SimpleMA},
 ]
 
 extra_candles = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '4h'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 4h},
 ]
 ```
 
@@ -276,11 +281,11 @@ class MLStrategy(Strategy):
 ```python
 # config.py — cấu hình thông báo Telegram
 NOTIFICATIONS = {
-    'enabled': True,
-    'provider': 'telegram',
-    'telegram_bot_token': 'YOUR_BOT_TOKEN',
-    'telegram_chat_id': 'YOUR_CHAT_ID',
-    'events': ['order_executed', 'trade_completed', 'error']
+    enabled: True,
+    provider: telegram,
+    telegram_bot_token: YOUR_BOT_TOKEN,
+    telegram_chat_id: YOUR_CHAT_ID,
+    events: [order_executed, trade_completed, error]
 }
 ```
 
@@ -332,9 +337,9 @@ volumes:
 # metrics.py — xuất metrics cho Prometheus
 from prometheus_client import Counter, Gauge, start_http_server
 
-trades_total = Counter('jesse_trades_total', 'Total trades executed')
-position_size = Gauge('jesse_position_size', 'Current position size')
-pnl_current = Gauge('jesse_pnl_percent', 'Current P&L percentage')
+trades_total = Counter(jesse_trades_total, 'Total trades executed')
+position_size = Gauge(jesse_position_size, 'Current position size')
+pnl_current = Gauge(jesse_pnl_percent, 'Current P&L percentage')
 
 # Khởi động server metrics tại cổng 9090
 start_http_server(9090)
@@ -386,10 +391,10 @@ Chạy Jesse trong production đòi hỏi nhiều hơn một chiến lược ho�
 ```python
 # config.py — cài đặt quản lý rủi ro
 RISK_MANAGEMENT = {
-    'max_risk_per_trade': 0.02,      # Rủi ro tối đa 2% mỗi giao dịch
-    'max_drawdown_stop': 0.15,       # Dừng giao dịch khi drawdown 15%
-    'daily_loss_limit': 0.05,        # Giới hạn lỗ hàng ngày 5%
-    'position_size_limit': 0.25,     # Tối đa 25% trong một vị thế
+    max_risk_per_trade: 0.02,      # Rủi ro tối đa 2% mỗi giao dịch
+    max_drawdown_stop: 0.15,       # Dừng giao dịch khi drawdown 15%
+    daily_loss_limit: 0.05,        # Giới hạn lỗ hàng ngày 5%
+    position_size_limit: 0.25,     # Tối đa 25% trong một vị thế
 }
 ```
 
@@ -400,7 +405,7 @@ RISK_MANAGEMENT = {
 class MultiTFStrategy(Strategy):
     def prepare(self):
         # Lấy nến 4h để xác định xu hướng
-        self.h4_candles = self.get_candles('Binance', 'BTC-USDT', '4h')
+        self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
     def should_long(self):
         h4_sma50 = ta.sma(self.h4_candles, 50)
@@ -510,10 +515,10 @@ Không bao giờ commit API key vào version control. Dùng biến môi trườn
 import os
 
 EXCHANGES = {
-    'Binance': {
-        'api_key': os.environ['BINANCE_API_KEY'],
-        'api_secret': os.environ['BINANCE_API_SECRET'],
-        'sandbox': False
+    Binance: {
+        api_key: os.environ[BINANCE_API_KEY],
+        api_secret: os.environ[BINANCE_API_SECRET],
+        sandbox: False
     }
 }
 ```

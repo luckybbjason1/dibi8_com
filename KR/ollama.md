@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama" />
 title: 'Ollama: 137K+ Stars — 한 줄 명령으로 로컬에서 LLM 실행, 2026 완벽 설정 가이드'
 description: 'Ollama는 Llama, DeepSeek, Mistral 등의 LLM을 로컬에서 실행하는 가장 간단한 방법입니다. LangChain, OpenWebUI, Continue.dev, Dify와 호환됩니다. Docker 설정, Modelfile 커스터마이징, REST API, 프로덕션 하드닝, 성능 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/ollama/ollama'
 stars: 137000
-maintainer: 'ollama'
+maintainer: ollama
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ollama', '로컬-llm', 'llama.cpp', 'deepseek', 'mistral', 'docker', 'modelfile', '오픈소스']
+tags: [ollama, '로컬-llm', 'llama.cpp', deepseek, mistral, docker, modelfile, 오픈소스]
 aliases:
 - /kr/posts/ollama/
 - /kr/resources/llm-frameworks/ollama-local-llm-guide/
@@ -533,24 +538,24 @@ app = Flask(__name__)
 OLLAMA_URL = "http://localhost:11434"
 VALID_KEYS = {"sk-your-api-key-here"}
 
-@app.route('/', defaults={'path': ''}, methods=['GET', 'POST', 'PUT', 'DELETE'])
-@app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@app.route('/', defaults={path: ''}, methods=[GET, POST, PUT, DELETE])
+@app.route('/<path:path>', methods=[GET, POST, PUT, DELETE])
 def proxy(path):
-    api_key = request.headers.get('Authorization', '').replace('Bearer ', '')
+    api_key = request.headers.get(Authorization, '').replace('Bearer ', '')
     if api_key not in VALID_KEYS:
         return {"error": "잘못된 API 키"}, 401
     
     resp = requests.request(
         method=request.method,
         url=f"{OLLAMA_URL}/{path}",
-        headers={k: v for k, v in request.headers if k != 'Host'},
+        headers={k: v for k, v in request.headers if k != Host},
         data=request.get_data(),
         stream=True
     )
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == '__main__':
+if __name__ == __main__:
     app.run(host='0.0.0.0', port=11435)
 ```
 

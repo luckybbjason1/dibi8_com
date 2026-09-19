@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/caddy" />
 title: 'Caddy: Production Web Server with 72K+ Stars — Auto HTTPS Deployment Guide for 2026'
 description: 'Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS. Compatible with Docker, Let''''s Encrypt, Prometheus, and Grafana. Covers Caddyfile tutorial, Docker setup, production hardening, and monitoring.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/caddyserver/caddy'
 stars: 72595
-maintainer: 'caddyserver'
+maintainer: caddyserver
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['caddy', 'web-server', 'reverse-proxy', 'auto-https', 'docker', 'devops', 'ssl', 'http3']
+tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
 aliases:
 - /posts/caddy/
 ---
@@ -331,7 +333,7 @@ app.example.com {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
         X-Content-Type-Options "nosniff"
         X-Frame-Options "SAMEORIGIN"
-        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'"
+        Content-Security-Policy "default-src self; script-src self 'unsafe-inline'"
     }
 }
 
@@ -363,7 +365,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'caddy'
+  - job_name: caddy
     static_configs:
       - targets: ['caddy:2019']
     metrics_path: /metrics

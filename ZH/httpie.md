@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/httpie" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wget 2026'
 description: 'HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题解答。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/httpie/cli'
 stars: 38200
-maintainer: 'httpie'
+maintainer: httpie
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['httpie', '命令行', 'http客户端', 'api测试', 'curl替代', 'json', '终端', '开发工具']
+tags: [httpie, 命令行, http客户端, api测试, curl替代, json, 终端, 开发工具]
 aliases:
 - /zh/posts/httpie/
 ---
@@ -230,7 +235,7 @@ http GET https://api.github.com/user | jq -r '.login' | http POST example.com/we
 
 # 脚本中始终使用 --ignore-stdin 避免挂起
 if http --check-status --ignore-stdin --timeout=2.5 HEAD example.com &> /dev/null; then
-    echo '服务正常'
+    echo 服务正常
 else
     case $? in
         2) echo '请求超时!' ;;
@@ -354,7 +359,7 @@ http --offline POST api.example.com/v2/users \
     Authorization:"Bearer <token>" \
     name="Jane Doe" \
     email="jane@example.com" \
-    role:="['admin', 'editor']" \
+    role:="[admin, editor]" \
     active:=true
 ```
 

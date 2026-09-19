@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tabpfn-foundation-model-tabular-data" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabpfn-foundation-model-tabular-data" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabpfn-foundation-model-tabular-data" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabpfn-foundation-model-tabular-data" />
 title: 'TabPFN: Mô Hình Nền Tảng cho Dữ Liệu Dạng Bảng — Đột Phá AI cho Dữ Liệu Có
   Cấu Trúc'
 description: Khám phá TabPFN, mô hình nền tảng cho dữ liệu dạng bảng vượt trội hơn

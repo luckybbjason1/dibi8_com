@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paddleocr-81k-star-ocr-engine" />
 
 title: 'PaddleOCR: Công cụ OCR mã nguồn 81K sao vượt trội so với dịch vụ đám mây với chi phí 0'
 description: 'PaddleOCR là bộ công cụ OCR mã nguồn đa ngôn ngữ với độ chính xác hơn 96.3% cho phát hiện và nhận dạng văn bản. Hỗ trợ hơn 80 ngôn ngữ, AI tài liệu, nhận dạng bảng và phân tích bố cục. Hơn 81K sao GitHub. Bao gồm hướng dẫn cài đặt, benchmark và triển khai production.'

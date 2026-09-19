@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-compose" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-compose" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-compose" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-compose" />
 title: 'Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026'
 description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/docker/compose'
 stars: 37393
-maintainer: 'docker'
+maintainer: docker
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['docker-compose', '容器编排', 'devops', 'docker', '微服务', '部署', 'yaml', '多容器']
+tags: ['docker-compose', 容器编排, devops, docker, 微服务, 部署, yaml, 多容器]
 aliases:
 - /zh/posts/docker-compose/
 ---

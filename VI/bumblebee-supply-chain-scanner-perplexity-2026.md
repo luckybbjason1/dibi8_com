@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
 title: 'Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cung Ứng Nội Bộ — Hỗ Trợ MCP và Extension Editor'
 description: 'Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go module, cấu hình MCP, extension editor và extension trình duyệt tìm các gói đã bị xâm phạm — không thực thi bất kỳ dòng code nào.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Go', 'Security', 'CLI']
+tech_stack: [Go, Security, CLI]
 application_domain: Dev Utils
 source_version: '0.1.1'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: 'https://github.com/perplexityai/bumblebee'
 backup_url: ''
 github_repo: 'perplexityai/bumblebee'
 stars: 1500
-maintainer: 'perplexityai'
+maintainer: perplexityai
 last_maintained: '2026-05-22'
 featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['bumblebee', 'supply-chain', 'security', 'MCP', 'Go', 'npm', 'PyPI', 'perplexity-ai']
+tags: [bumblebee, 'supply-chain', security, mcp, go, npm, pypi, 'perplexity-ai']
 aliases:
 - /vi/posts/bumblebee-supply-chain-scanner-perplexity-2026/
 faqs:

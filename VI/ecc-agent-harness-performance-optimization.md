@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ecc-agent-harness-performance-optimization" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ecc-agent-harness-performance-optimization" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ecc-agent-harness-performance-optimization" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ecc-agent-harness-performance-optimization" />
 title: 'ECC: Tối ưu hiệu suất Claude Code, Codex và Cursor bằng Agent Harness Tuning — Hướng dẫn 2026'
 description: 'ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding agent. Tương thích với Claude Code, Codex, Opencode, Cursor và nhiều hơn nữa. Bao gồm điều chỉnh hiệu suất, hệ thống skill và cấu hình MCP server.'
 date: 2026-06-13

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-translation-tools-compared-2025" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-translation-tools-compared-2025" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-translation-tools-compared-2025" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-translation-tools-compared-2025" />
 title: '2025年最佳AI翻译工具对比：Google Translate、DeepL与ChatGPT全面评测'
 description: '2025年AI翻译工具深度对比：Google Translate、DeepL、ChatGPT、Microsoft Translator、Smartcat和Reverso的翻译质量、语言覆盖、定价与适用场景全面评测。'
 date: 2026-05-18 00:00:00+08:00

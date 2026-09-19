@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ta-lib-technical-analysis-trading" />
 title: 'TA-Lib: The Industry Standard Technical Analysis Library with 200+ Indicators — Python Trading Setup 2026'
 description: 'Complete guide to TA-Lib Python wrapper with 200+ technical indicators. Install, benchmark, and deploy SMA, EMA, RSI, MACD, Bollinger Bands for algorithmic trading in 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -106,7 +108,7 @@ import numpy as np
 
 print(talib.__version__)  # Expected: 0.6.2 or later
 print(talib.get_functions()[:5])  # List first 5 available functions
-# Output: ['DEMA', 'EMA', 'HT_DCPERIOD', 'HT_DCPHASE', 'HT_PHASOR']
+# Output: [DEMA, EMA, HT_DCPERIOD, HT_DCPHASE, HT_PHASOR]
 
 # Quick sanity check — compute a 14-period RSI on random data
 close = np.random.random(100) * 100
@@ -480,8 +482,8 @@ functions = talib.get_functions()  # 200+ names
 
 # Function help (e.g., for RSI)
 print(talib.abstract.RSI.info)
-# Shows: {'name': 'RSI', 'group': 'Momentum Indicators',
-#         'input': ['close'], 'parameters': {'timeperiod': 14}, ...}
+# Shows: {name: RSI, group: 'Momentum Indicators',
+#         input: [close], parameters: {timeperiod: 14}, ...}
 ```
 
 ### Q4: Is TA-Lib thread-safe for concurrent use?

@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: '멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026)'
 description: 'Claude Code 멀티 에이전트 파이프라인의 실제 실패 유형 다섯 가지 — 검증되지 않은 보고를 신뢰하기, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 절단, 방치된 워크트리 — 각각 증상, 근본 원인, 해결책과 함께 정리했다.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Git', 'CLI']
+tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'agent-sdk', 'debugging', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/multi-agent-pipeline-postmortem/
 faq:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank-guide" />
 title: "2026 GEO 优化完全指南：用 Toprank 开源智能体让 ChatGPT 疯狂引用你的网站"
 description: "2026 GEO 优化完全指南：用 Toprank 开源智能体让 ChatGPT 疯狂引用你的网站"
 date: 2026-05-15T04:20:25+09:00

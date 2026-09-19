@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
 title: "DS4 vs Ollama vs llama.cpp: 128GB Mac에서 딥시크 V4 Flash 로컬 추론 벤치마크"
 description: "Redis 창시자 antirez가 개발한 DS4 추론 엔진을 알아보세요. DeepSeek V4 Flash 로컬 배포, macOS/Linux 설치 튜토리얼, Ollama/llama.cpp 성능 비교, 코드 예제, 100만 토큰 장문 맥락 활용 사례를 상세히 설명합니다."
 date: 2026-05-15T04:20:25+09:00

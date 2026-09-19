@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamafile-portable-local-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamafile-portable-local-llm" />
 title: LlamaFile — 단일 휴대용 바이너리로 로컬 LLM 실행
 description: Meta/MLC AI의 LlamaFile 완전 가이드. 설치, GPU 필요성 또는 복잡한 설정 없이 로컬에서 100개 이상의 오픈소스 LLM을 실행하세요. 하나의 바이너리, 모든 플랫폼.
 tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'privacy']

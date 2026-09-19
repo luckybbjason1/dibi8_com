@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/gpt-sovits" />
 title: 'GPT-SoVITS: 57.5K+ Stars — Deploy AI Voice Cloning Production Setup Guide 2026'
 description: 'GPT-SoVITS (GSV) is a few-shot voice cloning and TTS tool with zero-shot capabilities. Supports ComfyUI, RVC, and MeloTTS integration. Covers Docker deployment, voice training, API setup, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', 'tts', 'ai-voice', 'docker', 'rvc', 'python']
+tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', tts, 'ai-voice', docker, rvc, python]
 aliases:
 - /posts/gpt-sovits/
 ---
@@ -152,7 +154,7 @@ docker compose run --service-ports GPT-SoVITS-CU128
 # docker-compose.override.yaml for production
 services:
   GPT-SoVITS-CU128:
-    shm_size: '16g'
+    shm_size: 16g
     environment:
       - is_half=true
     ports:

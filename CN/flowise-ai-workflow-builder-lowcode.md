@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise: The Low-Code AI Workflow Builder Deploying LangChain Agents Visually — 2026 Complete Guide'
 description: 'Complete 2026 guide to Flowise — the open-source low-code AI workflow builder with 100+ integrations. Visual LangChain agent creation, Docker deployment, API endpoints, and real-world benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'FlowiseAI/Flowise'
 stars: 45000
-maintainer: 'FlowiseAI'
+maintainer: FlowiseAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Flowise', 'LangChain', 'Low-Code', 'AI Workflow', 'Docker', 'Self-hosted', 'Agent Builder', 'No-Code', 'Open Source', 'Chatbot']
+tags: [flowise, langchain, 'low-code', 'ai workflow', docker, 'self-hosted', 'agent builder', 'no-code', 'open source', chatbot]
 aliases:
 - /posts/flowise-ai-workflow-builder-lowcode/
 ---
@@ -101,7 +103,7 @@ Flowise's architecture consists of three layers:
 mkdir -p ~/flowise && cd ~/flowise
 
 # Create docker-compose.yml
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 services:
   flowise:
     image: flowiseai/flowise:2.2.0
@@ -376,24 +378,24 @@ const { Tool } = require('langchain/tools');
 class JiraTicketTool extends Tool {
   constructor() {
     super();
-    this.name = 'jira_create_ticket';
+    this.name = jira_create_ticket;
     this.description = 'Create a Jira ticket. Input: JSON string with summary, description, and issueType.';
   }
 
   async _call(input) {
     const { summary, description, issueType } = JSON.parse(input);
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
-      method: 'POST',
+      method: POST,
       headers: {
-        'Authorization': `Basic ${Buffer.from('email:token').toString('base64')}`,
+        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         fields: {
-          project: { key: 'PROJ' },
+          project: { key: PROJ },
           summary,
           description,
-          issuetype: { name: issueType || 'Task' }
+          issuetype: { name: issueType || Task }
         }
       })
     });

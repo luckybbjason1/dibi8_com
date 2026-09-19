@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 — 설치 및 전략 가이드'
 description: 'Hummingbot v2 실전 배포 가이드. 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇. Docker 설치, 커스텀 전략, 백테스팅, DEX 게이트웨이, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'hummingbot/hummingbot'
 stars: 10500
-maintainer: 'hummingbot'
+maintainer: hummingbot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

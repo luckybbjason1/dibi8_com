@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mineru-document-parsing-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mineru-document-parsing-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mineru-document-parsing-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mineru-document-parsing-engine" />
 
 lang: kr
 title: 'MinerU: 별 70.6K개 — 모든 문서를 LLM 지원 마크다운으로 변환'

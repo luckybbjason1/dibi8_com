@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: 'DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷'
 description: 'Google Labs Code의 DESIGN.md는 AI 코딩 에이전트에 시각적 아이덴티티를 설명하기 위한 오픈소스 형식 사양입니다. GitHub 스타 20.8k. YAML 토큰과 문서 기반 제약 조건을 통해 디자인 시스템과 AI 코드 생성을 연결하는 방법을 알아보세요.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]

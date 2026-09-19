@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
 title: 'AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM 实测对比'
 description: '没有持久化记忆的 Agent 每次会话都从零开始。在同一个多会话负载下实测 Letta、Mem0、A-MEM：到底谁能真正留住上下文、谁更省钱、什么时候应该自研。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Letta', 'Mem0', 'A-MEM', 'Vector DB', 'Python']
+tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
 source_version: 'Letta 0.8 / Mem0 0.2 / A-MEM 1.3'
 licensing_model: 开源
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ai-agent', 'memory', 'persistence', 'letta', 'mem0', '2026']
+tags: ['ai-agent', memory, persistence, letta, mem0, 2026]
 aliases:
 - /zh/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
 faq:

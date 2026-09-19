@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ruvnet-ruview-wifi-spatial-intelligence-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruvnet-ruview-wifi-spatial-intelligence-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruvnet-ruview-wifi-spatial-intelligence-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruvnet-ruview-wifi-spatial-intelligence-guide" />
 title: "RuView：智能建筑的 WiFi 空间智能——Python CLI、实时位置追踪和网状网络"
 description: "了解如何使用 RuView，这款基于 Python 的 WiFi 空间智能平台，实现实时位置追踪、建筑布局映射和 WiFi 网状网络优化。包含逐步 pip 安装指南、实时追踪和网状网络配置。"
 date: 2026-06-10

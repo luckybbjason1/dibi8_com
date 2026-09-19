@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/9router-smart-llm-proxy-token-saver-free-coding" />
 title: "9Router: Smart LLM Proxy with Token Saver — Cut AI Costs by 60%, Never Hit Rate Limits Again"
 description: "Discover 9Router — an open-source smart proxy that saves 20-40% tokens via RTK compression, auto-fallback across 40+ providers, and zero-cost coding combos."
 date: 2026-05-15T04:20:25+09:00

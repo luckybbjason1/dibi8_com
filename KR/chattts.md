@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts" />
 title: 'ChatTTS: 39.3K+ Stars — Coqui, MeloTTS와의 대화형 TTS 벤치마크 비교 2026'
 description: 'ChatTTS (AGPL-3.0)는 대화 시나리오를 위한 생성형 음성 모델입니다. Coqui TTS, MeloTTS, GPT-SoVITS와 호환. 설치, 벤치마크, 프로덕션 배포 및 비교 표를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/2noise/ChatTTS'
 stars: 39300
-maintainer: '2noise'
+maintainer: 2noise
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['chattts', '텍스트-투-스피치', 'tts', '대화형-ai', 'llm-어시스턴트', '음성-합성', '오픈소스', '벤치마크']
+tags: [chattts, '텍스트-투-스피치', tts, '대화형-ai', 'llm-어시스턴트', '음성-합성', 오픈소스, 벤치마크]
 aliases:
 - /kr/posts/chattts/
 - /kr/resources/llm-frameworks/chattts-architecture-autoregressive-voice/

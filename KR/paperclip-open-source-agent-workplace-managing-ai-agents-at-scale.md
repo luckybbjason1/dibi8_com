@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
 title: 'paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드'
 description: 'paperclip (69,700 GitHub star)은 AI 에이전트를 관리하는 오픈소스 워크플레이스 앱입니다. 멀티 에이전트 조정, 작업 관리, 셀프호스팅 에이전트 워크플로우 배포 포함.'
 date: 2026-06-08

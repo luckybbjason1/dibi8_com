@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
 title: "ByteDance UI-TARS Desktop: Đại Diện AI Ngôn Ngữ-Thị Giác Nhìn Thấy Và Điều Khiển Máy Tính Của Bạn — Hướng Dẫn Cài Đặt Đầy Đủ"
 description: "Tìm hiểu cách triển khai UI-TARS Desktop của ByteDance, một đại diện AI ngôn ngữ-thị giác có thể xem màn hình của bạn và điều khiển ứng dụng thông qua ngôn ngữ tự nhiên. Cài đặt từng bước, benchmark thực tế và so sánh với các giải pháp thay thế."
 date: 2026-06-10

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/lean-quantconnect-trading-engine" />
 title: 'Lean: The Open-Source Algorithmic Trading Engine Powering QuantConnect — C# & Python Setup 2026'
 description: 'Complete 2026 guide to Lean, the algorithmic trading engine behind QuantConnect. Multi-asset backtesting, live trading, C# & Python APIs, and production deployment walkthrough.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'QuantConnect/Lean'
 stars: 10500
-maintainer: 'QuantConnect'
+maintainer: QuantConnect
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -370,7 +372,7 @@ class MLPredictionAlgorithm(QCAlgorithm):
         
         # Load pre-trained model
         model_path = "./models/spy_predictor.pkl"
-        with open(model_path, 'rb') as f:
+        with open(model_path, rb) as f:
             self.model = pickle.load(f)
         
         # Feature history

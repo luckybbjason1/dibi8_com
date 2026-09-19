@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南'
 description: 'Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookbook——全部运行在自己的硬件上。本文详解安装步骤、核心功能及与 ChatGPT Plus 的对比。'
 date: 2026-06-09 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-06-08'
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
 categories: ['ai-tools']
-tags: ['Odysseus', '自部署 AI', 'AI 工作台', '本地 LLM', '隐私', 'Docker', '开源', 'ChatGPT 替代', 'Ollama', '深度调研']
+tags: [odysseus, '自部署 ai', 'ai 工作台', '本地 llm', 隐私, docker, 开源, 'chatgpt 替代', ollama, 深度调研]
 aliases:
 - /zh/posts/odysseus-self-hosted-ai-workspace-2026/
 faqs:

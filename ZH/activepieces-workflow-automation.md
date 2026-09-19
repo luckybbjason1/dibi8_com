@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
 title: 'Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 2026年自托管指南'
 description: '5分钟内部署 Activepieces。这款开源工作流自动化平台拥有200+应用集成、AI操作和可视化构建器，成本仅为Zapier的一小部分。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'activepieces/activepieces'
 stars: 13000
-maintainer: 'activepieces'
+maintainer: activepieces
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Activepieces', '工作流自动化', 'Zapier替代品', '自托管', 'Docker', '无代码', '开源', 'TypeScript', 'AI操作', 'Webhook']
+tags: [activepieces, 工作流自动化, zapier替代品, 自托管, docker, 无代码, 开源, typescript, ai操作, webhook]
 aliases:
 - /zh/posts/activepieces-workflow-automation/
 ---
@@ -237,7 +242,7 @@ Activepieces v0.46.0包含原生OpenAI Piece，支持GPT-4o、GPT-4.1和GPT-4.1-
 触发器：Webhook（"新表单提交"）
   → 步骤1：提取表单数据（姓名、邮箱、公司、留言）
   → 步骤2：OpenAI"询问AI"操作
-       提示词："评估此潜在客户。仅返回'hot'、'warm'或'cold'。
+       提示词："评估此潜在客户。仅返回hot、warm或cold。
                潜在客户：{{step_1.name}}，公司：{{step_1.company}}，
                留言：{{step_1.message}}"
        模型：gpt-4.1-mini

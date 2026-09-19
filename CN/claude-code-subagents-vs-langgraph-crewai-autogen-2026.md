@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 title: 'Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen (2026): When to Graduate to a Standalone Framework'
 description: 'You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or AutoGen? A 2026 decision guide with real benchmarks, GitHub-star reality, and the honest line between "built-in is enough" and "time to graduate."'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'LangGraph', 'CrewAI', 'AutoGen', 'Python']
+tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'langgraph', 'crewai', 'autogen', 'multi-agent', 'agent-sdk', 'llm-frameworks', 'orchestration']
+tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
 aliases:
 - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq:
@@ -30,7 +32,7 @@ faq:
   - q: "Is AutoGen still worth using in 2026, or is it dead?"
     a: "AutoGen (now AG2 after the v0.4 rewrite) is stable but no longer actively developed as the headline framework, so for brand-new projects in 2026 LangGraph or CrewAI are the safer starting points. AutoGen/AG2 still shines in one niche: offline, quality-sensitive workflows where its conversational GroupChat pattern and thoroughness matter more than latency. Don't start greenfield on it expecting heavy ongoing investment, but it's not abandonware either."
   - q: "What's the difference between LangGraph and CrewAI?"
-    a: "LangGraph models your workflow as an explicit directed graph with conditional edges, giving you fine-grained control, checkpointing, and resumable runs — it scored ~62% on complex tasks vs CrewAI's ~54% in 2026 benchmarks, and it's the production pick when you need audit trails and human-in-the-loop. CrewAI uses a role-based 'crew' abstraction (agent role/goal/backstory) that gets a multi-agent team running in about 20 lines of Python — it's the fastest to prototype with, at the cost of less granular control. Control vs speed-to-first-result is the core trade-off."
+    a: "LangGraph models your workflow as an explicit directed graph with conditional edges, giving you fine-grained control, checkpointing, and resumable runs — it scored ~62% on complex tasks vs CrewAI's ~54% in 2026 benchmarks, and it's the production pick when you need audit trails and human-in-the-loop. CrewAI uses a role-based crew abstraction (agent role/goal/backstory) that gets a multi-agent team running in about 20 lines of Python — it's the fastest to prototype with, at the cost of less granular control. Control vs speed-to-first-result is the core trade-off."
   - q: "Can I use Claude models with LangGraph or CrewAI?"
     a: "Yes. LangGraph, CrewAI, and AutoGen are all model-agnostic — you can run Claude, GPT, Gemini, or local models behind them. The Claude Agent SDK (renamed from the Claude Code SDK in late 2025, now shipping as both Python and TypeScript packages) is Claude-only by design, trading model flexibility for native safety features and extended thinking. So if multi-vendor flexibility is a hard requirement, reach for one of the agnostic frameworks; if you're all-in on Claude and want the tightest integration, the Agent SDK is the native path."
 ---

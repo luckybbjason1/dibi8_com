@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trivy-production-security-scanner-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trivy-production-security-scanner-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trivy-production-security-scanner-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trivy-production-security-scanner-2026" />
 title: 'Trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南'
 description: 'Trivy（aquasecurity/trivy）是一款用于容器、基础设施即代码（IaC）和代码的开源安全扫描工具。可与 Kubernetes、Docker、GitHub Actions 和 CI 流水线无缝集成。扫描 60 万+ CVE 漏洞、密钥泄露和配置错误。涵盖安装、策略即代码和生产环境加固。'
 date: 2026-06-09

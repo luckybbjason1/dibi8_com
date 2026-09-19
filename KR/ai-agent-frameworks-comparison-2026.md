@@ -1,4 +1,9 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — AI 에이전트 프레임워크 비교(2026)"
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-frameworks-comparison-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-frameworks-comparison-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-frameworks-comparison-2026" />
 description: "2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 지침입니다."
 date: 2026-06-30T00:00:00+09:00
 lastmod:  2026-06-30T00:00:00+09:00lang: ko
@@ -302,7 +307,7 @@ CrewAI의 역할 기반 추상화는 자연스럽게 실제 팀 구조에 매핑
 
 - 순차적 처리는 에이전트를 차례로 실행합니다. 계층적 모드는 위임하는 "관리자" 에이전트를 추가합니다. 
 - 에이전트 메모리는 기본적으로 에이전트별로 범위가 지정됩니다. 에이전트 간 지식 전송을 위해 공유 메모리를 사용합니다. 
-- 'allow_delegation' 플래그를 사용하면 에이전트가 서로에게 도움을 요청할 수 있어 긴급 협업이 가능해집니다. 
+- allow_delegation 플래그를 사용하면 에이전트가 서로에게 도움을 요청할 수 있어 긴급 협업이 가능해집니다. 
 - 성능: 최대 3~5명의 에이전트가 적합합니다. 그 이상으로 조정 오버헤드가 증가합니다. 
 
 CrewAI는 버전 제어 및 재현성을 위해 JSON 기반 팀 구성을 지원합니다.
@@ -451,7 +456,7 @@ AutoGen의 대화형 모델은 솔루션 경로가 미리 결정되지 않은 �
 
 프레임워크의 연구 내력은 확장성에서 드러납니다. 사용자 정의 에이전트 유형을 정의하고, 새로운 대화 프로토콜을 구현하고, 거의 모든 LLM 제공업체와 통합할 수 있습니다. 59.4,000개의 별은 학계와 업계 모두에서 강력한 채택을 반영합니다. 
 
-- 'GroupChat' 및 'GroupChatManager'를 사용하면 화자를 선택하여 다중 에이전트 대화가 가능합니다. 
+- GroupChat 및 GroupChatManager를 사용하면 화자를 선택하여 다중 에이전트 대화가 가능합니다. 
 - 코드 실행 샌드박스 구성 가능 — 보안을 위해 Docker 권장 
 - Human-in-the-loop 모드를 통해 상담원 대화 중에 대화형 개입이 가능합니다. 
 - 프레임워크는 계속 발전하고 있습니다. API 안정성은 릴리스마다 다릅니다. 
@@ -770,7 +775,7 @@ LangGraph의 상태 저장 그래프 기반 접근 방식은 신뢰성과 감사
 
 Human-In-The-Loop 지원은 특히 강력합니다. 모든 노드에서 실행을 일시 중지하고, 에이전트의 상태를 검토하고, 다음 단계를 승인 또는 수정하고, 재개할 수 있습니다. 이는 규정 준수에 민감한 애플리케이션에 매우 중요합니다. 
 
-- `StateGraph`는 핵심 추상화를 제공합니다. 'MessageGraph'는 채팅 전용 워크플로에 더 간단합니다. 
+- `StateGraph`는 핵심 추상화를 제공합니다. MessageGraph는 채팅 전용 워크플로에 더 간단합니다. 
 - 체크포인트 기능이 내장되어 있습니다. 에이전트는 각 노드 전환 시 자동으로 상태를 저장합니다. 
 - 컴파일된 그래프는 LangServe를 사용하여 API 엔드포인트로 배포할 수 있습니다. 
 - 스트리밍은 기본적으로 지원됩니다. 프런트엔드로 실시간 토큰 출력이 가능합니다. 

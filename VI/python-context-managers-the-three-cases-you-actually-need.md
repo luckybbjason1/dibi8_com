@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/python-context-managers-the-three-cases-you-actually-need" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/python-context-managers-the-three-cases-you-actually-need" />
 title: 'Python Context Managers: 3 Trường Hợp Bạn Thực Sự Cần'
 description: 'Python context managers: 3 trường hợp bạn thực sự cần. Làm chủ câu lệnh
   with, contextlib và tùy chỉnh context managers để quản lý tài nguyên tốt hơn.'

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
 title: 'Activepieces: Giải pháp thay thế Zapier mã nguồn mở với 200+ ứng dụng và AI Actions — Hướng dẫn Self-Hosted 2026'
 description: 'Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứng dụng, AI actions và trình xây dựng trực quan — chi phí chỉ bằng một phần nhỏ của Zapier.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'activepieces/activepieces'
 stars: 13000
-maintainer: 'activepieces'
+maintainer: activepieces
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Activepieces', 'tự động hóa workflow', 'giải pháp thay thế Zapier', 'self-hosted', 'Docker', 'no-code', 'mã nguồn mở', 'TypeScript', 'AI actions', 'webhooks']
+tags: [activepieces, 'tự động hóa workflow', 'giải pháp thay thế zapier', 'self-hosted', docker, 'no-code', 'mã nguồn mở', typescript, 'ai actions', webhooks]
 aliases:
 - /vi/posts/activepieces-workflow-automation/
 ---
@@ -237,7 +242,7 @@ Activepieces v0.46.0 bao gồm piece OpenAI tích hợp sẵn hỗ trợ GPT-4o,
 Trigger: Webhook ("Lead form mới được submit")
   → Bước 1: Trích xuất dữ liệu form (tên, email, công ty, tin nhắn)
   → Bước 2: OpenAI "Ask AI" action
-       Prompt: "Đánh giá lead này. Chỉ trả về 'hot', 'warm', hoặc 'cold'.
+       Prompt: "Đánh giá lead này. Chỉ trả về hot, warm, hoặc cold.
                Lead: {{step_1.name}}, Công ty: {{step_1.company}},
                Tin nhắn: {{step_1.message}}"
        Model: gpt-4.1-mini

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unstructured-data-preprocessing-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unstructured-data-preprocessing-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unstructured-data-preprocessing-llm" />
 title: 'Unstructured.io: 将任何文档转换为LLM就绪数据块的预处理流水线 — 2026指南'
 description: 'Unstructured.io 实用2026指南 — 这款开源文档预处理库可将PDF、DOCX、PPTX和图像转换为干净、结构化的文本块，为LLM和RAG流水线做好准备。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['unstructured', '文档解析', '大语言模型', 'RAG', '数据预处理', 'PDF', '分块', '开源']
+tags: [unstructured, 文档解析, 大语言模型, rag, 数据预处理, pdf, 分块, 开源]
 aliases:
 - /zh/posts/unstructured-data-preprocessing-llm/
 ---
@@ -185,8 +190,8 @@ documents = loader.load()  # 返回 Document 对象列表
 
 # 每个文档都有丰富的元数据
 print(documents[0].metadata)
-# {'source': 'quarterly_earnings.pdf', 'page_number': 1,
-#  'category': 'NarrativeText', 'element_id': '...', 'parent_id': '...'}
+# {source: 'quarterly_earnings.pdf', page_number: 1,
+#  category: NarrativeText, element_id: '...', parent_id: '...'}
 
 # 直接存入向量库
 vectorstore = Chroma.from_documents(

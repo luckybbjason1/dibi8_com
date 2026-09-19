@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/accept-payments-all-currencies" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/accept-payments-all-currencies" />
 title: "Chấp nhận thanh toán bằng tất cả các loại tiền tệ với NowPayments"
 description: "Chấp nhận thanh toán bằng tất cả các loại tiền tệ với NowPayments. Hỗ trợ 100+ loại tiền điện tử và tiền pháp định, phí thấp và thanh toán tức thì."
 date: 2026-05-15T04:20:25+09:00

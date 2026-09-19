@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-inference-cost-optimization-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-inference-cost-optimization-guide-2026" />
 
 title: '大型语言模型推理成本优化：用几分钱运行任何模型——2026权威指南'
 description: 'LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API costs by 90%+. 3 benchmarks, 6 deployment methods.'

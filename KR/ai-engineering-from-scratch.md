@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-engineering-from-scratch" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-engineering-from-scratch" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-engineering-from-scratch" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-engineering-from-scratch" />
 title: "스크래치 AI 엔지니어링: 프로덕션 LLM 시스템 구축 — 2026 완전 가이드"
 description: "스크래치 AI 엔지니어링(32,771 스타)은 LLM 파인튜닝, RAG, 에이전트 프레임워크, 프로덕션 배포를 아우르는 포괄적인 커리큘럼입니다. AI 시스템을 구축하고, 출시하고, 확장하는 방법을 배워보세요."
 date: 2026-06-15

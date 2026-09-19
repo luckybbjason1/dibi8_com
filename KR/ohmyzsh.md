@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ohmyzsh" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ohmyzsh" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ohmyzsh" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ohmyzsh" />
 title: 'Oh My Zsh: 2026년 더 빠른 개발 워크플로우를 위한 7단계'
 description: '실제 벤치마크, 플러그인 구성 및 설치 가이드와 함께 Oh My Zsh 마스터하기. Starship, Prezto, Zsh 네이티브 설정과 비교. 187k+ 스타.'
 date: 2026-06-11

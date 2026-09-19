@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
 title: 'CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测'
 description: 'GitHub Actions、GitLab CI与Jenkins全方位对比，覆盖定价、性能、安全性与扩展性，帮你选出最适合团队的CI/CD平台。'
 date: 2026-05-18 00:00:00+08:00

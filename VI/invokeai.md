@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/invokeai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/invokeai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/invokeai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/invokeai" />
 title: 'InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
 description: 'InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành. Tương thích với SD 1.5, SDXL, FLUX và ControlNet. Bao gồm cài đặt Docker, thiết lập workflow, so sánh benchmark với AUTOMATIC1111 và ComfyUI, và hardening production.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['InvokeAI', 'Stable Diffusion', 'Tạo ảnh AI', 'Docker', 'FLUX', 'SDXL', 'WebUI', 'mã nguồn mở']
+tags: [invokeai, 'stable diffusion', 'tạo ảnh ai', docker, flux, sdxl, webui, 'mã nguồn mở']
 aliases:
 - /vi/posts/invokeai/
 ---

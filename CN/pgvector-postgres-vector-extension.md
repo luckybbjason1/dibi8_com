@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026: Turn PostgreSQL into a High-Performance Vector Database — Setup, Tuning & RAG Integration Guide'
 description: 'Production guide for pgvector 0.8.2: HNSW/IVFFlat indexes, vector similarity search, performance tuning, and RAG integration with LangChain and LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'pgvector/pgvector'
 stars: 15000
-maintainer: 'pgvector'
+maintainer: pgvector
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['pgvector', 'PostgreSQL', 'vector-database', 'HNSW', 'ANN', 'RAG', 'similarity-search', 'full-text-search']
+tags: [pgvector, postgresql, 'vector-database', hnsw, ann, rag, 'similarity-search', 'full-text-search']
 aliases:
 - /posts/pgvector-postgres-vector-extension/
 ---
@@ -119,7 +121,7 @@ docker run -d \
   pgvector/pgvector:0.8.2-pg18
 
 # Verify
-docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = 'vector';"
+docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
 ```
 
 ### Option B: Existing PostgreSQL
@@ -145,7 +147,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Verify version
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Returns: 0.8.2
 ```
 
@@ -156,14 +158,14 @@ SELECT extversion FROM pg_extension WHERE extname = 'vector';
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Check available extensions if needed
-SELECT * FROM pg_available_extensions WHERE name = 'vector';
+SELECT * FROM pg_available_extensions WHERE name = vector;
 ```
 
 ### Verify Installation
 
 ```sql
 -- Check pgvector version
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Expected: 0.8.2
 
 -- Test vector type
@@ -238,7 +240,7 @@ print(f"Inserted {batch_size} documents")
 
 ```sql
 -- Set parameters for parallel index build
-SET maintenance_work_mem = '8GB';
+SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
 
 -- Build HNSW index with tuned parameters
@@ -250,7 +252,7 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
   );
 
 -- Check index size
-SELECT pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw'));
+SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- Typical: ~450 MB for 100K vectors of 1536 dimensions
 ```
 
@@ -270,7 +272,7 @@ SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
   AND created_at > NOW() - INTERVAL '30 days'
-  AND metadata->>'category' = 'tech'
+  AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
 ```
@@ -335,8 +337,8 @@ LIMIT 10;
 
 -- Check space savings
 SELECT
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw')) AS full_size,
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_half_hnsw')) AS half_size;
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size is typically ~45-50% of full_size
 ```
 
@@ -498,7 +500,7 @@ CREATE POLICY tenant_isolation ON documents
     USING (tenant_id = current_setting('app.current_tenant')::INTEGER);
 
 -- Set tenant per session
-SET app.current_tenant = '42';
+SET app.current_tenant = 42;
 
 -- Now all queries automatically filter by tenant
 SELECT * FROM documents;  -- Only tenant 42's documents visible
@@ -520,7 +522,7 @@ LIMIT 10;
 
 ```bash
 # Enable pg_stat_statements in postgresql.conf
-shared_preload_libraries = 'pg_stat_statements'
+shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
 ```

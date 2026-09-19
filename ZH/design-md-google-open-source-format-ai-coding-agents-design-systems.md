@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/design-md-google-open-source-format-ai-coding-agents-design-systems" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: "DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式"
 description: 'DESIGN.md 由 Google Labs Code 提供，是一种开源格式规范，用于向 AI 编码代理描述视觉识别。拥有 20.8k 个 GitHub 星标。了解它如何通过 YAML 令牌和基于文本的约束桥接设计系统与 AI 代码生成。'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]

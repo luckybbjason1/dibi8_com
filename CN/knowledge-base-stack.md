@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/knowledge-base-stack" />
 title: 'The Knowledge Base Stack 2026: Build Your "Second Brain" with AnythingLLM + RAGFlow + mem0 ($10-25/Month)'
 description: 'A 5-component self-hosted knowledge base stack for personal or team use. AnythingLLM (UI + RAG) + RAGFlow (deep doc parsing) + mem0 (agent memory) + AgentMemory MCP (MCP exposure) + vector DB pick. Replaces $50-200/mo SaaS (Notion AI + Mem + Glean) with $10-25/mo self-hosted.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Knowledge Base', 'RAG', 'Second Brain', 'Stack', 'Collection']
+categories: [collections]
+tags: ['knowledge base', rag, 'second brain', stack, collection]
 aliases:
   - /posts/knowledge-base-stack/
 ---

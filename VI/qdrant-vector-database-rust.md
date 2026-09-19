@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qdrant-vector-database-rust" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qdrant-vector-database-rust" />
 title: 'Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector với Độ Trễ 10ms — Hướng Dẫn Tự Triển Khai 2026'
 description: 'Triển khai Qdrant vector database cho tìm kiếm tương đồng production. Hướng dẫn đầy đủ về HNSW indexing, payload filtering, multi-tenancy, Docker deployment, client Python/Go/JS với benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'qdrant/qdrant'
 stars: 22000
-maintainer: 'qdrant'
+maintainer: qdrant
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Qdrant', 'Vector Database', 'Rust', 'HNSW', 'Tìm kiếm tương đồng', 'Docker', 'Tự triển khai', 'AI']
+tags: [qdrant, 'vector database', rust, hnsw, 'tìm kiếm tương đồng', docker, 'tự triển khai', ai]
 aliases:
 - /vi/posts/qdrant-vector-database-rust/
 ---
@@ -563,7 +568,7 @@ def create_snapshot(collection: str) -> str:
     url = f"http://localhost:6333/collections/{collection}/snapshots"
     resp = requests.post(url)
     result = resp.json()["result"]
-    print(f"Snapshot đã tạo: {result['name']}")
+    print(f"Snapshot đã tạo: {result[name]}")
     return result["name"]
 
 # Snapshot hàng ngày (chạy qua cron)

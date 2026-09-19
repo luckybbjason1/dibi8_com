@@ -1,13 +1,18 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
 title: 'MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式'
 description: '生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前审计清单。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['MCP', 'Security', 'Claude Code', 'TypeScript', 'Python']
+tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 spec'
 licensing_model: Open Source / Mixed
-license_type: 'Various'
+license_type: Various
 github_repo: 'https://github.com/modelcontextprotocol/servers'
 stars: 60000
 maintainer: 'Community + Anthropic'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mcp', 'security', 'audit', 'claude-code', 'supply-chain', 'agent-security', '2026']
+tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
 aliases:
 - /zh/posts/mcp-server-security-audit-2026-real-cases/
 faq:

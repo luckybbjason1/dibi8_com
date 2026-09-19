@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectorbt-quantitative-backtesting" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectorbt-quantitative-backtesting" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectorbt-quantitative-backtesting" />
 title: 'VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南'
 description: '掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'polakowo/vectorbt'
 stars: 8900
-maintainer: 'polakowo'
+maintainer: polakowo
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moneyprinter-turbo-ai-video-generation-one-command" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moneyprinter-turbo-ai-video-generation-one-command" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moneyprinter-turbo-ai-video-generation-one-command" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moneyprinter-turbo-ai-video-generation-one-command" />
 title: "MoneyPrinterTurbo：使用 AI 自动生成视频"
 slug: "moneyprinter-turbo-ai-video-generation-one-command"
 category: "ai-tools"

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
 title: 'Goose AI Agent: Open-Source Automation by Linux Foundation AAIF'
 description: Goose is a general-purpose open-source AI Agent developed by the Linux
   Foundation Agentic AI Foundation (AAIF). Automate coding, research, and daily tasks.

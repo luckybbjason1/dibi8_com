@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/timesfm-google-time-series-foundation-model" />
 title: 'TimesFM 2.5: Google Revolutionary Time Series Foundation Model for Forecasting'
 description: 'Complete guide to TimesFM 2.5 - Google Research decoder-only foundation model for time series forecasting. Covers installation, fine-tuning, benchmarks, and real-world applications.'
 tags: ["open-source"]

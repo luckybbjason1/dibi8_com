@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/api-documentation-generation-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/api-documentation-generation-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/api-documentation-generation-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/api-documentation-generation-tools" />
 title: '2025년 최고의 API 문서 자동 생성 도구 비교: Swagger, Postman Docs, ReadMe, Mintlify'
 description: 'API 문서 자동 생성 도구를 비교합니다. Swagger, Postman Docs, ReadMe, Mintlify, Stoplight, Redocly의 특징, 장단점, 가격을 알아보고 프로젝트에 맞는 도구를 선택하세요.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-trader" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trader" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trader" />
 title: "AI-Trader: 14K⭐ 완전 자동화 AI 트레이딩 에이전트, AI가 24시간 매매 대행"
 description: "AI-Trader는 HKUDS가 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템으로, 14K+ Stars를 보유하고 있으며 주식, 암호화폐, 외환 다중 시장 자동 거래를 지원합니다."
 date: 2026-05-15T04:20:25+09:00

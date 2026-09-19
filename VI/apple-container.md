@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/apple-container" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/apple-container" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/apple-container" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/apple-container" />
 lang: vi
 title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
 date: 2026-06-15

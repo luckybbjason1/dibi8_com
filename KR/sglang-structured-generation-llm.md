@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/sglang-structured-generation-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/sglang-structured-generation-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/sglang-structured-generation-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/sglang-structured-generation-llm" />
 title: SGLang — 구조화된 생성 및 고속 LLM 추론 엔진
 description: SGLang(구조화 생성 언어) 완전 가이드. 제약을 둔 디코딩, JSON 스키마 강제, 병렬 실행으로 고성능 LLM 서빙. 구조화된 출력은 vLLM보다 25배 빠름.
 tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']

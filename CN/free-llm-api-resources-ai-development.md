@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/free-llm-api-resources-ai-development" />
 title: 'Free LLM API Resources: Access AI Models Without Breaking the Bank'
 description: A curated list of free LLM inference resources accessible via API. Build
   AI applications without API costs using these community-maintained free tiers.

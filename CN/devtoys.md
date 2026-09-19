@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/devtoys" />
 title: 'DevToys: 31,533 GitHub Stars — Complete Setup Guide for Developer Utilities Suite 2026'
 description: 'DevToys is a free, open-source, offline Swiss Army knife for developers. Cross-platform utilities for JSON, Base64, JWT, regex, and 30+ tools on Windows, macOS, and Linux with Smart Detection and CLI support.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['DevToys', 'developer-tools', 'offline-utilities', 'JSON-formatter', 'Base64-encoder', 'JWT-decoder', 'regex-tester', 'cross-platform', 'open-source']
+tags: [devtoys, 'developer-tools', 'offline-utilities', 'json-formatter', 'base64-encoder', 'jwt-decoder', 'regex-tester', 'cross-platform', 'open-source']
 aliases:
 - /posts/devtoys/
 ---

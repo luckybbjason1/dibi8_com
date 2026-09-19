@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pm-skills-68-product-management-skills-ai-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pm-skills-68-product-management-skills-ai-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pm-skills-68-product-management-skills-ai-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pm-skills-68-product-management-skills-ai-agents" />
 title: 'PM技能：68项产品管理技能和42个AI代理工作流程'
 description: '用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Product Management', 'Claude Code', 'Agent Skills', 'Open Source']
+tags: ['ai tools', 'product management', 'claude code', 'agent skills', 'open source']
 categories: ['ai-tools']
 slug: pm-skills-68-product-management-skills-ai-agents
 featureImage: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/pm-skills']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/phuryn/pm-skills'
   - name: 'The Product Compass'
     url: 'https://www.productcompass.pm'
@@ -21,13 +26,13 @@ description: 'The AI operating system for better product decisions. 9 plugins co
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Product Management', 'Claude Code', 'Agent Skills', 'Open Source']
+tags: ['ai tools', 'product management', 'claude code', 'agent skills', 'open source']
 categories: ['ai-tools']
 slug: pm-skills-68-product-management-skills-ai-agents
 
 aliases: ['/pm-skills']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/phuryn/pm-skills'
   - name: 'The Product Compass'
     url: 'https://www.productcompass.pm'

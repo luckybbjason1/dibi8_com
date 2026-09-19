@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ruvnet-ruview-wifi-spatial-intelligence-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruvnet-ruview-wifi-spatial-intelligence-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruvnet-ruview-wifi-spatial-intelligence-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruvnet-ruview-wifi-spatial-intelligence-guide" />
 title: "RuView: Trí tuệ không gian WiFi cho Smart Buildings — Python CLI, Theo dõi vị trí thời gian thực và Mesh Networks"
 description: "Tìm hiểu cách sử dụng RuView, nền tảng trí tuệ không gian WiFi dựa trên Python theo dõi vị trí thời gian thực, lập bản đồ layout tòa nhà và tối ưu hóa WiFi mesh networks. Hướng dẫn cài đặt pip từng bước, theo dõi thời gian thực và cấu hình mesh network."
 date: 2026-06-10

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐오픈소스 AI 에이전트, 코딩부터 자동화까지 전부 처리"
 description: "Goose는 Linux Foundation이 지원하는 오픈소스 AI Agent로, 15개 이상의 LLM 제공업체와 70개 이상의 MCP 확장 기능을 지원합니다. 데스크톱 앱 + CLI + API를 Rust로 구축하여 성능이 뛰어납니다."
 date: 2026-05-15T04:20:25+09:00

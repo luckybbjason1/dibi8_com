@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/autogen-multi-agent-framework" />
 title: 'AutoGen Tutorial 2025: Building Multi-Agent AI Systems Made Easy'
 description: 'Learn Microsoft AutoGen in 2025. Build multi-agent AI systems, create conversational agents, and deploy autonomous workflows with code examples.'
 date: 2026-05-18 00:00:00+08:00

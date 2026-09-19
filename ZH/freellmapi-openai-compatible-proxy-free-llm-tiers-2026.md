@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
 title: 'FreeLLMAPI：在一个兼容 OpenAI 的端点后堆叠 16 个免费 LLM 层'
 description: '将 Google、Groq、Cerebras、Mistral、NVIDIA、OpenRouter 以及更多免费层聚合到单一代理中。~1.7B 令牌/月。支持 Docker 安装，Claude Code 集成，工具调用，流式传输，回退链。'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'LLM Proxy', 'Free Tier', 'OpenAI Compatible', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'llm proxy', 'free tier', 'openai compatible', 'self-hosted', docker]
 categories: ['ai-tools']
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 featureImage: 'https://images.pexels.com/photos/8644020/pexels-photo-8644020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/freellmapi']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'
@@ -21,13 +26,13 @@ description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and 
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'LLM Proxy', 'Free Tier', 'OpenAI Compatible', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'llm proxy', 'free tier', 'openai compatible', 'self-hosted', docker]
 categories: ['ai-tools']
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 
 aliases: ['/freellmapi']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'

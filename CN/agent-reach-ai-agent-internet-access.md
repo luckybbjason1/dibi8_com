@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/agent-reach-ai-agent-internet-access" />
 title: 'Agent Reach: Give Your AI Agent Internet Superpowers'
 description: Agent Reach is an open-source scaffolding tool that gives AI agents instant
   access to YouTube, Twitter, Reddit, Xiaohongshu, Bilibili and 15+ platforms with

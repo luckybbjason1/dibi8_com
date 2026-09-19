@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
 title: 'Alpaca Trading API 2026: The Commission-Free Stock Brokerage API for Algorithmic Trading — Setup Guide'
 description: 'Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order placement, WebSocket streaming, fractional shares, and paper trading with Python code examples.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/alpacahq/alpaca-trade-api-python'
 stars: 4500
-maintainer: 'alpacahq'
+maintainer: alpacahq
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Alpaca Trading API']
+tags: ['alpaca trading api']
 aliases:
 - /posts/alpaca-trading-api-stock-broker/
 ---
@@ -89,15 +91,15 @@ Once your account is approved, navigate to the Paper Trading section to generate
 
 ```python
 # Your API credentials will look like this:
-API_KEY = 'PKABCDEF1234567890EXAMPLE'
-API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example'
+API_KEY = PKABCDEF1234567890EXAMPLE
+API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example
 BASE_URL = 'https://paper-api.alpaca.markets'  # Paper trading endpoint
 ```
 
 ```javascript
 // JavaScript/Node.js credential configuration
-const API_KEY = 'PKABCDEF1234567890EXAMPLE';
-const API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example';
+const API_KEY = PKABCDEF1234567890EXAMPLE;
+const API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example;
 const BASE_URL = 'https://paper-api.alpaca.markets';
 ```
 
@@ -109,8 +111,8 @@ import os
 from alpaca_trade_api import REST
 
 api = REST(
-    key_id=os.getenv('ALPACA_API_KEY'),
-    secret_key=os.getenv('ALPACA_SECRET_KEY'),
+    key_id=os.getenv(ALPACA_API_KEY),
+    secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
 ```
@@ -147,18 +149,18 @@ from alpaca_trade_api import REST
 import os
 
 api = REST(
-    key_id=os.getenv('ALPACA_API_KEY'),
-    secret_key=os.getenv('ALPACA_SECRET_KEY'),
+    key_id=os.getenv(ALPACA_API_KEY),
+    secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
 
 # Market order — executes immediately at best available price
 market_order = api.submit_order(
-    symbol='AAPL',
+    symbol=AAPL,
     qty=10,
-    side='buy',
-    type='market',
-    time_in_force='day'
+    side=buy,
+    type=market,
+    time_in_force=day
 )
 print(f"Market order submitted: {market_order.id}")
 ```
@@ -166,12 +168,12 @@ print(f"Market order submitted: {market_order.id}")
 ```python
 # Limit order — only executes at specified price or better
 limit_order = api.submit_order(
-    symbol='TSLA',
+    symbol=TSLA,
     qty=5,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=180.00,
-    time_in_force='gtc'  # Good-til-cancelled
+    time_in_force=gtc  # Good-til-cancelled
 )
 print(f"Limit order submitted: {limit_order.id}")
 ```
@@ -179,37 +181,37 @@ print(f"Limit order submitted: {limit_order.id}")
 ```python
 # Stop-loss order — triggers market sell when price drops to stop price
 stop_order = api.submit_order(
-    symbol='MSFT',
+    symbol=MSFT,
     qty=20,
-    side='sell',
-    type='stop',
+    side=sell,
+    type=stop,
     stop_price=380.00,
-    time_in_force='day'
+    time_in_force=day
 )
 ```
 
 ```python
 # Stop-limit order — combines stop trigger with limit execution
 stop_limit_order = api.submit_order(
-    symbol='GOOGL',
+    symbol=GOOGL,
     qty=2,
-    side='sell',
-    type='stop_limit',
+    side=sell,
+    type=stop_limit,
     stop_price=165.00,
     limit_price=164.50,
-    time_in_force='day'
+    time_in_force=day
 )
 ```
 
 ```python
 # Trailing stop order — stop price follows the market at a set distance
 trailing_stop = api.submit_order(
-    symbol='AMZN',
+    symbol=AMZN,
     qty=3,
-    side='sell',
-    type='trailing_stop',
+    side=sell,
+    type=trailing_stop,
     trail_percent=5.0,  # 5% trailing distance
-    time_in_force='gtc'
+    time_in_force=gtc
 )
 ```
 
@@ -220,30 +222,30 @@ One of Alpaca's standout features is **fractional share trading**, which allows 
 ```python
 # Buy $500 worth of Apple — regardless of share price
 fractional_order = api.submit_order(
-    symbol='AAPL',
+    symbol=AAPL,
     notional=500.00,  # Dollar amount instead of share quantity
-    side='buy',
-    type='market',
-    time_in_force='day'
+    side=buy,
+    type=market,
+    time_in_force=day
 )
 ```
 
 ```python
 # Build a balanced portfolio with exact dollar allocations
 portfolio = {
-    'VTI': 2000.00,   # Total U.S. stock market
-    'VXUS': 1000.00,  # International stocks
-    'BND': 1000.00,   # U.S. bonds
-    'VNQ': 500.00     # Real estate
+    VTI: 2000.00,   # Total U.S. stock market
+    VXUS: 1000.00,  # International stocks
+    BND: 1000.00,   # U.S. bonds
+    VNQ: 500.00     # Real estate
 }
 
 for symbol, amount in portfolio.items():
     order = api.submit_order(
         symbol=symbol,
         notional=amount,
-        side='buy',
-        type='market',
-        time_in_force='day'
+        side=buy,
+        type=market,
+        time_in_force=day
     )
     print(f"Ordered ${amount} of {symbol}")
 ```
@@ -255,12 +257,12 @@ Alpaca supports **24/5 trading**, allowing you to trade outside regular market h
 ```python
 # Place an order for extended hours execution
 extended_hours_order = api.submit_order(
-    symbol='SPY',
+    symbol=SPY,
     qty=50,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=520.00,
-    time_in_force='day',
+    time_in_force=day,
     extended_hours=True  # Enable pre-market (4:00 AM) and after-hours (8:00 PM)
 )
 ```
@@ -269,10 +271,10 @@ extended_hours_order = api.submit_order(
 # Check available trading hours for a symbol
 from alpaca_trade_api import REST
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 clock = api.get_clock()
 
-print(f"Market is {'open' if clock.is_open else 'closed'}")
+print(f"Market is {open if clock.is_open else closed}")
 print(f"Next open: {clock.next_open}")
 print(f"Next close: {clock.next_close}")
 ```
@@ -301,16 +303,16 @@ async def handle_bar(bar):
 
 # Initialize stream
 stream = Stream(
-    key_id='YOUR_API_KEY',
-    secret_key='YOUR_SECRET_KEY',
+    key_id=YOUR_API_KEY,
+    secret_key=YOUR_SECRET_KEY,
     base_url='https://paper-api.alpaca.markets',
-    data_feed='iex'  # 'iex' (free) or 'sip' (premium)
+    data_feed=iex  # iex (free) or sip (premium)
 )
 
 # Subscribe to channels
-stream.subscribe_trades(handle_trade, 'AAPL', 'TSLA', 'MSFT')
-stream.subscribe_quotes(handle_quote, 'AAPL', 'TSLA')
-stream.subscribe_bars(handle_bar, 'SPY', 'QQQ')
+stream.subscribe_trades(handle_trade, AAPL, TSLA, MSFT)
+stream.subscribe_quotes(handle_quote, AAPL, TSLA)
+stream.subscribe_bars(handle_bar, SPY, QQQ)
 
 # Run the stream
 print("Starting WebSocket stream...")
@@ -324,9 +326,9 @@ from alpaca_trade_api.stream import Stream
 
 async def run_streaming_strategy():
     stream = Stream(
-        key_id='YOUR_API_KEY',
-        secret_key='YOUR_SECRET_KEY',
-        data_feed='iex'
+        key_id=YOUR_API_KEY,
+        secret_key=YOUR_SECRET_KEY,
+        data_feed=iex
     )
     
     async def on_bar(bar):
@@ -334,7 +336,7 @@ async def run_streaming_strategy():
         if bar.close > bar.vwap * 1.02:
             print(f"Potential breakout: {bar.symbol} at ${bar.close}")
     
-    stream.subscribe_bars(on_bar, 'AAPL', 'MSFT', 'GOOGL', 'AMZN')
+    stream.subscribe_bars(on_bar, AAPL, MSFT, GOOGL, AMZN)
     
     # Run with proper cleanup
     await stream._run_forever()
@@ -347,8 +349,8 @@ async def run_streaming_strategy():
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 
 const alpaca = new Alpaca({
-    keyId: 'YOUR_API_KEY',
-    secretKey: 'YOUR_SECRET_KEY',
+    keyId: YOUR_API_KEY,
+    secretKey: YOUR_SECRET_KEY,
     paper: true
 });
 
@@ -376,7 +378,7 @@ client.connect();
 from alpaca_trade_api import REST
 import pandas as pd
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 # Get account information
 account = api.get_account()
@@ -400,7 +402,7 @@ for pos in positions:
 
 ```python
 # Get position for a specific symbol
-aapl_position = api.get_position('AAPL')
+aapl_position = api.get_position(AAPL)
 print(f"AAPL Position: {aapl_position.qty} shares")
 print(f"Market Value: ${aapl_position.market_value}")
 print(f"Unrealized P&L: ${aapl_position.unrealized_pl}")
@@ -410,14 +412,14 @@ print(f"Unrealized P&L: ${aapl_position.unrealized_pl}")
 
 ```python
 # List all open orders
-open_orders = api.list_orders(status='open')
+open_orders = api.list_orders(status=open)
 for order in open_orders:
     print(f"Order {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
 ```
 
 ```python
 # Cancel a specific order
-api.cancel_order('ORDER_ID_HERE')
+api.cancel_order(ORDER_ID_HERE)
 print("Order cancelled")
 ```
 
@@ -430,7 +432,7 @@ print("All orders cancelled")
 ```python
 # Get order history (closed orders)
 closed_orders = api.list_orders(
-    status='closed',
+    status=closed,
     limit=100,
     after='2026-05-01T00:00:00Z'
 )
@@ -449,18 +451,18 @@ for order in closed_orders:
 from alpaca_trade_api import REST
 from datetime import datetime, timedelta
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 # Get daily bars for the past 6 months
 end_date = datetime.now()
 start_date = end_date - timedelta(days=180)
 
 bars = api.get_bars(
-    'AAPL',
-    timeframe='1Day',
+    AAPL,
+    timeframe=1Day,
     start=start_date.isoformat(),
     end=end_date.isoformat(),
-    feed='iex'
+    feed=iex
 ).df
 
 print(f"Retrieved {len(bars)} bars")
@@ -470,41 +472,41 @@ print(bars.head())
 ```python
 # Get minute bars for intraday strategies
 minute_bars = api.get_bars(
-    'SPY',
-    timeframe='1Min',
+    SPY,
+    timeframe=1Min,
     start='2026-05-15T09:30:00Z',
     end='2026-05-15T16:00:00Z',
-    feed='iex'
+    feed=iex
 ).df
 
 # Calculate simple moving averages
-minute_bars['SMA_20'] = minute_bars['close'].rolling(20).mean()
-minute_bars['SMA_50'] = minute_bars['close'].rolling(50).mean()
+minute_bars[SMA_20] = minute_bars[close].rolling(20).mean()
+minute_bars[SMA_50] = minute_bars[close].rolling(50).mean()
 
 # Generate signals
-minute_bars['signal'] = 0
-minute_bars.loc[minute_bars['SMA_20'] > minute_bars['SMA_50'], 'signal'] = 1
-minute_bars.loc[minute_bars['SMA_20'] < minute_bars['SMA_50'], 'signal'] = -1
+minute_bars[signal] = 0
+minute_bars.loc[minute_bars[SMA_20] > minute_bars[SMA_50], signal] = 1
+minute_bars.loc[minute_bars[SMA_20] < minute_bars[SMA_50], signal] = -1
 
-print(minute_bars[['close', 'SMA_20', 'SMA_50', 'signal']].tail(10))
+print(minute_bars[[close, SMA_20, SMA_50, signal]].tail(10))
 ```
 
 ```python
 # Fetch multiple symbols efficiently
 import pandas as pd
 
-symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META']
+symbols = [AAPL, MSFT, GOOGL, AMZN, META]
 all_bars = {}
 
 for symbol in symbols:
     bars = api.get_bars(
         symbol,
-        timeframe='1Day',
+        timeframe=1Day,
         start='2026-01-01T00:00:00Z',
         end='2026-05-19T00:00:00Z',
-        feed='iex'
+        feed=iex
     ).df
-    all_bars[symbol] = bars['close']
+    all_bars[symbol] = bars[close]
 
 # Create a DataFrame with all closing prices
 prices_df = pd.DataFrame(all_bars)
@@ -533,11 +535,11 @@ import pandas as pd
 from alpaca_trade_api import REST, Stream
 
 # Configuration
-API_KEY = os.getenv('ALPACA_API_KEY')
-API_SECRET = os.getenv('ALPACA_SECRET_KEY')
+API_KEY = os.getenv(ALPACA_API_KEY)
+API_SECRET = os.getenv(ALPACA_SECRET_KEY)
 BASE_URL = 'https://paper-api.alpaca.markets'
 
-WATCHLIST = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA']
+WATCHLIST = [AAPL, MSFT, GOOGL, AMZN, NVDA]
 POSITION_SIZE = 1000  # Dollar amount per trade
 SMA_PERIOD = 20
 
@@ -567,37 +569,37 @@ class MomentumTrader:
         # Buy signal: price crosses above SMA
         if prev_price <= prev_sma and current_price > sma:
             if symbol not in self.positions_held:
-                return 'buy'
+                return buy
         
         # Sell signal: price crosses below SMA
         if prev_price >= prev_sma and current_price < sma:
             if symbol in self.positions_held:
-                return 'sell'
+                return sell
         
         return None
     
     def execute_trade(self, symbol, signal):
         """Execute a trade based on signal"""
         try:
-            if signal == 'buy':
+            if signal == buy:
                 order = self.api.submit_order(
                     symbol=symbol,
                     notional=POSITION_SIZE,
-                    side='buy',
-                    type='market',
-                    time_in_force='day'
+                    side=buy,
+                    type=market,
+                    time_in_force=day
                 )
                 self.positions_held.add(symbol)
                 print(f"BUY {symbol}: ${POSITION_SIZE} | Order ID: {order.id}")
             
-            elif signal == 'sell':
+            elif signal == sell:
                 position = self.api.get_position(symbol)
                 order = self.api.submit_order(
                     symbol=symbol,
                     qty=position.qty,
-                    side='sell',
-                    type='market',
-                    time_in_force='day'
+                    side=sell,
+                    type=market,
+                    time_in_force=day
                 )
                 self.positions_held.discard(symbol)
                 print(f"SELL {symbol}: {position.qty} shares | Order ID: {order.id}")
@@ -631,7 +633,7 @@ class MomentumTrader:
                 print(f"Error in main loop: {e}")
                 time.sleep(60)
 
-if __name__ == '__main__':
+if __name__ == __main__:
     trader = MomentumTrader()
     trader.run()
 ```
@@ -647,13 +649,13 @@ With Alpaca Elite, you can access sophisticated order types:
 ```python
 # One-Cancels-Other (OCO) bracket order
 bracket_order = api.submit_order(
-    symbol='TSLA',
+    symbol=TSLA,
     qty=10,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=200.00,
-    time_in_force='gtc',
-    order_class='bracket',
+    time_in_force=gtc,
+    order_class=bracket,
     take_profit=dict(limit_price=220.00),
     stop_loss=dict(stop_price=185.00, limit_price=184.50)
 )
@@ -662,12 +664,12 @@ bracket_order = api.submit_order(
 ```python
 # Immediate-Or-Cancel (IOC) order
 ioc_order = api.submit_order(
-    symbol='SPY',
+    symbol=SPY,
     qty=100,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=520.00,
-    time_in_force='ioc'  # Cancelled if not filled immediately
+    time_in_force=ioc  # Cancelled if not filled immediately
 )
 ```
 
@@ -679,38 +681,38 @@ from flask import Flask, request, jsonify
 from alpaca_trade_api import REST
 
 app = Flask(__name__)
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
-@app.route('/webhook/trading-signal', methods=['POST'])
+@app.route('/webhook/trading-signal', methods=[POST])
 def handle_trading_signal():
     data = request.json
-    symbol = data.get('symbol')
-    signal = data.get('signal')  # 'buy' or 'sell'
+    symbol = data.get(symbol)
+    signal = data.get(signal)  # buy or sell
     
-    if signal == 'buy':
+    if signal == buy:
         order = api.submit_order(
             symbol=symbol,
             notional=1000,
-            side='buy',
-            type='market',
-            time_in_force='day'
+            side=buy,
+            type=market,
+            time_in_force=day
         )
-        return jsonify({'status': 'success', 'order_id': order.id})
+        return jsonify({status: success, order_id: order.id})
     
-    elif signal == 'sell':
+    elif signal == sell:
         position = api.get_position(symbol)
         order = api.submit_order(
             symbol=symbol,
             qty=position.qty,
-            side='sell',
-            type='market',
-            time_in_force='day'
+            side=sell,
+            type=market,
+            time_in_force=day
         )
-        return jsonify({'status': 'success', 'order_id': order.id})
+        return jsonify({status: success, order_id: order.id})
     
-    return jsonify({'status': 'unknown_signal'}), 400
+    return jsonify({status: unknown_signal}), 400
 
-if __name__ == '__main__':
+if __name__ == __main__:
     app.run(host='0.0.0.0', port=5000)
 ```
 

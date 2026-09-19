@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/meilisearch-fast-search-engine" />
 title: 'Meilisearch: The Lightning-Fast Open-Source Search Engine with Typo Tolerance — Setup & Benchmarks 2026'
 description: 'Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup, SDK integrations, production benchmarks, and honest comparison.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'meilisearch/meilisearch'
 stars: 51300
-maintainer: 'meilisearch'
+maintainer: meilisearch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -232,23 +234,23 @@ npm install meilisearch
 ```
 
 ```javascript
-const { MeiliSearch } = require('meilisearch');
+const { MeiliSearch } = require(meilisearch);
 
 const client = new MeiliSearch({
   host: 'http://localhost:7700',
   apiKey: 'your-secure-master-key-32-chars-long!!'
 });
 
-const index = client.index('products');
+const index = client.index(products);
 
 // Search with filters and facets
 async function search(query) {
   const results = await index.search(query, {
     filter: 'price >= 50 AND in_stock = true',
     sort: ['rating:desc'],
-    facets: ['category'],
+    facets: [category],
     limit: 10,
-    attributesToHighlight: ['name', 'description']
+    attributesToHighlight: [name, description]
   });
 
   console.log(`Found ${results.estimatedTotalHits} hits`);
@@ -259,7 +261,7 @@ async function search(query) {
   });
 }
 
-search('headphons'); // typo handled automatically
+search(headphons); // typo handled automatically
 ```
 
 ### Python SDK
@@ -274,27 +276,27 @@ import os
 
 client = meilisearch.Client(
     'http://localhost:7700',
-    os.environ['MEILI_MASTER_KEY']
+    os.environ[MEILI_MASTER_KEY]
 )
 
-index = client.index('products')
+index = client.index(products)
 
 # Search with geo filter
 results = index.search(
     'running shoes',
     {
-        'filter': 'price >= 50 AND price <= 200',
-        'sort': ['rating:desc'],
-        'facets': ['category', 'in_stock'],
-        'limit': 20,
-        'attributesToHighlight': ['name', 'description']
+        filter: 'price >= 50 AND price <= 200',
+        sort: ['rating:desc'],
+        facets: [category, in_stock],
+        limit: 20,
+        attributesToHighlight: [name, description]
     }
 )
 
-print(f"Hits: {results['estimatedTotalHits']}")
-print(f"Facets: {results.get('facetDistribution', {})}")
-for hit in results['hits']:
-    print(f"  {hit['name']} - ${hit['price']} (rating: {hit['rating']})")
+print(f"Hits: {results[estimatedTotalHits]}")
+print(f"Facets: {results.get(facetDistribution, {})}")
+for hit in results[hits]:
+    print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
 ```
 
 ### React InstantSearch Integration
@@ -306,7 +308,7 @@ npm install @meilisearch/instant-meilisearch react-instantsearch-dom
 ```
 
 ```jsx
-import React from 'react';
+import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList, Stats } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 
@@ -315,7 +317,7 @@ const { searchClient } = instantMeiliSearch(
   'your-secure-master-key-32-chars-long!!',
   {
     finitePagination: true,
-    primaryKey: 'id'
+    primaryKey: id
   }
 );
 
@@ -324,8 +326,8 @@ function App() {
     <InstantSearch searchClient={searchClient} indexName="products">
       <SearchBox />
       <Stats />
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <aside style={{ width: '200px' }}>
+      <div style={{ display: flex, gap: 20px }}>
+        <aside style={{ width: 200px }}>
           <RefinementList attribute="category" />
           <RefinementList attribute="in_stock" />
         </aside>
@@ -339,7 +341,7 @@ function App() {
 
 function ProductHit({ hit }) {
   return (
-    <div style={{ padding: '10px', borderBottom: '1px solid #eee' }}>
+    <div style={{ padding: 10px, borderBottom: '1px solid #eee' }}>
       <h4 dangerouslySetInnerHTML={{ __html: hit._highlightResult.name.value }} />
       <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? 'In Stock' : 'Out of Stock'}</p>
     </div>
@@ -362,19 +364,19 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Meilisearch\Client;
 
 $client = new Client('http://localhost:7700', 'your-secure-master-key-32-chars-long!!');
-$index = $client->index('products');
+$index = $client->index(products);
 
 // Search with typo tolerance
-$results = $index->search('keybord', [
-    'filter' => 'in_stock = true',
-    'sort' => ['price:asc'],
-    'limit' => 10,
-    'facets' => ['category']
+$results = $index->search(keybord, [
+    filter => 'in_stock = true',
+    sort => ['price:asc'],
+    limit => 10,
+    facets => [category]
 ]);
 
 echo "Found: {$results->getEstimatedTotalHits()}\n";
 foreach ($results->getHits() as $hit) {
-    echo "- {$hit['name']} \${$hit['price']}\n";
+    echo "- {$hit[name]} \${$hit[price]}\n";
 }
 ?>
 ```
@@ -535,8 +537,8 @@ Deploy this on any VPS. For a reliable host, [DigitalOcean](https://m.do.co/c/ec
 Meilisearch 1.12 supports secure multi-tenancy via tenant tokens:
 
 ```javascript
-const { MeiliSearch } = require('meilisearch');
-const crypto = require('crypto');
+const { MeiliSearch } = require(meilisearch);
+const crypto = require(crypto);
 
 const client = new MeiliSearch({
   host: 'http://localhost:7700',
@@ -548,7 +550,7 @@ const token = client.generateTenantToken(
   'search-api-key-uid',
   {
     filter: 'user_id = 123',  // User can only see their own docs
-    searchRules: { indexes: { products: { filterableAttributes: ['user_id'] } } }
+    searchRules: { indexes: { products: { filterableAttributes: [user_id] } } }
   },
   {
     apiKey: 'master-key',

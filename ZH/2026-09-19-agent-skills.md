@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-09-19-agent-skills" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-09-19-agent-skills" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-09-19-agent-skills" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-09-19-agent-skills" />
 title: 'Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架'
 description: '了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'
 date: 2026-09-19

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/howtocook-programmer-open-source-cookbook" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피"
 description: "HowToCook 프로그래머 요리 가이드를 탐색하세요 — 코드처럼 정확하게 요리하는 297개 오픈소스 레시피. 토마토 계란볶음부터 베이징 덕까지, 난이도 분류, 명확한 단계."
 date: 2026-05-15T04:20:25+09:00

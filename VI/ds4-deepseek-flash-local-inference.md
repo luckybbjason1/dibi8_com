@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-deepseek-flash-local-inference" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
 title: "DS4 vs Ollama vs llama.cpp: Benchmark Chạy DeepSeek V4 Flash Local Trên Mac 128GB"
 description: "Khám phá DS4 của antirez (người tạo Redis) — một engine suy luận bản địa cho DeepSeek V4 Flash. Tìm hiểu cách cài đặt, so sánh benchmark với Ollama/llama.cpp, ví dụ mã và cách chạy LLM 1M context local trên macOS và Linux."
 date: 2026-05-15T04:20:25+09:00

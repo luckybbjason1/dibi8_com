@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/whisperx" />
 title: 'WhisperX: 22K+ Stars — Production ASR Setup Guide 2026'
 description: 'WhisperX is an open-source ASR toolkit with word-level timestamps and speaker diarization. Compatible with faster-whisper, pyannote.audio, and OpenAI Whisper models. Covers Docker deployment, Python API, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['whisperx', 'asr', 'speech-recognition', 'speaker-diarization', 'word-timestamps', 'faster-whisper', 'pyannote', 'docker']
+tags: [whisperx, asr, 'speech-recognition', 'speaker-diarization', 'word-timestamps', 'faster-whisper', pyannote, docker]
 aliases:
 - /posts/whisperx/
 ---
@@ -108,7 +110,7 @@ uvx git+https://github.com/m-bain/whisperX.git
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
 # Create a Dockerfile for WhisperX
-cat > Dockerfile.whisperx << 'EOF'
+cat > Dockerfile.whisperx << EOF
 FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -404,7 +406,7 @@ whisperx audio.wav \
 
 ```bash
 # Pre-download models to avoid cold-start latency
-python3 << 'PYEOF'
+python3 << PYEOF
 import whisperx
 import torch
 

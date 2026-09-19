@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/promptfoo-llm-frameworks-2026" />
 title: 'Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指南'
 description: 'Promptfoo 是一款开源的 CLI 与代码库，用于评估和红队 LLM 应用。用简单的声明式配置即可对比 GPT、Claude、Gemini、DeepSeek，并无缝接入命令行与 CI/CD。本 2026 指南讲解安装、promptfooconfig.yaml、断言与红队测试。'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'promptfoo/promptfoo'
 stars: 21825
-maintainer: 'promptfoo'
+maintainer: promptfoo
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
@@ -240,7 +245,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Run promptfoo eval
         env:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/instructor-structured-llm-output" />
 title: 'Instructor: LLM이 100% 유효한 JSON을 출력하도록 강제하는 Python 라이브러리 —— 2026 가이드'
 description: '일관성 없는 LLM 출력과의 투쟁을 멈추세요. Instructor가 Pydantic 모델을 사용하여 유효하고 타입 안전한 JSON 응답을 보장하기 위해 OpenAI 클라이언트를 패치하는 방법을 알아보세요. 재시도 로직, 다중 공급자 지원 및 스트리밍 기능을 갖추고 있습니다.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/jxnl/instructor'
 stars: 11000
-maintainer: 'jxnl'
+maintainer: jxnl
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Instructor']
+tags: [instructor]
 aliases:
 - /kr/posts/instructor-structured-llm-output/
 ---
@@ -90,8 +95,8 @@ profile = extract_profile(
 )
 
 print(profile)
-# UserProfile(name='Sarah', age=28, email='sarah.chen@example.com', 
-#             interests=['hiking', 'photography', 'reading sci-fi novels'])
+# UserProfile(name=Sarah, age=28, email='sarah.chen@example.com', 
+#             interests=[hiking, photography, 'reading sci-fi novels'])
 
 # 타입이 지정된 필드에 직접 접근
 print(f"이름: {profile.name}, 나이: {profile.age}")
@@ -114,15 +119,15 @@ class ValidatedProduct(BaseModel):
     price: float = Field(description="USD 가격, 양수여야 함")
     category: str = Field(description="다음 중 하나: electronics, clothing, food, books")
     
-    @field_validator('category')
+    @field_validator(category)
     @classmethod
     def validate_category(cls, v):
-        allowed = {'electronics', 'clothing', 'food', 'books'}
+        allowed = {electronics, clothing, food, books}
         if v.lower() not in allowed:
             raise ValueError(f"카테고리는 다음 중 하나여야 함: {allowed}")
         return v.lower()
     
-    @field_validator('price')
+    @field_validator(price)
     @classmethod
     def validate_price(cls, v):
         if v <= 0:
@@ -147,7 +152,7 @@ product = parse_product(
 )
 print(product)
 # ValidatedProduct(name='무선 블루투스 헤드폰', 
-#                  price=79.99, category='electronics')
+#                  price=79.99, category=electronics)
 ```
 
 ---
@@ -358,17 +363,17 @@ class StrictDateRange(BaseModel):
     start_date: str = Field(description="YYYY-MM-DD 형식")
     end_date: str = Field(description="YYYY-MM-DD 형식, 시작일 이후여야 함")
     
-    @field_validator('start_date', 'end_date')
+    @field_validator(start_date, end_date)
     @classmethod
     def validate_date_format(cls, v):
         from datetime import datetime
         datetime.strptime(v, "%Y-%m-%d")
         return v
     
-    @field_validator('end_date')
+    @field_validator(end_date)
     @classmethod
     def validate_order(cls, end, info):
-        start = info.data.get('start_date')
+        start = info.data.get(start_date)
         if start and end <= start:
             raise ValueError("end_date는 start_date 이후여야 함")
         return end
@@ -520,9 +525,9 @@ def generate_search(user_request: str) -> SearchQuery:
 query = generate_search(
     "배터리 수명이 좋은 $100 이하 무선 이어폰을 찾아, 최신순"
 )
-print(query.keywords)  # ['wireless earbuds', 'bluetooth']
-print(query.filters)   # {'max_price': '100'}
-print(query.sort_by)   # 'date'
+print(query.keywords)  # ['wireless earbuds', bluetooth]
+print(query.filters)   # {max_price: 100}
+print(query.sort_by)   # date
 ```
 
 ---

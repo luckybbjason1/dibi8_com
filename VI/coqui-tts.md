@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/coqui-tts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
 title: 'Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sánh Hiệu Suất với ChatTTS, MeloTTS 2026'
 description: 'Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọng nói XTTS v2, tổng hợp VITS. So sánh hiệu suất thực tế RTF với ChatTTS, MeloTTS, Bark và hướng dẫn triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Coqui TTS', 'chuyển-văn-bản-thành-giọng-nói', 'nhân-bản-giọng-nói', 'XTTS', 'VITS', 'học-sâu', 'Docker', 'Python']
+tags: ['coqui tts', 'chuyển-văn-bản-thành-giọng-nói', 'nhân-bản-giọng-nói', xtts, vits, 'học-sâu', docker, python]
 aliases:
 - /vi/posts/coqui-tts/
 ---
@@ -266,7 +271,7 @@ services:
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
       - TTS_HOME=/home/appuser/.local/share/tts
-    shm_size: '2gb'
+    shm_size: 2gb
     command: >
       sh -c "python3 /app/config/server.py"
 
@@ -451,9 +456,9 @@ python TTS/bin/train_tts.py \
 from prometheus_client import Counter, Histogram, generate_latest
 
 # Các chỉ số
-TTS_REQUESTS = Counter('tts_requests_total', 'Tổng yêu cầu TTS', ['language'])
-TTS_LATENCY = Histogram('tts_latency_seconds', 'Độ trễ yêu cầu')
-TTS_ERRORS = Counter('tts_errors_total', 'Tổng lỗi', ['error_type'])
+TTS_REQUESTS = Counter(tts_requests_total, 'Tổng yêu cầu TTS', [language])
+TTS_LATENCY = Histogram(tts_latency_seconds, 'Độ trễ yêu cầu')
+TTS_ERRORS = Counter(tts_errors_total, 'Tổng lỗi', [error_type])
 
 @app.route("/metrics")
 def metrics():

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — Open-Source API Development Platform vs Postman, Insomnia, Bruno in 2026'
 description: 'Hoppscotch (HOPP) is an open-source API development ecosystem. Docker, GitHub Actions, Node.js, Vue.js compatible. Covers hoppscotch tutorial, self-hosting, CLI automation, and comparison vs alternatives.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hoppscotch/hoppscotch'
 stars: 79200
-maintainer: 'hoppscotch'
+maintainer: hoppscotch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['hoppscotch', 'api-testing', 'postman-alternative', 'open-source', 'docker', 'cli', 'rest-api', 'graphql']
+tags: [hoppscotch, 'api-testing', 'postman-alternative', 'open-source', docker, cli, 'rest-api', graphql]
 aliases:
 - /posts/hoppscotch/
 ---
@@ -95,7 +97,7 @@ hopp --version
 docker pull hoppscotch/hoppscotch:latest
 
 # Create environment file
-cat > .env << 'EOF'
+cat > .env << EOF
 # Database
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/hoppscotch
 

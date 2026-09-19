@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/alpaca-trading-api-stock-broker" />
 # API Giao Dịch Chứng Khoán Alpaca 2026: API Hoạch Định Mô Hình Giao Dịch Tự Động Không Phí Hoa Hồng — Hướng Dẫn Cài Đặt
 
 > 📌 **Bình luận về chương trình giới thiệu**: Bài viết này chứa các liên kết giới thiệu. Chúng tôi có thể nhận được hoa hồng nếu bạn đăng ký thông qua liên kết của chúng tôi - không có chi phí bổ sung cho bạn. Các đánh giá của chúng tôi độc lập và dựa trên nghiên cứu kỹ lưỡng.

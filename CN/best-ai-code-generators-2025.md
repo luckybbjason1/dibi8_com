@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/best-ai-code-generators-2025" />
 title: 'Best AI Code Generators 2025: GitHub Copilot vs Cursor vs Tabnine Compared'
 description: 'Compare the best AI code generators of 2025: GitHub Copilot, Cursor, Tabnine, Amazon CodeWhisperer, and more. Features, pricing, and use cases explained.'
 date: 2026-05-18 00:00:00+08:00

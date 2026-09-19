@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-aider" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-aider" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-aider" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-aider" />
 title: 'Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở'
 description: 'So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) — giá cả, context, phong cách agent, hiệu quả chi phí. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

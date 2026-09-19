@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
 title: 'AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026'
 description: 'AutoGen（微软）是一个用于构建多智能体 AI 系统的事件驱动编程框架。兼容 OpenAI、Azure、Ollama、Docker 和 VS Code。涵盖安装、群聊设置、生产加固及与替代方案的诚实对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/microsoft/autogen'
 stars: 58196
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['AutoGen', '多智能体', '微软', 'LLM框架', '智能体AI', 'Python', 'CrewAI替代品', 'LangGraph替代品']
+tags: [autogen, 多智能体, 微软, llm框架, 智能体ai, python, crewai替代品, langgraph替代品]
 aliases:
 - /zh/posts/autogen/
 - /zh/resources/llm-frameworks/autogen-multi-agent-framework/
@@ -291,7 +296,7 @@ async def main():
         name="reviewer",
         model_client=model_client,
         system_message="You are an editor. Review content for accuracy and clarity. "
-                       "Respond with 'APPROVED' when the content is good."
+                       "Respond with APPROVED when the content is good."
     )
 
     # 终止条件：20 条消息后或审核者批准时停止

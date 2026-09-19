@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-universal-file-to-markdown-converter" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-universal-file-to-markdown-converter" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-universal-file-to-markdown-converter" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-universal-file-to-markdown-converter" />
 title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — Công Cụ Mã Nguồn Mở của Microsoft cho Các Quy Trình LLM 2026"
 description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip install markitdown[all], API Python, tích hợp LangChain, các pipeline RAG và xử lý theo lô."
 date: 2026-06-17

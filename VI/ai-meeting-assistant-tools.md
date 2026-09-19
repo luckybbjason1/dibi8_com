@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-meeting-assistant-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-meeting-assistant-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-meeting-assistant-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-meeting-assistant-tools" />
 title: 'Các Công Cụ Trợ Lý Họp AI Tốt Nhất 2025: So Sánh Otter.ai, Fireflies, Fathom Và Hơn Thế Nữa'
 description: 'Tổng hợp các công cụ trợ lý họp AI hàng đầu năm 2025. So sánh chi tiết Otter.ai, Fireflies, Fathom, Notion AI, Microsoft Copilot cho Teams về phiên âm, tóm tắt, tích hợp và giá cả.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['AI meeting assistant', 'trợ lý họp AI', 'Otter.ai', 'Fireflies', 'Fathom', 'Notion AI', 'Microsoft Copilot Teams']
+tags: ['ai meeting assistant', 'trợ lý họp ai', 'otter.ai', fireflies, fathom, 'notion ai', 'microsoft copilot teams']
 aliases:
 - /vi/posts/ai-meeting-assistant-tools/
 ---

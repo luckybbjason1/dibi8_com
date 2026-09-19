@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
 title: 'Hello-Agents: How Datawhale''s Open-Source AI Agent Tutorial Helps You Build
   Production-Grade Agents from Scratch'
 description: Datawhale Hello-Agents is the top open-source AI agent tutorial covering

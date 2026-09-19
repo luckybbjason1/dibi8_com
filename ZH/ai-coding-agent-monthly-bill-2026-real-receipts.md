@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-monthly-bill-2026-real-receipts" />
 title: 'AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro 的 30 天真实账单'
 description: '实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任务成本拆解、各家何时回本、切换的临界点。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Codex CLI', 'OpenAI API', 'Anthropic API']
+tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'May 2026 30-day window'
 licensing_model: Commercial
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', 'cursor', 'codex-cli', 'pricing', '2026']
+tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
 aliases:
 - /zh/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq:
@@ -27,7 +32,7 @@ faq:
     a: "不需要。两家是甜区。常见组合：Claude Code + Cursor（$220/月）。只有当你有明确的 shell 重度自动化任务、Codex CLI 的终端集成胜出时，叠三家才有意义。"
   - q: "按任务类型的实际使用占比是多少？"
     a: "我们 30 天的拆分：约 60% 重构 + 新功能（Claude Code）、约 25% 行内编辑 + tab 补全（Cursor）、约 15% shell/devops 脚本（Codex CLI）。这个拆分解释了为什么 Claude Code 是单一最常用工具——重构正是 AI 价值复利累积的地方。"
-  - q: "Max 的'无限'套餐有没有隐藏成本？"
+  - q: "Max 的无限套餐有没有隐藏成本？"
     a: "两个：(1) Anthropic 在持续高频使用后会限速——实际天花板约 5-6 小时密集 agent 循环/天。(2) 长上下文（200K+ token）会更快消耗当月配额。两者在正常工作流里都不常见。"
   - q: "2026 年 5 月有哪些更早评测没覆盖的定价变化？"
     a: "Anthropic 在 4 月底调整了 Max 套餐的限速（更宽松、更多余量）。OpenAI 的 Codex CLI 完全转向按量付费（不再有 Pro 套餐）。Cursor 新增 $50 Business 套餐并捆绑 API 额度。三者都让临界点的算法相比 Q1 评测发生了偏移。"

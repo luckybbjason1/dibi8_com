@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 title: 'AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI — The Honest Comparison'
 description: 'Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, and Google Gemini CLI. Real benchmarks on a 50K-LOC TypeScript codebase, MCP support, context window economics, pricing breakdown, and where each one actually wins.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Codex CLI', 'Gemini CLI', 'MCP']
+tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
 source_version: 'Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0'
 licensing_model: 'Commercial / Mixed'
@@ -19,7 +21,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['claude-code', 'cursor', 'codex-cli', 'gemini-cli', 'ai-coding', 'agent', '2026']
+tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai-coding', agent, 2026]
 aliases:
 - /posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
 faq:
@@ -59,6 +61,16 @@ This shootout is the side-by-side every developer asks for and almost no review 
 >
 > **Open-source alternatives matter**: Aider, Cline, Roo Code remain viable for cost-conscious developers willing to bring their own API key.
 
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [Act](/cn/act)
+2. [Activepieces Workflow Automation](/cn/activepieces-workflow-automation)
+3. [Affine Knowledge Base Whiteboard](/cn/affine-knowledge-base-whiteboard)
+
+---
 ---
 
 ## The Four Tools at a Glance

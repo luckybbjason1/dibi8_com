@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/grafana" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/grafana" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/grafana" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/grafana" />
 title: 'Grafana: 73,876 GitHub Stars — Docker 部署指南 2026'
 description: 'Grafana 是开源的可视化与分析平台，用于监控和可观测性。支持 Prometheus、Loki、InfluxDB、Elasticsearch 集成。包含 Docker 部署、生产环境加固、与 Datadog、Kibana、New Relic 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/grafana/grafana'
 stars: 73876
-maintainer: 'grafana'
+maintainer: grafana
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['grafana', 'docker', '监控', 'prometheus', '可观测性', '仪表盘', '运维']
+tags: [grafana, docker, 监控, prometheus, 可观测性, 仪表盘, 运维]
 aliases:
 - /zh/posts/grafana/
 ---
@@ -168,7 +173,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
 
@@ -176,7 +181,7 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  - job_name: 'grafana'
+  - job_name: grafana
     static_configs:
       - targets: ['grafana:3000']
 ```
@@ -474,7 +479,7 @@ groups:
 apiVersion: 1
 
 providers:
-  - name: 'default'
+  - name: default
     orgId: 1
     folder: ''
     type: file

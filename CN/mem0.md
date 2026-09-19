@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mem0" />
 title: 'Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Guide 2026'
 description: 'Mem0 (mem0ai) is a universal memory layer for AI agents. Compatible with Claude Code, OpenAI, LangChain, CrewAI, Cursor. Covers mem0 tutorial, persistent memory setup, vector store tuning, and production deployment benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/mem0ai/mem0'
 stars: 56205
-maintainer: 'mem0ai'
+maintainer: mem0ai
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mem0', 'ai-agent-memory', 'persistent-memory', 'langchain', 'vector-store', 'memory-tuning', 'mem0-tutorial', 'mem0-vs-langchain', 'crewai', 'open-source']
+tags: [mem0, 'ai-agent-memory', 'persistent-memory', langchain, 'vector-store', 'memory-tuning', 'mem0-tutorial', 'mem0-vs-langchain', crewai, 'open-source']
 aliases:
 - /posts/mem0/
 ---
@@ -356,7 +358,7 @@ mem0 = MemoryClient(api_key=os.getenv("MEM0_API_KEY"))
 def retrieve_user_context(user_id: str, query: str) -> str:
     """Retrieve memories about the user for personalization."""
     results = mem0.search(query, user_id=user_id, limit=5)
-    return "\n".join([f"- {r['memory']}" for r in results])
+    return "\n".join([f"- {r[memory]}" for r in results])
 
 @tool
 def store_interaction(user_id: str, content: str) -> str:

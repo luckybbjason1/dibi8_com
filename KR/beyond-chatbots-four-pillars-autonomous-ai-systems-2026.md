@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/beyond-chatbots-four-pillars-autonomous-ai-systems-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/beyond-chatbots-four-pillars-autonomous-ai-systems-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/beyond-chatbots-four-pillars-autonomous-ai-systems-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/beyond-chatbots-four-pillars-autonomous-ai-systems-2026" />
 title: "챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥"
 description: "로컬 딥 리서치, InsForge, 에이전트 스킬스, 그리고 카프티 원칙이 심층 연구부터 프로덕션 배포까지 진정한 자율 AI 에이전트를 위한 완전한 스택을 어떻게 형성하는지 알아봅니다."
 date: 2026-05-15T04:20:25+09:00

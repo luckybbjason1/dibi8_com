@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ultimate-vocal-remover" />
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — Complete Setup Guide 2026'
 description: 'Ultimate Vocal Remover (UVR) is a GUI application for vocal removal using deep neural networks. Compatible with demucs, RVC, GPT-SoVITS. Covers Windows, macOS, Linux installation, model selection, batch processing, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/Anjok07/ultimatevocalremovergui'
 stars: 24700
-maintainer: 'Anjok07'
+maintainer: Anjok07
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['vocal-remover', 'audio-separation', 'deep-learning', 'pytorch', 'demucs', 'mdx-net', 'ai-audio', 'karaoke', 'music-production']
+tags: ['vocal-remover', 'audio-separation', 'deep-learning', pytorch, demucs, 'mdx-net', 'ai-audio', karaoke, 'music-production']
 aliases:
 - /posts/ultimate-vocal-remover/
 ---
@@ -216,7 +218,7 @@ RUN . venv/bin/activate && pip install -r requirements.txt
 RUN . venv/bin/activate && python -c "
 import wget
 import os
-os.makedirs('models', exist_ok=True)
+os.makedirs(models, exist_ok=True)
 # Models auto-download on first use
 "
 

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/9router-smart-llm-proxy-token-saver-free-coding" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/9router-smart-llm-proxy-token-saver-free-coding" />
 title: "9Router: 스마트 LLM 프록시 — 토큰 60% 절약, API 제한 다시는 겪지 않기"
 description: "9Router 발견하기 — RTK 무손실 압축 엔진으로 토큰을 20-40% 절약하고, 3단계 스마트 폴백 시스템으로 40개 이상의 AI 모델 공급자를 자동 라우팅하며, 무료로 world-class의 AI 코딩 경험을 실현하는 최신 오픈소스 프록시 인프라."
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anthropic-financial-services-ai-finance-automation" />
 title: Anthropic Financial Services：Các đội ngũ tài chính tự động hóa phân tích bằng
   AI và tăng ROI 300% như thế nào
 description: Khám phá cách Anthropic Financial Services giúp các đội ngũ ngân hàng

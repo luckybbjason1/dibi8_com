@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docuseal-open-source-docusign-alternative" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docuseal-open-source-docusign-alternative" />
 title: Đánh giá DocuSeal：Giảm 90% chi phí ký tài liệu với lựa chọn thay thế DocuSign
   mã nguồn mở
 description: DocuSeal là nền tảng mã nguồn mở 15.7k star thay thế DocuSign bằng ký

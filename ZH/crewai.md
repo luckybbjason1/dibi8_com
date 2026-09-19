@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai" />
 title: 'CrewAI: 51000+ Star 构建多智能体 AI 团队 — 完整设置指南 2026'
 description: 'CrewAI (crewAIInc/crewAI) 是一个用于编排角色扮演、自主 AI 智能体的 Python 框架。兼容 OpenAI、Anthropic、Ollama、LangChain 和 LlamaIndex。涵盖安装、智能体角色、任务工作流、生产部署和基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/crewAIInc/crewAI'
 stars: 51759
-maintainer: 'crewAIInc'
+maintainer: crewAIInc
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', '多智能体', 'ai智能体', 'python', 'llm编排', '自动化', '开源', '机器学习']
+tags: [crewai, 多智能体, ai智能体, python, llm编排, 自动化, 开源, 机器学习]
 aliases:
 - /zh/posts/crewai/
 - /zh/resources/llm-frameworks/crewai-multi-agent-orchestration/

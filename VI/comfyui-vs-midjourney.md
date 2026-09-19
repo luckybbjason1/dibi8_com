@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-vs-midjourney" />
 title: "Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Miễn Phí"
 description: "Kẻ Hủy Diệt Midjourney (2026): Vì Sao ComfyUI Là Vua Mã Nguồn Mở Miễn Phí"
 date: 2026-05-15T04:20:25+09:00

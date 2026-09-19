@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/data-visualization-tools-python-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/data-visualization-tools-python-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/data-visualization-tools-python-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/data-visualization-tools-python-comparison" />
 title: 'Matplotlib vs Seaborn vs Plotly vs Observable: Hướng Dẫn Chọn Công Cụ Trực Quan Hóa Dữ Liệu 2024'
 description: 'So sánh chi tiết Matplotlib, Seaborn, Plotly và Observable. Bảng tính năng, ví dụ code, hướng dẫn chọn công cụ trực quan hóa dữ liệu Python phù hợp.'
 date: 2026-05-18 00:00:00+08:00

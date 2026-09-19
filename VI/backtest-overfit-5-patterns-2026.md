@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtest-overfit-5-patterns-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtest-overfit-5-patterns-2026" />
 title: 'Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sharpe Thực Tế (2026)'
 description: 'Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân kỳ walk-forward, lật chế độ thị trường, vách đá tham số, chồng chỉ báo và thiên lệch sống sót. Mỗi mẫu hình có ví dụ tổng hợp có thể tái tạo + tín hiệu phát hiện.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'vectorbt', 'backtrader']
+tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: 'pandas 2.2+ / vectorbt 0.27+'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['backtest', 'overfit', 'quant', 'walk-forward', 'machine-learning', '2026']
+tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
 aliases:
 - /vi/posts/backtest-overfit-5-patterns-2026/
 faq:

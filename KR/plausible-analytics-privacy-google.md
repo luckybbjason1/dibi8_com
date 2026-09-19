@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
 title: 'Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 대안 — 2026년 셀프 호스팅 설정'
 description: 'Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. 실제 벤치마크와 Docker 배포.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'plausible/analytics'
 stars: 21000
-maintainer: 'plausible'
+maintainer: plausible
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['plausible', 'analytics', '프라이버시', 'gdpr', 'google-analytics-대안', '셀프호스팅', 'docker', 'elixir', '경량']
+tags: [plausible, analytics, 프라이버시, gdpr, 'google-analytics-대안', 셀프호스팅, docker, elixir, 경량]
 aliases:
 - /kr/posts/plausible-analytics-privacy-google/
 ---
@@ -127,7 +132,7 @@ export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
 
 # 환경 변수 파일 생성
-cat > plausible-conf.env << 'EOF'
+cat > plausible-conf.env << EOF
 BASE_URL=https://analytics.yourdomain.com
 SECRET_KEY_BASE=${SECRET_KEY_BASE}
 TOTP_VAULT_KEY=${TOTP_VAULT_KEY}
@@ -243,14 +248,14 @@ export default function PlausibleAnalytics() {
 // Next.js 13+ SPA 라우트 변경
 // app/layout.js
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect } from react;
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.plausible) {
-      window.plausible('pageview');
+    if (typeof window !== undefined && window.plausible) {
+      window.plausible(pageview);
     }
   }, [pathname]);
 
@@ -278,8 +283,8 @@ export default defineNuxtPlugin(() => {
   // SPA 낵게이션 추적
   const router = useRouter();
   router.afterEach((to) => {
-    if (typeof window !== 'undefined' && window.plausible) {
-      window.plausible('pageview', { u: window.location.origin + to.fullPath });
+    if (typeof window !== undefined && window.plausible) {
+      window.plausible(pageview, { u: window.location.origin + to.fullPath });
     }
   });
 });
@@ -294,7 +299,7 @@ export default defineNuxtPlugin(() => {
 
 # 옵션 2: 수동 — 테마의 header.php에 추가
 <?php if (!is_user_logged_in()): ?>
-<script defer data-domain="<?php echo $_SERVER['HTTP_HOST']; ?>"
+<script defer data-domain="<?php echo $_SERVER[HTTP_HOST]; ?>"
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
 ```
@@ -314,10 +319,10 @@ export default defineNuxtPlugin(() => {
 export default defineConfig({
   integrations: [
     {
-      name: 'plausible',
+      name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript('head', `
+          injectScript(head, `
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
           `);
@@ -332,23 +337,23 @@ export default defineConfig({
 
 ```javascript
 // 버튼 클릭, 폼 제출 또는 모든 커스텀 이벤트 추적
-document.getElementById('signup-button').addEventListener('click', () => {
+document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
     props: {
-      plan: 'pro',
-      source: 'header'
+      plan: pro,
+      source: header
     }
   });
 });
 
 // 이커머스 전환 추적
-plausible('Purchase', {
+plausible(Purchase, {
   props: {
     product: 'Widget Pro',
     price: 99.00,
-    currency: 'USD'
+    currency: USD
   },
-  revenue: { currency: 'USD', amount: 9900 }  // 센트 단위
+  revenue: { currency: USD, amount: 9900 }  // 센트 단위
 });
 ```
 
@@ -480,7 +485,7 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]:
-    print(f"{entry['date']}: {entry['visitors']} 방문자, {entry['pageviews']} 페이지뷰")
+    print(f"{entry[date]}: {entry[visitors]} 방문자, {entry[pageviews]} 페이지뷰")
 ```
 
 ### 백업 전략
@@ -542,7 +547,7 @@ services:
 ```yaml
 # prometheus.yml에 추가
 scrape_configs:
-  - job_name: 'plausible'
+  - job_name: plausible
     static_configs:
       - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
@@ -623,7 +628,7 @@ Plausible은 일반적으로 GA4보다 **5-15% 높은 방문자 수**를 보고�
 ```bash
 # GA 가져오기 실행 (Plausible 컨테이너에서)
 docker compose exec plausible bin/plausible \
-  "Plausible.Google.Import.start('your-ga-property-id', 'YOUR_API_KEY')"
+  "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
 ```
 
 **사이트가 VPS 용량을 초과하면 어떻게 되나요?**

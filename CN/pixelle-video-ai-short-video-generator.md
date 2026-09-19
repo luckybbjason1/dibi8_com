@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/pixelle-video-ai-short-video-generator" />
 title: 'Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video'
 description: Pixelle-Video is an AI-powered automatic short video engine. Input a
   topic and get a complete video with script, AI images, voiceover, and BGM.

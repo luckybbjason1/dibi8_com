@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/codebase-memory-mcp-high-performance-code-intelligence" />
 title: 'Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents'
 description: 'Deep dive into codebase-memory-mcp — the fastest code intelligence MCP server that indexes entire repositories in milliseconds. Full installation guide, comparison with alternatives, and real-world usage.'
 tags: ["ai-agent", "ai-tools", "automation", "coding", "development", "mcp", "memory", "model-context-protocol", "open-source", "persistence"]

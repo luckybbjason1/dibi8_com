@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/developer-api-gateway-tools" />
 title: 'Các Công Cụ API Gateway Cho Lập Trình Viên Tốt Nhất 2025: So Sánh Kong, NGINX Plus, Traefik, Apigee'
 description: 'So sánh chi tiết các công cụ API Gateway hàng đầu năm 2025. Tìm hiểu Kong, NGINX Plus, Traefik, Google Apigee, AWS API Gateway và Tyk để bảo vệ và quản lý API hiệu quả.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['API Gateway', 'Kong', 'NGINX', 'Traefik', 'Apigee', 'microservices', 'DevOps']
+tags: ['api gateway', kong, nginx, traefik, apigee, microservices, devops]
 aliases:
 - /vi/posts/developer-api-gateway-tools/
 ---
@@ -264,7 +269,7 @@ Lưu ý rằng các con số này phụ thuộc nhiều vào phần cứng, cấ
 
 ```yaml
 # docker-compose.yml
-version: '3'
+version: 3
 services:
   traefik:
     image: traefik:v3.0

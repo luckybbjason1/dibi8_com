@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-monthly-bill-2026-real-receipts" />
 title: 'AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor Pro 실측 30일 영수증'
 description: 'Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추적했습니다. 작업별 비용 분해, 각 도구의 손익분기점, 전환이 의미 있는 임계치까지.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Codex CLI', 'OpenAI API', 'Anthropic API']
+tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'May 2026 30-day window'
 licensing_model: Commercial
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', 'cursor', 'codex-cli', 'pricing', '2026']
+tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
 aliases:
 - /kr/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq:
@@ -27,7 +32,7 @@ faq:
     a: "아니요. 두 개가 최적입니다. 일반적인 조합: Claude Code + Cursor($220/월). 세 가지 스택은 Codex CLI의 터미널 통합이 우위를 갖는 셸 중심 자동화 워크로드가 명확할 때만 의미가 있습니다."
   - q: "작업 유형별 사용 비중은 실제로 어떻게 나뉘나요?"
     a: "30일 비중: 약 60% 리팩터 + 신규 기능(Claude Code), 약 25% 인라인 편집 + 탭 자동완성(Cursor), 약 15% 셸/데브옵스 스크립트(Codex CLI). 이 비중이 Claude Code가 가장 많이 쓰이는 이유를 설명합니다 — 리팩터링이 AI 가치가 복리로 쌓이는 영역이기 때문입니다."
-  - q: "'무제한' Max 플랜에 숨은 비용이 있나요?"
+  - q: "무제한 Max 플랜에 숨은 비용이 있나요?"
     a: "두 가지: (1) Anthropic은 지속적 버스트 사용 후 속도를 제한합니다 — 실용적 상한은 하루 약 5-6시간 집중 에이전트 루프입니다. (2) 긴 컨텍스트(200K+ 토큰)는 월 한도를 더 빨리 소진합니다. 일반 워크플로에서는 둘 다 드뭅니다."
   - q: "2026년 5월 가격 정책에서 이전 리뷰에 없던 변화는?"
     a: "Anthropic은 4월 말 Max 플랜 속도 제한을 조정했습니다(더 느슨하고 여유가 큼). OpenAI의 Codex CLI는 완전 종량제로 이동(Pro 티어 폐지). Cursor는 API 크레딧이 포함된 $50 Business 티어를 추가했습니다. 세 가지 변화 모두 Q1 리뷰 대비 임계치 계산을 바꿔놓습니다."
@@ -103,7 +108,7 @@ Effective monthly: $87.12
 Effective cost per hour: $0.98
 ```
 
-시간당 비용 최저 — 그러나 89시간의 대부분은 수동적 탭 자동완성입니다. 능동적 에이전트 루프 시간은 약 12시간. **능동 시간당 비용**은 $7.26에 훨씬 가깝습니다. '저렴'이라는 프레임이 에이전트 모드를 본격 사용했을 때의 실체를 가립니다.
+시간당 비용 최저 — 그러나 89시간의 대부분은 수동적 탭 자동완성입니다. 능동적 에이전트 루프 시간은 약 12시간. **능동 시간당 비용**은 $7.26에 훨씬 가깝습니다. 저렴이라는 프레임이 에이전트 모드를 본격 사용했을 때의 실체를 가립니다.
 
 ## 작업별 비용 분해
 

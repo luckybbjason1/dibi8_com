@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/pandas-performance-optimization-alternatives" />
 title: 'Pandas Performance Optimization Guide: When to Switch to Polars or DuckDB in 2024'
 description: 'Optimize Pandas performance or switch to Polars or DuckDB. Benchmarks, migration strategies, and decision frameworks for faster data processing in Python.'
 date: 2026-05-18 00:00:00+08:00

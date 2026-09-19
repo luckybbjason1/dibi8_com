@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-vs-crewai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-vs-crewai" />
 title: 'LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên Kiểm Soát vs Nhóm Agent Theo Vai Trò'
 description: 'So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai trò, cấp cao) — kiểm soát, đường cong học tập, trạng thái, thiết kế đa agent và độ bền khi chạy production. Cập nhật 2026.'
 date: 2026-06-06 00:00:00+08:00

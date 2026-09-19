@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/meta-tags-generator" />
 title: "Meta Tags Generator — SEO Title, Description, Open Graph & Twitter Card"
 description: "Generate copy-paste-ready HTML head meta tags — SEO title, description, canonical, Open Graph, and Twitter Card — from one simple form. Optimize how your pages look in Google, Facebook, X, and AI search."
 date: 2026-05-18

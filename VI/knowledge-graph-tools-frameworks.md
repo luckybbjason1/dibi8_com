@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-graph-tools-frameworks" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-graph-tools-frameworks" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-graph-tools-frameworks" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-graph-tools-frameworks" />
 title: 'Các Công Cụ Và Framework Xây Dựng Đồ Thị Tri Thức Tốt Nhất 2025: So Sánh Neo4j, RDFlib, Amazon Neptune, Stardog'
 description: 'So sánh chi tiết các công cụ và framework xây dựng đồ thị tri thức hàng đầu năm 2025. Tìm hiểu Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph và Dgraph để lựa chọn nền tảng phù hợp.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['knowledge graph', 'graph database', 'Neo4j', 'Amazon Neptune', 'Stardog', 'RDF', 'Cypher', 'SPARQL']
+tags: ['knowledge graph', 'graph database', neo4j, 'amazon neptune', stardog, rdf, cypher, sparql]
 aliases:
 - /vi/posts/knowledge-graph-tools-frameworks/
 ---

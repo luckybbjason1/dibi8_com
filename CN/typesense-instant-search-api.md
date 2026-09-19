@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/typesense-instant-search-api" />
 title: 'Typesense 2026: The Open-Source Instant Search API Handling 1M Searches/Day — Self-Hosted Setup Guide'
 description: 'Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Docker deployment, SDK integration, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'typesense/typesense'
 stars: 23200
-maintainer: 'typesense'
+maintainer: typesense
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -178,24 +180,24 @@ npm install typesense
 ```
 
 ```javascript
-const Typesense = require('typesense');
+const Typesense = require(typesense);
 
 const client = new Typesense.Client({
-  'nodes': [{ 'host': 'localhost', 'port': '8108', 'protocol': 'http' }],
-  'apiKey': process.env.TYPESENSE_API_KEY,
-  'connectionTimeoutSeconds': 2
+  nodes: [{ host: localhost, port: 8108, protocol: http }],
+  apiKey: process.env.TYPESENSE_API_KEY,
+  connectionTimeoutSeconds: 2
 });
 
 // Search
 async function searchProducts(query) {
-  const results = await client.collections('products')
+  const results = await client.collections(products)
     .documents()
     .search({
-      'q': query,
-      'query_by': 'name,description',
-      'filter_by': 'in_stock:true',
-      'sort_by': 'rating:desc',
-      'per_page': 10
+      q: query,
+      query_by: 'name,description',
+      filter_by: 'in_stock:true',
+      sort_by: 'rating:desc',
+      per_page: 10
     });
   
   console.log(`Found ${results.found} results`);
@@ -204,7 +206,7 @@ async function searchProducts(query) {
   });
 }
 
-searchProducts('headphons'); // typo still works
+searchProducts(headphons); // typo still works
 ```
 
 ### Python SDK
@@ -218,23 +220,23 @@ import typesense
 import os
 
 client = typesense.Client({
-    'nodes': [{'host': 'localhost', 'port': '8108', 'protocol': 'http'}],
-    'api_key': os.environ['TYPESENSE_API_KEY'],
-    'connection_timeout_seconds': 2
+    nodes: [{host: localhost, port: 8108, protocol: http}],
+    api_key: os.environ[TYPESENSE_API_KEY],
+    connection_timeout_seconds: 2
 })
 
 # Search with faceting
-results = client.collections['products'].documents.search({
-    'q': 'keyboard',
-    'query_by': 'name,description',
-    'facet_by': 'category,price',
-    'sort_by': 'rating:desc',
-    'per_page': 10
+results = client.collections[products].documents.search({
+    q: keyboard,
+    query_by: 'name,description',
+    facet_by: 'category,price',
+    sort_by: 'rating:desc',
+    per_page: 10
 })
 
-print(f"Total: {results['found']}")
-for hit in results['hits']:
-    print(f"  {hit['document']['name']} - ${hit['document']['price']}")
+print(f"Total: {results[found]}")
+for hit in results[hits]:
+    print(f"  {hit[document][name]} - ${hit[document][price]}")
 ```
 
 ### React InstantSearch Integration
@@ -246,14 +248,14 @@ npm install typesense-instantsearch-adapter react-instantsearch-dom
 ```
 
 ```jsx
-import React from 'react';
+import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom';
 import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter';
 
 const typesenseAdapter = new TypesenseInstantsearchAdapter({
   server: {
     apiKey: process.env.REACT_APP_TYPESENSE_API_KEY,
-    nodes: [{ host: 'localhost', port: '8108', protocol: 'http' }]
+    nodes: [{ host: localhost, port: 8108, protocol: http }]
   },
   additionalSearchParameters: {
     query_by: 'name,description',
@@ -289,23 +291,23 @@ export default App;
 ### Ruby SDK
 
 ```ruby
-require 'typesense'
+require typesense
 
 client = Typesense::Client.new(
-  nodes: [{ host: 'localhost', port: 8108, protocol: 'http' }],
-  api_key: ENV['TYPESENSE_API_KEY'],
+  nodes: [{ host: localhost, port: 8108, protocol: http }],
+  api_key: ENV[TYPESENSE_API_KEY],
   connection_timeout_seconds: 2
 )
 
-results = client.collections['products'].documents.search(
+results = client.collections[products].documents.search(
   q: 'running shoes',
   query_by: 'name,description',
   filter_by: 'in_stock:true',
   sort_by: 'price:asc'
 )
 
-puts "Found #{results['found']} results"
-results['hits'].each { |hit| puts "- #{hit['document']['name']}" }
+puts "Found #{results[found]} results"
+results[hits].each { |hit| puts "- #{hit[document][name]}" }
 ```
 
 ### Go SDK
@@ -458,11 +460,11 @@ Deploy this on any VPS. If you need a reliable host, [DigitalOcean](https://m.do
 ### 3. Scoped API Keys for Multi-Tenancy
 
 ```javascript
-// Generate a scoped API key that only sees 'Electronics' category
-const typesense = require('typesense');
+// Generate a scoped API key that only sees Electronics category
+const typesense = require(typesense);
 
 const client = new Typesense.Client({
-  nodes: [{ host: 'localhost', port: '8108', protocol: 'http' }],
+  nodes: [{ host: localhost, port: 8108, protocol: http }],
   apiKey: 'master-api-key',
   connectionTimeoutSeconds: 2
 });

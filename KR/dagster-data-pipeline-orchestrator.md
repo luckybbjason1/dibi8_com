@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dagster-data-pipeline-orchestrator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagster-data-pipeline-orchestrator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagster-data-pipeline-orchestrator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagster-data-pipeline-orchestrator" />
 title: 'Dagster: 에셋 기반 데이터 파이프라인 오케스트레이터 — 2026 프로덕션 구축 가이드'
 description: 'Dagster 1.13 완전 프로덕션 가이드: 에셋 기반 오케스트레이션, 데이터 인지 스케줄링, 파티셔닝, 백필, Docker Compose 자체 호스팅 배포.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Dagster', 'data-pipeline', 'orchestration', 'ETL', 'Apache-Airflow', 'dbt', 'Python', 'Docker', 'data-engineering', 'asset-centric', '데이터파이프라인', '데이터오케스트레이션']
+tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric', 데이터파이프라인, 데이터오케스트레이션]
 aliases:
 - /kr/posts/dagster-data-pipeline-orchestrator/
 ---

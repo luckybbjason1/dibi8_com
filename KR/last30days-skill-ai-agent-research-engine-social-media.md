@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/last30days-skill-ai-agent-research-engine-social-media" />
 title: '지난 30일간-기술: 실제 참여를 기준으로 소셜 미디어를 평가하는 AI 에이전트 검색 엔진'
 description: 'Reddit, X, YouTube, TikTok, Polymarket, GitHub 등에서 병렬로 검색합니다. 결과를 편집자가 아닌 추천 수, 좋아요, 실제 금액으로 평가합니다. Claude Code, Codex, Cursor 및 50개 이상의 에이전트 호스트와 함께 작동합니다.'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
@@ -21,13 +26,13 @@ description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in 
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'

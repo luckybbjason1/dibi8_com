@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rvc" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rvc" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rvc" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rvc" />
 title: 'RVC: 35K+ Stars AI 음성 변환 구축 — 2026년 10분 훈련 설정 가이드'
 description: 'RVC (Retrieval-based Voice Conversion)는 GPT-SoVITS, Coqui TTS, demucs와 호환되는 VITS 기반 음성 변환 프레임워크입니다. 본 튜토리얼은 Docker 배포, 훈련 파이프라인, API 통합 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['rvc', '음성-변환', 'ai-음성-클론', 'vits', '음성-합성', 'docker', '튜토리얼', '검색-기반-vc']
+tags: [rvc, '음성-변환', 'ai-음성-클론', vits, '음성-합성', docker, 튜토리얼, '검색-기반-vc']
 aliases:
 - /kr/posts/rvc/
 ---
@@ -522,9 +527,9 @@ def list_available_models(models_dir="./models"):
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-conversion_count = Counter('rvc_conversions_total', '총 변환 횟수')
-conversion_duration = Histogram('rvc_conversion_seconds', '변환 지연 시간')
-error_count = Counter('rvc_errors_total', '총 오류 수', ['error_type'])
+conversion_count = Counter(rvc_conversions_total, '총 변환 횟수')
+conversion_duration = Histogram(rvc_conversion_seconds, '변환 지연 시간')
+error_count = Counter(rvc_errors_total, '총 오류 수', [error_type])
 
 def monitored_convert(audio_path, model_name):
     start = time.time()

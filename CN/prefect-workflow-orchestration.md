@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/prefect-workflow-orchestration" />
 title: 'Prefect 2026: The Modern Workflow Orchestration Engine for Data & AI Pipelines — Self-Hosted Setup Guide'
 description: 'A hands-on guide to Prefect 3.x — the Python-native workflow orchestrator with async execution, built-in retries, and self-hosted server. Deploy your data pipelines in under 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'PrefectHQ/prefect'
 stars: 18000
-maintainer: 'PrefectHQ'
+maintainer: PrefectHQ
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -129,7 +131,7 @@ For team deployment with PostgreSQL:
 
 ```bash
 # Option B: Docker Compose with PostgreSQL
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 services:
   prefect-server:
     image: prefecthq/prefect:3.3.0-python3.12

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/real-time-data-streaming-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/real-time-data-streaming-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/real-time-data-streaming-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/real-time-data-streaming-tools" />
 title: '2025年最佳实时数据流处理工具对比：Apache Kafka、Flink、Spark Streaming、Redpanda全面评测'
 description: '深入对比Apache Kafka、Flink、Spark Streaming、Redpanda、Pulsar等主流实时数据流处理工具，从吞吐量、延迟、运维复杂度等维度进行全面评测。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['实时流处理', 'Apache Kafka', 'Flink', 'Spark Streaming', '数据工程']
+tags: [实时流处理, 'apache kafka', flink, 'spark streaming', 数据工程]
 aliases:
 - /zh/posts/real-time-data-streaming-tools/
 ---

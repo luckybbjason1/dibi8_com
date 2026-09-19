@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/12-factor-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents" />
 title: "12-Factor Agents：构建可靠 LLM 应用程序的原则性框架"
 description: "12-Factor Agents 框架将经过实战检验的 12-Factor App 方法论适配到 LLM 驱动的应用程序，提供了一种构建可靠、可伸缩、可观测的 AI 代理的原则性方法。"
 date: 2026-06-10

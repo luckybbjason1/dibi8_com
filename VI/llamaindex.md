@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex" />
 title: 'LlamaIndex: 49K+ Stars — Hướng Dẫn Triển Khai RAG Production 2026'
 description: 'LlamaIndex là framework dữ liệu để xây dựng hệ thống RAG production với LLM. Hỗ trợ OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Bao gồm triển khai Docker, query engine, agent, và benchmark so với LangChain/Haystack/RAGFlow.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['llamaindex', 'rag', 'llm', 'vector-database', 'retrieval-augmented-generation', 'openai', 'ollama', 'qdrant', 'python', 'docker']
+tags: [llamaindex, rag, llm, 'vector-database', 'retrieval-augmented-generation', openai, ollama, qdrant, python, docker]
 aliases:
 - /vi/posts/llamaindex/
 ---

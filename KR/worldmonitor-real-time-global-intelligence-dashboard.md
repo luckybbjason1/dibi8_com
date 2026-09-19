@@ -1,11 +1,16 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
 title: 'WorldMonitor: 지리적 감시를 위한 실시간 글로벌 인텔리전스 대시보드'
 description: 뉴스, 지정학적 사건, 인프라 추적을 집계하는 실시간 AI 기반 글로벌 인텔리전스 대시보드. 59K 스타. 팔란티어 고담의 오픈소스 대안.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-tools
-tags: ['ai', '대시보드', '지정학', '모니터링', '뉴스', '오픈소스', 'osint', 'palantir', '상황인식']
+tags: [ai, 대시보드, 지정학, 모니터링, 뉴스, 오픈소스, osint, palantir, 상황인식]
 slug: worldmonitor-real-time-global-intelligence-dashboard
 featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
 lang: kr

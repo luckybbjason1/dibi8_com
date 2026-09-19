@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/shellcheck" />
 title: 'ShellCheck: 39,456 GitHub Stars — Complete Setup Guide for Shell Script Analysis in 2026'
 description: 'ShellCheck (SC) is a static analysis tool for bash/sh shell scripts. Integrates with Docker, GitHub Actions, VS Code, and CI/CD pipelines. Covers installation, configuration, CI integration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/koalaman/shellcheck'
 stars: 39456
-maintainer: 'koalaman'
+maintainer: koalaman
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['shellcheck', 'bash', 'static-analysis', 'linting', 'shell-script', 'devops', 'ci-cd', 'docker']
+tags: [shellcheck, bash, 'static-analysis', linting, 'shell-script', devops, 'ci-cd', docker]
 aliases:
 - /posts/shellcheck/
 ---
@@ -206,19 +208,19 @@ Using ALE (Asynchronous Lint Engine):
 ```vim
 " .vimrc or init.vim
 let g:ale_linters = {
-\   'sh': ['shellcheck'],
+\   sh: [shellcheck],
 \}
 
 " Run on save and while typing
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_on_text_changed = always
 ```
 
 Using native LSP in Neovim with bash-language-server:
 
 ```lua
 -- init.lua (nvim-lspconfig)
-require('lspconfig').bashls.setup {
+require(lspconfig).bashls.setup {
   settings = {
     bashIde = {
       shellcheckPath = "shellcheck"
@@ -330,7 +332,7 @@ pipeline {
     agent any
 
     stages {
-        stage('ShellCheck') {
+        stage(ShellCheck) {
             steps {
                 sh '''
                     #!/bin/bash

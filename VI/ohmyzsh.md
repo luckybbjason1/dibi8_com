@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ohmyzsh" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ohmyzsh" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ohmyzsh" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ohmyzsh" />
 title: 'Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn trong Năm 2026'
 description: 'Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao.'
 date: 2026-06-11

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/faster-whisper" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/faster-whisper" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/faster-whisper" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/faster-whisper" />
 title: 'faster-whisper: 23K+ Stars로 4배 빠른 음성-텍스트 변환 — 2026년 WhisperX, whisper.cpp과 벤치마크 비교'
 description: 'faster-whisper(SYSTRAN)는 CTranslate2로 OpenAI Whisper를 재구현하여 4배 속도 향상을 달성합니다. faster whisper 튜토리얼, 벤치마크 데이터, Docker 설정, Python API, VAD 필터, 배치 처리, WhisperX 및 whisper.cpp과의 프로덕션 통합을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/SYSTRAN/faster-whisper'
 stars: 23000
-maintainer: 'SYSTRAN'
+maintainer: SYSTRAN
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['faster-whisper', '음성-텍스트변환', 'CTranslate2', 'OpenAI-Whisper', '음성인식', 'Python', 'Docker', 'ASR']
+tags: ['faster-whisper', '음성-텍스트변환', ctranslate2, 'openai-whisper', 음성인식, python, docker, asr]
 aliases:
 - /kr/posts/faster-whisper/
 ---
@@ -173,8 +178,8 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 
 for segment in result["segments"]:
     speaker = segment.get("speaker", "UNKNOWN")
-    print(f"[{segment['start']:.2f}s -> {segment['end']:.2f}s] "
-          f"{speaker}: {segment['text']}")
+    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
+          f"{speaker}: {segment[text]}")
 ```
 
 ### whisper-asr-webservice(OpenAI 호환 API)

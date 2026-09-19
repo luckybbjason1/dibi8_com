@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiohttp-async-web-scraping" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất Cao Xử lý 10K+ Request/Giây — Hướng dẫn Python'
 description: 'Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connection pooling, session management, rate limiting và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['aiohttp', 'bất đồng bộ', 'web scraping', 'python', 'http client', 'asyncio']
+tags: [aiohttp, 'bất đồng bộ', 'web scraping', python, 'http client', asyncio]
 aliases:
 - /vi/posts/aiohttp-async-web-scraping/
 ---
@@ -150,7 +155,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         results = await scrape_titles(session, urls)
         for r in results:
-            print(f"{r['url']}: {r['title']}")
+            print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```

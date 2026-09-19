@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pancake-trading-bot-defi-bsc" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pancake-trading-bot-defi-bsc" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pancake-trading-bot-defi-bsc" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pancake-trading-bot-defi-bsc" />
 title: 'PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi Tự Động Trên BSC Với Python — Hướng Dẫn Đầy Đủ'
 description: 'Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiến lược tự động, giám sát liquidity pool, bảo vệ MEV và framework bot Python — kèm benchmark 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'pancakeswap/pancake-swap-core'
 stars: 2500
-maintainer: 'pancakeswap'
+maintainer: pancakeswap
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['PancakeSwap', 'DeFi', 'Binance Smart Chain', 'Web3.py', 'Trading Bot', 'BSC', 'Giao Dịch Tự Động', 'Liquidity Pool', 'MEV Protection', 'Python', 'Crypto Bot', 'DEX Trading']
+tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', 'trading bot', bsc, 'giao dịch tự động', 'liquidity pool', 'mev protection', python, 'crypto bot', 'dex trading']
 aliases:
 - /vi/posts/pancake-trading-bot-defi-bsc/
 ---
@@ -202,7 +207,7 @@ class BSCClient:
             raise ConnectionError("Failed to connect to BSC node")
 
         print(f"Connected to BSC. Block: {self.w3.eth.block_number}")
-        print(f"Gas price: {self.w3.from_wei(self.w3.eth.gas_price, 'gwei'):.2f} gwei")
+        print(f"Gas price: {self.w3.from_wei(self.w3.eth.gas_price, gwei):.2f} gwei")
 
         self.account = self.w3.eth.account.from_key(config.PRIVATE_KEY)
         self.address = self.account.address
@@ -280,7 +285,7 @@ class PancakeSwapBot:
         tx_hash = self.w3.eth.send_raw_transaction(signed.raw_transaction)
         receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash, timeout=120)
 
-        print(f"Approval tx: {tx_hash.hex()} — Status: {receipt['status']}")
+        print(f"Approval tx: {tx_hash.hex()} — Status: {receipt[status]}")
         return receipt["status"] == 1
 ```
 
@@ -307,8 +312,8 @@ class PancakeSwapBot:
         expected_out = amounts_out[-1]
         min_output = int(expected_out * (1 - slippage))
 
-        print(f"Expected output: {self.w3.from_wei(expected_out, 'ether'):.6f}")
-        print(f"Min output ({slippage*100:.1f}% slippage): {self.w3.from_wei(min_output, 'ether'):.6f}")
+        print(f"Expected output: {self.w3.from_wei(expected_out, ether):.6f}")
+        print(f"Min output ({slippage*100:.1f}% slippage): {self.w3.from_wei(min_output, ether):.6f}")
 
         deadline = self.w3.eth.get_block("latest")["timestamp"] + deadline_seconds
 
@@ -332,7 +337,7 @@ class PancakeSwapBot:
         if receipt["status"] == 1:
             print(f"Swap success: {tx_hash.hex()}")
             gas_cost = receipt["gasUsed"] * tx["gasPrice"]
-            print(f"Gas cost: {self.w3.from_wei(gas_cost, 'ether'):.6f} BNB")
+            print(f"Gas cost: {self.w3.from_wei(gas_cost, ether):.6f} BNB")
         else:
             print(f"Swap FAILED: {tx_hash.hex()}")
 

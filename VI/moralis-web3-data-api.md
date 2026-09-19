@@ -1,4 +1,9 @@
 # Moralis 2026: API Dữ liệu Web3 Động lực cho hơn 100.000 DApps với Dữ liệu Blockchain Thực tế - Hướng dẫn Cài đặt
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moralis-web3-data-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moralis-web3-data-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moralis-web3-data-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moralis-web3-data-api" />
 
 Dữ liệu blockchain là máu sống của mỗi ứng dụng phi tập trung. Dù bạn đang xây dựng bảng điều khiển DeFi, thị trường NFT, công cụ theo dõi ví, hay bot giao dịch, ứng dụng của bạn đều cần truy cập nhanh chóng và đáng tin cậy vào dữ liệu on-chain. Trong năm 2026, Moralis vẫn là API Dữ liệu Web3 được sử dụng rộng rãi nhất, phục vụ hơn 100.000 ứng dụng phân tán với dữ liệu blockchain thực tế trên hơn mười chuỗi tương thích với EVM.
 

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl: The Cloud-Native Edge AI Computing Platform Deploying Models to IoT Devices — 2026 Setup Guide'
 description: 'Deploy Baetyl v2.4 to bring Kubernetes-native edge computing to IoT devices. AI model inference, MQTT/BACnet support, OTA updates, K3s runtime, and cloud-edge synchronization.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'baetyl/baetyl'
 stars: 3200
-maintainer: 'baetyl'
+maintainer: baetyl
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Baetyl', 'edge-computing', 'IoT', 'Kubernetes', 'K3s', 'AI-inference', 'MQTT', 'edge-AI', 'OTA-updates', 'LF-Edge']
+tags: [baetyl, 'edge-computing', iot, kubernetes, k3s, 'ai-inference', mqtt, 'edge-ai', 'ota-updates', 'lf-edge']
 aliases:
 - /posts/baetyl-edge-ai-computing-platform/
 ---
@@ -126,7 +128,7 @@ mysql -u root -p < scripts/sql/tables.sql
 mysql -u root -p < scripts/sql/data.sql
 
 # Configure database connection
-cat > scripts/charts/baetyl-cloud/conf/cloud.yml << 'EOF'
+cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
 database:
   type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
@@ -348,7 +350,7 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 
 ```bash
 # Deploy SQLite for local data caching at edge
-cat > sqlite-app.yml << 'EOF'
+cat > sqlite-app.yml << EOF
 name: local-cache
 services:
   - name: sqlite

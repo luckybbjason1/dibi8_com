@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
 title: 'CrewAI: 자율적으로 협업하는 다중 에이전트 AI 팀 구축하기 — 프로덕션 설정 및 패턴 2026'
 description: '역할 기반 에이전트, 작업 위임, 메모리 공유 및 자율 협업 패턴으로 다중 에이전트 AI 시스템을 구축하는 Python 프레임워크인 CrewAI에 대한 실전 2026 가이드.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'joaomdmoura/crewAI'
 stars: 28000
-maintainer: 'joaomdmoura'
+maintainer: joaomdmoura
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', '다중-에이전트', 'ai-에이전트', '오케스트레이션', '자율-에이전트', 'llm', 'python', '오픈소스']
+tags: [crewai, '다중-에이전트', 'ai-에이전트', 오케스트레이션, '자율-에이전트', llm, python, 오픈소스]
 aliases:
 - /kr/posts/crewai-multi-agent-orchestration/
 ---
@@ -354,7 +359,7 @@ def check_stock_price(ticker: str) -> str:
     url = f"https://api.example.com/stocks/{ticker}"
     response = requests.get(url)
     data = response.json()
-    return f"{ticker}: ${data['price']} (변동: {data['change']}%)"
+    return f"{ticker}: ${data[price]} (변동: {data[change]}%)"
 
 analyst = Agent(
     role="Financial Analyst",

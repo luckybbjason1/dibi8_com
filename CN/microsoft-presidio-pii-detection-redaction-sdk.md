@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
 lang: en
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: "Presidio Review: Microsoft's Open-Source PII Detection and Data Redaction Framework (9.4K Stars)"
@@ -146,7 +148,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 
 text = "John Smith's SSN is 123-45-6789 and his email is john@example.com"
-results = analyzer.analyze(text=text, language='en')
+results = analyzer.analyze(text=text, language=en)
 
 for result in results:
     print(f"Entity: {result.entity_type}, "
@@ -239,7 +241,7 @@ registry = RecognizerRegistry()
 registry.add_recognizer(EmployeeIdRecognizer())
 
 analyzer = AnalyzerEngine(registry=registry)
-results = analyzer.analyze("Employee ID: EMP-1234-5678", language='en')
+results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
 ```
 
 Custom recognizers can leverage:
@@ -425,7 +427,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 results = analyzer.analyze(
     text='Call John at 555-123-4567 or email john@example.com',
-    language='en'
+    language=en
 )
 for r in results:
     print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')

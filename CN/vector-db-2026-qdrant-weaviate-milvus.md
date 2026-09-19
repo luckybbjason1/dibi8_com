@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
 title: 'Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (Real Workload Test)'
 description: 'Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup pain. Which is right for prototype vs production, and when to skip vector DB entirely for SQLite FTS5.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Qdrant', 'Weaviate', 'Milvus', 'Vector Search', 'Embeddings']
+tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
 source_version: 'Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5'
 licensing_model: Open Source
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['vector-database', 'qdrant', 'weaviate', 'milvus', 'rag', '2026']
+tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
 aliases:
 - /posts/vector-db-2026-qdrant-weaviate-milvus/
 faq:

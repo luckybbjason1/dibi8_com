@@ -1,6 +1,8 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/zapper-defi-dashboard-aggregator" />
 title: 'zapper-defi-dashboard-aggregator'
-description: '{''en'': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', ''zh'': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', ''ko'': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', ''vi'': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
+description: '{'en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn portfolio tracking, yield farming analytics, Zap In/Out transactions, API integration, and custom dashboard building.'', 'zh': ''Zapper综合指南，这个追踪500+协议的DeFi仪表盘聚合器。了解投资组合追踪、收益耕作分析、Zap In/Out交易、API集成和自定义仪表盘构建。'', 'ko': ''500개 이상의 프로토콜을 추적하는 DeFi 대시보드 애그리게이터 Zapper에 대한 종합 가이드. 포트폴리오 추적, 이자 농사 분석, Zap In/Out 트랜잭션, API 통합, 커스텀 대시보드 구축을 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Zapper, bảng điều khiển DeFi tổng hợp theo dõi 500+ giao thức. Tìm hiểu theo dõi danh mục, phân tích yield farming, giao dịch Zap In/Out, tích hợp API, và xây dựng bảng điều khiển tùy chỉnh.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['zapper', 'defi', 'dashboard', 'portfolio', 'yield-farming', 'nft', 'api', 'zap-in', 'zap-out', 'aggregator']
+tags: [zapper, defi, dashboard, portfolio, 'yield-farming', nft, api, 'zap-in', 'zap-out', aggregator]
 aliases:
 - /posts/zapper-defi-dashboard-aggregator/
 ---
@@ -67,7 +69,7 @@ interface ProtocolPosition {
   tokens: TokenBalance[];
   
   // Position metadata
-  positionType: 'lending' | 'liquidity-pool' | 'staking' | 'yield-farming' | 'locked';
+  positionType: lending | 'liquidity-pool' | staking | 'yield-farming' | locked;
   
   // Financial metrics
   balances: {
@@ -113,7 +115,7 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     client.v2.apps.getApps(),
     client.v2.balances.getBalances({
       addresses: [address],
-      networks: ['ethereum', 'polygon', 'arbitrum', 'optimism', 'base']
+      networks: [ethereum, polygon, arbitrum, optimism, base]
     })
   ]);
 
@@ -137,21 +139,21 @@ async function getPortfolio(address: string): Promise<PortfolioSummary> {
     
     // Categorize position
     switch (position.appId) {
-      case 'tokens':
+      case tokens:
         portfolio.categories.wallet.push(position);
         break;
       case 'aave-v3':
-      case 'compound':
-      case 'morpho':
+      case compound:
+      case morpho:
         portfolio.categories.lending.push(position);
         break;
       case 'uniswap-v3':
       case 'balancer-v2':
-      case 'curve':
+      case curve:
         portfolio.categories.liquidity.push(position);
         break;
       default:
-        if (position.positionType === 'staking') {
+        if (position.positionType === staking) {
           portfolio.categories.staking.push(position);
         }
     }
@@ -174,7 +176,7 @@ console.log(`LP Positions: ${portfolio.categories.liquidity.length}`);
 async function getTokenPrices(
   client: ZapperClient,
   tokens: string[],
-  network: string = 'ethereum'
+  network: string = ethereum
 ): Promise<Map<string, number>> {
   const prices = new Map<string, number>();
   
@@ -200,14 +202,14 @@ async function getTokenPrices(
 const tokenPrices = await getTokenPrices(
   client,
   [
-    '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // USDC
-    '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'  // UNI
+    0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2, // WETH
+    0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48, // USDC
+    0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984  // UNI
   ]
 );
 
-console.log('WETH:', tokenPrices.get('0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'));
-console.log('USDC:', tokenPrices.get('0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'));
+console.log('WETH:', tokenPrices.get(0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2));
+console.log('USDC:', tokenPrices.get(0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48));
 ```
 
 ---
@@ -248,7 +250,7 @@ import os
 from zapper_api import ZapperClient
 
 client = ZapperClient(
-    api_key=os.getenv('ZAPPER_API_KEY'),
+    api_key=os.getenv(ZAPPER_API_KEY),
     base_url='https://api.zapper.xyz'
 )
 
@@ -277,7 +279,7 @@ curl -X GET "https://api.zapper.xyz/v2/balances?addresses[]=0x...&networks[]=eth
 async function getFullPortfolio(address: string) {
   const response = await client.v2.balances.getBalances({
     addresses: [address],
-    networks: ['ethereum', 'polygon', 'arbitrum', 'optimism', 'base', 'avalanche'],
+    networks: [ethereum, polygon, arbitrum, optimism, base, avalanche],
     includeMeta: true
   });
 
@@ -295,7 +297,7 @@ async function getFullPortfolio(address: string) {
     const category = categorizePosition(position);
     
     switch (category) {
-      case 'wallet':
+      case wallet:
         breakdown.wallet.value += position.balanceUSD;
         breakdown.wallet.tokens.push({
           symbol: position.symbol,
@@ -304,7 +306,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case 'lending':
+      case lending:
         const supplied = position.balances?.supplied?.balanceUSD || 0;
         const borrowed = position.balances?.borrowed?.balanceUSD || 0;
         breakdown.lending.supplied += supplied;
@@ -313,7 +315,7 @@ async function getFullPortfolio(address: string) {
         breakdown.lending.protocols.push(position.appName);
         break;
         
-      case 'liquidity':
+      case liquidity:
         breakdown.liquidityPools.value += position.balanceUSD;
         breakdown.liquidityPools.pools.push({
           protocol: position.appName,
@@ -323,7 +325,7 @@ async function getFullPortfolio(address: string) {
         });
         break;
         
-      case 'staking':
+      case staking:
         breakdown.staking.value += position.balanceUSD;
         breakdown.staking.positions.push(position);
         break;
@@ -335,11 +337,11 @@ async function getFullPortfolio(address: string) {
 
 // Helper function
 function categorizePosition(position: any): string {
-  if (position.appId === 'tokens') return 'wallet';
-  if (['aave-v3', 'compound', 'morpho', 'spark'].includes(position.appId)) return 'lending';
-  if (['uniswap-v3', 'balancer-v2', 'curve', 'sushi'].includes(position.appId)) return 'liquidity';
-  if (position.positionType === 'staking') return 'staking';
-  return 'other';
+  if (position.appId === tokens) return wallet;
+  if (['aave-v3', compound, morpho, spark].includes(position.appId)) return lending;
+  if (['uniswap-v3', 'balancer-v2', curve, sushi].includes(position.appId)) return liquidity;
+  if (position.positionType === staking) return staking;
+  return other;
 }
 ```
 
@@ -350,7 +352,7 @@ function categorizePosition(position: any): string {
 async function getNFTPortfolio(address: string) {
   const nfts = await client.v2.nfts.getNftsForAddress({
     address,
-    networks: ['ethereum', 'polygon'],
+    networks: [ethereum, polygon],
     includeFloorPrice: true,
     includeMetadata: true
   });
@@ -433,8 +435,8 @@ interface RewardInfo {
 async function getYieldPositions(address: string): Promise<YieldPosition[]> {
   const balances = await client.v2.balances.getBalances({
     addresses: [address],
-    networks: ['ethereum', 'arbitrum', 'optimism'],
-    appId: ['uniswap-v3', 'balancer-v2', 'curve', 'convex', 'yearn', 'pendle']
+    networks: [ethereum, arbitrum, optimism],
+    appId: ['uniswap-v3', 'balancer-v2', curve, convex, yearn, pendle]
   });
 
   const yieldPositions: YieldPosition[] = [];
@@ -512,7 +514,7 @@ console.log(`Monthly Projection: $${(totalDailyYield * 30).toFixed(2)}`);
 ```typescript
 // Discover new yield opportunities
 async function discoverYields(
-  network: string = 'ethereum',
+  network: string = ethereum,
   minTvl: number = 1_000_000,  // $1M minimum TVL
   minApy: number = 5            // 5% minimum APY
 ) {
@@ -520,8 +522,8 @@ async function discoverYields(
     network,
     minTvl,
     minApy,
-    sortBy: 'apy',
-    sortDirection: 'desc',
+    sortBy: apy,
+    sortDirection: desc,
     limit: 50
   });
 
@@ -541,7 +543,7 @@ async function discoverYields(
 }
 
 // Find best yield opportunities
-const bestYields = await discoverYields('ethereum', 10_000_000, 10);
+const bestYields = await discoverYields(ethereum, 10_000_000, 10);
 
 console.log('\n🏆 Top Yield Opportunities (TVL > $10M, APY > 10%)\n');
 bestYields.slice(0, 10).forEach((opp, i) => {
@@ -603,9 +605,9 @@ async function zapInUniswapV3(
 
 // Example: Zap 1 ETH into ETH/USDC pool
 const txHash = await zapInUniswapV3(
-  '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', // ETH
-  ethers.parseEther('1').toString(),
-  '0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8',     // ETH/USDC 0.3% pool
+  0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE, // ETH
+  ethers.parseEther(1).toString(),
+  0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8,     // ETH/USDC 0.3% pool
   -887220,                                            // Full range lower
   887220                                              // Full range upper
 );
@@ -654,8 +656,8 @@ async function zapOutPosition(
 // Full exit from Uniswap V3 position
 const exitTx = await zapOutPosition(
   'uniswap-v3',
-  '12345',  // NFT token ID
-  '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'  // Receive USDC
+  12345,  // NFT token ID
+  0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48  // Receive USDC
 );
 ```
 
@@ -728,16 +730,16 @@ const ws = new ZapperWebSocket({
 // Subscribe to address updates
 ws.subscribe('address:0xMyAddress...', (update: any) => {
   switch (update.type) {
-    case 'balance_change':
+    case balance_change:
       console.log(`💰 Balance update: ${update.token} = ${update.newBalance}`);
       break;
-    case 'new_position':
+    case new_position:
       console.log(`📈 New position detected: ${update.protocol} — ${update.valueUSD}`);
       break;
-    case 'yield_claimed':
+    case yield_claimed:
       console.log(`🎁 Rewards claimed: ${update.amount} ${update.token}`);
       break;
-    case 'nft_transfer':
+    case nft_transfer:
       console.log(`🖼️ NFT transferred: ${update.collection} #${update.tokenId}`);
       break;
   }
@@ -759,7 +761,7 @@ async function getHistoricalPerformance(
 ) {
   const history = await client.v2.analytics.getHistoricalBalances({
     address,
-    granularity: 'daily',
+    granularity: daily,
     daysBack: days
   });
 
@@ -836,7 +838,7 @@ async function batchPortfolioQuery(addresses: string[]) {
 
     const response = await client.v2.balances.getBalances({
       addresses: batch,
-      networks: ['ethereum', 'arbitrum', 'polygon']
+      networks: [ethereum, arbitrum, polygon]
     });
 
     results.push(...response.data);
@@ -891,7 +893,7 @@ sortedExposure.forEach(([protocol, value]) => {
 
 ```tsx
 // React hook for Zapper portfolio data
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from react;
 import { ZapperClient } from '@zapper-fi/zapper-api';
 
 const client = new ZapperClient({ apiKey: process.env.REACT_APP_ZAPPER_KEY });
@@ -911,7 +913,7 @@ export function usePortfolio(address: string | undefined) {
       try {
         const response = await client.v2.balances.getBalances({
           addresses: [address],
-          networks: ['ethereum', 'polygon', 'arbitrum']
+          networks: [ethereum, polygon, arbitrum]
         });
 
         setPortfolio(response.data);
@@ -985,10 +987,10 @@ function PositionCard({ position }: { position: any }) {
 import { schedule } from 'node-cron';
 
 interface YieldAlert {
-  condition: 'apy_drop' | 'apy_spike' | 'il_warning' | 'reward_change';
+  condition: apy_drop | apy_spike | il_warning | reward_change;
   threshold: number;
   protocol?: string;
-  action: 'notify' | 'auto_compound' | 'exit';
+  action: notify | auto_compound | exit;
 }
 
 class YieldMonitor {
@@ -1014,19 +1016,19 @@ class YieldMonitor {
         if (alert.protocol && alert.protocol !== position.protocol) continue;
 
         switch (alert.condition) {
-          case 'apy_drop':
+          case apy_drop:
             if (prev && (position.apy.total / prev.apy - 1) * 100 < -alert.threshold) {
               await this.sendAlert(`🚨 APY dropped ${alert.threshold}% on ${position.poolName}: ${position.apy.total.toFixed(2)}%`);
             }
             break;
 
-          case 'il_warning':
+          case il_warning:
             if (position.impermanentLoss && position.impermanentLoss > alert.threshold) {
               await this.sendAlert(`⚠️ IL warning on ${position.poolName}: ${position.impermanentLoss.toFixed(2)}%`);
             }
             break;
 
-          case 'reward_change':
+          case reward_change:
             const rewardChange = position.rewardTokens.reduce(
               (sum, r) => sum + r.dailyValueUSD, 0
             );
@@ -1045,7 +1047,7 @@ class YieldMonitor {
   private async sendAlert(message: string) {
     // Send to Telegram, Discord, or email
     await fetch(process.env.ALERT_WEBHOOK_URL, {
-      method: 'POST',
+      method: POST,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: message })
     });
@@ -1062,15 +1064,15 @@ class YieldMonitor {
 const monitor = new YieldMonitor(process.env.ZAPPER_API_KEY);
 
 monitor.addAlert({
-  condition: 'apy_drop',
+  condition: apy_drop,
   threshold: 20,  // Alert if APY drops 20%
-  action: 'notify'
+  action: notify
 });
 
 monitor.addAlert({
-  condition: 'il_warning',
+  condition: il_warning,
   threshold: 5,   // Alert if IL exceeds 5%
-  action: 'notify'
+  action: notify
 });
 
 monitor.startMonitoring('0xMyAddress...');

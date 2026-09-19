@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
 title: 'Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cung Cấp LLM & Hệ Thống Plugin — Hướng Dẫn 2026'
 description: 'Triển khai Lobe Chat như một giải pháp thay thế ChatGPT tự host. Hỗ trợ 20+ nhà cung cấp LLM, hệ thống plugin, PWA, giao diện đa ngôn ngữ. Hướng dẫn Docker đầy đủ với benchmark và so sánh.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'lobehub/lobe-chat'
 stars: 60000
-maintainer: 'lobehub'
+maintainer: lobehub
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Lobe Chat', 'ChatGPT', 'Thay thế OpenAI', 'LLM', 'Tự host', 'Docker', 'PWA', 'Hệ thống Plugin', 'AI', 'UI Chat']
+tags: ['lobe chat', chatgpt, 'thay thế openai', llm, 'tự host', docker, pwa, 'hệ thống plugin', ai, 'ui chat']
 aliases:
 - /vi/posts/lobe-chat-openai-alternative-ui/
 ---
@@ -157,7 +162,7 @@ docker compose up -d
 sudo apt update && sudo apt install -y docker.io docker-compose-plugin
 
 # Tạo file .env
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-key
 ACCESS_CODE=secure-team-password
 EOF
@@ -166,7 +171,7 @@ EOF
 docker compose up -d
 
 # Thiết lập reverse proxy với HTTPS qua Caddy
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 chat.yourdomain.com {
     reverse_proxy localhost:3210
 }

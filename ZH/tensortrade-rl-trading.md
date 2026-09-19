@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tensortrade-rl-trading" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tensortrade-rl-trading" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tensortrade-rl-trading" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tensortrade-rl-trading" />
 title: 'TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指南'
 description: '掌握 TensorTrade 进行基于强化学习的算法交易。构建自定义 Gym 环境，集成 Stable Baselines3，部署生产级投资组合管理策略并获取真实基准测试数据。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['TensorTrade', '强化学习', '算法交易', 'OpenAI Gym', 'Stable Baselines3', '投资组合管理', 'Python', '机器学习', '加密货币交易', '量化金融']
+tags: [tensortrade, 强化学习, 算法交易, 'openai gym', 'stable baselines3', 投资组合管理, python, 机器学习, 加密货币交易, 量化金融]
 aliases:
 - /zh/posts/tensortrade-rl-trading/
 ---

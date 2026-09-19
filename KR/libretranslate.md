@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/libretranslate" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
 title: 'LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배포 가이드'
 description: 'LibreTranslate (LT)는 Argos Translate 기반의 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Docker, CUDA GPU, 30개 이상 언어 및 오프라인 배포를 지원합니다. 설치 설정, 성능 벤치마크, 모니터링 및 OpenAI Whisper, Coqui TTS, Argos Translate와의 통합을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/LibreTranslate/LibreTranslate'
 stars: 14400
-maintainer: 'LibreTranslate'
+maintainer: LibreTranslate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['LibreTranslate', '기계번역', '자체호스팅', 'Docker', 'API', '오픈소스', 'Argos Translate', '자연어처리']
+tags: [libretranslate, 기계번역, 자체호스팅, docker, api, 오픈소스, 'argos translate', 자연어처리]
 aliases:
 - /kr/posts/libretranslate/
 ---
@@ -194,7 +199,7 @@ curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate && cd ~/libretranslate
 
 # 프로덕션 compose 파일 생성
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: '3.8'
 services:
   libretranslate:
@@ -335,7 +340,7 @@ def transcribe_and_translate(audio_path: str, target_lang: str = "en") -> dict:
 
 # 파이프라인 실행
 output = transcribe_and_translate("meeting.mp3", target_lang="es")
-print(f"ES: {output['translated']}")
+print(f"ES: {output[translated]}")
 ```
 
 ### Coqui TTS 통합 (번역 + 음성 합성)
@@ -550,8 +555,8 @@ from prometheus_client import start_http_server, Counter, Histogram
 import requests
 import time
 
-TRANSLATION_COUNTER = Counter('libretranslate_requests_total', '총 번역 수')
-LATENCY_HISTOGRAM = Histogram('libretranslate_latency_seconds', '번역 지연 시간')
+TRANSLATION_COUNTER = Counter(libretranslate_requests_total, '총 번역 수')
+LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, '번역 지연 시간')
 
 def monitor():
     start_http_server(9090)

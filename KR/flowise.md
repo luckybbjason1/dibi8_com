@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
 title: 'Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완성 가이드'
 description: 'Flowise는 오픈소스 시각적 LLM 워크플로우 및 AI Agent 빌더입니다. LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma 등 200+ 통합을 지원합니다. Docker 설치, 프로덕션 하드닝, API 배포 및 솔직한 한계 분석을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/FlowiseAI/Flowise'
 stars: 52948
-maintainer: 'FlowiseAI'
+maintainer: FlowiseAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Flowise', 'LangChain', 'AI Agent', 'RAG', 'Docker', 'LLM', '오픈소스', '노코드']
+tags: [flowise, langchain, 'ai agent', rag, docker, llm, 오픈소스, 노코드]
 aliases:
 - /kr/posts/flowise/
 - /kr/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
@@ -313,7 +318,7 @@ Flowise에서 `Qdrant` 벡터 스토어 노드를 사용하고 host를 `http://q
       - "8080:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes:
       - weaviate_data:/var/lib/weaviate
@@ -386,7 +391,7 @@ Flowise는 모든 챗플로우에 대해 JavaScript 임베드 코드를 생성�
         backgroundColor: '#3B81F6',
         right: 20,
         bottom: 20,
-        size: 'medium'
+        size: medium
       },
       chatWindow: {
         title: '고객 지원 봇',

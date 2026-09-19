@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/personal-ai-infrastructure-daniel-miessler" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/personal-ai-infrastructure-daniel-miessler" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/personal-ai-infrastructure-daniel-miessler" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/personal-ai-infrastructure-daniel-miessler" />
 title: '개인 AI 인프라: Daniel Miessler의 에이전트 AI 설정 — 2026 완성판 가이드'
 description: 'Daniel Miessler의 개인 AI 인프라(PAI)는 45개의 스킬, 171개의 워크플로우, 파스 데몬, 알고리즘 v6.3.0을 갖춘 라이프 오퍼레이팅 시스템입니다. 원라인 설치, MIT 라이선스. 전략, 실행, 성찰을 하나의 시스템으로 결합합니다.'
 date: 2026-06-13

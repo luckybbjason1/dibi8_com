@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/coqui-tts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
 title: 'Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS、Bark 性能基准测试 2026'
 description: 'Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比，含 Docker 部署方案和生产环境配置。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Coqui TTS', '文本转语音', '语音克隆', 'XTTS', 'VITS', '深度学习', 'Docker', 'Python']
+tags: ['coqui tts', 文本转语音, 语音克隆, xtts, vits, 深度学习, docker, python]
 aliases:
 - /zh/posts/coqui-tts/
 ---
@@ -266,7 +271,7 @@ services:
       - CUDA_VISIBLE_DEVICES=0
       - PYTHONUNBUFFERED=1
       - TTS_HOME=/home/appuser/.local/share/tts
-    shm_size: '2gb'
+    shm_size: 2gb
     command: >
       sh -c "python3 /app/config/server.py"
 
@@ -451,9 +456,9 @@ python TTS/bin/train_tts.py \
 from prometheus_client import Counter, Histogram, generate_latest
 
 # 指标
-TTS_REQUESTS = Counter('tts_requests_total', '总 TTS 请求数', ['language'])
-TTS_LATENCY = Histogram('tts_latency_seconds', '请求延迟')
-TTS_ERRORS = Counter('tts_errors_total', '总错误数', ['error_type'])
+TTS_REQUESTS = Counter(tts_requests_total, '总 TTS 请求数', [language])
+TTS_LATENCY = Histogram(tts_latency_seconds, 请求延迟)
+TTS_ERRORS = Counter(tts_errors_total, 总错误数, [error_type])
 
 @app.route("/metrics")
 def metrics():

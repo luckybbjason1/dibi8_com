@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-gateway-portkey-litellm-openrouter-comparison-2026" />
 title: 'Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、价格与自托管全对比）'
 description: '三家最大的 LLM 网关 2026 实测对比。真实数字：Portkey 增加 <1ms 延迟、LiteLLM 8ms P95、OpenRouter 100-150ms。按场景的 30 秒决策树、$1000/月成本拆解、以及为什么 9Router 在编程 agent 场景碾压三家。'
 date: 2026-05-20 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['LLM Gateway', 'Portkey', 'LiteLLM', 'OpenRouter', '对比']
+tags: ['llm gateway', portkey, litellm, openrouter, 对比]
 aliases:
   - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---

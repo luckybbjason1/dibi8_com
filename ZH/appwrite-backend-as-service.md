@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
 title: 'Appwrite 2026：开源 Firebase 替代方案 — 认证、数据库与存储自托管后端完整指南'
 description: 'Appwrite 1.6 完整指南 — 自托管开源后端，包含认证、数据库、存储、云函数和实时订阅功能。Docker 部署、SDK 集成、基准测试和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'appwrite/appwrite'
 stars: 47200
-maintainer: 'appwrite'
+maintainer: appwrite
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Appwrite', '后端即服务', 'Firebase 替代', 'Docker', '开源', '认证', '数据库', '云函数', '自托管']
+tags: [appwrite, 后端即服务, 'firebase 替代', docker, 开源, 认证, 数据库, 云函数, 自托管]
 aliases:
 - /zh/posts/appwrite-backend-as-service/
 ---
@@ -148,7 +153,7 @@ npm install appwrite@16.1.0
 初始化客户端并创建文档：
 
 ```javascript
-import { Client, Account, Databases, ID } from 'appwrite';
+import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
   .setEndpoint('https://api.yourdomain.com/v1')  // 你的 API 端点
@@ -166,7 +171,7 @@ const doc = await databases.createDocument(
   'your-database-id',
   'your-collection-id',
   ID.unique(),
-  { title: 'Hello Appwrite', status: 'active', priority: 3 }
+  { title: 'Hello Appwrite', status: active, priority: 3 }
 );
 console.log('Document ID:', doc.$id);
 ```
@@ -194,7 +199,7 @@ doc = databases.create_document(
     database_id='your-database-id',
     collection_id='your-collection-id',
     document_id=ID.unique(),
-    data={'title': 'From Python', 'status': 'active', 'score': 95.5}
+    data={title: 'From Python', status: active, score: 95.5}
 )
 print(f"Created document: {doc['$id']}")
 
@@ -204,7 +209,7 @@ results = databases.list_documents(
     collection_id='your-collection-id',
     queries=['equal("status", "active")', 'greaterThan("score", 90)', 'limit(10)']
 )
-print(f"Found {results['total']} matching documents")
+print(f"Found {results[total]} matching documents")
 ```
 
 ### Flutter SDK
@@ -242,9 +247,9 @@ class AppwriteService {
   Future<Document> createTask(String title) async {
     return await databases.createDocument(
       databaseId: 'your-database-id',
-      collectionId: 'tasks',
+      collectionId: tasks,
       documentId: ID.unique(),
-      data: {'title': title, 'done': false, 'created_at': DateTime.now().toIso8601String()},
+      data: {title: title, done: false, created_at: DateTime.now().toIso8601String()},
     );
   }
 }
@@ -403,13 +408,13 @@ find $BACKUP_DIR -mtime +7 -delete
 // 授予基于团队的权限
 await databases.createDocument(
   'prod-db',
-  'projects',
+  projects,
   ID.unique(),
   { name: 'Secret Project', budget: 50000 },
   [
-    Permission.read(Role.team('managers')),
-    Permission.update(Role.team('managers')),
-    Permission.delete(Role.team('admins')),
+    Permission.read(Role.team(managers)),
+    Permission.update(Role.team(managers)),
+    Permission.delete(Role.team(admins)),
     Permission.create(Role.users())
   ]
 );
@@ -422,7 +427,7 @@ Appwrite 在 `/_metrics` 端点暴露 Prometheus 可抓取的指标：
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'appwrite'
+  - job_name: appwrite
     static_configs:
       - targets: ['appwrite:80']
     metrics_path: '/_metrics'

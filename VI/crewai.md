@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai" />
 title: 'CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướng dẫn thiết lập đầy đủ 2026'
 description: 'CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tương thích với OpenAI, Anthropic, Ollama, LangChain và LlamaIndex. Bao gồm cài đặt, vai trò agent, luồng công việc, triển khai production và benchmark.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/crewAIInc/crewAI'
 stars: 51759
-maintainer: 'crewAIInc'
+maintainer: crewAIInc
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', 'multi-agent', 'ai-agent', 'python', 'llm-orchestration', 'automation', 'open-source', 'machine-learning']
+tags: [crewai, 'multi-agent', 'ai-agent', python, 'llm-orchestration', automation, 'open-source', 'machine-learning']
 aliases:
 - /vi/posts/crewai/
 - /vi/resources/llm-frameworks/crewai-multi-agent-orchestration/

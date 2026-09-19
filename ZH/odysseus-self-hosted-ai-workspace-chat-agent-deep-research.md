@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 title: '奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026'
 description: '奥德赛（65,243个GitHub星标）是一个自助托管的AI工作站，结合了聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历等功能。支持vLLM、llama.cpp、Ollama、OpenRouter、OpenAI和GitHub Copilot。提供Docker和原生Linux/macOS安装方式。'
 date: 2026-06-09

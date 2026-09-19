@@ -1,21 +1,26 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板'
 description: 'ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['ComfyUI', 'Stable Diffusion', 'Python', 'CUDA']
+tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI 工具
 source_version: 'ComfyUI 2026.05'
 licensing_model: 开源
 license_type: 'GPL-3.0'
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 106000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['comfyui', 'stable-diffusion', 'image-generation', 'workflows', '2026']
+tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
 aliases:
 - /zh/posts/comfyui-workflow-2026-5-production-templates/
 faq:

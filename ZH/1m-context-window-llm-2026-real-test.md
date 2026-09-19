@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1m-context-window-llm-2026-real-test" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1m-context-window-llm-2026-real-test" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1m-context-window-llm-2026-real-test" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1m-context-window-llm-2026-real-test" />
 title: '1M 上下文窗口 LLM 2026：Gemini 2.5 Pro vs Claude Sonnet 4.6 实测对比'
 description: '两家都号称 1M token 上下文。我们把 950K token 的代码库分别灌进去，实测：检索质量、延迟、成本，以及谁真正兑现了 1M 承诺，谁在长尾段崩塌。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Gemini', 'Claude', 'Long-context LLM']
+tech_stack: [Gemini, Claude, 'Long-context LLM']
 application_domain: LLM Frameworks
 source_version: '2026 Q2'
 licensing_model: Commercial
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['gemini', 'claude', 'long-context', 'llm', '2026']
+tags: [gemini, claude, 'long-context', llm, 2026]
 aliases:
 - /zh/posts/1m-context-window-llm-2026-real-test/
 faq:

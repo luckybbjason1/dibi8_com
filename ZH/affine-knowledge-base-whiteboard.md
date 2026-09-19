@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署指南'
 description: '使用 Docker 部署 AFFiNE v0.26.3 作为 Notion+Miro 的开源自托管替代方案。本地优先 CRDT 协作、无边画布、AI 写作助手、5 分钟 Docker 部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'toeverything/AFFiNE'
 stars: 47000
-maintainer: 'toeverything'
+maintainer: toeverything
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AFFiNE', '知识库', '白板', '自托管', 'Docker', 'Notion替代品', 'Miro替代品', 'CRDT', '本地优先', 'AI写作']
+tags: [affine, 知识库, 白板, 自托管, docker, notion替代品, miro替代品, crdt, 本地优先, ai写作]
 aliases:
 - /zh/posts/affine-knowledge-base-whiteboard/
 ---
@@ -79,7 +84,7 @@ wget -O .env https://github.com/toeverything/affine/releases/latest/download/.en
 
 ```bash
 # 编辑 .env 文件
-cat > .env << 'EOF'
+cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
 AFFINE_ADMIN_PASSWORD=ChangeMeNow2026!
 DB_PASSWORD=postgres_secret_2026
@@ -225,7 +230,7 @@ AFFiNE 的性能特征对生产部署至关重要：
 
 ```bash
 # 使用 Caddy 作为反向代理
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 affine.yourdomain.com {
     reverse_proxy localhost:3010
     tls admin@yourdomain.com
@@ -237,7 +242,7 @@ EOF
 
 ```bash
 # 自动每日备份
-cat > backup-affine.sh << 'EOF'
+cat > backup-affine.sh << EOF
 #!/bin/bash
 set -euo pipefail
 BACKUP_DIR="/backups/affine-$(date +%Y%m%d)"

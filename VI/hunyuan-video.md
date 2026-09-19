@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hunyuan-video" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hunyuan-video" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hunyuan-video" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Production 2026'
 description: 'HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI, Diffusers, Gradio API. Bao gồm Docker, FP8 quantization, đa GPU, và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['tạo-video', 'diffusion-transformer', 'tencent', 'hunyuanvideo', 'comfyui', 'docker', 'fp8', 'đa-phương-thức']
+tags: ['tạo-video', 'diffusion-transformer', tencent, hunyuanvideo, comfyui, docker, fp8, 'đa-phương-thức']
 aliases:
 - /vi/posts/hunyuan-video/
 ---
@@ -361,9 +366,9 @@ server {
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-inference_count = Counter('hunyuan_inferences_total', 'Tổng số suy luận')
-inference_duration = Histogram('hunyuan_inference_seconds', 'Độ trễ suy luận')
-queue_depth = Gauge('hunyuan_queue_depth', 'Độ sâu hàng đợi hiện tại')
+inference_count = Counter(hunyuan_inferences_total, 'Tổng số suy luận')
+inference_duration = Histogram(hunyuan_inference_seconds, 'Độ trễ suy luận')
+queue_depth = Gauge(hunyuan_queue_depth, 'Độ sâu hàng đợi hiện tại')
 
 @inference_duration.time()
 def generate_video(prompt, height, width, frames, steps):

@@ -1,6 +1,8 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vanna-ai-sql-generation" />
 title: 'vanna-ai-sql-generation'
-description: '{''en'': ''Explore Vanna AI, the open-source Python library that trains on your database schema to generate SQL from natural language with 90%+ accuracy. Features self-hosting, Jupyter integration, SQL validation, multiple LLM backends, and privacy-first design.'', ''zh'': ''探索 Vanna AI，这款基于你的数据库 Schema 训练以 90%+ 准确率从自然语言生成 SQL 的开源 Python 库。支持自托管、Jupyter 集成、SQL 验证、多 LLM 后端和隐私优先设计。'', ''ko'': ''데이터베이스 스키마에서 학습하여 90%+ 정확도로 자연어에서 SQL을 생성하는 오픈소스 Python 라이브러리 Vanna AI를 살펴 보세요. 자체 호스팅, Jupyter 통합, SQL 검증, 다중 LLM 백엔드, 개인정보 보호 중심 설계를 제공합니다.'', ''vi'': ''Khám phá Vanna AI, thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn để tạo SQL từ ngôn ngữ tự nhiên với độ chính xác 90%+. Có tính năng tự lưu trữ, tích hợp Jupyter, xác thực SQL, nhiều backend LLM, và thiết kế ưu tiên quyền riêng tư.''}'
+description: '{'en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to generate SQL from natural language with 90%+ accuracy. Features self-hosting, Jupyter integration, SQL validation, multiple LLM backends, and privacy-first design.'', 'zh': ''探索 Vanna AI，这款基于你的数据库 Schema 训练以 90%+ 准确率从自然语言生成 SQL 的开源 Python 库。支持自托管、Jupyter 集成、SQL 验证、多 LLM 后端和隐私优先设计。'', 'ko': ''데이터베이스 스키마에서 학습하여 90%+ 정확도로 자연어에서 SQL을 생성하는 오픈소스 Python 라이브러리 Vanna AI를 살펴 보세요. 자체 호스팅, Jupyter 통합, SQL 검증, 다중 LLM 백엔드, 개인정보 보호 중심 설계를 제공합니다.'', 'vi': ''Khám phá Vanna AI, thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn để tạo SQL từ ngôn ngữ tự nhiên với độ chính xác 90%+. Có tính năng tự lưu trữ, tích hợp Jupyter, xác thực SQL, nhiều backend LLM, và thiết kế ưu tiên quyền riêng tư.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -19,7 +21,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Vanna AI']
+tags: ['vanna ai']
 aliases:
 - /posts/vanna-ai-sql-generation/
 ---
@@ -101,7 +103,7 @@ class MyVanna(ChromaDB_VectorStore, Ollama):
 # Fully local, self-hosted setup
 vn = MyVanna()
 vn.connect_to_sqlite("my_database.db")
-vn.train(ddl="SELECT sql FROM sqlite_master WHERE type='table';")
+vn.train(ddl="SELECT sql FROM sqlite_master WHERE type=table;")
 ```
 
 In 2026, as organizations grapple with increasingly complex data schemas and stricter compliance requirements, Vanna's approach — training on schema rather than sending data to the cloud — represents the gold standard for secure, accurate text-to-SQL.
@@ -230,7 +232,7 @@ cursor = conn.cursor()
 cursor.execute("""
     SELECT table_name
     FROM information_schema.tables
-    WHERE table_schema = 'public';
+    WHERE table_schema = public;
 """)
 tables = cursor.fetchall()
 
@@ -243,7 +245,7 @@ for (table_name,) in tables:
     columns = cursor.fetchall()
     ddl = f"CREATE TABLE {table_name} (\n"
     ddl += ",\n".join([
-        f"    {col[0]} {col[1]}{'' if col[2] == 'YES' else ' NOT NULL'}"
+        f"    {col[0]} {col[1]}{'' if col[2] == YES else ' NOT NULL'}"
         for col in columns
     ])
     ddl += "\n);"
@@ -259,11 +261,11 @@ Beyond raw schema, you can train Vanna on business context — helping it unders
 ```python
 # Train with documentation
 vn.train(documentation="""
-The 'sales' table records all completed transactions.
-The 'amount' column is in USD and includes tax.
-The 'region' column uses standard US Census regions:
+The sales table records all completed transactions.
+The amount column is in USD and includes tax.
+The region column uses standard US Census regions:
 Northeast, Midwest, South, and West.
-A 'high_value_customer' is anyone with lifetime purchases > $10,000.
+A high_value_customer is anyone with lifetime purchases > $10,000.
 """)
 
 # Train with example SQL queries
@@ -279,7 +281,7 @@ vn.train(sql="""
 SELECT c.name, COUNT(o.id) as order_count, SUM(o.total_amount) as lifetime_value
 FROM customers c
 JOIN orders o ON c.id = o.customer_id
-WHERE o.status = 'completed'
+WHERE o.status = completed
 GROUP BY c.id, c.name
 HAVING SUM(o.total_amount) > 10000;
 """)
@@ -306,7 +308,7 @@ vn.train(
 vn.train(
     question="How many orders were placed each month in 2026?",
     sql="""
-    SELECT DATE_TRUNC('month', order_date) as month, COUNT(*) as order_count
+    SELECT DATE_TRUNC(month, order_date) as month, COUNT(*) as order_count
     FROM orders
     WHERE order_date >= '2026-01-01' AND order_date < '2027-01-01'
     GROUP BY month
@@ -325,7 +327,7 @@ Once trained, Vanna can generate SQL from natural language questions with remark
 # Simple questions
 sql = vn.generate_sql("Show me all customers from the West region")
 print(sql)
-# Output: SELECT * FROM customers WHERE region = 'West';
+# Output: SELECT * FROM customers WHERE region = West;
 
 # Aggregation queries
 sql = vn.generate_sql("What is the average order value by customer segment?")

@@ -1,21 +1,26 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production'
 description: 'ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, gợi ý mô hình cho năm 2026, và 5 template workflow sẵn sàng đưa vào production (text-to-image, inpaint, upscale, video, nhất quán nhân vật).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['ComfyUI', 'Stable Diffusion', 'Python', 'CUDA']
+tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: Công cụ AI
 source_version: 'ComfyUI 2026.05'
 licensing_model: Mã nguồn mở
 license_type: 'GPL-3.0'
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 106000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['comfyui', 'stable-diffusion', 'image-generation', 'workflows', '2026']
+tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
 aliases:
 - /vi/posts/comfyui-workflow-2026-5-production-templates/
 faq:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-ai-agent-internet-access" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
 title: 'Agent Reach: Trao Siêu Năng Lực Internet cho AI Agent của Bạn'
 description: Agent Reach là công cụ scaffolding mã nguồn mở, chỉ với một lệnh giúp
   AI Agent truy cập ngay YouTube, Twitter, Reddit, Xiaohongshu, Bilibili và hơn 15

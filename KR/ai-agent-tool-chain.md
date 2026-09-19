@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-tool-chain" />
 title: 'AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택'
 description: '완전한 프로덕션 AI 에이전트 스택: 상태 유지 오케스트레이션 LangGraph + 도구용 MCP servers + 메모리 mem0 + 멀티 에이전트 조정 OpenClaw + 자가 개선 Hermes Agent + 샌드박스 코드 실행 e2b. $20-60/월 셀프호스트. 내부 링크된 심층 가이드로 실제 조립.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI 에이전트', '도구 체인', 'LangGraph', 'MCP', '스택', '컬렉션']
+categories: [collections]
+tags: ['ai 에이전트', '도구 체인', langgraph, mcp, 스택, 컬렉션]
 aliases:
   - /posts/ai-agent-tool-chain/
 ---

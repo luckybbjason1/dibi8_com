@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI：懂你的轻量级 AI 终端模拟器"
 description: "发现 Terax AI，一款基于 Tauri 2 + Rust 构建的 7 MB AI 原生终端模拟器。支持自然语言转 Shell 命令、内联 AI 辅助、智能自动补全，兼容 bash、zsh、fish 和 PowerShell。"
 date: 2026-05-15T04:20:25+09:00

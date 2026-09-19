@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/aave-v4-defi-lending-protocol" />
 title: 'AAVE v4 2026: The DeFi Lending Protocol Managing $15B+ in Deposits — Smart Contract Integration Guide'
 description: 'Complete guide to integrating AAVE v4 DeFi lending protocol in 2026. Learn how to supply and borrow 30+ crypto assets, use flash loans, implement isolation mode, and integrate GHO stablecoin in your DApp.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/aave/aave-v3-core'
 stars: 2100
-maintainer: 'aave'
+maintainer: aave
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['AAVE']
+tags: [aave]
 aliases:
 - /posts/aave-v4-defi-lending-protocol/
 ---
@@ -32,6 +34,15 @@ For developers building DeFi applications, trading bots, yield aggregators, or p
 
 > **Affiliate Disclosure:** This article contains affiliate links to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) and [OKX](https://www.promoohubly.com/join/12190433). We may earn a commission when you register through our links at no extra cost to you.
 
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [1Inch Dex Aggregator Routing](/cn/1inch-dex-aggregator-routing)
+2. [Alpaca Trading Api Stock Broker](/cn/alpaca-trading-api-stock-broker)
+
+---
 ---
 
 ## What Is AAVE?
@@ -100,7 +111,7 @@ PRIVATE_KEY=your_private_key
 ```javascript
 // hardhat.config.js
 require('@nomicfoundation/hardhat-toolbox');
-require('dotenv').config();
+require(dotenv).config();
 
 module.exports = {
   solidity: '0.8.24',
@@ -254,12 +265,12 @@ contract AaveDataReader {
 For frontend and scripting integrations, ethers.js provides a convenient interface.
 
 ```javascript
-const { ethers } = require('ethers');
-require('dotenv').config();
+const { ethers } = require(ethers);
+require(dotenv).config();
 
 // AAVE v4 Pool contract on Ethereum mainnet
-const POOL_ADDRESS = '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2';
-const POOL_DATA_PROVIDER = '0x7B4EB56E7CD4b454BA8ff71E4518426Fede81A62';
+const POOL_ADDRESS = 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2;
+const POOL_DATA_PROVIDER = 0x7B4EB56E7CD4b454BA8ff71E4518426Fede81A62;
 
 const provider = new ethers.JsonRpcProvider(process.env.ETHEREUM_RPC);
 
@@ -676,19 +687,19 @@ Modern DeFi frontends typically use wagmi and viem for blockchain interactions.
 
 ```typescript
 // hooks/useAave.ts
-import { useContractWrite, usePrepareContractWrite } from 'wagmi';
-import { parseUnits } from 'viem';
+import { useContractWrite, usePrepareContractWrite } from wagmi;
+import { parseUnits } from viem;
 
 const POOL_ABI = [
   {
-    name: 'supply',
-    type: 'function',
-    stateMutability: 'nonpayable',
+    name: supply,
+    type: function,
+    stateMutability: nonpayable,
     inputs: [
-      { name: 'asset', type: 'address' },
-      { name: 'amount', type: 'uint256' },
-      { name: 'onBehalfOf', type: 'address' },
-      { name: 'referralCode', type: 'uint16' },
+      { name: asset, type: address },
+      { name: amount, type: uint256 },
+      { name: onBehalfOf, type: address },
+      { name: referralCode, type: uint16 },
     ],
     outputs: [],
   },
@@ -696,13 +707,13 @@ const POOL_ABI = [
 
 export function useSupplyAsset(asset: string, amount: string, decimals: number) {
   const { config } = usePrepareContractWrite({
-    address: '0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2',
+    address: 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2,
     abi: POOL_ABI,
-    functionName: 'supply',
+    functionName: supply,
     args: [
       asset as `0x${string}`,
       parseUnits(amount, decimals),
-      '0xYourAddress' as `0x${string}`,
+      0xYourAddress as `0x${string}`,
       0,
     ],
   });

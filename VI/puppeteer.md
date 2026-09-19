@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/puppeteer" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
 title: 'Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa Browser Docker 2026'
 description: 'Puppeteer là thư viện Node.js tự động hóa Chrome và Firefox headless. Hỗ trợ Docker, GitHub Actions, Jest, Mocha, TypeScript. Bao gồm cài đặt puppeteer docker, triển khai production, hướng dẫn tự động hóa browser, tích hợp CI/CD.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/puppeteer/puppeteer'
 stars: 94300
-maintainer: 'puppeteer'
+maintainer: puppeteer
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['puppeteer', 'tự-động-hóa-browser', 'headless-chrome', 'web-scraping', 'docker', 'testing', 'typescript']
+tags: [puppeteer, 'tự-động-hóa-browser', 'headless-chrome', 'web-scraping', docker, testing, typescript]
 aliases:
 - /vi/posts/puppeteer/
 ---
@@ -71,7 +76,7 @@ npm install puppeteer-core
 
 ```javascript
 // quickstart.mjs — xác minh Puppeteer khởi chạy đúng
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
@@ -95,7 +100,7 @@ import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
   executablePath: '/usr/bin/chromium',
-  headless: 'new',
+  headless: new,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
 ```
@@ -175,7 +180,7 @@ services:
     environment:
       - NODE_ENV=production
       - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
-    shm_size: '2gb'
+    shm_size: 2gb
     deploy:
       resources:
         limits:
@@ -198,9 +203,9 @@ Các SPA hiện đại tải nội dung sau phản hồi HTML ban đầu. Puppet
 
 ```javascript
 // scraper.mjs — trích xuất dữ liệu từ trang được render bằng JavaScript
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 await page.setViewport({ width: 1366, height: 768 });
@@ -209,7 +214,7 @@ await page.setUserAgent(
 );
 
 await page.goto('https://quotes.toscrape.com/js/', {
-  waitUntil: 'networkidle2',
+  waitUntil: networkidle2,
   timeout: 30000
 });
 
@@ -234,20 +239,20 @@ Puppeteer xuất sắc trong việc render các artifact trực quan từ HTML �
 
 ```javascript
 // screenshot.mjs — chụp toàn trang và xuất PDF
-import puppeteer from 'puppeteer';
-import fs from 'fs';
-import path from 'path';
+import puppeteer from puppeteer;
+import fs from fs;
+import path from path;
 
 const OUTPUT_DIR = './output';
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 await page.setViewport({ width: 1280, height: 800 });
 
 // Screenshot: PNG toàn trang
-await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+await page.goto('https://example.com', { waitUntil: networkidle2 });
 await page.screenshot({
   path: path.join(OUTPUT_DIR, 'page.png'),
   fullPage: true
@@ -256,9 +261,9 @@ await page.screenshot({
 // PDF: A4 với background graphics
 await page.pdf({
   path: path.join(OUTPUT_DIR, 'page.pdf'),
-  format: 'A4',
+  format: A4,
   printBackground: true,
-  margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' }
+  margin: { top: 1cm, right: 1cm, bottom: 1cm, left: 1cm }
 });
 
 console.log('Screenshot và PDF đã lưu tại', OUTPUT_DIR);
@@ -271,15 +276,15 @@ Chặn tài nguyên không cần thiết giảm 40–60% thởi gian tải trang
 
 ```javascript
 // blocker.mjs — chặn ảnh và CSS để scrape nhanh hơn
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 // Chặn request ảnh/stylesheet/media
 await page.setRequestInterception(true);
-page.on('request', (req) => {
-  const block = ['image', 'stylesheet', 'font', 'media'];
+page.on(request, (req) => {
+  const block = [image, stylesheet, font, media];
   if (block.includes(req.resourceType())) {
     req.abort();
   } else {
@@ -288,7 +293,7 @@ page.on('request', (req) => {
 });
 
 const start = Date.now();
-await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+await page.goto('https://example.com', { waitUntil: networkidle2 });
 console.log(`Đã tải trong ${Date.now() - start}ms (tài nguyên đã bị chặn)`);
 
 await browser.close();
@@ -318,8 +323,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: 22
+          cache: npm
 
       - name: Cài đặt dependencies
         run: npm ci
@@ -342,7 +347,7 @@ jobs:
 ```javascript
 // jest.config.js
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: node,
   testMatch: ['**/*.test.mjs'],
   testTimeout: 30000,
   globals: {
@@ -353,15 +358,15 @@ module.exports = {
 
 ```javascript
 // homepage.test.mjs — Tích hợp Jest + Puppeteer
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-describe('Homepage', () => {
+describe(Homepage, () => {
   let browser;
   let page;
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: new,
       args: (process.env.PUPPETEER_ARGS || '').split(' ').filter(Boolean)
     });
     page = await browser.newPage();
@@ -379,7 +384,7 @@ describe('Homepage', () => {
 
   test('navigation tải trong 3 giây', async () => {
     const start = Date.now();
-    await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+    await page.goto('https://example.com', { waitUntil: networkidle2 });
     expect(Date.now() - start).toBeLessThan(3000);
   });
 });
@@ -405,7 +410,7 @@ describe('Homepage', () => {
 
 ```typescript
 // src/scraper.ts — TypeScript với Puppeteer
-import puppeteer, { Browser, Page } from 'puppeteer';
+import puppeteer, { Browser, Page } from puppeteer;
 
 interface Product {
   name: string;
@@ -414,16 +419,16 @@ interface Product {
 }
 
 async function scrapeProducts(url: string): Promise<Product[]> {
-  const browser: Browser = await puppeteer.launch({ headless: 'new' });
+  const browser: Browser = await puppeteer.launch({ headless: new });
   const page: Page = await browser.newPage();
 
-  await page.goto(url, { waitUntil: 'networkidle2' });
+  await page.goto(url, { waitUntil: networkidle2 });
 
   const products: Product[] = await page.evaluate(() => {
     return Array.from(document.querySelectorAll('.product')).map(el => ({
       name: el.querySelector('.name')?.textContent?.trim() || '',
       price: el.querySelector('.price')?.textContent?.trim() || '',
-      url: el.querySelector('a')?.href || ''
+      url: el.querySelector(a)?.href || ''
     }));
   });
 
@@ -440,7 +445,7 @@ console.log(`Tìm thấy ${results.length} sản phẩm`);
 ```javascript
 // .mocharc.cjs
 module.exports = {
-  extension: ['mjs'],
+  extension: [mjs],
   spec: 'test/**/*.test.mjs',
   timeout: 30000,
   exit: true
@@ -449,8 +454,8 @@ module.exports = {
 
 ```javascript
 // test/scraper.test.mjs — Mocha + Puppeteer
-import puppeteer from 'puppeteer';
-import assert from 'assert';
+import puppeteer from puppeteer;
+import assert from assert;
 
 describe('Scraper Suite', function() {
   this.timeout(30000);
@@ -458,7 +463,7 @@ describe('Scraper Suite', function() {
   let browser;
   before(async () => {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: new,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   });
@@ -468,7 +473,7 @@ describe('Scraper Suite', function() {
   it('nên trích xuất dữ liệu sản phẩm', async () => {
     const page = await browser.newPage();
     await page.goto('https://example.com');
-    const heading = await page.$eval('h1', el => el.textContent);
+    const heading = await page.$eval(h1, el => el.textContent);
     assert.strictEqual(heading, 'Example Domain');
     await page.close();
   });
@@ -503,7 +508,7 @@ Khởi chạy một browser cho mỗi request là lãng phí. Connection pool t�
 
 ```javascript
 // pool.mjs — pool browser tái sử dụng với giới hạn concurrency tối đa
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
 class BrowserPool {
   constructor(maxBrowsers = 5) {
@@ -515,7 +520,7 @@ class BrowserPool {
   async init() {
     for (let i = 0; i < this.maxBrowsers; i++) {
       const browser = await puppeteer.launch({
-        headless: 'new',
+        headless: new,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
       });
       this.pool.push({ browser, inUse: false });
@@ -569,7 +574,7 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       await page.goto(url, {
-        waitUntil: 'networkidle2',
+        waitUntil: networkidle2,
         timeout: 30000
       });
       return;
@@ -605,7 +610,7 @@ setInterval(async () => {
     if (!healthy) {
       console.warn('Phát hiện browser không khỏe, đang khởi động lại...');
       await entry.browser.close();
-      entry.browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox'] });
       entry.inUse = false;
     }
   }

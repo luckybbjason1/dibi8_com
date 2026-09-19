@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
 title: 'Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng cho AI Content Workflows — Hướng Dẫn Thiết Lập & API 2026'
 description: 'Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dung, AI content workflows, và triển khai Docker tự host. Benchmark API REST và GraphQL.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'directus/directus'
 stars: 29100
-maintainer: 'directus'
+maintainer: directus
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Directus', 'Headless CMS', 'Quản lý nội dung', 'API', 'Docker', 'Mã nguồn mở', 'AI', 'GraphQL', 'REST', 'Tự host']
+tags: [directus, 'headless cms', 'quản lý nội dung', api, docker, 'mã nguồn mở', ai, graphql, rest, 'tự host']
 aliases:
 - /vi/posts/directus-headless-cms-ai-content/
 ---
@@ -91,7 +96,7 @@ Các quyết định kiến trúc chính:
 mkdir ~/directus && cd ~/directus
 
 # Tạo file compose
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 version: "3"
 services:
   directus:
@@ -155,7 +160,7 @@ Truy cập admin panel tại `http://localhost:8055`. Đăng nhập với thông
 
 ```bash
 # File .env cho production
-cat > .env << 'EOF'
+cat > .env << EOF
 # Bảo mật
 SECRET=super-random-64-char-secret-for-jwt-signing
 KEY=your-instance-unique-key
@@ -297,21 +302,21 @@ const client = createDirectus('http://localhost:8055')
 
 // Lấy articles với bộ lọc
 const articles = await client.request(
-  readItems('articles', {
-    filter: { status: { _eq: 'published' } },
+  readItems(articles, {
+    filter: { status: { _eq: published } },
     sort: ['-published_at'],
     limit: 10,
-    fields: ['id', 'title', 'seo_score', 'published_at']
+    fields: [id, title, seo_score, published_at]
   })
 );
 console.log(`Tìm thấy ${articles.length} articles`);
 
 // Tạo article
 const newArticle = await client.request(
-  createItem('articles', {
+  createItem(articles, {
     title: 'Chiến lược nội dung AI',
     content: 'Tạo bằng GPT-4...',
-    status: 'draft',
+    status: draft,
     ai_generated: true,
     seo_score: 92
   })
@@ -348,16 +353,16 @@ import { defineHook } from '@directus/extensions-sdk';
 export default defineHook(({ filter, action }) => {
   filter('articles.items.create', async (payload, meta, context) => {
     if (payload.ai_generate === true && !payload.content) {
-      const { OpenAI } = await import('openai');
+      const { OpenAI } = await import(openai);
       const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
       const response = await openai.chat.completions.create({
         model: 'gpt-4o',
         messages: [
-          { role: 'system', content: 'You are a technical content writer.' },
-          { role: 'user', content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
+          { role: system, content: 'You are a technical content writer.' },
+          { role: user, content: `Write a blog post titled: "${payload.title}". Output JSON with fields: content, excerpt, seo_keywords (array).` }
         ],
-        response_format: { type: 'json_object' },
+        response_format: { type: json_object },
         max_tokens: 2000
       });
 
@@ -366,7 +371,7 @@ export default defineHook(({ filter, action }) => {
       payload.excerpt = result.excerpt;
       payload.seo_keywords = result.seo_keywords;
       payload.ai_generated = true;
-      payload.status = 'review'; // Bắt buộc review
+      payload.status = review; // Bắt buộc review
     }
     return payload;
   });
@@ -374,10 +379,10 @@ export default defineHook(({ filter, action }) => {
   // Ghi log sự kiện AI generation
   action('articles.items.create', async (meta, context) => {
     if (meta.payload.ai_generated) {
-      await context.database('activity').insert({
-        action: 'ai_generate',
+      await context.database(activity).insert({
+        action: ai_generate,
         user: meta.user,
-        collection: 'articles',
+        collection: articles,
         item: meta.key,
         timestamp: new Date()
       });
@@ -403,21 +408,21 @@ cp -r dist/* /directus/extensions/hooks/ai-content/
 ```javascript
 // Lấy articles đang chờ review
 const pendingReview = await client.request(
-  readItems('articles', {
+  readItems(articles, {
     filter: {
       _and: [
-        { status: { _eq: 'review' } },
+        { status: { _eq: review } },
         { ai_generated: { _eq: true } }
       ]
     },
-    fields: ['id', 'title', 'excerpt', 'seo_score', 'seo_keywords', 'date_created']
+    fields: [id, title, excerpt, seo_score, seo_keywords, date_created]
   })
 );
 
 // Content editor phê duyệt
 await client.request(
-  updateItem('articles', articleId, {
-    status: 'published',
+  updateItem(articles, articleId, {
+    status: published,
     published_at: new Date().toISOString()
   })
 );
@@ -504,12 +509,12 @@ export default defineEndpoint((router, { services, database }) => {
   const { ItemsService } = services;
 
   router.get('/content-stats', async (req, res) => {
-    const articles = new ItemsService('articles', { schema: req.schema, accountability: req.accountability });
+    const articles = new ItemsService(articles, { schema: req.schema, accountability: req.accountability });
 
     const [total, published, draft, aiGenerated] = await Promise.all([
       articles.count(),
-      articles.count({ status: { _eq: 'published' } }),
-      articles.count({ status: { _eq: 'draft' } }),
+      articles.count({ status: { _eq: published } }),
+      articles.count({ status: { _eq: draft } }),
       articles.count({ ai_generated: { _eq: true } })
     ]);
 
@@ -532,19 +537,19 @@ export default defineEndpoint((router, { services, database }) => {
 ```javascript
 // Cấp editor role read-only trên SEO fields, full access cho content
 const rolePermissions = {
-  collection: 'articles',
+  collection: articles,
   role: 'editor-role-id',
-  action: 'read',
-  permissions: { status: { _eq: 'published' } },
-  fields: ['id', 'title', 'content', 'published_at'], // Không có seo_score, ai_generated
+  action: read,
+  permissions: { status: { _eq: published } },
+  fields: [id, title, content, published_at], // Không có seo_score, ai_generated
   validation: null
 };
 
 // Admin role xem mọi thứ
 const adminPermissions = {
-  collection: 'articles',
+  collection: articles,
   role: 'admin-role-id',
-  action: 'read',
+  action: read,
   permissions: {},
   fields: ['*'], // Tất cả fields
   validation: null
@@ -564,7 +569,7 @@ export default defineEndpoint((router, { database }) => {
     const metrics = await database.raw(`
       SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del
       FROM pg_stat_user_tables
-      WHERE schemaname = 'public'
+      WHERE schemaname = public
     `);
 
     let output = '';
@@ -619,7 +624,7 @@ Directus lưu snapshot của nội dung mỗi khi bạn nhấn "Save as Version.
 Có, với kiến trúc phù hợp. API server là stateless — scale ngang bằng cách thêm container replicas phía sau load balancer. Dùng Redis cho caching và sessions. Dùng PostgreSQL read replicas cho workload đọc nhiều. Một instance 4 vCPU / 8GB xử lý ~2.000 requests/giây cho cached reads. Phục vụ file nên đi qua CDN.
 
 **Q: Cách tốt nhất để tích hợp AI content generation là gì?**
-Sử dụng Directus Flows (tự động hóa trực quan) kết hợp với custom hook extensions. Flows xử lý trigger logic (ví dụ: "khi article status chuyển thành 'generate'"), và hooks gọi LLM API của bạn (OpenAI, Claude, local models). Lưu output AI như một draft version để review bởi con ngườ trước khi xuất bản. Điều này tạo ra một pipeline hợp tác AI-con ngườ hoàn chỉnh.
+Sử dụng Directus Flows (tự động hóa trực quan) kết hợp với custom hook extensions. Flows xử lý trigger logic (ví dụ: "khi article status chuyển thành generate"), và hooks gọi LLM API của bạn (OpenAI, Claude, local models). Lưu output AI như một draft version để review bởi con ngườ trước khi xuất bản. Điều này tạo ra một pipeline hợp tác AI-con ngườ hoàn chỉnh.
 
 **Q: Làm thế nào để migrate từ WordPress sang Directus?**
 Xuất nội dung WordPress qua WP REST API hoặc XML export, chuyển đổi dữ liệu để khớp với Directus schema, và bulk-import bằng Directus REST API hoặc SDK. Ảnh cần được upload lại vào Directus storage. Redirects từ URL WordPress cũ nên được xử lý ở reverse proxy level. Dự tính 1-2 tuần cho migration hoàn chỉnh tùy thuộc khối lượng nội dung.

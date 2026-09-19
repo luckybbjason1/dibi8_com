@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vercel-ai-sdk-edge-compute" />
 title: Vercel AI SDK — Build Streaming AI Apps with Edge-First Architecture
 description: Complete guide to Vercel AI SDK for building production AI applications. Stream LLM responses, integrate multiple providers, and deploy to edge with zero config. Supports React, Next.js, and any framework.
 tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']

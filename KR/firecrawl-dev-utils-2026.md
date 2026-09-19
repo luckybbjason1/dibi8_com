@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
 title: 'Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드'
 description: 'Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,747개, AGPL-3.0. 설치, 공식 SDK, 실제 코드, 셀프 호스팅, 그리고 Puppeteer·Scrapy·Axios와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'firecrawl/firecrawl'
 stars: 127747
-maintainer: 'firecrawl'
+maintainer: firecrawl
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
@@ -70,12 +75,12 @@ Firecrawl은 각각 하나의 일만 처리하는 소수의 엔드포인트를 �
 Node SDK로 가장 간단한 스크래핑을 하면 이렇게 됩니다:
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 
 const doc = await app.scrape('https://example.com', {
-  formats: ['markdown'],
+  formats: [markdown],
 });
 
 console.log(doc.markdown);
@@ -98,7 +103,7 @@ npm install firecrawl
 ```
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 ```
@@ -151,12 +156,12 @@ cp apps/api/.env.example apps/api/.env
 ### 단일 페이지 스크래핑
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' });
 
 const doc = await app.scrape('https://example.com', {
-  formats: ['markdown', 'html'],
+  formats: [markdown, html],
 });
 
 console.log(doc.markdown);
@@ -169,7 +174,7 @@ console.log(doc.markdown);
 ```typescript
 const result = await app.crawl('https://example.com', {
   limit: 100,
-  scrapeOptions: { formats: ['markdown'] },
+  scrapeOptions: { formats: [markdown] },
 });
 
 for (const page of result.data) {
@@ -184,12 +189,12 @@ JSON 스키마를 전달하면 Firecrawl은 원시 텍스트 대신 타입이 �
 ```typescript
 const doc = await app.scrape('https://example.com', {
   formats: [{
-    type: 'json',
+    type: json,
     schema: {
-      type: 'object',
+      type: object,
       properties: {
-        title: { type: 'string' },
-        description: { type: 'string' },
+        title: { type: string },
+        description: { type: string },
       },
     },
   }],
@@ -209,12 +214,12 @@ Firecrawl은 본질적으로 얇은 SDK를 곁들인 HTTP API에 불과하므로
 전형적인 패턴은 스크래핑을 자신의 엔드포인트 뒤에 감싸는 것입니다:
 
 ```typescript
-import { Firecrawl } from 'firecrawl';
+import { Firecrawl } from firecrawl;
 
 const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });
 
 export async function scrapeHandler(url: string) {
-  const doc = await app.scrape(url, { formats: ['markdown'] });
+  const doc = await app.scrape(url, { formats: [markdown] });
   return doc.markdown;
 }
 ```
@@ -240,7 +245,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
       - name: Install dependencies
         run: npm install firecrawl

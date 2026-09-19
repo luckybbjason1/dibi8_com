@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/academic-research-skills" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/academic-research-skills" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
 title: "Kỹ Năng Nghiên Cứu Học Thuật: Tự Động Hóa Tổng Quan Tài Liệu Với AI — Framework 31K Star 2026"
 description: "Academic Research Skills (31.628 sao) tự động hóa quy trình nghiên cứu: tìm kiếm bài báo, trích xuất thông tin, tổng hợp kết quả và viết tổng quan tài liệu. Được xây dựng cho Claude Code với kiến trúc kỹ thuật mô-đun."
 date: 2026-06-15

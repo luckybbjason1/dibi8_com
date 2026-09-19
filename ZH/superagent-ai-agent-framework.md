@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/superagent-ai-agent-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superagent-ai-agent-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
 title: 'Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南'
 description: '使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Superagent', 'AI Agent', 'LLM', 'RAG', '向量数据库', 'OpenAI', 'LangChain', 'Python', 'TypeScript']
+tags: [superagent, 'ai agent', llm, rag, 向量数据库, openai, langchain, python, typescript]
 aliases:
 - /zh/posts/superagent-ai-agent-framework/
 ---
@@ -115,7 +120,7 @@ pip install -e .
 
 ```bash
 # 在项目根目录创建 .env 文件
-cat > .env << 'EOF'
+cat > .env << EOF
 OPENAI_API_KEY=sk-your-openai-key-here
 SUPERAGENT_API_URL=https://api.superagent.sh
 SUPERAGENT_API_KEY=sa-your-superagent-key
@@ -393,7 +398,7 @@ def get_stock_price(symbol: str) -> str:
         headers={"Authorization": f"Bearer {API_KEY}"}
     )
     data = resp.json()
-    return f"{symbol}: ${data['price']} (change: {data['change']})"
+    return f"{symbol}: ${data[price]} (change: {data[change]})"
 
 # 注册自定义工具
 client.tool.create(

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
 title: 'Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南'
 description: 'Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'metabase/metabase'
 stars: 41000
-maintainer: 'metabase'
+maintainer: metabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Metabase', 'BI', 'business-intelligence', 'open-source', 'Tableau', 'dashboards', 'SQL', 'Docker', 'self-hosted', 'analytics', 'data-visualization', 'Apache-Superset', '商业智能', '数据分析', '开源']
+tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset', 商业智能, 数据分析, 开源]
 aliases:
 - /zh/posts/metabase-business-intelligence-open/
 ---
@@ -65,7 +70,7 @@ SELECT
     COUNT(*) AS order_count,
     SUM(total) AS revenue
 FROM orders
-WHERE created_at >= DATE_TRUNC('day', NOW() - INTERVAL '30 days')
+WHERE created_at >= DATE_TRUNC(day, NOW() - INTERVAL '30 days')
 GROUP BY country
 ORDER BY revenue DESC;
 ```
@@ -81,14 +86,14 @@ ORDER BY revenue DESC;
 WITH cohort_users AS (
     SELECT 
         user_id,
-        DATE_TRUNC('month', created_at) AS cohort_month
+        DATE_TRUNC(month, created_at) AS cohort_month
     FROM users
     WHERE created_at >= '2024-01-01'
 ),
 retention AS (
     SELECT 
         c.cohort_month,
-        DATE_TRUNC('month', o.created_at) - c.cohort_month AS period,
+        DATE_TRUNC(month, o.created_at) - c.cohort_month AS period,
         COUNT(DISTINCT o.user_id) AS retained_users,
         COUNT(DISTINCT c.user_id) AS total_users
     FROM cohort_users c
@@ -250,7 +255,7 @@ docker-compose up -d
 apt install -y nginx certbot python3-certbot-nginx
 
 # 6. 配置Nginx
-cat > /etc/nginx/sites-available/metabase << 'EOF'
+cat > /etc/nginx/sites-available/metabase << EOF
 server {
     listen 80;
     server_name analytics.yourdomain.com;
@@ -383,7 +388,7 @@ SSL: 必需
 -- 带日期筛选变量
 
 SELECT 
-    DATE_TRUNC('month', created_at) AS cohort_month,
+    DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
 WHERE created_at >= {{start_date}}  -- 仪表板筛选器
@@ -434,7 +439,7 @@ Metabase的嵌入式API允许在你的产品中白标仪表板：
 
 ```javascript
 // 用于签名嵌入的JWT令牌生成 (Node.js)
-const jwt = require('jsonwebtoken');
+const jwt = require(jsonwebtoken);
 
 const token = jwt.sign({
   resource: { dashboard: 123 },
@@ -493,7 +498,7 @@ Slack频道: #data-alerts, #executive-summary
 -- 管理 > 权限 > 数据 > 沙盒
 
 SELECT * FROM orders
-WHERE region = user_attribute('region');
+WHERE region = user_attribute(region);
 ```
 
 `user_attribute`函数在查询时按用户解析，无需单独的数据库视图即可强制执行数据隔离。

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cleanlab-11k-star-ai-data-cleaning" />
 
 
 title: 'Cleanlab：拥有11K+ Star的AI工具包，将数据标注成本降低80% — Python开源数据清洗'

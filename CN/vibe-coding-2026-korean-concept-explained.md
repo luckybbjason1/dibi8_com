@@ -1,12 +1,14 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/vibe-coding-2026-korean-concept-explained" />
 title: 'Vibe Coding 2026: The Korean Developer Concept Explained for the Rest of Us'
 description: 'Vibe coding (바이브 코딩) is the Korean developer term for natural-language-first programming where AI handles syntax. Toss and Kakao engineers use it daily. Here is what it means, the workflow, and why it matters outside Korea.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'AI-driven development', 'Natural language programming']
+tech_stack: ['Claude Code', Cursor, 'AI-driven development', 'Natural language programming']
 application_domain: Dev Utils
 source_version: '2026 Q2'
-licensing_model: 'Mixed'
+licensing_model: Mixed
 license_type: 'N/A (workflow)'
 github_repo: ''
 stars: 0
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['vibe-coding', 'ai-coding', 'korea', 'workflow', '2026']
+tags: ['vibe-coding', 'ai-coding', korea, workflow, 2026]
 aliases:
 - /posts/vibe-coding-2026-korean-concept-explained/
 faq:

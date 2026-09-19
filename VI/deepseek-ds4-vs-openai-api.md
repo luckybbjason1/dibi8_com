@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-ds4-vs-openai-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-ds4-vs-openai-api" />
 title: "Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local Xóa Sổ Hóa Đơn API"
 description: "Ngưng Cúng Tiền Cho OpenAI: Dùng DS4 Chạy DeepSeek Local Xóa Sổ Hóa Đơn API"
 date: 2026-05-15T04:20:25+09:00

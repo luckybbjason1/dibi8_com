@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scanners-box-cybersecurity-tools-collection" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: Bộ Sưu Tập 200+ Công Cụ An Ninh Mạng — Dành Cho Chuyên Gia Bảo
   Mật'
 description: Khám phá Scanners-Box — bộ sưu tập 200+ công cụ an ninh mạng mã nguồn

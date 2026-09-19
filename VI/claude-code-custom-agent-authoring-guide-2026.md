@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử Dụng Để Thực Thi Tiêu Chuẩn Của Bạn (2026)'
 description: 'Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế system prompt, danh sách công cụ được phép, và hai ví dụ sẵn sàng đưa vào sản xuất (trình duyệt migration, cổng bảo mật) cùng những lỗi cần tránh.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/claude-code-custom-agent-authoring/
 faq:

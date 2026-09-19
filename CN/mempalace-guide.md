@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mempalace-guide" />
 title: "Claude Code Session Memory: How to Integrate MemPalace for 96.6% Recall (2026 Guide)"
 description: "Claude Code Session Memory: How to Integrate MemPalace for 96.6% Recall (2026 Guide)"
 date: 2026-05-15T04:20:25+09:00

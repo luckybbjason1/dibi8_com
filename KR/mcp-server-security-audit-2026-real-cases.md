@@ -1,13 +1,18 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
 title: 'MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴'
 description: '프로덕션에서 인기 커뮤니티 MCP 서버 5종을 감사했다: GitHub, Slack, Postgres, Brave Search, Fetch. 구체적 취약점, 익스플로잇 시연, 서버당 5분이면 끝나는 8가지 설치 전 감사 체크리스트.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['MCP', 'Security', 'Claude Code', 'TypeScript', 'Python']
+tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 spec'
 licensing_model: Open Source / Mixed
-license_type: 'Various'
+license_type: Various
 github_repo: 'https://github.com/modelcontextprotocol/servers'
 stars: 60000
 maintainer: 'Community + Anthropic'
@@ -15,14 +20,14 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mcp', 'security', 'audit', 'claude-code', 'supply-chain', 'agent-security', '2026']
+tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
 aliases:
 - /kr/posts/mcp-server-security-audit-2026-real-cases/
 faq:
   - q: "Anthropic이 유지보수하는 MCP 서버가 커뮤니티 서버보다 안전한가?"
     a: "그렇다, 실질적으로 안전하다. Anthropic 참조 서버(filesystem, git, github, fetch, sequentialthinking)는 내부 리뷰, 서명된 릴리스, 정의된 보안 모델을 갖고 있다. 커뮤니티 서버는 편차가 크다 — 일부는 감사를 받았지만 대부분은 그렇지 않다. Anthropic 버전이 있다면 기본값으로 선택하고, 커뮤니티 대안은 검증 전까지는 전체 로컬 권한을 가진 신뢰할 수 없는 코드로 취급하라."
   - q: "2026년 실제로 가장 큰 MCP 공격 패턴은 무엇인가?"
-    a: "세 가지가 공동 1위: (1) 타이포스쿼팅 — `github-mcp-server-v2` 같은 가짜 패키지가 토큰을 빼낸다. (2) 유지보수자 이전 + 텔레메트리 — 인기 커뮤니티 서버가 손을 바꿔 파일 경로나 환경 변수를 유출하는 '분석' 기능을 추가한다. (3) 가져온 콘텐츠를 통한 프롬프트 인젝션 — `fetch` 서버가 적대적 마크다운을 가져오고, 에이전트는 프롬프트에 속아 `~/.ssh/id_rsa`를 유출한다."
+    a: "세 가지가 공동 1위: (1) 타이포스쿼팅 — `github-mcp-server-v2` 같은 가짜 패키지가 토큰을 빼낸다. (2) 유지보수자 이전 + 텔레메트리 — 인기 커뮤니티 서버가 손을 바꿔 파일 경로나 환경 변수를 유출하는 분석 기능을 추가한다. (3) 가져온 콘텐츠를 통한 프롬프트 인젝션 — `fetch` 서버가 적대적 마크다운을 가져오고, 에이전트는 프롬프트에 속아 `~/.ssh/id_rsa`를 유출한다."
   - q: "제대로 된 설치 전 감사는 얼마나 걸리나?"
     a: "무엇을 봐야 할지 알면 5분이다. 이 글의 8단계 체크리스트는 유지보수자 활성도, 의존성 트리, 네트워크 호출, 파일 시스템 범위, 시크릿 처리, 공급망 추적, 취약점 이력, 샌드박스 호환성을 다룬다. 대부분의 커뮤니티 서버는 8개 중 최소 2개를 통과하지 못한다."
   - q: "MCP 서버에 fine-grained GitHub PAT를 써야 하나?"

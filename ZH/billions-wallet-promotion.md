@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/billions-wallet-promotion" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/billions-wallet-promotion" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/billions-wallet-promotion" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/billions-wallet-promotion" />
 title: "发现 Billions 钱包 - 您的终极加密货币伴侣"
 description: "Billions钱包推广：安全可靠的加密货币钱包，支持比特币、以太坊等100多种数字资产管理。"
 date: 2026-05-15T04:20:25+09:00

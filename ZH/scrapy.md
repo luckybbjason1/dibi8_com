@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scrapy" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scrapy" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapy" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapy" />
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs BeautifulSoup, Selenium in 2026'
 description: 'Scrapy 是一个基于 Python 的快速高级网络爬虫和抓取框架。兼容 Python、Docker、Redis、PostgreSQL。涵盖基准测试、架构、生产部署以及与 BeautifulSoup、Selenium 和 Playwright 的对比。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/scrapy/scrapy'
 stars: 61700
-maintainer: 'scrapy'
+maintainer: scrapy
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['web-scraping', 'python', 'crawler', 'async', 'docker', 'scrapy教程', 'benchmark', '数据管道']
+tags: ['web-scraping', python, crawler, async, docker, scrapy教程, benchmark, 数据管道]
 aliases:
 - /zh/posts/scrapy/
 ---
@@ -126,24 +131,24 @@ price_monitor/
 import scrapy
 
 class ProductsSpider(scrapy.Spider):
-    name = 'products'
+    name = products
     allowed_domains = ['example.com']
     start_urls = ['https://example.com/products']
     
     custom_settings = {
-        'CONCURRENT_REQUESTS': 16,
-        'DOWNLOAD_DELAY': 0.5,
-        'AUTOTHROTTLE_ENABLED': True,
+        CONCURRENT_REQUESTS: 16,
+        DOWNLOAD_DELAY: 0.5,
+        AUTOTHROTTLE_ENABLED: True,
     }
 
     def parse(self, response):
         """提取商品数据并跟踪分页。"""
         for product in response.css('.product-card'):
             yield {
-                'name': product.css('.title::text').get(),
-                'price': product.css('.price::text').get(),
-                'url': product.css('a::attr(href)').get(),
-                'sku': product.css('.sku::text').get(),
+                name: product.css('.title::text').get(),
+                price: product.css('.price::text').get(),
+                url: product.css('a::attr(href)').get(),
+                sku: product.css('.sku::text').get(),
             }
         
         # 跟踪分页
@@ -239,8 +244,8 @@ from scrapy.exceptions import DropItem
 class PostgresPipeline:
     def open_spider(self, spider):
         self.conn = psycopg2.connect(
-            host='postgres', dbname='scrapy_data',
-            user='scraper', password='scraper_pass'
+            host=postgres, dbname=scrapy_data,
+            user=scraper, password=scraper_pass
         )
         self.cur = self.conn.cursor()
         self.cur.execute('''
@@ -261,7 +266,7 @@ class PostgresPipeline:
                 INSERT INTO products (name, price, url, sku)
                 VALUES (%s, %s, %s, %s)
                 ON CONFLICT (url) DO NOTHING
-            ''', (item['name'], item['price'], item['url'], item['sku']))
+            ''', (item[name], item[price], item[url], item[sku]))
             self.conn.commit()
         except psycopg2.Error as e:
             spider.logger.error(f"数据库错误: {e}")
@@ -294,17 +299,17 @@ import scrapy
 from scrapy_playwright.page import PageMethod
 
 class JSSpider(scrapy.Spider):
-    name = 'js_site'
+    name = js_site
     
     def start_requests(self):
         yield scrapy.Request(
             'https://spa-example.com/products',
             meta={
-                'playwright': True,
-                'playwright_page_methods': [
-                    PageMethod('wait_for_selector', '.product-loaded'),
-                    PageMethod('click', '.load-more'),
-                    PageMethod('wait_for_selector', '.product-item'),
+                playwright: True,
+                playwright_page_methods: [
+                    PageMethod(wait_for_selector, '.product-loaded'),
+                    PageMethod(click, '.load-more'),
+                    PageMethod(wait_for_selector, '.product-item'),
                 ]
             }
         )
@@ -312,8 +317,8 @@ class JSSpider(scrapy.Spider):
     def parse(self, response):
         for item in response.css('.product-item'):
             yield {
-                'name': item.css('.name::text').get(),
-                'price': item.css('.price::text').get(),
+                name: item.css('.name::text').get(),
+                price: item.css('.price::text').get(),
             }
 ```
 
@@ -331,10 +336,10 @@ class ProxyMiddleware:
 
     @classmethod
     def from_crawler(cls, crawler):
-        return cls(proxy_url=crawler.settings.get('WEBSHARE_PROXY_URL'))
+        return cls(proxy_url=crawler.settings.get(WEBSHARE_PROXY_URL))
 
     def process_request(self, request, spider):
-        request.meta['proxy'] = self.proxy_url
+        request.meta[proxy] = self.proxy_url
         spider.logger.debug(f'使用代理访问 {request.url}')
 ```
 
@@ -467,7 +472,7 @@ class StatsCollector:
 
 ```python
 # settings.py
-LOG_LEVEL = 'INFO'
+LOG_LEVEL = INFO
 LOG_FILE = 'logs/scrapy.log'
 LOG_FORMAT = '%(asctime)s [%(name)s] %(levelname)s: %(message)s'
 LOG_STDOUT = False

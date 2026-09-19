@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-token-saver" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-token-saver" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-token-saver" />
 title: 'RTK: AI 코딩 에이전트 토큰 비용을 60-90% 절감하는 오픈소스 Rust CLI 프록시 — 설치부터 실전 적용까지'
 description: 'RTK(Rust Token Killer)는 Claude Code, Cursor, Copilot, Codex, Gemini CLI 등 AI 코딩 에이전트의 LLM 토큰 소비를 60-90% 줄여주는 Rust 기반 오픈소스 CLI 프록시입니다. 단일 바이너리, 제로 의존성, 한 줄 설치. 아키텍처 분석과 실측 벤치마크 포함.'
 date: 2026-05-14 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/log-monitoring-observability-tools-developers" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/log-monitoring-observability-tools-developers" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/log-monitoring-observability-tools-developers" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/log-monitoring-observability-tools-developers" />
 title: 'Công Cụ Giám Sát Log & Khả Năng Quan Sát cho Nhà Phát Triển: Hướng Dẫn 2025'
 description: 'Tổng quan công cụ giám sát log và observability năm 2025: Grafana Loki, ELK Stack, Datadog, New Relic, OpenTelemetry. So sánh, hướng dẫn thiết lập và chọn stack phù hợp.'
 date: 2026-05-18 00:00:00+08:00

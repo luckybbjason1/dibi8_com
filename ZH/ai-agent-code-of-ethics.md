@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-code-of-ethics" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-code-of-ethics" />
 title: 'AI 智能体道德规范（2026）：构建自主智能体的实用治理框架'
 description: '一套面向工程师的自主 AI 智能体道德规范——不是抽象口号，而是七条可落地的强制规则，每条都对应具体的工程控制：最小权限授权、全程可审计、人在回路的可逆性、有界自主、不可断裂的问责链、失效保护默认值、隐私优先设计。附 2026 年智能体上线前的开发者检查清单。'
 date: 2026-06-04 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-06-04'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI智能体', 'AI伦理', '负责任AI', 'AI治理', '智能体安全', '对齐', '道德规范']
+categories: [collections]
+tags: [ai智能体, ai伦理, 负责任ai, ai治理, 智能体安全, 对齐, 道德规范]
 aliases:
   - /zh/posts/ai-agent-code-of-ethics/
 faqs:
@@ -240,3 +245,13 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
+
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [Ai Agent Tool Chain](/zh/ai-agent-tool-chain)
+2. [Ai Seo Geo Toolkit Stack](/zh/ai-seo-geo-toolkit-stack)
+
+---

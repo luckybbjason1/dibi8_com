@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/developer-api-gateway-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/developer-api-gateway-tools" />
 title: '2025년 최고의 개발자 API 게이트웨이 도구 비교: Kong, NGINX Plus, Traefik, Apigee'
 description: 'API 게이트웨이 도구를 비교합니다. Kong, NGINX Plus, Traefik, Google Apigee, AWS API Gateway, Tyk의 특징과 성능을 알아보고 아키텍처에 맞는 게이트웨이를 선택하세요.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false

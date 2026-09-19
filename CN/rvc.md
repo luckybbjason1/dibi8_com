@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/rvc" />
 title: 'RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Minute Training Setup for 2026'
 description: 'RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GPT-SoVITS, Coqui TTS, and demucs. This tutorial covers Docker deployment, training pipelines, API integration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['rvc', 'voice-conversion', 'ai-voice-cloning', 'vits', 'speech-synthesis', 'docker', 'tutorial', 'retrieval-vc']
+tags: [rvc, 'voice-conversion', 'ai-voice-cloning', vits, 'speech-synthesis', docker, tutorial, 'retrieval-vc']
 aliases:
 - /posts/rvc/
 ---
@@ -540,9 +542,9 @@ def list_available_models(models_dir="./models"):
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-conversion_count = Counter('rvc_conversions_total', 'Total conversions')
-conversion_duration = Histogram('rvc_conversion_seconds', 'Conversion latency')
-error_count = Counter('rvc_errors_total', 'Total errors', ['error_type'])
+conversion_count = Counter(rvc_conversions_total, 'Total conversions')
+conversion_duration = Histogram(rvc_conversion_seconds, 'Conversion latency')
+error_count = Counter(rvc_errors_total, 'Total errors', [error_type])
 
 def monitored_convert(audio_path, model_name):
     start = time.time()

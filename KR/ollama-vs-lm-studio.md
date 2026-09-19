@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-vs-lm-studio" />
 title: 'Ollama vs LM Studio 2026: 어떤 로컬 LLM 러너가 더 좋은가?'
 description: 'Ollama와 LM Studio 정면 비교 — CLI vs GUI, 모델 라이브러리, GPU 지원, OpenAI 호환 API, 양자화, 셀프 호스팅. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openmontage-agentic-video-production-system" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openmontage-agentic-video-production-system" />
 lang: kr
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage 리뷰: 세계 최초의 오픈소스 에이전트 영상 제작 시스템 (52개 도구, 12개 파이프라인, 500개 이상의 기술)"
@@ -24,7 +29,7 @@ github_repo: 'https://github.com/calesthio/OpenMontage'
 last_maintained: '2026-06-21'
 draft: false
 categories: ['ai-tools']
-tags: ["오픈몽타주", "에이전틱 비디오", "AI 동영상 제작", "리모션", "하이퍼프레임", "비디오 생성", "오픈 소스", "클로드 코드", "커서", "멀티 에이전트", "다큐멘터리", "애니메이션"]
+tags: ["오픈몽타주", "에이전틱 비디오", "ai 동영상 제작", "리모션", "하이퍼프레임", "비디오 생성", "오픈 소스", "클로드 코드", "커서", "멀티 에이전트", "다큐멘터리", "애니메이션"]
 aliases:
 - /posts/openmontage-agentic-video-production-system/
 faqs:

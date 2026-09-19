@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vibe-coding-2026-korean-concept-explained" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vibe-coding-2026-korean-concept-explained" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vibe-coding-2026-korean-concept-explained" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vibe-coding-2026-korean-concept-explained" />
 title: 'Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc, giải thích cho phần còn lại'
 description: 'Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự nhiên, trong đó AI xử lý cú pháp. Kỹ sư Toss và Kakao dùng hằng ngày. Đây là ý nghĩa, quy trình làm việc và lý do nó quan trọng ngoài Hàn Quốc.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Phát triển dựa trên AI', 'Lập trình bằng ngôn ngữ tự nhiên']
+tech_stack: ['Claude Code', Cursor, 'Phát triển dựa trên AI', 'Lập trình bằng ngôn ngữ tự nhiên']
 application_domain: Công cụ lập trình
 source_version: '2026 Q2'
 licensing_model: 'Hỗn hợp'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['vibe-coding', 'ai-coding', 'korea', 'workflow', '2026']
+tags: ['vibe-coding', 'ai-coding', korea, workflow, 2026]
 aliases:
 - /vi/posts/vibe-coding-2026-korean-concept-explained/
 faq:

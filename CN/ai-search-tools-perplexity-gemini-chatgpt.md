@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-search-tools-perplexity-gemini-chatgpt" />
 title: 'AI Search Tools Compared: Perplexity vs Google Gemini vs ChatGPT Search 2025'
 description: 'Compare the top AI search engines of 2025 — Perplexity, Google Gemini, ChatGPT Search, Copilot, and more. See accuracy, speed, and source coverage side by side.'
 date: 2026-05-18 00:00:00+08:00

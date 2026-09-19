@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-node-based-ai-image-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-node-based-ai-image-2026" />
 title: 'ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플로우 엔진 완전 가이드'
 description: 'ComfyUI는 SD/SDXL/Flux/Wan/Hunyuan 등을 지원하는 114k 별 노드 기반 시각 워크플로우 엔진. 이미지, 비디오, 오디오, 3D 생성 지원. 2026 완전 설치 가이드: 노드 기초, workflow JSON 임포트, ComfyUI Manager, ComfyUI가 AUTOMATIC1111을 이기는 때.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 114000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ComfyUI', '이미지 생성', '비디오 생성', '노드 기반', '워크플로우', '오픈소스']
+tags: [comfyui, '이미지 생성', '비디오 생성', '노드 기반', 워크플로우, 오픈소스]
 aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---

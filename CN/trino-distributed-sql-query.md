@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/trino-distributed-sql-query" />
 title: 'Trino 2026: The Distributed SQL Query Engine Analyzing PB-Scale Data — Self-Hosted Cluster Setup Guide'
 description: 'Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+ connector configuration, performance tuning, and real-world benchmarks.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'trinodb/trino'
 stars: 11000
-maintainer: 'trinodb'
+maintainer: trinodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Trino', 'Presto', 'Distributed SQL', 'Big Data', 'Analytics', 'Data Lake', 'Hive', 'Iceberg', 'Query Engine', 'Self-Hosted']
+tags: [trino, presto, 'distributed sql', 'big data', analytics, 'data lake', hive, iceberg, 'query engine', 'self-hosted']
 aliases:
 - /posts/trino-distributed-sql-query/
 ---
@@ -225,7 +227,7 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
 ./trino --server http://trino-coordinator:8080 \
   --catalog iceberg \
   --schema default \
-  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL '7' DAY"
+  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL 7 DAY"
 ```
 
 ## Integration with Mainstream Data Tools
@@ -519,7 +521,7 @@ Query runtime metrics directly:
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
 -- Memory usage per query
-SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = 'RUNNING';
+SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = RUNNING;
 ```
 
 ## Comparison with Alternatives

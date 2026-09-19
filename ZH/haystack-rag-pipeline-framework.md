@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南'
 description: '2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Haystack', 'NLP', 'RAG', 'Python', 'LLM', '文档存储', '检索器', 'Agent', 'OpenAI', 'Docker', '流水线']
+tags: [haystack, nlp, rag, python, llm, 文档存储, 检索器, agent, openai, docker, 流水线]
 aliases:
 - /zh/posts/haystack-rag-pipeline-framework/
 ---
@@ -264,7 +269,7 @@ pipeline = Pipeline()
 
 # 路由器根据查询类型决定路径
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ 'technical' in query.lower() }}",
+    "condition": "{{ technical in query.lower() }}",
     "output": "{{ query }}",
     "output_type": str,
 }))
@@ -376,8 +381,8 @@ pipe.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
 pipe.connect("counter.text", "generator.prompt")
 
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
-print(f"Tokens: {result['counter']['token_count']}")
-print(f"Response: {result['generator']['replies'][0]}")
+print(f"Tokens: {result[counter][token_count]}")
+print(f"Response: {result[generator][replies][0]}")
 ```
 
 ### Agent 的网络搜索工具
@@ -523,7 +528,7 @@ sas_result = sas_evaluator.run(
     ground_truth_answers=[g["expected"] for g in ground_truth],
     predicted_answers=predictions,
 )
-print(f"SAS Score: {sas_result['score']:.3f}")
+print(f"SAS Score: {sas_result[score]:.3f}")
 ```
 
 ### Docker 部署

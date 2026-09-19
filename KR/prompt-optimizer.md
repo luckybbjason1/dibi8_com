@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prompt-optimizer" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompt-optimizer" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompt-optimizer" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompt-optimizer" />
 title: "Prompt 최적화기 — 5단계 재구성, 불필요 표현 제거, 토큰 절약 (GPT / Claude / Gemini / DeepSeek)"
 description: "무료 온라인 Prompt 최적화 도구. 불필요 표현 감지, 5단계 프레임(역할 / 작업 / 컨텍스트 / 제약 / 예시 / 출력)으로 재구성, GPT-4o / Claude Sonnet / Gemini / DeepSeek V4 네 모델 토큰 사용량 비교 — 완전 클라이언트 사이드."
 date: 2026-05-19

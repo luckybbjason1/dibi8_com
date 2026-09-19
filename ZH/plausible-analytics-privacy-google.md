@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
 title: 'Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍，2026年自建部署指南'
 description: 'Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'plausible/analytics'
 stars: 21000
-maintainer: 'plausible'
+maintainer: plausible
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['plausible', 'analytics', '隐私', 'gdpr', 'google-analytics替代品', '自建部署', 'docker', 'elixir', '轻量级']
+tags: [plausible, analytics, 隐私, gdpr, 'google-analytics替代品', 自建部署, docker, elixir, 轻量级]
 aliases:
 - /zh/posts/plausible-analytics-privacy-google/
 ---
@@ -127,7 +132,7 @@ export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\n')
 export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\n')
 
 # 创建环境变量文件
-cat > plausible-conf.env << 'EOF'
+cat > plausible-conf.env << EOF
 BASE_URL=https://analytics.yourdomain.com
 SECRET_KEY_BASE=${SECRET_KEY_BASE}
 TOTP_VAULT_KEY=${TOTP_VAULT_KEY}
@@ -243,14 +248,14 @@ export default function PlausibleAnalytics() {
 // Next.js 13+ SPA路由变更
 // app/layout.js
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect } from react;
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.plausible) {
-      window.plausible('pageview');
+    if (typeof window !== undefined && window.plausible) {
+      window.plausible(pageview);
     }
   }, [pathname]);
 
@@ -278,8 +283,8 @@ export default defineNuxtPlugin(() => {
   // 追踪SPA导航
   const router = useRouter();
   router.afterEach((to) => {
-    if (typeof window !== 'undefined' && window.plausible) {
-      window.plausible('pageview', { u: window.location.origin + to.fullPath });
+    if (typeof window !== undefined && window.plausible) {
+      window.plausible(pageview, { u: window.location.origin + to.fullPath });
     }
   });
 });
@@ -294,7 +299,7 @@ export default defineNuxtPlugin(() => {
 
 # 选项2：手动 — 添加到主题的 header.php
 <?php if (!is_user_logged_in()): ?>
-<script defer data-domain="<?php echo $_SERVER['HTTP_HOST']; ?>"
+<script defer data-domain="<?php echo $_SERVER[HTTP_HOST]; ?>"
   src="https://analytics.yourdomain.com/js/script.js"></script>
 <?php endif; ?>
 ```
@@ -314,10 +319,10 @@ export default defineNuxtPlugin(() => {
 export default defineConfig({
   integrations: [
     {
-      name: 'plausible',
+      name: plausible,
       hooks: {
         'astro:config:setup': ({ injectScript }) => {
-          injectScript('head', `
+          injectScript(head, `
             <script defer data-domain="yourdomain.com"
               src="https://analytics.yourdomain.com/js/script.js"></script>
           `);
@@ -332,23 +337,23 @@ export default defineConfig({
 
 ```javascript
 // 追踪按钮点击、表单提交或任何自定义事件
-document.getElementById('signup-button').addEventListener('click', () => {
+document.getElementById('signup-button').addEventListener(click, () => {
   plausible('Signup Click', {
     props: {
-      plan: 'pro',
-      source: 'header'
+      plan: pro,
+      source: header
     }
   });
 });
 
 // 追踪电商转化
-plausible('Purchase', {
+plausible(Purchase, {
   props: {
     product: 'Widget Pro',
     price: 99.00,
-    currency: 'USD'
+    currency: USD
   },
-  revenue: { currency: 'USD', amount: 9900 }  // 以分为单位
+  revenue: { currency: USD, amount: 9900 }  // 以分为单位
 });
 ```
 
@@ -480,7 +485,7 @@ response = requests.get(
 
 data = response.json()
 for entry in data["results"]:
-    print(f"{entry['date']}: {entry['visitors']} 访客, {entry['pageviews']} 页面浏览")
+    print(f"{entry[date]}: {entry[visitors]} 访客, {entry[pageviews]} 页面浏览")
 ```
 
 ### 备份策略
@@ -542,7 +547,7 @@ services:
 ```yaml
 # 添加到你的 prometheus.yml
 scrape_configs:
-  - job_name: 'plausible'
+  - job_name: plausible
     static_configs:
       - targets: ['analytics.yourdomain.com:8000']
     metrics_path: '/metrics'
@@ -623,7 +628,7 @@ Plausible通常报告的 **访客数比GA4高5-15%**，因为它被广告拦截�
 ```bash
 # 运行GA导入器（从Plausible容器）
 docker compose exec plausible bin/plausible \
-  "Plausible.Google.Import.start('your-ga-property-id', 'YOUR_API_KEY')"
+  "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
 ```
 
 **当我的站点超出VPS容量时会发生什么？**

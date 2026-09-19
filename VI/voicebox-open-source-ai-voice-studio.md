@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/voicebox-open-source-ai-voice-studio" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicebox-open-source-ai-voice-studio" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicebox-open-source-ai-voice-studio" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicebox-open-source-ai-voice-studio" />
 title: 'VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, Chép Và Tạo Giọng'
 description: 'Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép vào bất kỳ ứng dụng nào. 33K sao. Chạy cục bộ trên máy của bạn với hỗ trợ CUDA hoặc Apple Silicon.'
 date: 2026-06-25

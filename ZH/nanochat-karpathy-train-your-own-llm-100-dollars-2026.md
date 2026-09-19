@@ -1,9 +1,13 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 title: 'nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 LLM 训练管道'
 description: '由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Python', 'PyTorch', 'Rust', 'LLM Training']
+tech_stack: [Python, PyTorch, Rust, 'LLM Training']
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +18,12 @@ download_url: 'https://github.com/karpathy/nanochat'
 backup_url: ''
 github_repo: 'karpathy/nanochat'
 stars: 54700
-maintainer: 'karpathy'
+maintainer: karpathy
 last_maintained: '2026-06-01'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['nanochat', 'karpathy', 'LLM训练', 'PyTorch', 'GPT', '自托管LLM', '开源', 'transformer', '微调']
+tags: [nanochat, karpathy, llm训练, pytorch, gpt, 自托管llm, 开源, transformer, 微调]
 aliases:
 - /zh/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
 faqs:

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-ai-coding-workflow" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-ai-coding-workflow" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-ai-coding-workflow" />
 title: '셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택'
 description: '7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. 실제 수치, 실제 config, 전체 단계별 조립 가이드.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['셀프호스트', 'AI 코딩', '스택', '워크플로우', '컬렉션']
+categories: [collections]
+tags: [셀프호스트, 'ai 코딩', 스택, 워크플로우, 컬렉션]
 aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---

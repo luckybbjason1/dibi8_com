@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-llm-runner-comparison-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-llm-runner-comparison-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-llm-runner-comparison-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-llm-runner-comparison-2026" />
 title: 'Ollama vs LM Studio vs llama.cpp vs vLLM 2026: Hướng Dẫn Chọn Local LLM Runner Thành Thật'
 description: 'So sánh trực tiếp 4 local LLM runner quan trọng năm 2026. Số liệu thực: Ollama (137k sao) dễ nhất, LM Studio UI đẹp nhất, llama.cpp (112k) engine bên dưới, vLLM (80.7k) vua throughput production. Cây quyết định 30 giây theo use case.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Local LLM', 'Ollama', 'vLLM', 'llama.cpp', 'LM Studio', 'So sánh', 'Hub article']
+tags: ['local llm', ollama, vllm, 'llama.cpp', 'lm studio', 'so sánh', 'hub article']
 aliases:
   - /posts/local-llm-runner-comparison-2026/
 ---

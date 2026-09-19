@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-codex-cli-vs-claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-vs-claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-vs-claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-vs-claude-code" />
 title: 'OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？'
 description: 'OpenAI Codex CLI（gpt-5-codex）与 Anthropic Claude Code（Sonnet 4.6，1M 上下文）横向对比 — 价格、沙箱、企业版、工具集成。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

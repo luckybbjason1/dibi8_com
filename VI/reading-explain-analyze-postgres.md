@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/reading-explain-analyze-postgres" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/reading-explain-analyze-postgres" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
 title: Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc
 description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,
   bottleneck detection, and database performance optimization.

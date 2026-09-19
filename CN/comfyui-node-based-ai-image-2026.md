@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/comfyui-node-based-ai-image-2026" />
 title: 'ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio Workflow Engine — Complete Guide'
 description: 'ComfyUI is the 114k-star node-based visual workflow engine for SD/SDXL/Flux/Wan/Hunyuan and more. Supports image, video, audio, and 3D generation. Complete 2026 install guide covering node basics, workflow JSON import, ComfyUI Manager, and when ComfyUI beats AUTOMATIC1111.'
 date: 2026-05-21 00:00:00+08:00
@@ -17,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 114000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ComfyUI', 'image generation', 'video generation', 'node-based', 'workflow', 'open-source']
+tags: [comfyui, 'image generation', 'video generation', 'node-based', workflow, 'open-source']
 aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---

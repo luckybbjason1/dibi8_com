@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prompts-chat" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompts-chat" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompts-chat" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompts-chat" />
 title: 'prompts.chat：16.3万+ 提示——开源提示库指南 2026'
 description: 'Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library.'
 date: 2026-06-12

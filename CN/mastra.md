@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mastra" />
 title: 'Mastra: 24K+ Stars — TypeScript AI Framework That Cuts Token Costs 4-10x in 2026'
 description: 'Mastra is a TypeScript-native AI framework for building AI-powered applications and agents from the Gatsby team. Covers Mastra vs LangChain, installation, workflows, RAG, memory, observability, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mastra', 'typescript', 'ai-framework', 'agents', 'llm', 'mastra-tutorial', 'mastra-vs-langchain', 'open-source']
+tags: [mastra, typescript, 'ai-framework', agents, llm, 'mastra-tutorial', 'mastra-vs-langchain', 'open-source']
 aliases:
 - /posts/mastra/
 ---
@@ -158,7 +160,7 @@ npx mastra dev
 import { Agent } from '@mastra/core';
 import { openai } from '@ai-sdk/openai';
 import { createTool } from '@mastra/core';
-import { z } from 'zod';
+import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
@@ -174,7 +176,7 @@ const searchTool = createTool({
 });
 
 export const supportAgent = new Agent({
-  name: 'SupportAgent',
+  name: SupportAgent,
   instructions: `You are a technical support agent. Answer questions
     using the search tool. Be concise and cite sources.`,
   model: openai('gpt-4o'),
@@ -190,8 +192,8 @@ const result = await supportAgent.generate(
   'Classify this support ticket: "Cannot deploy to Vercel"',
   {
     output: z.object({
-      category: z.enum(['deployment', 'billing', 'bug', 'feature']),
-      priority: z.enum(['low', 'medium', 'high', 'critical']),
+      category: z.enum([deployment, billing, bug, feature]),
+      priority: z.enum([low, medium, high, critical]),
       summary: z.string(),
       actionItems: z.array(z.string()),
     }),
@@ -199,7 +201,7 @@ const result = await supportAgent.generate(
 );
 
 // result.object is fully typed — TypeScript knows the shape
-console.log(result.object.priority); // 'high' | 'low' | 'medium' | 'critical'
+console.log(result.object.priority); // high | low | medium | critical
 ```
 
 ### Streaming Responses
@@ -220,14 +222,14 @@ for await (const chunk of stream.textStream) {
 ```typescript
 // src/mastra/workflows/ticket.ts
 import { Workflow, Step } from '@mastra/core';
-import { z } from 'zod';
+import { z } from zod;
 
 const classifyStep = new Step({
-  id: 'classify',
+  id: classify,
   inputSchema: z.object({ ticketText: z.string() }),
   outputSchema: z.object({ category: z.string(), priority: z.string() }),
   execute: async ({ input, mastra }) => {
-    const agent = mastra.getAgent('supportAgent');
+    const agent = mastra.getAgent(supportAgent);
     const result = await agent.generate(
       `Classify: ${input.ticketText}`,
       { output: z.object({ category: z.string(), priority: z.string() }) }
@@ -237,7 +239,7 @@ const classifyStep = new Step({
 });
 
 const escalateStep = new Step({
-  id: 'escalate',
+  id: escalate,
   outputSchema: z.object({ escalated: z.boolean() }),
   execute: async ({ input }) => {
     // Escalate to senior engineer
@@ -262,10 +264,10 @@ export const ticketPipeline = new Workflow({
 })
   .step(classifyStep)
   .then(escalateStep, {
-    when: { 'classify.priority': 'high' },
+    when: { 'classify.priority': high },
   })
   .then(autoRespondStep, {
-    when: { 'classify.priority': ['low', 'medium'] },
+    when: { 'classify.priority': [low, medium] },
   });
 ```
 
@@ -278,7 +280,7 @@ import { Workflow, Step } from '@mastra/core';
 const stepA = new Step({ id: 'fetch-user', /* ... */ });
 const stepB = new Step({ id: 'fetch-orders', /* ... */ });
 const stepC = new Step({ id: 'fetch-preferences', /* ... */ });
-const stepD = new Step({ id: 'combine', /* ... */ });
+const stepD = new Step({ id: combine, /* ... */ });
 
 const parallelWorkflow = new Workflow({
   name: 'parallel-fetch',
@@ -302,7 +304,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   const { message } = await req.json();
-  const agent = mastra.getAgent('supportAgent');
+  const agent = mastra.getAgent(supportAgent);
 
   const stream = await agent.stream(message);
 
@@ -337,7 +339,7 @@ import { google } from '@ai-sdk/google';
 
 // Switch providers with one-line changes
 const agent = new Agent({
-  name: 'MultiProviderAgent',
+  name: MultiProviderAgent,
   instructions: 'You are a helpful assistant.',
   model: openai('gpt-4o'), // or anthropic('claude-sonnet-4') or google('gemini-2.0-pro')
   tools: { searchTool, calcTool },
@@ -353,12 +355,12 @@ import { MCPClient } from '@mastra/core';
 const mcpClient = new MCPClient({
   servers: {
     slack: {
-      command: 'npx',
+      command: npx,
       args: ['-y', '@modelcontextprotocol/server-slack'],
       env: { SLACK_BOT_TOKEN: process.env.SLACK_TOKEN },
     },
     github: {
-      command: 'npx',
+      command: npx,
       args: ['-y', '@modelcontextprotocol/server-github'],
       env: { GITHUB_PERSONAL_ACCESS_TOKEN: process.env.GITHUB_TOKEN },
     },
@@ -368,7 +370,7 @@ const mcpClient = new MCPClient({
 // MCP tools become available to your agent automatically
 const tools = await mcpClient.tools();
 const agent = new Agent({
-  name: 'MCPAgent',
+  name: MCPAgent,
   model: openai('gpt-4o'),
   tools, // All MCP tools are now available
 });
@@ -510,7 +512,7 @@ const piiGuard = createGuardrail({
 });
 
 const agent = new Agent({
-  name: 'SafeAgent',
+  name: SafeAgent,
   model: openai('gpt-4o'),
   tools: { searchTool },
   guardrails: [promptInjectionGuard, piiGuard],

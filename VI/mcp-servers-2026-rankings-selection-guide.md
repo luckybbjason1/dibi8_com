@@ -1,13 +1,18 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-servers-2026-rankings-selection-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-servers-2026-rankings-selection-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn'
 description: 'Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30 theo category, giải thích trade-off kiến trúc giữa stdio / HTTP-SSE / OAuth-bridged, và cây quyết định để chọn servers mà không chết đuối trong registries.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['MCP', 'Claude Code', 'Cursor', 'TypeScript', 'Python']
+tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 spec'
 licensing_model: Open Source / Mixed
-license_type: 'Various'
+license_type: Various
 github_repo: 'https://github.com/modelcontextprotocol/servers'
 stars: 60000
 maintainer: 'Anthropic + Community'
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mcp', 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', 'integration', '2026']
+tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', integration, 2026]
 aliases:
 - /vi/posts/mcp-servers-2026-rankings-selection-guide/
 faq:

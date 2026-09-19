@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/python-context-managers-the-three-cases-you-actually-need" />
 title: 'Python Context Managers: The Three Cases You Actually Need'
 description: 'Python context managers: the three cases you actually need. Master with
   statements, contextlib and custom context managers for better resource management.'

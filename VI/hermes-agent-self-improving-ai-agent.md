@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：AI Agent tự tiến hóa, càng dùng càng hiểu bạn
 description: Hermes Agent là tác nhân AI mã nguồn mở của Nous Research, có vòng lặp
   học tập tích hợp — tạo kỹ năng từ kinh nghiệm, cải thiện liên tục, ghi nhớ sở thích

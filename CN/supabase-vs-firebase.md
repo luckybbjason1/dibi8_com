@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/supabase-vs-firebase" />
 title: 'Supabase vs Firebase in 2026: Which BaaS Wins?'
 description: 'Postgres open-source Supabase vs Google NoSQL Firebase — database, auth, storage, realtime, edge functions, pricing, lock-in, self-hosting. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
@@ -135,7 +137,7 @@ For analytics-heavy or AI/RAG apps: **Supabase wins 5-10x** on monthly bills.
 - Export Firestore data to JSON via `firebase-tools` (`firebase firestore:export`)
 - Design Postgres schema first — denormalize Firestore into relational tables
 - Use Supabase's bulk import via `psql` or Studio CSV uploader
-- Replace Firestore listeners with `supabase.channel().on('postgres_changes', ...)`
+- Replace Firestore listeners with `supabase.channel().on(postgres_changes, ...)`
 - Migrate Firebase Auth users via Supabase's `auth.admin.createUser()` API (passwords need re-hash — send users a password reset email)
 - Run both stacks in parallel for one billing cycle to compare bills
 

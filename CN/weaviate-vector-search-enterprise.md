@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: The AI-Native Vector Search Engine Handling 10B+ Objects — Enterprise Deployment Guide'
 description: 'Enterprise guide to deploying Weaviate vector search at scale. Covers Kubernetes deployment, hybrid search, multi-modal support, RBAC, monitoring, and benchmarks for 10B+ object collections.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'weaviate/weaviate'
 stars: 11500
-maintainer: 'weaviate'
+maintainer: weaviate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -109,14 +111,14 @@ services:
       - "50051:50051"
     environment:
       QUERY_DEFAULTS_LIMIT: 100
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: false
+      AUTHENTICATION_APIKEY_ENABLED: true
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'your-api-key-here'
-      AUTHENTICATION_APIKEY_USERS: 'admin'
+      AUTHENTICATION_APIKEY_USERS: admin
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
+      DEFAULT_VECTORIZER_MODULE: none
       ENABLE_MODULES: ''
-      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_HOSTNAME: node1
     volumes:
       - weaviate_data:/var/lib/weaviate
     deploy:
@@ -222,7 +224,7 @@ results = products.query.hybrid(
 )
 
 for obj in results.objects:
-    print(f"{obj.properties['name']}: ${obj.properties['price']}")
+    print(f"{obj.properties[name]}: ${obj.properties[price]}")
 ```
 
 The `alpha` parameter weights vector vs. keyword scores. `alpha=0.7` means 70% vector, 30% BM25. Start with 0.75 and tune based on your data.
@@ -292,7 +294,7 @@ Enable Prometheus metrics in Weaviate:
 ```yaml
 # Additional environment variables for monitoring
 environment:
-  PROMETHEUS_MONITORING_ENABLED: 'true'
+  PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
 ```
 

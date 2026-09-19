@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南'
 description: 'Hummingbot v2实战部署指南，开源加密货币交易机器人，支持50+交易所连接器。涵盖Docker安装、自定义策略、回测、DEX网关和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'hummingbot/hummingbot'
 stars: 10500
-maintainer: 'hummingbot'
+maintainer: hummingbot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

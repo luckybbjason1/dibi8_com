@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-agent-code-of-ethics" />
 title: 'The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents'
 description: 'A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable rules with engineering controls: least-privilege authorization, full auditability, human-in-the-loop reversibility, bounded autonomy, an unbroken accountability chain, fail-safe defaults, and privacy by design. Includes a pre-deployment checklist for developers shipping agents in 2026.'
 date: 2026-06-04 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-06-04'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI Agent', 'AI Ethics', 'Responsible AI', 'AI Governance', 'Agent Safety', 'Alignment', 'Code of Ethics']
+categories: [collections]
+tags: ['ai agent', 'ai ethics', 'responsible ai', 'ai governance', 'agent safety', alignment, 'code of ethics']
 aliases:
   - /posts/ai-agent-code-of-ethics/
 faqs:

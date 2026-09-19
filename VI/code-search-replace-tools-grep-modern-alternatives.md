@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-search-replace-tools-grep-modern-alternatives" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-search-replace-tools-grep-modern-alternatives" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-search-replace-tools-grep-modern-alternatives" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-search-replace-tools-grep-modern-alternatives" />
 title: 'Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd và Các Lựa Chọn Thay Thế Hiện Đại'
 description: 'Hướng dẫn đầy đủ về công cụ tìm kiếm và thay thế code: so sánh grep, ack, ag, ripgrep, fzf, sd. Bảng benchmark, workflow thực tế và cách xây dựng bộ công cụ tìm kiếm hiệu quả.'
 date: 2026-05-18 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-open-source-deepseek-alternative-2026" />
 title: 'Đánh Giá ds4 2026: DeepSeek Mã Nguồn Mở Mà Developer Đang Chuyển Sang'
 description: 'ds4 là runtime LLM mã nguồn mở tương thích DeepSeek phát triển nhanh nhất năm 2026. Giấy phép Apache-2.0, tương thích OpenAI API, chạy weights DeepSeek V3 / V3.1 / V4 với độ trễ thấp hơn vLLM 40%. Hướng dẫn setup đầy đủ, so sánh benchmark với vLLM/Ollama/TGI, củng cố production, tích hợp công cụ (Claude Code, Cursor, LangChain, Continue.dev).'
 date: 2026-05-22 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'Various'
+maintainer: Various
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llamaindex-vs-langchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex-vs-langchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex-vs-langchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex-vs-langchain" />
 title: 'LlamaIndex vs LangChain对比2025：哪个LLM框架更适合你？'
 description: '2025年最详细的LlamaIndex与LangChain对比分析，涵盖架构、RAG能力、性能基准和选型建议，帮你做出正确选择。'
 date: 2026-05-18 00:00:00+08:00

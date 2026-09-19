@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/justhireme-ai-job-search-workbench" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/justhireme-ai-job-search-workbench" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI가 당신의 취업을 자동화합니다"
 description: "JustHireMe 오픈소스 AI 취업 워크벤치 리뷰. 로컬 우선 구직 인텔리전스 시스템, 자동 포지션 크롤링, AI 매칭도 평가, 맞춤형 이력서 및 자기소개서 생성."
 date: 2026-05-15T04:20:25+09:00

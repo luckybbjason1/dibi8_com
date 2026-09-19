@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
 title: 'Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở với Auth, DB & Storage — Hướng Dẫn Tự Host Backend'
 description: 'Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, cloud functions và real-time subscriptions. Cài đặt Docker, tích hợp SDK, benchmark và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'appwrite/appwrite'
 stars: 47200
-maintainer: 'appwrite'
+maintainer: appwrite
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Appwrite', 'Backend-as-a-Service', 'Thay thế Firebase', 'Docker', 'Mã nguồn mở', 'Xác thực', 'Database', 'Cloud Functions', 'Tự host']
+tags: [appwrite, 'backend-as-a-service', 'thay thế firebase', docker, 'mã nguồn mở', 'xác thực', database, 'cloud functions', 'tự host']
 aliases:
 - /vi/posts/appwrite-backend-as-service/
 ---
@@ -148,7 +153,7 @@ npm install appwrite@16.1.0
 Khởi tạo client và tạo document:
 
 ```javascript
-import { Client, Account, Databases, ID } from 'appwrite';
+import { Client, Account, Databases, ID } from appwrite;
 
 const client = new Client()
   .setEndpoint('https://api.yourdomain.com/v1')  // API endpoint của bạn
@@ -166,7 +171,7 @@ const doc = await databases.createDocument(
   'your-database-id',
   'your-collection-id',
   ID.unique(),
-  { title: 'Hello Appwrite', status: 'active', priority: 3 }
+  { title: 'Hello Appwrite', status: active, priority: 3 }
 );
 console.log('Document ID:', doc.$id);
 ```
@@ -194,7 +199,7 @@ doc = databases.create_document(
     database_id='your-database-id',
     collection_id='your-collection-id',
     document_id=ID.unique(),
-    data={'title': 'From Python', 'status': 'active', 'score': 95.5}
+    data={title: 'From Python', status: active, score: 95.5}
 )
 print(f"Created document: {doc['$id']}")
 
@@ -204,7 +209,7 @@ results = databases.list_documents(
     collection_id='your-collection-id',
     queries=['equal("status", "active")', 'greaterThan("score", 90)', 'limit(10)']
 )
-print(f"Found {results['total']} matching documents")
+print(f"Found {results[total]} matching documents")
 ```
 
 ### Flutter SDK
@@ -242,9 +247,9 @@ class AppwriteService {
   Future<Document> createTask(String title) async {
     return await databases.createDocument(
       databaseId: 'your-database-id',
-      collectionId: 'tasks',
+      collectionId: tasks,
       documentId: ID.unique(),
-      data: {'title': title, 'done': false, 'created_at': DateTime.now().toIso8601String()},
+      data: {title: title, done: false, created_at: DateTime.now().toIso8601String()},
     );
   }
 }
@@ -403,13 +408,13 @@ find $BACKUP_DIR -mtime +7 -delete
 // Cấp quyền dựa trên team
 await databases.createDocument(
   'prod-db',
-  'projects',
+  projects,
   ID.unique(),
   { name: 'Secret Project', budget: 50000 },
   [
-    Permission.read(Role.team('managers')),
-    Permission.update(Role.team('managers')),
-    Permission.delete(Role.team('admins')),
+    Permission.read(Role.team(managers)),
+    Permission.update(Role.team(managers)),
+    Permission.delete(Role.team(admins)),
     Permission.create(Role.users())
   ]
 );
@@ -422,7 +427,7 @@ Appwrite expose metrics tại `/_metrics` để Prometheus scrape:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'appwrite'
+  - job_name: appwrite
     static_configs:
       - targets: ['appwrite:80']
     metrics_path: '/_metrics'

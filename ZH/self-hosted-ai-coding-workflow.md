@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-ai-coding-workflow" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-ai-coding-workflow" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-ai-coding-workflow" />
 title: '自托管 AI 编程工作流：2026 年 $6/月 完整 stack'
 description: '7 个组件的自托管 AI 编程 stack，用 $6/月 的基础设施替换掉 $290/月 的 SaaS 订阅（Cursor + Claude Code Pro + Copilot + Replit）。真实数字、真实配置、完整一步步组装指南。'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['自托管', 'AI 编程', 'Stack', '工作流', '合集']
+categories: [collections]
+tags: [自托管, 'ai 编程', stack, 工作流, 合集]
 aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---

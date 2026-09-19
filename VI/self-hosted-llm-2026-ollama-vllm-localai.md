@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-llm-2026-ollama-vllm-localai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-llm-2026-ollama-vllm-localai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-llm-2026-ollama-vllm-localai" />
 title: 'LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực Throughput, Chi Phí, Triển Khai'
 description: 'Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức sử dụng bộ nhớ, thời gian thiết lập, và đâu là lựa chọn phù hợp cho nghiệp dư so với triển khai sản xuất tự lưu trữ.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Ollama', 'vLLM', 'LocalAI', 'Llama 3.3', 'CUDA']
+tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: Framework LLM
 source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
 licensing_model: Mã Nguồn Mở
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['self-hosted', 'llm', 'ollama', 'vllm', 'localai', 'inference', '2026']
+tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
 aliases:
 - /vi/posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq:

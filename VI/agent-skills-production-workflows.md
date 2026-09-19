@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-workflows" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-workflows" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-workflows" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-workflows" />
 title: 'Addy Osmani Agent Skills: 96K-Star Framework For Production-Grade AI Coding Workflows'
 description: 'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'
 date: 2026-09-19

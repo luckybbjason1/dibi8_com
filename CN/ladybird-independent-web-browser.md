@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ladybird-independent-web-browser" />
 title: 'Ladybird: Truly Independent Web Browser — A New Era of Browser Independence'
 description: Discover Ladybird, the truly independent web browser built from scratch.
   No Chrome dependencies, no corporate influence, pure open source.

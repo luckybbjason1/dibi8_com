@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/spec-kit-github-spec-driven-development-toolkit" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
 title: "Bộ công cụ đặc biệt: GitHub"
 description: "Hướng dẫn đầy đủ về Spec Kit của GitHub - bộ công cụ nguồn mở thay đổi cách các nhà phát triển xây dựng phần mềm thông qua phát triển theo đặc tả. Cài đặt, quy trình làm việc và các ví dụ thực tế."
 date: 2026-06-20

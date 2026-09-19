@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-work-plugins" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-work-plugins" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
 title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthropic cho Năng suất AI Tăng cường 2026"
 description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh sửa tài liệu, phân tích mã, duyệt web và thao tác tệp. Xây dựng plugin tùy chỉnh cho quy trình làm việc của bạn."
 date: 2026-06-15

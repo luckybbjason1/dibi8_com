@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/crewai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai" />
 title: 'CrewAI: 51K+ Star로 멀티 에이전트 AI 팀 구축 — 2026 완전 설정 가이드'
 description: 'CrewAI(crewAIInc/crewAI)는 역할 기반의 자율 AI 에이전트를 오케스트레이션하는 Python 프레임워크입니다. OpenAI, Anthropic, Ollama, LangChain, LlamaIndex와 호환됩니다. 설치, 에이전트 역할, 태스크 워크플로우, 프로덕션 배포 및 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/crewAIInc/crewAI'
 stars: 51759
-maintainer: 'crewAIInc'
+maintainer: crewAIInc
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['crewai', '멀티에이전트', 'ai-에이전트', 'python', 'llm-오케스트레이션', '자동화', '오픈소스', '머신러닝']
+tags: [crewai, 멀티에이전트, 'ai-에이전트', python, 'llm-오케스트레이션', 자동화, 오픈소스, 머신러닝]
 aliases:
 - /kr/posts/crewai/
 - /kr/resources/llm-frameworks/crewai-multi-agent-orchestration/

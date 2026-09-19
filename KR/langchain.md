@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain" />
 title: 'LangChain: 137K+ 스타로 프로덕션 준비된 AI 에이전트를 배포하는 3가지 방법 — 2026년 완전 배포 가이드'
 description: 'LangChain (LC)는 700개 이상의 통합을 갖춘 LLM 기반 애플리케이션 구축을 위한 Python/JS 프레임워크입니다. LangChain 설치 방법, Docker를 사용한 배포, OpenAI, Anthropic, Ollama와의 통합, LangSmith 관찰 가능성, LangGraph 에이전트 및 Kubernetes를 통한 프로덕션 확장에 대해 알아보세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['langchain', 'llm', 'ai-에이전트', 'rag', '프로덕션-배포', 'docker', 'python', 'openai', 'langsmith', 'langgraph']
+tags: [langchain, llm, 'ai-에이전트', rag, '프로덕션-배포', docker, python, openai, langsmith, langgraph]
 aliases:
 - /kr/posts/langchain/
 - /kr/resources/llm-frameworks/langchain-complete-guide/

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mistral-ai-local-llm-deployment" />
 title: 'Mistral AI 2026: Deploy Production-Grade Local LLMs with 8x7B MoE Architecture — Complete Setup Guide'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/mistralai/mistral-inference'
 stars: 9500
-maintainer: 'mistralai'
+maintainer: mistralai
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Mistral AI']
+tags: ['mistral ai']
 aliases:
 - /posts/mistral-ai-local-llm-deployment/
 ---

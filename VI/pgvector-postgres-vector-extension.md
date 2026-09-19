@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
 title: 'pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vector Hiệu năng cao — Hướng dẫn Thiết lập, Tối ưu & Tích hợp RAG'
 description: 'Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu năng, và tích hợp RAG với LangChain và LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'pgvector/pgvector'
 stars: 15000
-maintainer: 'pgvector'
+maintainer: pgvector
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['pgvector', 'PostgreSQL', 'vector-database', 'HNSW', 'ANN', 'RAG', 'similarity-search', 'full-text-search']
+tags: [pgvector, postgresql, 'vector-database', hnsw, ann, rag, 'similarity-search', 'full-text-search']
 aliases:
 - /vi/posts/pgvector-postgres-vector-extension/
 ---
@@ -119,7 +124,7 @@ docker run -d \
   pgvector/pgvector:0.8.2-pg18
 
 # Xác minh
-docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = 'vector';"
+docker exec pgvector-demo psql -U postgres -d vectordb -c "SELECT * FROM pg_extension WHERE extname = vector;"
 ```
 
 ### Tùy chọn B: PostgreSQL hiện có
@@ -145,7 +150,7 @@ psql -U postgres -d mydb -c "CREATE EXTENSION IF NOT EXISTS vector;"
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Xác minh phiên bản
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Trả về: 0.8.2
 ```
 
@@ -156,14 +161,14 @@ SELECT extversion FROM pg_extension WHERE extname = 'vector';
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Kiểm tra các extension khả dụng nếu cần
-SELECT * FROM pg_available_extensions WHERE name = 'vector';
+SELECT * FROM pg_available_extensions WHERE name = vector;
 ```
 
 ### Xác minh Cài đặt
 
 ```sql
 -- Kiểm tra phiên bản pgvector
-SELECT extversion FROM pg_extension WHERE extname = 'vector';
+SELECT extversion FROM pg_extension WHERE extname = vector;
 -- Mong đợi: 0.8.2
 
 -- Kiểm tra kiểu vector
@@ -238,7 +243,7 @@ print(f"Đã chèn {batch_size} tài liệu")
 
 ```sql
 -- Đặt tham số cho xây dựng chỉ mục song song
-SET maintenance_work_mem = '8GB';
+SET maintenance_work_mem = 8GB;
 SET max_parallel_maintenance_workers = 4;
 
 -- Xây dựng chỉ mục HNSW với tham số được tối ưu
@@ -250,7 +255,7 @@ CREATE INDEX idx_docs_embedding_hnsw ON documents
   );
 
 -- Kiểm tra kích thước chỉ mục
-SELECT pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw'));
+SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
 -- Điển hình: ~450 MB cho 100K vector 1536 chiều
 ```
 
@@ -270,7 +275,7 @@ SELECT id, title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
   AND created_at > NOW() - INTERVAL '30 days'
-  AND metadata->>'category' = 'tech'
+  AND metadata->>category = tech
 ORDER BY embedding <-> $1::vector
 LIMIT 20;
 ```
@@ -335,8 +340,8 @@ LIMIT 10;
 
 -- Kiểm tra tiết kiệm không gian
 SELECT
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_hnsw')) AS full_size,
-    pg_size_pretty(pg_relation_size('idx_docs_embedding_half_hnsw')) AS half_size;
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
+    pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
 -- half_size thường là ~45-50% của full_size
 ```
 
@@ -498,7 +503,7 @@ CREATE POLICY tenant_isolation ON documents
     USING (tenant_id = current_setting('app.current_tenant')::INTEGER);
 
 -- Đặt tenant cho mỗi phiên
-SET app.current_tenant = '42';
+SET app.current_tenant = 42;
 
 -- Giờ mọi truy vấn tự động lọc theo tenant
 SELECT * FROM documents;  -- Chỉ hiển thị tài liệu của tenant 42
@@ -520,7 +525,7 @@ LIMIT 10;
 
 ```bash
 # Bật pg_stat_statements trong postgresql.conf
-shared_preload_libraries = 'pg_stat_statements'
+shared_preload_libraries = pg_stat_statements
 pg_stat_statements.track = all
 pg_stat_statements.max = 10000
 ```

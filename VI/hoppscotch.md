@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hoppscotch" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
 title: 'Hoppscotch: 79,200 GitHub Stars — Nền tảng phát triển API mã nguồn mở so với Postman, Insomnia, Bruno 2026'
 description: 'Hoppscotch (HOPP) là hệ sinh thái phát triển API mã nguồn mở. Tương thích Docker, GitHub Actions, Node.js, Vue.js. Hướng dẫn hoppscotch, tự lưu trữ, CLI tự động hóa và so sánh với các giải pháp thay thế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/hoppscotch/hoppscotch'
 stars: 79200
-maintainer: 'hoppscotch'
+maintainer: hoppscotch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['hoppscotch', 'kiem-tra-api', 'thay-the-postman', 'ma-nguon-mo', 'docker', 'cli', 'rest-api', 'graphql']
+tags: [hoppscotch, 'kiem-tra-api', 'thay-the-postman', 'ma-nguon-mo', docker, cli, 'rest-api', graphql]
 aliases:
 - /vi/posts/hoppscotch/
 ---
@@ -95,7 +100,7 @@ hopp --version
 docker pull hoppscotch/hoppscotch:latest
 
 # Tạo file môi trường
-cat > .env << 'EOF'
+cat > .env << EOF
 # Database
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/hoppscotch
 

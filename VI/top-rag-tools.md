@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/top-rag-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/top-rag-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/top-rag-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/top-rag-tools" />
 title: 'Công Cụ RAG Hàng Đầu Cho Kho Tri Thức AI'
 lang: vi
 description: 'Những công cụ RAG (Retrieval-Augmented Generation) tốt nhất để xây dựng kho tri thức AI — từ LangChain đến LlamaIndex, ChromaDB đến Weaviate.'

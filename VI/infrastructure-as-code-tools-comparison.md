@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/infrastructure-as-code-tools-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/infrastructure-as-code-tools-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/infrastructure-as-code-tools-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/infrastructure-as-code-tools-comparison" />
 title: 'Công Cụ Infrastructure as Code 2025: So Sánh Terraform, Pulumi, AWS CDK, Crossplane'
 description: 'So sánh chi tiết các công cụ Infrastructure as Code hàng đầu năm 2025. Tìm hiểu Terraform, Pulumi, AWS CDK, Crossplane, Puppet và Ansible để chọn công cụ phù hợp nhất cho hạ tầng của bạn.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Infrastructure as Code', 'Terraform', 'Pulumi', 'AWS CDK', 'Crossplane', 'DevOps', 'cloud']
+tags: ['infrastructure as code', terraform, pulumi, 'aws cdk', crossplane, devops, cloud]
 aliases:
 - /vi/posts/infrastructure-as-code-tools-comparison/
 ---

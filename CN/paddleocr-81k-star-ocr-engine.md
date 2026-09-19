@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/paddleocr-81k-star-ocr-engine" />
 title: 'PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost'
 description: 'PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. Includes setup guide, benchmarks, and production deployment.'
 tags: ["ocr", "open-source", "paddlepaddle", "self-hosted", "text-detection"]

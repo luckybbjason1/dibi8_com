@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-tools-directory" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-tools-directory" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-tools-directory" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-tools-directory" />
 title: "2024 AI工具导航：最佳AI工具完整指南 | Dibi8"
 description: "探索2024年最佳AI工具。完整目录包含200+AI工具，涵盖写作、图像生成、编程、营销等类别。免费和付费选项，附详细评测。"
 date: 2026-05-15T04:20:25+09:00

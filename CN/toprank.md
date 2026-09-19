@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/toprank" />
 title: "Toprank: Open-Source Claude Code Skills That Automate SEO, GEO, and Ad Campaign Optimization"
 description: "Toprank is a trending open-source Claude Code skills suite for SEO audits, GEO optimization, Google Ads management, and Meta Ads automation. Install once, get automatic updates, and let AI handle your marketing stack."
 date: 2026-05-15T04:20:25+09:00

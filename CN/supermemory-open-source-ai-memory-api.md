@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/supermemory-open-source-ai-memory-api" />
 title: 'Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything'
 description: 'Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API with vector search, graph search, and session management. Integrates with LangChain, LlamaIndex, CrewAI, and any Python/JS app. Self-hosted, zero external dependencies. Includes setup guide, benchmarks, and production deployment.'
 tags: ["ai-agent", "ai-memory", "api", "memory", "open-source", "persistence", "self-hosted"]

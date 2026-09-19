@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aider" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider" />
 title: 'Aider: 45K+ Stars — 터미널 AI 페어 프로그래밍 vs Claude Code, Cursor 2026 완벽 비교'
 description: 'Aider는 로컬 git 저장소에서 코드를 편집하는 터미널 AI 페어 프로그래밍 도구입니다. OpenAI, Claude, DeepSeek, Gemini을 지원합니다. Aider 설치, 튜토리얼, Git 통합, 벤치마크, Claude Code 및 Cursor와의 비교를 알아보세요.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['aider', 'ai-페어-프로그래밍', '터미널-ai', 'cli-코딩', 'git-ai', 'llm-도구', '오픈소스']
+tags: [aider, 'ai-페어-프로그래밍', '터미널-ai', 'cli-코딩', 'git-ai', 'llm-도구', 오픈소스]
 aliases:
 - /kr/posts/aider/
 ---

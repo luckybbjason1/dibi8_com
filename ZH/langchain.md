@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain" />
 title: 'LangChain: 3种部署生产级AI智能体的方法 — 2026年完整部署指南'
 description: 'LangChain (LC) 是用于构建LLM驱动应用的Python/JS框架，拥有700+集成。学习如何安装LangChain，使用Docker部署，与OpenAI、Anthropic、Ollama集成，并通过LangSmith可观测性、LangGraph智能体和Kubernetes扩展至生产环境。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['langchain', '大语言模型', 'AI智能体', 'RAG', '生产部署', 'docker', 'python', 'openai', 'langsmith', 'langgraph']
+tags: [langchain, 大语言模型, ai智能体, rag, 生产部署, docker, python, openai, langsmith, langgraph]
 aliases:
 - /zh/posts/langchain/
 - /zh/resources/llm-frameworks/langchain-complete-guide/

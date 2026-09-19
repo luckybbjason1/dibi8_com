@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aitoearn-ai-monetization" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-ai-monetization" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-ai-monetization" />
 title: "AiToEarn: 开源 AI 内容变现工具 — 把你的 GPT 对话变成被动收入"
 description: "AiToEarn 是一款开源 AI 内容变现平台，帮助创作者将 AI 生成的内容转化为可盈利的产品。支持多平台分发、订阅付费和广告变现。"
 date: 2026-05-15T04:20:25+09:00

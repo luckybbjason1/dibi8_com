@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-development-environment-best-practices" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-development-environment-best-practices" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-development-environment-best-practices" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-development-environment-best-practices" />
 title: 'Docker开发环境最佳实践：2025年完整指南'
 description: '2025年Docker开发环境完整配置指南，涵盖Dev Containers、热重载、多阶段构建、数据库管理等10大最佳实践，附带完整docker-compose配置示例。'
 date: 2026-05-18 00:00:00+08:00

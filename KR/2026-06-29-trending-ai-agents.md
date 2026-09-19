@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-06-29-trending-ai-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-29-trending-ai-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-06-29-trending-ai-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-06-29-trending-ai-agents" />
 title: "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)"
 description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집팀이 수행."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]

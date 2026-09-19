@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-modal-content-pipeline" />
 title: '멀티모달 콘텐츠 파이프라인 2026: AI 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-80/월)'
 description: '셀프호스트 멀티모달 콘텐츠 스택: faster-whisper (STT) + ChatTTS (대화 TTS) + Stable Diffusion WebUI (이미지) + ComfyUI (워크플로우 엔진 + 비디오) + FFmpeg (조립). $30-80/월로 팟캐스트, 짧은 비디오, AI 일러스트 글 제작 vs $200-500/월 SaaS.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['멀티모달', '콘텐츠 파이프라인', '팟캐스트', '비디오', 'TTS', '스택', '컬렉션']
+categories: [collections]
+tags: [멀티모달, '콘텐츠 파이프라인', 팟캐스트, 비디오, tts, 스택, 컬렉션]
 aliases:
   - /posts/multi-modal-content-pipeline/
 ---

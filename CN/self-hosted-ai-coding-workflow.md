@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/self-hosted-ai-coding-workflow" />
 title: 'Self-Hosted AI Coding Workflow: The Complete $6/Month Stack for 2026'
 description: 'A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + Claude Code Pro + Copilot + Replit) with $6/month of infrastructure. Real numbers, real config, full step-by-step assembly.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Self-Hosted', 'AI Coding', 'Stack', 'Workflow', 'Collection']
+categories: [collections]
+tags: ['self-hosted', 'ai coding', stack, workflow, collection]
 aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---

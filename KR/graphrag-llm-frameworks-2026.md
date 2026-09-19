@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
 title: 'GraphRAG: 마이크로소프트의 지식 그래프 기반 RAG로 더 나은 LLM 답변 (33K Stars) — 2026 실전 가이드'
 description: 'GraphRAG는 마이크로소프트의 모듈형 지식 그래프 기반 RAG 시스템입니다(GitHub 33,403 스타, MIT 라이선스). 이 가이드는 설치, init/index/query 워크플로, 실제 CLI 예제, 그리고 LangChain·Haystack과의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/graphrag'
 stars: 33403
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-06-02'
 featureImage: ''
 draft: false

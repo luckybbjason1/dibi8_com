@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/promptfoo-llm-frameworks-2026" />
 title: 'Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của bạn — Hướng dẫn thực chiến 2026'
 description: 'Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu hình khai báo đơn giản, bạn có thể so sánh GPT, Claude, Gemini, DeepSeek và tích hợp mượt mà vào CLI lẫn CI/CD. Hướng dẫn 2026 này bao quát cài đặt, promptfooconfig.yaml, assertion và kiểm thử red-team.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'promptfoo/promptfoo'
 stars: 21825
-maintainer: 'promptfoo'
+maintainer: promptfoo
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
@@ -240,7 +245,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Run promptfoo eval
         env:

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/chroma-vector-database-python" />
 title: 'Chroma DB 2026: The Developer-Friendly Vector Database for RAG with 50x Faster Embeddings — Python Guide'
 description: 'A practical guide to Chroma vector database with Python. Learn installation, RAG integration, embeddings search, and production deployment. Benchmarks, comparisons, and real-world use cases.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'chromadb/chroma'
 stars: 18000
-maintainer: 'chromadb'
+maintainer: chromadb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

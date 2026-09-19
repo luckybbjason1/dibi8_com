@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dify-vs-flowise-2026" />
 title: 'Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canvas LLM Nhẹ'
 description: 'So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng LangChain trực quan, nhẹ, mã nguồn mở) — tính năng, tự host, pipeline AI và lựa chọn phù hợp năm 2026.'
 date: 2026-06-07 00:00:00+08:00

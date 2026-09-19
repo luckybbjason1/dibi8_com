@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-agents-ai-trading-bot-framework" />
 title: 'Polymarket Agents: Polymarket 예측 시장용 AI 자동 거래 봇 구축'
 description: Polymarket Agents는 Polymarket 예측 시장에서 AI가 자율적으로 거래하는 에이전트를 구축하기 위한 오픈소스
   개발자 프레임워크입니다.

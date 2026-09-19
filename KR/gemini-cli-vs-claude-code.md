@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gemini-cli-vs-claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gemini-cli-vs-claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gemini-cli-vs-claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gemini-cli-vs-claude-code" />
 title: 'Gemini CLI vs Claude Code 2026: 어떤 AI 코딩 에이전트가 더 좋은가?'
 description: 'Google Gemini CLI와 Anthropic Claude Code의 정면 비교 — 무료 등급, 컨텍스트 윈도우, 에이전트 스타일, 멀티모달, 도구 사용, 마이그레이션 팁. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00

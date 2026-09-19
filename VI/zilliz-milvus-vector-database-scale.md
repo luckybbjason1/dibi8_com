@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vector với độ trễ Milligiây — Hướng dẫn Triển khai'
 description: 'Hướng dẫn sản xuất cho Milvus 2.5: tìm kiếm vector quy mô tỷ, xây dựng chỉ mục GPU, triển khai Kubernetes, tìm kiếm lai, và thiết lập Zilliz Cloud.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Milvus', 'Zilliz', 'vector-database', 'ANN', 'similarity-search', 'kubernetes', 'GPU-indexing', 'AI-infrastructure']
+tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 'gpu-indexing', 'ai-infrastructure']
 aliases:
 - /vi/posts/zilliz-milvus-vector-database-scale/
 ---
@@ -106,7 +111,7 @@ pip install pymilvus==2.5.10
 # Kiểm tra kết nối
 python -c "
 from pymilvus import connections, utility
-connections.connect(host='localhost', port='19530')
+connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
 ```

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caveman" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caveman" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
 title: "Caveman: Giảm 65% Token Claude Code — Tiết Kiệm Chi Phí AI, Tăng Tốc Phản Hồi"
 description: "Hướng dẫn cài đặt và sử dụng Caveman skill cho Claude Code. Công cụ nén prompt thông minh giúp giảm 65% token usage, tiết kiệm chi phí API và tăng tốc độ phản hồi AI mà không làm giảm chất lượng kỹ thuật."
 date: 2026-05-15T04:20:25+09:00

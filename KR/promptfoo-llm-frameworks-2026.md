@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/promptfoo-llm-frameworks-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/promptfoo-llm-frameworks-2026" />
 title: 'Promptfoo: LLM 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드'
 description: 'Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 오픈소스 CLI이자 라이브러리입니다. 간단한 선언형 설정만으로 GPT, Claude, Gemini, DeepSeek를 비교하고 CLI와 CI/CD에 매끄럽게 연동할 수 있습니다. 이 2026 가이드에서는 설치, promptfooconfig.yaml, 어서션, 레드팀 테스트를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'promptfoo/promptfoo'
 stars: 21825
-maintainer: 'promptfoo'
+maintainer: promptfoo
 last_maintained: '2026-06-02'
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
@@ -240,7 +245,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: 22
 
       - name: Run promptfoo eval
         env:

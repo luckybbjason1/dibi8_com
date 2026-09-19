@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vscode-copilot-vs-cursor" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vscode-copilot-vs-cursor" />
 title: 'VS Code Copilot vs Cursor 2026：哪款 AI 编码工具更值得选？'
 description: 'GitHub Copilot in VS Code（微软）和 Cursor 横向对比 — 价格 $10 vs $20/月、自动补全 vs agent、企业集成。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

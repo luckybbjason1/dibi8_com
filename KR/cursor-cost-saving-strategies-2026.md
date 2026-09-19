@@ -1,21 +1,26 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-cost-saving-strategies-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-cost-saving-strategies-2026" />
 title: 'Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후'
 description: 'Cursor가 2025년 가격 정책을 바꿨다 — Pro 사용자는 같은 가격에 실효 사용량이 약 55% 줄었다. 2026년 실제로 효과가 있는 7가지 절감 전략: 모델 선택, 컨텍스트 규율, 하이브리드 스택, 그리고 언제 갈아탈지.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Cursor', 'Claude Code', 'OpenAI API', 'Anthropic API']
+tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'Cursor 2026.05 / 크레딧 과금 이후'
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
-maintainer: 'Anysphere'
+maintainer: Anysphere
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['cursor', 'cost-optimization', 'ai-coding', '2026']
+tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
 aliases:
 - /kr/posts/cursor-cost-saving-strategies-2026/
 faq:
@@ -26,7 +31,7 @@ faq:
   - q: "Cursor의 가장 큰 비용 함정은?"
     a: "기본 모델의 agent 모드입니다. 각 agent 루프 반복마다 크레딧이 소모됩니다. 해결책: 일상 작업의 agent 모델을 Sonnet 4.6(Opus 4.7보다 저렴)으로 전환하고, Opus는 어려운 작업에 남겨둡니다. 이 한 가지 변경만으로 agent 모드 지출의 약 40%를 절약합니다."
   - q: "그냥 Claude Code로 갈아타야 하나요, 아니면 Cursor를 유지해야 하나요?"
-    a: "둘 다 쓰세요. Cursor는 IDE 편집 + tab 자동완성용. Claude Code는 agent 루프 + 디버깅용. 합계 약 $220/월. 대부분의 프로 개발자가 이 스택으로 일합니다 — '양자택일'이 아닙니다."
+    a: "둘 다 쓰세요. Cursor는 IDE 편집 + tab 자동완성용. Claude Code는 agent 루프 + 디버깅용. 합계 약 $220/월. 대부분의 프로 개발자가 이 스택으로 일합니다 — 양자택일이 아닙니다."
 ---
 
 {{</* resource-info */>}}

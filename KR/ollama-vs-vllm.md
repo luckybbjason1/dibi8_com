@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-vs-vllm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-vs-vllm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-vs-vllm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-vs-vllm" />
 title: 'Ollama vs vLLM 2026: 로컬 개발의 간결함 vs 프로덕션 처리량'
 description: 'Ollama(간단한 로컬 LLM 러너)와 vLLM(고처리량 프로덕션 추론 엔진) 항목별 비교 — 사용 편의성, 처리량, 하드웨어, 동시성, 규모 비용. 2026 업데이트.'
 date: 2026-06-06 00:00:00+08:00

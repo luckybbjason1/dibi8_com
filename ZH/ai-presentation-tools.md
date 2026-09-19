@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-presentation-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-presentation-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-presentation-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-presentation-tools" />
 title: '2025年最佳AI演示文稿工具对比：Gamma、Beautiful.ai、Tome等全面评测'
 description: '深入评测Gamma、Beautiful.ai、Tome、SlidesAI、Canva Magic Design等主流AI演示工具，对比模板质量、AI生成能力、导出格式与协作功能，找到最适合你的AI幻灯片生成器。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['AI演示', 'Gamma', 'Beautiful.ai', 'Tome', 'AI PPT']
+tags: [ai演示, gamma, 'beautiful.ai', tome, 'ai ppt']
 aliases:
 - /zh/posts/ai-presentation-tools/
 ---

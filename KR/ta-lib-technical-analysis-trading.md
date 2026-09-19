@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ta-lib-technical-analysis-trading" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ta-lib-technical-analysis-trading" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ta-lib-technical-analysis-trading" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ta-lib-technical-analysis-trading" />
 title: 'TA-Lib: 200개 이상의 지표를 가진 업계 표준 기술 분석 라이브러리 — Python 트레이딩 설정 2026'
 description: 'TA-Lib Python 래퍼 완벽 가이드. 200개 이상의 기술적 지표 설치, 벤치마크, SMA/EMA/RSI/MACD/볼린저 밴드 알고리즘 트레이딩 배포 방법을 2026년 기준으로 상세히 설명.'
 date: 2026-05-19 00:00:00+08:00
@@ -106,7 +111,7 @@ import numpy as np
 
 print(talib.__version__)  # 예상: 0.6.2 이상
 print(talib.get_functions()[:5])  # 처음 5개 사용 가능 함수 나열
-# 출력: ['DEMA', 'EMA', 'HT_DCPERIOD', 'HT_DCPHASE', 'HT_PHASOR']
+# 출력: [DEMA, EMA, HT_DCPERIOD, HT_DCPHASE, HT_PHASOR]
 
 # 빠른 검증 — 랜덤 데이터에서 14기간 RSI 계산
 close = np.random.random(100) * 100
@@ -480,8 +485,8 @@ functions = talib.get_functions()  # 200개 이상의 이름
 
 # 함수 도움말 (예: RSI)
 print(talib.abstract.RSI.info)
-# 표시: {'name': 'RSI', 'group': 'Momentum Indicators',
-#         'input': ['close'], 'parameters': {'timeperiod': 14}, ...}
+# 표시: {name: RSI, group: 'Momentum Indicators',
+#         input: [close], parameters: {timeperiod: 14}, ...}
 ```
 
 ### Q4: TA-Lib은 동시 사용에 대해 스레드 안전한가?

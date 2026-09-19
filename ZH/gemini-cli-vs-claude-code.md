@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gemini-cli-vs-claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gemini-cli-vs-claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gemini-cli-vs-claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gemini-cli-vs-claude-code" />
 title: 'Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？'
 description: 'Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

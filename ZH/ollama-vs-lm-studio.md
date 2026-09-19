@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-vs-lm-studio" />
 title: 'Ollama vs LM Studio 2026：哪款本地大模型运行器更值得选？'
 description: 'Ollama 和 LM Studio 横向对比 — CLI vs GUI、模型库、GPU 支持、OpenAI 兼容 API、量化格式、自托管。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

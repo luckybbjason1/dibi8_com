@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prompt-engineering-frameworks-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompt-engineering-frameworks-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompt-engineering-frameworks-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompt-engineering-frameworks-tools" />
 title: '2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测'
 description: '深入对比LangSmith、PromptLayer、Weights & Biases Prompts、Pezzo、Prompt Flow等主流提示词工程框架，涵盖版本控制、A/B测试、协作功能和定价策略，助力团队构建高效的LLM提示词管理体系。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['提示词工程', 'LangSmith', 'PromptLayer', 'W&B', 'LLM开发']
+tags: [提示词工程, langsmith, promptlayer, 'w&b', llm开发]
 aliases:
 - /zh/posts/prompt-engineering-frameworks-tools/
 ---

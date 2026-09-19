@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：开发团队如何以5倍速度交付生产级代码
 description: Addy Osmani的Agent Skills提供20个生产级工程技能和7个斜杠命令，将AI编码智能体转变为高级软件工程师。
 date: 2026-05-15 04:20:25+09:00

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
 title: 'Freqtrade 2026: Build AI-Powered Crypto Trading Strategies with Machine Learning \u2014 Complete Bot Setup Guide'
 description: 'A hands-on guide to deploying Freqtrade with FreqAI, the open-source Python crypto trading bot with ML integration. Covers Docker setup, hyperparameter optimization, backtesting, Telegram integration, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'freqtrade/freqtrade'
 stars: 37000
-maintainer: 'freqtrade'
+maintainer: freqtrade
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -234,48 +236,48 @@ class SampleStrategy(IStrategy):
     trailing_stop = True
     trailing_stop_positive = 0.02
     trailing_stop_positive_offset = 0.03
-    timeframe = '5m'     # 5-minute candles
+    timeframe = 5m     # 5-minute candles
     can_short = False    # Spot trading only
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         # RSI indicator
-        dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+        dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
         
         # MACD indicators
         macd = ta.MACD(dataframe)
-        dataframe['macd'] = macd['macd']
-        dataframe['macdsignal'] = macd['macdsignal']
-        dataframe['macdhist'] = macd['macdhist']
+        dataframe[macd] = macd[macd]
+        dataframe[macdsignal] = macd[macdsignal]
+        dataframe[macdhist] = macd[macdhist]
         
         # Bollinger Bands
         bollinger = ta.BBANDS(dataframe, timeperiod=20, nbdevup=2.0, nbdevdn=2.0)
-        dataframe['bb_lower'] = bollinger['lowerband']
-        dataframe['bb_middle'] = bollinger['middleband']
-        dataframe['bb_upper'] = bollinger['upperband']
+        dataframe[bb_lower] = bollinger[lowerband]
+        dataframe[bb_middle] = bollinger[middleband]
+        dataframe[bb_upper] = bollinger[upperband]
         
         # Average True Range for volatility
-        dataframe['atr'] = ta.ATR(dataframe, timeperiod=14)
+        dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
         
         return dataframe
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] < 30) &                    # Oversold condition
-                (dataframe['macd'] > dataframe['macdsignal']) &  # MACD crossover
-                (dataframe['close'] < dataframe['bb_lower'])   # Price below BB lower
+                (dataframe[rsi] < 30) &                    # Oversold condition
+                (dataframe[macd] > dataframe[macdsignal]) &  # MACD crossover
+                (dataframe[close] < dataframe[bb_lower])   # Price below BB lower
             ),
-            'enter_long'
+            enter_long
         ] = 1
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe.loc[
             (
-                (dataframe['rsi'] > 70) &                    # Overbought condition
-                (dataframe['macd'] < dataframe['macdsignal'])  # MACD crossunder
+                (dataframe[rsi] > 70) &                    # Overbought condition
+                (dataframe[macd] < dataframe[macdsignal])  # MACD crossunder
             ),
-            'exit_long'
+            exit_long
         ] = 1
         return dataframe
 ```
@@ -373,13 +375,13 @@ class FreqAISrategy(IStrategy):
     """
     minimal_roi = {"0": 0.15, "60": 0.05, "120": 0}
     stoploss = -0.08
-    timeframe = '5m'
+    timeframe = 5m
     can_short = False
     
     def feature_engineering_expand_all(self, dataframe, metadata, **kwargs):
         """Add custom features for FreqAI to use."""
         dataframe["rsi"] = ta.RSI(dataframe, timeperiod=14)
-        dataframe["macdhist"] = ta.MACD(dataframe)['macdhist']
+        dataframe["macdhist"] = ta.MACD(dataframe)[macdhist]
         dataframe["atr"] = ta.ATR(dataframe, timeperiod=14)
         
         # Add volatility features
@@ -536,12 +538,12 @@ data = load_pair_history(
 
 # Load and run strategy
 strategy = StrategyResolver.load_strategy("SampleStrategy")
-dataframe = strategy.analyze_ticker(data, {'pair': pair})
+dataframe = strategy.analyze_ticker(data, {pair: pair})
 
 # View signals
-signals = dataframe[dataframe['enter_long'] == 1]
+signals = dataframe[dataframe[enter_long] == 1]
 print(f"Found {len(signals)} entry signals")
-print(signals[['date', 'close', 'rsi', 'macdhist']].head(10))
+print(signals[[date, close, rsi, macdhist]].head(10))
 ```
 
 ### REST API for External Integration
@@ -654,7 +656,7 @@ Q1 total return: +12.1%
 
 ```python
 # Add to your strategy for dynamic stoploss
-def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
+def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime,
                     current_rate: float, current_profit: float, **kwargs) -> float:
     """Dynamic stoploss based on ATR."""
     dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe)
@@ -662,7 +664,7 @@ def custom_stoploss(self, pair: str, trade: 'Trade', current_time: datetime,
         return self.stoploss
     
     last_candle = dataframe.iloc[-1]
-    atr = last_candle['atr']
+    atr = last_candle[atr]
     
     # Stoploss at 2x ATR
     stoploss_price = trade.open_rate - (2 * atr)
@@ -687,17 +689,17 @@ def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -> pd.Dat
     informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe)
     
     # Calculate 1h trend
-    informative['ema50_1h'] = ta.EMA(informative, timeperiod=50)
-    informative['ema200_1h'] = ta.EMA(informative, timeperiod=200)
-    informative['trend_1h'] = np.where(
-        informative['ema50_1h'] > informative['ema200_1h'], 1, -1
+    informative[ema50_1h] = ta.EMA(informative, timeperiod=50)
+    informative[ema200_1h] = ta.EMA(informative, timeperiod=200)
+    informative[trend_1h] = np.where(
+        informative[ema50_1h] > informative[ema200_1h], 1, -1
     )
     
     # Merge into 5m dataframe
     dataframe = merge_informative_pair(dataframe, informative, self.timeframe, inf_timeframe)
     
     # Only trade in direction of 1h trend
-    dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
+    dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
     
     return dataframe
 ```

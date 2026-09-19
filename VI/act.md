@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/act" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
 title: 'act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hướng Dẫn CI/CD Production 2026'
 description: 'act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thích với Docker, GitHub Actions, Go và VS Code. Bao gồm cài đặt, thiết lập, quản lý secrets, runner images và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/nektos/act'
 stars: 70410
-maintainer: 'nektos'
+maintainer: nektos
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['act', 'github-actions', 'ci-cd', 'docker', 'phat-trien-local', 'devops', 'kiem-tra', 'tu-dong-hoa']
+tags: [act, 'github-actions', 'ci-cd', docker, 'phat-trien-local', devops, 'kiem-tra', 'tu-dong-hoa']
 aliases:
 - /vi/posts/act/
 ---
@@ -298,7 +303,7 @@ export MY_SECRET=supersecurevalue
 act -s MY_SECRET
 
 # Tùy chọn 3: File secrets (.secrets, cùng định dạng với .env)
-cat > .secrets << 'EOF'
+cat > .secrets << EOF
 MY_SECRET=supersecurevalue
 AWS_ACCESS_KEY_ID=AKIA...
 AWS_SECRET_ACCESS_KEY=...
@@ -325,7 +330,7 @@ Context `vars` của GitHub được hỗ trợ cho cấu hình cấp repository
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
 # Hoặc sử dụng file biến
-cat > .variables << 'EOF'
+cat > .variables << EOF
 DEPLOY_ENV=staging
 API_VERSION=v2
 EOF
@@ -338,7 +343,7 @@ Test các workflow phụ thuộc vào dữ liệu sự kiện bằng cách cung 
 
 ```bash
 # Mô phỏng sự kiện pull_request
-cat > pull-request.json << 'EOF'
+cat > pull-request.json << EOF
 {
   "pull_request": {
     "head": { "ref": "feature/new-login" },
@@ -352,7 +357,7 @@ act pull_request -e pull-request.json
 
 ```bash
 # Mô phỏng push với tag
-cat > tag-push.json << 'EOF'
+cat > tag-push.json << EOF
 { "ref": "refs/tags/v1.2.3" }
 EOF
 act push -e tag-push.json
@@ -360,7 +365,7 @@ act push -e tag-push.json
 
 ```bash
 # Mô phỏng workflow_dispatch với input
-cat > workflow-inputs.json << 'EOF'
+cat > workflow-inputs.json << EOF
 {
   "inputs": {
     "environment": "production",
@@ -392,7 +397,7 @@ Cấu hình riêng cho dự án qua `.actrc`:
 
 ```bash
 # .actrc trong thư mục gốc dự án
-cat > .actrc << 'EOF'
+cat > .actrc << EOF
 --container-architecture linux/amd64
 --action-offline-mode
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
@@ -433,7 +438,7 @@ jobs:
 Truyền cờ act qua sự kiện:
 
 ```bash
-cat > event.json << 'EOF'
+cat > event.json << EOF
 { "act": true }
 EOF
 act -e event.json

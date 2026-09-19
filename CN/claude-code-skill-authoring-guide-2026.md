@@ -1,25 +1,27 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill Authoring: How to Package Procedures Claude Loads Only When Relevant (2026)'
 description: 'A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'Markdown', 'YAML']
+tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'skills', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
+tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
 aliases:
 - /posts/claude-code-skill-authoring/
 faq:

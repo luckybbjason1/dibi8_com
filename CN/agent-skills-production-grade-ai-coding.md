@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/agent-skills-production-grade-ai-coding" />
 title: 'Agent Skills: How Development Teams Can Ship Production-Ready Code 5x Faster'
 description: Agent Skills by Addy Osmani delivers 20 production-grade engineering
   skills and 7 slash commands that turn AI coding agents into senior software engineers.

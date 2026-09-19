@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/impeccable-ai-design-language-harness-quality-ui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/impeccable-ai-design-language-harness-quality-ui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/impeccable-ai-design-language-harness-quality-ui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/impeccable-ai-design-language-harness-quality-ui" />
 title: 'Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测'
 description: 'Impeccable（3.7 万星标）是为 AI 编码代理设计的编程语言，包含 23 个命令、41 个检测规则和实时浏览器迭代。通过确定性的设计质量检查修复 AI 生成的 UI 粗糙问题。兼容 Claude Code、Cursor 和 Codex。'
 date: 2026-06-13

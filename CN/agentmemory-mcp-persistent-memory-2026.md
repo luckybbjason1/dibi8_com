@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/agentmemory-mcp-persistent-memory-2026" />
 title: 'Persistent Memory for AI Coding Agents in 2026: A Complete Guide to agentmemory + MCP'
 description: 'Stop re-teaching Claude Code your project conventions. Learn how agentmemory and the Model Context Protocol (MCP) give AI coding agents persistent cross-session memory, with setup tutorials and team sharing strategies.'
 date: 2026-05-17 00:00:00+08:00

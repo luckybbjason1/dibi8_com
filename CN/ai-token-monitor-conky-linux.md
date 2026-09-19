@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop'
 description: 'Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.'
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
-tech_stack: ['Python', 'Conky', 'Linux']
+tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
 source_version: '1.0.0'
 licensing_model: Open Source
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'luckybbjason1/ai-token-monitor'
 stars: 0
-maintainer: 'luckybbjason1'
+maintainer: luckybbjason1
 last_maintained: '2026-06-06'
 featureImage: '/images/articles/ai-token-monitor-conky-linux.png'
 draft: false
 categories: ['dev-utils']
-tags: ['AI token monitor', 'Claude quota', 'Gemini quota tracker', 'Grok token', 'Kimi API', 'Conky widget', 'Linux desktop', 'open source', 'Python', 'developer tools']
+tags: ['ai token monitor', 'claude quota', 'gemini quota tracker', 'grok token', 'kimi api', 'conky widget', 'linux desktop', 'open source', python, 'developer tools']
 aliases:
 - /posts/ai-token-monitor-conky-linux/
 faqs:
@@ -129,27 +131,27 @@ Open `api_fetcher.py` and add a block after the existing services:
 
 ```python
 # ── Your Service ─────────────────────────────────
-key = keys.get('yourservice')
+key = keys.get(yourservice)
 if key:
     try:
         r = requests.get('https://api.yourservice.com/v1/usage',
-                         headers={'Authorization': f'Bearer {key}'}, timeout=8)
+                         headers={Authorization: f'Bearer {key}'}, timeout=8)
         if r.status_code == 200:
             data = r.json()
-            remain = data['quota_remaining']
-            total  = data['quota_total']
-            cache['YourService'] = {
-                'ok': True,
-                'label': f'{remain//1000}K剩',
-                'pct': remain / total
+            remain = data[quota_remaining]
+            total  = data[quota_total]
+            cache[YourService] = {
+                ok: True,
+                label: f'{remain//1000}K剩',
+                pct: remain / total
             }
         else:
-            cache['YourService'] = {'ok': False, 'label': 'API Error'}
+            cache[YourService] = {ok: False, label: 'API Error'}
     except Exception:
         pass
 ```
 
-Then add `{'name': 'YourService', 'reset_h': 24}` to the `SERVICES` list in `conky_ai.py`.
+Then add `{name: YourService, reset_h: 24}` to the `SERVICES` list in `conky_ai.py`.
 
 ## Related Tools on dibi8
 

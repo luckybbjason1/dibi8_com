@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moss-trade-bot-factory-2026-review" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moss-trade-bot-factory-2026-review" />
 title: 'Moss Trade Bot Factory 2026 Review: AI Agent Workbench Quant — Tại Sao Backtest Đẹp Lại Lừa Bạn'
 description: 'Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid perpetuals. Engine backtest cấp công nghiệp với độ chính xác Decimal — nhưng có bug Sharpe annualization và trap OVERFIT giáo khoa khi bật evolution. Quy trình setup, fix bug, so sánh 5 chiến lược, và validation 70/30 train/OOS.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['Python', 'pandas', 'numpy', 'ccxt', 'Hyperliquid']
+tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
 source_version: 'v1.0.26'
 licensing_model: Open Source
@@ -19,7 +24,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['ai-agent', 'quant', 'backtest', 'hyperliquid', 'perpetuals', 'open-source', 'overfitting', 'oos-validation']
+tags: ['ai-agent', quant, backtest, hyperliquid, perpetuals, 'open-source', overfitting, 'oos-validation']
 aliases:
 - /vi/posts/moss-trade-bot-factory-2026-review/
 faq:

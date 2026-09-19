@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/bat" />
 title: 'bat: Syntax-Highlighting cat Clone with 58K+ Stars — Comparison vs cat, less in 2026'
 description: 'bat is a cat(1) clone with syntax highlighting and Git integration. Compatible with Rust, Git, Homebrew, Cargo. Covers installation, benchmark, configuration, and comparison with cat, less, ccat.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/sharkdp/bat'
 stars: 58940
-maintainer: 'sharkdp'
+maintainer: sharkdp
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['bat', 'cat clone', 'syntax highlighting', 'cli tools', 'rust', 'terminal', 'file viewer', 'command line']
+tags: [bat, 'cat clone', 'syntax highlighting', 'cli tools', rust, terminal, 'file viewer', 'command line']
 aliases:
 - /posts/bat/
 ---
@@ -77,7 +79,7 @@ bat --version
 # Ubuntu 22.04+ / Debian 12+
 sudo apt install bat
 
-# On some Debian/Ubuntu systems, the binary is named 'batcat' to avoid conflict
+# On some Debian/Ubuntu systems, the binary is named batcat to avoid conflict
 # Create an alias if needed:
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -198,8 +200,8 @@ Most users alias `cat` to `bat` for interactive sessions:
 # ~/.bashrc or ~/.zshrc
 alias cat='bat --paging=never'
 
-# Or preserve cat for scripts, use 'bat' explicitly
-alias b='bat'
+# Or preserve cat for scripts, use bat explicitly
+alias b=bat
 ```
 
 For `zsh` users, global aliases can colorize `--help` output:

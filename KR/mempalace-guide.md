@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mempalace-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
 title: "Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)"
 description: "Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)"
 date: 2026-05-15T04:20:25+09:00

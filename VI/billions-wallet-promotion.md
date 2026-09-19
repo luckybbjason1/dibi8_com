@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/billions-wallet-promotion" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/billions-wallet-promotion" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/billions-wallet-promotion" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/billions-wallet-promotion" />
 title: "Khám phá Billions Ví - Đồng hành tối ưu cho tiền điện tử của bạn"
 description: "Khuyến mãi Billions Wallet: ví tiền điện tử an toàn với các tính năng nâng cao. Quản lý Bitcoin, Ethereum và 100+ loại tiền điện tử một cách an toàn."
 date: 2026-05-15T04:20:25+09:00

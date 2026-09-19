@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/docuseal-open-source-docusign-alternative" />
 title: 'DocuSeal Review: Cut Document Signing Costs by 90% with This Open-Source DocuSign
   Alternative'
 description: DocuSeal is a 15.7k-star open-source platform that replaces DocuSign

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Firebase 대안 — 설정 가이드'
 description: 'Supabase 완벽 가이드: Postgres + pgvector를 갖춘 오픈소스 Firebase 대안. 인증, 스토리지, 실시간, Edge 함수, RAG 파이프라인 통합, 자체 호스팅 Docker 배포, 행 수준 보안.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'supabase/supabase'
 stars: 80000
-maintainer: 'supabase'
+maintainer: supabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Supabase', 'Postgres', '벡터 검색', 'Firebase 대안', 'pgvector', 'AI 앱', 'RAG', '오픈소스', 'Docker', 'Edge 함수']
+tags: [supabase, postgres, '벡터 검색', 'firebase 대안', pgvector, 'ai 앱', rag, 오픈소스, docker, 'edge 함수']
 aliases:
 - /kr/posts/supabase-postgres-vector-ai-apps/
 ---
@@ -161,7 +166,7 @@ const supabase = createClient(
 )
 
 // 연결 테스트
-const { data, error } = await supabase.from('test').select('*')
+const { data, error } = await supabase.from(test).select('*')
 console.log(data)
 ```
 
@@ -175,7 +180,7 @@ supabase = create_client(
 )
 
 # 연결 테스트
-response = supabase.table('test').select('*').execute()
+response = supabase.table(test).select('*').execute()
 print(response.data)
 ```
 
@@ -188,7 +193,7 @@ print(response.data)
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 확장이 설치되었는지 확인
-SELECT * FROM pg_extension WHERE extname = 'vector';
+SELECT * FROM pg_extension WHERE extname = vector;
 ```
 
 ### 벡터 열이 있는 테이블 생성
@@ -213,7 +218,7 @@ WITH (m = 16, ef_construction = 64);
 
 -- 하이브리드 검색을 위한 전체 텍스트 검색 인덱스 추가
 CREATE INDEX idx_documents_fts ON documents
-USING GIN (to_tsvector('english', content));
+USING GIN (to_tsvector(english, content));
 ```
 
 `vector(1536)` 차원은 OpenAI의 `text-embedding-3-large` 출력과 일치한다. 다른 임베딩 모델의 경우 이에 따라 조정한다. Cohere embed-v4는 **1,024** 차원을, Jina AI 임베딩은 **768** 차원을 사용한다.
@@ -237,12 +242,12 @@ def insert_document(title: str, content: str, source_url: str = None):
     embedding = response.data[0].embedding
 
     # Supabase에 삽입
-    result = supabase.table('documents').insert({
-        'title': title,
-        'content': content,
-        'source_url': source_url,
-        'embedding': embedding,
-        'metadata': {'word_count': len(content.split())}
+    result = supabase.table(documents).insert({
+        title: title,
+        content: content,
+        source_url: source_url,
+        embedding: embedding,
+        metadata: {word_count: len(content.split())}
     }).execute()
     return result
 
@@ -280,11 +285,11 @@ async def search_similar_documents(query: str, top_k: int = 5):
 
     # Supabase 쿼리
     result = await supabase.rpc(
-        'match_documents',
+        match_documents,
         {
-            'query_embedding': query_embedding,
-            'match_threshold': 0.7,
-            'match_count': top_k
+            query_embedding: query_embedding,
+            match_threshold: 0.7,
+            match_count: top_k
         }
     ).execute()
     return result.data
@@ -350,15 +355,15 @@ class SupabaseRAG:
         """임베딩이 있는 문서 청크를 저장한다."""
         for chunk in chunks:
             embedding = self.openai.embeddings.create(
-                input=chunk['text'],
+                input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
 
-            self.supabase.table('documents').insert({
-                'title': chunk['title'],
-                'content': chunk['text'],
-                'embedding': embedding,
-                'metadata': chunk.get('metadata', {})
+            self.supabase.table(documents).insert({
+                title: chunk[title],
+                content: chunk[text],
+                embedding: embedding,
+                metadata: chunk.get(metadata, {})
             }).execute()
 
     def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
@@ -369,11 +374,11 @@ class SupabaseRAG:
         ).data[0].embedding
 
         results = self.supabase.rpc(
-            'match_documents',
+            match_documents,
             {
-                'query_embedding': query_embedding,
-                'match_threshold': 0.75,
-                'match_count': top_k
+                query_embedding: query_embedding,
+                match_threshold: 0.75,
+                match_count: top_k
             }
         ).execute()
         return results.data
@@ -381,7 +386,7 @@ class SupabaseRAG:
     def generate(self, query: str, context: list[dict]) -> str:
         """검색된 컨텍스트를 사용하여 응답을 생성한다."""
         context_text = "\n\n".join([
-            f"[출처: {doc['title']}]\n{doc['content']}"
+            f"[출처: {doc[title]}]\n{doc[content]}"
             for doc in context
         ])
 
@@ -407,16 +412,16 @@ class SupabaseRAG:
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
-            'query': query,
-            'answer': answer,
-            'sources': [doc['title'] for doc in context],
-            'similarity_scores': [doc['similarity'] for doc in context]
+            query: query,
+            answer: answer,
+            sources: [doc[title] for doc in context],
+            similarity_scores: [doc[similarity] for doc in context]
         }
 
 # 사용법
 rag = SupabaseRAG(SUPABASE_URL, SUPABASE_KEY, OPENAI_KEY)
 result = rag.chat("Docker 모범 사례는 무엇인가?")
-print(result['answer'])
+print(result[answer])
 ```
 
 ## 인증 및 행 수준 보안 (RLS)
@@ -458,7 +463,7 @@ const accessToken = session.session?.access_token
 
 // 인증 컨텍스트가 있는 쿼리 (RLS 자동 적용)
 const { data } = await supabase
-  .from('documents')
+  .from(documents)
   .select('*')
 ```
 
@@ -467,7 +472,7 @@ const { data } = await supabase
 supabase_admin = create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 
 # 관리 작업을 위해 RLS 우회
-all_docs = supabase_admin.table('documents').select('*').execute()
+all_docs = supabase_admin.table(documents).select('*').execute()
 ```
 
 ## 라이브 AI 기능을 위한 실시간 구독
@@ -477,8 +482,8 @@ all_docs = supabase_admin.table('documents').select('*').execute()
 const channel = supabase
   .channel('documents-changes')
   .on(
-    'postgres_changes',
-    { event: 'INSERT', schema: 'public', table: 'documents' },
+    postgres_changes,
+    { event: INSERT, schema: public, table: documents },
     (payload) => {
       console.log('새 문서 삽입됨:', payload.new)
       // 재인덱싱, 알림 또는 UI 업데이트 트리거
@@ -498,11 +503,11 @@ async def subscribe_to_changes():
     channel = supabase.channel('documents-changes')
     
     def handle_insert(payload):
-        print(f"새 문서: {payload['new']['title']}")
+        print(f"새 문서: {payload[new][title]}")
     
     channel.on(
-        'postgres_changes',
-        {'event': 'INSERT', 'schema': 'public', 'table': 'documents'},
+        postgres_changes,
+        {event: INSERT, schema: public, table: documents},
         handle_insert
     ).subscribe()
 
@@ -530,14 +535,14 @@ serve(async (req) => {
 
   // 에지에서 OpenAI API 호출
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
+    method: POST,
     headers: {
-      'Authorization': `Bearer ${Deno.env.get('OPENAI_API_KEY')}`,
+      Authorization: `Bearer ${Deno.env.get(OPENAI_API_KEY)}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       model: 'gpt-4.1-mini',
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: user, content: prompt }],
       max_tokens: 500
     })
   })

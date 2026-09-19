@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/exo-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/exo-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/exo-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/exo-dev-utils-2026" />
 title: 'exo: Chạy AI tiên phong trên chính các thiết bị của bạn (45K Stars) — Hướng dẫn thực chiến 2026'
 description: 'exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên phong ngay tại chỗ. 45.088 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, bảng điều khiển, API tương thích OpenAI/Claude/Ollama, các lệnh thực tế và một so sánh thẳng thắn.'
 date: 2026-06-02 00:00:00+08:00

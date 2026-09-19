@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
 title: 'Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested Throughput, Cost, Setup'
 description: 'Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory usage, setup time, and which is right for hobby vs production self-hosted deployment.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Ollama', 'vLLM', 'LocalAI', 'Llama 3.3', 'CUDA']
+tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM Frameworks
 source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
 licensing_model: Open Source
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['self-hosted', 'llm', 'ollama', 'vllm', 'localai', 'inference', '2026']
+tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
 aliases:
 - /posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq:
@@ -26,7 +28,7 @@ faq:
   - q: "Is self-hosting LLMs actually cheaper than API?"
     a: "Above ~10M tokens/month of usage, yes. Single H100 amortized + electricity + maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices."
   - q: "Can self-hosted models match commercial API quality?"
-    a: "For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where 'good enough' wins over 'best': yes. Llama 3.3 + Llama 4 (when released) close the gap further."
+    a: "For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where 'good enough' wins over best: yes. Llama 3.3 + Llama 4 (when released) close the gap further."
   - q: "How long does setup take for each?"
     a: "Ollama: 10 minutes (one curl command + ollama pull). LocalAI: 30-45 minutes (Docker compose + model config). vLLM: 1-2 hours (Python env + CUDA matching + serving config). Initial setup pain is inversely correlated with production capability."
   - q: "Which is best for OpenAI API drop-in replacement?"

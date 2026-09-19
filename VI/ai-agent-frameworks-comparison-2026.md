@@ -1,4 +1,9 @@
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — So sánh các khung tác nhân AI (2026)"
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-frameworks-comparison-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-frameworks-comparison-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-frameworks-comparison-2026" />
 description: "So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, điểm chuẩn hiệu suất và hướng dẫn thực tế để chọn khung phù hợp cho dự án của bạn."
 date: 2026-06-30T00:00:00+09:00
 lastmod:  2026-06-30T00:00:00+09:00lang: vi

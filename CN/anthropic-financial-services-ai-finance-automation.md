@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/anthropic-financial-services-ai-finance-automation" />
 title: 'Anthropic Financial Services: How Financial Teams Can Automate Analysis &
   Boost ROI by 300%'
 description: Discover how Anthropic Financial Services helps investment banks, equity

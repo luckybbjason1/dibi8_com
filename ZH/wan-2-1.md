@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/wan-2-1" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
 title: 'Wan 2.1: 16.1K+ Stars — 开源视频生成深度解析 vs HunyuanVideo、CogVideo 2026'
 description: 'Wan 2.1 是阿里巴巴开源的视频基础模型套件，具备 SOTA 性能。支持 ComfyUI、Diffusers 和 Gradio。涵盖 T2V、I2V、视频编辑和文本生成，提供 1.3B 和 14B 两种参数规模。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['wan-2-1', '视频生成', '扩散Transformer', 'ai视频', '开源', '阿里巴巴', 'comfyui', 'diffusers']
+tags: ['wan-2-1', 视频生成, 扩散transformer, ai视频, 开源, 阿里巴巴, comfyui, diffusers]
 aliases:
 - /zh/posts/wan-2-1/
 ---
@@ -165,7 +170,7 @@ cd gradio
 
 # 单 GPU 运行 T2V 14B
 python t2v_14B_singleGPU.py \
-  --prompt_extend_method 'dashscope' \
+  --prompt_extend_method dashscope \
   --ckpt_dir ./Wan2.1-T2V-14B
 
 # 运行 T2V 1.3B（更轻量，适合消费级 GPU）
@@ -226,7 +231,7 @@ vae = AutoencoderKLWan.from_pretrained(
 # 配置调度器
 flow_shift = 5.0  # 720P 用 5.0，480P 用 3.0
 scheduler = UniPCMultistepScheduler(
-    prediction_type='flow_prediction',
+    prediction_type=flow_prediction,
     use_flow_sigmas=True,
     num_train_timesteps=1000,
     flow_shift=flow_shift
@@ -326,7 +331,7 @@ DASH_API_KEY=your_key python generate.py \
   --ckpt_dir ./Wan2.1-T2V-14B \
   --prompt "一只猫在弹钢琴" \
   --use_prompt_extend \
-  --prompt_extend_method 'dashscope'
+  --prompt_extend_method dashscope
 ```
 
 ## 基准测试 / 实际应用场景

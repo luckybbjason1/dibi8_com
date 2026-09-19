@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/scrapling-python-stealthy-web-scraping-review" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapling-python-stealthy-web-scraping-review" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scrapling-python-stealthy-web-scraping-review" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapling-python-stealthy-web-scraping-review" />
 title: 'Đánh giá Scrapling: Một cách tiếp cận nhanh hơn, lén lút hơn cho việc cạo
   web Python'
 description: 'Đánh giá Scrapling: thư viện quét web ẩn Python. Vượt qua biện pháp

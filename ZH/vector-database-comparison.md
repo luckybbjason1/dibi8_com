@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vector-database-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-database-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-database-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-database-comparison" />
 title: '向量数据库对比2025：Pinecone vs Weaviate vs Chroma vs Milvus选型指南'
 description: '2025年主流向量数据库全面对比：Pinecone、Weaviate、Chroma、Milvus的功能、性能、价格及适用场景分析，助你选出最适合RAG的向量数据库。'
 date: 2026-05-18 00:00:00+08:00

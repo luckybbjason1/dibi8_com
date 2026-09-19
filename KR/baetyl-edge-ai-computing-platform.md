@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 2026 설치 가이드'
 description: 'Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임, 클라우드-엣지 동기화.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'baetyl/baetyl'
 stars: 3200
-maintainer: 'baetyl'
+maintainer: baetyl
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Baetyl', '엣지-컴퓨팅', 'IoT', 'Kubernetes', 'K3s', 'AI-추론', 'MQTT', '엣지-AI', 'OTA-업데이트', 'LF-Edge']
+tags: [baetyl, '엣지-컴퓨팅', iot, kubernetes, k3s, 'ai-추론', mqtt, '엣지-ai', 'ota-업데이트', 'lf-edge']
 aliases:
 - /kr/posts/baetyl-edge-ai-computing-platform/
 ---
@@ -122,7 +127,7 @@ mysql -u root -p < scripts/sql/tables.sql
 mysql -u root -p < scripts/sql/data.sql
 
 # 데이터베이스 연결 구성
-cat > scripts/charts/baetyl-cloud/conf/cloud.yml << 'EOF'
+cat > scripts/charts/baetyl-cloud/conf/cloud.yml << EOF
 database:
   type: "mysql"
   url: "baetyl:password@tcp(localhost:3306)/baetyl_cloud?charset=utf8&parseTime=true"
@@ -342,7 +347,7 @@ curl -X PUT http://cloud:30004/v1/apps/defect-model-v4 \
 
 ```bash
 # 엣지에서 로컬 데이터 캐싱을 위한 SQLite 배포
-cat > sqlite-app.yml << 'EOF'
+cat > sqlite-app.yml << EOF
 name: local-cache
 services:
   - name: sqlite

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feast-feature-store-ml" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
 title: 'Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với Độ Trễ Dưới Giây — Hướng Dẫn 2026'
 description: 'Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/offline stores, sub-second serving, backend Redis/BigQuery, batch & real-time features và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Feast', 'Feature Store', 'MLOps', 'ML Pipeline', 'Redis', 'BigQuery', 'Online Store', 'Offline Store', 'Real-time ML', 'Feature Engineering']
+tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
 aliases:
 - /vi/posts/feast-feature-store-ml/
 ---
@@ -121,7 +126,7 @@ features = store.get_online_features(
     entity_rows=[{"user_id": "user_12345"}],
 ).to_dict()
 
-# Returns: {'avg_order_amount_30d': [245.50], 'total_transactions_90d': [12]}
+# Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}
 ```
 
 ### 4. Feature Server

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/github-trending-projects-may-2026" />
 title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending GitHub Projects That Actually Pay Off"
 description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent that grew 5,800 stars overnight and Anthropic's first vertical-specific financial services framework."
 date: 2026-05-15T04:20:25+09:00

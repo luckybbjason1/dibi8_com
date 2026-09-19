@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：자기 진화하는 AI 에이전트, 사용할수록 당신을 더 잘 이해합니다
 description: Hermes Agent는 Nous Research가 만든 오픈소스 AI 에이전트로, 자체 학습 루프를 통해 경험에서 스킬을
   생성하고, 지속적으로 개선하며, 당신의 선호도를 기억합니다.

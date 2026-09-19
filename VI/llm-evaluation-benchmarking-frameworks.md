@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-evaluation-benchmarking-frameworks" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-evaluation-benchmarking-frameworks" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-evaluation-benchmarking-frameworks" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-evaluation-benchmarking-frameworks" />
 title: 'Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh EleutherAI LM Eval, OpenCompass, BIG-bench'
 description: 'Khám phá các framework đánh giá và chuẩn hóa LLM hàng đầu 2025. So sánh EleutherAI LM Eval Harness, OpenCompass, BIG-bench, HELM, AlpacaEval, DeepEval về phạm vi chuẩn mực, dễ sử dụng và hỗ trợ cộng đồng.'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['LLM evaluation', 'benchmarking', 'framework đánh giá LLM', 'EleutherAI', 'OpenCompass', 'BIG-bench', 'HELM', 'AlpacaEval', 'DeepEval']
+tags: ['llm evaluation', benchmarking, 'framework đánh giá llm', eleutherai, opencompass, 'big-bench', helm, alpacaeval, deepeval]
 aliases:
 - /vi/posts/llm-evaluation-benchmarking-frameworks/
 ---

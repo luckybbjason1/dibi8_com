@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-vs-claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-vs-claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-vs-claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-vs-claude-code" />
 title: 'Cursor vs Claude Code 2026：哪个 AI 编程工具更好？'
 description: 'Cursor 和 Claude Code 横向对比 — 价格、性能、适用场景、迁移建议。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

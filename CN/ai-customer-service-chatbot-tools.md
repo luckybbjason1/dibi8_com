@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-customer-service-chatbot-tools" />
 title: 'Best AI Customer Service Chatbot Tools 2025: Intercom, Zendesk AI & More'
 description: 'Compare the top AI customer service chatbot platforms in 2025 — Intercom Fin, Zendesk AI, Freshworks Freddy, ChatGPT Enterprise, Drift, and Tidio Lyro. See pricing, features, and ROI data.'
 date: 2026-05-18 00:00:00+08:00

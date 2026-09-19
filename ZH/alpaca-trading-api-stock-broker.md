@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/alpaca-trading-api-stock-broker" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/alpaca-trading-api-stock-broker" />
 title: 'Alpaca交易API 2026：面向算法交易的零佣金股票经纪API — 设置指南'
 description: '零佣金算法交易的Alpaca交易API完整指南。学习设置、下单、WebSocket实时流、碎股交易和模拟交易，附Python代码示例。'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/alpacahq/alpaca-trade-api-python'
 stars: 4500
-maintainer: 'alpacahq'
+maintainer: alpacahq
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Alpaca Trading API']
+tags: ['alpaca trading api']
 aliases:
 - /zh/posts/alpaca-trading-api-stock-broker/
 ---
@@ -89,15 +94,15 @@ Alpaca的模拟交易环境不是一个简化的演示——它是一个功能�
 
 ```python
 # 您的API凭证将如下所示：
-API_KEY = 'PKABCDEF1234567890EXAMPLE'
-API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example'
+API_KEY = PKABCDEF1234567890EXAMPLE
+API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example
 BASE_URL = 'https://paper-api.alpaca.markets'  # 模拟交易端点
 ```
 
 ```javascript
 // JavaScript/Node.js凭证配置
-const API_KEY = 'PKABCDEF1234567890EXAMPLE';
-const API_SECRET = 'abcdefghijklmnopqrstuvwxyz1234567890example';
+const API_KEY = PKABCDEF1234567890EXAMPLE;
+const API_SECRET = abcdefghijklmnopqrstuvwxyz1234567890example;
 const BASE_URL = 'https://paper-api.alpaca.markets';
 ```
 
@@ -109,8 +114,8 @@ import os
 from alpaca_trade_api import REST
 
 api = REST(
-    key_id=os.getenv('ALPACA_API_KEY'),
-    secret_key=os.getenv('ALPACA_SECRET_KEY'),
+    key_id=os.getenv(ALPACA_API_KEY),
+    secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
 ```
@@ -147,18 +152,18 @@ from alpaca_trade_api import REST
 import os
 
 api = REST(
-    key_id=os.getenv('ALPACA_API_KEY'),
-    secret_key=os.getenv('ALPACA_SECRET_KEY'),
+    key_id=os.getenv(ALPACA_API_KEY),
+    secret_key=os.getenv(ALPACA_SECRET_KEY),
     base_url='https://paper-api.alpaca.markets'
 )
 
 # 市价单 —— 以最佳可用价格立即执行
 market_order = api.submit_order(
-    symbol='AAPL',
+    symbol=AAPL,
     qty=10,
-    side='buy',
-    type='market',
-    time_in_force='day'
+    side=buy,
+    type=market,
+    time_in_force=day
 )
 print(f"市价单已提交: {market_order.id}")
 ```
@@ -166,12 +171,12 @@ print(f"市价单已提交: {market_order.id}")
 ```python
 # 限价单 —— 仅在指定价格或更优价格执行
 limit_order = api.submit_order(
-    symbol='TSLA',
+    symbol=TSLA,
     qty=5,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=180.00,
-    time_in_force='gtc'  # 长期有效
+    time_in_force=gtc  # 长期有效
 )
 print(f"限价单已提交: {limit_order.id}")
 ```
@@ -179,37 +184,37 @@ print(f"限价单已提交: {limit_order.id}")
 ```python
 # 止损单 —— 当价格跌至止损价时触发市价卖出
 stop_order = api.submit_order(
-    symbol='MSFT',
+    symbol=MSFT,
     qty=20,
-    side='sell',
-    type='stop',
+    side=sell,
+    type=stop,
     stop_price=380.00,
-    time_in_force='day'
+    time_in_force=day
 )
 ```
 
 ```python
 # 止损限价单 —— 将止损触发与限价执行相结合
 stop_limit_order = api.submit_order(
-    symbol='GOOGL',
+    symbol=GOOGL,
     qty=2,
-    side='sell',
-    type='stop_limit',
+    side=sell,
+    type=stop_limit,
     stop_price=165.00,
     limit_price=164.50,
-    time_in_force='day'
+    time_in_force=day
 )
 ```
 
 ```python
 # 跟踪止损单 —— 止损价格跟随市场以设定距离移动
 trailing_stop = api.submit_order(
-    symbol='AMZN',
+    symbol=AMZN,
     qty=3,
-    side='sell',
-    type='trailing_stop',
+    side=sell,
+    type=trailing_stop,
     trail_percent=5.0,  # 5%跟踪距离
-    time_in_force='gtc'
+    time_in_force=gtc
 )
 ```
 
@@ -220,30 +225,30 @@ Alpaca的突出功能之一是**碎股交易**，它允许您按精确的美元�
 ```python
 # 买入价值500美元的苹果股票 —— 无论股价如何
 fractional_order = api.submit_order(
-    symbol='AAPL',
+    symbol=AAPL,
     notional=500.00,  # 美元金额而非股数
-    side='buy',
-    type='market',
-    time_in_force='day'
+    side=buy,
+    type=market,
+    time_in_force=day
 )
 ```
 
 ```python
 # 以精确的美元分配构建平衡投资组合
 portfolio = {
-    'VTI': 2000.00,   # 美国全股票市场
-    'VXUS': 1000.00,  # 国际股票
-    'BND': 1000.00,   # 美国债券
-    'VNQ': 500.00     # 房地产
+    VTI: 2000.00,   # 美国全股票市场
+    VXUS: 1000.00,  # 国际股票
+    BND: 1000.00,   # 美国债券
+    VNQ: 500.00     # 房地产
 }
 
 for symbol, amount in portfolio.items():
     order = api.submit_order(
         symbol=symbol,
         notional=amount,
-        side='buy',
-        type='market',
-        time_in_force='day'
+        side=buy,
+        type=market,
+        time_in_force=day
     )
     print(f"已下单买入 ${amount} 的 {symbol}")
 ```
@@ -255,12 +260,12 @@ Alpaca支持**每周5天、每天24小时交易**，让您可以在常规交易�
 ```python
 # 为延长交易时间执行下单
 extended_hours_order = api.submit_order(
-    symbol='SPY',
+    symbol=SPY,
     qty=50,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=520.00,
-    time_in_force='day',
+    time_in_force=day,
     extended_hours=True  # 启用盘前（凌晨4:00）和盘后（晚上8:00）交易
 )
 ```
@@ -269,10 +274,10 @@ extended_hours_order = api.submit_order(
 # 查看某个标的的交易时间
 from alpaca_trade_api import REST
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 clock = api.get_clock()
 
-print(f"市场{'开盘' if clock.is_open else '收盘'}")
+print(f"市场{开盘 if clock.is_open else 收盘}")
 print(f"下次开盘: {clock.next_open}")
 print(f"下次收盘: {clock.next_close}")
 ```
@@ -301,16 +306,16 @@ async def handle_bar(bar):
 
 # 初始化流
 stream = Stream(
-    key_id='YOUR_API_KEY',
-    secret_key='YOUR_SECRET_KEY',
+    key_id=YOUR_API_KEY,
+    secret_key=YOUR_SECRET_KEY,
     base_url='https://paper-api.alpaca.markets',
-    data_feed='iex'  # 'iex'（免费）或 'sip'（高级）
+    data_feed=iex  # iex（免费）或 sip（高级）
 )
 
 # 订阅频道
-stream.subscribe_trades(handle_trade, 'AAPL', 'TSLA', 'MSFT')
-stream.subscribe_quotes(handle_quote, 'AAPL', 'TSLA')
-stream.subscribe_bars(handle_bar, 'SPY', 'QQQ')
+stream.subscribe_trades(handle_trade, AAPL, TSLA, MSFT)
+stream.subscribe_quotes(handle_quote, AAPL, TSLA)
+stream.subscribe_bars(handle_bar, SPY, QQQ)
 
 # 运行流
 print("启动WebSocket流...")
@@ -324,9 +329,9 @@ from alpaca_trade_api.stream import Stream
 
 async def run_streaming_strategy():
     stream = Stream(
-        key_id='YOUR_API_KEY',
-        secret_key='YOUR_SECRET_KEY',
-        data_feed='iex'
+        key_id=YOUR_API_KEY,
+        secret_key=YOUR_SECRET_KEY,
+        data_feed=iex
     )
     
     async def on_bar(bar):
@@ -334,7 +339,7 @@ async def run_streaming_strategy():
         if bar.close > bar.vwap * 1.02:
             print(f"潜在突破: {bar.symbol} 在 ${bar.close}")
     
-    stream.subscribe_bars(on_bar, 'AAPL', 'MSFT', 'GOOGL', 'AMZN')
+    stream.subscribe_bars(on_bar, AAPL, MSFT, GOOGL, AMZN)
     
     # 正确清理运行
     await stream._run_forever()
@@ -347,15 +352,15 @@ async def run_streaming_strategy():
 const Alpaca = require('@alpacahq/alpaca-trade-api');
 
 const alpaca = new Alpaca({
-    keyId: 'YOUR_API_KEY',
-    secretKey: 'YOUR_SECRET_KEY',
+    keyId: YOUR_API_KEY,
+    secretKey: YOUR_SECRET_KEY,
     paper: true
 });
 
 const client = alpaca.data_ws;
 
 client.onConnect(() => {
-    console.log('WebSocket已连接');
+    console.log(WebSocket已连接);
     client.subscribe(['alpacadatafeed/T.AAPL', 'alpacadatafeed/T.TSLA']);
 });
 
@@ -376,7 +381,7 @@ client.connect();
 from alpaca_trade_api import REST
 import pandas as pd
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 # 获取账户信息
 account = api.get_account()
@@ -400,7 +405,7 @@ for pos in positions:
 
 ```python
 # 获取特定标的的持仓
-aapl_position = api.get_position('AAPL')
+aapl_position = api.get_position(AAPL)
 print(f"AAPL持仓: {aapl_position.qty} 股")
 print(f"市值: ${aapl_position.market_value}")
 print(f"未实现盈亏: ${aapl_position.unrealized_pl}")
@@ -410,14 +415,14 @@ print(f"未实现盈亏: ${aapl_position.unrealized_pl}")
 
 ```python
 # 列出所有未成交订单
-open_orders = api.list_orders(status='open')
+open_orders = api.list_orders(status=open)
 for order in open_orders:
     print(f"订单 {order.id}: {order.side} {order.qty} {order.symbol} @ {order.type}")
 ```
 
 ```python
 # 取消特定订单
-api.cancel_order('ORDER_ID_HERE')
+api.cancel_order(ORDER_ID_HERE)
 print("订单已取消")
 ```
 
@@ -430,7 +435,7 @@ print("所有订单已取消")
 ```python
 # 获取订单历史（已成交订单）
 closed_orders = api.list_orders(
-    status='closed',
+    status=closed,
     limit=100,
     after='2026-05-01T00:00:00Z'
 )
@@ -449,18 +454,18 @@ for order in closed_orders:
 from alpaca_trade_api import REST
 from datetime import datetime, timedelta
 
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
 # 获取过去6个月的日K线
 end_date = datetime.now()
 start_date = end_date - timedelta(days=180)
 
 bars = api.get_bars(
-    'AAPL',
-    timeframe='1Day',
+    AAPL,
+    timeframe=1Day,
     start=start_date.isoformat(),
     end=end_date.isoformat(),
-    feed='iex'
+    feed=iex
 ).df
 
 print(f"获取了 {len(bars)} 根K线")
@@ -470,41 +475,41 @@ print(bars.head())
 ```python
 # 获取日内策略的分钟K线
 minute_bars = api.get_bars(
-    'SPY',
-    timeframe='1Min',
+    SPY,
+    timeframe=1Min,
     start='2026-05-15T09:30:00Z',
     end='2026-05-15T16:00:00Z',
-    feed='iex'
+    feed=iex
 ).df
 
 # 计算简单移动平均线
-minute_bars['SMA_20'] = minute_bars['close'].rolling(20).mean()
-minute_bars['SMA_50'] = minute_bars['close'].rolling(50).mean()
+minute_bars[SMA_20] = minute_bars[close].rolling(20).mean()
+minute_bars[SMA_50] = minute_bars[close].rolling(50).mean()
 
 # 生成信号
-minute_bars['signal'] = 0
-minute_bars.loc[minute_bars['SMA_20'] > minute_bars['SMA_50'], 'signal'] = 1
-minute_bars.loc[minute_bars['SMA_20'] < minute_bars['SMA_50'], 'signal'] = -1
+minute_bars[signal] = 0
+minute_bars.loc[minute_bars[SMA_20] > minute_bars[SMA_50], signal] = 1
+minute_bars.loc[minute_bars[SMA_20] < minute_bars[SMA_50], signal] = -1
 
-print(minute_bars[['close', 'SMA_20', 'SMA_50', 'signal']].tail(10))
+print(minute_bars[[close, SMA_20, SMA_50, signal]].tail(10))
 ```
 
 ```python
 # 高效获取多个标的
 import pandas as pd
 
-symbols = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META']
+symbols = [AAPL, MSFT, GOOGL, AMZN, META]
 all_bars = {}
 
 for symbol in symbols:
     bars = api.get_bars(
         symbol,
-        timeframe='1Day',
+        timeframe=1Day,
         start='2026-01-01T00:00:00Z',
         end='2026-05-19T00:00:00Z',
-        feed='iex'
+        feed=iex
     ).df
-    all_bars[symbol] = bars['close']
+    all_bars[symbol] = bars[close]
 
 # 创建包含所有收盘价的DataFrame
 prices_df = pd.DataFrame(all_bars)
@@ -533,11 +538,11 @@ import pandas as pd
 from alpaca_trade_api import REST, Stream
 
 # 配置
-API_KEY = os.getenv('ALPACA_API_KEY')
-API_SECRET = os.getenv('ALPACA_SECRET_KEY')
+API_KEY = os.getenv(ALPACA_API_KEY)
+API_SECRET = os.getenv(ALPACA_SECRET_KEY)
 BASE_URL = 'https://paper-api.alpaca.markets'
 
-WATCHLIST = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'NVDA']
+WATCHLIST = [AAPL, MSFT, GOOGL, AMZN, NVDA]
 POSITION_SIZE = 1000  # 每笔交易金额
 SMA_PERIOD = 20
 
@@ -567,37 +572,37 @@ class MomentumTrader:
         # 买入信号: 价格上穿SMA
         if prev_price <= prev_sma and current_price > sma:
             if symbol not in self.positions_held:
-                return 'buy'
+                return buy
         
         # 卖出信号: 价格下穿SMA
         if prev_price >= prev_sma and current_price < sma:
             if symbol in self.positions_held:
-                return 'sell'
+                return sell
         
         return None
     
     def execute_trade(self, symbol, signal):
         """根据信号执行交易"""
         try:
-            if signal == 'buy':
+            if signal == buy:
                 order = self.api.submit_order(
                     symbol=symbol,
                     notional=POSITION_SIZE,
-                    side='buy',
-                    type='market',
-                    time_in_force='day'
+                    side=buy,
+                    type=market,
+                    time_in_force=day
                 )
                 self.positions_held.add(symbol)
                 print(f"买入 {symbol}: ${POSITION_SIZE} | 订单ID: {order.id}")
             
-            elif signal == 'sell':
+            elif signal == sell:
                 position = self.api.get_position(symbol)
                 order = self.api.submit_order(
                     symbol=symbol,
                     qty=position.qty,
-                    side='sell',
-                    type='market',
-                    time_in_force='day'
+                    side=sell,
+                    type=market,
+                    time_in_force=day
                 )
                 self.positions_held.discard(symbol)
                 print(f"卖出 {symbol}: {position.qty} 股 | 订单ID: {order.id}")
@@ -631,7 +636,7 @@ class MomentumTrader:
                 print(f"主循环错误: {e}")
                 time.sleep(60)
 
-if __name__ == '__main__':
+if __name__ == __main__:
     trader = MomentumTrader()
     trader.run()
 ```
@@ -647,13 +652,13 @@ if __name__ == '__main__':
 ```python
 # 二选一（OCO）括号订单
 bracket_order = api.submit_order(
-    symbol='TSLA',
+    symbol=TSLA,
     qty=10,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=200.00,
-    time_in_force='gtc',
-    order_class='bracket',
+    time_in_force=gtc,
+    order_class=bracket,
     take_profit=dict(limit_price=220.00),
     stop_loss=dict(stop_price=185.00, limit_price=184.50)
 )
@@ -662,12 +667,12 @@ bracket_order = api.submit_order(
 ```python
 # 立即成交或取消（IOC）订单
 ioc_order = api.submit_order(
-    symbol='SPY',
+    symbol=SPY,
     qty=100,
-    side='buy',
-    type='limit',
+    side=buy,
+    type=limit,
     limit_price=520.00,
-    time_in_force='ioc'  # 如未立即成交则取消
+    time_in_force=ioc  # 如未立即成交则取消
 )
 ```
 
@@ -679,38 +684,38 @@ from flask import Flask, request, jsonify
 from alpaca_trade_api import REST
 
 app = Flask(__name__)
-api = REST(key_id='YOUR_KEY', secret_key='YOUR_SECRET')
+api = REST(key_id=YOUR_KEY, secret_key=YOUR_SECRET)
 
-@app.route('/webhook/trading-signal', methods=['POST'])
+@app.route('/webhook/trading-signal', methods=[POST])
 def handle_trading_signal():
     data = request.json
-    symbol = data.get('symbol')
-    signal = data.get('signal')  # 'buy' 或 'sell'
+    symbol = data.get(symbol)
+    signal = data.get(signal)  # buy 或 sell
     
-    if signal == 'buy':
+    if signal == buy:
         order = api.submit_order(
             symbol=symbol,
             notional=1000,
-            side='buy',
-            type='market',
-            time_in_force='day'
+            side=buy,
+            type=market,
+            time_in_force=day
         )
-        return jsonify({'status': 'success', 'order_id': order.id})
+        return jsonify({status: success, order_id: order.id})
     
-    elif signal == 'sell':
+    elif signal == sell:
         position = api.get_position(symbol)
         order = api.submit_order(
             symbol=symbol,
             qty=position.qty,
-            side='sell',
-            type='market',
-            time_in_force='day'
+            side=sell,
+            type=market,
+            time_in_force=day
         )
-        return jsonify({'status': 'success', 'order_id': order.id})
+        return jsonify({status: success, order_id: order.id})
     
-    return jsonify({'status': 'unknown_signal'}), 400
+    return jsonify({status: unknown_signal}), 400
 
-if __name__ == '__main__':
+if __name__ == __main__:
     app.run(host='0.0.0.0', port=5000)
 ```
 

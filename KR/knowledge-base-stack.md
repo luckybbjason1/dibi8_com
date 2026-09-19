@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-base-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-base-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-base-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-base-stack" />
 title: '지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구축 ($10-25/월)'
 description: '개인 또는 팀용 5컴포넌트 셀프호스트 지식 베이스 스택. AnythingLLM(UI + RAG) + RAGFlow(심층 문서 파싱) + mem0(에이전트 메모리) + AgentMemory MCP(MCP 노출) + 벡터 DB 픽. $50-200/월 SaaS(Notion AI + Mem + Glean)를 $10-25/월 셀프호스트로 대체.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['지식 베이스', 'RAG', '두 번째 뇌', '스택', '컬렉션']
+categories: [collections]
+tags: ['지식 베이스', rag, '두 번째 뇌', 스택, 컬렉션]
 aliases:
   - /posts/knowledge-base-stack/
 ---

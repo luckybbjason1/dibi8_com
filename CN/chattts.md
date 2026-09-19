@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/chattts" />
 title: 'ChatTTS: 39.3K+ Stars — Benchmark Conversational TTS Comparison vs Coqui, MeloTTS in 2026'
 description: 'ChatTTS (AGPL-3.0) is a generative speech model for dialogue scenarios. Compatible with Coqui TTS, MeloTTS, GPT-SoVITS. Covers setup, benchmarks, production deployment, and comparison table.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/2noise/ChatTTS'
 stars: 39300
-maintainer: '2noise'
+maintainer: 2noise
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['chattts', 'text-to-speech', 'tts', 'conversational-ai', 'llm-assistant', 'voice-synthesis', 'open-source', 'benchmark']
+tags: [chattts, 'text-to-speech', tts, 'conversational-ai', 'llm-assistant', 'voice-synthesis', 'open-source', benchmark]
 aliases:
 - /posts/chattts/
 - /resources/llm-frameworks/chattts-architecture-autoregressive-voice/

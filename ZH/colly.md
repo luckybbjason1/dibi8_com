@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/colly" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/colly" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/colly" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/colly" />
 title: 'Colly: 25,302 GitHub Stars — Benchmark Go 网页抓取框架 2026'
 description: 'Colly 是一款快速、优雅的 Go 网页抓取框架，吞吐量达 1,000+ req/sec。涵盖 colly 教程、colly vs scrapy 基准测试、Docker 部署、Redis 缓存、代理轮换以及大规模数据提取的生产部署模式。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/gocolly/colly'
 stars: 25302
-maintainer: 'gocolly'
+maintainer: gocolly
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['colly', 'go', '网页抓取', '爬虫', 'golang', 'scrapy', '基准测试', '代理']
+tags: [colly, go, 网页抓取, 爬虫, golang, scrapy, 基准测试, 代理]
 aliases:
 - /zh/posts/colly/
 ---

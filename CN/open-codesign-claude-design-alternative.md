@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/open-codesign-claude-design-alternative" />
 title: 'Open Codesign: The Open-Source Claude Design Alternative with 5,790+ Stars'
 description: Discover Open Codesign, the MIT-licensed open-source alternative to Claude
   Design. Multi-model AI design tool with BYOK, local-first architecture, and instant

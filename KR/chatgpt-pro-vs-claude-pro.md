@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatgpt-pro-vs-claude-pro" />
 title: 'ChatGPT Pro vs Claude Pro 2026: $20(또는 $200) AI 구독 어느 쪽이 이길까?'
 description: 'ChatGPT Plus/Pro 와 Claude Pro/Max 완전 비교 — 모델 라인업, 컨텍스트 윈도우, Projects, Artifacts, 이미지 생성, 음성 모드, 가격. 2026 업데이트.'
 date: 2026-05-22 00:00:00+08:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/act" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
 title: 'act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 CI/CD 指南'
 description: 'act (nektos/act) 是一个使用 Docker 容器在本地运行 GitHub Actions 工作流的 CLI 工具。兼容 Docker、GitHub Actions、Go 和 VS Code。涵盖安装、配置、密钥管理、runner 镜像和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/nektos/act'
 stars: 70410
-maintainer: 'nektos'
+maintainer: nektos
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['act', 'github-actions', 'ci-cd', 'docker', '本地开发', 'devops', '测试', '自动化']
+tags: [act, 'github-actions', 'ci-cd', docker, 本地开发, devops, 测试, 自动化]
 aliases:
 - /zh/posts/act/
 ---
@@ -298,7 +303,7 @@ export MY_SECRET=supersecurevalue
 act -s MY_SECRET
 
 # 选项 3：密钥文件 (.secrets，格式与 .env 相同)
-cat > .secrets << 'EOF'
+cat > .secrets << EOF
 MY_SECRET=supersecurevalue
 AWS_ACCESS_KEY_ID=AKIA...
 AWS_SECRET_ACCESS_KEY=...
@@ -325,7 +330,7 @@ echo "*.secrets" >> .gitignore
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
 # 或使用变量文件
-cat > .variables << 'EOF'
+cat > .variables << EOF
 DEPLOY_ENV=staging
 API_VERSION=v2
 EOF
@@ -338,7 +343,7 @@ act --var-file .variables
 
 ```bash
 # 模拟 pull_request 事件
-cat > pull-request.json << 'EOF'
+cat > pull-request.json << EOF
 {
   "pull_request": {
     "head": { "ref": "feature/new-login" },
@@ -352,7 +357,7 @@ act pull_request -e pull-request.json
 
 ```bash
 # 模拟带标签的 push
-cat > tag-push.json << 'EOF'
+cat > tag-push.json << EOF
 { "ref": "refs/tags/v1.2.3" }
 EOF
 act push -e tag-push.json
@@ -360,7 +365,7 @@ act push -e tag-push.json
 
 ```bash
 # 模拟带输入的 workflow_dispatch
-cat > workflow-inputs.json << 'EOF'
+cat > workflow-inputs.json << EOF
 {
   "inputs": {
     "environment": "production",
@@ -392,7 +397,7 @@ act -n -v
 
 ```bash
 # 项目根目录的 .actrc
-cat > .actrc << 'EOF'
+cat > .actrc << EOF
 --container-architecture linux/amd64
 --action-offline-mode
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
@@ -433,7 +438,7 @@ jobs:
 通过事件传递 act 标志：
 
 ```bash
-cat > event.json << 'EOF'
+cat > event.json << EOF
 { "act": true }
 EOF
 act -e event.json

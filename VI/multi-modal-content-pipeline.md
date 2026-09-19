@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-modal-content-pipeline" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-modal-content-pipeline" />
 title: 'Pipeline Nội Dung Đa Phương Thức 2026: Stack 5 Thành Phần Cho Podcast/Video/Nội Dung Trực Quan AI ($30-80/Tháng)'
 description: 'Stack nội dung đa phương thức self-host: faster-whisper (STT) + ChatTTS (TTS hội thoại) + Stable Diffusion WebUI (ảnh) + ComfyUI (engine workflow + video) + FFmpeg (ráp). Tạo podcast, video ngắn, bài viết có hình AI minh họa $30-80/tháng vs $200-500/tháng SaaS.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Đa phương thức', 'Pipeline nội dung', 'Podcast', 'Video', 'TTS', 'Stack', 'Collection']
+categories: [collections]
+tags: ['đa phương thức', 'pipeline nội dung', podcast, video, tts, stack, collection]
 aliases:
   - /posts/multi-modal-content-pipeline/
 ---

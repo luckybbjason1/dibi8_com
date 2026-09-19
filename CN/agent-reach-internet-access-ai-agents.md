@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/agent-reach-internet-access-ai-agents" />
 title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)'
 description: 'Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.'
 date: 2026-09-19

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/puppeteer" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
 title: 'Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2026'
 description: 'Puppeteer 是一个用于 Chrome 和 Firefox 的无头浏览器自动化 Node.js 库。支持 Docker、GitHub Actions、Jest、Mocha、TypeScript。涵盖 puppeteer docker 配置、生产环境部署、浏览器自动化教程、CI/CD 集成。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/puppeteer/puppeteer'
 stars: 94300
-maintainer: 'puppeteer'
+maintainer: puppeteer
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['puppeteer', '浏览器自动化', '无头Chrome', '网络爬虫', 'docker', '测试', 'TypeScript']
+tags: [puppeteer, 浏览器自动化, 无头chrome, 网络爬虫, docker, 测试, typescript]
 aliases:
 - /zh/posts/puppeteer/
 ---
@@ -71,7 +76,7 @@ npm install puppeteer-core
 
 ```javascript
 // quickstart.mjs — 验证 Puppeteer 是否正确启动
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
 const browser = await puppeteer.launch();
 const page = await browser.newPage();
@@ -95,7 +100,7 @@ import puppeteer from 'puppeteer-core';
 
 const browser = await puppeteer.launch({
   executablePath: '/usr/bin/chromium',
-  headless: 'new',
+  headless: new,
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
 ```
@@ -175,7 +180,7 @@ services:
     environment:
       - NODE_ENV=production
       - PUPPETEER_ARGS=--no-sandbox --disable-setuid-sandbox --disable-dev-shm-usage
-    shm_size: '2gb'
+    shm_size: 2gb
     deploy:
       resources:
         limits:
@@ -198,9 +203,9 @@ services:
 
 ```javascript
 // scraper.mjs — 从 JavaScript 渲染的页面提取数据
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 await page.setViewport({ width: 1366, height: 768 });
@@ -209,7 +214,7 @@ await page.setUserAgent(
 );
 
 await page.goto('https://quotes.toscrape.com/js/', {
-  waitUntil: 'networkidle2',
+  waitUntil: networkidle2,
   timeout: 30000
 });
 
@@ -234,20 +239,20 @@ Puppeteer 在从 HTML 渲染可视化产物方面表现出色 —— 这是发�
 
 ```javascript
 // screenshot.mjs — 全页截图和 PDF 导出
-import puppeteer from 'puppeteer';
-import fs from 'fs';
-import path from 'path';
+import puppeteer from puppeteer;
+import fs from fs;
+import path from path;
 
 const OUTPUT_DIR = './output';
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 await page.setViewport({ width: 1280, height: 800 });
 
 // 截图：全页 PNG
-await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+await page.goto('https://example.com', { waitUntil: networkidle2 });
 await page.screenshot({
   path: path.join(OUTPUT_DIR, 'page.png'),
   fullPage: true
@@ -256,9 +261,9 @@ await page.screenshot({
 // PDF：A4 带背景图形
 await page.pdf({
   path: path.join(OUTPUT_DIR, 'page.pdf'),
-  format: 'A4',
+  format: A4,
   printBackground: true,
-  margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' }
+  margin: { top: 1cm, right: 1cm, bottom: 1cm, left: 1cm }
 });
 
 console.log('截图和 PDF 已保存到', OUTPUT_DIR);
@@ -271,15 +276,15 @@ await browser.close();
 
 ```javascript
 // blocker.mjs — 屏蔽图片和 CSS 以加快抓取速度
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-const browser = await puppeteer.launch({ headless: 'new' });
+const browser = await puppeteer.launch({ headless: new });
 const page = await browser.newPage();
 
 // 拦截并屏蔽图片/样式表/媒体请求
 await page.setRequestInterception(true);
-page.on('request', (req) => {
-  const block = ['image', 'stylesheet', 'font', 'media'];
+page.on(request, (req) => {
+  const block = [image, stylesheet, font, media];
   if (block.includes(req.resourceType())) {
     req.abort();
   } else {
@@ -288,7 +293,7 @@ page.on('request', (req) => {
 });
 
 const start = Date.now();
-await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+await page.goto('https://example.com', { waitUntil: networkidle2 });
 console.log(`加载耗时 ${Date.now() - start}ms (资源已屏蔽)`);
 
 await browser.close();
@@ -318,8 +323,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -342,7 +347,7 @@ jobs:
 ```javascript
 // jest.config.js
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: node,
   testMatch: ['**/*.test.mjs'],
   testTimeout: 30000,
   globals: {
@@ -353,15 +358,15 @@ module.exports = {
 
 ```javascript
 // homepage.test.mjs — Jest + Puppeteer 集成
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
-describe('Homepage', () => {
+describe(Homepage, () => {
   let browser;
   let page;
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: new,
       args: (process.env.PUPPETEER_ARGS || '').split(' ').filter(Boolean)
     });
     page = await browser.newPage();
@@ -371,7 +376,7 @@ describe('Homepage', () => {
     await browser.close();
   });
 
-  test('页面标题正确', async () => {
+  test(页面标题正确, async () => {
     await page.goto('https://example.com');
     const title = await page.title();
     expect(title).toBe('Example Domain');
@@ -379,7 +384,7 @@ describe('Homepage', () => {
 
   test('页面在 3 秒内加载完成', async () => {
     const start = Date.now();
-    await page.goto('https://example.com', { waitUntil: 'networkidle2' });
+    await page.goto('https://example.com', { waitUntil: networkidle2 });
     expect(Date.now() - start).toBeLessThan(3000);
   });
 });
@@ -405,7 +410,7 @@ describe('Homepage', () => {
 
 ```typescript
 // src/scraper.ts — 使用 TypeScript 的 Puppeteer
-import puppeteer, { Browser, Page } from 'puppeteer';
+import puppeteer, { Browser, Page } from puppeteer;
 
 interface Product {
   name: string;
@@ -414,16 +419,16 @@ interface Product {
 }
 
 async function scrapeProducts(url: string): Promise<Product[]> {
-  const browser: Browser = await puppeteer.launch({ headless: 'new' });
+  const browser: Browser = await puppeteer.launch({ headless: new });
   const page: Page = await browser.newPage();
 
-  await page.goto(url, { waitUntil: 'networkidle2' });
+  await page.goto(url, { waitUntil: networkidle2 });
 
   const products: Product[] = await page.evaluate(() => {
     return Array.from(document.querySelectorAll('.product')).map(el => ({
       name: el.querySelector('.name')?.textContent?.trim() || '',
       price: el.querySelector('.price')?.textContent?.trim() || '',
-      url: el.querySelector('a')?.href || ''
+      url: el.querySelector(a)?.href || ''
     }));
   });
 
@@ -440,7 +445,7 @@ console.log(`找到 ${results.length} 个产品`);
 ```javascript
 // .mocharc.cjs
 module.exports = {
-  extension: ['mjs'],
+  extension: [mjs],
   spec: 'test/**/*.test.mjs',
   timeout: 30000,
   exit: true
@@ -449,8 +454,8 @@ module.exports = {
 
 ```javascript
 // test/scraper.test.mjs — Mocha + Puppeteer
-import puppeteer from 'puppeteer';
-import assert from 'assert';
+import puppeteer from puppeteer;
+import assert from assert;
 
 describe('Scraper Suite', function() {
   this.timeout(30000);
@@ -458,17 +463,17 @@ describe('Scraper Suite', function() {
   let browser;
   before(async () => {
     browser = await puppeteer.launch({
-      headless: 'new',
+      headless: new,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   });
 
   after(async () => await browser.close());
 
-  it('应该提取产品数据', async () => {
+  it(应该提取产品数据, async () => {
     const page = await browser.newPage();
     await page.goto('https://example.com');
-    const heading = await page.$eval('h1', el => el.textContent);
+    const heading = await page.$eval(h1, el => el.textContent);
     assert.strictEqual(heading, 'Example Domain');
     await page.close();
   });
@@ -503,7 +508,7 @@ describe('Scraper Suite', function() {
 
 ```javascript
 // pool.mjs — 带最大并发限制的浏览器池
-import puppeteer from 'puppeteer';
+import puppeteer from puppeteer;
 
 class BrowserPool {
   constructor(maxBrowsers = 5) {
@@ -515,7 +520,7 @@ class BrowserPool {
   async init() {
     for (let i = 0; i < this.maxBrowsers; i++) {
       const browser = await puppeteer.launch({
-        headless: 'new',
+        headless: new,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
       });
       this.pool.push({ browser, inUse: false });
@@ -569,7 +574,7 @@ async function gotoWithRetry(page, url, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       await page.goto(url, {
-        waitUntil: 'networkidle2',
+        waitUntil: networkidle2,
         timeout: 30000
       });
       return;
@@ -605,7 +610,7 @@ setInterval(async () => {
     if (!healthy) {
       console.warn('检测到不健康的浏览器，正在重启...');
       await entry.browser.close();
-      entry.browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox'] });
       entry.inUse = false;
     }
   }

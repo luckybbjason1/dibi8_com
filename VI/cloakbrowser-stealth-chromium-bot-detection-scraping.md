@@ -1,13 +1,18 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cloakbrowser-stealth-chromium-bot-detection-scraping" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-chromium-bot-detection-scraping" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-chromium-bot-detection-scraping" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026'
 description: 'CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
-tags: ['stealth browser', 'CloakBrowser', 'bot detection', 'web scraping', 'fingerprint spoofing', 'Playwright replacement', 'anti-detection', 'scraping tool']
+tags: ['stealth browser', cloakbrowser, 'bot detection', 'web scraping', 'fingerprint spoofing', 'playwright replacement', 'anti-detection', 'scraping tool']
 github_repo: 'https://github.com/CloakHQ/CloakBrowser'
 stars: 25077
-maintainer: 'CloakHQ'
+maintainer: CloakHQ
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 lang: vi
@@ -156,7 +161,7 @@ npm install playwright
 npx playwright install chromium
 
 # In your script:
-const { chromium } = require('playwright');
+const { chromium } = require(playwright);
 const browser = await chromium.launch({
   executablePath: './cloak-browser/chrome',
 });

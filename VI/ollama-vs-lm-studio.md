@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-vs-lm-studio" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-vs-lm-studio" />
 title: 'Ollama vs LM Studio 2026: Trình chạy LLM cục bộ nào tốt hơn?'
 description: 'So sánh trực tiếp Ollama và LM Studio — CLI vs GUI, thư viện mô hình, hỗ trợ GPU, API tương thích OpenAI, lượng tử hóa, tự host. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

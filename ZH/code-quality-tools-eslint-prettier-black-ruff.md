@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/code-quality-tools-eslint-prettier-black-ruff" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-quality-tools-eslint-prettier-black-ruff" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-quality-tools-eslint-prettier-black-ruff" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-quality-tools-eslint-prettier-black-ruff" />
 title: '代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程'
 description: '2025年最全代码质量工具配置指南，涵盖JavaScript/TypeScript的ESLint与Prettier、Python的Black与Ruff、Go与Rust的格式化工具，含pre-commit与CI/CD集成方案。'
 date: 2026-05-18 00:00:00+08:00

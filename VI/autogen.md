@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/autogen" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
 title: 'AutoGen: 58K+ Stars — Khám Phá Sâu Framework Multi-Agent So Với CrewAI, LangGraph 2026'
 description: 'AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương thích với OpenAI, Azure, Ollama, Docker, và VS Code. Bao gồm cài đặt, thiết lập group chat, production hardening và so sánh trung thực với các lựa chọn thay thế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/microsoft/autogen'
 stars: 58196
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['AutoGen', 'multi-agent', 'Microsoft', 'LLM-framework', 'agentic-AI', 'Python', 'CrewAI-alternative', 'LangGraph-alternative']
+tags: [autogen, 'multi-agent', microsoft, 'llm-framework', 'agentic-ai', python, 'crewai-alternative', 'langgraph-alternative']
 aliases:
 - /vi/posts/autogen/
 - /vi/resources/llm-frameworks/autogen-multi-agent-framework/
@@ -291,7 +296,7 @@ async def main():
         name="reviewer",
         model_client=model_client,
         system_message="You are an editor. Review content for accuracy and clarity. "
-                       "Respond with 'APPROVED' when the content is good."
+                       "Respond with APPROVED when the content is good."
     )
 
     # Kết thúc: dừng sau 20 tin nhắn hoặc khi reviewer phê duyệt

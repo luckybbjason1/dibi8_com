@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtrader-python-backtesting" />
 title: 'Backtrader 2026: Python 백테스팅 엔진으로 전략을 100배 더 빠르게 검증 — 완벽 가이드'
 description: 'Backtrader 이벤트 기반 백테스팅 엔진 완벽 가이드. Python으로 트레이딩 전략을 구축, 테스트, 최적화. 통합, 벤치마크, 실시간 트레이딩 배포 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'mementum/backtrader'
 stars: 15600
-maintainer: 'mementum'
+maintainer: mementum
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -263,9 +268,9 @@ exchange = ccxt.binance()
 ohlcv = exchange.fetch_ohlcv("BTC/USDT", timeframe="1d", since=1577836800000)
 
 # pandas DataFrame으로 변환
-df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-df.set_index('timestamp', inplace=True)
+df = pd.DataFrame(ohlcv, columns=[timestamp, open, high, low, close, volume])
+df[timestamp] = pd.to_datetime(df[timestamp], unit=ms)
+df.set_index(timestamp, inplace=True)
 
 data = bt.feeds.PandasData(dataname=df)
 cerebro.adddata(data)
@@ -310,16 +315,16 @@ cerebro.broker.setcash(10000.0)
 cerebro.broker.setcommission(commission=0.001)  # 거래당 0.1%
 
 # 분석기 추가
-cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='sharpe')
-cerebro.addanalyzer(bt.analyzers.DrawDown, _name='drawdown')
-cerebro.addanalyzer(bt.analyzers.Returns, _name='returns')
+cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name=sharpe)
+cerebro.addanalyzer(bt.analyzers.DrawDown, _name=drawdown)
+cerebro.addanalyzer(bt.analyzers.Returns, _name=returns)
 
 # 최적화 실행 (모든 CPU 코어 사용)
 results = cerebro.run(maxcpus=4)
 
 # 샤프 비율로 최상의 결과 추출
-best = max(results, key=lambda r: r[0].analyzers.sharpe.get_analysis()['sharperatio'] or 0)
-print(f"최고 샤프 비율: {best[0].analyzers.sharpe.get_analysis()['sharperatio']:.2f}")
+best = max(results, key=lambda r: r[0].analyzers.sharpe.get_analysis()[sharperatio] or 0)
+print(f"최고 샤프 비율: {best[0].analyzers.sharpe.get_analysis()[sharperatio]:.2f}")
 print(f"최고 파라미터: fast={best[0].params.fast}, slow={best[0].params.slow}")
 ```
 
@@ -373,8 +378,8 @@ cerebro.addstrategy(LiveStrategy)
 
 # CCXT 브로커 래퍼 사용
 from ccxtbt import CCXTStore
-store = CCXTStore(exchange='binance', currency='USDT',
-                  config={'apiKey': 'YOUR_KEY', 'secret': 'YOUR_SECRET'})
+store = CCXTStore(exchange=binance, currency=USDT,
+                  config={apiKey: YOUR_KEY, secret: YOUR_SECRET})
 broker = store.getbroker()
 cerebro.setbroker(broker)
 
@@ -476,7 +481,7 @@ def walk_forward_analysis(data, train_days=252, test_days=63):
 
 ```python
 class EquityCurve(bt.observer.Observer):
-    lines = ('equity',)
+    lines = (equity,)
     plotinfo = dict(plot=True, subplot=True)
 
     def next(self):
@@ -572,7 +577,7 @@ Backtrader는 강력하지만 완벽하지 않다. 스택을 구축하기 전에
 
 ```python
 class CustomIndicator(bt.Indicator):
-    lines = ('myline',)
+    lines = (myline,)
     params = dict(period=20)
 
     def __init__(self):

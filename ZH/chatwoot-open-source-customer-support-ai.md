@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026：开源客户支持平台与AI智能体集成 — 自建部署完整指南'
 description: 'Chatwoot v4 完整指南 — 开源客户支持平台。使用Docker自建部署，集成AI智能体，连接多渠道。真实基准测试和生产环境配置。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'chatwoot/chatwoot'
 stars: 23000
-maintainer: 'chatwoot'
+maintainer: chatwoot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['chatwoot', '客户支持', '开源', 'AI聊天机器人', '自建部署', 'docker', 'ruby-on-rails', '在线客服']
+tags: [chatwoot, 客户支持, 开源, ai聊天机器人, 自建部署, docker, 'ruby-on-rails', 在线客服]
 aliases:
 - /zh/posts/chatwoot-open-source-customer-support-ai/
 ---
@@ -411,10 +416,10 @@ services:
 production:
   primary:
     <<: *default
-    host: <%= ENV['POSTGRES_HOST'] %>
+    host: <%= ENV[POSTGRES_HOST] %>
   primary_replica:
     <<: *default
-    host: <%= ENV['POSTGRES_REPLICA_HOST'] %>
+    host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
 ```
 
@@ -459,7 +464,7 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # 添加到你的 prometheus.yml
 
 scrape_configs:
-  - job_name: 'chatwoot'
+  - job_name: chatwoot
     static_configs:
       - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
@@ -478,7 +483,7 @@ RATE_LIMIT_PERIOD=60  # 每IP每秒
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-add_header Content-Security-Policy "default-src 'self'" always;
+add_header Content-Security-Policy "default-src self" always;
 ```
 
 ## 与替代方案对比

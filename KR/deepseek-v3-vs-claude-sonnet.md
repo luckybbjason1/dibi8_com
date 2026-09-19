@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-v3-vs-claude-sonnet" />
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 2026: 오픈 웨이트 vs 1M 컨텍스트'
 description: 'DeepSeek V3.5(685B MoE, 오픈 웨이트)와 Claude Sonnet 4.6 비교 — MTok당 가격, 컨텍스트 윈도우, SWE-bench, 다국어, API 가용성. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00

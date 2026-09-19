@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/moralis-web3-data-api" />
 title: 'Moralis 2026: The Web3 Data API Powering 100K+ DApps with Real-Time On-Chain Data — Setup Guide'
 description: 'Complete guide to Moralis Web3 Data API in 2026. Learn how to fetch real-time blockchain data, NFT metadata, token prices, and wallet balances across 10+ chains with JavaScript, Python, and Unity SDKs.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/MoralisWeb3/Moralis-JS'
 stars: 3200
-maintainer: 'MoralisWeb3'
+maintainer: MoralisWeb3
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Moralis']
+tags: [moralis]
 aliases:
 - /posts/moralis-web3-data-api/
 ---
@@ -88,7 +90,7 @@ Load this variable in your application using `dotenv` or your runtime's built-in
 
 ```javascript
 // server.js
-require('dotenv').config();
+require(dotenv).config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
   throw new Error('MORALIS_API_KEY is not defined');
@@ -109,7 +111,7 @@ npm install moralis
 
 ```javascript
 // Initialize Moralis in your Node.js application
-const Moralis = require('moralis').default;
+const Moralis = require(moralis).default;
 
 await Moralis.start({
   apiKey: process.env.MORALIS_API_KEY,
@@ -129,7 +131,7 @@ pip install moralis
 from moralis import evm_api
 import os
 
-api_key = os.environ.get('MORALIS_API_KEY')
+api_key = os.environ.get(MORALIS_API_KEY)
 if not api_key:
     raise ValueError("MORALIS_API_KEY environment variable is required")
 
@@ -168,8 +170,8 @@ Fetching the current price of any token is straightforward. Moralis aggregates p
 
 ```javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
-  address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-  chain: '0x1', // Ethereum mainnet
+  address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+  chain: 0x1, // Ethereum mainnet
 });
 
 console.log('Token Price:', priceResponse.result.usdPrice);
@@ -182,8 +184,8 @@ Retrieve all ERC-20 tokens held by a specific wallet address with a single API c
 
 ```javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
 });
 
 balances.result.forEach((token) => {
@@ -197,8 +199,8 @@ Track incoming and outgoing token transfers for a wallet or a specific token con
 
 ```javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
   limit: 10,
 });
 
@@ -214,10 +216,10 @@ Retrieve detailed metadata for any ERC-20 token including name, symbol, decimals
 ```javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
   addresses: [
-    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-    '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+    0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+    0x6B175474E89094C44Da98b954EedeAC495271d0F,
   ],
-  chain: '0x1',
+  chain: 0x1,
 });
 
 metadata.result.forEach((token) => {
@@ -235,8 +237,8 @@ The NFT API provides comprehensive coverage for querying NFT ownership, metadata
 
 ```javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+  address: 0x1234567890123456789012345678901234567890,
+  chain: 0x1,
   limit: 20,
 });
 
@@ -250,9 +252,9 @@ nfts.result.forEach((nft) => {
 
 ```javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  tokenId: '1',
-  chain: '0x1',
+  address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
+  tokenId: 1,
+  chain: 0x1,
 });
 
 console.log('Name:', nftMetadata.result.name);
@@ -264,8 +266,8 @@ console.log('Attributes:', nftMetadata.result.metadata?.attributes);
 
 ```javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  chain: '0x1',
+  address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D,
+  chain: 0x1,
   limit: 10,
 });
 
@@ -289,7 +291,7 @@ result = evm_api.nft.get_nft_floor_price(
     params=params,
 )
 
-print(f"Floor Price: {result['floor_price']} ETH")
+print(f"Floor Price: {result[floor_price]} ETH")
 ```
 
 ---
@@ -306,7 +308,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
   description: 'Track USDC transfers',
-  tag: 'usdc_transfers',
+  tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',
   includeContractLogs: true,
@@ -314,17 +316,17 @@ const stream = {
     {
       anonymous: false,
       inputs: [
-        { indexed: true, name: 'from', type: 'address' },
-        { indexed: true, name: 'to', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' },
+        { indexed: true, name: from, type: address },
+        { indexed: true, name: to, type: address },
+        { indexed: false, name: value, type: uint256 },
       ],
-      name: 'Transfer',
-      type: 'event',
+      name: Transfer,
+      type: event,
     },
   ],
   topic0: ['Transfer(address,address,uint256)'],
   filter: {
-    'address': '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   },
   includeInternalTxs: false,
 };
@@ -339,8 +341,8 @@ Your webhook endpoint receives structured JSON payloads whenever the monitored e
 
 ```javascript
 // Express webhook handler
-const express = require('express');
-const crypto = require('crypto');
+const express = require(express);
+const crypto = require(crypto);
 const app = express();
 app.use(express.json());
 
@@ -349,12 +351,12 @@ app.post('/webhooks/moralis', (req, res) => {
   const signature = req.headers['x-signature'];
   const body = JSON.stringify(req.body);
   const hash = crypto
-    .createHmac('sha256', process.env.MORALIS_STREAM_SECRET)
+    .createHmac(sha256, process.env.MORALIS_STREAM_SECRET)
     .update(body)
-    .digest('hex');
+    .digest(hex);
 
   if (signature !== hash) {
-    return res.status(401).send('Unauthorized');
+    return res.status(401).send(Unauthorized);
   }
 
   const events = req.body.confirmed || req.body.unconfirmed;
@@ -367,7 +369,7 @@ app.post('/webhooks/moralis', (req, res) => {
     });
   });
 
-  res.status(200).send('OK');
+  res.status(200).send(OK);
 });
 
 app.listen(3000, () => console.log('Webhook server running on port 3000'));
@@ -386,8 +388,8 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const authMessage = await Moralis.Auth.requestMessage({
   chain: EvmChain.ETHEREUM,
-  address: '0x1234567890123456789012345678901234567890',
-  network: 'evm',
+  address: 0x1234567890123456789012345678901234567890,
+  network: evm,
   domain: 'your-app.com',
   statement: 'Sign this message to authenticate with Your App',
   uri: 'https://your-app.com/login',
@@ -402,7 +404,7 @@ console.log('Sign-in message:', authMessage.result.message);
 
 ```javascript
 const authResult = await Moralis.Auth.verify({
-  network: 'evm',
+  network: evm,
   message: authMessage.result.message,
   signature: '0x...signed_message...',
 });
@@ -420,8 +422,8 @@ A powerful aspect of Moralis is the ability to write cross-chain compatible code
 ### Multi-Chain Portfolio Tracker
 
 ```javascript
-const chains = ['0x1', '0x89', '0x38', '0xa4b1']; // ETH, MATIC, BNB, ARB
-const address = '0x1234567890123456789012345678901234567890';
+const chains = [0x1, 0x89, 0x38, 0xa4b1]; // ETH, MATIC, BNB, ARB
+const address = 0x1234567890123456789012345678901234567890;
 
 const portfolio = {};
 
@@ -431,10 +433,10 @@ for (const chain of chains) {
     chain,
   });
   
-  const chainName = chain === '0x1' ? 'Ethereum'
-    : chain === '0x89' ? 'Polygon'
-    : chain === '0x38' ? 'BNB Chain'
-    : 'Arbitrum';
+  const chainName = chain === 0x1 ? Ethereum
+    : chain === 0x89 ? Polygon
+    : chain === 0x38 ? 'BNB Chain'
+    : Arbitrum;
   
   portfolio[chainName] = balances.result.map((t) => ({
     symbol: t.symbol,
@@ -462,8 +464,8 @@ const allTransfers = [];
 
 do {
   const response = await Moralis.EvmApi.token.getWalletTokenTransfers({
-    address: '0x1234567890123456789012345678901234567890',
-    chain: '0x1',
+    address: 0x1234567890123456789012345678901234567890,
+    chain: 0x1,
     limit: 100,
     cursor,
   });
@@ -478,7 +480,7 @@ console.log(`Retrieved ${allTransfers.length} transfers`);
 ### Rate Limit Management
 
 ```javascript
-const axios = require('axios');
+const axios = require(axios);
 const rateLimit = require('axios-rate-limit');
 
 const http = rateLimit(axios.create(), {
@@ -505,7 +507,7 @@ async function safeApiCall(apiFunction) {
 For high-traffic applications, implement a caching layer to reduce redundant API calls.
 
 ```javascript
-const Redis = require('ioredis');
+const Redis = require(ioredis);
 const redis = new Redis();
 
 async function getCachedTokenPrice(tokenAddress, chain) {

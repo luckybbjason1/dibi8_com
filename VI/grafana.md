@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/grafana" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/grafana" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/grafana" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/grafana" />
 title: 'Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026'
 description: 'Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Prometheus, Loki, InfluxDB, Elasticsearch. Bao gồm thiết lập Docker, cứng hóa production, so sánh với Datadog, Kibana, New Relic.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/grafana/grafana'
 stars: 73876
-maintainer: 'grafana'
+maintainer: grafana
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['grafana', 'docker', 'giám sát', 'prometheus', 'quan sát', 'dashboard', 'devops']
+tags: [grafana, docker, 'giám sát', prometheus, 'quan sát', dashboard, devops]
 aliases:
 - /vi/posts/grafana/
 ---
@@ -168,7 +173,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
 
@@ -176,7 +181,7 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  - job_name: 'grafana'
+  - job_name: grafana
     static_configs:
       - targets: ['grafana:3000']
 ```
@@ -474,7 +479,7 @@ Lưu dashboard dưới dạng JSON trong repository của bạn và tự động
 apiVersion: 1
 
 providers:
-  - name: 'default'
+  - name: default
     orgId: 1
     folder: ''
     type: file

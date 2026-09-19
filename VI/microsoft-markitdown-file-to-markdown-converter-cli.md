@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-markitdown-file-to-markdown-converter-cli" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-markitdown-file-to-markdown-converter-cli" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-markitdown-file-to-markdown-converter-cli" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-markitdown-file-to-markdown-converter-cli" />
 title: "Microsoft MarkItDown: Hướng dẫn toàn diện để chuyển đổi bất kỳ tệp nào sang Markdown — Công cụ CLI miễn phí, mã nguồn mở"
 description: "Tìm hiểu cách sử dụng MarkItDown của Microsoft để chuyển đổi PDF, tài liệu Word, hình ảnh, HTML, PPTX và nhiều định dạng khác sang Markdown sạch sẽ. Hướng dẫn cài đặt từng bước, ví dụ sử dụng, Python API, tích hợp AI pipeline, benchmark và so sánh với Pandoc, Calibre và LibreOffice."
 date: 2026-06-10

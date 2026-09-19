@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/timesfm-google-time-series-foundation-model" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/timesfm-google-time-series-foundation-model" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/timesfm-google-time-series-foundation-model" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/timesfm-google-time-series-foundation-model" />
 title: 'TimesFM 2.5：用于预测的谷歌革命性时间序列基础模型'
 description: 'TimesFM 2.5 完整指南——用于时间序列预测的 Google Research 仅解码器基础模型。涵盖安装、微调、基准测试和实际应用。'
 date: 2026-06-19

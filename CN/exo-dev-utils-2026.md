@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/exo-dev-utils-2026" />
 title: 'exo: Run Frontier AI Across Your Own Devices (45K Stars) — Practical 2026 Guide'
 description: 'exo turns your Macs, PCs and phones into a single cluster that runs frontier AI models locally. 45,088 GitHub stars, Apache-2.0. Covers installation, the dashboard, the OpenAI/Claude/Ollama-compatible API, real commands, and an honest comparison.'
 date: 2026-06-02 00:00:00+08:00

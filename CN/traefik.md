@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/traefik" />
 title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router Production Deployment Guide 2026'
 description: 'Traefik is a cloud-native application proxy and edge router with automatic service discovery. Compatible with Docker, Kubernetes, Consul, and Docker Compose. Covers installation, middleware, TLS, monitoring, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/traefik/traefik'
 stars: 63229
-maintainer: 'traefik'
+maintainer: traefik
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['traefik', 'docker', 'kubernetes', 'reverse-proxy', 'edge-router', 'ingress', 'devops', 'cloud-native']
+tags: [traefik, docker, kubernetes, 'reverse-proxy', 'edge-router', ingress, devops, 'cloud-native']
 aliases:
 - /posts/traefik/
 ---
@@ -546,7 +548,7 @@ Prometheus scrape config:
 
 ```yaml
 scrape_configs:
-  - job_name: 'traefik'
+  - job_name: traefik
     scrape_interval: 15s
     static_configs:
       - targets: ['traefik:8080']

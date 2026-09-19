@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-llm-runner-comparison-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-llm-runner-comparison-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-llm-runner-comparison-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-llm-runner-comparison-2026" />
 title: 'Ollama vs LM Studio vs llama.cpp vs vLLM 2026：诚实的本地 LLM 运行器选型指南'
 description: '2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王。30 秒决策树按场景。'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Local LLM', 'Ollama', 'vLLM', 'llama.cpp', 'LM Studio', '对比', 'Hub文章']
+tags: ['local llm', ollama, vllm, 'llama.cpp', 'lm studio', 对比, hub文章]
 aliases:
   - /posts/local-llm-runner-comparison-2026/
 ---

@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)'
 description: '5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'CLI', 'Bash']
+tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Thương mại (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'subagents', 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
+tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
 aliases:
 - /posts/claude-code-subagent-patterns/
 faq:

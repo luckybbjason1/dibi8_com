@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dvc-data-version-control-ml" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dvc-data-version-control-ml" />
 title: 'DVC: 面向数据的 Git — ML 流水线数据版本控制与可复现实验 2026 完整指南'
 description: 'DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测试和生产加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/iterative/dvc'
 stars: 15600
-maintainer: 'Iterative'
+maintainer: Iterative
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['DVC', 'Data Version Control', 'MLOps', 'Git', '机器学习', '可复现性', 'S3', 'GCS', 'Azure', '流水线', '数据版本控制', '数据科学']
+tags: [dvc, 'data version control', mlops, git, 机器学习, 可复现性, s3, gcs, azure, 流水线, 数据版本控制, 数据科学]
 aliases:
 - /zh/posts/dvc-data-version-control-ml/
 ---
@@ -223,8 +228,8 @@ dvc remote modify myremote credentialpath /path/to/service-account.json
 dvc remote add -d myremote azure://my-container/dvc-storage
 
 # 设置账户名和密钥
-dvc remote modify myremote account_name 'myaccount'
-dvc remote modify myremote account_key 'mykey'
+dvc remote modify myremote account_name myaccount
+dvc remote modify myremote account_key mykey
 ```
 
 配置完成后推送数据到远程：
@@ -615,7 +620,7 @@ Git LFS 在单独的服务器上存储大文件，但仍通过 Git 提交追踪�
 ```python
 import dvc.api
 
-with dvc.api.open('data/dataset.csv', remote='myremote') as f:
+with dvc.api.open('data/dataset.csv', remote=myremote) as f:
     df = pd.read_csv(f)
 ```
 

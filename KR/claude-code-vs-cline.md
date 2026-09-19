@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-vs-cline" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-vs-cline" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-vs-cline" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-vs-cline" />
 title: '2026년 Claude Code vs Cline: 자율성이냐 통제냐?'
 description: 'Claude Code와 Cline을 나란히 분석 — 터미널 자율성 vs VS Code 단계별 승인, 모델 지원, 가격, 그리고 각각을 언제 선택할지. 에이전트형 코딩의 통제 대 자율성 결정. 2026년 업데이트.'
 date: 2026-05-29 00:00:00+08:00

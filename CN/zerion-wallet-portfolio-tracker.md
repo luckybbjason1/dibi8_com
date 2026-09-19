@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/zerion-wallet-portfolio-tracker" />
 title: 'zerion-wallet-portfolio-tracker'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/zeriontech'
 stars: 200
-maintainer: 'zeriontech'
+maintainer: zeriontech
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Zerion']
+tags: [zerion]
 aliases:
 - /posts/zerion-wallet-portfolio-tracker/
 ---
@@ -323,15 +325,15 @@ def analyze_gas_costs(transactions):
     df = pd.DataFrame(transactions)
     
     # Filter for transaction types
-    swaps = df[df['type'] == 'trade']
-    transfers = df[df['type'].isin(['send', 'receive'])]
+    swaps = df[df[type] == trade]
+    transfers = df[df[type].isin([send, receive])]
     
     analysis = {
-        'total_gas_spent_eth': df['fee'].sum(),
-        'total_gas_spent_usd': (df['fee'] * df['eth_price']).sum(),
-        'average_gas_per_swap': swaps['fee'].mean(),
-        'highest_gas_transaction': df.loc[df['fee'].idxmax()],
-        'gas_by_chain': df.groupby('chain')['fee'].sum().to_dict()
+        total_gas_spent_eth: df[fee].sum(),
+        total_gas_spent_usd: (df[fee] * df[eth_price]).sum(),
+        average_gas_per_swap: swaps[fee].mean(),
+        highest_gas_transaction: df.loc[df[fee].idxmax()],
+        gas_by_chain: df.groupby(chain)[fee].sum().to_dict()
     }
     
     return analysis

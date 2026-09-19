@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-source-llm-ranking-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-llm-ranking-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-llm-ranking-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-llm-ranking-guide" />
 title: 'Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen, DeepSeek & Hơn Nữa'
 description: 'Bảng xếp hạng và hướng dẫn chọn LLM mã nguồn mở tốt nhất 2025. So sánh Llama 3, Mistral, Qwen, DeepSeek qua các benchmark MMLU, HumanEval, MT-Bench.'
 date: 2026-05-18 00:00:00+08:00

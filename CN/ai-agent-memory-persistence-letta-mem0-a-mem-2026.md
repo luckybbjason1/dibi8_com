@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-agent-memory-persistence-letta-mem0-a-mem-2026" />
 title: 'AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM Real Test'
 description: 'Agents without persistent memory restart from zero every session. Tested Letta, Mem0, A-MEM on the same multi-session workload: which actually retains context, which costs less, when to roll your own.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Letta', 'Mem0', 'A-MEM', 'Vector DB', 'Python']
+tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
 source_version: 'Letta 0.8 / Mem0 0.2 / A-MEM 1.3'
 licensing_model: Open Source
@@ -15,12 +17,12 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ai-agent', 'memory', 'persistence', 'letta', 'mem0', '2026']
+tags: ['ai-agent', memory, persistence, letta, mem0, 2026]
 aliases:
 - /posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
 faq:
   - q: "Why do AI agents need persistent memory?"
-    a: "Without persistence, every session restarts from zero — agent doesn't remember yesterday's preferences, decisions, or context. For ongoing collaboration (coding partner, research assistant, customer-facing chatbot), persistent memory is the difference between 'tool' and 'partner'."
+    a: "Without persistence, every session restarts from zero — agent doesn't remember yesterday's preferences, decisions, or context. For ongoing collaboration (coding partner, research assistant, customer-facing chatbot), persistent memory is the difference between tool and partner."
   - q: "How do these three differ in approach?"
     a: "Letta uses an OS-like memory hierarchy (core / archival / recall). Mem0 focuses on developer ergonomics with simple add/search API. A-MEM is research-focused with active forgetting and decay. All three solve the same problem differently."
   - q: "Can I just use the MCP memory server instead?"

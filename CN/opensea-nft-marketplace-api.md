@@ -1,6 +1,8 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/opensea-nft-marketplace-api" />
 title: 'opensea-nft-marketplace-api'
-description: '{''en'': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', ''zh'': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', ''ko'': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', ''vi'': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
+description: '{'en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integration, programmatic listing/buying/selling of NFTs, real-time WebSocket event streaming, rate limiting strategies, and building a production trading bot.'', 'zh': ''OpenSea NFT市场API完整指南，涵盖API密钥设置、Python SDK集成、NFT程序化上架/购买/出售、实时WebSocket事件流、速率限制策略以及构建生产级交易机器人。'', 'ko': ''OpenSea NFT 마켓플레이스 API의 완전한 가이드로 API 키 설정, Python SDK 통합, NFT 프로그래밍 방식 상장/구매/판매, 실시간 WebSocket 이벤트 스트리밍, 속도 제한 전략 및 프로덕션 트레이딩 봇 구축을 다룹니다.'', 'vi': ''Hướng dẫn đầy đủ về API thị trường NFT OpenSea bao gồm thiết lập khóa API, tích hợp Python SDK, niêm yết/mua/bán NFT lập trình, phát trực tuyến sự kiện WebSocket thở gian thực, chiến lược giới hạn tốc độ và xây dựng bot giao dịch sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/ProjectOpenSea/opensea-js'
 stars: 1200
-maintainer: 'ProjectOpenSea'
+maintainer: ProjectOpenSea
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['en', 'zh', 'ko', 'vi']
+tags: [en, zh, ko, vi]
 aliases:
 - /posts/opensea-nft-marketplace-api/
 ---
@@ -92,7 +94,7 @@ response = requests.get(
 )
 
 print(f"Status: {response.status_code}")
-print(f"Collections: {len(response.json()['collections'])}")
+print(f"Collections: {len(response.json()[collections])}")
 ```
 
 ### Step 4: SDK Installation
@@ -139,7 +141,7 @@ def get_collection_details(collection_slug: str):
 
 # Example usage
 crypto_punks = get_collection_details("cryptopunks")
-print(f"CryptoPunks floor: {crypto_punks['floor_price']} ETH")
+print(f"CryptoPunks floor: {crypto_punks[floor_price]} ETH")
 ```
 
 ### Asset Querying Endpoints
@@ -170,8 +172,8 @@ bored_ape = get_asset_details(
     address="0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
     token_id="1234"
 )
-print(f"Asset: {bored_ape['name']}")
-print(f"Traits count: {len(bored_ape['traits'])}")
+print(f"Asset: {bored_ape[name]}")
+print(f"Traits count: {len(bored_ape[traits])}")
 ```
 
 ### Listing and Order Endpoints
@@ -202,7 +204,7 @@ def get_listings_by_collection(collection_slug: str, limit: int = 20):
 # Get cheapest listings
 listings = get_listings_by_collection("boredapeyachtclub", limit=10)
 for listing in sorted(listings, key=lambda x: float(x["price"])):
-    print(f"Price: {listing['price']} | Token: {listing['token']['identifier']}")
+    print(f"Price: {listing[price]} | Token: {listing[token][identifier]}")
 ```
 
 ### Account and Activity Endpoints
@@ -234,7 +236,7 @@ def get_account_events(account_address: str, event_type: str = "order", limit: i
 whale_address = "0x3b417faee9d1458e"
 events = get_account_events(whale_address, event_type="sale", limit=20)
 for event in events:
-    print(f"{event['timestamp']}: {event['asset']} sold for {event['payment']}")
+    print(f"{event[timestamp]}: {event[asset]} sold for {event[payment]}")
 ```
 
 ---
@@ -366,8 +368,8 @@ sdk = OpenSeaAPI()
 
 # Fetch collection stats
 stats = sdk.get_collection_stats("boredapeyachtclub")
-print(f"Floor: {stats['total']['floor_price']}")
-print(f"Volume: {stats['total']['volume']}")
+print(f"Floor: {stats[total][floor_price]}")
+print(f"Volume: {stats[total][volume]}")
 ```
 
 ---
@@ -571,13 +573,13 @@ async def handle_event(event: dict):
     payload = event.get("payload", {})
     
     if event_type == "item_listed":
-        print(f"[LISTED] {payload['name']} at {payload['base_price']} ETH")
+        print(f"[LISTED] {payload[name]} at {payload[base_price]} ETH")
     elif event_type == "item_sold":
-        print(f"[SOLD] {payload['name']} for {payload['sale_price']} ETH")
+        print(f"[SOLD] {payload[name]} for {payload[sale_price]} ETH")
     elif event_type == "item_cancelled":
-        print(f"[CANCELLED] {payload['name']}")
+        print(f"[CANCELLED] {payload[name]}")
     elif event_type == "collection_offer":
-        print(f"[OFFER] Collection offer on {payload['collection_slug']}")
+        print(f"[OFFER] Collection offer on {payload[collection_slug]}")
 
 
 # Run event stream
@@ -813,7 +815,7 @@ class NFTArbitrageBot:
                     listed_price=price,
                     estimated_value=floor_price,
                     profit_margin=((floor_price - price) / price) * 100,
-                    listing_url=f"https://opensea.io/assets/ethereum/{collection['contract']}/{listing['token_id']}"
+                    listing_url=f"https://opensea.io/assets/ethereum/{collection[contract]}/{listing[token_id]}"
                 )
                 opportunities.append(opp)
                 
@@ -833,9 +835,9 @@ class NFTArbitrageBot:
                     try:
                         opps = self.analyze_collection(collection)
                         if opps:
-                            logger.info(f"Found {len(opps)} opportunities in {collection['slug']}")
+                            logger.info(f"Found {len(opps)} opportunities in {collection[slug]}")
                     except Exception as e:
-                        logger.error(f"Error analyzing {collection['slug']}: {e}")
+                        logger.error(f"Error analyzing {collection[slug]}: {e}")
                 
                 time.sleep(interval)
         except KeyboardInterrupt:

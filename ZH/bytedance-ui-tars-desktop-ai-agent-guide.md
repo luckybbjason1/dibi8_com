@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
 title: "字节跳动 UI-TARS Desktop：看得见并控制你电脑的视觉语言 AI Agent——完整设置指南"
 description: "学习如何部署字节跳动的 UI-TARS Desktop，这是一款视觉语言 AI Agent，可以观看你的屏幕并通过自然语言控制应用程序。包含逐步安装、实际基准测试和与替代方案的比较。"
 date: 2026-06-10

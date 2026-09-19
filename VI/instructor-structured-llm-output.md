@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/instructor-structured-llm-output" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/instructor-structured-llm-output" />
 # Instructor: Thư Viện Python Đảm Bảo LLM Xuất JSON Hợp Lệ 100% — Hướng Dẫn 2026
 
 *Cập nhật lần cuối: 19 tháng 5, 2026*

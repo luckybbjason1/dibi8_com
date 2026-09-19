@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/discover-tikchain-your-gateway-to-social-media-blockchain" />
 title: "TikChain 발견 - 귀하의 소셜 미디어 블록체인 게이트웨이"
 description: "TikChain을 발견하세요: 소셜 미디어 블록체인의 관문. 콘텐츠를 생성하고 탈중앙화된 소셜 네트워크에 참여하여 보상을 획득하세요."
 date: 2026-05-15T04:20:25+09:00

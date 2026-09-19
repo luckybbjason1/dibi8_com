@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/signoz-apm-observability-open-source" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/signoz-apm-observability-open-source" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/signoz-apm-observability-open-source" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/signoz-apm-observability-open-source" />
 title: 'SigNoz: Datadog 비용의 10%로 대체하는 오픈소스 APM — 분산 추적 설정 가이드 2026'
 description: '5분 만에 SigNoz를 배포하세요. OpenTelemetry 기반 오픈소스 APM으로 분산 추적, 메트릭, 로그 관리를 제공하며 Datadog 비용의 10%만으로 운영 가능합니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'SigNoz/signoz'
 stars: 22000
-maintainer: 'SigNoz'
+maintainer: SigNoz
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['SigNoz', 'APM', '가시성', '분산 추적', 'OpenTelemetry', 'Datadog 대안', '셀프호스팅', 'Docker', 'Kubernetes', '메트릭', '로그', '모니터링']
+tags: [signoz, apm, 가시성, '분산 추적', opentelemetry, 'datadog 대안', 셀프호스팅, docker, kubernetes, 메트릭, 로그, 모니터링]
 aliases:
 - /kr/posts/signoz-apm-observability-open-source/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hummingbot-crypto-trading-bot" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở Với 50+ Sàn Giao Dịch — Hướng Dẫn Cài Đặt & Chiến Lược'
 description: 'Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao dịch. Bao gồm thiết lập Docker, chiến lược tùy chỉnh, backtest, gateway DEX và củng cố môi trường production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'hummingbot/hummingbot'
 stars: 10500
-maintainer: 'hummingbot'
+maintainer: hummingbot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

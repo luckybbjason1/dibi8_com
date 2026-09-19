@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/act" />
 title: 'act: 70,410 GitHub Stars — Run GitHub Actions Locally, Production CI/CD Guide 2026'
 description: 'act (nektos/act) is a CLI tool that runs GitHub Actions locally using Docker containers. Compatible with Docker, GitHub Actions, Go, and VS Code. Covers installation, setup, secrets management, runner images, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/nektos/act'
 stars: 70410
-maintainer: 'nektos'
+maintainer: nektos
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['act', 'github-actions', 'ci-cd', 'docker', 'local-development', 'devops', 'testing', 'automation']
+tags: [act, 'github-actions', 'ci-cd', docker, 'local-development', devops, testing, automation]
 aliases:
 - /posts/act/
 image: "https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png"
@@ -302,7 +304,7 @@ export MY_SECRET=supersecurevalue
 act -s MY_SECRET
 
 # Option 3: Secrets file (.secrets, same format as .env)
-cat > .secrets << 'EOF'
+cat > .secrets << EOF
 MY_SECRET=supersecurevalue
 AWS_ACCESS_KEY_ID=AKIA...
 AWS_SECRET_ACCESS_KEY=...
@@ -329,7 +331,7 @@ GitHub's `vars` context is supported for repository-level configuration:
 act --var DEPLOY_ENV=staging --var API_VERSION=v2
 
 # Or use a variables file
-cat > .variables << 'EOF'
+cat > .variables << EOF
 DEPLOY_ENV=staging
 API_VERSION=v2
 EOF
@@ -342,7 +344,7 @@ Test workflows that depend on event data by providing JSON payload files:
 
 ```bash
 # Simulate pull_request event
-cat > pull-request.json << 'EOF'
+cat > pull-request.json << EOF
 {
   "pull_request": {
     "head": { "ref": "feature/new-login" },
@@ -356,7 +358,7 @@ act pull_request -e pull-request.json
 
 ```bash
 # Simulate push with tag
-cat > tag-push.json << 'EOF'
+cat > tag-push.json << EOF
 { "ref": "refs/tags/v1.2.3" }
 EOF
 act push -e tag-push.json
@@ -364,7 +366,7 @@ act push -e tag-push.json
 
 ```bash
 # Simulate workflow_dispatch with inputs
-cat > workflow-inputs.json << 'EOF'
+cat > workflow-inputs.json << EOF
 {
   "inputs": {
     "environment": "production",
@@ -396,7 +398,7 @@ Project-specific configuration via `.actrc`:
 
 ```bash
 # .actrc in project root
-cat > .actrc << 'EOF'
+cat > .actrc << EOF
 --container-architecture linux/amd64
 --action-offline-mode
 -P ubuntu-latest=catthehacker/ubuntu:act-latest
@@ -437,7 +439,7 @@ jobs:
 Pass the act flag via event:
 
 ```bash
-cat > event.json << 'EOF'
+cat > event.json << EOF
 { "act": true }
 EOF
 act -e event.json

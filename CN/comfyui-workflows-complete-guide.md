@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/comfyui-workflows-complete-guide" />
 title: ComfyUI Workflows — The Visual Programming Language for AI Image Generation
 description: Complete guide to ComfyUI workflows for professional AI image generation.
   Build complex pipelines with nodes, manage dependencies, and create shareable workflow

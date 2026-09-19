@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/continue" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
 title: 'Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cursor 비교 2026'
 description: 'Continue.dev(오픈소스 AI 코딩 어시스턴트) VS Code/JetBrains 플러그인. Ollama, OpenAI, Anthropic, Gemini 등 모든 LLM 지원. GitHub Copilot, Cursor, Tabby와 비교. 설치 튜토리얼, 설정 예제, 벤치마크.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/continuedev/continue'
 stars: 33277
-maintainer: 'continuedev'
+maintainer: continuedev
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['continue.dev', 'ai-coding-assistant', 'vs-code', 'jetbrains', 'open-source', 'ollama', 'copilot-alternative', 'local-llm', 'mcp']
+tags: ['continue.dev', 'ai-coding-assistant', 'vs-code', jetbrains, 'open-source', ollama, 'copilot-alternative', 'local-llm', mcp]
 aliases:
 - /kr/posts/continue/
 ---
@@ -102,7 +107,7 @@ Continue 채팅 패널을 열어 버전을 확인한다:
 ```bash
 # macOS / Linux
 mkdir -p ~/.continue
-cat > ~/.continue/config.yaml << 'EOF'
+cat > ~/.continue/config.yaml << EOF
 name: 내 개발 환경
 version: 1.0.0
 schema: v1

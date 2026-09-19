@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-memory-systems-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-memory-systems-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-memory-systems-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-memory-systems-2026" />
 title: '2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsight / MemPalace'
 description: '세션마다 모든 것을 잊는 AI 에이전트는 2026 프로덕션에선 치명적 결함. 4대 오픈소스 메모리 레이어 심층 비교: Mem0 (48K+ stars, 21개 프레임워크 통합), agentmemory (MCP 네이티브, Claude Code/Cursor 최적), Hindsight (생체모방 3계층 + 4전략 검색), MemPalace (52K+ stars 커뮤니티 리더). 벤치마크/함정/결정 트리 포함.'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
-tech_stack: ['Python', 'TypeScript', 'PostgreSQL', 'Vector databases', 'MCP']
+tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
 application_domain: Llm Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'Various'
+maintainer: Various
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ai-agents', 'memory-systems', 'mem0', 'agentmemory', 'hindsight', 'mempalace', 'mcp', 'rag', 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
+tags: ['ai-agents', 'memory-systems', mem0, agentmemory, hindsight, mempalace, mcp, rag, 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
 aliases:
 - /kr/posts/ai-agent-memory-systems-2026/
 - /kr/resources/dev-utils/ai-agent-memory-systems-2026/

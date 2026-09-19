@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
 title: 'Ladybird: Trình duyệt Web Độc lập Thực sự — Kỷ nguyên mới của Sự độc lập Trình
   duyệt'
 description: Khám phá Ladybird, trình duyệt web độc lập thực sự được xây dựng từ đầu.

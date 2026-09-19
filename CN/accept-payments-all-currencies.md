@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/accept-payments-all-currencies" />
 title: Accept Payments in All Currencies with NowPayments
 description: Accept payments in all currencies with NowPayments. Support 100+ cryptocurrencies
   and fiat currencies with low fees and instant settlements.

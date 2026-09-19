@@ -1,4 +1,7 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agency-agents-complete-ai-agency-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agency-agents-complete-ai-agency-framework" />
 lang: zh
 description: 'Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from frontend designers to Reddit moderators. Learn how to deploy a full AI team for $0.'
 date: 2026-07-03T09:00:00+09:00

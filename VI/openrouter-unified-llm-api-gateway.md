@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình, Tiết Kiệm 40% Chi Phí — Hướng Dẫn Thiết Lập 2026'
 description: 'Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương thích OpenAI. Học cách thiết lập, tích hợp, benchmark và triển khai production trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'openrouter/openrouter'
 stars: 15000
-maintainer: 'alexanderatallah'
+maintainer: alexanderatallah
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['OpenRouter', 'LLM', 'API Gateway', 'AI', 'OpenAI', 'Claude', 'Machine Learning', 'Tối Ưu Chi Phí']
+tags: [openrouter, llm, 'api gateway', ai, openai, claude, 'machine learning', 'tối ưu chi phí']
 aliases:
 - /vi/posts/openrouter-unified-llm-api-gateway/
 ---
@@ -444,15 +449,15 @@ Triển khai lên [DigitalOcean Droplet](https://m.do.co/c/eca87ac14ee0) với c
 # Theo dõi mức sử dụng và chi phí
 import requests
 
-headers = {"Authorization": f"Bearer {os.environ.get('OPENROUTER_API_KEY')}"}
+headers = {"Authorization": f"Bearer {os.environ.get(OPENROUTER_API_KEY)}"}
 
 usage = requests.get(
     "https://openrouter.ai/api/v1/credits",
     headers=headers
 ).json()
 
-print(f"Tín dụng còn lại: ${usage['data']['total_credits'] - usage['data']['total_usage']}")
-print(f"Tổng đã dùng: ${usage['data']['total_usage']}")
+print(f"Tín dụng còn lại: ${usage[data][total_credits] - usage[data][total_usage]}")
+print(f"Tổng đã dùng: ${usage[data][total_usage]}")
 ```
 
 ## So Sánh với Các Giải Pháp Thay Thế

@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적'
 description: '오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.'
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
-tech_stack: ['Python', 'Conky', 'Linux']
+tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
 source_version: '1.0.0'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'luckybbjason1/ai-token-monitor'
 stars: 0
-maintainer: 'luckybbjason1'
+maintainer: luckybbjason1
 last_maintained: '2026-06-06'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AI 토큰 모니터', 'Claude 쿼터', 'Gemini 쿼터 추적', 'Grok 토큰', 'Kimi API', 'Conky 위젯', 'Linux 데스크탑', '오픈소스', 'Python', '개발자 도구']
+tags: ['ai 토큰 모니터', 'claude 쿼터', 'gemini 쿼터 추적', 'grok 토큰', 'kimi api', 'conky 위젯', 'linux 데스크탑', 오픈소스, python, '개발자 도구']
 aliases:
 - /kr/posts/ai-token-monitor-conky-linux/
 faqs:
@@ -125,27 +130,27 @@ API 키는 `~/.config/.ai_monitor_keys`에 `chmod 600` 권한으로 저장됩니
 
 ```python
 # ── 커스텀 서비스 ─────────────────────────────────
-key = keys.get('yourservice')
+key = keys.get(yourservice)
 if key:
     try:
         r = requests.get('https://api.yourservice.com/v1/usage',
-                         headers={'Authorization': f'Bearer {key}'}, timeout=8)
+                         headers={Authorization: f'Bearer {key}'}, timeout=8)
         if r.status_code == 200:
             data = r.json()
-            remain = data['quota_remaining']
-            total  = data['quota_total']
-            cache['YourService'] = {
-                'ok': True,
-                'label': f'{remain//1000}K 잔여',
-                'pct': remain / total
+            remain = data[quota_remaining]
+            total  = data[quota_total]
+            cache[YourService] = {
+                ok: True,
+                label: f'{remain//1000}K 잔여',
+                pct: remain / total
             }
         else:
-            cache['YourService'] = {'ok': False, 'label': 'API 오류'}
+            cache[YourService] = {ok: False, label: 'API 오류'}
     except Exception:
         pass
 ```
 
-그런 다음 `conky_ai.py`의 `SERVICES` 목록에 `{'name': 'YourService', 'reset_h': 24}`를 추가하세요.
+그런 다음 `conky_ai.py`의 `SERVICES` 목록에 `{name: YourService, reset_h: 24}`를 추가하세요.
 
 ## dibi8 관련 도구
 

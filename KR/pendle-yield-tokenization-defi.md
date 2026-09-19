@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pendle-yield-tokenization-defi" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pendle-yield-tokenization-defi" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pendle-yield-tokenization-defi" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Pendle']
+tags: [pendle]
 aliases:
 - /kr/posts/pendle-yield-tokenization-defi/
 ---
@@ -394,7 +399,7 @@ contract PendleMarket is IPendleMarket {
 ```typescript
 // Pendle 거래용 TypeScript SDK
 import { PendleSDK } from '@pendle/sdk-v2';
-import { ethers } from 'ethers';
+import { ethers } from ethers;
 
 const provider = new ethers.JsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY');
 const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
@@ -813,10 +818,10 @@ class PendleStrategyAnalyzer {
       if (snapshot.impliedApy > underlyingApy * 1.2) {
         opportunities.push({
           market: market.address,
-          strategy: 'LONG_PT',
+          strategy: LONG_PT,
           reason: '암묵적 수익률이 기저보다 20%+ 높음',
           expectedReturn: snapshot.impliedApy,
-          risk: '낮음',
+          risk: 낮음,
         });
       }
       
@@ -824,10 +829,10 @@ class PendleStrategyAnalyzer {
       if (snapshot.impliedApy < underlyingApy * 0.8) {
         opportunities.push({
           market: market.address,
-          strategy: 'LONG_YT',
+          strategy: LONG_YT,
           reason: '암묵적 수익률이 기저보다 20%+ 낮음',
           expectedReturn: underlyingApy - snapshot.impliedApy,
-          risk: '중간',
+          risk: 중간,
         });
       }
     }
@@ -1060,17 +1065,17 @@ class InstitutionalYieldManager:
             sharpe_ratio = self._calculate_sharpe(snapshot)
             
             opportunities.append({
-                'market': market.address,
-                'asset': market.underlying_symbol,
-                'maturity': snapshot.expiry_date,
-                'pt_apy': snapshot.pt_implied_apy,
-                'underlying_apy': snapshot.underlying_apy,
-                'liquidity_usd': snapshot.liquidity_usd,
-                'sharpe_ratio': sharpe_ratio,
-                'recommendation': self._generate_recommendation(snapshot)
+                market: market.address,
+                asset: market.underlying_symbol,
+                maturity: snapshot.expiry_date,
+                pt_apy: snapshot.pt_implied_apy,
+                underlying_apy: snapshot.underlying_apy,
+                liquidity_usd: snapshot.liquidity_usd,
+                sharpe_ratio: sharpe_ratio,
+                recommendation: self._generate_recommendation(snapshot)
             })
         
-        return sorted(opportunities, key=lambda x: x['sharpe_ratio'], reverse=True)
+        return sorted(opportunities, key=lambda x: x[sharpe_ratio], reverse=True)
     
     async def execute_yield_portfolio(self, total_capital: Decimal):
         """여러 PT 전략에 자본 배포"""
@@ -1078,17 +1083,17 @@ class InstitutionalYieldManager:
         
         # 양의 캐리가 있는 유동성 시장 필터링
         viable = [o for o in opportunities 
-                  if o['liquidity_usd'] > 1_000_000 
-                  and o['pt_apy'] > 0.03]
+                  if o[liquidity_usd] > 1_000_000 
+                  and o[pt_apy] > 0.03]
         
         # 상위 5개 기회에 자본 배포
         for opp in viable[:5]:
             allocation = total_capital * Decimal('0.2')
             
-            print(f"${allocation}를 {opp['asset']} PT에 배포 "
-                  f"({opp['maturity']}) @ {opp['pt_apy']:.2%} APY")
+            print(f"${allocation}를 {opp[asset]} PT에 배포 "
+                  f"({opp[maturity]}) @ {opp[pt_apy]:.2%} APY")
             
-            await self._buy_pt(opp['market'], allocation)
+            await self._buy_pt(opp[market], allocation)
         
         return await self.get_portfolio_summary()
     
@@ -1107,13 +1112,13 @@ class InstitutionalYieldManager:
         )
         
         return {
-            'total_value': total_value,
-            'total_cost': total_cost,
-            'unrealized_pnl': unrealized_pnl,
-            'unrealized_pnl_pct': unrealized_pnl / total_cost,
-            'weighted_avg_apy': weighted_yield,
-            'positions': len(positions),
-            'maturities': list(set(p.maturity for p in positions))
+            total_value: total_value,
+            total_cost: total_cost,
+            unrealized_pnl: unrealized_pnl,
+            unrealized_pnl_pct: unrealized_pnl / total_cost,
+            weighted_avg_apy: weighted_yield,
+            positions: len(positions),
+            maturities: list(set(p.maturity for p in positions))
         }
     
     def _calculate_sharpe(self, snapshot: MarketSnapshot) -> Decimal:
@@ -1215,7 +1220,7 @@ async function quickstart() {
   
   // 2. 토큰화: stETH를 PT + YT로 분할
   const { ptOut, ytOut } = await market.tokenizeYield(
-    ethers.parseEther('10'), // 10 stETH
+    ethers.parseEther(10), // 10 stETH
     0 // 최소 출력
   );
   console.log(`${ptOut} PT + ${ytOut} YT 수령`);

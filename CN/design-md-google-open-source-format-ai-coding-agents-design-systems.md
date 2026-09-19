@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/design-md-google-open-source-format-ai-coding-agents-design-systems" />
 title: "DESIGN.md: Google's Open-Source Format for Giving AI Coding Agents a Design System"
 description: 'DESIGN.md by Google Labs Code is an open-source format specification for describing visual identity to AI coding agents. 20.8k GitHub stars. Learn how it bridges design systems and AI code generation with YAML tokens and prose-based constraints.'
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ruv-pi" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruv-pi" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruv-pi" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruv-pi" />
 title: "Ruv Pi：自我扩展编码代理CLI多提供商LLM API"
 description: "Ruv Pi 是来自Earendil Works的自扩展编码代理CLI，提供统一的多提供商LLM API，使开发者能够构建、运行和扩展支持Claude、OpenAI、Gemini等的人工智能编码代理。"
 date: 2026-06-10

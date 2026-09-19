@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/demucs" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
 title: 'Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter'
 description: 'Demucs 是 Meta AI 开发的混合频谱图和波形域源分离模型。兼容 Ultimate Vocal Remover、RVC、GPT-SoVITS。涵盖 demucs 教程、demucs vs uvr、demucs Docker 部署和生产环境基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/facebookresearch/demucs'
 stars: 10100
-maintainer: 'facebookresearch'
+maintainer: facebookresearch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['demucs', '音乐源分离', 'AI音频', '音轨分离', 'pytorch', 'docker', '开源']
+tags: [demucs, 音乐源分离, ai音频, 音轨分离, pytorch, docker, 开源]
 aliases:
 - /zh/posts/demucs/
 ---
@@ -227,7 +232,7 @@ def preprocess_for_rvc(input_song, output_dir):
 
     # 步骤 1：使用 Demucs 分离
     subprocess.run([
-        'demucs', '-n', 'htdemucs_ft',
+        demucs, '-n', htdemucs_ft,
         '--two-stems=vocals',
         '-o', output_dir,
         input_song
@@ -236,7 +241,7 @@ def preprocess_for_rvc(input_song, output_dir):
     # 步骤 2：返回隔离人声的路径
     base = os.path.splitext(os.path.basename(input_song))[0]
     vocals_path = os.path.join(
-        output_dir, 'htdemucs_ft', base, 'vocals.wav'
+        output_dir, htdemucs_ft, base, 'vocals.wav'
     )
     return vocals_path
 
@@ -374,7 +379,7 @@ with torch.no_grad():
     )[0]
 
 # sources 形状：(num_sources, channels, samples)
-source_names = model.sources  # ['drums', 'bass', 'other', 'vocals']
+source_names = model.sources  # [drums, bass, other, vocals]
 
 # 保存各音轨
 for i, name in enumerate(source_names):
@@ -399,10 +404,10 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # 在单次 Demucs 调用中处理所有文件
     subprocess.run([
-        'demucs', '-n', model,
+        demucs, '-n', model,
         '-o', str(output_dir),
         '--mp3',
-        '--mp3-bitrate', '320',
+        '--mp3-bitrate', 320,
         *[str(f) for f in files]
     ], check=True)
 
@@ -412,19 +417,19 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
         base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
-            'drums': str(stem_dir / 'drums.mp3'),
-            'bass': str(stem_dir / 'bass.mp3'),
-            'other': str(stem_dir / 'other.mp3'),
-            'vocals': str(stem_dir / 'vocals.mp3'),
+            drums: str(stem_dir / 'drums.mp3'),
+            bass: str(stem_dir / 'bass.mp3'),
+            other: str(stem_dir / 'other.mp3'),
+            vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', 'w') as fp:
+    with open(output_dir / 'manifest.json', w) as fp:
         json.dump(manifest, fp, indent=2)
 
     return manifest
 
 # 使用
-batch_separate('./raw_songs/', './stems/', model='htdemucs_ft')
+batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 ```
 
 ### 长文件的内存优化
@@ -434,7 +439,7 @@ Demucs 将整个音频文件加载到 GPU 显存中。对于长曲目或显存�
 ```python
 # 强制 CPU 卸载大文件
 import os
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
 
 # 使用更小的分段
 sources = apply_model(
@@ -454,7 +459,7 @@ import logging
 import time
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('demucs')
+logger = logging.getLogger(demucs)
 
 def separate_with_metrics(input_path, output_dir):
     start = time.time()

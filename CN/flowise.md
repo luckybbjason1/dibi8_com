@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/flowise" />
 title: 'Flowise: Build AI Agents Visually with 52K+ Stars — 5-Minute Drag-and-Drop Setup Guide for 2026'
 description: 'Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/FlowiseAI/Flowise'
 stars: 52948
-maintainer: 'FlowiseAI'
+maintainer: FlowiseAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Flowise', 'LangChain', 'AI Agents', 'RAG', 'Docker', 'LLM', 'Open Source', 'No-Code']
+tags: [flowise, langchain, 'ai agents', rag, docker, llm, 'open source', 'no-code']
 aliases:
 - /posts/flowise/
 - /resources/ai-tools/flowise-ai-workflow-builder-lowcode/
@@ -315,7 +317,7 @@ In Flowise, use the `Qdrant` vector store node with host `http://qdrant:6333`.
       - "8080:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes:
       - weaviate_data:/var/lib/weaviate
@@ -390,7 +392,7 @@ Paste this into any HTML page:
         backgroundColor: '#3B81F6',
         right: 20,
         bottom: 20,
-        size: 'medium'
+        size: medium
       },
       chatWindow: {
         title: 'Support Assistant',

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
 title: "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전트 — 완전 설정 가이드"
 description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대안과 비교."
 date: 2026-06-10

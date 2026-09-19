@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-agent-tool-chain" />
 title: 'AI Agent Tool Chain 2026: The 6-Component Stack for Building Production-Grade Autonomous Agents'
 description: 'Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + mem0 for memory + OpenClaw for multi-agent coordination + Hermes Agent for self-improvement + e2b for sandboxed code execution. $20-60/mo self-hosted. Real assembly with internal-linked deep dives.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +20,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI Agent', 'Tool Chain', 'LangGraph', 'MCP', 'Stack', 'Collection']
+categories: [collections]
+tags: ['ai agent', 'tool chain', langgraph, mcp, stack, collection]
 aliases:
   - /posts/ai-agent-tool-chain/
 ---

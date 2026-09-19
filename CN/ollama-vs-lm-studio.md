@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ollama-vs-lm-studio" />
 title: 'Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?'
 description: 'Side-by-side breakdown of Ollama and LM Studio — CLI vs GUI, model library, GPU support, OpenAI-compatible API, quantization, self-hosting. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00

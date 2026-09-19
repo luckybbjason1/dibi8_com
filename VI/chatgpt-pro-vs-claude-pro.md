@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatgpt-pro-vs-claude-pro" />
 title: 'ChatGPT Pro vs Claude Pro năm 2026: Gói AI $20 (hay $200) nào đáng tiền hơn?'
 description: 'So sánh đầy đủ ChatGPT Plus/Pro với Claude Pro/Max — dòng mô hình, cửa sổ ngữ cảnh, Projects, Artifacts, tạo ảnh, chế độ giọng nói, giá. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/axolotl-llm-fine-tuning-framework-2026" />
 title: 'Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Production Guide'
 description: 'Axolotl is the open-source LLM fine-tuning framework with single-YAML config across full / LoRA / QLoRA / DPO / GRPO. 12k GitHub stars, Apache 2.0. Supports Llama / Mistral / Qwen / GLM / 10+ families. Complete 2026 install guide + when Axolotl beats Unsloth and raw HuggingFace TRL.'
 date: 2026-05-21 00:00:00+08:00
@@ -23,7 +25,7 @@ last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Axolotl', 'fine-tuning', 'LoRA', 'QLoRA', 'DPO', 'open-source']
+tags: [axolotl, 'fine-tuning', lora, qlora, dpo, 'open-source']
 aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---

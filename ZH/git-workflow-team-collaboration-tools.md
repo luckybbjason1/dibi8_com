@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/git-workflow-team-collaboration-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/git-workflow-team-collaboration-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/git-workflow-team-collaboration-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/git-workflow-team-collaboration-tools" />
 title: 'Git工作流与团队协作工具：开发者完整指南'
 description: '完整对比GitFlow、GitHub Flow、Trunk-Based Development三大工作流，涵盖代码审查、Git平台选型、Commit规范、冲突解决等团队协作最佳实践。'
 date: 2026-05-18 00:00:00+08:00

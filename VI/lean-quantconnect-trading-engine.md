@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/lean-quantconnect-trading-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lean-quantconnect-trading-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lean-quantconnect-trading-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lean-quantconnect-trading-engine" />
 title: 'Lean: Cỗ Máy Giao dịch Thuật toán Mã nguồn Mở đằng sau QuantConnect — Hướng dẫn C# & Python 2026'
 description: 'Hướng dẫn đầy đủ 2026 về Lean, engine giao dịch thuật toán của QuantConnect. Backtest đa tài sản, giao dịch thực, API C# & Python, và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'QuantConnect/Lean'
 stars: 10500
-maintainer: 'QuantConnect'
+maintainer: QuantConnect
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -370,7 +375,7 @@ class MLPredictionAlgorithm(QCAlgorithm):
         
         # Load model đã train trước
         model_path = "./models/spy_predictor.pkl"
-        with open(model_path, 'rb') as f:
+        with open(model_path, rb) as f:
             self.model = pickle.load(f)
         
         # Lịch sử giá làm feature

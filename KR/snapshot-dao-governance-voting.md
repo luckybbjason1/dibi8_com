@@ -1,6 +1,11 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/snapshot-dao-governance-voting" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/snapshot-dao-governance-voting" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/snapshot-dao-governance-voting" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/snapshot-dao-governance-voting" />
 title: 'snapshot-dao-governance-voting'
-description: '{''en'': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', ''zh'': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', ''ko'': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', ''vi'': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
+description: '{'en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ votes processed. Learn gas-free governance, voting strategies, delegation, SDK integration, and IPFS storage.'', 'zh': ''Snapshot综合指南，这个开源链下DAO投票平台已处理超过1000万张选票。了解无Gas治理、投票策略、委托、SDK集成和IPFS存储。'', 'ko': ''1,000만 개 이상의 투표를 처리한 오픈소스 오프체인 DAO 투표 플랫폼 Snapshot에 대한 종합 가이드. 가스 없는 거버넌스, 투표 전략, 위임, SDK 통합, IPFS 저장소를 알아보세요.'', 'vi': ''Hướng dẫn toàn diện về Snapshot, nền tảng bỏ phiếu DAO off-chain mã nguồn mở đã xử lý 10M+ phiếu bầu. Tìm hiểu quản trị không tốn gas, chiến lược bỏ phiếu, ủy quyền, tích hợp SDK, và lưu trữ IPFS.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['snapshot', 'dao', 'governance', 'voting', 'off-chain', 'eip-712', 'ipfs', 'delegation', 'defi', 'web3']
+tags: [snapshot, dao, governance, voting, 'off-chain', 'eip-712', ipfs, delegation, defi, web3]
 aliases:
 - /kr/posts/snapshot-dao-governance-voting/
 ---
@@ -249,10 +254,10 @@ def verify_snapshot_space(space_id: str) -> dict:
 
     if data.get("data", {}).get("space"):
         space = data["data"]["space"]
-        print(f"스페이스 '{space['name']}' 검증 성공!")
-        print(f"네트워크: {space['network']}")
-        print(f"전략: {[s['name'] for s in space['strategies']]}")
-        print(f"최소 점수: {space['filters']['minScore']}")
+        print(f"스페이스 '{space[name]}' 검증 성공!")
+        print(f"네트워크: {space[network]}")
+        print(f"전략: {[s[name] for s in space[strategies]]}")
+        print(f"최소 점수: {space[filters][minScore]}")
         return space
     else:
         raise ValueError(f"스페이스 '{space_id}'를 찾을 수 없음")
@@ -327,7 +332,7 @@ async function getVotingPower(
   snapshot: number  // 블록 번호
 ): Promise<bigint> {
   const response = await fetch('https://score.snapshot.org/api/scores', {
-    method: 'POST',
+    method: POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       params: {
@@ -493,7 +498,7 @@ yarn add @snapshot-labs/snapshot.js ethers
 ```typescript
 // Snapshot 클라이언트 초기화
 import snapshot from '@snapshot-labs/snapshot.js';
-import { Wallet } from 'ethers';
+import { Wallet } from ethers;
 
 const hub = 'https://hub.snapshot.org';  // 메인넷 허브
 const client = new snapshot.Client712(hub);
@@ -636,7 +641,7 @@ async function getProposalVotes(
   `;
 
   const response = await fetch('https://hub.snapshot.org/graphql', {
-    method: 'POST',
+    method: POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       query,
@@ -733,7 +738,7 @@ console.log("크로스체인 투표권:", scores);
 
 ```typescript
 // 제안 이벤트를 위한 Webhook 설정
-import express from 'express';
+import express from express;
 
 const app = express();
 app.use(express.json());
@@ -751,13 +756,13 @@ app.post('/webhooks/snapshot', (req, res) => {
       console.log(`투표 종료: ${event.id}`);
       tallyResults(event);
       break;
-    case 'vote':
+    case vote:
       console.log(`${event.proposal.id}의 새 투표`);
       updateLeaderboard(event);
       break;
   }
 
-  res.status(200).send('OK');
+  res.status(200).send(OK);
 });
 
 function notifyDiscord(proposal: any) {
@@ -768,16 +773,16 @@ function notifyDiscord(proposal: any) {
       url: `https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}`,
       description: proposal.body.substring(0, 200) + '...',
       fields: [
-        { name: '스페이스', value: proposal.space.name, inline: true },
-        { name: '작성자', value: proposal.author, inline: true },
-        { name: '종료일', value: new Date(proposal.end * 1000).toISOString(), inline: true }
+        { name: 스페이스, value: proposal.space.name, inline: true },
+        { name: 작성자, value: proposal.author, inline: true },
+        { name: 종료일, value: new Date(proposal.end * 1000).toISOString(), inline: true }
       ],
       timestamp: new Date().toISOString()
     }]
   };
 
   fetch(process.env.DISCORD_WEBHOOK_URL, {
-    method: 'POST',
+    method: POST,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(message)
   });

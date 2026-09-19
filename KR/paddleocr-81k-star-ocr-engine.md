@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paddleocr-81k-star-ocr-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paddleocr-81k-star-ocr-engine" />
 
 title: 'PaddleOCR: 클라우드 서비스를 0 비용으로 능가하는 81K 스타 오픈소스 OCR 엔진'
 description: 'PaddleOCR은 텍스트 감지 및 인식에 96.3% 이상의 정확도를 갖춘 다국어 오픈소스 OCR 툴킷입니다. 80개 이상의 언어, 문서 AI, 표 인식, 레이아웃 분석을 지원합니다. GitHub 스타 81K+. 설정 가이드, 벤치마크, 프로덕션 배포를 포함합니다.'

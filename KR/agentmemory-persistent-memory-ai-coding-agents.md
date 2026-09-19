@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agentmemory-persistent-memory-ai-coding-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agentmemory-persistent-memory-ai-coding-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agentmemory-persistent-memory-ai-coding-agents" />
 title: 'AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드'
 description: 'AgentMemory (22,038 GitHub stars)는 실제 벤치마크를 기반으로 AI 코딩 에이전트에 persistent 메모리를 제공합니다. 과거 세션 기억, 며칠 간 컨텍스트 유지, 이전 상호작용에서 학습. Claude Code, Codex CLI, OpenCode 등 지원. 설정 튜토리얼, 아키텍처 분석, 벤치마크 포함.'
 date: 2026-06-08

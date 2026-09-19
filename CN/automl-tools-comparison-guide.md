@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/automl-tools-comparison-guide" />
 title: 'AutoML Tools Compared: AutoGluon, H2O, TPOT, Auto-sklearn, and Google AutoML Guide'
 description: 'Compare top AutoML tools including AutoGluon, H2O AutoML, TPOT, Auto-sklearn, and Google AutoML. Find the best automated machine learning framework for your needs.'
 date: 2026-05-18 00:00:00+08:00

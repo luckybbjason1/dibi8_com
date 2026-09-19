@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/melotts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/melotts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/melotts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/melotts" />
 title: 'MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui TTS, ChatTTS, Bark 2026'
 description: 'MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sánh hiệu năng với Coqui TTS, ChatTTS và Bark. Hướng dẫn cài đặt Python, triển khai Docker, suy luận thờ gian thực và cứng hóa production.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['melotts', 'chuyen-van-ban-thanh-giong-noi', 'tts', 'da-ngon-ngu', 'python', 'tong-hop-giong-noi', 'mo-nguon', 'suy-luan-cpu']
+tags: [melotts, 'chuyen-van-ban-thanh-giong-noi', tts, 'da-ngon-ngu', python, 'tong-hop-giong-noi', 'mo-nguon', 'suy-luan-cpu']
 aliases:
 - /vi/posts/melotts/
 ---
@@ -121,10 +126,10 @@ from melo.api import TTS
 
 # Tốc độ có thể điều chỉnh
 speed = 1.0
-device = 'auto'  # tự động phát hiện GPU, fallback về CPU
+device = auto  # tự động phát hiện GPU, fallback về CPU
 
 text = "MeloTTS is working correctly on this machine."
-model = TTS(language='EN', device=device)
+model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'test_output.wav'
@@ -150,10 +155,10 @@ melo --list-speakers
 from melo.api import TTS
 
 speed = 1.0
-device = 'auto'
+device = auto
 
 text = "Did you ever hear a folk tale about a giant turtle?"
-model = TTS(language='EN', device=device)
+model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 # Giọng Mỹ
@@ -163,7 +168,7 @@ model.tts_to_file(text, speaker_ids['EN-US'], 'en-us.wav', speed=speed)
 model.tts_to_file(text, speaker_ids['EN-BR'], 'en-br.wav', speed=speed)
 
 # Giọng Ấn Độ
-model.tts_to_file(text, speaker_ids['EN_INDIA'], 'en-india.wav', speed=speed)
+model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # Giọng Úc
 model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
@@ -175,15 +180,15 @@ model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
 from melo.api import TTS
 
 speed = 1.0
-device = 'cpu'
+device = cpu
 
 # Giọng Trung xử lý từ tiếng Anh liền mạch
 text = "我最近在学习machine learning，希望能够在未来的artificial intelligence领域有所建树。"
-model = TTS(language='ZH', device=device)
+model = TTS(language=ZH, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'zh-mixed.wav'
-model.tts_to_file(text, speaker_ids['ZH'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[ZH], output_path, speed=speed)
 ```
 
 ### Tiếng Nhật
@@ -192,14 +197,14 @@ model.tts_to_file(text, speaker_ids['ZH'], output_path, speed=speed)
 from melo.api import TTS
 
 speed = 1.0
-device = 'cpu'
+device = cpu
 
 text = "こんにちは、これは日本語の音声合成テストです。"
-model = TTS(language='JA', device=device)
+model = TTS(language=JA, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'ja.wav'
-model.tts_to_file(text, speaker_ids['JA'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[JA], output_path, speed=speed)
 ```
 
 ### FastAPI REST API
@@ -215,12 +220,12 @@ app = FastAPI()
 
 # Tải trước các mô hình cho ngôn ngữ được hỗ trợ
 models = {}
-for lang in ['EN', 'ZH', 'ES', 'FR', 'JA', 'KO']:
-    models[lang] = TTS(language=lang, device='auto')
+for lang in [EN, ZH, ES, FR, JA, KO]:
+    models[lang] = TTS(language=lang, device=auto)
 
 class TTSRequest(BaseModel):
     text: str
-    language: str = 'EN'
+    language: str = EN
     speaker: str = 'EN-Default'
     speed: float = 1.0
 
@@ -284,15 +289,15 @@ import websockets
 import json
 from melo.api import TTS
 
-model = TTS(language='EN', device='auto')
+model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 
 async def tts_stream(websocket, path):
     async for message in websocket:
         data = json.loads(message)
-        text = data.get('text', '')
-        speaker = data.get('speaker', 'EN-Default')
-        speed = data.get('speed', 1.0)
+        text = data.get(text, '')
+        speaker = data.get(speaker, 'EN-Default')
+        speed = data.get(speed, 1.0)
         
         # Phát luồng các chunk âm thanh
         for chunk in model.stream_tts(text, speaker_ids[speaker], speed=speed):
@@ -309,7 +314,7 @@ asyncio.get_event_loop().run_forever()
 import gradio as gr
 from melo.api import TTS
 
-model = TTS(language='EN', device='auto')
+model = TTS(language=EN, device=auto)
 speaker_ids = model.hps.data.spk2id
 speaker_names = list(speaker_ids.keys())
 
@@ -410,10 +415,10 @@ import functools
 @functools.lru_cache(maxsize=6)
 def get_model(language):
     """Trình tải mô hình được cache — mô hình chỉ tải một lần và tái sử dụng."""
-    return TTS(language=language, device='auto')
+    return TTS(language=language, device=auto)
 
 # Làm nóng trước tất cả ngôn ngữ khi khởi động
-for lang in ['EN', 'ZH', 'ES', 'FR', 'JA', 'KO']:
+for lang in [EN, ZH, ES, FR, JA, KO]:
     get_model(lang)
 print("Tất cả mô hình đã sẵn sàng.")
 ```
@@ -424,7 +429,7 @@ print("Tất cả mô hình đã sẵn sàng.")
 from melo.api import TTS
 import concurrent.futures
 
-model = TTS(language='EN', device='cuda:0')
+model = TTS(language=EN, device='cuda:0')
 speaker_ids = model.hps.data.spk2id
 
 texts = [
@@ -497,8 +502,8 @@ from prometheus_client import Counter, Histogram, generate_latest
 from fastapi import Response
 
 # Metrics
-tts_requests = Counter('melotts_requests_total', 'Tổng yêu cầu TTS', ['language', 'speaker'])
-tts_duration = Histogram('melotts_duration_seconds', 'Thờ gian tạo TTS')
+tts_requests = Counter(melotts_requests_total, 'Tổng yêu cầu TTS', [language, speaker])
+tts_duration = Histogram(melotts_duration_seconds, 'Thờ gian tạo TTS')
 
 @app.get("/metrics")
 async def metrics():
@@ -594,7 +599,7 @@ Có. MeloTTS được phát hành theo giấy phép MIT, cho phép sử dụng t
 
 ### Q3: Đầu vào pha trộn Trung-Anh hoạt động như thế nào?
 
-Mô hình Trung (`language='ZH'`) tự động phát hiện các từ tiếng Anh trong văn bản tiếng Trung và định tuyến chúng qua pipeline G2P tiếng Anh trong khi duy trì tính liên tục về ngữ điệu. Không cần gán nhãn thủ công hay chuyển đổi mô hình.
+Mô hình Trung (`language=ZH`) tự động phát hiện các từ tiếng Anh trong văn bản tiếng Trung và định tuyến chúng qua pipeline G2P tiếng Anh trong khi duy trì tính liên tục về ngữ điệu. Không cần gán nhãn thủ công hay chuyển đổi mô hình.
 
 ### Q4: Độ dài văn bản tối đa MeloTTS có thể xử lý là bao nhiêu?
 

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/activepieces-workflow-automation" />
 title: 'Activepieces: 200+ 앱과 AI 액션을 갖춘 오픈소스 Zapier 대안 — 2026년 셀프호스팅 가이드'
 description: '5분 만에 Activepieces를 배포하세요. 200+ 앱 통합, AI 액션, 비주얼 빌더를 갖춘 오픈소스 워크플로우 자동화 플랫폼으로 Zapier 비용의 일부만으로 운영할 수 있습니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'activepieces/activepieces'
 stars: 13000
-maintainer: 'activepieces'
+maintainer: activepieces
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Activepieces', '워크플로우 자동화', 'Zapier 대안', '셀프호스팅', 'Docker', '노코드', '오픈소스', 'TypeScript', 'AI 액션', '웹훅']
+tags: [activepieces, '워크플로우 자동화', 'zapier 대안', 셀프호스팅, docker, 노코드, 오픈소스, typescript, 'ai 액션', 웹훅]
 aliases:
 - /kr/posts/activepieces-workflow-automation/
 ---
@@ -237,7 +242,7 @@ Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티�
 트리거: Webhook("새 리드 폼 제출")
   → 단계 1: 폼 데이터 추출(이름, 이메일, 회사, 메시지)
   → 단계 2: OpenAI "AI에게 질문" 액션
-       프롬프트: "이 리드를 평가하세요. 'hot', 'warm', 'cold'만 반환하세요.
+       프롬프트: "이 리드를 평가하세요. hot, warm, cold만 반환하세요.
                리드: {{step_1.name}}, 회사: {{step_1.company}},
                메시지: {{step_1.message}}"
        모델: gpt-4.1-mini

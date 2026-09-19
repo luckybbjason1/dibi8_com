@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/exo-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/exo-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/exo-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/exo-dev-utils-2026" />
 title: 'exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）——2026 实战指南'
 description: 'exo 把你的 Mac、PC 乃至手机组成一个集群，在本地运行前沿 AI 大模型。45,088 个 GitHub star，Apache-2.0 协议。涵盖安装、控制台、兼容 OpenAI/Claude/Ollama 的 API、真实命令以及一份诚实的横向对比。'
 date: 2026-06-02 00:00:00+08:00

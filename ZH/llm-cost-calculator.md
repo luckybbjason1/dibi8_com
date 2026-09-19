@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-cost-calculator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-cost-calculator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-cost-calculator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-cost-calculator" />
 title: "LLM API 成本计算器 — GPT-4 / Claude / Gemini"
 description: "计算 LLM API 月度成本。输入你的 input/output token 数、每日请求次数、选择模型 —— 即时得到 OpenAI / Anthropic / Google 的成本预测。"
 date: 2026-05-18

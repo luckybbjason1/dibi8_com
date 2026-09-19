@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-servers-2026-rankings-selection-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-servers-2026-rankings-selection-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-servers-2026-rankings-selection-guide" />
 title: 'MCP 服务器 2026: 100+ 生态地图 + 选型决策树'
 description: 'Model Context Protocol 生态在 2026 年中突破 1000+ 公开服务器。本指南按类目排名前 30 个，解释 stdio、HTTP/SSE 和 OAuth-bridged 服务器的架构权衡，并给出不淹没在注册表中的选型决策树。'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
-tech_stack: ['MCP', 'Claude Code', 'Cursor', 'TypeScript', 'Python']
+tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: 'MCP 2025-06 spec'
 licensing_model: Open Source / Mixed
@@ -19,7 +24,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['mcp', 'model-context-protocol', 'claude-code', 'ai-agents', '开发者工具', '集成', '2026']
+tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 开发者工具, 集成, 2026]
 aliases:
 - /zh/posts/mcp-servers-2026-rankings-selection-guide/
 faq:

@@ -1,11 +1,16 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
 title: 'WorldMonitor: Bảng Điều Khiển Thông Tình Báo Toàn Cầu Theo Thời Gian Thực Cho Giám Sát Địa Chính Trị'
 description: 'Một bảng điều khiển thông tình báo toàn cầu theo thời gian thực do AI hỗ trợ, tổng hợp tin tức, sự kiện địa chính trị và giám sát cơ sở hạ tầng. 59K sao. Giải pháp mã nguồn mở thay thế Palantir Gotham.'
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-tools
-tags: ['ai', 'bảng điều khiển', 'địa chính trị', 'giám sát', 'tin tức', 'mã nguồn mở', 'osint', 'palantir', 'nhận thức tình huống']
+tags: [ai, 'bảng điều khiển', 'địa chính trị', 'giám sát', 'tin tức', 'mã nguồn mở', osint, palantir, 'nhận thức tình huống']
 slug: worldmonitor-real-time-global-intelligence-dashboard
 featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
 lang: vi

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/deepseek-ds4-vs-openai-api" />
 title: 'Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs'
 description: 'Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs'
 date: 2026-05-15 04:20:25+09:00

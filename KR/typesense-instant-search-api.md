@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/typesense-instant-search-api" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/typesense-instant-search-api" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/typesense-instant-search-api" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/typesense-instant-search-api" />
 title: 'Typesense 2026: 하루 100만 건 처리하는 오픈소스 인스턴트 검색 API — 셀프 호스팅 설정 가이드'
 description: 'Typesense 27.1로 50ms 미만의 오타 허용 인스턴트 검색을 구축하세요. Docker 배포, SDK 통합, 프로덕션 벤치마크 단계별 가이드.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'typesense/typesense'
 stars: 23200
-maintainer: 'typesense'
+maintainer: typesense
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -178,24 +183,24 @@ npm install typesense
 ```
 
 ```javascript
-const Typesense = require('typesense');
+const Typesense = require(typesense);
 
 const client = new Typesense.Client({
-  'nodes': [{ 'host': 'localhost', 'port': '8108', 'protocol': 'http' }],
-  'apiKey': process.env.TYPESENSE_API_KEY,
-  'connectionTimeoutSeconds': 2
+  nodes: [{ host: localhost, port: 8108, protocol: http }],
+  apiKey: process.env.TYPESENSE_API_KEY,
+  connectionTimeoutSeconds: 2
 });
 
 // 검색
 async function searchProducts(query) {
-  const results = await client.collections('products')
+  const results = await client.collections(products)
     .documents()
     .search({
-      'q': query,
-      'query_by': 'name,description',
-      'filter_by': 'in_stock:true',
-      'sort_by': 'rating:desc',
-      'per_page': 10
+      q: query,
+      query_by: 'name,description',
+      filter_by: 'in_stock:true',
+      sort_by: 'rating:desc',
+      per_page: 10
     });
   
   console.log(`Found ${results.found} results`);
@@ -204,7 +209,7 @@ async function searchProducts(query) {
   });
 }
 
-searchProducts('headphons'); // 오타도 작동함
+searchProducts(headphons); // 오타도 작동함
 ```
 
 ### Python SDK
@@ -218,23 +223,23 @@ import typesense
 import os
 
 client = typesense.Client({
-    'nodes': [{'host': 'localhost', 'port': '8108', 'protocol': 'http'}],
-    'api_key': os.environ['TYPESENSE_API_KEY'],
-    'connection_timeout_seconds': 2
+    nodes: [{host: localhost, port: 8108, protocol: http}],
+    api_key: os.environ[TYPESENSE_API_KEY],
+    connection_timeout_seconds: 2
 })
 
 # 패싯이 포함된 검색
-results = client.collections['products'].documents.search({
-    'q': 'keyboard',
-    'query_by': 'name,description',
-    'facet_by': 'category,price',
-    'sort_by': 'rating:desc',
-    'per_page': 10
+results = client.collections[products].documents.search({
+    q: keyboard,
+    query_by: 'name,description',
+    facet_by: 'category,price',
+    sort_by: 'rating:desc',
+    per_page: 10
 })
 
-print(f"Total: {results['found']}")
-for hit in results['hits']:
-    print(f"  {hit['document']['name']} - ${hit['document']['price']}")
+print(f"Total: {results[found]}")
+for hit in results[hits]:
+    print(f"  {hit[document][name]} - ${hit[document][price]}")
 ```
 
 ### React InstantSearch 통합
@@ -246,14 +251,14 @@ npm install typesense-instantsearch-adapter react-instantsearch-dom
 ```
 
 ```jsx
-import React from 'react';
+import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom';
 import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter';
 
 const typesenseAdapter = new TypesenseInstantsearchAdapter({
   server: {
     apiKey: process.env.REACT_APP_TYPESENSE_API_KEY,
-    nodes: [{ host: 'localhost', port: '8108', protocol: 'http' }]
+    nodes: [{ host: localhost, port: 8108, protocol: http }]
   },
   additionalSearchParameters: {
     query_by: 'name,description',
@@ -289,23 +294,23 @@ export default App;
 ### Ruby SDK
 
 ```ruby
-require 'typesense'
+require typesense
 
 client = Typesense::Client.new(
-  nodes: [{ host: 'localhost', port: 8108, protocol: 'http' }],
-  api_key: ENV['TYPESENSE_API_KEY'],
+  nodes: [{ host: localhost, port: 8108, protocol: http }],
+  api_key: ENV[TYPESENSE_API_KEY],
   connection_timeout_seconds: 2
 )
 
-results = client.collections['products'].documents.search(
+results = client.collections[products].documents.search(
   q: 'running shoes',
   query_by: 'name,description',
   filter_by: 'in_stock:true',
   sort_by: 'price:asc'
 )
 
-puts "Found #{results['found']} results"
-results['hits'].each { |hit| puts "- #{hit['document']['name']}" }
+puts "Found #{results[found]} results"
+results[hits].each { |hit| puts "- #{hit[document][name]}" }
 ```
 
 ### Go SDK
@@ -458,11 +463,11 @@ volumes:
 ### 3. 멀티 테넌시를 위한 범위 지정 API 키
 
 ```javascript
-// 'Electronics' 카테고리만 볼 수 있는 범위 지정 API 키 생성
-const typesense = require('typesense');
+// Electronics 카테고리만 볼 수 있는 범위 지정 API 키 생성
+const typesense = require(typesense);
 
 const client = new Typesense.Client({
-  nodes: [{ host: 'localhost', port: '8108', protocol: 'http' }],
+  nodes: [{ host: localhost, port: 8108, protocol: http }],
   apiKey: 'master-api-key',
   connectionTimeoutSeconds: 2
 });

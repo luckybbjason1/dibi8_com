@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/whisperx" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/whisperx" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
 title: 'WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Production 2026'
 description: 'WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với faster-whisper, pyannote.audio và OpenAI Whisper. Bao gồm Docker, Python API, benchmark và production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['whisperx', 'asr', 'nhận-dạng-giọng-nói', 'phân-tách-ngưới-nói', 'timestamp-từ', 'faster-whisper', 'pyannote', 'docker']
+tags: [whisperx, asr, 'nhận-dạng-giọng-nói', 'phân-tách-ngưới-nói', 'timestamp-từ', 'faster-whisper', pyannote, docker]
 aliases:
 - /vi/posts/whisperx/
 ---
@@ -109,7 +114,7 @@ uvx git+https://github.com/m-bain/whisperX.git
 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
 # Tạo Dockerfile cho WhisperX
-cat > Dockerfile.whisperx << 'EOF'
+cat > Dockerfile.whisperx << EOF
 FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
 
 RUN apt-get update && apt-get install -y \
@@ -406,7 +411,7 @@ whisperx audio.wav \
 
 ```bash
 # Tải trước mô hình để tránh độ trễ khởi động lạnh
-python3 << 'PYEOF'
+python3 << PYEOF
 import whisperx
 import torch
 

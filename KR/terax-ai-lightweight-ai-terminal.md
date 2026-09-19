@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI: 당신을 이해하는 경량 AI 터미널 에뮬레이터"
 description: "Terax AI를 알아보세요. Tauri 2 + Rust로 구축된 7 MB AI 네이티브 터미널 에뮬레이터입니다. 자연어를 Shell 명령으로 변환하고, 인라인 AI 지원, 스마트 자동완성을 제공하며 bash, zsh, fish, PowerShell을 지원합니다."
 date: 2026-05-15T04:20:25+09:00

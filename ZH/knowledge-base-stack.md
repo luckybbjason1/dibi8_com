@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-base-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-base-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-base-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-base-stack" />
 title: '知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$10-25/月）'
 description: '5 组件自托管知识库 stack，给个人或团队用。AnythingLLM（UI + RAG）+ RAGFlow（深度文档解析）+ mem0（agent 记忆）+ AgentMemory MCP（暴露给 MCP host）+ 向量库选型。替代 $50-200/月 SaaS（Notion AI + Mem + Glean），$10-25/月自托管。'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['知识库', 'RAG', '第二大脑', 'Stack', '合集']
+categories: [collections]
+tags: [知识库, rag, 第二大脑, stack, 合集]
 aliases:
   - /posts/knowledge-base-stack/
 ---

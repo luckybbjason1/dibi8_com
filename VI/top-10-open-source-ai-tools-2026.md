@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/top-10-open-source-ai-tools-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/top-10-open-source-ai-tools-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/top-10-open-source-ai-tools-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/top-10-open-source-ai-tools-2026" />
 title: 'Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn Phí Cho Dev'
 description: 'Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn Phí Cho Dev'
 date: 2026-05-15 04:20:25+09:00

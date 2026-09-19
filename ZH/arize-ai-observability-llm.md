@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/arize-ai-observability-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/arize-ai-observability-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/arize-ai-observability-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/arize-ai-observability-llm" />
 title: 'Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水线 —— 2026 指南'
 description: '2026 年 Arize Phoenix 完整指南：开源 LLM 可观测性、RAG 追踪、Prompt 版本管理、Token 用量追踪，以及与 LangChain 和 LlamaIndex 的生产级部署。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['LLM', '可观测性', 'Arize Phoenix', 'RAG', 'LangChain', 'LlamaIndex', 'OpenTelemetry', 'Python', 'Docker', 'AI 基础设施']
+tags: [llm, 可观测性, 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'ai 基础设施']
 aliases:
 - /zh/posts/arize-ai-observability-llm/
 ---

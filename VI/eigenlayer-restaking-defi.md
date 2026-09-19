@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/eigenlayer-restaking-defi" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/eigenlayer-restaking-defi" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/eigenlayer-restaking-defi" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/eigenlayer-restaking-defi" />
 title: 'eigenlayer-restaking-defi'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['EigenLayer']
+tags: [eigenlayer]
 aliases:
 - /vi/posts/eigenlayer-restaking-defi/
 ---
@@ -664,20 +669,20 @@ contract PriceOracleRewards is IRewardsCoordinator {
 
 ```typescript
 // TypeScript SDK cho tương tác LRT
-import { ethers, Contract } from 'ethers';
+import { ethers, Contract } from ethers;
 import { EigenLayerSDK } from '@eigenlayer/sdk';
 
 const sdk = new EigenLayerSDK({
   provider: new ethers.JsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY'),
-  network: 'mainnet'
+  network: mainnet
 });
 
 // Gửi stETH vào Renzo (ezETH)
 async function depositForLRT(stethAmount: bigint) {
-  const renzo = await sdk.getLRTProtocol('renzo');
+  const renzo = await sdk.getLRTProtocol(renzo);
   
   const tx = await renzo.deposit({
-    token: 'stETH',
+    token: stETH,
     amount: stethAmount,
     receiver: walletAddress,
   });

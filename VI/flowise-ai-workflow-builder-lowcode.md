@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triển khai LangChain Agent Trực quan — Hướng dẫn Toàn diện'
 description: 'Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp. Tạo LangChain Agent trực quan, triển khai Docker, API endpoint và benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'FlowiseAI/Flowise'
 stars: 45000
-maintainer: 'FlowiseAI'
+maintainer: FlowiseAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['Flowise', 'LangChain', 'Low-Code', 'AI Workflow', 'Docker', 'Tự-host', 'Agent Builder', 'No-Code', 'Mã nguồn mở', 'Chatbot']
+tags: [flowise, langchain, 'low-code', 'ai workflow', docker, 'tự-host', 'agent builder', 'no-code', 'mã nguồn mở', chatbot]
 aliases:
 - /vi/posts/flowise-ai-workflow-builder-lowcode/
 ---
@@ -101,7 +106,7 @@ Kiến trúc của Flowise gồm ba lớp:
 mkdir -p ~/flowise && cd ~/flowise
 
 # Tạo docker-compose.yml
-cat > docker-compose.yml << 'EOF'
+cat > docker-compose.yml << EOF
 services:
   flowise:
     image: flowiseai/flowise:2.2.0
@@ -375,24 +380,24 @@ const { Tool } = require('langchain/tools');
 class JiraTicketTool extends Tool {
   constructor() {
     super();
-    this.name = 'jira_create_ticket';
+    this.name = jira_create_ticket;
     this.description = 'Tạo Jira ticket. Input: JSON string với summary, description, issueType.';
   }
 
   async _call(input) {
     const { summary, description, issueType } = JSON.parse(input);
     const response = await fetch('https://your-domain.atlassian.net/rest/api/3/issue', {
-      method: 'POST',
+      method: POST,
       headers: {
-        'Authorization': `Basic ${Buffer.from('email:token').toString('base64')}`,
+        Authorization: `Basic ${Buffer.from('email:token').toString(base64)}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         fields: {
-          project: { key: 'PROJ' },
+          project: { key: PROJ },
           summary,
           description,
-          issuetype: { name: issueType || 'Task' }
+          issuetype: { name: issueType || Task }
         }
       })
     });

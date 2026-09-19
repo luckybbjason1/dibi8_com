@@ -1,21 +1,23 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates'
 description: 'ComfyUI hit 106K GitHub stars in 2026. Beginner-friendly setup guide, model recommendations for 2026, and 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['ComfyUI', 'Stable Diffusion', 'Python', 'CUDA']
+tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI Tools
 source_version: 'ComfyUI 2026.05'
 licensing_model: Open Source
 license_type: 'GPL-3.0'
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 106000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['comfyui', 'stable-diffusion', 'image-generation', 'workflows', '2026']
+tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
 aliases:
 - /posts/comfyui-workflow-2026-5-production-templates/
 faq:

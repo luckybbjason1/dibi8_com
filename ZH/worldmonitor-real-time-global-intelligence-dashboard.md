@@ -1,11 +1,16 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
 title: WorldMonitor：面向地缘政治监控的实时全球情报仪表盘
 description: 一个实时的AI驱动全球情报仪表盘，聚合新闻、地缘政治事件和基础设施追踪。59K stars。Palantir Gotham的开源替代方案。
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-tools
-tags: ['ai', '仪表盘', '地缘政治', '监控', '新闻', '开源', 'osint', 'palantir', '态势感知']
+tags: [ai, 仪表盘, 地缘政治, 监控, 新闻, 开源, osint, palantir, 态势感知]
 slug: worldmonitor-real-time-global-intelligence-dashboard
 featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
 lang: zh

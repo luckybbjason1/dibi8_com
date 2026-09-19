@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/top-rag-tools" />
 title: 'Top RAG Tools for AI Knowledge Bases'
 lang: en
 description: 'The best RAG (Retrieval-Augmented Generation) tools for building AI knowledge bases — from LangChain to LlamaIndex, ChromaDB to Weaviate.'

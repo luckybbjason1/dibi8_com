@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-vs-make-com-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-vs-make-com-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-vs-make-com-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-vs-make-com-2026" />
 title: 'n8n vs Make.com 2026 비교: 오픈소스 제어권 vs 시각적 간편함'
 description: 'n8n(셀프호스팅·개발자 친화적 워크플로 자동화)과 Make.com(클라우드 전용 시각적 시나리오 빌더)를 항목별 비교 — 가격, 통합 수, AI 기능, 셀프호스팅, 2026년 추천.'
 date: 2026-06-07 00:00:00+08:00

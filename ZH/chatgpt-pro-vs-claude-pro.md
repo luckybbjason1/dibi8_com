@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatgpt-pro-vs-claude-pro" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatgpt-pro-vs-claude-pro" />
 title: 'ChatGPT Pro vs Claude Pro 2026：$20（或 $200）AI 订阅哪个更值？'
 description: 'ChatGPT Plus/Pro 与 Claude Pro/Max 完整对比 — 模型阵容、上下文窗口、Projects、Artifacts、图像生成、语音模式、价格。2026 年更新。'
 date: 2026-05-22 00:00:00+08:00

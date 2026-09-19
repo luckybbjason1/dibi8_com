@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-presidio-pii-detection-redaction-sdk" />
 
 lang: kr
 slug: microsoft-presidio-pii-detection-redaction-sdk
@@ -24,12 +29,12 @@ github_repo: 'https://github.com/microsoft/presidio'
 last_maintained: '2026-06-21'
 draft: false
 categories: ['dev-utils']
-tags: ["프레시디오", "개인 식별 정보(PII) 탐지", "데이터 삭제", "데이터 익명화", "마이크로소프트", "자연어 처리", "개체명 인식", "이미지 편집", "디컴", "일반 개인정보 보호 규정", "HIPAA", "오픈-SSF", "프라이버시", "데이터 보호"]
+tags: ["프레시디오", "개인 식별 정보(pii) 탐지", "데이터 삭제", "데이터 익명화", "마이크로소프트", "자연어 처리", "개체명 인식", "이미지 편집", "디컴", "일반 개인정보 보호 규정", "hipaa", "오픈-ssf", "프라이버시", "데이터 보호"]
 aliases:
 - /posts/microsoft-presidio-pii-detection-redaction-sdk/
 faqs:
   - q: '마이크로소프트 프레지디오란 무엇인가요?'
-    a: 'Presidio는 텍스트, 이미지 및 구조화된 데이터 전반에서 개인 식별 정보(PII)를 감지, 수정, 마스킹 및 익명화하기 위한 Microsoft의 오픈 소스 SDK입니다. ''보호'' 또는 ''주둔지''를 의미하는 라틴어에서 이름을 따왔으며, 문맥 인식, 플러그형 및 맞춤형 PII 비식별화 모듈을 제공합니다. 이는 명명된 개체 인식(NER), 정규 표현식, 규칙 기반 논리 및 체크섬 검증을 다국어로 지원합니다.'
+    a: 'Presidio는 텍스트, 이미지 및 구조화된 데이터 전반에서 개인 식별 정보(PII)를 감지, 수정, 마스킹 및 익명화하기 위한 Microsoft의 오픈 소스 SDK입니다. '보호' 또는 '주둔지'를 의미하는 라틴어에서 이름을 따왔으며, 문맥 인식, 플러그형 및 맞춤형 PII 비식별화 모듈을 제공합니다. 이는 명명된 개체 인식(NER), 정규 표현식, 규칙 기반 논리 및 체크섬 검증을 다국어로 지원합니다.'
   - q: '프레시디오를 구성하는 요소는 무엇인가요?'
     a: 'Presidio는 네 가지 주요 구성 요소로 이루어져 있습니다: (1) **Presidio Analyzer** — NER, 정규식, 규칙 기반 논리 및 체크섬을 활용한 미리 정의되거나 사용자 지정된 인식기를 사용하여 텍스트에서 PII를 감지합니다; (2) **Presidio Anonymizer** — 감지된 PII를 편집, 마스킹, 해싱하거나 구성 가능한 변환으로 대체합니다; (3) **Presidio Image Redactor** — 표준 이미지 유형 및 DICOM 의료 이미지를 포함한 이미지에서 PII를 편집합니다; (4) **Presidio Structured** — CSV 및 Excel 파일과 같은 테이블/구조화된 데이터에서 PII를 감지합니다.'
   - q: 'Presidio가 감지할 수 있는 PII 유형은 무엇입니까?'
@@ -151,7 +156,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 
 text = "John Smith's SSN is 123-45-6789 and his email is john@example.com"
-results = analyzer.analyze(text=text, language='en')
+results = analyzer.analyze(text=text, language=en)
 
 for result in results:
     print(f"Entity: {result.entity_type}, "
@@ -244,7 +249,7 @@ registry = RecognizerRegistry()
 registry.add_recognizer(EmployeeIdRecognizer())
 
 analyzer = AnalyzerEngine(registry=registry)
-results = analyzer.analyze("Employee ID: EMP-1234-5678", language='en')
+results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
 ```
 
 맞춤 인식기는 다음을 활용할 수 있습니다:
@@ -430,7 +435,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 results = analyzer.analyze(
     text='Call John at 555-123-4567 or email john@example.com',
-    language='en'
+    language=en
 )
 for r in results:
     print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')

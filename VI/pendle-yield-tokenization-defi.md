@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/pendle-yield-tokenization-defi" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pendle-yield-tokenization-defi" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pendle-yield-tokenization-defi" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Pendle']
+tags: [pendle]
 aliases:
 - /vi/posts/pendle-yield-tokenization-defi/
 ---
@@ -394,7 +399,7 @@ contract PendleMarket is IPendleMarket {
 ```typescript
 // SDK TypeScript cho giao dịch Pendle
 import { PendleSDK } from '@pendle/sdk-v2';
-import { ethers } from 'ethers';
+import { ethers } from ethers;
 
 const provider = new ethers.JsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY');
 const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
@@ -813,10 +818,10 @@ class PendleStrategyAnalyzer {
       if (snapshot.impliedApy > underlyingApy * 1.2) {
         opportunities.push({
           market: market.address,
-          strategy: 'LONG_PT',
+          strategy: LONG_PT,
           reason: 'Lợi nhuận ngầm định cao hơn cơ sở 20%+',
           expectedReturn: snapshot.impliedApy,
-          risk: 'thấp',
+          risk: thấp,
         });
       }
       
@@ -824,7 +829,7 @@ class PendleStrategyAnalyzer {
       if (snapshot.impliedApy < underlyingApy * 0.8) {
         opportunities.push({
           market: market.address,
-          strategy: 'LONG_YT',
+          strategy: LONG_YT,
           reason: 'Lợi nhuận ngầm định thấp hơn cơ sở 20%+',
           expectedReturn: underlyingApy - snapshot.impliedApy,
           risk: 'trung bình',
@@ -1025,7 +1030,7 @@ async function quickstart() {
   
   // 2. Token hóa: Chia stETH thành PT + YT
   const { ptOut, ytOut } = await market.tokenizeYield(
-    ethers.parseEther('10'), // 10 stETH
+    ethers.parseEther(10), // 10 stETH
     0 // đầu ra tối thiểu
   );
   console.log(`Nhận ${ptOut} PT + ${ytOut} YT`);

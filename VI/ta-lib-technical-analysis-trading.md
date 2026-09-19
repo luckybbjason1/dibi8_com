@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ta-lib-technical-analysis-trading" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ta-lib-technical-analysis-trading" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ta-lib-technical-analysis-trading" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ta-lib-technical-analysis-trading" />
 title: 'TA-Lib: Thư Viện Phân Tích Kỹ Thuật Chuẩn Ngành với 200+ Chỉ Báo — Hướng Dẫn Cài Đặt Python Trading 2026'
 description: 'Hướng dẫn đầy đủ về TA-Lib Python wrapper với 200+ chỉ báo kỹ thuật. Cài đặt, benchmark, và triển khai SMA, EMA, RSI, MACD, Bollinger Bands cho giao dịch thuật toán 2026.'
 date: 2026-05-19 00:00:00+08:00
@@ -106,7 +111,7 @@ import numpy as np
 
 print(talib.__version__)  # Kỳ vọng: 0.6.2 trở lên
 print(talib.get_functions()[:5])  # Liệt kê 5 hàm đầu tiên
-# Output: ['DEMA', 'EMA', 'HT_DCPERIOD', 'HT_DCPHASE', 'HT_PHASOR']
+# Output: [DEMA, EMA, HT_DCPERIOD, HT_DCPHASE, HT_PHASOR]
 
 # Kiểm tra nhanh — tính RSI 14 chu kỳ trên dữ liệu ngẫu nhiên
 close = np.random.random(100) * 100
@@ -480,8 +485,8 @@ functions = talib.get_functions()  # 200+ tên
 
 # Trợ giúp hàm (ví dụ: RSI)
 print(talib.abstract.RSI.info)
-# Hiển thị: {'name': 'RSI', 'group': 'Momentum Indicators',
-#         'input': ['close'], 'parameters': {'timeperiod': 14}, ...}
+# Hiển thị: {name: RSI, group: 'Momentum Indicators',
+#         input: [close], parameters: {timeperiod: 14}, ...}
 ```
 
 ### Câu 4: TA-Lib có an toàn cho luồng khi sử dụng đồng thờ không?

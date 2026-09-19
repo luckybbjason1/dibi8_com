@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/httpie" />
 title: 'HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs curl, wget in 2026'
 description: 'HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions. Compatible with Python, pip, Homebrew, Docker. Covers installation, benchmark comparison, production hardening, and FAQ.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +16,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/httpie/cli'
 stars: 38200
-maintainer: 'httpie'
+maintainer: httpie
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['httpie', 'cli', 'http-client', 'api-testing', 'curl-alternative', 'json', 'terminal', 'developer-tools']
+tags: [httpie, cli, 'http-client', 'api-testing', 'curl-alternative', json, terminal, 'developer-tools']
 aliases:
 - /posts/httpie/
 ---
@@ -354,7 +356,7 @@ http --offline POST api.example.com/v2/users \
     Authorization:"Bearer <token>" \
     name="Jane Doe" \
     email="jane@example.com" \
-    role:="['admin', 'editor']" \
+    role:="[admin, editor]" \
     active:=true
 ```
 

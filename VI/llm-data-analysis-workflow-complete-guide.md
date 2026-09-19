@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llm-data-analysis-workflow-complete-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-data-analysis-workflow-complete-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-data-analysis-workflow-complete-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-data-analysis-workflow-complete-guide" />
 title: 'Sử Dụng LLM Để Phân Tích Dữ Liệu: Hướng Dẫn Toàn Diện Với PandasAI, Code Interpreter và OpenAI'
 description: 'Khám phá cách sử dụng LLM để phân tích dữ liệu hiệu quả với PandasAI, ChatGPT Code Interpreter và OpenAI API. So sánh ưu nhược điểm và hướng dẫn thực hành chi tiết.'
 date: 2026-05-18 00:00:00+08:00

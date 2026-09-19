@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
 title: "rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026"
 description: "2026 年开发者最头疼的问题：AI 编程工具账单暴涨。rtk 用 Rust 单二进制实现 CLI 代理，自动过滤压缩命令输出，降低 60-90% token 消耗。支持 Claude Code、Cursor、GitHub Copilot 等 13 款工具，零配置即插即用。"
 keywords: ["rtk", "Claude Code 省钱", "LLM token 优化", "AI 编程成本", "Rust CLI 工具", "开发者降本", "token 压缩", "AI 代理工具"]

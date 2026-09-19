@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/stable-diffusion-webui" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui" />
 title: 'Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) là giao diện web tạo ảnh AI cục bộ phổ biến nhất. Tương thích với ControlNet, LoRA, ComfyUI. Bao gồm cài đặt Windows, Linux, Docker, cấu hình mở rộng, tối ưu production và benchmark GPU.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
 stars: 159000
-maintainer: 'AUTOMATIC1111'
+maintainer: AUTOMATIC1111
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['stable-diffusion', 'automatic1111', 'tạo-ảnh', 'ai-webui', 'controlnet', 'lora', 'docker', 'gpu']
+tags: ['stable-diffusion', automatic1111, 'tạo-ảnh', 'ai-webui', controlnet, lora, docker, gpu]
 aliases:
 - /vi/posts/stable-diffusion-webui/
 ---
@@ -397,7 +402,7 @@ payload = {
 response = requests.post(url, json=payload)
 result = response.json()
 
-for i, img_data in enumerate(result['images']):
+for i, img_data in enumerate(result[images]):
     with open(f"output_{i}.png", "wb") as f:
         f.write(base64.b64decode(img_data))
 ```
@@ -424,13 +429,13 @@ def generate_image(prompt, filename, width=1024, height=1024):
     response = requests.post(API_URL, json=payload)
     result = response.json()
     with open(filename, "wb") as f:
-        f.write(base64.b64decode(result['images'][0]))
+        f.write(base64.b64decode(result[images][0]))
     return filename
 
 with open("prompts.csv", "r") as f:
     reader = csv.DictReader(f)
     for i, row in enumerate(reader):
-        generate_image(row['prompt'], f"output_{i:04d}.png")
+        generate_image(row[prompt], f"output_{i:04d}.png")
 ```
 
 ### Bảo Mật Production

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cogvideo" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cogvideo" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cogvideo" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cogvideo" />
 title: 'CogVideo: 12.7K Stars — 2026 완전한 텍스트-비디오 설정 가이드'
 description: 'CogVideo(CogVideoX)는 Zhipu AI가 개발한 텍스트 및 이미지-비디오 생성 모델입니다. ComfyUI, Diffusers, SAT 및 Wan/HunyuanVideo/Open-Sora 통합을 지원합니다. 설치, Docker, 추론, 미세 조정, 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['cogvideo', 'cogvideox', '텍스트-비디오', '확산트랜스포머', 'zhipu-ai', '비디오생성', '오픈소스-ai', 'comfyui']
+tags: [cogvideo, cogvideox, '텍스트-비디오', 확산트랜스포머, 'zhipu-ai', 비디오생성, '오픈소스-ai', comfyui]
 aliases:
 - /kr/posts/cogvideo/
 ---
@@ -529,9 +534,9 @@ GPU에 따라 순서대로 이 최적화를 적용합니다:
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-INFERENCE_COUNT = Counter('cogvideo_inferences_total', '총 추론 횟수')
-INFERENCE_TIME = Histogram('cogvideo_inference_seconds', '추론 지연 시간')
-VRAM_USAGE = Histogram('cogvideo_vram_bytes', '최대 VRAM 사용량')
+INFERENCE_COUNT = Counter(cogvideo_inferences_total, '총 추론 횟수')
+INFERENCE_TIME = Histogram(cogvideo_inference_seconds, '추론 지연 시간')
+VRAM_USAGE = Histogram(cogvideo_vram_bytes, '최대 VRAM 사용량')
 
 start_http_server(9090)
 

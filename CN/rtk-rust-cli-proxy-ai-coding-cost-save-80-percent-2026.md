@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
 title: "I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)"
 description: "Developers are burning $500–2000/month on AI coding tools. rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context, slashing token consumption by 60–90% across Claude Code, Cursor, Copilot, Codex, and 8 other agents."
 keywords: ["rtk", "LLM token optimization", "reduce Claude Code costs", "AI coding cost reduction", "Rust CLI proxy", "developer productivity 2026", "token compression tool", "AI agent efficiency"]

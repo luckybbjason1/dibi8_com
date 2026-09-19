@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-search-tools-perplexity-gemini-chatgpt" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-search-tools-perplexity-gemini-chatgpt" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-search-tools-perplexity-gemini-chatgpt" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-search-tools-perplexity-gemini-chatgpt" />
 title: 'So Sánh Công Cụ Tìm Kiếm AI: Perplexity vs Google Gemini vs ChatGPT Search 2025'
 description: 'So sánh chi tiết Perplexity, Google Gemini, ChatGPT Search và các công cụ tìm kiếm AI hàng đầu 2025. Đánh giá độ chính xác, tốc độ, nguồn tham khảo và tính năng nổi bật.'
 date: 2026-05-18 00:00:00+08:00

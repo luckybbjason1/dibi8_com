@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chroma-vector-database-python" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chroma-vector-database-python" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chroma-vector-database-python" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chroma-vector-database-python" />
 title: 'Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập trình viên cho RAG, Nhanh hơn 50 lần — Hướng dẫn Python'
 description: 'Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiếm embedding và triển khai production. Bao gồm benchmark, so sánh và trường hợp sử dụng thực tế.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'chromadb/chroma'
 stars: 18000
-maintainer: 'chromadb'
+maintainer: chromadb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

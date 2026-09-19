@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/mempalace" />
 title: "MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memory Framework (2026)"
 description: "MemPalace is the best-benchmarked open-source AI memory system. Learn how to install it, mine your project history, and retrieve context with semantic search so your AI assistant never forgets again."
 date: 2026-05-15T04:20:25+09:00

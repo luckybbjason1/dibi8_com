@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-harness-plugin-ecosystem-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-harness-plugin-ecosystem-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026" />
 title: 'DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南'
 description: 'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'
 date: 2026-09-19

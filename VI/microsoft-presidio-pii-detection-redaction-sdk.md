@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-presidio-pii-detection-redaction-sdk" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-presidio-pii-detection-redaction-sdk" />
 lang: vi
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: "Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử Lý Dữ Liệu của Microsoft (9,4K Sao)"
@@ -23,7 +28,7 @@ github_repo: 'https://github.com/microsoft/presidio'
 last_maintained: '2026-06-21'
 draft: false
 categories: ['dev-utils']
-tags: ["pháo đài", "phát hiện PII", "ẩn dữ liệu", "ẩn danh dữ liệu", "Microsoft", "xử lý ngôn ngữ tự nhiên", "nhận dạng thực thể có tên", "chỉnh sửa hình ảnh", "dicom", "gdpr", "HIPAA", "mở-ssf", "quyền riêng tư", "bảo vệ dữ liệu"]
+tags: ["pháo đài", "phát hiện pii", "ẩn dữ liệu", "ẩn danh dữ liệu", "microsoft", "xử lý ngôn ngữ tự nhiên", "nhận dạng thực thể có tên", "chỉnh sửa hình ảnh", "dicom", "gdpr", "hipaa", "mở-ssf", "quyền riêng tư", "bảo vệ dữ liệu"]
 aliases:
 - /posts/microsoft-presidio-pii-detection-redaction-sdk/
 faqs:
@@ -148,7 +153,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 
 text = "John Smith's SSN is 123-45-6789 and his email is john@example.com"
-results = analyzer.analyze(text=text, language='en')
+results = analyzer.analyze(text=text, language=en)
 
 for result in results:
     print(f"Entity: {result.entity_type}, "
@@ -241,7 +246,7 @@ registry = RecognizerRegistry()
 registry.add_recognizer(EmployeeIdRecognizer())
 
 analyzer = AnalyzerEngine(registry=registry)
-results = analyzer.analyze("Employee ID: EMP-1234-5678", language='en')
+results = analyzer.analyze("Employee ID: EMP-1234-5678", language=en)
 ```
 
 Các bộ nhận dạng tùy chỉnh có thể tận dụng:
@@ -427,7 +432,7 @@ from presidio_analyzer import AnalyzerEngine
 analyzer = AnalyzerEngine()
 results = analyzer.analyze(
     text='Call John at 555-123-4567 or email john@example.com',
-    language='en'
+    language=en
 )
 for r in results:
     print(f'{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})')

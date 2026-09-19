@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/modal-serverless-gpu-compute" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/modal-serverless-gpu-compute" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/modal-serverless-gpu-compute" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/modal-serverless-gpu-compute" />
 title: Modal 서버리스 GPU 컴퓨팅 — 인프라 없이 ML 파이프라인 실행
 description: Modal 서버리스 GPU 인프라 완전 가이드. 클러스터 관리 없이 LLM 추론, 파인튜닝 파이프라인, 배치 ML 워크로드 배포. 가격, 벤치마크, 실제 패턴 비교.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']

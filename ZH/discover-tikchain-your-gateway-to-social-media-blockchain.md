@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/discover-tikchain-your-gateway-to-social-media-blockchain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/discover-tikchain-your-gateway-to-social-media-blockchain" />
 title: "发现 TikChain - 您的社交媒体区块链网关"
 description: "发现TikChain：通往社交媒体区块链的门户。通过创建内容和参与去中心化社交网络赚取奖励。"
 date: 2026-05-15T04:20:25+09:00

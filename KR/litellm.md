@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
 title: 'LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오버 — 2026 프로덕션 게이트웨이 설정'
 description: 'LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock과 호환. Docker 배포, 가상 키, 로드 밸런싱, 캐싱, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/BerriAI/litellm'
 stars: 22500
-maintainer: 'BerriAI'
+maintainer: BerriAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['litellm', 'llm-게이트웨이', '오픈소스', 'docker', '프로덕션', 'ai-인프라', '프록시-서버', '멀티-모델']
+tags: [litellm, 'llm-게이트웨이', 오픈소스, docker, 프로덕션, 'ai-인프라', '프록시-서버', '멀티-모델']
 aliases:
 - /kr/posts/litellm/
 - /kr/resources/llm-frameworks/litellm-unified-api-tutorial/
@@ -94,7 +99,7 @@ mkdir -p litellm-gateway && cd litellm-gateway
 curl -O https://raw.githubusercontent.com/BerriAI/litellm/main/docker-compose.yml
 
 # 환경 파일 생성
-cat > .env << 'EOF'
+cat > .env << EOF
 LITELLM_MASTER_KEY="sk-litellm-admin-$(openssl rand -hex 16)"
 LITELLM_SALT_KEY="sk-salt-$(openssl rand -hex 32)"
 OPENAI_API_KEY="sk-your-openai-key"

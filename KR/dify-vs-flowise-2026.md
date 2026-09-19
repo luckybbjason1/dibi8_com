@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dify-vs-flowise-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dify-vs-flowise-2026" />
 title: 'Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스'
 description: 'Dify(엔터프라이즈 RAG, 멀티 모델, 프롬프트 관리, 셀프호스팅)와 Flowise(시각적 LangChain 빌더, 경량, 오픈소스)를 항목별 비교 — 기능, 셀프호스팅, AI 파이프라인, 2026년 팀별 적합 선택.'
 date: 2026-06-07 00:00:00+08:00

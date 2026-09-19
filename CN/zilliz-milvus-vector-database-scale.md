@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/zilliz-milvus-vector-database-scale" />
 title: 'Milvus/Zilliz 2026: The Vector Database Handling 10 Billion Vectors at Millisecond Latency — Deployment Guide'
 description: 'Production guide for Milvus 2.5: billion-scale vector search, GPU-accelerated indexing, Kubernetes deployment, hybrid search, and Zilliz Cloud setup.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Milvus', 'Zilliz', 'vector-database', 'ANN', 'similarity-search', 'kubernetes', 'GPU-indexing', 'AI-infrastructure']
+tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 'gpu-indexing', 'ai-infrastructure']
 aliases:
 - /posts/zilliz-milvus-vector-database-scale/
 ---
@@ -106,7 +108,7 @@ pip install pymilvus==2.5.10
 # Test connection
 python -c "
 from pymilvus import connections, utility
-connections.connect(host='localhost', port='19530')
+connections.connect(host=localhost, port=19530)
 print('Milvus version:', utility.get_server_version())
 "
 ```

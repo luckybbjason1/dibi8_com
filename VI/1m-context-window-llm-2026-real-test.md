@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/1m-context-window-llm-2026-real-test" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/1m-context-window-llm-2026-real-test" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/1m-context-window-llm-2026-real-test" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/1m-context-window-llm-2026-real-test" />
 title: 'LLM Cửa sổ Ngữ cảnh 1M 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Thử nghiệm Thực tế'
 description: 'Cả hai đều tuyên bố ngữ cảnh 1M token. Chúng tôi nạp một codebase 950K token vào mỗi mô hình và đo: chất lượng truy xuất, độ trễ, chi phí, và bên nào thực sự giữ lời hứa 1M so với bên nào sụp đổ ở đuôi dài.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Gemini', 'Claude', 'Long-context LLM']
+tech_stack: [Gemini, Claude, 'Long-context LLM']
 application_domain: LLM Frameworks
 source_version: '2026 Q2'
 licensing_model: Commercial
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['gemini', 'claude', 'long-context', 'llm', '2026']
+tags: [gemini, claude, 'long-context', llm, 2026]
 aliases:
 - /vi/posts/1m-context-window-llm-2026-real-test/
 faq:

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
 description: AiWind 是一个免费 AI 提示词库，收录 1000+ 针对 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney
   等主流模型的专业提示词，覆盖写实肖像、赛博朋克、3D 渲染等多种风格。

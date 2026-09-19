@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/mlflow-experiment-tracking-production" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mlflow-experiment-tracking-production" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mlflow-experiment-tracking-production" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mlflow-experiment-tracking-production" />
 title: 'MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南'
 description: 'MLflow 在 ML 实验追踪、模型注册表和模型服务方面的完整指南。涵盖设置、Python SDK、生产部署和 10,000+ 实验的基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'mlflow/mlflow'
 stars: 21000
-maintainer: 'mlflow'
+maintainer: mlflow
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['MLflow', '机器学习', 'MLOps', '实验追踪', '模型注册表', '模型服务', 'Python', '开源', '数据科学']
+tags: [mlflow, 机器学习, mlops, 实验追踪, 模型注册表, 模型服务, python, 开源, 数据科学]
 aliases:
 - /zh/posts/mlflow-experiment-tracking-production/
 ---
@@ -98,10 +103,10 @@ mlflow.set_tracking_uri('http://localhost:5000')
 mlflow.set_experiment('quick-start')
 
 with mlflow.start_run():
-    mlflow.log_param('learning_rate', 0.01)
-    mlflow.log_param('epochs', 10)
-    mlflow.log_metric('accuracy', 0.94)
-    mlflow.log_metric('f1_score', 0.93)
+    mlflow.log_param(learning_rate, 0.01)
+    mlflow.log_param(epochs, 10)
+    mlflow.log_metric(accuracy, 0.94)
+    mlflow.log_metric(f1_score, 0.93)
     print(f'Run ID: {mlflow.active_run().info.run_id}')
 "
 ```
@@ -174,12 +179,12 @@ curl http://localhost:5000/api/2.0/mlflow/experiments/list
 
 ```bash
 # 创建 droplet 并安装 MLflow
-ssh root@your-droplet-ip << 'EOF'
+ssh root@your-droplet-ip << EOF
 apt update && apt install -y python3-pip
 pip install mlflow[extras]==2.22.0 psycopg2-binary
 
 # 为 MLflow 创建 systemd 服务
-cat > /etc/systemd/system/mlflow.service << 'SERVICEDEF'
+cat > /etc/systemd/system/mlflow.service << SERVICEDEF
 [Unit]
 Description=MLflow Tracking Server
 After=network.target
@@ -213,7 +218,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score
 import warnings
-warnings.filterwarnings('ignore')
+warnings.filterwarnings(ignore)
 
 # 设置追踪服务器和实验
 mlflow.set_tracking_uri('http://localhost:5000')
@@ -222,10 +227,10 @@ mlflow.set_experiment('wine-classification')
 def run_experiment(n_estimators, max_depth, min_samples_split):
     with mlflow.start_run():
         # 记录参数
-        mlflow.log_param('n_estimators', n_estimators)
-        mlflow.log_param('max_depth', max_depth)
-        mlflow.log_param('min_samples_split', min_samples_split)
-        mlflow.log_param('model_type', 'RandomForest')
+        mlflow.log_param(n_estimators, n_estimators)
+        mlflow.log_param(max_depth, max_depth)
+        mlflow.log_param(min_samples_split, min_samples_split)
+        mlflow.log_param(model_type, RandomForest)
 
         # 加载数据并训练
         X, y = load_wine(return_X_y=True)
@@ -244,23 +249,23 @@ def run_experiment(n_estimators, max_depth, min_samples_split):
         # 评估
         predictions = clf.predict(X_test)
         accuracy = accuracy_score(y_test, predictions)
-        f1 = f1_score(y_test, predictions, average='weighted')
+        f1 = f1_score(y_test, predictions, average=weighted)
 
         # 记录指标
-        mlflow.log_metric('accuracy', accuracy)
-        mlflow.log_metric('f1_score', f1)
+        mlflow.log_metric(accuracy, accuracy)
+        mlflow.log_metric(f1_score, f1)
 
         # 记录模型
         mlflow.sklearn.log_model(
             clf,
-            artifact_path='model',
+            artifact_path=model,
             registered_model_name='wine-classifier'
         )
 
         print(f'Run completed: accuracy={accuracy:.4f}, f1={f1:.4f}')
 
 # 运行多个实验
-if __name__ == '__main__':
+if __name__ == __main__:
     configs = [
         (50, 5, 0.01),
         (100, 10, 0.02),
@@ -319,12 +324,12 @@ mlflow.pytorch.autolog()
 
 def train_model(epochs, lr, batch_size):
     with mlflow.start_run():
-        mlflow.log_param('epochs', epochs)
-        mlflow.log_param('learning_rate', lr)
-        mlflow.log_param('batch_size', batch_size)
+        mlflow.log_param(epochs, epochs)
+        mlflow.log_param(learning_rate, lr)
+        mlflow.log_param(batch_size, batch_size)
 
-        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        mlflow.log_param('device', str(device))
+        device = torch.device(cuda if torch.cuda.is_available() else cpu)
+        mlflow.log_param(device, str(device))
 
         # 数据加载
         transform = transforms.Compose([
@@ -359,13 +364,13 @@ def train_model(epochs, lr, batch_size):
                 total_loss += loss.item()
 
             avg_loss = total_loss / len(train_loader)
-            mlflow.log_metric('train_loss', avg_loss, step=epoch)
+            mlflow.log_metric(train_loss, avg_loss, step=epoch)
             print(f'Epoch {epoch}: loss={avg_loss:.4f}')
 
         # 记录最终模型
-        mlflow.pytorch.log_model(model, 'model')
+        mlflow.pytorch.log_model(model, model)
 
-if __name__ == '__main__':
+if __name__ == __main__:
     train_model(epochs=5, lr=0.001, batch_size=64)
 ```
 
@@ -390,7 +395,7 @@ print(f'Registered version: {result.version}')
 client.transition_model_version_stage(
     name=model_name,
     version=result.version,
-    stage='Staging'
+    stage=Staging
 )
 
 # 添加版本描述
@@ -404,7 +409,7 @@ client.update_model_version(
 client.set_model_version_tag(
     name=model_name,
     version=result.version,
-    key='reviewed_by',
+    key=reviewed_by,
     value='ml-lead@company.com'
 )
 ```
@@ -503,8 +508,8 @@ mlflow.azureml.deploy(
     model_uri='models:/wine-classifier/Production',
     workspace=ws,
     deployment_config={
-        'computeType': 'aci',
-        'containerResourceRequirements': {'cpu': 1, 'memoryInGB': 2}
+        computeType: aci,
+        containerResourceRequirements: {cpu: 1, memoryInGB: 2}
     },
     service_name='wine-classifier-aci'
 )
@@ -558,8 +563,8 @@ import os
 app = Flask(__name__)
 
 VALID_CREDENTIALS = {
-    'data-scientist': 'secure_password_123',
-    'ml-engineer': 'engineer_pass_456'
+    'data-scientist': secure_password_123,
+    'ml-engineer': engineer_pass_456
 }
 
 def check_auth():
@@ -613,7 +618,7 @@ for exp in experiments:
         filter_string=f"attributes.start_time < {int(cutoff.timestamp() * 1000)}"
     )
     for run in runs:
-        if run.info.status == 'FINISHED':
+        if run.info.status == FINISHED:
             client.delete_run(run.info.run_id)
             print(f'Deleted run {run.info.run_id} from {exp.name}')
 

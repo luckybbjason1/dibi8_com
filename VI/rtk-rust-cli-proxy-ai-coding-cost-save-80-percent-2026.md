@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026" />
 title: "Giảm 80% Chi Phí AI Coding Với rtk: Công Cụ CLI Bằng Rust Giúp Lập Trình Viên Tiết Kiệm Hàng Triệu Đồng Mỗi Tháng | Hướng Dẫn LLM Token Optimization 2026"
 description: "Lập trình viên Việt Nam đang đối mặt với hóa đơn AI tăng vọt. rtk là công cụ proxy CLI viết bằng Rust, chỉ một file binary, không phụ thuộc, tự động nén đầu ra lệnh terminal giúp giảm 60-90% token tiêu thụ khi dùng Claude Code, Cursor, Copilot, Codex và 9 công cụ AI khác. Cài đặt 30 giây, không cần cấu hình."
 keywords: ["rtk", "tiết kiệm token LLM", "giảm chi phí AI coding", "Claude Code tiết kiệm", "công cụ CLI Rust", "tối ưu hóa token", "lập trình AI giá rẻ", "công cụ phát triển 2026"]

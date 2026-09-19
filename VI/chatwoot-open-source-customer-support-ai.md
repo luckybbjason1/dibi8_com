@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatwoot-open-source-customer-support-ai" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở với Tích Hợp AI Agent — Hướng Dẫn Tự Host'
 description: 'Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích hợp AI agent, kết nối đa kênh. Benchmark thực tế và cấu hình production.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'chatwoot/chatwoot'
 stars: 23000
-maintainer: 'chatwoot'
+maintainer: chatwoot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['chatwoot', 'hỗ-trợ-khách-hàng', 'mã-nguồn-mở', 'AI-chatbot', 'tự-host', 'docker', 'ruby-on-rails', 'live-chat']
+tags: [chatwoot, 'hỗ-trợ-khách-hàng', 'mã-nguồn-mở', 'ai-chatbot', 'tự-host', docker, 'ruby-on-rails', 'live-chat']
 aliases:
 - /vi/posts/chatwoot-open-source-customer-support-ai/
 ---
@@ -411,10 +416,10 @@ services:
 production:
   primary:
     <<: *default
-    host: <%= ENV['POSTGRES_HOST'] %>
+    host: <%= ENV[POSTGRES_HOST] %>
   primary_replica:
     <<: *default
-    host: <%= ENV['POSTGRES_REPLICA_HOST'] %>
+    host: <%= ENV[POSTGRES_REPLICA_HOST] %>
     replica: true
 ```
 
@@ -459,7 +464,7 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # Thêm vào prometheus.yml
 
 scrape_configs:
-  - job_name: 'chatwoot'
+  - job_name: chatwoot
     static_configs:
       - targets: ['support.yourdomain.com:3000']
     metrics_path: '/metrics'
@@ -478,7 +483,7 @@ RATE_LIMIT_PERIOD=60  # giây cho mỗi IP
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-add_header Content-Security-Policy "default-src 'self'" always;
+add_header Content-Security-Policy "default-src self" always;
 ```
 
 ## So sánh với các giải pháp thay thế

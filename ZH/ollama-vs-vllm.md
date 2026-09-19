@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ollama-vs-vllm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-vs-vllm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-vs-vllm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-vs-vllm" />
 title: 'Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐'
 description: 'Ollama（简单的本地 LLM 运行器）与 vLLM（高吞吐生产推理引擎）逐项对比 — 易用性、吞吐、硬件、并发、规模化成本。2026 更新。'
 date: 2026-06-06 00:00:00+08:00

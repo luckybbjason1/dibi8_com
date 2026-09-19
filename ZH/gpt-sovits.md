@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gpt-sovits" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-sovits" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-sovits" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-sovits" />
 title: 'GPT-SoVITS: 57.5K+ Stars — AI声音克隆生产部署指南 2026'
 description: 'GPT-SoVITS (GSV) 是一款少样本语音克隆和TTS工具，支持零样本推理。兼容ComfyUI、RVC和MeloTTS。涵盖Docker部署、语音训练、API配置和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['语音克隆', '文本转语音', 'gpt-sovits', 'TTS', 'AI语音', 'Docker', 'RVC', 'Python']
+tags: [语音克隆, 文本转语音, 'gpt-sovits', tts, ai语音, docker, rvc, python]
 aliases:
 - /zh/posts/gpt-sovits/
 ---
@@ -152,7 +157,7 @@ docker compose run --service-ports GPT-SoVITS-CU128
 # docker-compose.override.yaml 用于生产
 services:
   GPT-SoVITS-CU128:
-    shm_size: '16g'
+    shm_size: 16g
     environment:
       - is_half=true
     ports:

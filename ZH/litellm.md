@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/litellm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
 title: 'LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 2026 生产级网关配置'
 description: 'LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖 Docker 部署、虚拟密钥、负载均衡、缓存和生产加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/BerriAI/litellm'
 stars: 22500
-maintainer: 'BerriAI'
+maintainer: BerriAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['litellm', 'llm网关', '开源', 'docker', '生产部署', 'ai基础设施', '代理服务器', '多模型']
+tags: [litellm, llm网关, 开源, docker, 生产部署, ai基础设施, 代理服务器, 多模型]
 aliases:
 - /zh/posts/litellm/
 - /zh/resources/llm-frameworks/litellm-unified-api-tutorial/
@@ -94,7 +99,7 @@ mkdir -p litellm-gateway && cd litellm-gateway
 curl -O https://raw.githubusercontent.com/BerriAI/litellm/main/docker-compose.yml
 
 # 创建环境文件
-cat > .env << 'EOF'
+cat > .env << EOF
 LITELLM_MASTER_KEY="sk-litellm-admin-$(openssl rand -hex 16)"
 LITELLM_SALT_KEY="sk-salt-$(openssl rand -hex 32)"
 OPENAI_API_KEY="sk-your-openai-key"

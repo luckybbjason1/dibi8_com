@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/hkuds-ai-trader" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hkuds-ai-trader" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hkuds-ai-trader" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hkuds-ai-trader" />
 title: "AI-Trader：来自 HKUDS 的原生 AI 交易平台"
 description: "AI-Trader 是 HKUDS 推出的原生 AI 交易平台，使 Claude Code、Codex、Cursor 和 OpenClaw 等 AI 编程代理能够自主执行交易、管理投资组合和优化策略。"
 date: 2026-06-10

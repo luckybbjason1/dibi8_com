@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
 title: 'Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026년 설치 가이드'
 description: 'Jesse AI 트레이딩 프레임워크의 프로덕션 가이드 — 설치, 30개 이상 지표로 백테스팅, 커스텀 전략 구축, Python으로 라이브 암호화폐 트레이딩 봇 배포.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Jesse', '암호화폐 트레이딩', 'Python', '백테스팅', '기술 지표', '알고리즘 트레이딩', 'AI 트레이딩', '퀀트 트레이딩']
+tags: [jesse, '암호화폐 트레이딩', python, 백테스팅, '기술 지표', '알고리즘 트레이딩', 'ai 트레이딩', '퀀트 트레이딩']
 aliases:
 - /kr/posts/jesse-ai-trading-framework/
 ---
@@ -121,13 +126,13 @@ my-trading-bot/
 ```python
 # config.py — 데이터베이스 설정
 DATABASES = {
-    'default': {
-        'driver': 'postgres',
-        'host': 'localhost',
-        'port': 5432,
-        'dbname': 'jesse_db',
-        'user': 'jesse_user',
-        'password': 'your_secure_password'
+    default: {
+        driver: postgres,
+        host: localhost,
+        port: 5432,
+        dbname: jesse_db,
+        user: jesse_user,
+        password: your_secure_password
     }
 }
 ```
@@ -136,9 +141,9 @@ SQLite로 빠른 테스트:
 
 ```python
 DATABASES = {
-    'default': {
-        'driver': 'sqlite',
-        'path': 'storage/jesse.db'
+    default: {
+        driver: sqlite,
+        path: 'storage/jesse.db'
     }
 }
 ```
@@ -152,12 +157,12 @@ DATABASES = {
 from jesse.enums import timeframes
 
 routes = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
-    {'exchange': 'Binance', 'symbol': 'ETH-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 1h, strategy: SimpleMA},
+    {exchange: Binance, symbol: 'ETH-USDT', timeframe: 1h, strategy: SimpleMA},
 ]
 
 extra_candles = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '4h'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 4h},
 ]
 ```
 
@@ -276,11 +281,11 @@ class MLStrategy(Strategy):
 ```python
 # config.py — Telegram 알림 설정
 NOTIFICATIONS = {
-    'enabled': True,
-    'provider': 'telegram',
-    'telegram_bot_token': 'YOUR_BOT_TOKEN',
-    'telegram_chat_id': 'YOUR_CHAT_ID',
-    'events': ['order_executed', 'trade_completed', 'error']
+    enabled: True,
+    provider: telegram,
+    telegram_bot_token: YOUR_BOT_TOKEN,
+    telegram_chat_id: YOUR_CHAT_ID,
+    events: [order_executed, trade_completed, error]
 }
 ```
 
@@ -332,9 +337,9 @@ volumes:
 # metrics.py — Prometheus용 메트릭 낳출
 from prometheus_client import Counter, Gauge, start_http_server
 
-trades_total = Counter('jesse_trades_total', 'Total trades executed')
-position_size = Gauge('jesse_position_size', 'Current position size')
-pnl_current = Gauge('jesse_pnl_percent', 'Current P&L percentage')
+trades_total = Counter(jesse_trades_total, 'Total trades executed')
+position_size = Gauge(jesse_position_size, 'Current position size')
+pnl_current = Gauge(jesse_pnl_percent, 'Current P&L percentage')
 
 # 9090 포트에서 메트릭 서버 시작
 start_http_server(9090)
@@ -386,10 +391,10 @@ Jesse는 2020년부터 개인 트레이더와 소규모 퀀트 펀드에 의해 
 ```python
 # config.py — 리스크 관리 설정
 RISK_MANAGEMENT = {
-    'max_risk_per_trade': 0.02,      # 트레이드당 최대 2% 리스크
-    'max_drawdown_stop': 0.15,       # 15% 드로다운 시 트레이딩 중단
-    'daily_loss_limit': 0.05,        # 5% 일일 손실 한도
-    'position_size_limit': 0.25,     # 단일 포지션 최대 25%
+    max_risk_per_trade: 0.02,      # 트레이드당 최대 2% 리스크
+    max_drawdown_stop: 0.15,       # 15% 드로다운 시 트레이딩 중단
+    daily_loss_limit: 0.05,        # 5% 일일 손실 한도
+    position_size_limit: 0.25,     # 단일 포지션 최대 25%
 }
 ```
 
@@ -400,7 +405,7 @@ RISK_MANAGEMENT = {
 class MultiTFStrategy(Strategy):
     def prepare(self):
         # 트렌드 편향을 위해 4시간 캔들 사용
-        self.h4_candles = self.get_candles('Binance', 'BTC-USDT', '4h')
+        self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
     def should_long(self):
         h4_sma50 = ta.sma(self.h4_candles, 50)
@@ -510,10 +515,10 @@ API 키를 절대 버전 관리에 커밋하지 마라. 환경 변수를 사용�
 import os
 
 EXCHANGES = {
-    'Binance': {
-        'api_key': os.environ['BINANCE_API_KEY'],
-        'api_secret': os.environ['BINANCE_API_SECRET'],
-        'sandbox': False
+    Binance: {
+        api_key: os.environ[BINANCE_API_KEY],
+        api_secret: os.environ[BINANCE_API_SECRET],
+        sandbox: False
     }
 }
 ```

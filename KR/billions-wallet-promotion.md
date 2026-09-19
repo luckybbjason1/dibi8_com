@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/billions-wallet-promotion" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/billions-wallet-promotion" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/billions-wallet-promotion" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/billions-wallet-promotion" />
 title: "Billions 지갑 발견 - 귀하의 궁극적인 암호화폐 동반자"
 description: "Billions Wallet 프로모션: 고급 기능을 갖춘 안전한 암호화폐 지갑. 비트코인, 이더리움 및 100개 이상의 암호화폐를 안전하게 관리하세요."
 date: 2026-05-15T04:20:25+09:00

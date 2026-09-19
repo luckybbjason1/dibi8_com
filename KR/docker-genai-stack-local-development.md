@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: LangChain, 벡터 DB, LLM을 하나의 Docker Compose로 실행하기 — 2026 로컬 개발 완벽 가이드'
 description: 'Docker GenAI Stack으로 완전한 로컬 GenAI 개발 환경을 구축하세요. LangChain, Neo4j, Ollama, 벡터 데이터베이스를 단일 docker-compose에 포함. 2026년 프로덕션 준비 튜토리얼.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/docker/genai-stack'
 stars: 5500
-maintainer: 'docker'
+maintainer: docker
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Docker GenAI Stack']
+tags: ['docker genai stack']
 aliases:
 - /kr/posts/docker-genai-stack-local-development/
 ---
@@ -149,7 +154,7 @@ chain = GraphCypherQAChain.from_llm(
 )
 
 result = chain.invoke({"query": "What companies work in the AI sector?"})
-print(result['result'])
+print(result[result])
 ```
 
 ### Neo4j 지식 그래프 설정
@@ -162,7 +167,7 @@ Stack은 Neo4j 시작 시 자동으로 벡터 인덱스를 생성합니다. 그�
 
 # Cypher: 벡터 인덱스 확인
 SHOW INDEXES YIELD name, type, entityType
-WHERE type = 'VECTOR'
+WHERE type = VECTOR
 ```
 
 ```cypher
@@ -171,7 +176,7 @@ CREATE VECTOR INDEX document_embeddings FOR (d:Document)
 ON (d.embedding)
 OPTIONS {indexConfig: {
  `vector.dimensions`: 384,
- `vector.similarity_function`: 'cosine'
+ `vector.similarity_function`: cosine
 }}
 ```
 

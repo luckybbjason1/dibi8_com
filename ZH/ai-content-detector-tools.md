@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-content-detector-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-content-detector-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-content-detector-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-content-detector-tools" />
 title: '2025年最佳AI内容检测工具对比：GPTZero、Turnitin AI、Copyleaks等全面评测'
 description: '深入对比GPTZero、Turnitin AI、Copyleaks、Originality.ai等主流AI内容检测工具，涵盖检测原理、准确率、定价及适用场景，助你选出最合适的AI文本检测器。'
 date: 2026-05-18 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-18'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['AI内容检测', 'GPTZero', 'Turnitin', 'Copyleaks', 'Originality.ai']
+tags: [ai内容检测, gptzero, turnitin, copyleaks, 'originality.ai']
 aliases:
 - /zh/posts/ai-content-detector-tools/
 ---

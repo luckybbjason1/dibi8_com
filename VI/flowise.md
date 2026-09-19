@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/flowise" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
 title: 'Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng Dẫn Cài Đặt 5 Phút 2026'
 description: 'Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Hướng dẫn cài đặt Docker, bảo mật production, triển khai API và đánh giá trung thực.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/FlowiseAI/Flowise'
 stars: 52948
-maintainer: 'FlowiseAI'
+maintainer: FlowiseAI
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Flowise', 'LangChain', 'AI Agent', 'RAG', 'Docker', 'LLM', 'Mã nguồn mở', 'No-Code']
+tags: [flowise, langchain, 'ai agent', rag, docker, llm, 'mã nguồn mở', 'no-code']
 aliases:
 - /vi/posts/flowise/
 - /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
@@ -315,7 +320,7 @@ Trong Flowise, sử dụng node vector store `Qdrant` với host `http://qdrant:
       - "8080:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
     volumes:
       - weaviate_data:/var/lib/weaviate
@@ -388,7 +393,7 @@ Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất 
         backgroundColor: '#3B81F6',
         right: 20,
         bottom: 20,
-        size: 'medium'
+        size: medium
       },
       chatWindow: {
         title: 'Trợ lý hỗ trợ',

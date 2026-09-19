@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-vs-firebase" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-vs-firebase" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-vs-firebase" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-vs-firebase" />
 title: 'Supabase vs Firebase 2026: BaaS nào tốt hơn?'
 description: 'So sánh Supabase mã nguồn mở dựa trên Postgres và Firebase NoSQL của Google — database, auth, storage, realtime, edge functions, giá cả, lock-in, self-host. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00
@@ -135,7 +140,7 @@ App nặng phân tích hoặc AI/RAG: **Supabase thắng 5-10 lần** về hóa 
 - Export dữ liệu Firestore sang JSON qua `firebase-tools` (`firebase firestore:export`)
 - Thiết kế schema Postgres trước — denormalize Firestore thành bảng quan hệ
 - Dùng bulk import của Supabase qua `psql` hoặc CSV uploader của Studio
-- Thay listener Firestore bằng `supabase.channel().on('postgres_changes', ...)`
+- Thay listener Firestore bằng `supabase.channel().on(postgres_changes, ...)`
 - Migrate user Firebase Auth qua API `auth.admin.createUser()` của Supabase (mật khẩu cần re-hash — gửi email reset mật khẩu cho user)
 - Chạy song song hai stack một chu kỳ thanh toán để so sánh hóa đơn
 

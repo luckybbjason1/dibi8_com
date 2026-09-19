@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-codesign-claude-design-alternative" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-claude-design-alternative" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-claude-design-alternative" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-claude-design-alternative" />
 title: "Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 AI 设计神器"
 description: "Open Codesign 是 MIT 协议开源的 Claude Design 替代品。支持多模型、BYOK 自带密钥、本地优先架构，通过自然语言提示词一键生成原型、幻灯片和 PDF。"
 date: 2026-05-15T04:20:25+09:00

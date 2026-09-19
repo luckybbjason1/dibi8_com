@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/caveman" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caveman" />
 title: "Caveman：让 Claude Code Token 消耗减少 65%，省钱又提速"
 description: "Caveman 是一款 Claude Code 技能，通过智能压缩 AI 输出提示词，平均减少 65% Token 消耗，响应速度提升约 3 倍，技术准确性 100% 不变。支持 Claude Code、Cursor、Gemini CLI、Codex 等 30+ AI 编程助手。"
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts" />
 title: 'ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại vs Coqui, MeloTTS 2026'
 description: 'ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, MeloTTS, GPT-SoVITS. Bao gồm cài đặt, benchmark, triển khai production và bảng so sánh.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/2noise/ChatTTS'
 stars: 39300
-maintainer: '2noise'
+maintainer: 2noise
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['chattts', 'text-to-speech', 'tts', 'ai-hội-thoại', 'llm-assistant', 'tổng-hợp-giọng-nói', 'mã-nguồn-mở', 'benchmark']
+tags: [chattts, 'text-to-speech', tts, 'ai-hội-thoại', 'llm-assistant', 'tổng-hợp-giọng-nói', 'mã-nguồn-mở', benchmark]
 aliases:
 - /vi/posts/chattts/
 - /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/

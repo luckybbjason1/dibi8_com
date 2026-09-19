@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/understand-anything-interactive-knowledge-graphs-codebases" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/understand-anything-interactive-knowledge-graphs-codebases" />
 title: "언더스탠드-에니씽: 코드베이스를 위한 상호작용 지식 그래프 — 60K+ 스타 2026"
 description: "Understand-Anything은 모든 코드베이스를 탐색하고 검색하며 쿼리할 수 있는 인터랙티브 지식 그래프로 바꿉니다. Claude Code, Codex, Cursor, Copilot, Gemini CLI와 함께 작동합니다. GitHub 스타 60,339개."
 date: 2026-06-15

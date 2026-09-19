@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: Build High-Performance Async Web Scrapers Handling 10K+ Requests/Second — Python Guide'
 description: 'Master aiohttp 3.11 for high-performance async web scraping in Python. Build scrapers handling 10K+ requests/second with session management, connection pooling, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +21,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['aiohttp', 'async', 'web scraping', 'python', 'http client', 'asyncio']
+tags: [aiohttp, async, 'web scraping', python, 'http client', asyncio]
 aliases:
 - /posts/aiohttp-async-web-scraping/
 ---
@@ -150,7 +152,7 @@ async def main():
     async with aiohttp.ClientSession() as session:
         results = await scrape_titles(session, urls)
         for r in results:
-            print(f"{r['url']}: {r['title']}")
+            print(f"{r[url]}: {r[title]}")
 
 asyncio.run(main())
 ```

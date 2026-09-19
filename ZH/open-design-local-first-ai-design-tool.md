@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-design-local-first-ai-design-tool" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
 title: "Open Design: 替代 Claude Design 的终极本地优先 AI 设计工具"
 description: "深入了解 Open Design，这款拥有 39K+ Star 的开源本地优先 Claude Design 替代品。19 项 AI 技能、71 套设计系统，支持生成原型、幻灯片、视频及多格式导出。"
 date: 2026-05-15T04:20:25+09:00

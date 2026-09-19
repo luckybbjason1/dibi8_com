@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ragflow" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ragflow" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ragflow" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ragflow" />
 title: 'RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与性能基准测试'
 description: 'RAGFlow 是具备深度文档理解和内置 Agent 能力的开源检索增强生成（RAG）引擎。兼容 Ollama、OpenAI、Qdrant、Elasticsearch、Redis。涵盖 Docker 部署、文档导入、检索调优和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/infiniflow/ragflow'
 stars: 80853
-maintainer: 'infiniflow'
+maintainer: infiniflow
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['ragflow', 'RAG引擎', '文档理解', 'Docker部署', 'LLM智能体', '生产级RAG', '开源AI']
+tags: [ragflow, rag引擎, 文档理解, docker部署, llm智能体, 生产级rag, 开源ai]
 aliases:
 - /zh/posts/ragflow/
 ---
@@ -406,7 +411,7 @@ services:
 ```yaml
 # prometheus.yml
 scrape_configs:
-  - job_name: 'ragflow'
+  - job_name: ragflow
     static_configs:
       - targets: ['ragflow-server:9380']
     metrics_path: /metrics

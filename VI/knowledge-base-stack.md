@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/knowledge-base-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-base-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-base-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-base-stack" />
 title: 'Stack Knowledge Base 2026: Xây "Bộ Não Thứ Hai" Với AnythingLLM + RAGFlow + mem0 ($10-25/Tháng)'
 description: 'Stack knowledge base self-host 5 thành phần cho cá nhân hoặc team. AnythingLLM (UI + RAG) + RAGFlow (phân tích doc sâu) + mem0 (memory agent) + AgentMemory MCP (expose MCP) + pick vector DB. Thay $50-200/tháng SaaS (Notion AI + Mem + Glean) bằng $10-25/tháng self-host.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Knowledge Base', 'RAG', 'Bộ não thứ hai', 'Stack', 'Collection']
+categories: [collections]
+tags: ['knowledge base', rag, 'bộ não thứ hai', stack, collection]
 aliases:
   - /posts/knowledge-base-stack/
 ---

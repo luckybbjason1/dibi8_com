@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/continue" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
 title: 'Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2026'
 description: 'Continue.dev（开源 AI 编程助手）VS Code/JetBrains 插件。支持任意 LLM：Ollama、OpenAI、Anthropic、Gemini。对比 GitHub Copilot、Cursor、Tabby。安装教程、配置示例、基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/continuedev/continue'
 stars: 33277
-maintainer: 'continuedev'
+maintainer: continuedev
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['continue.dev', 'ai编程助手', 'vs-code插件', 'jetbrains插件', '开源', 'ollama本地部署', 'copilot替代品', '本地大模型', 'mcp协议']
+tags: ['continue.dev', ai编程助手, 'vs-code插件', jetbrains插件, 开源, ollama本地部署, copilot替代品, 本地大模型, mcp协议]
 aliases:
 - /zh/posts/continue/
 ---
@@ -102,7 +107,7 @@ Continue.dev 作为 IDE 扩展运行，通过三层架构拦截编辑器上下�
 ```bash
 # macOS / Linux
 mkdir -p ~/.continue
-cat > ~/.continue/config.yaml << 'EOF'
+cat > ~/.continue/config.yaml << EOF
 name: 我的开发环境
 version: 1.0.0
 schema: v1

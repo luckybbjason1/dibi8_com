@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
 title: 'Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026'
 description: 'Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấy phép MIT). Một lệnh Docker duy nhất giúp bạn có chat, AI agent, nghiên cứu chuyên sâu, phân loại email, lịch, ghi chú và Cookbook mô hình — tất cả chạy trên phần cứng của bạn. Bài viết hướng dẫn cài đặt, tính năng chính và so sánh với ChatGPT Plus.'
 date: 2026-06-09 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-06-08'
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
 categories: ['ai-tools']
-tags: ['Odysseus', 'AI tự lưu trữ', 'không gian làm việc AI', 'LLM cục bộ', 'quyền riêng tư', 'Docker', 'mã nguồn mở', 'thay thế ChatGPT', 'Ollama', 'nghiên cứu chuyên sâu']
+tags: [odysseus, 'ai tự lưu trữ', 'không gian làm việc ai', 'llm cục bộ', 'quyền riêng tư', docker, 'mã nguồn mở', 'thay thế chatgpt', ollama, 'nghiên cứu chuyên sâu']
 aliases:
 - /vi/posts/odysseus-self-hosted-ai-workspace-2026/
 faqs:

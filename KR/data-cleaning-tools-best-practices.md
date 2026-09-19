@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/data-cleaning-tools-best-practices" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/data-cleaning-tools-best-practices" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/data-cleaning-tools-best-practices" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/data-cleaning-tools-best-practices" />
 title: '데이터 클리닝 도구 및 모범 사례: OpenRefine, Python 라이브러리와 자동화 솔루션 완벽 가이드'
 description: '데이터 클리닝의 핵심 도구 OpenRefine, Pandas, Great Expectations, Cleanlab 등을 비교하고, 재현 가능한 데이터 클리닝 파이프라인 구축 방법을 설명합니다.'
 date: 2026-05-18 00:00:00+08:00

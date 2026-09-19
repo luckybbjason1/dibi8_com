@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moneyprinterturbo-one-click-ai-video-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moneyprinterturbo-one-click-ai-video-generator" />
 title: 'MoneyPrinterTurbo：一键式 AI 视频生成器，拥有 9 万多颗星'
 description: '给 MoneyPrinterTurbo 一个视频主题或关键词，它会自动生成脚本、库存素材、字幕、背景音乐和高清短视频。支持 TikTok、YouTube Shorts、Instagram Reels。拥有超过 9 万个 GitHub 星标。'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Video Generation', 'Short Videos', 'Automation', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
 categories: ['ai-tools']
 slug: moneyprinterturbo-one-click-ai-video-generator
 featureImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/moneyprinterturbo']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
@@ -21,13 +26,13 @@ description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-genera
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Video Generation', 'Short Videos', 'Automation', 'Self-Hosted', 'Docker']
+tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
 categories: ['ai-tools']
 slug: moneyprinterturbo-one-click-ai-video-generator
 
 aliases: ['/moneyprinterturbo']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'

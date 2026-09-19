@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/anythingllm-architecture-local-rag" />
 title: Why Do Enterprises Fear ChatGPT?
 description: Why Do Enterprises Fear ChatGPT?
 date: 2026-05-15 04:20:25+09:00

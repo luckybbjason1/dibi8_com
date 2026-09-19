@@ -1,25 +1,30 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 title: '서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)'
 description: 'Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴을 곁들여, 올바른 확장을 선택하기 위한 의사결정 프레임워크를 제시한다.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'MCP', 'CLI']
+tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Commercial (Anthropic)
-license_type: 'Proprietary'
+license_type: Proprietary
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 0
-maintainer: 'Anthropic'
+maintainer: Anthropic
 last_maintained: '2026-05-28'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'mcp', 'subagents', 'skills', 'agent-sdk', 'llm-frameworks', 'developer-tools']
+tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
 aliases:
 - /posts/claude-code-subagent-vs-mcp-vs-skill/
 faq:

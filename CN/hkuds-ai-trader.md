@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/hkuds-ai-trader" />
 title: "AI-Trader: The Agent-Native Trading Platform from HKUDS"
 description: "AI-Trader is an agent-native trading platform from HKUDS that enables AI coding agents like Claude Code, Codex, Cursor, and OpenClaw to autonomously execute trades, manage portfolios, and optimize strategies."
 date: 2026-06-10

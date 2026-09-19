@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: Framework NLP End-to-End cho Pipeline RAG & Agent Sản xuất — Hướng dẫn Thiết lập'
 description: 'Hướng dẫn đầy đủ Haystack 2026: framework NLP mã nguồn mở cho pipeline RAG sản xuất, document store, retriever, agent, công cụ đánh giá và triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Haystack', 'NLP', 'RAG', 'Python', 'LLM', 'Document Store', 'Retriever', 'Agent', 'OpenAI', 'Docker', 'Pipeline']
+tags: [haystack, nlp, rag, python, llm, 'document store', retriever, agent, openai, docker, pipeline]
 aliases:
 - /vi/posts/haystack-rag-pipeline-framework/
 ---
@@ -264,7 +269,7 @@ pipeline = Pipeline()
 
 # Router quyết định đường dẫn dựa trên loại truy vấn
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ 'technical' in query.lower() }}",
+    "condition": "{{ technical in query.lower() }}",
     "output": "{{ query }}",
     "output_type": str,
 }))
@@ -375,8 +380,8 @@ pipe.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
 pipe.connect("counter.text", "generator.prompt")
 
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
-print(f"Tokens: {result['counter']['token_count']}")
-print(f"Response: {result['generator']['replies'][0]}")
+print(f"Tokens: {result[counter][token_count]}")
+print(f"Response: {result[generator][replies][0]}")
 ```
 
 ### Công cụ Tìm kiếm Web cho Agents
@@ -522,7 +527,7 @@ sas_result = sas_evaluator.run(
     ground_truth_answers=[g["expected"] for g in ground_truth],
     predicted_answers=predictions,
 )
-print(f"SAS Score: {sas_result['score']:.3f}")
+print(f"SAS Score: {sas_result[score]:.3f}")
 ```
 
 ### Triển khai Docker

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-tool-chain" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-tool-chain" />
 title: 'AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent'
 description: '完整生产级 AI agent stack：LangGraph 状态机编排 + MCP servers 工具 + mem0 记忆 + OpenClaw 多 agent 协调 + Hermes Agent 自改进 + e2b 沙箱代码执行。$20-60/月自托管。真实组装含全部内链深度文。'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['AI Agent', '工具链', 'LangGraph', 'MCP', 'Stack', '合集']
+categories: [collections]
+tags: ['ai agent', 工具链, langgraph, mcp, stack, 合集]
 aliases:
   - /posts/ai-agent-tool-chain/
 ---

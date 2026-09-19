@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-open-source-deepseek-alternative-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-open-source-deepseek-alternative-2026" />
 title: 'ds4 实测 2026：开源 DeepSeek 运行时新选择'
 description: 'ds4 是 2026 年最快增长的开源 DeepSeek 兼容 LLM runtime。Apache-2.0 协议、OpenAI API 兼容、跑 DeepSeek V3 / V3.1 / V4 权重比 vLLM 延迟低 40%。含完整部署指南、vLLM/Ollama/TGI 基准对比、生产硬化、与 Claude Code / Cursor / LangChain / Continue.dev 集成。'
 date: 2026-05-22 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'Various'
+maintainer: Various
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
@@ -53,7 +58,7 @@ faqs:
 {</* resource-info */>}
 # ds4：2026年开发者正在切换的开源工具 — 完整配置指南
 
-如果你2026年还在手动配置 ds4 依赖，你每周都在浪费时间。以下配置让我从'在我机器上能跑'到生产就绪只用了不到5分钟。
+如果你2026年还在手动配置 ds4 依赖，你每周都在浪费时间。以下配置让我从在我机器上能跑到生产就绪只用了不到5分钟。
 
 ## 什么是 ds4？
 

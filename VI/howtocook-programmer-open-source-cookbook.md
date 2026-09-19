@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/howtocook-programmer-open-source-cookbook" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/howtocook-programmer-open-source-cookbook" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/howtocook-programmer-open-source-cookbook" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên: 297 Công Thức Nấu Ăn Mã Nguồn Mở"
 description: "Khám phá HowToCook Hướng Dẫn Nấu Ăn Cho Lập Trình Viên — 297 công thức nấu ăn mã nguồn mở, nấu ăn chính xác như viết code. Từ trứng xào cà chua đến vịt quay Bắc Kinh, phân loại độ khó, các bước rõ ràng."
 date: 2026-05-15T04:20:25+09:00

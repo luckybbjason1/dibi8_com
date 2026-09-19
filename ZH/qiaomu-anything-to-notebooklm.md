@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/qiaomu-anything-to-notebooklm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qiaomu-anything-to-notebooklm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qiaomu-anything-to-notebooklm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qiaomu-anything-to-notebooklm" />
 title: "Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM"
 description: "Qiaomu 万物转 NotebookLM 是一个 Claude Code 技能和 Python 工具包，可将 15 多种内容源——YouTube 视频、播客、文章、PDF——转换为 Google NotebookLM 知识库，并具有绕过付费墙的能力。"
 date: 2026-06-10

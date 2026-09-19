@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtrader-python-backtesting" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtrader-python-backtesting" />
 title: 'Backtrader 2026: Python回测引擎以100倍速度验证交易策略 —— 完整指南'
 description: 'Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'mementum/backtrader'
 stars: 15600
-maintainer: 'mementum'
+maintainer: mementum
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -263,9 +268,9 @@ exchange = ccxt.binance()
 ohlcv = exchange.fetch_ohlcv("BTC/USDT", timeframe="1d", since=1577836800000)
 
 # 转换为pandas DataFrame
-df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-df.set_index('timestamp', inplace=True)
+df = pd.DataFrame(ohlcv, columns=[timestamp, open, high, low, close, volume])
+df[timestamp] = pd.to_datetime(df[timestamp], unit=ms)
+df.set_index(timestamp, inplace=True)
 
 data = bt.feeds.PandasData(dataname=df)
 cerebro.adddata(data)
@@ -310,16 +315,16 @@ cerebro.broker.setcash(10000.0)
 cerebro.broker.setcommission(commission=0.001)  # 每笔交易0.1%
 
 # 添加分析器
-cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name='sharpe')
-cerebro.addanalyzer(bt.analyzers.DrawDown, _name='drawdown')
-cerebro.addanalyzer(bt.analyzers.Returns, _name='returns')
+cerebro.addanalyzer(bt.analyzers.SharpeRatio, _name=sharpe)
+cerebro.addanalyzer(bt.analyzers.DrawDown, _name=drawdown)
+cerebro.addanalyzer(bt.analyzers.Returns, _name=returns)
 
 # 运行优化 (使用所有CPU核心)
 results = cerebro.run(maxcpus=4)
 
 # 按夏普比率提取最佳结果
-best = max(results, key=lambda r: r[0].analyzers.sharpe.get_analysis()['sharperatio'] or 0)
-print(f"最佳夏普比率: {best[0].analyzers.sharpe.get_analysis()['sharperatio']:.2f}")
+best = max(results, key=lambda r: r[0].analyzers.sharpe.get_analysis()[sharperatio] or 0)
+print(f"最佳夏普比率: {best[0].analyzers.sharpe.get_analysis()[sharperatio]:.2f}")
 print(f"最佳参数: fast={best[0].params.fast}, slow={best[0].params.slow}")
 ```
 
@@ -373,8 +378,8 @@ cerebro.addstrategy(LiveStrategy)
 
 # 使用CCXT经纪商封装
 from ccxtbt import CCXTStore
-store = CCXTStore(exchange='binance', currency='USDT',
-                  config={'apiKey': 'YOUR_KEY', 'secret': 'YOUR_SECRET'})
+store = CCXTStore(exchange=binance, currency=USDT,
+                  config={apiKey: YOUR_KEY, secret: YOUR_SECRET})
 broker = store.getbroker()
 cerebro.setbroker(broker)
 
@@ -476,7 +481,7 @@ def walk_forward_analysis(data, train_days=252, test_days=63):
 
 ```python
 class EquityCurve(bt.observer.Observer):
-    lines = ('equity',)
+    lines = (equity,)
     plotinfo = dict(plot=True, subplot=True)
 
     def next(self):
@@ -572,7 +577,7 @@ Backtrader功能强大但并非完美。在构建你的技术栈之前了解这�
 
 ```python
 class CustomIndicator(bt.Indicator):
-    lines = ('myline',)
+    lines = (myline,)
     params = dict(period=20)
 
     def __init__(self):
@@ -701,3 +706,14 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
+
+
+## Related Articles
+
+Explore more articles in this category:
+
+1. [1Inch Dex Aggregator Routing](/zh/1inch-dex-aggregator-routing)
+2. [Aave V4 Defi Lending Protocol](/zh/aave-v4-defi-lending-protocol)
+3. [Alpaca Trading Api Stock Broker](/zh/alpaca-trading-api-stock-broker)
+
+---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치 가이드'
 description: 'Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker 설치.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'toeverything/AFFiNE'
 stars: 47000
-maintainer: 'toeverything'
+maintainer: toeverything
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['AFFiNE', '지식-베이스', '화이트보드', '자체-호스팅', 'Docker', 'Notion-대체', 'Miro-대체', 'CRDT', '로컬-우선', 'AI-글쓰기']
+tags: [affine, '지식-베이스', 화이트보드, '자체-호스팅', docker, 'notion-대체', 'miro-대체', crdt, '로컬-우선', 'ai-글쓰기']
 aliases:
 - /kr/posts/affine-knowledge-base-whiteboard/
 ---
@@ -79,7 +84,7 @@ wget -O .env https://github.com/toeverything/affine/releases/latest/download/.en
 
 ```bash
 # .env 파일 편집
-cat > .env << 'EOF'
+cat > .env << EOF
 AFFINE_ADMIN_EMAIL=admin@yourdomain.com
 AFFINE_ADMIN_PASSWORD=ChangeMeNow2026!
 DB_PASSWORD=postgres_secret_2026
@@ -225,7 +230,7 @@ AFFiNE의 성능 특성은 프로덕션 배포에 중요합니다:
 
 ```bash
 # 역방향 프록시로 Caddy 사용
-cat > Caddyfile << 'EOF'
+cat > Caddyfile << EOF
 affine.yourdomain.com {
     reverse_proxy localhost:3010
     tls admin@yourdomain.com
@@ -237,7 +242,7 @@ EOF
 
 ```bash
 # 자동화된 매일 백업
-cat > backup-affine.sh << 'EOF'
+cat > backup-affine.sh << EOF
 #!/bin/bash
 set -euo pipefail
 BACKUP_DIR="/backups/affine-$(date +%Y%m%d)"

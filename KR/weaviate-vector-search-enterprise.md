@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 배포 가이드'
 description: '엔터프라이즈 규모의 Weaviate 벡터 검색 배포 가이드. Kubernetes 배포, 하이브리드 검색, 멀티모달 지원, RBAC, 모니터링, 100억+ 객체 컬렉션 벤치마크 포함.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'weaviate/weaviate'
 stars: 11500
-maintainer: 'weaviate'
+maintainer: weaviate
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -109,14 +114,14 @@ services:
       - "50051:50051"
     environment:
       QUERY_DEFAULTS_LIMIT: 100
-      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'false'
-      AUTHENTICATION_APIKEY_ENABLED: 'true'
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: false
+      AUTHENTICATION_APIKEY_ENABLED: true
       AUTHENTICATION_APIKEY_ALLOWED_KEYS: 'your-api-key-here'
-      AUTHENTICATION_APIKEY_USERS: 'admin'
+      AUTHENTICATION_APIKEY_USERS: admin
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
-      DEFAULT_VECTORIZER_MODULE: 'none'
+      DEFAULT_VECTORIZER_MODULE: none
       ENABLE_MODULES: ''
-      CLUSTER_HOSTNAME: 'node1'
+      CLUSTER_HOSTNAME: node1
     volumes:
       - weaviate_data:/var/lib/weaviate
     deploy:
@@ -222,7 +227,7 @@ results = products.query.hybrid(
 )
 
 for obj in results.objects:
-    print(f"{obj.properties['name']}: ${obj.properties['price']}")
+    print(f"{obj.properties[name]}: ${obj.properties[price]}")
 ```
 
 `alpha` 파라미터가 벡터 대 키워드 점수의 가중치를 조절한다. `alpha=0.7`은 70% 벡터, 30% BM25를 의미한다. 0.75로 시작하여 데이터에 따라 튜닝하라.
@@ -292,7 +297,7 @@ Weaviate에서 Prometheus 메트릭을 활성화하라:
 ```yaml
 # 모니터링을 위한 추가 환경 변수
 environment:
-  PROMETHEUS_MONITORING_ENABLED: 'true'
+  PROMETHEUS_MONITORING_ENABLED: true
   PROMETHEUS_MONITORING_PORT: 2112
 ```
 

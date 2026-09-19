@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/ai-coding-agent-monthly-bill-2026-real-receipts" />
 title: 'AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts from Claude Max, ChatGPT Plus, Cursor Pro'
 description: 'Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 effective), and Cursor Pro + API overflow ($87). Per-task cost breakdown, when each pays off, and the threshold where switching makes sense.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Codex CLI', 'OpenAI API', 'Anthropic API']
+tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'May 2026 30-day window'
 licensing_model: Commercial
@@ -15,7 +17,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', 'cursor', 'codex-cli', 'pricing', '2026']
+tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
 aliases:
 - /posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq:
@@ -27,7 +29,7 @@ faq:
     a: "No. Two is the sweet spot. Common pairing: Claude Code + Cursor ($220/month). Stacking three only makes sense if you have a specific shell-heavy automation workload where Codex CLI's terminal integration wins."
   - q: "How does usage actually break down by task type?"
     a: "Our 30-day split: ~60% refactor + new feature work (Claude Code), ~25% inline edits + tab completion (Cursor), ~15% shell/devops scripting (Codex CLI). The split explains why Claude Code is the single most-used tool — refactor work is where AI value compounds."
-  - q: "Are there hidden costs in the 'unlimited' Max plan?"
+  - q: "Are there hidden costs in the unlimited Max plan?"
     a: "Two: (1) Anthropic throttles after sustained burst usage — practical ceiling is ~5-6 hours of intensive agent loops per day. (2) Long contexts (200K+ tokens) consume the same monthly quota faster. Both rare in normal workflows."
   - q: "What changed in May 2026 pricing that wasn't in earlier reviews?"
     a: "Anthropic adjusted Max plan rate limits in late April (looser, more headroom). OpenAI's Codex CLI moved fully to pay-as-you-go (no Pro tier). Cursor added a $50 Business tier with API credits bundled. All three changes shift the threshold math compared to Q1 reviews."

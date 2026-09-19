@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/revoke-crypto-permission-manager" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/revoke-crypto-permission-manager" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/revoke-crypto-permission-manager" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/revoke-crypto-permission-manager" />
 title: 'revoke-crypto-permission-manager'
 description: ''
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/RevokeCash/revoke.cash'
 stars: 2500
-maintainer: 'RevokeCash'
+maintainer: RevokeCash
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Revoke.cash']
+tags: ['revoke.cash']
 aliases:
 - /zh/posts/revoke-crypto-permission-manager/
 ---
@@ -164,7 +169,7 @@ function revokeApproval(address token, address spender) external {
 // 替代方案：批准特定有限金额
 function setLimitedApproval(address token, address spender, uint256 amount) external {
     IERC20(token).approve(spender, amount);
-    // 花费者最多只能花费 'amount' 个代币
+    // 花费者最多只能花费 amount 个代币
 }
 ```
 
@@ -339,7 +344,7 @@ function permit(
     bytes32 r,
     bytes32 s
 ) external {
-    // 调用后，'spender' 可以花费 'value' 个代币
+    // 调用后，spender 可以花费 value 个代币
     // 用户从未发送交易 —— 只签署了一条消息！
 }
 ```

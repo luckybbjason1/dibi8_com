@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/langflow-visual-llm-workflow-builder-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langflow-visual-llm-workflow-builder-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langflow-visual-llm-workflow-builder-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langflow-visual-llm-workflow-builder-2026" />
 title: 'Langflow: 148k sao cho các quy trình làm việc LLM trực quan -- Phân tích chuyên sâu kỹ thuật 2026'
 description: 'Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất.'
 date: 2026-05-23

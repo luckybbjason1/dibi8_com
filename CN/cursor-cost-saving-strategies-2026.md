@@ -1,21 +1,23 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/cursor-cost-saving-strategies-2026" />
 title: 'Cursor Cost-Saving Strategies 2026: After the Credit Pricing Change'
 description: 'Cursor changed its pricing in 2025 — Pro users lost ~55% effective usage at the same price. Here are 7 specific cost-saving strategies that work in 2026: model selection, context discipline, hybrid stacks, and when to abandon ship.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Cursor', 'Claude Code', 'OpenAI API', 'Anthropic API']
+tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'Cursor 2026.05 / Post credit pricing'
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
-maintainer: 'Anysphere'
+maintainer: Anysphere
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['cursor', 'cost-optimization', 'ai-coding', '2026']
+tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
 aliases:
 - /posts/cursor-cost-saving-strategies-2026/
 faq:

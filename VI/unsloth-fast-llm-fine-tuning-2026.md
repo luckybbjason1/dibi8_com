@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unsloth-fast-llm-fine-tuning-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unsloth-fast-llm-fine-tuning-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unsloth-fast-llm-fine-tuning-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unsloth-fast-llm-fine-tuning-2026" />
 title: 'Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2×, VRAM Ít Hơn 70%, Thân Thiện Single-GPU'
 description: 'Unsloth fine-tune LLM nhanh hơn 2× với ít hơn 70% VRAM so với baseline HuggingFace TRL. 64.9k GitHub sao, dual Apache 2.0 + AGPL-3.0 license. Hỗ trợ Llama 3, Mistral, Qwen 3, Gemma, DeepSeek cho LoRA / QLoRA / DPO / GRPO. Hướng dẫn fine-tuning single-GPU đầy đủ 2026.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/unslothai/unsloth'
 stars: 64900
-maintainer: 'unslothai'
+maintainer: unslothai
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['Unsloth', 'fine-tuning', 'LoRA', 'QLoRA', 'GRPO', 'training nhanh']
+tags: [unsloth, 'fine-tuning', lora, qlora, grpo, 'training nhanh']
 aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-coding-assistants" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-coding-assistants" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-coding-assistants" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-coding-assistants" />
 title: 'Trợ Lý Lập Trình AI Tốt Nhất 2026'
 lang: vi
 description: 'Những trợ lý lập trình AI tốt nhất cho nhà phát triển năm 2026 — từ Claude Code và Cursor đến GitHub Copilot và Devin. So sánh tính năng, giá cả và hiệu suất.'

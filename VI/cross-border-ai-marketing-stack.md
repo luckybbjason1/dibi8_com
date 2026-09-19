@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cross-border-ai-marketing-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cross-border-ai-marketing-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cross-border-ai-marketing-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cross-border-ai-marketing-stack" />
 title: 'Stack Marketing AI Xuyên Biên Giới 2026: Setup 7 Công Cụ Cho Team Trung Quốc Ra Toàn Cầu'
 description: 'Stack AI 7 thành phần thiết kế riêng cho hoạt động xuyên biên giới — tự động hóa nội dung đa ngôn ngữ, scrape thông tin thị trường toàn cầu, analytics tuân thủ GDPR, vượt qua ma sát thanh toán, chạy toàn bộ trên VPS Hong Kong. Tổng $35-80/tháng, OSS hoặc aff thân thiện.'
 date: 2026-05-21 00:00:00+08:00
@@ -18,12 +23,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Xuyên Biên Giới', 'Marketing AI', 'Ra Toàn Cầu', 'Stack', 'Collection']
+categories: [collections]
+tags: ['xuyên biên giới', 'marketing ai', 'ra toàn cầu', stack, collection]
 aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---

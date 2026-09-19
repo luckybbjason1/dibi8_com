@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/repomix-pack-repo-for-llm-context-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy Nhất Cho LLM — Không Cần Cấu Hình'
 description: 'repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh của Claude, ChatGPT, Gemini. 14k+ sao, không cần cấu hình, chạy ngay với npx.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Node.js', 'TypeScript', 'CLI']
+tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: 'v0.3'
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
 github_repo: 'yamadashy/repomix'
 stars: 14200
-maintainer: 'yamadashy'
+maintainer: yamadashy
 last_maintained: '2026-06-01'
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['repomix', 'repopack', 'AI-coding', 'LLM-context', 'đóng-gói-codebase', 'Claude', 'ChatGPT', 'công-cụ-dev', 'mã-nguồn-mở']
+tags: [repomix, repopack, 'ai-coding', 'llm-context', 'đóng-gói-codebase', claude, chatgpt, 'công-cụ-dev', 'mã-nguồn-mở']
 aliases:
 - /vi/posts/repomix-pack-repo-for-llm-context-2026/
 faqs:

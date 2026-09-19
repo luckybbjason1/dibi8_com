@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/local-first-ai-stack-offline-development-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-first-ai-stack-offline-development-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
 title: 'Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn Toàn Offline'
 description: 'Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent, ChromaDB cho RAG — tất cả chạy local. Hướng dẫn cài đặt, thực tế phần cứng, và những tình huống offline thực sự quan trọng (riêng tư, tuân thủ, air-gapped, đi công tác).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Ollama', 'Aider', 'ChromaDB', 'Llama 3.3', 'Local-first AI']
+tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
 application_domain: LLM Frameworks
 source_version: '2026 Q2'
 licensing_model: Open Source
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['local-first', 'offline', 'ollama', 'ai-coding', 'privacy', '2026']
+tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
 aliases:
 - /vi/posts/local-first-ai-stack-offline-development-2026/
 faq:

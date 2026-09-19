@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-skills-2026-developer-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-skills-2026-developer-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-2026-developer-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-2026-developer-guide" />
 title: 'Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Claude Code Skills và Các Repository Đang Hot Trên GitHub'
 description: 'Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Claude Code Skills và Các Repository Đang Hot Trên GitHub'
 date: 2026-05-16 00:00:00+08:00

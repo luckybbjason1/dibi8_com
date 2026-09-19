@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/demucs" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
 title: 'Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교'
 description: 'Demucs는 Meta AI가 개발한 하이브리드 스펙트로그램 및 파형 소스 분리 모델입니다. Ultimate Vocal Remover, RVC, GPT-SoVITS와 호환됩니다. demucs 튜토리얼, demucs vs uvr, demucs Docker 설치, 프로덕션 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/facebookresearch/demucs'
 stars: 10100
-maintainer: 'facebookresearch'
+maintainer: facebookresearch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['demucs', '음악소스분리', 'AI오디오', '스템분리', 'pytorch', 'docker', '오픈소스']
+tags: [demucs, 음악소스분리, ai오디오, 스템분리, pytorch, docker, 오픈소스]
 aliases:
 - /kr/posts/demucs/
 ---
@@ -227,7 +232,7 @@ def preprocess_for_rvc(input_song, output_dir):
 
     # 단계 1: Demucs로 분리
     subprocess.run([
-        'demucs', '-n', 'htdemucs_ft',
+        demucs, '-n', htdemucs_ft,
         '--two-stems=vocals',
         '-o', output_dir,
         input_song
@@ -236,7 +241,7 @@ def preprocess_for_rvc(input_song, output_dir):
     # 단계 2: 분리된 보컬 경로 반환
     base = os.path.splitext(os.path.basename(input_song))[0]
     vocals_path = os.path.join(
-        output_dir, 'htdemucs_ft', base, 'vocals.wav'
+        output_dir, htdemucs_ft, base, 'vocals.wav'
     )
     return vocals_path
 
@@ -374,7 +379,7 @@ with torch.no_grad():
     )[0]
 
 # sources 형태: (num_sources, channels, samples)
-source_names = model.sources  # ['drums', 'bass', 'other', 'vocals']
+source_names = model.sources  # [drums, bass, other, vocals]
 
 # 개별 스템 저장
 for i, name in enumerate(source_names):
@@ -399,10 +404,10 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
 
     # 단일 Demucs 호출로 모든 파일 처리
     subprocess.run([
-        'demucs', '-n', model,
+        demucs, '-n', model,
         '-o', str(output_dir),
         '--mp3',
-        '--mp3-bitrate', '320',
+        '--mp3-bitrate', 320,
         *[str(f) for f in files]
     ], check=True)
 
@@ -412,19 +417,19 @@ def batch_separate(input_dir, output_dir, model="htdemucs"):
         base = f.stem
         stem_dir = output_dir / model / base
         manifest[base] = {
-            'drums': str(stem_dir / 'drums.mp3'),
-            'bass': str(stem_dir / 'bass.mp3'),
-            'other': str(stem_dir / 'other.mp3'),
-            'vocals': str(stem_dir / 'vocals.mp3'),
+            drums: str(stem_dir / 'drums.mp3'),
+            bass: str(stem_dir / 'bass.mp3'),
+            other: str(stem_dir / 'other.mp3'),
+            vocals: str(stem_dir / 'vocals.mp3'),
         }
 
-    with open(output_dir / 'manifest.json', 'w') as fp:
+    with open(output_dir / 'manifest.json', w) as fp:
         json.dump(manifest, fp, indent=2)
 
     return manifest
 
 # 사용
-batch_separate('./raw_songs/', './stems/', model='htdemucs_ft')
+batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 ```
 
 ### 긴 파일의 메모리 최적화
@@ -434,7 +439,7 @@ Demucs는 전체 오디오 파일을 GPU 메모리에 로드한다. 긴 트랙�
 ```python
 # 대용량 파일을 위한 CPU 오프로드 강제
 import os
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
 
 # 더 작은 세그먼트 사용
 sources = apply_model(
@@ -454,7 +459,7 @@ import logging
 import time
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('demucs')
+logger = logging.getLogger(demucs)
 
 def separate_with_metrics(input_path, output_dir):
     start = time.time()

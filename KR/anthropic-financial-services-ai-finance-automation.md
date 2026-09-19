@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anthropic-financial-services-ai-finance-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anthropic-financial-services-ai-finance-automation" />
 title: Anthropic Financial Services：금융팀이 AI로 분석을 자동화하고 ROI를 300% 높이는 방법
 description: Anthropic Financial Services가 투자은행, 주식 리서치, 자산관리팀이 Claude AI 에이전트로 피치덱,
   DCF 모델, KYC 스크리닝을 자동화하는 방법을 알아보세요.

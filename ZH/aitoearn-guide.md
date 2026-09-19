@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/aitoearn-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-guide" />
 title: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测"
 description: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测"
 date: 2026-05-15T04:20:25+09:00

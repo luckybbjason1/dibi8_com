@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
 title: 'Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署'
 description: '使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'outline/outline'
 stars: 32000
-maintainer: 'outline'
+maintainer: outline
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['outline', 'wiki', '知识库', '团队文档', '开源', '自托管', 'docker', '协作', 'markdown']
+tags: [outline, wiki, 知识库, 团队文档, 开源, 自托管, docker, 协作, markdown]
 aliases:
 - /zh/posts/outline-wiki-knowledge-base/
 ---
@@ -171,7 +176,7 @@ echo "UTILS_SECRET=$UTILS_SECRET"
 添加到 `.env` 文件：
 
 ```bash
-cat << 'EOF' > .env
+cat << EOF > .env
 SECRET_KEY=REPLACE_WITH_GENERATED_SECRET
 UTILS_SECRET=REPLACE_WITH_GENERATED_SECRET
 SLACK_CLIENT_ID=

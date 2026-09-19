@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 title: 'Claude Code Subagent so với LangGraph, CrewAI và AutoGen (2026): Khi nào nên chuyển sang một framework độc lập'
 description: 'Bạn đã điều phối subagent ngay trong Claude Code. Liệu bạn có thực sự cần LangGraph, CrewAI hay AutoGen? Một hướng dẫn ra quyết định cho năm 2026 với benchmark thực tế, bức tranh thật về số sao GitHub, và ranh giới trung thực giữa "tính năng tích hợp sẵn là đủ" và "đã đến lúc tốt nghiệp".'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'LangGraph', 'CrewAI', 'AutoGen', 'Python']
+tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'langgraph', 'crewai', 'autogen', 'multi-agent', 'agent-sdk', 'llm-frameworks', 'orchestration']
+tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
 aliases:
 - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq:
@@ -27,10 +32,10 @@ faq:
     a: "Có lẽ là chưa. Subagent của Claude Code đã cho bạn khả năng triển khai song song (fan-out), cửa sổ ngữ cảnh tách biệt, và ủy thác cho chuyên gia — vốn bao quát phần lớn công việc multi-agent thực tế. Bạn chuyển sang một framework độc lập như LangGraph hay CrewAI khi cần những thứ mà subagent không cung cấp sẵn: checkpointing trạng thái bền vững giữa các lần chạy, các cổng phê duyệt human-in-the-loop, kết hợp nhiều nhà cung cấp model trong một pipeline, hoặc dấu vết kiểm toán phục vụ tuân thủ. Nếu nhu cầu của bạn là 'chạy năm người nghiên cứu song song rồi gộp kết quả lại,' thì subagent tích hợp sẵn làm được ngay hôm nay mà không cần hạ tầng mới nào."
   - q: "Framework multi-agent nào có nhiều sao GitHub nhất vào năm 2026?"
     a: "Tính đến tháng 4 năm 2026, AutoGen dẫn đầu với khoảng 42,000 sao, CrewAI ở mức khoảng 31,200, còn LangGraph gần 12,800 — nhưng số sao là một chỉ số phù phiếm có độ trễ. LangGraph đã vượt CrewAI về mức độ áp dụng trong doanh nghiệp vào đầu năm 2026 nhờ khả năng kiểm soát dựa trên đồ thị và khả năng quan sát (observability) của LangSmith, dù có ít sao hơn. Số sao cho bạn biết mức độ phổ biến trong quá khứ; sự sẵn sàng cho môi trường production và hình dạng workflow của bạn mới nên dẫn dắt lựa chọn thực sự."
-  - q: "AutoGen còn đáng dùng vào năm 2026 không, hay đã 'chết'?"
+  - q: "AutoGen còn đáng dùng vào năm 2026 không, hay đã chết?"
     a: "AutoGen (nay là AG2 sau bản viết lại v0.4) ổn định nhưng không còn được phát triển tích cực với tư cách framework chủ lực, nên với các dự án hoàn toàn mới trong năm 2026 thì LangGraph hoặc CrewAI là điểm khởi đầu an toàn hơn. AutoGen/AG2 vẫn tỏa sáng ở một ngách: các workflow ngoại tuyến, chú trọng chất lượng, nơi mô hình GroupChat hội thoại và sự kỹ lưỡng quan trọng hơn độ trễ. Đừng khởi động dự án mới (greenfield) trên nó mà kỳ vọng có đầu tư liên tục dày dặn, nhưng nó cũng không phải phần mềm bị bỏ rơi."
   - q: "Sự khác biệt giữa LangGraph và CrewAI là gì?"
-    a: "LangGraph mô hình hóa workflow của bạn dưới dạng một đồ thị có hướng (directed graph) tường minh với các cạnh điều kiện, cho bạn khả năng kiểm soát chi tiết, checkpointing, và các lần chạy có thể tiếp tục lại — nó đạt khoảng 62% trên các tác vụ phức tạp so với khoảng 54% của CrewAI trong các benchmark năm 2026, và là lựa chọn cho production khi bạn cần dấu vết kiểm toán và human-in-the-loop. CrewAI dùng một trừu tượng hóa 'crew' dựa trên vai trò (vai trò/mục tiêu/bối cảnh của agent) giúp một nhóm multi-agent hoạt động trong khoảng 20 dòng Python — đây là cách nhanh nhất để tạo bản mẫu, đánh đổi bằng khả năng kiểm soát kém chi tiết hơn. Kiểm soát so với tốc độ ra kết quả đầu tiên chính là sự đánh đổi cốt lõi."
+    a: "LangGraph mô hình hóa workflow của bạn dưới dạng một đồ thị có hướng (directed graph) tường minh với các cạnh điều kiện, cho bạn khả năng kiểm soát chi tiết, checkpointing, và các lần chạy có thể tiếp tục lại — nó đạt khoảng 62% trên các tác vụ phức tạp so với khoảng 54% của CrewAI trong các benchmark năm 2026, và là lựa chọn cho production khi bạn cần dấu vết kiểm toán và human-in-the-loop. CrewAI dùng một trừu tượng hóa crew dựa trên vai trò (vai trò/mục tiêu/bối cảnh của agent) giúp một nhóm multi-agent hoạt động trong khoảng 20 dòng Python — đây là cách nhanh nhất để tạo bản mẫu, đánh đổi bằng khả năng kiểm soát kém chi tiết hơn. Kiểm soát so với tốc độ ra kết quả đầu tiên chính là sự đánh đổi cốt lõi."
   - q: "Tôi có thể dùng model Claude với LangGraph hay CrewAI không?"
     a: "Được. LangGraph, CrewAI và AutoGen đều không phụ thuộc vào model (model-agnostic) — bạn có thể chạy Claude, GPT, Gemini, hay các model cục bộ phía sau chúng. Claude Agent SDK (đổi tên từ Claude Code SDK vào cuối năm 2025, nay phát hành dưới dạng cả gói Python lẫn TypeScript) được thiết kế chỉ dành cho Claude, đánh đổi tính linh hoạt về model để lấy các tính năng an toàn nguyên bản và extended thinking. Vậy nên nếu tính linh hoạt đa nhà cung cấp là yêu cầu bắt buộc, hãy chọn một trong các framework agnostic; còn nếu bạn dồn toàn lực vào Claude và muốn tích hợp chặt chẽ nhất, thì Agent SDK là con đường nguyên bản."
 ---

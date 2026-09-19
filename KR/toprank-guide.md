@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank-guide" />
 title: "GEO 최적화 완벽 가이드: Toprank로 ChatGPT가 내 사이트를 인용하게 만드는 법"
 description: "GEO 최적화 완벽 가이드: Toprank로 ChatGPT가 내 사이트를 인용하게 만드는 법"
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-llm-api-resources-ai-development" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-llm-api-resources-ai-development" />
 title: 免费 LLM API 资源：无需破产即可访问 AI 模型
 description: 精选的免费 LLM 推理 API 资源列表。使用这些社区维护的免费套餐构建 AI 应用程序，无需 API 费用。
 date: 2026-05-15 04:20:25+09:00

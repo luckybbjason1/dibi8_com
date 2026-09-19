@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/hummingbot-crypto-trading-bot" />
 title: 'Hummingbot 2026: The Open-Source Crypto Trading Bot Running 50+ Exchange Connectors — Setup & Strategy Guide'
 description: 'A hands-on guide to deploying Hummingbot v2, the open-source crypto trading bot with 50+ exchange connectors. Covers Docker setup, custom strategies, backtesting, DEX gateway, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +16,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'hummingbot/hummingbot'
 stars: 10500
-maintainer: 'hummingbot'
+maintainer: hummingbot
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false

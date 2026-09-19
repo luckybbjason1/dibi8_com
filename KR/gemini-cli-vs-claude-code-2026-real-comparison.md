@@ -1,12 +1,17 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/gemini-cli-vs-claude-code-2026-real-comparison" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gemini-cli-vs-claude-code-2026-real-comparison" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gemini-cli-vs-claude-code-2026-real-comparison" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gemini-cli-vs-claude-code-2026-real-comparison" />
 title: 'Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교'
 description: 'Google이 Claude Code와 경쟁할 Gemini CLI를 출시했습니다. 동일한 5가지 워크플로우로 두 도구를 테스트했습니다. Gemini가 이기는 지점(무료 티어, 1M 컨텍스트), Claude Code가 이기는 지점(도구 사용 신뢰성, 에이전트 루프), 그리고 언제 어느 쪽을 써야 하는지 정리합니다.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Gemini CLI', 'Claude Code', 'Google', 'Anthropic']
+tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: 개발 도구
 source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
-licensing_model: '혼합'
+licensing_model: 혼합
 license_type: '독점 소프트웨어'
 github_repo: ''
 stars: 0
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', '2026']
+tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
 aliases:
 - /kr/posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq:

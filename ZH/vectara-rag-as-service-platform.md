@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试'
 description: 'Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'vectara/vectara-ingest'
 stars: 800
-maintainer: 'vectara'
+maintainer: vectara
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Vectara', 'RAG', '向量搜索', 'LLM', 'Embedding', 'Boomerang', 'HHEM', '幻觉检测', '企业AI']
+tags: [vectara, rag, 向量搜索, llm, embedding, boomerang, hhem, 幻觉检测, 企业ai]
 aliases:
 - /zh/posts/vectara-rag-as-service-platform/
 ---
@@ -285,7 +290,7 @@ response = client.query(
     corpus_id="your-corpus-id",
     query="API rate limits",
     num_results=10,
-    metadata_filter="doc.version >= '2.0' AND doc.category = 'technical'",
+    metadata_filter="doc.version >= '2.0' AND doc.category = technical",
     generate=True
 )
 

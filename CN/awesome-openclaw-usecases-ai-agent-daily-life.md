@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/awesome-openclaw-usecases-ai-agent-daily-life" />
 title: '42 Real-World OpenClaw Use Cases: How People Use AI Agents in Daily Life'
 description: Discover 42 real-world use cases for OpenClaw AI agents — from social
   media automation to game development, podcast production, and autonomous trading.

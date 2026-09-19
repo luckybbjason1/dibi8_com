@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/tradingagents-llm-multi-agent-trading-framework-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tradingagents-llm-multi-agent-trading-framework-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tradingagents-llm-multi-agent-trading-framework-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tradingagents-llm-multi-agent-trading-framework-2026" />
 title: 'TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南'
 description: 'TradingAgents 是开源的 LLM 多智能体框架（82,254 GitHub stars，Apache-2.0），模拟一家交易公司：分析师、研究员、交易员、风控智能体辩论出 BUY/SELL/HOLD 决策。基于 LangGraph。涵盖安装、智能体流水线、CLI + Python API，以及与 Qlib、单智能体 bot 的诚实对比。'
 date: 2026-06-02

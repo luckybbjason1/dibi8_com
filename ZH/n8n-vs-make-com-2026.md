@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n-vs-make-com-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-vs-make-com-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-vs-make-com-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-vs-make-com-2026" />
 title: 'n8n vs Make.com 2026 对比：开源自托管 vs 视觉化简易操作'
 description: '全面对比 n8n（自托管、开发者友好的工作流自动化）与 Make.com（云端可视化场景构建器）— 定价、集成数量、AI 功能、自托管能力及 2026 年各自的适用场景。'
 date: 2026-06-07 00:00:00+08:00

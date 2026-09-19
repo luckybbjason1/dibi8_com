@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/fine-tuning-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/fine-tuning-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/fine-tuning-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/fine-tuning-stack" />
 title: 'Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset Đến LLM Triển Khai Production'
 description: 'Stack fine-tuning LLM đầy đủ: Unsloth (experiment single-GPU nhanh) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (theo dõi eval) + vLLM (serving). $50-300/tháng hạ tầng training. Pipeline đầy đủ: chuẩn bị dataset → experiment → fine-tune production → eval → deploy.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Fine-Tuning', 'LLM', 'Stack', 'Collection']
+categories: [collections]
+tags: ['fine-tuning', llm, stack, collection]
 aliases:
   - /posts/fine-tuning-stack/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
 title: 'Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI 应用 — 完整部署指南'
 description: 'Supabase 完整指南：带有 Postgres + pgvector 的开源 Firebase 替代方案。认证、存储、实时、Edge 函数、RAG 流水线集成、自托管 Docker 部署、行级安全。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'supabase/supabase'
 stars: 80000
-maintainer: 'supabase'
+maintainer: supabase
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Supabase', 'Postgres', '向量搜索', 'Firebase 替代品', 'pgvector', 'AI 应用', 'RAG', '开源', 'Docker', 'Edge 函数']
+tags: [supabase, postgres, 向量搜索, 'firebase 替代品', pgvector, 'ai 应用', rag, 开源, docker, 'edge 函数']
 aliases:
 - /zh/posts/supabase-postgres-vector-ai-apps/
 ---
@@ -161,7 +166,7 @@ const supabase = createClient(
 )
 
 // 测试连接
-const { data, error } = await supabase.from('test').select('*')
+const { data, error } = await supabase.from(test).select('*')
 console.log(data)
 ```
 
@@ -175,7 +180,7 @@ supabase = create_client(
 )
 
 # 测试连接
-response = supabase.table('test').select('*').execute()
+response = supabase.table(test).select('*').execute()
 print(response.data)
 ```
 
@@ -188,7 +193,7 @@ print(response.data)
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 验证扩展已安装
-SELECT * FROM pg_extension WHERE extname = 'vector';
+SELECT * FROM pg_extension WHERE extname = vector;
 ```
 
 ### 创建带向量列的表
@@ -213,7 +218,7 @@ WITH (m = 16, ef_construction = 64);
 
 -- 添加全文搜索索引用于混合搜索
 CREATE INDEX idx_documents_fts ON documents
-USING GIN (to_tsvector('english', content));
+USING GIN (to_tsvector(english, content));
 ```
 
 `vector(1536)` 维度与 OpenAI 的 `text-embedding-3-large` 输出匹配。对于其他嵌入模型，相应调整：Cohere embed-v4 使用 **1,024** 维，Jina AI 嵌入使用 **768** 维。
@@ -237,12 +242,12 @@ def insert_document(title: str, content: str, source_url: str = None):
     embedding = response.data[0].embedding
 
     # 插入 Supabase
-    result = supabase.table('documents').insert({
-        'title': title,
-        'content': content,
-        'source_url': source_url,
-        'embedding': embedding,
-        'metadata': {'word_count': len(content.split())}
+    result = supabase.table(documents).insert({
+        title: title,
+        content: content,
+        source_url: source_url,
+        embedding: embedding,
+        metadata: {word_count: len(content.split())}
     }).execute()
     return result
 
@@ -280,11 +285,11 @@ async def search_similar_documents(query: str, top_k: int = 5):
 
     # 查询 Supabase
     result = await supabase.rpc(
-        'match_documents',
+        match_documents,
         {
-            'query_embedding': query_embedding,
-            'match_threshold': 0.7,
-            'match_count': top_k
+            query_embedding: query_embedding,
+            match_threshold: 0.7,
+            match_count: top_k
         }
     ).execute()
     return result.data
@@ -350,15 +355,15 @@ class SupabaseRAG:
         """存储带嵌入的文档块。"""
         for chunk in chunks:
             embedding = self.openai.embeddings.create(
-                input=chunk['text'],
+                input=chunk[text],
                 model="text-embedding-3-large"
             ).data[0].embedding
 
-            self.supabase.table('documents').insert({
-                'title': chunk['title'],
-                'content': chunk['text'],
-                'embedding': embedding,
-                'metadata': chunk.get('metadata', {})
+            self.supabase.table(documents).insert({
+                title: chunk[title],
+                content: chunk[text],
+                embedding: embedding,
+                metadata: chunk.get(metadata, {})
             }).execute()
 
     def retrieve(self, query: str, top_k: int = 5) -> list[dict]:
@@ -369,11 +374,11 @@ class SupabaseRAG:
         ).data[0].embedding
 
         results = self.supabase.rpc(
-            'match_documents',
+            match_documents,
             {
-                'query_embedding': query_embedding,
-                'match_threshold': 0.75,
-                'match_count': top_k
+                query_embedding: query_embedding,
+                match_threshold: 0.75,
+                match_count: top_k
             }
         ).execute()
         return results.data
@@ -381,7 +386,7 @@ class SupabaseRAG:
     def generate(self, query: str, context: list[dict]) -> str:
         """使用检索到的上下文生成响应。"""
         context_text = "\n\n".join([
-            f"[来源: {doc['title']}]\n{doc['content']}"
+            f"[来源: {doc[title]}]\n{doc[content]}"
             for doc in context
         ])
 
@@ -407,16 +412,16 @@ class SupabaseRAG:
         context = self.retrieve(query)
         answer = self.generate(query, context)
         return {
-            'query': query,
-            'answer': answer,
-            'sources': [doc['title'] for doc in context],
-            'similarity_scores': [doc['similarity'] for doc in context]
+            query: query,
+            answer: answer,
+            sources: [doc[title] for doc in context],
+            similarity_scores: [doc[similarity] for doc in context]
         }
 
 # 使用
 rag = SupabaseRAG(SUPABASE_URL, SUPABASE_KEY, OPENAI_KEY)
 result = rag.chat("Docker 最佳实践是什么？")
-print(result['answer'])
+print(result[answer])
 ```
 
 ## 认证与行级安全（RLS）
@@ -458,7 +463,7 @@ const accessToken = session.session?.access_token
 
 // 带认证上下文的查询（RLS 自动执行）
 const { data } = await supabase
-  .from('documents')
+  .from(documents)
   .select('*')
 ```
 
@@ -467,7 +472,7 @@ const { data } = await supabase
 supabase_admin = create_client(SUPABASE_URL, SERVICE_ROLE_KEY)
 
 # 绕过 RLS 进行管理员操作
-all_docs = supabase_admin.table('documents').select('*').execute()
+all_docs = supabase_admin.table(documents).select('*').execute()
 ```
 
 ## 实时订阅实现实时 AI 功能
@@ -477,8 +482,8 @@ all_docs = supabase_admin.table('documents').select('*').execute()
 const channel = supabase
   .channel('documents-changes')
   .on(
-    'postgres_changes',
-    { event: 'INSERT', schema: 'public', table: 'documents' },
+    postgres_changes,
+    { event: INSERT, schema: public, table: documents },
     (payload) => {
       console.log('新文档插入:', payload.new)
       // 触发重新索引、通知或 UI 更新
@@ -498,11 +503,11 @@ async def subscribe_to_changes():
     channel = supabase.channel('documents-changes')
     
     def handle_insert(payload):
-        print(f"新文档: {payload['new']['title']}")
+        print(f"新文档: {payload[new][title]}")
     
     channel.on(
-        'postgres_changes',
-        {'event': 'INSERT', 'schema': 'public', 'table': 'documents'},
+        postgres_changes,
+        {event: INSERT, schema: public, table: documents},
         handle_insert
     ).subscribe()
 
@@ -530,14 +535,14 @@ serve(async (req) => {
 
   // 从边缘调用 OpenAI API
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
+    method: POST,
     headers: {
-      'Authorization': `Bearer ${Deno.env.get('OPENAI_API_KEY')}`,
+      Authorization: `Bearer ${Deno.env.get(OPENAI_API_KEY)}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       model: 'gpt-4.1-mini',
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: user, content: prompt }],
       max_tokens: 500
     })
   })

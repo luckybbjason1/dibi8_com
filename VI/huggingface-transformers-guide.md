@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/huggingface-transformers-guide" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/huggingface-transformers-guide" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/huggingface-transformers-guide" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/huggingface-transformers-guide" />
 title: 'Hướng Dẫn Sử Dụng Hugging Face Transformers 2025: Dành Cho Lập Trình Viên'
 description: 'Hướng dẫn chi tiết thư viện Hugging Face Transformers 2025: Pipeline API, fine-tuning BERT/GPT, tokenization, tối ưu model và triển khai production.'
 date: 2026-05-18 00:00:00+08:00

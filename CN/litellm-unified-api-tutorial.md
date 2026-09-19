@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/litellm-unified-api-tutorial" />
 title: 'LiteLLM Tutorial 2025: One API to Access 100+ LLMs'
 description: 'Complete LiteLLM tutorial 2025. Learn how to use one unified API to access 100+ LLM providers including OpenAI, Anthropic, Azure, and open-source models.'
 date: 2026-05-18 00:00:00+08:00

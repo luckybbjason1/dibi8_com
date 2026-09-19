@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/roboflow-supervision" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/roboflow-supervision" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/roboflow-supervision" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/roboflow-supervision" />
 title: "Roboflow 监督：Python计算机视觉标注工具包"
 description: "Roboflow的监督是全面的计算机视觉工具包，简化了CV标注、数据处理和模型评估。通过pip install supervision访问可重复使用的计算机视觉工具用于您的项目。"
 date: 2026-06-10

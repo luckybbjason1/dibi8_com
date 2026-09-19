@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code" />
 title: 'Claude Code: 125K+ Stars — 终端 AI 编程代理完整对比 2026'
 description: 'Claude Code 是 Anthropic 的终端编程代理工具，支持 VS Code、Cursor、GitHub、GitLab。涵盖安装教程、基准测试，以及与 Aider、OpenHands 和 Codex CLI 的对比分析。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/anthropics/claude-code'
 stars: 125050
-maintainer: 'anthropics'
+maintainer: anthropics
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'ai-coding-agent', '终端编程', 'anthropic', 'claude教程', 'claude-code-vs-aider', 'claude-code安装']
+tags: ['claude-code', 'ai-coding-agent', 终端编程, anthropic, claude教程, 'claude-code-vs-aider', 'claude-code安装']
 aliases:
 - /zh/posts/claude-code/
 ---

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/open-codesign-vs-vercel-v0" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-vs-vercel-v0" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-vs-vercel-v0" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-vs-vercel-v0" />
 title: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign"
 description: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign"
 date: 2026-05-15T04:20:25+09:00

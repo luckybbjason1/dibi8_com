@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/signoz-apm-observability-open-source" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/signoz-apm-observability-open-source" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/signoz-apm-observability-open-source" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/signoz-apm-observability-open-source" />
 title: 'SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí — Hướng dẫn thiết lập Distributed Tracing 2026'
 description: 'Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metrics và log management — chi phí chỉ bằng 10% của Datadog.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'SigNoz/signoz'
 stars: 22000
-maintainer: 'SigNoz'
+maintainer: SigNoz
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['SigNoz', 'APM', 'observability', 'distributed tracing', 'OpenTelemetry', 'giải pháp thay thế Datadog', 'self-hosted', 'Docker', 'Kubernetes', 'metrics', 'logs', 'monitoring']
+tags: [signoz, apm, observability, 'distributed tracing', opentelemetry, 'giải pháp thay thế datadog', 'self-hosted', docker, kubernetes, metrics, logs, monitoring]
 aliases:
 - /vi/posts/signoz-apm-observability-open-source/
 ---

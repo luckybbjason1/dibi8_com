@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/llm-inference-cost-optimization-guide-2026" />
 title: 'LLM Inference Cost Optimization: Run Any Model for Pennies — The 2026 Definitive Guide'
 description: 'LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API costs by 90%+. 3 benchmarks, 6 deployment methods.'
 tags: ["guide", "open-source", "reference", "tutorial"]

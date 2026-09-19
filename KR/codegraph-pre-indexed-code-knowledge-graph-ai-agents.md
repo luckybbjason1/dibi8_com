@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
 title: "CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축"
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"

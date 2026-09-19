@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/polymarket-trading-bot-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/polymarket-trading-bot-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/polymarket-trading-bot-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/polymarket-trading-bot-stack" />
 title: 'Polymarket Bot Giao Dịch: 28 Công Cụ Kiếm 1 Triệu Đô La'
 description: 'Phân tích sâu về stack công nghệ bot chênh lệch giá Polymarket: 28 công
   cụ, 6 lớp, và cách kiếm lợi nhuận đầu tiên từ chênh lệch độ trễ.'

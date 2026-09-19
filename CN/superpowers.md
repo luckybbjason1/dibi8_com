@@ -1,4 +1,6 @@
 Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/superpowers" />
 
 Meta description: Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.
 

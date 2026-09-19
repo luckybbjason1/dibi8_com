@@ -1,9 +1,11 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config'
 description: 'repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optimized for LLM context windows — supporting Claude, ChatGPT, Gemini, and Cursor. 14k+ stars, zero config, runs in seconds with npx.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Node.js', 'TypeScript', 'CLI']
+tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: 'v0.3'
 licensing_model: Open Source
@@ -14,12 +16,12 @@ download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
 github_repo: 'yamadashy/repomix'
 stars: 14200
-maintainer: 'yamadashy'
+maintainer: yamadashy
 last_maintained: '2026-06-01'
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
 categories: ['dev-utils']
-tags: ['repomix', 'repopack', 'AI-coding', 'LLM-context', 'codebase-packing', 'Claude', 'ChatGPT', 'developer-tools', 'open-source']
+tags: [repomix, repopack, 'ai-coding', 'llm-context', 'codebase-packing', claude, chatgpt, 'developer-tools', 'open-source']
 aliases:
 - /posts/repomix-pack-repo-for-llm-context-2026/
 faqs:

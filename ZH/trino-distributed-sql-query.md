@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trino-distributed-sql-query" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trino-distributed-sql-query" />
 title: 'Trino 2026: PB级分布式 SQL 查询引擎 — 自托管集群搭建完全指南'
 description: '部署 Trino 464+ 实现 PB 级分布式 SQL 分析。包含分步集群部署、40+ 连接器配置、性能调优及真实基准测试。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'trinodb/trino'
 stars: 11000
-maintainer: 'trinodb'
+maintainer: trinodb
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Trino', 'Presto', '分布式SQL', '大数据', '数据分析', '数据湖', 'Hive', 'Iceberg', '查询引擎', '自托管']
+tags: [trino, presto, 分布式sql, 大数据, 数据分析, 数据湖, hive, iceberg, 查询引擎, 自托管]
 aliases:
 - /zh/posts/trino-distributed-sql-query/
 ---
@@ -225,7 +230,7 @@ mv trino-cli-${TRINO_VERSION}-executable.jar trino
 ./trino --server http://trino-coordinator:8080 \
   --catalog iceberg \
   --schema default \
-  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL '7' DAY"
+  --execute "SELECT COUNT(*) FROM events WHERE event_time > CURRENT_DATE - INTERVAL 7 DAY"
 ```
 
 ## 与主流数据工具集成
@@ -519,7 +524,7 @@ connector.name=jmx
 SELECT node_id, count(*) FROM jmx.current."trino.execution:name=QueryManager" GROUP BY node_id;
 
 -- 每个查询的内存使用
-SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = 'RUNNING';
+SELECT query_id, user, cumulative_user_memory FROM system.runtime.queries WHERE state = RUNNING;
 ```
 
 ## 与竞品对比

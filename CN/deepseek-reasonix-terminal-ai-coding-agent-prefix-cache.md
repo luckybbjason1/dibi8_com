@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache" />
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
 description: 'A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models.'
 tags: ["ai-agent", "automation", "cli", "coding", "dev-tools", "development", "open-source", "terminal"]
@@ -10,11 +12,11 @@ slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 featureImage: /images/articles/deepseek-tui-anthropic-financial-agents--117cfa-1.png
 aliases: ['/deepseek-reasonix']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: 'Website'
+  - name: Website
     url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: 'Discord'
+  - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
 lang: en
 ---
@@ -24,17 +26,17 @@ description: 'A DeepSeek-native AI coding agent with engineered prefix-cache sta
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Coding Agent', 'DeepSeek', 'Terminal', 'Self-Hosted', 'Open Source']
+tags: ['ai tools', 'coding agent', deepseek, terminal, 'self-hosted', 'open source']
 categories: ['ai-tools']
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 
 aliases: ['/deepseek-reasonix']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: 'Website'
+  - name: Website
     url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: 'Discord'
+  - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
 ---
 

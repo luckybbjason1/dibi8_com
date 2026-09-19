@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
 title: 'Docker GenAI Stack: Chạy LangChain, Vector DB & LLM trong Một Docker Compose — Hướng Dẫn Dev Local 2026'
 description: 'Thiết lập môi trường phát triển GenAI local hoàn chỉnh với Docker GenAI Stack. Bao gồm LangChain, Neo4j, Ollama và vector database trong một file docker-compose duy nhất. Hướng dẫn production-ready cho 2026.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/docker/genai-stack'
 stars: 5500
-maintainer: 'docker'
+maintainer: docker
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['Docker GenAI Stack']
+tags: ['docker genai stack']
 aliases:
 - /vi/posts/docker-genai-stack-local-development/
 ---
@@ -149,7 +154,7 @@ chain = GraphCypherQAChain.from_llm(
 )
 
 result = chain.invoke({"query": "What companies work in the AI sector?"})
-print(result['result'])
+print(result[result])
 ```
 
 ### Thiết lập Neo4j Knowledge Graph
@@ -162,7 +167,7 @@ Stack tự động tạo vector indexes khi Neo4j khởi động. Bạn có th�
 
 # Cypher: kiểm tra vector index
 SHOW INDEXES YIELD name, type, entityType
-WHERE type = 'VECTOR'
+WHERE type = VECTOR
 ```
 
 ```cypher
@@ -171,7 +176,7 @@ CREATE VECTOR INDEX document_embeddings FOR (d:Document)
 ON (d.embedding)
 OPTIONS {indexConfig: {
  `vector.dimensions`: 384,
- `vector.similarity_function`: 'cosine'
+ `vector.similarity_function`: cosine
 }}
 ```
 

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cleanlab-11k-star-ai-data-cleaning" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cleanlab-11k-star-ai-data-cleaning" />
 
 title: 'Cleanlab: 데이터 주석 비용을 80% 절감해주는 11K+ 스타 AI 툴킷 — 파이썬 기반 오픈소스 데이터 클리닝'
 description: 'Cleanlab은 ML 데이터셋의 데이터 품질 문제를 찾아주고 수정하는 11K+ GitHub 스타를 가진 오픈소스 AI 툴킷입니다. 분류, 회귀, 클러스터링 작업을 위한 자동 레이블 오류 감지, 누락 값 채우기, 데이터 클리닝을 제공합니다. 설정 가이드, 벤치마크, 프로덕션 배포 방법을 포함합니다.'

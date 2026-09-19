@@ -1,4 +1,9 @@
 # CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu | Công Cụ Open Source 2026
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cc-switch-ai-coding-agent-control-center-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-ai-coding-agent-control-center-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-ai-coding-agent-control-center-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-ai-coding-agent-control-center-2026" />
 
 **Meta Description**: CC Switch là ứng dụng desktop open source miễn phí giúp quản lý Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode trong một giao diện duy nhất. 74K+ stars GitHub, Rust+Tauri, 50+ nhà cung cấp tích hợp, đồng bộ MCP server. Hướng dẫn cài đặt và đánh giá chi tiết.
 

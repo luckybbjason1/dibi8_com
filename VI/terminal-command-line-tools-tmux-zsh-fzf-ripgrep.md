@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: 'Công Cụ Năng Suất Terminal & CLI: tmux, zsh, fzf, ripgrep và Hơn Nữa'
 description: 'Hướng dẫn thiết lập terminal tối ưu với zsh, tmux, fzf, ripgrep và các công cụ CLI hiện đại. Tăng gấp đôi năng suất lập trình với terminal workflow chuyên nghiệp.'
 date: 2026-05-18 00:00:00+08:00

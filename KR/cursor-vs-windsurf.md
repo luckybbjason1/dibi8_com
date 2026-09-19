@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cursor-vs-windsurf" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cursor-vs-windsurf" />
 title: 'Cursor vs Windsurf 2026: 어떤 AI IDE가 더 좋은가?'
 description: 'Cursor와 Windsurf(Codeium 제작)의 정면 비교 — Composer vs Cascade, 가격, 성능, 마이그레이션 팁. 2026년 업데이트.'
 date: 2026-05-22 00:00:00+08:00

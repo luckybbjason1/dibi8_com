@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-monthly-bill-2026-real-receipts" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-monthly-bill-2026-real-receipts" />
 title: 'Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 30 ngày từ Claude Max, ChatGPT Plus, Cursor Pro'
 description: 'Theo dõi 30 ngày sử dụng và hóa đơn thực tế của Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 hiệu dụng) và Cursor Pro + API tràn ($87). Bóc tách chi phí theo tác vụ, mỗi công cụ hoàn vốn khi nào và ngưỡng để chuyển đổi.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['Claude Code', 'Cursor', 'Codex CLI', 'OpenAI API', 'Anthropic API']
+tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: 'May 2026 30-day window'
 licensing_model: Commercial
@@ -15,7 +20,7 @@ last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', 'cursor', 'codex-cli', 'pricing', '2026']
+tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
 aliases:
 - /vi/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq:

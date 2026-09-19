@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/fine-tuning-stack" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/fine-tuning-stack" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/fine-tuning-stack" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/fine-tuning-stack" />
 title: 'Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인'
 description: '완전한 LLM 파인튜닝 스택: Unsloth (빠른 단일 GPU 실험) + Axolotl (프로덕션 멀티 GPU) + HuggingFace datasets/Hub + Weights & Biases (eval 추적) + vLLM (서빙). $50-300/월 훈련 인프라. 전체 파이프라인: 데이터셋 준비 → 실험 → 프로덕션 파인튜닝 → eval → 배포.'
 date: 2026-05-21 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
-categories: ['collections']
-tags: ['Fine-Tuning', 'LLM', '스택', '컬렉션']
+categories: [collections]
+tags: ['fine-tuning', llm, 스택, 컬렉션]
 aliases:
   - /posts/fine-tuning-stack/
 ---

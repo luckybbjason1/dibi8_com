@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/llms-txt-generator" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llms-txt-generator" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llms-txt-generator" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llms-txt-generator" />
 title: "llms.txt 生成器 — 帮助 AI 爬虫（ChatGPT、Claude、Perplexity）读懂你的网站"
 description: "几秒生成有效的 llms.txt 文件，帮助 ChatGPT、Claude、Perplexity 等 AI 爬虫理解你的网站结构、抓取你最优质的内容。免费，无需注册。"
 date: 2026-05-18

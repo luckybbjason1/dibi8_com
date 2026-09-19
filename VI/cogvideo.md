@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cogvideo" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cogvideo" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cogvideo" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cogvideo" />
 title: 'CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video Đầy Đủ 2026'
 description: 'CogVideo (CogVideoX) là mô hình tạo video từ văn bản và hình ảnh của Zhipu AI. Hỗ trợ ComfyUI, Diffusers, SAT, và tích hợp Wan/HunyuanVideo/Open-Sora. Bao gồm cài đặt, Docker, inference, fine-tuning và benchmark.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['cogvideo', 'cogvideox', 'text-to-video', 'diffusion-transformer', 'zhipu-ai', 'video-generation', 'open-source-ai', 'comfyui']
+tags: [cogvideo, cogvideox, 'text-to-video', 'diffusion-transformer', 'zhipu-ai', 'video-generation', 'open-source-ai', comfyui]
 aliases:
 - /vi/posts/cogvideo/
 ---
@@ -529,9 +534,9 @@ Theo dõi metrics inference trong production:
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-INFERENCE_COUNT = Counter('cogvideo_inferences_total', 'Tổng số inference')
-INFERENCE_TIME = Histogram('cogvideo_inference_seconds', 'Độ trễ inference')
-VRAM_USAGE = Histogram('cogvideo_vram_bytes', 'VRAM peak')
+INFERENCE_COUNT = Counter(cogvideo_inferences_total, 'Tổng số inference')
+INFERENCE_TIME = Histogram(cogvideo_inference_seconds, 'Độ trễ inference')
+VRAM_USAGE = Histogram(cogvideo_vram_bytes, 'VRAM peak')
 
 start_http_server(9090)
 

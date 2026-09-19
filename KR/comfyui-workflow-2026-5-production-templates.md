@@ -1,21 +1,26 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종'
 description: '2026년 ComfyUI는 GitHub 스타 10.6만 개를 돌파했습니다. 초보자 친화적 셋업 가이드, 2026년 모델 추천, 그리고 곧바로 실무에 투입 가능한 워크플로 템플릿 5종(텍스트→이미지, 인페인트, 업스케일, 비디오, 캐릭터 일관성).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
-tech_stack: ['ComfyUI', 'Stable Diffusion', 'Python', 'CUDA']
+tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI 도구
 source_version: 'ComfyUI 2026.05'
 licensing_model: 오픈 소스
 license_type: 'GPL-3.0'
 github_repo: 'https://github.com/comfyanonymous/ComfyUI'
 stars: 106000
-maintainer: 'comfyanonymous'
+maintainer: comfyanonymous
 last_maintained: '2026-05-25'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['comfyui', 'stable-diffusion', 'image-generation', 'workflows', '2026']
+tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
 aliases:
 - /kr/posts/comfyui-workflow-2026-5-production-templates/
 faq:

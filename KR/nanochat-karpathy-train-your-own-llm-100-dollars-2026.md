@@ -1,9 +1,13 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 title: 'nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,000줄 전체 LLM 파이프라인'
 description: 'Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $100 미만으로 GPT-2 수준의 챗봇을 처음부터 훈련하도록 설계되었습니다.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
-tech_stack: ['Python', 'PyTorch', 'Rust', 'LLM Training']
+tech_stack: [Python, PyTorch, Rust, 'LLM Training']
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +18,12 @@ download_url: 'https://github.com/karpathy/nanochat'
 backup_url: ''
 github_repo: 'karpathy/nanochat'
 stars: 54700
-maintainer: 'karpathy'
+maintainer: karpathy
 last_maintained: '2026-06-01'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['nanochat', 'karpathy', 'LLM-훈련', 'PyTorch', 'GPT', '자체호스팅', '오픈소스', 'transformer']
+tags: [nanochat, karpathy, 'llm-훈련', pytorch, gpt, 자체호스팅, 오픈소스, transformer]
 aliases:
 - /kr/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
 faqs:

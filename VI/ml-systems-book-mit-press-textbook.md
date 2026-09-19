@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ml-systems-book-mit-press-textbook" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ml-systems-book-mit-press-textbook" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ml-systems-book-mit-press-textbook" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ml-systems-book-mit-press-textbook" />
 title: "ML Systems Book：Giáo trình miễn phí về Hệ thống Machine Learning của MIT"
 description: "Machine Learning Systems là giáo trình mã nguồn mở miễn phí do MIT Press xuất bản, bao gồm kỹ thuật dữ liệu, tối ưu mô hình, huấn luyện nhận biết phần cứng, tăng tốc suy luận và các kiến thức cốt lõi về kỹ thuật hệ thống ML."
 date: 2026-05-15T04:20:25+09:00

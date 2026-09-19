@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-vs-midjourney" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-vs-midjourney" />
 title: "미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유"
 description: "미드저니 완벽 대체 (2026): 전문가들이 ComfyUI로 갈아타는 진짜 이유"
 date: 2026-05-15T04:20:25+09:00

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/sglang-structured-generation-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/sglang-structured-generation-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/sglang-structured-generation-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/sglang-structured-generation-llm" />
 title: SGLang — Structured Generation Và Engine Serving LLM Tốc Độ Cao
 description: Hướng dẫn toàn diện về SGLang(Structured Generation Language). Serving LLM hiệu suất cao với constrained decoding, JSON schema enforcement, parallel execution và tăng tốc 25x so với vLLM cho structured output.
 tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']

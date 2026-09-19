@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/toprank" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
 title: "Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎"
 description: "Toprank 是一款基于 Claude Code 构建的开源 SEO/GEO/ADS 增长工具，自动化关键词研究、内容生成、排名监控与广告投放优化，帮助网站流量翻倍。"
 date: 2026-05-15T04:20:25+09:00

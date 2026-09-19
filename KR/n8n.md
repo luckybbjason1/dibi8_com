@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/n8n" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n" />
 title: 'n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약'
 description: 'n8n(fair-code)은 네이티브 AI 기능과 400+ 통합을 갖춘 워크플로 자동화 플랫폼이다. Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram과 호환. Docker 설정, AI 노드 구성, Webhook 배포, 프로덕션 강화를 다룬다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['n8n', '워크플로-자동화', '자체-호스팅', 'AI-에이전트', 'Docker', 'LangChain', '오픈소스', '로우코드']
+tags: [n8n, '워크플로-자동화', '자체-호스팅', 'ai-에이전트', docker, langchain, 오픈소스, 로우코드]
 aliases:
 - /kr/posts/n8n/
 - /kr/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
@@ -274,7 +279,7 @@ services:
       replicas: 2
       resources:
         limits:
-          cpus: '2'
+          cpus: 2
           memory: 2G
     depends_on:
       - postgres
@@ -335,7 +340,7 @@ server {
         proxy_pass http://127.0.0.1:5678;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
+        proxy_set_header Connection upgrade;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -630,11 +635,11 @@ N8N_EXECUTIONS_TIMEOUT_MAX=3600
 
 ```sql
 -- 프로덕션용 PostgreSQL 튜닝
-ALTER SYSTEM SET shared_buffers = '512MB';
-ALTER SYSTEM SET effective_cache_size = '2GB';
+ALTER SYSTEM SET shared_buffers = 512MB;
+ALTER SYSTEM SET effective_cache_size = 2GB;
 ALTER SYSTEM SET random_page_cost = 1.1;
 ALTER SYSTEM SET checkpoint_completion_target = 0.9;
-ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET wal_buffers = 16MB;
 ALTER SYSTEM SET default_statistics_target = 100;
 
 -- 쿼리 속도 향상을 위한 인덱스
@@ -684,7 +689,7 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'n8n'
+  - job_name: n8n
     static_configs:
       - targets: ['n8n-main:5678']
     metrics_path: /metrics

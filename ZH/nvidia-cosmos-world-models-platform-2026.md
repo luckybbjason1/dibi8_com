@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/nvidia-cosmos-world-models-platform-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nvidia-cosmos-world-models-platform-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nvidia-cosmos-world-models-platform-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nvidia-cosmos-world-models-platform-2026" />
 title: 'NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）'
 description: 'NVIDIA Cosmos 是一个开源的世界模型平台，包含数据集和工具，用于构建物理AI——机器人、自动驾驶汽车、智能基础设施。Cosmos 3 采用混合Transformer架构，统一支持语言、图像、视频、音频和行动生成。提供16B和64B两种模型。'
 date: 2026-06-13

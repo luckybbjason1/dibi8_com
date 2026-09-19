@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unstructured-data-preprocessing-llm" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unstructured-data-preprocessing-llm" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unstructured-data-preprocessing-llm" />
 title: 'Unstructured.io: 어떤 문서든 LLM 준비 데이터 청크로 변환하는 데이터 전처리 파이프라인 — 2026 가이드'
 description: 'Unstructured.io 실용 2026 가이드 — 이 오픈소스 문서 전처리 라이브러리가 PDF, DOCX, PPTX, 이미지를 깨끗하고 구조화된 텍스트 청크로 변환하여 LLM 및 RAG 파이프라인을 위해 준비합니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['unstructured', '문서파싱', 'llm', 'rag', '데이터전처리', 'pdf', '청킹', '오픈소스']
+tags: [unstructured, 문서파싱, llm, rag, 데이터전처리, pdf, 청킹, 오픈소스]
 aliases:
 - /kr/posts/unstructured-data-preprocessing-llm/
 ---
@@ -185,8 +190,8 @@ documents = loader.load()  # Document 객체 목록 반환
 
 # 각 문서는 풍부한 메타데이터를 가짐
 print(documents[0].metadata)
-# {'source': 'quarterly_earnings.pdf', 'page_number': 1,
-#  'category': 'NarrativeText', 'element_id': '...', 'parent_id': '...'}
+# {source: 'quarterly_earnings.pdf', page_number: 1,
+#  category: NarrativeText, element_id: '...', parent_id: '...'}
 
 # 벡터 스토어에 직접 저장
 vectorstore = Chroma.from_documents(

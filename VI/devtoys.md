@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/devtoys" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/devtoys" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/devtoys" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/devtoys" />
 title: 'DevToys: 31,533 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ Bộ Tiện Ích Dành Cho Nhà Phát Triển 2026'
 description: 'DevToys là bộ công cụ đa năng miễn phí, nguồn mở, ngoại tuyến dành cho nhà phát triển. Tiện ích đa nền tảng cho JSON, Base64, JWT, regex và hơn 30 công cụ trên Windows, macOS và Linux với Smart Detection và hỗ trợ CLI.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['DevToys', 'công-cụ-phát-triển', 'tiện-ích-ngoại-tuyến', 'định-dạng-JSON', 'mã-hóa-Base64', 'giải-mã-JWT', 'kiểm-tra-regex', 'đa-nền-tảng', 'nguồn-mở']
+tags: [devtoys, 'công-cụ-phát-triển', 'tiện-ích-ngoại-tuyến', 'định-dạng-json', 'mã-hóa-base64', 'giải-mã-jwt', 'kiểm-tra-regex', 'đa-nền-tảng', 'nguồn-mở']
 aliases:
 - /vi/posts/devtoys/
 ---

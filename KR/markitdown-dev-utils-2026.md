@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-dev-utils-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-dev-utils-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-dev-utils-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-dev-utils-2026" />
 title: 'markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드'
 description: 'markitdown은 각종 파일과 오피스 문서를 마크다운으로 변환해 주는 마이크로소프트의 파이썬 도구입니다. GitHub 스타 141,153개, MIT 라이선스. 설치, 핵심 CLI 및 파이썬 사용법, 실제 코드 예제, 그리고 pandoc·docx2txt와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'microsoft/markitdown'
 stars: 141153
-maintainer: 'microsoft'
+maintainer: microsoft
 last_maintained: '2026-06-02'
 featureImage: ''
 draft: false
@@ -151,7 +156,7 @@ from markitdown import MarkItDown
 md = MarkItDown()
 result = md.convert('example.docx')
 
-with open('output.md', 'w') as file:
+with open('output.md', w) as file:
     file.write(result.text_content)
 ```
 

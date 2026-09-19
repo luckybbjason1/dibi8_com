@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/cow-protocol-mev-protection" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cow-protocol-mev-protection" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cow-protocol-mev-protection" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cow-protocol-mev-protection" />
 title: 'CoW Protocol 2026: 트레이더에게 $100M+ 슬리피지 절약하는 MEV 보호 DEX 애그리게이터 — 설정 가이드'
 description: '배치 옥션과 솔버 경쟁을 사용하여 트레이더가 $100M+ 슬리피지를 절약할 수 있게 하는 MEV 보호 DEX 애그리게이터 CoW Protocol에 대한 종합 가이드. SDK 통합, 트레이딩 봇 설정 포함.'
 date: 2026-05-20 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/cowprotocol/contracts'
 stars: 700
-maintainer: 'cowprotocol'
+maintainer: cowprotocol
 last_maintained: '2026-05-20'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['CoW Protocol', 'MEV protection', 'DEX aggregator', 'batch auction', 'sandwich attack', 'Coincidence of Wants', 'solver', 'DeFi trading', 'gasless orders', 'anti-MEV']
+tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'sandwich attack', 'coincidence of wants', solver, 'defi trading', 'gasless orders', 'anti-mev']
 aliases:
 - /kr/posts/cow-protocol-mev-protection/
 ---
@@ -123,8 +128,8 @@ COW_API_URL=https://api.cow.fi/mainnet
 
 ```typescript
 import { CowSdk, OrderKind, SigningScheme } from '@cowprotocol/cow-sdk';
-import { Wallet } from 'ethers';
-import * as dotenv from 'dotenv';
+import { Wallet } from ethers;
+import * as dotenv from dotenv;
 
 dotenv.config();
 
@@ -146,7 +151,7 @@ class CowProtocolTrader {
             sellAmountBeforeFee: sellAmount,
             userAddress: this.wallet.address,
             validTo: Math.floor(Date.now() / 1000) + 3600,
-            appData: '0x0000000000000000000000000000000000000000000000000000000000000000',
+            appData: 0x0000000000000000000000000000000000000000000000000000000000000000,
             partiallyFillable: false,
             from: this.wallet.address,
         });
@@ -181,7 +186,7 @@ const trader = new CowProtocolTrader();
             buyAmount: quote.quote.buyAmount,
             feeAmount: quote.quote.feeAmount,
             validTo: Math.floor(Date.now() / 1000) + 3600,
-            appData: '0x0000000000000000000000000000000000000000000000000000000000000000',
+            appData: 0x0000000000000000000000000000000000000000000000000000000000000000,
             partiallyFillable: false,
             kind,
             receiver: this.wallet.address,
@@ -231,13 +236,13 @@ const trader = new CowProtocolTrader();
             const orderData = await this.cowSdk.cowApi.getOrder(orderId);
             console.log(`상태: ${orderData.status} (확인 ${i + 1}/${maxAttempts})`);
             
-            if (orderData.status === 'fulfilled') {
+            if (orderData.status === fulfilled) {
                 console.log('주문 체결됨!');
                 console.log(`트랜잭션: ${orderData.executionTxHash}`);
                 return orderData;
             }
             
-            if (['expired', 'cancelled', 'presignaturePending'].includes(orderData.status)) {
+            if ([expired, cancelled, presignaturePending].includes(orderData.status)) {
                 console.log(`주문 ${orderData.status}`);
                 return orderData;
             }
@@ -254,7 +259,7 @@ const trader = new CowProtocolTrader();
 ### 실시간 가격 모니터링
 
 ```typescript
-import axios from 'axios';
+import axios from axios;
 
 interface PriceMonitor {
     tokenIn: string;
@@ -273,7 +278,7 @@ class CowProtectedBot {
     }
 
     async addMonitor(name: string, tokenIn: string, tokenOut: string, threshold: number) {
-        const quote = await this.trader.getQuote(tokenIn, tokenOut, '1000000');
+        const quote = await this.trader.getQuote(tokenIn, tokenOut, 1000000);
         const currentPrice = parseFloat(quote.quote.buyAmount) / parseFloat(quote.quote.sellAmount);
 
         this.monitors.set(name, { tokenIn, tokenOut, threshold, lastPrice: currentPrice });
@@ -285,7 +290,7 @@ class CowProtectedBot {
     async checkPrices() {
         for (const [name, monitor] of this.monitors) {
             try {
-                const quote = await this.trader.getQuote(monitor.tokenIn, monitor.tokenOut, '1000000');
+                const quote = await this.trader.getQuote(monitor.tokenIn, monitor.tokenOut, 1000000);
                 const currentPrice = parseFloat(quote.quote.buyAmount) / parseFloat(quote.quote.sellAmount);
                 const priceChange = (currentPrice - monitor.lastPrice) / monitor.lastPrice;
                 
@@ -309,7 +314,7 @@ class CowProtectedBot {
         console.log(`  트리거 가격: ${triggerPrice}`);
 
         const orderId = await this.trader.placeOrder(
-            monitor.tokenIn, monitor.tokenOut, '1000000000000000000', OrderKind.SELL
+            monitor.tokenIn, monitor.tokenOut, 1000000000000000000, OrderKind.SELL
         );
         console.log(`보호 주문 배치됨: ${orderId}`);
     }
@@ -351,7 +356,7 @@ class BatchOrderManager {
         this.trader = trader;
     }
 
-    async submitBatchOrders(orders: Omit<BatchOrder, 'id'>[]) {
+    async submitBatchOrders(orders: Omit<BatchOrder, id>[]) {
         console.log(`${orders.length}개 주문의 배치 제출 중...`);
         const orderIds: string[] = [];
         
@@ -383,9 +388,9 @@ class BatchOrderManager {
             orderIds.map(async (id) => {
                 try {
                     const order = await this.trader.cowSdk.cowApi.getOrder(id);
-                    return { id, status: order.status, filled: order.status === 'fulfilled' };
+                    return { id, status: order.status, filled: order.status === fulfilled };
                 } catch {
-                    return { id, status: 'unknown', filled: false };
+                    return { id, status: unknown, filled: false };
                 }
             })
         );
@@ -424,9 +429,9 @@ class BatchOrderManager {
             sellToken, buyToken,
             sellAmount,
             buyAmount: minBuyAmount,  // 최소 허용 출력
-            feeAmount: '0',
+            feeAmount: 0,
             validTo,
-            appData: '0x0000000000000000000000000000000000000000000000000000000000000000',
+            appData: 0x0000000000000000000000000000000000000000000000000000000000000000,
             partiallyFillable: true,  // 부분 체결 허용
             kind: OrderKind.SELL,
             receiver: this.wallet.address,
@@ -516,7 +521,7 @@ class BatchOrderManager {
 
 ```typescript
     async getTradeHistory(startBlock?: number, endBlock?: number) {
-        const SETTLEMENT_CONTRACT = '0x9008D19f58AAbD9eD0D60971565AA8510560ab41';
+        const SETTLEMENT_CONTRACT = 0x9008D19f58AAbD9eD0D60971565AA8510560ab41;
         const settlementAbi = [
             'event Settlement(address indexed solver, bytes32 indexed orderUid)',
         ];
@@ -524,7 +529,7 @@ class BatchOrderManager {
         const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
         const settlement = new ethers.Contract(SETTLEMENT_CONTRACT, settlementAbi, provider);
         const filter = settlement.filters.Settlement();
-        const events = await settlement.queryFilter(filter, startBlock || -10000, endBlock || 'latest');
+        const events = await settlement.queryFilter(filter, startBlock || -10000, endBlock || latest);
 
         console.log(`${events.length}개의 결제 발견`);
 

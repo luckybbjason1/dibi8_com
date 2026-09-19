@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/deepseek-v3-vs-claude-sonnet" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/deepseek-v3-vs-claude-sonnet" />
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context'
 description: 'So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ context, SWE-bench, đa ngôn ngữ, khả dụng API. Cập nhật 2026.'
 date: 2026-05-22 00:00:00+08:00

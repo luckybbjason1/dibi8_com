@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/meilisearch-fast-search-engine" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/meilisearch-fast-search-engine" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/meilisearch-fast-search-engine" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/meilisearch-fast-search-engine" />
 title: 'Meilisearch: 번개처럼 빠른 오픈소스 오타 허용 검색 엔진 — 2026 설정 및 벤치마크'
 description: 'Meilisearch 1.12를 배포하여 50ms 미만의 오타 허용 고속 검색을 구현하세요. Docker 설정, SDK 통합, 프로덕션 벤치마크 및 대안과의 정직한 비교를 포함합니다.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,7 +19,7 @@ download_url: ''
 backup_url: ''
 github_repo: 'meilisearch/meilisearch'
 stars: 51300
-maintainer: 'meilisearch'
+maintainer: meilisearch
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
@@ -232,23 +237,23 @@ npm install meilisearch
 ```
 
 ```javascript
-const { MeiliSearch } = require('meilisearch');
+const { MeiliSearch } = require(meilisearch);
 
 const client = new MeiliSearch({
   host: 'http://localhost:7700',
   apiKey: 'your-secure-master-key-32-chars-long!!'
 });
 
-const index = client.index('products');
+const index = client.index(products);
 
 // 필터 및 패싯으로 검색
 async function search(query) {
   const results = await index.search(query, {
     filter: 'price >= 50 AND in_stock = true',
     sort: ['rating:desc'],
-    facets: ['category'],
+    facets: [category],
     limit: 10,
-    attributesToHighlight: ['name', 'description']
+    attributesToHighlight: [name, description]
   });
 
   console.log(`Found ${results.estimatedTotalHits} hits`);
@@ -259,7 +264,7 @@ async function search(query) {
   });
 }
 
-search('headphons'); // 오타 자동 처리
+search(headphons); // 오타 자동 처리
 ```
 
 ### Python SDK
@@ -274,27 +279,27 @@ import os
 
 client = meilisearch.Client(
     'http://localhost:7700',
-    os.environ['MEILI_MASTER_KEY']
+    os.environ[MEILI_MASTER_KEY]
 )
 
-index = client.index('products')
+index = client.index(products)
 
 # 지리 필터로 검색
 results = index.search(
     'running shoes',
     {
-        'filter': 'price >= 50 AND price <= 200',
-        'sort': ['rating:desc'],
-        'facets': ['category', 'in_stock'],
-        'limit': 20,
-        'attributesToHighlight': ['name', 'description']
+        filter: 'price >= 50 AND price <= 200',
+        sort: ['rating:desc'],
+        facets: [category, in_stock],
+        limit: 20,
+        attributesToHighlight: [name, description]
     }
 )
 
-print(f"Hits: {results['estimatedTotalHits']}")
-print(f"Facets: {results.get('facetDistribution', {})}")
-for hit in results['hits']:
-    print(f"  {hit['name']} - ${hit['price']} (rating: {hit['rating']})")
+print(f"Hits: {results[estimatedTotalHits]}")
+print(f"Facets: {results.get(facetDistribution, {})}")
+for hit in results[hits]:
+    print(f"  {hit[name]} - ${hit[price]} (rating: {hit[rating]})")
 ```
 
 ### React InstantSearch 통합
@@ -306,7 +311,7 @@ npm install @meilisearch/instant-meilisearch react-instantsearch-dom
 ```
 
 ```jsx
-import React from 'react';
+import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList, Stats } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 
@@ -315,7 +320,7 @@ const { searchClient } = instantMeiliSearch(
   'your-secure-master-key-32-chars-long!!',
   {
     finitePagination: true,
-    primaryKey: 'id'
+    primaryKey: id
   }
 );
 
@@ -324,8 +329,8 @@ function App() {
     <InstantSearch searchClient={searchClient} indexName="products">
       <SearchBox />
       <Stats />
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <aside style={{ width: '200px' }}>
+      <div style={{ display: flex, gap: 20px }}>
+        <aside style={{ width: 200px }}>
           <RefinementList attribute="category" />
           <RefinementList attribute="in_stock" />
         </aside>
@@ -339,9 +344,9 @@ function App() {
 
 function ProductHit({ hit }) {
   return (
-    <div style={{ padding: '10px', borderBottom: '1px solid #eee' }}>
+    <div style={{ padding: 10px, borderBottom: '1px solid #eee' }}>
       <h4 dangerouslySetInnerHTML={{ __html: hit._highlightResult.name.value }} />
-      <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? '재고 있음' : '품절'}</p>
+      <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? '재고 있음' : 품절}</p>
     </div>
   );
 }
@@ -362,19 +367,19 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Meilisearch\Client;
 
 $client = new Client('http://localhost:7700', 'your-secure-master-key-32-chars-long!!');
-$index = $client->index('products');
+$index = $client->index(products);
 
 // 오타 허용으로 검색
-$results = $index->search('keybord', [
-    'filter' => 'in_stock = true',
-    'sort' => ['price:asc'],
-    'limit' => 10,
-    'facets' => ['category']
+$results = $index->search(keybord, [
+    filter => 'in_stock = true',
+    sort => ['price:asc'],
+    limit => 10,
+    facets => [category]
 ]);
 
 echo "Found: {$results->getEstimatedTotalHits()}\n";
 foreach ($results->getHits() as $hit) {
-    echo "- {$hit['name']} \${$hit['price']}\n";
+    echo "- {$hit[name]} \${$hit[price]}\n";
 }
 ?>
 ```
@@ -535,8 +540,8 @@ volumes:
 Meilisearch 1.12는 테넌트 토큰을 통한 보안 멀티 테넌시를 지원한다:
 
 ```javascript
-const { MeiliSearch } = require('meilisearch');
-const crypto = require('crypto');
+const { MeiliSearch } = require(meilisearch);
+const crypto = require(crypto);
 
 const client = new MeiliSearch({
   host: 'http://localhost:7700',
@@ -548,7 +553,7 @@ const token = client.generateTenantToken(
   'search-api-key-uid',
   {
     filter: 'user_id = 123',  // 사용자는 자신의 문서만 볼 수 있음
-    searchRules: { indexes: { products: { filterableAttributes: ['user_id'] } } }
+    searchRules: { indexes: { products: { filterableAttributes: [user_id] } } }
   },
   {
     apiKey: 'master-key',

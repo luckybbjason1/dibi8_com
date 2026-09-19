@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/awesome-openclaw-usecases-ai-agent-daily-life" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/awesome-openclaw-usecases-ai-agent-daily-life" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/awesome-openclaw-usecases-ai-agent-daily-life" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/awesome-openclaw-usecases-ai-agent-daily-life" />
 title: 'OpenClaw 42개 실제 사용 사례: 사람들이 일상에서 AI 에이전트를 사용하는 방법'
 description: OpenClaw AI 에이전트의 42개 실제 사용 사례를 탐색하세요 — 소셜 미디어 자동화부터 게임 개발, 팟캐스트 제작 및
   자율 거래까지.

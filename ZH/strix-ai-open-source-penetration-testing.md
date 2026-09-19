@@ -1,4 +1,7 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/strix-ai-open-source-penetration-testing" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/strix-ai-open-source-penetration-testing" />
 lang: zh
 description: 'Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI.'
 date: 2026-07-03T09:00:00+09:00

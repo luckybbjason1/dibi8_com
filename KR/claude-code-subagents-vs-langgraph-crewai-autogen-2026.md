@@ -1,9 +1,14 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 title: 'Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (2026): 언제 독립 프레임워크로 넘어가야 하는가'
 description: '당신은 이미 Claude Code 안에서 subagent를 오케스트레이션하고 있다. 정말 LangGraph, CrewAI, AutoGen이 필요할까? 실제 벤치마크, GitHub 스타의 현실, 그리고 "내장 기능으로 충분하다"와 "이제 넘어갈 때다" 사이의 솔직한 경계선을 담은 2026 의사결정 가이드.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
-tech_stack: ['Claude Code', 'Agent SDK', 'LangGraph', 'CrewAI', 'AutoGen', 'Python']
+tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''
 licensing_model: Open Source
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: ''
 stars: 0
-maintainer: 'dibi8'
+maintainer: dibi8
 last_maintained: '2026-05-30'
 featureImage: ''
 draft: false
 categories: ['llm-frameworks']
-tags: ['claude-code', 'langgraph', 'crewai', 'autogen', 'multi-agent', 'agent-sdk', 'llm-frameworks', 'orchestration']
+tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
 aliases:
 - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq:
@@ -30,7 +35,7 @@ faq:
   - q: "AutoGen은 2026년에도 쓸 만한가요, 아니면 죽었나요?"
     a: "AutoGen(v0.4 재작성 이후 현재는 AG2)은 안정적이지만 더 이상 간판 프레임워크로 활발히 개발되지는 않으므로, 2026년 완전히 새로운 프로젝트라면 LangGraph나 CrewAI가 더 안전한 출발점입니다. 다만 AutoGen/AG2는 한 가지 틈새에서 여전히 빛납니다: 오프라인이며 품질에 민감한 워크플로로, 대화형 GroupChat 패턴과 철저함이 지연 시간보다 더 중요한 경우입니다. 활발한 지속 투자를 기대하며 신규 프로젝트를 여기서 시작하지는 마세요. 그렇다고 버려진 소프트웨어인 것도 아닙니다."
   - q: "LangGraph와 CrewAI의 차이는 무엇인가요?"
-    a: "LangGraph는 워크플로를 조건부 엣지를 가진 명시적 방향성 그래프로 모델링하여 세밀한 제어, checkpointing, 재개 가능한 실행을 제공합니다 — 2026 벤치마크에서 복잡한 작업에 대해 약 62%를 기록해 CrewAI의 약 54%를 앞섰으며, 감사 추적과 human-in-the-loop가 필요할 때의 프로덕션 선택지입니다. CrewAI는 역할 기반 'crew' 추상화(에이전트의 role/goal/backstory)를 사용해 약 20줄의 Python으로 멀티 에이전트 팀을 돌릴 수 있습니다 — 프로토타이핑이 가장 빠르지만, 제어가 덜 세밀하다는 대가가 따릅니다. 제어 대 최초 결과까지의 속도가 핵심 트레이드오프입니다."
+    a: "LangGraph는 워크플로를 조건부 엣지를 가진 명시적 방향성 그래프로 모델링하여 세밀한 제어, checkpointing, 재개 가능한 실행을 제공합니다 — 2026 벤치마크에서 복잡한 작업에 대해 약 62%를 기록해 CrewAI의 약 54%를 앞섰으며, 감사 추적과 human-in-the-loop가 필요할 때의 프로덕션 선택지입니다. CrewAI는 역할 기반 crew 추상화(에이전트의 role/goal/backstory)를 사용해 약 20줄의 Python으로 멀티 에이전트 팀을 돌릴 수 있습니다 — 프로토타이핑이 가장 빠르지만, 제어가 덜 세밀하다는 대가가 따릅니다. 제어 대 최초 결과까지의 속도가 핵심 트레이드오프입니다."
   - q: "Claude 모델을 LangGraph나 CrewAI와 함께 쓸 수 있나요?"
     a: "네. LangGraph, CrewAI, AutoGen은 모두 모델 비종속적이라 — 그 뒤에서 Claude, GPT, Gemini, 또는 로컬 모델을 돌릴 수 있습니다. Claude Agent SDK(2025년 말 Claude Code SDK에서 이름이 바뀌었으며, 현재 Python과 TypeScript 패키지로 모두 제공)는 설계상 Claude 전용으로, 모델 유연성을 내주는 대신 네이티브 안전 기능과 확장 사고를 얻습니다. 따라서 멀티 벤더 유연성이 반드시 필요한 요건이라면 비종속 프레임워크 중 하나를 택하고, Claude에 전부 올인하며 가장 긴밀한 통합을 원한다면 Agent SDK가 네이티브 경로입니다."
 ---

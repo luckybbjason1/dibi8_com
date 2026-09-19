@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
 title: 'Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026年完整部署指南'
 description: 'Jesse AI交易框架的生产级指南 —— 安装、使用30+技术指标进行回测、构建自定义策略，并用Python部署实时加密货币交易机器人。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-trading']
-tags: ['Jesse', '加密货币交易', 'Python', '回测', '技术指标', '算法交易', 'AI交易', '量化交易']
+tags: [jesse, 加密货币交易, python, 回测, 技术指标, 算法交易, ai交易, 量化交易]
 aliases:
 - /zh/posts/jesse-ai-trading-framework/
 ---
@@ -121,13 +126,13 @@ my-trading-bot/
 ```python
 # config.py — 数据库配置
 DATABASES = {
-    'default': {
-        'driver': 'postgres',
-        'host': 'localhost',
-        'port': 5432,
-        'dbname': 'jesse_db',
-        'user': 'jesse_user',
-        'password': 'your_secure_password'
+    default: {
+        driver: postgres,
+        host: localhost,
+        port: 5432,
+        dbname: jesse_db,
+        user: jesse_user,
+        password: your_secure_password
     }
 }
 ```
@@ -136,9 +141,9 @@ DATABASES = {
 
 ```python
 DATABASES = {
-    'default': {
-        'driver': 'sqlite',
-        'path': 'storage/jesse.db'
+    default: {
+        driver: sqlite,
+        path: 'storage/jesse.db'
     }
 }
 ```
@@ -152,12 +157,12 @@ DATABASES = {
 from jesse.enums import timeframes
 
 routes = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
-    {'exchange': 'Binance', 'symbol': 'ETH-USDT', 'timeframe': '1h', 'strategy': 'SimpleMA'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 1h, strategy: SimpleMA},
+    {exchange: Binance, symbol: 'ETH-USDT', timeframe: 1h, strategy: SimpleMA},
 ]
 
 extra_candles = [
-    {'exchange': 'Binance', 'symbol': 'BTC-USDT', 'timeframe': '4h'},
+    {exchange: Binance, symbol: 'BTC-USDT', timeframe: 4h},
 ]
 ```
 
@@ -276,11 +281,11 @@ class MLStrategy(Strategy):
 ```python
 # config.py — Telegram通知设置
 NOTIFICATIONS = {
-    'enabled': True,
-    'provider': 'telegram',
-    'telegram_bot_token': 'YOUR_BOT_TOKEN',
-    'telegram_chat_id': 'YOUR_CHAT_ID',
-    'events': ['order_executed', 'trade_completed', 'error']
+    enabled: True,
+    provider: telegram,
+    telegram_bot_token: YOUR_BOT_TOKEN,
+    telegram_chat_id: YOUR_CHAT_ID,
+    events: [order_executed, trade_completed, error]
 }
 ```
 
@@ -332,9 +337,9 @@ volumes:
 # metrics.py — 导出Prometheus指标
 from prometheus_client import Counter, Gauge, start_http_server
 
-trades_total = Counter('jesse_trades_total', 'Total trades executed')
-position_size = Gauge('jesse_position_size', 'Current position size')
-pnl_current = Gauge('jesse_pnl_percent', 'Current P&L percentage')
+trades_total = Counter(jesse_trades_total, 'Total trades executed')
+position_size = Gauge(jesse_position_size, 'Current position size')
+pnl_current = Gauge(jesse_pnl_percent, 'Current P&L percentage')
 
 # 在9090端口启动指标服务器
 start_http_server(9090)
@@ -386,10 +391,10 @@ start_http_server(9090)
 ```python
 # config.py — 风险管理设置
 RISK_MANAGEMENT = {
-    'max_risk_per_trade': 0.02,      # 单笔交易最大风险2%
-    'max_drawdown_stop': 0.15,       # 回撤15%时停止交易
-    'daily_loss_limit': 0.05,        # 日亏损限制5%
-    'position_size_limit': 0.25,     # 单个仓位最大25%
+    max_risk_per_trade: 0.02,      # 单笔交易最大风险2%
+    max_drawdown_stop: 0.15,       # 回撤15%时停止交易
+    daily_loss_limit: 0.05,        # 日亏损限制5%
+    position_size_limit: 0.25,     # 单个仓位最大25%
 }
 ```
 
@@ -400,7 +405,7 @@ RISK_MANAGEMENT = {
 class MultiTFStrategy(Strategy):
     def prepare(self):
         # 获取4小时K线用于趋势判断
-        self.h4_candles = self.get_candles('Binance', 'BTC-USDT', '4h')
+        self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
 
     def should_long(self):
         h4_sma50 = ta.sma(self.h4_candles, 50)
@@ -510,10 +515,10 @@ Jesse专为加密货币市场设计。虽然理论上可以通过编写自定义
 import os
 
 EXCHANGES = {
-    'Binance': {
-        'api_key': os.environ['BINANCE_API_KEY'],
-        'api_secret': os.environ['BINANCE_API_SECRET'],
-        'sandbox': False
+    Binance: {
+        api_key: os.environ[BINANCE_API_KEY],
+        api_secret: os.environ[BINANCE_API_SECRET],
+        sandbox: False
     }
 }
 ```

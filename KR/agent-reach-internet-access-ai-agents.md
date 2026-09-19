@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/agent-reach-internet-access-ai-agents" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-internet-access-ai-agents" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-internet-access-ai-agents" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-internet-access-ai-agents" />
 title: 'Agent-Reach: 83K-Star 인터넷 접근 도구 (제로 API 비용)'
 description: 'Agent-Reach는 Python CLI 도구로, AI 에이전트가 Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu 등을 API 비용 없이 검색하고 스크래핑할 수 있게 합니다. 2026년 워크플로우 통합 가이드.'
 date: 2026-09-19

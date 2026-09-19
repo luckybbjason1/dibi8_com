@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ml-systems-book-mit-press-textbook" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ml-systems-book-mit-press-textbook" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ml-systems-book-mit-press-textbook" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ml-systems-book-mit-press-textbook" />
 title: "ML Systems Book：MIT 出品的免费机器学习系统圣经"
 description: "Machine Learning Systems 是由 MIT Press 出版的免费Open Source教材，涵盖数据工程、模型优化、硬件感知训练、推理加速等 ML 系统工程核心知识。"
 date: 2026-05-15T04:20:25+09:00

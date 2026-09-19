@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/faster-whisper" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/faster-whisper" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/faster-whisper" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/faster-whisper" />
 title: 'faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp 4x với 23K+ Stars — Benchmark vs WhisperX, whisper.cpp 2026'
 description: 'faster-whisper (SYSTRAN) tái triển khai OpenAI Whisper qua CTranslate2 để đạt tốc độ nhanh gấp 4x. Hướng dẫn cài đặt faster whisper, benchmark, thiết lập Docker, API Python, bộ lọc VAD, xử lý hàng loạt, và tích hợp production với WhisperX và whisper.cpp.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/SYSTRAN/faster-whisper'
 stars: 23000
-maintainer: 'SYSTRAN'
+maintainer: SYSTRAN
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['faster-whisper', 'chuyen-giong-noi-thanh-van-ban', 'CTranslate2', 'OpenAI-Whisper', 'nhan-dang-giong-noi', 'Python', 'Docker', 'ASR']
+tags: ['faster-whisper', 'chuyen-giong-noi-thanh-van-ban', ctranslate2, 'openai-whisper', 'nhan-dang-giong-noi', python, docker, asr]
 aliases:
 - /vi/posts/faster-whisper/
 ---
@@ -173,8 +178,8 @@ result = whisperx.assign_word_speakers(diarize_segments, result)
 
 for segment in result["segments"]:
     speaker = segment.get("speaker", "UNKNOWN")
-    print(f"[{segment['start']:.2f}s -> {segment['end']:.2f}s] "
-          f"{speaker}: {segment['text']}")
+    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] "
+          f"{speaker}: {segment[text]}")
 ```
 
 ### whisper-asr-webservice (API tương thích OpenAI)

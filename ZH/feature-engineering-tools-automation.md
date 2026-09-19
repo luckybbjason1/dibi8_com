@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/feature-engineering-tools-automation" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feature-engineering-tools-automation" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feature-engineering-tools-automation" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feature-engineering-tools-automation" />
 title: '自动化特征工程工具实战指南：Featuretools、AutoFeat与tsfresh全面教程（2026版）'
 description: '详解Featuretools深度特征合成、AutoFeat符号数学特征生成、tsfresh时间序列特征提取三大自动化工具，附代码示例和选型策略。'
 date: 2026-05-18 00:00:00+08:00

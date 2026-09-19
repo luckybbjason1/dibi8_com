@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d0\uc774\uc804\ud2b8 \ud30c\uc774\ud504\ub77c\uc778\uc744 \uc704\ud55c \uc5d4\ub4dc\ud22c\uc5d4\ub4dc NLP \ud504\ub808\uc784\uc6cc\ud06c \u2014 \uc124\uc815 \uac00\uc774\ub4dc'
 description: '2026\ub144 Haystack \uc644\ubcbd \uac00\uc774\ub4dc: \ud504\ub85c\ub355\uc158 RAG \ud30c\uc774\ud504\ub77c\uc778, \ubb38\uc11c \uc800\uc7a5\uc18c, \ub9ac\ud2b8\ub9ac\ubc84, \uc5d0\uc774\uc804\ud2b8, \ud3c9\uac00 \ub3c4\uad6c, \ubc0f Docker \ubc30\ud3ec\ub97c \uc704\ud55c \uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c.'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Haystack', 'NLP', 'RAG', 'Python', 'LLM', '\ubb38\uc11c \uc800\uc7a5\uc18c', '\ub9ac\ud2b8\ub9ac\ubc84', '\uc5d0\uc774\uc804\ud2b8', 'OpenAI', 'Docker', '\ud30c\uc774\ud504\ub77c\uc778']
+tags: [haystack, nlp, rag, python, llm, '\ubb38\uc11c \uc800\uc7a5\uc18c', '\ub9ac\ud2b8\ub9ac\ubc84', '\uc5d0\uc774\uc804\ud2b8', openai, docker, '\ud30c\uc774\ud504\ub77c\uc778']
 aliases:
 - /kr/posts/haystack-rag-pipeline-framework/
 ---
@@ -264,7 +269,7 @@ pipeline = Pipeline()
 
 # \ub77c\uc6b0\ud130\uac00 \ucffc\ub9ac \uc720\ud615\uc5d0 \ub530\ub77c \uacbd\ub85c \uacb0\uc815
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ 'technical' in query.lower() }}",
+    "condition": "{{ technical in query.lower() }}",
     "output": "{{ query }}",
     "output_type": str,
 }))
@@ -375,8 +380,8 @@ pipe.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
 pipe.connect("counter.text", "generator.prompt")
 
 result = pipe.run({"counter": {"text": "Summarize quantum computing."}})
-print(f"Tokens: {result['counter']['token_count']}")
-print(f"Response: {result['generator']['replies'][0]}")
+print(f"Tokens: {result[counter][token_count]}")
+print(f"Response: {result[generator][replies][0]}")
 ```
 
 ### \uc5d0\uc774\uc804\ud2b8\uc6a9 \uc6f9 \uac80\uc0c9 \ub3c4\uad6c
@@ -511,7 +516,7 @@ sas_result = sas_evaluator.run(
     ground_truth_answers=[g["expected"] for g in ground_truth],
     predicted_answers=predictions,
 )
-print(f"SAS Score: {sas_result['score']:.3f}")
+print(f"SAS Score: {sas_result[score]:.3f}")
 ```
 
 ### Docker \ubc30\ud3ec

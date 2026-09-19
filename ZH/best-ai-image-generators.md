@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/best-ai-image-generators" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/best-ai-image-generators" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/best-ai-image-generators" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/best-ai-image-generators" />
 title: '2026 最佳 AI 图像生成器'
 lang: zh-cn
 description: '2026 年最好的开源和免费 AI 图像生成器 — 从 Stable Diffusion 到 Flux，ComfyUI 到 SDXL。比较质量、速度和价格。'

@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/minara-ai-trading-hyperliquid-review-2026" />
 title: 'Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box'
 description: 'Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-time market analysis, and execute crypto / stocks / commodities trades in a single chat interface. Hands-on review: setup walkthrough, five real use cases, honest pricing breakdown, and how Spark token rebates stack with the 10% referral commission.'
 date: 2026-05-17 00:00:00+08:00

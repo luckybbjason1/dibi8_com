@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/preset-superset-data-exploration" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/preset-superset-data-exploration" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/preset-superset-data-exploration" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/preset-superset-data-exploration" />
 title: 'Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南'
 description: 'Apache Superset 2026 完整指南 — 5分钟内通过Docker安装，连接30多个数据源，构建50多种图表类型，并部署具有基于角色的访问控制的生产级仪表板。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'apache/superset'
 stars: 66000
-maintainer: 'apache'
+maintainer: apache
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['data-science']
-tags: ['Apache Superset', '数据可视化', '商业智能', '仪表板', '开源', 'Docker', 'SQL', '数据分析']
+tags: ['apache superset', 数据可视化, 商业智能, 仪表板, 开源, docker, sql, 数据分析]
 aliases:
 - /zh/posts/preset-superset-data-exploration/
 ---

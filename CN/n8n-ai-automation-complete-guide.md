@@ -1,4 +1,6 @@
 ---
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
 title: n8n AI Automation — Build Intelligent Workflows Without Code
 description: Complete guide to n8n's AI-powered workflow automation. Connect 400+
   apps with AI nodes, build autonomous agents, and automate complex business processes.

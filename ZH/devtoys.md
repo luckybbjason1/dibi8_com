@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/devtoys" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/devtoys" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/devtoys" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/devtoys" />
 title: 'DevToys: 31,533 GitHub 星标 — 开发者工具套件 2026 完整安装指南'
 description: 'DevToys 是一款免费、开源、离线的开发者瑞士军刀。跨平台实用工具，支持 JSON、Base64、JWT、正则表达式等 30 余种工具，适用于 Windows、macOS 和 Linux，具备智能检测和 CLI 支持。'
 date: 2026-05-19 00:00:00+08:00
@@ -19,7 +24,7 @@ last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['DevToys', '开发者工具', '离线工具', 'JSON格式化', 'Base64编码', 'JWT解码', '正则测试', '跨平台', '开源']
+tags: [devtoys, 开发者工具, 离线工具, json格式化, base64编码, jwt解码, 正则测试, 跨平台, 开源]
 aliases:
 - /zh/posts/devtoys/
 ---

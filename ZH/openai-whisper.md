@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/openai-whisper" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
 title: 'OpenAI Whisper: 99.8K+ Stars — 完整ASR配置教程 vs WhisperX、faster-whisper 2026'
 description: 'OpenAI Whisper (ASR) 基于大规模弱监督的鲁棒语音识别。兼容 WhisperX、faster-whisper、LibreTranslate。涵盖 whisper 教程、whisper vs whisperx、语音识别配置、whisper python、whisper docker。'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/openai/whisper'
 stars: 99800
-maintainer: 'openai'
+maintainer: openai
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['whisper', '语音识别', 'ASR', 'openai', 'faster-whisper', 'whisperx', 'python', 'docker', '机器学习']
+tags: [whisper, 语音识别, asr, openai, 'faster-whisper', whisperx, python, docker, 机器学习]
 aliases:
 - /zh/posts/openai-whisper/
 ---
@@ -139,7 +144,7 @@ print(result["text"])
 
 # 获取带时间戳的分段
 for segment in result["segments"]:
-    print(f"[{segment['start']:.2f}s -> {segment['end']:.2f}s] {segment['text']}")
+    print(f"[{segment[start]:.2f}s -> {segment[end]:.2f}s] {segment[text]}")
 ```
 
 ### CLI 使用示例
@@ -491,7 +496,7 @@ import json
 from faster_whisper import WhisperModel
 import time
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+r = redis.Redis(host=localhost, port=6379, db=0)
 model = WhisperModel("medium", device="cuda", compute_type="float16")
 
 def worker():
@@ -506,7 +511,7 @@ def worker():
                 "text": " ".join([s.text for s in segments]),
                 "language": info.language
             }
-            r.setex(f"result:{task['job_id']}", 3600, json.dumps(result))
+            r.setex(f"result:{task[job_id]}", 3600, json.dumps(result))
         time.sleep(0.1)
 
 if __name__ == "__main__":

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/prometheus" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prometheus" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prometheus" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prometheus" />
 title: 'Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026'
 description: 'Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với Docker, Kubernetes, Grafana và Alertmanager. Bao gồm hướng dẫn cài đặt, truy vấn PromQL, cung cố hóa sản xuất và điểm chuẩn hiệu suất.'
 date: 2026-05-19 00:00:00+08:00
@@ -14,12 +19,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/prometheus/prometheus'
 stars: 64094
-maintainer: 'prometheus'
+maintainer: prometheus
 last_maintained: '2026-05-19'
 featureImage: ''
 draft: false
 categories: ['dev-utils']
-tags: ['prometheus', 'giám sát', 'docker', 'kubernetes', 'grafana', 'devops', 'khả năng quan sát', 'chuỗi thờ gian']
+tags: [prometheus, 'giám sát', docker, kubernetes, grafana, devops, 'khả năng quan sát', 'chuỗi thờ gian']
 aliases:
 - /vi/posts/prometheus/
 ---
@@ -75,7 +80,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
 ```
@@ -182,7 +187,7 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: prometheus
     static_configs:
       - targets: ['prometheus:9090']
 
@@ -190,7 +195,7 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
-  - job_name: 'cadvisor'
+  - job_name: cadvisor
     static_configs:
       - targets: ['cadvisor:8080']
 ```
@@ -346,11 +351,11 @@ groups:
 Tạo `alertmanager.yml`:
 ```yaml
 global:
-  slack_api_url: 'YOUR_SLACK_WEBHOOK_URL'
+  slack_api_url: YOUR_SLACK_WEBHOOK_URL
 
 route:
   receiver: 'slack-notifications'
-  group_by: ['alertname', 'severity']
+  group_by: [alertname, severity]
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 4h

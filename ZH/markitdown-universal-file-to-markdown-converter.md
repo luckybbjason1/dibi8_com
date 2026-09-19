@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/markitdown-universal-file-to-markdown-converter" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-universal-file-to-markdown-converter" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-universal-file-to-markdown-converter" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-universal-file-to-markdown-converter" />
 title: "MarkItDown：通用文件到 Markdown 转换器——微软面向 LLM 流水线的开源工具 2026"
 description: "微软 AutoGen 团队的 MarkItDown 可以将 20 多种文件类型转换为供 LLM 使用的 Markdown。使用 pip install markitdown[all]，提供 Python API、LangChain 集成、RAG 流水线和批量处理功能。"
 date: 2026-06-17

@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-customer-service-chatbot-tools" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-customer-service-chatbot-tools" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-customer-service-chatbot-tools" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-customer-service-chatbot-tools" />
 title: '2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등'
 description: '2025년 최고의 AI 고객 서비스 챗봇을 비교합니다. Intercom Fin, Zendesk AI, Freshworks Freddy AI, ChatGPT Enterprise의 기능과 가격을 분석합니다.'
 date: 2026-05-18 00:00:00+08:00

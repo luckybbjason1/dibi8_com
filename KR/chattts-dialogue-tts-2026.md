@@ -1,4 +1,9 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
 title: 'ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 prosody 제어'
 description: 'ChatTTS는 대화(내레이션 아님) 전용 오픈소스 TTS. GitHub 39.3k 별, 4 GB VRAM 최소, RTX 4090에서 RTF 0.3, 웃음과 일시정지 포함 정밀 prosody 제어. 2026 완전 설치 + 프로덕션 셋업 가이드.'
 date: 2026-05-21 00:00:00+08:00
@@ -17,12 +22,12 @@ download_url: ''
 backup_url: ''
 github_repo: 'https://github.com/2noise/ChatTTS'
 stars: 39300
-maintainer: '2noise'
+maintainer: 2noise
 last_maintained: '2026-05-21'
 featureImage: ''
 draft: false
 categories: ['ai-tools']
-tags: ['ChatTTS', 'TTS', '음성', '대화', '오픈소스']
+tags: [chattts, tts, 음성, 대화, 오픈소스]
 aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---

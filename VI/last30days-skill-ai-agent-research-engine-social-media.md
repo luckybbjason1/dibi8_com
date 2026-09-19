@@ -1,16 +1,21 @@
 ---
+<!-- Hreflang Alternate URLs -->
+<link rel="alternate" hreflang="en" href="https://dibi8.com/en/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/last30days-skill-ai-agent-research-engine-social-media" />
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/last30days-skill-ai-agent-research-engine-social-media" />
 title: '30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá Mạng Xã Hội Dựa Trên Tương Tác Thực'
 description: 'Tìm kiếm Reddit, X, YouTube, TikTok, Polymarket, GitHub và nhiều nền tảng khác cùng lúc. Đánh giá kết quả bằng lượt upvote, lượt thích và tiền thật — không phải biên tập viên. Hoạt động với Claude Code, Codex, Cursor và hơn 50 máy chủ tác nhân.'
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
@@ -21,13 +26,13 @@ description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in 
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['AI Tools', 'Research', 'Social Media', 'Agent Skill', 'Open Source']
+tags: ['ai tools', research, 'social media', 'agent skill', 'open source']
 categories: ['ai-tools']
 slug: last30days-skill-ai-agent-research-engine-social-media
 
 aliases: ['/last30days-skill']
 sources:
-  - name: 'GitHub'
+  - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'
   - name: 'Agent Skills'
     url: 'https://agentskills.io'
