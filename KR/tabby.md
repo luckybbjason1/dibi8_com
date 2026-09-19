@@ -531,3 +531,26 @@ Tabby는 AI 코딩 어시스턴트 시장에서 핵심적인 격차를 메웁니
 ---
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：LangChain和LlamaIndex哪个更好？**
+
+LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
+
+**问：如何评估LLM框架的性能？**
+
+基准测试包括：推理速度、准确率、资源消耗、可扩展性。
+
+**问：开源LLM框架的商业使用限制？**
+
+大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
+
+**问：是否需要GPU才能运行LLM框架？**
+
+推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
+
+**问：企业级部署的最佳实践？**
+
+使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
+

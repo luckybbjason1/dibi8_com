@@ -40,6 +40,10 @@ faqs:
   - q: 'Can I use 9Router for AI coding at zero monthly cost?'
     a: 'Yes. You can build a combo using only free providers such as Kiro AI (free unlimited via AWS Builder ID, Google, or GitHub OAuth, no API key), OpenCode Free (zero auth passthrough), and Vertex AI ($300 free Google Cloud credits). Combined with RTK compression, this delivers production-quality responses at literally $0 per month.'
 ---
+
+![Hero Image](https://picsum.photos/seed/large-language-model/1200x800)
+
+
 {</* resource-info */>}
 
 The AI coding assistant revolution has created a paradox for developers: we have unprecedented access to world-class language models through tools like Claude Code, OpenAI Codex, Cursor, and GitHub Copilot — but managing subscriptions, quotas, and rate limits across multiple platforms is becoming increasingly expensive and frustrating. Many developers find themselves burning through their Claude Pro monthly quota within two weeks, only to stare at rate-limit walls while trying to meet sprint deadlines.
@@ -374,3 +378,25 @@ For developers building or deploying open-source AI tools, we recommend:
   }
 }
 </script>
+## Frequently Asked Questions (FAQ)
+
+**问：LangChain和LlamaIndex哪个更好？**
+
+LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
+
+**问：如何评估LLM框架的性能？**
+
+基准测试包括：推理速度、准确率、资源消耗、可扩展性。
+
+**问：开源LLM框架的商业使用限制？**
+
+大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
+
+**问：是否需要GPU才能运行LLM框架？**
+
+推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
+
+**问：企业级部署的最佳实践？**
+
+使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
+

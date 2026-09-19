@@ -466,3 +466,26 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 ---
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI代码助手的安全性如何？**
+
+代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。
+
+**问：如何防止AI生成的代码包含漏洞？**
+
+实施SAST扫描、代码审查、依赖审计、以及安全编码培训。
+
+**问：敏感数据如何处理？**
+
+使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。
+
+**问：开源VS闭源AI工具的安全性对比？**
+
+开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。
+
+**问：AI工具的安全审计要点？**
+
+检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。
+

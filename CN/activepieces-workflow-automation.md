@@ -26,6 +26,10 @@ aliases:
 - /posts/activepieces-workflow-automation/
 ---
 
+![Hero Image](https://picsum.photos/seed/ai/1200x800)
+
+
+
 {{</* resource-info */>}}
 
 ## Introduction: The $2,340/Year Problem with Workflow Automation

@@ -478,3 +478,26 @@ Một số liên kết trên là affiliate links. dibi8.com có thể nhận hoa
 ---
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：量化交易的风险有多大？**
+
+取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。
+
+**问：如何选择适合的交易策略？**
+
+根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。
+
+**问：回测结果可信吗？**
+
+回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。
+
+**问：需要编程基础吗？**
+
+基础策略可使用低代码平台，高级策略需要Python/C++编程能力。
+
+**问：交易系统的维护成本？**
+
+包括服务器费用、数据订阅、算法更新、以及监控维护时间。
+

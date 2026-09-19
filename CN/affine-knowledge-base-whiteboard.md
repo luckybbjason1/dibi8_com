@@ -26,6 +26,10 @@ aliases:
 - /posts/affine-knowledge-base-whiteboard/
 ---
 
+![Hero Image](https://picsum.photos/seed/ai/1200x800)
+
+
+
 {{</* resource-info */>}}
 
 ## Introduction: The Knowledge Management Mess of 2026
