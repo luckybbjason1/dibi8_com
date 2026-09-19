@@ -1,0 +1,13 @@
+# dibi8.com Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap locations
+Sitemap: https://dibi8.com/sitemap_index.xml
+Sitemap: https://dibi8.com/en/sitemap.xml
+Sitemap: https://dibi8.com/zh/sitemap.xml
+Sitemap: https://dibi8.com/ko/sitemap.xml
+Sitemap: https://dibi8.com/vi/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
