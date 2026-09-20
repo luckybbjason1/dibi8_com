@@ -248,3 +248,55 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+To get started with AI agents, you need to understand three core components:
+
+1. **Perception**: How the agent senses its environment (APIs, tools, sensors)
+2. **Reasoning**: How the agent processes information (LLM, rule-based, hybrid)
+3. **Action**: How the agent interacts with the world (API calls, code execution, UI automation)
+
+### Prerequisites
+
+Before building your first agent, ensure you have:
+
+```bash
+# Required tools
+python3 >= 3.9
+pip install openai anthropic langchain
+
+# Optional but recommended
+docker  # For containerized deployments
+kubectl  # For Kubernetes orchestration
+```
+
+### Basic Agent Architecture
+
+```python
+from langchain.agents import initialize_agent, AgentType
+from langchain.tools import Tool
+from langchain.llms import OpenAI
+
+# Define tools
+tools = [
+    Tool(
+        name="Search",
+        func=search_web,
+        description="Search the web for information"
+    ),
+    Tool(
+        name="Calculator",
+        func=calculate,
+        description="Perform mathematical calculations"
+    )
+]
+
+# Initialize agent
+agent = initialize_agent(
+    tools,
+    llm=OpenAI(temperature=0),
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)
+```
+
+This foundation allows you to build increasingly sophisticated agents.

@@ -127,3 +127,20 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+When deploying AI agents in production, follow these best practices:
+
+1. **Start Small**: Begin with a single tool and simple prompt, then gradually add complexity
+2. **Implement Guardrails**: Use permission prompts and approval workflows for dangerous operations
+3. **Monitor Everything**: Log all agent actions for debugging and compliance
+4. **Handle Failures Gracefully**: Implement retry logic and fallback mechanisms
+5. **Test Thoroughly**: Create comprehensive test suites before deploying to production
+
+### Security Considerations
+
+AI agents have access to sensitive systems. Always:
+
+- Use least-privilege principles
+- Implement audit logging
+- Encrypt sensitive data at rest and in transit
+- Regular security assessments
