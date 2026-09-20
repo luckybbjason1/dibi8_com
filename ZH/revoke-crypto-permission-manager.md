@@ -614,3 +614,13 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
 
+
+## Trading Bot Comparison
+
+| Bot | Exchange | Strategy | Cost | Difficulty |
+|-----|----------|----------|------|------------|
+| **Freqtrade** | Multi | Custom | Free | Medium |
+| **Hummingbot** | DEX/CEX | Market making | Free | Hard |
+| **Jesse** | Crypto | Backtesting | Free | Medium |
+| **Velocimeter** | Hyperliquid | Perps | Free | Easy |
+

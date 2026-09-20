@@ -367,3 +367,14 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+## Tool Comparison
+
+| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|---------|-------------|--------|-----------|----------|
+| **Price** | $20/month | $20/month | Free | Free |
+| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+

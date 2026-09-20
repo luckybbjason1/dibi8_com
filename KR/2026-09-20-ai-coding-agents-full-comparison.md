@@ -248,3 +248,14 @@ Choose based on your workflow, not just features. Test each for 1 week before co
 - Codex CLI: github.com/openai/codex
 
 **Last Updated:** September 20, 2026
+
+## Tool Comparison
+
+| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|---------|-------------|--------|-----------|----------|
+| **Price** | $20/month | $20/month | Free | Free |
+| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+

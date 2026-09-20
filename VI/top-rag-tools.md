@@ -224,3 +224,13 @@ When choosing an LLM framework, consider these factors:
 - Question answering systems
 - Search engine integration
 - NLP task orchestration
+
+## Framework Comparison
+
+| Framework | Primary Use | Learning Curve | Community | Production Ready |
+|-----------|-------------|----------------|-----------|------------------|
+| **LangChain** | General-purpose | Medium | Large | ✅ Yes |
+| **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
+| **Haystack** | Document processing | Medium | Medium | ✅ Yes |
+| **LangGraph** | Stateful agents | High | Growing | ✅ Yes |
+

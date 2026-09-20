@@ -230,3 +230,13 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。
 
+
+## Security Tools Comparison
+
+| Tool | Type | Stars | License | Best For |
+|------|------|-------|---------|----------|
+| **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
+| **Trivy** | Container | 10K+ | Apache 2.0 | Container security |
+| **Skipper** | Kubernetes | 5K+ | Apache 2.0 | K8s policies |
+| **Checkov** | IaC | 4K+ | Apache 2.0 | Terraform scanning |
+

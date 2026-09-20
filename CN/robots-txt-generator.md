@@ -172,3 +172,13 @@ npm install
 # Start development server
 npm run dev
 ```
+
+## Trading Bot Comparison
+
+| Bot | Exchange | Strategy | Cost | Difficulty |
+|-----|----------|----------|------|------------|
+| **Freqtrade** | Multi | Custom | Free | Medium |
+| **Hummingbot** | DEX/CEX | Market making | Free | Hard |
+| **Jesse** | Crypto | Backtesting | Free | Medium |
+| **Velocimeter** | Hyperliquid | Perps | Free | Easy |
+

@@ -439,3 +439,13 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+## Framework Comparison
+
+| Framework | Primary Use | Learning Curve | Community | Production Ready |
+|-----------|-------------|----------------|-----------|------------------|
+| **LangChain** | General-purpose | Medium | Large | ✅ Yes |
+| **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
+| **Haystack** | Document processing | Medium | Medium | ✅ Yes |
+| **LangGraph** | Stateful agents | High | Growing | ✅ Yes |
+

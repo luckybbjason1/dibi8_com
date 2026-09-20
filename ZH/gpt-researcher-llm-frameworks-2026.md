@@ -398,3 +398,13 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+## Framework Comparison
+
+| Framework | Primary Use | Learning Curve | Community | Production Ready |
+|-----------|-------------|----------------|-----------|------------------|
+| **LangChain** | General-purpose | Medium | Large | ✅ Yes |
+| **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
+| **Haystack** | Document processing | Medium | Medium | ✅ Yes |
+| **LangGraph** | Stateful agents | High | Growing | ✅ Yes |
+

@@ -269,3 +269,13 @@ Popular data providers:
 - **Crypto**: Binance, Coinbase, Kraken APIs
 - **Stocks**: Alpaca, Interactive Brokers, TD Ameritrade
 - **Forex**: OANDA, FXCM, IG Markets
+
+## Trading Bot Comparison
+
+| Bot | Exchange | Strategy | Cost | Difficulty |
+|-----|----------|----------|------|------------|
+| **Freqtrade** | Multi | Custom | Free | Medium |
+| **Hummingbot** | DEX/CEX | Market making | Free | Hard |
+| **Jesse** | Crypto | Backtesting | Free | Medium |
+| **Velocimeter** | Hyperliquid | Perps | Free | Easy |
+

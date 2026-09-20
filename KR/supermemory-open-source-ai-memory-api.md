@@ -214,3 +214,13 @@ AI agents have access to sensitive systems. Always:
 - Implement audit logging
 - Encrypt sensitive data at rest and in transit
 - Regular security assessments
+
+## Framework Comparison
+
+| Framework | Primary Use | Learning Curve | Community | Production Ready |
+|-----------|-------------|----------------|-----------|------------------|
+| **LangChain** | General-purpose | Medium | Large | ✅ Yes |
+| **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes |
+| **Haystack** | Document processing | Medium | Medium | ✅ Yes |
+| **LangGraph** | Stateful agents | High | Growing | ✅ Yes |
+

@@ -266,3 +266,13 @@ Understanding these core concepts will help you master the topic:
                      │  (Redis)    │
                      └─────────────┘
 ```
+
+## Trading Bot Comparison
+
+| Bot | Exchange | Strategy | Cost | Difficulty |
+|-----|----------|----------|------|------------|
+| **Freqtrade** | Multi | Custom | Free | Medium |
+| **Hummingbot** | DEX/CEX | Market making | Free | Hard |
+| **Jesse** | Crypto | Backtesting | Free | Medium |
+| **Velocimeter** | Hyperliquid | Perps | Free | Easy |
+

@@ -435,3 +435,14 @@ agent = initialize_agent(
 ```
 
 This foundation allows you to build increasingly sophisticated agents.
+
+## Tool Comparison
+
+| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|---------|-------------|--------|-----------|----------|
+| **Price** | $20/month | $20/month | Free | Free |
+| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+

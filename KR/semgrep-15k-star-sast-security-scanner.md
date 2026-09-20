@@ -344,3 +344,13 @@ def validate_input(user_input: str) -> bool:
     
     return True
 ```
+
+## Security Tools Comparison
+
+| Tool | Type | Stars | License | Best For |
+|------|------|-------|---------|----------|
+| **Semgrep** | SAST | 15K+ | LGPL | Code scanning |
+| **Trivy** | Container | 10K+ | Apache 2.0 | Container security |
+| **Skipper** | Kubernetes | 5K+ | Apache 2.0 | K8s policies |
+| **Checkov** | IaC | 4K+ | Apache 2.0 | Terraform scanning |
+
