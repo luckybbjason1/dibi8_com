@@ -288,3 +288,57 @@ def validate_input(user_input: str) -> bool:
     
     return True
 ```
+
+Security is paramount when deploying AI systems. Here are essential principles:
+
+### 1. Least Privilege
+
+Grant minimum permissions necessary:
+
+```yaml
+# Kubernetes RBAC example
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: ai-system
+  name: agent-role
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]  # Limited verbs
+```
+
+### 2. Defense in Depth
+
+Layer multiple security controls:
+
+- Network segmentation
+- Encryption at rest and in transit
+- Regular security scanning
+- Continuous monitoring
+- Incident response planning
+
+### 3. Input Validation
+
+Never trust user input:
+
+```python
+def validate_input(user_input: str) -> bool:
+    # Check length
+    if len(user_input) > 4000:
+        return False
+    
+    # Check for injection patterns
+    suspicious_patterns = [
+        '</script>',
+        'SELECT.*FROM',
+        'UNION.*SELECT',
+        'DROP TABLE'
+    ]
+    
+    for pattern in suspicious_patterns:
+        if re.search(pattern, user_input, re.IGNORECASE):
+            return False
+    
+    return True
+```

@@ -222,3 +222,33 @@ When choosing an LLM framework, consider these factors:
 - Question answering systems
 - Search engine integration
 - NLP task orchestration
+
+When choosing an LLM framework, consider these factors:
+
+| Factor | LangChain | LlamaIndex | Haystack |
+|--------|-----------|------------|----------|
+| **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
+| **Learning Curve** | Medium | Low | Medium |
+| **Community** | Large | Growing | Medium |
+| **Production Ready** | Yes | Yes | Yes |
+| **Cost** | Open source | Open source | Open source |
+
+### When to Use Each
+
+**LangChain** is ideal for:
+- Complex agent workflows
+- Multi-step reasoning tasks
+- Integration with external tools
+- Production-grade applications
+
+**LlamaIndex** excels at:
+- Retrieval-Augmented Generation (RAG)
+- Data indexing and querying
+- Enterprise knowledge bases
+- Semantic search implementations
+
+**Haystack** shines in:
+- Document understanding pipelines
+- Question answering systems
+- Search engine integration
+- NLP task orchestration
