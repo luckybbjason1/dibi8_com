@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://dibi8.com/en/sitemap.xml</loc>
-    <lastmod>2026-09-20</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://dibi8.com/zh/sitemap.xml</loc>
-    <lastmod>2026-09-20</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://dibi8.com/ko/sitemap.xml</loc>
-    <lastmod>2026-09-20</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://dibi8.com/vi/sitemap.xml</loc>
-    <lastmod>2026-09-20</lastmod>
-  </sitemap>
-</sitemapindex>
+<?xml version='1.0' encoding='utf-8'?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://dibi8.com/en/sitemap.xml</loc><lastmod>2026-09-20T23:34:46+00:00</lastmod></sitemap><sitemap><loc>https://dibi8.com/zh/sitemap.xml</loc><lastmod>2026-09-20T23:34:46+00:00</lastmod></sitemap><sitemap><loc>https://dibi8.com/kr/sitemap.xml</loc><lastmod>2026-09-20T23:34:46+00:00</lastmod></sitemap><sitemap><loc>https://dibi8.com/vi/sitemap.xml</loc><lastmod>2026-09-20T23:34:46+00:00</lastmod></sitemap></sitemapindex>
