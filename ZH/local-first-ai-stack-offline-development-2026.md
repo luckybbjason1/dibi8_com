@@ -272,3 +272,33 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
 
+
+When choosing an LLM framework, consider these factors:
+
+| Factor | LangChain | LlamaIndex | Haystack |
+|--------|-----------|------------|----------|
+| **Primary Use** | General-purpose | RAG/Retrieval | Document Processing |
+| **Learning Curve** | Medium | Low | Medium |
+| **Community** | Large | Growing | Medium |
+| **Production Ready** | Yes | Yes | Yes |
+| **Cost** | Open source | Open source | Open source |
+
+### When to Use Each
+
+**LangChain** is ideal for:
+- Complex agent workflows
+- Multi-step reasoning tasks
+- Integration with external tools
+- Production-grade applications
+
+**LlamaIndex** excels at:
+- Retrieval-Augmented Generation (RAG)
+- Data indexing and querying
+- Enterprise knowledge bases
+- Semantic search implementations
+
+**Haystack** shines in:
+- Document understanding pipelines
+- Question answering systems
+- Search engine integration
+- NLP task orchestration
