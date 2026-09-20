@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/grafana" />
-title: 'Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2026'
+title: 'Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2...
 description: 'Grafana is the open-source visualization and analytics platform for monitoring. Covers Prometheus, Loki, InfluxDB, Elasticsearch integration. Includes Docker setup, production hardening, and comparison with Datadog, Kibana, New Relic.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

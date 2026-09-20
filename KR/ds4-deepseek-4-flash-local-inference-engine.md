@@ -27,6 +27,8 @@ aliases:
 - /posts/ds4/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ds4-deepseek-4-flash-local-inference-engine/ -->
+
 {</* resource-info */>}
 # ds4: 2026년 개발자들이 전환하는 오픈소스 도구 — 완전 가이드
 

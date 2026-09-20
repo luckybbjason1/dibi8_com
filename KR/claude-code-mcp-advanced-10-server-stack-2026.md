@@ -34,6 +34,8 @@ faq:
     a: "HTTP: 영속 상태, 자격 증명 중앙화, 서버 가동 시간에 의존. stdio: 지연 없음, 자격 증명 노출 없음, 세션 종료 시 함께 종료. 기본은 stdio. HTTP는 (a) 세션 간 영속 상태가 필요하거나, (b) 로컬 대체가 없는 SaaS와 통합해야 할 때만 사용하세요."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-mcp-advanced-10-server-stack-2026/ -->
+
 {{</* resource-info */>}}
 
 # Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택

@@ -13,6 +13,8 @@ tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/codegraph-pre-indexed-code-knowledge-graph-ai-agents/ -->
+
 # CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축
 
 ## 소개

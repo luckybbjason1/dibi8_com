@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruv-pi" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruv-pi" />
 title: "Ruv Pi：自我扩展编码代理CLI多提供商LLM API"
-description: "Ruv Pi 是来自Earendil Works的自扩展编码代理CLI，提供统一的多提供商LLM API，使开发者能够构建、运行和扩展支持Claude、OpenAI、Gemini等的人工智能编码代理。"
+description: "Ruv Pi 是来自Earendil Works的自扩展编码代理CLI，提供统一的多提供商LLM API，使开发者能够构建、运行和扩展支持Claude、OpenAI、Gemini等的人工智能编码代理。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-10
 lastmod:  2026-06-10slug: ruv-pi
 category: llm-frameworks
@@ -16,6 +16,8 @@ maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ruv-pi/ -->
 # Ruv Pi：自我扩展编码代理CLI多提供商LLM API
 
 ## 介绍

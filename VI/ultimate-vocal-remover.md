@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ultimate-vocal-remover" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ultimate-vocal-remover" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ultimate-vocal-remover" />
-title: 'Ultimate Vocal Remover: 24.7K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
+title: 'Ultimate Vocal Remover: 24.7K+ Stars — Hướng Dẫn Cài Đặt...
 description: 'Ultimate Vocal Remover (UVR) là ứng dụng GUI tách giọng hát bằng mạng nơ-ron sâu. Tương thích với demucs, RVC, GPT-SoVITS. Bao gồm cài đặt Windows, macOS, Linux, chọn model, xử lý hàng loạt và tăng cường production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['tách-giọng', 'tách-audio', 'học-sâu', pytorch, demucs, 'mdx-net',
 aliases:
 - /vi/posts/ultimate-vocal-remover/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ultimate-vocal-remover/ -->
 
 {{</* resource-info */>}}
 

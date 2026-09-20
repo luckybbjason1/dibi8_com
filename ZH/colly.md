@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/colly/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/colly/ -->
+
 {{</* resource-info */>}}
 
 ## 简介

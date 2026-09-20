@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anythingllm-architecture-local-rag" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anythingllm-architecture-local-rag" />
 title: "Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?"
-description: "Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?"
+description: "Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'Tại sao LanceDB mặc định của AnythingLLM lại báo lỗi SQLITE_BUSY khi có nhiều người dùng?'
     a: 'Các cơ sở dữ liệu vector nhúng mặc định (LanceDB/Chroma) gặp vấn đề khóa file khi ghi đồng thời với tần suất cao, gây ra lỗi SQLITE_BUSY hoặc lỗi khóa ghi khi nhiều người dùng tải lên các tệp PDF lớn vào cùng một workspace. Trong môi trường sản xuất với nhiều nhân viên, hãy chuyển Vector DB sang một instance Qdrant hoặc Milvus độc lập.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/anythingllm-architecture-local-rag/ -->
 {</* resource-info */>}
 
 # Tại Sao Doanh Nghiệp Sợ Hãi ChatGPT?

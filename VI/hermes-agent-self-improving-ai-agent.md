@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：AI Agent tự tiến hóa, càng dùng càng hiểu bạn
-description: Hermes Agent là tác nhân AI mã nguồn mở của Nous Research, có vòng lặp
+description: Hermes Agent là tác nhân AI mã nguồn mở của Nous Research, có vòng lặp. Comprehensive guide covering features, pricing, and best practices for 2026.
   học tập tích hợp — tạo kỹ năng từ kinh nghiệm, cải thiện liên tục, ghi nhớ sở thích
   của bạn.
 date: 2026-05-15 04:20:25+09:00
@@ -43,6 +43,8 @@ faqs:
   - q: 'Làm thế nào để cài đặt Hermes Agent và cấu hình nhà cung cấp LLM?'
     a: 'Trên Linux, macOS hoặc WSL2, bạn có thể cài đặt bằng một script curl một dòng đưa qua bash, hoặc clone repo rồi chạy `./setup-hermes.sh`. Sau đó bạn thiết lập nhà cung cấp bằng các lệnh như `hermes config set provider openai` và `hermes config set model gpt-4o`, hoặc dùng một mô hình cục bộ qua `hermes config set provider ollama`.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/hermes-agent-self-improving-ai-agent/ -->
 {</* resource-info */>}
 
 ## Vấn đề: Hầu hết các tác nhân AI đều quên bạn

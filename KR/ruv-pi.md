@@ -17,6 +17,8 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ruv-pi/ -->
+
 ## 소개
 
 AI 코드 도구들의 시장은 놀라울 정도로 분절되었다. 개발자들은 클라우드 코드, 쿨러, 쿨러, 코덱스, 그리고 CLI 도구의 생태계가 각각의 구성, 가격, 기능을 가진 다양한 모델 제공자를 관리하고 있습니다. 개발자들이 구축하는 인공지능 애플리케이션을 위한 여러 모델을 관리하고, 각각 다른 API, 속도 제한, 토큰 비용을 갖는 다양한 모델 제공자를 관리해야 한다면 이는 팀이 인공지능 애플리케이션을 구축하는 데는 중대한 운영 부담을 초래합니다.

@@ -50,6 +50,8 @@ faqs:
   - q: 'Caveman 提供哪些强度等级和命令？'
     a: 'Caveman 共有三个等级：Lite（去除废话，保留语法）、Full（默认模式，省略冠词，使用片段句式）和 Ultra（最大电报式压缩）。此外还附带子命令，如 /caveman-commit、/caveman-review、/caveman-stats，以及 /caveman:compress，用于重写 CLAUDE.md 等记忆文件。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/caveman/ -->
 {</* resource-info */>}
 
 # Caveman：让 Claude Code Token 消耗减少 65%，省钱又提速

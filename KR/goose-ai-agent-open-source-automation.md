@@ -38,6 +38,8 @@ faqs:
   - q: 'Goose에는 어떤 보안 기능이 포함되어 있나요?'
     a: 'Goose에는 위험한 명령을 실행하기 전에 묻는 승인 모드(approval mode), 격리된 환경에서 명령을 실행하는 샌드박스 모드(sandbox mode), 모든 작업을 추적하는 감사 로그(audit log), 그리고 API 남용을 방지하는 속도 제한(rate limiting)이 포함되어 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/goose-ai-agent-open-source-automation/ -->
 {</* resource-info */>}
 
 ## Goose란?

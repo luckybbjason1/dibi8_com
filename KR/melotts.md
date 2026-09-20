@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/melotts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/melotts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/melotts" />
-title: 'MeloTTS: 7.4K+ Stars — 다국어 TTS 벤치마크 Coqui TTS, ChatTTS, Bark 비교 2026'
+title: 'MeloTTS: 7.4K+ Stars — 다국어 TTS 벤치마크 Coqui TTS, ChatTTS, ...
 description: 'MeloTTS는 7.4K+ Stars를 보유한 고품질 다국어 텍스트 음성 변환 라이브러리입니다. Coqui TTS, ChatTTS, Bark와의 벤치마크 비교. Python 설치, Docker 배포, 실시간 추론, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [melotts, 텍스트음성변환, tts, 다국어, python, 음성합성, 오
 aliases:
 - /kr/posts/melotts/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/melotts/ -->
 
 {{</* resource-info */>}}
 

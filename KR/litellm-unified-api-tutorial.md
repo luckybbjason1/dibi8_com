@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm-unified-api-tutorial" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm-unified-api-tutorial" />
 title: 'LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기'
-description: 'LiteLLM으로 OpenAI, Anthropic, Google, 오픈소스 모델을 하나의 통합 API로 호출하는 방법을 상세히 설명합니다. 프록시 서버 설정, 라우팅, 폴리백 전략까지 실전 가이드.'
+description: 'LiteLLM으로 OpenAI, Anthropic, Google, 오픈소스 모델을 하나의 통합 API로 호출하는 방법을 상세히 설명합니다. 프록시 서버 설정, 라우팅, 폴리백 전략까지 실전 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/litellm-unified-api-tutorial/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/litellm-unified-api-tutorial/ -->
 
 {</* resource-info */>}
 

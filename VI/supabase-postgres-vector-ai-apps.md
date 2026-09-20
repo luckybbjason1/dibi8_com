@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
-title: 'Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở với Postgres Vector Search cho 1M+ ứng dụng AI — Hướng dẫn cài đặt'
+title: 'Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở v...
 description: 'Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứng dụng AI. Xác thực, lưu trữ, realtime, edge functions, tích hợp RAG, triển khai Docker tự host, Row Level Security.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [supabase, postgres, 'tìm kiếm vector', 'thay thế firebase', pgvector
 aliases:
 - /vi/posts/supabase-postgres-vector-ai-apps/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/supabase-postgres-vector-ai-apps/ -->
 
 {{</* resource-info */>}}
 

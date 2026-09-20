@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/academic-research-skills" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/academic-research-skills" />
 title: "学术研究技能：用 AI 自动化文献综述——31K 星框架 2026"
-description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。"
+description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: academic-research-skills
 category: dev-utils
@@ -25,6 +25,8 @@ images:
 lang: zh
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/academic-research-skills/ -->
 
 ## 快速概览
 

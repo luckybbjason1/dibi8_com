@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-workflow-automation-self-hosted-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-workflow-automation-self-hosted-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-workflow-automation-self-hosted-2026" />
-title: "n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감"
+title: "n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치...
 description: "2026년 가장 주목받는 오픈소스 자동화 플랫폼 n8n의 완벽 튜토리얼. n8n 자체 호스팅 배포, AI 에이전트 워크플로우 구축, LangChain 연동, SEO 자동화 실전 사례, Zapier/Make와의 상세 비교까지."
 keywords: n8n, n8n 튜토리얼, AI 워크플로우 자동화, 오픈소스 자동화 도구, n8n 자체 호스팅, n8n vs Zapier, AI 에이전트 구축, LangChain 연동, 노코드 자동화, 워크플로우 오케스트레이션
 author: Home Hermes
@@ -18,6 +18,8 @@ lastmod:  2026-05-20---
 이 글은 단순한 "Zapier 대안" 리뷰가 아니다. 개발자, 운영 담당자, 기술 중심의 창업자를 위한 **AI 기반 워크플로우 오케스트레이션** 실전 가이드다. 자체 인프라에서 실행하고, 비용은 거의 들지 않으며, LLM과 네이티브하게 통합되는 시스템을 구축하는 방법을 다룬다.
 
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/n8n-ai-workflow-automation-self-hosted-2026/ -->
 
 ## 2026년, n8n이 폭발적으로 성장하는 이유
 

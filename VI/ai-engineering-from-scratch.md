@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-engineering-from-scratch" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-engineering-from-scratch" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-engineering-from-scratch" />
-title: "Kỹ Thuật AI Từ Đầu: Xây Dựng Hệ Thống LLM Sản Xuất — Hướng Dẫn Toàn Diện 2026"
+title: "Kỹ Thuật AI Từ Đầu: Xây Dựng Hệ Thống LLM Sản Xuất — Hướ...
 description: "Kỹ Thuật AI Từ Đầu (32.771 sao) là một chương trình giảng dạy toàn diện bao gồm tinh chỉnh LLM, RAG, khung tác nhân và triển khai sản xuất. Học cách xây dựng, vận hành và mở rộng hệ thống AI."
 date: 2026-06-15
 lastmod:  2026-06-15slug: ai-engineering-from-scratch
@@ -25,6 +25,8 @@ images:
 lang: vi
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-engineering-from-scratch/ -->
 
 ## TL;DR
 

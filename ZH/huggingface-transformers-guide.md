@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/huggingface-transformers-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/huggingface-transformers-guide" />
 title: 'Hugging Face Transformers库使用指南2025：开发者完整教程'
-description: 'Hugging Face Transformers 2025完整指南：Pipeline API、模型微调、Tokenization、量化部署，覆盖NLP开发全流程。'
+description: 'Hugging Face Transformers 2025完整指南：Pipeline API、模型微调、Tokenization、量化部署，覆盖NLP开发全流程。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/huggingface-transformers-guide/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/huggingface-transformers-guide/ -->
 
 {</* resource-info */>}
 

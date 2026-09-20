@@ -30,6 +30,8 @@ aliases:
 - /kr/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/n8n/ -->
+
 {{</* resource-info */>}}
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)

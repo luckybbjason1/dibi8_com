@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/weaviate-vector-search-enterprise" />
-title: 'Weaviate 2026: The AI-Native Vector Search Engine Handling 10B+ Objects — Enterprise Deployment Guide'
+title: 'Weaviate 2026: The AI-Native Vector Search Engine Handli...
 description: 'Enterprise guide to deploying Weaviate vector search at scale. Covers Kubernetes deployment, hybrid search, multi-modal support, RBAC, monitoring, and benchmarks for 10B+ object collections.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

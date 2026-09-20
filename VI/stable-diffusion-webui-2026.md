@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui-2026" />
-title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đầy Đủ Sinh Ảnh Self-Host 163k Sao'
+title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đ...
 description: 'AUTOMATIC1111 stable-diffusion-webui là UI self-host tiêu chuẩn de-facto 163k sao cho sinh ảnh SD/SDXL. Hướng dẫn cài đặt + production 2026 đầy đủ: txt2img / img2img / inpainting / outpainting / LoRA / ControlNet, yêu cầu phần cứng, lựa chọn thay thế (Forge, SD.Next).'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['stable diffusion', sdxl, 'sinh ảnh', automatic1111, 'mã nguồn mở'
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/stable-diffusion-webui-2026/ -->
 # Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đầy Đủ Sinh Ảnh Self-Host 163k Sao
 
 

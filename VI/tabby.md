@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
-title: 'Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng dẫn Cài đặt Ưu tiên Riêng tư 2026'
+title: 'Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng...
 description: 'Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Cài đặt Docker, tích hợp IDE, benchmark, và hardening production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [tabby, 'tro-ly-lap-trinh-ai', 'tu-luu-tru', 'thay-the-github-copilot', 'h
 aliases:
 - /vi/posts/tabby/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/tabby/ -->
 
 {{</* resource-info */>}}
 

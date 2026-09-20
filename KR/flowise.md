@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
-title: 'Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완성 가이드'
+title: 'Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완...
 description: 'Flowise는 오픈소스 시각적 LLM 워크플로우 및 AI Agent 빌더입니다. LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma 등 200+ 통합을 지원합니다. Docker 설치, 프로덕션 하드닝, API 배포 및 솔직한 한계 분석을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/flowise/
 - /kr/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/flowise/ -->
 
 {{</* resource-info */>}}
 

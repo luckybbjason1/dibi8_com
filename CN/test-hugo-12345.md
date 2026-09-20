@@ -2,11 +2,13 @@
 lang: en
 slug: test-hugo-12345
 title: 'Test Hugo Article 12345'
-description: 'Testing Hugo build.'
+description: 'Testing Hugo build.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["test"]
 date: 2026-06-27
 lastmod:  2026-06-27featureImage: /images/articles/caddy-production-web-server-with-72kplus-stars-auto.png
 ---
+
+<!-- canonical: https://dibi8.com/cn/tools/test-hugo-12345/ -->
 # Test Hugo Article 12345
 
 

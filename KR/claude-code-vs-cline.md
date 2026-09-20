@@ -22,6 +22,8 @@ faqs:
   - q: '초보자는 Claude Code와 Cline 중 무엇을 골라야 하나요?'
     a: '배우면서 모든 것을 지켜보고 승인하고 싶다면 Cline입니다 — 익숙한 GUI와 함께 VS Code 안에서 동작하고, 모든 diff/명령/웹 페치가 실행 전에 검토되므로 당신이 승인하지 않은 일은 일어나지 않습니다. Claude Code는 터미널에 익숙하다고 가정하고 에이전트가 여러 단계 변경을 자율적으로 처리하도록 신뢰합니다. 더 강력하지만 손을 덜 잡아줍니다. 가시성과 통제를 위해 Cline으로 시작하고, 루프를 신뢰하게 되고 속도를 원할 때 Claude Code로 넘어가세요.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-vs-cline/ -->
 # 2026년 Claude Code vs Cline: 자율성이냐 통제냐?
 
 

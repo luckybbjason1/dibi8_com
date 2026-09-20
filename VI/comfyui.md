@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui" />
-title: 'ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusion Dạng Node 2026'
+title: 'ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusi...
 description: 'ComfyUI (COMFY) là GUI Stable Diffusion dạng node mạnh nhất. Hỗ trợ SD 1.5, SDXL, Flux, Wan, LTXV. Triển khai Docker production, node tùy chỉnh, tích hợp API, so sánh hiệu năng với AUTOMATIC1111 và InvokeAI.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/comfyui/
 - /vi/resources/ai-tools/comfyui-architecture-node-based-ai-image/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/comfyui/ -->
 
 {{</* resource-info */>}}
 

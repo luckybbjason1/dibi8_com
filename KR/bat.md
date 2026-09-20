@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bat" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bat" />
 title: 'bat: 58K+ Stars 구문 강조 cat 클론 — 2026년 cat, less, ccat 비교'
-description: 'bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, less, ccat과의 비교를 다룸.'
+description: 'bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, less, ccat과의 비교를 다룸.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [bat, 'cat 대체', '구문 강조', 'cli 도구', rust, 터미널, '파�
 aliases:
 - /kr/posts/bat/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/bat/ -->
 
 {{</* resource-info */>}}
 

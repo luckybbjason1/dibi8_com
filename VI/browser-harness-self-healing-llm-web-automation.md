@@ -37,6 +37,8 @@ faqs:
   - q: 'Những hạn chế chính của Browser Harness là gì?'
     a: 'Các hạn chế của nó là chi phí (các lệnh gọi LLM API phát sinh phí, mặc dù có thể dùng các mô hình cục bộ), tốc độ (nó chậm hơn so với tự động hóa truyền thống vì mô hình cần thời gian để suy luận), độ an toàn (cần có các rào chắn nghiêm ngặt để ngăn thao tác sai), và những CAPTCHA phức tạp mà vẫn có thể cần đến con người.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/browser-harness-self-healing-llm-web-automation/ -->
 {</* resource-info */>}
 
 ## Vấn đề: Web crawler truyền thống đã chết, kỷ nguyên AI cần mô hình mới

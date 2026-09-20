@@ -18,6 +18,8 @@ featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main
 lang: ko
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/12-factor-agents/ -->
+
 ## 소개
 
 대형 언어 모델은 간단한 채팅 인터페이스에서 의사 결정을 내리고, 코드를 실행하고, 외부 API와 상호작용하며, 인간과 협력하는 복잡한 자율 에이전트로 빠르게 진화했습니다. 그러나 이러한 시스템이 복잡해질수록 일관된 아키텍처 기반의 부재가 점점 더 고통스럽게 느껴집니다. LLM 애플리케이션을 빌드하는 팀은 초기 클라우드 애플리케이션을 괴롭혔던 것과 같은 구조적 과제에 직면합니다: 취약한 구성, 불투명한 동작, 일관되지 않은 관찰 가능성, 그리고 재현하기 어려운 배포.

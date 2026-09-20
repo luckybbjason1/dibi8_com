@@ -38,6 +38,8 @@ faq:
     a: "의존성 분석에서 설명되지 않는 네트워크 호출이다. filesystem이나 git MCP 서버는 HTTP 호출이 0이어야 한다. fetch나 github 서버는 명확하게 정의된 엔드포인트를 갖는다. 알 수 없는 도메인(특히 임의의 서브도메인이나 IP 리터럴을 통한)으로 호출하는 모든 것은 적신호이며 — 커뮤니티 서버가 데이터를 유출하는 가장 흔한 방식이다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/mcp-server-security-audit-2026-real-cases/ -->
+
 {{</* resource-info */>}}
 
 # MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴

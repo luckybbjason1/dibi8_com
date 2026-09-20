@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
-title: 'Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026년 설치 가이드'
-description: 'Jesse AI 트레이딩 프레임워크의 프로덕션 가이드 — 설치, 30개 이상 지표로 백테스팅, 커스텀 전략 구축, Python으로 라이브 암호화폐 트레이딩 봇 배포.'
+title: 'Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026...
+description: 'Jesse AI 트레이딩 프레임워크의 프로덕션 가이드 — 설치, 30개 이상 지표로 백테스팅, 커스텀 전략 구축, Python으로 라이브 암호화폐 트레이딩 봇 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [jesse, '암호화폐 트레이딩', python, 백테스팅, '기술 지표'
 aliases:
 - /kr/posts/jesse-ai-trading-framework/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/jesse-ai-trading-framework/ -->
 
 {{</* resource-info */>}}
 

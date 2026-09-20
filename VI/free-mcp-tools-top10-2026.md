@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/free-mcp-tools-top10-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/free-mcp-tools-top10-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/free-mcp-tools-top10-2026" />
-title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất'
+title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
 description: '10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí.'
 date: 2026-06-06 00:00:00+08:00
 lastmod:  2026-06-06 00:00:00+08:00draft: false
@@ -22,6 +22,8 @@ faqs:
   - q: 'MCP server khác plugin/extension như thế nào?'
     a: 'Plugin và extension được xây cho một ứng dụng cụ thể (ví dụ: plugin ChatGPT chỉ hoạt động trong ChatGPT). MCP server không phụ thuộc client — cùng một filesystem server hoạt động trong Claude, Cursor và bất kỳ MCP client nào khác mà không cần chỉnh sửa. Đây là ưu điểm then chốt của tiêu chuẩn mở so với hệ thống plugin độc quyền.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/free-mcp-tools-top10-2026/ -->
 # Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context Protocol Tốt Nhất
 
 

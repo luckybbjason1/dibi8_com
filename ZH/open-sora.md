@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/open-sora/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/open-sora/ -->
+
 {{</* resource-info */>}}
 
 大多数开发者在尝试 AI 视频生成时都会遇到同样的难题：商业 API 每秒收费 0.10-0.50 美元，自托管方案需要深奥的 CUDA 知识，而现有的开源项目要么缺乏文档，要么需要企业级 GPU。2024 年 3 月，HPC-AI Tech 发布了 Open-Sora 来改变这一局面。15 个月过去，29,000 个 GitHub stars 之后，该项目已从研究原型发展为能够生成 5 秒 768p 视频的生产级框架，质量可与商业替代品媲美 —— 全部运行在你可以按小时租用的硬件上。

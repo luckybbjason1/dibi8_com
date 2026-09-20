@@ -29,6 +29,8 @@ aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/comfyui-node-based-ai-image-2026/ -->
+
 如果 [AUTOMATIC1111](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 是"AI 图像生成的 Photoshop"（打字生图），**ComfyUI** 就是 **"生成式 AI 的 Blender 节点编辑器"** —— 你把工作流当有向图来搭，对每个模型、采样器、条件步、后处理都有显式控制。114k GitHub 星，GPL-3.0，支持 2024-2026 出的几乎所有生成式 AI 模型家族：SD 1.x、SDXL、SD3/3.5、Flux（1 & 2）、Wan、Hunyuan（图/视频/3D）、PixArt、AuraFlow、LTX-Video。
 
 2026 现实：认真做 AI 图像、视频或多模态管线的都跑 ComfyUI。轻度创作者用 A1111。两者都对 —— 是不同心智模型的不同工具。

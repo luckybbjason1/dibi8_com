@@ -40,6 +40,8 @@ faqs:
     a: '欢迎贡献。你可以在 GitHub 上提 issue 或提交 pull request。详情见[贡献指南](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)。'
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/promptfoo-llm-frameworks-2026/ -->
+
 {{< resource-info >}}
 
 ## 引言

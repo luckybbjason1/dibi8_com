@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/data-cleaning-tools-best-practices" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/data-cleaning-tools-best-practices" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/data-cleaning-tools-best-practices" />
-title: 'Công Cụ Làm Sạch Dữ Liệu & Thực Hành Tốt Nhất: OpenRefine, Thư Viện Python và Giải Pháp Tự Động Hóa'
+title: 'Công Cụ Làm Sạch Dữ Liệu & Thực Hành Tốt Nhất: OpenRefin...
 description: 'Hướng dẫn toàn diện về công cụ làm sạch dữ liệu: OpenRefine, Pandas, Great Expectations, Cleanlab. So sánh và best practices cho pipeline dữ liệu sạch.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/data-cleaning-tools-best-practices/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/data-cleaning-tools-best-practices/ -->
 
 {</* resource-info */>}
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
 title: 'AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额'
-description: '开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。'
+description: '开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
@@ -39,6 +39,8 @@ faqs:
   - q: '为什么 Grok 显示"耗尽"但我的账户有余额？'
     a: 'Grok 检测调用 GET /v1/models，认证有效且有余额时返回 200，余额耗尽时返回 403。xAI 的 403 特指账户余额为零。如果有余额却显示 403，请确认 ~/.config/.ai_monitor_keys 中的 API key 是否正确。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-token-monitor-conky-linux/ -->
 
 {{< resource-info >}}
 

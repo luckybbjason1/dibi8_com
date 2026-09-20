@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moss-trade-bot-factory-2026-review" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moss-trade-bot-factory-2026-review" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moss-trade-bot-factory-2026-review" />
-title: 'Moss Trade Bot Factory 2026 Review: AI Agent Workbench Quant — Tại Sao Backtest Đẹp Lại Lừa Bạn'
+title: 'Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
 description: 'Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid perpetuals. Engine backtest cấp công nghiệp với độ chính xác Decimal — nhưng có bug Sharpe annualization và trap OVERFIT giáo khoa khi bật evolution. Quy trình setup, fix bug, so sánh 5 chiến lược, và validation 70/30 train/OOS.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "Chiến lược nào thực sự work trên Hyperliquid perps theo dữ liệu thực tế?"
     a: "Giới hạn dữ liệu BTC 304 ngày v1.0.26: grid chủ đạo mean-revert + 2-3x leverage là dương duy nhất (+4.36%). Trend-following + 5-10x leverage thua -8% đến -20% cùng cửa sổ. Đây là regime-specific — BTC 2025-07 đến 2026-04 là thị trường choppy. Cùng logic grid sẽ thua trong thị trường trending mạnh."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/moss-trade-bot-factory-2026-review/ -->
 
 {{</* resource-info */>}}
 

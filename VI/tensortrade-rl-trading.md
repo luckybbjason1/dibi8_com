@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tensortrade-rl-trading" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tensortrade-rl-trading" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tensortrade-rl-trading" />
-title: 'TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi Trường Gym Tùy Chỉnh — Hướng Dẫn 2026'
+title: 'TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi ...
 description: 'Làm chủ TensorTrade để giao dịch thuật toán dựa trên RL. Xây dựng môi trường Gym tùy chỉnh, tích hợp Stable Baselines3, triển khai chiến lược quản lý danh mục sẵn sàng production với benchmark thực.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [tensortrade, 'học tăng cường', 'giao dịch thuật toán', 'openai
 aliases:
 - /vi/posts/tensortrade-rl-trading/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/tensortrade-rl-trading/ -->
 
 {{</* resource-info */>}}
 

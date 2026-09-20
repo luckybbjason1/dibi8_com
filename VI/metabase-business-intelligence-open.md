@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/metabase-business-intelligence-open" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
-title: 'Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau Với Chi Phí Bằng Không — Hướng Dẫn Cài Đặt'
+title: 'Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau V...
 description: 'Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard, SQL editor, alerts, embedding và Docker self-hosting. 41,000+ sao GitHub.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards
 aliases:
 - /vi/posts/metabase-business-intelligence-open/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/metabase-business-intelligence-open/ -->
 
 {{</* resource-info */>}}
 

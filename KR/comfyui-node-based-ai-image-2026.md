@@ -29,6 +29,8 @@ aliases:
   - /posts/comfyui-node-based-ai-image-2026/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/comfyui-node-based-ai-image-2026/ -->
+
 [AUTOMATIC1111](/kr/resources/ai-tools/stable-diffusion-webui-2026/)이 "AI 이미지 생성의 Photoshop"이라면 (타이핑하면 이미지 나옴), **ComfyUI**는 **"생성형 AI를 위한 Blender 노드 에디터"** — 워크플로우를 노드의 방향성 그래프로 구축, 모든 모델, 샘플러, 조건화 단계, 후처리에 명시적 제어. 114k GitHub 별, GPL-3.0, 2024-2026 출시된 거의 모든 생성형 AI 모델 패밀리 지원: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (이미지/비디오/3D), PixArt, AuraFlow, LTX-Video.
 
 2026 현실: AI 이미지, 비디오, 멀티모달 파이프라인 진지한 모두가 ComfyUI 실행. 캐주얼 크리에이터는 A1111. 둘 다 맞음 — 다른 멘탈 모델용 다른 도구.

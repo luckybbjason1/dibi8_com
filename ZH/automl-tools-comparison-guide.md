@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/automl-tools-comparison-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/automl-tools-comparison-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/automl-tools-comparison-guide" />
-title: 'AutoML自动机器学习工具全面对比：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML指南'
-description: '全面对比5大AutoML工具：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML，覆盖性能、易用性、定价与适用场景，附带选型决策树。'
+title: 'AutoML自动机器学习工具全面对比：AutoGluon、H2O、TPOT、Auto-sklearn与Googl...
+description: '全面对比5大AutoML工具：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML，覆盖性能、易用性、定价与适用场景，附带选型决策树。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/automl-tools-comparison-guide/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/automl-tools-comparison-guide/ -->
 
 {</* resource-info */>}
 

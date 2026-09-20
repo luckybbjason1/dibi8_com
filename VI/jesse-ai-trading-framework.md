@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/jesse-ai-trading-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
-title: 'Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30+ Chỉ Báo Kỹ Thuật — Hướng Dẫn Thiết Lập 2026'
+title: 'Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30...
 description: 'Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chiến lược tùy chỉnh và triển khai bot giao dịch crypto trực tiếp bằng Python.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [jesse, 'giao dịch crypto', python, backtest, 'chỉ báo kỹ thuật',
 aliases:
 - /vi/posts/jesse-ai-trading-framework/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/jesse-ai-trading-framework/ -->
 
 {{</* resource-info */>}}
 

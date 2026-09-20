@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/worldmonitor-real-time-global-intelligence-dashboard" />
 title: 'WorldMonitor: 지리적 감시를 위한 실시간 글로벌 인텔리전스 대시보드'
-description: 뉴스, 지정학적 사건, 인프라 추적을 집계하는 실시간 AI 기반 글로벌 인텔리전스 대시보드. 59K 스타. 팔란티어 고담의 오픈소스 대안.
+description: 뉴스, 지정학적 사건, 인프라 추적을 집계하는 실시간 AI 기반 글로벌 인텔리전스 대시보드. 59K 스타. 팔란티어 고담의 오픈소스 대안.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
@@ -17,6 +17,8 @@ lang: kr
 github_repo: https://github.com/WorldMonitorHQ/worldmonitor
 license: MIT
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/worldmonitor-real-time-global-intelligence-dashboard/ -->
 
 
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gemini-cli-vs-claude-code" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gemini-cli-vs-claude-code" />
 title: 'Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？'
-description: 'Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。'
+description: 'Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod:  2026-05-22 00:00:00+08:00draft: false
 tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
@@ -22,6 +22,8 @@ faqs:
   - q: '多模态支持哪个更好？'
     a: 'Gemini CLI 在终端的多模态赢 — 原生通过 flag 接受图片、PDF、视频帧（如 `--image screenshot.png`）。Claude Code 也支持图片但更偏文字优先。"看这张 UI 截图写出对应的 React 组件"这种工作流，Gemini CLI 开箱即用更快。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/gemini-cli-vs-claude-code/ -->
 # Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/turbovec-rust-vector-index-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/turbovec-rust-vector-index-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/turbovec-rust-vector-index-2026" />
-title: 'TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp 10 Lần FAISS — Hướng Dẫn Tìm Kiếm AI 2026'
+title: 'TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp...
 description: 'TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Python bindings. Thay thế trực tiếp cho LangChain, LlamaIndex, Haystack và Agno. Tăng tốc 10 lần với quantization. Bao gồm tích hợp Python, benchmark và triển khai sản xuất.'
 date: 2026-06-09
 lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/turbovec-rust-vector-index-2026/ -->
 
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 

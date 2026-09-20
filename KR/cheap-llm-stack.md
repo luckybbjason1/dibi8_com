@@ -32,6 +32,8 @@ tags: ['저렴한 llm', '무료 티어', '비용 최적화', 스택, 컬렉션]
 aliases:
   - /posts/cheap-llm-stack/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/cheap-llm-stack/ -->
 # 저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법
 
 

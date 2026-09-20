@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/feast-feature-store-ml" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
-title: 'Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với Độ Trễ Dưới Giây — Hướng Dẫn 2026'
+title: 'Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
 description: 'Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/offline stores, sub-second serving, backend Redis/BigQuery, batch & real-time features và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online st
 aliases:
 - /vi/posts/feast-feature-store-ml/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/feast-feature-store-ml/ -->
 
 {{</* resource-info */>}}
 

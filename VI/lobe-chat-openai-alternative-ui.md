@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lobe-chat-openai-alternative-ui" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lobe-chat-openai-alternative-ui" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lobe-chat-openai-alternative-ui" />
-title: 'Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cung Cấp LLM & Hệ Thống Plugin — Hướng Dẫn 2026'
+title: 'Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cun...
 description: 'Triển khai Lobe Chat như một giải pháp thay thế ChatGPT tự host. Hỗ trợ 20+ nhà cung cấp LLM, hệ thống plugin, PWA, giao diện đa ngôn ngữ. Hướng dẫn Docker đầy đủ với benchmark và so sánh.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['lobe chat', chatgpt, 'thay thế openai', llm, 'tự host', docker, pwa,
 aliases:
 - /vi/posts/lobe-chat-openai-alternative-ui/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/lobe-chat-openai-alternative-ui/ -->
 
 {{</* resource-info */>}}
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/worldmonitor-real-time-global-intelligence-dashboard" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/worldmonitor-real-time-global-intelligence-dashboard" />
 title: WorldMonitor：面向地缘政治监控的实时全球情报仪表盘
-description: 一个实时的AI驱动全球情报仪表盘，聚合新闻、地缘政治事件和基础设施追踪。59K stars。Palantir Gotham的开源替代方案。
+description: 一个实时的AI驱动全球情报仪表盘，聚合新闻、地缘政治事件和基础设施追踪。59K stars。Palantir Gotham的开源替代方案。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
@@ -17,6 +17,8 @@ lang: zh
 github_repo: https://github.com/WorldMonitorHQ/worldmonitor
 license: MIT
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/worldmonitor-real-time-global-intelligence-dashboard/ -->
 
 
 

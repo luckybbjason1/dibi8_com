@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
-title: 'Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà Claude Chỉ Nạp Khi Cần (2026)'
+title: 'Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà C...
 description: 'Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khiển việc nạp, tiết lộ tăng dần (progressive disclosure), và khi nào một skill vượt trội hơn CLAUDE.md hay một subagent. Kèm ví dụ thực tế và những sai lầm cần tránh.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "Khi nào tôi nên viết một subagent thay vì một skill?"
     a: "Hãy viết một skill khi bạn cần dạy một quy trình chạy trong cuộc trò chuyện hiện tại. Hãy viết một subagent khi công việc cần cửa sổ context riêng của nó — khám phá nặng, nghiên cứu song song, hay đánh giá độc lập mà nếu không sẽ làm phình context cha. Chúng kết hợp được với nhau: một subagent có thể nạp một skill để tuân theo phương pháp của bạn trong khi chạy biệt lập. Quy tắc kinh nghiệm từ khung quyết định mở rộng — skill thay đổi hành vi, subagent bảo vệ context, MCP server thêm năng lực."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/claude-code-skill-authoring-guide-2026/ -->
 # Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà Claude Chỉ Nạp Khi Cần (2026)
 
 

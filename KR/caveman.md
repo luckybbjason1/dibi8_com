@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caveman" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caveman" />
 title: "Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드"
-description: "GitHub 57K Star Claude Code 스킬 Caveman으로 AI 코딩 비용 절반 이상 줄이는 방법. 설치, 사용법, 벤치마크, MCP 미들웨어까지 상세 정리."
+description: "GitHub 57K Star Claude Code 스킬 Caveman으로 AI 코딩 비용 절반 이상 줄이는 방법. 설치, 사용법, 벤치마크, MCP 미들웨어까지 상세 정리.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -40,6 +40,8 @@ faqs:
   - q: 'Caveman이 제공하는 강도 레벨과 명령어는 무엇인가요?'
     a: 'Caveman에는 세 가지 레벨이 있습니다: Lite(불필요한 표현 제거, 문법 유지), Full(기본 모드, 관사 생략 및 단편 문장 사용), Ultra(최대 전보식 압축). 또한 /caveman-commit, /caveman-review, /caveman-stats, 그리고 CLAUDE.md 같은 메모리 파일을 재작성하는 /caveman:compress 같은 서브 커맨드도 제공합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/caveman/ -->
 {</* resource-info */>}
 
 # Claude Code 토큰 비용 65% 절감: Caveman 스킬 완벽 가이드

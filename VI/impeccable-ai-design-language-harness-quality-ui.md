@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/impeccable-ai-design-language-harness-quality-ui" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/impeccable-ai-design-language-harness-quality-ui" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/impeccable-ai-design-language-harness-quality-ui" />
-title: 'Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo ra thực sự trông đẹp — Đánh giá 2026'
+title: 'Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo r...
 description: 'Impeccable (37K sao) là một ngôn ngữ thiết kế dành cho các tác nhân mã hóa AI với 23 lệnh, 41 quy tắc kiểm tra, và khả năng lặp trực tiếp trên trình duyệt. Khắc phục vấn đề giao diện AI tạo ra trông giống template với các kiểm tra chất lượng thiết kế xác định. Tương thích với Claude Code, Cursor và Codex.'
 date: 2026-06-13
 lastmod:  2026-06-13slug: 'impeccable-ai-design-language-harness-quality-ui'
@@ -15,6 +15,8 @@ license: 'Apache-2.0'
 lang: vi
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/impeccable-ai-design-language-harness-quality-ui/ -->
 
 # Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo ra thực sự trông đẹp — Đánh giá 2026
 

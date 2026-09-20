@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/cogvideo/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/cogvideo/ -->
+
 {{</* resource-info */>}}
 
 > Zhipu AI의 오픈소스 확산 트랜스포머로 텍스트와 이미지를 영화 같은 비디오로 변환하세요. 30분 안에 제로에서 프로덕션까지.

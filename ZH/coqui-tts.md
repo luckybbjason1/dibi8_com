@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
-title: 'Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS、Bark 性能基准测试 2026'
+title: 'Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS...
 description: 'Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比，含 Docker 部署方案和生产环境配置。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['coqui tts', 文本转语音, 语音克隆, xtts, vits, 深度学习, doc
 aliases:
 - /zh/posts/coqui-tts/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/coqui-tts/ -->
 
 {{</* resource-info */>}}
 

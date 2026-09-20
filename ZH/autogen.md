@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
 title: 'AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026'
-description: 'AutoGen（微软）是一个用于构建多智能体 AI 系统的事件驱动编程框架。兼容 OpenAI、Azure、Ollama、Docker 和 VS Code。涵盖安装、群聊设置、生产加固及与替代方案的诚实对比。'
+description: 'AutoGen（微软）是一个用于构建多智能体 AI 系统的事件驱动编程框架。兼容 OpenAI、Azure、Ollama、Docker 和 VS Code。涵盖安装、群聊设置、生产加固及与替代方案的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/autogen/
 - /zh/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/autogen/ -->
 
 {{</* resource-info */>}}
 

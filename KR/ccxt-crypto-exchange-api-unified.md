@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/ccxt-crypto-exchange-api-unified/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ccxt-crypto-exchange-api-unified/ -->
+
 {{</* resource-info */>}}
 
 *최종 업데이트: 2026년 5월 19일*

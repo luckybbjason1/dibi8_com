@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
-title: "Toprank: Tăng Trưởng Doanh Thu 300% với Claude Code + SEO + Geo-Ads"
+title: "Toprank: Tăng Trưởng Doanh Thu 300% với Claude Code + SE...
 description: "Khám phá Toprank - nền tảng tăng trưởng doanh thu tự động kết hợp Claude Code AI, SEO thông minh và Geo-Ads địa phương. Giải pháp toàn diện cho doanh nghiệp Việt Nam."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'Toprank phù hợp nhất với đối tượng nào?'
     a: 'Toprank hướng đến các chuyên gia SEO kỹ thuật muốn tự động hóa kiểm tra trong quy trình CLI, kỹ sư tăng trưởng vận hành hạ tầng marketing song song với mã ứng dụng, các agency quản lý nhiều tài khoản khách hàng với playbook được kiểm soát phiên bản, và các nhà sáng lập startup cần SEO và quản lý quảng cáo chuyên nghiệp mà không muốn bỏ ra $500+/tháng cho SaaS.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/toprank/ -->
 {</* resource-info */>}
 
 # Toprank: Tăng Trưởng Doanh Thu 300% với Claude Code + SEO + Geo-Ads

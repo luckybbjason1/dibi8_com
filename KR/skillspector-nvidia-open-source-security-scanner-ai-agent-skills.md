@@ -18,6 +18,8 @@ github_repo: https://github.com/NVIDIA/SkillSpector
 license: Apache-2.0
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/ -->
+
 
 
 # SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스캐너

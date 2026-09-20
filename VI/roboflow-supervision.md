@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/roboflow-supervision" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/roboflow-supervision" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/roboflow-supervision" />
-title: "Roboflow Supervision: Bộ công cụ chú thích thị giác máy tính Python"
+title: "Roboflow Supervision: Bộ công cụ chú thích thị giác máy ...
 description: "Supervision của Roboflow là một bộ công cụ thị giác máy tính toàn diện giúp đơn giản hóa chú thích CV, xử lý dữ liệu và đánh giá mô hình. pip install supervision để truy cập các công cụ thị giác máy tính tái sử dụng cho dự án của bạn."
 date: 2026-06-10
 lastmod:  2026-06-10slug: roboflow-supervision
@@ -17,6 +17,8 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/roboflow-supervision/ -->
 
 ## Giới thiệu
 

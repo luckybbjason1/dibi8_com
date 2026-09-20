@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabby" />
-title: 'Tabby: 33K+ Stars 자체 호스팅 AI 코딩 어시스턴트 — 2026년 프라이버시 우선 설치 가이드'
+title: 'Tabby: 33K+ Stars 자체 호스팅 AI 코딩 어시스턴트 — 2026년 프라이버시 우선 설치...
 description: 'Tabby는 자체 호스팅 AI 코딩 어시스턴트입니다. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek 지원. Docker 설치, IDE 통합, 벤치마크, 프로덕션 하드닝.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [tabby, ai코딩어시스턴트, 자체호스팅, githubcopilot대체, 코
 aliases:
 - /kr/posts/tabby/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/tabby/ -->
 
 {{</* resource-info */>}}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/markitdown-universal-file-to-markdown-converter" />
-title: "MarkItDown: Universal File-to-Markdown Converter — Microsoft's Open-Source Tool for LLM Pipelines 2026"
+title: "MarkItDown: Universal File-to-Markdown Converter — Micro...
 description: "MarkItDown by Microsoft AutoGen team converts 20+ file types to Markdown for LLM consumption. pip install markitdown[all], Python API, LangChain integration, RAG pipelines, and batch processing."
 tags: ["converter", "file", "markdown", "open-source", "self-hosted"]
 date: 2026-06-15

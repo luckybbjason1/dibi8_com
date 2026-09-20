@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ohmyzsh" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ohmyzsh" />
 title: 'Oh My Zsh：2026年加速开发工作流的7个步骤'
-description: '掌握 Oh My Zsh，附带真实基准测试、插件配置和安装指南。与 Starship、Prezto 和原生 Zsh 方案对比。拥有 187k+ 星标。'
+description: '掌握 Oh My Zsh，附带真实基准测试、插件配置和安装指南。与 Starship、Prezto 和原生 Zsh 方案对比。拥有 187k+ 星标。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-11
 lastmod:  2026-06-11slug: 'ohmyzsh'
 category: dev-utils
@@ -15,6 +15,8 @@ license: MIT
 lang: zh
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ohmyzsh/ -->
 
 # Oh My Zsh：2026年加速开发工作流的7个步骤
 

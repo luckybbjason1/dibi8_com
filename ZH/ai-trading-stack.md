@@ -29,6 +29,8 @@ aliases:
   - /posts/ai-trading-stack/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/ai-trading-stack/ -->
+
 > ⚠️ **免责声明**：本文是构建 AI 交易 stack 的技术指南，**不是投资建议**。量化交易有实质性的资本损失风险。部署真金前在 paper / testnet 上充分测试。过去回测表现不预测未来收益。
 
 2026 散户量化的工具栈终于追上 2018 年对冲基金的水平：每一层都有开源框架、AI 增强策略、无中介把关的链上场所。和 SaaS 量化平台（3Commas $74/月、Cryptohopper $129/月、TradingView Premium $59/月）的取舍是学习曲线更陡 但**完全控制 + 零按笔手续费 + 你的 alpha 永不离开你的机器**。

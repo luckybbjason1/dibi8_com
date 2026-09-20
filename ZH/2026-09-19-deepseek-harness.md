@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-09-19-deepseek-harness" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-09-19-deepseek-harness" />
 title: 'DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南'
-description: 'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'
+description: 'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026-zh'
 category: 'llm-frameworks'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/2026-09-19-deepseek-harness/ -->
 
 # DeepSeek Harness：正在席卷2026的插件框架
 

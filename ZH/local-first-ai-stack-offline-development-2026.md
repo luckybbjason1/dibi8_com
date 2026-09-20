@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
 title: '本地优先 AI 技术栈 2026：完全离线的 AI 开发环境'
-description: '2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、物理隔离、出差）。'
+description: '2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、物理隔离、出差）。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
@@ -33,6 +33,8 @@ faq:
   - q: "本地和云端工作流能联动吗？"
     a: "可以。常用模式：本地 Ollama 作为主力，遇到难任务再回退到商用 API。Aider 支持会话中途切换模型。大多数开发者采用混合模式——本地为默认，云端处理那 10-20% 真正需要的部分。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/local-first-ai-stack-offline-development-2026/ -->
 
 {{</* resource-info */>}}
 

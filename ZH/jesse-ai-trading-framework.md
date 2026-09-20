@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/jesse-ai-trading-framework" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/jesse-ai-trading-framework" />
 title: 'Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026年完整部署指南'
-description: 'Jesse AI交易框架的生产级指南 —— 安装、使用30+技术指标进行回测、构建自定义策略，并用Python部署实时加密货币交易机器人。'
+description: 'Jesse AI交易框架的生产级指南 —— 安装、使用30+技术指标进行回测、构建自定义策略，并用Python部署实时加密货币交易机器人。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [jesse, 加密货币交易, python, 回测, 技术指标, 算法交易, ai
 aliases:
 - /zh/posts/jesse-ai-trading-framework/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/jesse-ai-trading-framework/ -->
 
 {{</* resource-info */>}}
 

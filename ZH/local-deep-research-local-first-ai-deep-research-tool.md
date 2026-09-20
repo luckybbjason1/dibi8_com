@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
 title: "Local Deep Research：终极本地优先 AI 深度研究工具"
-description: "掌握 Local Deep Research (LDR) —— 本地优先的 AI 研究助手。了解如何结合 Ollama 和 SearXNG 进行深度迭代研究，同时保持 100% 的隐私。"
+description: "掌握 Local Deep Research (LDR) —— 本地优先的 AI 研究助手。了解如何结合 Ollama 和 SearXNG 进行深度迭代研究，同时保持 100% 的隐私。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'Local Deep Research 如何避免 AI 幻觉并确保可信度？'
     a: 'LDR 提供高保真的引用，为它做出的每一个论断都附上参考文献来源，让你可以即时核实原始资料。它还会执行迭代式综合，识别信息空白并运行后续搜索，而不是依赖单一的表层答案。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/local-deep-research-local-first-ai-deep-research-tool/ -->
 {</* resource-info */>}
 
 大多数 AI 助手都是“对话优先”的，这意味着它们根据预训练数据为你提供快速答案。但如果你需要一种**“研究优先”**的方法，能够抓取网页、学术论文和本地文档，并合成一份深度报告呢？更重要的是，如果你希望在 **100% 隐私保护**的前提下完成这一切呢？

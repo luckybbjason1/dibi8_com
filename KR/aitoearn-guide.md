@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-guide" />
 title: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교"
-description: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교"
+description: "Buffer를 대체할 2026년 최강 오픈소스: AiToEarn vs Hootsuite 전격 비교". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'AiToEarn을 안정적으로 셀프호스팅하려면 무엇이 필요한가요?'
     a: 'AiToEarn은 SQLite 데이터베이스와 Playwright 헤드리스 브라우저를 격리하는 Docker Compose 파일을 제공하며, $5짜리 저렴한 VPS에서도 약 99.9%의 업타임으로 운영할 수 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/aitoearn-guide/ -->
 
 {</* resource-info */>}
 

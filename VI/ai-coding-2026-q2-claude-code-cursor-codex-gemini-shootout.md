@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-title: 'AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI'
+title: 'AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro...
 description: 'Đánh giá ngang hàng 4 AI coding agent hàng đầu giữa 2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. Test thực tế 5 workflow trên cùng codebase 50K LOC TypeScript, hỗ trợ MCP, kinh tế context window, phân tích giá.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Context window lớn nhất giữa 2026 là?"
     a: "Gemini 2.5 Pro và Gemini CLI có context 1M+ token (lớn nhất rõ ràng). Claude Sonnet 4.6 (hoặc Opus 4.7) và Claude Code 1.0 hỗ trợ 1M token (1M-context tier). Cursor Pro mặc định 200K. GPT-5 và Codex CLI 256K. Với monorepo cực lớn, ưu thế context của Gemini CLI là thật, nhưng độ tin cậy tool-use vẫn tụt sau."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/ -->
 
 {{</* resource-info */>}}
 

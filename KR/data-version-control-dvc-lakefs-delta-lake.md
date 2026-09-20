@@ -27,6 +27,8 @@ aliases:
 - /posts/data-version-control-dvc-lakefs-delta-lake/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/data-version-control-dvc-lakefs-delta-lake/ -->
+
 {</* resource-info */>}
 
 머신러닝 프로젝트에서 재현성을 확보하려면 코드뿐 아니라 데이터와 모델 아티팩트까지 일관되게 관리해야 합니다. Git은 코드 버전 관리에 탁월하지만, 수 GB에서 TB 단위의 데이터셋이나 바이너리 모델 파일을 직접 추적하는 데는 한계가 있습니다. 이 글에서는 DVC, LakeFS, Delta Lake 세 가지 대표적인 데이터 버전 관리 도구의 설계 철학과 적합한 사용 사례를 비교합니다.

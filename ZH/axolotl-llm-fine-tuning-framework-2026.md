@@ -29,6 +29,8 @@ aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/axolotl-llm-fine-tuning-framework-2026/ -->
+
 你试过微调 Llama 模型，最后写了 300 行 PyTorch + DeepSpeed config + Hugging Face Trainer 包装，那你感受到了 **Axolotl** 填的坑。一个 YAML 文件描述整个微调跑 —— 模型、数据集、LoRA 配置、超参、分布式策略 —— Axolotl 处理其余。
 
 12k GitHub 星，Apache 2.0，支持所有主流 LLM 家族（Llama / Mistral / Mixtral / Qwen / GLM / GPT-OSS / HunYuan 等）和 2026 重要的所有微调方法（full / LoRA / QLoRA / GPTQ / QAT / DPO/IPO/KTO/ORPO 偏好微调 / GRPO/GDPO 强化学习 / 奖励建模）。

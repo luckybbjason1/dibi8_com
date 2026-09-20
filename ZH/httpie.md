@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
-title: 'HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wget 2026'
-description: 'HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题解答。'
+title: 'HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wge...
+description: 'HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题解答。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [httpie, 命令行, http客户端, api测试, curl替代, json, 终端, �
 aliases:
 - /zh/posts/httpie/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/httpie/ -->
 
 {{</* resource-info */>}}
 

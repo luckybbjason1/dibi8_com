@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/roboflow-supervision" />
-title: "Roboflow Supervision: The Python Computer Vision Annotation Toolkit"
+title: "Roboflow Supervision: The Python Computer Vision Annotat...
 description: "Supervision by Roboflow is a comprehensive computer vision toolkit that simplifies CV annotation, data processing, and model evaluation. pip install supervision to access reusable computer vision tools for your projects."
 date: 2026-06-10
 lastmod:  2026-06-10slug: roboflow-supervision

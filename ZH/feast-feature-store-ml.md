@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feast-feature-store-ml" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feast-feature-store-ml" />
 title: 'Feast: 开源特征存储亚秒级特征服务 — 2026 完整部署指南'
-description: 'Feast 完整指南 — 领先的开源特征存储。涵盖特征注册中心、在线/离线存储、亚秒级服务、Redis/BigQuery 后端、批处理与实时特征以及生产部署。'
+description: 'Feast 完整指南 — 领先的开源特征存储。涵盖特征注册中心、在线/离线存储、亚秒级服务、Redis/BigQuery 后端、批处理与实时特征以及生产部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 在线存�
 aliases:
 - /zh/posts/feast-feature-store-ml/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/feast-feature-store-ml/ -->
 
 {{</* resource-info */>}}
 

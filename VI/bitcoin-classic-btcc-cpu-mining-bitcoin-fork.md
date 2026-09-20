@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
-title: "Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU"
+title: "Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườith...
 description: "Bitcoin-Classic (BTCC) là đồng tiền số phi tập trung được xây dựng lại từ Bitcoin Core v28.1. Hỗ trợ đào bằng CPU với giao diện đồ họa tích hợp, giúp ngườithường trải nghiệm đào coin thờikỳ đầu của Bitcoin."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'Bitcoin-Classic (BTCC) có phải là khoản đầu tư tốt không?'
     a: 'Không. BTCC hiện có vốn hóa thị trường và thanh khoản gần như bằng không, không được hỗ trợ bởi các sàn giao dịch lớn, và cộng đồng rất nhỏ (chỉ khoảng 18-23 GitHub stars). Dự án này phù hợp nhất cho mục đích học tập và thử nghiệm, không nên coi là khoản đầu tư.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/ -->
 # Bitcoin-Classic (BTCC): Bản Sao Bitcoin Cho Phép Ngườithường Đào Bằng CPU
 
 {</* resource-info */>}

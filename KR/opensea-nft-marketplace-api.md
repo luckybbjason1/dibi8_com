@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/opensea-nft-marketplace-api/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/opensea-nft-marketplace-api/ -->
+
 {{</* resource-info */>}}
 
 2021년 폭발적 성장 이후 대체 불가능한 토큰(NFT) 생태계는 상당히 성숙해졌습니다. 디지털 아트 틈새 시장으로 시작했던 것이 게임, 부동산, 신원 인증, 탈중앙화 금융을 아우르는 수십억 달러 규모의 인프라 레이어로 진화했습니다. 이러한 변혁의 중심에는 세계 최대의 NFT 마켓플레이스인 [OpenSea](https://opensea.io/)와 개발자가 프로그래밍 방식 거래 시스템, 분석 대시보드, 자동화된 컬렉션 관리 도구를 구축할 수 있게 해주는 강력한 [OpenSea API](https://docs.opensea.io/reference/api-overview)가 있습니다.

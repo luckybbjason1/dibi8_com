@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-ai-agent-internet-access" />
 title: 'Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다'
-description: Agent Reach는 오픈소스 스캐폴딩 도구로, 하나의 명령으로 AI 에이전트가 YouTube, Twitter, Reddit,
+description: Agent Reach는 오픈소스 스캐폴딩 도구로, 하나의 명령으로 AI 에이전트가 YouTube, Twitter, Reddit,. Comprehensive guide covering features, pricing, and best practices for 2026.
   샤오홍슈, Bilibili 등 15개 이상의 플랫폼에 즉시 접근할 수 있게 합니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -42,6 +42,8 @@ faqs:
   - q: 'Agent Reach는 어떤 AI 에이전트 및 코딩 도구와 호환되나요?'
     a: 'Agent Reach는 Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI 및 MCP 호환 에이전트 전반과 함께 작동합니다. 각 플랫폼은 독립적이고 교체 가능한 채널 파일로 구현되어 있어, 종속(lock-in) 없이 어떤 플랫폼이든 그 기반 도구를 교체할 수 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/agent-reach-ai-agent-internet-access/ -->
 
 {</* resource-info */>}
 

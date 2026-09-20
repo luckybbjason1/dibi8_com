@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
 title: '2026 向量数据库选型：Qdrant vs Weaviate vs Milvus（真实负载实测）'
-description: '在同一份 500 万向量负载上实测 Qdrant、Weaviate、Milvus。延迟、吞吐、内存、上手成本。原型 vs 生产分别该选谁，以及什么情况下直接放弃向量数据库改用 SQLite FTS5。'
+description: '在同一份 500 万向量负载上实测 Qdrant、Weaviate、Milvus。延迟、吞吐、内存、上手成本。原型 vs 生产分别该选谁，以及什么情况下直接放弃向量数据库改用 SQLite FTS5。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
@@ -33,6 +33,8 @@ faq:
   - q: "需要多少硬件？"
     a: "100 万向量 @ 768 维：约 3GB 内存。1000 万向量：约 30GB。大部分生产负载在单台 32GB VM 上跑得很舒服。超过 1 亿向量就要规划分片部署了。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/vector-db-2026-qdrant-weaviate-milvus/ -->
 
 {{</* resource-info */>}}
 

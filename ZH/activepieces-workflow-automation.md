@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
 title: 'Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 2026年自托管指南'
-description: '5分钟内部署 Activepieces。这款开源工作流自动化平台拥有200+应用集成、AI操作和可视化构建器，成本仅为Zapier的一小部分。'
+description: '5分钟内部署 Activepieces。这款开源工作流自动化平台拥有200+应用集成、AI操作和可视化构建器，成本仅为Zapier的一小部分。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [activepieces, 工作流自动化, zapier替代品, 自托管, docker, 无
 aliases:
 - /zh/posts/activepieces-workflow-automation/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/activepieces-workflow-automation/ -->
 
 {{</* resource-info */>}}
 

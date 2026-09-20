@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts" />
-title: 'ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại vs Coqui, MeloTTS 2026'
+title: 'ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại ...
 description: 'ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, MeloTTS, GPT-SoVITS. Bao gồm cài đặt, benchmark, triển khai production và bảng so sánh.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/chattts/
 - /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/chattts/ -->
 
 {{</* resource-info */>}}
 

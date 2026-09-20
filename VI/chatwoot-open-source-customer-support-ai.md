@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatwoot-open-source-customer-support-ai" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatwoot-open-source-customer-support-ai" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
-title: 'Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở với Tích Hợp AI Agent — Hướng Dẫn Tự Host'
+title: 'Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở vớ...
 description: 'Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích hợp AI agent, kết nối đa kênh. Benchmark thực tế và cấu hình production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [chatwoot, 'hỗ-trợ-khách-hàng', 'mã-nguồn-mở', 'ai-chatbot', 't
 aliases:
 - /vi/posts/chatwoot-open-source-customer-support-ai/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/chatwoot-open-source-customer-support-ai/ -->
 
 {{</* resource-info */>}}
 

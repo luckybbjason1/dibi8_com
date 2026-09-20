@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/open-design-local-first-ai-design-tool" />
-title: "Open Design: The Ultimate Local-First AI Design Tool Replacing Claude Design"
+title: "Open Design: The Ultimate Local-First AI Design Tool Rep...
 description: "Discover Open Design, the open-source local-first alternative to Claude Design with 19 AI skills, 71 design systems, and multi-format export. Build prototypes, slides, videos & more."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

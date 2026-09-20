@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/prefect-workflow-orchestration" />
-title: 'Prefect 2026: The Modern Workflow Orchestration Engine for Data & AI Pipelines — Self-Hosted Setup Guide'
+title: 'Prefect 2026: The Modern Workflow Orchestration Engine f...
 description: 'A hands-on guide to Prefect 3.x — the Python-native workflow orchestrator with async execution, built-in retries, and self-hosted server. Deploy your data pipelines in under 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

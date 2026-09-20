@@ -1,5 +1,5 @@
 ---
-title: Vercel AI SDK — The Universal Framework for Building AI-Powered Applications
+title: Vercel AI SDK — The Universal Framework for Building AI-P...
 description: Complete guide to Vercel AI SDK, the provider-agnostic framework for building AI-powered chat interfaces, streaming responses, and tool calling. Works with React Server Components, Next.js, SvelteKit, and more.
 category: llm-frameworks
 tags: ['ai-sdk', 'vercel', 'react-server-components', 'streaming', 'tool-calling', 'llm-integration']
@@ -7,6 +7,8 @@ slug: vercel-ai-sdk-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg
 ---
+
+<!-- canonical: https://dibi8.com/cn/tools/vercel-ai-sdk-complete-guide/ -->
 
 ## TL;DR
 

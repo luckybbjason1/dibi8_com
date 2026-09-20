@@ -18,6 +18,8 @@ featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/asse
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/nuwa-skill-distill-thinking-model-ai-agent-skills/ -->
+
 # Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南
 
 ```

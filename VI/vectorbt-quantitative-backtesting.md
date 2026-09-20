@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectorbt-quantitative-backtesting" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectorbt-quantitative-backtesting" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectorbt-quantitative-backtesting" />
-title: 'VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh Xử lý 1M+ Giao dịch/giây — Hướng dẫn Quant 2026'
+title: 'VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh X...
 description: 'Làm chủ VectorBT để backtest quantitative bằng Python. Xây dựng, kiểm thử và tối ưu chiến lược giao dịch với mô phỏng tốc độ Numba vectorized. Hướng dẫn đầy đủ 2026 với ví dụ code.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/vectorbt-quantitative-backtesting/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/vectorbt-quantitative-backtesting/ -->
 
 {{</* resource-info */>}}
 

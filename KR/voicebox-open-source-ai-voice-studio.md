@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicebox-open-source-ai-voice-studio" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicebox-open-source-ai-voice-studio" />
 title: 'VoiceBox: 음성 복제, 녹취 및 생성을 위한 오픈소스 AI 음성 스튜디오'
-description: 어떤 음성이라도 복제하고, 음성을 생성하며, 어떤 앱에도 녹취할 수 있는 풀스택 오픈소스 AI 음성 스튜디오. 33K 스타. CUDA 또는 Apple Silicon 지원을 lokale에서 실행됩니다.
+description: 어떤 음성이라도 복제하고, 음성을 생성하며, 어떤 앱에도 녹취할 수 있는 풀스택 오픈소스 AI 음성 스튜디오. 33K 스타. CUDA 또는 Apple Silicon 지원을 lokale에서 실행됩니다.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
@@ -17,6 +17,8 @@ lang: kr
 github_repo: https://github.com/voicebox-ai/voicebox
 license: MIT
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/voicebox-open-source-ai-voice-studio/ -->
 
 
 

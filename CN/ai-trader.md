@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-trader" />
-title: "AI-Trader: 14K⭐ Fully Automated AI Trading Agent — Let AI Trade for You 24/7"
+title: "AI-Trader: 14K⭐ Fully Automated AI Trading Agent — Let A...
 description: "AI-Trader is an open-source fully automated AI trading agent system by HKUDS with 14K+ Stars. Supports stocks, crypto, and forex with reinforcement learning and multi-agent collaboration."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

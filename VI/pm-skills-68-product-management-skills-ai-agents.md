@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pm-skills-68-product-management-skills-ai-agents" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pm-skills-68-product-management-skills-ai-agents" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pm-skills-68-product-management-skills-ai-agents" />
-title: 'Kỹ Năng PM: 68 Kỹ Năng Quản Lý Sản Phẩm và 42 Quy Trình Làm Việc cho Đại Lý AI'
+title: 'Kỹ Năng PM: 68 Kỹ Năng Quản Lý Sản Phẩm và 42 Quy Trình ...
 description: 'Hệ điều hành AI cho các quyết định sản phẩm tốt hơn. 9 plugin bao gồm khám phá, chiến lược, triển khai, nghiên cứu, phân tích, GTM, tiếp thị, bộ công cụ và vận chuyển AI. Hoạt động với Claude Code, Codex, Cursor và hơn 50 trợ lý AI.'
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -21,6 +21,8 @@ sources:
     url: 'https://www.productcompass.pm'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/pm-skills-68-product-management-skills-ai-agents/ -->
 title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
 description: 'The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants.'
 date: 2026-06-22

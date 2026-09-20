@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：개발팀이 프로덕션급 코드를 5배 빠르게 출시하는 방법
-description: Addy Osmani의 Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령을 제공하여 AI 코딩
+description: Addy Osmani의 Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령을 제공하여 AI 코딩. Comprehensive guide covering features, pricing, and best practices for 2026.
   에이전트를 시니어 소프트웨어 엔지니어로 변환합니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -42,6 +42,8 @@ faqs:
   - q: 'Agent Skills의 안티-합리화 표(anti-rationalization table)란 무엇인가요?'
     a: '안티-합리화 표는 각 스킬에 내장된 기능으로, 개발자와 AI 에이전트가 대충 넘어가려 할 때 흔히 쓰는 변명(예: "테스트는 나중에 추가하지")을 미리 짚어내고 그에 대한 반박 근거를 제공합니다. 이 표들은 Google 규모 조직의 실제 사후 분석(post-mortem)과 코드 리뷰 피드백에서 도출되었습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/agent-skills-production-grade-ai-coding/ -->
 
 {</* resource-info */>}
 

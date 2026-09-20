@@ -21,6 +21,8 @@ sources:
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/moneyprinterturbo-one-click-ai-video-generator/ -->
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'
 description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'
 date: 2026-06-22

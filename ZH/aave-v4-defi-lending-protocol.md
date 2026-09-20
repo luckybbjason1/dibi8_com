@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aave-v4-defi-lending-protocol" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aave-v4-defi-lending-protocol" />
 title: 'AAVE v4 2026：管理150亿美元以上存款的DeFi借贷协议 — 智能合约集成指南'
-description: '2026年AAVE v4 DeFi借贷协议集成完整指南。学习如何存入和借入30多种加密资产、使用闪电贷、实施隔离模式，以及在您的DApp中集成GHO稳定币。'
+description: '2026年AAVE v4 DeFi借贷协议集成完整指南。学习如何存入和借入30多种加密资产、使用闪电贷、实施隔离模式，以及在您的DApp中集成GHO稳定币。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [aave]
 aliases:
 - /zh/posts/aave-v4-defi-lending-protocol/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/aave-v4-defi-lending-protocol/ -->
 
 {{</* resource-info */>}}
 

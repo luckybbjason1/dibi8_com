@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/aider" />
-title: 'Aider: 45K+ Stars — Terminal AI Pair Programming vs Claude Code, Cursor in 2026'
+title: 'Aider: 45K+ Stars — Terminal AI Pair Programming vs Clau...
 description: 'Aider is AI pair programming in your terminal that edits code in your local git repository. Supports OpenAI, Claude, DeepSeek, Gemini, Ollama. Learn aider setup, aider tutorial, git integration, benchmarks, and comparison with Claude Code, Cursor, Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

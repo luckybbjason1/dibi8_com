@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
-title: 'Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026'
+title: 'Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
 description: 'Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấy phép MIT). Một lệnh Docker duy nhất giúp bạn có chat, AI agent, nghiên cứu chuyên sâu, phân loại email, lịch, ghi chú và Cookbook mô hình — tất cả chạy trên phần cứng của bạn. Bài viết hướng dẫn cài đặt, tính năng chính và so sánh với ChatGPT Plus.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Có thể dùng Odysseus trên điện thoại không?'
     a: 'Có. Odysseus là PWA (Progressive Web App) với thiết kế đáp ứng hoàn toàn. Trên iOS hoặc Android, bạn có thể "Thêm vào màn hình chính" để có trải nghiệm gần như ứng dụng native. Các tính năng Cookbook và Agent cũng hoạt động trên di động, nhưng việc chạy mô hình cục bộ cần GPU vẫn đòi hỏi máy tính hoặc server.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/odysseus-self-hosted-ai-workspace-2026/ -->
 # Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 Sao GitHub Trong 9 Ngày — Hướng Dẫn 2026
 
 

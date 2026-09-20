@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/automl-tools-comparison-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/automl-tools-comparison-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/automl-tools-comparison-guide" />
-title: 'So Sánh Công Cụ AutoML: Hướng Dẫn AutoGluon, H2O, TPOT, Auto-sklearn và Google AutoML'
+title: 'So Sánh Công Cụ AutoML: Hướng Dẫn AutoGluon, H2O, TPOT, ...
 description: 'Đánh giá chi tiết 5 công cụ AutoML hàng đầu: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML. So sánh tính năng, tốc độ, khả năng triển khai và chi phí.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/automl-tools-comparison-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/automl-tools-comparison-guide/ -->
 
 {</* resource-info */>}
 

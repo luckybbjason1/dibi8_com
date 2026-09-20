@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
 title: 'MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式'
-description: '生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前审计清单。'
+description: '生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前审计清单。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
@@ -37,6 +37,8 @@ faq:
   - q: "判断 MCP 服务器是否恶意的「煤矿金丝雀」信号是什么？"
     a: "依赖分析里出现解释不清的网络调用。filesystem 或 git MCP 服务器应该是零 HTTP 调用。fetch 或 github 服务器有定义清晰的端点。任何调用陌生域名（尤其是随机子域或裸 IP 字面量）的都是红旗——这是社区服务器最常见的数据泄露方式。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/mcp-server-security-audit-2026-real-cases/ -->
 
 {{</* resource-info */>}}
 

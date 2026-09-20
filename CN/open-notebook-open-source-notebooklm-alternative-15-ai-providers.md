@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-title: 'open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026'
+title: 'open-notebook: The Open-Source Notebook LM Alternative T...
 description: 'open-notebook (28,200 GitHub stars) is the open-source alternative to Google NotebookLM with support for 15+ AI providers. Self-hosted RAG knowledge base with multimodal audio episodes. Includes setup guide, provider comparison, and real benchmarks.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'

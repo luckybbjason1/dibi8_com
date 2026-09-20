@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
 title: 'Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署'
-description: '使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。'
+description: '使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [outline, wiki, 知识库, 团队文档, 开源, 自托管, docker, 协作
 aliases:
 - /zh/posts/outline-wiki-knowledge-base/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/outline-wiki-knowledge-base/ -->
 
 {{</* resource-info */>}}
 

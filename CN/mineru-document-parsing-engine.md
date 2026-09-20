@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mineru-document-parsing-engine" />
 lang: en
-title: "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready Markdown"
+title: "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready ...
 description: 'MinerU (70,600+ GitHub stars) transforms PDF, DOCX, PPTX, XLSX, images and web pages into structured Markdown and JSON for LLM, RAG and Agent workflows. Supports 109-language OCR, formula-to-LaTeX, table-to-HTML, and runs on CPU or GPU.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00

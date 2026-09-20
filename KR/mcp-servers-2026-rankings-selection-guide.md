@@ -36,6 +36,8 @@ faq:
     a: "세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-project MCP config(.cursor/mcp.json, .claude/mcp.json) 사용해 전역 30개 로드 방지. (3) 시작 시간 감사 — 500ms 이상 초기화 서버는 모든 agent 세션을 늦춤. MCP spec이 강제하지 않음; 당신의 규율이 강제."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/mcp-servers-2026-rankings-selection-guide/ -->
+
 {{</* resource-info */>}}
 
 # MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리

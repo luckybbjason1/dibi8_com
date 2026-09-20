@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cross-border-ai-marketing-stack" />
-title: 'Cross-Border AI Marketing Stack 2026: 7-Tool Setup for Chinese Teams Shipping Globally'
+title: 'Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C...
 description: 'A 7-component AI stack purpose-built for cross-border operations — automate multilingual content, scrape global market intel, GDPR-compliant analytics, bypass payment friction, and run the whole thing from a Hong Kong VPS. $35-80/mo total, all-OSS-or-aff-friendly.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00

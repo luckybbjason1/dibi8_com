@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-meeting-assistant-tools" />
-title: 'Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflies, Fathom & More Compared'
+title: 'Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflie...
 description: 'Compare the best AI meeting assistant tools of 2025. In-depth reviews of Otter.ai, Fireflies.ai, Fathom, Notion AI, Microsoft Copilot for Teams, and Avoma with transcription accuracy, integrations, and pricing.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

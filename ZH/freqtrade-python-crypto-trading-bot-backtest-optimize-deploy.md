@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
-title: 'Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2026 实战指南'
-description: 'Freqtrade（51,300 GitHub Stars）是一款用 Python 编写的开源加密货币交易机器人。支持策略回测、hyperopt 参数优化、对接交易所 API 实盘交易。包含安装指南、策略开发实战和真实回测基准数据。'
+title: 'Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2...
+description: 'Freqtrade（51,300 GitHub Stars）是一款用 Python 编写的开源加密货币交易机器人。支持策略回测、hyperopt 参数优化、对接交易所 API 实盘交易。包含安装指南、策略开发实战和真实回测基准数据。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
@@ -17,6 +17,8 @@ license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/ -->
 
 # Freqtrade：51,300 Stars 的 Python 加密货币交易机器人 — 回测、优化、部署 — 2026 实战指南
 

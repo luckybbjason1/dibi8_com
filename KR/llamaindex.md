@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/llamaindex/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/llamaindex/ -->
+
 {{</* resource-info */>}}
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)

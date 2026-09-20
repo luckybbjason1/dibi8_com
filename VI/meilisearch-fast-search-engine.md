@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/meilisearch-fast-search-engine" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/meilisearch-fast-search-engine" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/meilisearch-fast-search-engine" />
-title: 'Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nhanh với Khả Năng Chịu Lỗi — Cài Đặt & Đánh Giá 2026'
+title: 'Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nha...
 description: 'Triển khai Meilisearch 1.12 cho tìm kiếm chịu lỗi với độ trễ dưới 50ms. Hướng dẫn Docker, tích hợp SDK, đánh giá hiệu suất production, và so sánh trung thực với các giải pháp thay thế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/meilisearch-fast-search-engine/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/meilisearch-fast-search-engine/ -->
 
 {{</* resource-info */>}}
 

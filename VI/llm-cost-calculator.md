@@ -11,6 +11,8 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/llm-cost-calculator/ -->
 # Máy Tính Chi Phí LLM API — GPT-4 / Claude / Gemini
 
 

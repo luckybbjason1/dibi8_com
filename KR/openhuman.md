@@ -6,13 +6,15 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhuman" />
 title: 'OpenHuman이란 무엇인가?'
 lang: ko
-description: 'content/ko/resources/openhuman.md'
+description: 'content/ko/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod:  2026-06-13layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/openhuman/ -->
 ![OpenHuman 데스크탑 앱](https://raw.githubusercontent.com/tinyhumansai/openhuman/main/gitbooks/.gitbook/assets/demo.png)
 
 ---

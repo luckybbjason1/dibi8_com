@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terminal-command-line-tools-tmux-zsh-fzf-ripgrep" />
 title: '终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南'
-description: '从zsh到tmux，从fzf到ripgrep，打造现代化终端工作流。2025年开发者必备的CLI效率工具完整配置指南。'
+description: '从zsh到tmux，从fzf到ripgrep，打造现代化终端工作流。2025年开发者必备的CLI效率工具完整配置指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/ -->
 
 {</* resource-info */>}
 

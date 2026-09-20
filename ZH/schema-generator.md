@@ -11,6 +11,8 @@ lastmod: 2026-05-19
 layout: "tool-schema-generator"
 tool_id: "schema-generator"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/schema-generator/ -->
 # Schema.org JSON-LD 结构化数据生成器
 
 

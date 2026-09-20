@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cloakbrowser-stealth-browser-2026" />
-title: 'CloakBrowser Review 2026: The Open-Source Stealth Browser That Passes Every Bot Detection Test — A Playwright Replacement in 3 Lines'
+title: 'CloakBrowser Review 2026: The Open-Source Stealth Browse...
 description: 'CloakBrowser is the fastest-growing GitHub repo of May 2026: 49 C++ source-level patches, reCAPTCHA v3 score 0.9, passes 30+ detection services. Free, open-source replacement for $299/month anti-detect browsers.'
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00

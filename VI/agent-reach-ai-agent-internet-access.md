@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-ai-agent-internet-access" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-ai-agent-internet-access" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
-title: 'Agent Reach: Trao Siêu Năng Lực Internet cho AI Agent của Bạn'
-description: Agent Reach là công cụ scaffolding mã nguồn mở, chỉ với một lệnh giúp
+title: 'Agent Reach: Trao Siêu Năng Lực Internet cho AI Agent củ...
+description: Agent Reach là công cụ scaffolding mã nguồn mở, chỉ với một lệnh giúp. Comprehensive guide covering features, pricing, and best practices for 2026.
   AI Agent truy cập ngay YouTube, Twitter, Reddit, Xiaohongshu, Bilibili và hơn 15
   nền tảng khác.
 date: 2026-05-15 04:20:25+09:00
@@ -43,6 +43,8 @@ faqs:
   - q: 'Agent Reach tương thích với những AI agent và công cụ lập trình nào?'
     a: 'Agent Reach hoạt động với Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI, và bất kỳ agent nào tương thích MCP. Mỗi nền tảng được triển khai dưới dạng một tệp channel độc lập, có thể thay thế, nên bạn có thể thay công cụ nền tảng bên dưới cho bất kỳ nền tảng nào mà không bị khóa (lock-in).'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/agent-reach-ai-agent-internet-access/ -->
 
 {</* resource-info */>}
 

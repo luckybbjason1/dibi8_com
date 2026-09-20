@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/n8n-ai-workflow-automation-self-hosted-2026" />
-title: "n8n AI Workflow Automation 2026: Build Production-Grade AI Agents, Self-Hosted n8n Setup Guide, and Save 70% vs Zapier"
+title: "n8n AI Workflow Automation 2026: Build Production-Grade ...
 description: "The definitive n8n tutorial 2026. Learn to self-host n8n, build AI-powered workflow automations with LangChain integration, create SEO monitoring agents, and compare n8n vs Zapier vs Make for enterprise and solo builders."
 keywords: n8n, n8n tutorial, AI workflow automation, open source automation, self-hosted n8n, n8n vs Zapier, n8n LangChain, AI agent builder, no-code automation platform, n8n docker setup, workflow orchestration, n8n SEO automation
 author: Home Hermes

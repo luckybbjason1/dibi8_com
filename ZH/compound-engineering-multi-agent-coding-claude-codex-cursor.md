@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/compound-engineering-multi-agent-coding-claude-codex-cursor" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/compound-engineering-multi-agent-coding-claude-codex-cursor" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/compound-engineering-multi-agent-coding-claude-codex-cursor" />
-title: 'Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多代理插件指南'
-description: 'Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。'
+title: 'Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多...
+description: 'Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod:  2026-06-13slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
@@ -15,6 +15,8 @@ license: 'MIT'
 lang: zh
 featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/compound-engineering-multi-agent-coding-claude-codex-cursor/ -->
 
 # Compound Engineering：多代理编排插件 — 2026 指南
 

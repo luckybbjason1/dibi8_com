@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-title: 'CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026'
+title: 'CloakBrowser: Stealth Chromium That Passes Every Bot Det...
 description: 'CloakBrowser (25,077 GitHub stars) is a stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed. Includes setup tutorial, anti-detection breakdown, and benchmarks.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'

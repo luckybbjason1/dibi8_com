@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
-title: 'act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 CI/CD 指南'
+title: 'act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 ...
 description: 'act (nektos/act) 是一个使用 Docker 容器在本地运行 GitHub Actions 工作流的 CLI 工具。兼容 Docker、GitHub Actions、Go 和 VS Code。涵盖安装、配置、密钥管理、runner 镜像和生产环境加固。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [act, 'github-actions', 'ci-cd', docker, 本地开发, devops, 测试, 自
 aliases:
 - /zh/posts/act/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/act/ -->
 
 {{</* resource-info */>}}
 

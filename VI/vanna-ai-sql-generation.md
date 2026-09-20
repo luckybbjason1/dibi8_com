@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/vanna-ai-sql-generation/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/vanna-ai-sql-generation/ -->
+
 {{</* resource-info */>}}
 
 Khả năng tương tác với cơ sở dữ liệu bằng ngôn ngữ tự nhiên từ lâu đã là chén thánh của phân tích dữ liệu. Mỗi ngày, vô số giờ đồng hồ bị lãng phí cho việc dịch các câu hỏi kinh doanh thành truy vấn SQL — một quá trình đòi hỏi kiến thức sâu rộng về schema cơ sở dữ liệu, mối quan hệ bảng, và cú pháp SQL. Năm 2026, nút thắt cổ chai này đang nhanh chóng tan biến nhờ **Vanna AI**, một thư viện Python mã nguồn mở được huấn luyện trên schema cơ sở dữ liệu của bạn và tạo ra SQL sẵn sàng cho production từ tiếng Anh đơn giản với độ chính xác trên 90%.

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/code-quality-tools-eslint-prettier-black-ruff" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/code-quality-tools-eslint-prettier-black-ruff" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/code-quality-tools-eslint-prettier-black-ruff" />
-title: 'Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black, Ruff và Hơn Nữa'
+title: 'Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black...
 description: 'Hướng dẫn cấu hình chi tiết ESLint, Prettier, Black, Ruff cho JavaScript, TypeScript và Python. Tìm hiểu pre-commit hooks và CI/CD integration năm 2025.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/code-quality-tools-eslint-prettier-black-ruff/ -->
 
 {</* resource-info */>}
 

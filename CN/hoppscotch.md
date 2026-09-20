@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/hoppscotch" />
-title: 'Hoppscotch: 79,200 GitHub Stars — Open-Source API Development Platform vs Postman, Insomnia, Bruno in 2026'
+title: 'Hoppscotch: 79,200 GitHub Stars — Open-Source API Develo...
 description: 'Hoppscotch (HOPP) is an open-source API development ecosystem. Docker, GitHub Actions, Node.js, Vue.js compatible. Covers hoppscotch tutorial, self-hosting, CLI automation, and comparison vs alternatives.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

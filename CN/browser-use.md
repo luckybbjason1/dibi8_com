@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/browser-use" />
-title: 'Browser Use: 94K+ Stars — Benchmarking AI Browser Automation in 2026'
+title: 'Browser Use: 94K+ Stars — Benchmarking AI Browser Automa...
 description: 'Browser Use is an open-source Python framework that connects LLMs to real browsers via Playwright. Supports OpenAI, Anthropic, Gemini, and local models. Covers setup, WebVoyager benchmarks, Selenium comparison, production hardening, and Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

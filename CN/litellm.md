@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/litellm" />
-title: 'LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs with Built-in Fallbacks — Production Gateway Setup for 2026'
+title: 'LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
 description: 'LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

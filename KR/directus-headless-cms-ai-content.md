@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
-title: 'Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치 및 API 가이드'
+title: 'Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치...
 description: 'Directus 11.x 완벽 가이드 — 동적 API 생성, 콘텐츠 버전 관리, AI 콘텐츠 워크플로우, 셀프호스팅 Docker 배포를 갖춘 오픈소스 Headless CMS. REST 및 GraphQL API 벤치마크.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [directus, 'headless cms', '콘텐츠 관리', api, docker, 오픈소스, 
 aliases:
 - /kr/posts/directus-headless-cms-ai-content/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/directus-headless-cms-ai-content/ -->
 
 {{</* resource-info */>}}
 

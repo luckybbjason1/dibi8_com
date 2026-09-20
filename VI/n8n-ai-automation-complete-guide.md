@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-automation-complete-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
-title: n8n AI Automation — Xây dựng Workflows thông minh không cần code
+title: n8n AI Automation — Xây dựng Workflows thông minh không c...
 description: Hướng dẫn toàn diện về workflow automation AI của n8n. Kết nối 400+ apps với AI nodes, xây dựng autonomous agents và tự động hóa quy trình kinh doanh phức tạp. Giá cả, templates và examples thực tế.
 tags: [n8n, 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']
 category: dev-utils
@@ -14,6 +14,8 @@ lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/n8n-ai-automation-complete-guide/ -->
 
 ## TL;DR
 

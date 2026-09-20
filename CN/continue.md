@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/continue" />
-title: 'Continue.dev: 33K+ Stars — Open-Source AI Code Assistant vs Copilot, Cursor 2026'
+title: 'Continue.dev: 33K+ Stars — Open-Source AI Code Assistant...
 description: 'Continue.dev (open-source AI code assistant) VS Code/JetBrains plugin. Supports any LLM: Ollama, OpenAI, Anthropic, Gemini. Comparison vs GitHub Copilot, Cursor, Tabby. Setup tutorial, config examples, benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

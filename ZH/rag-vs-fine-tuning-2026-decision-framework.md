@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-vs-fine-tuning-2026-decision-framework" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-vs-fine-tuning-2026-decision-framework" />
 title: 'RAG 还是微调 2026：基于真实成本数据的决策框架'
-description: '何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。'
+description: '何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
@@ -37,6 +37,8 @@ faq:
   - q: "应该用向量数据库还是 SQLite 全文搜索？"
     a: "1 万 chunks 以下：全文搜索（FTS5、MeiliSearch）通常足够，且简单 10 倍。5 万 chunks 以上：向量数据库的复杂度才值得。1 万-5 万的灰色地带——先试 FTS，只有当检索精度低于 precision@5 80% 时再切换到向量。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/rag-vs-fine-tuning-2026-decision-framework/ -->
 
 {{</* resource-info */>}}
 

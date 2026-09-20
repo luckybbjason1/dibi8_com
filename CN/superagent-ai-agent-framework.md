@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/superagent-ai-agent-framework" />
-title: 'Superagent: Deploy AI Agents to Production with 1 CLI Command — The Minimal Setup Guide for 2026'
+title: 'Superagent: Deploy AI Agents to Production with 1 CLI Co...
 description: 'A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG workflows, vector DB integration, and REST API deployment. Backed by real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

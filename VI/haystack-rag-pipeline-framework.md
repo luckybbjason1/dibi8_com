@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
-title: 'Haystack 2026: Framework NLP End-to-End cho Pipeline RAG & Agent Sản xuất — Hướng dẫn Thiết lập'
+title: 'Haystack 2026: Framework NLP End-to-End cho Pipeline RAG...
 description: 'Hướng dẫn đầy đủ Haystack 2026: framework NLP mã nguồn mở cho pipeline RAG sản xuất, document store, retriever, agent, công cụ đánh giá và triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [haystack, nlp, rag, python, llm, 'document store', retriever, agent, open
 aliases:
 - /vi/posts/haystack-rag-pipeline-framework/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/haystack-rag-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/axolotl-llm-fine-tuning-framework-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/axolotl-llm-fine-tuning-framework-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/axolotl-llm-fine-tuning-framework-2026" />
-title: 'Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao — Hướng Dẫn Production Đầy Đủ'
+title: 'Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao...
 description: 'Axolotl là framework fine-tuning LLM mã nguồn mở với config YAML đơn cho full / LoRA / QLoRA / DPO / GRPO. 12k GitHub sao, Apache 2.0. Hỗ trợ Llama / Mistral / Qwen / GLM / 10+ họ. Hướng dẫn cài đặt 2026 đầy đủ + khi nào Axolotl thắng Unsloth và HuggingFace TRL raw.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [axolotl, 'fine-tuning', lora, qlora, dpo, 'mã nguồn mở']
 aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/axolotl-llm-fine-tuning-framework-2026/ -->
 
 Nếu bạn từng thử fine-tune mô hình Llama và kết thúc viết 300 dòng PyTorch + DeepSpeed config + wrapper HuggingFace Trainer, bạn cảm thấy khoảng cách mà **Axolotl** lấp đầy. Một file YAML mô tả toàn bộ chạy fine-tuning — mô hình, dataset, config LoRA, hyperparameter, chiến lược phân tán — và Axolotl xử lý phần còn lại.
 

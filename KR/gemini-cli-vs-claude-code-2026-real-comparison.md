@@ -34,6 +34,8 @@ faq:
     a: "많은 개발자가 그렇게 합니다. Gemini CLI는 무료 티어 기반 탐색과 긴 컨텍스트 작업에, Claude Code는 프로덕션 에이전트 루프와 안정적인 도구 사용에 씁니다. 조합하면 한쪽만 쓸 때보다 더 많은 워크플로우를 커버하고, Gemini의 무료 티어 덕분에 추가 비용은 사실상 0입니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/gemini-cli-vs-claude-code-2026-real-comparison/ -->
+
 {{</* resource-info */>}}
 
 # Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/hayhooks-api-deployment-llm" />
-title: 'Hayhooks: Deploy Haystack Pipelines as REST APIs with One Command — 2026 Production Setup Guide'
+title: 'Hayhooks: Deploy Haystack Pipelines as REST APIs with On...
 description: 'A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers one-command deployment, container support, auto-generated OpenAPI docs, and production patterns with real benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/signoz-apm-observability-open-source" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/signoz-apm-observability-open-source" />
 title: 'SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指南2026'
-description: '5分钟内部署SigNoz。基于OpenTelemetry构建的开源APM，提供分布式追踪、指标和日志管理——成本仅为Datadog的10%。'
+description: '5分钟内部署SigNoz。基于OpenTelemetry构建的开源APM，提供分布式追踪、指标和日志管理——成本仅为Datadog的10%。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [signoz, apm, 可观测性, 分布式追踪, opentelemetry, datadog替代�
 aliases:
 - /zh/posts/signoz-apm-observability-open-source/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/signoz-apm-observability-open-source/ -->
 
 {{</* resource-info */>}}
 

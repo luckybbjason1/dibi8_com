@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026：开源客户支持平台与AI智能体集成 — 自建部署完整指南'
-description: 'Chatwoot v4 完整指南 — 开源客户支持平台。使用Docker自建部署，集成AI智能体，连接多渠道。真实基准测试和生产环境配置。'
+description: 'Chatwoot v4 完整指南 — 开源客户支持平台。使用Docker自建部署，集成AI智能体，连接多渠道。真实基准测试和生产环境配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [chatwoot, 客户支持, 开源, ai聊天机器人, 自建部署, docker, 
 aliases:
 - /zh/posts/chatwoot-open-source-customer-support-ai/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/chatwoot-open-source-customer-support-ai/ -->
 
 {{</* resource-info */>}}
 

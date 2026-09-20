@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain-complete-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain-complete-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain-complete-guide" />
-title: 'Hướng Dẫn Toàn Diện LangChain 2025: Từ Zero Đến Ứng Dụng AI Production'
+title: 'Hướng Dẫn Toàn Diện LangChain 2025: Từ Zero Đến Ứng Dụng...
 description: 'Hướng dẫn chi tiết LangChain 2025 từ cơ bản đến nâng cao: kiến trúc core, components, LangGraph, LangSmith, và triển khai production-ready AI apps.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/langchain-complete-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/langchain-complete-guide/ -->
 
 {</* resource-info */>}
 

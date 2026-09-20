@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/hyperliquid-perp-dex-trading" />
-title: 'Hyperliquid 2026: The On-Chain Perpetual DEX Processing $2B+ Daily Volume — Trading Bot Integration'
+title: 'Hyperliquid 2026: The On-Chain Perpetual DEX Processing ...
 description: 'Comprehensive guide to Hyperliquid, the fully on-chain perpetual DEX processing $2B+ daily volume with 100+ trading pairs, up to 50x leverage, HyperEVM smart contracts, and Python SDK for bot integration.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

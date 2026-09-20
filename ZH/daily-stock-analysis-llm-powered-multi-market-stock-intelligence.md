@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 title: 每日股票分析：LLM驱动的多市场股票情报系统
-description: 一个由LLM驱动的多市场分析系统，具备实时新闻、决策仪表盘和自动化通知。48K stars。支持零成本定时运行。
+description: 一个由LLM驱动的多市场分析系统，具备实时新闻、决策仪表盘和自动化通知。48K stars。支持零成本定时运行。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
@@ -17,6 +17,8 @@ lang: zh
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/ -->
 
 
 

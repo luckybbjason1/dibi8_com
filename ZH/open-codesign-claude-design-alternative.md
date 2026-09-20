@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-claude-design-alternative" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-claude-design-alternative" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-claude-design-alternative" />
-title: "Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 AI 设计神器"
-description: "Open Codesign 是 MIT 协议开源的 Claude Design 替代品。支持多模型、BYOK 自带密钥、本地优先架构，通过自然语言提示词一键生成原型、幻灯片和 PDF。"
+title: "Open Codesign：开源 Claude Design 替代品，GitHub 5,790+ Star 的 ...
+description: "Open Codesign 是 MIT 协议开源的 Claude Design 替代品。支持多模型、BYOK 自带密钥、本地优先架构，通过自然语言提示词一键生成原型、幻灯片和 PDF。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -36,6 +36,8 @@ faqs:
   - q: 'Open Codesign 中的 DESIGN.md 文件是什么？'
     a: 'DESIGN.md 是一个 Markdown 文件，你可以在其中定义设计系统，例如品牌色彩、排版规范和间距 token。将该文件放置在工作区后，每次生成内容时都会自动继承这些 token，从而使模型保持品牌一致性，而不会在多次对话中出现偏移。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/open-codesign-claude-design-alternative/ -->
 
 {</* resource-info */>}
 

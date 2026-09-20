@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/facefusion-architecture-onnx-video-face-swap" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/facefusion-architecture-onnx-video-face-swap" />
 title: "为什么经典的 Roop 最终走向了死亡？"
-description: "为什么经典的 Roop 最终走向了死亡？"
+description: "为什么经典的 Roop 最终走向了死亡？". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -37,6 +37,8 @@ faqs:
   - q: '如何防止 FaceFusion 在处理并发请求时耗尽内存？'
     a: '默认情况下，FaceFusion 会在每个进程中独立加载 yoloface、gfpgan 等大型模型，多进程并发时内存会飙升至 100% 并导致服务器卡死。应改用单进程、基于队列的单例模式，将请求顺序入队处理，同时让模型常驻显存。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/facefusion-architecture-onnx-video-face-swap/ -->
 {</* resource-info */>}
 
 # 为什么经典的 Roop 最终走向了死亡？

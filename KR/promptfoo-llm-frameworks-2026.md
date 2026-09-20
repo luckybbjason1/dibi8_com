@@ -40,6 +40,8 @@ faqs:
     a: '기여를 환영합니다. GitHub에서 이슈를 남기거나 pull request를 제출하면 됩니다. 자세한 내용은 [기여 가이드라인](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)을 참고하세요.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/promptfoo-llm-frameworks-2026/ -->
+
 {{< resource-info >}}
 
 ## 들어가며

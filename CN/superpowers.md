@@ -5,7 +5,7 @@ Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026
 Meta description: Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.
 
 ---
-title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026'
+title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: 'Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.'
 date: 2026-05-23
 lastmod:  2026-05-23slug: 'superpowers'

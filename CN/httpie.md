@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/httpie" />
-title: 'HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs curl, wget in 2026'
+title: 'HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs ...
 description: 'HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions. Compatible with Python, pip, Homebrew, Docker. Covers installation, benchmark comparison, production hardening, and FAQ.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

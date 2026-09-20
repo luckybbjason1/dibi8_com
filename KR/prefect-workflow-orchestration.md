@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prefect-workflow-orchestration" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prefect-workflow-orchestration" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prefect-workflow-orchestration" />
-title: 'Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — 셀프 호스팅 설정 가이드'
-description: 'Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배포하세요.'
+title: 'Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — ...
+description: 'Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배포하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/prefect-workflow-orchestration/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/prefect-workflow-orchestration/ -->
 
 {{</* resource-info */>}}
 

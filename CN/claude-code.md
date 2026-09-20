@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code" />
-title: 'Claude Code: 125K+ Stars — The Terminal AI Coding Agent Complete Comparison vs Alternatives 2026'
+title: 'Claude Code: 125K+ Stars — The Terminal AI Coding Agent ...
 description: 'Claude Code is Anthropic agentic coding tool that lives in your terminal. Supports VS Code, Cursor, GitHub, GitLab. Covers installation, benchmarks, and comparison with Aider, OpenHands, and Codex CLI.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

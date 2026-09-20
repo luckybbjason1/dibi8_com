@@ -4,9 +4,9 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabpfn-foundation-model-tabular-data" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabpfn-foundation-model-tabular-data" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabpfn-foundation-model-tabular-data" />
-title: 'TabPFN: Mô Hình Nền Tảng cho Dữ Liệu Dạng Bảng — Đột Phá AI cho Dữ Liệu Có
+title: 'TabPFN: Mô Hình Nền Tảng cho Dữ Liệu Dạng Bảng — Đột Phá...
   Cấu Trúc'
-description: Khám phá TabPFN, mô hình nền tảng cho dữ liệu dạng bảng vượt trội hơn
+description: Khám phá TabPFN, mô hình nền tảng cho dữ liệu dạng bảng vượt trội hơn. Comprehensive guide covering features, pricing, and best practices for 2026.
   các phương pháp ML truyền thống. Không cần điều chỉnh siêu tham số, hoạt động trong
   vài giây.
 date: 2026-05-15 04:20:25+09:00
@@ -41,6 +41,8 @@ faqs:
   - q: 'Cách cài đặt và sử dụng TabPFN trong Python như thế nào?'
     a: 'Cài đặt bằng lệnh ''pip install tabpfn'', sau đó import TabPFNClassifier từ package tabpfn rồi gọi clf.fit(X_train, y_train) tiếp theo là clf.predict(X_test). Mô hình tự động nhận dạng kiểu đặc trưng và xử lý các giá trị bị thiếu cũng như đặc trưng dạng phân loại.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/tabpfn-foundation-model-tabular-data/ -->
 {</* resource-info */>}
 
 ## TabPFN là gì?

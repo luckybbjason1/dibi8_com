@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/git-workflow-team-collaboration-tools" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/git-workflow-team-collaboration-tools" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/git-workflow-team-collaboration-tools" />
-title: 'Quy Trình Git và Công Cụ Hợp Tác Nhóm: Hướng Dẫn Đầy Đủ cho Nhà Phát Triển'
+title: 'Quy Trình Git và Công Cụ Hợp Tác Nhóm: Hướng Dẫn Đầy Đủ ...
 description: 'Tìm hiểu các chiến lược branching Git (GitFlow, GitHub Flow, Trunk-Based), công cụ hợp tác nhóm, và thực tiễn code review tốt nhất năm 2025.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/git-workflow-team-collaboration-tools/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/git-workflow-team-collaboration-tools/ -->
 
 {</* resource-info */>}
 

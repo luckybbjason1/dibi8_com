@@ -16,6 +16,8 @@ lang: zh
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/markitdown-universal-file-to-markdown-converter/ -->
+
 ## 引言
 
 你有一个 PDF、一个 Word 文档、一个 PowerPoint、一个 Excel 表格——甚至可能还有带手写笔记的扫描图片。你需要的是里面的文字内容。不是格式。不是布局。只是内容，干净且有结构，准备好让大型语言模型处理。

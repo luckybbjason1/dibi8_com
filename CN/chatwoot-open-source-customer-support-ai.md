@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/chatwoot-open-source-customer-support-ai" />
-title: 'Chatwoot 2026: The Open-Source Customer Support Platform with AI Agent Integration — Self-Hosted Guide'
+title: 'Chatwoot 2026: The Open-Source Customer Support Platform...
 description: 'Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integrate AI agents, connect multi-channels. Real benchmarks and production setup.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

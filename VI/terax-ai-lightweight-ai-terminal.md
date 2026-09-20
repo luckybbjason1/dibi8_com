@@ -44,6 +44,8 @@ faqs:
   - q: 'Làm thế nào để cài đặt Terax AI?'
     a: 'Terax được build từ mã nguồn: cài đặt Rust (stable) và Node.js 20+ kèm pnpm, clone repository bằng git, chạy pnpm install, sau đó dùng pnpm tauri dev để phát triển hoặc pnpm tauri build để tạo bản phân phối chính thức. Hiện chưa có file cài đặt prebuilt chính thức nào được cung cấp.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/terax-ai-lightweight-ai-terminal/ -->
 {</* resource-info */>}
 
 # Terax AI: Trình Giả Lập Terminal AI Nhẹ Hiểu Bạn

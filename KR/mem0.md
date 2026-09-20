@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/mem0/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/mem0/ -->
+
 {{</* resource-info */>}}
 
 ## 소개

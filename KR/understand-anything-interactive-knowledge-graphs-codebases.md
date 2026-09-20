@@ -16,6 +16,8 @@ lang: kr
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/understand-anything-interactive-knowledge-graphs-codebases/ -->
+
 
 ## Introduction
 

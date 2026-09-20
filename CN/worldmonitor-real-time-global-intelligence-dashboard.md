@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/worldmonitor-real-time-global-intelligence-dashboard" />
-  title: 'WorldMonitor: Real-Time Global Intelligence Dashboard for Geopolitical Monitoring'
+  title: 'WorldMonitor: Real-Time Global Intelligence Dashboard fo...
   description: 'A real-time AI-powered global intelligence dashboard aggregating news, geopolitical events, and infrastructure tracking. 59K stars. Open-source alternative to Palantir Gotham.'
   date: 2026-06-25
   lastmod: 2026-06-25

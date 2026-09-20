@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-presentation-tools" />
-title: 'Best AI Presentation Tools 2025: Gamma, Beautiful.ai, Tome & More Compared'
+title: 'Best AI Presentation Tools 2025: Gamma, Beautiful.ai, To...
 description: 'Compare the best AI presentation tools of 2025. In-depth reviews of Gamma, Beautiful.ai, Tome, SlidesAI, Canva Magic Design, and Microsoft Copilot for PowerPoint with features, pricing, and use cases.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

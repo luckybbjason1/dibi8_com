@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skyvern-dev-utils-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skyvern-dev-utils-2026" />
 title: 'Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实用指南'
-description: 'Skyvern 用大语言模型和计算机视觉自动化浏览器工作流（21,803 GitHub 星，AGPL-3.0）。涵盖安装、真实的 Python API、可运行的代码示例，以及与 Selenium、Playwright 的诚实对比。'
+description: 'Skyvern 用大语言模型和计算机视觉自动化浏览器工作流（21,803 GitHub 星，AGPL-3.0）。涵盖安装、真实的 Python API、可运行的代码示例，以及与 Selenium、Playwright 的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -39,6 +39,8 @@ faqs:
   - q: '在哪里可以找到更多关于使用 Skyvern-AI/skyvern 的信息？'
     a: '可查阅官网 <https://www.skyvern.com> 和 GitHub README，二者都深入介绍了安装、API 和示例工作流。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/skyvern-dev-utils-2026/ -->
 
 {{< resource-info >}}
 

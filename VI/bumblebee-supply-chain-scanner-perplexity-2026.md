@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
-title: 'Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cung Ứng Nội Bộ — Hỗ Trợ MCP và Extension Editor'
+title: 'Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cun...
 description: 'Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go module, cấu hình MCP, extension editor và extension trình duyệt tìm các gói đã bị xâm phạm — không thực thi bất kỳ dòng code nào.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -37,6 +37,8 @@ faqs:
   - q: 'Cách cài đặt Bumblebee?'
     a: 'Chạy go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1. Kiểm tra hàng ngày: bumblebee scan --profile baseline > inventory.ndjson. Quét sự cố: bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only --max-duration 10m.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/bumblebee-supply-chain-scanner-perplexity-2026/ -->
 
 ![Bumblebee 2026: Perplexity AI Supply-Chain Scanner — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 

@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/strix-ai-open-source-penetration-testing" />
 lang: en
-title: 'Strix AI: 31K+ Star Open-Source Penetration Testing Framework'
+title: 'Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
 description: 'Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI.'
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui-2026" />
-title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스트 이미지 생성 완전 가이드'
+title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스...
 description: 'AUTOMATIC1111 stable-diffusion-webui는 163k 별의 SD/SDXL 이미지 생성용 사실상 표준 셀프호스트 UI. 2026 완전 설치 + 프로덕션 가이드: txt2img / img2img / 인페인팅 / 아웃페인팅 / LoRA / ControlNet, 하드웨어 요구, 대안(Forge, SD.Next).'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['stable diffusion', sdxl, '이미지 생성', automatic1111, 오픈소스
 aliases:
   - /posts/stable-diffusion-webui-2026/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/stable-diffusion-webui-2026/ -->
 # Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스트 이미지 생성 완전 가이드
 
 

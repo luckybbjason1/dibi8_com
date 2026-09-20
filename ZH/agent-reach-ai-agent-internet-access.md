@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-ai-agent-internet-access" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-ai-agent-internet-access" />
 title: Agent Reach：让你的 AI Agent 一键连接互联网
-description: Agent Reach 是一个开源脚手架工具，只需一条命令就能让 AI Agent 访问 YouTube、Twitter、Reddit、小红书、B站等
+description: Agent Reach 是一个开源脚手架工具，只需一条命令就能让 AI Agent 访问 YouTube、Twitter、Reddit、小红书、B站等. Comprehensive guide covering features, pricing, and best practices for 2026.
   15+ 平台。
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -41,6 +41,8 @@ faqs:
   - q: 'Agent Reach 与哪些 AI agent 和编程工具兼容？'
     a: 'Agent Reach 可与 Claude Code、GitHub Copilot、OpenAI Codex CLI、Cursor、Windsurf、Gemini CLI 以及任何兼容 MCP 的 agent 配合使用。每个平台都实现为一个独立、可替换的 channel 文件，因此你可以替换任意平台底层使用的工具，而不会被锁定。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/agent-reach-ai-agent-internet-access/ -->
 
 {</* resource-info */>}
 

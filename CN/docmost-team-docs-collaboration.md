@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/docmost-team-docs-collaboration" />
-title: 'Docmost 2026: The Open-Source Notion Alternative for Real-Time Team Collaboration — Self-Hosted Guide'
+title: 'Docmost 2026: The Open-Source Notion Alternative for Rea...
 description: 'Complete self-hosting guide for Docmost, the open-source collaborative wiki with real-time editing, Notion-like block editor, nested pages, and PostgreSQL backend. Deploy in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

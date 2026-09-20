@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/traefik" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/traefik" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/traefik" />
-title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router Hướng Dẫn Triển Khai Production 2026'
+title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
 description: 'Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích với Docker, Kubernetes, Consul và Docker Compose. Bao gồm cài đặt, middleware, TLS, giám sát và production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [traefik, docker, kubernetes, 'reverse-proxy', 'edge-router', ingress, dev
 aliases:
 - /vi/posts/traefik/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/traefik/ -->
 
 {{</* resource-info */>}}
 

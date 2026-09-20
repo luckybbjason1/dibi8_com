@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-engineering-from-scratch" />
-title: "AI Engineering From Scratch: Build Production LLM Systems — Complete Guide 2026"
+title: "AI Engineering From Scratch: Build Production LLM System...
 description: "AI Engineering From Scratch (32,771 stars) is a comprehensive curriculum covering LLM fine-tuning, RAG, agent frameworks, and production deployment. Learn to build, ship, and scale AI systems."
 tags: ["architecture", "guide", "llm", "open-source", "reference", "system", "tutorial"]
 date: 2026-06-15

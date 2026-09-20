@@ -32,6 +32,8 @@ aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/chattts-dialogue-tts-2026/ -->
+
 2026 多数开源 TTS 还是"90 年代 GPS 旁白加点混响"的味道。**ChatTTS** 是第一个被广泛采用的例外 —— 39.3k 星的生成式语音模型，专为**对话**（不是朗读）训练，含 token 级笑声 / 停顿 / 插入语 / prosody 控制，终于跨过"听了不让人皱眉"的门槛。
 
 如果你在搭语音 agent、AI 播客、游戏多角色 TTS，或任何"平淡旁白会毁体验"的语音产品 —— ChatTTS 是 2026 年开源默认选择。

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagger" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagger" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagger" />
-title: 'Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh với GitHub Actions, GitLab CI 2026'
+title: 'Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
 description: 'Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go, Python, TypeScript. Bao gồm cài đặt Dagger, hướng dẫn, so sánh với GitHub Actions và tăng cường production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [cicd, devops, containers, 'pipeline-code', docker, 'github-actions', 'git
 aliases:
 - /vi/posts/dagger/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/dagger/ -->
 
 {{</* resource-info */>}}
 

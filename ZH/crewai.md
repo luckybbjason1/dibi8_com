@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/crewai/ -->
+
 {{</* resource-info */>}}
 
 > 如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。

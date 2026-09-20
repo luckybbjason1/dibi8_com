@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-title: 'Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)'
+title: 'Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
 description: '5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "Giá cả của Claude Code subagent hoạt động ra sao — tôi có trả riêng cho mỗi cái không?"
     a: "Mỗi lần gọi subagent tiêu thụ token như bất kỳ cuộc trò chuyện Claude nào khác. Chi phí xấp xỉ context đầy đủ của subagent (system prompt + schema công cụ + task prompt + suy nghĩ + báo cáo cuối). Trên gói Pro và Max, sử dụng subagent tính vào cùng quota sử dụng với phiên cha. Với người dùng API, chi phí là tính phí trực tiếp theo token. Tiết kiệm đến từ việc chuyển bớt khám phá đáng lẽ làm phình context cha — bạn trả cho subagent, nhưng phiên chính giữ được nhanh và tập trung."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/claude-code-subagent-patterns-multi-agent-workflows-2026/ -->
 # Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết Kiệm Hàng Giờ Mỗi Ngày (2026)
 
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pendle-yield-tokenization-defi" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pendle-yield-tokenization-defi" />
 title: 'pendle-yield-tokenization-defi'
-description: ''
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [pendle]
 aliases:
 - /vi/posts/pendle-yield-tokenization-defi/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/pendle-yield-tokenization-defi/ -->
 
 {{</* resource-info */>}}
 

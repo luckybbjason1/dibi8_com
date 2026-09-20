@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/aiohttp-async-web-scraping" />
-title: 'aiohttp 2026: Build High-Performance Async Web Scrapers Handling 10K+ Requests/Second — Python Guide'
+title: 'aiohttp 2026: Build High-Performance Async Web Scrapers ...
 description: 'Master aiohttp 3.11 for high-performance async web scraping in Python. Build scrapers handling 10K+ requests/second with session management, connection pooling, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

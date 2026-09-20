@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스"
-description: "WiFi Forge: 보안 연구를 위한 안전한 WiFi 해킹 연구소. 통제된 환경에서 침투 테스트, 무선 보안 및 윤리적 해킹을 배우세요."
+description: "WiFi Forge: 보안 연구를 위한 안전한 WiFi 해킹 연구소. 통제된 환경에서 침투 테스트, 무선 보안 및 윤리적 해킹을 배우세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'WiFi-Forge를 설치하고 실행하려면 무엇이 필요한가요?'
     a: 'Linux(Ubuntu 또는 Debian 권장), Python 3, 그리고 root 권한이 필요합니다. mininet-wifi가 커널 기능을 사용하기 때문입니다. 저장소를 클론한 후 sudo ./install.sh를 실행해 의존성을 설치하고, sudo python3 wififorge.py로 시작하면 됩니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/wifi-forge-safe-wifi-hacking-lab/ -->
 # WiFi-Forge — WiFi 해킹을 안전하고 합법적으로 배우는 샌드박스
 
 {</* resource-info */>}

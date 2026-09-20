@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise" />
-title: 'Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng Dẫn Cài Đặt 5 Phút 2026'
+title: 'Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
 description: 'Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Hướng dẫn cài đặt Docker, bảo mật production, triển khai API và đánh giá trung thực.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/flowise/
 - /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/flowise/ -->
 
 {{</* resource-info */>}}
 

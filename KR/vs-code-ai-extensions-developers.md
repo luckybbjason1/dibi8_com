@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/vs-code-ai-extensions-developers/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/vs-code-ai-extensions-developers/ -->
 # 2025년 개발자를 위한 최고의 VS Code AI 확장 프로그램: 생산성 향상
 
 

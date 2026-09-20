@@ -13,6 +13,8 @@ tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/codegraph-pre-indexed-code-knowledge-graph-ai-agents/ -->
+
 # CodeGraph：从代码库构建知识图谱
 
 ## 引言

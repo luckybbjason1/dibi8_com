@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/gpt-sovits" />
-title: 'GPT-SoVITS: 57.5K+ Stars — Deploy AI Voice Cloning Production Setup Guide 2026'
+title: 'GPT-SoVITS: 57.5K+ Stars — Deploy AI Voice Cloning Produ...
 description: 'GPT-SoVITS (GSV) is a few-shot voice cloning and TTS tool with zero-shot capabilities. Supports ComfyUI, RVC, and MeloTTS integration. Covers Docker deployment, voice training, API setup, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

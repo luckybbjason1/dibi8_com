@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
 title: 'Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南'
-description: '使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。'
+description: '使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [superagent, 'ai agent', llm, rag, 向量数据库, openai, langchain, pyt
 aliases:
 - /zh/posts/superagent-ai-agent-framework/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/superagent-ai-agent-framework/ -->
 
 {{</* resource-info */>}}
 

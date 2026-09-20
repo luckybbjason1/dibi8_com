@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
 title: 'Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대'
-description: Ladybird를 발견하세요 — 처음부터 구축된 진정한 독립 웹 브라우저. Chrome 의존성 없음, 기업 영향 없음, 순수
+description: Ladybird를 발견하세요 — 처음부터 구축된 진정한 독립 웹 브라우저. Chrome 의존성 없음, 기업 영향 없음, 순수. Comprehensive guide covering features, pricing, and best practices for 2026.
   오픈소스.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -42,6 +42,8 @@ faqs:
   - q: 'Ladybird를 어떻게 설치하거나 사용해 볼 수 있나요?'
     a: 'GitHub 저장소를 클론한 후 의존성(Ubuntu/Debian 기준: build-essential, cmake, ninja-build)을 설치하고, CMake와 Ninja로 빌드한 뒤 ./bin/Ladybird를 실행하면 소스에서 직접 빌드할 수 있습니다. 실험적인 Docker 이미지도 제공됩니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ladybird-independent-web-browser/ -->
 {</* resource-info */>}
 
 ## Ladybird란?

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/directus-headless-cms-ai-content" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
-title: 'Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng cho AI Content Workflows — Hướng Dẫn Thiết Lập & API 2026'
+title: 'Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng c...
 description: 'Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dung, AI content workflows, và triển khai Docker tự host. Benchmark API REST và GraphQL.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [directus, 'headless cms', 'quản lý nội dung', api, docker, 'mã ngu�
 aliases:
 - /vi/posts/directus-headless-cms-ai-content/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/directus-headless-cms-ai-content/ -->
 
 {{</* resource-info */>}}
 

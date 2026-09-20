@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtrader-python-backtesting" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtrader-python-backtesting" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtrader-python-backtesting" />
-title: 'Backtrader 2026: Python 백테스팅 엔진으로 전략을 100배 더 빠르게 검증 — 완벽 가이드'
-description: 'Backtrader 이벤트 기반 백테스팅 엔진 완벽 가이드. Python으로 트레이딩 전략을 구축, 테스트, 최적화. 통합, 벤치마크, 실시간 트레이딩 배포 2026.'
+title: 'Backtrader 2026: Python 백테스팅 엔진으로 전략을 100배 더 빠르게 검증 — 완벽...
+description: 'Backtrader 이벤트 기반 백테스팅 엔진 완벽 가이드. Python으로 트레이딩 전략을 구축, 테스트, 최적화. 통합, 벤치마크, 실시간 트레이딩 배포 2026.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/backtrader-python-backtesting/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/backtrader-python-backtesting/ -->
 
 {{</* resource-info */>}}
 

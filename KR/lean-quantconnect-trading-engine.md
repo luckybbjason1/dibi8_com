@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lean-quantconnect-trading-engine" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lean-quantconnect-trading-engine" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lean-quantconnect-trading-engine" />
-title: 'Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python 설정 2026'
-description: '2026년 Lean 완벽 가이드, QuantConnect의 알고리즘 트레이딩 엔진. 다중 자산 백테스팅, 실제 트레이딩, C# 및 Python API, 프로덕션 배포 튜토리얼.'
+title: 'Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python...
+description: '2026년 Lean 완벽 가이드, QuantConnect의 알고리즘 트레이딩 엔진. 다중 자산 백테스팅, 실제 트레이딩, C# 및 Python API, 프로덕션 배포 튜토리얼.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/lean-quantconnect-trading-engine/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/lean-quantconnect-trading-engine/ -->
 
 {{</* resource-info */>}}
 

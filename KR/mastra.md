@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
-title: 'Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI 프레임워크 2026'
+title: 'Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI ...
 description: 'Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토리얼, 워크플로우, RAG, 메모리, 관측 가능성, 벤치마크, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [mastra, typescript, ai프레임워크, 에이전트, llm, mastra튜토리
 aliases:
 - /kr/posts/mastra/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/mastra/ -->
 
 {{</* resource-info */>}}
 

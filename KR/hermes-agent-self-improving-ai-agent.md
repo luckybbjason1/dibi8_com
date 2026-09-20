@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：자기 진화하는 AI 에이전트, 사용할수록 당신을 더 잘 이해합니다
-description: Hermes Agent는 Nous Research가 만든 오픈소스 AI 에이전트로, 자체 학습 루프를 통해 경험에서 스킬을
+description: Hermes Agent는 Nous Research가 만든 오픈소스 AI 에이전트로, 자체 학습 루프를 통해 경험에서 스킬을. Comprehensive guide covering features, pricing, and best practices for 2026.
   생성하고, 지속적으로 개선하며, 당신의 선호도를 기억합니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -41,6 +41,8 @@ faqs:
   - q: 'Hermes Agent는 어떻게 설치하고 LLM 제공자를 구성하나요?'
     a: 'Linux, macOS 또는 WSL2에서는 한 줄짜리 curl 스크립트를 bash로 파이프하여 설치하거나, 저장소를 클론한 뒤 `./setup-hermes.sh`를 실행할 수 있습니다. 그런 다음 `hermes config set provider openai`와 `hermes config set model gpt-4o` 같은 명령으로 제공자를 설정하거나, `hermes config set provider ollama`를 통해 로컬 모델을 사용할 수 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/hermes-agent-self-improving-ai-agent/ -->
 {</* resource-info */>}
 
 ## 문제: 대부분의 AI 에이전트는 당신을 잊어버립니다

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/reading-explain-analyze-postgres" />
 title: 阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失
-description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,
+description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,. Comprehensive guide covering features, pricing, and best practices for 2026.
   bottleneck detection, and database performance optimization.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: '查询计划中 Sort 或 Hash 节点上出现 temp written 是什么意思？'
     a: '这意味着排序或哈希操作超出了 work_mem 的限制，数据溢出到了磁盘，这很容易让该节点的耗时增加 10 倍。解决方法是为该会话调大 work_mem，然后重新运行 EXPLAIN。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/reading-explain-analyze-postgres/ -->
 # 阅读 PostgreSQL 中的 EXPLAIN ANALYZE 输出而不迷失
 
 

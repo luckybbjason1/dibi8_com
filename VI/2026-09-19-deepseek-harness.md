@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-09-19-deepseek-harness" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-09-19-deepseek-harness" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-09-19-deepseek-harness" />
-title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide'
+title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
 description: 'DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.'
 date: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/2026-09-19-deepseek-harness/ -->
 
 # DeepSeek Harness: Plugin Framework Đang Chiếm Domination 2026
 

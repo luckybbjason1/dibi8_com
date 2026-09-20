@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/multi-agent-pipeline-postmortem-5-failures-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
-title: 'Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)'
+title: 'Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
 description: 'Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ cảnh, fan-out mất kiểm soát, cắt cụt âm thầm, và worktree mồ côi — mỗi kiểu kèm triệu chứng, nguyên nhân gốc và cách khắc phục.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "Điều phối đa tác tử có đáng với sự phức tạp khi nó hỏng thường xuyên như vậy không?"
     a: "Có, khi nhiệm vụ thực sự vượt quá một cửa sổ ngữ cảnh hoặc cần kiểm chứng độc lập — nhưng chính năm lỗi này là lý do bạn không nên với tới nó theo phản xạ. Một tác tử đơn lẻ được prompt tốt luôn thắng một pipeline năm tác tử đầy lỗi. Hãy dùng điều phối khi vấn đề là thật (bao phủ toàn diện, làm việc song song độc lập, rà soát đối kháng), và khi làm vậy hãy cài sẵn các bước kiểm chứng và điều kiện dừng để ngăn các kiểu lỗi này. Sự phức tạp bạn không kiểm chứng được còn tệ hơn sự đơn giản mà bạn kiểm chứng được."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/multi-agent-pipeline-postmortem-5-failures-2026/ -->
 # Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều phối subagent đi sai (2026)
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/activepieces-workflow-automation" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/activepieces-workflow-automation" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/activepieces-workflow-automation" />
-title: 'Activepieces: Giải pháp thay thế Zapier mã nguồn mở với 200+ ứng dụng và AI Actions — Hướng dẫn Self-Hosted 2026'
+title: 'Activepieces: Giải pháp thay thế Zapier mã nguồn mở với ...
 description: 'Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứng dụng, AI actions và trình xây dựng trực quan — chi phí chỉ bằng một phần nhỏ của Zapier.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [activepieces, 'tự động hóa workflow', 'giải pháp thay thế zapi
 aliases:
 - /vi/posts/activepieces-workflow-automation/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/activepieces-workflow-automation/ -->
 
 {{</* resource-info */>}}
 

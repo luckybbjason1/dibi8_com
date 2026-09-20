@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/faster-whisper" />
-title: 'faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars — Benchmark vs WhisperX, whisper.cpp in 2026'
+title: 'faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
 description: 'faster-whisper (SYSTRAN) reimplements OpenAI Whisper via CTranslate2 for 4x speedup. Covers faster whisper tutorial, benchmark data, Docker setup, Python API, VAD filter, batch processing, and production hardening with WhisperX and whisper.cpp integration.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

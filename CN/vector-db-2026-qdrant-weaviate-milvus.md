@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/vector-db-2026-qdrant-weaviate-milvus" />
-title: 'Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (Real Workload Test)'
+title: 'Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
 description: 'Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup pain. Which is right for prototype vs production, and when to skip vector DB entirely for SQLite FTS5.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

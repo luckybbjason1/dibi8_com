@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chatwoot-open-source-customer-support-ai" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chatwoot-open-source-customer-support-ai" />
 title: 'Chatwoot 2026: 오픈소스 AI 통합 고객 지원 플랫폼 — 셀프 호스팅 완벽 가이드'
-description: 'Chatwoot v4 완벽 가이드 — 오픈소스 고객 지원 플랫폼. Docker로 셀프 호스팅하고 AI 에이전트를 통합하며 다중 채널을 연결하세요. 실제 벤치마크와 프로덕션 설정.'
+description: 'Chatwoot v4 완벽 가이드 — 오픈소스 고객 지원 플랫폼. Docker로 셀프 호스팅하고 AI 에이전트를 통합하며 다중 채널을 연결하세요. 실제 벤치마크와 프로덕션 설정.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [chatwoot, 고객지원, 오픈소스, ai챗봇, 셀프호스팅, docker, 
 aliases:
 - /kr/posts/chatwoot-open-source-customer-support-ai/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/chatwoot-open-source-customer-support-ai/ -->
 
 {{</* resource-info */>}}
 

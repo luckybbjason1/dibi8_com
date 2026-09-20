@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/huggingface-transformers-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/huggingface-transformers-guide" />
 title: 'Hugging Face Transformers 완벽 가이드 2025: 개발자를 위한 상세 튜토리얼'
-description: 'Hugging Face Transformers 라이브러리의 설치부터 Pipeline API, 사전학습 모델 활용, 파인튜닝, 양자화, 배포까지 2025년 기준 완벽 가이드.'
+description: 'Hugging Face Transformers 라이브러리의 설치부터 Pipeline API, 사전학습 모델 활용, 파인튜닝, 양자화, 배포까지 2025년 기준 완벽 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/huggingface-transformers-guide/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/huggingface-transformers-guide/ -->
 
 {</* resource-info */>}
 

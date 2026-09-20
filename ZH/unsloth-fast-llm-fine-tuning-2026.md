@@ -29,6 +29,8 @@ aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/unsloth-fast-llm-fine-tuning-2026/ -->
+
 如果 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 是生产多 GPU 微调框架，**Unsloth** 是单 GPU 速度之王。通过用自定义 Triton + Python 重写 LLM 训练 kernel 而不依赖 PyTorch 通用 autograd，Unsloth 比 HuggingFace TRL 基线**快 2×** 且**少用 70% VRAM**。
 
 64.9k GitHub 星，双 Apache 2.0 / AGPL-3.0 license。支持 500+ 模型（Llama 3-3.2 / Mistral / Qwen 3-3.6 / Gemma / DeepSeek / Phi-4 / gpt-oss）。单 24 GB 消费级 GPU 上要快速迭代时的默认微调工具。

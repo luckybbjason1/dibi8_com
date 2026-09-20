@@ -17,10 +17,12 @@ lastmod:  2026-06-15tags:
   - virtualization
   - swift
 slug: apple-container-mac-vm-tool-2026
-description: "Apple 发布了 container，一款基于 Swift 的工具，可在 Mac 上使用轻量级虚拟机运行 Linux 容器。已获 37K stars，兼容 OCI，需要 macOS 26。"
+description: "Apple 发布了 container，一款基于 Swift 的工具，可在 Mac 上使用轻量级虚拟机运行 Linux 容器。已获 37K stars，兼容 OCI，需要 macOS 26。". Comprehensive guide covering features, pricing, and best practices for 2026.
 image: ""
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/apple-container/ -->
 # Apple 的容器：Mac 上类似 Docker 的体验，拥有 37K Stars 当苹果于 2025 年 5 月 30 日发布“容器”时，开发者社区陷入了安静。 没有大张旗鼓，没有主题演讲——只是一个 GitHub 存储库，悄悄积累了 **37,130 颗星**，并成为多年来最受关注的 Apple 新开源项目。 这不是 Mac 版 Docker。 这是完全不同的事情。 `container` 是一个 **Swift 构建的工具**，它在 Mac 上将 Linux 容器作为 **轻量级虚拟机** 运行。 它使用 macOS 虚拟化框架，并与 macOS 系统组件（vmnet、XPC、Launchd、Keychain）深度集成。 它生成并使用 **OCI 兼容的映像**，这意味着您的 Docker 映像可以在这里工作，并且使用“容器”构建的映像可以在 Docker 中工作。 但该架构与 Docker Desktop、Colima 或 OrbStack 有着根本的不同。 让我们探讨一下为什么开发人员已经将其称为“Mac 上容器化的未来”。 ## 为什么苹果要打造这个 Apple 一直在 Mac 上的容器化问题上苦苦挣扎。 Mac 本身并不运行 Linux，因此运行 Linux 容器始终需要 Linux 虚拟机，而该虚拟机始终很重。 Mac 版 Docker Desktop 在底层使用了完整的 Ubuntu 虚拟机。 科利马缩小了尺寸。 OrbStack 让它变得很快。 但它们都没有改变基本架构。 “容器”采用不同的方法：**每个容器一个轻量级虚拟机**。 这意味着每个容器都可以获得完全的虚拟机级别隔离，而无需共享虚拟机的开销。 不再有容器到容器的通信问题，不再出现共享内核漏洞，也不再存在来自共享虚拟机管理程序的“容器逃逸”风险。 ### 核心架构 `container` 不在共享 Linux VM 内运行容器。 相反，它使用 Apple 的 **虚拟化框架** 为每个容器创建专用的轻量级 VM。 这在实践中意味着什么： - **安全性**：每个容器都具有完整虚拟机的隔离属性
  - **隐私**：您可以选择性地将必要的数据装载到每个虚拟机中
  - **性能**：启动时间与 Docker 容器相当，但具有虚拟机级别的隔离 该工具使用并生成 [OCI 兼容的容器映像](https://github.com/opencontainers/image-spec)，因此您可以从任何标准容器注册表（Docker Hub、GitHub 容器注册表、Google 容器注册表等）提取并运行映像。 ## 安装和设置 ＃＃＃ 要求 您需要一台配备 Apple Silicon (M1/M2/M3/M4) 和 **macOS 26**（或有限制的 macOS 15）的 Mac。 这是一个硬性要求，因为“容器”使用了 macOS 26 虚拟化和网络框架中的新功能。 ````bash

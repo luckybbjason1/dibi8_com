@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/open-llm-vtuber-voice-powered-ai-avatar" />
-title: 'Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free'
+title: 'Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Char...
 description: 'Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. Includes quick start guide, full integration list, and production deployment options.'
 tags: ["ai-avatar", "ai-tools", "open-source", "self-hosted", "speech", "tts", "voice", "voice-ai", "vtuber"]
 date: 2026-06-10

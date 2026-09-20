@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
-title: "DS4 vs Ollama vs llama.cpp: 128GB Mac에서 딥시크 V4 Flash 로컬 추론 벤치마크"
+title: "DS4 vs Ollama vs llama.cpp: 128GB Mac에서 딥시크 V4 Flash 로컬 ...
 description: "Redis 창시자 antirez가 개발한 DS4 추론 엔진을 알아보세요. DeepSeek V4 Flash 로컬 배포, macOS/Linux 설치 튜토리얼, Ollama/llama.cpp 성능 비교, 코드 예제, 100만 토큰 장문 맥락 활용 사례를 상세히 설명합니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'DS4는 OpenAI 호환 API 서버를 제공하나요?'
     a: '네. DS4를 빌드하면 http://127.0.0.1:8000 에서 OpenAI 및 Anthropic 호환 HTTP API를 노출하는 ds4-server 바이너리가 생성됩니다. /v1/chat/completions, /v1/completions, /v1/messages 등의 엔드포인트를 포함하며, OpenAI 스타일의 함수 호출을 지원하고 OpenCode, Pi, Claude Code 등의 에이전트 프레임워크와 연동됩니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ds4-deepseek-flash-local-inference/ -->
 
 {</* resource-info */>}
 

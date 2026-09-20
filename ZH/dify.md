@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/dify/ -->
+
 {{</* resource-info */>}}
 
 大多数团队以艰难的方式交付 AI 聊天机器人。他们将 Flask 路由连接到 OpenAI API，在 JSON 文件中手工编写提示模板，并从零开始构建 RAG 管道——包括嵌入模型、向量存储和分块逻辑。三个月后，原型无法维护，产品经理无法在没有开发人员的情况下更新提示，知识库同步是一个静默失败的定时任务。

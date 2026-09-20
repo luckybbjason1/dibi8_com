@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
-title: 'rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (2026)'
+title: 'rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (...
 description: 'rtk 是 Rust 单二进制 CLI 代理，自动过滤压缩命令输出，降低 60-90% LLM token 消耗。支持 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 等 13 款 AI 编程工具，<10ms 开销，MIT 开源，30 秒安装零配置。'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
@@ -40,6 +40,8 @@ faqs:
   - q: 'rtk 能用在生产 CI/CD 吗？'
     a: '在 agent workflow 里安全。不要用在 set -e 严格依赖具体命令输出的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/rtk-rust-cli-proxy-llm-token-savings-2026/ -->
 
 {{< resource-info >}}
 

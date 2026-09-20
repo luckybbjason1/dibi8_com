@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-2026" />
-title: 'Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드'
+title: 'Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 202...
 description: 'Odysseus는 오픈소스 프라이버시 우선 AI 워크스페이스입니다 (9일 63,000 스타, MIT 라이선스). Docker 명령어 하나로 채팅, AI 에이전트, 딥 리서치, 이메일 분류, 캘린더, 메모, 모델 쿡북을 내 서버에서 직접 실행할 수 있습니다. 설치 방법, 주요 기능, ChatGPT Plus 비교를 상세히 정리했습니다.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: '모바일에서도 Odysseus를 사용할 수 있나요?'
     a: '네. Odysseus는 PWA(프로그레시브 웹 앱)로 완전한 반응형 디자인을 지원합니다. iOS나 Android에서 "홈 화면에 추가"하면 네이티브 앱에 가까운 경험을 얻을 수 있습니다. Cookbook과 에이전트 기능도 모바일에서 동작하지만, GPU 집약적인 로컬 모델 서빙은 데스크탑/서버 환경이 필요합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/odysseus-self-hosted-ai-workspace-2026/ -->
 # Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드
 
 

@@ -18,6 +18,8 @@ featureImage: 'https://deepwiki.com/badge.svg'
 lang: ko
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/langflow-visual-llm-workflow-builder-2026/ -->
+
 # Langflow: 시각적 LLM 워크플로우를 위한 148k 스타 – 2026년 기술 심층 분석
 
 ![Langflow 배지](https://deepwiki.com/badge.svg){: .hero-image .rounded-lg .shadow-lg .mb-6 alt="Langflow: AI 소스코드 허브 배지"}

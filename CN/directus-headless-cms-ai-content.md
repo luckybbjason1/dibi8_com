@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/directus-headless-cms-ai-content" />
-title: 'Directus: The Open-Source Headless CMS Powering AI Content Workflows — 2026 Setup & API Guide'
+title: 'Directus: The Open-Source Headless CMS Powering AI Conte...
 description: 'Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content versioning, AI content workflows, and self-hosted Docker deployment. REST and GraphQL API benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/stable-diffusion-webui" />
-title: 'Stable Diffusion WebUI: 159K+ Stars — The Complete Setup Guide 2026'
+title: 'Stable Diffusion WebUI: 159K+ Stars — The Complete Setup...
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) is the most popular web interface for local AI image generation. Compatible with ControlNet, LoRA, ComfyUI workflows. Covers Windows, Linux, Docker install, extension setup, production hardening, and GPU benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

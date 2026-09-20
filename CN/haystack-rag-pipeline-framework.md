@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/haystack-rag-pipeline-framework" />
-title: 'Haystack 2026: The End-to-End NLP Framework for Production RAG & Agent Pipelines \u2014 Setup Guide'
+title: 'Haystack 2026: The End-to-End NLP Framework for Producti...
 description: 'Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document stores, retrievers, agents, evaluation tools, and Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

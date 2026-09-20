@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-custom-agent-authoring-guide-2026" />
-title: 'Claude Code Custom Agent Authoring: Build Reusable Subagents That Enforce Your Standards (2026)'
+title: 'Claude Code Custom Agent Authoring: Build Reusable Subag...
 description: 'A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt design, tool allowlists, and two production-ready examples (migration reviewer, security gate) with the mistakes to avoid.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00

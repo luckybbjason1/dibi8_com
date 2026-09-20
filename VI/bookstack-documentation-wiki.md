@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
-title: 'BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn & Đánh giá 2026'
+title: 'BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, ...
 description: 'Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Markdown, cấu trúc kệ sách/chương/trang, và hỗ trợ LDAP/SSO. Tự host trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [bookstack, 'tài liệu', wiki, 'tự host', php, laravel, 'cơ sở ki�
 aliases:
 - /vi/posts/bookstack-documentation-wiki/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/bookstack-documentation-wiki/ -->
 
 {{</* resource-info */>}}
 

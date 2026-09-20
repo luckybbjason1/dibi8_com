@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/comfyui-workflow-2026-5-production-templates" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
-title: 'ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production'
+title: 'ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
 description: 'ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, gợi ý mô hình cho năm 2026, và 5 template workflow sẵn sàng đưa vào production (text-to-image, inpaint, upscale, video, nhất quán nhân vật).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "Học ComfyUI từ đầu mất bao lâu?"
     a: "Load một workflow + sinh ảnh: 30 phút. Tự dựng workflow riêng: 1-2 ngày. Thành thạo node cho production: 2-3 tuần. Đường cong học tập ban đầu rất dốc nhưng đáng — workflow có thể tái sử dụng, chia sẻ và tái lập."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/comfyui-workflow-2026-5-production-templates/ -->
 
 {{</* resource-info */>}}
 

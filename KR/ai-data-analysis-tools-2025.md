@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-data-analysis-tools-2025/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-data-analysis-tools-2025/ -->
 # 2025년 최고의 AI 데이터 분석 도구: ChatGPT, Julius, Tableau AI 등
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
-title: 'Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sánh Hiệu Suất với ChatTTS, MeloTTS 2026'
+title: 'Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sán...
 description: 'Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọng nói XTTS v2, tổng hợp VITS. So sánh hiệu suất thực tế RTF với ChatTTS, MeloTTS, Bark và hướng dẫn triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['coqui tts', 'chuyển-văn-bản-thành-giọng-nói', 'nhân-bản-gi�
 aliases:
 - /vi/posts/coqui-tts/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/coqui-tts/ -->
 
 {{</* resource-info */>}}
 

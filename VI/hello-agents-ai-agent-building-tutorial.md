@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hello-agents-ai-agent-building-tutorial" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hello-agents-ai-agent-building-tutorial" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hello-agents-ai-agent-building-tutorial" />
-title: "Hello-Agents: Cách Hướng Dẫn AI Agent Mã Nguồn Mở Của Datawhale Giúp Bạn Xây Dựng Agent Cấp Sản Xuất Từ Con Số 0"
+title: "Hello-Agents: Cách Hướng Dẫn AI Agent Mã Nguồn Mở Của Da...
 description: "Datawhale Hello-Agents là hướng dẫn AI agent mã nguồn mở phổ biến nhất trên GitHub, bao gồm 16 chương đầy đủ về ReAct, AutoGen, LangGraph, MCP, Agentic RL và hơn 45,600 Stars."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'Bạn có thể xây dựng những dự án thực tế nào khi học theo Hello-Agents?'
     a: 'Hướng dẫn này bao gồm ba nghiên cứu tình huống toàn diện: một Trợ lý Du lịch Thông minh điều phối nhiều agent chuyên biệt thông qua việc gọi công cụ MCP, một agent Nghiên cứu Chuyên sâu Tự động tìm kiếm và tổng hợp các phát hiện trên web thành một báo cáo, và một mô phỏng Cyber Town được lấp đầy bởi các AI agent với tính cách và thói quen riêng biệt.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/hello-agents-ai-agent-building-tutorial/ -->
 {</* resource-info */>}
 
 ## Hello-Agents Là Gì?

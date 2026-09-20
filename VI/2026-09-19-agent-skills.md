@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-09-19-agent-skills" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-09-19-agent-skills" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-09-19-agent-skills" />
-title: 'Addy Osmani Agent Skills: 96K-Star Framework For Production-Grade AI Coding Workflows'
+title: 'Addy Osmani Agent Skills: 96K-Star Framework For Product...
 description: 'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'
 date: 2026-09-19
 slug: 'addy-osmani-agent-skills-production-guide-2026'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/2026-09-19-agent-skills/ -->
 
 # Agent Skills Của Addy Osmani: Cách Tiếp Cận Production-Grade
 

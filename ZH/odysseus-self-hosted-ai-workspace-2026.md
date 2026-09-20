@@ -39,6 +39,8 @@ faqs:
   - q: '可以在手机上使用 Odysseus 吗？'
     a: '可以。Odysseus 是一个渐进式 Web 应用（PWA），完全响应式设计。在 iOS 或 Android 上点击"添加到主屏幕"可获得接近原生 App 的体验。Cookbook 和 Agent 功能在手机上同样可用，但 GPU 密集型的本地模型推理仍需桌面/服务器环境。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/odysseus-self-hosted-ai-workspace-2026/ -->
 # Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南
 
 

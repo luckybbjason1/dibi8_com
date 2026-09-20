@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/auto-gpt-autonomous-agent-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/auto-gpt-autonomous-agent-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/auto-gpt-autonomous-agent-2026" />
-title: 'Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm thờii gian thiết lập 80% — Hướng dẫn cài đặt mới'
+title: 'Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm t...
 description: 'Hướng dẫn đầy đủ năm 2026 về tác nhân tự chủ Auto-GPT. Cài đặt mới, giao thức tác nhân, duyệt web, điều phối đa tác nhân, triển khai Docker, benchmark so với tác nhân mới hơn, và đánh giá trung thực về hạn chế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/auto-gpt-autonomous-agent-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/auto-gpt-autonomous-agent-2026/ -->
 
 {{</* resource-info */>}}
 

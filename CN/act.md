@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/act" />
-title: 'act: 70,410 GitHub Stars — Run GitHub Actions Locally, Production CI/CD Guide 2026'
+title: 'act: 70,410 GitHub Stars — Run GitHub Actions Locally, P...
 description: 'act (nektos/act) is a CLI tool that runs GitHub Actions locally using Docker containers. Compatible with Docker, GitHub Actions, Go, and VS Code. Covers installation, setup, secrets management, runner images, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

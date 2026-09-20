@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-data-analysis-workflow-complete-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-data-analysis-workflow-complete-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-data-analysis-workflow-complete-guide" />
-title: 'LLM을 활용한 데이터 분석 완벽 워크플로우: PandasAI, Code Interpreter 및 OpenAI 실전 가이드'
+title: 'LLM을 활용한 데이터 분석 완벽 워크플로우: PandasAI, Code Interpreter 및 O...
 description: 'LLM 기반 데이터 분석 도구 PandasAI, ChatGPT Code Interpreter, OpenAI API의 실전 활용법을 알아봅니다. 자연어로 데이터를 분석하고 시각화하는 방법과 보안, 비용 고려사항까지 다룹니다.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/llm-data-analysis-workflow-complete-guide/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/llm-data-analysis-workflow-complete-guide/ -->
 
 {</* resource-info */>}
 

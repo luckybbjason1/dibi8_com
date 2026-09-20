@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-presidio-pii-detection-redaction-sdk" />
 lang: vi
 slug: microsoft-presidio-pii-detection-redaction-sdk
-title: "Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử Lý Dữ Liệu của Microsoft (9,4K Sao)"
+title: "Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử...
 description: "Presidio (hơn 9.4K sao trên GitHub) từ Microsoft là một khuôn khổ mã nguồn mở để phát hiện, chỉnh sửa, che dấu và ẩn dữ liệu nhạy cảm (PII) trên văn bản, hình ảnh và dữ liệu có cấu trúc. Hỗ trợ NLP, regex, nhận diện dựa trên quy tắc, chỉnh sửa hình ảnh DICOM và các quy trình tùy chỉnh. Được cấp phép MIT, được chứng nhận Thực hành Tốt nhất OpenSSF."
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"
@@ -46,6 +46,8 @@ faqs:
     a: 'Vâng. Presidio hỗ trợ nhiều tùy chọn triển khai: khối lượng công việc Python hoặc PySpark, container Docker và triển khai Kubernetes. Bộ phân tích và bộ ẩn danh có thể chạy dưới dạng REST API, và thành phần có cấu trúc có thể xử lý các tập dữ liệu bảng lớn. Nó được thiết kế cho cả các luồng xác minh PII tự động hoàn toàn và bán tự động trên nhiều nền tảng.'
 featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/microsoft-presidio-pii-detection-redaction-sdk/ -->
 
 
 

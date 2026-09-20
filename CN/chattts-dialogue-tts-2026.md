@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/chattts-dialogue-tts-2026" />
-title: 'ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with Laughter, Pauses, and Token-Level Prosody Control'
+title: 'ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
 description: 'ChatTTS is the open-source TTS purpose-built for dialogue (not narration). 39.3k GitHub stars, 4 GB VRAM minimum, RTF 0.3 on RTX 4090, fine-grained prosodic control including laughter and pauses. Complete 2026 install + production setup guide.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00

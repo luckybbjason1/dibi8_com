@@ -33,6 +33,8 @@ aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/langgraph-stateful-agent-orchestration-2026/ -->
+
 你写过简单 LLM agent，看过它进程重启就忘光、一个 tool call 超时就丢半进度、两个事件并发就静默搞坏状态 —— 那你撞到的就是 **LangGraph** 要打穿的墙。
 
 LangGraph 是 LangChain 团队出的 **有状态、长跑 agent 的底层编排框架**。LangChain 给你组件（"这是 LLM 包装，这是工具，自己组合"），CrewAI 给你高层角色抽象（"这是 researcher agent，这是 writer agent"），LangGraph 居中：**基于图的状态机**，你显式建模 node（函数 / agent）、edge（转移）、持久化的 state 对象。持久化执行 + human-in-loop + 状态追踪是一等公民，不是事后补的。

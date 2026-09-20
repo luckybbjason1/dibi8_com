@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-development-environment-best-practices" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-development-environment-best-practices" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-development-environment-best-practices" />
-title: 'Các Thực Tiễn Tốt Nhất cho Môi Trường Phát Triển Docker: Hướng Dẫn Đầy Đủ 2025'
+title: 'Các Thực Tiễn Tốt Nhất cho Môi Trường Phát Triển Docker:...
 description: 'Khám phá các thực tiễn tốt nhất để thiết lập môi trường phát triển Docker hiệu quả: từ Docker Compose, Dev Containers đến multi-stage builds và tối ưu hiệu suất.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/docker-development-environment-best-practices/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/docker-development-environment-best-practices/ -->
 
 {</* resource-info */>}
 

@@ -44,6 +44,8 @@ faqs:
   - q: 'Claude Code에서 다중 에이전트 파이프라인이 실패하는 다섯 가지 방식은 무엇인가요?'
     a: '다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagent-mastery-stack/ -->
 # Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로
 
 

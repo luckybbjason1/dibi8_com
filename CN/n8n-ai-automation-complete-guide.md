@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/n8n-ai-automation-complete-guide" />
 title: n8n AI Automation — Build Intelligent Workflows Without Code
-description: Complete guide to n8n's AI-powered workflow automation. Connect 400+
+description: Complete guide to n8n's AI-powered workflow automation. Connect 400+. Comprehensive guide covering features, pricing, and best practices for 2026.
   apps with AI nodes, build autonomous agents, and automate complex business processes.
   Pricing, templates, and real-world examples.
 tags:

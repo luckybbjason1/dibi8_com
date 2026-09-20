@@ -34,6 +34,8 @@ faq:
     a: "워크플로 로드 + 생성: 30분. 직접 워크플로 구축: 1-2일. 프로덕션용 노드 마스터: 2-3주. 학습 곡선은 초반에 가파르지만 보상이 큽니다 — 워크플로는 재사용·공유·재현이 가능합니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/comfyui-workflow-2026-5-production-templates/ -->
+
 {{</* resource-info */>}}
 
 # ComfyUI 워크플로 2026: 셋업 + 프로덕션 템플릿 5종

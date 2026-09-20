@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-code-of-ethics" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-code-of-ethics" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-code-of-ethics" />
-title: 'Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành'
+title: 'Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị T...
 description: 'Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu tượng, mà là bảy quy tắc bắt buộc, mỗi quy tắc đi kèm một biện pháp kiểm soát kỹ thuật cụ thể: cấp quyền tối thiểu, khả năng kiểm toán đầy đủ, tính đảo ngược có con người trong vòng lặp, tự chủ có giới hạn, chuỗi trách nhiệm không gián đoạn, mặc định an toàn khi lỗi, và thiết kế ưu tiên quyền riêng tư. Kèm danh sách kiểm tra trước khi triển khai dành cho lập trình viên năm 2026.'
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
@@ -45,6 +45,8 @@ faqs:
   - q: 'Những nguyên tắc đạo đức này có thể cưỡng chế bằng mã không, hay chỉ là hướng dẫn?'
     a: 'Phần lớn đều cưỡng chế được bằng mã. Cấp quyền tối thiểu là thông tin xác thực giới hạn phạm vi và danh sách trắng; khả năng kiểm toán là ghi log có cấu trúc cho mọi lệnh gọi công cụ; tính đảo ngược là cổng phê duyệt phân tầng rủi ro cộng hoàn tác/idempotent; tự chủ có giới hạn là trần tốc độ và chi tiêu; an toàn khi lỗi là ngưỡng tin cậy và nút dừng khẩn. Chỉ có ý định đằng sau — quyết định hành động nào là rủi ro cao — mới cần phán đoán của con người. Đạo đức không cưỡng chế được chỉ là trang trí.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-agent-code-of-ethics/ -->
 # Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành
 
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiwind-ai-prompt-library-generator" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
-description: AiWind là thư viện prompt AI miễn phí với 1000+ prompt chuyên nghiệp
+description: AiWind là thư viện prompt AI miễn phí với 1000+ prompt chuyên nghiệp. Comprehensive guide covering features, pricing, and best practices for 2026.
   cho GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney và các mô hình chính khác,
   bao phủ nhiều phong cách từ chân dung chân thực đến cyberpunk và 3D render.
 date: 2026-05-15 04:20:25+09:00
@@ -40,6 +40,8 @@ faqs:
   - q: 'AiWind so sánh với PromptHero, Lexica và Civitai như thế nào?'
     a: 'AiWind nổi bật nhờ truy cập hoàn toàn miễn phí, hỗ trợ tiếng Trung mạnh mẽ và phủ sóng hơn 10 mô hình, trong khi Lexica chỉ hỗ trợ khoảng 3 mô hình và Civitai tập trung chủ yếu vào Stable Diffusion. AiWind, PromptHero và Civitai đều hỗ trợ cộng đồng đóng góp prompt, còn Lexica thì không.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/aiwind-ai-prompt-library-generator/ -->
 
 {</* resource-info */>}
 

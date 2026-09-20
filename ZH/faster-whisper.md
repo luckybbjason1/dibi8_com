@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/faster-whisper" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/faster-whisper" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/faster-whisper" />
-title: 'faster-whisper: 4 倍速语音转文本，23K+ Stars — 2026 年对比 WhisperX、whisper.cpp 基准测试'
+title: 'faster-whisper: 4 倍速语音转文本，23K+ Stars — 2026 年对比 WhisperX...
 description: 'faster-whisper（SYSTRAN）通过 CTranslate2 重新实现 OpenAI Whisper，提速 4 倍。涵盖 faster whisper 教程、基准数据、Docker 部署、Python API、VAD 过滤器、批处理，以及与 WhisperX 和 whisper.cpp 的生产级集成。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['faster-whisper', 语音转文本, ctranslate2, 'openai whisper', 语音�
 aliases:
 - /zh/posts/faster-whisper/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/faster-whisper/ -->
 
 {{</* resource-info */>}}
 

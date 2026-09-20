@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
-title: 'Wan 2.1: 16.1K+ Stars — 开源视频生成深度解析 vs HunyuanVideo、CogVideo 2026'
-description: 'Wan 2.1 是阿里巴巴开源的视频基础模型套件，具备 SOTA 性能。支持 ComfyUI、Diffusers 和 Gradio。涵盖 T2V、I2V、视频编辑和文本生成，提供 1.3B 和 14B 两种参数规模。'
+title: 'Wan 2.1: 16.1K+ Stars — 开源视频生成深度解析 vs HunyuanVideo、CogVi...
+description: 'Wan 2.1 是阿里巴巴开源的视频基础模型套件，具备 SOTA 性能。支持 ComfyUI、Diffusers 和 Gradio。涵盖 T2V、I2V、视频编辑和文本生成，提供 1.3B 和 14B 两种参数规模。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['wan-2-1', 视频生成, 扩散transformer, ai视频, 开源, 阿里巴�
 aliases:
 - /zh/posts/wan-2-1/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/wan-2-1/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hayhooks-api-deployment-llm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hayhooks-api-deployment-llm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hayhooks-api-deployment-llm" />
-title: 'Hayhooks: Triển khai Haystack Pipeline thành REST API chỉ với một lệnh — Hướng dẫn Production 2026'
+title: 'Hayhooks: Triển khai Haystack Pipeline thành REST API ch...
 description: 'Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. Bao gồm triển khai một lệnh, hỗ trợ container, tài liệu OpenAPI tự động và benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline deployment', docker, 
 aliases:
 - /vi/posts/hayhooks-api-deployment-llm/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/hayhooks-api-deployment-llm/ -->
 
 {{</* resource-info */>}}
 

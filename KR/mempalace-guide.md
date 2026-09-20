@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
 title: "Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)"
-description: "Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)"
+description: "Claude Code 메모리 주입: MemPalace로 96.6% 리콜 달성하는 완벽 가이드 (2026)". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'MemPalace는 무료로 사용할 수 있나요?'
     a: '네. MemPalace는 MIT 라이선스 하에 오픈소스로 제공되며 $0의 비용으로 API 요금이나 구독료가 없습니다. 구독 또는 사용 요금을 부과하는 Pinecone과 달리 완전 무료입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/mempalace-guide/ -->
 
 {</* resource-info */>}
 

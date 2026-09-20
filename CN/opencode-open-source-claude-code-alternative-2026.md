@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/opencode-open-source-claude-code-alternative-2026" />
-title: 'OpenCode: The Open-Source AI Coding Agent That Overtook Claude Code in 2026 — A Complete Setup & Workflow Guide'
+title: 'OpenCode: The Open-Source AI Coding Agent That Overtook ...
 description: 'OpenCode hit 160K+ GitHub stars in 2026, surpassing Claude Code as the most popular open-source AI coding agent. This guide covers installation, multi-model routing, LSP integration, and real-world workflows for professional developers.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-mastery-stack" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-mastery-stack" />
 title: 'Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会'
-description: '掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智能体流水线的完整路径。'
+description: '掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智能体流水线的完整路径。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack:
@@ -44,6 +44,8 @@ faqs:
   - q: 'Claude Code 中多代理流水线的五种失败方式是什么？'
     a: '五种已记录的失败模式分别是：信任陷阱、上下文泄漏、失控扇出、静默截断和孤立 worktree。研究这些内容是区分一个能运行的 demo 和生产就绪流水线的关键所在。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagent-mastery-stack/ -->
 # Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会
 
 

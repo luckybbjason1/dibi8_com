@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts" />
-title: 'ChatTTS: 39.3K+ Stars — Coqui, MeloTTS와의 대화형 TTS 벤치마크 비교 2026'
-description: 'ChatTTS (AGPL-3.0)는 대화 시나리오를 위한 생성형 음성 모델입니다. Coqui TTS, MeloTTS, GPT-SoVITS와 호환. 설치, 벤치마크, 프로덕션 배포 및 비교 표를 다룹니다.'
+title: 'ChatTTS: 39.3K+ Stars — Coqui, MeloTTS와의 대화형 TTS 벤치마크 비교...
+description: 'ChatTTS (AGPL-3.0)는 대화 시나리오를 위한 생성형 음성 모델입니다. Coqui TTS, MeloTTS, GPT-SoVITS와 호환. 설치, 벤치마크, 프로덕션 배포 및 비교 표를 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/chattts/
 - /kr/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/chattts/ -->
 
 {{</* resource-info */>}}
 

@@ -34,6 +34,8 @@ faq:
     a: "比 SEO 更快。AI Overviews 的抓取 + 索引以天为单位，而非月。新增 FAQ schema 通常在 1-2 周内出现在 AI 引用中。为可引用性而进行的全文重写需要 2-4 周才会在答案中显现。"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/geo-ai-overviews-optimization-2026-practical/ -->
+
 {{</* resource-info */>}}
 
 # GEO / AI Overviews 优化 2026：实战指南

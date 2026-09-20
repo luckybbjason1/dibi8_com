@@ -1,8 +1,8 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-agent-skills-2026-developer-guide" />
-title: 'AI Agent Skills Explained: The 2026 Developer''s Guide to Production-Grade Agent Workflows'
-description: 'AI Agent Skills Explained: The 2026 Developer''''s Guide to Production-Grade Agent Workflows'
+title: 'AI Agent Skills Explained: The 2026 Developer''s Guide t...
+description: 'AI Agent Skills Explained: The 2026 Developer''''s Guide to Production-Grade Agent Workflows'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-16 00:00:00+08:00
 lastmod: 2026-05-16 00:00:00+08:00
 tech_stack: []

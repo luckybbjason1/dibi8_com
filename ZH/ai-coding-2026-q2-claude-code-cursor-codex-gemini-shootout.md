@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-title: 'AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI'
+title: 'AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Cod...
 description: '2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 TypeScript 代码库 5 工作流实测、MCP 支持、上下文窗口经济学、定价分析、各自真正胜出场景。'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "2026 年中谁有最大上下文窗口？"
     a: "Gemini CLI 配 Gemini 2.5 Pro 支持 1M+ token 上下文（远远最大）。Claude Code 1.0 配 Claude Sonnet 4.6（或 Opus 4.7）支持 1M token（via 1M-context tier）。Cursor Pro 默认 200K。Codex CLI 配 GPT-5 支持 256K。超大 monorepo 的话 Gemini CLI 的上下文优势是真的，但工具调用可靠性落后。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/ -->
 
 {{</* resource-info */>}}
 

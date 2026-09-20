@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
-title: 'LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 2026 生产级网关配置'
+title: 'LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
 description: 'LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖 Docker 部署、虚拟密钥、负载均衡、缓存和生产加固。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/litellm/
 - /zh/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/litellm/ -->
 
 {{</* resource-info */>}}
 

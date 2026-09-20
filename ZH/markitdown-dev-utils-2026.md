@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-dev-utils-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-dev-utils-2026" />
-title: 'markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实战指南'
+title: 'markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实...
 description: 'markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 Python 用法、真实代码示例，以及与 pandoc、docx2txt 的客观对比。'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'markitdown 有哪些已知的局限？'
     a: '有的——一些高级特性和复杂的文档结构可能无法完整保留。项目维护活跃，但它优先保证的是文本准确性，而非视觉还原。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/markitdown-dev-utils-2026/ -->
 # markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实战指南
 
 

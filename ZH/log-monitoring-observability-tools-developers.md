@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/log-monitoring-observability-tools-developers" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/log-monitoring-observability-tools-developers" />
 title: '日志监控与可观测性工具：2025年开发者完整指南'
-description: '从Grafana Loki到ELK Stack，从Datadog到开源SigNoz，全面对比日志监控与可观测性工具，覆盖三大支柱与部署方案。'
+description: '从Grafana Loki到ELK Stack，从Datadog到开源SigNoz，全面对比日志监控与可观测性工具，覆盖三大支柱与部署方案。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/log-monitoring-observability-tools-developers/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/log-monitoring-observability-tools-developers/ -->
 
 {</* resource-info */>}
 

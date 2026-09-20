@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-servers-2026-rankings-selection-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-servers-2026-rankings-selection-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-servers-2026-rankings-selection-guide" />
-title: 'MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn'
+title: 'MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Đ...
 description: 'Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30 theo category, giải thích trade-off kiến trúc giữa stdio / HTTP-SSE / OAuth-bridged, và cây quyết định để chọn servers mà không chết đuối trong registries.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -35,6 +35,8 @@ faq:
   - q: "Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?"
     a: "Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take >500ms initialize, nó đang slow mọi agent session."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mcp-servers-2026-rankings-selection-guide/ -->
 
 {{</* resource-info */>}}
 

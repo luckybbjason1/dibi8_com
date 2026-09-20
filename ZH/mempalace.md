@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace" />
 title: "MemPalace vs Mem0：96.6% 召回率测评！2026年最强开源 AI 记忆系统"
-description: "MemPalace 是目前评测表现最好的开源 AI 记忆系统，51K+ Stars，免费且强大。本文详解其原理、安装与实战代码。"
+description: "MemPalace 是目前评测表现最好的开源 AI 记忆系统，51K+ Stars，免费且强大。本文详解其原理、安装与实战代码。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'MemPalace 能与 Claude Code 及其他 AI 工具配合使用吗？'
     a: '可以。MemPalace 原生提供多个插件，包括：面向 Claude Code 的 .claude-plugin 目录、面向 OpenAI Codex 的 .codex-plugin 目录、面向 MCP 兼容工具的 .agents/plugins 目录，以及对 Gemini CLI 和本地模型的支持。它开箱即暴露一个兼容 MCP 的端点，可用于持久化编程智能体的记忆。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/mempalace/ -->
 
 {</* resource-info */>}
 

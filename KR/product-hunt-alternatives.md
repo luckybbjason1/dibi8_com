@@ -37,6 +37,8 @@ faqs:
     a: '출시당 5~8개 플랫폼을 권장합니다: 주요 플랫폼 2~3개(Product Hunt, Hacker News, Indie Hackers), 보조 플랫폼 2~3개(BetaList, Uneed, Launching Next), 틈새 플랫폼 2~3개(DevHunt 또는 There is An AI For That 등).'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/product-hunt-alternatives/ -->
+
 {</* resource-info */>}
 
 # 2026년 스타트업 론칭을 위한 Product Hunt 대안 플랫폼 15선

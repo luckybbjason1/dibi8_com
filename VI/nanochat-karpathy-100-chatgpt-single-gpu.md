@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-100-chatgpt-single-gpu" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-100-chatgpt-single-gpu" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/nanochat-karpathy-100-chatgpt-single-gpu" />
-title: 'nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng AI Chat của bạn trên một GPU duy nhất — Hướng dẫn thực tế 2026'
+title: 'nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng ...
 description: 'nanochat (54.800 sao GitHub) là bản clone ChatGPT mã nguồn mở của Andrej Karpathy, chạy trên một GPU $100 duy nhất. Huấn luyện từ đầu bằng SGLang hoặc phục vụ mô hình đã huấn luyện trước qua vLLM. Bao gồm hướng dẫn cài đặt, benchmark huấn luyện và ví dụ triển khai.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/nanochat-karpathy-100-chatgpt-single-gpu/ -->
 
 # nanochat: $100 ChatGPT của Karpathy — Xây dựng ứng dụng AI Chat của bạn trên một GPU duy nhất — Hướng dẫn thực tế 2026
 

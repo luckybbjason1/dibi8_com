@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/taste-skill" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/taste-skill" />
 title: "品味技能：让 AI 告别平庸输出——Agent 技能框架 2026"
-description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 ChatGPT Images。"
+description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 ChatGPT Images。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: taste-skill
 category: dev-utils
@@ -28,6 +28,8 @@ images:
 lang: zh
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/taste-skill/ -->
 
 ## 快速概览
 

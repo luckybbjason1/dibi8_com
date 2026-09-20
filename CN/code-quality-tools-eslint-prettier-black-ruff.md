@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/code-quality-tools-eslint-prettier-black-ruff" />
-title: 'Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More'
+title: 'Code Quality Tools Guide: ESLint, Prettier, Black, Ruff ...
 description: 'Set up code quality tools for any language: ESLint, Prettier, Black, Ruff, golangci-lint, and rustfmt. Complete configs, CI integration, and pre-commit hooks.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

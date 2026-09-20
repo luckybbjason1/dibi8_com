@@ -11,6 +11,8 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/robots-txt-generator/ -->
 # robots.txt 生成器 — 含 AI 爬虫控制（GPTBot、ClaudeBot、PerplexityBot）
 
 

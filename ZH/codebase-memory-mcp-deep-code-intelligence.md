@@ -19,6 +19,8 @@ tech_stack:
 featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/codebase-memory-mcp-deep-code-intelligence/ -->
+
 
 <<<<<<< HEAD
 

@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/netdata/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/netdata/ -->
+
 {{</* resource-info */>}}
 
 ## 소개

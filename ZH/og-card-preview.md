@@ -5,12 +5,14 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/og-card-preview" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/og-card-preview" />
 title: "OG 卡片预览 — Facebook / Twitter / LinkedIn 分享效果模拟"
-description: "实时预览你的链接在 Facebook、Twitter、LinkedIn、Slack 上的分享效果。粘贴 URL 自动抓取 OG meta，或手动填写字段。发布前先看清各平台的真实展示效果。"
+description: "实时预览你的链接在 Facebook、Twitter、LinkedIn、Slack 上的分享效果。粘贴 URL 自动抓取 OG meta，或手动填写字段。发布前先看清各平台的真实展示效果。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-og-card-preview"
 tool_id: "og-card-preview"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/og-card-preview/ -->
 # OG 卡片预览 — Facebook / Twitter / LinkedIn 分享效果模拟
 
 

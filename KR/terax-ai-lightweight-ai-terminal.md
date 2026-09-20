@@ -44,6 +44,8 @@ faqs:
   - q: 'Terax AI는 어떻게 설치하나요?'
     a: 'Terax는 소스에서 빌드해야 합니다. Rust(stable)와 pnpm이 포함된 Node.js 20+를 설치하고, git으로 저장소를 클론한 뒤 pnpm install을 실행합니다. 개발 모드는 pnpm tauri dev, 프로덕션 번들은 pnpm tauri build로 빌드합니다. 공식 사전 빌드 설치 파일은 별도로 제공되지 않습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/terax-ai-lightweight-ai-terminal/ -->
 {</* resource-info */>}
 
 # Terax AI: 당신을 이해하는 경량 AI 터미널 에뮬레이터

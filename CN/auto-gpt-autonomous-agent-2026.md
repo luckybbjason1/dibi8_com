@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/auto-gpt-autonomous-agent-2026" />
-title: 'Auto-GPT 2026 Revival: How the OG Autonomous Agent Framework Cut Setup Time by 80% — Fresh Setup Guide'
+title: 'Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame...
 description: 'A complete 2026 guide to Auto-GPT autonomous agents. Fresh setup, agent protocols, web browsing, multi-agent orchestration, Docker deployment, benchmarks vs newer agents, and honest limitations assessment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-engineering-from-scratch" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-engineering-from-scratch" />
 title: "스크래치 AI 엔지니어링: 프로덕션 LLM 시스템 구축 — 2026 완전 가이드"
-description: "스크래치 AI 엔지니어링(32,771 스타)은 LLM 파인튜닝, RAG, 에이전트 프레임워크, 프로덕션 배포를 아우르는 포괄적인 커리큘럼입니다. AI 시스템을 구축하고, 출시하고, 확장하는 방법을 배워보세요."
+description: "스크래치 AI 엔지니어링(32,771 스타)은 LLM 파인튜닝, RAG, 에이전트 프레임워크, 프로덕션 배포를 아우르는 포괄적인 커리큘럼입니다. AI 시스템을 구축하고, 출시하고, 확장하는 방법을 배워보세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: ai-engineering-from-scratch
 category: llm-frameworks
@@ -25,6 +25,8 @@ images:
 lang: kr
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-engineering-from-scratch/ -->
 
 ## TL;DR
 

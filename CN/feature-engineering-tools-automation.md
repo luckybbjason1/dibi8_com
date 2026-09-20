@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/feature-engineering-tools-automation" />
-title: 'Automated Feature Engineering Tools: Featuretools, AutoFeat, and tsfresh Guide 2024'
+title: 'Automated Feature Engineering Tools: Featuretools, AutoF...
 description: 'Master automated feature engineering with Featuretools, AutoFeat, and tsfresh. Comparison, code examples, and production pipeline integration.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

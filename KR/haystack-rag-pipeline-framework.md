@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/haystack-rag-pipeline-framework" />
-title: 'Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d0\uc774\uc804\ud2b8 \ud30c\uc774\ud504\ub77c\uc778\uc744 \uc704\ud55c \uc5d4\ub4dc\ud22c\uc5d4\ub4dc NLP \ud504\ub808\uc784\uc6cc\ud06c \u2014 \uc124\uc815 \uac00\uc774\ub4dc'
+title: 'Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d...
 description: '2026\ub144 Haystack \uc644\ubcbd \uac00\uc774\ub4dc: \ud504\ub85c\ub355\uc158 RAG \ud30c\uc774\ud504\ub77c\uc778, \ubb38\uc11c \uc800\uc7a5\uc18c, \ub9ac\ud2b8\ub9ac\ubc84, \uc5d0\uc774\uc804\ud2b8, \ud3c9\uac00 \ub3c4\uad6c, \ubc0f Docker \ubc30\ud3ec\ub97c \uc704\ud55c \uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [haystack, nlp, rag, python, llm, '\ubb38\uc11c \uc800\uc7a5\uc18c', '\ub9
 aliases:
 - /kr/posts/haystack-rag-pipeline-framework/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/haystack-rag-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 

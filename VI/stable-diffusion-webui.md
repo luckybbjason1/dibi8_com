@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/stable-diffusion-webui" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/stable-diffusion-webui" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/stable-diffusion-webui" />
-title: 'Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
+title: 'Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt ...
 description: 'Stable Diffusion WebUI (AUTOMATIC1111) là giao diện web tạo ảnh AI cục bộ phổ biến nhất. Tương thích với ControlNet, LoRA, ComfyUI. Bao gồm cài đặt Windows, Linux, Docker, cấu hình mở rộng, tối ưu production và benchmark GPU.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['stable-diffusion', automatic1111, 'tạo-ảnh', 'ai-webui', controlnet,
 aliases:
 - /vi/posts/stable-diffusion-webui/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/stable-diffusion-webui/ -->
 
 {{</* resource-info */>}}
 

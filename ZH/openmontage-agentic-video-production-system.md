@@ -50,6 +50,8 @@ faqs:
 featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/openmontage-agentic-video-production-system/ -->
+
 
 
 ## The Problem With Current AI Video Tools

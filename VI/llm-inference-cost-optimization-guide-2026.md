@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-inference-cost-optimization-guide-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-inference-cost-optimization-guide-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-inference-cost-optimization-guide-2026" />
-title: 'Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá Rẻ — Hướng Dẫn Toàn Diện 2026'
+title: 'Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá R...
 description: 'Hướng dẫn tối ưu chi phí inference LLM. So sánh Ollama, vLLM, quantization llama.cpp. Giảm 90%+ chi phí API. 3 benchmark, 6 phương pháp triển khai.'
 date: 2026-06-16
 lastmod:  2026-06-16slug: 'llm-inference-cost-optimization-guide-2026'
@@ -15,6 +15,8 @@ license: MIT
 lang: vi
 featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/llm-inference-cost-optimization-guide-2026/ -->
 
 ![Ollama - Inference LLM cục bộ trở nên đơn giản](https://opengraph.github.com/github/ollama/ollama)
 

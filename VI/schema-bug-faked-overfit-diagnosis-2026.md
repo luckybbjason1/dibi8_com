@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-bug-faked-overfit-diagnosis-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-bug-faked-overfit-diagnosis-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-bug-faked-overfit-diagnosis-2026" />
-title: 'Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cáo postmortem backtest mà không ai nói đến'
+title: 'Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cá...
 description: 'Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đó phát hiện chính chẩn đoán đó là sai — lỗi không khớp tên trường schema âm thầm khiến optimizer chạy với leverage mặc định 10x thay vì 2x đã được tiến hóa. Phiên bản đã sửa thì lành mạnh (tỷ lệ 1.01). Bài học meta còn xấu xí hơn bản gốc.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Danh sách «Bảy điều không nên» mới sau sự kiện này là gì?"
     a: "Mở rộng từ 7 lên 13. Các mục mới: không tin thí nghiệm khi không kiểm chứng schema, không kết luận trên dataset dưới 200 ngày giao dịch, không chấp nhận PF > 3 với dưới 30 giao dịch, không phát hành chiến lược nếu chưa kiểm chứng liên tài sản, không phớt lờ tỷ lệ stdev/mean (trên 1 = nhiễu), không báo cáo PF mà không phân rã theo từng đoạn, không chấp nhận báo cáo thiếu tỷ lệ IS/OOS."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/schema-bug-faked-overfit-diagnosis-2026/ -->
 
 {{< resource-info >}}
 

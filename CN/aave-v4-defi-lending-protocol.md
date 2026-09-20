@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/aave-v4-defi-lending-protocol" />
-title: 'AAVE v4 2026: The DeFi Lending Protocol Managing $15B+ in Deposits — Smart Contract Integration Guide'
+title: 'AAVE v4 2026: The DeFi Lending Protocol Managing $15B+ i...
 description: 'Complete guide to integrating AAVE v4 DeFi lending protocol in 2026. Learn how to supply and borrow 30+ crypto assets, use flash loans, implement isolation mode, and integrate GHO stablecoin in your DApp.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

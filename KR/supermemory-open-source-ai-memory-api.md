@@ -16,6 +16,8 @@ license: MIT
 lang: kr
 featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/supermemory-open-source-ai-memory-api/ -->
 # Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything
 
 

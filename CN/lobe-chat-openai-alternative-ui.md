@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/lobe-chat-openai-alternative-ui" />
-title: 'Lobe Chat: The Open-Source ChatGPT UI Alternative with 20+ LLM Providers & Plugin System — 2026 Setup'
+title: 'Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...
 description: 'Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system, PWA, multi-language UI. Complete Docker setup guide with benchmarks and comparisons.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

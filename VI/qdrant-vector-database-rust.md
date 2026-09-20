@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qdrant-vector-database-rust" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qdrant-vector-database-rust" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qdrant-vector-database-rust" />
-title: 'Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector với Độ Trễ 10ms — Hướng Dẫn Tự Triển Khai 2026'
+title: 'Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector v...
 description: 'Triển khai Qdrant vector database cho tìm kiếm tương đồng production. Hướng dẫn đầy đủ về HNSW indexing, payload filtering, multi-tenancy, Docker deployment, client Python/Go/JS với benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [qdrant, 'vector database', rust, hnsw, 'tìm kiếm tương đồng', doc
 aliases:
 - /vi/posts/qdrant-vector-database-rust/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/qdrant-vector-database-rust/ -->
 
 {{</* resource-info */>}}
 

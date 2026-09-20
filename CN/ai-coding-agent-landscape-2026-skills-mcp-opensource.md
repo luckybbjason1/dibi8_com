@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
-title: 'The 2026 AI Coding Agent Landscape: Why Skills, MCP, and Open Source Are Reshaping How Developers Work'
+title: 'The 2026 AI Coding Agent Landscape: Why Skills, MCP, and...
 description: 'The AI coding assistant market hit an inflection point in 2026. Claude Code''s skills ecosystem crossed 3,000 public skills, MCP became the universal tool interface, and open-source alternatives like OpenCode and Hermes Agent are gaining serious traction. Here''s what developers need to know—and how to avoid vendor lock-in.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

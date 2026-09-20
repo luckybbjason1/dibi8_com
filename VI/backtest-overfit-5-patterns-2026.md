@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtest-overfit-5-patterns-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtest-overfit-5-patterns-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtest-overfit-5-patterns-2026" />
-title: 'Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sharpe Thực Tế (2026)'
+title: 'Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sh...
 description: 'Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân kỳ walk-forward, lật chế độ thị trường, vách đá tham số, chồng chỉ báo và thiên lệch sống sót. Mỗi mẫu hình có ví dụ tổng hợp có thể tái tạo + tín hiệu phát hiện.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Tỉ lệ Train vs OOS PF như thế nào là lành mạnh?"
     a: "Nếu Train PF / OOS PF > 1.5, nghi ngờ overfit. Nếu > 2.0, gần như chắc chắn overfit. Lần chạy moss-trade-bot gần đây của chúng tôi cho Train PF 2.08 / OOS PF 0.94 — tỉ lệ 2.21 — overfit kinh điển. Chiến lược lành mạnh có tỉ lệ dưới 1.3."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/backtest-overfit-5-patterns-2026/ -->
 
 {{</* resource-info */>}}
 

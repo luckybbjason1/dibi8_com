@@ -6,8 +6,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
 
 
-title: 'AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引用你的内容 — 五层方法论'
-description: '我们不再为点击率写作，我们为引用率写作。72 篇文章、4 种语言之后，这是 dibi8 总结出的 AI SEO 五层方法论。'
+title: 'AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引...
+description: '我们不再为点击率写作，我们为引用率写作。72 篇文章、4 种语言之后，这是 dibi8 总结出的 AI SEO 五层方法论。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
@@ -17,6 +17,8 @@ license: 'MIT'
 lang: zh
 featureImage: /images/articles/ai-seo---geo-------2026-----seo------------------------6-.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-seo-geo-dibi8-methodology-google-sge-perplexity/ -->
 # AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引用你的内容 — 五层方法论
 
 **简要** — 三年前我们优化的是点击量。

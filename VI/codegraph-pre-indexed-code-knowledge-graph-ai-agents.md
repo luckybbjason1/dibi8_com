@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents" />
-title: "CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn"
+title: "CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ...
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
 category: "dev-utils"
 publish_date: "2026-06-10"
@@ -12,6 +12,8 @@ lastmod:  "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
 featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/codegraph-pre-indexed-code-knowledge-graph-ai-agents/ -->
 
 # CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn
 

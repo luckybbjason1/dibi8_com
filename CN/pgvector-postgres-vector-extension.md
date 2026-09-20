@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/pgvector-postgres-vector-extension" />
-title: 'pgvector 2026: Turn PostgreSQL into a High-Performance Vector Database — Setup, Tuning & RAG Integration Guide'
+title: 'pgvector 2026: Turn PostgreSQL into a High-Performance V...
 description: 'Production guide for pgvector 0.8.2: HNSW/IVFFlat indexes, vector similarity search, performance tuning, and RAG integration with LangChain and LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

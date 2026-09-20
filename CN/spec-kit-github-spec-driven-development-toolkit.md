@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/spec-kit-github-spec-driven-development-toolkit" />
-title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit"
+title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development...
 description: "Complete guide to Spec Kit by GitHub - the open-source toolkit that transforms how developers build software through spec-driven development. Installation, workflow, and real-world examples."
 date: 2026-06-20
 lastmod:  2026-06-20tags: [ai, copilot, development, engineering, prd, spec, spec-driven]

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-server-security-audit-2026-real-cases" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mcp-server-security-audit-2026-real-cases" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-server-security-audit-2026-real-cases" />
-title: 'Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộng Đồng Thực Tế + Mẫu Bẫy'
+title: 'Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộn...
 description: 'Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, Brave Search, Fetch. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm kiểm tra trước khi cài đặt, mỗi server chỉ mất 5 phút.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Tín hiệu 'chim hoàng yến trong mỏ than' báo một MCP server độc hại là gì?"
     a: "Các cuộc gọi mạng không giải thích được trong phân tích dependency. Server MCP filesystem hoặc git nên có 0 cuộc gọi HTTP. Server fetch hoặc github có endpoint xác định rõ. Bất kỳ thứ gì gọi ra domain bạn không nhận ra (đặc biệt qua subdomain ngẫu nhiên hoặc địa chỉ IP literal) là cờ đỏ — và là cách phổ biến nhất server cộng đồng đánh cắp dữ liệu."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mcp-server-security-audit-2026-real-cases/ -->
 
 {{</* resource-info */>}}
 

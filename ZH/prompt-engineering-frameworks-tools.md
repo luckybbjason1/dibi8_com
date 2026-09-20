@@ -28,6 +28,8 @@ tags: [提示词工程, langsmith, promptlayer, 'w&b', llm开发]
 aliases:
 - /zh/posts/prompt-engineering-frameworks-tools/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/prompt-engineering-frameworks-tools/ -->
 # 2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测
 
 

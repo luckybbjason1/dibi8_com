@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
 title: "Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎"
-description: "Toprank 是一款基于 Claude Code 构建的开源 SEO/GEO/ADS 增长工具，自动化关键词研究、内容生成、排名监控与广告投放优化，帮助网站流量翻倍。"
+description: "Toprank 是一款基于 Claude Code 构建的开源 SEO/GEO/ADS 增长工具，自动化关键词研究、内容生成、排名监控与广告投放优化，帮助网站流量翻倍。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'Toprank 最适合哪类用户？'
     a: 'Toprank 面向以下群体：在 CLI 中自动化审计工作的技术型 SEO 专员、将营销基础设施与应用代码一起维护的增长工程师、使用版本控制 playbook 管理大量客户账户的代理机构，以及无力承担每月 $500+ SaaS 订阅费、但仍需要专业级 SEO 和广告管理能力的创业公司创始人。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/toprank/ -->
 {</* resource-info */>}
 
 # Toprank：用Claude Code驱动的SEO+GEO+ADS一站式增长引擎

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
 title: 'repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件'
-description: 'repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。'
+description: 'repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
@@ -35,6 +35,8 @@ faqs:
   - q: 'repomix 能处理多大的代码库？'
     a: 'repomix 对约 10 万–20 万 token（大约 5000–10000 个文件）以内的项目效果最佳。更大的仓库建议用 --include 模式只打包相关子系统，减少 token 消耗。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/repomix-pack-repo-for-llm-context-2026/ -->
 
 ![repomix 2026: 代码库打包为 LLM 上下文 — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 

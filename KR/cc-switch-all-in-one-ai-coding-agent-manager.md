@@ -14,6 +14,8 @@ slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/cc-switch-all-in-one-ai-coding-agent-manager/ -->
+
 # CC 스위치: 다중 플랫폼 개발을 위한 최고의 AI 코딩 에이전트 관리자 
 
 빠르게 진화하는 AI 지원 소프트웨어 개발 환경에서 개발자들은 각각 고유한 장점을 지닌 **Claude Code**, **Codex CLI**, **Gemini CLI**, **OpenCode**, **OpenClaw** 및 **Hermes Agent**와 같은 여러 AI 코딩 에이전트를 점점 더 많이 채택하고 있습니다. 그러나 다양한 프로젝트, 공급자 및 구성에서 이러한 도구를 관리하는 것은 금세 부담이 됩니다. 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-use" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-use" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-use" />
-title: 'Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser Automation 2026'
+title: 'Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser ...
 description: 'Browser Use là framework Python mã nguồn mở kết nối LLM với trình duyệt thực qua Playwright. Hỗ trợ OpenAI, Anthropic, Gemini và mô hình local. Bao gồm cài đặt, benchmark WebVoyager, so sánh Selenium, hardening production và triển khai Docker.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['browser-use', 'ai-agent', playwright, 'tu-dong-hoa-trinh-duyet', 'web-sc
 aliases:
 - /vi/posts/browser-use/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/browser-use/ -->
 
 {{</* resource-info */>}}
 

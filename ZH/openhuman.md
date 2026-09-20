@@ -6,13 +6,15 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhuman" />
 title: '什么是 OpenHuman？'
 lang: zh
-description: 'content/zh/resources/openhuman.md'
+description: 'content/zh/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-18
 lastmod:  2026-06-18layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/openhuman/ -->
 
 
 # OpenHuman：增长最快的本地 AI 智能体（31K Stars）—— 2026 开源 AI 开发框架

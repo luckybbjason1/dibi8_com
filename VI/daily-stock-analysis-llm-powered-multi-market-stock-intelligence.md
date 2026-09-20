@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
-title: 'Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị Trường Được Hỗ Trợ Bởi LLM'
+title: 'Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị...
 description: 'Hệ thống phân tích cổ phiếu đa thị trường do LLM điều khiển với tin tức thời gian thực, bảng điều khiển ra quyết định và thông báo tự động. 48K sao. Hỗ trợ chạy theo lịch trình miễn phí.'
 date: 2026-06-25
 lastmod: 2026-06-25
@@ -17,6 +17,8 @@ lang: vi
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/ -->
 
 
 

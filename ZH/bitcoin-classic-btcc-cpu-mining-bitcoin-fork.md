@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bitcoin-classic-btcc-cpu-mining-bitcoin-fork" />
 title: "Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版"
-description: "Bitcoin-Classic (BTCC) 是一个基于 Bitcoin Core v28.1 重建的去中心化数字货币，支持 CPU 挖矿，自带图形界面和内置矿机，让普通人也能体验早期比特币挖矿的乐趣。"
+description: "Bitcoin-Classic (BTCC) 是一个基于 Bitcoin Core v28.1 重建的去中心化数字货币，支持 CPU 挖矿，自带图形界面和内置矿机，让普通人也能体验早期比特币挖矿的乐趣。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'Bitcoin-Classic（BTCC）是个好的投资标的吗？'
     a: '不是。BTCC 目前市值和流动性几乎为零，没有主流交易所支持，社区规模极小（GitHub 仅约 18-23 个 star）。它最适合作为教育和实验性项目，而非投资标的。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/ -->
 # Bitcoin-Classic (BTCC): 让普通人也能 CPU 挖矿的比特币复刻版
 
 {</* resource-info */>}

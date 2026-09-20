@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/apple-container" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/apple-container" />
 lang: vi
-title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
+title: "Apple's Container: Docker-Like Experience on Mac with 37...
 date: 2026-06-15
 lastmod:  2026-06-15tags:
   - apple
@@ -32,6 +32,8 @@ faqs:
     a: "No. container runs Linux containers only. It produces OCI-compatible Linux images."
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/apple-container/ -->
 # Apple's Container: Docker-Like Experience on Mac with 37K Stars
 
 title: "Apple Container: Trải nghiệm giống Docker trên Mac với 37K sao"

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ohmyzsh" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ohmyzsh" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ohmyzsh" />
-title: 'Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn trong Năm 2026'
+title: 'Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn t...
 description: 'Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao.'
 date: 2026-06-11
 lastmod:  2026-06-11slug: 'ohmyzsh'
@@ -15,6 +15,8 @@ license: MIT
 lang: vi
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ohmyzsh/ -->
 
 # Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn trong Năm 2026
 

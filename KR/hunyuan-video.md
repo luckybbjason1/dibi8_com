@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/hunyuan-video/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/hunyuan-video/ -->
+
 {{</* resource-info */>}}
 
 720p에서 5초짜리 클립을 생성하는데 60GB VRAM이 필요한 비디오 생성 모델은 장난감이 아니라 인프라다. 텐센트의 HunyuanVideo는 130억 파라미터의 디퓨전 트랜스포머 비디오 생성 모델로, GitHub에서 12,100개 이상의 스타를 획득했으며 자체 호스팅 하드웨어에서 영화급 비디오 합성이 필요한 팀들의 필수 선택이 되었다. 이 가이드는 완전한 프로덕션 구축을 다룬다: 작동하는 Docker 배포부터 FP8 양자화, 다중 GPU 병렬 추론, ComfyUI 통합, 그리고 대규모 서비스에 필요한 모니터링까지.

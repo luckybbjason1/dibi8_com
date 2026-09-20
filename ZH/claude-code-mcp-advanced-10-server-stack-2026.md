@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-mcp-advanced-10-server-stack-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-mcp-advanced-10-server-stack-2026" />
 title: 'Claude Code MCP 进阶 2026：10 服务器生产级技术栈'
-description: '在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何针对个人 vs 团队场景进行配置。'
+description: '在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何针对个人 vs 团队场景进行配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
@@ -33,6 +33,8 @@ faq:
   - q: "使用 HTTP/SSE 服务器 vs stdio 的取舍是什么？"
     a: "HTTP：持久化状态、集中式凭证管理、依赖服务器可用性。stdio：零延迟、不暴露凭证、随会话结束而终止。默认使用 stdio。仅在 (a) 需要跨会话持久化状态，或 (b) 集成无本地对应方案的 SaaS 时才使用 HTTP。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-mcp-advanced-10-server-stack-2026/ -->
 
 {{</* resource-info */>}}
 

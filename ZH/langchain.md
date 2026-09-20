@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/llm-frameworks/langchain-complete-guide/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/langchain/ -->
+
 {{</* resource-info */>}}
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)

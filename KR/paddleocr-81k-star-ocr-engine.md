@@ -16,6 +16,8 @@ license: Apache-2.0
 lang: kr
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/paddleocr-81k-star-ocr-engine/ -->
 # PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost
 
 

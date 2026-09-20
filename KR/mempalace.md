@@ -41,6 +41,8 @@ faqs:
     a: '네. MemPalace는 Claude Code를 위한 .claude-plugin 디렉터리, OpenAI Codex를 위한 .codex-plugin 디렉터리, MCP 호환 도구를 위한 .agents/plugins 디렉터리, 그리고 Gemini CLI 및 로컬 모델 지원을 포함한 네이티브 플러그인을 기본 제공합니다. 기본적으로 MCP 호환 엔드포인트를 노출해 지속적인 코딩 에이전트 메모리를 지원합니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/mempalace/ -->
+
 {</* resource-info */>}
 
 ## 벤치마크 비교: MemPalace vs Mem0 vs Mastra

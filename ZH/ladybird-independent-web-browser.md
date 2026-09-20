@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
 title: 'Ladybird: 真正独立的浏览器 — 浏览器独立的新时代'
-description: 探索 Ladybird，一个从头开始构建的真正独立的 Web 浏览器。不依赖 Chrome，不受企业影响，纯开源。
+description: 探索 Ladybird，一个从头开始构建的真正独立的 Web 浏览器。不依赖 Chrome，不受企业影响，纯开源。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: '如何安装或体验 Ladybird？'
     a: '你需要通过克隆 GitHub 仓库来从源码构建 Ladybird，安装必要依赖（Ubuntu/Debian 上为 build-essential、cmake、ninja-build），然后使用 CMake 和 Ninja 完成编译，最后运行 ./bin/Ladybird。此外也提供了一个实验性的 Docker 镜像供选择。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ladybird-independent-web-browser/ -->
 {</* resource-info */>}
 
 ## Ladybird 是什么？

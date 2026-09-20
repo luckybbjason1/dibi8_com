@@ -36,6 +36,8 @@ faqs:
     a: 'repomix는 약 100,000–200,000 토큰(대략 5,000–10,000개 파일 프로젝트)까지 잘 작동합니다. 더 큰 저장소의 경우 --include 패턴을 사용하여 관련 서브시스템만 전송하세요. --output-show-line-numbers 플래그는 LLM이 정확한 줄 참조로 편집 제안을 하는 데 도움이 됩니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/repomix-pack-repo-for-llm-context-2026/ -->
+
 ![repomix 2026: 코드베이스를 LLM 컨텍스트로 패킹 — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 
 Claude나 ChatGPT에게 멀티파일 이슈를 디버깅해달라고 할 때, 코드 스니펫을 하나씩 붙여넣으면 금방 컨텍스트를 잃게 됩니다. [repomix](https://github.com/yamadashy/repomix)는 전체 저장소를 하나의 구조화된 파일로 변환해 이 문제를 해결합니다.

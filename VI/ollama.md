@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama" />
-title: 'Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướng Dẫn Cấu Hình Đầy Đủ 2026'
+title: 'Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướn...
 description: 'Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thích với LangChain, OpenWebUI, Continue.dev và Dify. Bao gồm thiết lập Docker, tùy chỉnh Modelfile, REST API, production hardening và benchmark hiệu năng.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/ollama/
 - /vi/resources/llm-frameworks/ollama-local-llm-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ollama/ -->
 
 {{</* resource-info */>}}
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-llm-2026-ollama-vllm-localai" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-llm-2026-ollama-vllm-localai" />
 title: '2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI — 吞吐量、成本与部署全对比'
-description: '在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。'
+description: '在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
@@ -37,6 +37,8 @@ faq:
   - q: "哪个最适合作为 OpenAI API 的替代品？"
     a: "LocalAI 是为此设计的 —— 它直接提供 OpenAI 兼容的 /v1/chat/completions 端点。把任何 OpenAI SDK 指向 LocalAI 的 URL 就能直接工作。Ollama 和 vLLM 在 2026 版本中也提供了 OpenAI 兼容端点，但 LocalAI 历史最久、支持的模型最广。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/self-hosted-llm-2026-ollama-vllm-localai/ -->
 
 {{</* resource-info */>}}
 

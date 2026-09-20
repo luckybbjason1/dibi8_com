@@ -31,6 +31,8 @@ tags: [mcp, 'model context protocol', 注册中心, hub文章]
 aliases:
   - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/mcp-server-registry-comprehensive-guide-2026/ -->
 # MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个
 
 

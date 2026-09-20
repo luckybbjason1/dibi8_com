@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/litellm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/litellm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/litellm" />
-title: 'LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오버 — 2026 프로덕션 게이트웨이 설정'
+title: 'LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오...
 description: 'LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock과 호환. Docker 배포, 가상 키, 로드 밸런싱, 캐싱, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/litellm/
 - /kr/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/litellm/ -->
 
 {{</* resource-info */>}}
 

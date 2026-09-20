@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-terminal-ai-coding-agent-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-terminal-ai-coding-agent-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-terminal-ai-coding-agent-2026" />
-title: 'OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding Agent Native Terminal (Cài Đặt, Workflow Đa Agent, MCP & Bảo Mật)'
+title: 'OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding ...
 description: 'Làm chủ OpenAI Codex CLI—agent coding AI mã nguồn mở tăng trưởng nhanh nhất 2026. Hướng dẫn toàn diện từ cài đặt zero-to-hero, cấu hình AGENTS.md, phát triển song song đa agent, tích hợp MCP, sandbox bảo mật, và so sánh trực diện với Claude Code. Nâng cao năng suất developer ngay hôm nay.'
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openai-codex-cli-terminal-ai-coding-agent-2026/ -->
 
 {</* resource-info */>}
 

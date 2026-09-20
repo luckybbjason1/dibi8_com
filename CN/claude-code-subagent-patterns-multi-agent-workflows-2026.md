@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-title: 'Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)'
+title: 'Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
 description: 'Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist delegation, context protection, and pipeline orchestration — with real prompts and tradeoffs from production use.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00

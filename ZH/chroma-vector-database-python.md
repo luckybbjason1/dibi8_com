@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chroma-vector-database-python" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chroma-vector-database-python" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chroma-vector-database-python" />
-title: 'Chroma DB 2026：面向开发者的 RAG 向量数据库，嵌入搜索速度提升 50 倍 — Python 实战指南'
-description: 'Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。'
+title: 'Chroma DB 2026：面向开发者的 RAG 向量数据库，嵌入搜索速度提升 50 倍 — Python 实...
+description: 'Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /zh/posts/chroma-vector-database-python/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/chroma-vector-database-python/ -->
 
 {{</* resource-info */>}}
 

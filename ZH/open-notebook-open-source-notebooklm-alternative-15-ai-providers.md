@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-title: 'open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，28,000 星标 — 设置指南 2026'
-description: 'open-notebook（28,200 GitHub 星标）是 Google NotebookLM 的开源替代方案，支持 15+ AI 提供商。自托管 RAG 知识库，支持多模态音频剧集。包含设置指南、提供商对比和真实基准测试。'
+title: 'open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，2...
+description: 'open-notebook（28,200 GitHub 星标）是 Google NotebookLM 的开源替代方案，支持 15+ AI 提供商。自托管 RAG 知识库，支持多模态音频剧集。包含设置指南、提供商对比和真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/open-notebook-open-source-notebooklm-alternative-15-ai-providers/ -->
 
 # open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，28,000 星标 — 设置指南 2026
 

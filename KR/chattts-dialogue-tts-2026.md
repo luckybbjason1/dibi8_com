@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chattts-dialogue-tts-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chattts-dialogue-tts-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chattts-dialogue-tts-2026" />
-title: 'ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 prosody 제어'
+title: 'ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 pro...
 description: 'ChatTTS는 대화(내레이션 아님) 전용 오픈소스 TTS. GitHub 39.3k 별, 4 GB VRAM 최소, RTX 4090에서 RTF 0.3, 웃음과 일시정지 포함 정밀 prosody 제어. 2026 완전 설치 + 프로덕션 셋업 가이드.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -31,6 +31,8 @@ tags: [chattts, tts, 음성, 대화, 오픈소스]
 aliases:
   - /posts/chattts-dialogue-tts-2026/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/chattts-dialogue-tts-2026/ -->
 
 2026년 대부분 오픈소스 TTS는 여전히 "90년대 GPS 내레이터에 리버브 추가" 같습니다. **ChatTTS**는 첫 번째 널리 채택된 예외 — 39.3k 별의 생성형 음성 모델, **대화** 전용 훈련 (내레이션 아님), 웃음 / 일시정지 / 삽입어 / prosody의 토큰 레벨 제어로 마침내 "찡그리지 않게 하는" 임계점 통과.
 

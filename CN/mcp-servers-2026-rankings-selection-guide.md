@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mcp-servers-2026-rankings-selection-guide" />
-title: 'MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones'
+title: 'MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
 description: 'The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00

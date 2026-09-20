@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/freqtrade-ai-trading-strategies" />
-title: 'Freqtrade 2026: Build AI-Powered Crypto Trading Strategies with Machine Learning \u2014 Complete Bot Setup Guide'
+title: 'Freqtrade 2026: Build AI-Powered Crypto Trading Strategi...
 description: 'A hands-on guide to deploying Freqtrade with FreqAI, the open-source Python crypto trading bot with ML integration. Covers Docker setup, hyperparameter optimization, backtesting, Telegram integration, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

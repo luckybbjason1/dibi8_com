@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
-title: 'Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen (2026): When to Graduate to a Standalone Framework'
+title: 'Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
 description: 'You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or AutoGen? A 2026 decision guide with real benchmarks, GitHub-star reality, and the honest line between "built-in is enough" and "time to graduate."'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00

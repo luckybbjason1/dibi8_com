@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-evaluation-benchmarking-frameworks" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-evaluation-benchmarking-frameworks" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-evaluation-benchmarking-frameworks" />
-title: 'Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh EleutherAI LM Eval, OpenCompass, BIG-bench'
+title: 'Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh Eleuth...
 description: 'Khám phá các framework đánh giá và chuẩn hóa LLM hàng đầu 2025. So sánh EleutherAI LM Eval Harness, OpenCompass, BIG-bench, HELM, AlpacaEval, DeepEval về phạm vi chuẩn mực, dễ sử dụng và hỗ trợ cộng đồng.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['llm evaluation', benchmarking, 'framework đánh giá llm', eleutherai, 
 aliases:
 - /vi/posts/llm-evaluation-benchmarking-frameworks/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/llm-evaluation-benchmarking-frameworks/ -->
 # Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh EleutherAI LM Eval, OpenCompass, BIG-bench
 
 

@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-title: 'open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026'
-description: 'open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, 멀티모달 오디오 에피소드 포함.'
+title: 'open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅...
+description: 'open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, 멀티모달 오디오 에피소드 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/open-notebook-open-source-notebooklm-alternative-15-ai-providers/ -->
 
 # open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026
 

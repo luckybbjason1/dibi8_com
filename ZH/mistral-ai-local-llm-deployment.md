@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mistral-ai-local-llm-deployment" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mistral-ai-local-llm-deployment" />
 title: 'Mistral AI 2026: 使用8x7B MoE架构部署生产级本地LLM — 完整设置指南'
-description: ''
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['mistral ai']
 aliases:
 - /zh/posts/mistral-ai-local-llm-deployment/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/mistral-ai-local-llm-deployment/ -->
 
 {{</* resource-info */>}}
 

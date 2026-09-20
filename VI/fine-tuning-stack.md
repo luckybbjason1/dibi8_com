@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/fine-tuning-stack" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/fine-tuning-stack" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/fine-tuning-stack" />
-title: 'Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset Đến LLM Triển Khai Production'
+title: 'Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset...
 description: 'Stack fine-tuning LLM đầy đủ: Unsloth (experiment single-GPU nhanh) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (theo dõi eval) + vLLM (serving). $50-300/tháng hạ tầng training. Pipeline đầy đủ: chuẩn bị dataset → experiment → fine-tune production → eval → deploy.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['fine-tuning', llm, stack, collection]
 aliases:
   - /posts/fine-tuning-stack/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/fine-tuning-stack/ -->
 
 Fine-tuning LLM năm 2026 cuối cùng có stack mạch lạc — những ngày của duct-tape HuggingFace Trainer + DeepSpeed config + script eval tùy chỉnh đã kết thúc. Bộ sưu tập này lắp ráp **pipeline 5 thành phần** đưa bạn từ dataset thô tới mô hình fine-tuned được triển khai production, với phân chia rõ giữa iterate nhanh (Unsloth) và deploy production (Axolotl). $50-300/tháng hạ tầng training tùy scale.
 

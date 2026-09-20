@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qiaomu-anything-to-notebooklm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qiaomu-anything-to-notebooklm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qiaomu-anything-to-notebooklm" />
-title: "Qiaomu Anything to NotebookLM：Chuyển đổi bất kỳ nguồn nội dung nào sang Google NotebookLM"
+title: "Qiaomu Anything to NotebookLM：Chuyển đổi bất kỳ nguồn nộ...
 description: "Qiaomu Anything to NotebookLM là một kỹ năng Claude Code và bộ công cụ Python chuyển đổi hơn 15 nguồn nội dung -- video YouTube, podcast, bài viết, PDF -- thành các thư viện kiến thức Google NotebookLM, với khả năng vượt tường lửa."
 date: 2026-06-10
 lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
@@ -17,6 +17,8 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/qiaomu-anything-to-notebooklm/ -->
 
 ## Giới thiệu
 

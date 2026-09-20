@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruvnet-ruview-wifi-spatial-intelligence-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruvnet-ruview-wifi-spatial-intelligence-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruvnet-ruview-wifi-spatial-intelligence-guide" />
-title: "RuView: 스마트 빌딩을 위한 WiFi 공간 지능 — Python CLI, 실시간 위치 추적 및 메쉬 네트워크"
+title: "RuView: 스마트 빌딩을 위한 WiFi 공간 지능 — Python CLI, 실시간 위치 추적 및 ...
 description: "Python 기반 WiFi 공간 지능 플랫폼인 RuView를 사용하여 실시간 위치 추적, 건물 레이아웃 매핑, WiFi 메쉬 네트워크 최적화 방법을 배워보세요. 단계별 pip 설치 가이드, 실시간 추적 및 메쉬 네트워크 구성."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
@@ -12,6 +12,8 @@ category: ai-tools
 tags: [ruvnet, ruview, WiFi, 공간지능, 위치추적, 메쉬네트워크, 스마트빌딩, Python, 오픈소스]
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ruvnet-ruview-wifi-spatial-intelligence-guide/ -->
 
 ## 소개
 

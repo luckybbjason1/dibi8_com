@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/sglang-structured-generation-llm" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/sglang-structured-generation-llm" />
 title: SGLang — 结构化生成和高速 LLM 推理引擎
-description: SGLang（结构化生成语言）完全指南。高性能 LLM 推理引擎，支持约束解码、JSON 模式强制、并行执行，结构化输出比 vLLM 快 25 倍。
+description: SGLang（结构化生成语言）完全指南。高性能 LLM 推理引擎，支持约束解码、JSON 模式强制、并行执行，结构化输出比 vLLM 快 25 倍。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']
 category: llm-frameworks
 featureImage: /images/articles/sglang-structured-generation-llm.jpg
@@ -14,6 +14,8 @@ lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: sglang-structured-generation-llm
 lang: zh-CN
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/sglang-structured-generation-llm/ -->
 
 ## TL;DR
 

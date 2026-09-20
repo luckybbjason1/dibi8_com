@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/autogen" />
-title: 'AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs CrewAI, LangGraph in 2026'
+title: 'AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs...
 description: 'AutoGen (Microsoft) is an event-driven programming framework for building multi-agent AI systems. Compatible with OpenAI, Azure, Ollama, Docker, and VS Code. Covers installation, group chat setup, production hardening, and honest comparison with alternatives.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

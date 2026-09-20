@@ -28,6 +28,8 @@ tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-a
 aliases:
 - /kr/posts/2026-local-first-ai-stack-production-architecture/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/2026-local-first-ai-stack-production-architecture/ -->
 # 2026년 로컬 우선 AI 스택: 14개 오픈소스 도구로 짜는 프로덕션 아키텍처 레퍼런스
 
 

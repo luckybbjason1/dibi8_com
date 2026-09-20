@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
-title: 'Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드'
+title: 'Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실...
 description: 'Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,747개, AGPL-3.0. 설치, 공식 SDK, 실제 코드, 셀프 호스팅, 그리고 Puppeteer·Scrapy·Axios와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Firecrawl은 무료인가요? 라이선스는 무엇인가요?'
     a: '소스 코드는 AGPL-3.0로 무료이며 오픈소스이고, 공식 SDK와 UI 컴포넌트는 MIT입니다. 호스팅형 클라우드 API는 무료 티어와 더 높은 사용량을 위한 유료 요금제를 제공합니다. 셀프 호스팅하는 경우 실행에 드는 인프라 비용은 직접 부담합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/firecrawl-dev-utils-2026/ -->
 # Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드
 
 

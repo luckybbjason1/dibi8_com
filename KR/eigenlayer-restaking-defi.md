@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/eigenlayer-restaking-defi" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/eigenlayer-restaking-defi" />
 title: 'eigenlayer-restaking-defi'
-description: ''
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [eigenlayer]
 aliases:
 - /kr/posts/eigenlayer-restaking-defi/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/eigenlayer-restaking-defi/ -->
 
 {{</* resource-info */>}}
 

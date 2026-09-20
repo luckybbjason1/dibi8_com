@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
-title: 'FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điểm cuối tương thích với OpenAI'
+title: 'FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điể...
 description: 'Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa thành một proxy duy nhất. ~1,7 tỷ token/tháng. Cài đặt Docker, tích hợp Claude Code, gọi công cụ, phát trực tiếp, chuỗi dự phòng.'
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -21,6 +21,8 @@ sources:
     url: 'https://freellmapi.co'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/ -->
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
 description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains.'
 date: 2026-06-22

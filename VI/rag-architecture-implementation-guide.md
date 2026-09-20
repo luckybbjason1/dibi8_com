@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-architecture-implementation-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-architecture-implementation-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-architecture-implementation-guide" />
-title: 'Hướng Dẫn Triển Khai Kiến Trúc RAG 2025: Xây Dựng Hệ Thống Production'
+title: 'Hướng Dẫn Triển Khai Kiến Trúc RAG 2025: Xây Dựng Hệ Thố...
 description: 'Hướng dẫn triển khai kiến trúc RAG production 2025: từ Naive RAG đến Agentic RAG. So sánh framework, chiến lược chunking và đánh giá hiệu suất.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/rag-architecture-implementation-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/rag-architecture-implementation-guide/ -->
 
 {</* resource-info */>}
 

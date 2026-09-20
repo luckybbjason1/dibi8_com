@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/marker-dev-utils-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/marker-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/marker-dev-utils-2026" />
-title: 'Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh chóng — Hướng dẫn thực dụng 2026'
+title: 'Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
 description: 'Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML và chunks một cách nhanh chóng, chính xác. 35.694 sao GitHub, mã nguồn theo giấy phép GPL-3.0. Bao gồm cài đặt, CLI và Python API, ví dụ mã thực tế, chế độ LLM, cùng so sánh khách quan với các công cụ thay thế.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Tôi báo lỗi hoặc đề xuất tính năng bằng cách nào?'
     a: 'Truy cập kho mã GitHub tại <https://github.com/datalab-to/marker> và mở một issue mới trong tab Issues với thông tin chi tiết về vấn đề hoặc đề xuất của bạn.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/marker-dev-utils-2026/ -->
 
 {{< resource-info >}}
 

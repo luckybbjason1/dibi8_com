@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-claude-design-alternative" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-claude-design-alternative" />
 title: "Open Codesign: GitHub 5,790+ Star 오픈소스 Claude Design 대안"
-description: "MIT 라이선스 오픈소스 Claude Design 대안 Open Codesign을 소개합니다. 다중 모델, BYOK 자체 키, 로컬 우선 아키텍처로 자연어 프롬프트에서 프로토타입과 슬라이드를 즉시 생성합니다."
+description: "MIT 라이선스 오픈소스 Claude Design 대안 Open Codesign을 소개합니다. 다중 모델, BYOK 자체 키, 로컬 우선 아키텍처로 자연어 프롬프트에서 프로토타입과 슬라이드를 즉시 생성합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -36,6 +36,8 @@ faqs:
   - q: 'Open Codesign의 DESIGN.md 파일은 무엇인가요?'
     a: 'DESIGN.md는 브랜드 컬러, 타이포그래피, 간격 토큰 등 디자인 시스템을 정의하는 마크다운 파일입니다. 워크스페이스에 이 파일을 두면 모든 생성 결과가 자동으로 해당 토큰을 상속받아, 모델이 대화가 진행되어도 브랜드 일관성을 유지할 수 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/open-codesign-claude-design-alternative/ -->
 
 {</* resource-info */>}
 

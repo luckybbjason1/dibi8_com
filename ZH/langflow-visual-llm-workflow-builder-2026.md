@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langflow-visual-llm-workflow-builder-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langflow-visual-llm-workflow-builder-2026" />
 title: 'Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析'
-description: 'Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强化。'
+description: 'Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强化。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-23
 lastmod:  2026-05-23slug: 'langflow'
 category: 'llm-frameworks'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/langflow-visual-llm-workflow-builder-2026/ -->
 
 # Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pageindex-vectorless-reasoning-rag" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pageindex-vectorless-reasoning-rag" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pageindex-vectorless-reasoning-rag" />
-title: "PageIndex：29K⭐Hệ thống RAG cách mạng, tìm kiếm tài liệu không cần vector database"
+title: "PageIndex：29K⭐Hệ thống RAG cách mạng, tìm kiếm tài liệu ...
 description: "PageIndex là hệ thống RAG mã nguồn mở không dùng vector của VectifyAI. 29K+ Stars, xây dựng cấu trúc cây tài liệu để tìm kiếm như con người, đạt 98.7% độ chính xác trên FinanceBench."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'PageIndex phù hợp nhất với loại tài liệu nào?'
     a: 'PageIndex được thiết kế cho các tài liệu chuyên môn dài, nơi cấu trúc đóng vai trò quan trọng và cần có trích dẫn có thể giải thích được, chẳng hạn như báo cáo tài chính và bản cáo bạch, hợp đồng pháp lý và án lệ, tài liệu y khoa và báo cáo thử nghiệm lâm sàng, cùng các tài liệu kỹ thuật như tài liệu tham khảo API và sổ tay vận hành.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/pageindex-vectorless-reasoning-rag/ -->
 {</* resource-info */>}
 
 ![PageIndex — banner chính thức](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)

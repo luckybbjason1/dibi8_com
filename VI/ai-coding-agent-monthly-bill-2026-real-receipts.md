@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-monthly-bill-2026-real-receipts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-monthly-bill-2026-real-receipts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-monthly-bill-2026-real-receipts" />
-title: 'Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 30 ngày từ Claude Max, ChatGPT Plus, Cursor Pro'
+title: 'Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 3...
 description: 'Theo dõi 30 ngày sử dụng và hóa đơn thực tế của Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 hiệu dụng) và Cursor Pro + API tràn ($87). Bóc tách chi phí theo tác vụ, mỗi công cụ hoàn vốn khi nào và ngưỡng để chuyển đổi.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Tháng 5/2026 có thay đổi giá nào mà các đánh giá trước chưa nói?"
     a: "Anthropic điều chỉnh giới hạn tốc độ của gói Max vào cuối tháng 4 (nới lỏng hơn, nhiều khoảng dư hơn). Codex CLI của OpenAI chuyển hoàn toàn sang trả theo dùng (bỏ tier Pro). Cursor thêm tier Business $50 kèm tín dụng API. Cả ba thay đổi này đều dịch chuyển phép tính ngưỡng so với các đánh giá Q1."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-coding-agent-monthly-bill-2026-real-receipts/ -->
 
 {{</* resource-info */>}}
 

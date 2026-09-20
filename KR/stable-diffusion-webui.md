@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/stable-diffusion-webui/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/stable-diffusion-webui/ -->
+
 {{</* resource-info */>}}
 
 AUTOMATIC1111이 개발한 Stable Diffusion WebUI는 2026년 현재 로컬 AI 이미지 생성 분야에서 가장 널리 사용되는 오픈소스 인터페이스이다. **159,000개 이상의 GitHub stars**를 보유하며, 경쟁사들의 커뮤니티를 모두 합친 것보다 더 큰 규모를 자랑한다. 로컬 AI 이미지 파이프라인을 구축하고 있다면 이 도구의 설치, 구성, 확장 방법을 익히는 것은 선택이 아닌 필수이다.

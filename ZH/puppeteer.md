@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
-title: 'Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2026'
+title: 'Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2...
 description: 'Puppeteer 是一个用于 Chrome 和 Firefox 的无头浏览器自动化 Node.js 库。支持 Docker、GitHub Actions、Jest、Mocha、TypeScript。涵盖 puppeteer docker 配置、生产环境部署、浏览器自动化教程、CI/CD 集成。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [puppeteer, 浏览器自动化, 无头chrome, 网络爬虫, docker, 测试
 aliases:
 - /zh/posts/puppeteer/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/puppeteer/ -->
 
 {{</* resource-info */>}}
 

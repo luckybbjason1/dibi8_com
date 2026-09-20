@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zed-vs-cursor" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zed-vs-cursor" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zed-vs-cursor" />
-title: 'Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So Sánh Thẳng Thắn'
+title: 'Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So S...
 description: 'So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) — tốc độ, tính năng AI, giá, hệ sinh thái, nền tảng. Cập nhật 2026.'
 date: 2026-06-06 00:00:00+08:00
 lastmod:  2026-06-06 00:00:00+08:00draft: false
@@ -22,6 +22,8 @@ faqs:
   - q: 'Tôi có thể dùng mô hình AI của riêng mình với Zed và Cursor không?'
     a: 'Cả hai đều cho phép kết nối mô hình riêng, nhưng trọng tâm khác nhau. Zed cho phép cấu hình nhiều nhà cung cấp (Anthropic, OpenAI, và mô hình cục bộ qua Ollama), thân thiện với thiết lập ưu tiên cục bộ. Cursor hỗ trợ vài mô hình tiên tiến và một số khóa API riêng, nhưng các tính năng tốt nhất (Tab, Agent) được tinh chỉnh quanh pipeline mô hình lưu trữ của họ. Muốn trình soạn thảo hoàn toàn cục bộ, ưu tiên quyền riêng tư thì Zed dễ uốn theo stack của bạn hơn.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/zed-vs-cursor/ -->
 # Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So Sánh Thẳng Thắn
 
 

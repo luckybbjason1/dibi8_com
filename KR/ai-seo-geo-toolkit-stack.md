@@ -39,6 +39,8 @@ faqs:
   - q: '이 AI-SEO 및 GEO 도구들을 어떤 순서로 적용해야 하나요?'
     a: '대부분의 사이트가 아직 하지 않은 GEO 레이어부터 시작하세요. llms.txt를 생성하고 AI 크롤러를 고려한 robots.txt를 만드는 것입니다. 그런 다음 기존 온페이지 레이어를 적용하세요. meta 태그, Schema.org JSON-LD, 다국어 사이트라면 hreflang까지요. 마지막으로 공유 레이어를 마무리하며 Open Graph 카드를 미리 확인하세요.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-seo-geo-toolkit-stack/ -->
 # AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선
 
 

@@ -1,0 +1,49 @@
+# DIBI8.COM - llms.txt for AI Crawlers
+# This file helps AI crawlers understand and index your content
+
+# Site Overview
+name: DIBI8 - AI Tools Directory
+description: Comprehensive directory of open-source AI tools, coding agents, LLM frameworks, and developer utilities. Updated September 2026.
+
+# Sitemap
+sitemap: https://dibi8.com/sitemap_index.xml
+
+# Content Sections
+## AI Coding Agents
+- Claude Code
+- Cursor
+- Codex CLI
+- OpenCode
+- Cline
+- Aider
+- Continue
+
+## LLM Frameworks
+- LangChain
+- LlamaIndex
+- LangGraph
+- CrewAI
+- AutoGen
+- Haystack
+
+## AI Tools Categories
+- Development Tools
+- Data Science
+- Security & Pentesting
+- Trading & Finance
+- Image Generation
+- Video Generation
+- Writing & Content
+
+# Key Statistics
+- Total articles: 1800+
+- Languages: English, Chinese, Korean, Vietnamese
+- Updated: Daily
+- Focus: Open-source AI tools and developer utilities
+
+# Internal Linking Structure
+Each tool page links to:
+- Related tools in same category
+- Comparison articles
+- Getting started guides
+- Security best practices

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
-title: 'Baetyl: Nền tảng điện toán AI biên cloud-native triển khai mô hình đến thiết bị IoT — Hướng dẫn 2026'
+title: 'Baetyl: Nền tảng điện toán AI biên cloud-native triển kh...
 description: 'Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình AI, hỗ trợ MQTT/BACnet, cập nhật OTA, runtime K3s, đồng bộ cloud-biên.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [baetyl, 'điện-toán-biên', iot, kubernetes, k3s, 'suy-luận-ai', mqt
 aliases:
 - /vi/posts/baetyl-edge-ai-computing-platform/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/baetyl-edge-ai-computing-platform/ -->
 
 {{</* resource-info */>}}
 

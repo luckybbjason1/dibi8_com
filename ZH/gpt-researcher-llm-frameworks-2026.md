@@ -39,6 +39,8 @@ faqs:
   - q: 'conduct_research() 和 write_report() 是同步的吗？'
     a: '不是。两者都是异步方法。要在 async 函数内用 `await` 调用，并用 `asyncio.run()` 运行该函数。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/gpt-researcher-llm-frameworks-2026/ -->
 # GPT Researcher：自主深度研究报告智能体——2026 实战指南
 
 

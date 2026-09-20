@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lazydocker" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lazydocker" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lazydocker" />
-title: 'LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI Docker Terminal Đầy Đủ 2026'
+title: 'LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
 description: 'LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Docker, Docker Compose, Go và Terminal. Bao gồm cài đặt, phím tắt, cấu hình và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [lazydocker, docker, 'terminal-ui', devops, containers, 'cli-tools', 'dock
 aliases:
 - /vi/posts/lazydocker/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/lazydocker/ -->
 
 {{</* resource-info */>}}
 

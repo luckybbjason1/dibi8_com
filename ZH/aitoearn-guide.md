@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-guide" />
 title: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测"
-description: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测"
+description: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: '自托管 AiToEarn 需要什么才能稳定运行？'
     a: 'AiToEarn 提供 Docker Compose 文件，将 SQLite 数据库和 Playwright 无头浏览器隔离部署，可在 $5 的低成本 VPS 上实现约 99.9% 的可用率。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/aitoearn-guide/ -->
 
 {</* resource-info */>}
 

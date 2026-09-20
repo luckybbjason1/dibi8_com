@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prometheus" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prometheus" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prometheus" />
-title: 'Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026'
+title: 'Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
 description: 'Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với Docker, Kubernetes, Grafana và Alertmanager. Bao gồm hướng dẫn cài đặt, truy vấn PromQL, cung cố hóa sản xuất và điểm chuẩn hiệu suất.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [prometheus, 'giám sát', docker, kubernetes, grafana, devops, 'khả nă
 aliases:
 - /vi/posts/prometheus/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/prometheus/ -->
 # Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
-title: 'Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전한 봇 설정 가이드'
+title: 'Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
 description: 'FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅, Telegram 통합 및 프로덕션 배포를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/freqtrade-ai-trading-strategies/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/freqtrade-ai-trading-strategies/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-image-generation-tools-complete-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-image-generation-tools-complete-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-image-generation-tools-complete-guide" />
-title: 'Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney, DALL-E, Stable Diffusion'
+title: 'Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney,...
 description: 'Hướng dẫn toàn diện về công cụ tạo hình ảnh AI 2025: so sánh Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX và Leonardo.ai. Bảng giá, tính năng và cách sử dụng.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-image-generation-tools-complete-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-image-generation-tools-complete-guide/ -->
 # Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney, DALL-E, Stable Diffusion
 
 

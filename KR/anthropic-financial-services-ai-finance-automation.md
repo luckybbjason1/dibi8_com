@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anthropic-financial-services-ai-finance-automation" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anthropic-financial-services-ai-finance-automation" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anthropic-financial-services-ai-finance-automation" />
-title: Anthropic Financial Services：금융팀이 AI로 분석을 자동화하고 ROI를 300% 높이는 방법
-description: Anthropic Financial Services가 투자은행, 주식 리서치, 자산관리팀이 Claude AI 에이전트로 피치덱,
+title: Anthropic Financial Services：금융팀이 AI로 분석을 자동화하고 ROI를 300%...
+description: Anthropic Financial Services가 투자은행, 주식 리서치, 자산관리팀이 Claude AI 에이전트로 피치덱,. Comprehensive guide covering features, pricing, and best practices for 2026.
   DCF 모델, KYC 스크리닝을 자동화하는 방법을 알아보세요.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -41,6 +41,8 @@ faqs:
   - q: 'Anthropic Financial Services는 금융 컴플라이언스와 보안 요건을 어떻게 충족하나요?'
     a: 'Managed Agents는 자체 VPC 내부에 배포할 수 있어 어떤 데이터도 인프라 밖으로 나가지 않으며, 모든 에이전트 작업은 완전한 보관 연속성(chain-of-custody) 기록과 함께 감사 로그로 남고, 접근은 Okta 또는 Azure AD 같은 엔터프라이즈 ID 공급자를 통해 통제됩니다. 어떤 에이전트 출력도 클라이언트에 직접 전달되지 않으며, 모든 것이 FINRA 및 SEC 감독 요건을 충족하기 위해 사람의 최종 승인을 위한 대기열에 들어갑니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/anthropic-financial-services-ai-finance-automation/ -->
 
 {</* resource-info */>}
 

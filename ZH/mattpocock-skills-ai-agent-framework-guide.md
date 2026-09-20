@@ -13,6 +13,8 @@ tags: [matt-pocock, skills, AI Agent, CLI框架, AI编程工具, Agent能力, �
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/mattpocock-skills-ai-agent-framework-guide/ -->
+
 ## 简介
 
 AI 编程 Agent 从根本上改变了开发人员编写、调试和部署代码的方式。Claude Code、Cursor、Codex CLI、Gemini CLI 和 GitHub Copilot 等工具可以从自然语言提示生成整个功能。但即使是最先进的 AI Agent 也受到其能读取的数据和能调用的工具的限制。这就是 Matt Pocock 的 Skills 框架改变一切的地方——它弥合了代码生成与代码执行之间的鸿沟。

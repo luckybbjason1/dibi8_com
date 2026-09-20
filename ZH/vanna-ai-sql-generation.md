@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/vanna-ai-sql-generation/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/vanna-ai-sql-generation/ -->
+
 {{</* resource-info */>}}
 
 使用自然语言与数据库交互的能力长期以来一直是数据分析领域的圣杯。每天，无数时间被浪费在将业务问题转化为 SQL 查询上 — 这个过程需要对数据库 Schema、表关系和 SQL 语法有深入的了解。2026年，这一瓶颈正在迅速消融，这要归功于 **Vanna AI** — 一款基于你的数据库 Schema 训练、以超过 90% 的准确率从纯英文生成生产级 SQL 的开源 Python 库。

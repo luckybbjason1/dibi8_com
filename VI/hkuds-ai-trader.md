@@ -18,6 +18,8 @@ featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-t
 lang: vi
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/hkuds-ai-trader/ -->
+
 ## Giới thiệu
 
 Sự hội tụ của các tác nhân AI và thị trường tài chính là một trong những xu hướng có ý nghĩa nhất trong công nghệ. Các hệ thống giao dịch tự động được cung cấp bởi machine learning đã tồn tại nhiều năm, nhưng chúng luôn được gắn chặt với các framework cụ thể và đòi hỏi chuyên môn sâu để cấu hình và bảo trì. Rào cản gia nhập rất cao: bạn cần hiểu cả tài chính và cơ sở hạ tầng machine learning.

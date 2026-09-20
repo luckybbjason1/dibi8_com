@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mcp-deep-dive-definitive-2026-guide" />
-title: 'Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers'
+title: 'Model Context Protocol (MCP) Deep Dive: The Definitive 2...
 description: 'Build your first MCP server from scratch. Learn Anthropic''s Model Context Protocol with hands-on Python & TypeScript examples. Connect AI agents to real APIs, databases, and tools using the open standard adopted by OpenAI, Google, and Microsoft.'
 date: 2026-05-15 00:00:00+08:00
 lastmod: 2026-05-15 00:00:00+08:00

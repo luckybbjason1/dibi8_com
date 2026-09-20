@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/litellm-unified-api-tutorial/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/litellm-unified-api-tutorial/ -->
 # Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM
 
 

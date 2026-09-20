@@ -33,6 +33,8 @@ aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/self-hosted-ai-coding-workflow/ -->
+
 如果你正在付 $20/月 给 Cursor + $80/月 给 Claude Code Pro + $19/月 给 Copilot + $50/月 给 Replit credits + $120/月 给 OpenAI API 充值，你的 AI 编程月支出是 **$289/月**。12 个月就是 **$3,468** —— 而这些工具你不拥有、不能审计、随时可能被限流或停服。
 
 这篇合集组装的是 **7 组件自托管替代方案**，跑在 **$6/月 VPS** 上，覆盖 SaaS 90%+ 的功能。我们过去 90 天写了每个组件的深度指南。这篇是**完整 stack 组装指南** —— 装什么、按什么顺序装、用哪份 config，以及超过 $6 tier 后的升级路径。

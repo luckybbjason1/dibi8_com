@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anythingllm-architecture-local-rag" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/anythingllm-architecture-local-rag" />
 title: "기업들은 왜 ChatGPT를 두려워하는가?"
-description: "기업들은 왜 ChatGPT를 두려워하는가?"
+description: "기업들은 왜 ChatGPT를 두려워하는가?". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'AnythingLLM의 기본 LanceDB는 다중 사용자 환경에서 왜 SQLITE_BUSY 오류를 발생시키나요?'
     a: '기본 임베디드 벡터 데이터베이스(LanceDB/Chroma)는 고빈도 동시 쓰기 상황에서 파일 잠금 문제가 있어, 여러 사용자가 같은 워크스페이스에 대용량 PDF를 업로드할 때 SQLITE_BUSY 또는 쓰기 잠금 오류를 발생시킵니다. 직원이 많은 프로덕션 환경에서는 Vector DB를 독립형 Qdrant 또는 Milvus 인스턴스로 전환하세요.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/anythingllm-architecture-local-rag/ -->
 {</* resource-info */>}
 
 # 기업들은 왜 ChatGPT를 두려워하는가?

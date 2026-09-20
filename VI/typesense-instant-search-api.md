@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/typesense-instant-search-api" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/typesense-instant-search-api" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/typesense-instant-search-api" />
-title: 'Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1 Triệu Lượt Tìm Kiếm/Ngày — Hướng Dẫn Tự Triển Khai'
+title: 'Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1...
 description: 'Thiết lập Typesense 27.1 cho tìm kiếm tức thì với khả năng chịu lỗi chính tả, thởi gian phản hồi dưới 50ms. Hướng dẫn triển khai Docker, tích hợp SDK, và đánh giá hiệu suất production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/typesense-instant-search-api/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/typesense-instant-search-api/ -->
 
 {{</* resource-info */>}}
 

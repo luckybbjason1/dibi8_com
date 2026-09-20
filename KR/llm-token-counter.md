@@ -11,6 +11,8 @@ lastmod: 2026-05-19
 layout: "tool-llm-token-counter"
 tool_id: "llm-token-counter"
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/llm-token-counter/ -->
 # LLM 토큰 카운터 — GPT-4 / Claude / Gemini 토큰화 비교
 
 

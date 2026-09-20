@@ -22,6 +22,8 @@ faqs:
   - q: '두 SDK 중 어느 쪽이든 서버를 직접 관리해야 하나요?'
     a: '경우에 따라 다릅니다. OpenAI Agents SDK에서는 code interpreter, file search, web search가 OpenAI의 인프라에서 실행됩니다 — 관리할 서버도, 걱정할 스케일링도 없으며, 관리형 접근을 선호하는 팀에 적합합니다. Claude Agent SDK는 여러분이 통제하는 머신에서 에이전트에게 깊은 OS 접근을 부여합니다 — 더 큰 힘과 커스터마이징을 의미하지만, 호스트와 샌드박싱, 스케일링은 여러분의 몫입니다. 관리형 편의성 vs 통제와 깊이가 갈림길입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-agent-sdk-vs-openai-agents-sdk/ -->
 # 2026년 Claude Agent SDK vs OpenAI Agents SDK: 무엇으로 개발할 것인가?
 
 

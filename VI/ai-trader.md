@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trader" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trader" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
-title: "AI-Trader: 14K⭐ Hệ thống Giao dịch AI Tự động Hoàn toàn, Để AI Giám sát Thị trường 24/7"
+title: "AI-Trader: 14K⭐ Hệ thống Giao dịch AI Tự động Hoàn toàn,...
 description: "AI-Trader là hệ thống đại lý giao dịch AI tự động hoàn toàn mã nguồn mở do HKUDS phát triển, 14K+ Stars, hỗ trợ giao dịch tự động đa thị trường chứng khoán, tiền điện tử, ngoại hối."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'Tôi có thể kiểm tra AI-Trader mà không cần dùng tiền thật không?'
     a: 'Hoàn toàn có thể. AI-Trader tích hợp công cụ backtest độ trung thực cao để mô phỏng lịch sử và chế độ giao dịch thử nghiệm (đặt mode: paper trong file cấu hình). Tài liệu dự án khuyến nghị luôn sử dụng chế độ giao dịch thử nghiệm trước khi triển khai vào giao dịch thực tế.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-trader/ -->
 {</* resource-info */>}
 
 ## AI-Trader là gì?

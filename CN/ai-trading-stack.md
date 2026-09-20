@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-trading-stack" />
-title: 'The AI Trading Stack 2026: 7-Component Open-Source Quant Workflow for Crypto + Prediction Markets'
+title: 'The AI Trading Stack 2026: 7-Component Open-Source Quant...
 description: 'Self-hosted AI trading stack: ta-lib (signals) + vectorbt (backtest) + freqtrade (execution) + AI Trader (AI strategy layer) + Hyperliquid (perp DEX venue) + Polymarket Agents (prediction markets) + Minara (AI+crypto hub). $30-150/mo infrastructure, real production-grade quant pipeline, not a toy.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00

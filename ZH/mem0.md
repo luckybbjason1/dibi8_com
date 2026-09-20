@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mem0" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mem0" />
 title: 'Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026'
-description: 'Mem0 (mem0ai) 是面向 AI 智能体的通用记忆层。兼容 Claude Code、OpenAI、LangChain、CrewAI、Cursor。涵盖 mem0 教程、持久化记忆设置、向量存储调优和生产部署基准测试。'
+description: 'Mem0 (mem0ai) 是面向 AI 智能体的通用记忆层。兼容 Claude Code、OpenAI、LangChain、CrewAI、Cursor。涵盖 mem0 教程、持久化记忆设置、向量存储调优和生产部署基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [mem0, 'ai-agent-memory', 持久化记忆, langchain, 向量存储, 内存
 aliases:
 - /zh/posts/mem0/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/mem0/ -->
 
 {{</* resource-info */>}}
 

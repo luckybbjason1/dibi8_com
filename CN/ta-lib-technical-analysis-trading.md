@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ta-lib-technical-analysis-trading" />
-title: 'TA-Lib: The Industry Standard Technical Analysis Library with 200+ Indicators — Python Trading Setup 2026'
+title: 'TA-Lib: The Industry Standard Technical Analysis Library...
 description: 'Complete guide to TA-Lib Python wrapper with 200+ technical indicators. Install, benchmark, and deploy SMA, EMA, RSI, MACD, Bollinger Bands for algorithmic trading in 2026.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

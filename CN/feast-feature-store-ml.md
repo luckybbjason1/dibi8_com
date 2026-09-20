@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/feast-feature-store-ml" />
-title: 'Feast: The Open-Source Feature Store Serving ML Features at Sub-Second Latency — 2026 Setup Guide'
+title: 'Feast: The Open-Source Feature Store Serving ML Features...
 description: 'Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/offline stores, sub-second serving, Redis/BigQuery backends, batch & real-time features, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

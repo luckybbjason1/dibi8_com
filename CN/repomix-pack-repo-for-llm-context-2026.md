@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/repomix-pack-repo-for-llm-context-2026" />
-title: 'repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config'
+title: 'repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
 description: 'repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optimized for LLM context windows — supporting Claude, ChatGPT, Gemini, and Cursor. 14k+ stars, zero config, runs in seconds with npx.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00

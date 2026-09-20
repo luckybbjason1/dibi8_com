@@ -4,9 +4,9 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ladybird-independent-web-browser" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ladybird-independent-web-browser" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ladybird-independent-web-browser" />
-title: 'Ladybird: Trình duyệt Web Độc lập Thực sự — Kỷ nguyên mới của Sự độc lập Trình
+title: 'Ladybird: Trình duyệt Web Độc lập Thực sự — Kỷ nguyên mớ...
   duyệt'
-description: Khám phá Ladybird, trình duyệt web độc lập thực sự được xây dựng từ đầu.
+description: Khám phá Ladybird, trình duyệt web độc lập thực sự được xây dựng từ đầu.. Comprehensive guide covering features, pricing, and best practices for 2026.
   Không phụ thuộc Chrome, không ảnh hưởng doanh nghiệp, mã nguồn mở thuần túy.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -43,6 +43,8 @@ faqs:
   - q: 'Làm thế nào để cài đặt hoặc trải nghiệm Ladybird?'
     a: 'Bạn tự build Ladybird từ mã nguồn bằng cách clone repository GitHub về, cài đặt các gói phụ thuộc (build-essential, cmake, ninja-build trên Ubuntu/Debian), sau đó build bằng CMake và Ninja rồi chạy ./bin/Ladybird. Ngoài ra cũng có một Docker image thử nghiệm để bạn lựa chọn.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ladybird-independent-web-browser/ -->
 {</* resource-info */>}
 
 ## Ladybird là gì?

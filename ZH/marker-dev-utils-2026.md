@@ -40,6 +40,8 @@ faqs:
     a: '访问 GitHub 仓库 <https://github.com/datalab-to/marker>，在 Issues 标签页里新建一个 issue，并详细描述你的问题或建议。'
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/marker-dev-utils-2026/ -->
+
 {{< resource-info >}}
 
 ## 引言

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ruvnet-ruview-wifi-spatial-intelligence-guide" />
-title: "RuView: WiFi Spatial Intelligence for Smart Buildings — Python CLI, Real-Time Position Tracking, and Mesh Networks"
+title: "RuView: WiFi Spatial Intelligence for Smart Buildings — ...
 description: "Learn how to use RuView, the Python-based WiFi spatial intelligence platform that tracks real-time positions, maps building layouts, and optimizes WiFi mesh networks. Step-by-step pip install guide, real-time tracking, and mesh network configuration."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"

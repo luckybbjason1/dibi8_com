@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/metabase-business-intelligence-open" />
-title: 'Metabase 2026: The Open-Source Business Intelligence Tool Replacing Tableau at Zero License Cost — Setup Guide'
+title: 'Metabase 2026: The Open-Source Business Intelligence Too...
 description: 'Complete guide to Metabase v60.2: open-source BI with visual query builder, dashboards, SQL editor, alerts, embedding, and Docker self-hosting. 41,000+ GitHub stars.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

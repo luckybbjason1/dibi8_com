@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/qiaomu-anything-to-notebooklm" />
-title: "Qiaomu Anything to NotebookLM: Convert Any Content Source to Google NotebookLM"
+title: "Qiaomu Anything to NotebookLM: Convert Any Content Sourc...
 description: "Qiaomu Anything to NotebookLM is a Claude Code Skill and Python toolkit that converts 15+ content sources — YouTube videos, podcasts, articles, PDFs — into Google NotebookLM knowledge bases, with paywall bypass capabilities."
 date: 2026-06-10
 lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pm-skills-68-product-management-skills-ai-agents" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pm-skills-68-product-management-skills-ai-agents" />
 title: 'PM技能：68项产品管理技能和42个AI代理工作流程'
-description: '用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。'
+description: '用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
@@ -21,6 +21,8 @@ sources:
     url: 'https://www.productcompass.pm'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/pm-skills-68-product-management-skills-ai-agents/ -->
 title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
 description: 'The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants.'
 date: 2026-06-22

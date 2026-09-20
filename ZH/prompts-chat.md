@@ -15,6 +15,8 @@ license: NOASSERTION
 lang: zh
 featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/prompts-chat/ -->
 # prompts.chat：16.3万+ 提示——开源提示库指南 2026
 
 title: 'prompts.chat：16.3万+ 提示词——2026年开源提示词库指南'

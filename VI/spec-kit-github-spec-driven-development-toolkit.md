@@ -14,6 +14,8 @@ slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/spec-kit-github-spec-driven-development-toolkit/ -->
+
 # Spec Kit: Bộ công cụ phát triển dựa trên thông số kỹ thuật mang tính cách mạng của GitHub 
 
 Việc phát triển phần mềm luôn gặp trở ngại bởi sự mất kết nối cơ bản: **những gì chúng tôi chỉ định** hiếm khi khớp với **những gì chúng tôi xây dựng**. Các tài liệu yêu cầu bám đầy bụi, PRD trở nên lỗi thời trong vòng vài ngày và sản phẩm cuối cùng thường khác xa đáng kể so với tầm nhìn ban đầu. 

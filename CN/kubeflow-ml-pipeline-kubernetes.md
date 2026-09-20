@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/kubeflow-ml-pipeline-kubernetes" />
-title: 'Kubeflow 2026: Run Complete ML Pipelines on Kubernetes — From Training to Production Deployment Guide'
+title: 'Kubeflow 2026: Run Complete ML Pipelines on Kubernetes —...
 description: 'A complete guide to deploying Kubeflow on Kubernetes for ML pipelines. Covers installation, components, benchmarks, production hardening, and real-world deployment patterns.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

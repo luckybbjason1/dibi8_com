@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-database-comparison" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-database-comparison" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-database-comparison" />
-title: 'So Sánh Vector Database 2025: Pinecone vs Weaviate vs Chroma vs Milvus'
+title: 'So Sánh Vector Database 2025: Pinecone vs Weaviate vs Ch...
 description: 'So sánh chi tiết 4 vector database hàng đầu 2025: Pinecone, Weaviate, Chroma, Milvus. Bảng benchmark, tính năng và hướng dẫn chọn database phù hợp cho RAG.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/vector-database-comparison/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/vector-database-comparison/ -->
 
 {</* resource-info */>}
 

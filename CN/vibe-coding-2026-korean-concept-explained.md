@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/vibe-coding-2026-korean-concept-explained" />
-title: 'Vibe Coding 2026: The Korean Developer Concept Explained for the Rest of Us'
+title: 'Vibe Coding 2026: The Korean Developer Concept Explained...
 description: 'Vibe coding (바이브 코딩) is the Korean developer term for natural-language-first programming where AI handles syntax. Toss and Kakao engineers use it daily. Here is what it means, the workflow, and why it matters outside Korea.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-title: 'Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2026）'
-description: 'Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。'
+title: 'Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
+description: 'Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -41,6 +41,8 @@ faq:
   - q: "skill、subagent 和 MCP server 都能在 CI／无头（headless）模式下工作吗？"
     a: "都能，三者皆可。skill 和 subagent 是仓库里受版本控制的文件，所以 CI 会自动接管它们。MCP server 需要在 CI 环境中完成配置并可达（凭证放在 CI secrets 中、对服务有网络访问权）。无头的 -p 模式三者都支持；唯一实际的坑是确保你的 MCP server 鉴权在无人值守运行时无需交互式登录也能正常工作。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagent-vs-mcp-server-skill-agent-2026/ -->
 # Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2026）
 
 

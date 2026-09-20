@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-presentation-tools" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-presentation-tools" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-presentation-tools" />
-title: 'Các Công Cụ Trình Chiếu AI Tốt Nhất 2025: So Sánh Gamma, Beautiful.ai, Tome Và Hơn Thế Nữa'
+title: 'Các Công Cụ Trình Chiếu AI Tốt Nhất 2025: So Sánh Gamma,...
 description: 'Tổng hợp các công cụ tạo slide AI hàng đầu năm 2025. So sánh chi tiết Gamma, Beautiful.ai, Tome, SlidesAI, Canva Magic Design và Microsoft Copilot cho PowerPoint về tính năng, giá cả và khả năng tương thích.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['ai presentation', 'trình chiếu ai', gamma, 'beautiful.ai', tome, slid
 aliases:
 - /vi/posts/ai-presentation-tools/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-presentation-tools/ -->
 # Các Công Cụ Trình Chiếu AI Tốt Nhất 2025: So Sánh Gamma, Beautiful.ai, Tome Và Hơn Thế Nữa
 
 

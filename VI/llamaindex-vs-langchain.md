@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llamaindex-vs-langchain" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llamaindex-vs-langchain" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llamaindex-vs-langchain" />
-title: 'So Sánh LlamaIndex và LangChain 2025: Chọn Framework LLM Nào?'
+title: 'So Sánh LlamaIndex và LangChain 2025: Chọn Framework LLM...
 description: 'So sánh chi tiết LlamaIndex vs LangChain 2025: kiến trúc, hiệu suất RAG, hệ sinh thái, và hướng dẫn chọn framework phù hợp cho dự án AI của bạn.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/llamaindex-vs-langchain/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/llamaindex-vs-langchain/ -->
 
 {</* resource-info */>}
 

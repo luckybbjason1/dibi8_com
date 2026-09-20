@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/perplexity-api-rag-search/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/perplexity-api-rag-search/ -->
+
 {{</* resource-info */>}}
 
 随着Perplexity API的推出，构建智能、事实感知型应用的比赛达到了一个关键里程碑——这是一个专门构建的RAG（检索增强生成）搜索服务，将大型语言模型与实时网络索引融合在一起。与传统的仅依赖静态训练数据的LLM API不同，Perplexity的Sonar模型实时查询互联网，检索权威来源，并返回带有内联引用的结构化答案。对于构建聊天机器人、研究工具、知识助手和内容验证管道的开发人员来说，这代表了一个范式转变：应用不仅能生成文本，而且能将每个声明建立在可验证的现实基础之上。

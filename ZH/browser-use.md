@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/browser-use/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/browser-use/ -->
+
 {{</* resource-info */>}}
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)

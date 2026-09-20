@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/grafana/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/grafana/ -->
+
 {{</* resource-info */>}}
 
 每一次生产事故都始于一个问题："什么变了？"如果没有一个集中化的指标、日志和追踪视图，回答这个问题可能需要几分钟 —— 有时甚至几小时。Grafana，这个拥有 73,876 个 GitHub Star 的开源可视化平台，将这个问题变成了一眼可见的仪表盘。本指南将带你完成生产级 Docker 部署、数据源集成，以及区分概念验证和生产就绪监控栈的加固决策。

@@ -11,6 +11,8 @@ layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/best-ai-image-generators/ -->
 # Trình Tạo Ảnh AI Tốt Nhất 2026
 
 slug: best-ai-image-generators

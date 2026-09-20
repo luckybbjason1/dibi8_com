@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-notebook-open-source-notebooklm-alternative-15-ai-providers" />
-title: 'open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026'
+title: 'open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Tr...
 description: 'open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nhà cung cấp AI. Thư viện kiến thức RAG self-hosted với podcast audio đa phương tiện. Bao gồm hướng dẫn cài đặt, so sánh nhà cung cấp và benchmark thực tế.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/open-notebook-open-source-notebooklm-alternative-15-ai-providers/ -->
 
 # open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/skyvern-dev-utils-2026" />
-title: 'Skyvern: Automate Browser Workflows with AI Agents (21K Stars) — Practical 2026 Guide'
+title: 'Skyvern: Automate Browser Workflows with AI Agents (21K ...
 description: 'Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-3.0). Covers installation, the real Python API, working code examples, and an honest comparison with Selenium and Playwright.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mastra" />
-title: 'Mastra: 24K+ Stars — TypeScript AI Framework That Cuts Token Costs 4-10x in 2026'
+title: 'Mastra: 24K+ Stars — TypeScript AI Framework That Cuts T...
 description: 'Mastra is a TypeScript-native AI framework for building AI-powered applications and agents from the Gatsby team. Covers Mastra vs LangChain, installation, workflows, RAG, memory, observability, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

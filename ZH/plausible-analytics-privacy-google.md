@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
-title: 'Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍，2026年自建部署指南'
-description: 'Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。'
+title: 'Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
+description: 'Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [plausible, analytics, 隐私, gdpr, 'google-analytics替代品', 自建�
 aliases:
 - /zh/posts/plausible-analytics-privacy-google/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/plausible-analytics-privacy-google/ -->
 
 {{</* resource-info */>}}
 

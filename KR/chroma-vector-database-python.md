@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/chroma-vector-database-python" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/chroma-vector-database-python" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/chroma-vector-database-python" />
-title: 'Chroma DB 2026: 개발자 친화적 RAG 벡터 데이터베이스, 50배 더 빠른 임베딩 — Python 가이드'
-description: 'Chroma 벡터 데이터베이스 Python 실전 가이드. 설치, RAG 통합, 임베딩 검색, 프로덕션 배포까지. 벤치마크, 비교 분석, 실제 사례 포함.'
+title: 'Chroma DB 2026: 개발자 친화적 RAG 벡터 데이터베이스, 50배 더 빠른 임베딩 — Py...
+description: 'Chroma 벡터 데이터베이스 Python 실전 가이드. 설치, RAG 통합, 임베딩 검색, 프로덕션 배포까지. 벤치마크, 비교 분석, 실제 사례 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/chroma-vector-database-python/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/chroma-vector-database-python/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-llm-token-savings-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-llm-token-savings-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-llm-token-savings-2026" />
-title: 'rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding (2026)'
+title: 'rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
 description: 'rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claude Code / Cursor / Copilot / Codex / Gemini CLI và 9 công cụ AI khác. <10ms overhead, MIT open source, cài đặt 30 giây không cấu hình.'
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
@@ -40,6 +40,8 @@ faqs:
   - q: 'rtk có an toàn cho production CI/CD không?'
     a: 'An toàn trong agent workflow. Không dùng trong pipeline set -e nghiêm ngặt phụ thuộc văn bản output chính xác. Nhưng trong vòng lặp AI agent đọc output để quyết định bước tiếp theo, output nén của rtk chính là cái agent cần.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/rtk-rust-cli-proxy-llm-token-savings-2026/ -->
 
 {{</* resource-info */>}}
 

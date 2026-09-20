@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/meilisearch-fast-search-engine" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/meilisearch-fast-search-engine" />
 title: 'Meilisearch: 번개처럼 빠른 오픈소스 오타 허용 검색 엔진 — 2026 설정 및 벤치마크'
-description: 'Meilisearch 1.12를 배포하여 50ms 미만의 오타 허용 고속 검색을 구현하세요. Docker 설정, SDK 통합, 프로덕션 벤치마크 및 대안과의 정직한 비교를 포함합니다.'
+description: 'Meilisearch 1.12를 배포하여 50ms 미만의 오타 허용 고속 검색을 구현하세요. Docker 설정, SDK 통합, 프로덕션 벤치마크 및 대안과의 정직한 비교를 포함합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/meilisearch-fast-search-engine/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/meilisearch-fast-search-engine/ -->
 
 {{</* resource-info */>}}
 

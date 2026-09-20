@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
-title: 'OpenAI Whisper: 99.8K+ Stars — 完整ASR配置教程 vs WhisperX、faster-whisper 2026'
+title: 'OpenAI Whisper: 99.8K+ Stars — 完整ASR配置教程 vs WhisperX、fas...
 description: 'OpenAI Whisper (ASR) 基于大规模弱监督的鲁棒语音识别。兼容 WhisperX、faster-whisper、LibreTranslate。涵盖 whisper 教程、whisper vs whisperx、语音识别配置、whisper python、whisper docker。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [whisper, 语音识别, asr, openai, 'faster-whisper', whisperx, python, d
 aliases:
 - /zh/posts/openai-whisper/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/openai-whisper/ -->
 
 {{</* resource-info */>}}
 

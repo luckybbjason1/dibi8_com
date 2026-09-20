@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/skyvern-dev-utils-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/skyvern-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/skyvern-dev-utils-2026" />
-title: 'Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (21K Sao) — Hướng dẫn Thực tế 2026'
+title: 'Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
 description: 'Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (21.803 sao GitHub, AGPL-3.0). Bao gồm cài đặt, API Python thực tế, ví dụ mã chạy được và so sánh thẳng thắn với Selenium và Playwright.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Tôi có thể tìm thêm thông tin về cách dùng Skyvern-AI/skyvern ở đâu?'
     a: 'Xem trang chính thức tại <https://www.skyvern.com> và README trên GitHub, cả hai đều trình bày chi tiết về cài đặt, API và các quy trình mẫu.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/skyvern-dev-utils-2026/ -->
 
 {{< resource-info >}}
 

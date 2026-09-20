@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/skillspector-nvidia-open-source-security-scanner-ai-agent-skills" />
-  title: "SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills"
+  title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ...
   description: 'A security scanner for AI agent skills that detects vulnerabilities, malicious patterns, and security risks before installing agent skills. 10K stars from NVIDIA. Protect Claude Code, Codex CLI, and other agent frameworks.'
   date: 2026-06-25
   lastmod: 2026-06-25

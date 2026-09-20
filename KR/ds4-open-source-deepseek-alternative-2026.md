@@ -41,6 +41,8 @@ faqs:
     a: '네. 여러 팀(Marsh McLennan, Replit infra)이 다개월 프로덕션 안정성 보고. 2026 Q1부터 주간 릴리스로 활발한 유지보수. 주요 고려사항은 운영 복잡도 — 모든 LLM 런타임처럼 ds4도 프로덕션 배포를 위해 SRE 역량 필요.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ds4-open-source-deepseek-alternative-2026/ -->
+
 {{</* resource-info */>}}
 
 ## Quick Answer

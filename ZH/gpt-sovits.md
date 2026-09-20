@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-sovits" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-sovits" />
 title: 'GPT-SoVITS: 57.5K+ Stars — AI声音克隆生产部署指南 2026'
-description: 'GPT-SoVITS (GSV) 是一款少样本语音克隆和TTS工具，支持零样本推理。兼容ComfyUI、RVC和MeloTTS。涵盖Docker部署、语音训练、API配置和生产环境加固。'
+description: 'GPT-SoVITS (GSV) 是一款少样本语音克隆和TTS工具，支持零样本推理。兼容ComfyUI、RVC和MeloTTS。涵盖Docker部署、语音训练、API配置和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [语音克隆, 文本转语音, 'gpt-sovits', tts, ai语音, docker, rvc, 
 aliases:
 - /zh/posts/gpt-sovits/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/gpt-sovits/ -->
 
 {{</* resource-info */>}}
 

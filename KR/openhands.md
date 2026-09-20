@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhands" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhands" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhands" />
-title: 'OpenHands: 74K+ Stars — 코드를 작성하고 실행하는 AI 소프트웨어 엔지니어 (2026 설치 가이드)'
+title: 'OpenHands: 74K+ Stars — 코드를 작성하고 실행하는 AI 소프트웨어 엔지니어 (202...
 description: 'OpenHands는 소프트웨어 엔지니어링 에이전트로 작동하는 AI 기반 개발 플랫폼입니다. VS Code, Docker, GitHub, GitLab, Claude, OpenAI와 호환됩니다. Docker 설치, 모델 구성, 헤드리스 CI/CD 모드, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/openhands/
 - /kr/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/openhands/ -->
 
 {{</* resource-info */>}}
 

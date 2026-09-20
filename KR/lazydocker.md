@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lazydocker" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lazydocker" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/lazydocker" />
-title: 'LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가이드 2026'
+title: 'LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가...
 description: 'LazyDocker (LD)는 Docker 컨테이너, 이미지, 볼륨 및 로그를 관리하기 위한 터미널 UI입니다. Docker, Docker Compose, Go 및 Terminal과 호환됩니다. 설치, 키바인딩, 구성 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [lazydocker, docker, '터미널-ui', devops, 컨테이너, 'cli-도구', '
 aliases:
 - /kr/posts/lazydocker/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/lazydocker/ -->
 
 {{</* resource-info */>}}
 

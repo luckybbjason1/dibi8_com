@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-patterns-multi-agent-workflows-2026" />
-title: 'Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)'
-description: '프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.'
+title: 'Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
+description: '프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -41,6 +41,8 @@ faq:
   - q: "Claude Code subagent 가격은 어떻게 작동하나요 — 각각에 대해 별도로 청구되나요?"
     a: "각 subagent 호출은 다른 Claude 대화처럼 토큰을 소비합니다. 비용은 대략 subagent의 전체 컨텍스트입니다 (시스템 프롬프트 + 도구 스키마 + 작업 프롬프트 + 사고 + 최종 보고서). Pro와 Max 플랜에서 subagent 사용은 부모 세션과 같은 사용 한도에 산입됩니다. API 사용자의 경우 토큰당 직접 청구됩니다. 절약은 부모 컨텍스트를 부풀릴 탐색을 분담함으로써 발생합니다 — subagent에 비용을 지불하지만, 메인 세션은 빠르고 집중된 상태로 유지됩니다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagent-patterns-multi-agent-workflows-2026/ -->
 # Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026)
 
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/moss-trade-bot-factory-2026-review" />
-title: 'Moss Trade Bot Factory Review 2026: AI Agent Quant Workbench — Why Pretty Backtests Lie'
+title: 'Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...
 description: 'Hands-on review of moss-trade-bot-skills v1.0.26: a natural-language quant agent builder for Hyperliquid perps. Industrial-grade backtest engine with Decimal precision and depth-book modeling — but a Sharpe annualization bug and a textbook OVERFIT trap once you enable evolution. Setup walkthrough, OOS validation results, and the honest take on whether evolved params survive out-of-sample.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00

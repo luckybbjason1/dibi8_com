@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/data-cleaning-tools-best-practices" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/data-cleaning-tools-best-practices" />
 title: '数据清洗工具与最佳实践：OpenRefine、Python库与自动化解决方案完全指南'
-description: '系统梳理数据清洗工具栈，深度对比OpenRefine、Pandas、Great Expectations与Cleanlab，附可复用的数据清洗流水线搭建指南与最佳实践清单。'
+description: '系统梳理数据清洗工具栈，深度对比OpenRefine、Pandas、Great Expectations与Cleanlab，附可复用的数据清洗流水线搭建指南与最佳实践清单。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/data-cleaning-tools-best-practices/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/data-cleaning-tools-best-practices/ -->
 
 {</* resource-info */>}
 

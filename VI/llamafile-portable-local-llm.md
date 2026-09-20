@@ -15,6 +15,8 @@ slug: llamafile-portable-local-llm
 lang: vi
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/llamafile-portable-local-llm/ -->
+
 ## TL;DR
 
 LlamaFile là một cách tiếp cận mang tính cách mạng để chạy large language models local: bundle toàn bộ LLM vào một single executable file chạy trên bất kỳ máy tính nào mà không cần cài đặt, GPU hay dependency phức tạp. Được tạo bởi Meta và MLC AI, nó dân chủ hóa local AI bằng cách làm cho private, offline inference có thể tiếp cận được với tất cả mọi người. Bài viết này bao gồm cách hoạt động, lựa chọn model, benchmark hiệu năng và các pattern deployment thực tế.

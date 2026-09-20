@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/libretranslate" />
-title: 'LibreTranslate: Self-Hosted Translation API with 14.4K+ Stars — Production Deployment Guide 2026'
+title: 'LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
 description: 'LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Supports Docker, CUDA GPU, 30+ languages, and offline deployment. Covers setup, benchmarks, monitoring, and integration with OpenAI Whisper, Coqui TTS, and Argos Translate.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -30,6 +30,8 @@ aliases:
 - /kr/resources/llm-frameworks/ollama-local-llm-guide/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ollama/ -->
+
 {{</* resource-info */>}}
 
 대규모 언어 모델을 실행하는 것은 과거에 Python 환경, CUDA 드라이버, 수 GB의 의존성과 씨름하는 것을 의미했습니다. 2026년이 되면서 그 마찰은 사라졌습니다. [Ollama](https://ollama.com)는 단 하나의 명령으로 프로덕션급 LLM을 가져오고, 구성하고, 서빙할 수 있게 해줍니다 — PyTorch 설치, 수동 GPU 튜닝, 심지어 Docker까지 필요 없습니다. 137,000개 이상의 GitHub Star와 번성하는 통합 생태계를 보유한 Ollama는 운영적 부담 없이 로컬 추론을 원하는 개발자를 위한 기본 런타임이 되었습니다.

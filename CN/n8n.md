@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/n8n" />
-title: 'n8n AI Workflow Automation: Self-Hosted Setup with 188K+ Stars — Save 70% vs Zapier in 2026'
+title: 'n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
 description: 'n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations. Compatible with Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Covers Docker setup, AI node configuration, webhook deployment, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

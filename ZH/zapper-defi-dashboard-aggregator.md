@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/zapper-defi-dashboard-aggregator/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/zapper-defi-dashboard-aggregator/ -->
+
 {{</* resource-info */>}}
 
 **日期：** 2026-05-19  

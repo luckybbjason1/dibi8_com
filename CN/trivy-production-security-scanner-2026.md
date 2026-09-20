@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/trivy-production-security-scanner-2026" />
-title: 'Trivy: Stop Shipping Vulnerable Containers to Production — Security Scanning Guide 2026'
+title: 'Trivy: Stop Shipping Vulnerable Containers to Production...
 description: 'Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works with Kubernetes, Docker, GitHub Actions, and CI pipelines. Scans 600K+ CVEs, secrets, and misconfigurations. Covers installation, policy-as-code, and production hardening.'
 date: 2026-06-09
 lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'

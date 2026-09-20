@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-landscape-2026-skills-mcp-opensource" />
-title: 'Bức Tranh AI Coding Agent 2026: Kỷ Nguyên Skills, MCP và Sự Trỗi Dậy của Mã Nguồn Mở'
+title: 'Bức Tranh AI Coding Agent 2026: Kỷ Nguyên Skills, MCP và...
 description: 'Thị trường trợ lý lập trình AI năm 2026 đang ở ngã ba đường. Hệ sinh thái Claude Code Skills vượt 3.000 skills, giao thức MCP trở thành tiêu chuẩn kết nối, trong khi các giải pháp mã nguồn mở như OpenCode và Hermes Agent bùng nổ. Hướng dẫn chi tiết xây dựng workflow chống vendor lock-in và tận dụng MCP để tăng năng suất lập trình.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-coding-agent-landscape-2026-skills-mcp-opensource/ -->
 
 {</* resource-info */>}
 

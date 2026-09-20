@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-knowledge-graph-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-knowledge-graph-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-knowledge-graph-2026" />
-title: 'Đánh giá CodeGraph: Đồ thị mã được pre-index giúp Claude Code, Cursor, Codex tiết kiệm 35% token (2026)'
+title: 'Đánh giá CodeGraph: Đồ thị mã được pre-index giúp Claude...
 description: 'CodeGraph (20.2K+ stars trên GitHub) là công cụ open-source pre-index đồ thị tri thức mã nguồn cho Claude Code, Cursor, Codex CLI, OpenCode và Hermes Agent. Lưu cục bộ SQLite, 19 ngôn ngữ, nhận diện 14 framework routing, không cần API ngoài. Giảm ~35% token và ~70% lượng tool call so với grep/glob/Read thô. Phân tích tính năng, hướng dẫn cài đặt, workflow thực tế, so sánh với LSP và dịch vụ MCP.'
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [codegraph, 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings
 aliases:
 - /vi/posts/codegraph-pre-indexed-knowledge-graph-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/codegraph-pre-indexed-knowledge-graph-2026/ -->
 
 ## Vấn đề: AI coding agent đang đốt token vào `grep`
 

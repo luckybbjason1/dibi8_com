@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
-title: 'ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — 완전 설정 가이드'
-description: '20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포.'
+title: 'ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — ...
+description: '20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/zenml-mlops-pipeline-framework/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/zenml-mlops-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
-title: 'ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và Tích Hợp CI/CD cho Phân Tích Shell Script 2026'
+title: 'ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
 description: 'ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Actions, VS Code. Bao gồm cài đặt, cấu hình CI/CD, và tăng cường production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [shellcheck, bash, 'phân-tích-tĩnh', linting, 'shell-script', devops, '
 aliases:
 - /vi/posts/shellcheck/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/shellcheck/ -->
 
 {{</* resource-info */>}}
 

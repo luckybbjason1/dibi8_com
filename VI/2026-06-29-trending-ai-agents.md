@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-29-trending-ai-agents" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/2026-06-29-trending-ai-agents" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/2026-06-29-trending-ai-agents" />
-title: "Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo GitHub Xu Hướng Hàng Đầu (Tuần của ngày 29 tháng 6, 2026)"
+title: "Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo Gi...
 description: "Tổng hợp hàng tuần được chỉnh sửa thủ công về các dự án AI agent, LLM và MCP mã nguồn mở đang thịnh hành trên GitHub — dữ liệu được tự động thu thập bởi Dibi8 Tribe Intel, phân tích bởi đội ngũ biên tập Dibi8."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-29 00:00:00+09:00
@@ -21,6 +21,8 @@ methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os
 review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/2026-06-29-trending-ai-agents/ -->
 # Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo GitHub Xu Hướng Hàng Đầu (Tuần của ngày 29 tháng 6, 2026)
 ---
 

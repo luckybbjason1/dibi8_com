@@ -41,6 +41,8 @@ faqs:
     a: '이 도구 자체는 MIT 라이선스 하에 무료 오픈소스로 제공되며, 구독료나 사용자 수에 따른 요금이 없습니다. 유일한 비용은 실제로 소비하는 AI 제공업체의 API 사용량으로, Anthropic, OpenAI, Google 등의 제공업체에 실제로 발생한 호출에 대해서만 비용을 지불합니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/open-design-local-first-ai-design-tool/ -->
+
 {</* resource-info */>}
 
 # Open Design: Claude Design을 대체하는 궁극의 로컬 우선 AI 디자인 도구

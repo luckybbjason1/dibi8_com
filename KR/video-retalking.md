@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/video-retalking" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/video-retalking" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/video-retalking" />
-title: 'VideoReTalking: 7.2K+ Stars — AI 입술 동기화 영상 편집 완벽 설치 가이드 2026'
+title: 'VideoReTalking: 7.2K+ Stars — AI 입술 동기화 영상 편집 완벽 설치 가이드 ...
 description: 'VideoReTalking (VRT)은 말하는 얼굴 영상 편집을 위한 오디오 기반 입술 동기화 시스템이다. RVC, GPT-SoVITS, Coqui TTS와 호환. 설치, 추론, Gradio WebUI, 프로덕션 배포, Wav2Lip 및 SadTalker와의 벤치마크 포함.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [립싱크, 영상편집, 토킹헤드, 딥페이크, ffmpeg, pytorch, gra
 aliases:
 - /kr/posts/video-retalking/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/video-retalking/ -->
 
 {{</* resource-info */>}}
 

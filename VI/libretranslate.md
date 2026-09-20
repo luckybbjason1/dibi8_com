@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
-title: 'LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hướng Dẫn Triển Khai Production 2026'
+title: 'LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hư...
 description: 'LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CUDA GPU, 30+ ngôn ngữ và triển khai offline. Bao gồm cài đặt, benchmark hiệu suất, giám sát và tích hợp với OpenAI Whisper, Coqui TTS, Argos Translate.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [libretranslate, 'dịch máy', 'tự host', docker, api, 'mã nguồn m�
 aliases:
 - /vi/posts/libretranslate/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/libretranslate/ -->
 
 {{</* resource-info */>}}
 

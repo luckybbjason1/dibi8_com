@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
 title: 'AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署指南'
-description: '使用 Docker 部署 AFFiNE v0.26.3 作为 Notion+Miro 的开源自托管替代方案。本地优先 CRDT 协作、无边画布、AI 写作助手、5 分钟 Docker 部署。'
+description: '使用 Docker 部署 AFFiNE v0.26.3 作为 Notion+Miro 的开源自托管替代方案。本地优先 CRDT 协作、无边画布、AI 写作助手、5 分钟 Docker 部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [affine, 知识库, 白板, 自托管, docker, notion替代品, miro替代
 aliases:
 - /zh/posts/affine-knowledge-base-whiteboard/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/affine-knowledge-base-whiteboard/ -->
 
 {{</* resource-info */>}}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/fine-tuning-stack" />
-title: 'Fine-Tuning Stack 2026: 5-Component Pipeline From Dataset to Production-Deployed LLM'
+title: 'Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
 description: 'Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (eval tracking) + vLLM (serving). $50-300/mo training infra. Full pipeline: dataset prep → experiment → production fine-tune → eval → deploy.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00

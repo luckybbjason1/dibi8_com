@@ -27,6 +27,8 @@ aliases:
 - /posts/ds4/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/ds4-deepseek-4-flash-local-inference-engine/ -->
+
 {</* resource-info */>}
 # ds4：2026年开发者正在切换的开源工具 — 完整配置指南
 

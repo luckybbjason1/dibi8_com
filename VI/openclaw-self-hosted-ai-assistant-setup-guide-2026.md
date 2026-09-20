@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-title: 'OpenClaw Hướng Dẫn Chi Tiết: Cách Tự Lưu Trữ Trợ Lý AI Mã Nguồn Mở Tốt Nhất 2026｜Xây Dựng AI Riêng Miễn Phí'
+title: 'OpenClaw Hướng Dẫn Chi Tiết: Cách Tự Lưu Trữ Trợ Lý AI M...
 description: 'GitHub 362K+ Star — OpenClaw là dự án AI mã nguồn mở tăng trưởng nhanh nhất lịch sử. Hướng dẫn chi tiết kiến trúc, cài đặt tự lưu trữ, tích hợp đa nền tảng, và cách xây dựng trợ lý AI cục bộ miễn phí với OpenClaw.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openclaw-self-hosted-ai-assistant-setup-guide-2026/ -->
 
 {</* resource-info */>}
 

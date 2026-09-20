@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dvc-data-version-control-ml" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dvc-data-version-control-ml" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dvc-data-version-control-ml" />
-title: 'DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipeline & Thí Nghiệm Tái Tạo Được — Hướng Dẫn 2026'
+title: 'DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipelin...
 description: 'Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với workflow kiểu Git. Bao gồm cài đặt, backend S3/GCS/Azure, tích hợp CI/CD, benchmark và hardening production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [dvc, 'data version control', mlops, git, 'machine learning', 'tái tạo 
 aliases:
 - /vi/posts/dvc-data-version-control-ml/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/dvc-data-version-control-ml/ -->
 
 {{</* resource-info */>}}
 

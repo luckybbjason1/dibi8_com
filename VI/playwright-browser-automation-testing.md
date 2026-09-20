@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
-title: 'Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhanh hơn Selenium 3 lần — Hướng dẫn Cài đặt'
+title: 'Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhan...
 description: 'Làm chủ Playwright 1.51 để tự động hóa đa trình duyệt. Hỗ trợ Chrome, Firefox, WebKit. Tự động chờ, tracing, codegen và kiểm thử song song. Nhanh hơn Selenium 3 lần.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [playwright, 'tự động hóa trình duyệt', 'kiểm thử', 'web scra
 aliases:
 - /vi/posts/playwright-browser-automation-testing/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/playwright-browser-automation-testing/ -->
 
 {{</* resource-info */>}}
 

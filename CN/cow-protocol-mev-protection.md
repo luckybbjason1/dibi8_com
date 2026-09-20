@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cow-protocol-mev-protection" />
-title: 'CoW Protocol 2026: The MEV-Protected DEX Aggregator Saving Traders $100M+ in Slippage — Setup Guide'
+title: 'CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi...
 description: 'Comprehensive guide to CoW Protocol, the MEV-protected DEX aggregator using batch auctions and solver competition to save traders $100M+ in slippage. Includes SDK integration, trading bot setup, and best practices.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/kubeflow-ml-pipeline-kubernetes" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/kubeflow-ml-pipeline-kubernetes" />
 title: 'Kubeflow 2026: 在 Kubernetes 上运行完整 ML 流水线 — 从训练到生产部署指南'
-description: '在 Kubernetes 上部署 Kubeflow 构建 ML 流水线的完整指南。涵盖安装、组件、基准测试、生产加固和真实部署模式。'
+description: '在 Kubernetes 上部署 Kubeflow 构建 ML 流水线的完整指南。涵盖安装、组件、基准测试、生产加固和真实部署模式。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [kubeflow, kubernetes, 机器学习, ml流水线, mlops, 'kubeflow pipelin
 aliases:
 - /zh/posts/kubeflow-ml-pipeline-kubernetes/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/kubeflow-ml-pipeline-kubernetes/ -->
 
 {{</* resource-info */>}}
 

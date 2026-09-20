@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moralis-web3-data-api" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moralis-web3-data-api" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moralis-web3-data-api" />
-title: 'Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API — 설정 가이드'
+title: 'Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API...
 description: '2026년 Moralis Web3 Data API 완벽 가이드. JavaScript, Python, Unity SDK로 10개 이상의 체인에서 실시간 블록체인 데이터, NFT 메타데이터, 토큰 가격, 지갑 잔액을 가져오는 방법을 배우세요.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [moralis]
 aliases:
 - /kr/posts/moralis-web3-data-api/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/moralis-web3-data-api/ -->
 
 {{</* resource-info */>}}
 

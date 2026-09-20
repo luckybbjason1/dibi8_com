@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/github-trending-projects-may-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/github-trending-projects-may-2026" />
 title: "DeepSeek 终端编程智能体 + Anthropic金融AI：2026年5月GitHub最值得关注的开源项目"
-description: "深度解析GitHub 2026年5月三大热门趋势项目：一夜暴涨5800星的DeepSeek-TUI终端编程智能体、Anthropic首个垂直金融领域Claude智能体套件，以及完全本地化的加密AI研究工具。"
+description: "深度解析GitHub 2026年5月三大热门趋势项目：一夜暴涨5800星的DeepSeek-TUI终端编程智能体、Anthropic首个垂直金融领域Claude智能体套件，以及完全本地化的加密AI研究工具。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'Local Deep Research 是否保护隐私，它的准确度如何？'
     a: 'Local Deep Research 完全在你自己的硬件上运行，零遥测、无云依赖，并将研究历史存储在经 SQLCipher 加密的数据库中。尽管在本地运行，但当它在 RTX 3090 上搭配 Qwen3.6-27B 时，在 SimpleQA 上能达到约 95% 的准确度，并支持包括 arXiv 和 PubMed 在内的 10 多个搜索引擎。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/github-trending-projects-may-2026/ -->
 {</* resource-info */>}
 
 ## 引言

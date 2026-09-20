@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/github-trending-projects-may-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/github-trending-projects-may-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/github-trending-projects-may-2026" />
-title: "DeepSeek TUI + Anthropic 금융 AI: 2026년 5월 GitHub에서 실제로 수익으로 이어지는 트렌드 프로젝트"
-description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 프로젝트 3선을 분석합니다."
+title: "DeepSeek TUI + Anthropic 금융 AI: 2026년 5월 GitHub에서 실제로 수익...
+description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 프로젝트 3선을 분석합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'Local Deep Research는 프라이버시를 보장하나요, 그리고 정확도는 어느 정도인가요?'
     a: 'Local Deep Research는 텔레메트리 없이 클라우드 의존성도 없이 전적으로 사용자 자신의 하드웨어에서 실행되며, 연구 기록을 SQLCipher로 암호화된 데이터베이스에 저장합니다. 로컬에서 실행됨에도 불구하고 RTX 3090에서 Qwen3.6-27B와 함께 사용할 때 SimpleQA에서 약 95%의 정확도에 도달하며, arXiv와 PubMed를 포함해 10개 이상의 검색 엔진을 지원합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/github-trending-projects-may-2026/ -->
 {</* resource-info */>}
 
 ## 소개

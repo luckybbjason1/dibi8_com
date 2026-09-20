@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/copilotkit" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/copilotkit" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/copilotkit" />
-title: 'CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụng React hoặc Angular — Hướng Dẫn Cài Đặt 2026'
+title: 'CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụn...
 description: 'CopilotKit là frontend stack mã nguồn mở cho AI copilot và generative UI trong ứng dụng. Xây dựng React Angular AI assistant với components có sẵn, hooks useCopilotAction, và triển khai production. Bao gồm cài đặt, tích hợp LangChain, self-hosting, và so sánh hiệu suất với Vercel AI SDK.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [copilotkit, 'react-ai', 'generative-ui', 'ai-copilot', langchain, 'fronte
 aliases:
 - /vi/posts/copilotkit/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/copilotkit/ -->
 
 {{</* resource-info */>}}
 

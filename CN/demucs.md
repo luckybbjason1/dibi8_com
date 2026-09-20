@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/demucs" />
-title: 'Demucs: Music Source Separation with 10K+ Stars — Comparison vs UVR, Spleeter in 2026'
+title: 'Demucs: Music Source Separation with 10K+ Stars — Compar...
 description: 'Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ultimate Vocal Remover, RVC, GPT-SoVITS. Covers demucs tutorial, demucs vs uvr, demucs docker setup, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

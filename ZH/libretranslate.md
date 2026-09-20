@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/libretranslate/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/libretranslate/ -->
+
 {{</* resource-info */>}}
 
 LibreTranslate 是一个免费、开源的机器翻译 API，由你自己托管。不需要 Google 的 API 密钥。没有 DeepL 的按字符计费。数据不会离开你的基础设施。凭借 14,400+ 的 GitHub Stars 以及活跃的发布周期（截至 2026 年 5 月为 v1.9.5），它已成为需要私密、离线翻译且零边际成本的开发者的默认选择。本指南是一份完整的 LibreTranslate tutorial，涵盖从 libretranslate setup 到 libretranslate docker 生产部署的全流程，同时包含与 DeepL 和 Google Translate 的详细对比（libretranslate vs deepl）以及 self-hosted translation 的最佳实践。本指南将介绍生产环境部署、基准测试和集成方案。

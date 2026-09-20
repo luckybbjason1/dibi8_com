@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-llm-ranking-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-llm-ranking-guide" />
 title: '开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比'
-description: '2025年开源大模型排行：Llama 3.3、Mistral、Qwen2.5、DeepSeek V3、Gemma、Phi-4全面对比，含 benchmark 数据、许可证分析与硬件需求指南。'
+description: '2025年开源大模型排行：Llama 3.3、Mistral、Qwen2.5、DeepSeek V3、Gemma、Phi-4全面对比，含 benchmark 数据、许可证分析与硬件需求指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/open-source-llm-ranking-guide/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/open-source-llm-ranking-guide/ -->
 # 开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比
 
 

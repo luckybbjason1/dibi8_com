@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
 title: 'Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南'
-description: 'Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。'
+description: 'Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards
 aliases:
 - /zh/posts/metabase-business-intelligence-open/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/metabase-business-intelligence-open/ -->
 
 {{</* resource-info */>}}
 

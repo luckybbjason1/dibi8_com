@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/pm-skills-68-product-management-skills-ai-agents" />
-title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
+title: 'PM-Skills: 68 Product Management Skills and 42 Workflows...
 description: 'The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants.'
 tags: ["ai-agent", "automation", "open-source"]
 date: 2026-06-22
@@ -19,7 +19,7 @@ sources:
 lang: en
 ---
 ---
-title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
+title: 'PM-Skills: 68 Product Management Skills and 42 Workflows...
 description: 'The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants.'
 date: 2026-06-22
 lastmod: 2026-06-22

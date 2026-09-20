@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-engineering-from-scratch" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-engineering-from-scratch" />
 title: "从零开始构建 AI 工程：打造生产级 LLM 系统——2026 完整指南"
-description: "AI Engineering From Scratch（32,771 颗星）是一套全面的课程体系，涵盖 LLM 微调、RAG、Agent 框架和生产部署。学习构建、交付和扩展 AI 系统。"
+description: "AI Engineering From Scratch（32,771 颗星）是一套全面的课程体系，涵盖 LLM 微调、RAG、Agent 框架和生产部署。学习构建、交付和扩展 AI 系统。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: ai-engineering-from-scratch
 category: llm-frameworks
@@ -25,6 +25,8 @@ images:
 lang: zh
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-engineering-from-scratch/ -->
 
 ## 快速概览
 

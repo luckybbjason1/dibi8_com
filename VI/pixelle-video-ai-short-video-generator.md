@@ -4,9 +4,9 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pixelle-video-ai-short-video-generator" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pixelle-video-ai-short-video-generator" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pixelle-video-ai-short-video-generator" />
-title: 'Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động Bằng AI, Nhập Chủ Đề
+title: 'Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động B...
   Nhận Video Hoàn Chỉnh'
-description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã
+description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã. Comprehensive guide covering features, pricing, and best practices for 2026.
   nguồn mở. Nhập chủ đề để tự động tạo kịch bản, hình ảnh AI, lời thuyết minh và nhạc
   nền.
 date: 2026-05-15 04:20:25+09:00
@@ -41,6 +41,8 @@ faqs:
   - q: 'Pixelle-Video có thể làm gì ngoài tạo video cơ bản?'
     a: 'Công cụ này bao gồm ba mô-đun mở rộng: Digital Human Avatar — biến một bức ảnh thành video đầu người nói có đồng bộ môi bằng tiếng Hàn, tiếng Trung hoặc tiếng Anh; Image-to-Video — chuyển ảnh tĩnh thành video động; và Motion Transfer — ánh xạ chuyển động từ video tham chiếu lên ảnh tĩnh.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/pixelle-video-ai-short-video-generator/ -->
 # Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động Bằng AI, Nhập Chủ Đề
 
 {</* resource-info */>}

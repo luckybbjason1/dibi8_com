@@ -3,8 +3,8 @@
 <link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
-title: 'nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 LLM 训练管道'
-description: '由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。'
+title: 'nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L...
+description: '由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']
@@ -36,6 +36,8 @@ faqs:
   - q: 'nanochat 使用什么训练数据？'
     a: 'nanochat 在 FineWeb（高质量网页文本数据集）上预训练，然后在 SmolTalk（用户-助手对话）、多选题和工具使用数据上进行监督微调。分词器也从同一数据集从零训练。不需要任何专有数据集。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/nanochat-karpathy-train-your-own-llm-100-dollars-2026/ -->
 
 ![nanochat 2026: Andrej Karpathy LLM 训练管道 — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 

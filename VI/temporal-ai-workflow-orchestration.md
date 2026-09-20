@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/temporal-ai-workflow-orchestration" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/temporal-ai-workflow-orchestration" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/temporal-ai-workflow-orchestration" />
-title: Temporal AI Workflow Orchestration — Quy Trình AI Đa Bước Đáng Tin Cậy
+title: Temporal AI Workflow Orchestration — Quy Trình AI Đa Bước...
 description: Hướng dẫn toàn diện về Temporal để orchestrate AI/ML workflow. Xây dựng pipeline LLM đáng tin cậy, hệ thống multi-agent và job training ML với durability, retry và observability tích hợp sẵn.
 tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
 category: dev-utils
@@ -14,6 +14,8 @@ lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/temporal-ai-workflow-orchestration/ -->
 
 ## TL;DR
 

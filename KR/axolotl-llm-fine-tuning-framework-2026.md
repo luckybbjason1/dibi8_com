@@ -29,6 +29,8 @@ aliases:
   - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/axolotl-llm-fine-tuning-framework-2026/ -->
+
 Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Hugging Face Trainer 래퍼 작성한 적 있다면 **Axolotl**이 채우는 갭을 느낌. 한 YAML 파일이 전체 파인튜닝 실행 설명 — 모델, 데이터셋, LoRA config, 하이퍼파라미터, 분산 전략 — 그리고 Axolotl이 나머지 처리.
 
 12k GitHub 별, Apache 2.0, 모든 주요 LLM 패밀리 지원 (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan 등) 및 2026에 중요한 모든 파인튜닝 방법 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO 선호 튜닝, GRPO/GDPO 강화 학습, 보상 모델링).

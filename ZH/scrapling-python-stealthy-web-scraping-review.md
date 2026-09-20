@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scrapling-python-stealthy-web-scraping-review" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scrapling-python-stealthy-web-scraping-review" />
 title: Scrapling 实测:更快、更隐蔽的 Python 爬虫框架
-description: Scrapling评测：Python隐形网页抓取库。绕过反爬虫机制，处理动态内容，轻松实现大规模数据抓取。
+description: Scrapling评测：Python隐形网页抓取库。绕过反爬虫机制，处理动态内容，轻松实现大规模数据抓取。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -40,6 +40,8 @@ faqs:
   - q: 'Scrapling 默认遵守 robots.txt 吗？'
     a: '不遵守。robots_txt_obey 设置是可选启用的，默认不开启，因此你必须主动启用它。这是为了照顾拥有被抓取站点的用户而做出的有意设计，但在抓取第三方站点时忘记开启可能带来法律风险。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/scrapling-python-stealthy-web-scraping-review/ -->
 # Scrapling 实测:更快、更隐蔽的 Python 爬虫框架
 
 {</* resource-info */>}

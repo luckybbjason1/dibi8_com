@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hello-agents-ai-agent-building-tutorial" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hello-agents-ai-agent-building-tutorial" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hello-agents-ai-agent-building-tutorial" />
-title: "Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로에서 프로덕션급 에이전트 구축을 돕는 방법"
+title: "Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로에서 프로덕션급 에...
 description: "Datawhale Hello-Agents는 GitHub에서 가장 인기 있는 AI 에이전트 오픈소스 튜토리얼로, ReAct, AutoGen, LangGraph, MCP, Agentic RL 등 16장의 완전한 과정을 다루며 45,600+ Stars를 보유하고 있습니다."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -37,6 +37,8 @@ faqs:
   - q: 'Hello-Agents를 따라 하면 어떤 실전 프로젝트를 만들 수 있나요?'
     a: '이 튜토리얼에는 세 가지 종합 사례 연구가 포함되어 있습니다. MCP 도구 호출을 통해 여러 전문 에이전트를 조율하는 스마트 여행 어시스턴트, 웹 검색 결과를 찾아 보고서로 종합하는 자동화된 딥 리서치 에이전트, 그리고 각기 다른 성격과 일과를 가진 AI 에이전트들로 채워진 사이버 타운 시뮬레이션입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/hello-agents-ai-agent-building-tutorial/ -->
 {</* resource-info */>}
 
 ## Hello-Agents란?

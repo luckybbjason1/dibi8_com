@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/wan-2-1" />
-title: 'Wan 2.1: 16.1K+ Stars — Open Video Generation Deep Dive vs HunyuanVideo, CogVideo in 2026'
+title: 'Wan 2.1: 16.1K+ Stars — Open Video Generation Deep Dive ...
 description: 'Wan 2.1 is an open suite of video foundation models by Alibaba with SOTA performance. Supports ComfyUI, Diffusers, and Gradio. Covers T2V, I2V, video editing, and text generation with 1.3B and 14B parameter variants.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

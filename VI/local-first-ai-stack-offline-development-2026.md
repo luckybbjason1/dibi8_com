@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-first-ai-stack-offline-development-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-first-ai-stack-offline-development-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-first-ai-stack-offline-development-2026" />
-title: 'Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn Toàn Offline'
+title: 'Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
 description: 'Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent, ChromaDB cho RAG — tất cả chạy local. Hướng dẫn cài đặt, thực tế phần cứng, và những tình huống offline thực sự quan trọng (riêng tư, tuân thủ, air-gapped, đi công tác).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "Có thể kết hợp workflow local và cloud không?"
     a: "Có. Mẫu phổ biến: Ollama local làm chính, fallback sang API thương mại cho các tác vụ khó. Aider hỗ trợ chuyển mô hình ngay giữa phiên. Đa số developer chạy hybrid — local mặc định, cloud cho 10-20% thực sự cần."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/local-first-ai-stack-offline-development-2026/ -->
 
 {{</* resource-info */>}}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/docker-genai-stack-local-development" />
-title: 'Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM in One Docker Compose — Local Dev Setup 2026'
+title: 'Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM i...
 description: 'Set up a complete local GenAI development environment with Docker GenAI Stack. Includes LangChain, Neo4j, Ollama, and vector databases in a single docker-compose. Production-ready tutorial for 2026.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

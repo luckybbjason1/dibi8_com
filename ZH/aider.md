@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider" />
-title: 'Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完整对比'
+title: 'Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完...
 description: 'Aider 是终端中的 AI 结对编程工具，在本地 git 仓库中编辑代码。支持 OpenAI、Claude、DeepSeek、Gemini。学习 Aider 安装、使用教程、Git 集成、基准测试，以及与 Claude Code、Cursor、Codex CLI 的对比。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [aider, ai结对编程, 终端ai, cli编程, 'git-ai', llm工具, 开源]
 aliases:
 - /zh/posts/aider/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/aider/ -->
 
 {{</* resource-info */>}}
 

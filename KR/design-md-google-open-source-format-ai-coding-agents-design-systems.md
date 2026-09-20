@@ -15,6 +15,8 @@ license: Apache-2.0
 lang: ko
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/design-md-google-open-source-format-ai-coding-agents-design-systems/ -->
 # DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷
 
 

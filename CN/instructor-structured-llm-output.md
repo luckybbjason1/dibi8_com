@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/instructor-structured-llm-output" />
-title: 'Instructor: The Python Library That Forces LLMs to Output Valid JSON 100% of the Time — 2026 Guide'
+title: 'Instructor: The Python Library That Forces LLMs to Outpu...
 description: 'Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guarantee valid, type-safe JSON responses using Pydantic models. Features retry logic, multi-provider support, and streaming.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

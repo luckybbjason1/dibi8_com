@@ -34,6 +34,8 @@ faq:
     a: "실사용자를 응대하는 프로덕션 Agent 대부분에서: 네, 실질적으로 가치 있습니다. '당신을 기억한다'와 '처음부터 시작한다' 사이의 품질 격차는 큽니다. 일회성 작업이나 단순 워크플로에는: 복잡도를 감당할 가치가 없습니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ai-agent-memory-persistence-letta-mem0-a-mem-2026/ -->
+
 {{</* resource-info */>}}
 
 # AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM

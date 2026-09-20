@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
-title: 'Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triển khai LangChain Agent Trực quan — Hướng dẫn Toàn diện'
+title: 'Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
 description: 'Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp. Tạo LangChain Agent trực quan, triển khai Docker, API endpoint và benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [flowise, langchain, 'low-code', 'ai workflow', docker, 'tự-host', 'agen
 aliases:
 - /vi/posts/flowise-ai-workflow-builder-lowcode/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/flowise-ai-workflow-builder-lowcode/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mattpocock-skills-ai-agent-framework-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mattpocock-skills-ai-agent-framework-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mattpocock-skills-ai-agent-framework-guide" />
-title: "Matt Pocock의 Skills: AI 에이전트에 진정한 슈퍼파워를 부여하는 CLI 프레임워크 — npm 설치, 설정 불필요"
+title: "Matt Pocock의 Skills: AI 에이전트에 진정한 슈퍼파워를 부여하는 CLI 프레임워크 —...
 description: "Claude Code, Cursor, Gemini CLI와 같은 AI 코딩 에이전트에 코드 이상의 진짜 기능을 부여하는 Matt Pocock의 Skills 프레임워크 사용법을 배워보세요. 데이터베이스, 파일시스템, CI/CD 등. 단계별 npx 설치 가이드, 아키텍처 분석 및 실제 벤치마크."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
@@ -12,6 +12,8 @@ category: dev-utils
 tags: [matt-pocock, skills, AI 에이전트, CLI 프레임워크, AI 코딩 도구, 에이전트 기능, 개발자 도구, 오픈소스]
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/mattpocock-skills-ai-agent-framework-guide/ -->
 
 ## 소개
 

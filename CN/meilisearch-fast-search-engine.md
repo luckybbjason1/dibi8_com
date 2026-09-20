@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/meilisearch-fast-search-engine" />
-title: 'Meilisearch: The Lightning-Fast Open-Source Search Engine with Typo Tolerance — Setup & Benchmarks 2026'
+title: 'Meilisearch: The Lightning-Fast Open-Source Search Engin...
 description: 'Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup, SDK integrations, production benchmarks, and honest comparison.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

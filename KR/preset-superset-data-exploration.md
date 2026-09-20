@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/preset-superset-data-exploration" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/preset-superset-data-exploration" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/preset-superset-data-exploration" />
-title: 'Apache Superset 2026: 50가지 이상 차트 유형을 갖춘 오픈소스 데이터 탐색 플랫폼 — 셀프 호스팅 가이드'
-description: 'Apache Superset 2026 완전 가이드 — Docker로 5분 만에 설치, 30개 이상 데이터 소스 연결, 50가지 이상 차트 유형 구축, 역할 기반 액세스 제어가 적용된 프로덕션급 대시보드 배포.'
+title: 'Apache Superset 2026: 50가지 이상 차트 유형을 갖춘 오픈소스 데이터 탐색 플랫폼 ...
+description: 'Apache Superset 2026 완전 가이드 — Docker로 5분 만에 설치, 30개 이상 데이터 소스 연결, 50가지 이상 차트 유형 구축, 역할 기반 액세스 제어가 적용된 프로덕션급 대시보드 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['apache superset', '데이터 시각화', bi, 대시보드, 오픈소스,
 aliases:
 - /kr/posts/preset-superset-data-exploration/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/preset-superset-data-exploration/ -->
 
 {{</* resource-info */>}}
 

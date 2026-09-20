@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
-title: "DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Flash 本地部署指南"
+title: "DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Fl...
 description: "了解 antirez（Redis 创始人）打造的 DS4 推理引擎。本文详述 DeepSeek V4 Flash 本地部署、macOS/Linux 安装教程、与 Ollama/llama.cpp 的性能对比、代码示例及百万 token 长上下文应用场景。"
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'DS4 是否提供兼容 OpenAI 的 API 服务器？'
     a: '是的。构建 DS4 后会生成一个 ds4-server 二进制文件，它在 http://127.0.0.1:8000 上暴露兼容 OpenAI 和 Anthropic 的 HTTP API，包含 /v1/chat/completions、/v1/completions 和 /v1/messages 等端点。它支持 OpenAI 风格的函数调用，并可与 OpenCode、Pi 和 Claude Code 等 Agent 框架配合使用。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ds4-deepseek-flash-local-inference/ -->
 
 {</* resource-info */>}
 

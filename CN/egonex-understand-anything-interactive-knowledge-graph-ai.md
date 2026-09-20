@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/egonex-understand-anything-interactive-knowledge-graph-ai" />
-title: "Egonex Understand-Anything: Interactive Knowledge Graphs from Any Topic — AI-Powered, Open-Source, Zero Config"
+title: "Egonex Understand-Anything: Interactive Knowledge Graphs...
 description: "Learn how to use Egonex's Understand-Anything to generate interactive knowledge graphs from any topic using AI. Step-by-step installation, multi-source synthesis, real-time search, and comparisons with alternatives."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"

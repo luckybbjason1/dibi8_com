@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bumblebee-supply-chain-scanner-perplexity-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bumblebee-supply-chain-scanner-perplexity-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bumblebee-supply-chain-scanner-perplexity-2026" />
-title: 'Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·에디터 확장 지원'
+title: 'Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·...
 description: 'Bumblebee는 Perplexity AI의 오픈소스 읽기 전용 공급망 스캐너입니다. npm, PyPI, Go 모듈, MCP 설정, 에디터 확장, 브라우저 확장에서 알려진 침해 패키지를 검사하며, 코드를 단 한 줄도 실행하지 않습니다.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -37,6 +37,8 @@ faqs:
   - q: 'Bumblebee 설치 방법은?'
     a: 'go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1을 실행합니다. 일상 인벤토리는 bumblebee scan --profile baseline > inventory.ndjson, 특정 취약점 노출 검사는 bumblebee scan --profile deep --root "$HOME" --exposure-catalog ./catalog.json --findings-only를 사용합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/bumblebee-supply-chain-scanner-perplexity-2026/ -->
 
 ![Bumblebee 2026: Perplexity AI 공급망 스캐너 — dibi8.com](/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg)
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/open-sora" />
-title: 'Open-Sora: 29K+ Stars — Open-Source Video Generation Setup Guide 2026'
+title: 'Open-Sora: 29K+ Stars — Open-Source Video Generation Set...
 description: 'Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ComfyUI integration, Stable Diffusion compatibility, production deployment, benchmarks vs HunyuanVideo, CogVideo, and Wan.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

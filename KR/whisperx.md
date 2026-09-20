@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/whisperx/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/whisperx/ -->
+
 {{</* resource-info */>}}
 
 오디오 전사는 쉽습니다. 하지만 **100ms 미만의 단어 수준 타임스탬프**를 얻고, **각 단어를 누가 말했는지 정확히 아는 것**은 어렵습니다. OpenAI Whisper는 초 단위로 드리프트하는 구간 수준 타임스탬프만 제공합니다. 팟캐스트 편집, 비디오 자막, 회의 녹초본, 법적 증언 기록에 있어서 이 정밀도는 사용할 수 없습니다.

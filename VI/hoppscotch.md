@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
-title: 'Hoppscotch: 79,200 GitHub Stars — Nền tảng phát triển API mã nguồn mở so với Postman, Insomnia, Bruno 2026'
+title: 'Hoppscotch: 79,200 GitHub Stars — Nền tảng phát triển AP...
 description: 'Hoppscotch (HOPP) là hệ sinh thái phát triển API mã nguồn mở. Tương thích Docker, GitHub Actions, Node.js, Vue.js. Hướng dẫn hoppscotch, tự lưu trữ, CLI tự động hóa và so sánh với các giải pháp thay thế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [hoppscotch, 'kiem-tra-api', 'thay-the-postman', 'ma-nguon-mo', docker, cl
 aliases:
 - /vi/posts/hoppscotch/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/hoppscotch/ -->
 
 {{</* resource-info */>}}
 

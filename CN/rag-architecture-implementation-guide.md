@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/rag-architecture-implementation-guide" />
-title: 'RAG Architecture Implementation Guide 2025: Build Production-Ready Systems'
+title: 'RAG Architecture Implementation Guide 2025: Build Produc...
 description: 'Complete RAG architecture implementation guide. Learn to build production-ready Retrieval-Augmented Generation systems with advanced techniques, evaluation frameworks, and optimization strategies.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiwind-ai-prompt-library-generator" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiwind-ai-prompt-library-generator" />
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
-description: AiWind는 GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney 등 주요 모델을
+description: AiWind는 GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney 등 주요 모델을. Comprehensive guide covering features, pricing, and best practices for 2026.
   위한 1000+ 전문 AI 그림 프롬프트를 무료로 제공하는 AI 프롬프트 라이브러리입니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'AiWind는 PromptHero, Lexica, Civitai와 어떻게 비교되나요?'
     a: 'AiWind는 완전 무료 이용, 강력한 중국어 지원, 10개 이상의 모델 커버리지로 차별화됩니다. 반면 Lexica는 약 3개 모델을 지원하고, Civitai는 주로 Stable Diffusion에 집중합니다. AiWind, PromptHero, Civitai는 모두 커뮤니티 프롬프트 제출을 지원하지만, Lexica는 지원하지 않습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/aiwind-ai-prompt-library-generator/ -->
 
 {</* resource-info */>}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/typesense-instant-search-api" />
-title: 'Typesense 2026: The Open-Source Instant Search API Handling 1M Searches/Day — Self-Hosted Setup Guide'
+title: 'Typesense 2026: The Open-Source Instant Search API Handl...
 description: 'Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Docker deployment, SDK integration, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

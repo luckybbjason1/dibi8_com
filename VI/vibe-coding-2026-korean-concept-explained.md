@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vibe-coding-2026-korean-concept-explained" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vibe-coding-2026-korean-concept-explained" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vibe-coding-2026-korean-concept-explained" />
-title: 'Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc, giải thích cho phần còn lại'
+title: 'Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc,...
 description: 'Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự nhiên, trong đó AI xử lý cú pháp. Kỹ sư Toss và Kakao dùng hằng ngày. Đây là ý nghĩa, quy trình làm việc và lý do nó quan trọng ngoài Hàn Quốc.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "Tôi có cần học tiếng Hàn để vibe code không?"
     a: "Không. Quy trình không phụ thuộc ngôn ngữ — bạn mô tả ý định bằng ngôn ngữ tự nhiên bất kỳ mà bạn nói. Thuật ngữ ra đời ở Hàn Quốc nhưng thực hành thì áp dụng toàn cầu. Lập trình viên nói tiếng Anh đã làm như vậy từ khi Cursor và Claude Code xuất hiện, chỉ là chưa có tên."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/vibe-coding-2026-korean-concept-explained/ -->
 
 {{</* resource-info */>}}
 

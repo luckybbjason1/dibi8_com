@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zenml-mlops-pipeline-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zenml-mlops-pipeline-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zenml-mlops-pipeline-framework" />
-title: 'ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pipeline Sản Xuất — Hướng Dẫn Cài Đặt Đầy Đủ'
+title: 'ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pi...
 description: 'Hướng dẫn toàn diện về ZenML — framework MLOps mã nguồn mở kết nối 20+ công cụ thành pipeline ML thống nhất, có thể tái tạo. Tự host, benchmark thực tế, triển khai production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/zenml-mlops-pipeline-framework/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/zenml-mlops-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 

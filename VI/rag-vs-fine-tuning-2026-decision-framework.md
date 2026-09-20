@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rag-vs-fine-tuning-2026-decision-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-vs-fine-tuning-2026-decision-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-vs-fine-tuning-2026-decision-framework" />
-title: 'RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Liệu Với Con Số Chi Phí Thực Tế'
+title: 'RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
 description: 'Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: chi phí mỗi tác vụ, độ trễ, độ tươi của dữ liệu, và cây quyết định rõ ràng dựa trên khối lượng dữ liệu, ngân sách độ trễ truy vấn và tần suất cập nhật.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Tôi nên dùng Vector DB hay chỉ cần SQLite với full-text search?"
     a: "Dưới 10K chunks: full-text search (FTS5, MeiliSearch) thường đã đủ và đơn giản hơn 10 lần. Trên 50K chunks: vector DB xứng đáng với độ phức tạp. Vùng xám 10K-50K — thử FTS trước, chỉ chuyển sang vector khi chất lượng truy xuất giảm dưới precision@5 80%."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/rag-vs-fine-tuning-2026-decision-framework/ -->
 
 {{</* resource-info */>}}
 

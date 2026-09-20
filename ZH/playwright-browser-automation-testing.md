@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/playwright-browser-automation-testing" />
 title: 'Playwright 2026: 比 Selenium 快 3 倍的跨浏览器自动化工具 — 安装指南'
-description: '掌握 Playwright 1.51 进行跨浏览器自动化。支持 Chrome、Firefox、WebKit。自动等待、追踪、代码生成和并行测试。比 Selenium 快 3 倍。'
+description: '掌握 Playwright 1.51 进行跨浏览器自动化。支持 Chrome、Firefox、WebKit。自动等待、追踪、代码生成和并行测试。比 Selenium 快 3 倍。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [playwright, 浏览器自动化, 测试, 网页抓取, python, 端到端�
 aliases:
 - /zh/posts/playwright-browser-automation-testing/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/playwright-browser-automation-testing/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cogvideo" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cogvideo" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cogvideo" />
-title: 'CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video Đầy Đủ 2026'
+title: 'CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video ...
 description: 'CogVideo (CogVideoX) là mô hình tạo video từ văn bản và hình ảnh của Zhipu AI. Hỗ trợ ComfyUI, Diffusers, SAT, và tích hợp Wan/HunyuanVideo/Open-Sora. Bao gồm cài đặt, Docker, inference, fine-tuning và benchmark.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [cogvideo, cogvideox, 'text-to-video', 'diffusion-transformer', 'zhipu-ai'
 aliases:
 - /vi/posts/cogvideo/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/cogvideo/ -->
 
 {{</* resource-info */>}}
 

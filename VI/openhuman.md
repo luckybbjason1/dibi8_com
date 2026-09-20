@@ -6,13 +6,15 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhuman" />
 title: 'OpenHuman là gì?'
 lang: vi
-description: 'content/vi/resources/openhuman.md'
+description: 'content/vi/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-18
 lastmod:  2026-06-18layout: article
 category: resources
 slug: openhuman
 featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.jpg
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openhuman/ -->
 
 
 # OpenHuman: Agent AI Chạy Cục bộ Phát triển Nhanh nhất (31K Stars) — Nền tảng AI Mã nguồn mở 2026

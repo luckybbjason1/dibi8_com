@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pandas-performance-optimization-alternatives" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pandas-performance-optimization-alternatives" />
 title: 'Pandas 성능 최적화 가이드: 2024년 Polars 또는 DuckDB로 전환해야 할 시점과 방법'
-description: 'Pandas 성능 한계를 분석하고 최적화 기법을 소개합니다. Polars와 DuckDB의 특징, 벤치마크 비교, 전환 시점과 마이그레이션 전략을 상세히 설명합니다.'
+description: 'Pandas 성능 한계를 분석하고 최적화 기법을 소개합니다. Polars와 DuckDB의 특징, 벤치마크 비교, 전환 시점과 마이그레이션 전략을 상세히 설명합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/pandas-performance-optimization-alternatives/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/pandas-performance-optimization-alternatives/ -->
 
 {</* resource-info */>}
 

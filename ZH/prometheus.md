@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prometheus" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prometheus" />
 title: 'Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026'
-description: 'Prometheus（Prom）是一个开源监控系统和时间序列数据库。兼容 Docker、Kubernetes、Grafana 和 Alertmanager。涵盖安装教程、PromQL 查询、生产加固和性能基准测试。'
+description: 'Prometheus（Prom）是一个开源监控系统和时间序列数据库。兼容 Docker、Kubernetes、Grafana 和 Alertmanager。涵盖安装教程、PromQL 查询、生产加固和性能基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [prometheus, 监控, docker, kubernetes, grafana, devops, 可观测性, �
 aliases:
 - /zh/posts/prometheus/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/prometheus/ -->
 # Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026
 
 

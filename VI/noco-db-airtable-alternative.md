@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/noco-db-airtable-alternative" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/noco-db-airtable-alternative" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/noco-db-airtable-alternative" />
-title: 'NocoDB 2026 Hướng Dẫn Đầy Đủ: Giải Pháp Thay Thế Airtable Mã Nguồn Mở Biến Mọi Database Thành Bảng Tính Thông Minh'
+title: 'NocoDB 2026 Hướng Dẫn Đầy Đủ: Giải Pháp Thay Thế Airtabl...
 description: 'Triển khai NocoDB trong 5 phút với Docker. Biến MySQL, PostgreSQL hoặc SQLite thành bảng tính cộng tác với REST API tự động, bảng Kanban và kiểm soát truy cập dựa trên vai trò.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [nocodb, 'thay-the-airtable', 'ma-nguon-mo', 'co-so-du-lieu', 'bang-tinh',
 aliases:
 - /vi/posts/noco-db-airtable-alternative/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/noco-db-airtable-alternative/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/gpt-sovits" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/gpt-sovits" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/gpt-sovits" />
-title: 'GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice Cloning 2026'
+title: 'GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
 description: 'GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với ComfyUI, RVC và MeloTTS. Bao gồm triển khai Docker, huấn luyện giọng nói, thiết lập API và hardening production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', tts, 'ai-giong-noi', doc
 aliases:
 - /vi/posts/gpt-sovits/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/gpt-sovits/ -->
 
 {{</* resource-info */>}}
 

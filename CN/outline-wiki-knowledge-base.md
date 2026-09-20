@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/outline-wiki-knowledge-base" />
-title: 'Outline: The Open-Source Wiki & Knowledge Base Built for Engineering Teams — 2026 Self-Hosted Setup Guide'
+title: 'Outline: The Open-Source Wiki & Knowledge Base Built for...
 description: 'Deploy Outline with Docker in 10 minutes. Build a real-time collaborative wiki for your engineering team with Markdown editor, Slack integration, full-text search, and granular permissions.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

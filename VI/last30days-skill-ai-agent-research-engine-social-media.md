@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/last30days-skill-ai-agent-research-engine-social-media" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/last30days-skill-ai-agent-research-engine-social-media" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/last30days-skill-ai-agent-research-engine-social-media" />
-title: '30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá Mạng Xã Hội Dựa Trên Tương Tác Thực'
+title: '30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá...
 description: 'Tìm kiếm Reddit, X, YouTube, TikTok, Polymarket, GitHub và nhiều nền tảng khác cùng lúc. Đánh giá kết quả bằng lượt upvote, lượt thích và tiền thật — không phải biên tập viên. Hoạt động với Claude Code, Codex, Cursor và hơn 50 máy chủ tác nhân.'
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -21,6 +21,8 @@ sources:
     url: 'https://agentskills.io'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/last30days-skill-ai-agent-research-engine-social-media/ -->
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
 description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts.'
 date: 2026-06-22

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/netdata" />
-title: 'Netdata: Real-Time Monitoring with 78K+ Stars — Performance Tuning Guide for 2026'
+title: 'Netdata: Real-Time Monitoring with 78K+ Stars — Performa...
 description: 'Netdata (ND) is a high-performance real-time monitoring agent with per-second metrics and visualization. Compatible with Docker, Kubernetes, Prometheus, and Grafana. Covers netdata tutorial, netdata setup, real time monitoring, netdata vs prometheus, and netdata performance tuning.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

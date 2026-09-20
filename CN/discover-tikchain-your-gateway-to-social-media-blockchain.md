@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/discover-tikchain-your-gateway-to-social-media-blockchain" />
-title: "Discover TikChain - Your Gateway to Social Media Blockchain"
+title: "Discover TikChain - Your Gateway to Social Media Blockch...
 description: "Discover TikChain: your gateway to social media blockchain. Earn rewards by creating content and engaging with the decentralized social network."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

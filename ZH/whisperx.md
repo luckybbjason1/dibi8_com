@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
 title: 'WhisperX: 22K+ Stars — 生产级ASR部署指南 2026'
-description: 'WhisperX 是一个开源ASR工具包，支持词级时间戳和说话人分割。兼容faster-whisper、pyannote.audio和OpenAI Whisper模型。涵盖Docker部署、Python API、基准测试和生产加固。'
+description: 'WhisperX 是一个开源ASR工具包，支持词级时间戳和说话人分割。兼容faster-whisper、pyannote.audio和OpenAI Whisper模型。涵盖Docker部署、Python API、基准测试和生产加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [whisperx, 自动语音识别, 语音识别, 说话人分割, 词级时间
 aliases:
 - /zh/posts/whisperx/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/whisperx/ -->
 
 {{</* resource-info */>}}
 

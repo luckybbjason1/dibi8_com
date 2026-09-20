@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mcp-server-security-audit-2026-real-cases" />
-title: 'MCP Server Security Audit 2026: 5 Real Community Server Reviews + Trap Patterns'
+title: 'MCP Server Security Audit 2026: 5 Real Community Server ...
 description: 'Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch. Concrete vulnerabilities found, exploit walkthroughs, and a 8-point pre-install audit checklist that takes 5 minutes per server.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

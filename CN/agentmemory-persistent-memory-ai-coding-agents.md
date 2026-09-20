@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/agentmemory-persistent-memory-ai-coding-agents" />
-title: 'AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026'
+title: 'AgentMemory: The #1 Persistent Memory System for AI Codi...
 description: 'AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-world benchmarks. Remember past sessions, maintain context across days, learn from previous interactions. Works with Claude Code, Codex CLI, OpenCode, and more. Includes setup tutorial, architecture breakdown, and benchmarks.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'agentmemory-persistent-memory-ai-coding-agents'

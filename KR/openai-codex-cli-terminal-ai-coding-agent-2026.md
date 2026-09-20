@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-codex-cli-terminal-ai-coding-agent-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-codex-cli-terminal-ai-coding-agent-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-codex-cli-terminal-ai-coding-agent-2026" />
-title: 'OpenAI Codex CLI 완벽 가이드 2026: 터미널 네이티브 AI 코딩 에이전트 (설치, 멀티 에이전트 워크플로우, MCP, 보안 종합 안내)'
+title: 'OpenAI Codex CLI 완벽 가이드 2026: 터미널 네이티브 AI 코딩 에이전트 (설치, 멀...
 description: '2026년 가장 빠르게 성장하는 오픈소스 AI 코딩 에이전트, OpenAI Codex CLI를 완벽 마스터하세요. 제로부터 시작하는 설치, AGENTS.md 설정, 멀티 에이전트 병렬 개발, MCP 통합, 샌드박스 보안, 그리고 Claude Code와의 정면 비교까지 한 번에 다룹니다.'
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/openai-codex-cli-terminal-ai-coding-agent-2026/ -->
 
 {</* resource-info */>}
 

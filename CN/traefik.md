@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/traefik" />
-title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router Production Deployment Guide 2026'
+title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
 description: 'Traefik is a cloud-native application proxy and edge router with automatic service discovery. Compatible with Docker, Kubernetes, Consul, and Docker Compose. Covers installation, middleware, TLS, monitoring, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

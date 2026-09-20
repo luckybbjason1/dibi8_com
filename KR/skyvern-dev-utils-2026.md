@@ -40,6 +40,8 @@ faqs:
     a: '공식 사이트 <https://www.skyvern.com> 와 GitHub README를 참고하세요. 두 곳 모두 설치, API, 예제 워크플로를 깊이 있게 다룹니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/skyvern-dev-utils-2026/ -->
+
 {{< resource-info >}}
 
 ## 들어가며

@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/openhands/ -->
+
 {{</* resource-info */>}}
 
 ## 简介

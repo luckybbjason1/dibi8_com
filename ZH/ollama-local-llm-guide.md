@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-local-llm-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-local-llm-guide" />
 title: 'Ollama本地运行LLM完整指南2025：在任何硬件上本地部署大模型'
-description: 'Ollama 2025完整指南：涵盖macOS/Windows/Linux/Docker安装、热门模型推荐、硬件要求与优化、LangChain集成和常见问题排查。'
+description: 'Ollama 2025完整指南：涵盖macOS/Windows/Linux/Docker安装、热门模型推荐、硬件要求与优化、LangChain集成和常见问题排查。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ollama-local-llm-guide/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ollama-local-llm-guide/ -->
 
 {</* resource-info */>}
 

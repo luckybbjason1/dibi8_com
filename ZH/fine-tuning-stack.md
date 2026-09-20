@@ -29,6 +29,8 @@ aliases:
   - /posts/fine-tuning-stack/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/fine-tuning-stack/ -->
+
 2026 LLM 微调终于有了一致的 stack —— 用胶带粘 HuggingFace Trainer + DeepSpeed config + 自定义 eval 脚本的日子结束了。这个合集组装的是 **5 组件管线**，从原始数据集到生产部署的微调模型，快速迭代（Unsloth）和生产部署（Axolotl）干净分离。按规模 $50-300/月训练基础设施。
 
 如果你在建领域特定模型、给开源权重基础模型做 instruction-tuning、做 DPO/GRPO 对齐、跑生产微调管线 —— 就这个 stack。

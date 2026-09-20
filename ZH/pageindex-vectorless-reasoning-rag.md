@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pageindex-vectorless-reasoning-rag" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pageindex-vectorless-reasoning-rag" />
 title: "PageIndex：29K⭐革命性 RAG 系统，不用向量数据库也能做文档检索"
-description: "PageIndex 是 VectifyAI Open Source的向量无关、推理驱动 RAG 系统。29K+ Stars，通过构建文档树结构实现人类般的检索，在 FinanceBench 达到 98.7% 准确率。"
+description: "PageIndex 是 VectifyAI Open Source的向量无关、推理驱动 RAG 系统。29K+ Stars，通过构建文档树结构实现人类般的检索，在 FinanceBench 达到 98.7% 准确率。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'PageIndex 最适合处理哪类文档？'
     a: 'PageIndex 专为那些结构很重要、且需要可解释引用的长篇专业文档而设计，例如财报和招股说明书、法律合同和判例法、医学文献和临床试验报告，以及 API 参考、操作手册等技术文档。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/pageindex-vectorless-reasoning-rag/ -->
 {</* resource-info */>}
 
 ![PageIndex 官方 hero banner](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)

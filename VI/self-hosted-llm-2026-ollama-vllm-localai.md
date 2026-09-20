@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/self-hosted-llm-2026-ollama-vllm-localai" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/self-hosted-llm-2026-ollama-vllm-localai" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/self-hosted-llm-2026-ollama-vllm-localai" />
-title: 'LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực Throughput, Chi Phí, Triển Khai'
+title: 'LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực...
 description: 'Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức sử dụng bộ nhớ, thời gian thiết lập, và đâu là lựa chọn phù hợp cho nghiệp dư so với triển khai sản xuất tự lưu trữ.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Cái nào tốt nhất để thay thế OpenAI API?"
     a: "LocalAI theo thiết kế — nó cung cấp endpoint /v1/chat/completions tương thích OpenAI. Trỏ bất kỳ OpenAI SDK nào vào URL của LocalAI và nó chạy ngay. Ollama và vLLM cũng cung cấp endpoint tương thích OpenAI trong các phiên bản 2026, nhưng LocalAI có lịch sử dài nhất và hỗ trợ mô hình rộng nhất."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/self-hosted-llm-2026-ollama-vllm-localai/ -->
 
 {{</* resource-info */>}}
 

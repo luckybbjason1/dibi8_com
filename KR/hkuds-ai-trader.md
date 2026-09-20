@@ -18,6 +18,8 @@ featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-t
 lang: ko
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/hkuds-ai-trader/ -->
+
 ## はじめに
 
 AI エージェントと金融市場の融合は、技術において最も影響のあるトレンドの一つです。機械学習によって駆動される自律型取引システムは存在しますが、それらは常に特定のフレームワークに密接に結合されており、構成と維持には深い専門知識が必要でした。参入障壁は高く、金融と機械学習のインフラの両方を理解する必要がありました。

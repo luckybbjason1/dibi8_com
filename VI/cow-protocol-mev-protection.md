@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cow-protocol-mev-protection" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cow-protocol-mev-protection" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cow-protocol-mev-protection" />
-title: 'CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết kiệm $100M+ Phí Trượt giá — Hướng Dẫn Cài đặt'
+title: 'CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết k...
 description: 'Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh solver để giúp tiết kiệm $100M+ phí trượt giá. Bao gồm tích hợp SDK, thiết lập bot giao dịch.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'san
 aliases:
 - /vi/posts/cow-protocol-mev-protection/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/cow-protocol-mev-protection/ -->
 
 {{</* resource-info */>}}
 

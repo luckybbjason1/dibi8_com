@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain-complete-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain-complete-guide" />
 title: 'LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발'
-description: 'LangChain의 핵심 개념부터 컴포넌트, LangGraph, LangSmith까지 2025년 최신 버전을 기준으로 한 완벽 가이드. 코드 예제와 아키텍처 설명 포함.'
+description: 'LangChain의 핵심 개념부터 컴포넌트, LangGraph, LangSmith까지 2025년 최신 버전을 기준으로 한 완벽 가이드. 코드 예제와 아키텍처 설명 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/langchain-complete-guide/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/langchain-complete-guide/ -->
 # LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발
 
 

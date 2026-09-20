@@ -18,6 +18,8 @@ featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 lang: ko
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/2026-09-19-agent-reach/ -->
+
 # Agent-Reach: 무료 인터넷 접근성
 
 AI 어시스턴트가 학습 시점의 정보만 얘기할 때의 frustraion을 기억하십니까? Claude나 GPT-4가 실시간 정보를 찾지 못해 우물거리는 모습을 보면서 frustration을 느껴본 적이 있을 것입니다.

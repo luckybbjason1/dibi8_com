@@ -26,6 +26,8 @@ lang: kr
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/knowledge-work-plugins/ -->
+
 ## TL;DR
 
 지식 작업 플러그인은 구조화된 도구 호출을 통해 문서 편집, 코드 분석, 웹 브라우징, 파일 작업에서 Claude의 기능을 확장하는 Anthropic의 공식 플러그인 생태계입니다. 20,728 스타를 달성하며 AI 에이전트 도구 통합의 금표준을 나타냅니다.

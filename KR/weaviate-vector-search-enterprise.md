@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
-title: 'Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 배포 가이드'
-description: '엔터프라이즈 규모의 Weaviate 벡터 검색 배포 가이드. Kubernetes 배포, 하이브리드 검색, 멀티모달 지원, RBAC, 모니터링, 100억+ 객체 컬렉션 벤치마크 포함.'
+title: 'Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 ...
+description: '엔터프라이즈 규모의 Weaviate 벡터 검색 배포 가이드. Kubernetes 배포, 하이브리드 검색, 멀티모달 지원, RBAC, 모니터링, 100억+ 객체 컬렉션 벤치마크 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/weaviate-vector-search-enterprise/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/weaviate-vector-search-enterprise/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-rust-cli-proxy-ai-token-saver" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rtk-rust-cli-proxy-ai-token-saver" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-rust-cli-proxy-ai-token-saver" />
-title: 'RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token LLM cho AI Coding Agent — Hướng Dẫn Cài Đặt và Ứng Dụng Thực Tế'
+title: 'RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token ...
 description: 'RTK (Rust Token Killer) là proxy CLI mã nguồn mở viết bằng Rust, giúp giảm 60-90% lượng token LLM tiêu thụ cho Claude Code, Cursor, Copilot, Codex và Gemini CLI. Một file binary duy nhất, không phụ thuộc, cài đặt chỉ một dòng lệnh. Bao gồm phân tích kiến trúc và benchmark thực tế.'
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/rtk-rust-cli-proxy-ai-token-saver/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/rtk-rust-cli-proxy-ai-token-saver/ -->
 
 {</* resource-info */>}
 

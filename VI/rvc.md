@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rvc" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rvc" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rvc" />
-title: 'RVC: Triển khai AI Chuyển đổi Giọng nói với 35K+ Stars — Hướng dẫn Thiết lập Huấn luyện 10 phút cho 2026'
+title: 'RVC: Triển khai AI Chuyển đổi Giọng nói với 35K+ Stars —...
 description: 'RVC (Retrieval-based Voice Conversion) là khung chuyển đổi giọng nói dựa trên VITS, tương thích với GPT-SoVITS, Coqui TTS và demucs. Hướng dẫn này bao gồm triển khai Docker, pipeline huấn luyện, tích hợp API và củng cố production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [rvc, 'chuyen-doi-giong-noi', 'ai-voice-clone', vits, ' tong-hop-giong-noi
 aliases:
 - /vi/posts/rvc/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/rvc/ -->
 
 {{</* resource-info */>}}
 

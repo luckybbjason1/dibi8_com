@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-source-ai-agent-framework-top-10-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-source-ai-agent-framework-top-10-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-source-ai-agent-framework-top-10-2026" />
-title: 'Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng Theo Mức Độ Áp Dụng Trong Sản Xuất'
+title: 'Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
 description: 'Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Điểm mạnh, lưu ý, và lựa chọn theo từng trường hợp sử dụng.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "Tôi có thể đổi framework giữa chừng dự án không?"
     a: "Có thể nhưng đau đớn. Mỗi framework có API gọi tool riêng, mô hình trạng thái, và hook quan sát riêng. Hãy lên kế hoạch cam kết tối thiểu 6 tháng khi đã chọn. Chi phí chuyển đổi gần bằng chi phí xây 1-2 workflow agent mới."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/open-source-ai-agent-framework-top-10-2026/ -->
 
 {{</* resource-info */>}}
 

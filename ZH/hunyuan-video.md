@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hunyuan-video" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hunyuan-video" />
 title: 'HunyuanVideo: 12.1K+ Stars — 2026年生产环境部署指南'
-description: 'HunyuanVideo (HYV) 是腾讯开源的视频生成框架，拥有130亿参数。支持 ComfyUI、Diffusers、Gradio API。涵盖 Docker 部署、FP8 量化、多 GPU 推理和生产环境加固。'
+description: 'HunyuanVideo (HYV) 是腾讯开源的视频生成框架，拥有130亿参数。支持 ComfyUI、Diffusers、Gradio API。涵盖 Docker 部署、FP8 量化、多 GPU 推理和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [视频生成, 扩散transformer, 腾讯, hunyuanvideo, comfyui, docker, f
 aliases:
 - /zh/posts/hunyuan-video/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/hunyuan-video/ -->
 
 {{</* resource-info */>}}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/signoz-apm-observability-open-source" />
-title: 'SigNoz: The Open-Source APM Replacing Datadog at 10% Cost — Distributed Tracing Setup Guide 2026'
+title: 'SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...
 description: 'Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that replaces Datadog at 10% the cost — built on OpenTelemetry.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

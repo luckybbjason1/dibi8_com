@@ -15,6 +15,8 @@ license: Apache-2.0
 lang: zh
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/design-md-google-open-source-format-ai-coding-agents-design-systems/ -->
 # DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式
 
 

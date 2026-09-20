@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openmontage-agentic-video-production-system" />
 lang: vi
 slug: openmontage-agentic-video-production-system
-title: "Đánh giá OpenMontage: Hệ thống Sản xuất Video Tự chủ Mã Nguồn Mở Đầu tiên trên Thế giới (52 Công cụ, 12 Quy trình, Hơn 500 Kỹ năng)"
+title: "Đánh giá OpenMontage: Hệ thống Sản xuất Video Tự chủ Mã ...
 description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. 12 production pipelines, 52 tools, 500+ agent skills. Turn any AI coding assistant into a full video studio — from animated explainers to cinematic trailers to real-footage documentaries. Zero API keys needed for basic output."
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"
@@ -49,6 +49,8 @@ faqs:
     a: 'OpenMontage triển khai các cổng chất lượng cấp sản xuất: xác thực trước khi ghép (chặn các bản render vi phạm cam kết giao hàng hoặc có rủi ro slideshow nghiêm trọng), tự đánh giá sau khi render (xác thực ffprobe, trích xuất khung hình tại 4 vị trí để phát hiện khung hình đen, phân tích mức âm thanh để phát hiện im lặng/clip, kiểm tra cam kết giao hàng), và hệ thống đánh giá rủi ro slideshow 6 chiều. Mọi lựa chọn nhà cung cấp đều được ghi lại với các phương án thay thế đã xem xét, điểm số độ tin cậy và lý do. Kiểm soát ngân sách bao gồm ước tính chi phí trước khi thực hiện, ngưỡng phê duyệt theo hành động và giới hạn chi tiêu có thể cấu hình.'
 featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openmontage-agentic-video-production-system/ -->
 
 
 

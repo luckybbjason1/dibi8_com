@@ -1,9 +1,9 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/toprank-guide" />
-title: 'GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free AI SEO
+title: 'GEO Optimization Checklist: Make ChatGPT Cite You Using ...
   Agent)'
-description: 'GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free
+description: 'GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free. Comprehensive guide covering features, pricing, and best practices for 2026.
   AI SEO Agent)'
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00

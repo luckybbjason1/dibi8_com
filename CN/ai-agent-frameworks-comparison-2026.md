@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
-title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — AI Agent Frameworks Compared (2026)"
+title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
 description: "Side-by-side comparison of the top 5 open-source AI agent frameworks in 2026. Real star counts, code examples, performance benchmarks, and practical guidance for choosing the right framework for your project."
 date: 2026-06-30T00:00:00+09:00
 lastmod:  2026-06-30T00:00:00+09:00draft: false

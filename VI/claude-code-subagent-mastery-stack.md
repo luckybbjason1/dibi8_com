@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-mastery-stack" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-mastery-stack" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-mastery-stack" />
-title: 'Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng'
+title: 'Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
 description: 'Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + cách viết agent tùy chỉnh + khung quyết định skill/subagent/MCP + các kiểu thất bại khi điều phối + cách viết skill. Lộ trình đầy đủ từ lập trình đơn luồng đến một pipeline agent đáng tin cậy.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -44,6 +44,8 @@ faqs:
   - q: 'Năm cách mà multi-agent pipeline thất bại trong Claude Code là gì?'
     a: 'Năm failure mode đã được ghi chép là: trust trap, context bleed, runaway fan-out, silent truncation và orphaned worktree. Nghiên cứu những điều này là yếu tố phân biệt một bản demo hoạt động được với một pipeline sẵn sàng cho môi trường production.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/claude-code-subagent-mastery-stack/ -->
 # Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộc Hội Thoại Đến Một Hội Đồng Agent Phối Hợp Nhịp Nhàng
 
 

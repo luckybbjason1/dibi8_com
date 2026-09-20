@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-4-opus-sonnet-review-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-4-opus-sonnet-review-2026" />
 title: 'Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트'
-description: 'Claude 4 전 라인업 심층 리뷰 — Opus 4, Sonnet 4, Haiku 4 코딩·추론·컨텍스트·가격, GPT-4o·Gemini 1.5 Pro 비교까지. 2026년 6월 업데이트.'
+description: 'Claude 4 전 라인업 심층 리뷰 — Opus 4, Sonnet 4, Haiku 4 코딩·추론·컨텍스트·가격, GPT-4o·Gemini 1.5 Pro 비교까지. 2026년 6월 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm리뷰, ai코딩, 추론모델]
@@ -22,6 +22,8 @@ faqs:
   - q: 'Claude 4의 컨텍스트 윈도우는 얼마나 큰가요?'
     a: 'Claude 4 전 모델은 200K 토큰 컨텍스트 윈도우를 지원합니다. 한 번의 호출로 책 한 권·대형 코드베이스·긴 대화 이력 분석이 가능합니다. 출력 윈도우는 최대 32K 토큰으로, 긴 보고서·전체 파일·다단원 문서를 한 번에 생성하기에 충분합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-4-opus-sonnet-review-2026/ -->
 # Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트
 
 

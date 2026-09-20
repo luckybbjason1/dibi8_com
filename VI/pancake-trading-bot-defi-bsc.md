@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pancake-trading-bot-defi-bsc" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pancake-trading-bot-defi-bsc" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pancake-trading-bot-defi-bsc" />
-title: 'PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi Tự Động Trên BSC Với Python — Hướng Dẫn Đầy Đủ'
+title: 'PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
 description: 'Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiến lược tự động, giám sát liquidity pool, bảo vệ MEV và framework bot Python — kèm benchmark 2026.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', 'trading bot', bsc, 
 aliases:
 - /vi/posts/pancake-trading-bot-defi-bsc/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/pancake-trading-bot-defi-bsc/ -->
 
 {{</* resource-info */>}}
 

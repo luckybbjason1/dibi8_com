@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-coding-agent-monthly-bill-2026-real-receipts" />
-title: 'AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts from Claude Max, ChatGPT Plus, Cursor Pro'
+title: 'AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
 description: 'Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 effective), and Cursor Pro + API overflow ($87). Per-task cost breakdown, when each pays off, and the threshold where switching makes sense.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

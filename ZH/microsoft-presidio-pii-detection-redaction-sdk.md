@@ -47,6 +47,8 @@ faqs:
 featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/microsoft-presidio-pii-detection-redaction-sdk/ -->
+
 
 
 ## Why PII Detection Matters More Than Ever

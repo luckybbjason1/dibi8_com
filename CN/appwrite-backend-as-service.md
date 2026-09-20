@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/appwrite-backend-as-service" />
-title: 'Appwrite 2026: The Open-Source Firebase Alternative with Auth, DB & Storage — Self-Hosted Backend Guide'
+title: 'Appwrite 2026: The Open-Source Firebase Alternative with...
 description: 'Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, storage, functions, and real-time subscriptions. Docker setup, SDK integration, benchmarks, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/unstructured-data-preprocessing-llm" />
-title: 'Unstructured.io: The Data Preprocessing Pipeline Converting Any Document to LLM-Ready Chunks — 2026 Guide'
+title: 'Unstructured.io: The Data Preprocessing Pipeline Convert...
 description: 'A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that converts PDFs, DOCX, PPTX, and images into clean, structured text chunks ready for LLM and RAG pipelines.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

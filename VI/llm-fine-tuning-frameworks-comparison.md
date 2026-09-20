@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-fine-tuning-frameworks-comparison" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-fine-tuning-frameworks-comparison" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-fine-tuning-frameworks-comparison" />
-title: 'So Sánh Framework Fine-Tuning LLM 2025: LoRA, QLoRA, PEFT và Unsloth'
+title: 'So Sánh Framework Fine-Tuning LLM 2025: LoRA, QLoRA, PEF...
 description: 'So sánh chi tiết các framework fine-tuning LLM 2025: LoRA, QLoRA, PEFT Hugging Face và Unsloth. Hướng dẫn chọn phương pháp tối ưu VRAM và tốc độ.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/llm-fine-tuning-frameworks-comparison/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/llm-fine-tuning-frameworks-comparison/ -->
 
 {</* resource-info */>}
 

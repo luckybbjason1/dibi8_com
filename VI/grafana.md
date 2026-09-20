@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/grafana" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/grafana" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/grafana" />
-title: 'Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026'
+title: 'Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
 description: 'Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Prometheus, Loki, InfluxDB, Elasticsearch. Bao gồm thiết lập Docker, cứng hóa production, so sánh với Datadog, Kibana, New Relic.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [grafana, docker, 'giám sát', prometheus, 'quan sát', dashboard, devops
 aliases:
 - /vi/posts/grafana/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/grafana/ -->
 
 {{</* resource-info */>}}
 

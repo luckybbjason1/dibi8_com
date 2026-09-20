@@ -29,6 +29,8 @@ aliases:
   - /posts/multi-modal-content-pipeline/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/multi-modal-content-pipeline/ -->
+
 2026 创作者经济跑在多模态内容上 —— AI 共主持的播客、AI 旁白配生成视觉的短视频、AI 插画 header 的博客、稳定 AI 声音读的有声书。SaaS-stack 走法每月 $200-500（ElevenLabs + Midjourney + Descript + Pictory + 十几个其他）。这个合集组装的是**$30-80/月的自托管 5 组件替代方案** —— 用 SaaS 服务商一样的模型，跑在你按小时租的 GPU 上。
 
 ## TL;DR —— Stack 全貌

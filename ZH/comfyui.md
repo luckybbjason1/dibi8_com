@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/comfyui/ -->
+
 {{</* resource-info */>}}
 
 ## Introduction

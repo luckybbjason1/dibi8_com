@@ -37,6 +37,8 @@ faqs:
     a: 'AiWind 的突出优势在于完全免费、强大的中文支持以及覆盖 10+ 个模型，而 Lexica 仅覆盖约 3 个模型，Civitai 则主要专注于 Stable Diffusion。AiWind、PromptHero 和 Civitai 均支持社区提示词投稿，而 Lexica 不支持。'
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/aiwind-ai-prompt-library-generator/ -->
+
 {</* resource-info */>}
 
 ## 问题：为什么你的 AI 绘画总是"差点意思"？

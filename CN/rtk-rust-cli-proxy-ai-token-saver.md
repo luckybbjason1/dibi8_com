@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/rtk-rust-cli-proxy-ai-token-saver" />
-title: 'RTK: The Open-Source Rust CLI Proxy That Slashes AI Coding Agent Token Costs by 60-90% — A Practical Setup Guide'
+title: 'RTK: The Open-Source Rust CLI Proxy That Slashes AI Codi...
 description: 'RTK (Rust Token Killer) is an open-source CLI proxy written in Rust that reduces LLM token consumption by 60-90% for Claude Code, Cursor, Copilot, Codex, and Gemini CLI. Single binary, zero dependencies, install in one command. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00

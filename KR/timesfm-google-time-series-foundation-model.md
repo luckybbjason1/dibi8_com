@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/timesfm-google-time-series-foundation-model" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/timesfm-google-time-series-foundation-model" />
 title: 'TimesFM 2.5: 예측을 위한 구글 혁신적 시계열 기초 모델'
-description: 'TimesFM 2.5 완전 가이드 - 시계열 예측을 위한 구글 리서치 디코더 전용 기초 모델. 설치, 미세 조정, 벤치마크, 실제 응용 사례를 다룹니다.'
+description: 'TimesFM 2.5 완전 가이드 - 시계열 예측을 위한 구글 리서치 디코더 전용 기초 모델. 설치, 미세 조정, 벤치마크, 실제 응용 사례를 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-19
 lastmod:  2026-06-19tags: []
 category: "data-science"
@@ -13,6 +13,8 @@ lang: kr
 slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/timesfm-google-time-series-foundation-model-4cb99070.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/timesfm-google-time-series-foundation-model/ -->
 
 # TimesFM 2.5: 예측을 위한 Google의 혁신적인 시계열 기반 모델 
 

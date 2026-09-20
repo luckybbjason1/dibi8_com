@@ -38,6 +38,8 @@ faq:
     a: "1만 chunks 미만: 전문 검색 (FTS5, MeiliSearch)으로 충분하고 10배 단순하다. 5만 chunks 이상: 벡터 DB의 복잡성이 정당화된다. 1만-5만의 회색 지대 — 먼저 FTS를 시도하고, 검색 품질이 precision@5 80% 이하로 떨어질 때만 벡터로 전환."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/rag-vs-fine-tuning-2026-decision-framework/ -->
+
 {{</* resource-info */>}}
 
 # RAG vs 파인튜닝 2026: 데이터 기반 의사결정 프레임워크

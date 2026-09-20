@@ -3,7 +3,7 @@
 <link rel="alternate" hreflang="en" href="https://dibi8.com/en/2026-06-22-trending-ai-agents" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/2026-06-22-trending-ai-agents" />
 title: "本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）"
-description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目--数据由 Dibi8 Tribe Intel 自动收集，分析由 Dibi8 编辑团队完成。"
+description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目--数据由 Dibi8 Tribe Intel 自动收集，分析由 Dibi8 编辑团队完成。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-22T00:00:00+09:00
 lastmod:  2026-06-22T00:00:00+09:00draft: true
 tags: [人工智能代理, 开源, 每周回顾, 'github 趋势', 大型语言模型框架]
@@ -23,6 +23,8 @@ review_checklist:
   - "无 aff 链接 (Tribe 文章纪律)"
 featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/2026-06-22-trending-ai-agents/ -->
 # 本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）
 
 

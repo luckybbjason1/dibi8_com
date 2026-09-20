@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cc-switch-unified-ai-cli-control-center-2026" />
-title: 'CC Switch Review: The Missing Control Center for AI Coding Agents (2026)'
+title: 'CC Switch Review: The Missing Control Center for AI Codi...
 description: 'CC Switch is an open-source cross-platform desktop app that unifies Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode & Hermes Agent management. 74K+ GitHub stars, Rust+Tauri stack, 50+ provider presets, unified MCP server sync. Full feature breakdown, setup guide, and workflow tips.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

@@ -30,6 +30,8 @@ aliases:
 - /kr/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/crewai/ -->
+
 {{</* resource-info */>}}
 
 > 30분 내에 CrewAI를 설치하고, 에이전트 역할을 구성하고, 태스크를 연결하며, 프로덕션 준비 멀티 에이전트 시스템을 배포하는 방법.

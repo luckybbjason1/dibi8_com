@@ -28,6 +28,8 @@ tags: ['ai 트레이딩', 퀀트, 암호화폐, hyperliquid, polymarket, 스택,
 aliases:
   - /posts/ai-trading-stack/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-trading-stack/ -->
 # AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우
 
 

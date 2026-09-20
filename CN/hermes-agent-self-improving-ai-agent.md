@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：Self-Improving AI Agent That Evolves With You
-description: Hermes Agent is an open-source AI agent from Nous Research with a self-learning
+description: Hermes Agent is an open-source AI agent from Nous Research with a self-learning. Comprehensive guide covering features, pricing, and best practices for 2026.
   loop — creates skills from experience, continuously improves, remembers your preferences,
   and gets better the more you use it.
 date: 2026-05-15 04:20:25+09:00

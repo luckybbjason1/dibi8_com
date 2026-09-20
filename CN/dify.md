@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/dify" />
-title: 'Dify: Build Production-Grade AI Agents Visually in 5 Minutes — 141K+ Stars Setup Guide for 2026'
+title: 'Dify: Build Production-Grade AI Agents Visually in 5 Min...
 description: 'Dify is an open-source LLM application development platform with visual workflow builder, RAG pipelines, and agent orchestration. Compatible with OpenAI, Anthropic, Ollama, Qdrant, and Weaviate. Covers Docker deployment, API integration, production hardening, and comparison with Flowise, n8n, and LangChain.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

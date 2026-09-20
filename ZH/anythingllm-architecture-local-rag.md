@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/anythingllm-architecture-local-rag" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/anythingllm-architecture-local-rag" />
 title: "企业为什么害怕 ChatGPT？"
-description: "企业为什么害怕 ChatGPT？"
+description: "企业为什么害怕 ChatGPT？". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'AnythingLLM 默认的 LanceDB 为什么在多用户时会抛出 SQLITE_BUSY 错误?'
     a: '默认的嵌入式向量数据库(LanceDB/Chroma)在高频并发写入下存在文件锁定问题,当许多用户向同一个工作区上传大型 PDF 时,会抛出 SQLITE_BUSY 或写锁错误。在员工众多的生产环境中,应将 Vector DB 切换为独立的 Qdrant 或 Milvus 实例。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/anythingllm-architecture-local-rag/ -->
 {</* resource-info */>}
 
 # 企业为什么害怕 ChatGPT？

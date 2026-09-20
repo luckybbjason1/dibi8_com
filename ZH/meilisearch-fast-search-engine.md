@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/meilisearch-fast-search-engine" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/meilisearch-fast-search-engine" />
 title: 'Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试'
-description: '部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。'
+description: '部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /zh/posts/meilisearch-fast-search-engine/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/meilisearch-fast-search-engine/ -->
 
 {{</* resource-info */>}}
 

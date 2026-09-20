@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hermes-agent-self-improving-ai-agent" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hermes-agent-self-improving-ai-agent" />
 title: Hermes Agent：一个会自我进化的 AI 代理，越用越懂你
-description: Hermes Agent 是 Nous Research 打造的Open Source AI 代理，拥有自我学习循环——从经验中创建技能、持续改进、记住你的偏好，越用越懂你。
+description: Hermes Agent 是 Nous Research 打造的Open Source AI 代理，拥有自我学习循环——从经验中创建技能、持续改进、记住你的偏好，越用越懂你。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: '如何安装 Hermes Agent 并配置 LLM 提供商？'
     a: '在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 `./setup-hermes.sh`。随后你可以用类似 `hermes config set provider openai` 和 `hermes config set model gpt-4o` 的命令来设置提供商，或通过 `hermes config set provider ollama` 使用本地模型。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/hermes-agent-self-improving-ai-agent/ -->
 {</* resource-info */>}
 
 ## 问题：大多数 AI 代理都把你忘了

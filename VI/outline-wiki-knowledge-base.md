@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/outline-wiki-knowledge-base" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/outline-wiki-knowledge-base" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/outline-wiki-knowledge-base" />
-title: 'Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn Mở Cho Team Kỹ Sư — 2026 Self-Hosted'
+title: 'Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
 description: 'Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [outline, wiki, 'knowledge-base', 'team-docs', 'ma-nguon-mo', 'tu-luu-tru'
 aliases:
 - /vi/posts/outline-wiki-knowledge-base/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/outline-wiki-knowledge-base/ -->
 
 {{</* resource-info */>}}
 

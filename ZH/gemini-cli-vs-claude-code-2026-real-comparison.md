@@ -34,6 +34,8 @@ faq:
     a: "很多开发者都是这么做的。Gemini CLI 用于免费额度的探索 + 长上下文工作。Claude Code 用于生产级的智能体循环 + 可靠的工具调用。组合起来比单用任一款覆盖的工作流都多，而且 Gemini 的免费额度意味着几乎零额外成本。"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/gemini-cli-vs-claude-code-2026-real-comparison/ -->
+
 {{</* resource-info */>}}
 
 # Gemini CLI vs Claude Code 2026：5 个工作流的真实对比

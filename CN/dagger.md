@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/dagger" />
-title: 'Dagger: Programmable CI/CD with 15K+ Stars — Comparison vs GitHub Actions, GitLab CI in 2026'
+title: 'Dagger: Programmable CI/CD with 15K+ Stars — Comparison ...
 description: 'Dagger is a programmable CI/CD engine that runs pipelines in containers. Compatible with Docker, Go, Python, TypeScript. Covers Dagger setup, tutorial, vs GitHub Actions, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

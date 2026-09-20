@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/noco-db-airtable-alternative" />
-title: 'NocoDB 2026: The Open-Source Airtable Alternative Turning Any Database into a Smart Spreadsheet — Complete Setup Guide'
+title: 'NocoDB 2026: The Open-Source Airtable Alternative Turnin...
 description: 'Deploy NocoDB in 5 minutes with Docker. Turn MySQL, PostgreSQL, or SQLite into a collaborative spreadsheet with auto-generated REST APIs, Kanban boards, and role-based access control.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

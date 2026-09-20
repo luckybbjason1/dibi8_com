@@ -1,9 +1,9 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/hello-agents-ai-agent-building-tutorial" />
-title: 'Hello-Agents: How Datawhale''s Open-Source AI Agent Tutorial Helps You Build
+title: 'Hello-Agents: How Datawhale''s Open-Source AI Agent Tuto...
   Production-Grade Agents from Scratch'
-description: Datawhale Hello-Agents is the top open-source AI agent tutorial covering
+description: Datawhale Hello-Agents is the top open-source AI agent tutorial covering. Comprehensive guide covering features, pricing, and best practices for 2026.
   ReAct, AutoGen, LangGraph, MCP, Agentic RL and real-world projects with 45,600+
   GitHub stars.
 date: 2026-05-15 04:20:25+09:00

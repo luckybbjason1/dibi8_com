@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/top-10-open-source-ai-tools-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/top-10-open-source-ai-tools-2026" />
 title: 2026 年度霸榜：开发者必看的 10 大免费开源 AI 神器
-description: 2026 年度霸榜：开发者必看的 10 大免费开源 AI 神器
+description: 2026 年度霸榜：开发者必看的 10 大免费开源 AI 神器. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'AI 编码智能体如何在不调用 API 的情况下跨会话保留记忆？'
     a: 'MemPalace 充当一个 MCP（Model Context Protocol）服务器，为 Claude Code 等本地编码智能体提供永久记忆。由于它作为 MCP 服务器在本地运行，因此无需进行任何外部 API 调用即可提供持久化上下文。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/top-10-open-source-ai-tools-2026/ -->
 
 {</* resource-info */>}
 

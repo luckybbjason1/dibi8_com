@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/codegraph-pre-indexed-knowledge-graph-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/codegraph-pre-indexed-knowledge-graph-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/codegraph-pre-indexed-knowledge-graph-2026" />
-title: 'CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄인 로컬 코드 그래프 (2026)'
+title: 'CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄...
 description: 'CodeGraph (GitHub 20.2K+ stars)는 Claude Code, Cursor, Codex CLI, OpenCode, Hermes Agent를 위해 코드 지식 그래프를 사전 인덱싱하는 오픈소스 도구입니다. SQLite 로컬 저장, 19개 언어, 14개 framework 라우팅 인식, 외부 API 제로. 원시 grep/glob/Read 대비 약 35% 토큰 절감, 약 70% 도구 호출 감소. 기능 분석·설치·실전 워크플로·LSP/MCP 서비스 비교까지 정리.'
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [codegraph, 'claude-code', 'ai-coding-agent', 'code-graph', 'token-savings
 aliases:
 - /kr/posts/codegraph-pre-indexed-knowledge-graph-2026/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/codegraph-pre-indexed-knowledge-graph-2026/ -->
 
 ## 문제: AI 코딩 에이전트가 `grep`에서 토큰을 태우고 있다
 

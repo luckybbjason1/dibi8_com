@@ -22,6 +22,8 @@ faqs:
   - q: 'Cái nào tốt hơn cho AI / vector search?'
     a: 'Supabase thắng tuyệt đối — nó có pgvector tích hợp sẵn, bạn có thể lưu embedding và chạy truy vấn cosine-similarity trong cùng database với dữ liệu app. Firebase không hỗ trợ vector native và phải gắn thêm Vertex AI hoặc DB vector riêng. Cho app RAG/AI năm 2026, Supabase là lựa chọn hiển nhiên.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/supabase-vs-firebase/ -->
 # Supabase vs Firebase 2026: BaaS nào tốt hơn?
 
 

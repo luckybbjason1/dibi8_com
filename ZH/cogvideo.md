@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/cogvideo/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/cogvideo/ -->
+
 {{</* resource-info */>}}
 
 > 使用智谱 AI 的开源扩散 Transformer 将文本和图像转换为电影级视频。30 分钟内从零搭建到生产环境。

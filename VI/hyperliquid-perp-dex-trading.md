@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hyperliquid-perp-dex-trading" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
-title: 'Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối Lượng $2B+ Mỗi Ngày — Hướng Dẫn Tích Hợp Bot Giao Dịch'
+title: 'Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối ...
 description: 'Hướng dẫn toàn diện về Hyperliquid, sàn Perpetual DEX hoàn toàn on-chain xử lý khối lượng $2B+ hàng ngày với 100+ cặp giao dịch, đòn bẩy 50x, HyperEVM và Python SDK.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'tr
 aliases:
 - /vi/posts/hyperliquid-perp-dex-trading/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/hyperliquid-perp-dex-trading/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtrader-python-backtesting" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/backtrader-python-backtesting" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtrader-python-backtesting" />
-title: 'Backtrader 2026: Công Cụ Backtesting Python Xác Thực Chiến Lược Giao Dịch Nhanh Hơn 100 Lần — Hướng Dẫn Đầy Đủ'
+title: 'Backtrader 2026: Công Cụ Backtesting Python Xác Thực Chi...
 description: 'Hướng dẫn đầy đủ về Backtrader event-driven backtesting engine. Xây dựng, kiểm thử, và tối ưu hóa chiến lược giao dịch bằng Python. Tích hợp, benchmark, và triển khai live trading 2026.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/backtrader-python-backtesting/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/backtrader-python-backtesting/ -->
 
 {{</* resource-info */>}}
 

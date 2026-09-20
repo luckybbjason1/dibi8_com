@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/baetyl-edge-ai-computing-platform" />
-title: 'Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 2026 설치 가이드'
-description: 'Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임, 클라우드-엣지 동기화.'
+title: 'Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 20...
+description: 'Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임, 클라우드-엣지 동기화.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [baetyl, '엣지-컴퓨팅', iot, kubernetes, k3s, 'ai-추론', mqtt, '엣
 aliases:
 - /kr/posts/baetyl-edge-ai-computing-platform/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/baetyl-edge-ai-computing-platform/ -->
 
 {{</* resource-info */>}}
 

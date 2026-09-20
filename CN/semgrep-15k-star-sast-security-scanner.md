@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/semgrep-15k-star-sast-security-scanner" />
-title: 'Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds'
+title: 'Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
 description: 'Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment.'
 tags: ["open-source", "sast", "scanner", "security"]
 date: 2026-06-10

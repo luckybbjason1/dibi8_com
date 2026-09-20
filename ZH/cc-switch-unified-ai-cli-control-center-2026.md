@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/cc-switch-unified-ai-cli-control-center-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/cc-switch-unified-ai-cli-control-center-2026/ -->
+
 {</* resource-info */>}
 
 ## 引言：AI CLI工具爆炸式增长带来的管理困境

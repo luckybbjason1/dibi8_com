@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/portkey-ai-gateway-production" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/portkey-ai-gateway-production" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/portkey-ai-gateway-production" />
-title: 'Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성 — 프로덕션 설정'
-description: ''
+title: 'Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성...
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['portkey ai gateway']
 aliases:
 - /kr/posts/portkey-ai-gateway-production/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/portkey-ai-gateway-production/ -->
 
 {{</* resource-info */>}}
 

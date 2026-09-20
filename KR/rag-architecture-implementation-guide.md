@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rag-architecture-implementation-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/rag-architecture-implementation-guide" />
 title: 'RAG 아키텍처 구현 가이드 2025: 프로덕션급 검색 증강 생성 시스템 구축'
-description: 'RAG(Retrieval-Augmented Generation) 아키텍처의 기본부터 고급 기법까지 상세히 설명합니다. LangChain, LlamaIndex를 활용한 프로덕션급 RAG 시스템 구축 가이드.'
+description: 'RAG(Retrieval-Augmented Generation) 아키텍처의 기본부터 고급 기법까지 상세히 설명합니다. LangChain, LlamaIndex를 활용한 프로덕션급 RAG 시스템 구축 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/rag-architecture-implementation-guide/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/rag-architecture-implementation-guide/ -->
 
 {</* resource-info */>}
 

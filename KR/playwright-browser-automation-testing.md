@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/playwright-browser-automation-testing" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/playwright-browser-automation-testing" />
 title: 'Playwright 2026: Selenium보다 3배 빠른 크로스 브라우저 자동화 도구 — 설치 가이드'
-description: 'Playwright 1.51로 크로스 브라우저 자동화를 마스터하세요. Chrome, Firefox, WebKit 지원. 자동 대기, 추적, 코드 생성, 병렬 테스트. Selenium보다 3배 빠릅니다.'
+description: 'Playwright 1.51로 크로스 브라우저 자동화를 마스터하세요. Chrome, Firefox, WebKit 지원. 자동 대기, 추적, 코드 생성, 병렬 테스트. Selenium보다 3배 빠릅니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [playwright, '브라우저 자동화', 테스팅, '웹 스크래핑', pyth
 aliases:
 - /kr/posts/playwright-browser-automation-testing/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/playwright-browser-automation-testing/ -->
 
 {{</* resource-info */>}}
 

@@ -4,9 +4,9 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-skills-production-grade-ai-coding" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
-title: Agent Skills：Các đội phát triển giao mã cấp sản xuất nhanh gấp 5 lần như thế
+title: Agent Skills：Các đội phát triển giao mã cấp sản xuất nhan...
   nào
-description: Agent Skills của Addy Osmani cung cấp 20 kỹ năng kỹ thuật cấp sản xuất
+description: Agent Skills của Addy Osmani cung cấp 20 kỹ năng kỹ thuật cấp sản xuất. Comprehensive guide covering features, pricing, and best practices for 2026.
   và 7 lệnh gạch chéo biến tác nhân mã hóa AI thành kỹ sư phần mềm cấp cao.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -43,6 +43,8 @@ faqs:
   - q: 'Bảng chống biện minh (anti-rationalization table) trong Agent Skills là gì?'
     a: 'Bảng chống biện minh là một tính năng được nhúng trong mỗi kỹ năng, chủ động chỉ ra những lý do bao biện phổ biến mà lập trình viên và agent AI dùng để làm tắt, làm ẩu (chẳng hạn "Để sau tôi sẽ thêm test") và đưa ra lập luận phản bác. Các bảng này được rút ra từ những phân tích hậu sự cố (post-mortem) thực tế và phản hồi rà soát mã tại các tổ chức quy mô Google.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/agent-skills-production-grade-ai-coding/ -->
 
 {</* resource-info */>}
 

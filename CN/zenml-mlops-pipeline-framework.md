@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/zenml-mlops-pipeline-framework" />
-title: 'ZenML 2026: The MLOps Framework Connecting 20+ Tools into Production Pipelines — Complete Setup Guide'
+title: 'ZenML 2026: The MLOps Framework Connecting 20+ Tools int...
 description: 'A comprehensive guide to ZenML — the open-source MLOps framework that connects 20+ tools into unified, reproducible ML pipelines. Self-hosted setup, real benchmarks, and production deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

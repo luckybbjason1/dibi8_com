@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/moneyprinterturbo-one-click-ai-video-generator" />
-title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'
+title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
 description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'
 tags: ["ai-tools", "automation", "generator", "open-source", "video-generation"]
 date: 2026-06-22
@@ -19,7 +19,7 @@ sources:
 lang: en
 ---
 ---
-title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'
+title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
 description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'
 date: 2026-06-22
 lastmod: 2026-06-22

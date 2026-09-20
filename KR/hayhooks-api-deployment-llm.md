@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hayhooks-api-deployment-llm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hayhooks-api-deployment-llm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hayhooks-api-deployment-llm" />
-title: 'Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 2026 프로덕션 설정 가이드'
+title: 'Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 202...
 description: 'Hayhooks를 사용하여 Haystack NLP pipeline을 프로덕션급 REST API로 배포하는 완벽한 가이드. 원클릭 배포, 컨테이너 지원, 자동 OpenAPI 문서 생성 및 실제 벤치마크를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline 배포', docker, pyth
 aliases:
 - /kr/posts/hayhooks-api-deployment-llm/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/hayhooks-api-deployment-llm/ -->
 
 {{</* resource-info */>}}
 

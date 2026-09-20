@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/langgraph-vs-crewai" />
-title: 'LangGraph vs CrewAI in 2026: Control-First State Graphs vs Role-Based Agent Crews'
+title: 'LangGraph vs CrewAI in 2026: Control-First State Graphs ...
 description: 'Side-by-side breakdown of LangGraph (low-level stateful agent graphs) and CrewAI (high-level role-based multi-agent crews) — control, learning curve, state, multi-agent design, and production durability. Updated 2026.'
 date: 2026-06-06 00:00:00+08:00
 lastmod:  2026-06-06 00:00:00+08:00draft: false

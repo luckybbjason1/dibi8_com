@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/freellmapi-openai-compatible-proxy-free-llm-tiers-2026" />
-title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
+title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
 description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains.'
 tags: ["open-source"]
 date: 2026-06-22
@@ -19,7 +19,7 @@ sources:
 lang: en
 ---
 ---
-title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
+title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
 description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains.'
 date: 2026-06-22
 lastmod: 2026-06-22

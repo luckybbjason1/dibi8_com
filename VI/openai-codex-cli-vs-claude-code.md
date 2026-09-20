@@ -22,6 +22,8 @@ faqs:
   - q: 'Doanh nghiệp nên chọn cái nào?'
     a: 'Claude Code có câu chuyện doanh nghiệp trưởng thành hơn trong 2026 — Anthropic cung cấp SOC 2 Type II, HIPAA qua API, Claude Enterprise với triển khai VPC riêng. OpenAI Codex CLI mới hơn (mở mã nguồn 11/2025), kết nối vào gói OpenAI Enterprise tiêu chuẩn, nhưng bản thân CLI chưa có tầng doanh nghiệp riêng. Cho ngành được quản lý, hôm nay Claude Code thắng; OpenAI đang bám sát nhanh.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openai-codex-cli-vs-claude-code/ -->
 # OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?
 
 

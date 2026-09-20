@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-workflows" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-workflows" />
 title: 'Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架'
-description: '了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'
+description: '了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-09-19
 lastmod:  2026-09-19slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/agent-skills-production-workflows/ -->
 
 # Addy Osmani 的 Agent Skills：生产级 AI 编程工作流的正确打开方式
 

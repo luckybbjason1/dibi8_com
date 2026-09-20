@@ -40,6 +40,8 @@ faqs:
     a: '在浏览器里打开 `http://localhost:52415` 的控制台。它会显示每一台被发现的设备、模型在它们之间的切分方式，以及实时的吞吐量和内存占用。'
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/exo-dev-utils-2026/ -->
+
 {{< resource-info >}}
 
 ## 引言

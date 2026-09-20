@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/oh-my-pi" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/oh-my-pi" />
 title: "Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026"
-description: "Oh My Pi（12,554 颗星）通过一键式设置和自动化配置，将树莓派设备转变为智能家居中心、媒体中心和开发工作站。"
+description: "Oh My Pi（12,554 颗星）通过一键式设置和自动化配置，将树莓派设备转变为智能家居中心、媒体中心和开发工作站。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: oh-my-pi
 category: dev-utils
@@ -25,6 +25,8 @@ images:
 lang: zh
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/oh-my-pi/ -->
 
 ## 快速概览
 

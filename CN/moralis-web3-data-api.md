@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/moralis-web3-data-api" />
-title: 'Moralis 2026: The Web3 Data API Powering 100K+ DApps with Real-Time On-Chain Data — Setup Guide'
+title: 'Moralis 2026: The Web3 Data API Powering 100K+ DApps wit...
 description: 'Complete guide to Moralis Web3 Data API in 2026. Learn how to fetch real-time blockchain data, NFT metadata, token prices, and wallet balances across 10+ chains with JavaScript, Python, and Unity SDKs.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

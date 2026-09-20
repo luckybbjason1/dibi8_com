@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/automl-tools-comparison-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/automl-tools-comparison-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/automl-tools-comparison-guide" />
-title: 'AutoML 도구 비교: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML 완벽 가이드'
+title: 'AutoML 도구 비교: AutoGluon, H2O, TPOT, Auto-sklearn, Google...
 description: 'AutoGluon, H2O AutoML, TPOT, Auto-sklearn, Google AutoML 등 주요 AutoML 도구를 기능, 성능, 사용성 관점에서 비교하고, 각 도구의 적합한 사용 사례를 분석합니다.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/automl-tools-comparison-guide/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/automl-tools-comparison-guide/ -->
 
 {</* resource-info */>}
 

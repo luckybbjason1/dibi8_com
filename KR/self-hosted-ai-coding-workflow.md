@@ -33,6 +33,8 @@ aliases:
   - /posts/self-hosted-ai-coding-workflow/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/self-hosted-ai-coding-workflow/ -->
+
 Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/월 + OpenAI API 충전 $120/월 내고 있다면 AI 코딩 월 지출이 **$289/월**입니다. 12개월이면 **$3,468** — 소유하지도, 감사하지도 못하고, 예고 없이 rate-limit 되거나 끊길 수 있는 도구들에 들어가는 돈.
 
 이 컬렉션은 **7컴포넌트 셀프호스트 대안**을 조립합니다. **$6/월 VPS** 위에서 돌며 SaaS 기능 세트의 90%+를 매칭합니다. 지난 90일간 각 컴포넌트의 심층 가이드를 게시했고, 이 페이지는 **완전한 스택 조립** — 무엇을 설치하고, 어떤 순서로, 어떤 config로, 그리고 $6 tier를 벗어날 때 업그레이드 경로까지.

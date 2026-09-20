@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/firecrawl-dev-utils-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/firecrawl-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/firecrawl-dev-utils-2026" />
-title: 'Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026'
+title: 'Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
 description: 'Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch hoặc JSON có cấu trúc, sẵn sàng cho LLM. 127,747 sao GitHub, giấy phép AGPL-3.0. Bao gồm cài đặt, các SDK chính thức, code thực tế, self-host và so sánh thẳng thắn với Puppeteer, Scrapy, Axios.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Firecrawl có miễn phí không, và giấy phép của nó là gì?'
     a: 'Mã nguồn miễn phí và mở theo AGPL-3.0, còn các SDK chính thức và thành phần UI theo MIT. API đám mây được lưu trữ có một bậc miễn phí cùng các gói trả phí cho mức dùng cao hơn. Nếu self-host, bạn tự chịu chi phí hạ tầng để vận hành.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/firecrawl-dev-utils-2026/ -->
 # Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026
 
 

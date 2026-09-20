@@ -16,6 +16,8 @@ lang: zh
 featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/understand-anything-interactive-knowledge-graphs-codebases/ -->
+
 ## 引言
 
 你克隆了一个新的代码库。50,000 行代码分布在 200 个文件中。你打开 VS Code，盯着文件树看。你甚至从哪里开始？

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/arize-ai-observability-llm" />
-title: 'Arize AI Phoenix: The Open-Source LLM Observability Tool Tracing 100% of Your RAG Pipeline — 2026 Guide'
+title: 'Arize AI Phoenix: The Open-Source LLM Observability Tool...
 description: 'Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning, token tracking, and production deployment with LangChain & LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

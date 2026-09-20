@@ -1,5 +1,5 @@
 ---
-title: 'MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026'
+title: 'MoneyPrinterTurbo: Generate HD Short Videos with AI in O...
 description: 'MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Script, voice, subtitles, background music — all automated. Includes setup tutorial, pipeline breakdown, and real video benchmarks.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'moneyprinter-turbo-ai-video-generation-one-command'
@@ -12,6 +12,8 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/13691804'
 lang: en
 ---
+
+<!-- canonical: https://dibi8.com/cn/tools/moneyprinter/ -->
 
 # MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026
 

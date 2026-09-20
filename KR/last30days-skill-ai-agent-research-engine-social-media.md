@@ -21,6 +21,8 @@ sources:
     url: 'https://agentskills.io'
 lang: kr
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/last30days-skill-ai-agent-research-engine-social-media/ -->
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
 description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts.'
 date: 2026-06-22

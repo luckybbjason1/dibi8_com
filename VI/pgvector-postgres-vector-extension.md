@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
-title: 'pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vector Hiệu năng cao — Hướng dẫn Thiết lập, Tối ưu & Tích hợp RAG'
+title: 'pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vecto...
 description: 'Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu năng, và tích hợp RAG với LangChain và LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [pgvector, postgresql, 'vector-database', hnsw, ann, rag, 'similarity-sear
 aliases:
 - /vi/posts/pgvector-postgres-vector-extension/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/pgvector-postgres-vector-extension/ -->
 
 {{</* resource-info */>}}
 

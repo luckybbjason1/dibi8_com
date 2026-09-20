@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wifi-forge-safe-wifi-hacking-lab" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wifi-forge-safe-wifi-hacking-lab" />
 title: "WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒"
-description: "WiFi Forge：安全的WiFi黑客实验室，用于安全研究。在受控环境中学习渗透测试、无线安全和道德黑客技术。"
+description: "WiFi Forge：安全的WiFi黑客实验室，用于安全研究。在受控环境中学习渗透测试、无线安全和道德黑客技术。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: '安装和运行 WiFi-Forge 需要什么？'
     a: '你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/wifi-forge-safe-wifi-hacking-lab/ -->
 # WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒
 
 {</* resource-info */>}

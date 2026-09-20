@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-harness-self-healing-llm-web-automation" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/browser-harness-self-healing-llm-web-automation" />
 title: "Browser Harness：让 LLM 自主操控浏览器的自愈型神器"
-description: "Browser Harness 是一个自愈合型浏览器控制框架，让 LLM 能够自主完成任何网页任务。11K+ Stars，Python 编写，支持 Playwright 和 Selenium。"
+description: "Browser Harness 是一个自愈合型浏览器控制框架，让 LLM 能够自主完成任何网页任务。11K+ Stars，Python 编写，支持 Playwright 和 Selenium。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -37,6 +37,8 @@ faqs:
   - q: 'Browser Harness 的主要局限有哪些？'
     a: '它的局限包括：成本（LLM API 调用会产生费用，不过可以改用本地模型）、速度（由于模型需要时间进行推理，它比传统自动化更慢）、安全性（需要严格的防护措施来防止误操作），以及复杂的验证码（CAPTCHA）可能仍然需要人工处理。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/browser-harness-self-healing-llm-web-automation/ -->
 {</* resource-info */>}
 
 ## 问题：传统爬虫已死，AI 时代需要新范式

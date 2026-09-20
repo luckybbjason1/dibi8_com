@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-title: 'AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI'
+title: 'AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Code...
 description: '2026년 중반 4대 주요 AI 코딩 에이전트 횡단 평가: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. 동일 50K LOC TypeScript 코드베이스 5 워크플로우 실측, MCP 지원, 컨텍스트 윈도우 경제학, 가격 분석.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "2026 중반 가장 큰 컨텍스트 윈도우는?"
     a: "Gemini 2.5 Pro와 Gemini CLI가 1M+ 토큰 컨텍스트(단연 최대). Claude Sonnet 4.6(또는 Opus 4.7)과 Claude Code 1.0이 1M 토큰 지원(1M-context tier). Cursor Pro 기본 200K. GPT-5와 Codex CLI 256K. 매우 큰 monorepo에는 Gemini CLI 컨텍스트 우위 진짜지만 tool-use 신뢰성 뒤짐."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/ -->
 
 {{</* resource-info */>}}
 

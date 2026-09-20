@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/zapper-defi-dashboard-aggregator/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/zapper-defi-dashboard-aggregator/ -->
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  

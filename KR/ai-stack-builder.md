@@ -11,6 +11,8 @@ lastmod: 2026-05-19
 layout: "tool-ai-stack-builder"
 tool_id: "ai-stack-builder"
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-stack-builder/ -->
 # AI 스택 빌더 — 당신에게 딱 맞는 LLM + 벡터 DB + 프레임워크 조합 찾기
 
 

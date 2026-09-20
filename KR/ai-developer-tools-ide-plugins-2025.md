@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-developer-tools-ide-plugins-2025/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-developer-tools-ide-plugins-2025/ -->
 # 2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale" />
-title: 'paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Quản lý AI Agent quy mô lớn — Hướng dẫn thực tế 2026'
+title: 'paperclip: 69.700 sao GitHub nơi làm việc AI agent mã ng...
 description: 'paperclip (69.700 sao GitHub) là ứng dụng nơi làm việc AI agent mã nguồn mở. Phối hợp nhiều agent, quản lý task, triển khai workflow tự host. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale/ -->
 
 # paperclip: 69.700 sao GitHub nơi làm việc AI agent mã nguồn mở — Quản lý AI Agent quy mô lớn — Hướng dẫn thực tế 2026
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/vectara-rag-as-service-platform" />
-title: 'Vectara 2026: The RAG-as-a-Service Platform with 90%+ Answer Accuracy — API Integration & Benchmarks'
+title: 'Vectara 2026: The RAG-as-a-Service Platform with 90%+ An...
 description: 'A hands-on guide to Vectara, the managed RAG platform with 90%+ answer accuracy. Covers Boomerang retrieval, API integration, multi-language support, hybrid search, and production benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

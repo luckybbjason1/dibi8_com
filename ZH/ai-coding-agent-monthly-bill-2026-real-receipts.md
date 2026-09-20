@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-monthly-bill-2026-real-receipts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-monthly-bill-2026-real-receipts" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-monthly-bill-2026-real-receipts" />
-title: 'AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro 的 30 天真实账单'
+title: 'AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro...
 description: '实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任务成本拆解、各家何时回本、切换的临界点。'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "2026 年 5 月有哪些更早评测没覆盖的定价变化？"
     a: "Anthropic 在 4 月底调整了 Max 套餐的限速（更宽松、更多余量）。OpenAI 的 Codex CLI 完全转向按量付费（不再有 Pro 套餐）。Cursor 新增 $50 Business 套餐并捆绑 API 额度。三者都让临界点的算法相比 Q1 评测发生了偏移。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-coding-agent-monthly-bill-2026-real-receipts/ -->
 
 {{</* resource-info */>}}
 

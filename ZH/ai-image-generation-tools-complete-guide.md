@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-image-generation-tools-complete-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-image-generation-tools-complete-guide" />
 title: 'AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等'
-description: '2025年AI图像生成工具完全指南，详解Midjourney v7、DALL-E 3、Stable Diffusion 3.5、Adobe Firefly等主流工具的技术原理、功能对比与使用场景。'
+description: '2025年AI图像生成工具完全指南，详解Midjourney v7、DALL-E 3、Stable Diffusion 3.5、Adobe Firefly等主流工具的技术原理、功能对比与使用场景。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-image-generation-tools-complete-guide/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-image-generation-tools-complete-guide/ -->
 # AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等
 
 

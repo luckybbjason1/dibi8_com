@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
 title: 'Hyperliquid 2026：日交易量超20亿美元的链上永续合约DEX — 交易机器人集成指南'
-description: 'Hyperliquid综合指南：完全链上永续合约DEX，日交易量超20亿美元，100多个交易对，最高50倍杠杆，HyperEVM智能合约及Python SDK机器人集成。'
+description: 'Hyperliquid综合指南：完全链上永续合约DEX，日交易量超20亿美元，100多个交易对，最高50倍杠杆，HyperEVM智能合约及Python SDK机器人集成。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'tr
 aliases:
 - /zh/posts/hyperliquid-perp-dex-trading/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/hyperliquid-perp-dex-trading/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace" />
-title: "MemPalace vs Mem0: Benchmark Recall 96.6% & Framework Bộ Nhớ AI Tốt Nhất 2026"
+title: "MemPalace vs Mem0: Benchmark Recall 96.6% & Framework Bộ...
 description: "Khám phá MemPalace — hệ thống trí nhớ AI mã nguồn mở được đánh giá cao nhất với 51,745 sao GitHub. Giúp AI assistant ghi nhớ lịch sử hội thoại dài hạn, sở thích người dùng và ngữ cảnh một cách thông minh."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'MemPalace có tương thích với Claude Code và các công cụ AI khác không?'
     a: 'Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mempalace/ -->
 
 {</* resource-info */>}
 

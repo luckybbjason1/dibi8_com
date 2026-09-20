@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins" />
-title: 'So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025'
+title: 'So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Je...
 description: 'So sánh chi tiết GitHub Actions, GitLab CI và Jenkins năm 2025. Tìm hiểu ưu nhược điểm, bảng giá, tính năng bảo mật và hướng dẫn chọn CI/CD phù hợp cho team của bạn.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/ -->
 # So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
-title: 'Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền Riêng Tư Thay Thế Google Analytics — Nhanh Hơn 45 Lần, Hướng Dẫn Tự Host 2026'
+title: 'Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền R...
 description: 'Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, script tracking <1KB. Nhanh hơn Google Analytics 45 lần. Benchmark thực tế và Docker deployment.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [plausible, analytics, 'quyền-riêng-tư', gdpr, 'thay-thế-google-anal
 aliases:
 - /vi/posts/plausible-analytics-privacy-google/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/plausible-analytics-privacy-google/ -->
 
 {{</* resource-info */>}}
 

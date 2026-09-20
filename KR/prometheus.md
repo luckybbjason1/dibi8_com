@@ -28,6 +28,8 @@ tags: [prometheus, 모니터링, docker, kubernetes, grafana, devops, 관측가�
 aliases:
 - /kr/posts/prometheus/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/prometheus/ -->
 # Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026
 
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/chatgpt-pro-vs-claude-pro" />
-title: 'ChatGPT Pro vs Claude Pro in 2026: Which $20 (or $200) AI Subscription Wins?'
+title: 'ChatGPT Pro vs Claude Pro in 2026: Which $20 (or $200) A...
 description: 'Full breakdown of ChatGPT Plus/Pro vs Claude Pro/Max — model lineup, context window, Projects, Artifacts, image gen, voice mode, pricing. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
 lastmod:  2026-05-22 00:00:00+08:00draft: false

@@ -1,5 +1,5 @@
 ---
-title: 'Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO truyền thống + Tối ưu hóa cho công cụ tạo sinh'
+title: 'Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO...
 description: 'Bộ công cụ miễn phí hoàn chỉnh cho SEO trong kỷ nguyên AI: trình tạo llms.txt + robots.txt cho AI-crawler + meta tags + Schema.org JSON-LD + hreflang + xem trước OG card. Bao quát cả tìm kiếm cổ điển (Google/Bing) lẫn các công cụ tạo sinh (ChatGPT, Claude, Perplexity). Tất cả chạy trên trình duyệt, không cần đăng ký.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Tôi nên áp dụng các công cụ AI-SEO và GEO này theo thứ tự nào?'
     a: 'Bắt đầu với lớp GEO — tạo llms.txt và robots.txt có ý thức về AI crawler — vì hầu hết các site chưa làm bước này. Sau đó thêm lớp on-page truyền thống: meta tag, Schema.org JSON-LD và hreflang cho các site đa ngôn ngữ. Kết thúc bằng lớp chia sẻ, xem trước Open Graph card của bạn.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-seo-geo-toolkit-stack/ -->
 # Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO truyền thống + Tối ưu hóa cho công cụ tạo sinh
 
 

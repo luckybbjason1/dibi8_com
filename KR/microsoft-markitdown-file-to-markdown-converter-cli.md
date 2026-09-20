@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/microsoft-markitdown-file-to-markdown-converter-cli" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/microsoft-markitdown-file-to-markdown-converter-cli" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/microsoft-markitdown-file-to-markdown-converter-cli" />
-title: "마이크로소프트 MarkItDown: 모든 파일을 Markdown으로 변환하는 완전 가이드 — 무료, 오픈소스, CLI 도구"
+title: "마이크로소프트 MarkItDown: 모든 파일을 Markdown으로 변환하는 완전 가이드 — 무료, ...
 description: "마이크로소프트의 MarkItDown을 사용하여 PDF, Word 문서, 이미지, HTML, PPTX 등을 깨끗한 Markdown으로 변환하는 방법을 배워보세요. 단계별 설치, 사용 예시, Python API, AI 파이프라인 통합, 벤치마크 및 Pandoc, Calibre, LibreOffice와의 비교."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "microsoft-markitdown-file-to-markdown-converter-cli"
@@ -12,6 +12,8 @@ category: dev-utils
 tags: [마이크로소프트, markitdown, markdown, python, cli, pdf변환기, 문서처리, AI, 오픈소스]
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/microsoft-markitdown-file-to-markdown-converter-cli/ -->
 
 ## 소개
 

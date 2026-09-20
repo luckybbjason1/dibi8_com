@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/crewai-multi-agent-orchestration" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
-title: 'CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự Chủ — Thiết Lập Production & Các Mẫu 2026'
+title: 'CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự C...
 description: 'Hướng dẫn thực hành 2026 về CrewAI — framework Python để xây dựng hệ thống AI đa tác tự với các tác tự dựa trên vai trò, phân công nhiệm vụ, chia sẻ bộ nhớ và các mẫu hợp tác tự chủ.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [crewai, 'multi-agent', 'ai-agents', orchestration, 'autonomous-agents', l
 aliases:
 - /vi/posts/crewai-multi-agent-orchestration/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/crewai-multi-agent-orchestration/ -->
 
 {{</* resource-info */>}}
 

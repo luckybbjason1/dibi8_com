@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tradingagents-llm-multi-agent-trading-framework-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tradingagents-llm-multi-agent-trading-framework-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tradingagents-llm-multi-agent-trading-framework-2026" />
-title: 'TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전 가이드'
+title: 'TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전...
 description: 'TradingAgents는 오픈소스 LLM 멀티 에이전트 프레임워크입니다(82,254 GitHub stars, Apache-2.0). 트레이딩 회사를 시뮬레이션해 분석가·리서처·트레이더·리스크 에이전트가 BUY/SELL/HOLD 결정을 토론합니다. LangGraph 기반. 설치, 에이전트 파이프라인, CLI + Python API, Qlib·단일 에이전트 봇과의 솔직한 비교를 다룹니다.'
 date: 2026-06-02
 lastmod:  2026-06-02slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
@@ -17,6 +17,8 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/tradingagents-llm-multi-agent-trading-framework-2026/ -->
 
 # TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전 가이드
 

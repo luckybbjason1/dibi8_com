@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen" />
-title: 'AutoGen: 58K+ Stars — 멀티 에이전트 프레임워크 심층 분석: CrewAI, LangGraph와의 비교 2026'
+title: 'AutoGen: 58K+ Stars — 멀티 에이전트 프레임워크 심층 분석: CrewAI, LangG...
 description: 'AutoGen(마이크로소프트)는 멀티 에이전트 AI 시스템 구축을 위한 이벤트 기반 프로그래밍 프레임워크입니다. OpenAI, Azure, Ollama, Docker, VS Code와 호환됩니다. 설치, 그룹 챗 설정, 프로덕션 강화 및 대안과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/autogen/
 - /kr/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/autogen/ -->
 
 {{</* resource-info */>}}
 

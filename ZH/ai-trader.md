@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-trader" />
 title: "AI-Trader：14K⭐全自动AI交易代理，让AI帮你24小时盯盘赚钱"
-description: "AI-Trader是香港大学数据科学实验室Open Source的全自动AI交易代理系统，14K+ Stars，支持股票、加密货币、外汇多市场自动交易，基于强化学习和多智能体协作。"
+description: "AI-Trader是香港大学数据科学实验室Open Source的全自动AI交易代理系统，14K+ Stars，支持股票、加密货币、外汇多市场自动交易，基于强化学习和多智能体协作。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: '我可以在不承担真实资金风险的情况下测试 AI-Trader 吗？'
     a: '可以。AI-Trader 内置高保真回测引擎用于历史模拟，同时提供模拟交易模式（在配置文件中设置 mode: paper）。项目文档建议在切换至实盘交易前务必先使用模拟交易模式进行验证。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-trader/ -->
 {</* resource-info */>}
 
 ## AI-Trader 是什么？

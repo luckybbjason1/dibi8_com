@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
-title: 'Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (Test Workload Thực Tế)'
+title: 'Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (T...
 description: 'Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ phức tạp cài đặt. Loại nào hợp cho prototype vs production, và khi nào nên bỏ qua vector DB để dùng SQLite FTS5.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "Cần bao nhiêu phần cứng?"
     a: "1 triệu vector @ 768 chiều: khoảng 3GB RAM. 10 triệu vector: khoảng 30GB. Hầu hết workload production chạy thoải mái trên một VM 32GB. Trên 100 triệu vector cần lên kế hoạch sharding."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/vector-db-2026-qdrant-weaviate-milvus/ -->
 
 {{</* resource-info */>}}
 

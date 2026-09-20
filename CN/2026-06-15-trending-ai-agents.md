@@ -1,6 +1,6 @@
 ---
 lang: en
-title: "This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of June 15, 2026)"
+title: "This Week in Open-Source AI Agents — Top Trending GitHub...
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — data auto-collected by Dibi8 Tribe Intel, analysis by Dibi8 editorial team."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
 date: 2026-06-15T00:00:00+09:00
@@ -20,6 +20,8 @@ review_checklist:
   - "无 aff 链接 (Tribe 文章纪律)"
 featureImage: /articles/ai-------------2026----------------------------.png/images/articles/ai-------------2026----------------------------.png
 ---
+
+<!-- canonical: https://dibi8.com/cn/tools/2026-06-15-trending-ai-agents/ -->
 
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 

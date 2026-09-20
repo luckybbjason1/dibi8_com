@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-evaluation-benchmarking-frameworks" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-evaluation-benchmarking-frameworks" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-evaluation-benchmarking-frameworks" />
-title: '2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCompass, BIG-bench'
+title: '2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCo...
 description: '2025년 최신 LLM 평가 및 벤치마킹 프레임워크를 벤치마크 범위, 사용 편의성, 커뮤니티 지원 중심으로 비교합니다. EleutherAI LM Eval, OpenCompass, BIG-bench, HELM 등 주요 프레임워크를 확인하세요.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['llm 평가', 'llm 벤치마크', eleutherai, opencompass, 'big-bench', h
 aliases:
 - /kr/posts/llm-evaluation-benchmarking-frameworks/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/llm-evaluation-benchmarking-frameworks/ -->
 # 2025년 LLM 평가 및 벤치마킹 프레임워크 비교: EleutherAI LM Eval, OpenCompass, BIG-bench
 
 

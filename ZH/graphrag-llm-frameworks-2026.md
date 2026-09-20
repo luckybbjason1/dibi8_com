@@ -40,6 +40,8 @@ faqs:
     a: '普通 RAG 取回几个相似文本块再据此作答。GraphRAG 在此之外，还会从你的文档中构建知识图谱和社区摘要，因此它既能回答宽泛的、语料库级的问题（全局搜索），也能回答聚焦实体的问题（局部搜索）。'
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/graphrag-llm-frameworks-2026/ -->
+
 {{< resource-info >}}
 
 ## 引言

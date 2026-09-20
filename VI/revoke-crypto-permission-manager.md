@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/revoke-crypto-permission-manager" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/revoke-crypto-permission-manager" />
 title: 'revoke-crypto-permission-manager'
-description: ''
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['revoke.cash']
 aliases:
 - /vi/posts/revoke-crypto-permission-manager/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/revoke-crypto-permission-manager/ -->
 
 {{</* resource-info */>}}
 

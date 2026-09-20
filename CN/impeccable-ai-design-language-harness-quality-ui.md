@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/impeccable-ai-design-language-harness-quality-ui" />
-title: 'Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review'
+title: 'Impeccable: The Design Language That Makes AI-Generated ...
 description: 'Impeccable (37K stars) is a design language for AI coding agents with 23 commands, 41 detector rules, and live browser iteration. Fixes AI-generated UI slop with deterministic design quality checks. Compatible with Claude Code, Cursor, and Codex.'
 tags: ["ai-tools", "automation", "design-language", "generation", "open-source", "quality"]
 date: 2026-06-13

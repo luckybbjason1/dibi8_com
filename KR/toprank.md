@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank" />
-title: "Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI 마케팅 도구"
-description: "Toprank는 Claude Code 기반 AI 마케팅 도구로 SEO, GEO, 광고 자동화를 한 번에 해결합니다. 검색 순위 상승, 트래픽 증가, 전환율 개선을 원한다면 지금 확인하세요."
+title: "Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI ...
+description: "Toprank는 Claude Code 기반 AI 마케팅 도구로 SEO, GEO, 광고 자동화를 한 번에 해결합니다. 검색 순위 상승, 트래픽 증가, 전환율 개선을 원한다면 지금 확인하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'Toprank는 어떤 사람에게 가장 적합한가요?'
     a: 'Toprank는 기존 CLI 워크플로우에서 감사를 자동화하려는 테크니컬 SEO 담당자, 애플리케이션 코드와 함께 마케팅 인프라를 운영하는 그로스 엔지니어, 버전 관리된 플레이북으로 다수의 고객 계정을 관리하는 대행사, 그리고 월 $500+ SaaS 스택 없이도 전문적인 SEO와 광고 관리가 필요한 스타트업 창업자를 위한 도구입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/toprank/ -->
 {</* resource-info */>}
 
 # Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI 마케팅 도구

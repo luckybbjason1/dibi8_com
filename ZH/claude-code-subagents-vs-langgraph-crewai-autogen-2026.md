@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
-title: 'Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时候该升级到独立框架'
+title: 'Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：...
 description: '你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub 星标的真相，以及"内置已经够用"与"该升级了"之间那条诚实的分界线。'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -39,6 +39,8 @@ faq:
   - q: "我能在 LangGraph 或 CrewAI 里用 Claude 模型吗？"
     a: "可以。LangGraph、CrewAI 和 AutoGen 都是模型无关的——你可以在它们背后跑 Claude、GPT、Gemini 或本地模型。Claude Agent SDK（2025 年底从 Claude Code SDK 改名而来，现在同时以 Python 和 TypeScript 包发布）设计上只支持 Claude，用模型灵活性换取了原生的安全特性和扩展思考。所以如果多厂商灵活性是硬性要求，就选其中一个模型无关的框架；如果你全押 Claude 并想要最紧密的集成，Agent SDK 就是原生路径。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagents-vs-langgraph-crewai-autogen-2026/ -->
 # Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：什么时候该升级到独立框架
 
 

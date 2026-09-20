@@ -1,8 +1,8 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/polymarket-agents-ai-trading-bot-framework" />
-title: 'Polymarket Agents: Build AI Trading Bots for Prediction Markets'
-description: Polymarket Agents is an open-source developer framework for building
+title: 'Polymarket Agents: Build AI Trading Bots for Prediction ...
+description: Polymarket Agents is an open-source developer framework for building. Comprehensive guide covering features, pricing, and best practices for 2026.
   AI agents that trade autonomously on Polymarket prediction markets.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00

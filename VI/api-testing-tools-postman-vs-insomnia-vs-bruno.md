@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/api-testing-tools-postman-vs-insomnia-vs-bruno" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/api-testing-tools-postman-vs-insomnia-vs-bruno" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/api-testing-tools-postman-vs-insomnia-vs-bruno" />
-title: 'Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt Nhất Năm 2025'
+title: 'Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt N...
 description: 'So sánh chi tiết Postman, Insomnia và Bruno — 3 công cụ kiểm thử API hàng đầu 2025. Tìm hiểu tính năng, giá cả, và công cụ phù hợp với workflow của bạn.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/api-testing-tools-postman-vs-insomnia-vs-bruno/ -->
 
 {</* resource-info */>}
 

@@ -16,6 +16,8 @@ lang: zh
 featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/nvidia-cosmos-world-models-platform-2026/ -->
+
 ![NVIDIA Cosmos 平台](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)
 
 # NVIDIA Cosmos：面向物理AI的开源世界模型（10K+星标）

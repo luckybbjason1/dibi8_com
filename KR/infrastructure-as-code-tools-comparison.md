@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/infrastructure-as-code-tools-comparison" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/infrastructure-as-code-tools-comparison" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/infrastructure-as-code-tools-comparison" />
-title: '2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, Crossplane'
-description: 'IaC 도구를 비교합니다. Terraform, Pulumi, AWS CDK, Crossplane, Ansible의 특징과 장단점을 알아보고 프로젝트에 맞는 인프라 관리 도구를 선택하세요.'
+title: '2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, C...
+description: 'IaC 도구를 비교합니다. Terraform, Pulumi, AWS CDK, Crossplane, Ansible의 특징과 장단점을 알아보고 프로젝트에 맞는 인프라 관리 도구를 선택하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /kr/posts/infrastructure-as-code-tools-comparison/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/infrastructure-as-code-tools-comparison/ -->
 # 2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, Crossplane
 
 

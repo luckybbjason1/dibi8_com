@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/nvidia-cosmos-world-models-platform-2026" />
-title: 'NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)'
+title: 'NVIDIA Cosmos: Open-Source World Models for Physical AI ...
 description: 'NVIDIA Cosmos is an open platform of world models, datasets, and tools for building Physical AI — robots, autonomous vehicles, smart infrastructure. Cosmos 3 uses Mixture-of-Transformers for unified language, image, video, audio, and action generation. 16B and 64B models available.'
 tags: ["open-source", "self-hosted"]
 date: 2026-06-13

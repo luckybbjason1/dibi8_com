@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-title: '서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)'
+title: '서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
 description: 'Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴을 곁들여, 올바른 확장을 선택하기 위한 의사결정 프레임워크를 제시한다.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "스킬, 서브에이전트, MCP 서버가 모두 CI / 헤드리스 모드에서 동작하나?"
     a: "그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagent-vs-mcp-server-skill-agent-2026/ -->
 # 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)
 
 

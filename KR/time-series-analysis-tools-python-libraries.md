@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/time-series-analysis-tools-python-libraries" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/time-series-analysis-tools-python-libraries" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/time-series-analysis-tools-python-libraries" />
-title: 'Python 시계열 분석 도구 완벽 가이드: Prophet, sktime, ARIMA 및 Darts 활용법'
-description: 'Python 시계열 분석의 핵심 라이브러리 Prophet, sktime, statsmodels(ARIMA), Darts를 비교하고 각 도구의 특징과 실전 활용법을 설명합니다.'
+title: 'Python 시계열 분석 도구 완벽 가이드: Prophet, sktime, ARIMA 및 Darts ...
+description: 'Python 시계열 분석의 핵심 라이브러리 Prophet, sktime, statsmodels(ARIMA), Darts를 비교하고 각 도구의 특징과 실전 활용법을 설명합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/time-series-analysis-tools-python-libraries/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/time-series-analysis-tools-python-libraries/ -->
 
 {</* resource-info */>}
 

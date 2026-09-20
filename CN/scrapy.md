@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/scrapy" />
-title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs BeautifulSoup, Selenium in 2026'
+title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
 description: 'Scrapy is a fast high-level web crawling and scraping framework for Python. Compatible with Python, Docker, Redis, PostgreSQL. Covers benchmarks, architecture, production deployment, and comparison with BeautifulSoup, Selenium, and Playwright.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

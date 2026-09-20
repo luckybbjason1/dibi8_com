@@ -1,5 +1,5 @@
 ---
-title: "LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo"
+title: "LangChain vs LlamaIndex vs LangGraph 2026: Guia de Compa...
 description: "Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, escolha o framework ideal para o seu projeto."
 date: 2026-09-20
 lastmod: 2026-09-20
@@ -9,6 +9,8 @@ license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/2026-09-20-langchain-vs-llamaindex-vs-langgraph/ -->
 
 # LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo
 

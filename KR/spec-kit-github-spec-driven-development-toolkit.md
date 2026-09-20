@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/spec-kit-github-spec-driven-development-toolkit" />
 title: "스펙 키트: GitHub"
-description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통해 개발자가 소프트웨어를 구축하는 방식을 변화시키는 오픈 소스 도구 키트. 설치, 워크플로우 및 실제 예제."
+description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통해 개발자가 소프트웨어를 구축하는 방식을 변화시키는 오픈 소스 도구 키트. 설치, 워크플로우 및 실제 예제.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-20
 lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
@@ -13,6 +13,8 @@ lang: kr
 slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/spec-kit-github-spec-driven-development-toolkit/ -->
 
 # 사양 키트: GitHub의 혁신적인 사양 기반 개발 도구 키트 
 

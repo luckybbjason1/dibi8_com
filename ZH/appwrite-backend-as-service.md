@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
 title: 'Appwrite 2026：开源 Firebase 替代方案 — 认证、数据库与存储自托管后端完整指南'
-description: 'Appwrite 1.6 完整指南 — 自托管开源后端，包含认证、数据库、存储、云函数和实时订阅功能。Docker 部署、SDK 集成、基准测试和生产环境加固。'
+description: 'Appwrite 1.6 完整指南 — 自托管开源后端，包含认证、数据库、存储、云函数和实时订阅功能。Docker 部署、SDK 集成、基准测试和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [appwrite, 后端即服务, 'firebase 替代', docker, 开源, 认证, 数
 aliases:
 - /zh/posts/appwrite-backend-as-service/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/appwrite-backend-as-service/ -->
 
 {{</* resource-info */>}}
 

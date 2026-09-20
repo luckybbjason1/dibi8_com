@@ -17,6 +17,8 @@ license: MIT
 lang: zh
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/semgrep-15k-star-sast-security-scanner/ -->
 # Semgrep：这款拥有 1.5 万星的 SAST 工具能在不到 30 秒的时间内发现你代码库中的 500 多个漏洞——快速、轻量、适合生产环境
 
 <script type="application/ld+json">

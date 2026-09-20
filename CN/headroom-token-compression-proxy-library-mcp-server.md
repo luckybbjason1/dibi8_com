@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/headroom-token-compression-proxy-library-mcp-server" />
-title: 'Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026'
+title: 'Headroom: Compress LLM Inputs by 60-95% — A Token-Saving...
 description: 'Headroom (19,745 GitHub stars) compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, and MCP server. Includes setup tutorial, architecture breakdown, and real benchmarks.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'

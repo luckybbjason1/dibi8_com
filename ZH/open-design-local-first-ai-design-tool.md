@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
 title: "Open Design: 替代 Claude Design 的终极本地优先 AI 设计工具"
-description: "深入了解 Open Design，这款拥有 39K+ Star 的开源本地优先 Claude Design 替代品。19 项 AI 技能、71 套设计系统，支持生成原型、幻灯片、视频及多格式导出。"
+description: "深入了解 Open Design，这款拥有 39K+ Star 的开源本地优先 Claude Design 替代品。19 项 AI 技能、71 套设计系统，支持生成原型、幻灯片、视频及多格式导出。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -40,6 +40,8 @@ faqs:
   - q: '使用 Open Design 需要付费吗？'
     a: '该工具本身基于 MIT 许可证，免费且开源，无需订阅费或按席位收费。唯一的成本是您实际消耗的 AI 服务商 API 用量，因此您只需为向 Anthropic、OpenAI 或 Google 等服务商发起的实际调用付费。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/open-design-local-first-ai-design-tool/ -->
 
 {</* resource-info */>}
 

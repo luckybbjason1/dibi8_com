@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openhands" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openhands" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openhands" />
-title: 'OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy code (Hướng dẫn cài đặt 2026)'
+title: 'OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
 description: 'OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Docker, GitHub, GitLab, Claude và OpenAI. Bao gồm thiết lập Docker, cấu hình model, chế độ headless CI/CD và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/openhands/
 - /vi/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openhands/ -->
 
 {{</* resource-info */>}}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cursor-cost-saving-strategies-2026" />
-title: 'Cursor Cost-Saving Strategies 2026: After the Credit Pricing Change'
+title: 'Cursor Cost-Saving Strategies 2026: After the Credit Pri...
 description: 'Cursor changed its pricing in 2025 — Pro users lost ~55% effective usage at the same price. Here are 7 specific cost-saving strategies that work in 2026: model selection, context discipline, hybrid stacks, and when to abandon ship.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

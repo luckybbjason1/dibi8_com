@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mattpocock-skills-ai-agent-framework-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mattpocock-skills-ai-agent-framework-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mattpocock-skills-ai-agent-framework-guide" />
-title: "Matt Pocock's Skills: Framework CLI mang đến Siêu năng lực thực sự cho AI Agents — Cài đặt npm, Không cấu hình"
+title: "Matt Pocock's Skills: Framework CLI mang đến Siêu năng l...
 description: "Tìm hiểu cách sử dụng framework Skills của Matt Pocock để trang bị cho các AI coding agents như Claude Code, Cursor và Gemini CLI các khả năng thực sự vượt xa code — cơ sở dữ liệu, filesystem, CI/CD và hơn nữa. Hướng dẫn cài đặt npx từng bước, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"
@@ -17,6 +17,8 @@ license: MIT
 featureImage: "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mattpocock-skills-ai-agent-framework-guide/ -->
 
 ## Giới thiệu
 

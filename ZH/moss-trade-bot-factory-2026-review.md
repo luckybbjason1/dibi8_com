@@ -42,6 +42,8 @@ faq:
     a: "仅限 v1.0.26 BTC 304 天数据：以均值回归为主的网格 + 2-3x 杠杆是唯一正收益（+4.36%）。趋势跟随 + 5-10x 杠杆同窗口亏 -8% 到 -20%。这是 regime 决定的 — BTC 2025-07 ~ 2026-04 是震荡市。同样的网格逻辑在强单边市大概率亏。"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/moss-trade-bot-factory-2026-review/ -->
+
 {{</* resource-info */>}}
 
 # Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/temporal-ai-workflow-orchestration" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/temporal-ai-workflow-orchestration" />
 title: Temporal AI 工作流编排 — 可靠的多步骤 AI 流水线
-description: Temporal 编排 AI/ML 工作流的完全指南。构建可靠的 LLM 流水线、多 Agent 系统和 ML 训练任务，内置持久性、重试和可观测性。
+description: Temporal 编排 AI/ML 工作流的完全指南。构建可靠的 LLM 流水线、多 Agent 系统和 ML 训练任务，内置持久性、重试和可观测性。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
@@ -14,6 +14,8 @@ lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: zh-CN
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/temporal-ai-workflow-orchestration/ -->
 
 ## TL;DR
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
-title: 'OpenAI Whisper: 99.8K+ Stars — Hướng Dẫn Cài Đặt ASR Đầy Đủ vs WhisperX, faster-whisper 2026'
+title: 'OpenAI Whisper: 99.8K+ Stars — Hướng Dẫn Cài Đặt ASR Đầy...
 description: 'OpenAI Whisper (ASR) nhận dạng giọng nói mạnh mẽ qua giám sát yếu quy mô lớn. Tương thích với WhisperX, faster-whisper, LibreTranslate. Bao gồm whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [whisper, 'nhan-dang-giong-noi', asr, openai, 'faster-whisper', whisperx, 
 aliases:
 - /vi/posts/openai-whisper/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openai-whisper/ -->
 
 {{</* resource-info */>}}
 

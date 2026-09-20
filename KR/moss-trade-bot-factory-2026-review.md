@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/moss-trade-bot-factory-2026-review" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/moss-trade-bot-factory-2026-review" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/moss-trade-bot-factory-2026-review" />
-title: 'Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백테스트는 거짓말을 하는가'
+title: 'Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백...
 description: 'moss-trade-bot-skills v1.0.26 핸즈온 리뷰: Hyperliquid 퍼페추얼용 자연어 퀀트 agent 빌더. Decimal 정밀도 + 20단계 호가창 모델링 — 그러나 Sharpe 연간화 상수 버그와 진화 모드 활성화 시 교과서적 OVERFIT 트랩. 보안 감사, 버그 픽스, 5 전략 비교, 70/30 train/OOS 검증 결과 전 과정.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "실측 데이터 기준 Hyperliquid 퍼페추얼에서 실제로 작동하는 전략은?"
     a: "v1.0.26 BTC 304일 데이터 한정: 평균 회귀가 주도하는 그리드 + 2-3x 레버리지가 유일하게 양의 수익(+4.36%)을 냈습니다. 추세 추종 + 5-10x 레버리지는 같은 기간에 -8% ~ -20% 손실. 이것은 regime-specific입니다 — BTC 2025-07 ~ 2026-04는 횡보장이었습니다. 같은 그리드 로직이 강한 추세장에서는 손실 가능성이 높습니다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/moss-trade-bot-factory-2026-review/ -->
 
 {{</* resource-info */>}}
 

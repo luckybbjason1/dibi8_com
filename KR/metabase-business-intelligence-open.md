@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/metabase-business-intelligence-open" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/metabase-business-intelligence-open" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/metabase-business-intelligence-open" />
-title: 'Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축 가이드'
-description: 'Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.'
+title: 'Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축...
+description: 'Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards
 aliases:
 - /kr/posts/metabase-business-intelligence-open/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/metabase-business-intelligence-open/ -->
 
 {{</* resource-info */>}}
 

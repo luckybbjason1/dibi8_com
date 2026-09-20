@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/llamaindex" />
-title: 'LlamaIndex: 49K+ Stars — Production RAG Deployment Guide 2026'
+title: 'LlamaIndex: 49K+ Stars — Production RAG Deployment Guide...
 description: 'LlamaIndex is a data framework for building production RAG systems with LLMs. Supports OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Covers Docker deployment, query engines, agents, and benchmarks vs LangChain/Haystack/RAGFlow.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

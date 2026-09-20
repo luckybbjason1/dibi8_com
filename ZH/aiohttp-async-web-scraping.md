@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
 title: 'aiohttp 2026: 构建每秒处理10K+请求的高性能异步网页抓取器 — Python指南'
-description: '掌握 aiohttp 3.11，用 Python 构建高性能异步网页抓取器。支持连接池、会话管理、速率限制和生产环境部署，每秒处理10K+请求。'
+description: '掌握 aiohttp 3.11，用 Python 构建高性能异步网页抓取器。支持连接池、会话管理、速率限制和生产环境部署，每秒处理10K+请求。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [aiohttp, 异步, 网页抓取, python, http客户端, asyncio]
 aliases:
 - /zh/posts/aiohttp-async-web-scraping/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/aiohttp-async-web-scraping/ -->
 
 {{</* resource-info */>}}
 

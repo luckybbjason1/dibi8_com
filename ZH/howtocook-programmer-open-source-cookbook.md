@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook 程序员做饭指南：297 个开源菜谱让 coding 更香"
-description: "探索 HowToCook 程序员做饭指南 — 297 个开源菜谱，像写代码一样精确做饭。从番茄炒蛋到北京烤鸭，难度分级，步骤清晰。"
+description: "探索 HowToCook 程序员做饭指南 — 297 个开源菜谱，像写代码一样精确做饭。从番茄炒蛋到北京烤鸭，难度分级，步骤清晰。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: '如何向 HowToCook 贡献菜谱？'
     a: 'Fork 仓库，复制模板菜谱，按项目规定的结构化格式编写你的菜谱，然后提交 Pull Request。该项目已有 200 多位贡献者，支持中文、英文和日文。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/howtocook-programmer-open-source-cookbook/ -->
 {</* resource-info */>}
 
 ## HowToCook 是什么？

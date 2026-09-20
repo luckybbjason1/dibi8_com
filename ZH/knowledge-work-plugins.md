@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
 title: "知识工作插件：Anthropic 的插件生态系统，赋能 AI 生产力 2026"
-description: "Knowledge Work Plugins（20,728 颗星）由 Anthropic 打造，为 Claude 扩展了强大的文档编辑、代码分析、网页浏览和文件操作工具。为你的工作流构建自定义插件。"
+description: "Knowledge Work Plugins（20,728 颗星）由 Anthropic 打造，为 Claude 扩展了强大的文档编辑、代码分析、网页浏览和文件操作工具。为你的工作流构建自定义插件。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: knowledge-work-plugins
 category: dev-utils
@@ -25,6 +25,8 @@ images:
 lang: zh
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/knowledge-work-plugins/ -->
 
 ## 快速概览
 

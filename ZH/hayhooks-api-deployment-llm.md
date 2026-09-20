@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hayhooks-api-deployment-llm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hayhooks-api-deployment-llm" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hayhooks-api-deployment-llm" />
-title: 'Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产环境 setup 指南'
-description: '完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。'
+title: 'Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产...
+description: '完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [hayhooks, haystack, nlp, 'rest api', 大语言模型, 'pipeline 部署', 
 aliases:
 - /zh/posts/hayhooks-api-deployment-llm/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/hayhooks-api-deployment-llm/ -->
 
 {{</* resource-info */>}}
 

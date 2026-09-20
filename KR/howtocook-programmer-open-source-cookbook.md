@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/howtocook-programmer-open-source-cookbook" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/howtocook-programmer-open-source-cookbook" />
 title: "HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피"
-description: "HowToCook 프로그래머 요리 가이드를 탐색하세요 — 코드처럼 정확하게 요리하는 297개 오픈소스 레시피. 토마토 계란볶음부터 베이징 덕까지, 난이도 분류, 명확한 단계."
+description: "HowToCook 프로그래머 요리 가이드를 탐색하세요 — 코드처럼 정확하게 요리하는 297개 오픈소스 레시피. 토마토 계란볶음부터 베이징 덕까지, 난이도 분류, 명확한 단계.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'HowToCook에 레시피를 기여하는 방법은 무엇인가요?'
     a: '저장소를 Fork하고, 템플릿 레시피를 복사한 뒤, 프로젝트의 구조화된 형식에 맞게 레시피를 작성하고 Pull Request를 제출하면 됩니다. 이 프로젝트에는 200명 이상의 기여자가 있으며 중국어, 영어, 일본어를 지원합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/howtocook-programmer-open-source-cookbook/ -->
 {</* resource-info */>}
 
 ## HowToCook란?

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bookstack-documentation-wiki" />
 title: 'BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰'
-description: 'BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프 호스팅.'
+description: 'BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프 호스팅.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [bookstack, 문서화, wiki, '셀프 호스팅', php, laravel, '지식 베
 aliases:
 - /kr/posts/bookstack-documentation-wiki/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/bookstack-documentation-wiki/ -->
 
 {{</* resource-info */>}}
 

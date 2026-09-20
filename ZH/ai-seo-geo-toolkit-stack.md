@@ -39,6 +39,8 @@ faqs:
   - q: '应该按什么顺序使用这些 AI-SEO 和 GEO 工具？'
     a: '先从 GEO 层入手——生成 llms.txt 和具备 AI 爬虫感知的 robots.txt——因为大多数网站还没做这一步。然后进行传统的页面层优化：meta 标签、Schema.org JSON-LD，以及多语言网站必备的 hreflang。最后处理分享层，预览你的 Open Graph 卡片效果。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-seo-geo-toolkit-stack/ -->
 # AI-SEO 与 GEO 工具栈 2026：6 款免费工具搞定传统 SEO + 生成式引擎优化
 
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/llm-evaluation-benchmarking-frameworks" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-evaluation-benchmarking-frameworks" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-evaluation-benchmarking-frameworks" />
-title: '2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-bench全面评测'
+title: '2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-b...
 description: '深入对比EleutherAI LM Evaluation Harness、OpenCompass、BIG-bench、HELM、AlpacaEval、DeepEval等主流LLM评估框架，详解MMLU、HumanEval、TruthfulQA等基准测试，助力构建科学的LLM评估体系。'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [llm评估, 基准测试, eleutherai, opencompass, 'big-bench']
 aliases:
 - /zh/posts/llm-evaluation-benchmarking-frameworks/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/llm-evaluation-benchmarking-frameworks/ -->
 # 2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-bench全面评测
 
 

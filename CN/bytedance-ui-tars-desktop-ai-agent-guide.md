@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/bytedance-ui-tars-desktop-ai-agent-guide" />
-title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent That Sees and Controls Your Computer — Full Setup Guide"
+title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent ...
 description: "Learn how to deploy ByteDance's UI-TARS Desktop, a vision-language AI agent that sees your screen and controls applications through natural language. Step-by-step installation, real-world benchmarks, and comparisons with alternatives."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"

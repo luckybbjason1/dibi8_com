@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/devtoys/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/devtoys/ -->
+
 {{</* resource-info */>}}
 
 ![DevToys Logo](https://raw.githubusercontent.com/DevToys-app/DevToys/main/assets/logo/Logo.png)

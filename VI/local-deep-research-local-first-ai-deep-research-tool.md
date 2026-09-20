@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/local-deep-research-local-first-ai-deep-research-tool" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/local-deep-research-local-first-ai-deep-research-tool" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/local-deep-research-local-first-ai-deep-research-tool" />
-title: "Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên Local Tối Thượng"
+title: "Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên L...
 description: "Làm chủ Local Deep Research (LDR) — trợ lý nghiên cứu AI ưu tiên local. Tìm hiểu cách thực hiện nghiên cứu sâu, lặp lại với Ollama và SearXNG trong khi duy trì quyền riêng tư 100%."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Local Deep Research tránh ảo giác AI và đảm bảo độ tin cậy như thế nào?'
     a: 'LDR cung cấp các trích dẫn có độ trung thực cao, đính kèm danh mục tài liệu tham khảo cho mọi khẳng định mà nó đưa ra để bạn có thể kiểm chứng nguồn tài liệu ngay lập tức. Nó cũng thực hiện tổng hợp lặp đi lặp lại, xác định các khoảng trống và chạy các tìm kiếm tiếp theo thay vì dựa vào một câu trả lời hời hợt duy nhất.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/local-deep-research-local-first-ai-deep-research-tool/ -->
 {</* resource-info */>}
 
 Hầu hết các trợ lý AI đều ưu tiên "chat", nghĩa là chúng đưa ra câu trả lời nhanh dựa trên dữ liệu đã được huấn luyện trước. Nhưng nếu bạn cần một phương pháp **ưu tiên nghiên cứu (research-first)** có khả năng quét web, các bài báo học thuật và tài liệu địa phương của bạn để tổng hợp thành một báo cáo chuyên sâu thì sao? Và nếu bạn muốn thực hiện việc đó với **quyền riêng tư 100%** thì sao?

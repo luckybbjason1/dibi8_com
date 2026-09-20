@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/shellcheck" />
-title: 'ShellCheck: 39,456 GitHub Stars — Complete Setup Guide for Shell Script Analysis in 2026'
+title: 'ShellCheck: 39,456 GitHub Stars — Complete Setup Guide f...
 description: 'ShellCheck (SC) is a static analysis tool for bash/sh shell scripts. Integrates with Docker, GitHub Actions, VS Code, and CI/CD pipelines. Covers installation, configuration, CI integration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

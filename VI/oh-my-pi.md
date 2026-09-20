@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/oh-my-pi" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/oh-my-pi" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/oh-my-pi" />
-title: "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026"
+title: "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Th...
 description: "Oh My Pi (12.554 sao) biến thiết bị Raspberry Pi thành hub nhà thông minh, trung tâm media và workstation phát triển với cài đặt một-click và cấu hình tự động."
 date: 2026-06-15
 lastmod:  2026-06-15slug: oh-my-pi
@@ -25,6 +25,8 @@ images:
 lang: vi
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/oh-my-pi/ -->
 
 ## TL;DR
 

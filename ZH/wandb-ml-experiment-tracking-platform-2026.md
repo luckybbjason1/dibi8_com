@@ -18,6 +18,8 @@ featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screens
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/wandb-ml-experiment-tracking-platform-2026/ -->
+
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)
 
 ![W&B Sweeps](https://opengraph.github.com/github/wandb/wandb/tree/main/wandb/sweeps)

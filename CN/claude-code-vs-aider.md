@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-vs-aider" />
-title: 'Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown'
+title: 'Claude Code vs Aider in 2026: Commercial vs Open Source ...
 description: 'Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — pricing, context, agent style, cost efficiency. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
 lastmod:  2026-05-22 00:00:00+08:00draft: false

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-subagents-vs-langgraph-crewai-autogen-2026" />
-title: 'Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (2026): 언제 독립 프레임워크로 넘어가야 하는가'
+title: 'Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (...
 description: '당신은 이미 Claude Code 안에서 subagent를 오케스트레이션하고 있다. 정말 LangGraph, CrewAI, AutoGen이 필요할까? 실제 벤치마크, GitHub 스타의 현실, 그리고 "내장 기능으로 충분하다"와 "이제 넘어갈 때다" 사이의 솔직한 경계선을 담은 2026 의사결정 가이드.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -39,6 +39,8 @@ faq:
   - q: "Claude 모델을 LangGraph나 CrewAI와 함께 쓸 수 있나요?"
     a: "네. LangGraph, CrewAI, AutoGen은 모두 모델 비종속적이라 — 그 뒤에서 Claude, GPT, Gemini, 또는 로컬 모델을 돌릴 수 있습니다. Claude Agent SDK(2025년 말 Claude Code SDK에서 이름이 바뀌었으며, 현재 Python과 TypeScript 패키지로 모두 제공)는 설계상 Claude 전용으로, 모델 유연성을 내주는 대신 네이티브 안전 기능과 확장 사고를 얻습니다. 따라서 멀티 벤더 유연성이 반드시 필요한 요건이라면 비종속 프레임워크 중 하나를 택하고, Claude에 전부 올인하며 가장 긴밀한 통합을 원한다면 Agent SDK가 네이티브 경로입니다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-subagents-vs-langgraph-crewai-autogen-2026/ -->
 # Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (2026): 언제 독립 프레임워크로 넘어가야 하는가
 
 

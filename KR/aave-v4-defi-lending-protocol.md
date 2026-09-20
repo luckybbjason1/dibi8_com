@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aave-v4-defi-lending-protocol" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aave-v4-defi-lending-protocol" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aave-v4-defi-lending-protocol" />
-title: 'AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트랙트 통합 가이드'
+title: 'AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트...
 description: '2026년 AAVE v4 DeFi 대출 프로토콜 통합 완벽 가이드. 30개 이상의 암호화폐 자산을 공급하고 차입하며, 플래시 론을 사용하고, 격리 모드를 구현하며, DApp에서 GHO 스테이블코인을 통합하는 방법을 배우세요.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [aave]
 aliases:
 - /kr/posts/aave-v4-defi-lending-protocol/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/aave-v4-defi-lending-protocol/ -->
 
 {{</* resource-info */>}}
 

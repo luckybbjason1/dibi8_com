@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vector-db-2026-qdrant-weaviate-milvus" />
-title: '2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드 테스트)'
+title: '2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드...
 description: '동일한 500만 벡터 워크로드로 Qdrant, Weaviate, Milvus를 실측했습니다. 레이턴시, 처리량, 메모리, 설치 난이도. 프로토타입과 프로덕션 각각 어디에 적합한지, 그리고 언제 벡터 DB 대신 SQLite FTS5를 써야 하는지 정리합니다.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "하드웨어는 얼마나 필요한가요?"
     a: "100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/vector-db-2026-qdrant-weaviate-milvus/ -->
 
 {{</* resource-info */>}}
 

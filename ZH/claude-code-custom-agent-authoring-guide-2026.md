@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
 title: 'Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）'
-description: '完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。'
+description: '完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -41,6 +41,8 @@ faq:
   - q: "自定义 agent 在 CI 和无头运行里能用吗，还是只能交互式？"
     a: "两者都能用。同一份 .claude/agents/ 定义在你非交互运行 Claude Code 时（CI 里用的 -p / print 模式）也会被识别。因为它们是仓库里受版本控制的文件，每个队友、每个 CI 任务看到的都是完全相同的 agent 定义——这正是把审查清单编码成 agent、而不是写成一个没人会打开的 wiki 页面的全部意义。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-custom-agent-authoring-guide-2026/ -->
 # Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）
 
 

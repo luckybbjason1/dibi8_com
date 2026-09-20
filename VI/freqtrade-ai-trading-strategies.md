@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-ai-trading-strategies" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-ai-trading-strategies" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-ai-trading-strategies" />
-title: 'Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1ee3c Giao D\u1ecbch Ti\u1ec1n M\u00e3 H\u00f3a AI V\u1edbi Machine Learning \u2014 H\u01b0\u1edbng D\u1eabn Thi\u1ebft L\u1eadp Bot Ho\u00e0n Ch\u1ec9nh'
+title: 'Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1...
 description: 'H\u01b0\u1edbng d\u1eabn tri\u1ec3n khai th\u1ef1c t\u1ebf Freqtrade v\u1edbi FreqAI, bot giao d\u1ecbch ti\u1ec1n m\u00e3 h\u00f3a Python m\u00e3 ngu\u1ed3n m\u1edf v\u1edbi t\u00edch h\u1ee3p ML. Bao g\u1ed3m thi\u1ebft l\u1eadp Docker, t\u1ed1i \u01b0u hyperparameter, backtest, t\u00edch h\u1ee3p Telegram v\u00e0 tri\u1ec3n khai production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/freqtrade-ai-trading-strategies/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/freqtrade-ai-trading-strategies/ -->
 
 {{</* resource-info */>}}
 

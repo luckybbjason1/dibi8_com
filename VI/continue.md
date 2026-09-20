@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
-title: 'Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh Copilot, Cursor 2026'
+title: 'Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh...
 description: 'Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthropic, Gemini. So sánh với GitHub Copilot, Cursor, Tabby. Hướng dẫn cài đặt, ví dụ cấu hình, benchmark.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['continue.dev', 'tro-ly-lap-trinh-ai', 'vs-code', jetbrains, 'ma-nguon-mo
 aliases:
 - /vi/posts/continue/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/continue/ -->
 
 {{</* resource-info */>}}
 

@@ -34,6 +34,8 @@ faq:
     a: "가능하지만 고통스럽습니다. 각 프레임워크는 자체 도구 호출 API, 상태 모델, 관측성 훅을 가지고 있습니다. 한번 선택하면 6개월 이상 고수할 계획을 세우세요. 전환 비용은 새 에이전트 워크플로우 1-2개를 구축하는 비용과 거의 같습니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/open-source-ai-agent-framework-top-10-2026/ -->
+
 {{</* resource-info */>}}
 
 # 오픈소스 AI 에이전트 프레임워크 Top 10 (2026)

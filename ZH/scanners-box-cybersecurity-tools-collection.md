@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
 title: Scanners-Box：200+ 网络安全工具合集 — 安全从业人员必备
-description: 探索 Scanners-Box — 200+ 开源网络安全工具合集，涵盖渗透测试、漏洞扫描、安全研究等领域。
+description: 探索 Scanners-Box — 200+ 开源网络安全工具合集，涵盖渗透测试、漏洞扫描、安全研究等领域。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -42,6 +42,8 @@ faqs:
   - q: '像 Scanners-Box 里这样的渗透测试工具，使用是否合法?'
     a: '这些工具仅在获得授权的安全测试中才合法；在没有明确书面许可的情况下对系统使用它们是违法且不道德的。相关法律包括美国《计算机欺诈和滥用法》（CFAA）、英国《计算机滥用法》、中国《网络安全法》以及欧盟 GDPR，因此在测试前务必取得书面授权并界定测试范围。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/scanners-box-cybersecurity-tools-collection/ -->
 {</* resource-info */>}
 
 ## Scanners-Box 是什么？

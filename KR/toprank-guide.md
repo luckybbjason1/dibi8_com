@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/toprank-guide" />
 title: "GEO 최적화 완벽 가이드: Toprank로 ChatGPT가 내 사이트를 인용하게 만드는 법"
-description: "GEO 최적화 완벽 가이드: Toprank로 ChatGPT가 내 사이트를 인용하게 만드는 법"
+description: "GEO 최적화 완벽 가이드: Toprank로 ChatGPT가 내 사이트를 인용하게 만드는 법". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -36,6 +36,8 @@ faqs:
   - q: 'GEO 최적화는 AI 인용 가능성을 얼마나 높일 수 있나요?'
     a: '이 글에 따르면, 콘텐츠에 구조화된 데이터, 차별화된 통계, 그리고 독특하게 인용 가능한 사실을 주입하면 LLM 출력에서 참조될 확률을 최대 45%까지 높일 수 있다고 실증적으로 주장합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/toprank-guide/ -->
 
 {</* resource-info */>}
 

@@ -41,6 +41,8 @@ faqs:
     a: 'agent 워크플로에서는 안전합니다. set -e 엄격 모드에서 정확한 출력 텍스트에 의존하는 파이프라인에는 쓰지 마세요. 하지만 AI agent가 출력을 읽고 다음 단계를 결정하는 loop에서는 rtk의 압축 출력이 agent가 실제로 필요한 것입니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/rtk-rust-cli-proxy-llm-token-savings-2026/ -->
+
 {{</* resource-info */>}}
 
 ## Quick Answer

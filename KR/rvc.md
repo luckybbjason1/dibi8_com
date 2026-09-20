@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/rvc/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/rvc/ -->
+
 {{</* resource-info */>}}
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)

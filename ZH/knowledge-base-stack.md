@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-base-stack" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-base-stack" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-base-stack" />
-title: '知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$10-25/月）'
+title: '知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$1...
 description: '5 组件自托管知识库 stack，给个人或团队用。AnythingLLM（UI + RAG）+ RAGFlow（深度文档解析）+ mem0（agent 记忆）+ AgentMemory MCP（暴露给 MCP host）+ 向量库选型。替代 $50-200/月 SaaS（Notion AI + Mem + Glean），$10-25/月自托管。'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -32,6 +32,8 @@ tags: [知识库, rag, 第二大脑, stack, 合集]
 aliases:
   - /posts/knowledge-base-stack/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/knowledge-base-stack/ -->
 
 你有 500 个 PDF、2000 条笔记、10 年邮件，但编辑器里的 AI 一个都不知道存在。Notion AI 每座 $10/月还看不到本地文件。Glean 每年起步 $30k。Mem.ai 不错但是 SaaS —— 你的"第二大脑"住在别人的硬件上。
 

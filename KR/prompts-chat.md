@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompts-chat" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompts-chat" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompts-chat" />
-title: 'prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026'
+title: 'prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
 description: 'Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library.'
 date: 2026-06-12
 lastmod:  2026-06-12slug: 'prompts-chat'
@@ -15,6 +15,8 @@ license: NOASSERTION
 lang: kr
 featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/prompts-chat/ -->
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
 title: 'prompts.chat: 163k+ 프롬프트 -- 2026 오픈소스 프롬프트 라이브러리 가이드'

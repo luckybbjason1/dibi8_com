@@ -16,6 +16,8 @@ license: MIT
 lang: kr
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/semgrep-15k-star-sast-security-scanner/ -->
 # Semgrep: 30초 이내에 코드베이스에서 500개 이상의 취약점을 찾아내는 15,000개 이상의 SAST 도구 — 빠르고 가벼우며 생산 준비 완료
 
 <script type="application/ld+json">

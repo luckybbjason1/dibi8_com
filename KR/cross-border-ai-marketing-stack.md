@@ -32,6 +32,8 @@ tags: ['국경 간', 'ai 마케팅', '글로벌 진출', 스택, 컬렉션]
 aliases:
   - /posts/cross-border-ai-marketing-stack/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/cross-border-ai-marketing-stack/ -->
 # 국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업
 
 

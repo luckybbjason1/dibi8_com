@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/open-source-ai-agent-framework-top-10-2026" />
-title: 'Open Source AI Agent Framework Top 10 (2026): Ranked by Production Adoption'
+title: 'Open Source AI Agent Framework Top 10 (2026): Ranked by ...
 description: 'Ten OSS AI agent frameworks ranked by 2026 production adoption: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Strengths, gotchas, and which to pick by use case.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

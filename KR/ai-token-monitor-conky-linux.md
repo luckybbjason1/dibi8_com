@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
-title: 'AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적'
-description: '오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.'
+title: 'AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kim...
+description: '오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
@@ -39,6 +39,8 @@ faqs:
   - q: 'Grok이 잔액이 있는데도 "耗尽"(소진)으로 표시되는 이유는?'
     a: 'Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-token-monitor-conky-linux/ -->
 
 {{< resource-info >}}
 

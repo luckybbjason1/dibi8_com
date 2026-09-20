@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hoppscotch" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hoppscotch" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hoppscotch" />
-title: 'Hoppscotch: 79,200 GitHub Stars — Postman, Insomnia, Bruno과 비교하는 오픈소스 API 개발 플랫폼 2026'
+title: 'Hoppscotch: 79,200 GitHub Stars — Postman, Insomnia, Bru...
 description: 'Hoppscotch (HOPP)는 오픈소스 API 개발 생태계입니다. Docker, GitHub Actions, Node.js, Vue.js와 호환됩니다. hoppscotch 튜토리얼, 셀프호스팅, CLI 자동화, 대안과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [hoppscotch, api테스트, postman대체, 오픈소스, docker, cli, 'rest
 aliases:
 - /kr/posts/hoppscotch/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/hoppscotch/ -->
 
 {{</* resource-info */>}}
 

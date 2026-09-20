@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/agno" />
-title: 'Agno: 40K+ Stars — Lightweight AI Agent Framework Deep Dive vs CrewAI, AutoGen in 2026'
+title: 'Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
 description: 'Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars. Supports OpenAI, Anthropic, Ollama, Docker, AWS. Covers installation, multi-agent systems, benchmarks, production hardening, and comparison with CrewAI, AutoGen, and LangChain.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

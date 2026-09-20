@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/time-series-analysis-tools-python-libraries" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/time-series-analysis-tools-python-libraries" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/time-series-analysis-tools-python-libraries" />
-title: 'Phân Tích Chuỗi ThờI Gian Trong Python: Bộ Công Cụ Đầy Đủ Với Prophet, sktime, ARIMA và Darts'
+title: 'Phân Tích Chuỗi ThờI Gian Trong Python: Bộ Công Cụ Đầy Đ...
 description: 'Hướng dẫn sử dụng Prophet, sktime, statsmodels ARIMA và Darts để phân tích chuỗI thờI gian trong Python. So sánh thư viện và xây dựng pipeline dự báo.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/time-series-analysis-tools-python-libraries/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/time-series-analysis-tools-python-libraries/ -->
 
 {</* resource-info */>}
 

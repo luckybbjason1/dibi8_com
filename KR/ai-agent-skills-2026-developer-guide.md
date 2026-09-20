@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-skills-2026-developer-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-skills-2026-developer-guide" />
 title: '2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개'
-description: '2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개'
+description: '2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-16 00:00:00+08:00
 lastmod: 2026-05-16 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-agent-skills-2026-developer-guide/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-agent-skills-2026-developer-guide/ -->
 
 {</* resource-info */>}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/caddy" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/caddy" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/caddy" />
-title: 'Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triển Khai Auto HTTPS 2026'
+title: 'Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
 description: 'Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương thích Docker, Let''''s Encrypt, Prometheus, Grafana. Bao gồm hướng dẫn Caddyfile, cài đặt Docker, production hardening và giám sát.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, 
 aliases:
 - /vi/posts/caddy/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/caddy/ -->
 
 {{</* resource-info */>}}
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/coqui-tts" />
-title: 'Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benchmark vs ChatTTS, MeloTTS, Bark in 2026'
+title: 'Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benc...
 description: 'Coqui TTS is an open-source deep learning toolkit for Text-to-Speech. Supports 1100+ languages, XTTS v2 voice cloning, VITS end-to-end synthesis. Benchmarks against ChatTTS, MeloTTS, Bark with real RTF numbers, Docker deployment, and production configs.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/video-retalking/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/video-retalking/ -->
+
 {{</* resource-info */>}}
 
 ## 引言

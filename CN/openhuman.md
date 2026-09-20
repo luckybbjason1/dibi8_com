@@ -3,7 +3,7 @@
 <link rel="canonical" href="https://dibi8.com/en/openhuman" />
 title: 'What Is OpenHuman?'
 lang: en
-description: 'content/en/resources/openhuman.md'
+description: 'content/en/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod:  2026-06-13layout: article
 category: resources

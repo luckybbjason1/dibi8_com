@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
-title: 'Docker GenAI Stack: LangChain, 벡터 DB, LLM을 하나의 Docker Compose로 실행하기 — 2026 로컬 개발 완벽 가이드'
+title: 'Docker GenAI Stack: LangChain, 벡터 DB, LLM을 하나의 Docker Co...
 description: 'Docker GenAI Stack으로 완전한 로컬 GenAI 개발 환경을 구축하세요. LangChain, Neo4j, Ollama, 벡터 데이터베이스를 단일 docker-compose에 포함. 2026년 프로덕션 준비 튜토리얼.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['docker genai stack']
 aliases:
 - /kr/posts/docker-genai-stack-local-development/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/docker-genai-stack-local-development/ -->
 
 {{</* resource-info */>}}
 

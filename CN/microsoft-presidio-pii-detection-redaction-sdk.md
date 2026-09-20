@@ -3,7 +3,7 @@
 <link rel="canonical" href="https://dibi8.com/en/microsoft-presidio-pii-detection-redaction-sdk" />
 lang: en
 slug: microsoft-presidio-pii-detection-redaction-sdk
-title: "Presidio Review: Microsoft's Open-Source PII Detection and Data Redaction Framework (9.4K Stars)"
+title: "Presidio Review: Microsoft's Open-Source PII Detection a...
 description: "Presidio (9.4K+ GitHub stars) from Microsoft is an open-source framework for detecting, redacting, masking, and anonymizing sensitive data (PII) across text, images, and structured data. Supports NLP, regex, rule-based recognition, DICOM image redaction, and customizable pipelines. MIT licensed, OpenSSF Best Practices certified."
 tags: ["open-source", "self-hosted"]
 date: "2026-06-22 00:00:00+08:00"

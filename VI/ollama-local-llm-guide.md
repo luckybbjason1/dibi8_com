@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ollama-local-llm-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ollama-local-llm-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ollama-local-llm-guide" />
-title: 'Hướng Dẫn Toàn Diện Ollama 2025: Chạy LLM Local Trên Mọi Phần Cứng'
+title: 'Hướng Dẫn Toàn Diện Ollama 2025: Chạy LLM Local Trên Mọi...
 description: 'Hướng dẫn chi tiết Ollama 2025: cài đặt trên macOS/Windows/Linux/Docker, chạy Llama 3 và Mistral local, REST API, tích hợp LangChain, và tối ưu phần cứng.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ollama-local-llm-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ollama-local-llm-guide/ -->
 
 {</* resource-info */>}
 

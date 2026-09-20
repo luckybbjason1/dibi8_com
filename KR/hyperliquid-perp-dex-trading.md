@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hyperliquid-perp-dex-trading" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hyperliquid-perp-dex-trading" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hyperliquid-perp-dex-trading" />
-title: 'Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통합 가이드'
+title: 'Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통...
 description: '일일 거래량 $2B+, 100개 이상 거래 페어, 최대 50배 레버리지, HyperEVM 스마트 컨트랙트 및 봇 통합용 Python SDK를 갖춘 완전 온체인 영구 DEX Hyperliquid에 대한 종합 가이드.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'tr
 aliases:
 - /kr/posts/hyperliquid-perp-dex-trading/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/hyperliquid-perp-dex-trading/ -->
 
 {{</* resource-info */>}}
 

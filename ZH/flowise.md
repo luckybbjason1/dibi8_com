@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/flowise/ -->
+
 {{</* resource-info */>}}
 
 ## 引言

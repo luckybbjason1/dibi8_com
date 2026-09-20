@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
-title: 'Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만들기 (2026)'
+title: 'Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만...
 description: 'Claude Code 커스텀 서브에이전트를 작성하는 완벽 가이드 — frontmatter 필드, 시스템 프롬프트 설계, 도구 화이트리스트, 그리고 바로 투입 가능한 두 가지 예제(마이그레이션 리뷰어, 보안 게이트)와 피해야 할 실수까지.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "커스텀 에이전트는 CI와 헤드리스 실행에서도 동작하나요, 아니면 대화형에서만 동작하나요?"
     a: "둘 다에서 동작합니다. 동일한 .claude/agents/ 정의가 Claude Code를 비대화형으로 실행할 때(CI에서 쓰는 -p / print 모드)도 인식됩니다. 저장소에 버전 관리되는 파일이므로 모든 동료와 모든 CI 작업이 완전히 동일한 에이전트 정의를 봅니다 — 리뷰 체크리스트를 아무도 열어보지 않는 위키 페이지가 아니라 에이전트로 코드화하는 것의 핵심이 바로 이것입니다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-custom-agent-authoring-guide-2026/ -->
 # Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만들기 (2026)
 
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/bookstack-documentation-wiki" />
-title: 'BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup & Review'
+title: 'BookStack: The Developer-Friendly Documentation Wiki wit...
 description: 'A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

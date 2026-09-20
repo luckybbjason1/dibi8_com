@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-workflow-automation-self-hosted-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n-ai-workflow-automation-self-hosted-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-workflow-automation-self-hosted-2026" />
-title: "Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier"
+title: "Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI ...
 description: "Hướng dẫn n8n toàn diện 2026 — nền tảng tự động hóa mã nguồn mở đang bùng nổ. Cài đặt n8n tự host, xây dựng AI Agent với LangChain, tự động hóa SEO, so sánh chi tiết n8n vs Zapier vs Make."
 keywords: n8n, hướng dẫn n8n, tự động hóa workflow AI, công cụ tự động hóa mã nguồn mở, n8n tự host, n8n vs Zapier, xây dựng AI Agent, tích hợp LangChain, tự động hóa SEO, cài đặt Docker n8n
 author: Home Hermes
@@ -18,6 +18,8 @@ Trong quý 1/2025, một dự án mã nguồn mở đã thu về **18.420 sao Gi
 Bài viết này không phải một bài đánh giá "thay thế Zapier" đơn thuần. Đây là hướng dẫn thực chiến dành cho lập trình viên, chuyên viên vận hành, và founder kỹ thuật — những người cần xây dựng **workflow do AI điều phối** trên hạ tầng riêng, chi phí gần như bằng không, và tích hợp LLM một cách native.
 
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/n8n-ai-workflow-automation-self-hosted-2026/ -->
 
 ## Tại Sao n8n Đang Bùng Nổ vào 2026
 

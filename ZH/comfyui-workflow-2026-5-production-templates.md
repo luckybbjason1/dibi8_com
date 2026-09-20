@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/comfyui-workflow-2026-5-production-templates" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/comfyui-workflow-2026-5-production-templates" />
 title: 'ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板'
-description: 'ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。'
+description: 'ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
@@ -33,6 +33,8 @@ faq:
   - q: "从零学 ComfyUI 需要多久？"
     a: "加载一个工作流并出图：30 分钟。自己搭建工作流：1-2 天。精通节点用于生产：2-3 周。学习曲线一开始很陡，但回报丰厚——工作流可复用、可分享、可复现。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/comfyui-workflow-2026-5-production-templates/ -->
 
 {{</* resource-info */>}}
 

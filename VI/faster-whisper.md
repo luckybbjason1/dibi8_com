@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/faster-whisper" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/faster-whisper" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/faster-whisper" />
-title: 'faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp 4x với 23K+ Stars — Benchmark vs WhisperX, whisper.cpp 2026'
+title: 'faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp...
 description: 'faster-whisper (SYSTRAN) tái triển khai OpenAI Whisper qua CTranslate2 để đạt tốc độ nhanh gấp 4x. Hướng dẫn cài đặt faster whisper, benchmark, thiết lập Docker, API Python, bộ lọc VAD, xử lý hàng loạt, và tích hợp production với WhisperX và whisper.cpp.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['faster-whisper', 'chuyen-giong-noi-thanh-van-ban', ctranslate2, 'openai-
 aliases:
 - /vi/posts/faster-whisper/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/faster-whisper/ -->
 
 {{</* resource-info */>}}
 

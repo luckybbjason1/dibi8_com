@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-skills-production-grade-ai-coding" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-skills-production-grade-ai-coding" />
 title: Agent Skills：开发团队如何以5倍速度交付生产级代码
-description: Addy Osmani的Agent Skills提供20个生产级工程技能和7个斜杠命令，将AI编码智能体转变为高级软件工程师。
+description: Addy Osmani的Agent Skills提供20个生产级工程技能和7个斜杠命令，将AI编码智能体转变为高级软件工程师。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'Agent Skills 中的反合理化表（anti-rationalization table）是什么？'
     a: '反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如"我稍后再加测试"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/agent-skills-production-grade-ai-coding/ -->
 
 {</* resource-info */>}
 

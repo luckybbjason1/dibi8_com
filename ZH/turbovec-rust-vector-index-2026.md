@@ -18,6 +18,8 @@ featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/turbovec-rust-vector-index-2026/ -->
+
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)
 
 ![TurboQuant Benchmark](https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/benchmarks)

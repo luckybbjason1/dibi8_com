@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/act" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/act" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/act" />
-title: 'act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hướng Dẫn CI/CD Production 2026'
+title: 'act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hư...
 description: 'act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thích với Docker, GitHub Actions, Go và VS Code. Bao gồm cài đặt, thiết lập, quản lý secrets, runner images và production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [act, 'github-actions', 'ci-cd', docker, 'phat-trien-local', devops, 'kiem
 aliases:
 - /vi/posts/act/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/act/ -->
 
 {{</* resource-info */>}}
 

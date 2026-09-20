@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/roboflow-supervision" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/roboflow-supervision" />
 title: "Roboflow 监督：Python计算机视觉标注工具包"
-description: "Roboflow的监督是全面的计算机视觉工具包，简化了CV标注、数据处理和模型评估。通过pip install supervision访问可重复使用的计算机视觉工具用于您的项目。"
+description: "Roboflow的监督是全面的计算机视觉工具包，简化了CV标注、数据处理和模型评估。通过pip install supervision访问可重复使用的计算机视觉工具用于您的项目。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-10
 lastmod:  2026-06-10slug: roboflow-supervision
 category: data-science
@@ -16,6 +16,8 @@ maintainer: roboflow
 license: MIT
 featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-banner.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/roboflow-supervision/ -->
 Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness:
 
 1. **Introduction Section**:

@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/vimax-agentic-video-generation-multi-agent-2026/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/vimax-agentic-video-generation-multi-agent-2026/ -->
+
 ## 2025 年压垮 AI 视频的三道天花板
 
 2024–2025 年间所有冲进消费者视野的 AI 视频生成工具——Sora、Runway Gen-3、Pika、Luma Dream Machine、OpenSora——共享三道同样的天花板：

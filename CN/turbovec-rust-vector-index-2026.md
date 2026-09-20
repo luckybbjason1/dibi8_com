@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/turbovec-rust-vector-index-2026" />
-title: 'TurboVec: Rust-Powered Vector Index 10x Faster Than FAISS — AI Search Guide 2026'
+title: 'TurboVec: Rust-Powered Vector Index 10x Faster Than FAIS...
 description: 'TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bindings. Drop-in replacements for LangChain, LlamaIndex, Haystack, and Agno. Delivers 10x speedup with quantization. Covers Python integration, benchmarks, and production deployment.'
 date: 2026-06-09
 lastmod:  2026-06-09slug: 'turbovec-rust-vector-index-2026'

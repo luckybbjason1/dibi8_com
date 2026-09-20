@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qdrant-vector-database-rust" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qdrant-vector-database-rust" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qdrant-vector-database-rust" />
-title: 'Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026년 자체 호스팅 배포 가이드'
+title: 'Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026...
 description: '프로덕션 유사도 검색을 위한 Qdrant 벡터 데이터베이스를 배포하세요. HNSW 인덱싱, 페이로드 필터링, 멀티 테넌시, Docker 배포, Python/Go/JS 클라이언트 및 실제 벤치마크를 다루는 완전한 가이드.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [qdrant, '벡터 데이터베이스', rust, hnsw, '유사도 검색', dock
 aliases:
 - /kr/posts/qdrant-vector-database-rust/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/qdrant-vector-database-rust/ -->
 
 {{</* resource-info */>}}
 

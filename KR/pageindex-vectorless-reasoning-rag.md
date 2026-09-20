@@ -39,6 +39,8 @@ faqs:
   - q: 'PageIndex는 어떤 종류의 문서에 가장 적합한가요?'
     a: 'PageIndex는 구조가 중요하고 설명 가능한 인용이 필요한 길고 전문적인 문서를 위해 설계되었습니다. 예를 들어 재무 보고서와 사업설명서, 법률 계약서와 판례법, 의학 문헌과 임상시험 보고서, 그리고 API 레퍼런스나 운영 매뉴얼 같은 기술 문서 등이 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/pageindex-vectorless-reasoning-rag/ -->
 {</* resource-info */>}
 
 ![PageIndex 공식 hero 배너](/images/articles/pageindex-vectorless-reasoning-rag/banner.png)

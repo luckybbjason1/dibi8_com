@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/crewai-multi-agent-orchestration" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/crewai-multi-agent-orchestration" />
 title: 'CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026'
-description: 'CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。'
+description: 'CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [crewai, 多智能体, 'ai-agent', 编排, 自主智能体, llm, python, �
 aliases:
 - /zh/posts/crewai-multi-agent-orchestration/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/crewai-multi-agent-orchestration/ -->
 
 {{</* resource-info */>}}
 

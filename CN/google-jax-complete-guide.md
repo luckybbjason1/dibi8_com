@@ -1,5 +1,5 @@
 ---
-title: Google JAX — The Complete Guide to High-Performance ML Research and Production
+title: Google JAX — The Complete Guide to High-Performance ML Re...
 description: Complete guide to Google JAX, the composable transformations of Python+NumPy programs. Build high-performance neural networks with automatic differentiation, JIT compilation, and vectorization.
 category: data-science
 tags: ['jax', 'google', 'machine-learning', 'automatic-differentiation', 'jit-compilation', 'neural-networks']
@@ -7,6 +7,8 @@ slug: google-jax-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg
 ---
+
+<!-- canonical: https://dibi8.com/cn/tools/google-jax-complete-guide/ -->
 
 ## TL;DR
 

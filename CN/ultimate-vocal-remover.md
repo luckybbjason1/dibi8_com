@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ultimate-vocal-remover" />
-title: 'Ultimate Vocal Remover: 24.7K+ Stars — Complete Setup Guide 2026'
+title: 'Ultimate Vocal Remover: 24.7K+ Stars — Complete Setup Gu...
 description: 'Ultimate Vocal Remover (UVR) is a GUI application for vocal removal using deep neural networks. Compatible with demucs, RVC, GPT-SoVITS. Covers Windows, macOS, Linux installation, model selection, batch processing, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

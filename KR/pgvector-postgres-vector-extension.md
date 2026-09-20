@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/pgvector-postgres-vector-extension" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/pgvector-postgres-vector-extension" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/pgvector-postgres-vector-extension" />
-title: 'pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 RAG 통합 가이드'
-description: 'pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.'
+title: 'pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 ...
+description: 'pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [pgvector, postgresql, '벡터-데이터베이스', hnsw, ann, rag, '유�
 aliases:
 - /kr/posts/pgvector-postgres-vector-extension/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/pgvector-postgres-vector-extension/ -->
 
 {{</* resource-info */>}}
 

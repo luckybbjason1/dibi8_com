@@ -13,6 +13,8 @@ tags: [微软, markitdown, markdown, python, cli, pdf转换器, 文档处理, AI
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/microsoft-markitdown-file-to-markdown-converter-cli/ -->
+
 ## 简介
 
 在当今数据驱动的世界中，将文档转换为结构化、可读且可移植格式的能力变得比以往任何时候都更加重要。无论你是正在构建检索增强生成（RAG）管道、将文档导入 AI 知识库，还是仅仅试图从复杂的 PDF 中提取干净的文本，拥有一个可靠的工具将任何文件格式转换为 Markdown 都是非常有价值的。微软 MarkItDown 是一款正好为此目的而构建的开源 Python 工具——它将 PDF、Word 文档、PowerPoint 演示文稿、图片、HTML 页面、电子表格和 ZIP 归档文件转换为干净、一致的 Markdown 输出。

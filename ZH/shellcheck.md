@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
-title: 'ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 CI/CD 集成指南 2026'
-description: 'ShellCheck (SC) 是一款针对 bash/sh 的静态分析工具。支持 Docker、GitHub Actions、VS Code 集成，涵盖安装配置、CI/CD 流水线集成和生产环境加固。'
+title: 'ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 C...
+description: 'ShellCheck (SC) 是一款针对 bash/sh 的静态分析工具。支持 Docker、GitHub Actions、VS Code 集成，涵盖安装配置、CI/CD 流水线集成和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [shellcheck, bash, 静态分析, 代码检查, shell脚本, devops, 'ci-cd
 aliases:
 - /zh/posts/shellcheck/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/shellcheck/ -->
 
 {{</* resource-info */>}}
 

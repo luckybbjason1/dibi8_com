@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/hunyuan-video" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/hunyuan-video" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/hunyuan-video" />
-title: 'HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Production 2026'
+title: 'HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
 description: 'HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI, Diffusers, Gradio API. Bao gồm Docker, FP8 quantization, đa GPU, và production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['tạo-video', 'diffusion-transformer', tencent, hunyuanvideo, comfyui, d
 aliases:
 - /vi/posts/hunyuan-video/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/hunyuan-video/ -->
 
 {{</* resource-info */>}}
 

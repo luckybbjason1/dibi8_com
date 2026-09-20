@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/nanochat-karpathy-100-chatgpt-single-gpu" />
-title: 'nanochat: Karpathy''s $100 ChatGPT — Build Your Own AI Chat App on a Single GPU — A Practical Guide 2026'
+title: 'nanochat: Karpathy''s $100 ChatGPT — Build Your Own AI C...
 description: 'nanochat (54,800 GitHub stars) is Andrej Karpathy''s open-source ChatGPT clone that runs on a single $100 GPU. Train from scratch using SGLang or run pre-trained via vLLM. Includes setup guide, training benchmarks, and deployment examples.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'nanochat-karpathy-100-chatgpt-single-gpu'

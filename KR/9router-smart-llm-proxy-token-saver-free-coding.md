@@ -42,6 +42,8 @@ faqs:
   - q: '월 비용 없이 9Router로 AI 코딩을 할 수 있나요?'
     a: '네. Kiro AI(AWS Builder ID, Google, GitHub OAuth를 통한 무료 무제한, API key 불필요), OpenCode Free(인증 없는 패스스루), Vertex AI($300 무료 Google Cloud 크레딧) 같은 무료 제공업체만으로 조합을 구성할 수 있습니다. RTK 압축과 결합하면 말 그대로 월 $0로 프로덕션 품질의 응답을 제공합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/9router-smart-llm-proxy-token-saver-free-coding/ -->
 {</* resource-info */>}
 
 AI 코딩 어시스턴트 혁명은 개발자들에게 역설적인 딜레마를 안겨주었습니다. Claude Code, OpenAI Codex, Cursor, GitHub Copilot과 같은 도구를 통해 세계적 수준의 언어 모델에前所未有的 접근 권한을 얻었지만, 여러 플랫폼에서 구독, 할당량, 속도 제한을 관리하는 것이 점점 더 비싸고 짜증나는 일이 되었습니다. 많은 개발자들이 Claude Pro 월간 할당량을 2주 만에 소진한 뒤, 스프린트 마감일에 직면하여 속도 제한 벽과 마주하는 경험을 합니다.

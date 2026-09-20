@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagster-data-pipeline-orchestrator" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagster-data-pipeline-orchestrator" />
 title: 'Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指南'
-description: 'Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。'
+description: 'Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, pyth
 aliases:
 - /zh/posts/dagster-data-pipeline-orchestrator/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/dagster-data-pipeline-orchestrator/ -->
 
 {{</* resource-info */>}}
 

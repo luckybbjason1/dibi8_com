@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabpfn-foundation-model-tabular-data" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabpfn-foundation-model-tabular-data" />
 title: 'TabPFN: 表格数据基础模型 — 结构化数据的 AI 突破'
-description: 探索 TabPFN，表格数据的基础模型，超越传统机器学习方法。无需超参数调优，秒级运行。
+description: 探索 TabPFN，表格数据的基础模型，超越传统机器学习方法。无需超参数调优，秒级运行。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: '如何在 Python 中安装和使用 TabPFN？'
     a: '通过 ''pip install tabpfn'' 安装后，从 tabpfn 包中导入 TabPFNClassifier，依次调用 clf.fit(X_train, y_train) 和 clf.predict(X_test) 即可。它会自动识别特征类型，并处理缺失值和类别型特征。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/tabpfn-foundation-model-tabular-data/ -->
 {</* resource-info */>}
 
 ## TabPFN 是什么？

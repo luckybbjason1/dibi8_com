@@ -26,6 +26,8 @@ lang: kr
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/taste-skill/ -->
+
 ## TL;DR
 
 테이스트 스킬은 AI 에이전트에 디자인 감각을 부여합니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신,更强的 레이아웃 변화와 의도적인 모션, 프리미엄한 시각적 밀도를 적용합니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동하는 포트폴리오형 SKILL.md 파일로 제공됩니다.

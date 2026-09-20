@@ -38,6 +38,8 @@ faq:
     a: "Aider: 생산성까지 15분(명확한 패턴을 따르는 CLI일 뿐). Cline: 30분(VS Code 확장 설정 + 모델 설정). OpenHands: 2-3시간(Docker 설정, 브라우저 도구 구성, 에이전트 루프 튜닝). Aider가 진입 장벽이 가장 낮고, OpenHands가 천장이 가장 높습니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/aider-cline-openhands-2026-honest-comparison/ -->
+
 {{</* resource-info */>}}
 
 # Aider vs Cline vs OpenHands 2026: 정직한 3자 OSS 비교

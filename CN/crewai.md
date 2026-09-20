@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/crewai" />
-title: 'CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Complete Setup Guide 2026'
+title: 'CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
 description: 'CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents. Compatible with OpenAI, Anthropic, Ollama, LangChain, and LlamaIndex. Covers installation, agent roles, task workflows, production deployment, and benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

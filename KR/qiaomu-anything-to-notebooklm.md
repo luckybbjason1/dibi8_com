@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/qiaomu-anything-to-notebooklm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/qiaomu-anything-to-notebooklm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/qiaomu-anything-to-notebooklm" />
-title: "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google NotebookLM に変換"
+title: "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google Noteboo...
 description: "Qiaomu Anything to NotebookLM は、YouTube ビデオ、ポッドキャスト、記事、PDF など 15 種類以上のコンテンツソースを Google NotebookLM のナレッジベースに変換する Claude Code スキルおよび Python ツールキットで、ペイウォール回避機能も備えています。"
 date: 2026-06-10
 lastmod:  2026-06-10slug: qiaomu-anything-to-notebooklm
@@ -17,6 +17,8 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/qiaomu-anything-to-notebooklm/ -->
 
 ## はじめに
 

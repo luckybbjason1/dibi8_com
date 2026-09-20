@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/python-context-managers-the-three-cases-you-actually-need" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/python-context-managers-the-three-cases-you-actually-need" />
 title: Python 上下文管理器：你真正需要的三个场景
-description: Python 上下文管理器：你真正需要的三个场景。掌握 with 语句、contextlib 和自定义上下文管理器，实现更好的资源管理。
+description: Python 上下文管理器：你真正需要的三个场景。掌握 with 语句、contextlib 和自定义上下文管理器，实现更好的资源管理。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: '什么情况下不应该在 Python 中使用上下文管理器？'
     a: '以下情况应避免：获取操作不需要配对的释放操作（直接调用函数即可）；清理是尽力而为的，且内联的 try/finally 更易读；被管理的资源已经由其他机制负责生命周期管理，例如框架自带生命周期管理的 Session。每个 `with` 都会引入额外开销，嵌套过多会迅速损害可读性。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/python-context-managers-the-three-cases-you-actually-need/ -->
 
 {</* resource-info */>}
 

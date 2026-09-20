@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy" />
-title: 'Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu, Triển khai — Hướng dẫn thực tế 2026'
+title: 'Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — ...
 description: 'Freqtrade (51.300 sao GitHub) là bot giao dịch crypto mã nguồn mở viết bằng Python. Backtest chiến lược, tối ưu hyperopt, triển khai API 20+ exchange. Bao gồm cài đặt, phát triển chiến lược và benchmark backtest thực tế.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
@@ -17,6 +17,8 @@ license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/ -->
 
 # Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu, Triển khai — Hướng dẫn thực tế 2026
 

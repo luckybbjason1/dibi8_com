@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen-multi-agent-framework" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen-multi-agent-framework" />
 title: 'AutoGen多智能体框架教程2025：轻松构建多Agent AI系统'
-description: 'Microsoft AutoGen 2025完整教程：从安装配置到多Agent系统构建，涵盖代码执行、本地LLM集成与生产最佳实践。'
+description: 'Microsoft AutoGen 2025完整教程：从安装配置到多Agent系统构建，涵盖代码执行、本地LLM集成与生产最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/autogen-multi-agent-framework/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/autogen-multi-agent-framework/ -->
 
 {</* resource-info */>}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-universal-file-to-markdown-converter" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-universal-file-to-markdown-converter" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-universal-file-to-markdown-converter" />
-title: "MarkItDown: 유니버설 파일-투-마크다운 변환기 — LLM 파이프라인을 위한 마이크로소프트의 오픈 소스 도구 2026"
+title: "MarkItDown: 유니버설 파일-투-마크다운 변환기 — LLM 파이프라인을 위한 마이크로소프트의 ...
 description: "Microsoft AutoGen 팀의 MarkItDown은 20개 이상의 파일 유형을 LLM 소비를 위해 Markdown으로 변환합니다. pip install markitdown[all], Python API, LangChain 통합, RAG 파이프라인 및 배치 처리."
 date: 2026-06-15
 lastmod:  2026-06-15slug: markitdown-universal-file-to-markdown-converter
@@ -15,6 +15,8 @@ license: MIT
 lang: kr
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/markitdown-universal-file-to-markdown-converter/ -->
 
 
 ## Introduction

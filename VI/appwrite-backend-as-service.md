@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/appwrite-backend-as-service" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/appwrite-backend-as-service" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/appwrite-backend-as-service" />
-title: 'Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở với Auth, DB & Storage — Hướng Dẫn Tự Host Backend'
+title: 'Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở v...
 description: 'Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, cloud functions và real-time subscriptions. Cài đặt Docker, tích hợp SDK, benchmark và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [appwrite, 'backend-as-a-service', 'thay thế firebase', docker, 'mã ngu
 aliases:
 - /vi/posts/appwrite-backend-as-service/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/appwrite-backend-as-service/ -->
 
 {{</* resource-info */>}}
 

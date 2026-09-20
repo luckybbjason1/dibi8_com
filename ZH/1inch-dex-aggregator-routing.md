@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/1inch-dex-aggregator-routing/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/1inch-dex-aggregator-routing/ -->
+
 {{</* resource-info */>}}
 
 去中心化金融已经远远超越了实验性阶段。进入 2026 年，交易者要求的不仅仅是流动性访问，而是能够最大化每一笔交易每一个基点的智能路由。**1inch** 站在这一演进的前沿，作为生态系统中最为精密的 DEX 聚合器运行。凭借其专有的 **Pathfinder 算法**，1inch 在横跨 10 多个区块链网络的 **300 多个流动性来源**之间路由交易，确保以最优的执行价格同时最小化滑点和 Gas 成本。

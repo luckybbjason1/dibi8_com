@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-token-monitor-conky-linux" />
-title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop'
+title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...
 description: 'Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.'
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00

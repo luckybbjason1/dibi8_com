@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ta-lib-technical-analysis-trading" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ta-lib-technical-analysis-trading" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ta-lib-technical-analysis-trading" />
-title: 'TA-Lib: Thư Viện Phân Tích Kỹ Thuật Chuẩn Ngành với 200+ Chỉ Báo — Hướng Dẫn Cài Đặt Python Trading 2026'
+title: 'TA-Lib: Thư Viện Phân Tích Kỹ Thuật Chuẩn Ngành với 200+...
 description: 'Hướng dẫn đầy đủ về TA-Lib Python wrapper với 200+ chỉ báo kỹ thuật. Cài đặt, benchmark, và triển khai SMA, EMA, RSI, MACD, Bollinger Bands cho giao dịch thuật toán 2026.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/ta-lib-technical-analysis-trading/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ta-lib-technical-analysis-trading/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-claude-design-alternative" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-codesign-claude-design-alternative" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-claude-design-alternative" />
-title: "Open Codesign: Giải Pháp Thay Thế Claude Design Mã Nguồn Mở với 5.790+ Sao"
+title: "Open Codesign: Giải Pháp Thay Thế Claude Design Mã Nguồn...
 description: "Khám phá Open Codesign, giải pháp thay thế Claude Design được cấp phép MIT. Công cụ thiết kế AI đa mô hình với BYOK, kiến trúc local-first và tạo nguyên mẫu tức thì từ prompt ngôn ngữ tự nhiên."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -37,6 +37,8 @@ faqs:
   - q: 'File DESIGN.md trong Open Codesign là gì?'
     a: 'DESIGN.md là file markdown nơi bạn định nghĩa hệ thống thiết kế, ví dụ như màu thương hiệu, kiểu chữ và spacing token. Đặt file này vào workspace, mọi lần tạo nội dung sẽ tự động kế thừa các token đó, giúp mô hình duy trì sự nhất quán thương hiệu thay vì bị lệch hướng qua các lượt hội thoại.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/open-codesign-claude-design-alternative/ -->
 
 {</* resource-info */>}
 

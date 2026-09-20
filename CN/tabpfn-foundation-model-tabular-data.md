@@ -1,9 +1,9 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/tabpfn-foundation-model-tabular-data" />
-title: 'TabPFN: Foundation Model for Tabular Data — AI Breakthrough for Structured
+title: 'TabPFN: Foundation Model for Tabular Data — AI Breakthro...
   Data'
-description: Discover TabPFN, the foundation model for tabular data that outperforms
+description: Discover TabPFN, the foundation model for tabular data that outperforms. Comprehensive guide covering features, pricing, and best practices for 2026.
   traditional ML methods. No hyperparameter tuning needed, works in seconds.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00

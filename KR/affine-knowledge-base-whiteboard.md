@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/affine-knowledge-base-whiteboard" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/affine-knowledge-base-whiteboard" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/affine-knowledge-base-whiteboard" />
-title: 'AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치 가이드'
-description: 'Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker 설치.'
+title: 'AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치...
+description: 'Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker 설치.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [affine, '지식-베이스', 화이트보드, '자체-호스팅', docker, 
 aliases:
 - /kr/posts/affine-knowledge-base-whiteboard/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/affine-knowledge-base-whiteboard/ -->
 
 {{</* resource-info */>}}
 

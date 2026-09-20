@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-4-flash-local-inference-engine" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-4-flash-local-inference-engine" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-4-flash-local-inference-engine" />
-title: 'ds4: Công Cụ Mã Nguồn Mở Mà Lập Trình Viên Đang Chuyển Sa...'
+title: 'ds4: Công Cụ Mã Nguồn Mở Mà Lập Trình Viên Đang Chuyển S...
 description: 'ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ds4/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ds4-deepseek-4-flash-local-inference-engine/ -->
 
 {</* resource-info */>}
 # ds4: Công Cụ Mã Nguồn Mở Mà Lập Trình Viên Đang Chuyển Sa...

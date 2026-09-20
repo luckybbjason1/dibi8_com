@@ -38,6 +38,8 @@ faq:
     a: "Train PF / OOS PF > 1.5면 과적합을 의심한다. > 2.0이면 거의 확실한 과적합이다. 최근 moss-trade-bot 실행에서 Train PF 2.08 / OOS PF 0.94 — 비율 2.21 — 교과서적인 과적합이 나왔다. 건강한 전략은 1.3 미만이다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/backtest-overfit-5-patterns-2026/ -->
+
 {{</* resource-info */>}}
 
 # 백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴

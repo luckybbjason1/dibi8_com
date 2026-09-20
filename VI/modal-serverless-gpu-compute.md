@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/modal-serverless-gpu-compute" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/modal-serverless-gpu-compute" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/modal-serverless-gpu-compute" />
-title: Modal Tính Toán GPU Không Máy Chủ — Chạy Luồng ML Không Cơ Sở Hạ Tầng
+title: Modal Tính Toán GPU Không Máy Chủ — Chạy Luồng ML Không C...
 description: Hướng dẫn toàn diện về cơ sở hạ tầng GPU không máy chủ của Modal. Triển khai suy luận LLM, quy trình tinh chỉnh và khối lượng công việc ML hàng loạt mà không cần quản lý cụm. So sánh giá, benchmark và mẫu thực tế.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
 category: llm-frameworks
@@ -14,6 +14,8 @@ lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: modal-serverless-gpu-compute
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/modal-serverless-gpu-compute/ -->
 
 ## TL;DR
 

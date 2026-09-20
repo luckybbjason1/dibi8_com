@@ -34,6 +34,8 @@ faq:
     a: "SEO보다 빠릅니다. AI Overviews는 며칠 단위로 크롤링 + 인덱싱합니다(SEO는 몇 달). FAQ schema 추가는 보통 1-2주 내에 AI 인용에 나타납니다. 인용 가능성을 위한 전면 콘텐츠 재작성은 답변에 반영되기까지 2-4주가 걸립니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/geo-ai-overviews-optimization-2026-practical/ -->
+
 {{</* resource-info */>}}
 
 # GEO / AI Overviews 최적화 2026: 실전 가이드

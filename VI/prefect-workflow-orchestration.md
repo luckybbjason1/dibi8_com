@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prefect-workflow-orchestration" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prefect-workflow-orchestration" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prefect-workflow-orchestration" />
-title: 'Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pipeline Dữ Liệu & AI — Hướng Dẫn Tự Host'
+title: 'Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
 description: 'Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, retry tự động, và server tự host. Triển khai pipeline dữ liệu trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/prefect-workflow-orchestration/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/prefect-workflow-orchestration/ -->
 
 {{</* resource-info */>}}
 

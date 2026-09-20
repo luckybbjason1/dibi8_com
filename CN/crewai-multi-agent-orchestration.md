@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/crewai-multi-agent-orchestration" />
-title: 'CrewAI: Build Multi-Agent AI Teams That Collaborate Autonomously — Production Setup & Patterns 2026'
+title: 'CrewAI: Build Multi-Agent AI Teams That Collaborate Auto...
 description: 'A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role-based agents, task delegation, memory sharing, and autonomous collaboration patterns.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

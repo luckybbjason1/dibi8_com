@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
 title: 'Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试'
-description: 'Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。'
+description: 'Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [vectara, rag, 向量搜索, llm, embedding, boomerang, hhem, 幻觉检测
 aliases:
 - /zh/posts/vectara-rag-as-service-platform/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/vectara-rag-as-service-platform/ -->
 
 {{</* resource-info */>}}
 

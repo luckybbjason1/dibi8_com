@@ -42,6 +42,8 @@ faqs:
     a: '이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ml-systems-book-mit-press-textbook/ -->
+
 {</* resource-info */>}
 
 ## 문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?

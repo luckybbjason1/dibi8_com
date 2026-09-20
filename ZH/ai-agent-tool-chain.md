@@ -33,6 +33,8 @@ aliases:
   - /posts/ai-agent-tool-chain/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/ai-agent-tool-chain/ -->
+
 "AI agent" 在 2025 年停止做研究话题，在 2026 年成为生产工程类别。在交付真正自主 agent 的团队 —— 熬过重启的客服 bot、跨百文件重构的编程 agent、跑数小时的研究 agent —— 都汇聚到一个惊人一致的 stack。这个合集组装它。
 
 **6 组件，$20-60/月自托管。** 如果你专门搭编程 agent，配 [自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/)；本合集聚焦自主 agent 模式（长跑、多步、带工具）。

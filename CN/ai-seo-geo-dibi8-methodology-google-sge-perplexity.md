@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-seo-geo-dibi8-methodology-google-sge-perplexity" />
-title: 'AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks — The 5-Layer Methodology'
+title: 'AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks —...
 description: 'We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, here is the 5-layer method that got us cited by Google SGE, Perplexity, and ChatGPT.'
 tags: ["open-source"]
 date: 2026-06-15

@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/opensea-nft-marketplace-api/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/opensea-nft-marketplace-api/ -->
+
 {{</* resource-info */>}}
 
 Hệ sinh thái token không thể thay thế (NFT) đã phát triển đáng kể kể từ sự bùng nổ tăng trưởng vào năm 2021. Từ một thị trường ngách cho nghệ thuật kỹ thuật số, nó đã phát triển thành một lớp cơ sở hạ tầng trị giá hàng tỷ đô la bao gồm game, bất động sản, danh tính và tài chính phi tập trung. Ở trung tâm của sự chuyển đổi này là [OpenSea](https://opensea.io/), thị trường NFT lớn nhất thế giới, và [OpenSea API](https://docs.opensea.io/reference/api-overview) mạnh mẽ của nó cho phép các nhà phát triển xây dựng hệ thống giao dịch lập trình, bảng phân tích và công cụ quản lý bộ sưu tập tự động.

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/prometheus" />
-title: 'Prometheus: 64,094 GitHub Stars — Docker Deployment Guide 2026'
+title: 'Prometheus: 64,094 GitHub Stars — Docker Deployment Guid...
 description: 'Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Docker, Kubernetes, Grafana, and Alertmanager. Covers installation, PromQL queries, production hardening, and performance benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

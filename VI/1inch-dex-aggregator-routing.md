@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/1inch-dex-aggregator-routing/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/1inch-dex-aggregator-routing/ -->
+
 {{</* resource-info */>}}
 
 Tài chính phi tập trung đã phát triển vượt xa thởi kỳ thử nghiệm. Năm 2026, các trader không chỉ đòi hỏi quyền truy cập thanh khoản, mà còn cần định tuyến thông minh để tối đa hóa từng basis point của giao dịch. **1inch** đứng ở tuyến đầu của sự tiến hóa này, vận hành như một DEX aggregator tinh vi nhất trong hệ sinh thái. Với thuật toán **Pathfinder** độc quyền, 1inch định tuyến giao dịch xuyên suốt **hơn 300 nguồn thanh khoản** trải rộng trên 10+ mạng blockchain, đảm bảo giá thực thi tối ưu đồng thởi giảm thiểu trượt giá và chi phí gas.

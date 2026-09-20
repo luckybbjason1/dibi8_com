@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
-title: 'Puppeteer: 94,300 GitHub Stars — 프로덕션 브라우저 자동화 Docker 가이드 2026'
+title: 'Puppeteer: 94,300 GitHub Stars — 프로덕션 브라우저 자동화 Docker 가이...
 description: 'Puppeteer는 Chrome 및 Firefox용 헤드리스 브라우저 자동화 Node.js 라이브러리입니다. Docker, GitHub Actions, Jest, Mocha, TypeScript를 지원합니다. puppeteer docker 설정, 프로덕션 배포, 브라우저 자동화 튜토리얼, CI/CD 통합을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [puppeteer, '브라우저-자동화', '헤드리스-크롬', '웹-스크�
 aliases:
 - /kr/posts/puppeteer/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/puppeteer/ -->
 
 {{</* resource-info */>}}
 

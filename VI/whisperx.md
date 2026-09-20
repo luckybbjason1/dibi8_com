@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/whisperx" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/whisperx" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/whisperx" />
-title: 'WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Production 2026'
+title: 'WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Producti...
 description: 'WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với faster-whisper, pyannote.audio và OpenAI Whisper. Bao gồm Docker, Python API, benchmark và production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [whisperx, asr, 'nhận-dạng-giọng-nói', 'phân-tách-ngưới-nói',
 aliases:
 - /vi/posts/whisperx/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/whisperx/ -->
 
 {{</* resource-info */>}}
 

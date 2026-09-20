@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/caveman" />
-title: "Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens"
+title: "Cut Claude Code Token Usage by 65% With Caveman — Same Q...
 description: "Learn how Caveman, a Claude Code skill with 57K GitHub stars, reduces token usage by 65% without losing quality. Includes installation, usage, real benchmarks, and code examples."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

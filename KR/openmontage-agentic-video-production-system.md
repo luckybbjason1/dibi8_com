@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openmontage-agentic-video-production-system" />
 lang: kr
 slug: openmontage-agentic-video-production-system
-title: "OpenMontage 리뷰: 세계 최초의 오픈소스 에이전트 영상 제작 시스템 (52개 도구, 12개 파이프라인, 500개 이상의 기술)"
+title: "OpenMontage 리뷰: 세계 최초의 오픈소스 에이전트 영상 제작 시스템 (52개 도구, 12개 ...
 description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. 12 production pipelines, 52 tools, 500+ agent skills. Turn any AI coding assistant into a full video studio — from animated explainers to cinematic trailers to real-footage documentaries. Zero API keys needed for basic output."
 date: "2026-06-22 00:00:00+08:00"
 lastmod: "2026-06-22 00:00:00+08:00"
@@ -49,6 +49,8 @@ faqs:
     a: 'OpenMontage는 제작 수준의 품질 게이트를 구현합니다: 사전 컴포지션 검증(전달 약속을 위반하거나 심각한 슬라이드쇼 위험이 있는 렌더를 차단), 렌더 후 자체 검토(ffprobe 검증, 블랙 프레임 감지를 위한 4 위치에서의 프레임 추출, 무음/클리핑에 대한 오디오 레벨 분석, 전달 약속 검증), 그리고 6차원 슬라이드쇼 위험 점수 시스템. 모든 공급자 선택은 고려된 대안, 신뢰도 점수, 그리고 이유와 함께 기록됩니다. 예산 통제에는 실행 전 비용 추정, 액션별 승인 기준, 그리고 구성 가능한 지출 한도가 포함됩니다.'
 featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/openmontage-agentic-video-production-system/ -->
 
 
 

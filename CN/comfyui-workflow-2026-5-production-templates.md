@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/comfyui-workflow-2026-5-production-templates" />
-title: 'ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates'
+title: 'ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...
 description: 'ComfyUI hit 106K GitHub stars in 2026. Beginner-friendly setup guide, model recommendations for 2026, and 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

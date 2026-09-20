@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/puppeteer" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/puppeteer" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/puppeteer" />
-title: 'Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa Browser Docker 2026'
+title: 'Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa B...
 description: 'Puppeteer là thư viện Node.js tự động hóa Chrome và Firefox headless. Hỗ trợ Docker, GitHub Actions, Jest, Mocha, TypeScript. Bao gồm cài đặt puppeteer docker, triển khai production, hướng dẫn tự động hóa browser, tích hợp CI/CD.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [puppeteer, 'tự-động-hóa-browser', 'headless-chrome', 'web-scraping'
 aliases:
 - /vi/posts/puppeteer/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/puppeteer/ -->
 
 {{</* resource-info */>}}
 

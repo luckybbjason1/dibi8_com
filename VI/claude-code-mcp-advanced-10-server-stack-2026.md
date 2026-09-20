@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-mcp-advanced-10-server-stack-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-mcp-advanced-10-server-stack-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-mcp-advanced-10-server-stack-2026" />
-title: 'Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Production'
+title: 'Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
 description: 'Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 server cấp production, cân bằng giữa sức mạnh, bảo mật và thời gian khởi động. Bài viết phân tích từng server, lý do được chọn, chức năng, và cách cấu hình cho cá nhân so với nhóm.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -33,6 +33,8 @@ faq:
   - q: "Đánh đổi giữa server HTTP/SSE và stdio là gì?"
     a: "HTTP: trạng thái bền vững, quản lý credential tập trung, phụ thuộc uptime của server. stdio: không độ trễ, không lộ credential, kết thúc cùng phiên làm việc. Mặc định dùng stdio. Chỉ dùng HTTP khi (a) cần trạng thái bền vững giữa các phiên, hoặc (b) tích hợp với SaaS không có bản local tương đương."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/claude-code-mcp-advanced-10-server-stack-2026/ -->
 
 {{</* resource-info */>}}
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/top-10-open-source-ai-tools-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/top-10-open-source-ai-tools-2026" />
 title: '2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10'
-description: '2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10'
+description: '2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'AI 코딩 에이전트가 API 호출 없이 세션 간에 메모리를 유지하려면 어떻게 해야 하나요?'
     a: 'MemPalace는 MCP(Model Context Protocol) 서버 역할을 하여 Claude Code 같은 로컬 코딩 에이전트에 영구적인 메모리를 제공합니다. MCP 서버로 로컬에서 실행되기 때문에 외부 API 호출 없이도 지속적인 컨텍스트를 제공합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/top-10-open-source-ai-tools-2026/ -->
 
 {</* resource-info */>}
 

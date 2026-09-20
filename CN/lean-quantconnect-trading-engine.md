@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/lean-quantconnect-trading-engine" />
-title: 'Lean: The Open-Source Algorithmic Trading Engine Powering QuantConnect — C# & Python Setup 2026'
+title: 'Lean: The Open-Source Algorithmic Trading Engine Powerin...
 description: 'Complete 2026 guide to Lean, the algorithmic trading engine behind QuantConnect. Multi-asset backtesting, live trading, C# & Python APIs, and production deployment walkthrough.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

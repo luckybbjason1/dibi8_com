@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aiohttp-async-web-scraping" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aiohttp-async-web-scraping" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aiohttp-async-web-scraping" />
-title: 'aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất Cao Xử lý 10K+ Request/Giây — Hướng dẫn Python'
+title: 'aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất...
 description: 'Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connection pooling, session management, rate limiting và triển khai production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [aiohttp, 'bất đồng bộ', 'web scraping', python, 'http client', asy
 aliases:
 - /vi/posts/aiohttp-async-web-scraping/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/aiohttp-async-web-scraping/ -->
 
 {{</* resource-info */>}}
 

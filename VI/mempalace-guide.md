@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
-title: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)"
-description: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)"
+title: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96....
+description: "Thêm Trí Nhớ Cho Claude Code: Tích Hợp MemPalace Đạt 96.6% Recall (Hướng Dẫn 2026)". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'MemPalace có miễn phí sử dụng không?'
     a: 'Có. MemPalace là mã nguồn mở theo giấy phép MIT và hoàn toàn miễn phí $0, không có phí API hay phí đăng ký, khác với Pinecone vốn tính phí theo gói đăng ký hoặc theo mức sử dụng.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mempalace-guide/ -->
 
 {</* resource-info */>}
 

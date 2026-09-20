@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/melotts" />
-title: 'MeloTTS: 7.4K+ Stars — Multi-Lingual TTS Benchmark vs Coqui TTS, ChatTTS, Bark in 2026'
+title: 'MeloTTS: 7.4K+ Stars — Multi-Lingual TTS Benchmark vs Co...
 description: 'MeloTTS is a high-quality multi-lingual text-to-speech library with 7.4K+ stars. Compare benchmarks with Coqui TTS, ChatTTS, and Bark. Covers Python setup, Docker deployment, real-time inference, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

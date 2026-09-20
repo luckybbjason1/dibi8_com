@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zerion-wallet-portfolio-tracker" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zerion-wallet-portfolio-tracker" />
 title: 'zerion-wallet-portfolio-tracker'
-description: ''
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [zerion]
 aliases:
 - /kr/posts/zerion-wallet-portfolio-tracker/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/zerion-wallet-portfolio-tracker/ -->
 
 {{</* resource-info */>}}
 

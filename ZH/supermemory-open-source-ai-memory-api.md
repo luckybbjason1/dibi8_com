@@ -17,6 +17,8 @@ license: MIT
 lang: zh
 featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/supermemory-open-source-ai-memory-api/ -->
 # 超级记忆：用于构建记住一切的 LLM 应用的最快开源 AI 内存 API
 
 <script type="application/ld+json">

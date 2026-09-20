@@ -16,6 +16,8 @@ lang: kr
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/personal-ai-infrastructure-daniel-miessler/ -->
+
 # 개인 AI 인프라: 에이전트 AI 설정 — 2026 가이드
 
 개인 AI 인프라(PAI) (스타 15,000+개)를 만든 Daniel Miessler의 PAI는 AI 전략, 실행, 성찰을 하나의 통합 플랫폼으로 결합하는 "라이프 오퍼레이팅 시스템"입니다. 45개의 스킬, 171개의 워크플로우, 37개의 훅, 알고리즘 v6.3.0을 갖추고 PAI는 AI를 단순한 도구를 넘어 누가 당신이며 무엇을 달성하려는지 아는 지능형 파트너로 변환합니다.

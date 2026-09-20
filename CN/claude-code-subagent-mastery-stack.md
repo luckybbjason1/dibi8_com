@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-mastery-stack" />
-title: 'Claude Code Subagent Mastery Stack 2026: From One Conversation to a Coordinated Agent Council'
+title: 'Claude Code Subagent Mastery Stack 2026: From One Conver...
 description: 'The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent patterns + custom agent authoring + the skill/subagent/MCP decision framework + orchestration failure modes + skill authoring. The full path from single-threaded coding to a reliable agent pipeline.'
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00

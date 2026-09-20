@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/knowledge-work-plugins" />
-title: "Knowledge Work Plugins: Anthropic's Plugin Ecosystem for Enhanced AI Productivity 2026"
+title: "Knowledge Work Plugins: Anthropic's Plugin Ecosystem for...
 description: "Knowledge Work Plugins (20,728 stars) by Anthropic extends Claude with powerful tools for document editing, code analysis, web browsing, and file operations. Build custom plugins for your workflow."
 tags: ["architecture", "llm", "open-source", "system"]
 date: 2026-06-15

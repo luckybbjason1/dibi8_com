@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dagger" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dagger" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dagger" />
-title: 'Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab CI 2026 비교'
+title: 'Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab...
 description: 'Dagger는 컨테이너에서 파이프라인을 실행하는 프로그래머블 CI/CD 엔진입니다. Docker, Go, Python, TypeScript와 호환됩니다. Dagger 설치, 튜토리얼, GitHub Actions와의 비교, 프로덕션 하드닝을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [cicd, devops, 컨테이너, '파이프라인-코드', docker, 'github-act
 aliases:
 - /kr/posts/dagger/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/dagger/ -->
 
 {{</* resource-info */>}}
 

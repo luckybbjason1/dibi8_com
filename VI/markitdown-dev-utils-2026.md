@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-dev-utils-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-dev-utils-2026" />
-title: 'markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026'
+title: 'markitdown: Chuyển file và tài liệu Office sang Markdown...
 description: 'markitdown là công cụ Python của Microsoft dùng để chuyển các loại file và tài liệu Office sang Markdown. 141.153 sao GitHub, giấy phép MIT. Bài viết bao gồm cài đặt, cách dùng CLI và Python cốt lõi, ví dụ code thực tế, cùng so sánh thẳng thắn với pandoc và docx2txt.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'markitdown có hạn chế nào đã biết không?'
     a: 'Có — một số tính năng nâng cao và cấu trúc tài liệu phức tạp có thể không được giữ lại đầy đủ. Dự án được bảo trì tích cực, nhưng nó ưu tiên độ chính xác văn bản hơn là tái tạo hình thức.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/markitdown-dev-utils-2026/ -->
 # markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026
 
 

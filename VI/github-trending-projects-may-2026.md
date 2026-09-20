@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/github-trending-projects-may-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/github-trending-projects-may-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/github-trending-projects-may-2026" />
-title: "DeepSeek TUI + Anthropic Financial AI: 3 Dự Án GitHub Trending Tháng 5/2026 Mang Lại Lợi Nhuận Thực"
+title: "DeepSeek TUI + Anthropic Financial AI: 3 Dự Án GitHub Tr...
 description: "Phân tích chuyên sâu 3 dự án GitHub trending hot nhất tháng 5/2026: DeepSeek-TUI tăng 5.800 stars trong một ngày, bộ công cụ Claude cho tài chính của Anthropic, và nền tảng giao dịch AI hoàn toàn tự động."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -41,6 +41,8 @@ faqs:
   - q: 'Local Deep Research có riêng tư không, và độ chính xác ra sao?'
     a: 'Local Deep Research chạy hoàn toàn trên phần cứng của riêng bạn với zero telemetry và không phụ thuộc đám mây, lưu lịch sử nghiên cứu trong một cơ sở dữ liệu được mã hóa bằng SQLCipher. Dù chạy cục bộ, nó đạt độ chính xác khoảng 95% trên SimpleQA khi kết hợp với Qwen3.6-27B trên RTX 3090, và hỗ trợ hơn 10 công cụ tìm kiếm bao gồm arXiv và PubMed.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/github-trending-projects-may-2026/ -->
 {</* resource-info */>}
 
 ## Giới thiệu

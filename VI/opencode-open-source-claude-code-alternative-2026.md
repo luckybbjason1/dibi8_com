@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/opencode-open-source-claude-code-alternative-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/opencode-open-source-claude-code-alternative-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/opencode-open-source-claude-code-alternative-2026" />
-title: 'Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn Mở Miễn Phí Thay Thế Claude Code — Cài Đặt Chi Tiết và Thủ Thuật Nâng Cao'
+title: 'Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn M...
 description: 'OpenCode đạt 160K+ stars trên GitHub năm 2026, hỗ trợ 75+ nhà cung cấp LLM, miễn phí 100%. Hướng dẫn này dành cho lập trình viên Việt Nam: cài đặt từ zero, tối ưu chi phí API, chạy model local và tích hợp MCP.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [opencode, 'ai-coding-agent', 'claude-code-alternative', 'open-source']
 aliases:
 - /vi/posts/opencode-open-source-claude-code-alternative-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/opencode-open-source-claude-code-alternative-2026/ -->
 
 {</* resource-info */>}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-content-detector-tools" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-content-detector-tools" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-content-detector-tools" />
-title: '2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copyleaks 등'
+title: '2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copylea...
 description: '2025년 최신 AI 콘텐츠 탐지 도구를 정확도, 속도, 가격 중심으로 비교합니다. GPTZero, Turnitin AI, Copyleaks, Originality.ai 등 주요 도구의 특징과 용도별 추천 가이드를 확인하세요.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['ai 콘텐츠 탐지', gptzero, turnitin, copyleaks, 'ai 탐지기', '콘
 aliases:
 - /kr/posts/ai-content-detector-tools/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-content-detector-tools/ -->
 # 2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copyleaks 등
 
 

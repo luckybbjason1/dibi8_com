@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/justhireme-ai-job-search-workbench" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/justhireme-ai-job-search-workbench" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
-title: "JustHireMe：AI Giúp Bạn Tự Động Tìm Việc, Từ Gửi Hồ Sơ Đến Nhận Offer"
+title: "JustHireMe：AI Giúp Bạn Tự Động Tìm Việc, Từ Gửi Hồ Sơ Đế...
 description: "Đánh giá JustHireMe - bàn làm việc thông minh AI mã nguồn mở cho việc tìm kiếm việc làm. Hệ thống tình báo việc làm ưu tiên cục bộ, tự động thu thập vị trí, đánh giá mức độ phù hợp AI, tạo hồ sơ và thư xin việc tùy chỉnh."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -40,6 +40,8 @@ faqs:
   - q: 'JustHireMe được xây dựng trên nền tảng công nghệ nào?'
     a: 'Ứng dụng desktop sử dụng Tauri 2 kết hợp React 19 và TypeScript; phần backend chạy Python 3.13 với FastAPI và WebSockets; dữ liệu được lưu trong SQLite cùng cơ sở dữ liệu đồ thị Kuzu và kho vector LanceDB; và Playwright đảm nhiệm tự động hóa trình duyệt cho việc thu thập dữ liệu và nộp đơn.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/justhireme-ai-job-search-workbench/ -->
 {</* resource-info */>}
 
 ## Vấn Đề: Tìm Việc Là Một Công Việc Toàn Thời Gian

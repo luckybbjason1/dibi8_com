@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/openhands" />
-title: 'OpenHands: 74K+ Stars — AI Software Engineer That Writes and Runs Code (2026 Setup Guide)'
+title: 'OpenHands: 74K+ Stars — AI Software Engineer That Writes...
 description: 'OpenHands is an AI-driven development platform that acts as a software engineering agent. Compatible with VS Code, Docker, GitHub, GitLab, Claude, and OpenAI. Covers Docker setup, model configuration, headless CI/CD mode, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

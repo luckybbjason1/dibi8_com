@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/12-factor-agents" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/12-factor-agents" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/12-factor-agents" />
-title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng LLM đáng tin cậy"
+title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng ...
 description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LLM hỗ trợ, cung cấp cách tiếp cận có nguyên tắc để xây dựng các agent AI đáng tin cậy, có thể mở rộng và quan sát được."
 date: 2026-06-10
 lastmod:  2026-06-10slug: 12-factor-agents
@@ -17,6 +17,8 @@ license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/12-factor-agents/ -->
 
 ## Giới thiệu
 

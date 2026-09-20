@@ -18,6 +18,8 @@ featureImage: https://raw.githubusercontent.com/roboflow/supervision/main/docs/a
 lang: ko
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/roboflow-supervision/ -->
+
 ## 소개
 
 컴퓨터 비전은 자율 주행 자동차, 품질 검사 시스템부터 의료 이미징 및 리테일 분석에 이르기까지 모든 것을 가능하게 하는 머신러닝의 가장 영향력 있는 응용 분야 중 하나가 되었습니다. 하지만 프로덕션 등급 CV 시스템을 구축하는 데에는 모델 학습만으로는 부족합니다. 데이터 주석, 평가, 시각화 및 디버깅을 위한 강력한 도구가 필요합니다.

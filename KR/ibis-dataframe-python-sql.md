@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/ibis-dataframe-python-sql/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/ibis-dataframe-python-sql/ -->
+
 {{</* resource-info */>}}
 
 데이터 분석의 끊임없이 진화하는 환경에서 Python 개발자들은 오랫동안 좌절스러운 딜레마에 직면해왔습니다. 직관적인 DataFrame API를 위해 **pandas**를 사용해야 할까요, 아니면 대규모 데이터셋에서 뛰어난 성능을 위해 원시 **SQL**을 작성해야 할까요? 2026년에 이 트레이드오프는 더 이상 필요하지 않습니다. **Ibis**를 소개합니다 — 20개 이상의 백엔드에서 고성능 SQL로 표현식을 컴파일하면서도 친숙한 DataFrame API를 제공하는 이식 가능한 오픈소스 Python 라이브러리입니다. 12,000개 이상의 GitHub 스타와 Apache-2.0 라이선스를 보유한 Ibis는 데이터 엔지니어와 과학자들이 데이터베이스와 상호작용하는 방식을 변화시키고 있습니다.

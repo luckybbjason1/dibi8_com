@@ -28,6 +28,8 @@ tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'o
 aliases:
 - /zh/posts/supertonic-on-device-multilingual-tts-2026/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/supertonic-on-device-multilingual-tts-2026/ -->
 # Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）
 
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabby" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tabby" />
 title: 'Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南'
-description: 'Tabby 是自托管 AI 编程助手。支持 VS Code、JetBrains、Vim、Neovim、Ollama、DeepSeek。Docker 安装、IDE 集成、基准测试和生产环境加固。'
+description: 'Tabby 是自托管 AI 编程助手。支持 VS Code、JetBrains、Vim、Neovim、Ollama、DeepSeek。Docker 安装、IDE 集成、基准测试和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [tabby, ai编程助手, 自托管, 'github copilot替代品', 代码补全
 aliases:
 - /zh/posts/tabby/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/tabby/ -->
 
 {{</* resource-info */>}}
 

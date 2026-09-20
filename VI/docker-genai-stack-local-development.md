@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-genai-stack-local-development" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-genai-stack-local-development" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-genai-stack-local-development" />
-title: 'Docker GenAI Stack: Chạy LangChain, Vector DB & LLM trong Một Docker Compose — Hướng Dẫn Dev Local 2026'
+title: 'Docker GenAI Stack: Chạy LangChain, Vector DB & LLM tron...
 description: 'Thiết lập môi trường phát triển GenAI local hoàn chỉnh với Docker GenAI Stack. Bao gồm LangChain, Neo4j, Ollama và vector database trong một file docker-compose duy nhất. Hướng dẫn production-ready cho 2026.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['docker genai stack']
 aliases:
 - /vi/posts/docker-genai-stack-local-development/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/docker-genai-stack-local-development/ -->
 
 {{</* resource-info */>}}
 

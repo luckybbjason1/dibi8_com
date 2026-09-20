@@ -38,6 +38,8 @@ faq:
     a: "7개에서 13개로 확장되었습니다. 새로 추가된 항목은: schema 검증 없는 실험을 신뢰하지 말 것, 200 거래일 미만 데이터셋에 대해 판단을 내리지 말 것, 30 트레이드 미만에서 PF > 3 을 받아들이지 말 것, 크로스에셋 검증 없이 전략을 출시하지 말 것, stdev/mean 비율을 무시하지 말 것 (1 초과 = 노이즈), 세그먼트별 분해 없이 PF 를 보고하지 말 것, IS/OOS ratio 없이 보고서를 받아들이지 말 것."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/schema-bug-faked-overfit-diagnosis-2026/ -->
+
 {{</* resource-info */>}}
 
 # 스키마 버그가 가짜로 만든 Overfit 진단

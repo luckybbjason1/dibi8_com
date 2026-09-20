@@ -27,6 +27,8 @@ aliases:
 - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/code-quality-tools-eslint-prettier-black-ruff/ -->
+
 {</* resource-info */>}
 
 일관된 코드 스타일은 단순한 미관의 문제가 아닙니다. 2024년 Stripe의 연구에 따른 결과, 코드 리뷰 시간의 25%가 스타일 논쟁과 형식 불일치 해결에 소비됩니다. 코드 품질 도구는 이러한 낭비를 제거하고 버그를 사전에 발견하는 핵심 인프라입니다. 이 글에서는 JavaScript/TypeScript와 Python 생태계의 대표적인 코드 품질 도구를 설치부터 CI/CD 통합까지 상세히 다룹니다.

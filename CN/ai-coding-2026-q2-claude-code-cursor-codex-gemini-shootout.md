@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout" />
-title: 'AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI — The Honest Comparison'
+title: 'AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
 description: 'Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, and Google Gemini CLI. Real benchmarks on a 50K-LOC TypeScript codebase, MCP support, context window economics, pricing breakdown, and where each one actually wins.'
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00

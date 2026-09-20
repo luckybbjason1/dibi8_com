@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/traefik" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/traefik" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/traefik" />
-title: 'Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕션 배포 가이드'
+title: 'Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕...
 description: 'Traefik은 자동 서비스 검색을 지원하는 클라우드 네이티브 애플리케이션 프록시 및 엣지 라우터입니다. Docker, Kubernetes, Consul, Docker Compose와 호환됩니다. 설치, 미들웨어, TLS, 모니터링 및 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [traefik, docker, kubernetes, '리버스 프록시', '엣지 라우터', i
 aliases:
 - /kr/posts/traefik/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/traefik/ -->
 
 {{</* resource-info */>}}
 

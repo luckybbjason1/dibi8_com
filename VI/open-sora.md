@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-sora" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-sora" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-sora" />
-title: 'Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generation Mã Nguồn Mở 2026'
+title: 'Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
 description: 'Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp ComfyUI, triển khai production, so sánh hiệu suất với HunyuanVideo, CogVideo, và Wan.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['open-sora', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-ngu
 aliases:
 - /vi/posts/open-sora/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/open-sora/ -->
 
 {{</* resource-info */>}}
 

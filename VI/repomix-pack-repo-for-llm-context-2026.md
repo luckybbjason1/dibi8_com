@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/repomix-pack-repo-for-llm-context-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/repomix-pack-repo-for-llm-context-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/repomix-pack-repo-for-llm-context-2026" />
-title: 'repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy Nhất Cho LLM — Không Cần Cấu Hình'
+title: 'repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
 description: 'repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh của Claude, ChatGPT, Gemini. 14k+ sao, không cần cấu hình, chạy ngay với npx.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -35,6 +35,8 @@ faqs:
   - q: 'repomix xử lý được codebase lớn đến mức nào?'
     a: 'repomix hoạt động tốt với khoảng 100,000–200,000 token (khoảng 5,000–10,000 file). Với repo lớn hơn, dùng --include để chỉ gửi subsystem liên quan. Flag --output-show-line-numbers giúp LLM đưa ra gợi ý chỉnh sửa chính xác theo số dòng.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/repomix-pack-repo-for-llm-context-2026/ -->
 
 ![repomix 2026: Đóng gói codebase cho ngữ cảnh LLM — dibi8.com](/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg)
 

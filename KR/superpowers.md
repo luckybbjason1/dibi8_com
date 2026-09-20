@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superpowers" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superpowers" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superpowers" />
-title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026'
+title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: 'Superpowers, 200k+ 스타를 보유한 agentic skills framework를 살펴보세요. 몇 분 만에 설정하고, 벤치마킹했으며, 프로덕션에 바로 사용할 수 있습니다. LangChain, LlamaIndex, AutoGen과 비교해 보세요.'
 date: 2026-05-23
 lastmod:  2026-05-23slug: 'superpowers'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: ''
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/superpowers/ -->
 
 ## 소개
 

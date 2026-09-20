@@ -4,9 +4,9 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/scanners-box-cybersecurity-tools-collection" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
-title: 'Scanners-Box: Bộ Sưu Tập 200+ Công Cụ An Ninh Mạng — Dành Cho Chuyên Gia Bảo
+title: 'Scanners-Box: Bộ Sưu Tập 200+ Công Cụ An Ninh Mạng — Dàn...
   Mật'
-description: Khám phá Scanners-Box — bộ sưu tập 200+ công cụ an ninh mạng mã nguồn
+description: Khám phá Scanners-Box — bộ sưu tập 200+ công cụ an ninh mạng mã nguồn. Comprehensive guide covering features, pricing, and best practices for 2026.
   mở, bao gồm kiểm thử xâm nhập, quét lỗ hổng và nghiên cứu bảo mật.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -44,6 +44,8 @@ faqs:
   - q: 'Các công cụ kiểm thử thâm nhập như những công cụ trong Scanners-Box có hợp pháp khi sử dụng không?'
     a: 'Những công cụ này chỉ hợp pháp khi dùng cho kiểm thử bảo mật được cấp phép; sử dụng chúng nhắm vào các hệ thống mà không có sự cho phép bằng văn bản rõ ràng là bất hợp pháp và phi đạo đức. Các luật liên quan bao gồm Đạo luật Gian lận và Lạm dụng Máy tính của Hoa Kỳ (CFAA), Đạo luật Lạm dụng Máy tính của Anh, Luật An ninh mạng của Trung Quốc và GDPR của EU, vì vậy hãy luôn xin ủy quyền bằng văn bản và xác định phạm vi trước khi kiểm thử.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/scanners-box-cybersecurity-tools-collection/ -->
 {</* resource-info */>}
 
 ## Scanners-Box là gì?

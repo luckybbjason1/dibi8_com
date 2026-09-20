@@ -18,6 +18,8 @@ featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-not
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/qiaomu-anything-to-notebooklm/ -->
+
 ## 简介
 
 Google NotebookLM 已迅速成为最实用的 AI 驱动知识管理工具之一。通过上传文档和来源，用户可以创建一个个人"笔记本"，AI 助手可以在其上推理、回答问题，并综合为摘要、学习指南和深入分析。它本质上是一个开箱即用的 RAG 系统。

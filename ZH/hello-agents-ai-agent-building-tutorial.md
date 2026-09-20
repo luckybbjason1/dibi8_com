@@ -38,6 +38,8 @@ faqs:
   - q: '跟着 Hello-Agents 可以做出哪些真实项目？'
     a: '教程包含三个综合案例：一个通过 MCP 工具调用协调多个专业 agent 的智能旅行助手；一个搜索网络信息并将其综合成报告的自动化深度研究 agent；以及一个由具有不同性格和日常行为的 AI agent 组成的赛博小镇模拟。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/hello-agents-ai-agent-building-tutorial/ -->
 {</* resource-info */>}
 
 ## Hello-Agents 是什么？

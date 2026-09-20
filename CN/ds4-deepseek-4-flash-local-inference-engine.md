@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ds4-deepseek-4-flash-local-inference-engine" />
-title: 'ds4: The Open-Source DeepSeek That Developers Are Switching '
+title: 'ds4: The Open-Source DeepSeek That Developers Are Switch...
 description: 'ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00

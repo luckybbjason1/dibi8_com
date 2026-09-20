@@ -16,6 +16,8 @@ license: MIT
 lang: zh
 featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/llm-inference-cost-optimization-guide-2026/ -->
 # 大语言模型推理成本优化：以分运行任何模型——2026年权威指南
 
 ![Ollama - 本地LLM推理简单易用](https://opengraph.github.com/github/ollama/ollama)

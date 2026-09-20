@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/playwright-browser-automation-testing" />
-title: 'Playwright 2026: The Cross-Browser Automation Tool Testing 3x Faster than Selenium — Setup Guide'
+title: 'Playwright 2026: The Cross-Browser Automation Tool Testi...
 description: 'Master Playwright 1.51 for cross-browser automation. Chrome, Firefox, WebKit support. Auto-wait, tracing, codegen, and parallel testing. 3x faster than Selenium with complete setup guide.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

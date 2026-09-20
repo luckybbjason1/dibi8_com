@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zilliz-milvus-vector-database-scale" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zilliz-milvus-vector-database-scale" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zilliz-milvus-vector-database-scale" />
-title: 'Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vector với độ trễ Milligiây — Hướng dẫn Triển khai'
+title: 'Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vec...
 description: 'Hướng dẫn sản xuất cho Milvus 2.5: tìm kiếm vector quy mô tỷ, xây dựng chỉ mục GPU, triển khai Kubernetes, tìm kiếm lai, và thiết lập Zilliz Cloud.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 
 aliases:
 - /vi/posts/zilliz-milvus-vector-database-scale/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/zilliz-milvus-vector-database-scale/ -->
 
 {{</* resource-info */>}}
 

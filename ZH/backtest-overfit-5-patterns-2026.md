@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtest-overfit-5-patterns-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtest-overfit-5-patterns-2026" />
 title: '回测过拟合：5 种典型模式与真实 PF/Sharpe 数据 (2026)'
-description: '基于 50+ 笔优化器输出的实盘交易，我们梳理出 5 种典型的过拟合模式：walk-forward 背离、市场状态翻转、参数悬崖、指标堆叠和幸存者偏差。每种模式均附可复现的合成示例与检测信号。'
+description: '基于 50+ 笔优化器输出的实盘交易，我们梳理出 5 种典型的过拟合模式：walk-forward 背离、市场状态翻转、参数悬崖、指标堆叠和幸存者偏差。每种模式均附可复现的合成示例与检测信号。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
@@ -37,6 +37,8 @@ faq:
   - q: "Train 与 OOS 的 PF 比值多少算健康？"
     a: "如果 Train PF / OOS PF > 1.5，要怀疑过拟合。> 2.0 几乎可以确定过拟合。我们最近 moss-trade-bot 的运行显示 Train PF 2.08 / OOS PF 0.94——比值 2.21，教科书级过拟合。健康策略的比值通常低于 1.3。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/backtest-overfit-5-patterns-2026/ -->
 
 {{</* resource-info */>}}
 

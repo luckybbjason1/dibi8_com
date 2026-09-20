@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dify" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dify" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/dify" />
-title: 'Dify: 5분 만에 시각적으로 프로덕션급 AI 에이전트 구축 — 141K+ Stars 설치 가이드 2026'
+title: 'Dify: 5분 만에 시각적으로 프로덕션급 AI 에이전트 구축 — 141K+ Stars 설치 가이드 ...
 description: 'Dify는 시각적 워크플로 빌더, RAG 파이프라인, 에이전트 오케스트레이션을 제공하는 오픈소스 LLM 애플리케이션 개발 플랫폼입니다. OpenAI, Anthropic, Ollama, Qdrant, Weaviate와 호환됩니다. Docker 배포, API 통합, 프로덕션 하드닝, Flowise 및 n8n, LangChain과의 비교를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/dify/
 - /kr/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/dify/ -->
 
 {{</* resource-info */>}}
 

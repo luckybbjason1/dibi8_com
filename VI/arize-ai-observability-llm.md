@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/arize-ai-observability-llm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/arize-ai-observability-llm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/arize-ai-observability-llm" />
-title: 'Arize AI Phoenix: Công cụ Giám sát LLM Mã nguồn mở Truy vết 100% RAG Pipeline — Hướng dẫn 2026'
+title: 'Arize AI Phoenix: Công cụ Giám sát LLM Mã nguồn mở Truy ...
 description: 'Hướng dẫn đầy đủ về Arize Phoenix năm 2026: giám sát LLM mã nguồn mở, truy vết RAG, quản lý phiên bản prompt, theo dõi token, và triển khai sản xuất với LangChain và LlamaIndex.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [llm, 'giám sát', 'arize phoenix', rag, langchain, llamaindex, opentelem
 aliases:
 - /vi/posts/arize-ai-observability-llm/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/arize-ai-observability-llm/ -->
 
 {{</* resource-info */>}}
 

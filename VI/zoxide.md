@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/zoxide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/zoxide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/zoxide" />
-title: 'Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
+title: 'Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
 description: 'Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerShell. Bao gồm cài đặt, tích hợp shell, cấu hình fzf, thuật toán bên trong, và chuyển đổi từ autojump/fasd.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [zoxide, cli, shell, 'cd-thay-the', rust, terminal, 'năng-suất', fzf]
 aliases:
 - /vi/posts/zoxide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/zoxide/ -->
 
 {{</* resource-info */>}}
 

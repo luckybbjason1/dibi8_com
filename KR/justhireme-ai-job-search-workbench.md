@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI가 당신의 취업을 자동화합니다"
-description: "JustHireMe 오픈소스 AI 취업 워크벤치 리뷰. 로컬 우선 구직 인텔리전스 시스템, 자동 포지션 크롤링, AI 매칭도 평가, 맞춤형 이력서 및 자기소개서 생성."
+description: "JustHireMe 오픈소스 AI 취업 워크벤치 리뷰. 로컬 우선 구직 인텔리전스 시스템, 자동 포지션 크롤링, AI 매칭도 평가, 맞춤형 이력서 및 자기소개서 생성.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -40,6 +40,8 @@ faqs:
   - q: 'JustHireMe는 어떤 기술 스택으로 개발되었나요?'
     a: '데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구축되었으며, 백엔드는 FastAPI와 WebSockets를 사용하는 Python 3.13으로 실행됩니다. 데이터는 SQLite와 Kuzu 그래프 데이터베이스, LanceDB 벡터 저장소에 보관되며, Playwright가 스크래핑 및 지원서 제출을 위한 브라우저 자동화를 담당합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/justhireme-ai-job-search-workbench/ -->
 {</* resource-info */>}
 
 ## 문제: 구직은 풀타임 직업입니다

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/self-hosted-llm-2026-ollama-vllm-localai" />
-title: 'Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested Throughput, Cost, Setup'
+title: 'Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested...
 description: 'Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory usage, setup time, and which is right for hobby vs production self-hosted deployment.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

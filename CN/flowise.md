@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/flowise" />
-title: 'Flowise: Build AI Agents Visually with 52K+ Stars — 5-Minute Drag-and-Drop Setup Guide for 2026'
+title: 'Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
 description: 'Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

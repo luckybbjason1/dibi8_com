@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
-title: 'HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wget 대비 2026'
+title: 'HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wg...
 description: 'HTTPie는 JSON 지원, 구문 강조 및 세션 관리를 갖춘 API 시대의 현대적인 CLI HTTP 클라이언트다. Python, pip, Homebrew, Docker와 호환. 설치, 벤치마크 비교, 프로덕션 강화 및 FAQ 다룸.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [httpie, cli, 'http-클리이언트', 'api-테스팅', 'curl-대안', json
 aliases:
 - /kr/posts/httpie/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/httpie/ -->
 
 {{</* resource-info */>}}
 

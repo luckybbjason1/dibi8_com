@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/invokeai/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/invokeai/ -->
+
 {{</* resource-info */>}}
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)

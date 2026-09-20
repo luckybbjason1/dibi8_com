@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
 title: 'OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南'
-description: 'OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。'
+description: 'OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [openrouter, llm, api网关, 人工智能, openai, claude, 机器学习, �
 aliases:
 - /zh/posts/openrouter-unified-llm-api-gateway/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/openrouter-unified-llm-api-gateway/ -->
 
 {{</* resource-info */>}}
 

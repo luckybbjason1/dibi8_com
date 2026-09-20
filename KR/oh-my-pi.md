@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/oh-my-pi" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/oh-my-pi" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/oh-my-pi" />
-title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝트 2026"
-description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다."
+title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝...
+description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod:  2026-06-15slug: oh-my-pi
 category: dev-utils
@@ -25,6 +25,8 @@ images:
 lang: kr
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/oh-my-pi/ -->
 
 ## TL;DR
 

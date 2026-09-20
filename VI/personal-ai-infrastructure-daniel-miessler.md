@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/personal-ai-infrastructure-daniel-miessler" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/personal-ai-infrastructure-daniel-miessler" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/personal-ai-infrastructure-daniel-miessler" />
-title: 'Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel Miessler cho con người — Hướng dẫn toàn diện 2026'
+title: 'Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel...
 description: 'Cơ sở hạ tầng AI Cá nhân (PAI) của Daniel Miessler là Hệ điều hành Cuộc sống với 45 kỹ năng, 171 quy trình làm việc, daemon Pulse và Algorithm v6.3.0. Cài đặt bằng một lệnh, giấy phép MIT. Kết hợp chiến lược, thực thi và phản ánh thành một hệ thống duy nhất.'
 date: 2026-06-13
 lastmod:  2026-06-13slug: 'personal-ai-infrastructure-daniel-miessler'
@@ -15,6 +15,8 @@ license: 'MIT'
 lang: vi
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/personal-ai-infrastructure-daniel-miessler/ -->
 
 # Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử cho con người — Hướng dẫn 2026
 

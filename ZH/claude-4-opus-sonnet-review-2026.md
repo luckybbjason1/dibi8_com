@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-4-opus-sonnet-review-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-4-opus-sonnet-review-2026" />
 title: 'Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试'
-description: 'Claude 4 全系横评：Opus 4、Sonnet 4、Haiku 4 — 编程、推理、上下文、定价，以及与 GPT-4o、Gemini 1.5 Pro 的对比。2026 年 6 月更新。'
+description: 'Claude 4 全系横评：Opus 4、Sonnet 4、Haiku 4 — 编程、推理、上下文、定价，以及与 GPT-4o、Gemini 1.5 Pro 的对比。2026 年 6 月更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod:  2026-06-06 00:00:00+08:00draft: false
 tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm评测, ai编程, 推理模型]
@@ -22,6 +22,8 @@ faqs:
   - q: 'Claude 4 的上下文窗口有多大？'
     a: 'Claude 4 全系支持 200K token 上下文窗口，可在单次调用中分析整本书、大型代码库或超长对话历史。输出窗口最大 32K token，一次生成长报告、完整文件或多章节文档完全够用。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-4-opus-sonnet-review-2026/ -->
 # Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试
 
 

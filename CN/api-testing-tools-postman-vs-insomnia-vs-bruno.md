@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/api-testing-tools-postman-vs-insomnia-vs-bruno" />
-title: 'Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025'
+title: 'Postman vs Insomnia vs Bruno: Best API Testing Tool in 2...
 description: 'Compare Postman vs Insomnia vs Bruno in 2025. Find the best API testing tool with pricing, protocol support, Git integration, and migration guides.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

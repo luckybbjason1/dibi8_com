@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/tensortrade-rl-trading/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/tensortrade-rl-trading/ -->
+
 {{</* resource-info */>}}
 
 ## 소개: 대부분의 트레이딩 봇이 실패하는 이유 (그리고 RL이 어떻게 게임을 바꾸는가)

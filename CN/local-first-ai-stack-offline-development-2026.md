@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/local-first-ai-stack-offline-development-2026" />
-title: 'Local-First AI Stack 2026: Fully Offline AI Development Environment'
+title: 'Local-First AI Stack 2026: Fully Offline AI Development ...
 description: 'Building a fully offline AI coding environment in 2026: Ollama for LLM, Aider for coding agent, ChromaDB for RAG, all local. Setup guide, hardware reality, and where offline matters (privacy, compliance, air-gapped, travel).'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

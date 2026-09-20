@@ -39,6 +39,8 @@ faqs:
   - q: 'conduct_research()와 write_report()는 동기 방식인가요?'
     a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고, 그 함수를 `asyncio.run()`으로 실행하세요.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/gpt-researcher-llm-frameworks-2026/ -->
 # GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드
 
 

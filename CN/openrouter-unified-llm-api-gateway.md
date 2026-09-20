@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/openrouter-unified-llm-api-gateway" />
-title: 'OpenRouter: The Unified LLM API Gateway Connecting 300+ Models with 40% Cost Savings — 2026 Setup Guide'
+title: 'OpenRouter: The Unified LLM API Gateway Connecting 300+ ...
 description: 'Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn setup, integration, benchmarks, and production deployment in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

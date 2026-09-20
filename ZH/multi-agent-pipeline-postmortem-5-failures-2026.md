@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/multi-agent-pipeline-postmortem-5-failures-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/multi-agent-pipeline-postmortem-5-failures-2026" />
 title: '多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）'
-description: 'Claude Code 多智能体流水线的五种真实失败模式——轻信未经核验的报告、上下文串台、失控的扇出、静默截断、孤儿 worktree——每一种都附带症状、根因和修复方案。'
+description: 'Claude Code 多智能体流水线的五种真实失败模式——轻信未经核验的报告、上下文串台、失控的扇出、静默截断、孤儿 worktree——每一种都附带症状、根因和修复方案。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -41,6 +41,8 @@ faq:
   - q: "如果多智能体编排这么频繁出错，那它值得这份复杂度吗？"
     a: "值得——当任务确实超出单个上下文窗口、或需要独立核验时。但这五种失败恰恰就是你不该条件反射地上手编排的原因。一个提示词写得好的单智能体，每一次都胜过一条有 bug 的五智能体流水线。当问题是真实的（需要全面覆盖、并行的独立工作、对抗式审查）时再用编排，而当你用它时，把那些能预防这些失败模式的核验步骤和停止条件内建进去。你无法核验的复杂，比你能核验的简单更糟糕。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/multi-agent-pipeline-postmortem-5-failures-2026/ -->
 # 多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）
 
 

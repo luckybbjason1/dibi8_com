@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/demucs" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/demucs" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/demucs" />
-title: 'Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Spleeter 2026'
+title: 'Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
 description: 'Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimate Vocal Remover, RVC, GPT-SoVITS. Hướng dẫn demucs, demucs vs uvr, cài đặt docker demucs, và benchmark production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [demucs, 'tach-nguon-nhac', 'ai-audio', 'tach-stem', pytorch, docker, 'ma-
 aliases:
 - /vi/posts/demucs/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/demucs/ -->
 
 {{</* resource-info */>}}
 

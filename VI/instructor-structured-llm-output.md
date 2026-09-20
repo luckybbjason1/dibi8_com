@@ -13,6 +13,8 @@ Nếu bạn từng thử nghiệm để làm cho một Mô hình Ngôn ngữ l�
 Instructor là một thư viện Python sửa đổi khách hàng OpenAI (và hơn 10 nhà cung cấp LLM khác) để đảm bảo kết quả có cấu trúc, an toàn về kiểu dữ liệu và đã được kiểm tra sử dụng **Pydantic models**. Nó chuyển đổi sự hoang dã của quá trình tạo văn bản từ các Mô hình Ngôn ngữ lớn thành một quy trình dự đoán, kỹ thuật phần mềm. Với hơn 11.000 ngôi sao trên GitHub, giấy phép MIT và cộng đồng sôi động, Instructor đã trở thành chuẩn mực thực tế cho đầu ra có cấu trúc của LLM trong Python. Hướng dẫn này bao gồm mọi thứ từ cài đặt cơ bản đến các mẫu đa nhà cung cấp nâng cao vào năm 2026.
 
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/instructor-structured-llm-output/ -->
 ---
 ## Instructor và Tại Sao Nó Quan Trọng?
 
@@ -50,7 +52,7 @@ class UserProfile(BaseModel):
     interests: list[str]
 
 # Trích xuất dữ liệu có cấu trúc từ ngôn ngữ tự nhiên
-def extract_profile(user_description: str) -> UserProfile:
+def extract_profile(user_description: str) -> UserProfile:. Comprehensive guide covering features, pricing, and best practices for 2026.
     return client.chat.completions.create(
         model="gpt-4o",
         response_model=UserProfile,

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/portkey-ai-gateway-production" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/portkey-ai-gateway-production" />
 title: 'Portkey AI Gateway 2026: 管理200+模型的LLM网关与可观测性 — 生产环境部署'
-description: ''
+description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['portkey ai gateway']
 aliases:
 - /zh/posts/portkey-ai-gateway-production/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/portkey-ai-gateway-production/ -->
 
 {{</* resource-info */>}}
 

@@ -22,6 +22,8 @@ faqs:
   - q: 'Người mới bắt đầu nên chọn Claude Code hay Cline?'
     a: 'Cline, nếu bạn muốn quan sát và phê duyệt mọi thứ trong khi học — nó nằm bên trong VS Code với một giao diện đồ họa quen thuộc, và mọi diff/lệnh/lượt tải web đều được xem xét trước khi chạy, nên không có gì xảy ra mà bạn chưa đồng ý. Claude Code giả định bạn thoải mái với terminal và tin tưởng agent triển khai các thay đổi nhiều bước một cách tự chủ, điều này mạnh mẽ hơn nhưng ít dắt tay hơn. Hãy bắt đầu với Cline để có khả năng quan sát và kiểm soát; nâng cấp lên Claude Code khi bạn tin tưởng vòng lặp và muốn tốc độ.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/claude-code-vs-cline/ -->
 # Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?
 
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/goose-ai-agent-open-source-automation" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/goose-ai-agent-open-source-automation" />
 title: "Goose AI Agent：44K⭐Open Source神器，让 AI 替你写代码、做研究、自动化一切"
-description: "Goose 是 Linux 基金会支持的Open Source AI Agent，44K+ Stars，支持 15+ LLM 提供商和 70+ MCP 扩展。桌面应用 + CLI + API 三位一体，用 Rust 构建，性能卓越。"
+description: "Goose 是 Linux 基金会支持的Open Source AI Agent，44K+ Stars，支持 15+ LLM 提供商和 70+ MCP 扩展。桌面应用 + CLI + API 三位一体，用 Rust 构建，性能卓越。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'Goose 包含哪些安全特性？'
     a: 'Goose 包含一个在执行危险命令前会先询问的审批模式（approval mode），一个在隔离环境中运行命令的沙箱模式（sandbox mode），一个用于追踪所有操作的审计日志（audit log），以及防止 API 滥用的速率限制（rate limiting）。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/goose-ai-agent-open-source-automation/ -->
 {</* resource-info */>}
 
 ## Goose 是什么？

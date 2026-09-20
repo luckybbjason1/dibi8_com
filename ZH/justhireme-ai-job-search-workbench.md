@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/justhireme-ai-job-search-workbench" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/justhireme-ai-job-search-workbench" />
 title: "JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer"
-description: "JustHireMe 开源 AI 求职工作台评测。本地优先的求职情报系统，自动抓取职位、AI 匹配度评分、生成定制简历和求职信。"
+description: "JustHireMe 开源 AI 求职工作台评测。本地优先的求职情报系统，自动抓取职位、AI 匹配度评分、生成定制简历和求职信。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -40,6 +40,8 @@ faqs:
   - q: 'JustHireMe 的技术栈是什么？'
     a: '桌面端使用 Tauri 2 搭配 React 19 与 TypeScript；后端运行 Python 3.13，采用 FastAPI 与 WebSockets；数据存储层使用 SQLite、Kuzu 图数据库和 LanceDB 向量数据库；Playwright 负责处理抓取和自动投递的浏览器自动化任务。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/justhireme-ai-job-search-workbench/ -->
 {</* resource-info */>}
 
 ## 问题：找工作就是一份全职工作

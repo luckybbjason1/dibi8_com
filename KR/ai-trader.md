@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-trader" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-trader" />
 title: "AI-Trader: 14K⭐ 완전 자동화 AI 트레이딩 에이전트, AI가 24시간 매매 대행"
-description: "AI-Trader는 HKUDS가 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템으로, 14K+ Stars를 보유하고 있으며 주식, 암호화폐, 외환 다중 시장 자동 거래를 지원합니다."
+description: "AI-Trader는 HKUDS가 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템으로, 14K+ Stars를 보유하고 있으며 주식, 암호화폐, 외환 다중 시장 자동 거래를 지원합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: '실제 자금 위험 없이 AI-Trader를 테스트할 수 있나요?'
     a: '네, 가능합니다. AI-Trader에는 과거 데이터를 활용한 고정밀 백테스팅 엔진과 페이퍼 트레이딩 모드(설정 파일에서 mode: paper로 지정)가 내장되어 있습니다. 프로젝트 문서에서는 실거래 배포 전에 반드시 페이퍼 트레이딩을 먼저 사용하도록 권장하고 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-trader/ -->
 {</* resource-info */>}
 
 ## AI-Trader란?

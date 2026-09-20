@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/haystack-rag-pipeline-framework" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/haystack-rag-pipeline-framework" />
 title: 'Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南'
-description: '2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。'
+description: '2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [haystack, nlp, rag, python, llm, 文档存储, 检索器, agent, openai, 
 aliases:
 - /zh/posts/haystack-rag-pipeline-framework/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/haystack-rag-pipeline-framework/ -->
 
 {{</* resource-info */>}}
 

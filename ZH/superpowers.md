@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superpowers" />
 
 ---
-title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026'
+title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: '探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。'
 date: 2026-05-23
 lastmod:  2026-05-23slug: 'superpowers'
@@ -19,6 +19,8 @@ license: MIT
 featureImage: ''
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/superpowers/ -->
 
 ## 引言
 

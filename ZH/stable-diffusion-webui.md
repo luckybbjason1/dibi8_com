@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/stable-diffusion-webui/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/stable-diffusion-webui/ -->
+
 {{</* resource-info */>}}
 
 AUTOMATIC1111 开发的 Stable Diffusion WebUI 依然是本地 AI 图像生成领域使用最广泛的开源界面。凭借 **159,000+ GitHub stars**，它的社区规模超过了所有竞争对手的总和。如果你正在搭建本地 AI 图像管线，掌握这个工具的安装、配置和扩展方法是一项实际的必需技能。

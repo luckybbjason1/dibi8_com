@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tabpfn-foundation-model-tabular-data" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/tabpfn-foundation-model-tabular-data" />
 title: 'TabPFN: 표 형식 데이터 기반 모델 — 구조화된 데이터의 AI 혁신'
-description: TabPFN을 발견하세요 — 표 형식 데이터의 기반 모델로, 기존 ML 방법을 능가합니다. 하이퍼파라미터 튜닝이 필요 없고,
+description: TabPFN을 발견하세요 — 표 형식 데이터의 기반 모델로, 기존 ML 방법을 능가합니다. 하이퍼파라미터 튜닝이 필요 없고,. Comprehensive guide covering features, pricing, and best practices for 2026.
   몇 초 만에 작동합니다.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Python에서 TabPFN을 어떻게 설치하고 사용하나요?'
     a: '''pip install tabpfn''으로 설치한 후, tabpfn 패키지에서 TabPFNClassifier를 임포트하고 clf.fit(X_train, y_train)과 clf.predict(X_test)를 순서대로 호출하면 됩니다. 피처 타입을 자동으로 감지하며, 결측값과 범주형 피처도 자동으로 처리합니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/tabpfn-foundation-model-tabular-data/ -->
 {</* resource-info */>}
 
 ## TabPFN이란?

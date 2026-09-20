@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/weaviate-vector-search-enterprise" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
-title: 'Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10B+ Đối Tượng — Hướng Dẫn Triển Khai Doanh Nghiệp'
+title: 'Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10...
 description: 'Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search, multi-modal, RBAC, monitoring, và benchmarks cho 10B+ đối tượng.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /vi/posts/weaviate-vector-search-enterprise/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/weaviate-vector-search-enterprise/ -->
 
 {{</* resource-info */>}}
 

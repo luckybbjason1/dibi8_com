@@ -34,6 +34,8 @@ faq:
     a: "둘 다 쓰세요. Cursor는 IDE 편집 + tab 자동완성용. Claude Code는 agent 루프 + 디버깅용. 합계 약 $220/월. 대부분의 프로 개발자가 이 스택으로 일합니다 — 양자택일이 아닙니다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/cursor-cost-saving-strategies-2026/ -->
+
 {{</* resource-info */>}}
 
 # Cursor 비용 절감 전략 2026

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/activepieces-workflow-automation" />
-title: 'Activepieces: The Open-Source Zapier Alternative with 200+ Apps & AI Actions — Self-Hosted Guide 2026'
+title: 'Activepieces: The Open-Source Zapier Alternative with 20...
 description: 'Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integrations, AI actions, and a visual builder — at a fraction of Zapier''s cost.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

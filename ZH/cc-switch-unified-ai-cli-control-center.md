@@ -18,6 +18,8 @@ featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/asset
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/cc-switch-unified-ai-cli-control-center/ -->
+
 # cc-switch: 统一 6+ AI 编码代理的跨平台桌面 CLI 控制中心 — 2026 实战指南
 
 ![cc-switch 主界面](https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png)

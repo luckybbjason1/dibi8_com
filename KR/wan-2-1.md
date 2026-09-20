@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
-title: 'Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVideo, CogVideo 2026'
+title: 'Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVide...
 description: 'Wan 2.1은 Alibaba의 오픈소스 비디오 기반 모델로 SOTA 성능 제공. ComfyUI, Diffusers, Gradio 지원. T2V, I2V, 비디오 편집, 텍스트 생성을 1.3B 및 14B 파라미터로 제공.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['wan-2-1', '비디오-생성', '디퓨전-트랜스포머', 'ai-비디오
 aliases:
 - /kr/posts/wan-2-1/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/wan-2-1/ -->
 
 {{</* resource-info */>}}
 

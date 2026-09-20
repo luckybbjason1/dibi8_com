@@ -16,6 +16,8 @@ lang: kr
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/impeccable-ai-design-language-harness-quality-ui/ -->
+
 # Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰
 
 Impeccable(37,000개 이상 스타)는 AI 코딩 에이전트를 위해 특별히 구축된 디자인 언어입니다. AI 지원 개발에서 가장 두드러지게 나타나는 문제 중 하나를 해결합니다. AI가 생성한 UI가 일반적인 템플릿 복제본처럼 보이는 문제입니다. 23개 명령어, 41개 결정론적 감지기 규칙, 실시간 브라우저 반복 기능을 통해 Impeccable은 AI 에이전트에 세련되고 일반적이지 않은 인터페이스를 생성하는 데 필요한 디자인 가이드라인을 제공합니다.

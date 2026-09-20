@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026'
+title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra...
 description: 'CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/cloakbrowser-stealth-chromium-bot-detection-scraping/ -->
 
 # CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026
 

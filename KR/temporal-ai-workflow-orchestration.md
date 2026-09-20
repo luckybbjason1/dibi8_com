@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/temporal-ai-workflow-orchestration" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/temporal-ai-workflow-orchestration" />
 title: Temporal AI 워크플로우 오케스트레이션 — 신뢰할 수 있는 다단계 AI 파이프라인
-description: AI/ML 워크플로우 오케스트레이션을 위한 Temporal 완전 가이드. 내장 내구성, 재시도 및 관찰 가능성으로 신뢰할 수 있는 LLM 파이프라인, 멀티 에이전트 시스템 및 ML 훈련 작업을 구축하세요.
+description: AI/ML 워크플로우 오케스트레이션을 위한 Temporal 완전 가이드. 내장 내구성, 재시도 및 관찰 가능성으로 신뢰할 수 있는 LLM 파이프라인, 멀티 에이전트 시스템 및 ML 훈련 작업을 구축하세요.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
@@ -14,6 +14,8 @@ lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/temporal-ai-workflow-orchestration/ -->
 
 ## TL;DR
 

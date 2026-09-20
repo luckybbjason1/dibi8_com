@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/llamafile-portable-local-llm" />
 title: LlamaFile — Run Local LLMs with a Single Portable Binary
-description: Complete guide to LlamaFile by Meta/MLC AI. Run 100+ open-source LLMs
+description: Complete guide to LlamaFile by Meta/MLC AI. Run 100+ open-source LLMs. Comprehensive guide covering features, pricing, and best practices for 2026.
   locally without installation, GPU requirements, or complex setup. One binary, any
   platform.
 tags:

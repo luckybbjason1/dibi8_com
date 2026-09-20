@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/terax-ai-lightweight-ai-terminal" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/terax-ai-lightweight-ai-terminal" />
 title: "Terax AI：懂你的轻量级 AI 终端模拟器"
-description: "发现 Terax AI，一款基于 Tauri 2 + Rust 构建的 7 MB AI 原生终端模拟器。支持自然语言转 Shell 命令、内联 AI 辅助、智能自动补全，兼容 bash、zsh、fish 和 PowerShell。"
+description: "发现 Terax AI，一款基于 Tauri 2 + Rust 构建的 7 MB AI 原生终端模拟器。支持自然语言转 Shell 命令、内联 AI 辅助、智能自动补全，兼容 bash、zsh、fish 和 PowerShell。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -44,6 +44,8 @@ faqs:
   - q: '如何安装 Terax AI？'
     a: 'Terax 需从源码构建：先安装 Rust（stable）以及带有 pnpm 的 Node.js 20+，用 git 克隆仓库，执行 pnpm install，然后运行 pnpm tauri dev 进行开发，或运行 pnpm tauri build 生成正式发布包。官方暂未提供预编译安装程序。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/terax-ai-lightweight-ai-terminal/ -->
 {</* resource-info */>}
 
 # Terax AI：懂你的轻量级 AI 终端模拟器

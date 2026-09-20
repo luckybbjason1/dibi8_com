@@ -4,13 +4,15 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/schema-generator" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/schema-generator" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/schema-generator" />
-title: "Trình Tạo Schema.org JSON-LD — Article / Organization / FAQ / Product"
+title: "Trình Tạo Schema.org JSON-LD — Article / Organization / ...
 description: "Tạo dữ liệu có cấu trúc Schema.org JSON-LD sẵn sàng copy-paste cho Article, Organization, FAQPage, Product, BreadcrumbList. Google, Bing, AI search đều dùng — công cụ SEO bắt buộc."
 date: 2026-05-18
 lastmod: 2026-05-19
 layout: "tool-schema-generator"
 tool_id: "schema-generator"
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/schema-generator/ -->
 # Trình Tạo Schema.org JSON-LD — Article / Organization / FAQ / Product
 
 

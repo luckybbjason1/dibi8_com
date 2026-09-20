@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/rvc" />
-title: 'RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Minute Training Setup for 2026'
+title: 'RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Min...
 description: 'RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GPT-SoVITS, Coqui TTS, and demucs. This tutorial covers Docker deployment, training pipelines, API integration, and production hardening.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

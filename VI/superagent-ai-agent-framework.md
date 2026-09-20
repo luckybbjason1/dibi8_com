@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/superagent-ai-agent-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/superagent-ai-agent-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/superagent-ai-agent-framework" />
-title: 'Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1 Lệnh CLI — Hướng Dẫn Tối Thiểu 2026'
+title: 'Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1...
 description: 'Hướng dẫn thực hành triển khai AI Agent với Superagent. Một lệnh CLI, hỗ trợ nhiều LLM, workflow RAG, tích hợp vector DB, và triển khai REST API. Kèm benchmark thực tế.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [superagent, 'ai agent', llm, rag, 'vector db', openai, langchain, python,
 aliases:
 - /vi/posts/superagent-ai-agent-framework/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/superagent-ai-agent-framework/ -->
 
 {{</* resource-info */>}}
 

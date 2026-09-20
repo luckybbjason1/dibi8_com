@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/colly/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/colly/ -->
+
 {{</* resource-info */>}}
 
 ## 소개

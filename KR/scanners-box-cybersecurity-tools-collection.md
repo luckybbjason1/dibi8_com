@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/scanners-box-cybersecurity-tools-collection" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/scanners-box-cybersecurity-tools-collection" />
 title: 'Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수'
-description: Scanners-Box를 탐색하세요 — 침투 테스트, 취약점 스캐닝, 보안 연구를 포함한 200개 이상의 오픈소스 사이버보안
+description: Scanners-Box를 탐색하세요 — 침투 테스트, 취약점 스캐닝, 보안 연구를 포함한 200개 이상의 오픈소스 사이버보안. Comprehensive guide covering features, pricing, and best practices for 2026.
   도구 모음.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -43,6 +43,8 @@ faqs:
   - q: 'Scanners-Box에 있는 것과 같은 침투 테스트 도구를 사용하는 것이 합법인가요?'
     a: '이러한 도구는 승인된 보안 테스트에 한해서만 합법이며, 명시적인 서면 허가 없이 시스템을 대상으로 사용하는 것은 불법이며 비윤리적입니다. 관련 법률로는 미국 컴퓨터 사기 및 남용 방지법(CFAA), 영국 컴퓨터 오용법, 중국 사이버보안법, EU GDPR 등이 있으므로, 테스트 전에 반드시 서면 승인을 받고 범위를 정의하십시오.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/scanners-box-cybersecurity-tools-collection/ -->
 {</* resource-info */>}
 
 ## Scanners-Box란?

@@ -28,6 +28,8 @@ tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architectu
 aliases:
 - /zh/posts/12-factor-agents-production-llm-software-2026/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/12-factor-agents-production-llm-software-2026/ -->
 # 12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）
 
 

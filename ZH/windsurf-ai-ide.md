@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/windsurf-ai-ide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/windsurf-ai-ide" />
 title: Windsurf AI IDE — 与你一起思考的智能编程编辑器
-description: Windsurf 完全指南：来自 Codeium 的代理式 AI IDE，能够自主编写代码、调试和交付功能。定价、基准测试和实际工作流详解。
+description: Windsurf 完全指南：来自 Codeium 的代理式 AI IDE，能够自主编写代码、调试和交付功能。定价、基准测试和实际工作流详解。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['ai-ide', 'coding-agent', 'windsurf', 'codeium', 'cursor-alternative', 'agentic-ai']
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
@@ -14,6 +14,8 @@ lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: windsurf-ai-ide
 lang: zh-CN
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/windsurf-ai-ide/ -->
 
 ## TL;DR
 

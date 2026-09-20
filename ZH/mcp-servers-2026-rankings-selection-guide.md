@@ -42,6 +42,8 @@ faq:
     a: "2026-2027 不太可能。MCP 跨 vendor adoption（Anthropic、OpenAI 参考实现、Google Gemini），open spec，1000+ 公开服务器。MCP 之上的下一层 — agent-to-agent 协议、能力发现 — 仍在演进。MCP 是集成层；预计至少 18-24 月内保持稳定。"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/mcp-servers-2026-rankings-selection-guide/ -->
+
 {{</* resource-info */>}}
 
 # MCP 服务器 2026: 100+ 生态地图 + 选型决策树

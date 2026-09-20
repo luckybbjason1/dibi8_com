@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/ultimate-vocal-remover/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/ultimate-vocal-remover/ -->
+
 {{</* resource-info */>}}
 
 从伴奏中提取人声曾经需要昂贵的 DAW 插件、手动 EQ 调节，或者外包给音频工程师。到了 2026 年，开源深度学习模型可以在消费级硬件上 60 秒内完成这项任务。**Ultimate Vocal Remover（UVR）** 以 24,700+ GitHub Stars 的成绩引领这一领域，它基于 Tkinter 的 GUI 界面支持多种前沿架构，包括 VR-Net、MDX-Net、MDX23C 和 Demucs。本指南将覆盖三大主流平台的安装、模型选择策略、批量处理工作流，以及与 RVC、GPT-SoVITS 等工具的集成。无论你是想完成 vocal removal setup，还是在比较 vocal remover vs demucs，这篇 uvr guide 都能帮你从入门到生产部署一步到位。对于需要 ai audio separation 的创作者来说，这份 ultimate vocal remover tutorial 是最全面的中文参考资料之一。

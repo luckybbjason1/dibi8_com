@@ -1,8 +1,8 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/aitoearn-guide" />
-title: "Best Open Source Alternative to Buffer (2026): AiToEarn vs Hootsuite Comparison"
-description: "Best Open Source Alternative to Buffer (2026): AiToEarn vs Hootsuite Comparison"
+title: "Best Open Source Alternative to Buffer (2026): AiToEarn ...
+description: "Best Open Source Alternative to Buffer (2026): AiToEarn vs Hootsuite Comparison". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:

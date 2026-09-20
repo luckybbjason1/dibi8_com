@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/affine-knowledge-base-whiteboard" />
-title: 'AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-Enhanced Knowledge Management — Setup Guide'
+title: 'AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
 description: 'Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edgeless whiteboard, AI writing assistant, Docker setup in 5 minutes.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

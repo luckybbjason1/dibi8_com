@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/httpie" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/httpie" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/httpie" />
-title: 'HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại So với curl, wget 2026'
+title: 'HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại S...
 description: 'HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tương thích Python, pip, Homebrew, Docker. Bao gồm cài đặt, so sánh benchmark, bảo mật production và FAQ.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [httpie, cli, 'http-client', 'api-testing', 'curl-thay-the', json, termina
 aliases:
 - /vi/posts/httpie/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/httpie/ -->
 
 {{</* resource-info */>}}
 

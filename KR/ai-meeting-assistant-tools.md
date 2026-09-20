@@ -28,6 +28,8 @@ tags: ['ai 회의 어시스턴트', 'ai 회의 기록', 'otter.ai', fireflies, f
 aliases:
 - /kr/posts/ai-meeting-assistant-tools/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-meeting-assistant-tools/ -->
 # 2025년 최고의 AI 회의 어시스턴트 도구 비교: Otter.ai, Fireflies, Fathom 등
 
 

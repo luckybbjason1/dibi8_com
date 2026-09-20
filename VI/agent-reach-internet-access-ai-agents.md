@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/agent-reach-internet-access-ai-agents" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/agent-reach-internet-access-ai-agents" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/agent-reach-internet-access-ai-agents" />
-title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)'
+title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
 description: 'Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.'
 date: 2026-09-19
 lastmod:  2026-09-19slug: 'agent-reach-internet-access-for-ai-agents-2026'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/agent-reach-internet-access-ai-agents/ -->
 
 # Agent-Reach: Truy Cập Internet Miễn Phí Cho Agent AI Của Bạn
 

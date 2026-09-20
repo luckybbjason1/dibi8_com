@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-all-in-one-ai-coding-agent-manager" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-all-in-one-ai-coding-agent-manager" />
 title: "CC Switch：终极 AI 编程代理管理器，用于多平台开发"
-description: "CC Switch 完整指南 —— 这款跨平台桌面应用程序可以在一个统一界面中管理 Claude Code、Codex、Gemini CLI、OpenCode、OpenClaw 和 Hermes Agent。包括安装、配置及实际使用。"
+description: "CC Switch 完整指南 —— 这款跨平台桌面应用程序可以在一个统一界面中管理 Claude Code、Codex、Gemini CLI、OpenCode、OpenClaw 和 Hermes Agent。包括安装、配置及实际使用。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-20
 lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
@@ -13,6 +13,8 @@ lang: zh
 slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/cc-switch-all-in-one-ai-coding-agent-manager/ -->
 
 # CC Switch：用于多平台开发的终极 AI 编码代理管理器
 

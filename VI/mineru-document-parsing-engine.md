@@ -6,7 +6,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mineru-document-parsing-engine" />
 
 lang: en
-title: 'MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang Markdown sẵn sàng cho LLM'
+title: 'MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang ...
 description: 'MinerU (70.600+ sao GitHub) chuyển đổi PDF, DOCX, PPTX, XLSX, hình ảnh và trang web thành Markdown và JSON có cấu trúc cho quy trình làm việc LLM, RAG và Đại lý. Hỗ trợ OCR 109 ngôn ngữ, chuyển công thức sang LaTeX, chuyển bảng sang HTML và chạy trên CPU hoặc GPU.'
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
@@ -18,6 +18,8 @@ lang: en
 featureImage: /images/articles/mineru-docs.png
 
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mineru-document-parsing-engine/ -->
 
 
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)

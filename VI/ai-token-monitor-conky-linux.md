@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-token-monitor-conky-linux" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-token-monitor-conky-linux" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-token-monitor-conky-linux" />
-title: 'AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Grok, Kimi trực tiếp trên Linux'
+title: 'AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
 description: 'Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trình kiểu HP bar trong Conky. Hỗ trợ Claude, Gemini, Grok, Kimi với polling API thực và đếm ngược reset.'
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Tại sao Grok hiển thị "耗尽" (hết) dù tài khoản còn số dư?'
     a: 'Kiểm tra Grok gọi GET /v1/models — trả về 200 khi xác thực hợp lệ và còn số dư, 403 khi hết số dư. Mã 403 từ xAI đặc biệt có nghĩa là số dư tài khoản bằng 0. Nếu còn số dư mà vẫn thấy 403, hãy kiểm tra lại API key trong ~/.config/.ai_monitor_keys.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-token-monitor-conky-linux/ -->
 
 {{< resource-info >}}
 

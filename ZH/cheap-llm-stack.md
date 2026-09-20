@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cheap-llm-stack" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cheap-llm-stack" />
 title: '便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15'
-description: '5 组件 stack 跑真实 AI 负载月成本 $0-15：Ollama 本地 + DeepSeek API + Gemini 免费层 + RTK 压缩 + 9Router 编排。真实成本数学、按任务类型的模型选择、组装顺序。'
+description: '5 组件 stack 跑真实 AI 负载月成本 $0-15：Ollama 本地 + DeepSeek API + Gemini 免费层 + RTK 压缩 + 9Router 编排。真实成本数学、按任务类型的模型选择、组装顺序。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack:
@@ -32,6 +32,8 @@ tags: [便宜大模型, 免费层, 成本优化, stack, 合集]
 aliases:
   - /posts/cheap-llm-stack/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/cheap-llm-stack/ -->
 # 便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15
 
 

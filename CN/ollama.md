@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ollama" />
-title: 'Ollama: 137K+ Stars — Run LLMs Locally with One Command, Complete Setup Guide 2026'
+title: 'Ollama: 137K+ Stars — Run LLMs Locally with One Command,...
 description: 'Ollama is the simplest way to run Llama, DeepSeek, Mistral, and other LLMs locally. Compatible with LangChain, OpenWebUI, Continue.dev, and Dify. Covers Docker setup, Modelfile customization, REST API, production hardening, and performance benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

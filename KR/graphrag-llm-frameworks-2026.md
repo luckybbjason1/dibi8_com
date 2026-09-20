@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/graphrag-llm-frameworks-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/graphrag-llm-frameworks-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/graphrag-llm-frameworks-2026" />
-title: 'GraphRAG: 마이크로소프트의 지식 그래프 기반 RAG로 더 나은 LLM 답변 (33K Stars) — 2026 실전 가이드'
+title: 'GraphRAG: 마이크로소프트의 지식 그래프 기반 RAG로 더 나은 LLM 답변 (33K Stars...
 description: 'GraphRAG는 마이크로소프트의 모듈형 지식 그래프 기반 RAG 시스템입니다(GitHub 33,403 스타, MIT 라이선스). 이 가이드는 설치, init/index/query 워크플로, 실제 CLI 예제, 그리고 LangChain·Haystack과의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'GraphRAG는 일반 벡터 RAG와 무엇이 다른가요?'
     a: '일반 RAG는 유사한 청크 몇 개를 가져와 거기서 답을 만듭니다. GraphRAG는 이에 더해 문서로부터 지식 그래프와 커뮤니티 요약을 구축하므로, 넓고 코퍼스 전체에 걸친 질문(전역 검색)뿐 아니라 엔티티에 집중된 질문(지역 검색)에도 답할 수 있습니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/graphrag-llm-frameworks-2026/ -->
 
 {{< resource-info >}}
 

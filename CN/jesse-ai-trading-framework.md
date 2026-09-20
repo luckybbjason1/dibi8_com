@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/jesse-ai-trading-framework" />
-title: 'Jesse: The Advanced Python Crypto Trading Framework with 30+ Technical Indicators — 2026 Setup Guide'
+title: 'Jesse: The Advanced Python Crypto Trading Framework with...
 description: 'A production-ready guide to Jesse AI trading framework — install, backtest with 30+ indicators, build custom strategies, and deploy live crypto trading bots in Python.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

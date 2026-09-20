@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/egonex-understand-anything-interactive-knowledge-graph-ai" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/egonex-understand-anything-interactive-knowledge-graph-ai" />
 title: "Egonex Understand-Anything：任何主题的交互式知识图谱——AI 驱动、开源、零配置"
-description: "了解如何使用 Egonex 的 Understand-Anything 通过 AI 从任何主题生成交互式知识图谱。包含逐步安装、多源综合、实时搜索和与替代方案的比较。"
+description: "了解如何使用 Egonex 的 Understand-Anything 通过 AI 从任何主题生成交互式知识图谱。包含逐步安装、多源综合、实时搜索和与替代方案的比较。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-10
 lastmod:  2026-06-10slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
@@ -17,6 +17,8 @@ license: MIT
 featureImage: "https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/egonex-understand-anything-interactive-knowledge-graph-ai/ -->
 
 ## 简介
 

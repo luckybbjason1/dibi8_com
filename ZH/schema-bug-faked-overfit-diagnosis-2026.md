@@ -38,6 +38,8 @@ faq:
     a: "从 7 条扩展到 13 条。新增条目：不要信任没有 schema 验证的实验、不要在不足 200 个交易日的数据集上下结论、不要接受成交不足 30 次的 PF > 3、不要在没有跨资产验证的情况下上线策略、不要忽略 stdev/mean 比值（大于 1 = 噪音）、不要在没有分段分解的情况下汇报 PF、不要接受没有 IS/OOS 比值的报告。"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/schema-bug-faked-overfit-diagnosis-2026/ -->
+
 {{</* resource-info */>}}
 
 # schema bug 伪造了我的 overfit 诊断

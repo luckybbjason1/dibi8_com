@@ -3,7 +3,7 @@
 <link rel="alternate" hreflang="en" href="https://dibi8.com/en/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/nanochat-karpathy-train-your-own-llm-100-dollars-2026" />
-title: 'nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,000줄 전체 LLM 파이프라인'
+title: 'nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,00...
 description: 'Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $100 미만으로 GPT-2 수준의 챗봇을 처음부터 훈련하도록 설계되었습니다.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -34,6 +34,8 @@ faqs:
   - q: 'nanochat와 Ollama의 차이점은 무엇입니까?'
     a: 'Ollama는 추론 런타임입니다 — 기존 사전학습 모델을 로드하고 서빙합니다. nanochat는 훈련 프레임워크입니다 — 원시 텍스트 데이터에서 모델을 훈련합니다. Ollama는 자동차고, nanochat는 엔진을 만드는 공장입니다. nanochat도 추론 서버와 채팅 UI를 포함하지만, 핵심 목적은 훈련입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/nanochat-karpathy-train-your-own-llm-100-dollars-2026/ -->
 
 ![nanochat 2026: Andrej Karpathy LLM 훈련 파이프라인 — dibi8.com](/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg)
 

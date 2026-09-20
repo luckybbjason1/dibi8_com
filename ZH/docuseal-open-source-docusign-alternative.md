@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docuseal-open-source-docusign-alternative" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docuseal-open-source-docusign-alternative" />
 title: DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%
-description: DocuSeal是一个拥有15.7k星的开源平台，可用自托管数字文档签署、PDF表单构建和白标电子签名工作流替代DocuSign。
+description: DocuSeal是一个拥有15.7k星的开源平台，可用自托管数字文档签署、PDF表单构建和白标电子签名工作流替代DocuSign。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'DocuSeal 可以将签署后的文档存储在哪里？'
     a: 'DocuSeal 默认支持本地磁盘配合 SQLite 存储，生产环境可使用 PostgreSQL 或 MySQL，同时支持云对象存储，包括 AWS S3、Google Cloud Storage 和 Azure Blob。生产多用户部署建议使用 PostgreSQL（启用 SSL）和 S3（启用服务端加密）。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/docuseal-open-source-docusign-alternative/ -->
 
 {</* resource-info */>}
 

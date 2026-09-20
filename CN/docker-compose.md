@@ -1,8 +1,8 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/docker-compose" />
-title: 'Docker Compose: 37,393 GitHub Stars — Multi-Container Setup Guide 2026'
-description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'
+title: 'Docker Compose: 37,393 GitHub Stars — Multi-Container Se...
+description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []

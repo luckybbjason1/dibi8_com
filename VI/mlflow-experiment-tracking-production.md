@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mlflow-experiment-tracking-production" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mlflow-experiment-tracking-production" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mlflow-experiment-tracking-production" />
-title: 'MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi 10,000+ Thử Nghiệm — Hướng Dẫn Cài Đặt'
+title: 'MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi ...
 description: 'Hướng dẫn đầy đủ về MLflow cho theo dõi thử nghiệm ML, model registry và model serving. Bao gồm thiết lập, Python SDK, triển khai production và benchmark cho 10,000+ thử nghiệm.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [mlflow, 'machine learning', mlops, 'theo dõi thử nghiệm', 'model reg
 aliases:
 - /vi/posts/mlflow-experiment-tracking-production/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mlflow-experiment-tracking-production/ -->
 
 {{</* resource-info */>}}
 

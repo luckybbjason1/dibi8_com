@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openrouter-unified-llm-api-gateway" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openrouter-unified-llm-api-gateway" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openrouter-unified-llm-api-gateway" />
-title: 'OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình, Tiết Kiệm 40% Chi Phí — Hướng Dẫn Thiết Lập 2026'
+title: 'OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình...
 description: 'Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương thích OpenAI. Học cách thiết lập, tích hợp, benchmark và triển khai production trong 5 phút.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [openrouter, llm, 'api gateway', ai, openai, claude, 'machine learning', '
 aliases:
 - /vi/posts/openrouter-unified-llm-api-gateway/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/openrouter-unified-llm-api-gateway/ -->
 
 {{</* resource-info */>}}
 

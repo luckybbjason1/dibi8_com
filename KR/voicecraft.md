@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/voicecraft" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/voicecraft" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/voicecraft" />
-title: 'VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 2026'
+title: 'VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 ...
 description: 'VoiceCraft는 신경 코덱 언어 모델 기반의 제로샷 음성 편집 및 TTS 모델로, GPT-SoVITS, Coqui TTS, RVC와 호환됩니다. 설치 튜토리얼, 벤치마크, Docker 배포, 비교표를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [voicecraft, '제로샷-tts', 음성편집, 신경코덱, 보이스클론,
 aliases:
 - /kr/posts/voicecraft/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/voicecraft/ -->
 
 {{</* resource-info */>}}
 

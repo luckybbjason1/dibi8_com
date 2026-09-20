@@ -28,6 +28,8 @@ tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'o
 aliases:
 - /kr/posts/supertonic-on-device-multilingual-tts-2026/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/supertonic-on-device-multilingual-tts-2026/ -->
 # Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)
 
 

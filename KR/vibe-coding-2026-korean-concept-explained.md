@@ -34,6 +34,8 @@ faq:
     a: "아니다. 워크플로는 언어 비종속적이다 — 자신이 쓰는 어떤 자연어로든 의도를 기술하면 된다. 용어는 한국에서 출발했지만 실천은 전 세계에서 통한다. 영어권 개발자들은 Cursor와 Claude Code가 나온 이래로 이미 그렇게 해왔다. 단지 이름이 없었을 뿐이다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/vibe-coding-2026-korean-concept-explained/ -->
+
 {{</* resource-info */>}}
 
 # 바이브 코딩 2026: 한국 개념을 모두에게 풀어 설명한다

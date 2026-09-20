@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/flowise-ai-workflow-builder-lowcode" />
-title: 'Flowise: The Low-Code AI Workflow Builder Deploying LangChain Agents Visually — 2026 Complete Guide'
+title: 'Flowise: The Low-Code AI Workflow Builder Deploying Lang...
 description: 'Complete 2026 guide to Flowise — the open-source low-code AI workflow builder with 100+ integrations. Visual LangChain agent creation, Docker deployment, API endpoints, and real-world benchmarks.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

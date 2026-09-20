@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/taste-skill" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/taste-skill" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/taste-skill" />
-title: "Kỹ Năng Taste: Ngăn AI Tạo Ra Nội Dung Đại Chúng — Khung Kỹ Năng Tác Nhân 2026"
+title: "Kỹ Năng Taste: Ngăn AI Tạo Ra Nội Dung Đại Chúng — Khung...
 description: "Taste Skill là một khung kỹ năng tác nhân di động, nâng cấp giao diện do AI xây dựng với bố cục mạnh mẽ hơn, kiểu chữ, chuyển động và khoảng cách. Hoạt động với Codex, Cursor, Claude Code và ChatGPT Images."
 date: 2026-06-15
 lastmod:  2026-06-15slug: taste-skill
@@ -25,6 +25,8 @@ images:
 lang: vi
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/taste-skill/ -->
 
 ## TL;DR
 

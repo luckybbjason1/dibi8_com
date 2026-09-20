@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/supabase-postgres-vector-ai-apps" />
-title: 'Supabase 2026: The Open-Source Firebase Alternative Powering 1M+ AI Apps with Postgres Vector Search — Setup Guide'
+title: 'Supabase 2026: The Open-Source Firebase Alternative Powe...
 description: 'Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI apps. Auth, storage, realtime, edge functions, RAG pipeline integration, self-hosted Docker deployment, and Row Level Security.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

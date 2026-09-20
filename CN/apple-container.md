@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/apple-container" />
 lang: en
-title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
+title: "Apple's Container: Docker-Like Experience on Mac with 37...
 date: 2026-06-15
 lastmod:  2026-06-15slug: apple-container-mac-vm-tool-2026
 description: "Apple released container, a Swift-based tool for running Linux containers on Mac using lightweight VMs. 37K stars, OCI-compatible, macOS 26 required."

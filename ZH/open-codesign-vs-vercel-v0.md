@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-codesign-vs-vercel-v0" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-codesign-vs-vercel-v0" />
 title: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI"
-description: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI"
+description: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -37,6 +37,8 @@ faqs:
   - q: '与 Vercel v0 相比，Open Codesign 支持哪些框架输出？'
     a: 'Open Codesign 支持输出 React、Vue、Svelte 以及原始 HTML 的自定义代码，而 Vercel v0 则高度偏向于 Next.js 和 Tailwind。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/open-codesign-vs-vercel-v0/ -->
 
 {</* resource-info */>}
 

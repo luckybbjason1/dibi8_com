@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
 title: Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc
-description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,
+description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,. Comprehensive guide covering features, pricing, and best practices for 2026.
   bottleneck detection, and database performance optimization.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'temp written xuất hiện trên node Sort hoặc Hash trong query plan có nghĩa là gì?'
     a: 'Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/reading-explain-analyze-postgres/ -->
 # Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc
 
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-skill-authoring-guide-2026" />
-title: 'Claude Code Skill Authoring: How to Package Procedures Claude Loads Only When Relevant (2026)'
+title: 'Claude Code Skill Authoring: How to Package Procedures C...
 description: 'A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00

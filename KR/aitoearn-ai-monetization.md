@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-ai-monetization" />
 title: "AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환"
-description: "AiToEarn은 AI 생성 콘텐츠를 수익성 있는 제품으로 전환하는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. 다중 플랫폼 배포, 구독 결제 및 광고 수익화를 지원합니다."
+description: "AiToEarn은 AI 생성 콘텐츠를 수익성 있는 제품으로 전환하는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. 다중 플랫폼 배포, 구독 결제 및 광고 수익화를 지원합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'AiToEarn은 셀프 호스팅이 가능한가요? 어떻게 설치하나요?'
     a: '네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소를 클론하고 npm install을 실행한 뒤, .env.example을 .env로 복사하고 API 키를 입력한 다음 npm run dev를 실행합니다. 그러면 앱이 http://localhost:3000에서 로컬로 실행됩니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/aitoearn-ai-monetization/ -->
 {</* resource-info */>}
 
 ![AiToEarn 모바일 — 12+ 소셜 플랫폼에 분배](/images/articles/aitoearn-ai-monetization/app.png)

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mastra" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mastra" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mastra" />
-title: 'Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Phí Token 4-10 Lần 2026'
+title: 'Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
 description: 'Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastra vs LangChain, huong dan cai dat, workflow, RAG, bo nho, observability, benchmark va hardening san xuat.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [mastra, typescript, 'ai-framework', agent, llm, 'mastra-huong-dan', 'mast
 aliases:
 - /vi/posts/mastra/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/mastra/ -->
 
 {{</* resource-info */>}}
 

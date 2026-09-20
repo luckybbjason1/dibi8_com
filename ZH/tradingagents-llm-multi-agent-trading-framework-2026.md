@@ -18,6 +18,8 @@ featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/ma
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/tradingagents-llm-multi-agent-trading-framework-2026/ -->
+
 # TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南
 
 ## 引言

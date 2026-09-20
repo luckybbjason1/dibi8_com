@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langchain" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langchain" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langchain" />
-title: 'LangChain: 3 Cach Trien Khai AI Agent San Sang Production voi 137K+ Stars — Huong Dan Deployment Day Du 2026'
+title: 'LangChain: 3 Cach Trien Khai AI Agent San Sang Productio...
 description: 'LangChain (LC) la framework Python/JS de xay dung ung dung LLM voi 700+ tich hop. Hoc cach cai dat LangChain, trien khai voi Docker, tich hop voi OpenAI, Anthropic, Ollama, va mo rong production voi LangSmith, LangGraph agents, va Kubernetes.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/langchain/
 - /vi/resources/llm-frameworks/langchain-complete-guide/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/langchain/ -->
 
 {{</* resource-info */>}}
 

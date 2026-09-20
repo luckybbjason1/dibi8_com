@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docmost-team-docs-collaboration" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docmost-team-docs-collaboration" />
 title: 'Docmost 2026：实时团队协作的开源 Notion 替代方案 —— 自托管指南'
-description: 'Docmost 完整自托管指南：支持实时协作编辑、类 Notion 块编辑器、嵌套页面和 PostgreSQL 后端的开源协作 Wiki。5 分钟内部署。'
+description: 'Docmost 完整自托管指南：支持实时协作编辑、类 Notion 块编辑器、嵌套页面和 PostgreSQL 后端的开源协作 Wiki。5 分钟内部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [docmost, 'notion 替代品', wiki, 实时协作, 自托管, 文档, postg
 aliases:
 - /zh/posts/docmost-team-docs-collaboration/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/docmost-team-docs-collaboration/ -->
 
 {{</* resource-info */>}}
 

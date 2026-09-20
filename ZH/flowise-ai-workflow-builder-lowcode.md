@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
 title: 'Flowise 2026 完整指南：低代码 AI 工作流构建器 — 可视化部署 LangChain Agent'
-description: 'Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。'
+description: 'Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [flowise, langchain, 低代码, ai工作流, docker, 自托管, agent构�
 aliases:
 - /zh/posts/flowise-ai-workflow-builder-lowcode/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/flowise-ai-workflow-builder-lowcode/ -->
 
 {{</* resource-info */>}}
 

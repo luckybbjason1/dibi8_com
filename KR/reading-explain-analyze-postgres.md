@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/reading-explain-analyze-postgres" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/reading-explain-analyze-postgres" />
 title: PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게
-description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,
+description: PostgreSQL EXPLAIN ANALYZE tutorial. Learn query plan interpretation,. Comprehensive guide covering features, pricing, and best practices for 2026.
   bottleneck detection, and database performance optimization.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -39,6 +39,8 @@ faqs:
   - q: '쿼리 플랜의 Sort 또는 Hash 노드에 temp written이 나타나면 무슨 뜻인가요?'
     a: '정렬 또는 해시 작업이 work_mem에 맞지 않아 디스크로 스필된 것을 의미하며, 이로 인해 해당 노드의 시간이 쉽게 10배까지 늘어날 수 있습니다. 해결 방법은 해당 세션의 work_mem을 늘리고 EXPLAIN을 다시 실행하는 것입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/reading-explain-analyze-postgres/ -->
 # PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게
 
 

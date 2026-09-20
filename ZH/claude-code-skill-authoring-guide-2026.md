@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
 title: 'Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）'
-description: '一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。'
+description: '一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -41,6 +41,8 @@ faq:
   - q: "我什么时候该写子代理而不是 skill？"
     a: "当你需要教会一个在当前对话中运行的流程时，写 skill。当工作需要自己独立的上下文窗口时——大量探索、并行研究、或会拖垮父代理的独立审查——写子代理。两者可以组合：一个子代理可以在隔离运行时加载某个 skill 来遵循你的方法论。扩展决策框架里的经验法则是——skill 改变行为，子代理保护上下文，MCP server 增加能力。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-skill-authoring-guide-2026/ -->
 # Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）
 
 

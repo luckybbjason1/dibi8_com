@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-ai-monetization" />
 title: "AiToEarn: 开源 AI 内容变现工具 — 把你的 GPT 对话变成被动收入"
-description: "AiToEarn 是一款开源 AI 内容变现平台，帮助创作者将 AI 生成的内容转化为可盈利的产品。支持多平台分发、订阅付费和广告变现。"
+description: "AiToEarn 是一款开源 AI 内容变现平台，帮助创作者将 AI 生成的内容转化为可盈利的产品。支持多平台分发、订阅付费和广告变现。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -39,6 +39,8 @@ faqs:
   - q: 'AiToEarn 可以自托管吗？要怎么安装？'
     a: '可以，AiToEarn 支持自托管。你先克隆 GitHub 仓库，运行 npm install，把 .env.example 复制为 .env 并填入你的 API key，然后运行 npm run dev。之后应用就会在 http://localhost:3000 本地运行。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/aitoearn-ai-monetization/ -->
 {</* resource-info */>}
 
 ![AiToEarn 移动端 — 一键分发 12+ 社媒平台](/images/articles/aitoearn-ai-monetization/app.png)

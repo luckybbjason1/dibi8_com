@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ds4-deepseek-flash-local-inference" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ds4-deepseek-flash-local-inference" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ds4-deepseek-flash-local-inference" />
-title: "DS4 vs Ollama vs llama.cpp: Benchmark Chạy DeepSeek V4 Flash Local Trên Mac 128GB"
+title: "DS4 vs Ollama vs llama.cpp: Benchmark Chạy DeepSeek V4 F...
 description: "Khám phá DS4 của antirez (người tạo Redis) — một engine suy luận bản địa cho DeepSeek V4 Flash. Tìm hiểu cách cài đặt, so sánh benchmark với Ollama/llama.cpp, ví dụ mã và cách chạy LLM 1M context local trên macOS và Linux."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'DS4 có cung cấp máy chủ API tương thích OpenAI không?'
     a: 'Có. Sau khi build DS4, bạn sẽ có file nhị phân ds4-server, cung cấp HTTP API tương thích OpenAI và Anthropic tại http://127.0.0.1:8000, bao gồm các endpoint /v1/chat/completions, /v1/completions và /v1/messages. Nó hỗ trợ function calling theo chuẩn OpenAI và hoạt động được với các framework agent như OpenCode, Pi và Claude Code.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ds4-deepseek-flash-local-inference/ -->
 
 {</* resource-info */>}
 

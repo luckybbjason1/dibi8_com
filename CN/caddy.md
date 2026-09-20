@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/caddy" />
-title: 'Caddy: Production Web Server with 72K+ Stars — Auto HTTPS Deployment Guide for 2026'
+title: 'Caddy: Production Web Server with 72K+ Stars — Auto HTTP...
 description: 'Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS. Compatible with Docker, Let''''s Encrypt, Prometheus, and Grafana. Covers Caddyfile tutorial, Docker setup, production hardening, and monitoring.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

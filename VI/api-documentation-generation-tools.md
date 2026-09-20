@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/api-documentation-generation-tools" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/api-documentation-generation-tools" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/api-documentation-generation-tools" />
-title: 'Các Công Cụ Tạo Tài Liệu API Tốt Nhất 2025: So Sánh Swagger, Postman Docs, ReadMe, Mintlify'
+title: 'Các Công Cụ Tạo Tài Liệu API Tốt Nhất 2025: So Sánh Swag...
 description: 'Khám phá các công cụ tạo tài liệu API hàng đầu năm 2025. So sánh chi tiết Swagger, Postman Docs, ReadMe, Mintlify, Stoplight và Redocly về tính năng, giá cả và trải nghiệm lập trình viên.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [api, documentation, swagger, postman, readme, mintlify, 'developer-tools'
 aliases:
 - /vi/posts/api-documentation-generation-tools/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/api-documentation-generation-tools/ -->
 # Các Công Cụ Tạo Tài Liệu API Tốt Nhất 2025: So Sánh Swagger, Postman Docs, ReadMe, Mintlify
 
 

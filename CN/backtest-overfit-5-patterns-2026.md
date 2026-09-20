@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/backtest-overfit-5-patterns-2026" />
-title: 'Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe Numbers (2026)'
+title: 'Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe...
 description: 'After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward divergence, regime-flip, parameter-cliff, indicator-stacking, and survivorship. Each with reproducible synthetic example + the detection signal.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

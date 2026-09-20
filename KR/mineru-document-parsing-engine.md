@@ -19,6 +19,8 @@ featureImage: /images/articles/mineru-docs.png
 
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/mineru-document-parsing-engine/ -->
+
 
 ![MinerU logo](https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png)
 

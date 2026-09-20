@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vectara-rag-as-service-platform" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vectara-rag-as-service-platform" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vectara-rag-as-service-platform" />
-title: 'Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác Trả Lờ 90%+ — Tích Hợp API & Benchmark'
+title: 'Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
 description: 'Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang retrieval, tích hợp API, hỗ trợ đa ngôn ngữ, tìm kiếm hybrid và benchmark production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [vectara, rag, 'tìm kiếm vector', llm, embedding, boomerang, hhem, 'ph�
 aliases:
 - /vi/posts/vectara-rag-as-service-platform/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/vectara-rag-as-service-platform/ -->
 
 {{</* resource-info */>}}
 

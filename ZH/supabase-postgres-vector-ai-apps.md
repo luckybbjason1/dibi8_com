@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/supabase-postgres-vector-ai-apps" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/supabase-postgres-vector-ai-apps" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/supabase-postgres-vector-ai-apps" />
-title: 'Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI 应用 — 完整部署指南'
-description: 'Supabase 完整指南：带有 Postgres + pgvector 的开源 Firebase 替代方案。认证、存储、实时、Edge 函数、RAG 流水线集成、自托管 Docker 部署、行级安全。'
+title: 'Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI...
+description: 'Supabase 完整指南：带有 Postgres + pgvector 的开源 Firebase 替代方案。认证、存储、实时、Edge 函数、RAG 流水线集成、自托管 Docker 部署、行级安全。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [supabase, postgres, 向量搜索, 'firebase 替代品', pgvector, 'ai 应
 aliases:
 - /zh/posts/supabase-postgres-vector-ai-apps/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/supabase-postgres-vector-ai-apps/ -->
 
 {{</* resource-info */>}}
 

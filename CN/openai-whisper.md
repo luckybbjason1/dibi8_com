@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/openai-whisper" />
-title: 'OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutorial vs WhisperX, faster-whisper in 2026'
+title: 'OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutori...
 description: 'OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with WhisperX, faster-whisper, LibreTranslate. Covers whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/claude-code/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/claude-code/ -->
+
 {{</* resource-info */>}}
 
 ## 소개

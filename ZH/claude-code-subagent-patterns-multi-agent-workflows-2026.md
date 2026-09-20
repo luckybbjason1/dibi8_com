@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-subagent-patterns-multi-agent-workflows-2026" />
 title: 'Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）'
-description: '5 个生产环境实测过的 Claude Code subagent 模式 —— 并行调研、worktree 隔离、专家委派、上下文保护、流水线编排，含真实 prompt 和取舍说明。'
+description: '5 个生产环境实测过的 Claude Code subagent 模式 —— 并行调研、worktree 隔离、专家委派、上下文保护、流水线编排，含真实 prompt 和取舍说明。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -41,6 +41,8 @@ faq:
   - q: "Claude Code subagent 怎么计费 —— 每个都单独收费吗？"
     a: "每次 subagent 调用都和其他 Claude 对话一样消耗 token。成本约等于 subagent 的完整上下文（系统 prompt + 工具 schema + 任务 prompt + 思考 + 最终报告）。Pro 和 Max 套餐里，subagent 使用计入父会话同一个用量额度。API 用户就是按 token 直接计费。省钱点在于把会膨胀父上下文的探索工作卸载出去 —— 你付 subagent 的钱，换主会话保持轻快聚焦。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/claude-code-subagent-patterns-multi-agent-workflows-2026/ -->
 # Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）
 
 

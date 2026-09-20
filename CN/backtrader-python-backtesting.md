@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/backtrader-python-backtesting" />
-title: 'Backtrader 2026: The Python Backtesting Engine Validating Trading Strategies 100x Faster — Complete Guide'
+title: 'Backtrader 2026: The Python Backtesting Engine Validatin...
 description: 'Full guide to Backtrader event-driven backtesting engine. Build, test, and optimize trading strategies in Python. Integrations, benchmarks, and live trading deployment 2026.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

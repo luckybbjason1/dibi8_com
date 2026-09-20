@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-coding-ethics-corporate-policy-guide-2026" />
-title: 'AI Coding Ethics 2026: Corporate Policy Guide for Allow vs Restrict'
+title: 'AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
 description: 'Companies in 2026 split into AI-allow / AI-restrict / AI-forbid camps. Practical guide for what each policy looks like, how to choose, and the legal/IP/compliance gotchas — based on real corporate adoption patterns we tracked.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

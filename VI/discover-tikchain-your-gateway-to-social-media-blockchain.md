@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/discover-tikchain-your-gateway-to-social-media-blockchain" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/discover-tikchain-your-gateway-to-social-media-blockchain" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/discover-tikchain-your-gateway-to-social-media-blockchain" />
-title: "Khám phá TikChain - Cổng thông tin blockchain mạng xã hội của bạn"
+title: "Khám phá TikChain - Cổng thông tin blockchain mạng xã hộ...
 description: "Khám phá TikChain: cổng vào blockchain mạng xã hội. Kiếm phần thưởng bằng cách tạo nội dung và tương tác với mạng xã hội phi tập trung."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -38,6 +38,8 @@ faqs:
   - q: 'Làm thế nào để bắt đầu trên TikChain?'
     a: 'Đăng ký và tạo tài khoản, kết nối và liên kết các hồ sơ mạng xã hội của bạn, sau đó bắt đầu kiếm token thông qua tương tác, tham gia các sự kiện cộng đồng và quản trị, rồi rút phần thưởng về ví của bạn.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/discover-tikchain-your-gateway-to-social-media-blockchain/ -->
 # Khám phá TikChain - Cổng thông tin blockchain mạng xã hội của bạn
 
 

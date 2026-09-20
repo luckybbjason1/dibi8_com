@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-ai-automation-complete-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-ai-automation-complete-guide" />
 title: n8n AI 自动化 — 无需代码构建智能工作流
-description: n8n AI 驱动的工作流自动化完全指南。通过 AI 节点连接 400+ 应用、构建自主代理并自动化复杂业务流程。定价、模板和实际示例。
+description: n8n AI 驱动的工作流自动化完全指南。通过 AI 节点连接 400+ 应用、构建自主代理并自动化复杂业务流程。定价、模板和实际示例。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ['n8n', 'workflow-automation', 'ai-automation', 'no-code', 'agent-automation', 'business-process']
 category: dev-utils
 featureImage: /images/articles/n8n-ai-automation.jpg
@@ -14,6 +14,8 @@ lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: n8n-ai-automation-complete-guide
 lang: zh-CN
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/n8n-ai-automation-complete-guide/ -->
 
 ## TL;DR
 

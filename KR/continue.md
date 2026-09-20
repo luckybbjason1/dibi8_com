@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/continue" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/continue" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/continue" />
-title: 'Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cursor 비교 2026'
+title: 'Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cur...
 description: 'Continue.dev(오픈소스 AI 코딩 어시스턴트) VS Code/JetBrains 플러그인. Ollama, OpenAI, Anthropic, Gemini 등 모든 LLM 지원. GitHub Copilot, Cursor, Tabby와 비교. 설치 튜토리얼, 설정 예제, 벤치마크.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['continue.dev', 'ai-coding-assistant', 'vs-code', jetbrains, 'open-source
 aliases:
 - /kr/posts/continue/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/continue/ -->
 
 {{</* resource-info */>}}
 

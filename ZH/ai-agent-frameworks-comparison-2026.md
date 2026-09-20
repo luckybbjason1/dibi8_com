@@ -1,10 +1,10 @@
-title: 'LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph —— AI 代理框架对比（2026）'
+title: 'LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
 <!-- Hreflang Alternate URLs -->
 <link rel="alternate" hreflang="en" href="https://dibi8.com/en/ai-agent-frameworks-comparison-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-agent-frameworks-comparison-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-agent-frameworks-comparison-2026" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-agent-frameworks-comparison-2026" />
-description: '2026 年前五大开源 AI 代理框架的并排比较。真实的收藏量、代码示例、性能基准，以及为您的项目选择合适框架的实用指南。'
+description: '2026 年前五大开源 AI 代理框架的并排比较。真实的收藏量、代码示例、性能基准，以及为您的项目选择合适框架的实用指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-30T00:00:00+09:00
 lastmod:  2026-06-30T00:00:00+09:00lang: zh-cn
 draft: false
@@ -47,6 +47,8 @@ sources:
 > **编辑披露**：此比较使用截至 2026 年 6 月 30 日的 GitHub 实时数据（星标数量、提交频率、Fork 数量）。所有代码示例均经过测试和验证。我们不接受任何框架供应商的付款用于包含或排名。
 
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-agent-frameworks-comparison-2026/ -->
 
 ## TL;DR
 

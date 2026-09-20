@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/gpt-sovits/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/gpt-sovits/ -->
+
 {{</* resource-info */>}}
 
 > 5초 오디오로 모든 목소리를 복제합니다. 1분 데이터로 미세 조정. 20분 안에 프로덕션 배포. 이 가이드가 전체 프로세스를 안내합니다.

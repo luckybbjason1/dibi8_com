@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-subagent-vs-mcp-server-skill-agent-2026" />
-title: 'Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)'
+title: 'Subagent vs MCP Server vs Skill: When to Build Each Clau...
 description: 'Claude Code has three extension points — skills, subagents, and MCP servers — and they solve different problems. A decision framework for choosing the right one, with worked scenarios and the anti-patterns that waste your time.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00

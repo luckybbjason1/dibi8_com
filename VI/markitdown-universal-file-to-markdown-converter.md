@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/markitdown-universal-file-to-markdown-converter" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/markitdown-universal-file-to-markdown-converter" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/markitdown-universal-file-to-markdown-converter" />
-title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — Công Cụ Mã Nguồn Mở của Microsoft cho Các Quy Trình LLM 2026"
+title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — ...
 description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip install markitdown[all], API Python, tích hợp LangChain, các pipeline RAG và xử lý theo lô."
 date: 2026-06-17
 lastmod:  2026-06-17slug: markitdown-universal-file-to-markdown-converter
@@ -15,6 +15,8 @@ license: MIT
 lang: vi
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/markitdown-universal-file-to-markdown-converter/ -->
 
 ## Giới thiệu
 

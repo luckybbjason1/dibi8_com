@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/autogen-multi-agent-framework" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/autogen-multi-agent-framework" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/autogen-multi-agent-framework" />
-title: 'Hướng Dẫn AutoGen 2025: Xây Dựng Hệ Thống AI Đa Agent Dễ Dàng'
+title: 'Hướng Dẫn AutoGen 2025: Xây Dựng Hệ Thống AI Đa Agent Dễ...
 description: 'Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code execution và triển khai production systems.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/autogen-multi-agent-framework/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/autogen-multi-agent-framework/ -->
 
 {</* resource-info */>}
 

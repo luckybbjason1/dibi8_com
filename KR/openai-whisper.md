@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/openai-whisper" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/openai-whisper" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/openai-whisper" />
-title: 'OpenAI Whisper: 99.8K+ Stars — 완전한 ASR 설정 튜토리얼 vs WhisperX, faster-whisper 2026'
+title: 'OpenAI Whisper: 99.8K+ Stars — 완전한 ASR 설정 튜토리얼 vs Whispe...
 description: 'OpenAI Whisper (ASR) 대규모 약한 감독 기반의 강건한 음성 인식. WhisperX, faster-whisper, LibreTranslate와 호환. whisper 튜토리얼, whisper vs whisperx, 음성 인식 설정, whisper python, whisper docker 다룸.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [whisper, '음성-인식', asr, openai, 'faster-whisper', whisperx, python
 aliases:
 - /kr/posts/openai-whisper/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/openai-whisper/ -->
 
 {{</* resource-info */>}}
 

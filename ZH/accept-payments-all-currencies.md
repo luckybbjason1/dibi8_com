@@ -36,6 +36,8 @@ faqs:
   - q: '哪些类型的企业在使用 NowPayments？'
     a: 'NowPayments 的用户涵盖电商店铺、接收国际汇款的自由职业者、处理游戏内购和订阅业务的游戏公司、面向全球募集捐款的非营利组织，以及收取 SaaS 订阅费和授权费的软件公司。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/accept-payments-all-currencies/ -->
 # 所有货币可以支付 - NowPayments
 
 

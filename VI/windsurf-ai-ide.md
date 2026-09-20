@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/windsurf-ai-ide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/windsurf-ai-ide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/windsurf-ai-ide" />
-title: Windsurf AI IDE — Trình soạn code thông minh suy nghĩ cùng bạn
+title: Windsurf AI IDE — Trình soạn code thông minh suy nghĩ cùn...
 description: Hướng dẫn toàn diện về Windsurf, AI IDE dạng agent từ Codeium — tự động viết code, debug và triển khai tính năng. Giá cả, benchmark và quy trình thực tế.
 tags: ['ai-ide', 'coding-agent', 'windsurf', 'codeium', 'cursor-alternative', 'agentic-ai']
 category: dev-utils
@@ -14,6 +14,8 @@ lastmod:  2026-07-16T00:00:00+00:00draft: false
 slug: windsurf-ai-ide
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/windsurf-ai-ide/ -->
 
 ## TL;DR
 

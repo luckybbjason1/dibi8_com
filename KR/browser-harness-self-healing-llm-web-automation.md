@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/browser-harness-self-healing-llm-web-automation" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/browser-harness-self-healing-llm-web-automation" />
 title: "Browser Harness：让 LLM 自主操控浏览器的自愈型神器"
-description: "Browser Harness는 LLM이 인간처럼 웹을 탐색하고 양식을 작성하고 버튼을 클릭하며 실패한 작업을 자동으로 복구하여 복잡한 작업을 완료할 수 있는 자가 치유형 브라우저 제어 프레임워크입니다."
+description: "Browser Harness는 LLM이 인간처럼 웹을 탐색하고 양식을 작성하고 버튼을 클릭하며 실패한 작업을 자동으로 복구하여 복잡한 작업을 완료할 수 있는 자가 치유형 브라우저 제어 프레임워크입니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -37,6 +37,8 @@ faqs:
   - q: 'Browser Harness의 주요 한계는 무엇인가요?'
     a: '주요 한계는 비용(LLM API 호출에는 요금이 발생하지만 로컬 모델을 사용할 수 있음), 속도(모델이 추론하는 데 시간이 필요하기 때문에 기존 자동화보다 느림), 안전성(오작동을 방지하기 위해 엄격한 가드레일이 필요함), 그리고 여전히 사람이 필요할 수 있는 복잡한 CAPTCHA입니다.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/browser-harness-self-healing-llm-web-automation/ -->
 {</* resource-info */>}
 
 ## 문제: 전통적인 크롤러는 죽었고, AI 시대에는 새로운 패러다임이 필요하다

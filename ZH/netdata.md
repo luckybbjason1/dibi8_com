@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/netdata/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/netdata/ -->
+
 {{</* resource-info */>}}
 
 ## 简介

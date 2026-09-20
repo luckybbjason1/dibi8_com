@@ -34,6 +34,8 @@ faq:
     a: "可以但很痛。每个框架都有自己的工具调用 API、状态模型和可观测性钩子。一旦选定就要做好 6 个月以上的承诺。切换成本大致等于新建 1-2 个智能体工作流的成本。"
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/open-source-ai-agent-framework-top-10-2026/ -->
+
 {{</* resource-info */>}}
 
 # 开源 AI 智能体框架 Top 10（2026）

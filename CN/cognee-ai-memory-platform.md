@@ -2,7 +2,7 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/cognee-ai-memory-platform" />
 lang: en
-title: 'Cognee: 26K+ Star Open-Source AI Memory Platform for Agents'
+title: 'Cognee: 26K+ Star Open-Source AI Memory Platform for Age...
 description: 'Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time.'
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00

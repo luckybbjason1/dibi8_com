@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unsloth-fast-llm-fine-tuning-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unsloth-fast-llm-fine-tuning-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unsloth-fast-llm-fine-tuning-2026" />
-title: 'Unsloth 2026: 64.9k 별 빠른 LLM 파인튜닝 — 2× 속도, 70% 적은 VRAM, 단일 GPU 친화'
+title: 'Unsloth 2026: 64.9k 별 빠른 LLM 파인튜닝 — 2× 속도, 70% 적은 VRAM, ...
 description: 'Unsloth는 HuggingFace TRL 베이스라인보다 2× 빠르고 70% 적은 VRAM으로 LLM 파인튜닝. 64.9k GitHub 별, 듀얼 Apache 2.0 + AGPL-3.0 라이선스. Llama 3, Mistral, Qwen 3, Gemma, DeepSeek 지원 LoRA / QLoRA / DPO / GRPO. 2026 완전 단일 GPU 파인튜닝 가이드.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [unsloth, 파인튜닝, lora, qlora, grpo, '빠른 훈련']
 aliases:
   - /posts/unsloth-fast-llm-fine-tuning-2026/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/unsloth-fast-llm-fine-tuning-2026/ -->
 
 [Axolotl](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/)이 프로덕션 멀티 GPU 파인튜닝 프레임워크라면, **Unsloth**는 단일 GPU 속도 왕. PyTorch의 일반 autograd 대신 커스텀 Triton + Python으로 LLM 훈련 커널 재작성으로, Unsloth는 HuggingFace TRL 베이스라인보다 모델 **2× 빠르게** 파인튜닝 **70% 적은 VRAM**으로.
 

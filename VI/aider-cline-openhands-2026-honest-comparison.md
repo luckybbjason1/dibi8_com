@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aider-cline-openhands-2026-honest-comparison" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aider-cline-openhands-2026-honest-comparison" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aider-cline-openhands-2026-honest-comparison" />
-title: 'Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 Coding Agent mã nguồn mở'
+title: 'Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
 description: 'Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu benchmark cụ thể, nơi mỗi cái thắng, nơi mỗi cái thua, và thực tế chi phí BYO API key so với các phương án thương mại.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "Đường cong học tập cho mỗi cái như thế nào?"
     a: "Aider: 15 phút để bắt đầu hiệu quả (là một CLI theo các pattern hiển nhiên). Cline: 30 phút (cài đặt VS Code extension + thiết lập model). OpenHands: 2-3 giờ (cài đặt Docker, cấu hình công cụ browser, điều chỉnh vòng lặp agent). Aider có rào cản thấp nhất, OpenHands có trần cao nhất."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/aider-cline-openhands-2026-honest-comparison/ -->
 
 {{</* resource-info */>}}
 

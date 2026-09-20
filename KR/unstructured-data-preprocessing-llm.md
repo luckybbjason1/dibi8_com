@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/unstructured-data-preprocessing-llm" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/unstructured-data-preprocessing-llm" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/unstructured-data-preprocessing-llm" />
-title: 'Unstructured.io: 어떤 문서든 LLM 준비 데이터 청크로 변환하는 데이터 전처리 파이프라인 — 2026 가이드'
+title: 'Unstructured.io: 어떤 문서든 LLM 준비 데이터 청크로 변환하는 데이터 전처리 파이프라...
 description: 'Unstructured.io 실용 2026 가이드 — 이 오픈소스 문서 전처리 라이브러리가 PDF, DOCX, PPTX, 이미지를 깨끗하고 구조화된 텍스트 청크로 변환하여 LLM 및 RAG 파이프라인을 위해 준비합니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [unstructured, 문서파싱, llm, rag, 데이터전처리, pdf, 청킹, �
 aliases:
 - /kr/posts/unstructured-data-preprocessing-llm/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/unstructured-data-preprocessing-llm/ -->
 
 {{</* resource-info */>}}
 

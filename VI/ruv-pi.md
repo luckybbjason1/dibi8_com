@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ruv-pi" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ruv-pi" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ruv-pi" />
-title: "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cung cấp"
+title: "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cu...
 description: "Ruv Pi là CLI đại diện mã tự mở rộng từ Earendil Works, cung cấp API LLM đa nhà cung cấp thống nhất, cho phép nhà phát triển xây dựng, chạy và mở rộng đại diện mã hóa AI với hỗ trợ cho Claude, OpenAI, Gemini và nhiều hơn nữa."
 date: 2026-06-10
 lastmod:  2026-06-10slug: ruv-pi
@@ -17,6 +17,8 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ruv-pi/ -->
 
 ## Giới thiệu
 

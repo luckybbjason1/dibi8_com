@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agent-monthly-bill-2026-real-receipts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agent-monthly-bill-2026-real-receipts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/ai-coding-agent-monthly-bill-2026-real-receipts" />
-title: 'AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor Pro 실측 30일 영수증'
+title: 'AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor ...
 description: 'Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추적했습니다. 작업별 비용 분해, 각 도구의 손익분기점, 전환이 의미 있는 임계치까지.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -37,6 +37,8 @@ faq:
   - q: "2026년 5월 가격 정책에서 이전 리뷰에 없던 변화는?"
     a: "Anthropic은 4월 말 Max 플랜 속도 제한을 조정했습니다(더 느슨하고 여유가 큼). OpenAI의 Codex CLI는 완전 종량제로 이동(Pro 티어 폐지). Cursor는 API 크레딧이 포함된 $50 Business 티어를 추가했습니다. 세 가지 변화 모두 Q1 리뷰 대비 임계치 계산을 바꿔놓습니다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/ai-coding-agent-monthly-bill-2026-real-receipts/ -->
 
 {{</* resource-info */>}}
 

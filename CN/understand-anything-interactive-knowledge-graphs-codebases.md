@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/understand-anything-interactive-knowledge-graphs-codebases" />
-title: "Understand-Anything: Interactive Knowledge Graphs for Codebases — 60K+ Stars 2026"
+title: "Understand-Anything: Interactive Knowledge Graphs for Co...
 description: "Understand-Anything turns any codebase into an interactive knowledge graph you can explore, search, and query. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI. 60,339 GitHub stars."
 tags: ["open-source"]
 date: 2026-06-15

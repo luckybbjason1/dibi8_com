@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/baetyl-edge-ai-computing-platform" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/baetyl-edge-ai-computing-platform" />
 title: 'Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南'
-description: '部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。'
+description: '部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [baetyl, 边缘计算, iot, kubernetes, k3s, ai推理, mqtt, 边缘ai, ota
 aliases:
 - /zh/posts/baetyl-edge-ai-computing-platform/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/baetyl-edge-ai-computing-platform/ -->
 
 {{</* resource-info */>}}
 

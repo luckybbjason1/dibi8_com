@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/last30days-skill-ai-agent-research-engine-social-media" />
-title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
+title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc...
 description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts.'
 tags: ["ai-agent", "automation", "dev-tools", "engine", "open-source", "search"]
 date: 2026-06-22
@@ -19,7 +19,7 @@ sources:
 lang: en
 ---
 ---
-title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
+title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc...
 description: 'Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts.'
 date: 2026-06-22
 lastmod: 2026-06-22

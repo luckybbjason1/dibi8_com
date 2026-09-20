@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg'
 lang: zh
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/ -->
 # Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026
 
 ```

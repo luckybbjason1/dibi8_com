@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/langflow-visual-llm-workflow-builder-2026" />
-title: 'Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026'
+title: 'Langflow: 148k Stars for Visual LLM Workflows -- Technic...
 description: 'Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging Face, Anthropic. Covers setup, integrations, benchmarks, and production hardening.'
 date: 2026-05-23
 lastmod:  2026-05-23slug: 'langflow'

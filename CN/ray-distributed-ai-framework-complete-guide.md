@@ -1,5 +1,5 @@
 ---
-title: Ray — The Unified Framework for Scaling AI and Python Applications
+title: Ray — The Unified Framework for Scaling AI and Python App...
 description: Complete guide to Ray, the open-source framework for scaling Python and AI workloads. Build distributed ML training, large-scale inference, and parallel computing pipelines.
 category: llm-frameworks
 tags: ['ray', 'distributed-computing', 'ai-scaling', 'machine-learning', 'python', 'parallel-processing']
@@ -7,6 +7,8 @@ slug: ray-distributed-ai-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod:  2026-07-17 00:00:00+00:00featureImage: /images/articles/ray-distributed-computing-ai.jpg
 ---
+
+<!-- canonical: https://dibi8.com/cn/tools/ray-distributed-ai-framework-complete-guide/ -->
 
 ## TL;DR
 

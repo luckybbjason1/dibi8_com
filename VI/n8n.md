@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/n8n" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n" />
-title: 'n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — Tiết kiệm 70% so với Zapier'
+title: 'n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — T...
 description: 'n8n (fair-code) là nền tảng tự động hóa quy trình với khả năng AI tích hợp và 400+ tích hợp. Tương thích Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Bao gồm cài đặt Docker, cấu hình AI node, triển khai Webhook và bảo mật production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/n8n/
 - /vi/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/n8n/ -->
 
 {{</* resource-info */>}}
 

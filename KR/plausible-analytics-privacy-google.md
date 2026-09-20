@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/plausible-analytics-privacy-google" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/plausible-analytics-privacy-google" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/plausible-analytics-privacy-google" />
-title: 'Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 대안 — 2026년 셀프 호스팅 설정'
+title: 'Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
 description: 'Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. 실제 벤치마크와 Docker 배포.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [plausible, analytics, 프라이버시, gdpr, 'google-analytics-대안', �
 aliases:
 - /kr/posts/plausible-analytics-privacy-google/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/plausible-analytics-privacy-google/ -->
 
 {{</* resource-info */>}}
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/directus-headless-cms-ai-content" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/directus-headless-cms-ai-content" />
 title: 'Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南'
-description: 'Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准测试。'
+description: 'Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [directus, 'headless cms', 内容管理, api, docker, 开源, ai, graphql,
 aliases:
 - /zh/posts/directus-headless-cms-ai-content/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/directus-headless-cms-ai-content/ -->
 
 {{</* resource-info */>}}
 

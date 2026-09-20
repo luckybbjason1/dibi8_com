@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/flowise-ai-workflow-builder-lowcode" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/flowise-ai-workflow-builder-lowcode" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/flowise-ai-workflow-builder-lowcode" />
-title: 'Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI 워크플로우 빌더'
-description: 'Flowise 2026 완벽 가이드 — 100개 이상의 통합을 갖춘 오픈소스 로우코드 AI 워크플로우 빌더. 시각적 LangChain 에이전트 생성, Docker 배포, API 엔드포인트 및 실제 벤치마크.'
+title: 'Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI...
+description: 'Flowise 2026 완벽 가이드 — 100개 이상의 통합을 갖춘 오픈소스 로우코드 AI 워크플로우 빌더. 시각적 LangChain 에이전트 생성, Docker 배포, API 엔드포인트 및 실제 벤치마크.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [flowise, langchain, 로우코드, ai워크플로우, docker, 셀프호스
 aliases:
 - /kr/posts/flowise-ai-workflow-builder-lowcode/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/flowise-ai-workflow-builder-lowcode/ -->
 
 {{</* resource-info */>}}
 

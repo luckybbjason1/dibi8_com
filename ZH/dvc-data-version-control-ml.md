@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/dvc-data-version-control-ml" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/dvc-data-version-control-ml" />
 title: 'DVC: 面向数据的 Git — ML 流水线数据版本控制与可复现实验 2026 完整指南'
-description: 'DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测试和生产加固。'
+description: 'DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测试和生产加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [dvc, 'data version control', mlops, git, 机器学习, 可复现性, s3, 
 aliases:
 - /zh/posts/dvc-data-version-control-ml/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/dvc-data-version-control-ml/ -->
 
 {{</* resource-info */>}}
 

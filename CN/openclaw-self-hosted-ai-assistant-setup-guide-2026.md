@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/openclaw-self-hosted-ai-assistant-setup-guide-2026" />
-title: 'OpenClaw Self-Hosted AI Assistant: The Complete 2026 Setup Guide | Zero-Cost Private Agent Deployment'
+title: 'OpenClaw Self-Hosted AI Assistant: The Complete 2026 Set...
 description: 'With 362K+ GitHub stars, OpenClaw is the fastest-growing open-source AI assistant ever built. Learn the architecture, self-hosting deployment, multi-platform integration, and how to build a zero-subscription private AI agent in 2026.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

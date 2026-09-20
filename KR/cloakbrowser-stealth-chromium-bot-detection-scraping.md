@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cloakbrowser-stealth-chromium-bot-detection-scraping" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cloakbrowser-stealth-chromium-bot-detection-scraping" />
-title: 'CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크래핑 도구 — 2026 실전 가이드'
+title: 'CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크...
 description: 'CloakBrowser (25,077 GitHub stars)는 모든 봇 검사를 통과하는 스텔스 Chromium입니다. 소스 레벨 지문 패치가 있는 드롭인 Playwright 교체품. 30/30 테스트 통과. 설정 튜토리얼, 안티-디텍션 분석, 벤치마크 포함.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/cloakbrowser-stealth-chromium-bot-detection-scraping/ -->
 
 # CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크래핑 도구 — 2026 실전 가이드
 

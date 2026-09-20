@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/ai-voice-tools-text-to-speech-transcription/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/ai-voice-tools-text-to-speech-transcription/ -->
 # Các Công Cụ Giọng Nói AI Tốt Nhất 2025: So Sánh TTS Và STT
 
 

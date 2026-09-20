@@ -1,9 +1,9 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/anthropic-financial-services-ai-finance-automation" />
-title: 'Anthropic Financial Services: How Financial Teams Can Automate Analysis &
+title: 'Anthropic Financial Services: How Financial Teams Can Au...
   Boost ROI by 300%'
-description: Discover how Anthropic Financial Services helps investment banks, equity
+description: Discover how Anthropic Financial Services helps investment banks, equity. Comprehensive guide covering features, pricing, and best practices for 2026.
   research, and wealth management teams automate pitch decks, DCF models, and KYC
   screening with Claude AI agents.
 date: 2026-05-15 04:20:25+09:00

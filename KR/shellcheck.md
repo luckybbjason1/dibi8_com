@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/shellcheck" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/shellcheck" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/shellcheck" />
-title: 'ShellCheck: 39,456 GitHub Stars — 셸 스크립트 분석을 위한 완전 설치 및 설정 가이드 2026'
+title: 'ShellCheck: 39,456 GitHub Stars — 셸 스크립트 분석을 위한 완전 설치 및 ...
 description: 'ShellCheck (SC)는 bash/sh 셸 스크립트용 정적 분석 도구입니다. Docker, GitHub Actions, VS Code 통합을 지원하며 설치 구성, CI/CD 파이프라인 통합, 프로덕션 강화를 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [shellcheck, bash, 정적분석, 린트, 셸스크립트, devops, 'ci-cd',
 aliases:
 - /kr/posts/shellcheck/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/shellcheck/ -->
 
 {{</* resource-info */>}}
 

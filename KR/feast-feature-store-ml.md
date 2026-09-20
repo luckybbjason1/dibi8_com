@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/feast-feature-store-ml/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/feast-feature-store-ml/ -->
+
 {{</* resource-info */>}}
 
 ## 소개: 200ms 피처 엔지니어링 위기

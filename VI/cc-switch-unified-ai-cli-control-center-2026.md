@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cc-switch-unified-ai-cli-control-center-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/cc-switch-unified-ai-cli-control-center-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cc-switch-unified-ai-cli-control-center-2026" />
-title: 'CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu | Công Cụ Open Source 2026'
+title: 'CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu |...
 description: 'CC Switch là ứng dụng desktop open source miễn phí giúp quản lý Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode trong một giao diện duy nhất. 74K+ stars GitHub, Rust+Tauri, 50+ nhà cung cấp tích hợp, đồng bộ MCP server. Hướng dẫn cài đặt và đánh giá chi tiết.'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['cc-switch', 'ai-cli', 'meta-tool', 'claude-code', 'developer-productivit
 aliases:
 - /vi/posts/cc-switch-unified-ai-cli-control-center-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/cc-switch-unified-ai-cli-control-center-2026/ -->
 
 {</* resource-info */>}
 

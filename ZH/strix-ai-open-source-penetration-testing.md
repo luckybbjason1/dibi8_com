@@ -19,6 +19,8 @@ tech_stack:
 featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/strix-ai-open-source-penetration-testing/ -->
+
 
 
 

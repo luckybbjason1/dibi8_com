@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/atuin/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/atuin/ -->
+
 {{</* resource-info */>}}
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)

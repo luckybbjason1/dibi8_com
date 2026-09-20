@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-stateful-agent-orchestration-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-stateful-agent-orchestration-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-stateful-agent-orchestration-2026" />
-title: 'LangGraph 1.2 Trong Production: Orchestration Agent Có Trạng Thái Sống Sót Qua Crash (Hướng Dẫn 2026)'
+title: 'LangGraph 1.2 Trong Production: Orchestration Agent Có T...
 description: 'LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars, v1.2.1. Hướng dẫn deploy thực tế bao gồm thiết kế graph, thực thi bền vững, checkpoint human-in-loop, debug LangSmith, và khi nào LangGraph thắng CrewAI / AutoGen / LangChain thuần.'
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -32,6 +32,8 @@ tags: [langgraph, agent, 'có trạng thái', orchestration, langchain, producti
 aliases:
   - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/langgraph-stateful-agent-orchestration-2026/ -->
 
 Nếu bạn xây agent LLM đơn giản và thấy nó quên mọi thứ khi process restart, mất nửa tiến độ khi một tool call timeout, hoặc lặng lẽ làm hỏng trạng thái khi hai event xảy ra đồng thời — bạn đụng tường mà **LangGraph** thiết kế để phá vỡ.
 

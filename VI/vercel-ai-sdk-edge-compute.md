@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vercel-ai-sdk-edge-compute" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/vercel-ai-sdk-edge-compute" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vercel-ai-sdk-edge-compute" />
-title: Vercel AI SDK — Xây Dựng Ứng Dụng AI Streaming Với Kiến Trúc Edge-First
+title: Vercel AI SDK — Xây Dựng Ứng Dụng AI Streaming Với Kiến T...
 description: Hướng dẫn toàn diện về Vercel AI SDK để xây dựng ứng dụng AI production. Stream response LLM, tích hợp nhiều provider và deploy đến edge với zero config. Hỗ trợ React, Next.js và mọi framework.
 tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
 category: llm-frameworks
@@ -14,6 +14,8 @@ lastmod:  2026-07-15T00:00:00+00:00draft: false
 slug: vercel-ai-sdk-edge-compute
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/vercel-ai-sdk-edge-compute/ -->
 
 ## TL;DR
 

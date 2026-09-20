@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ml-systems-book-mit-press-textbook" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ml-systems-book-mit-press-textbook" />
 title: "ML Systems Book：MIT 出品的免费机器学习系统圣经"
-description: "Machine Learning Systems 是由 MIT Press 出版的免费Open Source教材，涵盖数据工程、模型优化、硬件感知训练、推理加速等 ML 系统工程核心知识。"
+description: "Machine Learning Systems 是由 MIT Press 出版的免费Open Source教材，涵盖数据工程、模型优化、硬件感知训练、推理加速等 ML 系统工程核心知识。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -41,6 +41,8 @@ faqs:
   - q: 'ML Systems Book 适合哪些读者？'
     a: '本书面向需要在生产环境中扩展训练规模、部署低延迟模型的 ML 工程师，正在向 ML 方向转型的软件工程师，希望加速实验迭代的研究人员，以及需要规划 ML 基础设施投入与团队架构的工程管理者。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ml-systems-book-mit-press-textbook/ -->
 
 {</* resource-info */>}
 

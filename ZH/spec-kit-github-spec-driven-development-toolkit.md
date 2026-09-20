@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/spec-kit-github-spec-driven-development-toolkit" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/spec-kit-github-spec-driven-development-toolkit" />
 title: "规格套件：GitHub"
-description: "GitHub 的 Spec Kit 完整指南——通过规范驱动开发改变开发者构建软件方式的开源工具包。安装、工作流程和实际案例。"
+description: "GitHub 的 Spec Kit 完整指南——通过规范驱动开发改变开发者构建软件方式的开源工具包。安装、工作流程和实际案例。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-20
 lastmod:  2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
@@ -13,6 +13,8 @@ lang: zh
 slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/spec-kit-github-spec-driven-development-toolkit/ -->
 
 # 规格套件：GitHub 革命性的规格驱动开发工具包
 

@@ -13,6 +13,8 @@ tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
 featureImage: "https://avatars.githubusercontent.com/u/13691804"
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/moneyprinter-turbo-ai-video-generation-one-command/ -->
+
 # MoneyPrinterTurbo: AI로 동영상 자동 생성
 
 ## 서론

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/vibe-coding-2026-korean-concept-explained" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/vibe-coding-2026-korean-concept-explained" />
 title: '氛围编程 2026：韩国开发者概念，写给我们所有人'
-description: '氛围编程（바이브 코딩 / vibe coding）是韩国开发者的术语，指以自然语言为先、由 AI 处理语法的编程方式。Toss 与 Kakao 的工程师每天都在用。本文讲清它的含义、工作流，以及为什么它在韩国之外同样重要。'
+description: '氛围编程（바이브 코딩 / vibe coding）是韩国开发者的术语，指以自然语言为先、由 AI 处理语法的编程方式。Toss 与 Kakao 的工程师每天都在用。本文讲清它的含义、工作流，以及为什么它在韩国之外同样重要。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'AI 驱动开发', 自然语言编程]
@@ -33,6 +33,8 @@ faq:
   - q: "我需要学韩语才能氛围编程吗？"
     a: "不需要。该工作流与具体语言无关——你用你所说的任何自然语言来描述意图即可。术语起源于韩国，但实践全球通用。讲英语的开发者从 Cursor 和 Claude Code 问世以来就一直在这么做，只是当时还没有这个名字。"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/vibe-coding-2026-korean-concept-explained/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/odysseus-self-hosted-ai-workspace-chat-agent-deep-research" />
-title: 'Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 2026 완전 설정 가이드'
+title: 'Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 20...
 description: 'Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot을 지원합니다. Docker 및 네이티브 Linux/macOS 설치가 가능합니다.'
 date: 2026-06-09
 lastmod:  2026-06-09slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
@@ -17,6 +17,8 @@ license: MIT
 featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/ -->
 
 
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026

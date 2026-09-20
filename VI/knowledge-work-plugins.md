@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/knowledge-work-plugins" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/knowledge-work-plugins" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/knowledge-work-plugins" />
-title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthropic cho Năng suất AI Tăng cường 2026"
+title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthro...
 description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh sửa tài liệu, phân tích mã, duyệt web và thao tác tệp. Xây dựng plugin tùy chỉnh cho quy trình làm việc của bạn."
 date: 2026-06-15
 lastmod:  2026-06-15slug: knowledge-work-plugins
@@ -25,6 +25,8 @@ images:
 lang: vi
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/knowledge-work-plugins/ -->
 
 ## TL;DR
 

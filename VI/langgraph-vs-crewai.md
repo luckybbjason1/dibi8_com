@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/langgraph-vs-crewai" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/langgraph-vs-crewai" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/langgraph-vs-crewai" />
-title: 'LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên Kiểm Soát vs Nhóm Agent Theo Vai Trò'
+title: 'LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên ...
 description: 'So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai trò, cấp cao) — kiểm soát, đường cong học tập, trạng thái, thiết kế đa agent và độ bền khi chạy production. Cập nhật 2026.'
 date: 2026-06-06 00:00:00+08:00
 lastmod:  2026-06-06 00:00:00+08:00draft: false
@@ -22,6 +22,8 @@ faqs:
   - q: 'CrewAI có được xây trên LangChain hay LangGraph không?'
     a: 'CrewAI là một framework độc lập, không phải một lớp nằm trên LangGraph, dù nó có thể tương tác với công cụ LangChain. Ngược lại, LangGraph là một phần chính thức của hệ sinh thái LangChain và do nhóm LangChain duy trì như lớp điều phối cấp thấp. Vậy nên chúng có nguồn gốc khác nhau: LangGraph mở rộng LangChain xuống thành các đồ thị kiểm soát được, còn CrewAI là một cách diễn giải độc lập, ở cấp cao hơn, về "nhóm agent".'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/langgraph-vs-crewai/ -->
 # LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên Kiểm Soát vs Nhóm Agent Theo Vai Trò
 
 ## Trả lời nhanh

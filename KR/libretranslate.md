@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/libretranslate" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/libretranslate" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/libretranslate" />
-title: 'LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배포 가이드'
+title: 'LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배...
 description: 'LibreTranslate (LT)는 Argos Translate 기반의 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Docker, CUDA GPU, 30개 이상 언어 및 오프라인 배포를 지원합니다. 설치 설정, 성능 벤치마크, 모니터링 및 OpenAI Whisper, Coqui TTS, Argos Translate와의 통합을 다룹니다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [libretranslate, 기계번역, 자체호스팅, docker, api, 오픈소스,
 aliases:
 - /kr/posts/libretranslate/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/libretranslate/ -->
 
 {{</* resource-info */>}}
 

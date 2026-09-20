@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/docker-compose" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/docker-compose" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/docker-compose" />
-title: 'Docker Compose: 37,393 GitHub Stars — Hướng Dẫn Thiết Lập Ứng Dụng Đa Container 2026'
-description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'
+title: 'Docker Compose: 37,393 GitHub Stars — Hướng Dẫn Thiết Lậ...
+description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['docker-compose', 'orchestrator-container', devops, docker, microservices
 aliases:
 - /vi/posts/docker-compose/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/docker-compose/ -->
 
 {{</* resource-info */>}}
 

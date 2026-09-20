@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/backtrader-python-backtesting" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/backtrader-python-backtesting" />
 title: 'Backtrader 2026: Python回测引擎以100倍速度验证交易策略 —— 完整指南'
-description: 'Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。'
+description: 'Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /zh/posts/backtrader-python-backtesting/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/backtrader-python-backtesting/ -->
 
 {{</* resource-info */>}}
 

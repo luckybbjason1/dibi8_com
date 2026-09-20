@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/ai-developer-tools-ide-plugins-2025" />
-title: 'Best AI Developer Tools & IDE Plugins 2025: Beyond Code Generation'
+title: 'Best AI Developer Tools & IDE Plugins 2025: Beyond Code ...
 description: 'Discover the best AI developer tools and IDE plugins of 2025 — GitHub Copilot, Cursor, Sourcegraph Cody, Tabnine, Codeium, and more. Compare features, pricing, and IDE support.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00

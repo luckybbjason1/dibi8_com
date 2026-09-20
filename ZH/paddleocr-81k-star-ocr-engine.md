@@ -7,7 +7,7 @@
 
 
 title: 'PaddleOCR：81K星开源OCR引擎，零成本超越云服务'
-description: 'PaddleOCR是一个多语言开源OCR工具包，文本检测和识别准确率超过96.3%。支持80多种语言，文档AI、表格识别和版面分析。拥有81K+ GitHub stars。包含设置指南、基准测试和生产部署。'
+description: 'PaddleOCR是一个多语言开源OCR工具包，文本检测和识别准确率超过96.3%。支持80多种语言，文档AI、表格识别和版面分析。拥有81K+ GitHub stars。包含设置指南、基准测试和生产部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-10
 lastmod:  2026-06-10slug: 'paddleocr-81k-star-ocr-engine'
 category: ai-tools
@@ -17,6 +17,8 @@ license: Apache-2.0
 lang: zh
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/paddleocr-81k-star-ocr-engine/ -->
 # PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost
 
 

@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/terax-ai-lightweight-ai-terminal" />
-title: "Terax AI: The Lightweight AI Terminal Emulator That Understands You"
+title: "Terax AI: The Lightweight AI Terminal Emulator That Unde...
 description: "Discover Terax AI, a 7 MB AI-native terminal emulator built on Tauri 2 + Rust. Features natural language commands, inline AI assistance, smart autocomplete, and cross-shell support for bash, zsh, fish, and PowerShell."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

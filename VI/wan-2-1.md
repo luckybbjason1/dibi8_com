@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/wan-2-1" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/wan-2-1" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/wan-2-1" />
-title: 'Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so với HunyuanVideo, CogVideo 2026'
+title: 'Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so vớ...
 description: 'Wan 2.1 là bộ mô hình video nền mở của Alibaba với hiệu suất SOTA. Hỗ trợ ComfyUI, Diffusers và Gradio. Bao gồm T2V, I2V, chỉnh sửa video và tạo văn bản với các biến thể 1.3B và 14B.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['wan-2-1', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-ngu�
 aliases:
 - /vi/posts/wan-2-1/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/wan-2-1/ -->
 
 {{</* resource-info */>}}
 

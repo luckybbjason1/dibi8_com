@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/vectorbt-quantitative-backtesting" />
-title: 'VectorBT: The Lightning-Fast Python Backtesting Library Processing 1M+ Trades — 2026 Quant Guide'
+title: 'VectorBT: The Lightning-Fast Python Backtesting Library ...
 description: 'Master VectorBT for quantitative backtesting in Python. Build, test, and optimize trading strategies with vectorized Numba-accelerated simulations. Complete 2026 guide with code examples.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

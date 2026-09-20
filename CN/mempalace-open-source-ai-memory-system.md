@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mempalace-open-source-ai-memory-system" />
-title: 'MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls'
+title: 'MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
 description: 'MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves it with semantic search. Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent. ChromaDB backend, pluggable storage, 0 external API calls. Includes setup guide, benchmarks, and architecture breakdown.'
 date: 2026-06-10
 lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'

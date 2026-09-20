@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/baetyl-edge-ai-computing-platform" />
-title: 'Baetyl: The Cloud-Native Edge AI Computing Platform Deploying Models to IoT Devices — 2026 Setup Guide'
+title: 'Baetyl: The Cloud-Native Edge AI Computing Platform Depl...
 description: 'Deploy Baetyl v2.4 to bring Kubernetes-native edge computing to IoT devices. AI model inference, MQTT/BACnet support, OTA updates, K3s runtime, and cloud-edge synchronization.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00

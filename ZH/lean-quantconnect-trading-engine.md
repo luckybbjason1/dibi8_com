@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/lean-quantconnect-trading-engine" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/lean-quantconnect-trading-engine" />
 title: 'Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南'
-description: '2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。'
+description: '2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /zh/posts/lean-quantconnect-trading-engine/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/lean-quantconnect-trading-engine/ -->
 
 {{</* resource-info */>}}
 

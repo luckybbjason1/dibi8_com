@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/prompt-engineering-frameworks-tools" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/prompt-engineering-frameworks-tools" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/prompt-engineering-frameworks-tools" />
-title: 'Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: So Sánh PromptLayer, LangSmith, W&B Prompts'
+title: 'Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: ...
 description: 'Khám phá các framework và công cụ quản lý prompt hàng đầu năm 2025. So sánh chi tiết LangSmith, PromptLayer, Weights & Biases Prompts, Pezzo, Prompt Flow và Helicone cho kỹ thuật prompt quy mô lớn.'
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['prompt engineering', 'kỹ thuật prompt', langsmith, promptlayer, 'wei
 aliases:
 - /vi/posts/prompt-engineering-frameworks-tools/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/prompt-engineering-frameworks-tools/ -->
 # Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: So Sánh PromptLayer, LangSmith, W&B Prompts
 
 

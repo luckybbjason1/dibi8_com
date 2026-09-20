@@ -49,6 +49,8 @@ featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/microsoft-presidio-pii-detection-redaction-sdk/ -->
+
 
 
 

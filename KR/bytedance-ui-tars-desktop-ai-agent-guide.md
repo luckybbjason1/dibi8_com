@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bytedance-ui-tars-desktop-ai-agent-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bytedance-ui-tars-desktop-ai-agent-guide" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/bytedance-ui-tars-desktop-ai-agent-guide" />
-title: "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전트 — 완전 설정 가이드"
-description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대안과 비교."
+title: "ByteDance UI-TARS Desktop: 화면을 보고 컴퓨터를 제어하는 비전-언어 AI 에이전...
+description: "화면을 보고 자연어로 애플리케이션을 제어하는 비전-언어 AI 에이전트인 ByteDance의 UI-TARS Desktop 배포 방법을 배워보세요. 단계별 설치, 실제 벤치마크 및 대안과 비교.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-10
 lastmod:  2026-06-10slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
@@ -17,6 +17,8 @@ license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/bytedance-ui-tars-desktop-ai-agent-guide/ -->
 
 ## 소개
 

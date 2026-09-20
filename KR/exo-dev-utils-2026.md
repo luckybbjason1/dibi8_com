@@ -40,6 +40,8 @@ faqs:
     a: '브라우저로 `http://localhost:52415`의 대시보드를 여세요. 발견된 모든 기기, 모델이 그 위에 분할된 방식, 실시간 처리량과 메모리 사용량을 보여줍니다.'
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/exo-dev-utils-2026/ -->
+
 {{< resource-info >}}
 
 ## 들어가며

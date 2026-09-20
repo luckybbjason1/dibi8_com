@@ -18,6 +18,8 @@ featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/ge
 lang: zh
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/trivy-production-security-scanner-2026/ -->
+
 ![Trivy 安全扫描器](https://opengraph.github.com/github/aquasecurity/trivy)
 
 ![Trivy Kubernetes 扫描](https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/imgs/trivy-k8s.png)

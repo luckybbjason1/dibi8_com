@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/marker-dev-utils-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/marker-dev-utils-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/marker-dev-utils-2026" />
-title: 'Marker: PDF, DOCX, EPUB를 Markdown/JSON으로 빠르게 변환 — 2026 실전 가이드'
+title: 'Marker: PDF, DOCX, EPUB를 Markdown/JSON으로 빠르게 변환 — 2026 실...
 description: 'Marker(datalab-to/marker)는 PDF, DOCX, EPUB 등 문서를 Markdown, JSON, HTML, chunks로 빠르고 정확하게 변환합니다. GitHub 스타 35,694개, 코드 라이선스는 GPL-3.0. 설치, CLI와 Python API, 실제 코드 예제, LLM 모드, 그리고 대안 도구와의 솔직한 비교를 다룹니다.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: '문제를 보고하거나 기능을 요청하려면 어떻게 하나요?'
     a: 'GitHub 저장소 <https://github.com/datalab-to/marker>를 방문해 Issues 탭에서 문제나 제안을 상세히 적어 새 이슈를 등록하세요.'
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/marker-dev-utils-2026/ -->
 
 {{< resource-info >}}
 

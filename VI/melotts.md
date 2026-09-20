@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/melotts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/melotts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/melotts" />
-title: 'MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui TTS, ChatTTS, Bark 2026'
+title: 'MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui...
 description: 'MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sánh hiệu năng với Coqui TTS, ChatTTS và Bark. Hướng dẫn cài đặt Python, triển khai Docker, suy luận thờ gian thực và cứng hóa production.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [melotts, 'chuyen-van-ban-thanh-giong-noi', tts, 'da-ngon-ngu', python, 't
 aliases:
 - /vi/posts/melotts/
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/melotts/ -->
 
 {{</* resource-info */>}}
 

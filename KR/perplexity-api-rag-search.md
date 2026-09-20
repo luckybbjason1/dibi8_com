@@ -29,6 +29,8 @@ aliases:
 - /kr/posts/perplexity-api-rag-search/
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/perplexity-api-rag-search/ -->
+
 {{</* resource-info */>}}
 
 Perplexity API의 출시로 지능적이고 사실에 기반한 애플리케이션 구축 경쟁은 중요한 이정표에 도달했습니다. 이 API는 대규모 언어 모델과 실시간 웹 인덱싱을 융합한 전문 RAG(검색 증강 생성) 검색 서비스입니다. 정적 학습 데이터에만 의존하는 기존 LLM API와 달리 Perplexity의 Sonar 모델은 실시간으로 인터넷을 쿼리하고, 권위 있는 소스를 검색하며, 인라인 인용이 포함된 구조화된 답변을 반환합니다. 챗봇, 연구 도구, 지식 어시스턴트, 콘텐츠 검증 파이프라인을 구축하는 개발자에게 이는 패러다임의 전환을 의미합니다. 단순히 텍스트를 생성하는 것이 아니라 모든 주장을 검증 가능한 현실에 기반을 두는 애플리케이션입니다.

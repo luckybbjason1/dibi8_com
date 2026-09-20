@@ -16,6 +16,8 @@ lang: zh
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/impeccable-ai-design-language-harness-quality-ui/ -->
+
 # Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测
 
 Impeccable（37,000+ 星标）是专门为 AI 编码代理设计的编程语言。它解决了 AI 辅助开发中最显眼的难题之一：AI 生成的 UI 看起来像通用模板的复制品。凭借 23 个命令、41 个确定性检测规则和实时浏览器迭代，Impeccable 为你的 AI 代理提供了生成精致、非通用界面所需的設計指导。

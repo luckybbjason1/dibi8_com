@@ -34,6 +34,8 @@ faq:
     a: "가능. 패턴: 로컬 Ollama를 주력으로, 어려운 작업은 상용 API로 폴백. Aider는 세션 중간에 모델 전환을 지원한다. 대부분의 개발자는 하이브리드로 — 기본은 로컬, 필요한 10-20%는 클라우드 — 운용한다."
 ---
 
+<!-- canonical: https://dibi8.com/kr/tools/local-first-ai-stack-offline-development-2026/ -->
+
 {{</* resource-info */>}}
 
 # 로컬 우선 AI 스택 2026: 오프라인 개발 환경

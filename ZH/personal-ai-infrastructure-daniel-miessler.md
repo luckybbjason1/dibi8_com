@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/personal-ai-infrastructure-daniel-miessler" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/personal-ai-infrastructure-daniel-miessler" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/personal-ai-infrastructure-daniel-miessler" />
-title: 'Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agentic AI 设置 — 2026 完整指南'
-description: 'Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许可。将策略、执行和反思融为一体。'
+title: 'Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agenti...
+description: 'Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许可。将策略、执行和反思融为一体。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod:  2026-06-13slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
@@ -15,6 +15,8 @@ license: 'MIT'
 lang: zh
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/personal-ai-infrastructure-daniel-miessler/ -->
 
 # Personal AI Infrastructure：为人类打造的 Agentic AI 设置 — 2026 指南
 

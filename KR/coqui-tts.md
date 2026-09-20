@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/coqui-tts" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/coqui-tts" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/coqui-tts" />
-title: 'Coqui TTS: 45.3K+ Stars — ChatTTS, MeloTTS, Bark 성능 비교 벤치마크 2026'
+title: 'Coqui TTS: 45.3K+ Stars — ChatTTS, MeloTTS, Bark 성능 비교 벤...
 description: 'Coqui TTS는 오픈소스 딥러닝 텍스트 음성 변환 툴킷입니다. 1100개 이상 언어 지원, XTTS v2 음성 복제, VITS 엔드투엔드 합성. ChatTTS, MeloTTS, Bark와의 실제 RTF 성능 비교 및 Docker 배포 방법 제공.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: ['coqui tts', '텍스트-음성-변환', '음성-복제', xtts, vits, 딥�
 aliases:
 - /kr/posts/coqui-tts/
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/coqui-tts/ -->
 
 {{</* resource-info */>}}
 

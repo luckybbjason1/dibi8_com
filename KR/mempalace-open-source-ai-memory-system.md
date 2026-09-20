@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-open-source-ai-memory-system" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-open-source-ai-memory-system" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-open-source-ai-memory-system" />
-title: 'MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로'
+title: 'MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R...
 description: 'MemPalace는 대화 기록을 그대로 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. Claude Code, Cursor, Windsurf 및 모든 MCP 호환 에이전트와 통합됩니다. ChromaDB 백엔드, 플러그인 가능 저장소, 외부 API 호출 제로. 설정 가이드, 벤치마크, 아키텍처 분석 포함.'
 date: 2026-06-10
 lastmod:  2026-06-10slug: 'mempalace-open-source-ai-memory-system'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
 lang: ko
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/mempalace-open-source-ai-memory-system/ -->
 
 # MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로
 

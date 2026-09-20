@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/copilotkit" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/copilotkit" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/copilotkit" />
-title: 'CopilotKit: 31K+ Stars — 为任何 React 或 Angular 应用添加 AI Copilot — 2026 完整安装教程'
+title: 'CopilotKit: 31K+ Stars — 为任何 React 或 Angular 应用添加 AI Cop...
 description: 'CopilotKit 是用于应用内 AI Copilot 和生成式 UI 的开源前端框架。使用预构建组件、useCopilotAction Hooks 和生产级部署构建 React Angular AI 助手。涵盖安装、LangChain 集成、自托管和与 Vercel AI SDK 的性能对比。'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -28,6 +28,8 @@ tags: [copilotkit, 'react-ai', 生成式ui, 'ai-copilot', langchain, 前端智�
 aliases:
 - /zh/posts/copilotkit/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/copilotkit/ -->
 
 {{</* resource-info */>}}
 

@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/bookstack-documentation-wiki" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/bookstack-documentation-wiki" />
 title: 'BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测'
-description: '完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。'
+description: '完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: [bookstack, 文档, wiki, 自托管, php, laravel, 知识库, markdown, do
 aliases:
 - /zh/posts/bookstack-documentation-wiki/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/bookstack-documentation-wiki/ -->
 
 {{</* resource-info */>}}
 

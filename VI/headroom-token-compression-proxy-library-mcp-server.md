@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/headroom-token-compression-proxy-library-mcp-server" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/headroom-token-compression-proxy-library-mcp-server" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/headroom-token-compression-proxy-library-mcp-server" />
-title: 'Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026'
+title: 'Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token...
 description: 'Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơn 60-95% token, cùng câu trả lời. Thư viện, proxy và máy chủ MCP. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
 date: 2026-06-08
 lastmod:  2026-06-08slug: 'headroom-token-compression-proxy-library-mcp-server'
@@ -17,6 +17,8 @@ license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/headroom-token-compression-proxy-library-mcp-server/ -->
 
 # Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026
 

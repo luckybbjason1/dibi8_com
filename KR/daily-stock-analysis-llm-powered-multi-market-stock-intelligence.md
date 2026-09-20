@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/daily-stock-analysis-llm-powered-multi-market-stock-intelligence" />
 title: '일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템'
-description: 실시간 뉴스, 의사결정 대시보드 및 자동화된 알림을 갖춘 LLM 기반 다시장 주식 분석 시스템. 48K 스타. 무료 예약 실행 지원.
+description: 실시간 뉴스, 의사결정 대시보드 및 자동화된 알림을 갖춘 LLM 기반 다시장 주식 분석 시스템. 48K 스타. 무료 예약 실행 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
@@ -17,6 +17,8 @@ lang: kr
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/ -->
 
 
 

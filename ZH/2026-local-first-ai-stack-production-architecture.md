@@ -28,6 +28,8 @@ tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-a
 aliases:
 - /zh/posts/2026-local-first-ai-stack-production-architecture/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/2026-local-first-ai-stack-production-architecture/ -->
 # 2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）
 
 

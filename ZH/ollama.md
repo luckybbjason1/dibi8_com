@@ -30,6 +30,8 @@ aliases:
 - /zh/resources/llm-frameworks/ollama-local-llm-guide/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/ollama/ -->
+
 {{</* resource-info */>}}
 
 运行大语言模型过去意味着与 Python 环境、CUDA 驱动和数 GB 的依赖项搏斗。到了 2026 年，这种摩擦已经消失。[Ollama](https://ollama.com) 让你可以用一条命令拉取、配置并提供生产级 LLM —— 无需安装 PyTorch，无需手动调整 GPU，甚至不需要 Docker。凭借 137,000+ GitHub Stars 和繁荣的集成生态，Ollama 已成为开发者在本地运行推理而不想承受运维负担的默认运行时。

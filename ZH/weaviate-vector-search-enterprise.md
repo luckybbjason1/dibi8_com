@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/weaviate-vector-search-enterprise" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/weaviate-vector-search-enterprise" />
 title: 'Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南'
-description: 'Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。'
+description: 'Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: []
 aliases:
 - /zh/posts/weaviate-vector-search-enterprise/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/weaviate-vector-search-enterprise/ -->
 
 {{</* resource-info */>}}
 

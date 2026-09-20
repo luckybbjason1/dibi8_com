@@ -29,6 +29,8 @@ aliases:
 - /zh/posts/caddy/
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/caddy/ -->
+
 {{</* resource-info */>}}
 
 Caddy 是唯一一个将 HTTPS 视为默认设置而非事后补救的主流 Web 服务器。当 Nginx 需要手动配置证书、Apache 需要折腾 mod_ssl 时，Caddy 已经自动从 Let's Encrypt 和 ZeroSSL 获取并续期 TLS 证书 —— 无需 cron 任务、无需 certbot、无需配置。拥有 **72,595 个 GitHub Stars**，代码基于 Go 语言编写，Caddy 已在生产环境中服务了数万亿请求，管理着数百万张 TLS 证书，部署规模从单台 VPS 到管理数十万个站点的大型集群不等。

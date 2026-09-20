@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/mattpocock-skills-ai-agent-framework-guide" />
-title: "Matt Pocock's Skills: The CLI Framework That Gives AI Agents Real Superpowers — npm Install, Zero Config"
+title: "Matt Pocock's Skills: The CLI Framework That Gives AI Ag...
 description: "Learn how to use Matt Pocock's Skills framework to give AI coding agents like Claude Code, Cursor, and Gemini CLI real capabilities beyond code — databases, filesystem, CI/CD, and more. Step-by-step npx install guide, architecture breakdown, and real benchmarks."
 date: 2026-06-10
 lastmod:  2026-06-10slug: "mattpocock-skills-ai-agent-framework-guide"

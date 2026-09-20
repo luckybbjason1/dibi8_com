@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/rag-vs-fine-tuning-2026-decision-framework" />
-title: 'RAG vs Fine-Tuning 2026: A Data-Driven Decision Framework with Real Cost Numbers'
+title: 'RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor...
 description: 'When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-task, latency, data freshness, and a clear decision tree based on data volume, query latency budget, and update frequency.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

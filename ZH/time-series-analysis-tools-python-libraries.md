@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/time-series-analysis-tools-python-libraries" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/time-series-analysis-tools-python-libraries" />
 title: 'Python时序数据分析工具大全：Prophet、sktime、ARIMA与Darts完整教程'
-description: '全面盘点Python时序分析工具库，深度对比Prophet、sktime、statsmodels与Darts的适用场景，含特征工程技巧与完整预测流水线搭建指南。'
+description: '全面盘点Python时序分析工具库，深度对比Prophet、sktime、statsmodels与Darts的适用场景，含特征工程技巧与完整预测流水线搭建指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/time-series-analysis-tools-python-libraries/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/time-series-analysis-tools-python-libraries/ -->
 
 {</* resource-info */>}
 

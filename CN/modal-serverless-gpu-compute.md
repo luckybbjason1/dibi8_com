@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/modal-serverless-gpu-compute" />
-title: Modal Serverless GPU Compute — Run ML Pipelines Without Infrastructure
+title: Modal Serverless GPU Compute — Run ML Pipelines Without I...
 description: Complete guide to Modal serverless GPU infrastructure. Deploy LLM inference, fine-tuning pipelines, and batch ML workloads with zero cluster management. Compare pricing, benchmarks, and real-world patterns.
 tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
 category: llm-frameworks

@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/ibis-dataframe-python-sql/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/ibis-dataframe-python-sql/ -->
+
 {{</* resource-info */>}}
 
 Trong bối cảnh phân tích dữ liệu không ngừng phát triển, các nhà phát triển Python đã lâu phải đối mặt với một khó khăn khó chịu: nên sử dụng **pandas** vì API DataFrame trực quan của nó, hay viết **SQL** thuần để có hiệu suất vượt trội trên các tập dữ liệu lớn? Năm 2026, sự đánh đổi này không còn cần thiết nữa. Hãy làm quen với **Ibis** — một thư viện Python mã nguồn mở, có khả năng mang lại API DataFrame quen thuộc đồng thờ biên dịch các biểu thức của bạn thành SQL hiệu suất cao để thực thi trên 20+ backend. Với hơn 12.000 sao GitHub và giấy phép Apache-2.0, Ibis đang thay đổi cách các kỹ sư và nhà khoa học dữ liệu tương tác với cơ sở dữ liệu.

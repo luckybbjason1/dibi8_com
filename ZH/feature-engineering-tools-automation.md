@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/feature-engineering-tools-automation" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/feature-engineering-tools-automation" />
 title: '自动化特征工程工具实战指南：Featuretools、AutoFeat与tsfresh全面教程（2026版）'
-description: '详解Featuretools深度特征合成、AutoFeat符号数学特征生成、tsfresh时间序列特征提取三大自动化工具，附代码示例和选型策略。'
+description: '详解Featuretools深度特征合成、AutoFeat符号数学特征生成、tsfresh时间序列特征提取三大自动化工具，附代码示例和选型策略。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -26,6 +26,8 @@ draft: false
 aliases:
 - /posts/feature-engineering-tools-automation/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/feature-engineering-tools-automation/ -->
 
 {</* resource-info */>}
 

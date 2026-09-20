@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/promptfoo-llm-frameworks-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/promptfoo-llm-frameworks-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/promptfoo-llm-frameworks-2026" />
-title: 'Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của bạn — Hướng dẫn thực chiến 2026'
+title: 'Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của ...
 description: 'Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu hình khai báo đơn giản, bạn có thể so sánh GPT, Claude, Gemini, DeepSeek và tích hợp mượt mà vào CLI lẫn CI/CD. Hướng dẫn 2026 này bao quát cài đặt, promptfooconfig.yaml, assertion và kiểm thử red-team.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -39,6 +39,8 @@ faqs:
   - q: 'Làm sao đóng góp cho dự án promptfoo?'
     a: 'Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại [hướng dẫn đóng góp](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md).'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/promptfoo-llm-frameworks-2026/ -->
 
 {{< resource-info >}}
 

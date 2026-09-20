@@ -11,6 +11,8 @@ lastmod: 2026-05-19
 layout: "tool-ai-stack-builder"
 tool_id: "ai-stack-builder"
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-stack-builder/ -->
 # AI 技术栈推荐器 — 找到最适合你的 LLM + 向量库 + 框架组合
 
 

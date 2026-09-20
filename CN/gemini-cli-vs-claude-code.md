@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/gemini-cli-vs-claude-code" />
-title: 'Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?'
+title: 'Gemini CLI vs Claude Code in 2026: Which AI Coding Agent...
 description: 'Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, agent style, multi-modal, tool use, migration tips. Updated 2026.'
 date: 2026-05-22 00:00:00+08:00
 lastmod:  2026-05-22 00:00:00+08:00draft: false

@@ -4,8 +4,8 @@
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/mempalace-guide" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mempalace-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mempalace-guide" />
-title: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)"
-description: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)"
+title: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生...
+description: "Claude Code Session Memory: 结合 MemPalace 实现 96.6% 召回率的永生记忆指南 (2026)". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -38,6 +38,8 @@ faqs:
   - q: 'MemPalace 是免费使用的吗？'
     a: '是的。MemPalace 以 MIT 协议开源，费用为 $0，没有任何 API 费用或订阅费用，而 Pinecone 则需要收取订阅或使用费。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/mempalace-guide/ -->
 
 {</* resource-info */>}
 

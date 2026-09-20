@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/cow-protocol-mev-protection" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/cow-protocol-mev-protection" />
 title: 'CoW Protocol 2026：MEV保护型DEX聚合器为交易者节省超1亿美元滑点 — 设置指南'
-description: 'CoW Protocol综合指南：使用批量拍卖和求解器竞争来保护交易者免受MEV攻击的DEX聚合器，节省超1亿美元滑点。包含SDK集成、交易机器人设置和最佳实践。'
+description: 'CoW Protocol综合指南：使用批量拍卖和求解器竞争来保护交易者免受MEV攻击的DEX聚合器，节省超1亿美元滑点。包含SDK集成、交易机器人设置和最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -28,6 +28,8 @@ tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'san
 aliases:
 - /zh/posts/cow-protocol-mev-protection/
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/cow-protocol-mev-protection/ -->
 
 {{</* resource-info */>}}
 

@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-custom-agent-authoring-guide-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-custom-agent-authoring-guide-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-custom-agent-authoring-guide-2026" />
-title: 'Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử Dụng Để Thực Thi Tiêu Chuẩn Của Bạn (2026)'
+title: 'Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
 description: 'Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế system prompt, danh sách công cụ được phép, và hai ví dụ sẵn sàng đưa vào sản xuất (trình duyệt migration, cổng bảo mật) cùng những lỗi cần tránh.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "Custom agent có hoạt động trong CI và các lần chạy không-giao-diện không, hay chỉ tương tác?"
     a: "Chúng hoạt động ở cả hai. Cùng những định nghĩa trong .claude/agents/ sẽ được nhận diện khi bạn chạy Claude Code phi-tương-tác (chế độ -p / print dùng trong CI). Vì chúng là các tệp được quản lý phiên bản trong repo của bạn, mọi đồng nghiệp và mọi tác vụ CI đều thấy những định nghĩa agent y hệt nhau — đó chính là toàn bộ ý nghĩa của việc mã hóa một danh sách rà soát thành agent thay vì một trang wiki mà chẳng ai buồn mở."
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/claude-code-custom-agent-authoring-guide-2026/ -->
 # Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử Dụng Để Thực Thi Tiêu Chuẩn Của Bạn (2026)
 
 

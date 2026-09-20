@@ -1,7 +1,7 @@
 ---
 <!-- Canonical URL -->
 <link rel="canonical" href="https://dibi8.com/en/claude-code-mcp-advanced-10-server-stack-2026" />
-title: 'Claude Code MCP Advanced 2026: The 10-Server Production Stack'
+title: 'Claude Code MCP Advanced 2026: The 10-Server Production ...
 description: 'After running Claude Code with various MCP server combinations, settled on a 10-server production stack that balances power, security, and startup time. Each server, why it is in, what it does, and how to configure for solo vs team use.'
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00

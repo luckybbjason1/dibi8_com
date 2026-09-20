@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/claude-code-skill-authoring-guide-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/claude-code-skill-authoring-guide-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/claude-code-skill-authoring-guide-2026" />
-title: 'Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)'
+title: 'Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 ...
 description: 'Claude Code 스킬 작성 완전 가이드 — SKILL.md 구조, 로딩을 제어하는 트리거 description, 점진적 공개(progressive disclosure), 그리고 스킬이 CLAUDE.md나 서브에이전트보다 나은 경우. 실전 예제와 피해야 할 실수까지.'
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -41,6 +41,8 @@ faq:
   - q: "스킬 대신 서브에이전트를 작성해야 하는 경우는 언제인가요?"
     a: "현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다."
 ---
+
+<!-- canonical: https://dibi8.com/kr/tools/claude-code-skill-authoring-guide-2026/ -->
 # Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)
 
 

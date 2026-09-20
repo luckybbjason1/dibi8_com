@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/open-design-local-first-ai-design-tool" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/open-design-local-first-ai-design-tool" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/open-design-local-first-ai-design-tool" />
-title: "Open Design: Công Cụ Thiết Kế AI Ưu Tiên Local Thay Thế Claude Design Tối Ưu Nhất"
+title: "Open Design: Công Cụ Thiết Kế AI Ưu Tiên Local Thay Thế ...
 description: "Khám phá Open Design, giải pháp thay thế Claude Design mã nguồn mở ưu tiên local với 19 kỹ năng AI, 71 hệ thống thiết kế, hỗ trợ tạo prototype, slide, video và xuất đa định dạng."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -40,6 +40,8 @@ faqs:
   - q: 'Sử dụng Open Design có mất phí không?'
     a: 'Bản thân công cụ này hoàn toàn miễn phí và mã nguồn mở theo giấy phép MIT, không có phí đăng ký hay phí theo số lượng người dùng. Chi phí duy nhất là lượng sử dụng API của nhà cung cấp AI mà bạn tiêu thụ.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/open-design-local-first-ai-design-tool/ -->
 
 {</* resource-info */>}
 

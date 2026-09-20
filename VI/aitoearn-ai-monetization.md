@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/aitoearn-ai-monetization" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/aitoearn-ai-monetization" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/aitoearn-ai-monetization" />
-title: "AiToEarn: Công Cụ Kiếm Tiền Từ Nội Dung AI Mã Nguồn Mở — Biến Cuộc Trò Chuyện GPT Thành Thu Nhập Thụ Động"
+title: "AiToEarn: Công Cụ Kiếm Tiền Từ Nội Dung AI Mã Nguồn Mở —...
 description: "AiToEarn là nền tảng kiếm tiền từ nội dung AI mã nguồn mở giúp người sáng tạo biến nội dung do AI tạo ra thành sản phẩm có lợi nhuận. Hỗ trợ phân phối đa nền tảng, thanh toán đăng ký và kiếm tiền từ quảng cáo."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -40,6 +40,8 @@ faqs:
   - q: 'AiToEarn có thể tự lưu trữ không, và cài đặt như thế nào?'
     a: 'Có, AiToEarn có thể tự lưu trữ. Bạn clone kho lưu trữ GitHub, chạy npm install, sao chép .env.example thành .env và thêm các API key của bạn, sau đó chạy npm run dev. Ứng dụng khi đó sẽ chạy cục bộ tại http://localhost:3000.'
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/aitoearn-ai-monetization/ -->
 {</* resource-info */>}
 
 ![AiToEarn — phân phối nội dung 12+ nền tảng](/images/articles/aitoearn-ai-monetization/app.png)

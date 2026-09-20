@@ -29,6 +29,8 @@ aliases:
 - /vi/posts/snapshot-dao-governance-voting/
 ---
 
+<!-- canonical: https://dibi8.com/vi/tools/snapshot-dao-governance-voting/ -->
+
 {{</* resource-info */>}}
 
 **Ngày:** 2026-05-19  

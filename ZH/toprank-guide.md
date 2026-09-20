@@ -5,7 +5,7 @@
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/toprank-guide" />
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/toprank-guide" />
 title: "2026 GEO 优化完全指南：用 Toprank 开源智能体让 ChatGPT 疯狂引用你的网站"
-description: "2026 GEO 优化完全指南：用 Toprank 开源智能体让 ChatGPT 疯狂引用你的网站"
+description: "2026 GEO 优化完全指南：用 Toprank 开源智能体让 ChatGPT 疯狂引用你的网站". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack:
@@ -36,6 +36,8 @@ faqs:
   - q: 'GEO 优化能将 AI 引用的可能性提升多少？'
     a: '根据文章所述，向你的内容中注入结构化数据、独特的统计数据和具有独特引用价值的事实，经实证宣称可将在 LLM 输出中被引用的概率提升最高达 45%。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/toprank-guide/ -->
 
 {</* resource-info */>}
 

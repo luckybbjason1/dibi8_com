@@ -4,7 +4,7 @@
 <link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/trivy-production-security-scanner-2026" />
 <link rel="alternate" hreflang="kr" href="https://dibi8.com/kr/trivy-production-security-scanner-2026" />
 <link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/trivy-production-security-scanner-2026" />
-title: 'Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường Production — Hướng Dẫn Quét Lỗ Hổng 2026'
+title: 'Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường P...
 description: 'Trivy (aquasecurity/trivy) là công cụ quét bảo mật mã nguồn mở cho container, IaC và mã. Tương thích với Kubernetes, Docker, GitHub Actions và CI pipelines. Quét 600K+ CVE, khóa bí mật và cấu hình sai. Bao gồm cài đặt, policy-as-code và hardening production.'
 date: 2026-06-09
 lastmod:  2026-06-09slug: 'trivy-production-security-scanner-2026'
@@ -17,6 +17,8 @@ license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
 lang: vi
 ---
+
+<!-- canonical: https://dibi8.com/vi/tools/trivy-production-security-scanner-2026/ -->
 
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)
 

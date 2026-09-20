@@ -41,6 +41,8 @@ faqs:
     a: '能。几个团队（Marsh McLennan / Replit infra）报告多月生产稳定。自 2026 Q1 起每周发版、积极维护。主要顾虑是运维复杂度 — 跟所有 LLM runtime 一样，ds4 生产部署需要 SRE 能力。'
 ---
 
+<!-- canonical: https://dibi8.com/zh/tools/ds4-open-source-deepseek-alternative-2026/ -->
+
 {{</* resource-info */>}}
 
 ## Quick Answer

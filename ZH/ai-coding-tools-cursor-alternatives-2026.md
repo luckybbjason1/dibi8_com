@@ -40,6 +40,8 @@ faqs:
   - q: 'AI 编程工具能完全离线运行吗？'
     a: '可以 — Cline + Ollama/LM Studio 本地模型组合。Continue.dev 也支持本地模型。无订阅、完全隐私，但需要 32GB RAM + 16GB VRAM（RTX 4080 / Apple M2 Max）才能跑生产级质量。'
 ---
+
+<!-- canonical: https://dibi8.com/zh/tools/ai-coding-tools-cursor-alternatives-2026/ -->
 # 2026 AI 编程工具大洗牌：Cursor 不再唯一选择 — 7 大替代品深度对比
 
 
