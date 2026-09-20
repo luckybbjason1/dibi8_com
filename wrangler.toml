@@ -1,0 +1,15 @@
+name = "dibi8-com"
+pages_build_output_dir = "public"
+
+[build]
+  command = "hugo --minify"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.146.0"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
