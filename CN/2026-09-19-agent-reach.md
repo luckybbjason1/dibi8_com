@@ -14,6 +14,37 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 lang: en
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...",
+  "description": "'Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.'",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/2026-09-19-agent-reach/"
+  },
+  "url": "https://dibi8.com/cn/tools/2026-09-19-agent-reach/",
+  "image": "https://picsum.photos/seed/2026-09-19-agent-reach/1200x630",
+  "keywords": "agent-reach,ai-agent,scraping,automation,python,no-api-cost",
+  "articleSection": "Technology"
+}
+</script>
+
 
 # Agent-Reach: Free Internet Access for Your AI Agent
 

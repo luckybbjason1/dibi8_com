@@ -9,6 +9,37 @@ license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""LangChain vs LlamaIndex vs LangGraph 2026: Guia de Compa...",
+  "description": ""Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, escolha o framework ideal para o seu projeto."",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/2026-09-20-langchain-vs-llamaindex-vs-langgraph/"
+  },
+  "url": "https://dibi8.com/vi/tools/2026-09-20-langchain-vs-llamaindex-vs-langgraph/",
+  "image": "https://picsum.photos/seed/2026-09-20-langchain-vs-llamaindex-vs-langgraph/1200x630",
+  "keywords": "langchain,llamaindex,langgraph,rag,frameworks-ia,2026",
+  "articleSection": "llm-frameworks"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/2026-09-20-langchain-vs-llamaindex-vs-langgraph/ -->
 

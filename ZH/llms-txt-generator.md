@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-llms-txt-generator"
 tool_id: "llms-txt-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""llms.txt 生成器 — 帮助 AI 爬虫（ChatGPT、Claude、Perplexity）读懂你的网站"",
+  "description": ""几秒生成有效的 llms.txt 文件，帮助 ChatGPT、Claude、Perplexity 等 AI 爬虫理解你的网站结构、抓取你最优质的内容。免费，无需注册。". Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/llms-txt-generator/"
+  },
+  "url": "https://dibi8.com/zh/tools/llms-txt-generator/",
+  "image": "https://picsum.photos/seed/llms-txt-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/llms-txt-generator/ -->
 # llms.txt 生成器 — 帮助 AI 爬虫（ChatGPT、Claude、Perplexity）读懂你的网站

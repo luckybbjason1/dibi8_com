@@ -6,6 +6,37 @@ lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Trình Tạo Thẻ Hreflang — SEO Đa Ngôn Ngữ & Quốc Tế"",
+  "description": ""Tạo thẻ link hreflang sẵn sàng copy-paste cho SEO đa ngôn ngữ và quốc tế. Ánh xạ mỗi ngôn ngữ với URL của nó, thêm x-default, và nhận các thẻ alternate gọn gàng cho HTML head."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/hreflang-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/hreflang-generator/",
+  "image": "https://picsum.photos/seed/hreflang-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/hreflang-generator/ -->
 # Trình Tạo Thẻ Hreflang — SEO Đa Ngôn Ngữ & Quốc Tế

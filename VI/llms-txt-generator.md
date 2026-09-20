@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-llms-txt-generator"
 tool_id: "llms-txt-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Trình Tạo llms.txt — Giúp AI Crawler (ChatGPT, Claude, P...",
+  "description": ""Tạo tệp llms.txt hợp lệ cho website chỉ trong vài giây. Giúp các AI crawler như ChatGPT, Claude, Perplexity hiểu cấu trúc trang và hiển thị nội dung tốt nhất. Miễn phí, không cần đăng ký."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/llms-txt-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/llms-txt-generator/",
+  "image": "https://picsum.photos/seed/llms-txt-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/llms-txt-generator/ -->
 # Trình Tạo llms.txt — Giúp AI Crawler (ChatGPT, Claude, Perplexity) Hiểu Trang Của Bạn

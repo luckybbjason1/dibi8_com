@@ -11,6 +11,37 @@ license_type: Open Source
 source: "Multiple vendors"
 github: "anthropic/claude-code, anysphere/cursor, openai/codex"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""AI Coding Agents 2026: Claude Code vs Cursor vs Codex - ...",
+  "description": ""In-depth comparison of the three leading AI coding agents in 2026. Learn which tool fits your workflow: terminal-first Claude Code, IDE-native Cursor, or cloud-autonomous Codex. Real benchmarks, pricing analysis, and team recommendations."",
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/2026-09-20-ai-coding-agents-comparison/"
+  },
+  "url": "https://dibi8.com/cn/tools/2026-09-20-ai-coding-agents-comparison/",
+  "image": "https://picsum.photos/seed/2026-09-20-ai-coding-agents-comparison/1200x630",
+  "keywords": "ai-coding,claude-code,cursor,codex,comparison,2026",
+  "articleSection": "llm-frameworks"
+}
+</script>
+
 
 # AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison
 

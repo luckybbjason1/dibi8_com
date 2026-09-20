@@ -6,6 +6,37 @@ lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Hreflang 태그 생성기 — 다국어 및 국제 SEO"",
+  "description": ""다국어 및 국제 SEO를 위한 복사-붙여넣기 가능한 hreflang 링크 태그를 생성. 각 언어를 해당 URL에 매핑하고 x-default를 추가해 HTML head용 깔끔한 alternate 태그를 출력.". Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/tools/hreflang-generator/"
+  },
+  "url": "https://dibi8.com/kr/tools/hreflang-generator/",
+  "image": "https://picsum.photos/seed/hreflang-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/kr/tools/hreflang-generator/ -->
 # Hreflang 태그 생성기 — 다국어 및 국제 SEO

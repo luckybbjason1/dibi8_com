@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-llm-token-counter"
 tool_id: "llm-token-counter"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""LLM Token Counter — So Sánh Token Hóa GPT-4 / Claude / G...",
+  "description": ""Công cụ đếm token LLM trực tuyến miễn phí. So sánh cách OpenAI GPT-4 / GPT-4o, Anthropic Claude và Google Gemini token hóa văn bản của bạn. Bao gồm số ký tự / từ và chi phí API ước tính."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/llm-token-counter/"
+  },
+  "url": "https://dibi8.com/vi/tools/llm-token-counter/",
+  "image": "https://picsum.photos/seed/llm-token-counter/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/llm-token-counter/ -->
 # LLM Token Counter — So Sánh Token Hóa GPT-4 / Claude / Gemini

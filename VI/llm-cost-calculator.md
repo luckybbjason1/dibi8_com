@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Máy Tính Chi Phí LLM API — GPT-4 / Claude / Gemini"",
+  "description": ""Tính chi phí API LLM hàng tháng. Nhập số token input/output, số request mỗi ngày, chọn mô hình — nhận ngay dự báo chi phí OpenAI / Anthropic / Google."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/llm-cost-calculator/"
+  },
+  "url": "https://dibi8.com/vi/tools/llm-cost-calculator/",
+  "image": "https://picsum.photos/seed/llm-cost-calculator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/llm-cost-calculator/ -->
 # Máy Tính Chi Phí LLM API — GPT-4 / Claude / Gemini

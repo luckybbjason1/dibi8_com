@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-schema-generator"
 tool_id: "schema-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Schema.org JSON-LD 结构化数据生成器"",
+  "description": ""一键生成 Article、Organization、FAQPage、Product、BreadcrumbList 的 Schema.org JSON-LD 结构化数据。Google / Bing / AI 搜索引擎都用它做富文本摘要——SEO 必备。"",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/schema-generator/"
+  },
+  "url": "https://dibi8.com/zh/tools/schema-generator/",
+  "image": "https://picsum.photos/seed/schema-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/schema-generator/ -->
 # Schema.org JSON-LD 结构化数据生成器

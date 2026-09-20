@@ -41,6 +41,37 @@ sources:
 > **Editorial Disclosure**: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.
 
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...",
+  "description": ""2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 지침입니다.". Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-06-30T00:00:00+09:00",
+  "dateModified": "2026-06-30T00:00:00+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/"
+  },
+  "url": "https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/",
+  "image": "https://picsum.photos/seed/ai-agent-frameworks-comparison-2026/1200x630",
+  "keywords": "ai-agents,frameworks,comparison,langchain,crewai,autogen,llamaindex,langgraph",
+  "articleSection": "llm-frameworks"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/ -->
 

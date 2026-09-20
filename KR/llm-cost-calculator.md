@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""LLM API 비용 계산기 — GPT-4 / Claude / Gemini"",
+  "description": ""LLM API 월간 비용 계산. 입력/출력 토큰 수, 일일 요청 수, 모델을 입력하면 OpenAI / Anthropic / Google 비용을 즉시 예측합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/tools/llm-cost-calculator/"
+  },
+  "url": "https://dibi8.com/kr/tools/llm-cost-calculator/",
+  "image": "https://picsum.photos/seed/llm-cost-calculator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/kr/tools/llm-cost-calculator/ -->
 # LLM API 비용 계산기 — GPT-4 / Claude / Gemini

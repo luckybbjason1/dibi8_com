@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Trình Tạo robots.txt — Kiểm Soát AI Crawler (GPTBot, Cla...",
+  "description": ""Tạo robots.txt gọn gàng chỉ với một cú nhấp: đặt sitemap, chặn đường dẫn và chặn các AI crawler như GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, Google-Extended. Sẵn sàng copy-paste vào thư mục gốc website."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/robots-txt-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/robots-txt-generator/",
+  "image": "https://picsum.photos/seed/robots-txt-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/robots-txt-generator/ -->
 # Trình Tạo robots.txt — Kiểm Soát AI Crawler (GPTBot, ClaudeBot, PerplexityBot)

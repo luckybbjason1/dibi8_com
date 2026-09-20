@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-meta-tags-generator"
 tool_id: "meta-tags-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Trình Tạo Meta Tags — SEO Title, Description, Open Graph...",
+  "description": ""Tạo các thẻ meta HTML head sẵn sàng copy-paste — SEO title, description, canonical, Open Graph và Twitter Card — chỉ từ một biểu mẫu đơn giản. Tối ưu cách trang của bạn hiển thị trên Google, Facebook, X và AI search."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/meta-tags-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/meta-tags-generator/",
+  "image": "https://picsum.photos/seed/meta-tags-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # Trình Tạo Meta Tags — SEO Title, Description, Open Graph & Twitter Card
 
 

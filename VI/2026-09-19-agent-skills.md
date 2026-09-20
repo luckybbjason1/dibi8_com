@@ -17,6 +17,37 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: vi
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Addy Osmani Agent Skills: 96K-Star Framework For Product...",
+  "description": "'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/2026-09-19-agent-skills/"
+  },
+  "url": "https://dibi8.com/vi/tools/2026-09-19-agent-skills/",
+  "image": "https://picsum.photos/seed/2026-09-19-agent-skills/1200x630",
+  "keywords": "agent-skills,addy-osmani,claude-code,cursor,ai-editors,skills",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/2026-09-19-agent-skills/ -->
 

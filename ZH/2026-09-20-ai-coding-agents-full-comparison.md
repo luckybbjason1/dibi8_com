@@ -11,6 +11,37 @@ source_url: "https://github.com/opencode-ai/opencode"
 reading_time: 12
 language: "en"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor...",
+  "description": ""Complete comparison of OpenCode (45K stars), Claude Code, Cursor, and Codex AI coding agents. Benchmarks, pricing, and decision framework."",
+  "datePublished": ""2026-09-20"",
+  "dateModified": ""2026-09-20"",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/2026-09-20-ai-coding-agents-full-comparison/"
+  },
+  "url": "https://dibi8.com/zh/tools/2026-09-20-ai-coding-agents-full-comparison/",
+  "image": "https://picsum.photos/seed/2026-09-20-ai-coding-agents-full-comparison/1200x630",
+  "keywords": "ai-coding,comparison,2026,opencode,claude-code,cursor,codex",
+  "articleSection": "ai-tools"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/2026-09-20-ai-coding-agents-full-comparison/ -->
 

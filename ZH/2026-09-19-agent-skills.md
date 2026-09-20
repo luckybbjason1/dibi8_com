@@ -17,6 +17,37 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: zh
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架'",
+  "description": "'了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/2026-09-19-agent-skills/"
+  },
+  "url": "https://dibi8.com/zh/tools/2026-09-19-agent-skills/",
+  "image": "https://picsum.photos/seed/2026-09-19-agent-skills/1200x630",
+  "keywords": "agent-skills,addy-osmani,claude-code,cursor,ai-editors,skills",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/2026-09-19-agent-skills/ -->
 

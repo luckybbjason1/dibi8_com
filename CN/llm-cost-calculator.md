@@ -8,6 +8,37 @@ lastmod: 2026-05-19
 layout: "tool-llm-cost-calculator"
 tool_id: "llm-cost-calculator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""LLM API Cost Calculator — GPT-4, Claude, Gemini"",
+  "description": ""Calculate LLM API monthly cost. Enter your input/output tokens, requests per day, and pick a model — get instant cost projection across OpenAI, Anthropic, and Google models."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/llm-cost-calculator/"
+  },
+  "url": "https://dibi8.com/cn/tools/llm-cost-calculator/",
+  "image": "https://picsum.photos/seed/llm-cost-calculator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # LLM API Cost Calculator — GPT-4, Claude, Gemini
 
 

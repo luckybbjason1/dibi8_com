@@ -11,6 +11,37 @@ layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Trình Tạo Ảnh AI Tốt Nhất 2026'",
+  "description": "'Những trình tạo ảnh AI mã nguồn mở và miễn phí tốt nhất năm 2026 — từ Stable Diffusion đến Flux, ComfyUI đến SDXL. So sánh chất lượng, tốc độ và giá cả.'",
+  "datePublished": "2026-06-28 00:00:00+08:00",
+  "dateModified": "2026-06-28 00:00:00+08:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/best-ai-image-generators/"
+  },
+  "url": "https://dibi8.com/vi/tools/best-ai-image-generators/",
+  "image": "https://picsum.photos/seed/best-ai-image-generators/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/best-ai-image-generators/ -->
 # Trình Tạo Ảnh AI Tốt Nhất 2026

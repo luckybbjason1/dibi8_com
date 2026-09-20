@@ -8,6 +8,37 @@ lastmod: 2026-05-19
 layout: "tool-schema-generator"
 tool_id: "schema-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Schema.org JSON-LD Generator — Article / Organization / ...",
+  "description": ""Generate copy-paste-ready Schema.org JSON-LD structured data for Article, Organization, FAQPage, Product, and BreadcrumbList. Boost SEO with rich snippets — Google, Bing, AI search engines all use it."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/schema-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/schema-generator/",
+  "image": "https://picsum.photos/seed/schema-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # Schema.org JSON-LD Generator — Article / Organization / FAQ / Product
 
 

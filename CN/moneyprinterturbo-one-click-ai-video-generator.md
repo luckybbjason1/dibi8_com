@@ -18,6 +18,37 @@ sources:
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
 lang: en
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...",
+  "description": "'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/",
+  "image": "https://picsum.photos/seed/moneyprinterturbo-one-click-ai-video-generator/1200x630",
+  "keywords": "ai-tools,automation,generator,open-source,video-generation",
+  "articleSection": "ai-tools"
+}
+</script>
+
 ---
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
 description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'

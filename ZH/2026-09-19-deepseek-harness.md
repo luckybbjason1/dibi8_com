@@ -17,6 +17,37 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 lang: zh
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南'",
+  "description": "'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/2026-09-19-deepseek-harness/"
+  },
+  "url": "https://dibi8.com/zh/tools/2026-09-19-deepseek-harness/",
+  "image": "https://picsum.photos/seed/2026-09-19-deepseek-harness/1200x630",
+  "keywords": "deepseek,harness,plugin,ai-agent,dsh,automation,claude-code,cursor",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/2026-09-19-deepseek-harness/ -->
 

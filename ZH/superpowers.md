@@ -19,6 +19,37 @@ license: MIT
 featureImage: ''
 lang: zh
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Superpowers: 200000+ Stars -- Agentic Skills Framework &...",
+  "description": "'探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。'",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-23",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/superpowers/"
+  },
+  "url": "https://dibi8.com/zh/tools/superpowers/",
+  "image": "https://picsum.photos/seed/superpowers/1200x630",
+  "keywords": "agentic-ai,llm-frameworks,shell-scripting,software-development,ai-agents,developer-tools",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/superpowers/ -->
 

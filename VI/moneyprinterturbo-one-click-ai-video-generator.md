@@ -21,6 +21,37 @@ sources:
     url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
 lang: vi
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'MoneyPrinterTurbo: Trình Tạo Video AI Chỉ Với Một Nhấp C...",
+  "description": "'Đưa cho MoneyPrinterTurbo một chủ đề video hoặc từ khóa và nó tự động tạo kịch bản, video có sẵn, phụ đề, nhạc nền và video ngắn HD. Hỗ trợ TikTok, YouTube Shorts, Instagram Reels. Hơn 90.000 sao trên GitHub.'",
+  "datePublished": "2026-06-22",
+  "dateModified": "2026-06-22",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/moneyprinterturbo-one-click-ai-video-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/moneyprinterturbo-one-click-ai-video-generator/",
+  "image": "https://picsum.photos/seed/moneyprinterturbo-one-click-ai-video-generator/1200x630",
+  "keywords": "ai tools,video generation,short videos,automation,self-hosted,docker",
+  "articleSection": "ai-tools"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/moneyprinterturbo-one-click-ai-video-generator/ -->
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'

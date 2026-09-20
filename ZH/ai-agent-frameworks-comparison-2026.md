@@ -47,6 +47,44 @@ sources:
 > **编辑披露**：此比较使用截至 2026 年 6 月 30 日的 GitHub 实时数据（星标数量、提交频率、Fork 数量）。所有代码示例均经过测试和验证。我们不接受任何框架供应商的付款用于包含或排名。
 
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...",
+  "description": "'2026 年前五大开源 AI 代理框架的并排比较。真实的收藏量、代码示例、性能基准，以及为您的项目选择合适框架的实用指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-06-30T00:00:00+09:00",
+  "dateModified": "2026-06-30T00:00:00+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/ai-agent-frameworks-comparison-2026/"
+  },
+  "url": "https://dibi8.com/zh/tools/ai-agent-frameworks-comparison-2026/",
+  "image": "https://picsum.photos/seed/ai-agent-frameworks-comparison-2026/1200x630",
+  "keywords": " 人工智能代理 "
+" 框架 "
+" 比较 "
+" 语言链 "
+" 船员 "
+" 自动生成 "
+" 羊驼索引 "
+" 语言图 ",
+  "articleSection": "llm-frameworks"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/ai-agent-frameworks-comparison-2026/ -->
 

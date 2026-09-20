@@ -17,6 +17,37 @@ license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
 lang: zh
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）'",
+  "description": "'Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。'. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/2026-09-19-agent-reach/"
+  },
+  "url": "https://dibi8.com/zh/tools/2026-09-19-agent-reach/",
+  "image": "https://picsum.photos/seed/2026-09-19-agent-reach/1200x630",
+  "keywords": "agent-reach,ai-agent,scraping,automation,python,no-api-cost",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/2026-09-19-agent-reach/ -->
 

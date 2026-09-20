@@ -23,6 +23,37 @@ draft: false
 aliases:
 - /posts/best-ai-code-generators-2025/
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Best AI Code Generators 2025: GitHub Copilot vs Cursor v...",
+  "description": "'Compare the best AI code generators of 2025: GitHub Copilot, Cursor, Tabnine, Amazon CodeWhisperer, and more. Features, pricing, and use cases explained.'",
+  "datePublished": "2026-05-18 00:00:00+08:00",
+  "dateModified": "2026-05-18 00:00:00+08:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/best-ai-code-generators-2025/"
+  },
+  "url": "https://dibi8.com/cn/tools/best-ai-code-generators-2025/",
+  "image": "https://picsum.photos/seed/best-ai-code-generators-2025/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # Best AI Code Generators 2025: GitHub Copilot vs Cursor vs Tabnine Compared
 
 

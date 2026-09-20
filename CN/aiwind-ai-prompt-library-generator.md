@@ -36,6 +36,37 @@ faqs:
   - q: 'How does AiWind compare to PromptHero, Lexica, and Civitai?'
     a: 'AiWind stands out for fully free access, strong Chinese-language support, and coverage of 10+ models, whereas Lexica covers about 3 models and Civitai focuses mainly on Stable Diffusion. AiWind, PromptHero, and Civitai all support community prompt submissions, while Lexica does not.'
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品",
+  "description": "AiWind 是一个免费 AI 提示词库，收录 1000+ 针对 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-15 04:20:25+09:00",
+  "dateModified": "2026-05-15 04:20:25+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/aiwind-ai-prompt-library-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/aiwind-ai-prompt-library-generator/",
+  "image": "https://picsum.photos/seed/aiwind-ai-prompt-library-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 {</* resource-info */>}
 

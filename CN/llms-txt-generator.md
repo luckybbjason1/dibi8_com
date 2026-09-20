@@ -8,6 +8,37 @@ lastmod: 2026-05-19
 layout: "tool-llms-txt-generator"
 tool_id: "llms-txt-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""llms.txt Generator — Help AI Crawlers (ChatGPT, Claude, ...",
+  "description": ""Generate a valid llms.txt file for your website in seconds. Help AI crawlers like ChatGPT, Claude, and Perplexity understand your site structure and surface your best content. Free, no signup."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/llms-txt-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/llms-txt-generator/",
+  "image": "https://picsum.photos/seed/llms-txt-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # llms.txt Generator — Help AI Crawlers (ChatGPT, Claude, Perplexity) Understand Your Site
 
 

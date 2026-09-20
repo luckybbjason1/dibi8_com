@@ -8,6 +8,37 @@ lastmod: 2026-05-19
 layout: "tool-hreflang-generator"
 tool_id: "hreflang-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Hreflang Tags Generator — Multi-Language & International...",
+  "description": ""Generate copy-paste-ready hreflang link tags for multi-language and international SEO. Map each language to its URL, add x-default, and get clean alternate tags for your HTML head."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/hreflang-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/hreflang-generator/",
+  "image": "https://picsum.photos/seed/hreflang-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # Hreflang Tags Generator — Multi-Language & International SEO
 
 

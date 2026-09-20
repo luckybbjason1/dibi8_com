@@ -8,6 +8,37 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""robots.txt Generator — With AI Crawler Controls (GPTBot,...",
+  "description": ""Generate a clean robots.txt with one click — set sitemap, disallow paths, and block AI crawlers like GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, and Google-Extended. Copy-paste ready for your site root."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/robots-txt-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/robots-txt-generator/",
+  "image": "https://picsum.photos/seed/robots-txt-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # robots.txt Generator — With AI Crawler Controls (GPTBot, ClaudeBot, PerplexityBot)
 
 

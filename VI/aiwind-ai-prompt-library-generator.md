@@ -40,6 +40,37 @@ faqs:
   - q: 'AiWind so sánh với PromptHero, Lexica và Civitai như thế nào?'
     a: 'AiWind nổi bật nhờ truy cập hoàn toàn miễn phí, hỗ trợ tiếng Trung mạnh mẽ và phủ sóng hơn 10 mô hình, trong khi Lexica chỉ hỗ trợ khoảng 3 mô hình và Civitai tập trung chủ yếu vào Stable Diffusion. AiWind, PromptHero và Civitai đều hỗ trợ cộng đồng đóng góp prompt, còn Lexica thì không.'
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品",
+  "description": "AiWind là thư viện prompt AI miễn phí với 1000+ prompt chuyên nghiệp. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-15 04:20:25+09:00",
+  "dateModified": "2026-05-15 04:20:25+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/aiwind-ai-prompt-library-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/aiwind-ai-prompt-library-generator/",
+  "image": "https://picsum.photos/seed/aiwind-ai-prompt-library-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/aiwind-ai-prompt-library-generator/ -->
 

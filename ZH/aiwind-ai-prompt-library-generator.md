@@ -36,6 +36,37 @@ faqs:
   - q: 'AiWind 与 PromptHero、Lexica 和 Civitai 相比如何？'
     a: 'AiWind 的突出优势在于完全免费、强大的中文支持以及覆盖 10+ 个模型，而 Lexica 仅覆盖约 3 个模型，Civitai 则主要专注于 Stable Diffusion。AiWind、PromptHero 和 Civitai 均支持社区提示词投稿，而 Lexica 不支持。'
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品"",
+  "description": ""AiWind 是一个免费 AI 提示词库，收录 1000+ 针对 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney 等主流模型的专业提示词，覆盖写实肖像、赛博朋克、3D 渲染等多种风格。"",
+  "datePublished": "2026-05-15T04:20:25+09:00",
+  "dateModified": "2026-05-15T04:20:25+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/aiwind-ai-prompt-library-generator/"
+  },
+  "url": "https://dibi8.com/zh/tools/aiwind-ai-prompt-library-generator/",
+  "image": "https://picsum.photos/seed/aiwind-ai-prompt-library-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/aiwind-ai-prompt-library-generator/ -->
 

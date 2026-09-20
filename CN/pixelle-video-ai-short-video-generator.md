@@ -38,6 +38,37 @@ faqs:
   - q: 'What can Pixelle-Video do beyond basic video generation?'
     a: 'It includes three extension modules: a Digital Human Avatar that turns a photo into a lip-synced talking-head video in Korean, Chinese, or English; Image-to-Video that animates static images; and Motion Transfer that maps motion from a reference video onto a still image.'
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Pixelle-Video Review: AI Auto Short Video Generator — On...",
+  "description": "Pixelle-Video is an AI-powered automatic short video engine. Input a. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-15 04:20:25+09:00",
+  "dateModified": "2026-05-15 04:20:25+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/"
+  },
+  "url": "https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/",
+  "image": "https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 # Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video
 
 {</* resource-info */>}

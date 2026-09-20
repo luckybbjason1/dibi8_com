@@ -41,6 +41,37 @@ faqs:
   - q: 'Pixelle-Video có thể làm gì ngoài tạo video cơ bản?'
     a: 'Công cụ này bao gồm ba mô-đun mở rộng: Digital Human Avatar — biến một bức ảnh thành video đầu người nói có đồng bộ môi bằng tiếng Hàn, tiếng Trung hoặc tiếng Anh; Image-to-Video — chuyển ảnh tĩnh thành video động; và Motion Transfer — ánh xạ chuyển động từ video tham chiếu lên ảnh tĩnh.'
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động B...",
+  "description": "Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-15 04:20:25+09:00",
+  "dateModified": "2026-05-15 04:20:25+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/pixelle-video-ai-short-video-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/pixelle-video-ai-short-video-generator/",
+  "image": "https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/pixelle-video-ai-short-video-generator/ -->
 # Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động Bằng AI, Nhập Chủ Đề

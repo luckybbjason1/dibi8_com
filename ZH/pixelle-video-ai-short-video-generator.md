@@ -38,6 +38,37 @@ faqs:
   - q: 'Pixelle-Video 除基础视频生成外还能做什么？'
     a: '它包含三个扩展模块：数字人 Avatar，可将一张照片转换为支持韩语、中文或英语的唇形同步讲话头像视频；Image-to-Video，可将静态图片制作成动态视频；Motion Transfer，可将参考视频中的动作映射到静止图像上。'
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pixelle-Video 评测：AI 全自动短视频生成引擎，输入主题自动生成完整视频",
+  "description": "Pixelle-Video 是一款开源 AI 全自动短视频生成引擎，输入主题即可自动生成文案、AI 配图、语音解说和背景音乐的完整视频。. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-05-15 04:20:25+09:00",
+  "dateModified": "2026-05-15 04:20:25+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/pixelle-video-ai-short-video-generator/"
+  },
+  "url": "https://dibi8.com/zh/tools/pixelle-video-ai-short-video-generator/",
+  "image": "https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/pixelle-video-ai-short-video-generator/ -->
 # Pixelle-Video 评测：AI 全自动短视频生成引擎，输入主题自动生成完整视频

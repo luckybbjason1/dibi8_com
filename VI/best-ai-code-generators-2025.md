@@ -26,6 +26,37 @@ draft: false
 aliases:
 - /posts/best-ai-code-generators-2025/
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'Công Cụ Tạo Mã AI Tốt Nhất 2025: So Sánh GitHub Copilot,...",
+  "description": "'Đánh giá chi tiết 5 công cụ tạo mã AI hàng đầu 2025: GitHub Copilot, Cursor, Tabnine, Amazon CodeWhisperer và JetBrains AI. So sánh tính năng, giá cả và hiệu suất.'",
+  "datePublished": "2026-05-18 00:00:00+08:00",
+  "dateModified": "2026-05-18 00:00:00+08:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/best-ai-code-generators-2025/"
+  },
+  "url": "https://dibi8.com/vi/tools/best-ai-code-generators-2025/",
+  "image": "https://picsum.photos/seed/best-ai-code-generators-2025/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/best-ai-code-generators-2025/ -->
 # Công Cụ Tạo Mã AI Tốt Nhất 2025: So Sánh GitHub Copilot, Cursor và Tabnine

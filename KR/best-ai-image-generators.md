@@ -11,6 +11,37 @@ layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "'2026 최고의 AI 이미지 생성기'",
+  "description": "'2026 년 최고의 오픈소스 및 무료 AI 이미지 생성기 — Stable Diffusion부터 Flux, ComfyUI부터 SDXL까지. 품질, 속도, 가격을 비교하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.",
+  "datePublished": "2026-06-28 00:00:00+08:00",
+  "dateModified": "2026-06-28 00:00:00+08:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/kr/tools/best-ai-image-generators/"
+  },
+  "url": "https://dibi8.com/kr/tools/best-ai-image-generators/",
+  "image": "https://picsum.photos/seed/best-ai-image-generators/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/kr/tools/best-ai-image-generators/ -->
 # 2026 최고의 AI 이미지 생성기

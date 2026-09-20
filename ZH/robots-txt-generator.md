@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-robots-txt-generator"
 tool_id: "robots-txt-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""robots.txt 生成器 — 含 AI 爬虫控制（GPTBot、ClaudeBot、PerplexityBot）"",
+  "description": ""一键生成干净的 robots.txt：设置 sitemap、禁止路径，并屏蔽 GPTBot、ChatGPT-User、ClaudeBot、PerplexityBot、CCBot、Google-Extended 等 AI 爬虫。复制粘贴到网站根目录即可。"",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/tools/robots-txt-generator/"
+  },
+  "url": "https://dibi8.com/zh/tools/robots-txt-generator/",
+  "image": "https://picsum.photos/seed/robots-txt-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/zh/tools/robots-txt-generator/ -->
 # robots.txt 生成器 — 含 AI 爬虫控制（GPTBot、ClaudeBot、PerplexityBot）

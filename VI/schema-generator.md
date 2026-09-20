@@ -11,6 +11,37 @@ lastmod: 2026-05-19
 layout: "tool-schema-generator"
 tool_id: "schema-generator"
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""Trình Tạo Schema.org JSON-LD — Article / Organization / ...",
+  "description": ""Tạo dữ liệu có cấu trúc Schema.org JSON-LD sẵn sàng copy-paste cho Article, Organization, FAQPage, Product, BreadcrumbList. Google, Bing, AI search đều dùng — công cụ SEO bắt buộc."",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-05-18",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/schema-generator/"
+  },
+  "url": "https://dibi8.com/vi/tools/schema-generator/",
+  "image": "https://picsum.photos/seed/schema-generator/1200x630",
+  "keywords": "",
+  "articleSection": "Technology"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/schema-generator/ -->
 # Trình Tạo Schema.org JSON-LD — Article / Organization / FAQ / Product

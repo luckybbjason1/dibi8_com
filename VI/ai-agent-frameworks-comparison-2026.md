@@ -41,6 +41,37 @@ sources:
 > **Tiết lộ của biên tập**: Sự so sánh này sử dụng dữ liệu GitHub theo thời gian thực (số sao, tần suất cam kết, số lượt fork) kể từ ngày 30 tháng 6 năm 2026. Tất cả các ví dụ về mã đều được kiểm tra và xác minh. Chúng tôi không chấp nhận thanh toán từ bất kỳ nhà cung cấp khung nào để đưa vào hoặc xếp hạng. 
 
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": ""LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...",
+  "description": ""So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, điểm chuẩn hiệu suất và hướng dẫn thực tế để chọn khung phù hợp cho dự án của bạn."",
+  "datePublished": "2026-06-30T00:00:00+09:00",
+  "dateModified": "2026-06-30T00:00:00+09:00",
+  "author": {
+    "@type": "Organization",
+    "name": "dibi8"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/tools/ai-agent-frameworks-comparison-2026/"
+  },
+  "url": "https://dibi8.com/vi/tools/ai-agent-frameworks-comparison-2026/",
+  "image": "https://picsum.photos/seed/ai-agent-frameworks-comparison-2026/1200x630",
+  "keywords": "ai-agents,frameworks,comparison,langchain,crewai,autogen,llamaindex,langgraph",
+  "articleSection": "llm-frameworks"
+}
+</script>
+
 
 <!-- canonical: https://dibi8.com/vi/tools/ai-agent-frameworks-comparison-2026/ --> 
 
