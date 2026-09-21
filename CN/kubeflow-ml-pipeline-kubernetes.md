@@ -1,6 +1,6 @@
 ---
 title: 'Kubeflow 2026: Run Complete ML Pipelines on Kubernetes —...
-description: 'A complete guide to deploying Kubeflow on Kubernetes for ML pipelines. Covers installation, components, benchmarks, production hardening, and real-world deployment patterns.'
+description: "A complete guide to deploying Kubeflow on Kubernetes for ML pipelines. Covers installation, components, benchmarks, production hardening, and real-world deployment patterns."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'kubeflow/kubeflow'
+github_repo: "kubeflow/kubeflow"
 stars: 14000
 maintainer: kubeflow
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [kubeflow, kubernetes, 'machine learning', 'ml pipeline', mlops, 'kubeflow pipelines', kserve, katib, 'data science']
-aliases: - /posts/kubeflow-ml-pipeline-kubernetes/-
+categories: ["data-science"]
+tags: ["kubeflow", "kubernetes", "machine learning", "ml pipeline", "mlops", "kubeflow pipelines", "kserve", "katib", "data science"]
+aliases:
+  - /posts/kubeflow-ml-pipeline-kubernetes/-
 ---
 {{</* resource-info */>}}
 

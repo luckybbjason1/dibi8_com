@@ -1,6 +1,6 @@
 ---
 title: 'Hoppscotch: 79,200 GitHub Stars — Open-Source API Develo...
-description: 'Hoppscotch (HOPP) is an open-source API development ecosystem. Docker, GitHub Actions, Node.js, Vue.js compatible. Covers hoppscotch tutorial, self-hosting, CLI automation, and comparison vs alternatives.'
+description: "Hoppscotch (HOPP) is an open-source API development ecosystem. Docker, GitHub Actions, Node.js, Vue.js compatible. Covers hoppscotch tutorial, self-hosting, CLI automation, and comparison vs alternatives."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hoppscotch/hoppscotch'
+github_repo: "https://github.com/hoppscotch/hoppscotch"
 stars: 79200
 maintainer: hoppscotch
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [hoppscotch, 'api-testing', 'postman-alternative', 'open-source', docker, cli, 'rest-api', graphql]
-aliases: - /posts/hoppscotch/-
+categories: ["dev-utils"]
+tags: ["hoppscotch", "api-testing", "postman-alternative", "open-source", "docker", "cli", "rest-api", "graphql"]
+aliases:
+  - /posts/hoppscotch/-
 ---
 {{</* resource-info */>}}
 

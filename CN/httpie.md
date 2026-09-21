@@ -1,6 +1,6 @@
 ---
 title: 'HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs ...
-description: 'HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions. Compatible with Python, pip, Homebrew, Docker. Covers installation, benchmark comparison, production hardening, and FAQ.'
+description: "HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions. Compatible with Python, pip, Homebrew, Docker. Covers installation, benchmark comparison, production hardening, and FAQ."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/httpie/cli'
+github_repo: "https://github.com/httpie/cli"
 stars: 38200
 maintainer: httpie
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [httpie, cli, 'http-client', 'api-testing', 'curl-alternative', json, terminal, 'developer-tools']
-aliases: - /posts/httpie/-
+categories: ["dev-utils"]
+tags: ["httpie", "cli", "http-client", "api-testing", "curl-alternative", "json", "terminal", "developer-tools"]
+aliases:
+  - /posts/httpie/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
 title: 'Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
-description: 'Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastra vs LangChain, huong dan cai dat, workflow, RAG, bo nho, observability, benchmark va hardening san xuat.'
+description: "Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastra vs LangChain, huong dan cai dat, workflow, RAG, bo nho, observability, benchmark va hardening san xuat."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/mastra-ai/mastra'
+github_repo: "https://github.com/mastra-ai/mastra"
 stars: 24050
 maintainer: 'mastra-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mastra, typescript, 'ai-framework', agent, llm, 'mastra-huong-dan', 'mastra-vs-langchain', 'ma-nguon-mo']
-aliases: - /vi/posts/mastra/
+categories: ["llm-frameworks"]
+tags: ["mastra", "typescript", "ai-framework", "agent", "llm", "mastra-huong-dan", "mastra-vs-langchain", "ma-nguon-mo"]
+aliases:
+  - /vi/posts/mastra/
 ---
 
 {{</* resource-info */>}}
@@ -156,7 +157,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: 'Tim kiem tai lieu noi bo',
+  description: "Tim kiem tai lieu noi bo",
   inputSchema: z.object({
     query: z.string().describe('Truy van tim kiem'),
   }),

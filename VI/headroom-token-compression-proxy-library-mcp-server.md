@@ -1,17 +1,16 @@
 ---
 title: 'Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token...
-description: 'Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơn 60-95% token, cùng câu trả lời. Thư viện, proxy và máy chủ MCP. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
+description: "Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơn 60-95% token, cùng câu trả lời. Thư viện, proxy và máy chủ MCP. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
-tags: ['nén token', 'tối ưu token LLM', 'máy chủ MCP', 'nén RAG', 'Headroom', 'tối ưu ngữ cảnh', 'giảm chi phí token', 'AI agent']
-github_repo: 'https://github.com/chopratejas/headroom'
+tags: ["nén token", "tối ưu token LLM", "máy chủ MCP", "nén RAG", "Headroom", "tối ưu ngữ cảnh", "giảm chi phí token", "AI agent"]
+github_repo: "https://github.com/chopratejas/headroom"
 stars: 19745
 maintainer: 'chopratejas'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
-lang: vi
 ---
 
 # Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token, thư viện & máy chủ MCP — Hướng dẫn thực tế 2026

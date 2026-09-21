@@ -1,6 +1,6 @@
 ---
 title: 'Activepieces: 200+ 앱과 AI 액션을 갖춘 오픈소스 Zapier 대안 — 2026년 셀...
-description: '5분 만에 Activepieces를 배포하세요. 200+ 앱 통합, AI 액션, 비주얼 빌더를 갖춘 오픈소스 워크플로우 자동화 플랫폼으로 Zapier 비용의 일부만으로 운영할 수 있습니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "5분 만에 Activepieces를 배포하세요. 200+ 앱 통합, AI 액션, 비주얼 빌더를 갖춘 오픈소스 워크플로우 자동화 플랫폼으로 Zapier 비용의 일부만으로 운영할 수 있습니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'activepieces/activepieces'
+github_repo: "activepieces/activepieces"
 stars: 13000
 maintainer: activepieces
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [activepieces, '워크플로우 자동화', 'zapier 대안', 셀프호스팅, docker, 노코드, 오픈소스, typescript, 'ai 액션', 웹훅]
-aliases: - /kr/posts/activepieces-workflow-automation/
+categories: ["dev-utils"]
+tags: ["activepieces", "워크플로우 자동화", "zapier 대안", "셀프호스팅", "docker", "노코드", "오픈소스", "typescript", "ai 액션", "웹훅"]
+aliases:
+  - /kr/posts/activepieces-workflow-automation/
 ---
 
 {{</* resource-info */>}}

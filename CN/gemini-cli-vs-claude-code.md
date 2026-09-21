@@ -1,10 +1,10 @@
 ---
 title: 'Gemini CLI vs Claude Code in 2026: Which AI Coding Agent...
-description: 'Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, agent style, multi-modal, tool use, migration tips. Updated 2026.'
+description: "Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, agent style, multi-modal, tool use, migration tips. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["gemini-cli", "claude-code", "google", "anthropic", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Is Gemini CLI really free?'
     a: 'Yes — Gemini CLI ships with the most generous free tier in any AI coding agent today: 60 model requests per minute and 1,000 requests per day using gemini-2.0-flash-thinking, no credit card required, just a Google account. Claude Code has no free tier — you pay per token via the Anthropic API or via the $20/month Claude Pro plan with limited Claude Code usage.'
   - q: 'Which has a larger context window?'

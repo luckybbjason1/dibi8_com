@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/aitoearn-guide/
+aliases:
+  - /zh/posts/aitoearn-guide/
 faqs: - q: 'AiToEarn 是 Buffer 和 Hootsuite 的免费替代品吗？'
     a: '是的。AiToEarn 是开源软件（MIT 协议）、自托管部署，每月费用为 $0，而 Buffer 每月 $120 起、Hootsuite 每月 $249 起。它还取消了付费套餐对发帖量的限制。'
   - q: 'AiToEarn 能同时发布到小红书（RED）和 Instagram 吗？'

@@ -1,6 +1,6 @@
 ---
-title: '向量数据库对比2025：Pinecone vs Weaviate vs Chroma vs Milvus选型指南'
-description: '2025年主流向量数据库全面对比：Pinecone、Weaviate、Chroma、Milvus的功能、性能、价格及适用场景分析，助你选出最适合RAG的向量数据库。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "向量数据库对比2025：Pinecone vs Weaviate vs Chroma vs Milvus选型指南"
+description: "2025年主流向量数据库全面对比：Pinecone、Weaviate、Chroma、Milvus的功能、性能、价格及适用场景分析，助你选出最适合RAG的向量数据库。"
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/vector-database-comparison/-
+aliases:
+  - /posts/vector-database-comparison/-
 ---
 
 {</* resource-info */>}

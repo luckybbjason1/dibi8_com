@@ -1,22 +1,23 @@
 ---
-title: '开源 AI 智能体框架 Top 10（2026）：按生产采用率排名'
-description: '按 2026 年生产采用率排名的十大开源 AI 智能体框架：LangGraph、CrewAI、AutoGen、Mastra、Agno、Superagent、OpenHands、Smol Agents、Phidata、OpenAI Swarm。优势、坑点及按使用场景的选型建议。'
+title: "开源 AI 智能体框架 Top 10（2026）：按生产采用率排名"
+description: "按 2026 年生产采用率排名的十大开源 AI 智能体框架：LangGraph、CrewAI、AutoGen、Mastra、Agno、Superagent、OpenHands、Smol Agents、Phidata、OpenAI Swarm。优势、坑点及按使用场景的选型建议。"
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: LLM 框架
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 开源
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 各开源社区
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agent', framework, langgraph, crewai, autogen, 2026]
-aliases: - /zh/posts/open-source-ai-agent-framework-top-10-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agent", "framework", "langgraph", "crewai", "autogen", "2026"]
+aliases:
+  - /zh/posts/open-source-ai-agent-framework-top-10-2026/
 faq: - q: "2026 年应该选哪个 AI 智能体框架？"
     a: "需要带状态的生产级图工作流选 LangGraph。需要多智能体角色协作选 CrewAI。研究场景和微软生态选 AutoGen。TypeScript 优先的团队选 Mastra。按语言偏好和架构风格挑选——它们的相似度比营销宣传里说得更高。"
   - q: "智能体框架值得被锁定吗？"

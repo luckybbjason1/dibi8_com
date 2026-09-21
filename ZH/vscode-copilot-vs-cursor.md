@@ -1,10 +1,10 @@
 ---
-title: 'VS Code Copilot vs Cursor 2026：哪款 AI 编码工具更值得选？'
-description: 'GitHub Copilot in VS Code（微软）和 Cursor 横向对比 — 价格 $10 vs $20/月、自动补全 vs agent、企业集成。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "VS Code Copilot vs Cursor 2026：哪款 AI 编码工具更值得选？"
+description: "GitHub Copilot in VS Code（微软）和 Cursor 横向对比 — 价格 $10 vs $20/月、自动补全 vs agent、企业集成。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [vscode, copilot, cursor, ai-coding, comparison, dev-tools, github]
-categories: [vs]
+tags: ["vscode", "copilot", "cursor", "ai-coding", "comparison", "dev-tools", "github"]
+categories: ["vs"]
 faqs: - q: 'GitHub Copilot 和 Cursor 哪个更便宜？'
     a: 'GitHub Copilot in VS Code 更便宜，个人版 $10/月，Cursor Pro 版 $20/月。Copilot Business 是 $19/用户/月，Enterprise $39/用户/月。纯比价格 Copilot 便宜一半 — 但 Cursor 在 $20 这一档里塞了更激进的 agent 功能。'
   - q: '多文件 agent 编辑哪个更强？'

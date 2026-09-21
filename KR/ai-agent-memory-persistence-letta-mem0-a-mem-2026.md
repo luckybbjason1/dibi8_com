@@ -1,22 +1,23 @@
 ---
-title: 'AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교'
-description: '영속 메모리가 없는 Agent는 세션마다 처음부터 다시 시작합니다. 동일한 멀티 세션 워크로드에서 Letta, Mem0, A-MEM을 실측 — 누가 진짜로 컨텍스트를 유지하는지, 비용은 어떤지, 언제 직접 만들어야 하는지.'
+title: "AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교"
+description: "영속 메모리가 없는 Agent는 세션마다 처음부터 다시 시작합니다. 동일한 멀티 세션 워크로드에서 Letta, Mem0, A-MEM을 실측 — 누가 진짜로 컨텍스트를 유지하는지, 비용은 어떤지, 언제 직접 만들어야 하는지."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
-source_version: 'Letta 0.8 / Mem0 0.2 / A-MEM 1.3'
+source_version: "Letta 0.8 / Mem0 0.2 / A-MEM 1.3"
 licensing_model: 오픈 소스
 license_type: 'Apache-2.0 / MIT'
 github_repo: ''
 stars: 0
 maintainer: 'Letta / Mem0AI / A-MEM 팀'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agent', memory, persistence, letta, mem0, 2026]
-aliases: - /kr/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agent", "memory", "persistence", "letta", "mem0", "2026"]
+aliases:
+  - /kr/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
 faq: - q: "AI Agent에 영속 메모리가 왜 필요한가요?"
     a: "영속화가 없으면 모든 세션이 0에서 다시 시작됩니다 — Agent는 어제의 선호, 결정, 컨텍스트를 기억하지 못합니다. 지속적인 협업(코딩 파트너, 리서치 어시스턴트, 고객 응대 챗봇)에서는 영속 메모리가 도구와 파트너를 가르는 분기점입니다."
   - q: "세 가지 접근 방식의 차이는?"

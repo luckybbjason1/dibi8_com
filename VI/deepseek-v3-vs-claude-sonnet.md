@@ -1,10 +1,10 @@
 ---
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weight...
-description: 'So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ context, SWE-bench, đa ngôn ngữ, khả dụng API. Cập nhật 2026.'
+description: "So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ context, SWE-bench, đa ngôn ngữ, khả dụng API. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
-categories: [vs]
+tags: ["deepseek", "claude-sonnet", "anthropic", "llm", "comparison", "open-source", "ai-coding"]
+categories: ["vs"]
 faqs: - q: 'DeepSeek V3.5 có thực sự rẻ hơn Claude Sonnet 4.6 gấp 10 lần không?'
     a: 'Theo giá token thô thì đúng. DeepSeek V3.5 tính khoảng $0.27/triệu token input và $1.10/triệu token output, trong khi Claude Sonnet 4.6 là $3 input / $15 output. Tức rẻ hơn ~11x input và ~13x output. Tuy nhiên Sonnet dùng ít token hơn cho mỗi tác vụ (nén lập luận tốt hơn) và hỗ trợ 1M context (DeepSeek 128K) — nên khoảng cách chi phí thực tế gần 5-7x hơn.'
   - q: 'Cái nào tốt hơn cho coding, DeepSeek V3.5 hay Claude Sonnet 4.6?'

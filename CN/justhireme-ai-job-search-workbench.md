@@ -20,7 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/justhireme-ai-job-search-workbench/
+aliases:
+  - /posts/justhireme-ai-job-search-workbench/
 faqs: - q: 'Is JustHireMe free and open source?'
     a: 'Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.'
   - q: 'Does JustHireMe require an AI API key or send my data to the cloud?'

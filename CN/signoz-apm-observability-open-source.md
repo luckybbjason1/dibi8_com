@@ -1,6 +1,6 @@
 ---
 title: 'SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...
-description: 'Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that replaces Datadog at 10% the cost — built on OpenTelemetry.'
+description: "Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that replaces Datadog at 10% the cost — built on OpenTelemetry."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'SigNoz/signoz'
+github_repo: "SigNoz/signoz"
 stars: 22000
 maintainer: SigNoz
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [signoz, apm, observability, 'distributed tracing', opentelemetry, 'datadog alternative', 'self-hosted', docker, kubernetes, metrics, logs, monitoring]
-aliases: - /posts/signoz-apm-observability-open-source/-
+categories: ["dev-utils"]
+tags: ["signoz", "apm", "observability", "distributed tracing", "opentelemetry", "datadog alternative", "self-hosted", "docker", "kubernetes", "metrics", "logs", "monitoring"]
+aliases:
+  - /posts/signoz-apm-observability-open-source/-
 ---
 {{</* resource-info */>}}
 
@@ -579,7 +580,7 @@ For 1 million spans/day ingestion with 7-day hot retention: 4 vCPU, 8 GB RAM, 10
 
 Yes. SigNoz's OTel Collector includes a Prometheus receiver. Configure it in `otel-collector-config.yaml`: ```yaml
 receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
-          static_configs: - targets: ['my-app:9090']
+          static_configs: - targets: [my-app:9090]
 ```
 
 Existing Prometheus scrape configs can be imported directly. SigNoz will store the metrics in Druid for long-term querying.

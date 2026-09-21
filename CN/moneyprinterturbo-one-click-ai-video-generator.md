@@ -1,14 +1,14 @@
 ---
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'
+description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
 tags: ["ai-tools", "automation", "generator", "open-source", "video-generation"]
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-categories: ['ai-tools']
+categories: ["ai-tools"]
 slug: moneyprinterturbo-one-click-ai-video-generator
 featureImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-aliases: ['/moneyprinterturbo']
+aliases: [/moneyprinterturbo]
 sources: - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'
@@ -48,15 +48,15 @@ sources: - name: GitHub
 
 ---
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'
+description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
-categories: ['ai-tools']
+tags: ["ai tools", "video generation", "short videos", "automation", "self-hosted", "docker"]
+categories: ["ai-tools"]
 slug: moneyprinterturbo-one-click-ai-video-generator
 
-aliases: ['/moneyprinterturbo']
+aliases: [/moneyprinterturbo]
 sources: - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'
   - name: 'Demo Videos'

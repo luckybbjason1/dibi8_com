@@ -1,6 +1,6 @@
 ---
-title: 'TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指南'
-description: '掌握 TensorTrade 进行基于强化学习的算法交易。构建自定义 Gym 环境，集成 Stable Baselines3，部署生产级投资组合管理策略并获取真实基准测试数据。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指南"
+description: "掌握 TensorTrade 进行基于强化学习的算法交易。构建自定义 Gym 环境，集成 Stable Baselines3，部署生产级投资组合管理策略并获取真实基准测试数据。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'tensortrade-org/tensortrade'
+github_repo: "tensortrade-org/tensortrade"
 stars: 4300
 maintainer: 'tensortrade-org'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [tensortrade, 强化学习, 算法交易, 'openai gym', 'stable baselines3', 投资组合管理, python, 机器学习, 加密货币交易, 量化金融]
-aliases: - /zh/posts/tensortrade-rl-trading/-
+categories: ["ai-trading"]
+tags: ["tensortrade", "强化学习", "算法交易", "openai gym", "stable baselines3", "投资组合管理", "python", "机器学习", "加密货币交易", "量化金融"]
+aliases:
+  - /zh/posts/tensortrade-rl-trading/-
 ---
 
 {{</* resource-info */>}}

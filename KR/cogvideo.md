@@ -1,6 +1,6 @@
 ---
-title: 'CogVideo: 12.7K Stars — 2026 완전한 텍스트-비디오 설정 가이드'
-description: 'CogVideo(CogVideoX)는 Zhipu AI가 개발한 텍스트 및 이미지-비디오 생성 모델입니다. ComfyUI, Diffusers, SAT 및 Wan/HunyuanVideo/Open-Sora 통합을 지원합니다. 설치, Docker, 추론, 미세 조정, 벤치마크를 다룹니다.'
+title: "CogVideo: 12.7K Stars — 2026 완전한 텍스트-비디오 설정 가이드"
+description: "CogVideo(CogVideoX)는 Zhipu AI가 개발한 텍스트 및 이미지-비디오 생성 모델입니다. ComfyUI, Diffusers, SAT 및 Wan/HunyuanVideo/Open-Sora 통합을 지원합니다. 설치, Docker, 추론, 미세 조정, 벤치마크를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/zai-org/CogVideo'
+github_repo: "https://github.com/zai-org/CogVideo"
 stars: 12700
 maintainer: 'zai-org'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [cogvideo, cogvideox, '텍스트-비디오', 확산트랜스포머, 'zhipu-ai', 비디오생성, '오픈소스-ai', comfyui]
-aliases: - /kr/posts/cogvideo/
+categories: ["ai-tools"]
+tags: ["cogvideo", "cogvideox", "텍스트-비디오", "확산트랜스포머", "zhipu-ai", "비디오생성", "오픈소스-ai", "comfyui"]
+aliases:
+  - /kr/posts/cogvideo/
 ---
 
 {{</* resource-info */>}}

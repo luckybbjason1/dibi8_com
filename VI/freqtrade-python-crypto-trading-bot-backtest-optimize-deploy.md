@@ -1,17 +1,16 @@
 ---
 title: 'Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — ...
-description: 'Freqtrade (51.300 sao GitHub) là bot giao dịch crypto mã nguồn mở viết bằng Python. Backtest chiến lược, tối ưu hyperopt, triển khai API 20+ exchange. Bao gồm cài đặt, phát triển chiến lược và benchmark backtest thực tế.'
+description: "Freqtrade (51.300 sao GitHub) là bot giao dịch crypto mã nguồn mở viết bằng Python. Backtest chiến lược, tối ưu hyperopt, triển khai API 20+ exchange. Bao gồm cài đặt, phát triển chiến lược và benchmark backtest thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
-tags: ['freqtrade', 'bot giao dịch crypto', 'giao dịch Python', 'backtest chiến lược', 'tối ưu hyperopt', 'API crypto', 'giao dịch self-hosted', 'giao dịch định lượng']
-github_repo: 'https://github.com/freqtrade/freqtrade'
+tags: ["freqtrade", "bot giao dịch crypto", "giao dịch Python", "backtest chiến lược", "tối ưu hyperopt", "API crypto", "giao dịch self-hosted", "giao dịch định lượng"]
+github_repo: "https://github.com/freqtrade/freqtrade"
 stars: 51300
 maintainer: 'xmatthias'
 license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
-lang: vi
 ---
 
 # Freqtrade: 51.300 sao cho Bot giao dịch Crypto Python — Backtest, Tối ưu, Triển khai — Hướng dẫn thực tế 2026

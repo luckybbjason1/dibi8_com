@@ -1,6 +1,6 @@
 ---
 title: 'Matplotlib vs Seaborn vs Plotly vs Observable: 2024년 데이터...
-description: 'Python 데이터 시각화 4대 도구를 기능, 사용성, 인터랙티비티 관점에서 비교합니다. EDA, 대시보드, 웹 출판 목적별 최적의 라이브러리 선택 가이드를 제공합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Python 데이터 시각화 4대 도구를 기능, 사용성, 인터랙티비티 관점에서 비교합니다. EDA, 대시보드, 웹 출판 목적별 최적의 라이브러리 선택 가이드를 제공합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-visualization-tools-python-comparison/
+aliases:
+  - /posts/data-visualization-tools-python-comparison/
 ---
 
 # Matplotlib vs Seaborn vs Plotly vs Observable: 2024년 데이터 시각화 도구 종합 가이드

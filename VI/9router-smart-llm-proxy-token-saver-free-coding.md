@@ -23,7 +23,8 @@ maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/9router-smart-llm-proxy-token-saver-free-coding/
+aliases:
+  - /vi/posts/9router-smart-llm-proxy-token-saver-free-coding/
 faqs: - q: '9Router là gì và nó hoạt động như thế nào?'
     a: '9Router là một smart proxy mã nguồn mở, tự lưu trữ, nằm giữa công cụ lập trình AI của bạn và các nhà cung cấp model, mặc định chạy trên localhost:20128. Thay vì gọi trực tiếp Claude hay OpenAI, công cụ của bạn gửi yêu cầu đến 9Router, và 9Router định tuyến chúng qua hơn 40 nhà cung cấp bằng logic fallback thông minh cùng khả năng nén token.'
   - q: 'Sử dụng 9Router có tốn tiền không?'

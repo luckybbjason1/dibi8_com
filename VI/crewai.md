@@ -1,6 +1,6 @@
 ---
 title: 'CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướn...
-description: 'CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tương thích với OpenAI, Anthropic, Ollama, LangChain và LlamaIndex. Bao gồm cài đặt, vai trò agent, luồng công việc, triển khai production và benchmark.'
+description: "CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tương thích với OpenAI, Anthropic, Ollama, LangChain và LlamaIndex. Bao gồm cài đặt, vai trò agent, luồng công việc, triển khai production và benchmark."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/crewAIInc/crewAI'
+github_repo: "https://github.com/crewAIInc/crewAI"
 stars: 51759
 maintainer: crewAIInc
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [crewai, 'multi-agent', 'ai-agent', python, 'llm-orchestration', automation, 'open-source', 'machine-learning']
-aliases: - /vi/posts/crewai/
+categories: ["llm-frameworks"]
+tags: ["crewai", "multi-agent", "ai-agent", "python", "llm-orchestration", "automation", "open-source", "machine-learning"]
+aliases:
+  - /vi/posts/crewai/
 - /vi/resources/llm-frameworks/crewai-multi-agent-orchestration/
 ---
 

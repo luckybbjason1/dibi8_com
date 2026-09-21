@@ -1,10 +1,10 @@
 ---
-title: 'Zed vs Cursor 2026 对比：原生速度 vs AI 深度 — 诚实横评'
-description: 'Zed（Rust 原生、GPU 加速、开源）与 Cursor（VS Code 分支、AI 优先）逐项对比 — 速度、AI 功能、定价、生态、平台。2026 更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Zed vs Cursor 2026 对比：原生速度 vs AI 深度 — 诚实横评"
+description: "Zed（Rust 原生、GPU 加速、开源）与 Cursor（VS Code 分支、AI 优先）逐项对比 — 速度、AI 功能、定价、生态、平台。2026 更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [zed, cursor, ai-editor, code-editor, ai-coding, comparison, dev-tools, rust]
-categories: [vs]
+tags: ["zed", "cursor", "ai-editor", "code-editor", "ai-coding", "comparison", "dev-tools", "rust"]
+categories: ["vs"]
 faqs: - q: 'Zed 和 Cursor 哪个更快？'
     a: 'Zed 更快。它用 Rust 编写、GPU 加速渲染，且没有 Electron 层，因此按键延迟、打开文件、大文件滚动在大型仓库里都近乎瞬时。Cursor 是 VS Code 的分支，继承了 Electron 较重的运行时，所以内存占用更高、在超大文件上响应略慢。如果编辑器的原始速度是你的首要诉求，Zed 胜；如果 AI 功能深度比毫秒级响应更重要，Cursor 的开销通常可以接受。'
   - q: 'Zed 和 Cursor 谁的 AI 编程功能更先进？'

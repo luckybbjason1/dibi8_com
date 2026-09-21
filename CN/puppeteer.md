@@ -1,6 +1,6 @@
 ---
 title: 'Puppeteer: 94,300 GitHub Stars — Production Browser Auto...
-description: 'Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub Actions, Jest, Mocha, TypeScript. Covers puppeteer docker setup, production deployment, browser automation tutorial, and CI/CD integration.'
+description: "Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub Actions, Jest, Mocha, TypeScript. Covers puppeteer docker setup, production deployment, browser automation tutorial, and CI/CD integration."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/puppeteer/puppeteer'
+github_repo: "https://github.com/puppeteer/puppeteer"
 stars: 94300
 maintainer: puppeteer
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [puppeteer, 'browser-automation', 'headless-chrome', 'web-scraping', docker, testing, typescript]
-aliases: - /posts/puppeteer/-
+categories: ["dev-utils"]
+tags: ["puppeteer", "browser-automation", "headless-chrome", "web-scraping", "docker", "testing", "typescript"]
+aliases:
+  - /posts/puppeteer/-
 ---
 {{</* resource-info */>}}
 
@@ -310,7 +311,7 @@ jobs: puppeteer: runs-on: ubuntu-latest
 // jest.config.js
 module.exports = {
   testEnvironment: node,
-  testMatch: ['**/*.test.mjs'],
+  testMatch: [**/*.test.mjs],
   testTimeout: 30000,
   globals: {
     'ts-jest': { useESM: true }
@@ -574,7 +575,7 @@ setInterval(async () => {
     if (!healthy) {
       console.warn('Unhealthy browser detected, restarting...');
       await entry.browser.close();
-      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox'] });
+      entry.browser = await puppeteer.launch({ headless: new, args: [--no-sandbox] });
       entry.inUse = false;
     }
   }

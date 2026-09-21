@@ -21,7 +21,8 @@ maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/
+aliases:
+  - /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/
 faqs: - q: '什么是 9Router，它是如何工作的？'
     a: '9Router 是一款开源、自托管的智能代理，位于你的 AI 编程工具与模型提供商之间，默认运行在 localhost:20128 上。你的工具不再直接调用 Claude 或 OpenAI，而是把请求发送给 9Router，由它通过智能回退逻辑和 token 压缩，将请求路由到 40+ 个提供商之间。'
   - q: '使用 9Router 需要花钱吗？'

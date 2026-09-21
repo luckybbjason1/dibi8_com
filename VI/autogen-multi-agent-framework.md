@@ -1,6 +1,6 @@
 ---
 title: 'Hướng Dẫn AutoGen 2025: Xây Dựng Hệ Thống AI Đa Agent Dễ...
-description: 'Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code execution và triển khai production systems.'
+description: "Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code execution và triển khai production systems."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/autogen-multi-agent-framework/
+aliases:
+  - /posts/autogen-multi-agent-framework/
 ---
 
 {</* resource-info */>}

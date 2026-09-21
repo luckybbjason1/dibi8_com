@@ -1,13 +1,12 @@
 ---
 title: Windsurf AI IDE — 당신과 함께 생각하는 에이전트 코드 에디터
 description: Codeium 의 에이전트 AI IDE, Windsurf 완전 가이드. 코드를 작성하고, 디버깅하고, 에이전트처럼 기능을 배포합니다. 가격, 벤치마크, 실제 워크플로우 포함.. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ['ai-ide', 'coding-agent', 'windsurf', 'codeium', 'cursor-alternative', 'agentic-ai']
+tags: ["ai-ide", "coding-agent", "windsurf", "codeium", "cursor-alternative", "agentic-ai"]
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: windsurf-ai-ide
-lang: ko
 ---
 
 ## TL;DR

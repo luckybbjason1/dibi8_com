@@ -1,6 +1,6 @@
 ---
-title: '코드 품질 도구 가이드: ESLint, Prettier, Black, Ruff 및 기타 도구'
-description: 'JavaScript/TypeScript와 Python의 코드 품질 도구를 상세히 비교합니다. ESLint, Prettier, Black, Ruff의 설정 방법과 통합 전략, 그리고 Go와 Rust의 포맷터까지 완벽 정리했습니다.'
+title: "코드 품질 도구 가이드: ESLint, Prettier, Black, Ruff 및 기타 도구"
+description: "JavaScript/TypeScript와 Python의 코드 품질 도구를 상세히 비교합니다. ESLint, Prettier, Black, Ruff의 설정 방법과 통합 전략, 그리고 Go와 Rust의 포맷터까지 완벽 정리했습니다."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/
+aliases:
+  - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
 
 {</* resource-info */>}
@@ -168,7 +169,7 @@ black .
 ```toml
 [tool.black]
 line-length = 88
-target-version = ['py311']
+target-version = [py311]
 include = '\.pyi?$'
 extend-exclude = '''
 /(

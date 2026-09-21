@@ -21,7 +21,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/pixelle-video-ai-short-video-generator/
+aliases:
+  - /vi/posts/pixelle-video-ai-short-video-generator/
 faqs: - q: 'Pixelle-Video là gì?'
     a: 'Pixelle-Video là một AI engine mã nguồn mở, cấp phép MIT, có khả năng biến một chủ đề duy nhất thành một video ngắn hoàn chỉnh. Chỉ cần một đầu vào, nó tự động viết kịch bản, tạo hình ảnh hoặc video AI phù hợp, tổng hợp giọng đọc bằng TTS, và thêm nhạc nền trước khi render video cuối cùng.'
   - q: 'Pixelle-Video có miễn phí và mã nguồn mở không?'

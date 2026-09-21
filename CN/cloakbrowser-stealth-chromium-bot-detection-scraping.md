@@ -1,12 +1,12 @@
 ---
 title: 'CloakBrowser: Stealth Chromium That Passes Every Bot Det...
-description: 'CloakBrowser (25,077 GitHub stars) is a stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed. Includes setup tutorial, anti-detection breakdown, and benchmarks.'
+description: "CloakBrowser (25,077 GitHub stars) is a stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed. Includes setup tutorial, anti-detection breakdown, and benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
-tags: ['stealth browser', 'CloakBrowser', 'bot detection', 'web scraping', 'fingerprint spoofing', 'Playwright replacement', 'anti-detection', 'scraping tool']
-github_repo: 'https://github.com/CloakHQ/CloakBrowser'
+tags: ["stealth browser", "CloakBrowser", "bot detection", "web scraping", "fingerprint spoofing", "Playwright replacement", "anti-detection", "scraping tool"]
+github_repo: "https://github.com/CloakHQ/CloakBrowser"
 stars: 25077
 maintainer: 'CloakHQ'
 license: MIT
@@ -332,7 +332,7 @@ PROXY_POOL = [
 ]
 
 def batch_scrape(urls, pool_size=3): for i, url in enumerate(urls): proxy = PROXY_POOL[i % len(PROXY_POOL)]
-        print(f"Scraping {url} with proxy {proxy['country']}")
+        print(f"Scraping {url} with proxy {proxy[country]}")
         scrape_with_cloak(url)
         time.sleep(random.uniform(1, 3))  # Human-like delay
 ```

@@ -1,6 +1,6 @@
 ---
 title: '12-Factor Agents 해설: 프로덕션급 LLM 소프트웨어를 위한 12개 원칙 (2026 완전...
-description: 'HumanLayer가 발표한 12-Factor Agents (GitHub 22K+ stars)는 데모 수준의 LLM 프로토타입과 실제 고객이 의존하는 프로덕션 에이전트를 가르는 설계 패턴을 정의합니다. 12개 원칙 전부 해설 — 프롬프트 소유, 컨텍스트 윈도우 소유, stateless reducer 모델, 제어 흐름 소유, tool call을 통한 human-in-the-loop, 컴팩트한 에러, 작고 집중된 에이전트 등. Claude Code, Codex, OpenCode, MCP 기반 에이전트 스택 실전 적용 가이드 포함.'
+description: "HumanLayer가 발표한 12-Factor Agents (GitHub 22K+ stars)는 데모 수준의 LLM 프로토타입과 실제 고객이 의존하는 프로덕션 에이전트를 가르는 설계 패턴을 정의합니다. 12개 원칙 전부 해설 — 프롬프트 소유, 컨텍스트 윈도우 소유, stateless reducer 모델, 제어 흐름 소유, tool call을 통한 human-in-the-loop, 컴팩트한 에러, 작고 집중된 에이전트 등. Claude Code, Codex, OpenCode, MCP 기반 에이전트 스택 실전 적용 가이드 포함."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/humanlayer/12-factor-agents'
+github_repo: "https://github.com/humanlayer/12-factor-agents"
 stars: 22000
 maintainer: humanlayer
-last_maintained: '2026-05-22'
+last_maintained: "2026-05-22"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', humanlayer, 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
-aliases: - /kr/posts/12-factor-agents-production-llm-software-2026/
+categories: ["llm-frameworks"]
+tags: ["12-factor-agents", "production-ai", "llm-engineering", "agent-architecture", "humanlayer", "agent-design-patterns", "context-window", "prompt-engineering", "tool-calls", "developer-productivity"]
+aliases:
+  - /kr/posts/12-factor-agents-production-llm-software-2026/
 ---
 
 # 12-Factor Agents 해설: 프로덕션급 LLM 소프트웨어를 위한 12개 원칙 (2026 완전 가이드)

@@ -1,6 +1,6 @@
 ---
 title: 'Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng...
-description: 'Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Cài đặt Docker, tích hợp IDE, benchmark, và hardening production.'
+description: "Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Cài đặt Docker, tích hợp IDE, benchmark, và hardening production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/TabbyML/tabby'
+github_repo: "https://github.com/TabbyML/tabby"
 stars: 33530
 maintainer: TabbyML
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [tabby, 'tro-ly-lap-trinh-ai', 'tu-luu-tru', 'thay-the-github-copilot', 'hoan-thanh-code', docker, 'ma-nguon-mo']
-aliases: - /vi/posts/tabby/
+categories: ["llm-frameworks"]
+tags: ["tabby", "tro-ly-lap-trinh-ai", "tu-luu-tru", "thay-the-github-copilot", "hoan-thanh-code", "docker", "ma-nguon-mo"]
+aliases:
+  - /vi/posts/tabby/
 ---
 
 {{</* resource-info */>}}

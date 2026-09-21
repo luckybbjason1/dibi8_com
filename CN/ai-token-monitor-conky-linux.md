@@ -1,26 +1,27 @@
 ---
 title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...
-description: 'Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.'
+description: "Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
-source_version: '1.0.0'
+source_version: "1.0.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'luckybbjason1/ai-token-monitor'
+github_repo: "luckybbjason1/ai-token-monitor"
 stars: 0
 maintainer: luckybbjason1
-last_maintained: '2026-06-06'
+last_maintained: "2026-06-06"
 featureImage: '/images/articles/ai-token-monitor-conky-linux.png'
 draft: false
-categories: ['dev-utils']
-tags: ['ai token monitor', 'claude quota', 'gemini quota tracker', 'grok token', 'kimi api', 'conky widget', 'linux desktop', 'open source', python, 'developer tools']
-aliases: - /posts/ai-token-monitor-conky-linux/
+categories: ["dev-utils"]
+tags: ["ai token monitor", "claude quota", "gemini quota tracker", "grok token", "kimi api", "conky widget", "linux desktop", "open source", "python", "developer tools"]
+aliases:
+  - /posts/ai-token-monitor-conky-linux/
 faqs: - q: 'Does the AI Token Monitor work on macOS or Windows?'
     a: 'Currently the widget requires Conky, which is Linux-only. The core Python scripts (api_fetcher.py) work on any OS, but the visual display layer depends on Conky. A cross-platform version using tkinter exists in the repo (monitor.py) but is experimental — GNOME users report the frameless window may not render correctly.'
   - q: 'How does the tool read Claude API token balance?'

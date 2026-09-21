@@ -1,22 +1,23 @@
 ---
 title: 'Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
-description: 'Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu benchmark cụ thể, nơi mỗi cái thắng, nơi mỗi cái thua, và thực tế chi phí BYO API key so với các phương án thương mại.'
+description: "Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu benchmark cụ thể, nơi mỗi cái thắng, nơi mỗi cái thua, và thực tế chi phí BYO API key so với các phương án thương mại."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
-source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
+source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Aider (paul-gauthier) / Cline (cline-bot) / OpenHands (All-Hands-AI)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases: - /vi/posts/aider-cline-openhands-2026-honest-comparison/
+categories: ["dev-utils"]
+tags: ["ai-coding", "open-source", "aider", "cline", "openhands", "2026"]
+aliases:
+  - /vi/posts/aider-cline-openhands-2026-honest-comparison/
 faq: - q: "Coding agent mã nguồn mở nào tốt nhất năm 2026?"
     a: "Tùy hoàn cảnh. Aider cho chỉnh sửa nhận biết git ưu tiên terminal (không phụ thuộc model, nhanh nhất). Cline cho tích hợp VS Code IDE-native (UX tốt nhất cho người không dùng CLI). OpenHands cho công việc agent đa bước hoàn toàn tự động (browser + shell + repo). Hầu hết người dùng có kinh nghiệm giữ Aider làm mặc định + thêm Cline hoặc OpenHands cho các tác vụ cụ thể."
   - q: "Chi phí so với Claude Code hoặc Cursor như thế nào?"

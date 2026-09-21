@@ -1,6 +1,6 @@
 ---
 title: 'LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전...
-description: 'LangGraph는 장기 실행, 상태 유지 AI 에이전트용 저수준 오케스트레이션 프레임워크. GitHub 32.6k stars, v1.2.1. 그래프 디자인, 영구 실행, human-in-loop 체크포인트, LangSmith 디버깅, LangGraph가 CrewAI / AutoGen / 순수 LangChain을 이기는 때까지 다루는 실제 배포 가이드.'
+description: "LangGraph는 장기 실행, 상태 유지 AI 에이전트용 저수준 오케스트레이션 프레임워크. GitHub 32.6k stars, v1.2.1. 그래프 디자인, 영구 실행, human-in-loop 체크포인트, LangSmith 디버깅, LangGraph가 CrewAI / AutoGen / 순수 LangChain을 이기는 때까지 다루는 실제 배포 가이드."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -8,22 +8,23 @@ tech_stack: - Python
   - PostgreSQL
   - Redis
 application_domain: Llm Frameworks
-source_version: '1.2.1'
+source_version: "1.2.1"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langchain-ai/langgraph'
+github_repo: "https://github.com/langchain-ai/langgraph"
 stars: 32600
 maintainer: 'langchain-ai'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [langgraph, 에이전트, '상태 유지', 오케스트레이션, langchain, 프로덕션]
-aliases: - /posts/langgraph-stateful-agent-orchestration-2026/
+categories: ["llm-frameworks"]
+tags: ["langgraph", "에이전트", "상태 유지", "오케스트레이션", "langchain", "프로덕션"]
+aliases:
+  - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
 간단한 LLM 에이전트를 만들고 프로세스가 재시작되면 모든 걸 잊고, 툴 콜 하나가 타임아웃되면 진행의 절반을 잃고, 두 이벤트가 동시에 발생하면 상태가 조용히 손상되는 걸 봤다면 — **LangGraph**가 뚫으려는 벽에 부딪힌 것입니다.

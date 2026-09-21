@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Windsurf 2026: 어떤 AI IDE가 더 좋은가?'
-description: 'Cursor와 Windsurf(Codeium 제작)의 정면 비교 — Composer vs Cascade, 가격, 성능, 마이그레이션 팁. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Cursor vs Windsurf 2026: 어떤 AI IDE가 더 좋은가?"
+description: "Cursor와 Windsurf(Codeium 제작)의 정면 비교 — Composer vs Cascade, 가격, 성능, 마이그레이션 팁. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, windsurf, codeium, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Cursor와 Windsurf 중 어느 쪽이 더 저렴한가요?'
     a: 'Windsurf가 더 저렴합니다. Pro 요금이 월 $15, Cursor Pro는 월 $20입니다. Windsurf의 무료 등급도 더 너그럽습니다(매일 5회 Cascade 크레딧). 순수 가격만 보면 Windsurf가 월 $5-$10 절약되고, 가격당 성능은 비슷합니다.'
   - q: '멀티 파일 에이전트 편집은 어느 쪽이 더 강한가요?'

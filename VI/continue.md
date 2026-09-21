@@ -1,6 +1,6 @@
 ---
 title: 'Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh...
-description: 'Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthropic, Gemini. So sánh với GitHub Copilot, Cursor, Tabby. Hướng dẫn cài đặt, ví dụ cấu hình, benchmark.'
+description: "Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthropic, Gemini. So sánh với GitHub Copilot, Cursor, Tabby. Hướng dẫn cài đặt, ví dụ cấu hình, benchmark."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/continuedev/continue'
+github_repo: "https://github.com/continuedev/continue"
 stars: 33277
 maintainer: continuedev
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['continue.dev', 'tro-ly-lap-trinh-ai', 'vs-code', jetbrains, 'ma-nguon-mo', ollama, 'thay-the-copilot', 'llm-local', mcp]
-aliases: - /vi/posts/continue/
+categories: ["llm-frameworks"]
+tags: ["continue.dev", "tro-ly-lap-trinh-ai", "vs-code", "jetbrains", "ma-nguon-mo", "ollama", "thay-the-copilot", "llm-local", "mcp"]
+aliases:
+  - /vi/posts/continue/
 ---
 
 {{</* resource-info */>}}

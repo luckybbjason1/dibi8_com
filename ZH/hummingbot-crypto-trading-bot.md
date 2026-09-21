@@ -1,6 +1,6 @@
 ---
-title: 'Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南'
-description: 'Hummingbot v2实战部署指南，开源加密货币交易机器人，支持50+交易所连接器。涵盖Docker安装、自定义策略、回测、DEX网关和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南"
+description: "Hummingbot v2实战部署指南，开源加密货币交易机器人，支持50+交易所连接器。涵盖Docker安装、自定义策略、回测、DEX网关和生产环境加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'hummingbot/hummingbot'
+github_repo: "hummingbot/hummingbot"
 stars: 10500
 maintainer: hummingbot
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /zh/posts/hummingbot-crypto-trading-bot/-
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /zh/posts/hummingbot-crypto-trading-bot/-
 ---
 
 {{</* resource-info */>}}
@@ -29,11 +30,11 @@ aliases: - /zh/posts/hummingbot-crypto-trading-bot/-
 
 每个加密货币交易者都有过这样的经历 —— 你发现了Binance和Coinbase之间的套利机会，但等你手动转账并执行两边交易时，价差已经消失了。或者更糟：你花钱买了"专业"的黑盒机器人，结果发现它只是开源项目换个皮，价格翻了20倍，而且没有技术支持。
 
-来看看真实数据。根据2025年对2,400名量化加密货币交易者的调查，**73%**的人在六个月内至少放弃了一款商业交易机器人，不透明定价和缺乏策略定制是前两大原因。剩下的27%？大多数人转向了开源替代方案。
+来看看真实数据。根据2025年对2", "400名量化加密货币交易者的调查，**73%**的人在六个月内至少放弃了一款商业交易机器人，不透明定价和缺乏策略定制是前两大原因。剩下的27%？大多数人转向了开源替代方案。
 
-这就是 **Hummingbot** —— 采用Apache-2.0许可证的算法交易框架，拥有超过 **10,500个GitHub星标**，可连接 **50+交易所**（包括Binance、Coinbase、Kraken），并通过统一网关连接去中心化协议。在本指南中，你将在五分钟内从零开始运行一个做市机器人，然后扩展到生产级策略。
+这就是 **Hummingbot** —— 采用Apache-2.0许可证的算法交易框架，拥有超过 **10", "500个GitHub星标**，可连接 **50+交易所**（包括Binance、Coinbase、Kraken），并通过统一网关连接去中心化协议。在本指南中，你将在五分钟内从零开始运行一个做市机器人，然后扩展到生产级策略。
 
-> **联盟营销说明：** 本指南包含交易所联盟链接。通过 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 或 [OKX](https://www.promoohubly.com/join/12190433) 注册，无需额外费用即可支持本项目。如需AI增强交易，请查看 [Minara](https://minara.ai/r/OSXG4X)。
+> **联盟营销说明：** 本指南包含交易所联盟链接。通过 [Binance"](https://www.bsmkweb.cc/register?ref=DIBI8) 或 [OKX](https://www.promoohubly.com/join/12190433) 注册，无需额外费用即可支持本项目。如需AI增强交易，请查看 [Minara](https://minara.ai/r/OSXG4X)。
 
 ## Hummingbot 是什么？
 

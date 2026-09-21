@@ -19,11 +19,12 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/calesthio/OpenMontage'
-last_maintained: '2026-06-21'
+github_repo: "https://github.com/calesthio/OpenMontage"
+last_maintained: "2026-06-21"
 draft: false
-categories: ['ai-tools']
-aliases: - /posts/openmontage-agentic-video-production-system/
+categories: ["ai-tools"]
+aliases:
+  - /posts/openmontage-agentic-video-production-system/
 faqs: - q: 'What is OpenMontage?'
     a: "OpenMontage is the world's first open-source, agentic video production system with 12 production pipelines, 52 production tools, and 500+ agent skills. It turns any AI coding assistant (Claude Code, Cursor, Copilot, Windsurf, or Codex) into a full video production studio. Unlike single-prompt video generators like Sora, Runway, and Pika, OpenMontage orchestrates a complete production workflow — research, scripting, asset generation, editing, and final composition — through structured pipeline manifests and stage director skills."
   - q: 'How does OpenMontage differ from Sora, Runway, and Pika?'

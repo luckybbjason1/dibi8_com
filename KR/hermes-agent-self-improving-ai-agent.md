@@ -20,7 +20,8 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/hermes-agent-self-improving-ai-agent/
+aliases:
+  - /ko/posts/hermes-agent-self-improving-ai-agent/
 - /posts/genericagent-self-evolving-ai-agent.ko/
 faqs: - q: 'Hermes Agent는 Claude Code, Cursor, GitHub Copilot 같은 도구와 무엇이 다른가요?'
     a: 'Hermes Agent에는 내장된 자가 학습 루프, 세션 간 지속되는 메모리, 그리고 그런 도구들에는 없는 스킬 시스템이 있습니다. 또한 6개의 메시징 플랫폼에서 동작하고, cron 스케줄링과 MCP를 지원하며, 오픈 소스이자 셀프 호스팅이 가능합니다. 반면 다른 도구들은 CLI, 데스크톱, 또는 IDE 전용이며 구독료나 API 요금을 부과합니다.'

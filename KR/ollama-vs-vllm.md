@@ -1,10 +1,10 @@
 ---
-title: 'Ollama vs vLLM 2026: 로컬 개발의 간결함 vs 프로덕션 처리량'
-description: 'Ollama(간단한 로컬 LLM 러너)와 vLLM(고처리량 프로덕션 추론 엔진) 항목별 비교 — 사용 편의성, 처리량, 하드웨어, 동시성, 규모 비용. 2026 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Ollama vs vLLM 2026: 로컬 개발의 간결함 vs 프로덕션 처리량"
+description: "Ollama(간단한 로컬 LLM 러너)와 vLLM(고처리량 프로덕션 추론 엔진) 항목별 비교 — 사용 편의성, 처리량, 하드웨어, 동시성, 규모 비용. 2026 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [ollama, vllm, local-llm, inference, llm-serving, comparison, dev-tools, self-hosted]
-categories: [vs]
+tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'LLM 서빙에 Ollama와 vLLM 중 무엇을 써야 하나요?'
     a: '로컬에서 한두 명에게 서빙한다면 — 노트북, Mac, 단일 개발 머신 — 그리고 명령 하나로 끝나는 경험을 원한다면 Ollama를 쓰세요. 프로덕션에서 다수의 동시 사용자에게 서빙하며 GPU에서 높은 처리량이 필요하면 vLLM을 쓰세요. 경험칙: 로컬 개발·프로토타입은 Ollama, 규모 있는 프로덕션 배포는 vLLM. 많은 팀이 개발 단계에서 Ollama를 쓰고 프로덕션 배포 시 vLLM으로 전환합니다.'
   - q: '왜 부하 상황에서 vLLM이 Ollama보다 빠른가요?'

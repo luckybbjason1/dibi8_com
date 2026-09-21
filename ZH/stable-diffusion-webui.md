@@ -1,6 +1,6 @@
 ---
-title: 'Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南'
-description: 'Stable Diffusion WebUI (AUTOMATIC1111) 是最流行的本地 AI 图像生成 Web 界面。兼容 ControlNet、LoRA、ComfyUI 工作流。涵盖 Windows、Linux、Docker 安装、扩展配置、生产环境加固和 GPU 基准测试。'
+title: "Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南"
+description: "Stable Diffusion WebUI (AUTOMATIC1111) 是最流行的本地 AI 图像生成 Web 界面。兼容 ControlNet、LoRA、ComfyUI 工作流。涵盖 Windows、Linux、Docker 安装、扩展配置、生产环境加固和 GPU 基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
+github_repo: "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
 stars: 159000
 maintainer: AUTOMATIC1111
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['stable-diffusion', automatic1111, 图像生成, 'ai-webui', controlnet, lora, docker, gpu]
-aliases: - /zh/posts/stable-diffusion-webui/-
+categories: ["ai-tools"]
+tags: ["stable-diffusion", "automatic1111", "图像生成", "ai-webui", "controlnet", "lora", "docker", "gpu"]
+aliases:
+  - /zh/posts/stable-diffusion-webui/-
 ---
 
 {{</* resource-info */>}}

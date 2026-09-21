@@ -22,7 +22,8 @@ maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/9router-smart-llm-proxy-token-saver-free-coding/
+aliases:
+  - /kr/posts/9router-smart-llm-proxy-token-saver-free-coding/
 faqs: - q: '9Router란 무엇이며 어떻게 작동하나요?'
     a: '9Router는 AI 코딩 도구와 모델 제공업체 사이에 위치하는 오픈소스 셀프 호스팅 스마트 프록시로, 기본적으로 localhost:20128에서 실행됩니다. Claude나 OpenAI를 직접 호출하는 대신, 도구가 9Router로 요청을 보내면 9Router가 지능형 폴백 로직과 토큰 압축을 사용해 40개 이상의 제공업체로 요청을 라우팅합니다.'
   - q: '9Router를 사용하는 데 비용이 드나요?'

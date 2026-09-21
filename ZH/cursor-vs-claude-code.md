@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Claude Code 2026：哪个 AI 编程工具更好？'
-description: 'Cursor 和 Claude Code 横向对比 — 价格、性能、适用场景、迁移建议。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Cursor vs Claude Code 2026：哪个 AI 编程工具更好？"
+description: "Cursor 和 Claude Code 横向对比 — 价格、性能、适用场景、迁移建议。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, claude-code, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "claude-code", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Cursor 和 Claude Code 哪个更便宜？'
     a: 'Cursor 起步价 $20/月；Claude Code 是按 token 计费（通过 Anthropic API），重度用户通常每月花 $200-400。要可预测的月费选 Cursor；偶尔重度使用且能控制用量，Claude Code 反而更便宜。'
   - q: 'Cursor 和 Claude Code 可以一起用吗？'

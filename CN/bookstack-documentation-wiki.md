@@ -1,6 +1,6 @@
 ---
 title: 'BookStack: The Developer-Friendly Documentation Wiki wit...
-description: 'A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes.'
+description: "A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'BookStackApp/BookStack'
+github_repo: "BookStackApp/BookStack"
 stars: 18700
 maintainer: BookStackApp
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [bookstack, documentation, wiki, 'self-hosted', php, laravel, 'knowledge base', markdown, docker, 'open source']
-aliases: - /posts/bookstack-documentation-wiki/-
+categories: ["dev-utils"]
+tags: ["bookstack", "documentation", "wiki", "self-hosted", "php", "laravel", "knowledge base", "markdown", "docker", "open source"]
+aliases:
+  - /posts/bookstack-documentation-wiki/-
 ---
 {{</* resource-info */>}}
 
@@ -274,7 +275,7 @@ For context: Confluence Cloud charges $6.05/user/month. At 50 users, that is $30
 name: Publish API Docs to BookStack
 
 on: push: branches: [main]
-    paths: ['docs/**']
+    paths: [docs/**]
 
 jobs: publish: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
@@ -284,7 +285,7 @@ jobs: publish: runs-on: ubuntu-latest
           curl -X PUT \
             -H "Authorization: Token ${{ secrets.BOOKSTACK_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"name": "API Documentation", "html": "'"$(cat docs/api.html | base64 -w 0)"'"}' \
+            -d '{"name": "API Documentation", "html": "'$(cat docs/api.html | base64 -w 0)'"}' \
             "https://docs.yourdomain.com/api/pages/42"
 ```
 

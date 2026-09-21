@@ -1,6 +1,6 @@
 ---
-title: 'Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战'
-description: 'Browser Use 是一款开源 Python 框架，通过 Playwright 连接 LLM 与真实浏览器。支持 OpenAI、Anthropic、Gemini 及本地模型。涵盖安装配置、WebVoyager 基准测试、Selenium 对比、生产环境加固与 Docker 部署。'
+title: "Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战"
+description: "Browser Use 是一款开源 Python 框架，通过 Playwright 连接 LLM 与真实浏览器。支持 OpenAI、Anthropic、Gemini 及本地模型。涵盖安装配置、WebVoyager 基准测试、Selenium 对比、生产环境加固与 Docker 部署。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/browser-use/browser-use'
+github_repo: "https://github.com/browser-use/browser-use"
 stars: 94731
 maintainer: 'browser-use'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['browser-use', ai智能体, playwright, 浏览器自动化, 网络爬虫, 大语言模型, python, 开源]
-aliases: - /zh/posts/browser-use/-
+categories: ["llm-frameworks"]
+tags: ["browser-use", "ai智能体", "playwright", "浏览器自动化", "网络爬虫", "大语言模型", "python", "开源"]
+aliases:
+  - /zh/posts/browser-use/-
 ---
 
 {{</* resource-info */>}}

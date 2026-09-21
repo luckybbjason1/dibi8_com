@@ -1,6 +1,6 @@
 ---
-title: 'LlamaIndex vs LangChain 2025: 당신에게 맞는 LLM 프레임워크는?'
-description: '2025년 기준 LangChain과 LlamaIndex의 상세 비교. 아키텍처, RAG 성능, 에이전트 지원, 학습 곡선, 통합성을 표와 코드 예제로 분석한다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "LlamaIndex vs LangChain 2025: 당신에게 맞는 LLM 프레임워크는?"
+description: "2025년 기준 LangChain과 LlamaIndex의 상세 비교. 아키텍처, RAG 성능, 에이전트 지원, 학습 곡선, 통합성을 표와 코드 예제로 분석한다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/llamaindex-vs-langchain/
+aliases:
+  - /posts/llamaindex-vs-langchain/
 ---
 
 {</* resource-info */>}

@@ -1,17 +1,16 @@
 ---
 title: 'cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센...
-description: 'cc-switch는 (95,900 GitHub star) Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent를 하나의 제어 센터로 통합하는 크로스 플랫폼 데스크톱 도구입니다. 단일 바이너리, 의존성 없음. 설정 튜토리얼, 아키텍처 분석, 실제 벤치마크 포함.'
+description: "cc-switch는 (95,900 GitHub star) Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, Hermes Agent를 하나의 제어 센터로 통합하는 크로스 플랫폼 데스크톱 도구입니다. 단일 바이너리, 의존성 없음. 설정 튜토리얼, 아키텍처 분석, 실제 벤치마크 포함."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
-tags: ['AI CLI 관리', 'Claude Code 대안', 'AI 코딩 도구', '개발자 생산성', '멀티 에이전트 CLI', 'cc-switch', 'AI 코딩 에이전트', 'CLI 프록시']
-github_repo: 'https://github.com/farion1231/cc-switch'
+tags: ["AI CLI 관리", "Claude Code 대안", "AI 코딩 도구", "개발자 생산성", "멀티 에이전트 CLI", "cc-switch", "AI 코딩 에이전트", "CLI 프록시"]
+github_repo: "https://github.com/farion1231/cc-switch"
 stars: 95900
 maintainer: 'farion1231'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
-lang: ko
 ---
 
 # cc-switch: 6개 이상의 AI 코딩 에이전트를 통합하는 크로스 플랫폼 데스크톱 CLI 제어 센터 — 2026 실전 가이드

@@ -1,6 +1,6 @@
 ---
 title: 'Đánh giá ViMax: Sinh video đa cảnh theo kiểu agentic từ ...
-description: 'ViMax (7.1K+ stars trên GitHub) của Hong Kong University Data Science Lab là framework agentic video generation mã nguồn mở đầu tiên được cộng đồng đón nhận rộng rãi. Thay vì prompt-to-video một phát ăn ngay như Sora hay Runway, nó điều phối bốn vai AI — Đạo diễn, Biên kịch, Nhà sản xuất, Bộ sinh video — để tạo video đa cảnh dài hơi từ một ý tưởng duy nhất. Phân tích đầy đủ pipeline agentic, các backend hỗ trợ (Gemini Flash, MiniMax, Google Veo), các bước cài đặt, workflow idea-to-video và script-to-video, cùng so sánh thẳng thắn với Sora, OpenSora, Runway.'
+description: "ViMax (7.1K+ stars trên GitHub) của Hong Kong University Data Science Lab là framework agentic video generation mã nguồn mở đầu tiên được cộng đồng đón nhận rộng rãi. Thay vì prompt-to-video một phát ăn ngay như Sora hay Runway, nó điều phối bốn vai AI — Đạo diễn, Biên kịch, Nhà sản xuất, Bộ sinh video — để tạo video đa cảnh dài hơi từ một ý tưởng duy nhất. Phân tích đầy đủ pipeline agentic, các backend hỗ trợ (Gemini Flash, MiniMax, Google Veo), các bước cài đặt, workflow idea-to-video và script-to-video, cùng so sánh thẳng thắn với Sora, OpenSora, Runway."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/HKUDS/ViMax'
+github_repo: "https://github.com/HKUDS/ViMax"
 stars: 7100
 maintainer: HKUDS
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [vimax, 'agentic-video', 'ai-video-generation', hkuds, 'multi-agent', veo, 'long-form-video', 'video-ai', 'open-source-video', 'rag-screenwriting']
-aliases: - /vi/posts/vimax-agentic-video-generation-multi-agent-2026/
+categories: ["ai-tools"]
+tags: ["vimax", "agentic-video", "ai-video-generation", "hkuds", "multi-agent", "veo", "long-form-video", "video-ai", "open-source-video", "rag-screenwriting"]
+aliases:
+  - /vi/posts/vimax-agentic-video-generation-multi-agent-2026/
 ---
 
 ## Ba giới hạn đã chặn đứng AI video trong 2025

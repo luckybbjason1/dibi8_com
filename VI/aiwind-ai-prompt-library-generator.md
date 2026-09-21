@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/aiwind-ai-prompt-library/
+aliases:
+  - /vi/posts/aiwind-ai-prompt-library/
 faqs: - q: 'AiWind có miễn phí không?'
     a: 'Có, AiWind là thư viện prompt AI hoàn toàn miễn phí tại aiwind.org, không có gói trả phí. Nó cung cấp hơn 1000 prompt chuyên nghiệp và được cập nhật liên tục.'
   - q: 'AiWind hỗ trợ prompt cho những mô hình AI tạo ảnh nào?'

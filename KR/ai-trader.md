@@ -18,7 +18,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/ai-trader/
+aliases:
+  - /kr/posts/ai-trader/
 faqs: - q: 'HKUDS가 개발한 AI-Trader란 무엇인가요?'
     a: 'AI-Trader는 홍콩대학교 데이터과학 연구실(HKUDS)이 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템입니다. 강화학습과 멀티 에이전트 협업 방식을 활용해 주식, 암호화폐, 외환, 선물 거래를 지원하며 MIT 라이선스로 배포됩니다.'
   - q: 'AI-Trader는 어떤 시장과 자산을 지원하나요?'

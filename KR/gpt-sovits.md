@@ -1,6 +1,6 @@
 ---
-title: 'GPT-SoVITS: 57.5K+ Stars — AI 음성 클로닝 프로덕션 배포 가이드 2026'
-description: 'GPT-SoVITS (GSV)는 제로샷 기능을 갖춘 퓨샷 음성 클로닝 및 TTS 도구. ComfyUI, RVC, MeloTTS와 통합 가능. Docker 배포, 음성 학습, API 설정 및 프로덕션 하드닝 포함.'
+title: "GPT-SoVITS: 57.5K+ Stars — AI 음성 클로닝 프로덕션 배포 가이드 2026"
+description: "GPT-SoVITS (GSV)는 제로샷 기능을 갖춘 퓨샷 음성 클로닝 및 TTS 도구. ComfyUI, RVC, MeloTTS와 통합 가능. Docker 배포, 음성 학습, API 설정 및 프로덕션 하드닝 포함."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RVC-Boss/GPT-SoVITS'
+github_repo: "https://github.com/RVC-Boss/GPT-SoVITS"
 stars: 57500
 maintainer: 'RVC-Boss'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [음성클로닝, 텍스트음성변환, 'gpt-sovits', tts, ai음성, docker, rvc, python]
-aliases: - /kr/posts/gpt-sovits/
+categories: ["ai-tools"]
+tags: ["음성클로닝", "텍스트음성변환", "gpt-sovits", "tts", "ai음성", "docker", "rvc", "python"]
+aliases:
+  - /kr/posts/gpt-sovits/
 ---
 
 {{</* resource-info */>}}

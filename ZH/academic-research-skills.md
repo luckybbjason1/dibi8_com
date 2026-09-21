@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: academic-research-skills
 category: dev-utils
-tags: ['学术研究', '文献综述', 'AI 研究', '论文分析', '综合', 'claude code', '研究自动化']
+tags: ["学术研究", "文献综述", "AI 研究", "论文分析", "综合", "claude code", "研究自动化"]
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
 images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"

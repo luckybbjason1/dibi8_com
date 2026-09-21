@@ -1,11 +1,11 @@
 ---
 title: 'AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
-description: 'Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, and Google Gemini CLI. Real benchmarks on a 50K-LOC TypeScript codebase, MCP support, context window economics, pricing breakdown, and where each one actually wins.'
+description: "Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, and Google Gemini CLI. Real benchmarks on a 50K-LOC TypeScript codebase, MCP support, context window economics, pricing breakdown, and where each one actually wins."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
-source_version: 'Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0'
+source_version: "Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0"
 licensing_model: 'Commercial / Mixed'
 license_type: 'Proprietary + Open-source CLIs'
 file_size: ''
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI / Google'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai-coding', agent, 2026]
-aliases: - /posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
+categories: ["dev-utils"]
+tags: ["claude-code", "cursor", "codex-cli", "gemini-cli", "ai-coding", "agent", "2026"]
+aliases:
+  - /posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
 faq: - q: "Which AI coding agent is the best in 2026 Q2?"
     a: "There is no single winner. Claude Code 1.0 leads on long-context refactors (200K+ context, strong tool use). Cursor Pro wins on raw IDE ergonomics and tab-completion latency. OpenAI Codex CLI is the best for shell-heavy workflows and integrates well with GPT-5. Gemini CLI is the cheapest with the biggest free tier and a 1M+ context window but tool-use reliability is lower. Most professional developers use 2 of the 4 — typically Claude Code + Cursor."
   - q: "How much does each one cost per month for a heavy user?"

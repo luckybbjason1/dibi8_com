@@ -20,7 +20,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases: - /en/posts/pixelle-video-ai-short-video-generator/
+aliases:
+  - /en/posts/pixelle-video-ai-short-video-generator/
 - /posts/pixelle-video-ai-short-video-generator/
 faqs: - q: 'What is Pixelle-Video?'
     a: 'Pixelle-Video is an open-source, MIT-licensed AI engine that turns a single topic into a complete short video. From one input it automatically writes the script, generates matching AI images or video, synthesizes voiceover with TTS, and adds background music before rendering the final clip.'

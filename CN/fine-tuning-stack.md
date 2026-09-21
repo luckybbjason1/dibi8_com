@@ -1,6 +1,6 @@
 ---
 title: 'Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
-description: 'Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (eval tracking) + vLLM (serving). $50-300/mo training infra. Full pipeline: dataset prep → experiment → production fine-tune → eval → deploy.'
+description: "Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (eval tracking) + vLLM (serving). $50-300/mo training infra. Full pipeline: dataset prep → experiment → production fine-tune → eval → deploy."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['fine-tuning', llm, stack, collection]
-aliases: - /posts/fine-tuning-stack/-
+categories: ["collections"]
+tags: ["fine-tuning", "llm", "stack", "collection"]
+aliases:
+  - /posts/fine-tuning-stack/-
 ---
 LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the **5-component pipeline** that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.
 

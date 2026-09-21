@@ -1,22 +1,23 @@
 ---
 title: 'RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
-description: 'Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: chi phí mỗi tác vụ, độ trễ, độ tươi của dữ liệu, và cây quyết định rõ ràng dựa trên khối lượng dữ liệu, ngân sách độ trễ truy vấn và tần suất cập nhật.'
+description: "Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: chi phí mỗi tác vụ, độ trễ, độ tươi của dữ liệu, và cây quyết định rõ ràng dựa trên khối lượng dữ liệu, ngân sách độ trễ truy vấn và tần suất cập nhật."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
-source_version: '2026 Q2 pricing'
+source_version: "2026 Q2 pricing"
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
-aliases: - /vi/posts/rag-vs-fine-tuning-2026-decision-framework/
+categories: ["llm-frameworks"]
+tags: ["rag", "fine-tuning", "llm", "cost-optimization", "decision-framework", "2026"]
+aliases:
+  - /vi/posts/rag-vs-fine-tuning-2026-decision-framework/
 faq: - q: "Khi nào RAG thắng fine-tuning trong năm 2026?"
     a: "RAG thắng khi (a) cơ sở tri thức của bạn cập nhật hơn một lần mỗi tuần, (b) bạn cần trích dẫn/nguồn gốc, (c) kho tài liệu < 100K chunks, (d) ngân sách độ trễ cho phép truy xuất ~200-400ms. Fine-tuning thắng khi bạn cần tính nhất quán về phong cách/định dạng, khi tri thức ổn định, và khi bạn có thể chi trả chi phí huấn luyện ban đầu."
   - q: "RAG thực sự tốn bao nhiêu khi đưa vào sản xuất?"

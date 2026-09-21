@@ -1,10 +1,10 @@
 ---
 title: 'Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test T...
-description: 'Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so sánh với GPT-4o, Gemini 1.5 Pro. Cập nhật tháng 6/2026.'
+description: "Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so sánh với GPT-4o, Gemini 1.5 Pro. Cập nhật tháng 6/2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, đánh-giá-llm, ai-lập-trình, mô-hình-suy-luận]
-categories: [review]
+tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "đánh-giá-llm", "ai-lập-trình", "mô-hình-suy-luận"]
+categories: ["review"]
 faqs: - q: 'Claude Opus 4 đắt hơn Sonnet 4 — có đáng không?'
     a: 'Với hầu hết developer, Sonnet 4 là lựa chọn tối ưu. Opus 4 thực sự tỏa sáng trong chuỗi suy luận nhiều bước, tài liệu pháp lý hoặc nghiên cứu dài, và vòng lặp agent cần độ chính xác liên tục trên 10 bước. Nếu công việc chính là sinh code, tóm tắt hoặc chat, Sonnet 4 đạt 85-90% chất lượng Opus 4 với chi phí API chỉ bằng một nửa. Chỉ nâng cấp Opus 4 khi bạn đo được sự chênh lệch 10-15% chính xác đó trên tác vụ cụ thể của mình.'
   - q: 'Claude 4 so với GPT-4o thì sao?'

@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Windsurf 2026: AI IDE nào tốt hơn?'
-description: 'So sánh trực tiếp Cursor và Windsurf (Codeium) — Composer vs Cascade, giá cả, hiệu năng, mẹo chuyển đổi. Cập nhật 2026.'
+title: "Cursor vs Windsurf 2026: AI IDE nào tốt hơn?"
+description: "So sánh trực tiếp Cursor và Windsurf (Codeium) — Composer vs Cascade, giá cả, hiệu năng, mẹo chuyển đổi. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, windsurf, codeium, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Cursor hay Windsurf rẻ hơn?'
     a: 'Windsurf rẻ hơn với $15/tháng cho gói Pro so với $20/tháng Pro của Cursor. Windsurf cũng có gói miễn phí hào phóng hơn (5 credit Cascade/ngày). Về giá thuần Windsurf tiết kiệm $5-$10/tháng; năng lực trên mỗi đô thì sát nhau.'
   - q: 'Cái nào tốt hơn cho chỉnh sửa đa file kiểu agent?'

@@ -20,7 +20,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/howtocook-programmer-open-source-cookbook/
+aliases:
+  - /posts/howtocook-programmer-open-source-cookbook/
 faqs: - q: 'What is HowToCook?'
     a: 'HowToCook (程序员做饭指南) is an open-source cookbook project created by programmer Anduin2017. It contains 297 recipes written with the precision and clarity that developers expect from documentation.'
   - q: 'How does HowToCook differ from traditional recipes?'

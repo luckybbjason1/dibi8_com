@@ -1,6 +1,6 @@
 ---
 title: 'Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng ...
-description: 'Stack AI coding self-host 7 thành phần thay thế $290/tháng đăng ký SaaS (Cursor + Claude Code Pro + Copilot + Replit) bằng $6/tháng hạ tầng. Số liệu thực, config thực, hướng dẫn lắp ráp từng bước đầy đủ.'
+description: "Stack AI coding self-host 7 thành phần thay thế $290/tháng đăng ký SaaS (Cursor + Claude Code Pro + Copilot + Replit) bằng $6/tháng hạ tầng. Số liệu thực, config thực, hướng dẫn lắp ráp từng bước đầy đủ."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['self-host', 'ai coding', stack, workflow, collection]
-aliases: - /posts/self-hosted-ai-coding-workflow/
+categories: ["collections"]
+tags: ["self-host", "ai coding", "stack", "workflow", "collection"]
+aliases:
+  - /posts/self-hosted-ai-coding-workflow/
 ---
 
 Nếu bạn đang trả $20/tháng cho Cursor + $80/tháng cho Claude Code Pro + $19/tháng cho Copilot + $50/tháng cho Replit credits + $120/tháng cho OpenAI API top-up, chi tiêu AI coding hàng tháng của bạn là **$289/tháng**. 12 tháng là **$3,468** — cho công cụ bạn không sở hữu, không audit được, có thể bị rate-limit hoặc tắt mà không báo trước.

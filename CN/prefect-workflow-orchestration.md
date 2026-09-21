@@ -1,6 +1,6 @@
 ---
 title: 'Prefect 2026: The Modern Workflow Orchestration Engine f...
-description: 'A hands-on guide to Prefect 3.x — the Python-native workflow orchestrator with async execution, built-in retries, and self-hosted server. Deploy your data pipelines in under 5 minutes.'
+description: "A hands-on guide to Prefect 3.x — the Python-native workflow orchestrator with async execution, built-in retries, and self-hosted server. Deploy your data pipelines in under 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,23 +12,24 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'PrefectHQ/prefect'
+github_repo: "PrefectHQ/prefect"
 stars: 18000
 maintainer: PrefectHQ
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /posts/prefect-workflow-orchestration/-
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /posts/prefect-workflow-orchestration/-
 ---
 {{</* resource-info */>}}
 
 ## Introduction: Your Cron Jobs Are a Ticking Time Bomb
 
-At 3:17 AM, your critical ETL pipeline failed silently. The log file is a 400MB wall of text on a server no one checks. The downstream dashboard shows stale data from Tuesday, but it is Thursday now. Your team discovers the failure 14 hours later during a client call. This is not an outage. This is the default state of unmanaged workflows.
+At 3:17 AM", "your critical ETL pipeline failed silently. The log file is a 400MB wall of text on a server no one checks. The downstream dashboard shows stale data from Tuesday", "but it is Thursday now. Your team discovers the failure 14 hours later during a client call. This is not an outage. This is the default state of unmanaged workflows.
 
-A [2025 data engineering survey](https://prefect.io) found that **72% of data pipeline failures go undetected for more than 6 hours**, and **cron-based scheduling is still the primary orchestration method for 61% of teams**. Cron does not retry failed tasks. It does not alert you when things break. It does not show you which downstream systems are affected. It just runs commands and hopes for the best.
+A [2025 data engineering survey"](https://prefect.io) found that **72% of data pipeline failures go undetected for more than 6 hours**, and **cron-based scheduling is still the primary orchestration method for 61% of teams**. Cron does not retry failed tasks. It does not alert you when things break. It does not show you which downstream systems are affected. It just runs commands and hopes for the best.
 
 Prefect 3.x (v3.3.0, released 2026-03-20) is a Python-native workflow orchestration engine built to replace this chaos with structured, observable, resilient pipelines. With **~18,000 GitHub stars**, an **Apache-2.0 license**, and a modern async architecture, Prefect gives you **sub-second task scheduling**, **automatic retries with exponential backoff**, **real-time observability dashboards**, and the ability to self-host the entire control plane. All from pure Python code. No YAML required.
 
@@ -623,13 +624,13 @@ deployments: - name: daily-etl
     work_pool: name: docker-pool
     schedule: cron: "0 6 * * *"
     parameters: endpoint: "https://api.production.example.com/v1/data"
-    tags: ["production", "etl", "daily"]
+tags: ["production", "etl", "daily"]
     
   - name: hourly-analytics
     entrypoint: analytics_pipeline.py:hourly_flow
     work_pool: name: k8s-pool
     schedule: interval: 3600
-    tags: ["production", "analytics"]
+tags: ["production", "analytics"]
 ```
 
 ### Monitoring and Alerting

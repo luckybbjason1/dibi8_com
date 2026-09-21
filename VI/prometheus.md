@@ -1,6 +1,6 @@
 ---
 title: 'Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
-description: 'Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với Docker, Kubernetes, Grafana và Alertmanager. Bao gồm hướng dẫn cài đặt, truy vấn PromQL, cung cố hóa sản xuất và điểm chuẩn hiệu suất.'
+description: "Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với Docker, Kubernetes, Grafana và Alertmanager. Bao gồm hướng dẫn cài đặt, truy vấn PromQL, cung cố hóa sản xuất và điểm chuẩn hiệu suất."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/prometheus/prometheus'
+github_repo: "https://github.com/prometheus/prometheus"
 stars: 64094
 maintainer: prometheus
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [prometheus, 'giám sát', docker, kubernetes, grafana, devops, 'khả năng quan sát', 'chuỗi thờ gian']
-aliases: - /vi/posts/prometheus/
+categories: ["dev-utils"]
+tags: ["prometheus", "giám sát", "docker", "kubernetes", "grafana", "devops", "khả năng quan sát", "chuỗi thờ gian"]
+aliases:
+  - /vi/posts/prometheus/
 ---
 
 # Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026

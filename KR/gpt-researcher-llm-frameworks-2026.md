@@ -1,6 +1,6 @@
 ---
-title: 'GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드'
-description: 'GPT Researcher는 어떤 작업이든 웹·로컬 리서치를 수행해 인용이 포함된 보고서를 작성하는 오픈소스 심층 리서치 에이전트입니다. GitHub 스타 27,473개, Apache-2.0 라이선스. 설치, 비동기 Python API, Docker, 실제 코드 예제를 다룹니다.'
+title: "GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드"
+description: "GPT Researcher는 어떤 작업이든 웹·로컬 리서치를 수행해 인용이 포함된 보고서를 작성하는 오픈소스 심층 리서치 에이전트입니다. GitHub 스타 27,473개, Apache-2.0 라이선스. 설치, 비동기 Python API, Docker, 실제 코드 예제를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,25 +12,26 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'assafelovic/gpt-researcher'
+github_repo: "assafelovic/gpt-researcher"
 stars: 27473
 maintainer: assafelovic
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/gpt-researcher-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/gpt-researcher-llm-frameworks-2026/
 faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
     a: 'pip로 Python 패키지를 설치합니다. ```bash pip install gpt-researcher ```'
   - q: '어떤 LLM 제공자와 검색 엔진을 쓸 수 있나요?'
-    a: '기본 LLM은 OpenAI, 기본 리트리버는 Tavily이지만, 둘 다 환경 변수와 설정 파일로 교체할 수 있으며, 에이전트는 MCP 기반 출처를 포함한 추가 리트리버도 지원합니다.'
+    a: '기본 LLM은 OpenAI", "기본 리트리버는 Tavily이지만", "둘 다 환경 변수와 설정 파일로 교체할 수 있으며", "에이전트는 MCP 기반 출처를 포함한 추가 리트리버도 지원합니다.'
   - q: '실행하려면 API 키가 필요한가요?'
     a: '네. 최소한 프로젝트 루트의 `.env` 파일에 `OPENAI_API_KEY`와 `TAVILY_API_KEY`를 설정해야 합니다. OpenAI 호환 엔드포인트를 쓴다면 `OPENAI_BASE_URL`도 추가하세요.'
   - q: '웹 UI가 포함된 전체 앱은 어떻게 실행하나요?'
-    a: '저장소를 클론하고 `docker-compose up --build`를 실행하세요. FastAPI 서버는 `localhost:8000`에서, 프런트엔드는 `localhost:3000`에서 시작됩니다. 서버만 띄우려면 `python -m uvicorn main:app --reload`를 쓰면 됩니다.'
+    a: '저장소를 클론하고 `docker-compose up --build`를 실행하세요. FastAPI 서버는 `localhost:8000`에서", "프런트엔드는 `localhost:3000`에서 시작됩니다. 서버만 띄우려면 `python -m uvicorn main:app --reload`를 쓰면 됩니다.'
   - q: 'conduct_research()와 write_report()는 동기 방식인가요?'
-    a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고, 그 함수를 `asyncio.run()`으로 실행하세요.'
+    a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고", "그 함수를 `asyncio.run()`으로 실행하세요.'
 ---
 
 # GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드
@@ -40,9 +41,9 @@ faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
 
 ## 들어가며
 
-대규모 언어 모델(LLM)로 개발해 본 사람이라면 같은 벽에 부딪힌 적이 있을 것입니다. 하나의 질문을 출처가 탄탄하고 사실에 근거한 보고서로 바꾸는 일은 느리고 손이 많이 가는 작업이죠. `assafelovic/gpt-researcher`는 바로 이 과정을 자동화합니다. 웹을 검색하고(로컬 파일도 읽을 수 있습니다) 출처를 모은 뒤, 단 하나의 질의로부터 인용이 달린 리서치 보고서를 작성하는 자율 에이전트입니다. 이 가이드에서는 설치 방법, Python에서 실행하는 법, 그리고 실제 워크플로에 연결하는 법을 살펴봅니다.
+대규모 언어 모델(LLM)로 개발해 본 사람이라면 같은 벽에 부딪힌 적이 있을 것입니다. 하나의 질문을 출처가 탄탄하고 사실에 근거한 보고서로 바꾸는 일은 느리고 손이 많이 가는 작업이죠. `assafelovic/gpt-researcher`는 바로 이 과정을 자동화합니다. 웹을 검색하고(로컬 파일도 읽을 수 있습니다) 출처를 모은 뒤", "단 하나의 질의로부터 인용이 달린 리서치 보고서를 작성하는 자율 에이전트입니다. 이 가이드에서는 설치 방법", "Python에서 실행하는 법", "그리고 실제 워크플로에 연결하는 법을 살펴봅니다.
 
-![gpt-researcher 개요, via dibi8.com](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
+![gpt-researcher 개요", "via dibi8.com"](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
 
 *gpt-researcher 기여자 (출처: assafelovic/gpt-researcher 저장소, dibi8 분석)*
 

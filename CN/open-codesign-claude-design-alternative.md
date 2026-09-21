@@ -19,10 +19,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/open-codesign-claude-design-alternative/
+aliases:
+  - /posts/open-codesign-claude-design-alternative/
 faqs: - q: 'Is Open Codesign free and what does it cost to use?'
     a: 'Open Codesign is a free MIT-licensed application. It uses a BYOK (Bring Your Own Key) model, so you only pay for the LLM tokens you consume through your existing provider accounts rather than a monthly subscription.'
   - q: 'Which AI models does Open Codesign support?'

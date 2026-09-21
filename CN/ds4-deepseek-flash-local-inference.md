@@ -20,10 +20,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/ds4-deepseek-flash-local-inference/
+aliases:
+  - /posts/ds4-deepseek-flash-local-inference/
 - /posts/ds4-open-source-deepseek-alternative-2026/
 faqs: - q: 'What is DS4 (DwarfStar 4) and who created it?'
     a: 'DS4 (DwarfStar 4) is a small, native inference engine purpose-built to run the DeepSeek V4 Flash model locally on Apple Metal and NVIDIA CUDA hardware. It was created by Salvatore Sanfilippo (antirez), the Italian programmer who created Redis.'

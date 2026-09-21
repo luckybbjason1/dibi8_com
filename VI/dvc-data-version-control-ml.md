@@ -1,6 +1,6 @@
 ---
 title: 'DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipelin...
-description: 'Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với workflow kiểu Git. Bao gồm cài đặt, backend S3/GCS/Azure, tích hợp CI/CD, benchmark và hardening production.'
+description: "Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với workflow kiểu Git. Bao gồm cài đặt, backend S3/GCS/Azure, tích hợp CI/CD, benchmark và hardening production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/iterative/dvc'
+github_repo: "https://github.com/iterative/dvc"
 stars: 15600
 maintainer: Iterative
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [dvc, 'data version control', mlops, git, 'machine learning', 'tái tạo được', s3, gcs, azure, pipeline, 'quản lý phiên bản dữ liệu', 'khoa học dữ liệu']
-aliases: - /vi/posts/dvc-data-version-control-ml/
+categories: ["data-science"]
+tags: ["dvc", "data version control", "mlops", "git", "machine learning", "tái tạo được", "s3", "gcs", "azure", "pipeline", "quản lý phiên bản dữ liệu", "khoa học dữ liệu"]
+aliases:
+  - /vi/posts/dvc-data-version-control-ml/
 ---
 
 {{</* resource-info */>}}

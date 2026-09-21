@@ -1,6 +1,6 @@
 ---
 title: 'pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vecto...
-description: 'Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu năng, và tích hợp RAG với LangChain và LlamaIndex.'
+description: "Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu năng, và tích hợp RAG với LangChain và LlamaIndex."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'pgvector/pgvector'
+github_repo: "pgvector/pgvector"
 stars: 15000
 maintainer: pgvector
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [pgvector, postgresql, 'vector-database', hnsw, ann, rag, 'similarity-search', 'full-text-search']
-aliases: - /vi/posts/pgvector-postgres-vector-extension/
+categories: ["data-science"]
+tags: ["pgvector", "postgresql", "vector-database", "hnsw", "ann", "rag", "similarity-search", "full-text-search"]
+aliases:
+  - /vi/posts/pgvector-postgres-vector-extension/
 ---
 
 {{</* resource-info */>}}

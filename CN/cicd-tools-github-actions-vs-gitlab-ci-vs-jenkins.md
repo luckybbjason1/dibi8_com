@@ -1,6 +1,6 @@
 ---
 title: 'CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jen...
-description: 'Compare GitHub Actions, GitLab CI, and Jenkins for 2025. Side-by-side pricing, setup complexity, and feature breakdown to choose the right CI/CD platform.'
+description: "Compare GitHub Actions, GitLab CI, and Jenkins for 2025. Side-by-side pricing, setup complexity, and feature breakdown to choose the right CI/CD platform."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
+aliases:
+  - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
 # CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jenkins in 2025
 

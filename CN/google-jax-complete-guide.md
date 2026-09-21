@@ -2,7 +2,7 @@
 title: Google JAX — The Complete Guide to High-Performance ML Re...
 description: Complete guide to Google JAX, the composable transformations of Python+NumPy programs. Build high-performance neural networks with automatic differentiation, JIT compilation, and vectorization.
 category: data-science
-tags: ['jax', 'google', 'machine-learning', 'automatic-differentiation', 'jit-compilation', 'neural-networks']
+tags: ["jax", "google", "machine-learning", "automatic-differentiation", "jit-compilation", "neural-networks"]
 slug: google-jax-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/google-jax-ml-framework.jpg---
@@ -164,7 +164,7 @@ def vjp_example(fn, x): """Vector-Jacobian Product for memory efficiency"""
 Accelerate functions with `jit()`: ```python
 @jax.jit
 def forward_pass(params, x): """Optimized forward pass"""
-    for layer in params: x = jnp.dot(layer['W'], x) + layer['b']
+    for layer in params: x = jnp.dot(layer[W], x) + layer[b]
         x = jax.nn.relu(x)
     return x
 
@@ -202,7 +202,7 @@ result2 = flexible_model(jnp.ones((100,)), jnp.ones((100,)))
 
 Automatically vectorize functions over batch dimensions: ```python
 def single_sample_forward(params, x): """Forward pass for one sample"""
-    return jnp.dot(params['W'], x) + params['b']
+    return jnp.dot(params[W], x) + params[b]
 
 # Vectorize over batch dimension
 batched_forward = jax.vmap(single_sample_forward)
@@ -289,9 +289,9 @@ class AttentionLayer(nn.Module): head_dim: int
 Implement a complete training loop: ```python
 def train_epoch(model, optimizer, train_dataset, key): """Train for one epoch"""
     
-    def step(params, batch): def loss_fn(p): logits = model.apply(p, batch['inputs'])
+    def step(params, batch): def loss_fn(p): logits = model.apply(p, batch[inputs])
             return jnp.mean(jax.nn.softmax_cross_entropy_with_logits(
-                logits, batch['targets']
+                logits, batch[targets]
             ))
         
         grads = jax.grad(loss_fn)(params)
@@ -384,9 +384,9 @@ app = Flask(__name__)
 # Load model
 with open('trained_model.pkl', 'rb') as f: model_params = pickle.load(f)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=[POST])
 def predict(): data = request.json
-    input_array = jnp.array(data['features'])
+    input_array = jnp.array(data[features])
     
     prediction = model.apply(model_params, input_array)
     
@@ -445,10 +445,10 @@ from jax import remat
 def train_step_with_remat(params, batch): """Memory-efficient training step using checkpointing"""
     
     @remat  # Checkpoint intermediate activations
-    def forward_fn(x): hidden = jnp.dot(params['W1'], x)
+    def forward_fn(x): hidden = jnp.dot(params[W1], x)
         hidden = jnp.relu(hidden)
-        hidden = jnp.dot(params['W2'], hidden)
-        return jnp.dot(params['W3'], hidden)
+        hidden = jnp.dot(params[W2], hidden)
+        return jnp.dot(params[W3], hidden)
     
     loss = compute_loss(forward_fn, batch)
     grads = jax.grad(compute_loss)(forward_fn, batch)

@@ -1,10 +1,10 @@
 ---
-title: 'Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决'
-description: 'Claude Code（Anthropic 商业 CLI）和 Aider（开源、自带 API key）横向对比 — 价格、上下文、agent 风格、成本效率。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决"
+description: "Claude Code（Anthropic 商业 CLI）和 Aider（开源、自带 API key）横向对比 — 价格、上下文、agent 风格、成本效率。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
-categories: [vs]
+tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
+categories: ["vs"]
 faqs: - q: '日常使用 Claude Code 还是 Aider 更便宜？'
     a: '看用量。Claude Code 是 $20/月（Pro）或 $200/月（Max），费用可预测。Aider 工具本身免费，但要走你自己的 API key — 中等用量（每月 $5-$15 Anthropic API 花费）Aider 更便宜；重度用量（>$30/月 API 花费）Claude Code Pro 更便宜，因为订阅吃掉了失控成本。每周  20 次 Claude Code Pro 胜。'
   - q: '哪个 agent 自主性更强？'

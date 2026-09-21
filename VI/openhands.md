@@ -1,6 +1,6 @@
 ---
 title: 'OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
-description: 'OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Docker, GitHub, GitLab, Claude và OpenAI. Bao gồm thiết lập Docker, cấu hình model, chế độ headless CI/CD và bảo mật production.'
+description: "OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Docker, GitHub, GitLab, Claude và OpenAI. Bao gồm thiết lập Docker, cấu hình model, chế độ headless CI/CD và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/OpenHands/OpenHands'
+github_repo: "https://github.com/OpenHands/OpenHands"
 stars: 74200
 maintainer: OpenHands
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [openhands, 'agent lập trình ai', docker, 'swe-bench', claude, openai, 'tự host', 'tự động hóa']
-aliases: - /vi/posts/openhands/
+categories: ["llm-frameworks"]
+tags: ["openhands", "agent lập trình ai", "docker", "swe-bench", "claude", "openai", "tự host", "tự động hóa"]
+aliases:
+  - /vi/posts/openhands/
 - /vi/resources/llm-frameworks/openhands-architecture-ai-programmer-agent/
 ---
 

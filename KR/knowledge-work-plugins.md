@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: knowledge-work-plugins
 category: dev-utils
-tags: ['anthropic', 'claude', '플러그인', '생산성', '문서 편집', '코드 분석', '웹 브라우징', '도구 사용']
+tags: ["anthropic", "claude", "플러그인", "생산성", "문서 편집", "코드 분석", "웹 브라우징", "도구 사용"]
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
 license: Apache-2.0
 images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
@@ -17,7 +17,6 @@ images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-pl
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/tool-use-example.png"
     alt: "도구 사용 예시"
     role: example
-lang: kr
 featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---th--.png
 ---
 

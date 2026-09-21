@@ -1,8 +1,8 @@
 ---
 title: 'Đánh giá Scrapling: Một cách tiếp cận nhanh hơn, lén lút...
   web Python'
-description: 'Đánh giá Scrapling: thư viện quét web ẩn Python. Vượt qua biện pháp. Comprehensive guide covering features, pricing, and best practices for 2026.
-  chống bot, xử lý nội dung động và quét web quy mô lớn một cách dễ dàng.'
+description: "Đánh giá Scrapling: thư viện quét web ẩn Python. Vượt qua biện pháp. Comprehensive guide covering features, pricing, and best practices for 2026.
+  chống bot, xử lý nội dung động và quét web quy mô lớn một cách dễ dàng."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Java
@@ -22,7 +22,8 @@ maintainer: "D4Vinci"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/scrapling-python-stealthy-web-scraping-review/
+aliases:
+  - /vi/posts/scrapling-python-stealthy-web-scraping-review/
 faqs: - q: 'Scrapling trong Python là gì?'
     a: 'Scrapling là một framework scraping web Python 3.10+, bọc ba backend tải dữ liệu phía sau một API selector thống nhất: HTTP thông thường với giả mạo TLS fingerprint, trình duyệt ẩn danh chống phát hiện, và trình duyệt điều khiển hoàn toàn bằng Playwright. Nó kết hợp mô hình spider kiểu Scrapy, giả mạo TLS fingerprint kiểu curl_cffi, và Playwright không bị phát hiện trong một lần import.'
   - q: 'Ba fetcher trong Scrapling là gì và khi nào dùng từng loại?'

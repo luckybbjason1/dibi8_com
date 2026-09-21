@@ -18,12 +18,13 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/calesthio/OpenMontage'
-last_maintained: '2026-06-21'
+github_repo: "https://github.com/calesthio/OpenMontage"
+last_maintained: "2026-06-21"
 draft: false
-categories: ['ai-tools']
+categories: ["ai-tools"]
 tags: ["开放蒙太奇", "能动视频", "人工智能视频制作", "移除", "超框架", "视频生成", "开源", "克劳德代码", "光标", "多智能体", "纪录片", "动画"]
-aliases: - /posts/openmontage-agentic-video-production-system/
+aliases:
+  - /posts/openmontage-agentic-video-production-system/
 faqs: - q: '什么是OpenMontage？'
     a: 'OpenMontage是世界上第一个开源的、具备自主代理能力的视频制作系统，拥有12条制作流程、52种制作工具和500多种代理技能。它可以将任何AI编码助手（如Claude Code、Cursor、Copilot、Windsurf或Codex）转变为一个完整的视频制作工作室。与单一提示视频生成器如Sora或Runway不同，OpenMontage通过结构化的流程清单和阶段导演技能，协调完整的制作工作流——研究、脚本编写、素材生成、编辑以及最终合成。'
   - q: 'OpenMontage 与 Sora、Runway 和 Pika 有何不同？'

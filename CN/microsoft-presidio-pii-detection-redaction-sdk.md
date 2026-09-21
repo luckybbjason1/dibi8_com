@@ -18,11 +18,12 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/microsoft/presidio'
-last_maintained: '2026-06-21'
+github_repo: "https://github.com/microsoft/presidio"
+last_maintained: "2026-06-21"
 draft: false
-categories: ['dev-utils']
-aliases: - /posts/microsoft-presidio-pii-detection-redaction-sdk/
+categories: ["dev-utils"]
+aliases:
+  - /posts/microsoft-presidio-pii-detection-redaction-sdk/
 faqs: - q: 'What is Microsoft Presidio?'
     a: 'Presidio is an open-source SDK from Microsoft for detecting, redacting, masking, and anonymizing personally identifiable information (PII) across text, images, and structured data. Named after the Latin word for "protection" or "garrison," it provides context-aware, pluggable, and customizable PII de-identification modules. It supports Named Entity Recognition (NER), regular expressions, rule-based logic, and checksum validation across multiple languages.'
   - q: 'What components make up Presidio?'

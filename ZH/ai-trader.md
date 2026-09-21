@@ -18,7 +18,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/ai-trader/
+aliases:
+  - /zh/posts/ai-trader/
 faqs: - q: 'HKUDS 开发的 AI-Trader 是什么？'
     a: 'AI-Trader 是由香港大学数据科学实验室（HKUDS）开发的开源全自动 AI 交易 Agent 系统。它采用强化学习与多 Agent 协作机制，支持股票、加密货币、外汇及期货交易，并以 MIT 许可证发布。'
   - q: 'AI-Trader 支持哪些市场和资产？'

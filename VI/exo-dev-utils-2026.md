@@ -1,6 +1,6 @@
 ---
 title: 'exo: Chạy AI tiên phong trên chính các thiết bị của bạn ...
-description: 'exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên phong ngay tại chỗ. 45.088 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, bảng điều khiển, API tương thích OpenAI/Claude/Ollama, các lệnh thực tế và một so sánh thẳng thắn.'
+description: "exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên phong ngay tại chỗ. 45.088 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, bảng điều khiển, API tương thích OpenAI/Claude/Ollama, các lệnh thực tế và một so sánh thẳng thắn."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,23 +12,24 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'exo-explore/exo'
+github_repo: "exo-explore/exo"
 stars: 45088
 maintainer: 'exo-explore'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/dashboard-cluster-view.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/exo-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/exo-dev-utils-2026/
 faqs: - q: 'Làm sao để cài exo?'
-    a: 'Trên Mac, cách dễ nhất là dùng ứng dụng dựng sẵn: ```bash brew install --cask exo ``` Để chạy mã nguồn mới nhất trên macOS hoặc Linux, clone kho và khởi động bằng `uv`: ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
+    a: 'Trên Mac", "cách dễ nhất là dùng ứng dụng dựng sẵn: ```bash brew install --cask exo ``` Để chạy mã nguồn mới nhất trên macOS hoặc Linux", "clone kho và khởi động bằng `uv`: ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
   - q: 'exo chạy trên phần cứng nào?'
-    a: 'exo chạy trên macOS và Linux. Tăng tốc GPU hiện nhắm tới Apple Silicon (ví dụ M3 Ultra và các máy Mac M4); Linux tạm thời chỉ dùng CPU, hỗ trợ GPU đang được phát triển. Bạn gộp nhiều thiết bị thành một cụm để gom bộ nhớ và sức tính toán của chúng.'
+    a: 'exo chạy trên macOS và Linux. Tăng tốc GPU hiện nhắm tới Apple Silicon (ví dụ M3 Ultra và các máy Mac M4); Linux tạm thời chỉ dùng CPU", "hỗ trợ GPU đang được phát triển. Bạn gộp nhiều thiết bị thành một cụm để gom bộ nhớ và sức tính toán của chúng.'
   - q: 'Làm sao để khởi động một cụm với exo?'
     a: 'Chạy exo trên từng thiết bị bạn muốn đưa vào: ```bash uv run exo ``` Các nút tự phát hiện lẫn nhau trong cùng mạng—không cần viết danh sách nút hay cấu hình máy chủ/máy thợ.'
   - q: 'Làm sao để gửi yêu cầu tới exo?'
-    a: 'exo phục vụ một API tương thích OpenAI/Claude/Ollama ở cổng 52415. Ví dụ: ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}]}'' ```'
+    a: 'exo phục vụ một API tương thích OpenAI/Claude/Ollama ở cổng 52415. Ví dụ: ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}"]}'' ```'
   - q: 'Xem trạng thái cụm ở đâu?'
     a: 'Mở bảng điều khiển trong trình duyệt tại `http://localhost:52415`. Nó hiển thị mọi thiết bị được phát hiện, cách mô hình được chia trên chúng, cùng thông lượng và mức dùng bộ nhớ theo thời gian thực.'
 ---

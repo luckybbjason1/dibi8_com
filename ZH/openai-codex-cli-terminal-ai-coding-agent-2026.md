@@ -1,6 +1,6 @@
 ---
 title: 'OpenAI Codex CLI 完全指南：2026年最值得入手的终端 AI 编程助手（安装配置 + 多智能体工...
-description: '深入解析 OpenAI Codex CLI——2026年 GitHub 上增长最快的开源 AI 编程工具之一。本文涵盖从零安装配置、AGENTS.md 高级用法、多智能体并行开发到与 Claude Code 的实测对比，助你掌握终端原生 AI 编程的完整工作流。'
+description: "深入解析 OpenAI Codex CLI——2026年 GitHub 上增长最快的开源 AI 编程工具之一。本文涵盖从零安装配置、AGENTS.md 高级用法、多智能体并行开发到与 Claude Code 的实测对比，助你掌握终端原生 AI 编程的完整工作流。"
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
 tech_stack: []
@@ -12,13 +12,14 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/openai/codex'
+github_repo: "https://github.com/openai/codex"
 stars: 83000
 maintainer: 'openai'
-last_maintained: '2026-05-17'
+last_maintained: "2026-05-17"
 featureImage: ''
 draft: false
-aliases: - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/-
+aliases:
+  - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/-
 ---
 
 {</* resource-info */>}

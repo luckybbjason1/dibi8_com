@@ -1,10 +1,10 @@
 ---
-title: 'Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결'
-description: 'Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API 키) 정면 비교 — 가격, 컨텍스트, 에이전트 스타일, 비용 효율. 2026 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결"
+description: "Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API 키) 정면 비교 — 가격, 컨텍스트, 에이전트 스타일, 비용 효율. 2026 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
-categories: [vs]
+tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
+categories: ["vs"]
 faqs: - q: '일상 사용에서 Claude Code와 Aider 중 어느 쪽이 더 저렴한가요?'
     a: '사용량에 따라 다릅니다. Claude Code는 월 $20(Pro) 또는 $200(Max) 정액제로 비용 예측이 가능합니다. Aider는 도구 자체는 무료지만 본인의 API 키를 통해 라우팅 — 중간 사용량(월 $5-$15 Anthropic API 지출)에서는 Aider가 저렴, 헤비 사용($30+/월 API)에서는 Claude Code Pro가 저렴(구독이 폭주 비용을 흡수). 주 20 세션 미만이면 Aider, 그 이상이면 Claude Code Pro 승.'
   - q: '에이전트 자율성은 어느 쪽이 더 강한가요?'

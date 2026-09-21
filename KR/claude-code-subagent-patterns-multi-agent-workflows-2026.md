@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
-description: '프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases: - /posts/claude-code-subagent-patterns/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "ai-coding-agents", "llm-frameworks", "developer-tools", "agent-sdk"]
+aliases:
+  - /posts/claude-code-subagent-patterns/
 faq: - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더 실행하는 것과 어떻게 다른가요?"
     a: "Subagent는 활성 Claude 세션 내부에서 Agent(Task) 도구를 통해 생성되는 샌드박스화된 Claude 대화입니다. 부모 세션은 subagent의 최종 보고서만 보고 — 중간 도구 호출, 파일 읽기, 사고 과정은 보지 못합니다. 이것이 두 번째 CLI를 실행하는 것과의 핵심 차이입니다: 부모의 컨텍스트 윈도우가 subagent의 탐색 노이즈로부터 보호됩니다. Subagent는 병렬 리서치, 깊은 코드 탐색, 격리된 실험에 적합합니다 — 부모의 작업 기억이 오염되지 않아야 하는 상황입니다."
   - q: "Subagent를 사용하지 말고 부모 세션에서 계속 작업해야 할 때는 언제인가요?"

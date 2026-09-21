@@ -1,6 +1,6 @@
 ---
-title: 'ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南'
-description: 'ComfyUI 是 114k 星节点式可视化工作流引擎，支持 SD/SDXL/Flux/Wan/Hunyuan 等。支持图像、视频、音频、3D 生成。2026 完整安装指南：节点基础、workflow JSON 导入、ComfyUI Manager、何时 ComfyUI 胜过 AUTOMATIC1111。'
+title: "ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南"
+description: "ComfyUI 是 114k 星节点式可视化工作流引擎，支持 SD/SDXL/Flux/Wan/Hunyuan 等。支持图像、视频、音频、3D 生成。2026 完整安装指南：节点基础、workflow JSON 导入、ComfyUI Manager、何时 ComfyUI 胜过 AUTOMATIC1111。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 114000
 maintainer: comfyanonymous
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 图像生成, 视频生成, 节点式, 工作流, 开源]
-aliases: - /posts/comfyui-node-based-ai-image-2026/-
+categories: ["ai-tools"]
+tags: ["comfyui", "图像生成", "视频生成", "节点式", "工作流", "开源"]
+aliases:
+  - /posts/comfyui-node-based-ai-image-2026/-
 ---
 
 如果 [AUTOMATIC1111](/zh/resources/ai-tools/stable-diffusion-webui-2026/) 是"AI 图像生成的 Photoshop"（打字生图），**ComfyUI** 就是 **"生成式 AI 的 Blender 节点编辑器"** —— 你把工作流当有向图来搭，对每个模型、采样器、条件步、后处理都有显式控制。114k GitHub 星，GPL-3.0，支持 2024-2026 出的几乎所有生成式 AI 模型家族：SD 1.x、SDXL、SD3/3.5、Flux（1 & 2）、Wan、Hunyuan（图/视频/3D）、PixArt、AuraFlow、LTX-Video。

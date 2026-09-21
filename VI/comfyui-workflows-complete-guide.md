@@ -1,13 +1,12 @@
 ---
 title: ComfyUI Workflows — Ngôn ngữ lập trình trực quan cho AI i...
 description: Hướng dẫn toàn diện về ComfyUI workflows để tạo AI images chuyên nghiệp. Xây dựng pipeline phức tạp với nodes, quản lý dependencies và tạo template workflows có thể chia sẻ.
-tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']
+tags: ["comfyui", "ai-image-generation", "workflow", "nodes", "stable-diffusion", "visual-programming"]
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
-lang: vi
 ---
 
 ## TL;DR

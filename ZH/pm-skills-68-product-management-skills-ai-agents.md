@@ -1,11 +1,11 @@
 ---
-title: 'PM技能：68项产品管理技能和42个AI代理工作流程'
-description: '用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "PM技能：68项产品管理技能和42个AI代理工作流程"
+description: "用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个 AI 助手。"
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'product management', 'claude code', 'agent skills', 'open source']
-categories: ['ai-tools']
+tags: ["ai tools", "product management", "claude code", "agent skills", "open source"]
+categories: ["ai-tools"]
 slug: pm-skills-68-product-management-skills-ai-agents
 featureImage: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/pm-skills']
@@ -19,8 +19,8 @@ description: 'The AI operating system for better product decisions. 9 plugins co
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'product management', 'claude code', 'agent skills', 'open source']
-categories: ['ai-tools']
+tags: ["ai tools", "product management", "claude code", "agent skills", "open source"]
+categories: ["ai-tools"]
 slug: pm-skills-68-product-management-skills-ai-agents
 
 aliases: ['/pm-skills']

@@ -1,6 +1,6 @@
 ---
-title: 'LiteLLM Tutorial 2025: One API to Access 100+ LLMs'
-description: 'Complete LiteLLM tutorial 2025. Learn how to use one unified API to access 100+ LLM providers including OpenAI, Anthropic, Azure, and open-source models.'
+title: "LiteLLM Tutorial 2025: One API to Access 100+ LLMs"
+description: "Complete LiteLLM tutorial 2025. Learn how to use one unified API to access 100+ LLM providers including OpenAI, Anthropic, Azure, and open-source models."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/litellm-unified-api-tutorial/-
+aliases:
+  - /posts/litellm-unified-api-tutorial/-
 ---
 {</* resource-info */>}
 

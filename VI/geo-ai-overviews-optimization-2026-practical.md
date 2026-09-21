@@ -1,22 +1,23 @@
 ---
 title: 'Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ ...
-description: 'Tối ưu hóa Engine Sinh (GEO) chính là SEO mới. Cách tối ưu cho Google AI Overviews, ChatGPT Search và trích dẫn Perplexity. Kỹ thuật thực tế từ tối ưu hóa dibi8.com — FAQ schema, chấm điểm khả năng được trích dẫn, llms.txt.'
+description: "Tối ưu hóa Engine Sinh (GEO) chính là SEO mới. Cách tối ưu cho Google AI Overviews, ChatGPT Search và trích dẫn Perplexity. Kỹ thuật thực tế từ tối ưu hóa dibi8.com — FAQ schema, chấm điểm khả năng được trích dẫn, llms.txt."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: Công cụ dev
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'N/A'
 license_type: 'N/A'
 github_repo: ''
 stars: 0
 maintainer: 'Ban biên tập dibi8'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [seo, geo, 'ai-overviews', optimization, 2026]
-aliases: - /vi/posts/geo-ai-overviews-optimization-2026-practical/
+categories: ["dev-utils"]
+tags: ["seo", "geo", "ai-overviews", "optimization", "2026"]
+aliases:
+  - /vi/posts/geo-ai-overviews-optimization-2026-practical/
 faq: - q: "GEO là gì và khác SEO ở đâu?"
     a: "Tối ưu hóa Engine Sinh (GEO) là tối ưu cho các câu trả lời do AI tạo ra (Google AI Overviews, ChatGPT Search, Perplexity, Bing Copilot). SEO tối ưu cho thứ hạng link xanh; GEO tối ưu để được trích dẫn làm nguồn trong câu trả lời do AI tạo ra. Các tín hiệu có chồng lấn (chất lượng nội dung, schema) nhưng thứ tự ưu tiên khác — GEO đặt nặng dữ liệu có cấu trúc và khối trả lời nguyên tử hơn."
   - q: "FAQ schema thực sự có tạo ra khác biệt không?"

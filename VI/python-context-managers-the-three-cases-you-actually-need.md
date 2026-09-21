@@ -1,7 +1,7 @@
 ---
-title: 'Python Context Managers: 3 Trường Hợp Bạn Thực Sự Cần'
-description: 'Python context managers: 3 trường hợp bạn thực sự cần. Làm chủ câu lệnh. Comprehensive guide covering features, pricing, and best practices for 2026.
-  with, contextlib và tùy chỉnh context managers để quản lý tài nguyên tốt hơn.'
+title: "Python Context Managers: 3 Trường Hợp Bạn Thực Sự Cần"
+description: "Python context managers: 3 trường hợp bạn thực sự cần. Làm chủ câu lệnh. Comprehensive guide covering features, pricing, and best practices for 2026.
+  with, contextlib và tùy chỉnh context managers để quản lý tài nguyên tốt hơn."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/python-context-managers-the-three-cases-you-actually-need/
+aliases:
+  - /vi/posts/python-context-managers-the-three-cases-you-actually-need/
 faqs: - q: 'Khi nào nên tự viết context manager thay vì dùng try/finally trực tiếp?'
     a: 'Hãy viết khi bỏ qua phần dọn dẹp sẽ khiến người tiếp theo vô tình làm rò rỉ tài nguyên, hoặc khi bạn thấy cùng một mẫu try/finally acquire/release lặp đi lặp lại trong codebase. Lợi ích là try/finally nằm trong hàm tiện ích, mọi caller đều được hưởng miễn phí và không ai có thể quên khối finally.'
   - q: 'Làm thế nào để tạo một context manager tạm thời đặt biến môi trường rồi khôi phục lại sau đó?'

@@ -1,6 +1,6 @@
 ---
 title: 'LlamaIndex vs LangChain (2025): Which LLM Framework Shou...
-description: 'Compare LlamaIndex and LangChain in 2025. Architecture, RAG capabilities, performance benchmarks, and decision guide to pick the right LLM framework.'
+description: "Compare LlamaIndex and LangChain in 2025. Architecture, RAG capabilities, performance benchmarks, and decision guide to pick the right LLM framework."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/llamaindex-vs-langchain/-
+aliases:
+  - /posts/llamaindex-vs-langchain/-
 ---
 {</* resource-info */>}
 

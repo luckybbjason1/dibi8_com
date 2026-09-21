@@ -1,6 +1,6 @@
 ---
 title: 'AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs...
-description: 'AutoGen (Microsoft) is an event-driven programming framework for building multi-agent AI systems. Compatible with OpenAI, Azure, Ollama, Docker, and VS Code. Covers installation, group chat setup, production hardening, and honest comparison with alternatives.'
+description: "AutoGen (Microsoft) is an event-driven programming framework for building multi-agent AI systems. Compatible with OpenAI, Azure, Ollama, Docker, and VS Code. Covers installation, group chat setup, production hardening, and honest comparison with alternatives."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/microsoft/autogen'
+github_repo: "https://github.com/microsoft/autogen"
 stars: 58196
 maintainer: microsoft
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [autogen, 'multi-agent', microsoft, 'llm framework', 'agentic ai', python, 'crewai alternative', 'langgraph alternative']
-aliases: - /posts/autogen/
+categories: ["llm-frameworks"]
+tags: ["autogen", "multi-agent", "microsoft", "llm framework", "agentic ai", "python", "crewai alternative", "langgraph alternative"]
+aliases:
+  - /posts/autogen/
 - /resources/llm-frameworks/autogen-multi-agent-framework/-
 ---
 {{</* resource-info */>}}

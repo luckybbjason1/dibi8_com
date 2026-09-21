@@ -1,22 +1,23 @@
 ---
 title: 'AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor ...
-description: 'Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추적했습니다. 작업별 비용 분해, 각 도구의 손익분기점, 전환이 의미 있는 임계치까지.'
+description: "Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추적했습니다. 작업별 비용 분해, 각 도구의 손익분기점, 전환이 의미 있는 임계치까지."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
-source_version: 'May 2026 30-day window'
+source_version: "May 2026 30-day window"
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
-aliases: - /kr/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
+categories: ["dev-utils"]
+tags: ["ai-coding", "claude-code", "cursor", "codex-cli", "pricing", "2026"]
+aliases:
+  - /kr/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq: - q: "Claude Max($200)는 API 종량제 대비 가치가 있나요?"
     a: "임계치: 평일 기준 Claude Code를 약 3시간 이상 쓰면 Max가 유리합니다. 그 이하면 Sonnet 4.6 기반 API 종량제가 $80-150 구간에 들어옵니다. 하루 4시간을 넘기면 API 대비 실질적인 절감이 발생합니다."
   - q: "30일 추적에서 가장 놀라웠던 점은?"

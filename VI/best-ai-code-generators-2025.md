@@ -1,6 +1,6 @@
 ---
 title: 'Công Cụ Tạo Mã AI Tốt Nhất 2025: So Sánh GitHub Copilot,...
-description: 'Đánh giá chi tiết 5 công cụ tạo mã AI hàng đầu 2025: GitHub Copilot, Cursor, Tabnine, Amazon CodeWhisperer và JetBrains AI. So sánh tính năng, giá cả và hiệu suất.'
+description: "Đánh giá chi tiết 5 công cụ tạo mã AI hàng đầu 2025: GitHub Copilot, Cursor, Tabnine, Amazon CodeWhisperer và JetBrains AI. So sánh tính năng, giá cả và hiệu suất."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/best-ai-code-generators-2025/
+aliases:
+  - /posts/best-ai-code-generators-2025/
 ---
 {
   "@context": "https://schema.org",

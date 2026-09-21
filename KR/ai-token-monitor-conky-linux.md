@@ -1,26 +1,27 @@
 ---
 title: 'AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kim...
-description: '오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
-source_version: '1.0.0'
+source_version: "1.0.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'luckybbjason1/ai-token-monitor'
+github_repo: "luckybbjason1/ai-token-monitor"
 stars: 0
 maintainer: luckybbjason1
-last_maintained: '2026-06-06'
+last_maintained: "2026-06-06"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai 토큰 모니터', 'claude 쿼터', 'gemini 쿼터 추적', 'grok 토큰', 'kimi api', 'conky 위젯', 'linux 데스크탑', 오픈소스, python, '개발자 도구']
-aliases: - /kr/posts/ai-token-monitor-conky-linux/
+categories: ["dev-utils"]
+tags: ["ai 토큰 모니터", "claude 쿼터", "gemini 쿼터 추적", "grok 토큰", "kimi api", "conky 위젯", "linux 데스크탑", "오픈소스", "python", "개발자 도구"]
+aliases:
+  - /kr/posts/ai-token-monitor-conky-linux/
 faqs: - q: 'AI Token Monitor가 macOS나 Windows에서도 작동하나요?'
     a: '현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.'
   - q: 'Claude API 토큰 잔액을 어떻게 읽나요?'

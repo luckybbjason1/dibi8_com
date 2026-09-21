@@ -1,22 +1,23 @@
 ---
 title: 'MCP Server Security Audit 2026: 5 Real Community Server ...
-description: 'Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch. Concrete vulnerabilities found, exploit walkthroughs, and a 8-point pre-install audit checklist that takes 5 minutes per server.'
+description: "Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch. Concrete vulnerabilities found, exploit walkthroughs, and a 8-point pre-install audit checklist that takes 5 minutes per server."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Community + Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases: - /posts/mcp-server-security-audit-2026-real-cases/
+categories: ["llm-frameworks"]
+tags: ["mcp", "security", "audit", "claude-code", "supply-chain", "agent-security", "2026"]
+aliases:
+  - /posts/mcp-server-security-audit-2026-real-cases/
 faq: - q: "Are Anthropic-maintained MCP servers safer than community ones?"
     a: "Yes, materially. Anthropic reference servers (filesystem, git, github, fetch, sequentialthinking) get internal review, signed releases, and a defined security model. Community servers vary widely — some are audited, most are not. Default to Anthropic when an Anthropic version exists; treat community alternatives as untrusted code with full local permissions until you prove otherwise."
   - q: "What's the biggest real-world MCP attack pattern in 2026?"

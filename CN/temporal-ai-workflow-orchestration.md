@@ -1,7 +1,7 @@
 ---
 title: Temporal AI Workflow Orchestration — Reliable Multi-Step ...
 description: Complete guide to Temporal for orchestrating AI/ML workflows. Build reliable LLM pipelines, multi-agent systems, and ML training jobs with built-in durability, retries, and observability.
-tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
+tags: ["workflow", "orchestration", "temporal", "machine-learning", "llm", "reliability"]
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
@@ -100,7 +100,7 @@ async def load_dataset(dataset_name: str): """Load and validate a dataset."""
     print(f"Loading dataset: {dataset_name}")
     # Simulate data loading
     data = {"samples": 10000, "features": 128}
-    activity.info(f"Loaded {data['samples']} samples")
+    activity.info(f"Loaded {data[samples]} samples")
     return data
 
 @activity.defn
@@ -122,18 +122,18 @@ async def train_model(preprocessed_data: dict, epochs: int = 10): """Train a mod
         "final_accuracy": 0.9456,
         "epochs_trained": epochs
     }
-    activity.info(f"Training complete: accuracy={metrics['final_accuracy']:.4f}")
+    activity.info(f"Training complete: accuracy={metrics[final_accuracy]:.4f}")
     return metrics
 
 @activity.defn
 async def deploy_model(metrics: dict): """Deploy the trained model to production."""
     print("Deploying model to production...")
     deployment = {
-        "model_id": f"model-{metrics['final_accuracy']:.4f}",
+        "model_id": f"model-{metrics[final_accuracy]:.4f}",
         "status": "deployed",
         "endpoint": "https://api.example.com/v1/predict"
     }
-    activity.info(f"Model deployed: {deployment['model_id']}")
+    activity.info(f"Model deployed: {deployment[model_id]}")
     return deployment
 
 # Define the workflow

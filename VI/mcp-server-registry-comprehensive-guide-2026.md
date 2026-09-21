@@ -1,6 +1,6 @@
 ---
 title: 'Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cá...
-description: 'Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star, so sánh registry Smithery vs mcp.so, top server từng category, và cây quyết định lựa chọn — không phải MCP là gì, mà là cái gì bạn có thể cắm vào MCP host của mình.'
+description: "Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star, so sánh registry Smithery vs mcp.so, top server từng category, và cây quyết định lựa chọn — không phải MCP là gì, mà là cái gì bạn có thể cắm vào MCP host của mình."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - TypeScript
@@ -14,15 +14,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 86000
 maintainer: dibi8
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, 'model context protocol', registry, 'hub article']
-aliases: - /posts/mcp-server-registry-comprehensive-guide-2026/
+categories: ["llm-frameworks"]
+tags: ["mcp", "model context protocol", "registry", "hub article"]
+aliases:
+  - /posts/mcp-server-registry-comprehensive-guide-2026/
 ---
 
 # Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cái Chính Thức, Tìm Đúng Cái Trong 60 Giây

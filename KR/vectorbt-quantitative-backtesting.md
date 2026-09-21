@@ -1,6 +1,6 @@
 ---
 title: 'VectorBT: 1초에 100만+ 거래를 처리하는 초고속 Python 백테스팅 라이브러리 — 202...
-description: 'VectorBT로 Python 퀀트 백테스팅을 마스터하세요. 벡터화된 Numba 가속 시뮬레이션으로 트레이딩 전략을 구축, 테스트, 최적화합니다. 코드 예제가 포함된 완전한 2026 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "VectorBT로 Python 퀀트 백테스팅을 마스터하세요. 벡터화된 Numba 가속 시뮬레이션으로 트레이딩 전략을 구축, 테스트, 최적화합니다. 코드 예제가 포함된 완전한 2026 가이드.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,36 +12,37 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'polakowo/vectorbt'
+github_repo: "polakowo/vectorbt"
 stars: 8900
 maintainer: polakowo
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /kr/posts/vectorbt-quantitative-backtesting/
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /kr/posts/vectorbt-quantitative-backtesting/
 ---
 
 {{</* resource-info */>}}
 
 ## 소개: 왜 당신의 백테스팅은 너무 느린가
 
-50개 종목에 대한 10년분 OHLCV 데이터를 반복 처리하는 pandas 기반 백테스트를 완료하는 데 20분을 기다려본 적이 있다면, 당신은 혼자가 아닙니다. 2025년 퀀트 금융 설문조사에서 **소매 퀀트의 73%가 백테스트 결과를 분석하는 것보다 백테스트를 기다리는 데 더 많은 시간을 소비**한다고 밝혔습니다. Zipline이나 Backtrader와 같은 이벤트 기반 백테스터는 현실성 면에서 탁월하지만, 수천 가지 매개변수 조합을 테스트해야 할 때는 기어가다시피 합니다.
+50개 종목에 대한 10년분 OHLCV 데이터를 반복 처리하는 pandas 기반 백테스트를 완료하는 데 20분을 기다려본 적이 있다면", "당신은 혼자가 아닙니다. 2025년 퀀트 금융 설문조사에서 **소매 퀀트의 73%가 백테스트 결과를 분석하는 것보다 백테스트를 기다리는 데 더 많은 시간을 소비**한다고 밝혔습니다. Zipline이나 Backtrader와 같은 이벤트 기반 백테스터는 현실성 면에서 탁월하지만", "수천 가지 매개변수 조합을 테스트해야 할 때는 기어가다시피 합니다.
 
-VectorBT를 소개합니다 — 파이썬 백테스팅을 벡터화된 계산 문제로 재구상한 라이브러리입니다. **NumPy 배열과 Numba JIT 컴파일**을 활용하여 VectorBT는 단일 CPU 코어에서 **초당 100만 건 이상의 거래**를 처리합니다. GitHub 저장소 `polakowo/vectorbt`는 **8,900개 이상의 스타**를 누적했으며 Oleg Polakowo가 Apache-2.0 라이선스 하에 유지보수합니다. 2026년 5월 기준 v0.27.2 릴리스는 Python 3.9+를 지원하며 pandas, Plotly, scikit-learn과 완벽하게 통합됩니다.
+VectorBT를 소개합니다 — 파이썬 백테스팅을 벡터화된 계산 문제로 재구상한 라이브러리입니다. **NumPy 배열과 Numba JIT 컴파일**을 활용하여 VectorBT는 단일 CPU 코어에서 **초당 100만 건 이상의 거래**를 처리합니다. GitHub 저장소 `polakowo/vectorbt`는 **8", "900개 이상의 스타**를 누적했으며 Oleg Polakowo가 Apache-2.0 라이선스 하에 유지보수합니다. 2026년 5월 기준 v0.27.2 릴리스는 Python 3.9+를 지원하며 pandas", "Plotly", "scikit-learn과 완벽하게 통합됩니다.
 
-이 가이드는 설치, 핵심 개념, 실제 코드 예제, 프로덕션 강화, 그리고 정직한 한계를 다룹니다. 간단한 이동평균선 크로스오버를 테스트하든 전체 워크포워드 최적화 파이프라인을 실행하든, VectorBT는 백테스팅 속도에 대한 당신의 생각을 바꿀 것입니다.
+이 가이드는 설치", "핵심 개념", "실제 코드 예제", "프로덕션 강화", "그리고 정직한 한계를 다룹니다. 간단한 이동평균선 크로스오버를 테스트하든 전체 워크포워드 최적화 파이프라인을 실행하든", "VectorBT는 백테스팅 속도에 대한 당신의 생각을 바꿀 것입니다.
 
 ## VectorBT란 무엇인가?
 
-VectorBT(Vector Backtesting)는 **이벤트 기반 루프 대신 벡터화된 연산**을 사용하여 트레이딩 전략을 백테스트하는 Python 라이브러리입니다. 한 번에 한 봉을 처리하는 기존 백테스터와 달리 VectorBT는 단일 NumPy 스윕으로 전체 신호, 포지션, 손익 배열을 계산합니다. 결과: 백테스트가 몇 시간에서 몇 초로 단축되어 일반 하드웨어에서 대규모 매개변수 스윕과 머신러닝 파이프라인이 실제로 가능해집니다.
+VectorBT(Vector Backtesting)는 **이벤트 기반 루프 대신 벡터화된 연산**을 사용하여 트레이딩 전략을 백테스트하는 Python 라이브러리입니다. 한 번에 한 봉을 처리하는 기존 백테스터와 달리 VectorBT는 단일 NumPy 스윕으로 전체 신호", "포지션", "손익 배열을 계산합니다. 결과: 백테스트가 몇 시간에서 몇 초로 단축되어 일반 하드웨어에서 대규모 매개변수 스윕과 머신러닝 파이프라인이 실제로 가능해집니다.
 
 ## VectorBT 작동 방식: 아키텍처 및 핵심 개념
 
 VectorBT의 속도는 세 가지 아키텍처적 결정에서 나옵니다: ### NumPy-First 데이터 표현
 
-모든 가격 데이터는 NumPy ndarray로 존재합니다. 100개 자산에 대한 10년 일일 데이터 DataFrame은 형태 `(2,520, 100)`의 2D 배열이 됩니다 —— 연간 약 252 거래일. 핫 패스 어디에서도 행 단위 반복이 일어나지 않습니다.
+모든 가격 데이터는 NumPy ndarray로 존재합니다. 100개 자산에 대한 10년 일일 데이터 DataFrame은 형태 `(2", "520", "100)`의 2D 배열이 됩니다 —— 연간 약 252 거래일. 핫 패스 어디에서도 행 단위 반복이 일어나지 않습니다.
 
 ### Numba JIT 컴파일
 
@@ -58,26 +59,23 @@ import pandas as pd
 
 # 데이터 가져오기 — VectorBT는 yfinance를 편의용으로 랩핑
 price = vbt.YFData.download(
-    "BTC-USD",
-    start="2020-01-01",
-    end="2026-01-01",
-    interval="1d"
+    "BTC-USD", "start="2020-01-01", "end="2026-01-01", "interval="1d"
 ).get("Close")
 
-print(f"Data shape: {price.shape}")  # (2,210,) — 일일 종가
+print(f"Data shape: {price.shape}")  # (2", "210", ") — 일일 종가
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
 ```
 
 ## 설치 및 설정: 5분 안에 완료
 
-VectorBT는 pip를 통해 깔끔하게 설치됩니다. 기본 패키지에는 Numba, NumPy, pandas 통합이 포함됩니다. 선택적 의존성은 yfinance 데이터 가져오기와 Plotly 차트 기능을 추가합니다.
+VectorBT는 pip를 통해 깔끔하게 설치됩니다. 기본 패키지에는 Numba", "NumPy", "pandas 통합이 포함됩니다. 선택적 의존성은 yfinance 데이터 가져오기와 Plotly 차트 기능을 추가합니다.
 
 ```bash
 # 기본 설치
 pip install vectorbt
 
 # 모든 선택적 의존성 포함 (권장)
-pip install "vectorbt[all]"
+pip install "vectorbt[all"]"
 ```
 
 설치 확인: ```python

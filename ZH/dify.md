@@ -1,6 +1,6 @@
 ---
-title: 'Dify: 5 分钟可视化构建生产级 AI Agent — 141K+ Stars 安装配置指南 2026'
-description: 'Dify 是开源 LLM 应用开发平台，提供可视化工作流构建器、RAG 管道和 Agent 编排功能。兼容 OpenAI、Anthropic、Ollama、Qdrant 和 Weaviate。涵盖 Docker 部署、API 集成、生产环境加固，以及与 Flowise、n8n 和 LangChain 的对比分析。'
+title: "Dify: 5 分钟可视化构建生产级 AI Agent — 141K+ Stars 安装配置指南 2026"
+description: "Dify 是开源 LLM 应用开发平台，提供可视化工作流构建器、RAG 管道和 Agent 编排功能。兼容 OpenAI、Anthropic、Ollama、Qdrant 和 Weaviate。涵盖 Docker 部署、API 集成、生产环境加固，以及与 Flowise、n8n 和 LangChain 的对比分析。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langgenius/dify'
+github_repo: "https://github.com/langgenius/dify"
 stars: 141955
 maintainer: langgenius
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [dify, 'ai 智能体构建器', 'llm 工作流', rag, 'docker 部署', '开源 ai', 可视化工作流, '生产级 ai']
-aliases: - /zh/posts/dify/
+categories: ["llm-frameworks"]
+tags: ["dify", "ai 智能体构建器", "llm 工作流", "rag", "docker 部署", "开源 ai", "可视化工作流", "生产级 ai"]
+aliases:
+  - /zh/posts/dify/
 - /zh/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-
 ---
 

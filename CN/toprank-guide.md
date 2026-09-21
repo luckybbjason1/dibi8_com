@@ -1,8 +1,8 @@
 ---
 title: 'GEO Optimization Checklist: Make ChatGPT Cite You Using ...
   Agent)'
-description: 'GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free. Comprehensive guide covering features, pricing, and best practices for 2026.
-  AI SEO Agent)'
+description: "GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free. Comprehensive guide covering features, pricing, and best practices for 2026.
+  AI SEO Agent)"
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/toprank-geo-optimization-guide/
+aliases:
+  - /posts/toprank-geo-optimization-guide/
 faqs: - q: 'What is GEO (Generative Engine Optimization)?'
     a: 'GEO is the practice of structuring your content so that large language models like ChatGPT, Claude, and Perplexity confidently retrieve and cite your URL as a source in their generated answers, rather than just ranking in standard search results.'
   - q: 'What is Toprank and what does it do?'

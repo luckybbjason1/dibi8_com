@@ -5,10 +5,9 @@ date: 2026-06-13
 lastmod: 2026-06-13
 slug: apple-container-mac-vm-tool-2026
 category: dev-utils
-tags: ['apple-container', 'macos-dev', 'linux-containers', 'vm-vs-docker', 'oci', 'apple-silicon', 'swift', 'virtualization', 'devtools']
-github_repo: 'https://github.com/apple/container'
+tags: ["apple-container", "macos-dev", "linux-containers", "vm-vs-docker", "oci", "apple-silicon", "swift", "virtualization", "devtools"]
+github_repo: "https://github.com/apple/container"
 license: 'Apache-2.0'
-lang: kr
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
 

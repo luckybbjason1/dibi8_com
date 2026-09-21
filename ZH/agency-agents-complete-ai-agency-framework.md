@@ -1,12 +1,12 @@
 ---
-description: 'Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from frontend designers to Reddit moderators. Learn how to deploy a full AI team for $0.'
+description: "Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from frontend designers to Reddit moderators. Learn how to deploy a full AI team for $0."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: agency-agents-complete-ai-agency-framework
-title: '代理代理：125K+星开源人工智能代理框架'
+title: "代理代理：125K+星开源人工智能代理框架"
 category: dev-utils
-tags: ['ai-agents', 'open-source', 'automation', 'multi-agent', 'agency']
-github_repo: 'https://github.com/msitarzewski/agency-agents'
+tags: ["ai-agents", "open-source", "automation", "multi-agent", "agency"]
+github_repo: "https://github.com/msitarzewski/agency-agents"
 license: 'MIT'
 tech_stack: - Bash
   - Python

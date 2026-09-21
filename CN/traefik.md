@@ -1,6 +1,6 @@
 ---
 title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
-description: 'Traefik is a cloud-native application proxy and edge router with automatic service discovery. Compatible with Docker, Kubernetes, Consul, and Docker Compose. Covers installation, middleware, TLS, monitoring, and production hardening.'
+description: "Traefik is a cloud-native application proxy and edge router with automatic service discovery. Compatible with Docker, Kubernetes, Consul, and Docker Compose. Covers installation, middleware, TLS, monitoring, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/traefik/traefik'
+github_repo: "https://github.com/traefik/traefik"
 stars: 63229
 maintainer: traefik
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [traefik, docker, kubernetes, 'reverse-proxy', 'edge-router', ingress, devops, 'cloud-native']
-aliases: - /posts/traefik/-
+categories: ["dev-utils"]
+tags: ["traefik", "docker", "kubernetes", "reverse-proxy", "edge-router", "ingress", "devops", "cloud-native"]
+aliases:
+  - /posts/traefik/-
 ---
 {{</* resource-info */>}}
 
@@ -434,7 +435,7 @@ metrics: prometheus: addEntryPointsLabels: true
 Prometheus scrape config: ```yaml
 scrape_configs: - job_name: traefik
     scrape_interval: 15s
-    static_configs: - targets: ['traefik:8080']
+    static_configs: - targets: [traefik:8080]
 ```
 
 ![Traefik Grafana Dashboard](https://grafana.com/api/dashboards/17346/images/14185/image)

@@ -1,6 +1,6 @@
 ---
 title: 'ds4 Review 2026: The Open-Source DeepSeek Developers Are...
-description: 'ds4 is the fastest-growing open-source DeepSeek-compatible LLM runtime in 2026. Apache-2.0 licensed, OpenAI API compatible, runs DeepSeek V3 / V3.1 / V4 weights with 40% lower latency than vLLM. Full setup guide, benchmark comparison vs vLLM/Ollama/TGI, production hardening, and tool integration (Claude Code, Cursor, LangChain, Continue.dev).'
+description: "ds4 is the fastest-growing open-source DeepSeek-compatible LLM runtime in 2026. Apache-2.0 licensed, OpenAI API compatible, runs DeepSeek V3 / V3.1 / V4 weights with 40% lower latency than vLLM. Full setup guide, benchmark comparison vs vLLM/Ollama/TGI, production hardening, and tool integration (Claude Code, Cursor, LangChain, Continue.dev)."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases: - /posts/ds4-open-source-deepseek-alternative-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "open-source", "developer-tools", "llm-infrastructure"]
+aliases:
+  - /posts/ds4-open-source-deepseek-alternative-2026/
 - /resources/dev-utils/ds4-open-source-deepseek-alternative-2026/
 faqs: - q: 'What is ds4 and why is it different from vLLM or Ollama?'
     a: 'ds4 is an open-source LLM runtime optimized specifically for DeepSeek model architectures (V3, V3.1, V4). Unlike general-purpose runtimes (vLLM, Ollama, TGI), ds4 implements DeepSeek-specific optimizations: MoE routing batching, attention sink handling, and prefill/decode separation. Result: 40% lower latency and 2x throughput on DeepSeek workloads. Apache-2.0 licensed, OpenAI API compatible.'

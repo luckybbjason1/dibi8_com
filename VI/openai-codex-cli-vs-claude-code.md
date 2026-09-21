@@ -1,10 +1,10 @@
 ---
-title: 'OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?'
-description: 'So sánh trực tiếp OpenAI Codex CLI (gpt-5-codex) và Anthropic Claude Code (Sonnet 4.6, ngữ cảnh 1M) — giá, sandbox, doanh nghiệp, tích hợp công cụ. Cập nhật 2026.'
+title: "OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?"
+description: "So sánh trực tiếp OpenAI Codex CLI (gpt-5-codex) và Anthropic Claude Code (Sonnet 4.6, ngữ cảnh 1M) — giá, sandbox, doanh nghiệp, tích hợp công cụ. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
-categories: [vs]
+tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
+categories: ["vs"]
 faqs: - q: 'OpenAI Codex CLI có miễn phí không?'
     a: 'Bản thân CLI là mã nguồn mở (Apache 2.0, ra mắt tháng 11/2025) và miễn phí cài đặt. Bạn chỉ trả cho lệnh gọi API mô hình — sử dụng gpt-5-codex được tính qua OpenAI API key của bạn (khoảng $1.50/1M đầu vào, $10/1M đầu ra tính đến 2026). Claude Code cũng miễn phí cài đặt nhưng cần đăng ký Pro/Max ($20-$200/tháng) hoặc trả theo dùng qua Sonnet 4.6.'
   - q: 'Cửa sổ ngữ cảnh nào lớn hơn?'

@@ -1,11 +1,11 @@
 ---
-title: 'Addy Osmani\'s Agent Skills: 96K-Star Framework for Prod...
-description: 'Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.'
+title: "Addy Osmani\"
+description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns."
 date: 2026-09-19
 slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
-tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
-github_repo: 'https://github.com/addyosmani/agent-skills'
+tags: ["agent-skills", "addy-osmani", "claude-code", "cursor", "ai-editors", "skills"]
+github_repo: "https://github.com/addyosmani/agent-skills"
 stars: 96378
 maintainer: 'addyosmani'
 license: MIT

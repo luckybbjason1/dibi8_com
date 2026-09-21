@@ -1,10 +1,10 @@
 ---
 title: 'Top 10 Free MCP Tools in 2026: Best Model Context Protoc...
-description: 'The 10 best free MCP servers for Claude, Cursor, and any MCP-compatible AI client — filesystem, web search, memory, GitHub, databases, and more. All open source, zero cost.'
+description: "The 10 best free MCP servers for Claude, Cursor, and any MCP-compatible AI client — filesystem, web search, memory, GitHub, databases, and more. All open source, zero cost."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [mcp, model-context-protocol, free-mcp-tools, mcp-servers, claude-mcp, open-source-ai, ai-tools]
-categories: [tools]
+tags: ["mcp", "model-context-protocol", "free-mcp-tools", "mcp-servers", "claude-mcp", "open-source-ai", "ai-tools"]
+categories: ["tools"]
 faqs: - q: 'What is MCP and why does it matter?'
     a: 'MCP (Model Context Protocol) is an open standard by Anthropic that lets AI models like Claude connect to external tools, databases, and services in a standardized way. Instead of each AI app building custom integrations, MCP provides one universal connector. An MCP server exposes capabilities (file reads, web searches, database queries) that any MCP-compatible AI client can use.'
   - q: 'Are these MCP tools really free?'

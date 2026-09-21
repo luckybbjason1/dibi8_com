@@ -1,6 +1,6 @@
 ---
-title: 'Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드'
-description: 'Caddy(Caddyserver)는 자동 HTTPS를 갖춘 빠르고 확장 가능한 다중 플랫폼 HTTP/1-2-3 웹 서버다. Docker, Let''''s Encrypt, Prometheus, Grafana와 호환된다. Caddyfile 튜토리얼, Docker 설치, 프로덕션 하드닝 및 모니터링을 다룬다.'
+title: "Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드"
+description: "Caddy(Caddyserver)는 자동 HTTPS를 갖춘 빠르고 확장 가능한 다중 플랫폼 HTTP/1-2-3 웹 서버다. Docker, Let"'''s Encrypt, Prometheus, Grafana와 호환된다. Caddyfile 튜토리얼, Docker 설치, 프로덕션 하드닝 및 모니터링을 다룬다.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/caddyserver/caddy'
+github_repo: "https://github.com/caddyserver/caddy"
 stars: 72595
 maintainer: caddyserver
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
-aliases: - /kr/posts/caddy/
+categories: ["dev-utils"]
+tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]
+aliases:
+  - /kr/posts/caddy/
 ---
 
 {{</* resource-info */>}}

@@ -1,12 +1,12 @@
 ---
 title: 'nanochat: Karpathy 的 100 美元 ChatGPT — 单 GPU 上自建 AI 聊天应用 ...
-description: 'nanochat（54,800 GitHub 星标）是 Andrej Karpathy 的开源 ChatGPT 克隆项目，可在单张 100 美元 GPU 上运行。使用 SGLang 从头训练或通过 vLLM 提供预训练模型服务。包含设置指南、训练基准和部署示例。'
+description: "nanochat（54,800 GitHub 星标）是 Andrej Karpathy 的开源 ChatGPT 克隆项目，可在单张 100 美元 GPU 上运行。使用 SGLang 从头训练或通过 vLLM 提供预训练模型服务。包含设置指南、训练基准和部署示例。"
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
-tags: ['karpathy nanochat', '从头训练 LLM', '单 GPU 聊天', '开源 ChatGPT', 'SGLang', 'vLLM', '本地 LLM', 'AI 聊天应用']
-github_repo: 'https://github.com/karpathy/nanochat'
+tags: ["karpathy nanochat", "从头训练 LLM", "单 GPU 聊天", "开源 ChatGPT", "SGLang", "vLLM", "本地 LLM", "AI 聊天应用"]
+github_repo: "https://github.com/karpathy/nanochat"
 stars: 54800
 maintainer: 'karpathy'
 license: MIT

@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/mempalace-guide/
+aliases:
+  - /kr/posts/mempalace-guide/
 faqs: - q: 'Claude Code에 영구 메모리를 추가하는 방법은?'
     a: 'MemPalace를 로컬에서 실행한 후, claude_code_config.json을 설정해 http://localhost:8787/mcp 엔드포인트를 읽기/쓰기 권한으로 가리키도록 하면 Claude Code에 연결됩니다. 이후 Claude는 과거 컨텍스트가 필요할 때마다 MemPalace를 시맨틱 벡터 데이터베이스로 조회합니다.'
   - q: 'Claude Code의 메모리는 세션 종료 및 재부팅 후에도 유지되나요?'

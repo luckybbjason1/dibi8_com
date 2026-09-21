@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: ai-engineering-from-scratch
 category: llm-frameworks
-tags: ['ai 엔지니어링', 'llm', '파인튜닝', 'rag', '에이전트 프레임워크', '프로덕션 배포', '머신러닝']
+tags: ["ai 엔지니어링", "llm", "파인튜닝", "rag", "에이전트 프레임워크", "프로덕션 배포", "머신러닝"]
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
 license: MIT
 images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
@@ -17,7 +17,6 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "스타 이력"
     role: reference
-lang: kr
 featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수'
+title: "Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수"
 description: Scanners-Box를 탐색하세요 — 침투 테스트, 취약점 스캐닝, 보안 연구를 포함한 200개 이상의 오픈소스 사이버보안. Comprehensive guide covering features, pricing, and best practices for 2026.
   도구 모음.
 date: 2026-05-15 04:20:25+09:00
@@ -23,7 +23,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/scanners-box-cybersecurity-tools-collection/
+aliases:
+  - /ko/posts/scanners-box-cybersecurity-tools-collection/
 faqs: - q: 'Scanners-Box란 무엇인가요?'
     a: 'Scanners-Box는 15개 이상의 카테고리에 걸쳐 200개 이상의 오픈소스 사이버보안 도구를 엄선한 모음으로, 서브도메인 열거, SQL 인젝션, 퍼징, 포트 스캐닝, 사회공학 등을 아우릅니다. 원래 중국 보안 커뮤니티(t00ls)를 위해 만들어졌으며, 침투 테스터와 보안 연구자를 대상으로 합니다.'
   - q: 'Scanners-Box는 SQL 인젝션 테스트에 어떤 도구를 추천하나요?'

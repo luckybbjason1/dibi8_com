@@ -1,6 +1,6 @@
 ---
 title: 'Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau V...
-description: 'Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard, SQL editor, alerts, embedding và Docker self-hosting. 41,000+ sao GitHub.'
+description: "Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard, SQL editor, alerts, embedding và Docker self-hosting. 41,000+ sao GitHub."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'metabase/metabase'
+github_repo: "metabase/metabase"
 stars: 41000
 maintainer: metabase
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset', 'tri-tue-kinh-doanh', 'phan-tich-du-lieu', 'ma-nguon-mo']
-aliases: - /vi/posts/metabase-business-intelligence-open/
+categories: ["data-science"]
+tags: ["metabase", "bi", "business-intelligence", "open-source", "tableau", "dashboards", "sql", "docker", "self-hosted", "analytics", "data-visualization", "apache-superset", "tri-tue-kinh-doanh", "phan-tich-du-lieu", "ma-nguon-mo"]
+aliases:
+  - /vi/posts/metabase-business-intelligence-open/
 ---
 
 {{</* resource-info */>}}

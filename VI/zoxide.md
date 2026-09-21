@@ -1,6 +1,6 @@
 ---
 title: 'Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
-description: 'Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerShell. Bao gồm cài đặt, tích hợp shell, cấu hình fzf, thuật toán bên trong, và chuyển đổi từ autojump/fasd.'
+description: "Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerShell. Bao gồm cài đặt, tích hợp shell, cấu hình fzf, thuật toán bên trong, và chuyển đổi từ autojump/fasd."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/ajeetdsouza/zoxide'
+github_repo: "https://github.com/ajeetdsouza/zoxide"
 stars: 36752
 maintainer: ajeetdsouza
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [zoxide, cli, shell, 'cd-thay-the', rust, terminal, 'năng-suất', fzf]
-aliases: - /vi/posts/zoxide/
+categories: ["dev-utils"]
+tags: ["zoxide", "cli", "shell", "cd-thay-the", "rust", "terminal", "năng-suất", "fzf"]
+aliases:
+  - /vi/posts/zoxide/
 ---
 
 {{</* resource-info */>}}

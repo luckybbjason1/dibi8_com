@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: roboflow-supervision
 category: data-science
-tags: [supervision, roboflow, computer vision, annotation, object detection, CV toolkit, data-science]
+tags: ["supervision", "roboflow", "computer vision", "annotation", "object detection", "CV toolkit", "data-science"]
 github_repo: https://github.com/roboflow/supervision
 stars: 42819
 maintainer: roboflow

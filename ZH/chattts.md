@@ -1,6 +1,6 @@
 ---
-title: 'ChatTTS: 39.3K+ Stars — 对话式TTS基准对比 vs Coqui、MeloTTS 2026'
-description: 'ChatTTS (AGPL-3.0) 是专门用于对话场景的生成式语音模型。兼容 Coqui TTS、MeloTTS、GPT-SoVITS。涵盖安装设置、基准测试、生产部署和对比表格。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "ChatTTS: 39.3K+ Stars — 对话式TTS基准对比 vs Coqui、MeloTTS 2026"
+description: "ChatTTS (AGPL-3.0) 是专门用于对话场景的生成式语音模型。兼容 Coqui TTS、MeloTTS、GPT-SoVITS。涵盖安装设置、基准测试、生产部署和对比表格。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/2noise/ChatTTS'
+github_repo: "https://github.com/2noise/ChatTTS"
 stars: 39300
 maintainer: 2noise
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [chattts, 文本转语音, 语音合成, 对话式ai, 大模型助手, 语音克隆, 开源, 基准测试]
-aliases: - /zh/posts/chattts/
+categories: ["ai-tools"]
+tags: ["chattts", "文本转语音", "语音合成", "对话式ai", "大模型助手", "语音克隆", "开源", "基准测试"]
+aliases:
+  - /zh/posts/chattts/
 - /zh/resources/llm-frameworks/chattts-architecture-autoregressive-voice/-
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: '2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）'
-description: '2026 年构建生产级 AI 应用、避开云锁定的完整参考架构——7 层结构、14 个开源工具、真实性能数字。覆盖本地 LLM 运行时、符号级代码智能（CodeGraph）、统一 CLI 控制中心（CC Switch）、成本感知代理（rtk）、持久化代理记忆（agentmemory / MemPalace）、设备端 TTS（Supertonic），以及 12-Factor Agents 方法论。能让 LLM 功能在经济上可持续扩张的完整栈。'
+title: "2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）"
+description: "2026 年构建生产级 AI 应用、避开云锁定的完整参考架构——7 层结构、14 个开源工具、真实性能数字。覆盖本地 LLM 运行时、符号级代码智能（CodeGraph）、统一 CLI 控制中心（CC Switch）、成本感知代理（rtk）、持久化代理记忆（agentmemory / MemPalace）、设备端 TTS（Supertonic），以及 12-Factor Agents 方法论。能让 LLM 功能在经济上可持续扩张的完整栈。"
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial team'
-last_maintained: '2026-05-23'
+last_maintained: "2026-05-23"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-architecture', 'ai-stack-2026', 'agent-infrastructure', codegraph, '12-factor-agents', supertonic, 'cc-switch', rtk, agentmemory, mempalace, mcp, ds4, opencode, 'hermes-agent']
-aliases: - /zh/posts/2026-local-first-ai-stack-production-architecture/-
+categories: ["llm-frameworks"]
+tags: ["hub article", "local-first-ai", "production-ai", "self-hosted-ai", "ai-architecture", "ai-stack-2026", "agent-infrastructure", "codegraph", "12-factor-agents", "supertonic", "cc-switch", "rtk", "agentmemory", "mempalace", "mcp", "ds4", "opencode", "hermes-agent"]
+aliases:
+  - /zh/posts/2026-local-first-ai-stack-production-architecture/-
 ---
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 

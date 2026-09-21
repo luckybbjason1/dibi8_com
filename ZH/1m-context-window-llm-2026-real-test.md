@@ -1,22 +1,23 @@
 ---
-title: '1M 上下文窗口 LLM 2026：Gemini 2.5 Pro vs Claude Sonnet 4.6 实测对比'
-description: '两家都号称 1M token 上下文。我们把 950K token 的代码库分别灌进去，实测：检索质量、延迟、成本，以及谁真正兑现了 1M 承诺，谁在长尾段崩塌。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "1M 上下文窗口 LLM 2026：Gemini 2.5 Pro vs Claude Sonnet 4.6 实测对比"
+description: "两家都号称 1M token 上下文。我们把 950K token 的代码库分别灌进去，实测：检索质量、延迟、成本，以及谁真正兑现了 1M 承诺，谁在长尾段崩塌。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']
 application_domain: LLM Frameworks
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Commercial
 license_type: 'Proprietary API'
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [gemini, claude, 'long-context', llm, 2026]
-aliases: - /zh/posts/1m-context-window-llm-2026-real-test/
+categories: ["llm-frameworks"]
+tags: ["gemini", "claude", "long-context", "llm", "2026"]
+aliases:
+  - /zh/posts/1m-context-window-llm-2026-real-test/
 faq: - q: "Gemini 2.5 Pro 和 Claude Sonnet 4.6 真的都能处理 1M token 吗？"
     a: "两家技术上都接受 1M+ token 的输入。但长尾段的质量有差异：Gemini 在整个窗口内保持一致；Claude 在超过约 700K token 后检索任务出现退化。从实用角度看，两家各擅胜场——Gemini 适合超大上下文的原生召回，Claude 在中等到偏大上下文的推理质量更佳。"
   - q: "1M token 的成本差距有多大？"

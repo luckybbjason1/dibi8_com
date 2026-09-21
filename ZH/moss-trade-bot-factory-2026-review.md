@@ -1,26 +1,27 @@
 ---
-title: 'Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人'
-description: 'moss-trade-bot-skills v1.0.26 完整实测：基于 Hyperliquid 永续合约的自然语言量化 agent 工厂。工业级 Decimal 精度回测引擎 + 20 档深度成交建模 — 但 Sharpe 年化常数有 bug，进化模式开启后会陷入教科书级 OVERFIT 陷阱。安装实测、Sharpe bug 修复、5 策略对比、OOS 70/30 验证全过程。'
+title: "Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人"
+description: "moss-trade-bot-skills v1.0.26 完整实测：基于 Hyperliquid 永续合约的自然语言量化 agent 工厂。工业级 Decimal 精度回测引擎 + 20 档深度成交建模 — 但 Sharpe 年化常数有 bug，进化模式开启后会陷入教科书级 OVERFIT 陷阱。安装实测、Sharpe bug 修复、5 策略对比、OOS 70/30 验证全过程。"
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
-source_version: 'v1.0.26'
+source_version: "v1.0.26"
 licensing_model: Open Source
 license_type: MIT-0
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/moss-site/moss-trade-bot-skills'
+github_repo: "https://github.com/moss-site/moss-trade-bot-skills"
 stars: 98
 maintainer: 'moss-site'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['ai-agent', 量化, 回测, hyperliquid, 永续合约, 开源, 过拟合, 'oos 验证']
-aliases: - /zh/posts/moss-trade-bot-factory-2026-review/
+categories: ["ai-trading"]
+tags: ["ai-agent", "量化", "回测", "hyperliquid", "永续合约", "开源", "过拟合", "oos 验证"]
+aliases:
+  - /zh/posts/moss-trade-bot-factory-2026-review/
 faq: - q: "moss-trade-bot-factory 装起来安全吗？"
     a: "纸面回测完全安全。代码审计确认：无 eval/exec、HMAC 签名 API 调用永不上传你的 secret、MIT-0 协议、不访问 wallet 私钥。skill 是量化策略构建器，不是托管服务。实盘交易需要显式 bind 到 moss.site 平台，资金始终在你自己的 Hyperliquid wallet 里。"
   - q: "Sharpe 年化常数 bug 是什么？"

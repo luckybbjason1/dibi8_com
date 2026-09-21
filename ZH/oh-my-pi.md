@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: oh-my-pi
 category: dev-utils
-tags: ['树莓派', '智能家居', '物联网', '边缘计算', '家庭自动化', 'linux', '自动化']
+tags: ["树莓派", "智能家居", "物联网", "边缘计算", "家庭自动化", "linux", "自动化"]
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
 images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"

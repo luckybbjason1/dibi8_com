@@ -1,6 +1,6 @@
 ---
-title: 'AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택'
-description: '완전한 프로덕션 AI 에이전트 스택: 상태 유지 오케스트레이션 LangGraph + 도구용 MCP servers + 메모리 mem0 + 멀티 에이전트 조정 OpenClaw + 자가 개선 Hermes Agent + 샌드박스 코드 실행 e2b. $20-60/월 셀프호스트. 내부 링크된 심층 가이드로 실제 조립.'
+title: "AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택"
+description: "완전한 프로덕션 AI 에이전트 스택: 상태 유지 오케스트레이션 LangGraph + 도구용 MCP servers + 메모리 mem0 + 멀티 에이전트 조정 OpenClaw + 자가 개선 Hermes Agent + 샌드박스 코드 실행 e2b. $20-60/월 셀프호스트. 내부 링크된 심층 가이드로 실제 조립."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai 에이전트', '도구 체인', langgraph, mcp, 스택, 컬렉션]
-aliases: - /posts/ai-agent-tool-chain/
+categories: ["collections"]
+tags: ["ai 에이전트", "도구 체인", "langgraph", "mcp", "스택", "컬렉션"]
+aliases:
+  - /posts/ai-agent-tool-chain/
 ---
 
 "AI 에이전트"는 2025년에 연구 주제이기를 멈췄고 2026년에 프로덕션 엔지니어링 카테고리가 됐습니다. 실제 자율 에이전트를 ship하는 팀 — 재시작 견디는 고객 지원 봇, 100파일에 걸쳐 리팩토링하는 코딩 에이전트, 몇 시간 실행되는 리서치 에이전트 — 은 놀랍도록 일관된 스택으로 수렴했습니다. 이 컬렉션이 그것을 조립합니다.

@@ -1,6 +1,6 @@
 ---
-title: 'LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026'
-description: 'LazyDocker (LD) 是一个用于管理 Docker 容器、镜像、卷和日志的终端 UI。兼容 Docker、Docker Compose、Go 和 Terminal。涵盖安装、快捷键、配置和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026"
+description: "LazyDocker (LD) 是一个用于管理 Docker 容器、镜像、卷和日志的终端 UI。兼容 Docker、Docker Compose、Go 和 Terminal。涵盖安装、快捷键、配置和生产环境加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jesseduffield/lazydocker'
+github_repo: "https://github.com/jesseduffield/lazydocker"
 stars: 51092
 maintainer: jesseduffield
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [lazydocker, docker, 终端界面, devops, 容器, 命令行工具, 'docker-compose', tui]
-aliases: - /zh/posts/lazydocker/-
+categories: ["dev-utils"]
+tags: ["lazydocker", "docker", "终端界面", "devops", "容器", "命令行工具", "docker-compose", "tui"]
+aliases:
+  - /zh/posts/lazydocker/-
 ---
 
 {{</* resource-info */>}}

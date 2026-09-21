@@ -1,6 +1,6 @@
 ---
-title: 'perplexity-api-rag-search'
-description: '{'en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
+title: "perplexity-api-rag-search"
+description: "{"en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar models, real-time web citations, streaming, and production integration patterns.'', 'zh': ''学习如何使用Perplexity API构建RAG增强搜索应用。涵盖Sonar模型、实时网络引用、流式传输和生产集成模式。'', 'ko': ''Perplexity API를 사용하여 RAG 강화 검색 애플리케이션을构建하는 방법을 알아보세요. Sonar 모델, 실시간 웹 인용, 스트리밍 및 프로덕션 통합 패턴을 다룹니다.'', 'vi': ''Tìm hiểu cách xây dựng ứng dụng tìm kiếm tăng cường RAG bằng Perplexity API. Bao gồm mô hình Sonar, trích dẫn web thờigian thực, streaming và các mẫu tích hợp sản xuất.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/perplexity'
+github_repo: "https://github.com/perplexity"
 stars: 0
 maintainer: perplexity
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['perplexity api']
-aliases: - /zh/posts/perplexity-api-rag-search/-
+categories: ["llm-frameworks"]
+tags: ["perplexity api"]
+aliases:
+  - /zh/posts/perplexity-api-rag-search/-
 ---
 
 {{</* resource-info */>}}

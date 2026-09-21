@@ -1,6 +1,6 @@
 ---
 title: 'Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của ...
-description: 'Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu hình khai báo đơn giản, bạn có thể so sánh GPT, Claude, Gemini, DeepSeek và tích hợp mượt mà vào CLI lẫn CI/CD. Hướng dẫn 2026 này bao quát cài đặt, promptfooconfig.yaml, assertion và kiểm thử red-team.'
+description: "Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu hình khai báo đơn giản, bạn có thể so sánh GPT, Claude, Gemini, DeepSeek và tích hợp mượt mà vào CLI lẫn CI/CD. Hướng dẫn 2026 này bao quát cài đặt, promptfooconfig.yaml, assertion và kiểm thử red-team."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,25 +12,26 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'promptfoo/promptfoo'
+github_repo: "promptfoo/promptfoo"
 stars: 21825
 maintainer: promptfoo
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/promptfoo-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/promptfoo-llm-frameworks-2026/
 faqs: - q: 'Làm sao cài và chạy promptfoo cục bộ?'
-    a: 'Con đường nhanh nhất là không cần cài: ```bash npx promptfoo@latest init --example getting-started ``` Để cài toàn cục, dùng `npm install -g promptfoo` (hoặc `brew install promptfoo`, hoặc `pip install promptfoo`). Sau đó chạy `promptfoo eval` để đánh giá và `promptfoo view` để mở trình xem cục bộ.'
+    a: 'Con đường nhanh nhất là không cần cài: ```bash npx promptfoo@latest init --example getting-started ``` Để cài toàn cục", "dùng `npm install -g promptfoo` (hoặc `brew install promptfoo`", "hoặc `pip install promptfoo`). Sau đó chạy `promptfoo eval` để đánh giá và `promptfoo view` để mở trình xem cục bộ.'
   - q: 'Tôi có thể dùng promptfoo với mô hình của riêng mình không?'
-    a: 'Có. Promptfoo hỗ trợ nhiều provider — OpenAI, Anthropic, Google, DeepSeek, các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách `providers` của `promptfooconfig.yaml` và cung cấp khóa API tương ứng qua biến môi trường.'
+    a: 'Có. Promptfoo hỗ trợ nhiều provider — OpenAI", "Anthropic", "Google", "DeepSeek", "các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách `providers` của `promptfooconfig.yaml` và cung cấp khóa API tương ứng qua biến môi trường.'
   - q: 'Promptfoo so sánh hiệu năng giữa các mô hình khác nhau như thế nào?'
-    a: 'Bạn liệt kê nhiều mục dưới `providers`, và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó `promptfoo view` hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion, để bạn so sánh trực tiếp trên đầu vào của chính mình.'
+    a: 'Bạn liệt kê nhiều mục dưới `providers`", "và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó `promptfoo view` hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion", "để bạn so sánh trực tiếp trên đầu vào của chính mình.'
   - q: 'Có cách nào tích hợp promptfoo vào pipeline CI/CD không?'
-    a: 'Có. Vì promptfoo là một CLI, bạn có thể chạy `npx promptfoo@latest eval` trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.'
+    a: 'Có. Vì promptfoo là một CLI", "bạn có thể chạy `npx promptfoo@latest eval` trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.'
   - q: 'Làm sao đóng góp cho dự án promptfoo?'
-    a: 'Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại [hướng dẫn đóng góp](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md).'
+    a: 'Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại [hướng dẫn đóng góp"](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md).'
 ---
 
 {{< resource-info >}}

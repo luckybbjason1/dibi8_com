@@ -1,6 +1,6 @@
 ---
-title: 'Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指南'
-description: 'Promptfoo 是一款开源的 CLI 与代码库，用于评估和红队 LLM 应用。用简单的声明式配置即可对比 GPT、Claude、Gemini、DeepSeek，并无缝接入命令行与 CI/CD。本 2026 指南讲解安装、promptfooconfig.yaml、断言与红队测试。'
+title: "Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指南"
+description: "Promptfoo 是一款开源的 CLI 与代码库，用于评估和红队 LLM 应用。用简单的声明式配置即可对比 GPT、Claude、Gemini、DeepSeek，并无缝接入命令行与 CI/CD。本 2026 指南讲解安装、promptfooconfig.yaml、断言与红队测试。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'promptfoo/promptfoo'
+github_repo: "promptfoo/promptfoo"
 stars: 21825
 maintainer: promptfoo
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/promptfoo-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/promptfoo-llm-frameworks-2026/
 faqs: - q: '如何在本地安装并运行 promptfoo？'
     a: '最快的路径完全不用安装： ```bash npx promptfoo@latest init --example getting-started ``` 要全局安装，用 `npm install -g promptfoo`（或 `brew install promptfoo`，或 `pip install promptfoo`）。然后用 `promptfoo eval` 做评估，用 `promptfoo view` 打开本地查看器。'
   - q: '能用 promptfoo 测试我自己的模型吗？'
@@ -30,7 +31,7 @@ faqs: - q: '如何在本地安装并运行 promptfoo？'
   - q: '有办法把 promptfoo 接入 CI/CD 流水线吗？'
     a: '有。因为 promptfoo 是 CLI，你可以在任何流水线里跑 `npx promptfoo@latest eval`。它常被接入 GitHub Actions，让每次 push 或 pull request 都运行你的评估套件。'
   - q: '如何为 promptfoo 项目做贡献？'
-    a: '欢迎贡献。你可以在 GitHub 上提 issue 或提交 pull request。详情见[贡献指南](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)。'---
+    a: '欢迎贡献。你可以在 GitHub 上提 issue 或提交 pull request。详情见[贡献指南"](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)。'---
 
 {{< resource-info >}}
 

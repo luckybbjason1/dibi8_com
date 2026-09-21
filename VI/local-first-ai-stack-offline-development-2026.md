@@ -1,22 +1,23 @@
 ---
 title: 'Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
-description: 'Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent, ChromaDB cho RAG — tất cả chạy local. Hướng dẫn cài đặt, thực tế phần cứng, và những tình huống offline thực sự quan trọng (riêng tư, tuân thủ, air-gapped, đi công tác).'
+description: "Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent, ChromaDB cho RAG — tất cả chạy local. Hướng dẫn cài đặt, thực tế phần cứng, và những tình huống offline thực sự quan trọng (riêng tư, tuân thủ, air-gapped, đi công tác)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
 application_domain: LLM Frameworks
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Various OSS'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
-aliases: - /vi/posts/local-first-ai-stack-offline-development-2026/
+categories: ["llm-frameworks"]
+tags: ["local-first", "offline", "ollama", "ai-coding", "privacy", "2026"]
+aliases:
+  - /vi/posts/local-first-ai-stack-offline-development-2026/
 faq: - q: "Tại sao phải đi hoàn toàn offline trong năm 2026?"
     a: "Ba lý do thực tế: (1) Riêng tư/tuân thủ — các ngành chịu quản lý nghiêm như tài chính, y tế, chính phủ không thể gửi code lên OpenAI/Anthropic. (2) Môi trường air-gapped — công việc yêu cầu phân loại bảo mật. (3) Độ tin cậy — đi công tác quốc tế kết nối kém, hoặc làm việc khi API bị down."
   - q: "Thực tế tôi cần phần cứng gì?"

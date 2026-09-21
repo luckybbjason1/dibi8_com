@@ -1,6 +1,6 @@
 ---
 title: 'Superagent: Deploy AI Agents to Production with 1 CLI Co...
-description: 'A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG workflows, vector DB integration, and REST API deployment. Backed by real benchmarks.'
+description: "A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG workflows, vector DB integration, and REST API deployment. Backed by real benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'superagent-ai/superagent'
+github_repo: "superagent-ai/superagent"
 stars: 6100
 maintainer: 'superagent-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [superagent, 'ai agent', llm, rag, 'vector db', openai, langchain, python, typescript]
-aliases: - /posts/superagent-ai-agent-framework/-
+categories: ["llm-frameworks"]
+tags: ["superagent", "ai agent", "llm", "rag", "vector db", "openai", "langchain", "python", "typescript"]
+aliases:
+  - /posts/superagent-ai-agent-framework/-
 ---
 {{</* resource-info */>}}
 

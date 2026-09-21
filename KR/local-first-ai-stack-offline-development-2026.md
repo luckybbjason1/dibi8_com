@@ -1,22 +1,23 @@
 ---
-title: '로컬 우선 AI 스택 2026: 완전 오프라인 AI 개발 환경'
-description: '2026년 완전 오프라인 AI 코딩 환경 구축하기: LLM은 Ollama, 코딩 에이전트는 Aider, RAG는 ChromaDB — 전부 로컬. 설치 가이드, 하드웨어 실상, 오프라인이 진짜 의미 있는 상황(프라이버시, 컴플라이언스, 에어갭, 출장).'
+title: "로컬 우선 AI 스택 2026: 완전 오프라인 AI 개발 환경"
+description: "2026년 완전 오프라인 AI 코딩 환경 구축하기: LLM은 Ollama, 코딩 에이전트는 Aider, RAG는 ChromaDB — 전부 로컬. 설치 가이드, 하드웨어 실상, 오프라인이 진짜 의미 있는 상황(프라이버시, 컴플라이언스, 에어갭, 출장)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
 application_domain: LLM Frameworks
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Various OSS'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
-aliases: - /kr/posts/local-first-ai-stack-offline-development-2026/
+categories: ["llm-frameworks"]
+tags: ["local-first", "offline", "ollama", "ai-coding", "privacy", "2026"]
+aliases:
+  - /kr/posts/local-first-ai-stack-offline-development-2026/
 faq: - q: "2026년에 왜 완전 오프라인으로 가야 하나?"
     a: "세 가지 실제 이유: (1) 프라이버시/컴플라이언스 — 규제 산업(금융, 의료, 정부)은 코드를 OpenAI/Anthropic에 보낼 수 없다. (2) 에어갭 환경 — 보안 인가가 필요한 작업. (3) 신뢰성 — 연결성이 나쁜 국제 출장, 또는 API가 다운됐을 때도 일할 수 있어야 한다."
   - q: "실제로 어떤 하드웨어가 필요한가?"

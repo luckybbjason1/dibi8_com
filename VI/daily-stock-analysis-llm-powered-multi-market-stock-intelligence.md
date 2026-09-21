@@ -1,14 +1,13 @@
 ---
 title: 'Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị...
-description: 'Hệ thống phân tích cổ phiếu đa thị trường do LLM điều khiển với tin tức thời gian thực, bảng điều khiển ra quyết định và thông báo tự động. 48K sao. Hỗ trợ chạy theo lịch trình miễn phí.'
+description: "Hệ thống phân tích cổ phiếu đa thị trường do LLM điều khiển với tin tức thời gian thực, bảng điều khiển ra quyết định và thông báo tự động. 48K sao. Hỗ trợ chạy theo lịch trình miễn phí."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-trading
-tags: ['phân-tích-cổ-phếu', 'llm', 'giao-dịch-định-lượng', 'ai-agent', 'đa-thị-trường', 'cổ-phếu-a', 'phân-tích-cảm-xúc', 'giao-dịch-tự-động']
+tags: ["phân-tích-cổ-phếu", "llm", "giao-dịch-định-lượng", "ai-agent", "đa-thị-trường", "cổ-phếu-a", "phân-tích-cảm-xúc", "giao-dịch-tự-động"]
 slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
 featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-lang: vi
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---

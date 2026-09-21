@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code: 125K+ Stars — Tác Nhân Lập Trình AI Trong T...
-description: 'Claude Code là công cụ tác nhân lập trình trong terminal của Anthropic, hỗ trợ VS Code, Cursor, GitHub, GitLab. Bao gồm hướng dẫn cài đặt, benchmark, và so sánh với Aider, OpenHands, Codex CLI.'
+description: "Claude Code là công cụ tác nhân lập trình trong terminal của Anthropic, hỗ trợ VS Code, Cursor, GitHub, GitLab. Bao gồm hướng dẫn cài đặt, benchmark, và so sánh với Aider, OpenHands, Codex CLI."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 125050
 maintainer: anthropics
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', 'ai-coding-agent', 'terminal-coding', anthropic, 'claude-tutorial', 'claude-code-vs-aider', 'claude-code-setup']
-aliases: - /vi/posts/claude-code/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "ai-coding-agent", "terminal-coding", "anthropic", "claude-tutorial", "claude-code-vs-aider", "claude-code-setup"]
+aliases:
+  - /vi/posts/claude-code/
 ---
 
 {{</* resource-info */>}}

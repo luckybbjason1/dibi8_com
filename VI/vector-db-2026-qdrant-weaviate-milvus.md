@@ -1,22 +1,23 @@
 ---
 title: 'Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (T...
-description: 'Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ phức tạp cài đặt. Loại nào hợp cho prototype vs production, và khi nào nên bỏ qua vector DB để dùng SQLite FTS5.'
+description: "Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ phức tạp cài đặt. Loại nào hợp cho prototype vs production, và khi nào nên bỏ qua vector DB để dùng SQLite FTS5."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
-source_version: 'Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5'
+source_version: "Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5"
 licensing_model: Open Source
 license_type: 'Apache-2.0'
-github_repo: 'https://github.com/qdrant/qdrant'
+github_repo: "https://github.com/qdrant/qdrant"
 stars: 25000
 maintainer: 'Qdrant / Weaviate / Zilliz'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
-aliases: - /vi/posts/vector-db-2026-qdrant-weaviate-milvus/
+categories: ["llm-frameworks"]
+tags: ["vector-database", "qdrant", "weaviate", "milvus", "rag", "2026"]
+aliases:
+  - /vi/posts/vector-db-2026-qdrant-weaviate-milvus/
 faq: - q: "Vector DB nào tốt nhất năm 2026?"
     a: "Qdrant cho RAG cá nhân/đội nhỏ (đơn giản nhất, nhanh nhất trên một node). Weaviate cho production có hybrid search (vector + keyword + filter). Milvus cho workload tỷ vector (mở rộng ngang tốt nhất). Cả ba đều vững chắc trong năm 2026."
   - q: "Khi nào nên bỏ qua vector DB và dùng SQLite FTS5?"

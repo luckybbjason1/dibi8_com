@@ -1,26 +1,27 @@
 ---
 title: 'repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
-description: 'repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optimized for LLM context windows — supporting Claude, ChatGPT, Gemini, and Cursor. 14k+ stars, zero config, runs in seconds with npx.'
+description: "repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optimized for LLM context windows — supporting Claude, ChatGPT, Gemini, and Cursor. 14k+ stars, zero config, runs in seconds with npx."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
-source_version: 'v0.3'
+source_version: "v0.3"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
-github_repo: 'yamadashy/repomix'
+github_repo: "yamadashy/repomix"
 stars: 14200
 maintainer: yamadashy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
-categories: ['dev-utils']
-tags: [repomix, repopack, 'ai-coding', 'llm-context', 'codebase-packing', claude, chatgpt, 'developer-tools', 'open-source']
-aliases: - /posts/repomix-pack-repo-for-llm-context-2026/
+categories: ["dev-utils"]
+tags: ["repomix", "repopack", "ai-coding", "llm-context", "codebase-packing", "claude", "chatgpt", "developer-tools", "open-source"]
+aliases:
+  - /posts/repomix-pack-repo-for-llm-context-2026/
 faqs: - q: 'What is repomix and what was it called before?'
     a: 'repomix (formerly repopack) is an open-source CLI tool that packs an entire Git repository into a single structured text file, optimized for LLM context windows. It was renamed from "repopack" to "repomix" in 2025 to avoid confusion with npm''s existing "repack" command. Built by yamadashy and released under MIT.'
   - q: 'What output formats does repomix support?'

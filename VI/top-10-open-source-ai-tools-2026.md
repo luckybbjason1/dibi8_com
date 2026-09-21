@@ -1,6 +1,6 @@
 ---
 title: 'Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn P...
-description: 'Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn Phí Cho Dev'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn Phí Cho Dev". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Docker
@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/top-ai-developer-productivity-tools-2026/
+aliases:
+  - /vi/posts/top-ai-developer-productivity-tools-2026/
 - /vi/posts/top-open-source-document-management-tools-2026/
 - /vi/posts/top-open-source-fintech-tools-2026/
 faqs: - q: 'Giải pháp mã nguồn mở thay thế Midjourney tốt nhất năm 2026 là gì?'

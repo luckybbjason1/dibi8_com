@@ -1,6 +1,6 @@
 ---
 title: 'Aider: 45K+ Stars — 터미널 AI 페어 프로그래밍 vs Claude Code, Curs...
-description: 'Aider는 로컬 git 저장소에서 코드를 편집하는 터미널 AI 페어 프로그래밍 도구입니다. OpenAI, Claude, DeepSeek, Gemini을 지원합니다. Aider 설치, 튜토리얼, Git 통합, 벤치마크, Claude Code 및 Cursor와의 비교를 알아보세요.'
+description: "Aider는 로컬 git 저장소에서 코드를 편집하는 터미널 AI 페어 프로그래밍 도구입니다. OpenAI, Claude, DeepSeek, Gemini을 지원합니다. Aider 설치, 튜토리얼, Git 통합, 벤치마크, Claude Code 및 Cursor와의 비교를 알아보세요."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Aider-AI/aider'
+github_repo: "https://github.com/Aider-AI/aider"
 stars: 45040
 maintainer: 'paul-gauthier'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [aider, 'ai-페어-프로그래밍', '터미널-ai', 'cli-코딩', 'git-ai', 'llm-도구', 오픈소스]
-aliases: - /kr/posts/aider/
+categories: ["llm-frameworks"]
+tags: ["aider", "ai-페어-프로그래밍", "터미널-ai", "cli-코딩", "git-ai", "llm-도구", "오픈소스"]
+aliases:
+  - /kr/posts/aider/
 ---
 
 {{</* resource-info */>}}

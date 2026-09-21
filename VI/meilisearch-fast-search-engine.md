@@ -1,6 +1,6 @@
 ---
 title: 'Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nha...
-description: 'Triển khai Meilisearch 1.12 cho tìm kiếm chịu lỗi với độ trễ dưới 50ms. Hướng dẫn Docker, tích hợp SDK, đánh giá hiệu suất production, và so sánh trung thực với các giải pháp thay thế.'
+description: "Triển khai Meilisearch 1.12 cho tìm kiếm chịu lỗi với độ trễ dưới 50ms. Hướng dẫn Docker, tích hợp SDK, đánh giá hiệu suất production, và so sánh trung thực với các giải pháp thay thế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,42 +12,43 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'meilisearch/meilisearch'
+github_repo: "meilisearch/meilisearch"
 stars: 51300
 maintainer: meilisearch
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /vi/posts/meilisearch-fast-search-engine/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /vi/posts/meilisearch-fast-search-engine/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Truy Vấn `LIKE` Cở Cơ Sở Dữ Liệu Đang Giết Chết UX Cở Bạn
 
-Tìm kiếm là tương tác có lưu lượng cao nhất trên hầu hết các ứng dụng. Tuy nhiên, **63% ứng dụng web vẫn sử dụng truy vấn `LIKE` của cơ sở dữ liệu** cho tìm kiếm trong năm 2026. Kết quả? Các truy vấn mất **300ms đến 3 giây** trên bộ dữ liệu hơn 100.000 hàng. Ngưởi dùng từ bỏ tìm kiếm sau 500ms. Bạn đang mất đi sự tương tác.
+Tìm kiếm là tương tác có lưu lượng cao nhất trên hầu hết các ứng dụng. Tuy nhiên", "**63% ứng dụng web vẫn sử dụng truy vấn `LIKE` của cơ sở dữ liệu** cho tìm kiếm trong năm 2026. Kết quả? Các truy vấn mất **300ms đến 3 giây** trên bộ dữ liệu hơn 100.000 hàng. Ngưởi dùng từ bỏ tìm kiếm sau 500ms. Bạn đang mất đi sự tương tác.
 
-Bạn đã nghe nói về Elasticsearch. Nó hoạt động, nhưng cần **ít nhất 8GB RAM**, điều chỉnh JVM, và một đội vận hành chuyên dụng. Algolia nhanh nhưng chi phí **$1,00 cho mỗi 1.000 lượt tìm kiếm** khi quy mô lớn. Bạn cần thứ gì đó triển khai trong vài phút, chạy trên VPS $20, và xử lý hàng triệu tài liệu dễ dàng.
+Bạn đã nghe nói về Elasticsearch. Nó hoạt động", "nhưng cần **ít nhất 8GB RAM**", "điều chỉnh JVM", "và một đội vận hành chuyên dụng. Algolia nhanh nhưng chi phí **$1", "00 cho mỗi 1.000 lượt tìm kiếm** khi quy mô lớn. Bạn cần thứ gì đó triển khai trong vài phút", "chạy trên VPS $20", "và xử lý hàng triệu tài liệu dễ dàng.
 
-Hãy làm quen với **Meilisearch** — một công cụ tìm kiếm mã nguồn mở được viết bằng Rust, với **hơn 51.300 GitHub Stars**, giấy phép MIT, và được xây dựng cho các nhà phát triển muốn tìm kiếm tức thì mà không có gánh nặng vận hành. Phiên bản 1.12 (phát hành tháng 3/2026) cung cấp **tìm kiếm dưới 50ms** với chịu lỗi chính tả, phân loại, lọc, và sắp xếp — tất cả từ một tệp nhị phân duy nhất khởi động trong vài giây. Hướng dẫn này sẽ đưa bạn qua triển khai Meilisearch sẵn sàng cho production, đánh giá với tải thực tế, và so sánh trung thực với các giải pháp thay thế.
+Hãy làm quen với **Meilisearch** — một công cụ tìm kiếm mã nguồn mở được viết bằng Rust", "với **hơn 51.300 GitHub Stars**", "giấy phép MIT", "và được xây dựng cho các nhà phát triển muốn tìm kiếm tức thì mà không có gánh nặng vận hành. Phiên bản 1.12 (phát hành tháng 3/2026) cung cấp **tìm kiếm dưới 50ms** với chịu lỗi chính tả", "phân loại", "lọc", "và sắp xếp — tất cả từ một tệp nhị phân duy nhất khởi động trong vài giây. Hướng dẫn này sẽ đưa bạn qua triển khai Meilisearch sẵn sàng cho production", "đánh giá với tải thực tế", "và so sánh trung thực với các giải pháp thay thế.
 
 ## Meilisearch Là Gì?
 
-**Meilisearch** là một công cụ tìm kiếm mã nguồn mở, cực nhanh được tối ưu hóa để xây dựng trải nghiệm tìm kiếm tuyệt vờii. Được viết bằng Rust để đảm bảo an toàn bộ nhớ và tốc độ, nó tập trung vào **trải nghiệm nhà phát triển** — thiết lập tối thiểu, API trực quan, và độ liên quan hoạt động ngay khi sử dụng. Khác với query DSL phức tạp của Elasticsearch, API của Meilisearch giống như đang tương tác với một dịch vụ REST hiện đại.
+**Meilisearch** là một công cụ tìm kiếm mã nguồn mở", "cực nhanh được tối ưu hóa để xây dựng trải nghiệm tìm kiếm tuyệt vờii. Được viết bằng Rust để đảm bảo an toàn bộ nhớ và tốc độ", "nó tập trung vào **trải nghiệm nhà phát triển** — thiết lập tối thiểu", "API trực quan", "và độ liên quan hoạt động ngay khi sử dụng. Khác với query DSL phức tạp của Elasticsearch", "API của Meilisearch giống như đang tương tác với một dịch vụ REST hiện đại.
 
 Các sự kiện chính: | Thuộc tính | Chi tiết |
 |---|---|
 | **Phiên bản mới nhất** | 1.12 (Tháng 3/2026) |
 | **GitHub Stars** | 51.300+ |
 | **Giấy phép** | MIT |
-| **Ngưởi duy trì** | Meilisearch (Paris, Pháp) |
+| **Ngưởi duy trì** | Meilisearch (Paris", "Pháp) |
 | **Viết bằng** | Rust |
 | **Kiểu API** | RESTful JSON qua HTTP |
-| **SDK chính thức** | JavaScript, Python, PHP, Ruby, Go, Rust, Swift, Dart, .NET, Java |
-| **Triển khai** | Tự lưu trữ (Docker, binary), Meilisearch Cloud, hoặc nhúng |
-| **AI Search** | Meilisearch AI (vector + hybrid, v1.10+) |
+| **SDK chính thức** | JavaScript", "Python", "PHP", "Ruby", "Go", "Rust", "Swift", "Dart", ".NET", "Java |
+| **Triển khai** | Tự lưu trữ (Docker", "binary)", "Meilisearch Cloud", "hoặc nhúng |
+| **AI Search** | Meilisearch AI (vector + hybrid", "v1.10+) |
 
 ## Meilisearch Hoạt Động Như Thế Nào
 
@@ -55,7 +56,7 @@ Kiến trúc của Meilisearch được xây dựng chuyên biệt cho tìm ki�
 
 ### Inverted Index với Lưu Trữ LMDB
 
-Meilisearch sử dụng **inverted index** được lưu trữ qua LMDB (Lightning Memory-Mapped Database). Khác với cách tiếp cận hoàn toàn trong bộ nhớ của Typesense, Meilisearch memory-map các đoạn chỉ mục từ đĩa. Điều này có nghĩa: - **Yêu cầu RAM thấp hơn**: Chỉ mục không cần vừa hoàn toàn trong RAM
+Meilisearch sử dụng **inverted index** được lưu trữ qua LMDB (Lightning Memory-Mapped Database). Khác với cách tiếp cận hoàn toàn trong bộ nhớ của Typesense", "Meilisearch memory-map các đoạn chỉ mục từ đĩa. Điều này có nghĩa: - **Yêu cầu RAM thấp hơn**: Chỉ mục không cần vừa hoàn toàn trong RAM
 - **Khởi động nhanh**: Các trang memory-mapped tải theo nhu cầu
 - **Hiệu suất có thể dự đoán**: Bộ đệm trang OS tự động xử lý các đoạn nóng
 
@@ -76,9 +77,9 @@ Meilisearch sử dụng hệ thống ranking rule tùy chỉnh. Các ranking rul
 5. **Sort** — thứ tự sắp xếp tùy chỉnh (ví dụ: giá tăng dần)
 6. **Exactness** — khớp chính xác xếp hạng cao hơn khớp một phần
 
-Bạn có thể tùy chỉnh, thêm hoặc xóa ranking rule qua API cài đặt.
+Bạn có thể tùy chỉnh", "thêm hoặc xóa ranking rule qua API cài đặt.
 
-### Tìm Kiếm Phân Loại, Lọc, và Sắp Xếp
+### Tìm Kiếm Phân Loại", "Lọc", "và Sắp Xếp
 
 Meilisearch hỗ trợ: - **Phân loại động** — yêu cầu số lượng phân loại cho bất kỳ thuộc tính có thể lọc nào
 - **Bộ lọc phức tạp** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
@@ -112,7 +113,7 @@ curl -s http://localhost:7700/health | jq .
 
 ### Bước 2: Tạo Index và Thêm Tài Liệu
 
-Meilisearch sử dụng "index" thay vì "collection". Khác với Typesense, **Meilisearch không yêu cầu schema được định nghĩa trước** — nó tự động phát hiện kiểu trường khi nhập tài liệu đầu tiên.
+Meilisearch sử dụng "index" thay vì "collection". Khác với Typesense", "**Meilisearch không yêu cầu schema được định nghĩa trước** — nó tự động phát hiện kiểu trường khi nhập tài liệu đầu tiên.
 
 ```bash
 # Tạo index
@@ -127,36 +128,12 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '[
     {
-      "id": 1,
-      "name": "Wireless Noise Cancelling Headphones",
-      "description": "Premium over-ear headphones with active noise cancellation",
-      "price": 149.99,
-      "category": "Electronics",
-      "rating": 4.6,
-      "in_stock": true,
-      "location": { "lat": 40.7128, "lng": -74.0060 }
-    },
-    {
-      "id": 2,
-      "name": "Mechanical Gaming Keyboard",
-      "description": "RGB backlit keyboard with hot-swappable switches",
-      "price": 119.99,
-      "category": "Electronics",
-      "rating": 4.8,
-      "in_stock": true,
-      "location": { "lat": 37.7749, "lng": -122.4194 }
-    },
-    {
-      "id": 3,
-      "name": "Trail Running Shoes",
-      "description": "Lightweight waterproof shoes for trail running",
-      "price": 95.00,
-      "category": "Sports",
-      "rating": 4.3,
-      "in_stock": false,
-      "location": { "lat": 51.5074, "lng": -0.1278 }
-    }
-  ]' | jq .
+      "id": 1", "name": "Wireless Noise Cancelling Headphones", "description": "Premium over-ear headphones with active noise cancellation", "price": 149.99", "category": "Electronics", "rating": 4.6", "in_stock": true", "location": { "lat": 40.7128", "lng": -74.0060 }
+    }", "{
+      "id": 2", "name": "Mechanical Gaming Keyboard", "description": "RGB backlit keyboard with hot-swappable switches", "price": 119.99", "category": "Electronics", "rating": 4.8", "in_stock": true", "location": { "lat": 37.7749", "lng": -122.4194 }
+    }", "{
+      "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
+    }"]' | jq .
 ```
 
 ### Bước 3: Cấu Hình Trường Có Thể Tìm Kiếm và Lọc

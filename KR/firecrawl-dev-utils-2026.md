@@ -1,6 +1,6 @@
 ---
 title: 'Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실...
-description: 'Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,747개, AGPL-3.0. 설치, 공식 SDK, 실제 코드, 셀프 호스팅, 그리고 Puppeteer·Scrapy·Axios와의 솔직한 비교를 다룹니다.'
+description: "Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,747개, AGPL-3.0. 설치, 공식 SDK, 실제 코드, 셀프 호스팅, 그리고 Puppeteer·Scrapy·Axios와의 솔직한 비교를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'firecrawl/firecrawl'
+github_repo: "firecrawl/firecrawl"
 stars: 127747
 maintainer: firecrawl
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/firecrawl-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/firecrawl-dev-utils-2026/
 faqs: - q: 'Firecrawl은 어떻게 설치하나요?'
-    a: '공식 SDK 중 하나를 설치하면 됩니다. Node.js: ```bash npm install firecrawl ``` Python: ```bash pip install firecrawl-py ``` 그런 다음 [firecrawl.dev](https://firecrawl.dev)에서 받은 API 키로 클라이언트를 생성하세요.'
+    a: '공식 SDK 중 하나를 설치하면 됩니다. Node.js: ```bash npm install firecrawl ``` Python: ```bash pip install firecrawl-py ``` 그런 다음 [firecrawl.dev"](https://firecrawl.dev)에서 받은 API 키로 클라이언트를 생성하세요.'
   - q: 'TypeScript 외의 언어로도 Firecrawl을 쓸 수 있나요?'
     a: '네. Firecrawl은 HTTP API이므로 어떤 언어든 호출할 수 있습니다. Node.js와 Python용 공식 SDK가 있으며, 그 외 언어에서는 임의의 HTTP 클라이언트로 REST 엔드포인트를 직접 호출할 수 있습니다.'
   - q: '반드시 호스팅형 API를 써야 하나요, 아니면 셀프 호스팅할 수 있나요?'

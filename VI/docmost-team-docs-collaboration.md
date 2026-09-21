@@ -1,6 +1,6 @@
 ---
 title: 'Docmost 2026: Phương án thay thế Notion mã nguồn mở cho ...
-description: 'Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian thực, trình chỉnh sửa khối kiểu Notion, trang lồng nhau và backend PostgreSQL. Triển khai trong 5 phút.'
+description: "Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian thực, trình chỉnh sửa khối kiểu Notion, trang lồng nhau và backend PostgreSQL. Triển khai trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'docmost/docmost'
+github_repo: "docmost/docmost"
 stars: 20100
 maintainer: docmost
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [docmost, 'thay thế notion', wiki, 'cộng tác thờói gian thực', 'tự host', 'tài liệu', postgresql, docker, 'mã nguồn mở', 'tài liệu nhóm']
-aliases: - /vi/posts/docmost-team-docs-collaboration/
+categories: ["dev-utils"]
+tags: ["docmost", "thay thế notion", "wiki", "cộng tác thờói gian thực", "tự host", "tài liệu", "postgresql", "docker", "mã nguồn mở", "tài liệu nhóm"]
+aliases:
+  - /vi/posts/docmost-team-docs-collaboration/
 ---
 
 {{</* resource-info */>}}

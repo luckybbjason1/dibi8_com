@@ -1,6 +1,6 @@
 ---
 title: 'Pandas Performance Optimization Guide: When to Switch to...
-description: 'Optimize Pandas performance or switch to Polars or DuckDB. Benchmarks, migration strategies, and decision frameworks for faster data processing in Python.'
+description: "Optimize Pandas performance or switch to Polars or DuckDB. Benchmarks, migration strategies, and decision frameworks for faster data processing in Python."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/pandas-performance-optimization-alternatives/
+aliases:
+  - /posts/pandas-performance-optimization-alternatives/
 ---
 # Pandas Performance Optimization Guide: When to Switch to Polars or DuckDB in 2024
 
@@ -39,7 +40,7 @@ Pandas' performance limitations are architectural, not superficial. Understandin
 
 **Memory overhead.** Pandas stores data in NumPy arrays with object dtype for strings, which uses 8 bytes per pointer plus the actual string storage. A CSV file that is 1 GB on disk often expands to 4-8 GB in Pandas memory. The lack of a compact string representation (until the recent `StringDtype` backend) hurts efficiency.
 
-**No query optimizer.** When you write `df[df['col'] > 0].groupby('key').agg('mean')`, Pandas executes each operation in sequence exactly as written. It cannot reorder operations, push filters down, or eliminate redundant computation — optimizations that databases have performed for decades.
+**No query optimizer.** When you write `df[df[col] > 0].groupby('key').agg('mean')`, Pandas executes each operation in sequence exactly as written. It cannot reorder operations, push filters down, or eliminate redundant computation — optimizations that databases have performed for decades.
 
 Real-world benchmarks confirm these limitations. On the [h2oai db-benchmark](https://github.com/h2oai/db-benchmark), a standard industry benchmark for DataFrame operations, Pandas 2.1 takes over 300 seconds to perform a groupby-aggregation on a 5 GB dataset. Polars completes the same operation in under 10 seconds, and DuckDB in approximately 15 seconds.
 
@@ -49,13 +50,13 @@ Before abandoning Pandas, exhaust these optimization strategies. Many production
 
 ### Code-Level Optimizations
 
-1. **Use categorical dtypes.** Converting low-cardinality string columns to `category` dtype reduces memory usage by 50-90% and speeds up groupby operations by 5-10x. Apply with `df['col'] = df['col'].astype('category')`.
+1. **Use categorical dtypes.** Converting low-cardinality string columns to `category` dtype reduces memory usage by 50-90% and speeds up groupby operations by 5-10x. Apply with `df[col] = df[col].astype('category')`.
 
-2. **Prefer vectorized operations over `apply()`.** `apply()` iterates row-by-row in Python, bypassing NumPy's C-optimized loops. Replace `df['col'].apply(lambda x: x * 2)` with `df['col'] * 2` for 100x speedups.
+2. **Prefer vectorized operations over `apply()`.** `apply()` iterates row-by-row in Python, bypassing NumPy's C-optimized loops. Replace `df[col].apply(lambda x: x * 2)` with `df[col] * 2` for 100x speedups.
 
 3. **Use `eval()` and `query()` for complex expressions.** Pandas' `eval()` uses the NumExpr engine to evaluate compound expressions element-wise without creating intermediate arrays. `df.query('A > 0 and B < 5')` is faster than boolean indexing for large DataFrames.
 
-4. **Avoid chained indexing.** `df[df.A > 0]['B'] = 1` triggers a SettingWithCopyWarning and may not modify the original DataFrame. Use `.loc[df.A > 0, 'B'] = 1` instead — it is faster and correct.
+4. **Avoid chained indexing.** `df[df.A > 0][B] = 1` triggers a SettingWithCopyWarning and may not modify the original DataFrame. Use `.loc[df.A > 0, 'B'] = 1` instead — it is faster and correct.
 
 5. **Read efficient file formats.** Parquet and Feather are 10-50x faster to read than CSV and use significantly less memory. Convert source data once with `df.to_parquet('data.parquet')` and read with `pd.read_parquet()`. Parquet also preserves dtypes and supports column pruning.
 

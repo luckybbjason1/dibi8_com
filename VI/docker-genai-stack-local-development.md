@@ -1,6 +1,6 @@
 ---
 title: 'Docker GenAI Stack: Chạy LangChain, Vector DB & LLM tron...
-description: 'Thiết lập môi trường phát triển GenAI local hoàn chỉnh với Docker GenAI Stack. Bao gồm LangChain, Neo4j, Ollama và vector database trong một file docker-compose duy nhất. Hướng dẫn production-ready cho 2026.'
+description: "Thiết lập môi trường phát triển GenAI local hoàn chỉnh với Docker GenAI Stack. Bao gồm LangChain, Neo4j, Ollama và vector database trong một file docker-compose duy nhất. Hướng dẫn production-ready cho 2026."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/docker/genai-stack'
+github_repo: "https://github.com/docker/genai-stack"
 stars: 5500
 maintainer: docker
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['docker genai stack']
-aliases: - /vi/posts/docker-genai-stack-local-development/
+categories: ["dev-utils"]
+tags: ["docker genai stack"]
+aliases:
+  - /vi/posts/docker-genai-stack-local-development/
 ---
 
 {{</* resource-info */>}}

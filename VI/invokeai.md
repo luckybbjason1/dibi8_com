@@ -1,6 +1,6 @@
 ---
-title: 'InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026'
-description: 'InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành. Tương thích với SD 1.5, SDXL, FLUX và ControlNet. Bao gồm cài đặt Docker, thiết lập workflow, so sánh benchmark với AUTOMATIC1111 và ComfyUI, và hardening production.'
+title: "InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026"
+description: "InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành. Tương thích với SD 1.5, SDXL, FLUX và ControlNet. Bao gồm cài đặt Docker, thiết lập workflow, so sánh benchmark với AUTOMATIC1111 và ComfyUI, và hardening production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/invoke-ai/InvokeAI'
+github_repo: "https://github.com/invoke-ai/InvokeAI"
 stars: 27200
 maintainer: 'invoke-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [invokeai, 'stable diffusion', 'tạo ảnh ai', docker, flux, sdxl, webui, 'mã nguồn mở']
-aliases: - /vi/posts/invokeai/
+categories: ["ai-tools"]
+tags: ["invokeai", "stable diffusion", "tạo ảnh ai", "docker", "flux", "sdxl", "webui", "mã nguồn mở"]
+aliases:
+  - /vi/posts/invokeai/
 ---
 
 {{</* resource-info */>}}

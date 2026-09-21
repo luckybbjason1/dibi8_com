@@ -1,6 +1,6 @@
 ---
 title: 'LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hư...
-description: 'LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CUDA GPU, 30+ ngôn ngữ và triển khai offline. Bao gồm cài đặt, benchmark hiệu suất, giám sát và tích hợp với OpenAI Whisper, Coqui TTS, Argos Translate.'
+description: "LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CUDA GPU, 30+ ngôn ngữ và triển khai offline. Bao gồm cài đặt, benchmark hiệu suất, giám sát và tích hợp với OpenAI Whisper, Coqui TTS, Argos Translate."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/LibreTranslate/LibreTranslate'
+github_repo: "https://github.com/LibreTranslate/LibreTranslate"
 stars: 14400
 maintainer: LibreTranslate
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [libretranslate, 'dịch máy', 'tự host', docker, api, 'mã nguồn mở', 'argos translate', 'xử lý ngôn ngữ tự nhiên']
-aliases: - /vi/posts/libretranslate/
+categories: ["ai-tools"]
+tags: ["libretranslate", "dịch máy", "tự host", "docker", "api", "mã nguồn mở", "argos translate", "xử lý ngôn ngữ tự nhiên"]
+aliases:
+  - /vi/posts/libretranslate/
 ---
 
 {{</* resource-info */>}}

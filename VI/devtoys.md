@@ -1,6 +1,6 @@
 ---
 title: 'DevToys: 31,533 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ ...
-description: 'DevToys là bộ công cụ đa năng miễn phí, nguồn mở, ngoại tuyến dành cho nhà phát triển. Tiện ích đa nền tảng cho JSON, Base64, JWT, regex và hơn 30 công cụ trên Windows, macOS và Linux với Smart Detection và hỗ trợ CLI.'
+description: "DevToys là bộ công cụ đa năng miễn phí, nguồn mở, ngoại tuyến dành cho nhà phát triển. Tiện ích đa nền tảng cho JSON, Base64, JWT, regex và hơn 30 công cụ trên Windows, macOS và Linux với Smart Detection và hỗ trợ CLI."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/DevToys-app/DevToys'
+github_repo: "https://github.com/DevToys-app/DevToys"
 stars: 31533
 maintainer: 'DevToys-app'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [devtoys, 'công-cụ-phát-triển', 'tiện-ích-ngoại-tuyến', 'định-dạng-json', 'mã-hóa-base64', 'giải-mã-jwt', 'kiểm-tra-regex', 'đa-nền-tảng', 'nguồn-mở']
-aliases: - /vi/posts/devtoys/
+categories: ["dev-utils"]
+tags: ["devtoys", "công-cụ-phát-triển", "tiện-ích-ngoại-tuyến", "định-dạng-json", "mã-hóa-base64", "giải-mã-jwt", "kiểm-tra-regex", "đa-nền-tảng", "nguồn-mở"]
+aliases:
+  - /vi/posts/devtoys/
 ---
 
 {{</* resource-info */>}}

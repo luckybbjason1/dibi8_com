@@ -1,12 +1,12 @@
 ---
 title: 'Freqtrade: 51,300 Stars for Python Crypto Trading Bot — ...
-description: 'Freqtrade (51,300 GitHub stars) is the open-source crypto trading bot written in Python. Backtest strategies, optimize with hyperopt, deploy to exchange APIs. Includes setup guide, strategy development, and real backtest benchmarks.'
+description: "Freqtrade (51,300 GitHub stars) is the open-source crypto trading bot written in Python. Backtest strategies, optimize with hyperopt, deploy to exchange APIs. Includes setup guide, strategy development, and real backtest benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
-tags: ['freqtrade', 'crypto trading bot', 'Python trading', 'backtest strategy', 'hyperopt optimization', 'crypto API', 'self hosted trading', 'quant trading']
-github_repo: 'https://github.com/freqtrade/freqtrade'
+tags: ["freqtrade", "crypto trading bot", "Python trading", "backtest strategy", "hyperopt optimization", "crypto API", "self hosted trading", "quant trading"]
+github_repo: "https://github.com/freqtrade/freqtrade"
 stars: 51300
 maintainer: 'xmatthias'
 license: GPL-3.0
@@ -66,22 +66,22 @@ class MyStrategy(IStrategy): # Strategy interface settings
     stoploss = -0.10
     timeframe = '15m'
     
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
-        dataframe['adx'] = ta.ADX(dataframe)
-        dataframe['ema_fast'] = ta.EMA(dataframe, timeperiod=20)
-        dataframe['ema_slow'] = ta.EMA(dataframe, timeperiod=50)
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
+        dataframe[adx] = ta.ADX(dataframe)
+        dataframe[ema_fast] = ta.EMA(dataframe, timeperiod=20)
+        dataframe[ema_slow] = ta.EMA(dataframe, timeperiod=50)
         return dataframe
     
     def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
-            (dataframe['rsi'] < 30) & 
-            (dataframe['adx'] > 25) & 
-            (dataframe['ema_fast'] > dataframe['ema_slow']),
+            (dataframe[rsi] < 30) & 
+            (dataframe[adx] > 25) & 
+            (dataframe[ema_fast] > dataframe[ema_slow]),
             'buy'] = 1
         return dataframe
     
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
-            (dataframe['rsi'] > 70) | 
-            (dataframe['ema_fast'] < dataframe['ema_slow']),
+            (dataframe[rsi] > 70) | 
+            (dataframe[ema_fast] < dataframe[ema_slow]),
             'sell'] = 1
         return dataframe
 ```
@@ -117,8 +117,8 @@ from freqtrade.optimize.hyperopt import IHyperOptLoss
 from pandas import DataFrame
 
 class CalmarHyperOptLoss(IHyperOptLoss): @staticmethod
-    def hyperopt_loss_function(results: DataFrame, **kwargs): total_profit = results['profit_ratio'].sum()
-        max_drawdown = results.groupby('trade_nr')['profit_ratio'].cummax().max()
+    def hyperopt_loss_function(results: DataFrame, **kwargs): total_profit = results[profit_ratio].sum()
+        max_drawdown = results.groupby('trade_nr')[profit_ratio].cummax().max()
         calmar_ratio = total_profit / max_drawdown if max_drawdown > 0 else 0
         return -calmar_ratio  # Minimize negative = maximize calmar ratio
 ```
@@ -272,8 +272,8 @@ class SwingStrategy(IStrategy): stoploss = -0.08
     exit_profit_only = True
     exit_profit_offset = 0.03
     
-    def populate_indicators(self, dataframe, metadata): dataframe['bb_upper'], dataframe['bb_middle'], dataframe['bb_lower'] = ta.BBANDS(dataframe, timeperiod=20)
-        dataframe['atr'] = ta.ATR(dataframe, timeperiod=14)
+    def populate_indicators(self, dataframe, metadata): dataframe[bb_upper], dataframe[bb_middle], dataframe[bb_lower] = ta.BBANDS(dataframe, timeperiod=20)
+        dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
         return dataframe
 ```
 

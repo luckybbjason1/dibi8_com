@@ -1,7 +1,7 @@
 ---
-title: 'Python Context Managers: The Three Cases You Actually Need'
-description: 'Python context managers: the three cases you actually need. Master with. Comprehensive guide covering features, pricing, and best practices for 2026.
-  statements, contextlib and custom context managers for better resource management.'
+title: "Python Context Managers: The Three Cases You Actually Need"
+description: "Python context managers: the three cases you actually need. Master with. Comprehensive guide covering features, pricing, and best practices for 2026.
+  statements, contextlib and custom context managers for better resource management."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/python-context-managers-the-three-cases/
+aliases:
+  - /en/posts/python-context-managers-the-three-cases/
 - /posts/python-context-managers-the-three-cases-you-actually-need/
 - /posts/python-context-managers-the-three-cases/
 faqs: - q: 'When should you write a custom context manager instead of using try/finally directly?'

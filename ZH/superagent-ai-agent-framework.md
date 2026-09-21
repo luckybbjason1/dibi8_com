@@ -1,6 +1,6 @@
 ---
-title: 'Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南'
-description: '使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南"
+description: "使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'superagent-ai/superagent'
+github_repo: "superagent-ai/superagent"
 stars: 6100
 maintainer: 'superagent-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [superagent, 'ai agent', llm, rag, 向量数据库, openai, langchain, python, typescript]
-aliases: - /zh/posts/superagent-ai-agent-framework/-
+categories: ["llm-frameworks"]
+tags: ["superagent", "ai agent", "llm", "rag", "向量数据库", "openai", "langchain", "python", "typescript"]
+aliases:
+  - /zh/posts/superagent-ai-agent-framework/-
 ---
 
 {{</* resource-info */>}}

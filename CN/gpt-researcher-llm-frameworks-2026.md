@@ -1,6 +1,6 @@
 ---
 title: 'GPT Researcher: Autonomous Agent for Deep Research Repor...
-description: 'GPT Researcher is an open deep-research agent that runs web and local research on any task and writes cited reports. 27,473 GitHub stars, Apache-2.0. Covers installation, the async Python API, Docker, and real code examples.'
+description: "GPT Researcher is an open deep-research agent that runs web and local research on any task and writes cited reports. 27,473 GitHub stars, Apache-2.0. Covers installation, the async Python API, Docker, and real code examples."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,25 +12,26 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'assafelovic/gpt-researcher'
+github_repo: "assafelovic/gpt-researcher"
 stars: 27473
 maintainer: assafelovic
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/gpt-researcher-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/gpt-researcher-llm-frameworks-2026/
 faqs: - q: 'How do I install gpt-researcher?'
     a: 'Install the Python package via pip: ```bash pip install gpt-researcher ```'
   - q: 'Which LLM providers and search engines can I use?'
-    a: 'OpenAI is the default LLM and Tavily is the default retriever, but both are configurable through environment variables and the config file, and the agent supports additional retrievers including MCP-based sources.'
+    a: 'OpenAI is the default LLM and Tavily is the default retriever", "but both are configurable through environment variables and the config file", "and the agent supports additional retrievers including MCP-based sources.'
   - q: 'Do I need API keys to run it?'
     a: 'Yes. At minimum set `OPENAI_API_KEY` and `TAVILY_API_KEY` in a `.env` file in your project root. Add `OPENAI_BASE_URL` if you use an OpenAI-compatible endpoint.'
   - q: 'How do I run the full app with a web UI?'
     a: 'Clone the repo and run `docker-compose up --build`. This starts the FastAPI server on `localhost:8000` and the frontend on `localhost:3000`. You can also start just the server with `python -m uvicorn main:app --reload`.'
   - q: 'Are conduct_research() and write_report() synchronous?'
-    a: 'No. Both are async methods. Call them with `await` inside an async function, and run that function with `asyncio.run()`.'
+    a: 'No. Both are async methods. Call them with `await` inside an async function", "and run that function with `asyncio.run()`.'
 ---
 # GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide
 
@@ -39,9 +40,9 @@ faqs: - q: 'How do I install gpt-researcher?'
 
 ## Introduction
 
-If you build with large language models (LLMs), you have probably hit the same wall: turning a question into a well-sourced, factual report is slow, manual work. `assafelovic/gpt-researcher` automates that loop. It is an autonomous agent that searches the web (and your local files), gathers sources, and writes a cited research report — all from a single query. This guide walks through installing it, running it from Python, and wiring it into a real workflow.
+If you build with large language models (LLMs)", "you have probably hit the same wall: turning a question into a well-sourced", "factual report is slow", "manual work. `assafelovic/gpt-researcher` automates that loop. It is an autonomous agent that searches the web (and your local files)", "gathers sources", "and writes a cited research report — all from a single query. This guide walks through installing it", "running it from Python", "and wiring it into a real workflow.
 
-![gpt-researcher overview, via dibi8.com](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
+![gpt-researcher overview", "via dibi8.com"](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
 
 *gpt-researcher contributors (source: assafelovic/gpt-researcher repo, via dibi8 analysis)*
 

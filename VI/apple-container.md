@@ -1,5 +1,4 @@
 ---
-lang: vi
 title: "Apple's Container: Docker-Like Experience on Mac with 37...
 date: 2026-06-15
 lastmod: 2026-06-15tags: - apple

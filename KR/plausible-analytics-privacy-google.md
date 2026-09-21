@@ -1,6 +1,6 @@
 ---
 title: 'Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
-description: 'Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. 실제 벤치마크와 Docker 배포.'
+description: "Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. 실제 벤치마크와 Docker 배포."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'plausible/analytics'
+github_repo: "plausible/analytics"
 stars: 21000
 maintainer: plausible
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [plausible, analytics, 프라이버시, gdpr, 'google-analytics-대안', 셀프호스팅, docker, elixir, 경량]
-aliases: - /kr/posts/plausible-analytics-privacy-google/
+categories: ["dev-utils"]
+tags: ["plausible", "analytics", "프라이버시", "gdpr", "google-analytics-대안", "셀프호스팅", "docker", "elixir", "경량"]
+aliases:
+  - /kr/posts/plausible-analytics-privacy-google/
 ---
 
 {{</* resource-info */>}}

@@ -1,7 +1,7 @@
 ---
-title: '파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우'
-description: '파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여. Comprehensive guide covering features, pricing, and best practices for 2026.
-  더 나은 리소스 관리를 구현하세요.'
+title: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우"
+description: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여. Comprehensive guide covering features, pricing, and best practices for 2026.
+  더 나은 리소스 관리를 구현하세요."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/python-context-managers-the-three-cases-you-actually-need/
+aliases:
+  - /ko/posts/python-context-managers-the-three-cases-you-actually-need/
 faqs: - q: 'try/finally를 직접 사용하는 대신 커스텀 컨텍스트 매니저를 언제 만들어야 하나요?'
     a: '정리 코드를 빠뜨리면 다음 사람이 모르게 리소스를 누수할 상황이거나, 동일한 획득/해제 try/finally 패턴이 코드베이스 전반에 반복되는 경우에 만드세요. 핵심 이점은 try/finally가 헬퍼 함수 안에 있기 때문에 모든 호출자가 자동으로 혜택을 받고, finally 블록을 까먹을 수 없다는 점입니다.'
   - q: '환경 변수를 일시적으로 설정했다가 이후에 복원하는 컨텍스트 매니저를 어떻게 만드나요?'

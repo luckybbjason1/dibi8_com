@@ -1,6 +1,6 @@
 ---
 title: 'Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
-description: 'Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (21.803 sao GitHub, AGPL-3.0). Bao gồm cài đặt, API Python thực tế, ví dụ mã chạy được và so sánh thẳng thắn với Selenium và Playwright.'
+description: "Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (21.803 sao GitHub, AGPL-3.0). Bao gồm cài đặt, API Python thực tế, ví dụ mã chạy được và so sánh thẳng thắn với Selenium và Playwright."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Skyvern-AI/skyvern'
+github_repo: "Skyvern-AI/skyvern"
 stars: 21803
 maintainer: 'Skyvern-AI'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/skyvern-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/skyvern-dev-utils-2026/
 faqs: - q: 'Tôi cài Skyvern-AI/skyvern như thế nào?'
-    a: 'Cài bằng pip và chạy quickstart: ```bash pip install "skyvern[all]" skyvern quickstart ``` quickstart giúp bạn cấu hình một nhà cung cấp LLM và khởi chạy máy chủ cùng UI cục bộ.'
+    a: 'Cài bằng pip và chạy quickstart: ```bash pip install "skyvern[all"]" skyvern quickstart ``` quickstart giúp bạn cấu hình một nhà cung cấp LLM và khởi chạy máy chủ cùng UI cục bộ.'
   - q: 'Yêu cầu hệ thống để chạy Skyvern-AI/skyvern là gì?'
     a: 'Skyvern cần Python 3.11 trở lên và ít nhất một LLM API key (OpenAI, Anthropic, Gemini, Bedrock, hoặc một mô hình cục bộ qua Ollama). Một máy hiện đại với vài GB RAM là đủ để dùng cục bộ; còn các tác vụ sản xuất theo lịch tốt nhất nên chạy trên một máy chủ luôn bật.'
   - q: 'Tôi có thể dùng Skyvern-AI/skyvern cho dự án thương mại không?'

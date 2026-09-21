@@ -21,7 +21,8 @@ maintainer: "PriorLabs"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/tabpfn-foundation-model-tabular-data/
+aliases:
+  - /vi/posts/tabpfn-foundation-model-tabular-data/
 faqs: - q: 'TabPFN là gì?'
     a: 'TabPFN là một mô hình nền tảng (foundation model) dành cho dữ liệu dạng bảng, được phát triển bởi PriorLabs, có khả năng phân tích các bảng có cấu trúc như bảng tính, cơ sở dữ liệu và file CSV. Mô hình sử dụng Prior-Fitted Networks được huấn luyện trước trên hàng triệu tập dữ liệu tổng hợp, loại bỏ hoàn toàn nhu cầu điều chỉnh siêu tham số.'
   - q: 'TabPFN có cần điều chỉnh siêu tham số không?'

@@ -1,6 +1,6 @@
 ---
 title: 'Moralis 2026: The Web3 Data API Powering 100K+ DApps wit...
-description: 'Complete guide to Moralis Web3 Data API in 2026. Learn how to fetch real-time blockchain data, NFT metadata, token prices, and wallet balances across 10+ chains with JavaScript, Python, and Unity SDKs.'
+description: "Complete guide to Moralis Web3 Data API in 2026. Learn how to fetch real-time blockchain data, NFT metadata, token prices, and wallet balances across 10+ chains with JavaScript, Python, and Unity SDKs."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/MoralisWeb3/Moralis-JS'
+github_repo: "https://github.com/MoralisWeb3/Moralis-JS"
 stars: 3200
 maintainer: MoralisWeb3
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [moralis]
-aliases: - /posts/moralis-web3-data-api/-
+categories: ["ai-trading"]
+tags: ["moralis"]
+aliases:
+  - /posts/moralis-web3-data-api/-
 ---
 {{</* resource-info */>}}
 
@@ -300,7 +301,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-  description: 'Track USDC transfers',
+  description: "Track USDC transfers",
   tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',
@@ -317,7 +318,7 @@ const stream = {
       type: event,
     },
   ],
-  topic0: ['Transfer(address,address,uint256)'],
+  topic0: [Transfer(address,address,uint256)],
   filter: {
     address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
   },
@@ -341,7 +342,7 @@ app.use(express.json());
 
 app.post('/webhooks/moralis', (req, res) => {
   // Verify webhook signature for security
-  const signature = req.headers['x-signature'];
+  const signature = req.headers[x-signature];
   const body = JSON.stringify(req.body);
   const hash = crypto
     .createHmac(sha256, process.env.MORALIS_STREAM_SECRET)

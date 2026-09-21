@@ -20,7 +20,8 @@ maintainer: "facefusion"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/facefusion-architecture-onnx-video-face-swap/
+aliases:
+  - /posts/facefusion-architecture-onnx-video-face-swap/
 faqs: - q: 'What is FaceFusion and how is it different from Roop?'
     a: 'FaceFusion is an open-source AI face-swapping pipeline that emerged as the successor to Roop. Unlike Roop''s single-threaded monolithic design, FaceFusion uses a modular architecture built on ONNX Runtime with multi-threaded concurrent frame rendering, making it far faster and more stable for video processing.'
   - q: 'Why does FaceFusion process video much faster than Roop?'

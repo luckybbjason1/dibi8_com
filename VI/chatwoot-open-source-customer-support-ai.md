@@ -1,6 +1,6 @@
 ---
 title: 'Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở vớ...
-description: 'Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích hợp AI agent, kết nối đa kênh. Benchmark thực tế và cấu hình production.'
+description: "Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích hợp AI agent, kết nối đa kênh. Benchmark thực tế và cấu hình production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'chatwoot/chatwoot'
+github_repo: "chatwoot/chatwoot"
 stars: 23000
 maintainer: chatwoot
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [chatwoot, 'hỗ-trợ-khách-hàng', 'mã-nguồn-mở', 'ai-chatbot', 'tự-host', docker, 'ruby-on-rails', 'live-chat']
-aliases: - /vi/posts/chatwoot-open-source-customer-support-ai/
+categories: ["dev-utils"]
+tags: ["chatwoot", "hỗ-trợ-khách-hàng", "mã-nguồn-mở", "ai-chatbot", "tự-host", "docker", "ruby-on-rails", "live-chat"]
+aliases:
+  - /vi/posts/chatwoot-open-source-customer-support-ai/
 ---
 
 {{</* resource-info */>}}

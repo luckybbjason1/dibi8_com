@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/top-ai-developer-productivity-tools-2026/
+aliases:
+  - /en/posts/top-ai-developer-productivity-tools-2026/
 - /en/posts/top-open-source-document-management-tools-2026/
 - /en/posts/top-open-source-fintech-tools-2026/
 - /posts/open-source-ai-tools-replacement/

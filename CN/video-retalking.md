@@ -1,6 +1,6 @@
 ---
 title: 'VideoReTalking: 7.2K+ Stars — AI Lip-Sync Video Editing ...
-description: 'VideoReTalking (VRT) is an audio-based lip synchronization system for talking head video editing. Compatible with RVC, GPT-SoVITS, and Coqui TTS. Covers installation, inference, Gradio WebUI, production deployment, and benchmarks vs Wav2Lip and SadTalker.'
+description: "VideoReTalking (VRT) is an audio-based lip synchronization system for talking head video editing. Compatible with RVC, GPT-SoVITS, and Coqui TTS. Covers installation, inference, Gradio WebUI, production deployment, and benchmarks vs Wav2Lip and SadTalker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/OpenTalker/video-retalking'
+github_repo: "https://github.com/OpenTalker/video-retalking"
 stars: 7200
 maintainer: OpenTalker
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['lip-sync', 'video-editing', 'talking-head', deepfake, ffmpeg, pytorch, gradio, 'ai-video']
-aliases: - /posts/video-retalking/-
+categories: ["ai-tools"]
+tags: ["lip-sync", "video-editing", "talking-head", "deepfake", "ffmpeg", "pytorch", "gradio", "ai-video"]
+aliases:
+  - /posts/video-retalking/-
 ---
 {{</* resource-info */>}}
 

@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: knowledge-work-plugins
 category: dev-utils
-tags: ['anthropic', 'claude', '插件', '生产力', '文档编辑', '代码分析', '网页浏览', '工具调用']
+tags: ["anthropic", "claude", "插件", "生产力", "文档编辑", "代码分析", "网页浏览", "工具调用"]
 github_repo: "https://github.com/anthropics/knowledge-work-plugins"
 license: Apache-2.0
 images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"

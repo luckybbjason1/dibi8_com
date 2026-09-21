@@ -1,10 +1,10 @@
 ---
-title: 'Ollama vs LM Studio 2026：哪款本地大模型运行器更值得选？'
-description: 'Ollama 和 LM Studio 横向对比 — CLI vs GUI、模型库、GPU 支持、OpenAI 兼容 API、量化格式、自托管。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Ollama vs LM Studio 2026：哪款本地大模型运行器更值得选？"
+description: "Ollama 和 LM Studio 横向对比 — CLI vs GUI、模型库、GPU 支持、OpenAI 兼容 API、量化格式、自托管。2026 年更新。"
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [ollama, lm-studio, local-llm, gguf, self-hosting, comparison]
-categories: [vs]
+tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]
+categories: ["vs"]
 faqs: - q: 'Ollama 和 LM Studio 哪个更适合新手？'
     a: 'LM Studio 对纯小白更友好 — 自带精致的 GUI、应用内模型浏览器、一键加载流程。Ollama 是 CLI 优先（"docker run" 风格）；对开发者来说一行 `ollama run llama3` 就能跑，但非命令行用户会卡住。建议先 LM Studio 上手，需要脚本化进流水线再换 Ollama。'
   - q: '想给 app 提供 API 服务，选哪个？'

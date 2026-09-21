@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Custom Agent Authoring: Build Reusable Subag...
-description: 'A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt design, tool allowlists, and two production-ready examples (migration reviewer, security gate) with the mistakes to avoid.'
+description: "A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt design, tool allowlists, and two production-ready examples (migration reviewer, security gate) with the mistakes to avoid."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-custom-agent-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-custom-agent-authoring/
 faq: - q: "Where do custom agent definition files live, and what format are they?"
     a: "Custom agents are Markdown files with YAML frontmatter, stored in .claude/agents/ in your project (or ~/.claude/agents/ for ones you want available across every project). The filename minus the .md extension is not the agent's identity — the name field in the frontmatter is. The frontmatter declares name, description, an optional tools allowlist, and an optional model; everything below the closing--- is the agent's system prompt."
   - q: "What's the difference between the description field and the system prompt body?"

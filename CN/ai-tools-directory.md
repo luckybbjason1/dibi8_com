@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-tools-comparison/
+aliases:
+  - /posts/ai-tools-comparison/
 - /posts/ai-tools-directory-2024-complete-guide-to-best-ai-tools-dibi8/
 - /posts/ai-tools-for-developers/
 - /posts/free-ai-tools-2024/

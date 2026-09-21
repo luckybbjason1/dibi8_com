@@ -1,6 +1,6 @@
 ---
 title: 'AutoGen Tutorial 2025: Building Multi-Agent AI Systems M...
-description: 'Learn Microsoft AutoGen in 2025. Build multi-agent AI systems, create conversational agents, and deploy autonomous workflows with code examples.'
+description: "Learn Microsoft AutoGen in 2025. Build multi-agent AI systems, create conversational agents, and deploy autonomous workflows with code examples."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/autogen-multi-agent-framework/-
+aliases:
+  - /posts/autogen-multi-agent-framework/-
 ---
 {</* resource-info */>}
 

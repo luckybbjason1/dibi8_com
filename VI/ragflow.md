@@ -1,6 +1,6 @@
 ---
 title: 'RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars —...
-description: 'RAGFlow là engine RAG mã nguồn mở với khả năng hiểu sâu tài liệu và tích hợp Agent. Tương thích với Ollama, OpenAI, Qdrant, Elasticsearch, Redis. Bao gồm triển khai Docker, nhập tài liệu, tối ưu tìm kiếm và bảo mật production.'
+description: "RAGFlow là engine RAG mã nguồn mở với khả năng hiểu sâu tài liệu và tích hợp Agent. Tương thích với Ollama, OpenAI, Qdrant, Elasticsearch, Redis. Bao gồm triển khai Docker, nhập tài liệu, tối ưu tìm kiếm và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/infiniflow/ragflow'
+github_repo: "https://github.com/infiniflow/ragflow"
 stars: 80853
 maintainer: infiniflow
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [ragflow, 'rag-engine', 'hieu-tai-lieu', 'docker-trien-khai', 'llm-agent', 'rag-production', 'ai-ma-nguon-mo']
-aliases: - /vi/posts/ragflow/
+categories: ["llm-frameworks"]
+tags: ["ragflow", "rag-engine", "hieu-tai-lieu", "docker-trien-khai", "llm-agent", "rag-production", "ai-ma-nguon-mo"]
+aliases:
+  - /vi/posts/ragflow/
 ---
 
 {{</* resource-info */>}}

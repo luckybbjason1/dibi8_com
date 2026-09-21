@@ -1,5 +1,5 @@
 ---
-title: 'Hello-Agents: How Datawhale''s Open-Source AI Agent Tuto...
+title: "Hello-Agents: How Datawhale'"
   Production-Grade Agents from Scratch'
 description: Datawhale Hello-Agents is the top open-source AI agent tutorial covering. Comprehensive guide covering features, pricing, and best practices for 2026.
   ReAct, AutoGen, LangGraph, MCP, Agentic RL and real-world projects with 45,600+
@@ -23,7 +23,8 @@ maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
 featureImage: ''
 draft: false
-aliases: - /posts/building-persistent-ai-agent/
+aliases:
+  - /posts/building-persistent-ai-agent/
 faqs: - q: 'What is Datawhale Hello-Agents?'
     a: 'Hello-Agents is a free, open-source tutorial from China''s Datawhale community that teaches building AI agents from scratch. It offers a 16-chapter curriculum with runnable code and is available as an online book, local docs, and a downloadable PDF.'
   - q: 'What topics does the Hello-Agents 16-chapter curriculum cover?'

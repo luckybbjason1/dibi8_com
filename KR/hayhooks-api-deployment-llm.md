@@ -1,6 +1,6 @@
 ---
 title: 'Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 202...
-description: 'Hayhooks를 사용하여 Haystack NLP pipeline을 프로덕션급 REST API로 배포하는 완벽한 가이드. 원클릭 배포, 컨테이너 지원, 자동 OpenAPI 문서 생성 및 실제 벤치마크를 다룹니다.'
+description: "Hayhooks를 사용하여 Haystack NLP pipeline을 프로덕션급 REST API로 배포하는 완벽한 가이드. 원클릭 배포, 컨테이너 지원, 자동 OpenAPI 문서 생성 및 실제 벤치마크를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'deepset-ai/hayhooks'
+github_repo: "deepset-ai/hayhooks"
 stars: 600
 maintainer: 'deepset-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline 배포', docker, python, openapi]
-aliases: - /kr/posts/hayhooks-api-deployment-llm/
+categories: ["data-science"]
+tags: ["hayhooks", "haystack", "nlp", "rest api", "llm", "pipeline 배포", "docker", "python", "openapi"]
+aliases:
+  - /kr/posts/hayhooks-api-deployment-llm/
 ---
 
 {{</* resource-info */>}}

@@ -1,17 +1,16 @@
 ---
 title: 'DeepSeek Harness: 229K-Star 플러그인 생태계가 모든 것을 확장 가능하게 — 완전...
-description: 'DeepSeek Harness(DSH)는 2026년 가장 빠르게 성장하는 AI 에이전트 프레임워크로 GitHub 스타 229K+를 기록했습니다. 커스텀 플러그인 빌드, Claude Code/Cursor/Codex 통합, 몇 분 안에 프로덕션 에이전트 배포 방법을 배우세요.'
+description: "DeepSeek Harness(DSH)는 2026년 가장 빠르게 성장하는 AI 에이전트 프레임워크로 GitHub 스타 229K+를 기록했습니다. 커스텀 플러그인 빌드, Claude Code/Cursor/Codex 통합, 몇 분 안에 프로덕션 에이전트 배포 방법을 배우세요."
 date: 2026-09-19
 lastmod: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
-tags: ['deepseek', 'harness', '플러그인', 'ai-agent', 'dsh', 'automation']
-github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
+tags: ["deepseek", "harness", "플러그인", "ai-agent", "dsh", "automation"]
+github_repo: "https://github.com/deepseek-ai/deepseek-harness"
 stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: ko
 ---
 
 # DeepSeek Harness: 2026년을 장악한 플러그인 프레임워크

@@ -1,22 +1,23 @@
 ---
 title: '1M 컨텍스트 윈도우 LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4....
-description: '두 모델 모두 1M 토큰 컨텍스트를 표방한다. 950K 토큰 코드베이스를 각각 로드해 측정했다: 검색 품질, 지연 시간, 비용, 그리고 1M 약속을 실제로 지키는 쪽과 롱테일 구간에서 무너지는 쪽.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "두 모델 모두 1M 토큰 컨텍스트를 표방한다. 950K 토큰 코드베이스를 각각 로드해 측정했다: 검색 품질, 지연 시간, 비용, 그리고 1M 약속을 실제로 지키는 쪽과 롱테일 구간에서 무너지는 쪽.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']
 application_domain: LLM Frameworks
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Commercial
 license_type: 'Proprietary API'
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [gemini, claude, 'long-context', llm, 2026]
-aliases: - /kr/posts/1m-context-window-llm-2026-real-test/
+categories: ["llm-frameworks"]
+tags: ["gemini", "claude", "long-context", "llm", "2026"]
+aliases:
+  - /kr/posts/1m-context-window-llm-2026-real-test/
 faq: - q: "Gemini 2.5 Pro와 Claude Sonnet 4.6 모두 정말로 1M 토큰을 처리할 수 있나요?"
     a: "기술적으로는 둘 다 1M+ 토큰 입력을 받습니다. 다만 롱엔드의 품질이 다릅니다: Gemini는 전체 윈도우에서 일관된 품질을 유지하고, Claude는 약 700K 토큰을 넘어서면 검색 작업에서 성능이 저하됩니다. 실용적으로는 각자 다른 시나리오에서 우위를 보입니다 — Gemini는 거대한 컨텍스트의 원시 회상에, Claude는 중간~큰 컨텍스트의 추론 품질에 강합니다."
   - q: "1M 토큰에서 비용 차이는 얼마나 나나요?"

@@ -1,6 +1,6 @@
 ---
 title: 'Agno: 40K+ Stars — 轻量级 AI Agent 框架深度解析 vs CrewAI, AutoGe...
-description: 'Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 Agent 系统、基准测试、生产加固，以及与 CrewAI、AutoGen、LangChain 的对比。'
+description: "Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 Agent 系统、基准测试、生产加固，以及与 CrewAI、AutoGen、LangChain 的对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/agno-agi/agno'
+github_repo: "https://github.com/agno-agi/agno"
 stars: 40233
 maintainer: 'agno-agi'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [agno, 'ai-agent', 'python-sdk', 多智能体, 开源, 轻量级框架, agent平台, ollama, openai]
-aliases: - /zh/posts/agno/-
+categories: ["llm-frameworks"]
+tags: ["agno", "ai-agent", "python-sdk", "多智能体", "开源", "轻量级框架", "agent平台", "ollama", "openai"]
+aliases:
+  - /zh/posts/agno/-
 ---
 
 {{</* resource-info */>}}

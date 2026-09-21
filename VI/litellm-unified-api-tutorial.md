@@ -1,6 +1,6 @@
 ---
-title: 'Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM'
-description: 'Hướng dẫn chi tiết LiteLLM 2025 — cách dùng một API thống nhất để kết nối 100+ mô hình LLM từ OpenAI, Anthropic, Google, Azure và nguồn mở.'
+title: "Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM"
+description: "Hướng dẫn chi tiết LiteLLM 2025 — cách dùng một API thống nhất để kết nối 100+ mô hình LLM từ OpenAI, Anthropic, Google, Azure và nguồn mở."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/litellm-unified-api-tutorial/
+aliases:
+  - /posts/litellm-unified-api-tutorial/
 ---
 
 # Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM

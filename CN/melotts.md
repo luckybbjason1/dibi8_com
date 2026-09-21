@@ -1,6 +1,6 @@
 ---
 title: 'MeloTTS: 7.4K+ Stars — Multi-Lingual TTS Benchmark vs Co...
-description: 'MeloTTS is a high-quality multi-lingual text-to-speech library with 7.4K+ stars. Compare benchmarks with Coqui TTS, ChatTTS, and Bark. Covers Python setup, Docker deployment, real-time inference, and production hardening.'
+description: "MeloTTS is a high-quality multi-lingual text-to-speech library with 7.4K+ stars. Compare benchmarks with Coqui TTS, ChatTTS, and Bark. Covers Python setup, Docker deployment, real-time inference, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/myshell-ai/MeloTTS'
+github_repo: "https://github.com/myshell-ai/MeloTTS"
 stars: 7400
 maintainer: 'myshell-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [melotts, 'text-to-speech', tts, multilingual, python, 'voice-synthesis', 'open-source', 'cpu-inference']
-aliases: - /posts/melotts/-
+categories: ["ai-tools"]
+tags: ["melotts", "text-to-speech", "tts", "multilingual", "python", "voice-synthesis", "open-source", "cpu-inference"]
+aliases:
+  - /posts/melotts/-
 ---
 {{</* resource-info */>}}
 
@@ -119,7 +120,7 @@ model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 output_path = 'test_output.wav'
-model.tts_to_file(text, speaker_ids['EN-Default'], output_path, speed=speed)
+model.tts_to_file(text, speaker_ids[EN-Default], output_path, speed=speed)
 print(f"Audio saved to {output_path}")
 ```
 
@@ -148,16 +149,16 @@ model = TTS(language=EN, device=device)
 speaker_ids = model.hps.data.spk2id
 
 # American accent
-model.tts_to_file(text, speaker_ids['EN-US'], 'en-us.wav', speed=speed)
+model.tts_to_file(text, speaker_ids[EN-US], 'en-us.wav', speed=speed)
 
 # British accent
-model.tts_to_file(text, speaker_ids['EN-BR'], 'en-br.wav', speed=speed)
+model.tts_to_file(text, speaker_ids[EN-BR], 'en-br.wav', speed=speed)
 
 # Indian accent
 model.tts_to_file(text, speaker_ids[EN_INDIA], 'en-india.wav', speed=speed)
 
 # Australian accent
-model.tts_to_file(text, speaker_ids['EN-AU'], 'en-au.wav', speed=speed)
+model.tts_to_file(text, speaker_ids[EN-AU], 'en-au.wav', speed=speed)
 ```
 
 ### Chinese with Mixed English
@@ -431,7 +432,7 @@ texts = [
 ]
 
 def synth(text): output_path = f"batch_{hash(text)}.wav"
-    model.tts_to_file(text, speaker_ids['EN-Default'], output_path)
+    model.tts_to_file(text, speaker_ids[EN-Default], output_path)
     return output_path
 
 # Parallel batch processing

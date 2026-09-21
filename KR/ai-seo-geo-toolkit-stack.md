@@ -1,6 +1,6 @@
 ---
-title: 'AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선'
-description: 'AI 시대 SEO를 위한 완벽한 무료 툴킷: llms.txt 생성기 + AI 크롤러용 robots.txt + 메타 태그 + Schema.org JSON-LD + hreflang + OG 카드 미리보기. 클래식 검색(Google/Bing)과 생성형 엔진(ChatGPT, Claude, Perplexity)을 모두 아우릅니다. 전부 브라우저 기반이며 가입 불필요.'
+title: "AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선"
+description: "AI 시대 SEO를 위한 완벽한 무료 툴킷: llms.txt 생성기 + AI 크롤러용 robots.txt + 메타 태그 + Schema.org JSON-LD + hreflang + OG 카드 미리보기. 클래식 검색(Google/Bing)과 생성형 엔진(ChatGPT, Claude, Perplexity)을 모두 아우릅니다. 전부 브라우저 기반이며 가입 불필요."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - HTML
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases: - /posts/ai-seo-geo-toolkit-stack/
+categories: ["collections"]
+tags: ["seo", "geo", "llms.txt", "schema", "meta tags", "stack", "collection"]
+aliases:
+  - /posts/ai-seo-geo-toolkit-stack/
 faqs: - q: 'llms.txt가 무엇이며, 2026년 SEO에서 왜 중요한가요?'
     a: 'llms.txt는 ''AI를 위한 robots.txt''입니다. ChatGPT, Claude, Perplexity 같은 생성형 엔진 크롤러에게 사이트 구조를 어떻게 읽어야 하는지 알려주는 파일이죠. 생성형 엔진이 새로운 콘텐츠 발견 채널로 부상했기 때문에 중요합니다. AI 검색에서 인용되는 것은 2026년판 구글 1페이지 랭킹과 같습니다.'
   - q: '어떤 AI 크롤러가 내 웹사이트에 접근할 수 있는지 어떻게 제어하나요?'

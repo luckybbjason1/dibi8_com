@@ -1,6 +1,6 @@
 ---
 title: 'markitdown: Chuyển file và tài liệu Office sang Markdown...
-description: 'markitdown là công cụ Python của Microsoft dùng để chuyển các loại file và tài liệu Office sang Markdown. 141.153 sao GitHub, giấy phép MIT. Bài viết bao gồm cài đặt, cách dùng CLI và Python cốt lõi, ví dụ code thực tế, cùng so sánh thẳng thắn với pandoc và docx2txt.'
+description: "markitdown là công cụ Python của Microsoft dùng để chuyển các loại file và tài liệu Office sang Markdown. 141.153 sao GitHub, giấy phép MIT. Bài viết bao gồm cài đặt, cách dùng CLI và Python cốt lõi, ví dụ code thực tế, cùng so sánh thẳng thắn với pandoc và docx2txt."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/markitdown'
+github_repo: "microsoft/markitdown"
 stars: 141153
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/markitdown-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/markitdown-dev-utils-2026/
 faqs: - q: 'Cài markitdown thế nào?'
-    a: 'Cài bằng pip. Lựa chọn phổ biến là kéo về tất cả extras định dạng: ```bash pip install ''markitdown[all]'' ```'
+    a: 'Cài bằng pip. Lựa chọn phổ biến là kéo về tất cả extras định dạng: ```bash pip install ''markitdown[all"]'' ```'
   - q: 'markitdown có chuyển được mọi loại tài liệu Office không?'
     a: 'Nó hỗ trợ rất nhiều định dạng — Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, HTML, ảnh và âm thanh — nhưng không phải tính năng nào của mọi định dạng cũng được giữ lại. Hãy xem tài liệu để biết danh sách các loại được hỗ trợ và extras cần thiết.'
   - q: 'markitdown phát hành theo giấy phép nào?'

@@ -22,7 +22,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/scanners-box-cybersecurity-tools-collection/
+aliases:
+  - /zh/posts/scanners-box-cybersecurity-tools-collection/
 faqs: - q: '什么是 Scanners-Box?'
     a: 'Scanners-Box 是一个精选的开源网络安全工具集合，收录了 200+ 款工具，覆盖 15+ 个类别，涵盖子域名枚举、SQL 注入、模糊测试、端口扫描、社会工程等多个方面。它最初是为中国安全社区（t00ls）打造的，主要面向渗透测试人员和安全研究人员。'
   - q: 'Scanners-Box 推荐哪些工具用于 SQL 注入测试?'

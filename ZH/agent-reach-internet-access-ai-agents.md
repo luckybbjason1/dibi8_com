@@ -1,12 +1,12 @@
 ---
-title: 'Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）'
-description: 'Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）"
+description: "Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。"
 date: 2026-09-19
 lastmod: 2026-09-19
 slug: 'agent-reach-internet-access-for-ai-agents-2026'
 category: 'llm-frameworks'
-tags: ['agent-reach', 'ai-agent', 'scraping', 'automation', 'python', 'no-api-cost']
-github_repo: 'https://github.com/Panniantong/Agent-Reach'
+tags: ["agent-reach", "ai-agent", "scraping", "automation", "python", "no-api-cost"]
+github_repo: "https://github.com/Panniantong/Agent-Reach"
 stars: 83111
 maintainer: 'Panniantong'
 license: MIT

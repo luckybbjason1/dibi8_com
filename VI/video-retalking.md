@@ -1,6 +1,6 @@
 ---
 title: 'VideoReTalking: 7.2K+ Stars — Hướng Dẫn Cài Đặt Chỉnh Sử...
-description: 'VideoReTalking (VRT) là hệ thống đồng bộ môi dựa trên âm thanh để chỉnh sửa video talking head. Tương thích với RVC, GPT-SoVITS và Coqui TTS. Bao gồm cài đặt, inference, Gradio WebUI, triển khai production và so sánh benchmark với Wav2Lip và SadTalker.'
+description: "VideoReTalking (VRT) là hệ thống đồng bộ môi dựa trên âm thanh để chỉnh sửa video talking head. Tương thích với RVC, GPT-SoVITS và Coqui TTS. Bao gồm cài đặt, inference, Gradio WebUI, triển khai production và so sánh benchmark với Wav2Lip và SadTalker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/OpenTalker/video-retalking'
+github_repo: "https://github.com/OpenTalker/video-retalking"
 stars: 7200
 maintainer: OpenTalker
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['lip-sync', 'chinh-sua-video', 'talking-head', deepfake, ffmpeg, pytorch, gradio, 'ai-video']
-aliases: - /vi/posts/video-retalking/
+categories: ["ai-tools"]
+tags: ["lip-sync", "chinh-sua-video", "talking-head", "deepfake", "ffmpeg", "pytorch", "gradio", "ai-video"]
+aliases:
+  - /vi/posts/video-retalking/
 ---
 
 {{</* resource-info */>}}

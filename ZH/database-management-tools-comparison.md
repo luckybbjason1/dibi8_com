@@ -1,6 +1,6 @@
 ---
-title: '数据库管理工具对比：2025年开发者最佳GUI客户端推荐'
-description: 'TablePlus、DBeaver、DataGrip等主流数据库GUI工具全面对比，覆盖定价、数据库支持、平台兼容性，帮你找到最适合的客户端。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "数据库管理工具对比：2025年开发者最佳GUI客户端推荐"
+description: "TablePlus、DBeaver、DataGrip等主流数据库GUI工具全面对比，覆盖定价、数据库支持、平台兼容性，帮你找到最适合的客户端。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/database-management-tools-comparison/-
+aliases:
+  - /posts/database-management-tools-comparison/-
 ---
 # 数据库管理工具对比：2025年开发者最佳GUI客户端推荐
 

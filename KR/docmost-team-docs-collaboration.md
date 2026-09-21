@@ -1,6 +1,6 @@
 ---
-title: 'Docmost 2026: 실시간 팀 협업을 위한 오픈소스 Notion 대안 — 셀프 호스팅 가이드'
-description: 'Docmost 완벽 셀프 호스팅 가이드. 실시간 편집, Notion 스타일 블록 편집기, 중첩 페이지, PostgreSQL 백엔드를 갖춘 오픈소스 협업 Wiki. 5분 안에 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Docmost 2026: 실시간 팀 협업을 위한 오픈소스 Notion 대안 — 셀프 호스팅 가이드"
+description: "Docmost 완벽 셀프 호스팅 가이드. 실시간 편집, Notion 스타일 블록 편집기, 중첩 페이지, PostgreSQL 백엔드를 갖춘 오픈소스 협업 Wiki. 5분 안에 배포.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'docmost/docmost'
+github_repo: "docmost/docmost"
 stars: 20100
 maintainer: docmost
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [docmost, 'notion 대안', wiki, '실시간 협업', '셀프 호스팅', 문서, postgresql, docker, 오픈소스, '팀 문서']
-aliases: - /kr/posts/docmost-team-docs-collaboration/
+categories: ["dev-utils"]
+tags: ["docmost", "notion 대안", "wiki", "실시간 협업", "셀프 호스팅", "문서", "postgresql", "docker", "오픈소스", "팀 문서"]
+aliases:
+  - /kr/posts/docmost-team-docs-collaboration/
 ---
 
 {{</* resource-info */>}}
@@ -271,7 +272,7 @@ graph TD
 name: Publish Docs to Docmost
 
 on: push: branches: [main]
-    paths: ['docs/**']
+    paths: [docs/**]
 
 jobs: publish: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4

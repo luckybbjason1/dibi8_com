@@ -20,7 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/justhireme-ai-job-search-workbench/
+aliases:
+  - /zh/posts/justhireme-ai-job-search-workbench/
 faqs: - q: 'JustHireMe 是免费开源的吗？'
     a: '是的。JustHireMe 采用 MIT 许可证开源发布，没有订阅费，也没有任何隐藏费用。你的简历和数据完全归你所有，评分算法也是公开透明的。'
   - q: 'JustHireMe 需要 AI API Key，或者会把我的数据上传到云端吗？'

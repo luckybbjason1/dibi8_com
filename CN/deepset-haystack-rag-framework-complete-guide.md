@@ -2,7 +2,7 @@
 title: Deepset Haystack — Build Production-Ready RAG Application...
 description: Complete guide to Deepset Haystack, the open-source Python framework for building Retrieval-Augmented Generation (RAG) applications. Document indexing, retrieval pipelines, and LLM integration at scale.
 category: llm-frameworks
-tags: ['haystack', 'rag', 'retrieval-augmented-generation', 'deepset', 'document-processing', 'llm-pipeline']
+tags: ["haystack", "rag", "retrieval-augmented-generation", "deepset", "document-processing", "llm-pipeline"]
 slug: deepset-haystack-rag-framework-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg---
@@ -133,7 +133,7 @@ document_store = WeaviateDocumentStore(url="http://localhost:8080")
 # Write documents to store
 writer = DocumentWriter(document_store=document_store)
 result = writer.run(documents=documents_with_embeddings)
-print(f"Wrote {result['written']} documents to store")
+print(f"Wrote {result[written]} documents to store")
 ```
 
 ### Step 4: Build Retrieval Pipeline
@@ -331,8 +331,8 @@ results = evaluator.run(
     contexts=retrieved_documents
 )
 
-print(f"Average faithfulness: {results['faithfulness']:.3f}")
-print(f"Average context recall: {results['context_recall']:.3f}")
+print(f"Average faithfulness: {results[faithfulness]:.3f}")
+print(f"Average context recall: {results[context_recall]:.3f}")
 ```
 
 ### Custom Evaluation Metrics

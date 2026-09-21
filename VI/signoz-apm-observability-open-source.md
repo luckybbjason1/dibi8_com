@@ -1,6 +1,6 @@
 ---
 title: 'SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
-description: 'Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metrics và log management — chi phí chỉ bằng 10% của Datadog.'
+description: "Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metrics và log management — chi phí chỉ bằng 10% của Datadog."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'SigNoz/signoz'
+github_repo: "SigNoz/signoz"
 stars: 22000
 maintainer: SigNoz
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [signoz, apm, observability, 'distributed tracing', opentelemetry, 'giải pháp thay thế datadog', 'self-hosted', docker, kubernetes, metrics, logs, monitoring]
-aliases: - /vi/posts/signoz-apm-observability-open-source/
+categories: ["dev-utils"]
+tags: ["signoz", "apm", "observability", "distributed tracing", "opentelemetry", "giải pháp thay thế datadog", "self-hosted", "docker", "kubernetes", "metrics", "logs", "monitoring"]
+aliases:
+  - /vi/posts/signoz-apm-observability-open-source/
 ---
 
 {{</* resource-info */>}}

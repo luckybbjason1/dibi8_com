@@ -19,10 +19,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/agent-reach-ai-agent-internet-access/
+aliases:
+  - /vi/posts/agent-reach-ai-agent-internet-access/
 - /vi/posts/agent-reach/
 faqs: - q: 'Agent Reach là gì và nó làm được gì?'
     a: 'Agent Reach là một công cụ scaffolding mã nguồn mở theo giấy phép MIT do Panniantong tạo ra, giúp các AI agent truy cập tức thì vào hơn 15 nền tảng internet chỉ với một lệnh duy nhất. Nó tự động chọn, cài đặt và cấu hình công cụ mã nguồn mở tốt nhất cho từng nền tảng, thay vì bọc chúng trong một lớp trừu tượng.'

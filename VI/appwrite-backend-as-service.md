@@ -1,6 +1,6 @@
 ---
 title: 'Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở v...
-description: 'Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, cloud functions và real-time subscriptions. Cài đặt Docker, tích hợp SDK, benchmark và bảo mật production.'
+description: "Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, cloud functions và real-time subscriptions. Cài đặt Docker, tích hợp SDK, benchmark và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'appwrite/appwrite'
+github_repo: "appwrite/appwrite"
 stars: 47200
 maintainer: appwrite
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [appwrite, 'backend-as-a-service', 'thay thế firebase', docker, 'mã nguồn mở', 'xác thực', database, 'cloud functions', 'tự host']
-aliases: - /vi/posts/appwrite-backend-as-service/
+categories: ["dev-utils"]
+tags: ["appwrite", "backend-as-a-service", "thay thế firebase", "docker", "mã nguồn mở", "xác thực", "database", "cloud functions", "tự host"]
+aliases:
+  - /vi/posts/appwrite-backend-as-service/
 ---
 
 {{</* resource-info */>}}

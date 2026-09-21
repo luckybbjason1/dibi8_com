@@ -1,22 +1,23 @@
 ---
-title: 'Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교'
-description: '동일한 5K LOC TypeScript 코드베이스에서 세 가지 오픈소스 AI 코딩 에이전트를 모두 테스트했습니다. 구체적인 벤치마크 수치, 각자가 빛나는 지점, 각자의 한계, 그리고 BYO API 키 비용의 현실과 상용 대안 비교.'
+title: "Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교"
+description: "동일한 5K LOC TypeScript 코드베이스에서 세 가지 오픈소스 AI 코딩 에이전트를 모두 테스트했습니다. 구체적인 벤치마크 수치, 각자가 빛나는 지점, 각자의 한계, 그리고 BYO API 키 비용의 현실과 상용 대안 비교."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
-source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
+source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Aider (paul-gauthier) / Cline (cline-bot) / OpenHands (All-Hands-AI)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases: - /kr/posts/aider-cline-openhands-2026-honest-comparison/
+categories: ["dev-utils"]
+tags: ["ai-coding", "open-source", "aider", "cline", "openhands", "2026"]
+aliases:
+  - /kr/posts/aider-cline-openhands-2026-honest-comparison/
 faq: - q: "2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요?"
     a: "상황에 따라 다릅니다. 터미널 우선 git 인식 편집은 Aider(모델 독립적, 가장 빠름). IDE 네이티브 VS Code 통합은 Cline(비 CLI 사용자에게 최고의 UX). 완전 자율 멀티스텝 에이전트 작업은 OpenHands(브라우저 + 셸 + 리포). 숙련된 사용자 대부분은 Aider를 기본값으로 두고 특정 작업용으로 Cline이나 OpenHands를 추가합니다."
   - q: "Claude Code나 Cursor와 비용을 비교하면 어떤가요?"

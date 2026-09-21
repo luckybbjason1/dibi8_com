@@ -19,7 +19,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/howtocook-programmer-open-source-cookbook/
+aliases:
+  - /kr/posts/howtocook-programmer-open-source-cookbook/
 faqs: - q: 'HowToCook이란 무엇인가요?'
     a: 'HowToCook(程序员做饭指南)은 프로그래머 Anduin2017이 만든 오픈 소스 레시피 프로젝트로, 개발자가 문서에서 기대하는 수준의 정밀함과 명확함으로 작성된 297가지 레시피를 담고 있습니다.'
   - q: 'HowToCook은 기존 레시피와 어떻게 다른가요?'

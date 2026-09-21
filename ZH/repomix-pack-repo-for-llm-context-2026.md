@@ -1,26 +1,27 @@
 ---
-title: 'repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件'
-description: 'repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件"
+description: "repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。"
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
-source_version: 'v0.3'
+source_version: "v0.3"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
-github_repo: 'yamadashy/repomix'
+github_repo: "yamadashy/repomix"
 stars: 14200
 maintainer: yamadashy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
-categories: ['dev-utils']
-tags: [repomix, repopack, ai编程, llm上下文, 代码库打包, claude, chatgpt, 开发者工具, 开源]
-aliases: - /zh/posts/repomix-pack-repo-for-llm-context-2026/
+categories: ["dev-utils"]
+tags: ["repomix", "repopack", "ai编程", "llm上下文", "代码库打包", "claude", "chatgpt", "开发者工具", "开源"]
+aliases:
+  - /zh/posts/repomix-pack-repo-for-llm-context-2026/
 faqs: - q: 'repomix 是什么，前身叫什么？'
     a: 'repomix（前身 repopack）是开源 CLI 工具，把整个 Git 仓库打包为单一结构化文本，适配 LLM 上下文窗口。2025 年因与 npm repack 命令重名而更名为 repomix。由 yamadashy 开发，MIT 协议。'
   - q: 'repomix 支持哪些输出格式？'

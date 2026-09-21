@@ -1,6 +1,6 @@
 ---
 title: 'LLM Evaluation & Benchmarking Frameworks 2025: EleutherA...
-description: 'Compare the best LLM evaluation and benchmarking frameworks of 2025. In-depth analysis of EleutherAI LM Evaluation Harness, OpenCompass, BIG-bench, HELM, AlpacaEval, and DeepEval with benchmark coverage and community support.'
+description: "Compare the best LLM evaluation and benchmarking frameworks of 2025. In-depth analysis of EleutherAI LM Evaluation Harness, OpenCompass, BIG-bench, HELM, AlpacaEval, and DeepEval with benchmark coverage and community support."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['llm evaluation', 'benchmarking frameworks', eleutherai, opencompass, 'big-bench', helm, alpacaeval, deepeval]
-aliases: - /posts/llm-evaluation-benchmarking-frameworks/
+categories: ["llm-frameworks"]
+tags: ["llm evaluation", "benchmarking frameworks", "eleutherai", "opencompass", "big-bench", "helm", "alpacaeval", "deepeval"]
+aliases:
+  - /posts/llm-evaluation-benchmarking-frameworks/
 ---
 # LLM Evaluation & Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared
 

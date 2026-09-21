@@ -1,6 +1,6 @@
 ---
-title: 'Netdata: 78K+ Star 的实时监控 — 2026 性能调优指南'
-description: 'Netdata (ND) 是一款高性能实时监控 Agent，支持每秒指标采集与可视化。兼容 Docker、Kubernetes、Prometheus 和 Grafana。涵盖 netdata 教程、netdata 安装配置、实时监控、netdata vs prometheus、netdata 性能调优。'
+title: "Netdata: 78K+ Star 的实时监控 — 2026 性能调优指南"
+description: "Netdata (ND) 是一款高性能实时监控 Agent，支持每秒指标采集与可视化。兼容 Docker、Kubernetes、Prometheus 和 Grafana。涵盖 netdata 教程、netdata 安装配置、实时监控、netdata vs prometheus、netdata 性能调优。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/netdata/netdata'
+github_repo: "https://github.com/netdata/netdata"
 stars: 78874
 maintainer: netdata
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [netdata, 监控, 可观测性, 性能调优, docker, kubernetes, 实时指标]
-aliases: - /zh/posts/netdata/-
+categories: ["dev-utils"]
+tags: ["netdata", "监控", "可观测性", "性能调优", "docker", "kubernetes", "实时指标"]
+aliases:
+  - /zh/posts/netdata/-
 ---
 
 {{</* resource-info */>}}

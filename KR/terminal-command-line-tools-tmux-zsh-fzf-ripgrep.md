@@ -1,6 +1,6 @@
 ---
-title: '터미널 및 CLI 생산성 도구: tmux, zsh, fzf, ripgrep 완벽 가이드'
-description: '개발자의 터미널 생산성을 극대화하는 tmux, zsh, fzf, ripgrep 등 필수 CLI 도구의 설치부터 설정, 활용법까지 상세히 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "터미널 및 CLI 생산성 도구: tmux, zsh, fzf, ripgrep 완벽 가이드"
+description: "개발자의 터미널 생산성을 극대화하는 tmux, zsh, fzf, ripgrep 등 필수 CLI 도구의 설치부터 설정, 활용법까지 상세히 다룹니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+aliases:
+  - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
 ---
 
 {</* resource-info */>}

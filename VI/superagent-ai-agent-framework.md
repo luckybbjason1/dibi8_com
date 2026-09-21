@@ -1,6 +1,6 @@
 ---
 title: 'Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1...
-description: 'Hướng dẫn thực hành triển khai AI Agent với Superagent. Một lệnh CLI, hỗ trợ nhiều LLM, workflow RAG, tích hợp vector DB, và triển khai REST API. Kèm benchmark thực tế.'
+description: "Hướng dẫn thực hành triển khai AI Agent với Superagent. Một lệnh CLI, hỗ trợ nhiều LLM, workflow RAG, tích hợp vector DB, và triển khai REST API. Kèm benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'superagent-ai/superagent'
+github_repo: "superagent-ai/superagent"
 stars: 6100
 maintainer: 'superagent-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [superagent, 'ai agent', llm, rag, 'vector db', openai, langchain, python, typescript]
-aliases: - /vi/posts/superagent-ai-agent-framework/
+categories: ["llm-frameworks"]
+tags: ["superagent", "ai agent", "llm", "rag", "vector db", "openai", "langchain", "python", "typescript"]
+aliases:
+  - /vi/posts/superagent-ai-agent-framework/
 ---
 
 {{</* resource-info */>}}

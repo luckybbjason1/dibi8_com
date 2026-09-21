@@ -1,6 +1,6 @@
 ---
-title: 'Hugging Face Transformers: The Complete Developer''s Gui...
-description: 'Master Hugging Face Transformers in 2025. Learn pipeline API, model fine-tuning, tokenization, optimization, and deployment with practical code examples.'
+title: "Hugging Face Transformers: The Complete Developer'"
+description: "Master Hugging Face Transformers in 2025. Learn pipeline API, model fine-tuning, tokenization, optimization, and deployment with practical code examples."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/huggingface-transformers-guide/-
+aliases:
+  - /posts/huggingface-transformers-guide/-
 ---
 {</* resource-info */>}
 
@@ -255,7 +256,7 @@ ids = tokenizer.encode(text)
 
 # Full encoding with attention mask
 encoded = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors="pt")
-# encoded['input_ids'], encoded['attention_mask']
+# encoded[input_ids], encoded[attention_mask]
 ```
 
 ### Handling Special Tokens and Padding
@@ -272,7 +273,7 @@ The Datasets library simplifies data preparation: ```python
 from datasets import load_dataset
 
 dataset = load_dataset("imdb")
-# dataset['train'], dataset['test'] with 'text' and 'label' columns
+# dataset[train], dataset[test] with 'text' and 'label' columns
 
 def tokenize_function(examples): return tokenizer(examples["text"], padding="max_length", truncation=True)
 

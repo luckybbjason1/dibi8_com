@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: academic-research-skills
 category: dev-utils
-tags: ['학술 연구', '문헌 검토', 'AI 연구', '논문 분석', '종합', 'claude code', '연구 자동화']
+tags: ["학술 연구", "문헌 검토", "AI 연구", "논문 분석", "종합", "claude code", "연구 자동화"]
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
 images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
@@ -17,7 +17,6 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
     alt: "스킬 아키텍처"
     role: architecture
-lang: kr
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
@@ -196,7 +195,7 @@ searcher = MultiDatabaseSearcher(
 )
 
 results = searcher.run()
-print(f"Found {len(results)} papers across {len(set(r['database'] for r in results))} databases")
+print(f"Found {len(results)} papers across {len(set(r[database] for r in results))} databases")
 ```
 
 ### 인용 네트워크 분석

@@ -1,6 +1,6 @@
 ---
 title: 'Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — ...
-description: 'Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배포하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배포하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,24 +12,25 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'PrefectHQ/prefect'
+github_repo: "PrefectHQ/prefect"
 stars: 18000
 maintainer: PrefectHQ
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /kr/posts/prefect-workflow-orchestration/
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /kr/posts/prefect-workflow-orchestration/
 ---
 
 {{</* resource-info */>}}
 
 ## 소개: 당신의 Cron 작업은 시한폭탄이다
 
-새벽 3시 17분, 중요한 ETL 파이프라인이 조용히 실패했다. 로그 파일은 아묏도 확인하지 않는 서버에 400MB짜리 텍스트 벽이다. 하류 대시보드는 화요일의 오래된 데이터를 보여주고, 하지만 지금은 목요일이다. 팀은 14시간 후 클라이언트 통화 중 이 실패를 발견한다. 이것은 장애가 아니다. 이것은 관리되지 않는 워크플로우의 기본 상태이다.
+새벽 3시 17분", "중요한 ETL 파이프라인이 조용히 실패했다. 로그 파일은 아묏도 확인하지 않는 서버에 400MB짜리 텍스트 벽이다. 하류 대시보드는 화요일의 오래된 데이터를 보여주고", "하지만 지금은 목요일이다. 팀은 14시간 후 클라이언트 통화 중 이 실패를 발견한다. 이것은 장애가 아니다. 이것은 관리되지 않는 워크플로우의 기본 상태이다.
 
-[2025 데이터 엔지니어링 설문조사](https://prefect.io)에 따륩면, **72%의 데이터 파이프라인 실패가 6시간 이상 감지되지 않으며**, **cron 기반 스케줄링은 여전히 61% 팀의 주요 오케스트레이션 방법이다**. Cron은 실패한 작업을 재시도하지 않는다. 문제가 발생할 때 알리지 않는다. 어떤 하류 시스템이 영향을 받는지 보여주지 않는다. 그저 명령을 실행하고 최선을 기대할 뿐이다.
+[2025 데이터 엔지니어링 설문조사"](https://prefect.io)에 따륩면, **72%의 데이터 파이프라인 실패가 6시간 이상 감지되지 않으며**, **cron 기반 스케줄링은 여전히 61% 팀의 주요 오케스트레이션 방법이다**. Cron은 실패한 작업을 재시도하지 않는다. 문제가 발생할 때 알리지 않는다. 어떤 하류 시스템이 영향을 받는지 보여주지 않는다. 그저 명령을 실행하고 최선을 기대할 뿐이다.
 
 Prefect 3.x(v3.3.0, 2026-03-20 릴리스)는 구조화되고, 관찰 가능하고, 탄력적인 파이프라인으로 이 혼란을 대체하기 위해 구축된 Python 네이티브 워크플로우 오케스트레이션 엔진이다. **~18,000 GitHub Stars**, **Apache-2.0 라이선스**, 현대적인 비동기 아키텍처를 바탕으로, Prefect는 **서브세컨드 작업 스케줄링**, **지수 백오프가 있는 자동 재시도**, **실시간 관찰 가능성 대시보드**, 전체 제어 평면을 셀프 호스팅하는 기능을 제공한다. 순수 Python 코드로. YAML 필요 없음.
 

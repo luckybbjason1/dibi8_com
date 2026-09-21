@@ -1,10 +1,10 @@
 ---
 title: 'Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canva...
-description: 'So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng LangChain trực quan, nhẹ, mã nguồn mở) — tính năng, tự host, pipeline AI và lựa chọn phù hợp năm 2026.'
+description: "So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng LangChain trực quan, nhẹ, mã nguồn mở) — tính năng, tự host, pipeline AI và lựa chọn phù hợp năm 2026."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
-categories: [vs]
+tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'Sự khác biệt giữa Dify và Flowise là gì?'
     a: 'Dify là nền tảng toàn diện để xây dựng và vận hành các ứng dụng LLM — bao gồm quản lý prompt, pipeline RAG, định tuyến đa mô hình, lưu trữ vector tích hợp và lớp xuất bản ứng dụng. Flowise là công cụ xây dựng node canvas trực quan nhẹ trên LangChain, được thiết kế cho lập trình viên muốn kết nối các thành phần LLM một cách trực quan. Dify toàn diện hơn và có chính kiến hơn; Flowise gọn hơn và gần với các primitive LangChain gốc hơn.'
   - q: 'Xây dựng chatbot RAG nên dùng Dify hay Flowise?'

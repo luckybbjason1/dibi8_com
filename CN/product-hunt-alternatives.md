@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/product-hunt-alternatives/
+aliases:
+  - /posts/product-hunt-alternatives/
 faqs: - q: 'What are the best free platforms to launch a SaaS product?'
     a: 'The top free launch platforms are Hacker News (Show HN) for developer tools, Indie Hackers for bootstrapped SaaS, BetaList for early-stage products, Launching Next for new startups, and Uneed (which has a free tier with guaranteed homepage visibility).'
   - q: 'Which Product Hunt alternatives are best for launching an AI tool?'

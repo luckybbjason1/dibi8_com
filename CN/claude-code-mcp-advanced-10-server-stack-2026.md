@@ -1,22 +1,23 @@
 ---
 title: 'Claude Code MCP Advanced 2026: The 10-Server Production ...
-description: 'After running Claude Code with various MCP server combinations, settled on a 10-server production stack that balances power, security, and startup time. Each server, why it is in, what it does, and how to configure for solo vs team use.'
+description: "After running Claude Code with various MCP server combinations, settled on a 10-server production stack that balances power, security, and startup time. Each server, why it is in, what it does, and how to configure for solo vs team use."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 / Claude Code 1.0'
+source_version: "MCP 2025-06 / Claude Code 1.0"
 licensing_model: Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + Community'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, configuration, production, 2026]
-aliases: - /posts/claude-code-mcp-advanced-10-server-stack-2026/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "configuration", "production", "2026"]
+aliases:
+  - /posts/claude-code-mcp-advanced-10-server-stack-2026/
 faq: - q: "How many MCP servers is too many?"
     a: "Above 10 starts adding noticeable startup latency. Each server adds 100-300ms to Claude Code init. The 10-server stack below is the sweet spot — covers 90% of workflows without making startup feel sluggish."
   - q: "Should I use global or per-project MCP config?"

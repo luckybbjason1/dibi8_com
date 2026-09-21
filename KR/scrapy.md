@@ -1,6 +1,6 @@
 ---
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: 'Scrapy는 Python 기반의 빠른 고수준 웹 크롤링 및 스크래핑 프레임워크이다. Python, Docker, Redis, PostgreSQL과 호환된다. 벤치마크, 아키텍처, 프로덕션 배포, BeautifulSoup 및 Selenium과의 비교를 다룬다.'
+description: "Scrapy는 Python 기반의 빠른 고수준 웹 크롤링 및 스크래핑 프레임워크이다. Python, Docker, Redis, PostgreSQL과 호환된다. 벤치마크, 아키텍처, 프로덕션 배포, BeautifulSoup 및 Selenium과의 비교를 다룬다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/scrapy/scrapy'
+github_repo: "https://github.com/scrapy/scrapy"
 stars: 61700
 maintainer: scrapy
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['web-scraping', python, crawler, async, docker, scrapy튜토리얼, 벤치마크, 데이터파이프라인]
-aliases: - /kr/posts/scrapy/
+categories: ["dev-utils"]
+tags: ["web-scraping", "python", "crawler", "async", "docker", "scrapy튜토리얼", "벤치마크", "데이터파이프라인"]
+aliases:
+  - /kr/posts/scrapy/
 ---
 
 {{</* resource-info */>}}

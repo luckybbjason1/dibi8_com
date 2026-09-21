@@ -1,10 +1,10 @@
 ---
 title: 'n8n vs Make.com in 2026: Open-Source Control vs Visual S...
-description: 'Side-by-side breakdown of n8n (self-hosted, developer-friendly workflow automation) and Make.com (cloud-first visual scenarios) — pricing, integrations, AI features, self-hosting, and who wins for your use case in 2026.'
+description: "Side-by-side breakdown of n8n (self-hosted, developer-friendly workflow automation) and Make.com (cloud-first visual scenarios) — pricing, integrations, AI features, self-hosting, and who wins for your use case in 2026."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [n8n, make.com, integromat, workflow-automation, zapier-alternative, no-code, comparison, ai-automation]
-categories: [vs]
+tags: ["n8n", "make.com", "integromat", "workflow-automation", "zapier-alternative", "no-code", "comparison", "ai-automation"]
+categories: ["vs"]
 faqs: - q: 'Should I use n8n or Make.com for workflow automation?'
     a: 'Use n8n if you are a developer who wants to self-host, needs full data control, or wants to write JavaScript inside workflow nodes. Use Make.com if you are a non-developer or a small business owner who wants a polished visual builder with a lower learning curve and a large library of ready-made app connectors. The short version: n8n for technical teams who want control, Make.com for teams who want speed and simplicity.'
   - q: 'Is n8n free? How does the pricing compare to Make.com?'

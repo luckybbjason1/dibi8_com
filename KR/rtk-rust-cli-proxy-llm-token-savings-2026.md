@@ -1,26 +1,27 @@
 ---
-title: '개발자 월 20만원 AI 비용을 4만원으로: rtk 완벽 가이드 | LLM 토큰 최적화 2026'
-description: 'rtk는 Rust로 작성된 단일 바이너리 CLI 프록시. Claude Code·Cursor·Copilot·Codex 등 13개 AI 코딩 도구의 토큰 소비를 60-90% 절감. 100+ 명령어 지원, <10ms 오버헤드, MIT 오픈소스, 30초 설치 0설정.'
+title: "개발자 월 20만원 AI 비용을 4만원으로: rtk 완벽 가이드 | LLM 토큰 최적화 2026"
+description: "rtk는 Rust로 작성된 단일 바이너리 CLI 프록시. Claude Code·Cursor·Copilot·Codex 등 13개 AI 코딩 도구의 토큰 소비를 60-90% 절감. 100+ 명령어 지원, <10ms 오버헤드, MIT 오픈소스, 30초 설치 0설정."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
-source_version: '0.28.2'
+source_version: "0.28.2"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
-download_url: 'https://github.com/rtk-ai/rtk/releases'
+download_url: "https://github.com/rtk-ai/rtk/releases"
 backup_url: ''
-github_repo: 'https://github.com/rtk-ai/rtk'
+github_repo: "https://github.com/rtk-ai/rtk"
 stars: 0
 maintainer: 'rtk-ai'
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
-aliases: - /kr/posts/rtk/
+categories: ["llm-frameworks"]
+tags: ["rtk", "rust", "cli", "llm", "token-optimization", "ai-coding", "claude-code", "cursor", "copilot", "cost-optimization", "open-source", "developer-tools"]
+aliases:
+  - /kr/posts/rtk/
 - /kr/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
 faqs: - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있나요?'
     a: 'rtk는 오픈소스 Rust CLI 프록시로, 명령어 출력을 자동 압축하여 Claude Code / Cursor / GitHub Copilot / Codex / Gemini CLI 등 13개 AI 코딩 도구의 토큰 소비를 60-90% 절감합니다. 실측: 월 20만원 Claude API 청구서가 4만원으로 감소, <10ms 지연, MIT 오픈소스, 30초 설치.'

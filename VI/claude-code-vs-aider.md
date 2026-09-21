@@ -1,10 +1,10 @@
 ---
 title: 'Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại v...
-description: 'So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) — giá cả, context, phong cách agent, hiệu quả chi phí. Cập nhật 2026.'
+description: "So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) — giá cả, context, phong cách agent, hiệu quả chi phí. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
-categories: [vs]
+tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
+categories: ["vs"]
 faqs: - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'
     a: 'Tùy theo mức sử dụng. Claude Code là $20/tháng (Pro) hoặc $200/tháng (Max) cố định, chi phí dự đoán được. Aider miễn phí công cụ nhưng route qua API key của bạn — mức trung bình ($5-$15/tháng tiêu Anthropic API) thì Aider rẻ hơn; mức cao (>$30/tháng API) thì Claude Code Pro rẻ hơn vì subscription hấp thụ chi phí leo thang. Dưới 20 phiên/tuần: Aider thắng; trên 20: Claude Code Pro thắng.'
   - q: 'Cái nào có quyền tự chủ agent tốt hơn?'

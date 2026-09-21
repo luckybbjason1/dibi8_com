@@ -1,6 +1,6 @@
 ---
-title: 'Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인'
-description: '완전한 LLM 파인튜닝 스택: Unsloth (빠른 단일 GPU 실험) + Axolotl (프로덕션 멀티 GPU) + HuggingFace datasets/Hub + Weights & Biases (eval 추적) + vLLM (서빙). $50-300/월 훈련 인프라. 전체 파이프라인: 데이터셋 준비 → 실험 → 프로덕션 파인튜닝 → eval → 배포.'
+title: "Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인"
+description: "완전한 LLM 파인튜닝 스택: Unsloth (빠른 단일 GPU 실험) + Axolotl (프로덕션 멀티 GPU) + HuggingFace datasets/Hub + Weights & Biases (eval 추적) + vLLM (서빙). $50-300/월 훈련 인프라. 전체 파이프라인: 데이터셋 준비 → 실험 → 프로덕션 파인튜닝 → eval → 배포."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['fine-tuning', llm, 스택, 컬렉션]
-aliases: - /posts/fine-tuning-stack/
+categories: ["collections"]
+tags: ["fine-tuning", "llm", "스택", "컬렉션"]
+aliases:
+  - /posts/fine-tuning-stack/
 ---
 
 2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 **5컴포넌트 파이프라인** 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.

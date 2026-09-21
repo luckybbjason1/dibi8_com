@@ -1,6 +1,6 @@
 ---
-title: '什么是 OpenHuman？'
-description: 'content/zh/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "什么是 OpenHuman？"
+description: "content/zh/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-18
 lastmod: 2026-06-18layout: article
 category: resources

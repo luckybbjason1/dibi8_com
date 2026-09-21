@@ -1,6 +1,6 @@
 ---
-title: 'GraphRAG: Microsoft''s Graph-Based RAG for Better LLM An...
-description: 'GraphRAG is Microsoft''''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT license). This guide covers installation, the init/index/query workflow, real CLI examples, and an honest comparison with LangChain and Haystack.'
+title: "GraphRAG: Microsoft'"
+description: "GraphRAG is Microsoft"'''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT license). This guide covers installation, the init/index/query workflow, real CLI examples, and an honest comparison with LangChain and Haystack.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,21 +12,22 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/graphrag'
+github_repo: "microsoft/graphrag"
 stars: 33403
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/graphrag-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/graphrag-llm-frameworks-2026/
 faqs: - q: 'How do I install graphrag?'
     a: 'Install it from PyPI with a single command (Python 3.10–3.12): ```bash pip install graphrag ```'
   - q: 'What are the system requirements for running graphrag?'
-    a: 'GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI, Azure OpenAI, or another supported provider) via an API key. It runs on any modern operating system that supports Python.'
+    a: 'GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI", "Azure OpenAI", "or another supported provider) via an API key. It runs on any modern operating system that supports Python.'
   - q: 'Can I contribute to the project?'
-    a: 'Yes. The project is open-source under the MIT license, and contributions are welcome. See the [CONTRIBUTING.md](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) file on GitHub for guidelines.'
+    a: 'Yes. The project is open-source under the MIT license", "and contributions are welcome. See the [CONTRIBUTING.md"](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) file on GitHub for guidelines.'
   - q: 'How do I report an issue or bug?'
     a: 'Use the GitHub Issues page for the repository. Include as much detail as possible — error messages, your configuration, and steps to reproduce the problem.'
   - q: 'How is GraphRAG different from regular vector RAG?'

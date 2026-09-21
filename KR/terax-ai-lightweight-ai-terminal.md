@@ -24,7 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/terax-ai-lightweight-ai-terminal/
+aliases:
+  - /kr/posts/terax-ai-lightweight-ai-terminal/
 faqs: - q: 'Terax AI란 무엇인가요?'
     a: 'Terax AI는 Tauri 2 기반의 오픈소스 AI 네이티브 터미널 에뮬레이터로, Rust 백엔드와 React 19 프론트엔드로 구성되어 있습니다. 네이티브 PTY 터미널에 멀티탭 지원, 통합 코드 에디터, 파일 탐색기, 그리고 전용 AI 사이드 패널을 결합한 도구입니다.'
   - q: 'Terax AI가 내 데이터나 API 키를 클라우드로 전송하나요?'

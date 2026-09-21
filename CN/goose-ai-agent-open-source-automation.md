@@ -22,7 +22,8 @@ maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/aitoearn-ai-content-monetization-open-source/
+aliases:
+  - /posts/aitoearn-ai-content-monetization-open-source/
 - /posts/goose-ai-agent-open-source-automation/
 faqs: - q: 'What is Goose AI agent?'
     a: 'Goose is a general-purpose open-source AI agent originally developed by Block and donated to the Linux Foundation''s Agentic AI Foundation (AAIF). Unlike specialized coding assistants, it can handle any task, including writing code, analyzing data, managing files, running terminal commands, and automating workflows.'

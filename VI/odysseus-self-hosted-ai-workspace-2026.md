@@ -1,26 +1,27 @@
 ---
 title: 'Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
-description: 'Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấy phép MIT). Một lệnh Docker duy nhất giúp bạn có chat, AI agent, nghiên cứu chuyên sâu, phân loại email, lịch, ghi chú và Cookbook mô hình — tất cả chạy trên phần cứng của bạn. Bài viết hướng dẫn cài đặt, tính năng chính và so sánh với ChatGPT Plus.'
+description: "Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấy phép MIT). Một lệnh Docker duy nhất giúp bạn có chat, AI agent, nghiên cứu chuyên sâu, phân loại email, lịch, ghi chú và Cookbook mô hình — tất cả chạy trên phần cứng của bạn. Bài viết hướng dẫn cài đặt, tính năng chính và so sánh với ChatGPT Plus."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
-source_version: '1.0'
+source_version: "1.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/pewdiepie-archdaemon/odysseus'
 backup_url: ''
-github_repo: 'pewdiepie-archdaemon/odysseus'
+github_repo: "pewdiepie-archdaemon/odysseus"
 stars: 63159
 maintainer: 'pewdiepie-archdaemon'
-last_maintained: '2026-06-08'
+last_maintained: "2026-06-08"
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
-categories: ['ai-tools']
-tags: [odysseus, 'ai tự lưu trữ', 'không gian làm việc ai', 'llm cục bộ', 'quyền riêng tư', docker, 'mã nguồn mở', 'thay thế chatgpt', ollama, 'nghiên cứu chuyên sâu']
-aliases: - /vi/posts/odysseus-self-hosted-ai-workspace-2026/
+categories: ["ai-tools"]
+tags: ["odysseus", "ai tự lưu trữ", "không gian làm việc ai", "llm cục bộ", "quyền riêng tư", "docker", "mã nguồn mở", "thay thế chatgpt", "ollama", "nghiên cứu chuyên sâu"]
+aliases:
+  - /vi/posts/odysseus-self-hosted-ai-workspace-2026/
 faqs: - q: 'Odysseus có cần GPU để chạy không?'
     a: 'Không. Bản thân Odysseus rất nhẹ. GPU chỉ cần thiết khi bạn muốn chạy mô hình cục bộ qua tính năng Cookbook. Bạn có thể kết nối với API từ xa (OpenAI, Anthropic, OpenRouter) hoặc instance Ollama riêng mà không cần GPU cục bộ.'
   - q: 'Odysseus khác Open WebUI ở điểm nào?'

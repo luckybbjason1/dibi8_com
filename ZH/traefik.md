@@ -1,6 +1,6 @@
 ---
-title: 'Traefik: 63,229 GitHub Stars — 云原生边缘路由器 2026 生产部署指南'
-description: 'Traefik 是云原生应用代理和边缘路由器，支持自动服务发现。兼容 Docker、Kubernetes、Consul 和 Docker Compose。涵盖安装、中间件、TLS、监控和生产环境加固。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Traefik: 63,229 GitHub Stars — 云原生边缘路由器 2026 生产部署指南"
+description: "Traefik 是云原生应用代理和边缘路由器，支持自动服务发现。兼容 Docker、Kubernetes、Consul 和 Docker Compose。涵盖安装、中间件、TLS、监控和生产环境加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/traefik/traefik'
+github_repo: "https://github.com/traefik/traefik"
 stars: 63229
 maintainer: traefik
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [traefik, docker, kubernetes, 反向代理, 边缘路由器, ingress, devops, 云原生]
-aliases: - /zh/posts/traefik/-
+categories: ["dev-utils"]
+tags: ["traefik", "docker", "kubernetes", "反向代理", "边缘路由器", "ingress", "devops", "云原生"]
+aliases:
+  - /zh/posts/traefik/-
 ---
 
 {{</* resource-info */>}}

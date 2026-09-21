@@ -1,6 +1,6 @@
 ---
 title: 'MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi ...
-description: 'Hướng dẫn đầy đủ về MLflow cho theo dõi thử nghiệm ML, model registry và model serving. Bao gồm thiết lập, Python SDK, triển khai production và benchmark cho 10,000+ thử nghiệm.'
+description: "Hướng dẫn đầy đủ về MLflow cho theo dõi thử nghiệm ML, model registry và model serving. Bao gồm thiết lập, Python SDK, triển khai production và benchmark cho 10,000+ thử nghiệm."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'mlflow/mlflow'
+github_repo: "mlflow/mlflow"
 stars: 21000
 maintainer: mlflow
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [mlflow, 'machine learning', mlops, 'theo dõi thử nghiệm', 'model registry', 'model serving', python, 'mã nguồn mở', 'khoa học dữ liệu']
-aliases: - /vi/posts/mlflow-experiment-tracking-production/
+categories: ["data-science"]
+tags: ["mlflow", "machine learning", "mlops", "theo dõi thử nghiệm", "model registry", "model serving", "python", "mã nguồn mở", "khoa học dữ liệu"]
+aliases:
+  - /vi/posts/mlflow-experiment-tracking-production/
 ---
 
 {{</* resource-info */>}}

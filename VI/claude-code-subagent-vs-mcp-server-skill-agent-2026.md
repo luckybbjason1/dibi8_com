@@ -1,6 +1,6 @@
 ---
 title: 'Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
-description: 'Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán khác nhau. Một khung quyết định để chọn đúng loại, kèm các kịch bản thực tế và những anti-pattern khiến bạn mất thời gian vô ích.'
+description: "Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán khác nhau. Một khung quyết định để chọn đúng loại, kèm các kịch bản thực tế và những anti-pattern khiến bạn mất thời gian vô ích."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "subagents", "skills", "agent-sdk", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-subagent-vs-mcp-vs-skill/
 faq: - q: "Khác biệt một câu giữa skill, subagent và MCP server là gì?"
     a: "Một skill dạy Claude CÁCH làm một việc (các chỉ dẫn và kiến thức được đóng gói, nạp vào ngữ cảnh), một subagent là AI làm việc đó (một công nhân được ủy thác với cửa sổ ngữ cảnh riêng), còn một MCP server là CÁI mà nó có thể chạm tới (một kết nối tới công cụ và dữ liệu bên ngoài). Skill thay đổi hành vi, subagent bảo vệ ngữ cảnh, MCP server bổ sung năng lực — ba trục khác nhau, không phải ba lựa chọn cạnh tranh nhau."
   - q: "Nếu tôi cần Claude truy vấn cơ sở dữ liệu nội bộ của công ty, thì đó là skill, subagent hay MCP server?"

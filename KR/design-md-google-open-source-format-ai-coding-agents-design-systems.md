@@ -1,14 +1,13 @@
 ---
-title: 'DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷'
-description: 'Google Labs Code의 DESIGN.md는 AI 코딩 에이전트에 시각적 아이덴티티를 설명하기 위한 오픈소스 형식 사양입니다. GitHub 스타 20.8k. YAML 토큰과 문서 기반 제약 조건을 통해 디자인 시스템과 AI 코드 생성을 연결하는 방법을 알아보세요.'
+title: "DESIGN.md: AI 코딩 에이전트를 위한 디자인 시스템을 제공하는 구글의 오픈소스 포맷"
+description: "Google Labs Code의 DESIGN.md는 AI 코딩 에이전트에 시각적 아이덴티티를 설명하기 위한 오픈소스 형식 사양입니다. GitHub 스타 20.8k. YAML 토큰과 문서 기반 제약 조건을 통해 디자인 시스템과 AI 코드 생성을 연결하는 방법을 알아보세요."
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
 lastmod: 2026-06-27
 slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
-github_repo: 'https://github.com/google-labs-code/design.md'
+github_repo: "https://github.com/google-labs-code/design.md"
 license: Apache-2.0
-lang: ko
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 

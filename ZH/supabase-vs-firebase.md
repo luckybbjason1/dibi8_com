@@ -1,10 +1,10 @@
 ---
-title: 'Supabase vs Firebase 2026：哪个 BaaS 更值得选？'
-description: '基于 Postgres 的开源 Supabase 和 Google NoSQL Firebase 横向对比 — 数据库、认证、存储、实时、边缘函数、定价、锁定、自托管。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Supabase vs Firebase 2026：哪个 BaaS 更值得选？"
+description: "基于 Postgres 的开源 Supabase 和 Google NoSQL Firebase 横向对比 — 数据库、认证、存储、实时、边缘函数、定价、锁定、自托管。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
-categories: [vs]
+tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
+categories: ["vs"]
 faqs: - q: 'Supabase 和 Firebase 哪个更便宜？'
     a: '小项目两家免费额度都很慷慨，但规模化之后 Supabase 在结构上更便宜，因为 Postgres 查询不按"每行读取"计费。Firebase Firestore 按文档读取数计费 — 一个拉 1 万行的 Dashboard 查询在 Firebase 上是真金白银，在 Supabase 上只要不超出 Pro 计算配额就是免费的。重分析负载月账单 Supabase 普遍便宜 5-10 倍。'
   - q: '哪个更适合关系型数据？'

@@ -1,5 +1,5 @@
 ---
-title: 'TabPFN: 表格数据基础模型 — 结构化数据的 AI 突破'
+title: "TabPFN: 表格数据基础模型 — 结构化数据的 AI 突破"
 description: 探索 TabPFN，表格数据的基础模型，超越传统机器学习方法。无需超参数调优，秒级运行。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -18,7 +18,8 @@ maintainer: "PriorLabs"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/tabpfn-foundation-model-tabular-data/
+aliases:
+  - /zh/posts/tabpfn-foundation-model-tabular-data/
 faqs: - q: 'TabPFN 是什么？'
     a: 'TabPFN 是由 PriorLabs 开发的一款表格数据基础模型，能够分析电子表格、数据库和 CSV 文件等结构化表格。它基于在数百万合成数据集上预训练的 Prior-Fitted Networks，彻底消除了超参数调优的需求。'
   - q: 'TabPFN 需要做超参数调优吗？'

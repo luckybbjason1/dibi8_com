@@ -1,7 +1,7 @@
 ---
-title: 'Scrapling 리뷰: 더 빠르고 더 은밀한 Python 스크래핑'
-description: 'Scrapling 리뷰: Python 스텔스 웹 스크래핑 라이브러리. 안티봇 조치를 우회하고, 동적 콘텐츠를 처리하며, 대규모로. Comprehensive guide covering features, pricing, and best practices for 2026.
-  쉽게 스크래핑하세요.'
+title: "Scrapling 리뷰: 더 빠르고 더 은밀한 Python 스크래핑"
+description: "Scrapling 리뷰: Python 스텔스 웹 스크래핑 라이브러리. 안티봇 조치를 우회하고, 동적 콘텐츠를 처리하며, 대규모로. Comprehensive guide covering features, pricing, and best practices for 2026.
+  쉽게 스크래핑하세요."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Java
@@ -21,7 +21,8 @@ maintainer: "D4Vinci"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/scrapling-python-stealthy-web-scraping-review/
+aliases:
+  - /ko/posts/scrapling-python-stealthy-web-scraping-review/
 faqs: - q: 'Python에서 Scrapling이란 무엇인가요?'
     a: 'Scrapling은 Python 3.10+ 웹 스크래핑 프레임워크로, 세 가지 fetch 백엔드를 하나의 일관된 선택자 API로 감싸고 있습니다: TLS 지문 위장을 사용하는 일반 HTTP, 스텔스 모드 안티 탐지 브라우저, 그리고 완전한 Playwright 기반 브라우저입니다. Scrapy 스타일의 스파이더링, curl_cffi 스타일의 TLS 지문 위조, 미탐지 Playwright를 하나의 import로 통합합니다.'
   - q: 'Scrapling의 세 가지 fetcher는 무엇이며, 각각 언제 사용하나요?'

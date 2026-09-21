@@ -1,6 +1,6 @@
 ---
 title: 'Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflie...
-description: 'Compare the best AI meeting assistant tools of 2025. In-depth reviews of Otter.ai, Fireflies.ai, Fathom, Notion AI, Microsoft Copilot for Teams, and Avoma with transcription accuracy, integrations, and pricing.'
+description: "Compare the best AI meeting assistant tools of 2025. In-depth reviews of Otter.ai, Fireflies.ai, Fathom, Notion AI, Microsoft Copilot for Teams, and Avoma with transcription accuracy, integrations, and pricing."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['ai meeting assistant', 'meeting transcription', 'otter.ai', 'fireflies.ai', fathom, 'notion ai', 'microsoft copilot', avoma]
-aliases: - /posts/ai-meeting-assistant-tools/
+categories: ["ai-tools"]
+tags: ["ai meeting assistant", "meeting transcription", "otter.ai", "fireflies.ai", "fathom", "notion ai", "microsoft copilot", "avoma"]
+aliases:
+  - /posts/ai-meeting-assistant-tools/
 ---
 # Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflies, Fathom & More Compared
 

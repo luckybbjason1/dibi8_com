@@ -1,6 +1,6 @@
 ---
 title: 'So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Je...
-description: 'So sánh chi tiết GitHub Actions, GitLab CI và Jenkins năm 2025. Tìm hiểu ưu nhược điểm, bảng giá, tính năng bảo mật và hướng dẫn chọn CI/CD phù hợp cho team của bạn.'
+description: "So sánh chi tiết GitHub Actions, GitLab CI và Jenkins năm 2025. Tìm hiểu ưu nhược điểm, bảng giá, tính năng bảo mật và hướng dẫn chọn CI/CD phù hợp cho team của bạn."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
+aliases:
+  - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
 ---
 
 # So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Jenkins Năm 2025

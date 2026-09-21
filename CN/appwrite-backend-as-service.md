@@ -1,6 +1,6 @@
 ---
 title: 'Appwrite 2026: The Open-Source Firebase Alternative with...
-description: 'Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, storage, functions, and real-time subscriptions. Docker setup, SDK integration, benchmarks, and production hardening.'
+description: "Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, storage, functions, and real-time subscriptions. Docker setup, SDK integration, benchmarks, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'appwrite/appwrite'
+github_repo: "appwrite/appwrite"
 stars: 47200
 maintainer: appwrite
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [appwrite, 'backend-as-a-service', 'firebase alternative', docker, 'open source', authentication, database, 'cloud functions', 'self-hosted']
-aliases: - /posts/appwrite-backend-as-service/-
+categories: ["dev-utils"]
+tags: ["appwrite", "backend-as-a-service", "firebase alternative", "docker", "open source", "authentication", "database", "cloud functions", "self-hosted"]
+aliases:
+  - /posts/appwrite-backend-as-service/-
 ---
 {{</* resource-info */>}}
 
@@ -182,7 +183,7 @@ doc = databases.create_document(
     document_id=ID.unique(),
     data={title: 'From Python', status: active, score: 95.5}
 )
-print(f"Created document: {doc['$id']}")
+print(f"Created document: {doc[$id]}")
 
 # List with queries
 results = databases.list_documents(
@@ -275,7 +276,7 @@ export default async ({ req, res, log, error }) => {
   const client = new Client()
     .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT)
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
-    .setKey(req.headers['x-appwrite-key']);
+    .setKey(req.headers[x-appwrite-key]);
 
   const databases = new Databases(client);
   const messaging = new Messaging(client);
@@ -402,7 +403,7 @@ await databases.createDocument(
 Appwrite exposes metrics at `/_metrics` for Prometheus scraping: ```yaml
 # prometheus.yml
 scrape_configs: - job_name: appwrite
-    static_configs: - targets: ['appwrite:80']
+    static_configs: - targets: [appwrite:80]
     metrics_path: '/_metrics'
 ```
 

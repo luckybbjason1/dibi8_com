@@ -1,5 +1,5 @@
 ---
-title: 'zerion-wallet-portfolio-tracker'
+title: "zerion-wallet-portfolio-tracker"
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/zeriontech'
+github_repo: "https://github.com/zeriontech"
 stars: 200
 maintainer: zeriontech
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [zerion]
-aliases: - /zh/posts/zerion-wallet-portfolio-tracker/-
+categories: ["ai-trading"]
+tags: ["zerion"]
+aliases:
+  - /zh/posts/zerion-wallet-portfolio-tracker/-
 ---
 
 {{</* resource-info */>}}

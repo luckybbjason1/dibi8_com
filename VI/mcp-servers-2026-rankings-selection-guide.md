@@ -1,22 +1,23 @@
 ---
 title: 'MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Đ...
-description: 'Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30 theo category, giải thích trade-off kiến trúc giữa stdio / HTTP-SSE / OAuth-bridged, và cây quyết định để chọn servers mà không chết đuối trong registries.'
+description: "Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30 theo category, giải thích trade-off kiến trúc giữa stdio / HTTP-SSE / OAuth-bridged, và cây quyết định để chọn servers mà không chết đuối trong registries."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + Community'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', integration, 2026]
-aliases: - /vi/posts/mcp-servers-2026-rankings-selection-guide/
+categories: ["llm-frameworks"]
+tags: ["mcp", "model-context-protocol", "claude-code", "ai-agents", "developer-tools", "integration", "2026"]
+aliases:
+  - /vi/posts/mcp-servers-2026-rankings-selection-guide/
 faq: - q: "MCP là gì và tại sao quan trọng năm 2026?"
     a: "Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026."
   - q: "Nên dùng stdio, HTTP hay SSE-based MCP servers?"

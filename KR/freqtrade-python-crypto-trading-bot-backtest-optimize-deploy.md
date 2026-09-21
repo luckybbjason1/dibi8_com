@@ -1,17 +1,16 @@
 ---
 title: 'Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, ...
-description: 'Freqtrade (51,300 GitHub stars)는 Python으로 작성된 오픈소스 암호화폐 트레이딩 봇입니다. 전략 백테스트, hyperopt 최적화, 20+ 거래소 API 배포. 설정 가이드, 전략 개발, 실제 백테스트 벤치마크 포함.'
+description: "Freqtrade (51,300 GitHub stars)는 Python으로 작성된 오픈소스 암호화폐 트레이딩 봇입니다. 전략 백테스트, hyperopt 최적화, 20+ 거래소 API 배포. 설정 가이드, 전략 개발, 실제 백테스트 벤치마크 포함."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
-tags: ['freqtrade', '암호화폐 트레이딩 봇', 'Python 트레이딩', '백테스트 전략', 'hyperopt 최적화', '암호화폐 API', '셀프호스팅 트레이딩', '퀀트 트레이딩']
-github_repo: 'https://github.com/freqtrade/freqtrade'
+tags: ["freqtrade", "암호화폐 트레이딩 봇", "Python 트레이딩", "백테스트 전략", "hyperopt 최적화", "암호화폐 API", "셀프호스팅 트레이딩", "퀀트 트레이딩"]
+github_repo: "https://github.com/freqtrade/freqtrade"
 stars: 51300
 maintainer: 'xmatthias'
 license: GPL-3.0
 featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
-lang: ko
 ---
 
 # Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, 배포 — 2026 실전 가이드
@@ -82,22 +81,22 @@ import talib.abstract as ta
 class MyStrategy(IStrategy): stoploss = -0.10
     timeframe = '15m'
     
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
-        dataframe['adx'] = ta.ADX(dataframe)
-        dataframe['ema_fast'] = ta.EMA(dataframe, timeperiod=20)
-        dataframe['ema_slow'] = ta.EMA(dataframe, timeperiod=50)
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
+        dataframe[adx] = ta.ADX(dataframe)
+        dataframe[ema_fast] = ta.EMA(dataframe, timeperiod=20)
+        dataframe[ema_slow] = ta.EMA(dataframe, timeperiod=50)
         return dataframe
     
     def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
-            (dataframe['rsi'] < 30) & 
-            (dataframe['adx'] > 25) & 
-            (dataframe['ema_fast'] > dataframe['ema_slow']),
+            (dataframe[rsi] < 30) & 
+            (dataframe[adx] > 25) & 
+            (dataframe[ema_fast] > dataframe[ema_slow]),
             'buy'] = 1
         return dataframe
     
     def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame: dataframe.loc[
-            (dataframe['rsi'] > 70) | 
-            (dataframe['ema_fast'] < dataframe['ema_slow']),
+            (dataframe[rsi] > 70) | 
+            (dataframe[ema_fast] < dataframe[ema_slow]),
             'sell'] = 1
         return dataframe
 ```

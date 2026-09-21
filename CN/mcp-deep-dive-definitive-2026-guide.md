@@ -1,6 +1,6 @@
 ---
 title: 'Model Context Protocol (MCP) Deep Dive: The Definitive 2...
-description: 'Build your first MCP server from scratch. Learn Anthropic''s Model Context Protocol with hands-on Python & TypeScript examples. Connect AI agents to real APIs, databases, and tools using the open standard adopted by OpenAI, Google, and Microsoft.'
+description: "Build your first MCP server from scratch. Learn Anthropic"'s Model Context Protocol with hands-on Python & TypeScript examples. Connect AI agents to real APIs, databases, and tools using the open standard adopted by OpenAI, Google, and Microsoft.'
 date: 2026-05-15 00:00:00+08:00
 lastmod: 2026-05-15 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/mcp-deep-dive-definitive-2026-guide/
+aliases:
+  - /posts/mcp-deep-dive-definitive-2026-guide/
 ---
 # Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers
 

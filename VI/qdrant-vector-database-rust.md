@@ -1,6 +1,6 @@
 ---
 title: 'Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector v...
-description: 'Triển khai Qdrant vector database cho tìm kiếm tương đồng production. Hướng dẫn đầy đủ về HNSW indexing, payload filtering, multi-tenancy, Docker deployment, client Python/Go/JS với benchmark thực tế.'
+description: "Triển khai Qdrant vector database cho tìm kiếm tương đồng production. Hướng dẫn đầy đủ về HNSW indexing, payload filtering, multi-tenancy, Docker deployment, client Python/Go/JS với benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'qdrant/qdrant'
+github_repo: "qdrant/qdrant"
 stars: 22000
 maintainer: qdrant
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [qdrant, 'vector database', rust, hnsw, 'tìm kiếm tương đồng', docker, 'tự triển khai', ai]
-aliases: - /vi/posts/qdrant-vector-database-rust/
+categories: ["data-science"]
+tags: ["qdrant", "vector database", "rust", "hnsw", "tìm kiếm tương đồng", "docker", "tự triển khai", "ai"]
+aliases:
+  - /vi/posts/qdrant-vector-database-rust/
 ---
 
 {{</* resource-info */>}}

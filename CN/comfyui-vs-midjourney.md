@@ -1,7 +1,7 @@
 ---
 title: 'Midjourney Alternative (2026): Why ComfyUI is the Free, ...
-description: 'Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source. Comprehensive guide covering features, pricing, and best practices for 2026.
-  Standard'
+description: "Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source. Comprehensive guide covering features, pricing, and best practices for 2026.
+  Standard"
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Python
@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/comfyui-vs-midjourney-free-alternative/
+aliases:
+  - /posts/comfyui-vs-midjourney-free-alternative/
 faqs: - q: 'What is the best free open-source alternative to Midjourney?'
     a: 'ComfyUI is the leading free, open-source alternative. Its node-based graph approach offers the highest ceiling for professional, reproducible AI art with no subscription fees, unlike Midjourney''s $10-$120/month plans.'
   - q: 'How much VRAM do you need to run ComfyUI?'

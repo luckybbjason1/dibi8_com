@@ -1,6 +1,6 @@
 ---
 title: 'OpenClaw 완벽 가이드: 2026년 최고의 오픈소스 AI 어시스턴트 자체 호스팅 설치 방법｜무료...
-description: 'GitHub 362K+ Star을 기록한 OpenClaw의 폭발적 성장 비결을 파헤친다. 오픈소스 AI 어시스턴트 OpenClaw의 아키텍처, 자체 호스팅 배포 전 과정, 다중 플랫폼 연동 실전 팁, 그리고 구독료 없는 로컬 AI 비서 구축 노하우를 상세히 설명한다.'
+description: "GitHub 362K+ Star을 기록한 OpenClaw의 폭발적 성장 비결을 파헤친다. 오픈소스 AI 어시스턴트 OpenClaw의 아키텍처, 자체 호스팅 배포 전 과정, 다중 플랫폼 연동 실전 팁, 그리고 구독료 없는 로컬 AI 비서 구축 노하우를 상세히 설명한다."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -12,13 +12,14 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/clawd-foss/clawd'
+github_repo: "https://github.com/clawd-foss/clawd"
 stars: 362000
 maintainer: 'steipete'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
+aliases:
+  - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/
 ---
 
 {</* resource-info */>}

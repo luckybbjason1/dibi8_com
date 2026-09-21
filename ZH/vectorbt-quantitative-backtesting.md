@@ -1,6 +1,6 @@
 ---
-title: 'VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南'
-description: '掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南"
+description: "掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'polakowo/vectorbt'
+github_repo: "polakowo/vectorbt"
 stars: 8900
 maintainer: polakowo
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /zh/posts/vectorbt-quantitative-backtesting/-
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /zh/posts/vectorbt-quantitative-backtesting/-
 ---
 
 {{</* resource-info */>}}
@@ -29,7 +30,7 @@ aliases: - /zh/posts/vectorbt-quantitative-backtesting/-
 
 如果你曾经花 20 分钟等待一个基于 pandas 的回测完成遍历 50 个品种 10 年的 OHLCV 数据，你并不孤单。2025 年一项量化金融调查发现，**73% 的散户量化交易者花在等待回测上的时间比分析结果还多**。像 Zipline 或 Backtrader 这样的事件驱动回测器在真实性方面表现出色，但当你需要测试数千种参数组合时，速度会慢到让人抓狂。
 
-VectorBT 登场了 —— 这是一个将回测重新构想为向量化计算问题的 Python 库。通过利用 **NumPy 数组和 Numba JIT 编译**，VectorBT 在单核 CPU 上每秒处理 **超过 100 万笔交易**。GitHub 仓库 `polakowo/vectorbt` 已累积 **8,900+ Star**，由 Oleg Polakowo 在 Apache-2.0 许可证下维护。截至 2026 年 5 月的 v0.27.2 版本，它支持 Python 3.9+，并与 pandas、Plotly 和 scikit-learn 无缝集成。
+VectorBT 登场了 —— 这是一个将回测重新构想为向量化计算问题的 Python 库。通过利用 **NumPy 数组和 Numba JIT 编译**，VectorBT 在单核 CPU 上每秒处理 **超过 100 万笔交易**。GitHub 仓库 `polakowo/vectorbt` 已累积 **8", "900+ Star**，由 Oleg Polakowo 在 Apache-2.0 许可证下维护。截至 2026 年 5 月的 v0.27.2 版本，它支持 Python 3.9+，并与 pandas、Plotly 和 scikit-learn 无缝集成。
 
 本文涵盖所有内容：安装、核心概念、真实代码示例、生产级加固以及诚实的局限性评估。无论你是在测试一个简单的均线交叉策略，还是运行完整的滚动优化管道，VectorBT 都会改变你对回测速度的认知。
 
@@ -43,7 +44,7 @@ VectorBT 的速度来自三个架构决策：
 
 ### NumPy 优先的数据表示
 
-所有价格数据都以 NumPy ndarray 形式存在。100 个资产 10 年日频数据的 DataFrame 变成形状为 `(2,520, 100)` 的二维数组 —— 每年约 252 个交易日。在热路径中不会发生逐行迭代。
+所有价格数据都以 NumPy ndarray 形式存在。100 个资产 10 年日频数据的 DataFrame 变成形状为 `(2", "520", "100)` 的二维数组 —— 每年约 252 个交易日。在热路径中不会发生逐行迭代。
 
 ### Numba JIT 编译
 
@@ -60,13 +61,10 @@ import pandas as pd
 
 # 获取数据 —— VectorBT 封装了 yfinance
 price = vbt.YFData.download(
-    "BTC-USD",
-    start="2020-01-01",
-    end="2026-01-01",
-    interval="1d"
+    "BTC-USD", "start="2020-01-01", "end="2026-01-01", "interval="1d"
 ).get("Close")
 
-print(f"Data shape: {price.shape}")  # (2,210,) — 日线收盘价
+print(f"Data shape: {price.shape}")  # (2", "210", ") — 日线收盘价
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
 ```
 
@@ -79,7 +77,7 @@ VectorBT 可通过 pip 干净地安装。基础包包含 Numba、NumPy 和 panda
 pip install vectorbt
 
 # 安装所有可选依赖（推荐）
-pip install "vectorbt[all]"
+pip install "vectorbt[all"]"
 ```
 
 验证安装：

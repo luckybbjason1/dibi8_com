@@ -1,6 +1,6 @@
 ---
 title: 'Best AI Data Analysis Tools 2025: ChatGPT, Julius, Table...
-description: 'Discover the best AI data analysis tools of 2025 — ChatGPT Advanced Data Analysis, Julius AI, Tableau Einstein, Copilot in Excel, and more. Compare features, pricing, and use cases.'
+description: "Discover the best AI data analysis tools of 2025 — ChatGPT Advanced Data Analysis, Julius AI, Tableau Einstein, Copilot in Excel, and more. Compare features, pricing, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-data-analysis-tools-2025/
+aliases:
+  - /posts/ai-data-analysis-tools-2025/
 ---
 # Best AI Data Analysis Tools 2025: ChatGPT, Julius, Tableau AI & More
 

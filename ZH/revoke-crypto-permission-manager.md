@@ -1,5 +1,5 @@
 ---
-title: 'revoke-crypto-permission-manager'
+title: "revoke-crypto-permission-manager"
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RevokeCash/revoke.cash'
+github_repo: "https://github.com/RevokeCash/revoke.cash"
 stars: 2500
 maintainer: RevokeCash
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['revoke.cash']
-aliases: - /zh/posts/revoke-crypto-permission-manager/-
+categories: ["ai-trading"]
+tags: ["revoke.cash"]
+aliases:
+  - /zh/posts/revoke-crypto-permission-manager/-
 ---
 
 {{</* resource-info */>}}

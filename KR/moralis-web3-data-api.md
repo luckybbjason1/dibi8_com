@@ -1,6 +1,6 @@
 ---
 title: 'Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API...
-description: '2026년 Moralis Web3 Data API 완벽 가이드. JavaScript, Python, Unity SDK로 10개 이상의 체인에서 실시간 블록체인 데이터, NFT 메타데이터, 토큰 가격, 지갑 잔액을 가져오는 방법을 배우세요.'
+description: "2026년 Moralis Web3 Data API 완벽 가이드. JavaScript, Python, Unity SDK로 10개 이상의 체인에서 실시간 블록체인 데이터, NFT 메타데이터, 토큰 가격, 지갑 잔액을 가져오는 방법을 배우세요."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/MoralisWeb3/Moralis-JS'
+github_repo: "https://github.com/MoralisWeb3/Moralis-JS"
 stars: 3200
 maintainer: MoralisWeb3
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [moralis]
-aliases: - /kr/posts/moralis-web3-data-api/
+categories: ["ai-trading"]
+tags: ["moralis"]
+aliases:
+  - /kr/posts/moralis-web3-data-api/
 ---
 
 {{</* resource-info */>}}
@@ -301,7 +302,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-  description: 'Track USDC transfers',
+  description: "Track USDC transfers",
   tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',

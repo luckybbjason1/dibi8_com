@@ -1,6 +1,6 @@
 ---
 title: 'pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 ...
-description: 'pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'pgvector/pgvector'
+github_repo: "pgvector/pgvector"
 stars: 15000
 maintainer: pgvector
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [pgvector, postgresql, '벡터-데이터베이스', hnsw, ann, rag, '유사도-검색', '전문-검색']
-aliases: - /kr/posts/pgvector-postgres-vector-extension/
+categories: ["data-science"]
+tags: ["pgvector", "postgresql", "벡터-데이터베이스", "hnsw", "ann", "rag", "유사도-검색", "전문-검색"]
+aliases:
+  - /kr/posts/pgvector-postgres-vector-extension/
 ---
 
 {{</* resource-info */>}}

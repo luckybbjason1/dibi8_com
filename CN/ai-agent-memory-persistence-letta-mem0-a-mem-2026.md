@@ -1,22 +1,23 @@
 ---
 title: 'AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM...
-description: 'Agents without persistent memory restart from zero every session. Tested Letta, Mem0, A-MEM on the same multi-session workload: which actually retains context, which costs less, when to roll your own.'
+description: "Agents without persistent memory restart from zero every session. Tested Letta, Mem0, A-MEM on the same multi-session workload: which actually retains context, which costs less, when to roll your own."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
-source_version: 'Letta 0.8 / Mem0 0.2 / A-MEM 1.3'
+source_version: "Letta 0.8 / Mem0 0.2 / A-MEM 1.3"
 licensing_model: Open Source
 license_type: 'Apache-2.0 / MIT'
 github_repo: ''
 stars: 0
 maintainer: 'Letta / Mem0AI / A-MEM team'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agent', memory, persistence, letta, mem0, 2026]
-aliases: - /posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agent", "memory", "persistence", "letta", "mem0", "2026"]
+aliases:
+  - /posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
 faq: - q: "Why do AI agents need persistent memory?"
     a: "Without persistence, every session restarts from zero — agent doesn't remember yesterday's preferences, decisions, or context. For ongoing collaboration (coding partner, research assistant, customer-facing chatbot), persistent memory is the difference between tool and partner."
   - q: "How do these three differ in approach?"

@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: oh-my-pi
 category: dev-utils
-tags: ['raspberry pi', 'nhà thông minh', 'iot', 'edge computing', 'home automation', 'linux', 'automation']
+tags: ["raspberry pi", "nhà thông minh", "iot", "edge computing", "home automation", "linux", "automation"]
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
 images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
@@ -17,7 +17,6 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
     alt: "Sơ đồ Nhà thông minh"
     role: diagram
-lang: vi
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 

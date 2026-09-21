@@ -1,10 +1,10 @@
 ---
-title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 2026: 오픈 웨이트 vs 1M 컨텍스트'
-description: 'DeepSeek V3.5(685B MoE, 오픈 웨이트)와 Claude Sonnet 4.6 비교 — MTok당 가격, 컨텍스트 윈도우, SWE-bench, 다국어, API 가용성. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "DeepSeek V3.5 vs Claude Sonnet 4.6 2026: 오픈 웨이트 vs 1M 컨텍스트"
+description: "DeepSeek V3.5(685B MoE, 오픈 웨이트)와 Claude Sonnet 4.6 비교 — MTok당 가격, 컨텍스트 윈도우, SWE-bench, 다국어, API 가용성. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
-categories: [vs]
+tags: ["deepseek", "claude-sonnet", "anthropic", "llm", "comparison", "open-source", "ai-coding"]
+categories: ["vs"]
 faqs: - q: 'DeepSeek V3.5가 정말 Claude Sonnet 4.6보다 10배 저렴한가요?'
     a: '원시 토큰 가격으로는 그렇습니다. DeepSeek V3.5는 입력 약 $0.27/M, 출력 약 $1.10/M이고, Claude Sonnet 4.6은 입력 $3, 출력 $15입니다. 입력 ~11배, 출력 ~13배 저렴합니다. 다만 Sonnet은 추론 압축이 더 좋아 평균 토큰 사용량이 적고 1M 컨텍스트(DeepSeek는 128K)를 지원하므로, 실제 워크로드 기준 격차는 5-7배에 가깝습니다.'
   - q: '코딩에는 DeepSeek V3.5와 Claude Sonnet 4.6 중 어느 쪽이 낫나요?'

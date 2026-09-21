@@ -1,6 +1,6 @@
 ---
 title: 'Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
-description: 'Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế system prompt, danh sách công cụ được phép, và hai ví dụ sẵn sàng đưa vào sản xuất (trình duyệt migration, cổng bảo mật) cùng những lỗi cần tránh.'
+description: "Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế system prompt, danh sách công cụ được phép, và hai ví dụ sẵn sàng đưa vào sản xuất (trình duyệt migration, cổng bảo mật) cùng những lỗi cần tránh."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-custom-agent-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-custom-agent-authoring/
 faq: - q: "Các tệp định nghĩa custom agent nằm ở đâu, và chúng có định dạng gì?"
     a: "Custom agent là các tệp Markdown có YAML frontmatter, được lưu trong .claude/agents/ ở dự án của bạn (hoặc ~/.claude/agents/ cho những agent bạn muốn dùng được trên mọi dự án). Tên tệp bỏ phần đuôi .md không phải là danh tính của agent — trường name trong frontmatter mới là. Frontmatter khai báo name, description, một danh sách tools tùy chọn, và một model tùy chọn; mọi thứ bên dưới dấu --- kết thúc chính là system prompt của agent."
   - q: "Sự khác biệt giữa trường description và phần thân system prompt là gì?"

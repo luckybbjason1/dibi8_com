@@ -1,22 +1,23 @@
 ---
 title: 'AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
-description: 'Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 effective), and Cursor Pro + API overflow ($87). Per-task cost breakdown, when each pays off, and the threshold where switching makes sense.'
+description: "Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 effective), and Cursor Pro + API overflow ($87). Per-task cost breakdown, when each pays off, and the threshold where switching makes sense."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
-source_version: 'May 2026 30-day window'
+source_version: "May 2026 30-day window"
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
-aliases: - /posts/ai-coding-agent-monthly-bill-2026-real-receipts/
+categories: ["dev-utils"]
+tags: ["ai-coding", "claude-code", "cursor", "codex-cli", "pricing", "2026"]
+aliases:
+  - /posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq: - q: "Is Claude Max ($200) worth it vs API pay-as-you-go?"
     a: "Threshold: if you use Claude Code more than ~3 hours per workday, Max wins. Below that, API pay-as-you-go with Sonnet 4.6 lands in the $80-150 range. Above 4h/day you save real money vs API."
   - q: "What was the biggest surprise in 30 days of tracking?"

@@ -1,26 +1,27 @@
 ---
 title: 'Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình v...
-description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
-source_version: ''
+source_version: "'
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Portkey-AI/gateway'
+github_repo: "https://github.com/Portkey-AI/gateway"
 stars: 14000
 maintainer: 'Portkey-AI'
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['portkey ai gateway']
-aliases: - /vi/posts/portkey-ai-gateway-production/
+categories: ["llm-frameworks"]
+tags: ["portkey ai gateway"]
+aliases:
+  - /vi/posts/portkey-ai-gateway-production/
 ---
 
 {{</* resource-info */>}}

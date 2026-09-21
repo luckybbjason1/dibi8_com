@@ -1,6 +1,6 @@
 ---
 title: 'Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập ...
-description: 'Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiếm embedding và triển khai production. Bao gồm benchmark, so sánh và trường hợp sử dụng thực tế.'
+description: "Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiếm embedding và triển khai production. Bao gồm benchmark, so sánh và trường hợp sử dụng thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,26 +12,27 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'chromadb/chroma'
+github_repo: "chromadb/chroma"
 stars: 18000
 maintainer: chromadb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /vi/posts/chroma-vector-database-python/
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /vi/posts/chroma-vector-database-python/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao pipeline RAG của bạn cần kho lưu trữ vector tốt hơn
 
-Bạn xây dựng một ứng dụng RAG. Nó hoạt động tốt với 500 tài liệu. Sau đó bạn đạt 50.000 tài liệu và tốc độ tìm kiếm bắt đầu tụt dốc. Độ trễ tăng từ 200ms lên 4 giây. Ngườii dùng của bạn đã nhận thấy. Bạn thử PostgreSQL với pgvector, nhưng cấu hình giống như điều chỉnh một con tàu vũ trụ. Bạn thử Pinecone, nhưng giá cả tăng nhanh hơn cả lưu lượng truy cập của bạn.
+Bạn xây dựng một ứng dụng RAG. Nó hoạt động tốt với 500 tài liệu. Sau đó bạn đạt 50.000 tài liệu và tốc độ tìm kiếm bắt đầu tụt dốc. Độ trễ tăng từ 200ms lên 4 giây. Ngườii dùng của bạn đã nhận thấy. Bạn thử PostgreSQL với pgvector", "nhưng cấu hình giống như điều chỉnh một con tàu vũ trụ. Bạn thử Pinecone", "nhưng giá cả tăng nhanh hơn cả lưu lượng truy cập của bạn.
 
-Đây chính xác là vấn đề mà Chroma giải quyết. Chroma là một **cơ sở dữ liệu vector ưu tiên lập trình viên** được thiết kế cho 90% ứng dụng AI không cần điều phối cụm phân tán — chúng cần tìm kiếm embedding nhanh, cài đặt đơn giản, và một API Python thực sự dễ hiểu.
+Đây chính xác là vấn đề mà Chroma giải quyết. Chroma là một **cơ sở dữ liệu vector ưu tiên lập trình viên** được thiết kế cho 90% ứng dụng AI không cần điều phối cụm phân tán — chúng cần tìm kiếm embedding nhanh", "cài đặt đơn giản", "và một API Python thực sự dễ hiểu.
 
-Tính đến tháng 5 năm 2026, Chroma đã vượt qua **18.000 sao GitHub**, phát hành **v0.6.x** với lưu trữ persistent, lọc metadata, và một engine truy vấn có benchmark **nhanh hơn 50 lần** so với tìm kiếm brute-force đơn thuần trên tập dữ liệu vượt quá 1 triệu vector. Dự án được duy trì bởi nhóm Chroma theo giấy phép **Apache-2.0** và là kho vector mặc định trong hướng dẫn bắt đầu nhanh của [LangChain](dibi8-internal-link) và [LlamaIndex](dibi8-internal-link).
+Tính đến tháng 5 năm 2026", "Chroma đã vượt qua **18.000 sao GitHub**", "phát hành **v0.6.x** với lưu trữ persistent", "lọc metadata", "và một engine truy vấn có benchmark **nhanh hơn 50 lần** so với tìm kiếm brute-force đơn thuần trên tập dữ liệu vượt quá 1 triệu vector. Dự án được duy trì bởi nhóm Chroma theo giấy phép **Apache-2.0** và là kho vector mặc định trong hướng dẫn bắt đầu nhanh của [LangChain"](dibi8-internal-link) và [LlamaIndex](dibi8-internal-link).
 
 Hướng dẫn này đưa bạn từ `pip install` đến RAG sẵn sàng production trong vòng dưới 30 phút. Không cần kinh nghiệm cơ sở dữ liệu vector trước đó.
 

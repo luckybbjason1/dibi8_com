@@ -1,10 +1,10 @@
 ---
-title: 'ChatGPT Pro vs Claude Pro 2026：$20（或 $200）AI 订阅哪个更值？'
-description: 'ChatGPT Plus/Pro 与 Claude Pro/Max 完整对比 — 模型阵容、上下文窗口、Projects、Artifacts、图像生成、语音模式、价格。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "ChatGPT Pro vs Claude Pro 2026：$20（或 $200）AI 订阅哪个更值？"
+description: "ChatGPT Plus/Pro 与 Claude Pro/Max 完整对比 — 模型阵容、上下文窗口、Projects、Artifacts、图像生成、语音模式、价格。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [chatgpt, claude, openai, anthropic, ai-subscription, comparison]
-categories: [vs]
+tags: ["chatgpt", "claude", "openai", "anthropic", "ai-subscription", "comparison"]
+categories: ["vs"]
 faqs: - q: '$20/月档位 ChatGPT Pro 和 Claude Pro 哪个更值？'
     a: '对大多数知识工作者而言，Claude Pro 在写作和推理质量上略胜一筹，ChatGPT Plus 则胜在功能广度 — 图像生成、语音模式、Custom GPTs、网页浏览一站全包。只做文字选 Claude；要瑞士军刀选 ChatGPT。'
   - q: '$20 和 $200 档位有什么区别？'

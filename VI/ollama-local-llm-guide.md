@@ -1,6 +1,6 @@
 ---
 title: 'Hướng Dẫn Toàn Diện Ollama 2025: Chạy LLM Local Trên Mọi...
-description: 'Hướng dẫn chi tiết Ollama 2025: cài đặt trên macOS/Windows/Linux/Docker, chạy Llama 3 và Mistral local, REST API, tích hợp LangChain, và tối ưu phần cứng.'
+description: "Hướng dẫn chi tiết Ollama 2025: cài đặt trên macOS/Windows/Linux/Docker, chạy Llama 3 và Mistral local, REST API, tích hợp LangChain, và tối ưu phần cứng."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ollama-local-llm-guide/
+aliases:
+  - /posts/ollama-local-llm-guide/
 ---
 
 {</* resource-info */>}

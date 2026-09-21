@@ -1,6 +1,6 @@
 ---
 title: 'Supabase 2026: The Open-Source Firebase Alternative Powe...
-description: 'Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI apps. Auth, storage, realtime, edge functions, RAG pipeline integration, self-hosted Docker deployment, and Row Level Security.'
+description: "Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI apps. Auth, storage, realtime, edge functions, RAG pipeline integration, self-hosted Docker deployment, and Row Level Security."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'supabase/supabase'
+github_repo: "supabase/supabase"
 stars: 80000
 maintainer: supabase
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [supabase, postgres, 'vector search', 'firebase alternative', pgvector, 'ai apps', rag, 'open source', docker, 'edge functions']
-aliases: - /posts/supabase-postgres-vector-ai-apps/-
+categories: ["dev-utils"]
+tags: ["supabase", "postgres", "vector search", "firebase alternative", "pgvector", "ai apps", "rag", "open source", "docker", "edge functions"]
+aliases:
+  - /posts/supabase-postgres-vector-ai-apps/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
-title: 'n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%'
-description: 'n8n（fair-code）是具有原生 AI 能力的可视化工作流自动化平台，支持 400+ 集成。兼容 Claude Code、OpenAI、Anthropic、Slack、Discord、Telegram。涵盖 Docker 部署、AI 节点配置、Webhook 部署和生产环境加固。'
+title: "n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%"
+description: "n8n（fair-code）是具有原生 AI 能力的可视化工作流自动化平台，支持 400+ 集成。兼容 Claude Code、OpenAI、Anthropic、Slack、Discord、Telegram。涵盖 Docker 部署、AI 节点配置、Webhook 部署和生产环境加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/n8n-io/n8n'
+github_repo: "https://github.com/n8n-io/n8n"
 stars: 188782
 maintainer: 'n8n-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [n8n, 工作流自动化, 自托管, 'ai 智能体', docker, langchain, 开源, 低代码]
-aliases: - /zh/posts/n8n/
+categories: ["llm-frameworks"]
+tags: ["n8n", "工作流自动化", "自托管", "ai 智能体", "docker", "langchain", "开源", "低代码"]
+aliases:
+  - /zh/posts/n8n/
 - /zh/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/-
 ---
 

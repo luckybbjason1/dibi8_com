@@ -1,6 +1,6 @@
 ---
 title: 'Dify: 5분 만에 시각적으로 프로덕션급 AI 에이전트 구축 — 141K+ Stars 설치 가이드 ...
-description: 'Dify는 시각적 워크플로 빌더, RAG 파이프라인, 에이전트 오케스트레이션을 제공하는 오픈소스 LLM 애플리케이션 개발 플랫폼입니다. OpenAI, Anthropic, Ollama, Qdrant, Weaviate와 호환됩니다. Docker 배포, API 통합, 프로덕션 하드닝, Flowise 및 n8n, LangChain과의 비교를 다룹니다.'
+description: "Dify는 시각적 워크플로 빌더, RAG 파이프라인, 에이전트 오케스트레이션을 제공하는 오픈소스 LLM 애플리케이션 개발 플랫폼입니다. OpenAI, Anthropic, Ollama, Qdrant, Weaviate와 호환됩니다. Docker 배포, API 통합, 프로덕션 하드닝, Flowise 및 n8n, LangChain과의 비교를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langgenius/dify'
+github_repo: "https://github.com/langgenius/dify"
 stars: 141955
 maintainer: langgenius
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [dify, 'ai 에이전트 빌더', 'llm 워크플로', rag, 'docker 배포', '오픈소스 ai', '시각적 워크플로 빌더', '프로덕션 ai']
-aliases: - /kr/posts/dify/
+categories: ["llm-frameworks"]
+tags: ["dify", "ai 에이전트 빌더", "llm 워크플로", "rag", "docker 배포", "오픈소스 ai", "시각적 워크플로 빌더", "프로덕션 ai"]
+aliases:
+  - /kr/posts/dify/
 - /kr/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
 

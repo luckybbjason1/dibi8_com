@@ -1,6 +1,6 @@
 ---
-title: '多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）'
-description: '自托管多模态内容 stack：faster-whisper（STT）+ ChatTTS（对话式 TTS）+ Stable Diffusion WebUI（图像）+ ComfyUI（工作流引擎 + 视频）+ FFmpeg（合成）。$30-80/月做播客 / 短视频 / AI 插画文章，vs SaaS $200-500/月。'
+title: "多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）"
+description: "自托管多模态内容 stack：faster-whisper（STT）+ ChatTTS（对话式 TTS）+ Stable Diffusion WebUI（图像）+ ComfyUI（工作流引擎 + 视频）+ FFmpeg（合成）。$30-80/月做播客 / 短视频 / AI 插画文章，vs SaaS $200-500/月。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [多模态, '内容 pipeline', 播客, 视频, tts, stack, 合集]
-aliases: - /posts/multi-modal-content-pipeline/-
+categories: ["collections"]
+tags: ["多模态", "内容 pipeline", "播客", "视频", "tts", "stack", "合集"]
+aliases:
+  - /posts/multi-modal-content-pipeline/-
 ---
 
 2026 创作者经济跑在多模态内容上 —— AI 共主持的播客、AI 旁白配生成视觉的短视频、AI 插画 header 的博客、稳定 AI 声音读的有声书。SaaS-stack 走法每月 $200-500（ElevenLabs + Midjourney + Descript + Pictory + 十几个其他）。这个合集组装的是**$30-80/月的自托管 5 组件替代方案** —— 用 SaaS 服务商一样的模型，跑在你按小时租的 GPU 上。

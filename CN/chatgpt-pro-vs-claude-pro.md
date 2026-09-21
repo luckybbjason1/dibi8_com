@@ -1,10 +1,10 @@
 ---
 title: 'ChatGPT Pro vs Claude Pro in 2026: Which $20 (or $200) A...
-description: 'Full breakdown of ChatGPT Plus/Pro vs Claude Pro/Max — model lineup, context window, Projects, Artifacts, image gen, voice mode, pricing. Updated 2026.'
+description: "Full breakdown of ChatGPT Plus/Pro vs Claude Pro/Max — model lineup, context window, Projects, Artifacts, image gen, voice mode, pricing. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [chatgpt, claude, openai, anthropic, ai-subscription, comparison]
-categories: [vs]
+tags: ["chatgpt", "claude", "openai", "anthropic", "ai-subscription", "comparison"]
+categories: ["vs"]
 faqs: - q: 'Is ChatGPT Pro or Claude Pro better value at $20/month?'
     a: 'For most knowledge workers, Claude Pro edges ChatGPT Plus on raw writing and reasoning quality, while ChatGPT Plus wins on feature breadth — image gen, voice mode, custom GPTs, and web browsing all in one app. If you only do text, Claude. If you want a Swiss-army knife, ChatGPT.'
   - q: What's the difference between the $20 and $200 tiers?'

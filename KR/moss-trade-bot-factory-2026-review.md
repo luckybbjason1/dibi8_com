@@ -1,26 +1,27 @@
 ---
 title: 'Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백...
-description: 'moss-trade-bot-skills v1.0.26 핸즈온 리뷰: Hyperliquid 퍼페추얼용 자연어 퀀트 agent 빌더. Decimal 정밀도 + 20단계 호가창 모델링 — 그러나 Sharpe 연간화 상수 버그와 진화 모드 활성화 시 교과서적 OVERFIT 트랩. 보안 감사, 버그 픽스, 5 전략 비교, 70/30 train/OOS 검증 결과 전 과정.'
+description: "moss-trade-bot-skills v1.0.26 핸즈온 리뷰: Hyperliquid 퍼페추얼용 자연어 퀀트 agent 빌더. Decimal 정밀도 + 20단계 호가창 모델링 — 그러나 Sharpe 연간화 상수 버그와 진화 모드 활성화 시 교과서적 OVERFIT 트랩. 보안 감사, 버그 픽스, 5 전략 비교, 70/30 train/OOS 검증 결과 전 과정."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
-source_version: 'v1.0.26'
+source_version: "v1.0.26"
 licensing_model: Open Source
 license_type: MIT-0
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/moss-site/moss-trade-bot-skills'
+github_repo: "https://github.com/moss-site/moss-trade-bot-skills"
 stars: 98
 maintainer: 'moss-site'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['ai-agent', 퀀트, 백테스트, hyperliquid, 퍼페추얼, 오픈소스, 과적합, 'oos 검증']
-aliases: - /kr/posts/moss-trade-bot-factory-2026-review/
+categories: ["ai-trading"]
+tags: ["ai-agent", "퀀트", "백테스트", "hyperliquid", "퍼페추얼", "오픈소스", "과적합", "oos 검증"]
+aliases:
+  - /kr/posts/moss-trade-bot-factory-2026-review/
 faq: - q: "moss-trade-bot-factory는 설치해도 안전한가요?"
     a: "페이퍼 백테스트는 완전히 안전합니다. 코드 감사 결과: eval/exec 없음, HMAC 서명 API 호출이 secret을 절대 업로드하지 않음, MIT-0 라이선스, 지갑 개인키 접근 없음. 이 skill은 퀀트 전략 빌더이지 커스터디 서비스가 아닙니다. 라이브 트레이딩은 moss.site 플랫폼에 명시적으로 bind해야 하며, 자금은 항상 사용자 본인의 Hyperliquid 지갑에 남아 있습니다."
   - q: "Sharpe 연간화 버그가 뭔가요?"

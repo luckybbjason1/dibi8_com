@@ -1,6 +1,6 @@
 ---
 title: 'Unsloth 2026: 64.9k-Star Fast LLM Fine-Tuning — 2× Speed...
-description: 'Unsloth fine-tunes LLMs 2× faster with 70% less VRAM than HuggingFace TRL baselines. 64.9k GitHub stars, dual Apache 2.0 + AGPL-3.0 license. Supports Llama 3, Mistral, Qwen 3, Gemma, DeepSeek for LoRA / QLoRA / DPO / GRPO. Complete 2026 single-GPU fine-tuning guide.'
+description: "Unsloth fine-tunes LLMs 2× faster with 70% less VRAM than HuggingFace TRL baselines. 64.9k GitHub stars, dual Apache 2.0 + AGPL-3.0 license. Supports Llama 3, Mistral, Qwen 3, Gemma, DeepSeek for LoRA / QLoRA / DPO / GRPO. Complete 2026 single-GPU fine-tuning guide."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -15,15 +15,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/unslothai/unsloth'
+github_repo: "https://github.com/unslothai/unsloth"
 stars: 64900
 maintainer: unslothai
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [unsloth, 'fine-tuning', lora, qlora, grpo, 'fast training']
-aliases: - /posts/unsloth-fast-llm-fine-tuning-2026/-
+categories: ["llm-frameworks"]
+tags: ["unsloth", "fine-tuning", "lora", "qlora", "grpo", "fast training"]
+aliases:
+  - /posts/unsloth-fast-llm-fine-tuning-2026/-
 ---
 If [Axolotl](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) is the production multi-GPU fine-tuning framework, **Unsloth** is the single-GPU speed king. By rewriting the LLM training kernels in custom Triton + Python instead of relying on PyTorch's generic autograd, Unsloth fine-tunes models **2× faster** with **70% less VRAM** than HuggingFace TRL baselines.
 

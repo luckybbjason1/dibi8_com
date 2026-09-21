@@ -1,17 +1,16 @@
 ---
-title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng ...
+title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng AI đáng tin cậy"
 description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LLM hỗ trợ, cung cấp cách tiếp cận có nguyên tắc để xây dựng các agent AI đáng tin cậy, có thể mở rộng và quan sát được."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 12-factor-agents
 category: llm-frameworks
-tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
+tags: ["12-factor-agents", "LLM", "AI agents", "observability", "reliability", "human-layer", "framework"]
 github_repo: https://github.com/humanlayer/12-factor-agents
 stars: 23161
 maintainer: humanlayer
 license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
-lang: vi
 ---
 
 ## Giới thiệu

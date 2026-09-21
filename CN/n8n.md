@@ -1,6 +1,6 @@
 ---
 title: 'n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
-description: 'n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations. Compatible with Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Covers Docker setup, AI node configuration, webhook deployment, and production hardening.'
+description: "n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations. Compatible with Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Covers Docker setup, AI node configuration, webhook deployment, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/n8n-io/n8n'
+github_repo: "https://github.com/n8n-io/n8n"
 stars: 188782
 maintainer: 'n8n-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [n8n, 'workflow-automation', 'self-hosted', 'ai-agents', docker, langchain, 'open-source', 'low-code']
-aliases: - /posts/n8n/
+categories: ["llm-frameworks"]
+tags: ["n8n", "workflow-automation", "self-hosted", "ai-agents", "docker", "langchain", "open-source", "low-code"]
+aliases:
+  - /posts/n8n/
 - /resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/-
 ---
 {{</* resource-info */>}}
@@ -624,7 +625,7 @@ SELECT pg_reload_conf();
 global: scrape_interval: 15s
 
 scrape_configs: - job_name: n8n
-    static_configs: - targets: ['n8n-main:5678']
+    static_configs: - targets: [n8n-main:5678]
     metrics_path: /metrics
 ```
 

@@ -1,22 +1,23 @@
 ---
 title: 'ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
-description: 'ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, gợi ý mô hình cho năm 2026, và 5 template workflow sẵn sàng đưa vào production (text-to-image, inpaint, upscale, video, nhất quán nhân vật).'
+description: "ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, gợi ý mô hình cho năm 2026, và 5 template workflow sẵn sàng đưa vào production (text-to-image, inpaint, upscale, video, nhất quán nhân vật)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: Công cụ AI
-source_version: 'ComfyUI 2026.05'
+source_version: "ComfyUI 2026.05"
 licensing_model: Mã nguồn mở
 license_type: 'GPL-3.0'
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 106000
 maintainer: comfyanonymous
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases: - /vi/posts/comfyui-workflow-2026-5-production-templates/
+categories: ["ai-tools"]
+tags: ["comfyui", "stable-diffusion", "image-generation", "workflows", "2026"]
+aliases:
+  - /vi/posts/comfyui-workflow-2026-5-production-templates/
 faq: - q: "Năm 2026, ComfyUI có tốt hơn Stable Diffusion WebUI không?"
     a: "Đối với tự động hóa workflow và sử dụng production: có, một cách dứt khoát. Đồ thị dựa trên node của ComfyUI khiến các pipeline phức tạp nhiều bước (upscale → inpaint → ControlNet → render lại) trở nên cực kỳ dễ dàng. SD WebUI đơn giản hơn cho các lần sinh ảnh đơn lẻ. Hầu hết nghệ sĩ AI chuyên nghiệp đều dùng cả hai."
   - q: "Tôi cần phần cứng nào?"

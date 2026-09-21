@@ -1,6 +1,6 @@
 ---
-title: 'GPT Researcher：自主深度研究报告智能体——2026 实战指南'
-description: 'GPT Researcher 是一个开源深度研究智能体，能针对任意任务执行联网与本地研究并生成带引用的报告。27,473 GitHub 星标，Apache-2.0 许可。涵盖安装、异步 Python API、Docker 与真实代码示例。'
+title: "GPT Researcher：自主深度研究报告智能体——2026 实战指南"
+description: "GPT Researcher 是一个开源深度研究智能体，能针对任意任务执行联网与本地研究并生成带引用的报告。27,473 GitHub 星标，Apache-2.0 许可。涵盖安装、异步 Python API、Docker 与真实代码示例。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'assafelovic/gpt-researcher'
+github_repo: "assafelovic/gpt-researcher"
 stars: 27473
 maintainer: assafelovic
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/gpt-researcher-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/gpt-researcher-llm-frameworks-2026/
 faqs: - q: '如何安装 gpt-researcher？'
     a: '通过 pip 安装 Python 包： ```bash pip install gpt-researcher ```'
   - q: '可以用哪些 LLM 提供商和搜索引擎？'
@@ -40,7 +41,7 @@ faqs: - q: '如何安装 gpt-researcher？'
 
 只要你用大语言模型（LLM）做过开发，多半都撞过同一堵墙：把一个问题变成一份资料扎实、有据可查的报告，是又慢又费人力的活儿。`assafelovic/gpt-researcher` 把这个环节自动化了。它是一个自主智能体，能联网搜索（也能读你本地的文件）、收集来源，并从一句查询出发写出一份带引用的研究报告。本指南将带你安装它、用 Python 跑起来，并把它接入真实工作流。
 
-![gpt-researcher 概览，via dibi8.com](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
+![gpt-researcher 概览，via dibi8.com"](https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000)
 
 *gpt-researcher 贡献者（来源：assafelovic/gpt-researcher 仓库，经 dibi8 分析）*
 

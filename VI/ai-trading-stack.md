@@ -1,6 +1,6 @@
 ---
 title: 'AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Ng...
-description: 'Stack AI trading self-host: ta-lib (tín hiệu) + vectorbt (backtest) + freqtrade (thực thi) + AI Trader (layer chiến lược AI) + Hyperliquid (perp DEX venue) + Polymarket Agents (thị trường dự đoán) + Minara (AI+crypto hub). $30-150/tháng hạ tầng, pipeline quant production thực, không phải đồ chơi.'
+description: "Stack AI trading self-host: ta-lib (tín hiệu) + vectorbt (backtest) + freqtrade (thực thi) + AI Trader (layer chiến lược AI) + Hyperliquid (perp DEX venue) + Polymarket Agents (thị trường dự đoán) + Minara (AI+crypto hub). $30-150/tháng hạ tầng, pipeline quant production thực, không phải đồ chơi."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai trading', quant, crypto, hyperliquid, polymarket, stack, collection]
-aliases: - /posts/ai-trading-stack/
+categories: ["collections"]
+tags: ["ai trading", "quant", "crypto", "hyperliquid", "polymarket", "stack", "collection"]
+aliases:
+  - /posts/ai-trading-stack/
 ---
 
 # AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Nguồn Mở Cho Crypto + Thị Trường Dự Đoán

@@ -1,6 +1,6 @@
 ---
 title: 'Marker: Convert PDF, DOCX & EPUB to Markdown/JSON Fast —...
-description: 'Marker (datalab-to/marker) converts PDF, DOCX, EPUB and more to Markdown, JSON, HTML and chunks quickly and accurately. 35,694 GitHub stars, GPL-3.0 code license. Covers installation, the CLI and Python API, real code examples, LLM mode, and an honest comparison with alternatives.'
+description: "Marker (datalab-to/marker) converts PDF, DOCX, EPUB and more to Markdown, JSON, HTML and chunks quickly and accurately. 35,694 GitHub stars, GPL-3.0 code license. Covers installation, the CLI and Python API, real code examples, LLM mode, and an honest comparison with alternatives."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'datalab-to/marker'
+github_repo: "datalab-to/marker"
 stars: 35694
 maintainer: 'datalab-to'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data/images/datalab-logo.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/marker-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/marker-dev-utils-2026/
 faqs: - q: 'How do I install marker?'
-    a: 'Install it from PyPI with `pip install marker-pdf`. For non-PDF formats (DOCX, PPTX, XLSX, EPUB, HTML, images), use `pip install marker-pdf[full]`.'
+    a: 'Install it from PyPI with `pip install marker-pdf`. For non-PDF formats (DOCX", "PPTX", "XLSX", "EPUB", "HTML", "images)", "use `pip install marker-pdf[full"]`.'
   - q: 'Can I use this tool for commercial projects?'
     a: 'The code is licensed under GPL-3.0, but the model weights use a modified AI Pubs Open Rail-M license. That license is free for research, personal use and companies under roughly $2M in funding/revenue; larger commercial users need a commercial license from Datalab. Check the current terms before deploying.'
   - q: 'What types of documents can marker handle?'

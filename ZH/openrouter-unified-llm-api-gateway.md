@@ -1,6 +1,6 @@
 ---
-title: 'OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南'
-description: 'OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南"
+description: "OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'openrouter/openrouter'
+github_repo: "openrouter/openrouter"
 stars: 15000
 maintainer: alexanderatallah
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [openrouter, llm, api网关, 人工智能, openai, claude, 机器学习, 成本优化]
-aliases: - /zh/posts/openrouter-unified-llm-api-gateway/-
+categories: ["llm-frameworks"]
+tags: ["openrouter", "llm", "api网关", "人工智能", "openai", "claude", "机器学习", "成本优化"]
+aliases:
+  - /zh/posts/openrouter-unified-llm-api-gateway/-
 ---
 
 {{</* resource-info */>}}

@@ -1,6 +1,6 @@
 ---
-title: 'Skyvern: AI 에이전트로 브라우저 워크플로 자동화 (21K 스타) — 2026 실전 가이드'
-description: 'Skyvern은 대규모 언어 모델과 컴퓨터 비전으로 브라우저 기반 워크플로를 자동화합니다 (GitHub 스타 21,803개, AGPL-3.0). 설치, 실제 Python API, 동작하는 코드 예제, 그리고 Selenium·Playwright와의 솔직한 비교를 다룹니다.'
+title: "Skyvern: AI 에이전트로 브라우저 워크플로 자동화 (21K 스타) — 2026 실전 가이드"
+description: "Skyvern은 대규모 언어 모델과 컴퓨터 비전으로 브라우저 기반 워크플로를 자동화합니다 (GitHub 스타 21,803개, AGPL-3.0). 설치, 실제 Python API, 동작하는 코드 예제, 그리고 Selenium·Playwright와의 솔직한 비교를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Skyvern-AI/skyvern'
+github_repo: "Skyvern-AI/skyvern"
 stars: 21803
 maintainer: 'Skyvern-AI'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/skyvern-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/skyvern-dev-utils-2026/
 faqs: - q: 'Skyvern-AI/skyvern은 어떻게 설치하나요?'
-    a: 'pip로 설치한 뒤 quickstart를 실행하세요. ```bash pip install "skyvern[all]" skyvern quickstart ``` quickstart가 LLM 제공자 설정을 돕고 로컬 서버와 UI를 실행합니다.'
+    a: 'pip로 설치한 뒤 quickstart를 실행하세요. ```bash pip install "skyvern[all"]" skyvern quickstart ``` quickstart가 LLM 제공자 설정을 돕고 로컬 서버와 UI를 실행합니다.'
   - q: 'Skyvern-AI/skyvern 실행에 필요한 시스템 요구 사항은 무엇인가요?'
     a: 'Skyvern은 Python 3.11 이상과 최소 하나의 LLM API 키(OpenAI, Anthropic, Gemini, Bedrock, 또는 Ollama를 통한 로컬 모델)가 필요합니다. 몇 GB의 RAM을 갖춘 현대적인 머신이면 로컬 사용에 충분하며, 프로덕션 예약 작업은 항상 켜져 있는 서버에서 돌리는 것이 가장 좋습니다.'
   - q: 'Skyvern-AI/skyvern을 상업 프로젝트에 사용할 수 있나요?'

@@ -1,6 +1,6 @@
 ---
 title: 'Code Quality Tools Guide: ESLint, Prettier, Black, Ruff ...
-description: 'Set up code quality tools for any language: ESLint, Prettier, Black, Ruff, golangci-lint, and rustfmt. Complete configs, CI integration, and pre-commit hooks.'
+description: "Set up code quality tools for any language: ESLint, Prettier, Black, Ruff, golangci-lint, and rustfmt. Complete configs, CI integration, and pre-commit hooks."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/
+aliases:
+  - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
 # Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More
 
@@ -296,7 +297,7 @@ Black formats all Python files in place. Use `black --check .` in CI to verify f
 ```toml
 [tool.black]
 line-length = 88
-target-version = ['py311']
+target-version = [py311]
 include = '\.pyi?$'
 extend-exclude = '''
 /(

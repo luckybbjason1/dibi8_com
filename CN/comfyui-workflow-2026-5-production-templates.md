@@ -1,22 +1,23 @@
 ---
 title: 'ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...
-description: 'ComfyUI hit 106K GitHub stars in 2026. Beginner-friendly setup guide, model recommendations for 2026, and 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).'
+description: "ComfyUI hit 106K GitHub stars in 2026. Beginner-friendly setup guide, model recommendations for 2026, and 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI Tools
-source_version: 'ComfyUI 2026.05'
+source_version: "ComfyUI 2026.05"
 licensing_model: Open Source
 license_type: 'GPL-3.0'
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 106000
 maintainer: comfyanonymous
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases: - /posts/comfyui-workflow-2026-5-production-templates/
+categories: ["ai-tools"]
+tags: ["comfyui", "stable-diffusion", "image-generation", "workflows", "2026"]
+aliases:
+  - /posts/comfyui-workflow-2026-5-production-templates/
 faq: - q: "Is ComfyUI better than Stable Diffusion WebUI in 2026?"
     a: "For workflow automation and production use: yes, decisively. ComfyUI's node-based graph makes complex multi-step pipelines (upscale → inpaint → ControlNet → re-render) trivial. SD WebUI is simpler for one-shot generations. Most professional AI artists run both."
   - q: "What hardware do I need?"

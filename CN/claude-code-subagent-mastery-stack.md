@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Subagent Mastery Stack 2026: From One Conver...
-description: 'The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent patterns + custom agent authoring + the skill/subagent/MCP decision framework + orchestration failure modes + skill authoring. The full path from single-threaded coding to a reliable agent pipeline.'
+description: "The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent patterns + custom agent authoring + the skill/subagent/MCP decision framework + orchestration failure modes + skill authoring. The full path from single-threaded coding to a reliable agent pipeline."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - Claude Code
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases: - /posts/claude-code-subagent-mastery-stack/
+categories: ["collections"]
+tags: ["claude code", "subagents", "multi-agent", "agent sdk", "mcp", "stack", "collection"]
+aliases:
+  - /posts/claude-code-subagent-mastery-stack/
 faqs: - q: 'What are the five Claude Code subagent patterns?'
     a: 'The five patterns are parallel research fan-out, worktree isolation, specialist delegation, context protection, and pipeline orchestration. They form the foundation layer of multi-agent workflows, with parallel fan-out being the lowest-friction entry point.'
   - q: 'How do I decide between a Claude Code skill, subagent, or MCP server?'

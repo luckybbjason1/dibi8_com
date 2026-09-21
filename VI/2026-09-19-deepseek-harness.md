@@ -1,16 +1,15 @@
 ---
 title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
-description: 'DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.'
+description: "DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes."
 date: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
-tags: ['deepseek', 'harness', 'plugin', 'ai-agent', 'dsh', 'automation']
-github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
+tags: ["deepseek", "harness", "plugin", "ai-agent", "dsh", "automation"]
+github_repo: "https://github.com/deepseek-ai/deepseek-harness"
 stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: vi
 ---
 {
   "@context": "https://schema.org",

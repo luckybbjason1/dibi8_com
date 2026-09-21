@@ -18,7 +18,8 @@ maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/toprank/
+aliases:
+  - /vi/posts/toprank/
 faqs: - q: 'Toprank là gì và khác gì so với các công cụ SEO SaaS?'
     a: 'Toprank là một bộ kỹ năng Claude Code mã nguồn mở, biến Claude Code CLI của Anthropic thành một công cụ tự động hóa marketing. Khác với các SaaS chạy trên trình duyệt, Toprank hoạt động ngay trong môi trường phát triển hiện có của bạn — không cần chuyển tab, không mất phí hàng tháng, không gián đoạn luồng làm việc.'
   - q: 'Toprank có thể tự động hóa những tác vụ SEO nào?'

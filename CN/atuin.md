@@ -1,6 +1,6 @@
 ---
 title: 'Atuin: 29,794 GitHub Stars — Shell History Sync Setup Gu...
-description: 'Atuin replaces shell history with a SQLite database, records command context (exit code, cwd, duration), and syncs encrypted history across machines. Supports Bash, Zsh, Fish, Nushell. Covers install, self-hosting, config, and Atuin vs mcfly vs fzf vs Hstr.'
+description: "Atuin replaces shell history with a SQLite database, records command context (exit code, cwd, duration), and syncs encrypted history across machines. Supports Bash, Zsh, Fish, Nushell. Covers install, self-hosting, config, and Atuin vs mcfly vs fzf vs Hstr."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/atuinsh/atuin'
+github_repo: "https://github.com/atuinsh/atuin"
 stars: 29794
 maintainer: atuinsh
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [atuin, 'shell-history', 'cli-tools', sqlite, rust, sync, bash, zsh, fish]
-aliases: - /posts/atuin/-
+categories: ["dev-utils"]
+tags: ["atuin", "shell-history", "cli-tools", "sqlite", "rust", "sync", "bash", "zsh", "fish"]
+aliases:
+  - /posts/atuin/-
 ---
 {{</* resource-info */>}}
 

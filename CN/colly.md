@@ -1,6 +1,6 @@
 ---
 title: 'Colly: 25,302 GitHub Stars — Benchmark Go Web Scraping F...
-description: 'Colly is a fast, elegant scraping framework for Go with 1k+ req/sec throughput. Covers colly tutorial, colly vs scrapy benchmarks, Docker setup, Redis caching, proxy rotation, and production deployment patterns for large-scale data extraction.'
+description: "Colly is a fast, elegant scraping framework for Go with 1k+ req/sec throughput. Covers colly tutorial, colly vs scrapy benchmarks, Docker setup, Redis caching, proxy rotation, and production deployment patterns for large-scale data extraction."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/gocolly/colly'
+github_repo: "https://github.com/gocolly/colly"
 stars: 25302
 maintainer: gocolly
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [colly, go, 'web-scraping', crawler, golang, scrapy, benchmark, proxy]
-aliases: - /posts/colly/-
+categories: ["dev-utils"]
+tags: ["colly", "go", "web-scraping", "crawler", "golang", "scrapy", "benchmark", "proxy"]
+aliases:
+  - /posts/colly/-
 ---
 {{</* resource-info */>}}
 

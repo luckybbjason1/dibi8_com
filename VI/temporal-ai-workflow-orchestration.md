@@ -1,13 +1,12 @@
 ---
 title: Temporal AI Workflow Orchestration — Quy Trình AI Đa Bước...
 description: Hướng dẫn toàn diện về Temporal để orchestrate AI/ML workflow. Xây dựng pipeline LLM đáng tin cậy, hệ thống multi-agent và job training ML với durability, retry và observability tích hợp sẵn.
-tags: ['workflow', 'orchestration', 'temporal', 'machine-learning', 'llm', 'reliability']
+tags: ["workflow", "orchestration", "temporal", "machine-learning", "llm", "reliability"]
 category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00draft: false
 slug: temporal-ai-workflow-orchestration
-lang: vi
 ---
 
 ## TL;DR

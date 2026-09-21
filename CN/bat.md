@@ -1,6 +1,6 @@
 ---
 title: 'bat: Syntax-Highlighting cat Clone with 58K+ Stars — Com...
-description: 'bat is a cat(1) clone with syntax highlighting and Git integration. Compatible with Rust, Git, Homebrew, Cargo. Covers installation, benchmark, configuration, and comparison with cat, less, ccat.'
+description: "bat is a cat(1) clone with syntax highlighting and Git integration. Compatible with Rust, Git, Homebrew, Cargo. Covers installation, benchmark, configuration, and comparison with cat, less, ccat."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/sharkdp/bat'
+github_repo: "https://github.com/sharkdp/bat"
 stars: 58940
 maintainer: sharkdp
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [bat, 'cat clone', 'syntax highlighting', 'cli tools', rust, terminal, 'file viewer', 'command line']
-aliases: - /posts/bat/-
+categories: ["dev-utils"]
+tags: ["bat", "cat clone", "syntax highlighting", "cli tools", "rust", "terminal", "file viewer", "command line"]
+aliases:
+  - /posts/bat/-
 ---
 {{</* resource-info */>}}
 

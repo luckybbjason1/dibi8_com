@@ -1,10 +1,10 @@
 ---
 title: 'Cursor vs Claude Code 2026: Công cụ AI lập trình nào tốt...
-description: 'So sánh trực tiếp Cursor và Claude Code — giá cả, hiệu năng, tình huống sử dụng, mẹo chuyển đổi. Cập nhật 2026.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "So sánh trực tiếp Cursor và Claude Code — giá cả, hiệu năng, tình huống sử dụng, mẹo chuyển đổi. Cập nhật 2026.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, claude-code, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "claude-code", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Cursor hay Claude Code rẻ hơn?'
     a: 'Cursor bắt đầu từ $20/tháng; Claude Code tính phí theo token qua Anthropic API (người dùng nặng thường tiêu $200-400/tháng). Muốn chi phí hàng tháng dự đoán được thì chọn Cursor. Dùng nặng thỉnh thoảng và kiểm soát được lượng dùng thì Claude Code có thể rẻ hơn.'
   - q: 'Có thể dùng Cursor và Claude Code cùng lúc không?'

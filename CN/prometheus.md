@@ -1,6 +1,6 @@
 ---
 title: 'Prometheus: 64,094 GitHub Stars — Docker Deployment Guid...
-description: 'Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Docker, Kubernetes, Grafana, and Alertmanager. Covers installation, PromQL queries, production hardening, and performance benchmarks.'
+description: "Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Docker, Kubernetes, Grafana, and Alertmanager. Covers installation, PromQL queries, production hardening, and performance benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/prometheus/prometheus'
+github_repo: "https://github.com/prometheus/prometheus"
 stars: 64094
 maintainer: prometheus
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [prometheus, monitoring, docker, kubernetes, grafana, devops, observability, 'time-series']
-aliases: - /posts/prometheus/-
+categories: ["dev-utils"]
+tags: ["prometheus", "monitoring", "docker", "kubernetes", "grafana", "devops", "observability", "time-series"]
+aliases:
+  - /posts/prometheus/-
 ---
 {{</* resource-info */>}}
 
@@ -70,7 +71,7 @@ global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: prometheus
-    static_configs: - targets: ['localhost:9090']
+    static_configs: - targets: [localhost:9090]
 ```
 
 **docker-compose.yml:**
@@ -145,13 +146,13 @@ global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: prometheus
-    static_configs: - targets: ['prometheus:9090']
+    static_configs: - targets: [prometheus:9090]
 
   - job_name: 'node-exporter'
-    static_configs: - targets: ['node-exporter:9100']
+    static_configs: - targets: [node-exporter:9100]
 
   - job_name: cadvisor
-    static_configs: - targets: ['cadvisor:8080']
+    static_configs: - targets: [cadvisor:8080]
 ```
 
 ### Kubernetes Deployment with Helm
@@ -269,7 +270,7 @@ groups: - name: node-alerts
 Reference the rules in `prometheus.yml`: ```yaml
 rule_files: - '/etc/prometheus/alert-rules.yml'
 
-alerting: alertmanagers: - static_configs: - targets: ['alertmanager:9093']
+alerting: alertmanagers: - static_configs: - targets: [alertmanager:9093]
 ```
 
 ### Alertmanager Configuration for Slack

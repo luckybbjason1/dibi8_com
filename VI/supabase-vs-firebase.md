@@ -1,10 +1,10 @@
 ---
-title: 'Supabase vs Firebase 2026: BaaS nào tốt hơn?'
-description: 'So sánh Supabase mã nguồn mở dựa trên Postgres và Firebase NoSQL của Google — database, auth, storage, realtime, edge functions, giá cả, lock-in, self-host. Cập nhật 2026.'
+title: "Supabase vs Firebase 2026: BaaS nào tốt hơn?"
+description: "So sánh Supabase mã nguồn mở dựa trên Postgres và Firebase NoSQL của Google — database, auth, storage, realtime, edge functions, giá cả, lock-in, self-host. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
-categories: [vs]
+tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
+categories: ["vs"]
 faqs: - q: 'Supabase hay Firebase rẻ hơn?'
     a: 'Với dự án nhỏ, cả hai đều có hạn mức miễn phí hào phóng, nhưng Supabase rẻ hơn về cấu trúc khi mở rộng quy mô vì truy vấn Postgres không tính phí theo từng hàng. Firebase Firestore tính phí theo số document đọc — một truy vấn dashboard kéo 10K document tốn tiền thật trên Firebase nhưng miễn phí trên Supabase nếu nằm trong compute đã bao gồm. Với khối lượng nặng về phân tích, hóa đơn hàng tháng của Supabase rẻ hơn 5-10 lần.'
   - q: 'Cái nào tốt hơn cho dữ liệu quan hệ?'

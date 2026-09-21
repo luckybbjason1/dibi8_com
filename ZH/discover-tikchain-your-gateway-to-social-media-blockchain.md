@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/discover-tikchain-your-gateway-to-social-media-blockchain/
+aliases:
+  - /zh/posts/discover-tikchain-your-gateway-to-social-media-blockchain/
 faqs: - q: '如何在 TikChain 上赚取代币？'
     a: '你可以通过内容创作和社交媒体互动（例如点赞和分享）赚取 TikChain 的原生实用代币，此外还可通过社区参与和推荐计划获得。代币也可以通过质押锁定以获取额外收益。'
   - q: 'TikChain 支持哪些社交媒体平台？'

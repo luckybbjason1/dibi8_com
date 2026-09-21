@@ -1,6 +1,6 @@
 ---
-title: '셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택'
-description: '7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. 실제 수치, 실제 config, 전체 단계별 조립 가이드.'
+title: "셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택"
+description: "7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. 실제 수치, 실제 config, 전체 단계별 조립 가이드."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [셀프호스트, 'ai 코딩', 스택, 워크플로우, 컬렉션]
-aliases: - /posts/self-hosted-ai-coding-workflow/
+categories: ["collections"]
+tags: ["셀프호스트", "ai 코딩", "스택", "워크플로우", "컬렉션"]
+aliases:
+  - /posts/self-hosted-ai-coding-workflow/
 ---
 
 Cursor $20/월 + Claude Code Pro $80/월 + Copilot $19/월 + Replit credit $50/월 + OpenAI API 충전 $120/월 내고 있다면 AI 코딩 월 지출이 **$289/월**입니다. 12개월이면 **$3,468** — 소유하지도, 감사하지도 못하고, 예고 없이 rate-limit 되거나 끊길 수 있는 도구들에 들어가는 돈.

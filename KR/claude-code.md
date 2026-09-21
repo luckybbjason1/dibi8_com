@@ -1,6 +1,6 @@
 ---
-title: 'Claude Code: 125K+ Stars — 터미널 AI 코딩 에이전트 대안과의 완전 비교 2026'
-description: 'Claude Code는 Anthropic의 터미널 코딩 에이전트 도구로, VS Code, Cursor, GitHub, GitLab을 지원합니다. 설치 튜토리얼, 벤치마크, Aider, OpenHands, Codex CLI와의 비교 분석을 다룹니다.'
+title: "Claude Code: 125K+ Stars — 터미널 AI 코딩 에이전트 대안과의 완전 비교 2026"
+description: "Claude Code는 Anthropic의 터미널 코딩 에이전트 도구로, VS Code, Cursor, GitHub, GitLab을 지원합니다. 설치 튜토리얼, 벤치마크, Aider, OpenHands, Codex CLI와의 비교 분석을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 125050
 maintainer: anthropics
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', 'ai-coding-agent', '터미널-코딩', anthropic, 'claude-튜토리얼', 'claude-code-vs-aider', 'claude-code-설치']
-aliases: - /kr/posts/claude-code/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "ai-coding-agent", "터미널-코딩", "anthropic", "claude-튜토리얼", "claude-code-vs-aider", "claude-code-설치"]
+aliases:
+  - /kr/posts/claude-code/
 ---
 
 {{</* resource-info */>}}

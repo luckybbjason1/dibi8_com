@@ -1,6 +1,6 @@
 ---
-title: 'OpenCode 完全指南：2026年最强开源AI编程助手，160K+ Stars背后的技术解析与实战教程'
-description: 'OpenCode 是2026年GitHub增长最快的开源AI编码代理，支持75+模型提供商，免费替代Claude Code。本文从安装配置到高阶技巧，提供中文版深度实战教程。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "OpenCode 完全指南：2026年最强开源AI编程助手，160K+ Stars背后的技术解析与实战教程"
+description: "OpenCode 是2026年GitHub增长最快的开源AI编码代理，支持75+模型提供商，免费替代Claude Code。本文从安装配置到高阶技巧，提供中文版深度实战教程。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/sst/opencode'
+github_repo: "https://github.com/sst/opencode"
 stars: 162000
 maintainer: sst
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [opencode, 'ai-coding-agent', 'claude-code-alternative', 'open-source']
-aliases: - /zh/posts/opencode-open-source-claude-code-alternative-2026/-
+categories: ["llm-frameworks"]
+tags: ["opencode", "ai-coding-agent", "claude-code-alternative", "open-source"]
+aliases:
+  - /zh/posts/opencode-open-source-claude-code-alternative-2026/-
 ---
 
 {</* resource-info */>}

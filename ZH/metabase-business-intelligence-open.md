@@ -1,6 +1,6 @@
 ---
-title: 'Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南'
-description: 'Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南"
+description: "Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'metabase/metabase'
+github_repo: "metabase/metabase"
 stars: 41000
 maintainer: metabase
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset', 商业智能, 数据分析, 开源]
-aliases: - /zh/posts/metabase-business-intelligence-open/-
+categories: ["data-science"]
+tags: ["metabase", "bi", "business-intelligence", "open-source", "tableau", "dashboards", "sql", "docker", "self-hosted", "analytics", "data-visualization", "apache-superset", "商业智能", "数据分析", "开源"]
+aliases:
+  - /zh/posts/metabase-business-intelligence-open/-
 ---
 
 {{</* resource-info */>}}

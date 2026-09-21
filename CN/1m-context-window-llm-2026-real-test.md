@@ -1,22 +1,23 @@
 ---
 title: '1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Son...
-description: 'Both claim 1M token context. We loaded a 950K-token codebase into each and measured: retrieval quality, latency, cost, and which one actually delivers on the 1M promise vs collapsing in the long tail.'
+description: "Both claim 1M token context. We loaded a 950K-token codebase into each and measured: retrieval quality, latency, cost, and which one actually delivers on the 1M promise vs collapsing in the long tail."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']
 application_domain: LLM Frameworks
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Commercial
 license_type: 'Proprietary API'
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [gemini, claude, 'long-context', llm, 2026]
-aliases: - /posts/1m-context-window-llm-2026-real-test/
+categories: ["llm-frameworks"]
+tags: ["gemini", "claude", "long-context", "llm", "2026"]
+aliases:
+  - /posts/1m-context-window-llm-2026-real-test/
 faq: - q: "Do both Gemini 2.5 Pro and Claude Sonnet 4.6 really handle 1M tokens?"
     a: "Both technically accept 1M+ tokens of input. Quality at the long end differs: Gemini stays consistent across the full window; Claude degrades on retrieval tasks beyond ~700K tokens. For practical purposes, both win in different scenarios — Gemini for raw recall across huge contexts, Claude for reasoning quality at moderate-large contexts."
   - q: "What's the cost difference at 1M tokens?"

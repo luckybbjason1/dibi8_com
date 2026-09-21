@@ -19,7 +19,8 @@ maintainer: "openclaw"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/awesome-openclaw-usecases-ai-agent-daily-life/
+aliases:
+  - /zh/posts/awesome-openclaw-usecases-ai-agent-daily-life/
 faqs: - q: 'OpenClaw 是用来做什么的？'
     a: 'OpenClaw 是一个开源的 AI agent 框架，用于构建能够执行多步骤工作流、对接外部 API、处理来自多个来源的数据，并以最少人工干预完成目标的自主智能体。它被广泛应用于社交媒体自动化、内容创作、生产力、研究和交易等多个领域。'
   - q: 'OpenClaw 与 AutoGPT、BabyAGI 和 AgentGPT 有什么不同？'

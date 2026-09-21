@@ -19,7 +19,8 @@ maintainer: "yikart"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/aitoearn-ai-monetization/
+aliases:
+  - /zh/posts/aitoearn-ai-monetization/
 faqs: - q: 'AiToEarn 是什么？'
     a: 'AiToEarn 是一个开源的 AI 内容变现平台，帮助创作者把文章、图片、视频脚本、代码等 AI 生成的内容转化为被动收入来源。它将 AI 内容生成、一键多平台分发和内置变现功能整合到一个可自托管的工具中。'
   - q: 'AiToEarn 如何帮创作者赚钱？'

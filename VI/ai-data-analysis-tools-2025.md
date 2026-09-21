@@ -1,6 +1,6 @@
 ---
 title: 'Các Công Cụ Phân Tích Dữ Liệu AI Tốt Nhất 2025: ChatGPT,...
-description: 'Khám phá 6 công cụ phân tích dữ liệu AI hàng đầu 2025: ChatGPT Advanced Data Analysis, Julius AI, Tableau Einstein AI, Copilot Excel và nhiều hơn nữa. So sánh tính năng, giá cả và trường hợp sử dụng.'
+description: "Khám phá 6 công cụ phân tích dữ liệu AI hàng đầu 2025: ChatGPT Advanced Data Analysis, Julius AI, Tableau Einstein AI, Copilot Excel và nhiều hơn nữa. So sánh tính năng, giá cả và trường hợp sử dụng."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-data-analysis-tools-2025/
+aliases:
+  - /posts/ai-data-analysis-tools-2025/
 ---
 
 # Các Công Cụ Phân Tích Dữ Liệu AI Tốt Nhất 2025: ChatGPT, Julius, Tableau AI Và Hơn Thế

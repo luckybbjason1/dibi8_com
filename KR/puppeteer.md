@@ -1,6 +1,6 @@
 ---
 title: 'Puppeteer: 94,300 GitHub Stars — 프로덕션 브라우저 자동화 Docker 가이...
-description: 'Puppeteer는 Chrome 및 Firefox용 헤드리스 브라우저 자동화 Node.js 라이브러리입니다. Docker, GitHub Actions, Jest, Mocha, TypeScript를 지원합니다. puppeteer docker 설정, 프로덕션 배포, 브라우저 자동화 튜토리얼, CI/CD 통합을 다룹니다.'
+description: "Puppeteer는 Chrome 및 Firefox용 헤드리스 브라우저 자동화 Node.js 라이브러리입니다. Docker, GitHub Actions, Jest, Mocha, TypeScript를 지원합니다. puppeteer docker 설정, 프로덕션 배포, 브라우저 자동화 튜토리얼, CI/CD 통합을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/puppeteer/puppeteer'
+github_repo: "https://github.com/puppeteer/puppeteer"
 stars: 94300
 maintainer: puppeteer
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [puppeteer, '브라우저-자동화', '헤드리스-크롬', '웹-스크래핑', docker, 테스팅, typescript]
-aliases: - /kr/posts/puppeteer/
+categories: ["dev-utils"]
+tags: ["puppeteer", "브라우저-자동화", "헤드리스-크롬", "웹-스크래핑", "docker", "테스팅", "typescript"]
+aliases:
+  - /kr/posts/puppeteer/
 ---
 
 {{</* resource-info */>}}

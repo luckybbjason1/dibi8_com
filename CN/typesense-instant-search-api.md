@@ -1,6 +1,6 @@
 ---
 title: 'Typesense 2026: The Open-Source Instant Search API Handl...
-description: 'Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Docker deployment, SDK integration, and production benchmarks.'
+description: "Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Docker deployment, SDK integration, and production benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,29 +12,30 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'typesense/typesense'
+github_repo: "typesense/typesense"
 stars: 23200
 maintainer: typesense
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/typesense-instant-search-api/-
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/typesense-instant-search-api/-
 ---
 {{</* resource-info */>}}
 
 ## Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results
 
-In 2026, users expect search results to appear **before they finish typing**. If your application takes more than 100ms to return search results, you are losing engagement. A study by Akamai found that a **100ms delay in search response drops conversion rates by 7%**. For a site handling 1 million searches per day, that is 70,000 lost interactions — per day.
+In 2026", "users expect search results to appear **before they finish typing**. If your application takes more than 100ms to return search results", "you are losing engagement. A study by Akamai found that a **100ms delay in search response drops conversion rates by 7%**. For a site handling 1 million searches per day", "that is 70", "000 lost interactions — per day.
 
-Most teams start with database `LIKE` queries. It works for 1,000 rows. At 100,000 rows, queries take **500ms–2s**. At 1 million rows, your database CPU pegs at 100% and your users leave. You need a dedicated search engine.
+Most teams start with database `LIKE` queries. It works for 1", "000 rows. At 100", "000 rows", "queries take **500ms–2s**. At 1 million rows", "your database CPU pegs at 100% and your users leave. You need a dedicated search engine.
 
-Enter **Typesense** — an open-source, typo-tolerant search engine designed for **sub-50ms instant search**. Version 27.1 (released April 2026) handles over **1 million searches per day** on a single modest server. It is GPL-3.0 licensed, has **23,200+ GitHub stars**, and offers SDKs for JavaScript, Python, Ruby, Go, PHP, and more. This guide walks you through a production-ready, self-hosted Typesense deployment in under 5 minutes.
+Enter **Typesense** — an open-source", "typo-tolerant search engine designed for **sub-50ms instant search**. Version 27.1 (released April 2026) handles over **1 million searches per day** on a single modest server. It is GPL-3.0 licensed", "has **23", "200+ GitHub stars**", "and offers SDKs for JavaScript", "Python", "Ruby", "Go", "PHP", "and more. This guide walks you through a production-ready", "self-hosted Typesense deployment in under 5 minutes.
 
 ## What Is Typesense?
 
-**Typesense** is an open-source, typo-tolerant search engine optimized for instant search experiences. Unlike Elasticsearch, which is a general-purpose document store, Typesense focuses exclusively on delivering **low-latency, relevance-tuned search results** with minimal configuration. It exposes a clean RESTful API and maintains official SDKs for 8+ programming languages.
+**Typesense** is an open-source", "typo-tolerant search engine optimized for instant search experiences. Unlike Elasticsearch", "which is a general-purpose document store", "Typesense focuses exclusively on delivering **low-latency", "relevance-tuned search results** with minimal configuration. It exposes a clean RESTful API and maintains official SDKs for 8+ programming languages.
 
 Key facts: | Attribute | Detail |
 |
@@ -43,13 +44,13 @@ Key facts: | Attribute | Detail |
 ---
 |
 | **Latest Version** | 27.1 (April 2026) |
-| **GitHub Stars** | 23,200+ |
+| **GitHub Stars** | 23", "200+ |
 | **License** | GPL-3.0 |
-| **Maintainer** | Typesense, Inc. |
+| **Maintainer** | Typesense", "Inc. |
 | **Written In** | C++ (high performance) |
 | **API Style** | RESTful JSON over HTTP |
-| **Official SDKs** | JavaScript, Python, Ruby, Go, PHP, Dart, Swift, .NET |
-| **Deployment** | Self-hosted (Docker, binary) or Typesense Cloud |
+| **Official SDKs** | JavaScript", "Python", "Ruby", "Go", "PHP", "Dart", "Swift", ".NET |
+| **Deployment** | Self-hosted (Docker", "binary) or Typesense Cloud |
 
 ## How Typesense Works
 
@@ -57,20 +58,20 @@ Understanding Typesense architecture helps you tune it for production.
 
 ### In-Memory Index with Disk Persistence
 
-Typesense keeps the **entire search index in memory** using an inverted index data structure. This is why it achieves **sub-50ms query latencies** — there is no disk I/O during searches. Documents are persisted to disk as a write-ahead log (WAL) for durability. On restart, Typesense rebuilds the in-memory index from disk.
+Typesense keeps the **entire search index in memory** using an inverted index data structure. This is why it achieves **sub-50ms query latencies** — there is no disk I/O during searches. Documents are persisted to disk as a write-ahead log (WAL) for durability. On restart", "Typesense rebuilds the in-memory index from disk.
 
 ### Typo Tolerance via Edit Distance
 
-Typesense uses **Levenshtein distance** to handle typos automatically. By default, it tolerates up to 1 edit distance for words of 4+ characters, and 2 edits for words of 8+ characters. This happens without any configuration — users searching for "iphnoe" still find "iPhone" results.
+Typesense uses **Levenshtein distance** to handle typos automatically. By default", "it tolerates up to 1 edit distance for words of 4+ characters", "and 2 edits for words of 8+ characters. This happens without any configuration — users searching for "iphnoe" still find "iPhone" results.
 
-### Faceting, Filtering, and Geo-Search
+### Faceting", "Filtering", "and Geo-Search
 
 Typesense supports: - **Faceted search** — dynamic count aggregation per category
 - **Numeric range filters** — `price:>=10&&<=100`
 - **Geolocation search** — find results within X km of lat/lng
-- **Sorting** — by relevance, numeric fields, or geolocation distance
+- **Sorting** — by relevance", "numeric fields", "or geolocation distance
 - **Filtering** — boolean combinations of any indexed field
-- **Synonyms** — define equivalence sets (e.g., "tv" = "television")
+- **Synonyms** — define equivalence sets (e.g.", "tv" = "television")
 - **Curations** — manually boost or hide specific results for queries
 
 ### Multi-Tenant Support via API Keys
@@ -116,16 +117,8 @@ curl -s "http://localhost:8108/collections" \
   -H "Content-Type: application/json" \
   -H "X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY" \
   -d '{
-    "name": "products",
-    "fields": [
-      { "name": "name", "type": "string", "facet": false },
-      { "name": "description", "type": "string", "facet": false },
-      { "name": "price", "type": "float", "facet": true, "sort": true },
-      { "name": "category", "type": "string", "facet": true },
-      { "name": "rating", "type": "float", "facet": true, "sort": true },
-      { "name": "in_stock", "type": "bool", "facet": true },
-      { "name": "location", "type": "geopoint" }
-    ],
+    "name": "products", "fields": [
+      { "name": "name", "type": "string", "facet": false }", "{ "name": "description", "type": "string", "facet": false }", "{ "name": "price", "type": "float", "facet": true", "sort": true }", "{ "name": "category", "type": "string", "facet": true }", "{ "name": "rating", "type": "float", "facet": true", "sort": true }", "{ "name": "in_stock", "type": "bool", "facet": true }", "{ "name": "location", "type": "geopoint" }"],
     "default_sorting_field": "rating"
   }' | jq .
 ```

@@ -5,8 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
-tags: [마이크로소프트, markitdown, markdown, python, cli, pdf변환기, 문서처리, AI, 오픈소스]
-lang: ko
+tags: ["마이크로소프트", "markitdown", "markdown", "python", "cli", "pdf변환기", "문서처리", "AI", "오픈소스"]
 ---
 
 ## 소개

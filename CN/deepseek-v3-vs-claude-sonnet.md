@@ -1,10 +1,10 @@
 ---
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights...
-description: 'Side-by-side breakdown of DeepSeek V3.5 (685B MoE, open weights) and Claude Sonnet 4.6 — pricing per MTok, context window, SWE-bench, multilingual, API availability. Updated 2026.'
+description: "Side-by-side breakdown of DeepSeek V3.5 (685B MoE, open weights) and Claude Sonnet 4.6 — pricing per MTok, context window, SWE-bench, multilingual, API availability. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
-categories: [vs]
+tags: ["deepseek", "claude-sonnet", "anthropic", "llm", "comparison", "open-source", "ai-coding"]
+categories: ["vs"]
 faqs: - q: 'Is DeepSeek V3.5 really 10x cheaper than Claude Sonnet 4.6?'
     a: 'Yes, on raw token price. DeepSeek V3.5 charges roughly $0.27 per million input tokens and $1.10 per million output, while Claude Sonnet 4.6 charges $3 input / $15 output. That is ~11x cheaper input and ~13x cheaper output. However, Sonnet uses fewer tokens per task on average (better reasoning compression) and supports 1M context vs DeepSeek''s 128K — so the effective cost gap on real workloads is closer to 5-7x.'
   - q: 'Which is better for coding, DeepSeek V3.5 or Claude Sonnet 4.6?'

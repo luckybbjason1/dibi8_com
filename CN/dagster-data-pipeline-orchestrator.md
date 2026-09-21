@@ -1,6 +1,6 @@
 ---
 title: 'Dagster: The Data Pipeline Orchestrator with Asset-Based...
-description: 'Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partitioning, backfills, and self-hosted deployment with Docker Compose.'
+description: "Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partitioning, backfills, and self-hosted deployment with Docker Compose."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'dagster-io/dagster'
+github_repo: "dagster-io/dagster"
 stars: 14000
 maintainer: 'dagster-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric']
-aliases: - /posts/dagster-data-pipeline-orchestrator/-
+categories: ["data-science"]
+tags: ["dagster", "data-pipeline", "orchestration", "etl", "apache-airflow", "dbt", "python", "docker", "data-engineering", "asset-centric"]
+aliases:
+  - /posts/dagster-data-pipeline-orchestrator/-
 ---
 {{</* resource-info */>}}
 

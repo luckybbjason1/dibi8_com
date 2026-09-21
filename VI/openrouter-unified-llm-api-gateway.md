@@ -1,6 +1,6 @@
 ---
 title: 'OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình...
-description: 'Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương thích OpenAI. Học cách thiết lập, tích hợp, benchmark và triển khai production trong 5 phút.'
+description: "Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương thích OpenAI. Học cách thiết lập, tích hợp, benchmark và triển khai production trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'openrouter/openrouter'
+github_repo: "openrouter/openrouter"
 stars: 15000
 maintainer: alexanderatallah
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [openrouter, llm, 'api gateway', ai, openai, claude, 'machine learning', 'tối ưu chi phí']
-aliases: - /vi/posts/openrouter-unified-llm-api-gateway/
+categories: ["llm-frameworks"]
+tags: ["openrouter", "llm", "api gateway", "ai", "openai", "claude", "machine learning", "tối ưu chi phí"]
+aliases:
+  - /vi/posts/openrouter-unified-llm-api-gateway/
 ---
 
 {{</* resource-info */>}}

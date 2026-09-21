@@ -1,6 +1,6 @@
 ---
 title: 'ShellCheck: 39,456 GitHub Stars — 셸 스크립트 분석을 위한 완전 설치 및 ...
-description: 'ShellCheck (SC)는 bash/sh 셸 스크립트용 정적 분석 도구입니다. Docker, GitHub Actions, VS Code 통합을 지원하며 설치 구성, CI/CD 파이프라인 통합, 프로덕션 강화를 다룹니다.'
+description: "ShellCheck (SC)는 bash/sh 셸 스크립트용 정적 분석 도구입니다. Docker, GitHub Actions, VS Code 통합을 지원하며 설치 구성, CI/CD 파이프라인 통합, 프로덕션 강화를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/koalaman/shellcheck'
+github_repo: "https://github.com/koalaman/shellcheck"
 stars: 39456
 maintainer: koalaman
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [shellcheck, bash, 정적분석, 린트, 셸스크립트, devops, 'ci-cd', docker]
-aliases: - /kr/posts/shellcheck/
+categories: ["dev-utils"]
+tags: ["shellcheck", "bash", "정적분석", "린트", "셸스크립트", "devops", "ci-cd", "docker"]
+aliases:
+  - /kr/posts/shellcheck/
 ---
 
 {{</* resource-info */>}}

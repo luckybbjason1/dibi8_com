@@ -1,22 +1,23 @@
 ---
-title: 'RAG 还是微调 2026：基于真实成本数据的决策框架'
-description: '何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "RAG 还是微调 2026：基于真实成本数据的决策框架"
+description: "何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
-source_version: '2026 Q2 pricing'
+source_version: "2026 Q2 pricing"
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
-aliases: - /zh/posts/rag-vs-fine-tuning-2026-decision-framework/
+categories: ["llm-frameworks"]
+tags: ["rag", "fine-tuning", "llm", "cost-optimization", "decision-framework", "2026"]
+aliases:
+  - /zh/posts/rag-vs-fine-tuning-2026-decision-framework/
 faq: - q: "2026 年 RAG 何时胜过微调？"
     a: "RAG 胜出的条件：(a) 知识库每周以上频率更新；(b) 需要引用/可溯源；(c) 文档语料库 < 10 万 chunks；(d) 延迟预算允许 200-400ms 检索。微调胜出的条件：需要风格/格式一致性、知识稳定、且能承担前期训练成本。"
   - q: "RAG 在生产环境实际成本是多少？"

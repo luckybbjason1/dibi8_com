@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/aiwind-ai-prompt-library/
+aliases:
+  - /posts/aiwind-ai-prompt-library/
 faqs: - q: 'Is AiWind free to use?'
     a: 'Yes, AiWind is a completely free AI prompt library at aiwind.org with no paid tiers. It offers over 1000 professional prompts and is continuously updated.'
   - q: 'Which AI image models does AiWind support prompts for?'

@@ -1,5 +1,5 @@
 ---
-title: 'Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다'
+title: "Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다"
 description: Agent Reach는 오픈소스 스캐폴딩 도구로, 하나의 명령으로 AI 에이전트가 YouTube, Twitter, Reddit,. Comprehensive guide covering features, pricing, and best practices for 2026.
   샤오홍슈, Bilibili 등 15개 이상의 플랫폼에 즉시 접근할 수 있게 합니다.
 date: 2026-05-15 04:20:25+09:00
@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/agent-reach-ai-agent-internet-access/
+aliases:
+  - /ko/posts/agent-reach-ai-agent-internet-access/
 - /ko/posts/agent-reach/
 faqs: - q: 'Agent Reach는 무엇이며 어떤 일을 하나요?'
     a: 'Agent Reach는 Panniantong이 만든 오픈소스 MIT 라이선스 스캐폴딩 도구로, 단 하나의 명령으로 AI 에이전트가 15개 이상의 인터넷 플랫폼에 즉시 접근할 수 있게 해줍니다. 도구들을 추상화 계층으로 감싸는 대신, 각 플랫폼에 가장 적합한 오픈소스 도구를 자동으로 선택, 설치, 구성합니다.'

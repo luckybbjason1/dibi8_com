@@ -18,7 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/wifi-forge-safe-wifi-hacking-lab/
+aliases:
+  - /kr/posts/wifi-forge-safe-wifi-hacking-lab/
 faqs: - q: 'WiFi-Forge란 무엇인가요?'
     a: 'WiFi-Forge는 Black Hills InfoSec에서 만든 오픈소스 프로젝트로, 무선 공격 기법을 안전하고 합법적으로 실습할 수 있는 샌드박스 환경을 제공합니다. 별도 하드웨어를 구매할 필요 없이 노트북에서 가상 실습 환경을 구동하며, 타인의 네트워크에 접촉할 위험도 전혀 없습니다.'
   - q: 'WiFi-Forge로 WiFi 해킹을 배우려면 전용 WiFi 어댑터가 필요한가요?'

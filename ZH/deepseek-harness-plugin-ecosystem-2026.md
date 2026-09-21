@@ -1,12 +1,12 @@
 ---
-title: 'DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南'
-description: 'DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南"
+description: "DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。"
 date: 2026-09-19
 lastmod: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026-zh'
 category: 'llm-frameworks'
-tags: ['deepseek', 'harness', 'plugin', 'ai-agent', 'dsh', 'automation', 'claude-code', 'cursor']
-github_repo: 'https://github.com/deepseek-ai/deepseek-harness'
+tags: ["deepseek", "harness", "plugin", "ai-agent", "dsh", "automation", "claude-code", "cursor"]
+github_repo: "https://github.com/deepseek-ai/deepseek-harness"
 stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT

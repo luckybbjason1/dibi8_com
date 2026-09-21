@@ -5,13 +5,12 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
-tags: [바이트댄스, ui-tars, 비전-언어모델, AI에이전트, 데스크톱자동화, GUI에이전트, 오픈소스, 멀티모달AI]
+tags: ["바이트댄스", "ui-tars", "비전-언어모델", "AI에이전트", "데스크톱자동화", "GUI에이전트", "오픈소스", "멀티모달AI"]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
 stars: 36263
 maintainer: bytedance
 license: Apache-2.0
 featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
-lang: ko
 ---
 
 ## 소개

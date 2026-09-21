@@ -1,5 +1,5 @@
 ---
-title: 'Ladybird: 真正独立的浏览器 — 浏览器独立的新时代'
+title: "Ladybird: 真正独立的浏览器 — 浏览器独立的新时代"
 description: 探索 Ladybird，一个从头开始构建的真正独立的 Web 浏览器。不依赖 Chrome，不受企业影响，纯开源。. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -21,7 +21,8 @@ maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/ladybird-independent-web-browser/
+aliases:
+  - /zh/posts/ladybird-independent-web-browser/
 faqs: - q: 'Ladybird 浏览器是什么？'
     a: 'Ladybird 是一款真正独立的网页浏览器，完全从零开始构建，不依赖 Chromium、Firefox 或任何现有的浏览器引擎。它使用自研的渲染引擎（LibWeb）和 JavaScript 引擎（LibJS），均以 C++ 编写。'
   - q: 'Ladybird 浏览器是谁开发的？'

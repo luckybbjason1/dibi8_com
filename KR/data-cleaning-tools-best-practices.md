@@ -1,6 +1,6 @@
 ---
 title: '데이터 클리닝 도구 및 모범 사례: OpenRefine, Python 라이브러리와 자동화 솔루션 완벽...
-description: '데이터 클리닝의 핵심 도구 OpenRefine, Pandas, Great Expectations, Cleanlab 등을 비교하고, 재현 가능한 데이터 클리닝 파이프라인 구축 방법을 설명합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "데이터 클리닝의 핵심 도구 OpenRefine, Pandas, Great Expectations, Cleanlab 등을 비교하고, 재현 가능한 데이터 클리닝 파이프라인 구축 방법을 설명합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-cleaning-tools-best-practices/
+aliases:
+  - /posts/data-cleaning-tools-best-practices/
 ---
 
 {</* resource-info */>}
@@ -85,24 +86,24 @@ import pandas as pd
 import numpy as np
 
 # 결측치 처리
-df.dropna(subset=['essential_col'])  # 삭제
-df['col'].fillna(df['col'].median())  # 중앙값 대체
-df['col'].interpolate(method='linear')  # 선형 보간
+df.dropna(subset=[essential_col])  # 삭제
+df[col].fillna(df[col].median())  # 중앙값 대체
+df[col].interpolate(method='linear')  # 선형 보간
 
 # 중복 제거
 df.drop_duplicates(subset=['name', 'email'], keep='first')
 
 # 이상치 탐지 (IQR 방법)
-Q1 = df['value'].quantile(0.25)
-Q3 = df['value'].quantile(0.75)
+Q1 = df[value].quantile(0.25)
+Q3 = df[value].quantile(0.75)
 IQR = Q3 - Q1
-outliers = df[(df['value'] < Q1 - 1.5*IQR) | (df['value'] > Q3 + 1.5*IQR)]
+outliers = df[(df[value] < Q1 - 1.5*IQR) | (df[value] > Q3 + 1.5*IQR)]
 
 # 날짜 파싱
-pd.to_datetime(df['date_col'], format='%Y-%m-%d', errors='coerce')
+pd.to_datetime(df[date_col], format='%Y-%m-%d', errors='coerce')
 
 # 정규식 문자열 클리닝
-df['phone'] = df['phone'].str.replace(r'[^0-9]', '', regex=True)
+df[phone] = df[phone].str.replace(r'[^0-9]', '', regex=True)
 ```
 
 **pyjanitor**는 Pandas에 깔끔한 API를 추가하는 라이브러리로, 메서드 체이닝을 통한 가독성 높은 코드를 작성할 수 있게 해줍니다. `clean_names()`, `remove_empty()`, `coalesce()` 등의 유틸리티 함수를 제공합니다.
@@ -125,7 +126,7 @@ cl = CleanLearning(RandomForestClassifier())
 issues = cl.find_label_issues(X, labels)
 
 # 라벨 오류가 의심되는 데이터 확인
-suspicious = issues[issues['is_label_issue'] == True]
+suspicious = issues[issues[is_label_issue] == True]
 ```
 
 Cleanlab은 2024년 기준 2.7 버전에서 신경망 기반의 confident learning 알고리즘을 제공하며, 라벨 노이즈 비율을 자동 추정합니다.
@@ -248,9 +249,9 @@ def profile_data(df): """데이터 프로파일링"""
 
 def clean_data(df): """클리닝 규칙 적용"""
     df = df.drop_duplicates()
-    df = df.dropna(subset=['id'])
-    df['email'] = df['email'].str.lower().str.strip()
-    df['created_at'] = pd.to_datetime(df['created_at'], errors='coerce')
+    df = df.dropna(subset=[id])
+    df[email] = df[email].str.lower().str.strip()
+    df[created_at] = pd.to_datetime(df[created_at], errors='coerce')
     return df
 
 def validate_data(df): """Great Expectations으로 검증"""

@@ -1,6 +1,6 @@
 ---
 title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
-description: 'Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích với Docker, Kubernetes, Consul và Docker Compose. Bao gồm cài đặt, middleware, TLS, giám sát và production hardening.'
+description: "Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích với Docker, Kubernetes, Consul và Docker Compose. Bao gồm cài đặt, middleware, TLS, giám sát và production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/traefik/traefik'
+github_repo: "https://github.com/traefik/traefik"
 stars: 63229
 maintainer: traefik
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [traefik, docker, kubernetes, 'reverse-proxy', 'edge-router', ingress, devops, 'cloud-native']
-aliases: - /vi/posts/traefik/
+categories: ["dev-utils"]
+tags: ["traefik", "docker", "kubernetes", "reverse-proxy", "edge-router", "ingress", "devops", "cloud-native"]
+aliases:
+  - /vi/posts/traefik/
 ---
 
 {{</* resource-info */>}}

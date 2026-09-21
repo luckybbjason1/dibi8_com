@@ -1,7 +1,7 @@
 ---
 title: Vercel AI SDK — Build Streaming AI Apps with Edge-First A...
 description: Complete guide to Vercel AI SDK for building production AI applications. Stream LLM responses, integrate multiple providers, and deploy to edge with zero config. Supports React, Next.js, and any framework.
-tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
+tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
@@ -584,7 +584,7 @@ For longer operations, offload to a queue-based pattern: submit the request, pol
 ### Issue 4: Type Errors with Provider Models
 
 ```
-Argument of type '"gpt-4-turbo"' is not assignable to parameter of type...
+Argument of type 'gpt-4-turbo' is not assignable to parameter of type...
 ```
 
 **Fix**: Ensure you're using the correct model identifiers for your provider version: ```bash

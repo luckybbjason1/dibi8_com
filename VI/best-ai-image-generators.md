@@ -1,7 +1,6 @@
 ---
-title: 'Trình Tạo Ảnh AI Tốt Nhất 2026'
-lang: vi
-description: 'Những trình tạo ảnh AI mã nguồn mở và miễn phí tốt nhất năm 2026 — từ Stable Diffusion đến Flux, ComfyUI đến SDXL. So sánh chất lượng, tốc độ và giá cả.'
+title: "Trình Tạo Ảnh AI Tốt Nhất 2026"
+description: "Những trình tạo ảnh AI mã nguồn mở và miễn phí tốt nhất năm 2026 — từ Stable Diffusion đến Flux, ComfyUI đến SDXL. So sánh chất lượng, tốc độ và giá cả."
 layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00

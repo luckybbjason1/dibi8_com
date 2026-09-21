@@ -1,26 +1,27 @@
 ---
 title: 'AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
-description: 'Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trình kiểu HP bar trong Conky. Hỗ trợ Claude, Gemini, Grok, Kimi với polling API thực và đếm ngược reset.'
+description: "Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trình kiểu HP bar trong Conky. Hỗ trợ Claude, Gemini, Grok, Kimi với polling API thực và đếm ngược reset."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
-source_version: '1.0.0'
+source_version: "1.0.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'luckybbjason1/ai-token-monitor'
+github_repo: "luckybbjason1/ai-token-monitor"
 stars: 0
 maintainer: luckybbjason1
-last_maintained: '2026-06-06'
+last_maintained: "2026-06-06"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai token monitor', 'claude hạn ngạch', 'gemini quota tracker', 'grok token', 'kimi api', 'conky widget', 'linux desktop', 'mã nguồn mở', python, 'công cụ developer']
-aliases: - /vi/posts/ai-token-monitor-conky-linux/
+categories: ["dev-utils"]
+tags: ["ai token monitor", "claude hạn ngạch", "gemini quota tracker", "grok token", "kimi api", "conky widget", "linux desktop", "mã nguồn mở", "python", "công cụ developer"]
+aliases:
+  - /vi/posts/ai-token-monitor-conky-linux/
 faqs: - q: 'AI Token Monitor có hoạt động trên macOS hoặc Windows không?'
     a: 'Hiện tại lớp hiển thị widget phụ thuộc vào Conky chỉ dành cho Linux. Các script Python cốt lõi (api_fetcher.py) chạy trên mọi hệ điều hành, nhưng kết xuất hình ảnh cần Conky. Repository có phiên bản đa nền tảng dựa trên tkinter (monitor.py) nhưng cửa sổ không viền có thể không hiển thị trên GNOME — đây là tính năng thử nghiệm.'
   - q: 'Công cụ đọc số dư token Claude API như thế nào?'

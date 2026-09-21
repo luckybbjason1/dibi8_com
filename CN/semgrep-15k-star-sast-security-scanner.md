@@ -1,12 +1,12 @@
 ---
 title: 'Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
-description: 'Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment.'
+description: "Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment."
 tags: ["open-source", "sast", "scanner", "security"]
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'semgrep-15k-star-sast-security-scanner'
 category: dev-utils
-github_repo: 'https://github.com/semgrep/semgrep'
+github_repo: "https://github.com/semgrep/semgrep"
 license: MIT
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
 # Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready

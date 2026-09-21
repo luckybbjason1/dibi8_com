@@ -1,6 +1,6 @@
 ---
-title: '멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026)'
-description: 'Claude Code 멀티 에이전트 파이프라인의 실제 실패 유형 다섯 가지 — 검증되지 않은 보고를 신뢰하기, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 절단, 방치된 워크트리 — 각각 증상, 근본 원인, 해결책과 함께 정리했다.'
+title: "멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026)"
+description: "Claude Code 멀티 에이전트 파이프라인의 실제 실패 유형 다섯 가지 — 검증되지 않은 보고를 신뢰하기, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 절단, 방치된 워크트리 — 각각 증상, 근본 원인, 해결책과 함께 정리했다."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases: - /posts/multi-agent-pipeline-postmortem/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "agent-sdk", "debugging", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/multi-agent-pipeline-postmortem/
 faq: - q: "멀티 에이전트에서 가장 흔한 단일 실패는 무엇인가?"
     a: "서브에이전트의 실제 출력을 검증하지 않고 그 보고만 신뢰하는 것이다. 서브에이전트는 자기가 무엇을 하려 했는지에 대한 산문형 요약을 반환할 뿐, 실제로 무엇을 했는지에 대한 보장된 기록을 주지 않는다. 전형적인 실패는 오케스트레이터가 『인증 모듈을 리팩터링했고 모든 테스트가 통과한다』라는 보고를 읽고 그 단계를 완료로 표시한 뒤 다음으로 넘어가는 것이다 — 실제로는 서브에이전트가 타입 체크는 통과하지만 런타임에 깨지는 얕은 수정만 했고 테스트를 한 번도 실행하지 않았는데도 말이다. 항상 실제 근거에 대조해 검증하라: git diff, 테스트 종료 코드, 파일 재확인. 요약은 주장일 뿐 증거가 아니다."
   - q: "두 서브에이전트가 서로의 작업을 망가뜨리는 것을 어떻게 막나?"

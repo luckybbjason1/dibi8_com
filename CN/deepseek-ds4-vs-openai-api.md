@@ -1,6 +1,6 @@
 ---
 title: 'Stop Paying OpenAI: Local Inference with DeepSeek (DS4) ...
-description: 'Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/deepseek-ds4-vs-openai-api/
+aliases:
+  - /posts/deepseek-ds4-vs-openai-api/
 faqs: - q: 'Is it cheaper to run DeepSeek locally than to use the GPT-4o API?'
     a: 'For heavy AI coding workflows generating 2-3 million tokens per day, GPT-4o costs $30+ daily (around $1,000 a month), while running DeepSeek locally on a one-time 128GB Mac purchase drops your marginal cost to effectively zero (electricity only). The article estimates a one-year local cost of about $4,000 versus $20,000+ for the recurring API.'
   - q: 'Can I run AI coding tools locally without an internet connection?'

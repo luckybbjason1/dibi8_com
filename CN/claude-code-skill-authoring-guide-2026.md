@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Skill Authoring: How to Package Procedures C...
-description: 'A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid.'
+description: "A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases: - /posts/claude-code-skill-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "skills", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools", "prompt-engineering"]
+aliases:
+  - /posts/claude-code-skill-authoring/
 faq: - q: "Where do skills live and what's the minimum a SKILL.md needs?"
     a: "A skill is a directory under .claude/skills// (project-scoped) or ~/.claude/skills// (user-scoped), containing a SKILL.md file. The minimum is YAML frontmatter with a name and a description, followed by the instructions in the body. The directory can also hold supporting files — reference docs, scripts, templates — that the skill points to, but SKILL.md with those two frontmatter fields is the irreducible core."
   - q: "What's the difference between a skill and just putting instructions in CLAUDE.md?"

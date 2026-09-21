@@ -1,22 +1,23 @@
 ---
 title: 'AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Code...
-description: '2026년 중반 4대 주요 AI 코딩 에이전트 횡단 평가: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. 동일 50K LOC TypeScript 코드베이스 5 워크플로우 실측, MCP 지원, 컨텍스트 윈도우 경제학, 가격 분석.'
+description: "2026년 중반 4대 주요 AI 코딩 에이전트 횡단 평가: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. 동일 50K LOC TypeScript 코드베이스 5 워크플로우 실측, MCP 지원, 컨텍스트 윈도우 경제학, 가격 분석."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
-source_version: 'Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0'
+source_version: "Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0"
 licensing_model: 'Commercial / Mixed'
 license_type: 'Proprietary + Open-source CLIs'
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI / Google'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai-coding', agent, 2026]
-aliases: - /kr/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
+categories: ["dev-utils"]
+tags: ["claude-code", "cursor", "codex-cli", "gemini-cli", "ai-coding", "agent", "2026"]
+aliases:
+  - /kr/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
 faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
     a: "단일 승자 없음. Claude Code 1.0은 long-context 리팩토링 선두(200K+ context, 강한 tool use). Cursor Pro는 raw IDE ergonomics와 tab-completion 지연시간 승. OpenAI Codex CLI는 shell-heavy 워크플로우에 최적이며 GPT-5와 잘 통합. Gemini CLI는 가장 저렴하고 1M+ 컨텍스트 윈도우. 대부분 개발자는 4개 중 2개 사용 — 보통 Claude Code + Cursor."
   - q: "헤비 유저의 월 비용은?"

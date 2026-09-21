@@ -1,6 +1,6 @@
 ---
 title: 'Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benc...
-description: 'Coqui TTS is an open-source deep learning toolkit for Text-to-Speech. Supports 1100+ languages, XTTS v2 voice cloning, VITS end-to-end synthesis. Benchmarks against ChatTTS, MeloTTS, Bark with real RTF numbers, Docker deployment, and production configs.'
+description: "Coqui TTS is an open-source deep learning toolkit for Text-to-Speech. Supports 1100+ languages, XTTS v2 voice cloning, VITS end-to-end synthesis. Benchmarks against ChatTTS, MeloTTS, Bark with real RTF numbers, Docker deployment, and production configs."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/coqui-ai/TTS'
+github_repo: "https://github.com/coqui-ai/TTS"
 stars: 45300
 maintainer: 'coqui-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['coqui tts', 'text-to-speech', 'voice-cloning', xtts, vits, 'deep-learning', docker, python]
-aliases: - /posts/coqui-tts/-
+categories: ["ai-tools"]
+tags: ["coqui tts", "text-to-speech", "voice-cloning", "xtts", "vits", "deep-learning", "docker", "python"]
+aliases:
+  - /posts/coqui-tts/-
 ---
 {{</* resource-info */>}}
 

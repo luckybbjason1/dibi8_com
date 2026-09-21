@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Windsurf 2026：哪款 AI IDE 更值得选？'
-description: 'Cursor 和 Windsurf（Codeium 出品）横向对比 — Composer vs Cascade、价格、性能、迁移建议。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Cursor vs Windsurf 2026：哪款 AI IDE 更值得选？"
+description: "Cursor 和 Windsurf（Codeium 出品）横向对比 — Composer vs Cascade、价格、性能、迁移建议。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, windsurf, codeium, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Cursor 和 Windsurf 哪个更便宜？'
     a: 'Windsurf 更便宜，Pro 版 $15/月，Cursor Pro 版 $20/月。Windsurf 的免费档也更慷慨（每天 5 次 Cascade 额度）。纯比价格 Windsurf 每月省 $5-$10；单位价格的能力两者接近。'
   - q: '多文件 agent 编辑哪个更强？'

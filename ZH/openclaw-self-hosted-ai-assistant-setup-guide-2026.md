@@ -1,6 +1,6 @@
 ---
-title: 'OpenClaw 完全指南：2026 年最强开源 AI 助手自托管部署教程｜零订阅费打造私人智能助理'
-description: 'GitHub 362K+ Star 的 OpenClaw 如何从零到现象级？本文详解 OpenClaw 开源 AI 助手的架构原理、自托管部署全流程、多平台接入实战，以及如何用零订阅费方案构建隐私优先的本地 AI 助理。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "OpenClaw 完全指南：2026 年最强开源 AI 助手自托管部署教程｜零订阅费打造私人智能助理"
+description: "GitHub 362K+ Star 的 OpenClaw 如何从零到现象级？本文详解 OpenClaw 开源 AI 助手的架构原理、自托管部署全流程、多平台接入实战，以及如何用零订阅费方案构建隐私优先的本地 AI 助理。"
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -12,13 +12,14 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/clawd-foss/clawd'
+github_repo: "https://github.com/clawd-foss/clawd"
 stars: 362000
 maintainer: 'steipete'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/-
+aliases:
+  - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/-
 ---
 
 {</* resource-info */>}

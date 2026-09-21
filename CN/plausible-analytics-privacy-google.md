@@ -1,6 +1,6 @@
 ---
 title: 'Plausible Analytics: The Privacy-First Google Analytics ...
-description: 'Complete self-hosted setup guide for Plausible Analytics. Privacy-first, GDPR-compliant, <1KB tracking script. 45x faster than Google Analytics. Real benchmarks and Docker deployment.'
+description: "Complete self-hosted setup guide for Plausible Analytics. Privacy-first, GDPR-compliant, <1KB tracking script. 45x faster than Google Analytics. Real benchmarks and Docker deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'plausible/analytics'
+github_repo: "plausible/analytics"
 stars: 21000
 maintainer: plausible
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [plausible, analytics, privacy, gdpr, 'google-analytics-alternative', 'self-hosted', docker, elixir, lightweight]
-aliases: - /posts/plausible-analytics-privacy-google/-
+categories: ["dev-utils"]
+tags: ["plausible", "analytics", "privacy", "gdpr", "google-analytics-alternative", "self-hosted", "docker", "elixir", "lightweight"]
+aliases:
+  - /posts/plausible-analytics-privacy-google/-
 ---
 {{</* resource-info */>}}
 
@@ -561,7 +562,7 @@ services: plausible: image: plausible/analytics:v3.0
 ```yaml
 # Add to your prometheus.yml
 scrape_configs: - job_name: plausible
-    static_configs: - targets: ['analytics.yourdomain.com:8000']
+    static_configs: - targets: [analytics.yourdomain.com:8000]
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```

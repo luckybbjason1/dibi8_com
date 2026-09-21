@@ -1,6 +1,6 @@
 ---
 title: 'Promptfoo: Test, Evaluate & Red-Team Your LLM Prompts — ...
-description: 'Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Claude, Gemini, and DeepSeek with simple declarative configs that plug into your CLI and CI/CD. This 2026 guide covers install, promptfooconfig.yaml, assertions, and red teaming.'
+description: "Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Claude, Gemini, and DeepSeek with simple declarative configs that plug into your CLI and CI/CD. This 2026 guide covers install, promptfooconfig.yaml, assertions, and red teaming."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,25 +12,26 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'promptfoo/promptfoo'
+github_repo: "promptfoo/promptfoo"
 stars: 21825
 maintainer: promptfoo
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/promptfoo-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/promptfoo-llm-frameworks-2026/
 faqs: - q: 'How do I install and run promptfoo locally?'
-    a: 'The quickest path needs no install: ```bash npx promptfoo@latest init --example getting-started ``` To install globally, use `npm install -g promptfoo` (or `brew install promptfoo`, or `pip install promptfoo`). Then run `promptfoo eval` to evaluate and `promptfoo view` to open the local viewer.'
+    a: 'The quickest path needs no install: ```bash npx promptfoo@latest init --example getting-started ``` To install globally", "use `npm install -g promptfoo` (or `brew install promptfoo`", "or `pip install promptfoo`). Then run `promptfoo eval` to evaluate and `promptfoo view` to open the local viewer.'
   - q: 'Can I use promptfoo with my own AI models?'
-    a: 'Yes. Promptfoo supports many providers — OpenAI, Anthropic, Google, DeepSeek, local models, and more. You declare each one in the `providers` list of your `promptfooconfig.yaml` and supply the matching API key via environment variables.'
+    a: 'Yes. Promptfoo supports many providers — OpenAI", "Anthropic", "Google", "DeepSeek", "local models", "and more. You declare each one in the `providers` list of your `promptfooconfig.yaml` and supply the matching API key via environment variables.'
   - q: 'How does promptfoo compare performance across different models?'
-    a: 'You list several entries under `providers`, and promptfoo runs every prompt and test case against each one. `promptfoo view` then shows the outputs side by side with pass/fail per assertion, so you can compare quality directly on your own inputs.'
+    a: 'You list several entries under `providers`", "and promptfoo runs every prompt and test case against each one. `promptfoo view` then shows the outputs side by side with pass/fail per assertion", "so you can compare quality directly on your own inputs.'
   - q: 'Is there a way to integrate promptfoo with CI/CD pipelines?'
-    a: 'Yes. Because promptfoo is a CLI, you can run `npx promptfoo@latest eval` in any pipeline. It''s commonly wired into GitHub Actions so every push or pull request runs your evaluation suite.'
+    a: 'Yes. Because promptfoo is a CLI", "you can run `npx promptfoo@latest eval` in any pipeline. It''s commonly wired into GitHub Actions so every push or pull request runs your evaluation suite.'
   - q: 'How do I contribute to the promptfoo project?'
-    a: 'Contributions are welcome. Open an issue or submit a pull request on GitHub. See the [contributing guidelines](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md) for details.'---
+    a: 'Contributions are welcome. Open an issue or submit a pull request on GitHub. See the [contributing guidelines"](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md) for details.'---
 {{< resource-info >}}
 
 ## Introduction

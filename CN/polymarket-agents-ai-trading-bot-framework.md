@@ -22,7 +22,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases: - /en/posts/polymarket-agents-ai-trading-bot-framework/
+aliases:
+  - /en/posts/polymarket-agents-ai-trading-bot-framework/
 - /posts/ai-trader-fully-automated-trading-agent/
 - /posts/polymarket-agents-ai-trading-bot-framework/
 faqs: - q: 'What is Polymarket Agents?'

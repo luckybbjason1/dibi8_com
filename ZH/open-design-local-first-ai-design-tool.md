@@ -20,7 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/open-design-local-first-ai-design-tool/
+aliases:
+  - /zh/posts/open-design-local-first-ai-design-tool/
 faqs: - q: 'Open Design 是什么？它与 Claude Design 有何不同？'
     a: 'Open Design 是 Anthropic 的 Claude Design 的开源、本地优先替代品，可生成 Web 原型、移动和桌面界面、幻灯片、图片、视频以及交互式 HyperFrame。与仅限云端的专有 Claude Design 不同，它在完成初始设置后可完全离线运行，采用 MIT 许可证且免费，所有数据均保存在您自己的机器上。'
   - q: 'Open Design 支持哪些 AI 编程助手？'

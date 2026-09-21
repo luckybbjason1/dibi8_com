@@ -4,7 +4,6 @@ description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통�
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
-lang: kr
 slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---

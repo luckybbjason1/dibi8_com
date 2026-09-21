@@ -1,6 +1,6 @@
 ---
 title: 'Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
-description: 'Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp. Tạo LangChain Agent trực quan, triển khai Docker, API endpoint và benchmark thực tế.'
+description: "Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp. Tạo LangChain Agent trực quan, triển khai Docker, API endpoint và benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'FlowiseAI/Flowise'
+github_repo: "FlowiseAI/Flowise"
 stars: 45000
 maintainer: FlowiseAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [flowise, langchain, 'low-code', 'ai workflow', docker, 'tự-host', 'agent builder', 'no-code', 'mã nguồn mở', chatbot]
-aliases: - /vi/posts/flowise-ai-workflow-builder-lowcode/
+categories: ["ai-tools"]
+tags: ["flowise", "langchain", "low-code", "ai workflow", "docker", "tự-host", "agent builder", "no-code", "mã nguồn mở", "chatbot"]
+aliases:
+  - /vi/posts/flowise-ai-workflow-builder-lowcode/
 ---
 
 {{</* resource-info */>}}

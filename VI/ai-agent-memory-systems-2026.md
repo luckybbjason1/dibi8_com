@@ -1,6 +1,6 @@
 ---
 title: 'Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemor...
-description: 'AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu 4 hệ thống memory layer mã nguồn mở hàng đầu: Mem0 (48K+ stars, 21 framework integration, LoCoMo 92.5%), agentmemory (MCP native cho Claude Code/Cursor, giảm 60% giải thích lặp), Hindsight (3 loại bộ nhớ sinh học + 4 chiến lược truy xuất), MemPalace (52K+ stars community leader). Bao gồm benchmark, pitfall, decision tree.'
+description: "AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu 4 hệ thống memory layer mã nguồn mở hàng đầu: Mem0 (48K+ stars, 21 framework integration, LoCoMo 92.5%), agentmemory (MCP native cho Claude Code/Cursor, giảm 60% giải thích lặp), Hindsight (3 loại bộ nhớ sinh học + 4 chiến lược truy xuất), MemPalace (52K+ stars community leader). Bao gồm benchmark, pitfall, decision tree."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'memory-systems', mem0, agentmemory, hindsight, mempalace, mcp, rag, 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
-aliases: - /vi/posts/ai-agent-memory-systems-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "memory-systems", "mem0", "agentmemory", "hindsight", "mempalace", "mcp", "rag", "vector-database", "persistent-memory", "open-source", "llm-infrastructure"]
+aliases:
+  - /vi/posts/ai-agent-memory-systems-2026/
 - /vi/resources/dev-utils/ai-agent-memory-systems-2026/
 faqs: - q: 'Sự khác biệt giữa Mem0, agentmemory, Hindsight, MemPalace?'
     a: 'Mem0 dẫn đầu về tích hợp framework (21 framework, 20 vector backend). agentmemory chuyên dụng coding agent qua MCP native. Hindsight có độ chính xác recall cao nhất với bộ nhớ sinh học 3 loại + 4 chiến lược truy xuất. MemPalace dẫn đầu quy mô cộng đồng (52K+ stars) với bộ nhớ vector semantic ổn định, tài liệu đầy đủ.'

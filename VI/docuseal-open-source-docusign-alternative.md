@@ -20,10 +20,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/docuseal-open-source-docusign-alternative/
+aliases:
+  - /vi/posts/docuseal-open-source-docusign-alternative/
 faqs: - q: 'DocuSeal có phải là lựa chọn thay thế miễn phí cho DocuSign không?'
     a: 'Có. DocuSeal là nền tảng ký tài liệu kỹ thuật số mã nguồn mở, tự lưu trữ, không mất phí bản quyền — thay thế DocuSign vốn tính phí $10-$60 mỗi người dùng mỗi tháng. Một công ty 100 người có thể tiết kiệm khoảng 94% chi phí trong ba năm nhờ tự lưu trữ.'
   - q: 'DocuSeal sử dụng giấy phép nào và có thể dùng cho mục đích thương mại không?'

@@ -1,22 +1,23 @@
 ---
 title: 'Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
-description: 'Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 server cấp production, cân bằng giữa sức mạnh, bảo mật và thời gian khởi động. Bài viết phân tích từng server, lý do được chọn, chức năng, và cách cấu hình cho cá nhân so với nhóm.'
+description: "Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 server cấp production, cân bằng giữa sức mạnh, bảo mật và thời gian khởi động. Bài viết phân tích từng server, lý do được chọn, chức năng, và cách cấu hình cho cá nhân so với nhóm."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 / Claude Code 1.0'
+source_version: "MCP 2025-06 / Claude Code 1.0"
 licensing_model: 'Hỗn hợp'
 license_type: 'Đa dạng'
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + Cộng đồng'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, configuration, production, 2026]
-aliases: - /vi/posts/claude-code-mcp-advanced-10-server-stack-2026/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "configuration", "production", "2026"]
+aliases:
+  - /vi/posts/claude-code-mcp-advanced-10-server-stack-2026/
 faq: - q: "Bao nhiêu MCP server là quá nhiều?"
     a: "Vượt quá 10 server bắt đầu gây độ trễ khởi động đáng kể. Mỗi server thêm 100-300ms vào quá trình init của Claude Code. Stack 10 server dưới đây là điểm cân bằng tối ưu — phủ 90% workflow mà không làm khởi động chậm chạp."
   - q: "Nên dùng cấu hình MCP toàn cục hay theo từng dự án?"

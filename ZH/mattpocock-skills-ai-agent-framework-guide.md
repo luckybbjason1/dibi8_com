@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
-tags: [matt-pocock, skills, AI Agent, CLI框架, AI编程工具, Agent能力, 开发者工具, 开源]
+tags: ["matt-pocock", "skills", "AI Agent", "CLI框架", "AI编程工具", "Agent能力", "开发者工具", "开源"]
 ---
 
 ## 简介

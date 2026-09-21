@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
-description: 'You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or AutoGen? A 2026 decision guide with real benchmarks, GitHub-star reality, and the honest line between "built-in is enough" and "time to graduate."'
+description: "You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or AutoGen? A 2026 decision guide with real benchmarks, GitHub-star reality, and the honest line between "built-in is enough" and "time to graduate.""
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
-aliases: - /posts/claude-subagents-vs-langgraph-crewai-autogen/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "langgraph", "crewai", "autogen", "multi-agent", "agent-sdk", "llm-frameworks", "orchestration"]
+aliases:
+  - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq: - q: "Do I need LangGraph or CrewAI if I'm already using Claude Code subagents?"
     a: "Probably not yet. Claude Code subagents already give you parallel fan-out, isolated context windows, and specialist delegation — which covers the majority of real multi-agent work. You graduate to a standalone framework like LangGraph or CrewAI when you need things subagents don't natively provide: durable state checkpointing across runs, human-in-the-loop approval gates, mixing multiple model vendors in one pipeline, or audit trails for compliance. If your need is 'run five researchers in parallel and merge the results,' built-in subagents ship that today with zero new infrastructure."
   - q: "Which multi-agent framework has the most GitHub stars in 2026?"

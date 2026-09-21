@@ -1,6 +1,6 @@
 ---
 title: 'Terminal & CLI Productivity Tools: tmux, zsh, fzf, ripgr...
-description: 'Transform your terminal with zsh, tmux, fzf, ripgrep, and modern CLI alternatives. Step-by-step setup guide for macOS and Linux in 2025.'
+description: "Transform your terminal with zsh, tmux, fzf, ripgrep, and modern CLI alternatives. Step-by-step setup guide for macOS and Linux in 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
+aliases:
+  - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
 ---
 {</* resource-info */>}
 

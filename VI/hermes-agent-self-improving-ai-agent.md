@@ -22,7 +22,8 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/genericagent-self-evolving-ai-agent.vi/
+aliases:
+  - /vi/posts/genericagent-self-evolving-ai-agent.vi/
 - /vi/posts/hermes-agent-self-improving-ai-agent/
 faqs: - q: 'Hermes Agent khác gì so với các công cụ như Claude Code, Cursor hay GitHub Copilot?'
     a: 'Hermes Agent có sẵn vòng lặp tự học, bộ nhớ bền vững xuyên suốt các phiên làm việc, và một hệ thống kỹ năng mà không công cụ nào trong số đó cung cấp. Nó cũng chạy được trên 6 nền tảng nhắn tin, hỗ trợ lập lịch cron và MCP, đồng thời là mã nguồn mở và có thể tự lưu trữ; trong khi những công cụ kia chỉ giới hạn ở CLI, máy tính để bàn hoặc IDE, và thu phí thuê bao hoặc phí API.'

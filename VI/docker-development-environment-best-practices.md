@@ -1,6 +1,6 @@
 ---
 title: 'Các Thực Tiễn Tốt Nhất cho Môi Trường Phát Triển Docker:...
-description: 'Khám phá các thực tiễn tốt nhất để thiết lập môi trường phát triển Docker hiệu quả: từ Docker Compose, Dev Containers đến multi-stage builds và tối ưu hiệu suất.'
+description: "Khám phá các thực tiễn tốt nhất để thiết lập môi trường phát triển Docker hiệu quả: từ Docker Compose, Dev Containers đến multi-stage builds và tối ưu hiệu suất."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/docker-development-environment-best-practices/
+aliases:
+  - /posts/docker-development-environment-best-practices/
 ---
 
 {</* resource-info */>}

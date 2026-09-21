@@ -1,5 +1,5 @@
 ---
-title: '무료 LLM API 리소스: 비용 부담 없이 AI 모델 접근'
+title: "무료 LLM API 리소스: 비용 부담 없이 AI 모델 접근"
 description: API 비용 없이 AI 애플리케이션을 구축할 수 있는 무료 LLM 추론 API 리소스의 선별된 목록을 확인하세요.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
@@ -18,7 +18,8 @@ maintainer: "cheahjs"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/free-llm-api-resources-ai-development/
+aliases:
+  - /ko/posts/free-llm-api-resources-ai-development/
 faqs: - q: '가장 빠른 무료 LLM 추론 제공업체는 무엇인가요?'
     a: 'Groq은 초당 800 tokens 이상으로 가장 빠른 무료 추론을 제공합니다. 무료 등급은 완전히 무료이지만 분당 약 20 requests와 분당 6,000 tokens로 속도가 제한됩니다.'
   - q: '완전한 프라이버시를 유지하면서 LLM을 로컬에서 무료로 실행하려면 어떻게 하나요?'

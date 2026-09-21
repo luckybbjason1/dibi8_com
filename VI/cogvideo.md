@@ -1,6 +1,6 @@
 ---
 title: 'CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video ...
-description: 'CogVideo (CogVideoX) là mô hình tạo video từ văn bản và hình ảnh của Zhipu AI. Hỗ trợ ComfyUI, Diffusers, SAT, và tích hợp Wan/HunyuanVideo/Open-Sora. Bao gồm cài đặt, Docker, inference, fine-tuning và benchmark.'
+description: "CogVideo (CogVideoX) là mô hình tạo video từ văn bản và hình ảnh của Zhipu AI. Hỗ trợ ComfyUI, Diffusers, SAT, và tích hợp Wan/HunyuanVideo/Open-Sora. Bao gồm cài đặt, Docker, inference, fine-tuning và benchmark."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/zai-org/CogVideo'
+github_repo: "https://github.com/zai-org/CogVideo"
 stars: 12700
 maintainer: 'zai-org'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [cogvideo, cogvideox, 'text-to-video', 'diffusion-transformer', 'zhipu-ai', 'video-generation', 'open-source-ai', comfyui]
-aliases: - /vi/posts/cogvideo/
+categories: ["ai-tools"]
+tags: ["cogvideo", "cogvideox", "text-to-video", "diffusion-transformer", "zhipu-ai", "video-generation", "open-source-ai", "comfyui"]
+aliases:
+  - /vi/posts/cogvideo/
 ---
 
 {{</* resource-info */>}}

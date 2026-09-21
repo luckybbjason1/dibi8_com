@@ -1,6 +1,6 @@
 ---
 title: 'CC Switch 완벽 가이드: AI 코딩 에이전트 통합 관리의 새로운 표준 | 2026 최신 오픈소...
-description: 'CC Switch는 Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode, Hermes Agent를 하나의 데스크톱 앱에서 관리하는 오픈소스 도구입니다. Rust+Tauri 기반, 50+ 공급사 프리셋, MCP 통합 관리, 트레이 빠른 전환 기능을 제공합니다. 2026년 개발자 필수 도구로 자리매김한 이유를 심층 분석합니다.'
+description: "CC Switch는 Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode, Hermes Agent를 하나의 데스크톱 앱에서 관리하는 오픈소스 도구입니다. Rust+Tauri 기반, 50+ 공급사 프리셋, MCP 통합 관리, 트레이 빠른 전환 기능을 제공합니다. 2026년 개발자 필수 도구로 자리매김한 이유를 심층 분석합니다."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/farion1231/cc-switch'
+github_repo: "https://github.com/farion1231/cc-switch"
 stars: 74754
 maintainer: farion1231
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['cc-switch', 'ai-cli', 'meta-tool', 'claude-code', 'developer-productivity']
-aliases: - /kr/posts/cc-switch-unified-ai-cli-control-center-2026/
+categories: ["dev-utils"]
+tags: ["cc-switch", "ai-cli", "meta-tool", "claude-code", "developer-productivity"]
+aliases:
+  - /kr/posts/cc-switch-unified-ai-cli-control-center-2026/
 ---
 
 {</* resource-info */>}

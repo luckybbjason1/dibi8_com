@@ -21,7 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/github-trending-projects-may-2026/
+aliases:
+  - /kr/posts/github-trending-projects-may-2026/
 faqs: - q: 'DeepSeek-TUI는 무엇이며 Cursor나 GitHub Copilot과 어떻게 다른가요?'
     a: 'DeepSeek-TUI는 `deepseek` 명령어를 통해 로컬에서 실행되는 터미널 기반 AI 코딩 에이전트로, 추론 블록을 스트리밍하고 디스크의 파일을 읽고 쓰며, 파일 시스템을 변경하기 전에 승인 게이트를 거칩니다. 완전한 GUI 에디터로 동작하는 Cursor나 Copilot과 달리, tmux, neovim, zsh에서 작업하는 터미널 사용자를 위해 설계되었으며 브라우저와 IDE 사이를 오가는 컨텍스트 전환이 없습니다.'
   - q: 'DeepSeek-TUI의 auto 모드는 어떻게 비용을 절감하나요?'

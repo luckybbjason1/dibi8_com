@@ -1,6 +1,6 @@
 ---
-title: 'CC Switch：多AI CLI工具统一管理的终极解决方案 | 2026开源工具推荐'
-description: 'CC Switch是一款开源跨平台桌面应用，支持统一管理Claude Code、Codex、OpenCode、OpenClaw、Gemini CLI等AI编程工具。74K+ GitHub Stars，Rust+Tauri构建，内置50+供应商预设、MCP统一管理、系统托盘快捷切换。本文深度评测功能特性、安装配置与实战技巧。'
+title: "CC Switch：多AI CLI工具统一管理的终极解决方案 | 2026开源工具推荐"
+description: "CC Switch是一款开源跨平台桌面应用，支持统一管理Claude Code、Codex、OpenCode、OpenClaw、Gemini CLI等AI编程工具。74K+ GitHub Stars，Rust+Tauri构建，内置50+供应商预设、MCP统一管理、系统托盘快捷切换。本文深度评测功能特性、安装配置与实战技巧。"
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/farion1231/cc-switch'
+github_repo: "https://github.com/farion1231/cc-switch"
 stars: 74754
 maintainer: farion1231
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['cc-switch', 'ai-cli', 'meta-tool', 'claude-code', 'developer-productivity']
-aliases: - /zh/posts/cc-switch-unified-ai-cli-control-center-2026/-
+categories: ["dev-utils"]
+tags: ["cc-switch", "ai-cli", "meta-tool", "claude-code", "developer-productivity"]
+aliases:
+  - /zh/posts/cc-switch-unified-ai-cli-control-center-2026/-
 ---
 
 {</* resource-info */>}

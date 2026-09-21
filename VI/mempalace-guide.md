@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/mempalace-guide/
+aliases:
+  - /vi/posts/mempalace-guide/
 faqs: - q: 'Làm thế nào để thêm bộ nhớ lâu dài vào Claude Code?'
     a: 'Chạy MemPalace cục bộ và kết nối endpoint MCP của nó với Claude Code bằng cách cấu hình claude_code_config.json trỏ đến http://localhost:8787/mcp với quyền đọc/ghi. Sau đó Claude sẽ truy vấn MemPalace như một cơ sở dữ liệu vector ngữ nghĩa bất cứ khi nào cần ngữ cảnh lịch sử.'
   - q: 'Bộ nhớ của Claude Code có được duy trì qua các phiên làm việc và sau khi khởi động lại không?'

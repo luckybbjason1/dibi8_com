@@ -1,6 +1,6 @@
 ---
 title: 'Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产...
-description: '完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'deepset-ai/hayhooks'
+github_repo: "deepset-ai/hayhooks"
 stars: 600
 maintainer: 'deepset-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [hayhooks, haystack, nlp, 'rest api', 大语言模型, 'pipeline 部署', docker, python, openapi]
-aliases: - /zh/posts/hayhooks-api-deployment-llm/-
+categories: ["data-science"]
+tags: ["hayhooks", "haystack", "nlp", "rest api", "大语言模型", "pipeline 部署", "docker", "python", "openapi"]
+aliases:
+  - /zh/posts/hayhooks-api-deployment-llm/-
 ---
 
 {{</* resource-info */>}}

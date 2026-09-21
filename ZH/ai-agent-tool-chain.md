@@ -1,6 +1,6 @@
 ---
-title: 'AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent'
-description: '完整生产级 AI agent stack：LangGraph 状态机编排 + MCP servers 工具 + mem0 记忆 + OpenClaw 多 agent 协调 + Hermes Agent 自改进 + e2b 沙箱代码执行。$20-60/月自托管。真实组装含全部内链深度文。'
+title: "AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent"
+description: "完整生产级 AI agent stack：LangGraph 状态机编排 + MCP servers 工具 + mem0 记忆 + OpenClaw 多 agent 协调 + Hermes Agent 自改进 + e2b 沙箱代码执行。$20-60/月自托管。真实组装含全部内链深度文。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai agent', 工具链, langgraph, mcp, stack, 合集]
-aliases: - /posts/ai-agent-tool-chain/-
+categories: ["collections"]
+tags: ["ai agent", "工具链", "langgraph", "mcp", "stack", "合集"]
+aliases:
+  - /posts/ai-agent-tool-chain/-
 ---
 
 "AI agent" 在 2025 年停止做研究话题，在 2026 年成为生产工程类别。在交付真正自主 agent 的团队 —— 熬过重启的客服 bot、跨百文件重构的编程 agent、跑数小时的研究 agent —— 都汇聚到一个惊人一致的 stack。这个合集组装它。

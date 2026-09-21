@@ -1,6 +1,6 @@
 ---
-title: 'TensorTrade: 커스텀 Gym 환경을 갖춘 강화학습 트레이딩 프레임워크 — 2026 가이드'
-description: 'TensorTrade로 강화학습 기반 알고리즘 트레이딩을 마스터하세요. 커스텀 Gym 환경을 구축하고, Stable Baselines3을 통합하며, 실제 벤치마크와 함께 프로덕션 수준 포트폴리오 관리 전략을 배포하세요.'
+title: "TensorTrade: 커스텀 Gym 환경을 갖춘 강화학습 트레이딩 프레임워크 — 2026 가이드"
+description: "TensorTrade로 강화학습 기반 알고리즘 트레이딩을 마스터하세요. 커스텀 Gym 환경을 구축하고, Stable Baselines3을 통합하며, 실제 벤치마크와 함께 프로덕션 수준 포트폴리오 관리 전략을 배포하세요."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'tensortrade-org/tensortrade'
+github_repo: "tensortrade-org/tensortrade"
 stars: 4300
 maintainer: 'tensortrade-org'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [tensortrade, 강화학습, '알고리즘 트레이딩', 'openai gym', 'stable baselines3', '포트폴리오 관리', python, 머신러닝, '암호화폐 트레이딩', '퀀트 금융']
-aliases: - /kr/posts/tensortrade-rl-trading/
+categories: ["ai-trading"]
+tags: ["tensortrade", "강화학습", "알고리즘 트레이딩", "openai gym", "stable baselines3", "포트폴리오 관리", "python", "머신러닝", "암호화폐 트레이딩", "퀀트 금융"]
+aliases:
+  - /kr/posts/tensortrade-rl-trading/
 ---
 
 {{</* resource-info */>}}

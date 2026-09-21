@@ -1,6 +1,6 @@
 ---
 title: 'Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C...
-description: 'A 7-component AI stack purpose-built for cross-border operations — automate multilingual content, scrape global market intel, GDPR-compliant analytics, bypass payment friction, and run the whole thing from a Hong Kong VPS. $35-80/mo total, all-OSS-or-aff-friendly.'
+description: "A 7-component AI stack purpose-built for cross-border operations — automate multilingual content, scrape global market intel, GDPR-compliant analytics, bypass payment friction, and run the whole thing from a Hong Kong VPS. $35-80/mo total, all-OSS-or-aff-friendly."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['cross-border', 'ai marketing', 'going global', stack, collection]
-aliases: - /posts/cross-border-ai-marketing-stack/
+categories: ["collections"]
+tags: ["cross-border", "ai marketing", "going global", "stack", "collection"]
+aliases:
+  - /posts/cross-border-ai-marketing-stack/
 ---
 # Cross-Border AI Marketing Stack 2026: 7-Tool Setup for Chinese Teams Shipping Globally
 

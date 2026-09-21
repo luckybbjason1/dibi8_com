@@ -1,6 +1,6 @@
 ---
 title: 'Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
-description: 'Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ cảnh, fan-out mất kiểm soát, cắt cụt âm thầm, và worktree mồ côi — mỗi kiểu kèm triệu chứng, nguyên nhân gốc và cách khắc phục.'
+description: "Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ cảnh, fan-out mất kiểm soát, cắt cụt âm thầm, và worktree mồ côi — mỗi kiểu kèm triệu chứng, nguyên nhân gốc và cách khắc phục."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases: - /posts/multi-agent-pipeline-postmortem/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "agent-sdk", "debugging", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/multi-agent-pipeline-postmortem/
 faq: - q: "Lỗi đa tác tử phổ biến nhất là gì?"
     a: "Tin vào báo cáo của một subagent mà không kiểm chứng đầu ra thực tế của nó. Subagent trả về một bản tóm tắt bằng văn xuôi về những gì nó định làm — chứ không phải bằng chứng đảm bảo về những gì nó đã làm. Lỗi kinh điển là một orchestrator đọc «tôi đã refactor module auth và tất cả test đều pass», đánh dấu bước đó hoàn tất, rồi đi tiếp — trong khi thực tế subagent chỉ chỉnh sửa hời hợt, qua được type-check nhưng vỡ lúc runtime, và chưa bao giờ thật sự chạy test. Luôn kiểm chứng dựa trên sự thật cơ sở: git diff, mã thoát của test, đọc lại file. Bản tóm tắt là một lời tuyên bố, không phải bằng chứng."
   - q: "Làm sao ngăn hai subagent phá hỏng công việc của nhau?"

@@ -21,7 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/github-trending-projects-may-2026/
+aliases:
+  - /zh/posts/github-trending-projects-may-2026/
 faqs: - q: 'DeepSeek-TUI 是什么，它和 Cursor 或 GitHub Copilot 有何不同？'
     a: 'DeepSeek-TUI 是一款基于终端的 AI 编程智能体，通过 `deepseek` 命令在本地运行，会流式输出推理块，并在磁盘上读写文件，在进行任何文件系统更改前都设有审批关卡。与作为完整图形界面编辑器运行的 Cursor 或 Copilot 不同，它专为在 tmux、neovim 或 zsh 中工作的终端用户打造，无需在浏览器和 IDE 之间来回切换上下文。'
   - q: 'DeepSeek-TUI 的 auto 模式如何节省开支？'

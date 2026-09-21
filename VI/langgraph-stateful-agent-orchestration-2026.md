@@ -1,6 +1,6 @@
 ---
 title: 'LangGraph 1.2 Trong Production: Orchestration Agent Có T...
-description: 'LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars, v1.2.1. Hướng dẫn deploy thực tế bao gồm thiết kế graph, thực thi bền vững, checkpoint human-in-loop, debug LangSmith, và khi nào LangGraph thắng CrewAI / AutoGen / LangChain thuần.'
+description: "LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars, v1.2.1. Hướng dẫn deploy thực tế bao gồm thiết kế graph, thực thi bền vững, checkpoint human-in-loop, debug LangSmith, và khi nào LangGraph thắng CrewAI / AutoGen / LangChain thuần."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -8,22 +8,23 @@ tech_stack: - Python
   - PostgreSQL
   - Redis
 application_domain: Llm Frameworks
-source_version: '1.2.1'
+source_version: "1.2.1"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langchain-ai/langgraph'
+github_repo: "https://github.com/langchain-ai/langgraph"
 stars: 32600
 maintainer: 'langchain-ai'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [langgraph, agent, 'có trạng thái', orchestration, langchain, production]
-aliases: - /posts/langgraph-stateful-agent-orchestration-2026/
+categories: ["llm-frameworks"]
+tags: ["langgraph", "agent", "có trạng thái", "orchestration", "langchain", "production"]
+aliases:
+  - /posts/langgraph-stateful-agent-orchestration-2026/
 ---
 
 Nếu bạn xây agent LLM đơn giản và thấy nó quên mọi thứ khi process restart, mất nửa tiến độ khi một tool call timeout, hoặc lặng lẽ làm hỏng trạng thái khi hai event xảy ra đồng thời — bạn đụng tường mà **LangGraph** thiết kế để phá vỡ.

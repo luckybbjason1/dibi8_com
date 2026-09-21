@@ -1,6 +1,6 @@
 ---
 title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GP...
-description: 'VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Compatible with GPT-SoVITS, Coqui TTS, and RVC. Covers setup, benchmarks, Docker deployment, and comparison tables.'
+description: "VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Compatible with GPT-SoVITS, Coqui TTS, and RVC. Covers setup, benchmarks, Docker deployment, and comparison tables."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jasonppy/VoiceCraft'
+github_repo: "https://github.com/jasonppy/VoiceCraft"
 stars: 8500
 maintainer: jasonppy
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [voicecraft, 'zero-shot-tts', 'speech-editing', 'neural-codec', 'voice-cloning', 'ai-audio', docker, python]
-aliases: - /posts/voicecraft/-
+categories: ["ai-tools"]
+tags: ["voicecraft", "zero-shot-tts", "speech-editing", "neural-codec", "voice-cloning", "ai-audio", "docker", "python"]
+aliases:
+  - /posts/voicecraft/-
 ---
 {{</* resource-info */>}}
 

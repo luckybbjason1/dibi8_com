@@ -1,14 +1,13 @@
 ---
 title: 'ECC: Tối ưu hiệu suất Claude Code, Codex và Cursor bằng ...
-description: 'ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding agent. Tương thích với Claude Code, Codex, Opencode, Cursor và nhiều hơn nữa. Bao gồm điều chỉnh hiệu suất, hệ thống skill và cấu hình MCP server.'
+description: "ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding agent. Tương thích với Claude Code, Codex, Opencode, Cursor và nhiều hơn nữa. Bao gồm điều chỉnh hiệu suất, hệ thống skill và cấu hình MCP server."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
-tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
-github_repo: 'https://github.com/affaan-m/ECC'
+tags: ["ECC", "agent-optimization", "claude-code", "codex", "cursor", "performance", "mcp"]
+github_repo: "https://github.com/affaan-m/ECC"
 license: 'MIT'
-lang: vi
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 

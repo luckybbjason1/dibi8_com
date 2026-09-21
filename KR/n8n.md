@@ -1,6 +1,6 @@
 ---
-title: 'n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약'
-description: 'n8n(fair-code)은 네이티브 AI 기능과 400+ 통합을 갖춘 워크플로 자동화 플랫폼이다. Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram과 호환. Docker 설정, AI 노드 구성, Webhook 배포, 프로덕션 강화를 다룬다.'
+title: "n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약"
+description: "n8n(fair-code)은 네이티브 AI 기능과 400+ 통합을 갖춘 워크플로 자동화 플랫폼이다. Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram과 호환. Docker 설정, AI 노드 구성, Webhook 배포, 프로덕션 강화를 다룬다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/n8n-io/n8n'
+github_repo: "https://github.com/n8n-io/n8n"
 stars: 188782
 maintainer: 'n8n-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [n8n, '워크플로-자동화', '자체-호스팅', 'ai-에이전트', docker, langchain, 오픈소스, 로우코드]
-aliases: - /kr/posts/n8n/
+categories: ["llm-frameworks"]
+tags: ["n8n", "워크플로-자동화", "자체-호스팅", "ai-에이전트", "docker", "langchain", "오픈소스", "로우코드"]
+aliases:
+  - /kr/posts/n8n/
 - /kr/resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/
 ---
 

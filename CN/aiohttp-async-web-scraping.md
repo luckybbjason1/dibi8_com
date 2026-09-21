@@ -1,6 +1,6 @@
 ---
 title: 'aiohttp 2026: Build High-Performance Async Web Scrapers ...
-description: 'Master aiohttp 3.11 for high-performance async web scraping in Python. Build scrapers handling 10K+ requests/second with session management, connection pooling, and production deployment.'
+description: "Master aiohttp 3.11 for high-performance async web scraping in Python. Build scrapers handling 10K+ requests/second with session management, connection pooling, and production deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'aio-libs/aiohttp'
+github_repo: "aio-libs/aiohttp"
 stars: 15200
 maintainer: 'aio-libs'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [aiohttp, async, 'web scraping', python, 'http client', asyncio]
-aliases: - /posts/aiohttp-async-web-scraping/-
+categories: ["dev-utils"]
+tags: ["aiohttp", "async", "web scraping", "python", "http client", "asyncio"]
+aliases:
+  - /posts/aiohttp-async-web-scraping/-
 ---
 {{</* resource-info */>}}
 

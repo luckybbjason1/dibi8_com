@@ -18,7 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+aliases:
+  - /vi/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
 faqs: - q: 'Bạn có thể đào Bitcoin-Classic (BTCC) bằng CPU thông thường không?'
     a: 'Có. BTCC được thiết kế để CPU của máy tính gia đình thông thường cũng có thể tham gia đào, không cần thiết bị ASIC hay GPU chuyên dụng. Do hashrate mạng lưới rất thấp, CPU thông thường hoàn toàn có thể kiếm được phần thưởng khối.'
   - q: 'Tổng cung và phần thưởng khối của Bitcoin-Classic (BTCC) là bao nhiêu?'

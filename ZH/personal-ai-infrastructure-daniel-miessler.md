@@ -1,12 +1,12 @@
 ---
 title: 'Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agenti...
-description: 'Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许可。将策略、执行和反思融为一体。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许可。将策略、执行和反思融为一体。"
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
-tags: ['pai', 'personal-ai', 'daniel-miessler', 'life-os', 'algorithm', 'skills', 'automation']
-github_repo: 'https://github.com/danielmiessler/Personal_AI_Infrastructure'
+tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
+github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
 license: 'MIT'
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png---
 

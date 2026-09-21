@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/mempalace-guide/
+aliases:
+  - /zh/posts/mempalace-guide/
 faqs: - q: '如何为 Claude Code 添加持久记忆？'
     a: '在本地运行 MemPalace，并通过配置 claude_code_config.json 将其 MCP 端点指向 http://localhost:8787/mcp，赋予读写权限，从而将其接入 Claude Code。此后 Claude 在需要历史上下文时，会将 MemPalace 作为语义向量数据库进行查询。'
   - q: 'Claude Code 的记忆能否跨会话和重启持续保留？'

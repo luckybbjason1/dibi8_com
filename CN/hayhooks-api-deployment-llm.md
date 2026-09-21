@@ -1,6 +1,6 @@
 ---
 title: 'Hayhooks: Deploy Haystack Pipelines as REST APIs with On...
-description: 'A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers one-command deployment, container support, auto-generated OpenAPI docs, and production patterns with real benchmarks.'
+description: "A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers one-command deployment, container support, auto-generated OpenAPI docs, and production patterns with real benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'deepset-ai/hayhooks'
+github_repo: "deepset-ai/hayhooks"
 stars: 600
 maintainer: 'deepset-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline deployment', docker, python, openapi]
-aliases: - /posts/hayhooks-api-deployment-llm/-
+categories: ["data-science"]
+tags: ["hayhooks", "haystack", "nlp", "rest api", "llm", "pipeline deployment", "docker", "python", "openapi"]
+aliases:
+  - /posts/hayhooks-api-deployment-llm/-
 ---
 {{</* resource-info */>}}
 

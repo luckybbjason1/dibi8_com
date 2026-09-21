@@ -29,7 +29,6 @@ Here are the 5 most noteworthy repos from GitHub Trending (weekly) that haven't 
 
 
 ---
-lang: zh
 
 
 ## 1. Palmier Pro — AI Video Editor for macOS

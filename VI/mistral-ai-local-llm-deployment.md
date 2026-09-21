@@ -1,26 +1,27 @@
 ---
 title: 'Mistral AI 2026: Triển khai LLM Local Cấp Production với...
-description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
-source_version: ''
+source_version: "'
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/mistralai/mistral-inference'
+github_repo: "https://github.com/mistralai/mistral-inference"
 stars: 9500
 maintainer: mistralai
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['mistral ai']
-aliases: - /vi/posts/mistral-ai-local-llm-deployment/
+categories: ["ai-tools"]
+tags: ["mistral ai"]
+aliases:
+  - /vi/posts/mistral-ai-local-llm-deployment/
 ---
 
 {{</* resource-info */>}}

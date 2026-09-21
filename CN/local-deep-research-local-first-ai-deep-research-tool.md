@@ -21,7 +21,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/local-deep-research-local-first-ai-deep-research-tool/
+aliases:
+  - /posts/local-deep-research-local-first-ai-deep-research-tool/
 faqs: - q: 'What is Local Deep Research (LDR)?'
     a: 'Local Deep Research (LDR) is an open-source AI research assistant that performs systematic, iterative research instead of giving quick chat-style answers. It decomposes a query into sub-queries, searches the web, academic databases, and local files in parallel, then synthesizes a cited report.'
   - q: 'Can Local Deep Research run entirely offline for privacy?'

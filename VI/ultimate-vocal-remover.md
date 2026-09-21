@@ -1,6 +1,6 @@
 ---
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — Hướng Dẫn Cài Đặt...
-description: 'Ultimate Vocal Remover (UVR) là ứng dụng GUI tách giọng hát bằng mạng nơ-ron sâu. Tương thích với demucs, RVC, GPT-SoVITS. Bao gồm cài đặt Windows, macOS, Linux, chọn model, xử lý hàng loạt và tăng cường production.'
+description: "Ultimate Vocal Remover (UVR) là ứng dụng GUI tách giọng hát bằng mạng nơ-ron sâu. Tương thích với demucs, RVC, GPT-SoVITS. Bao gồm cài đặt Windows, macOS, Linux, chọn model, xử lý hàng loạt và tăng cường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Anjok07/ultimatevocalremovergui'
+github_repo: "https://github.com/Anjok07/ultimatevocalremovergui"
 stars: 24700
 maintainer: Anjok07
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['tách-giọng', 'tách-audio', 'học-sâu', pytorch, demucs, 'mdx-net', 'ai-audio', karaoke, 'sản-xuất-âm-nhạc']
-aliases: - /vi/posts/ultimate-vocal-remover/
+categories: ["ai-tools"]
+tags: ["tách-giọng", "tách-audio", "học-sâu", "pytorch", "demucs", "mdx-net", "ai-audio", "karaoke", "sản-xuất-âm-nhạc"]
+aliases:
+  - /vi/posts/ultimate-vocal-remover/
 ---
 
 {{</* resource-info */>}}

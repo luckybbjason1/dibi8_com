@@ -1,6 +1,6 @@
 ---
 title: 'Best AI Presentation Tools 2025: Gamma, Beautiful.ai, To...
-description: 'Compare the best AI presentation tools of 2025. In-depth reviews of Gamma, Beautiful.ai, Tome, SlidesAI, Canva Magic Design, and Microsoft Copilot for PowerPoint with features, pricing, and use cases.'
+description: "Compare the best AI presentation tools of 2025. In-depth reviews of Gamma, Beautiful.ai, Tome, SlidesAI, Canva Magic Design, and Microsoft Copilot for PowerPoint with features, pricing, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['ai presentation tools', 'ai slide generators', gamma, 'beautiful.ai', tome, slidesai, 'canva magic design', 'microsoft copilot']
-aliases: - /posts/ai-presentation-tools/
+categories: ["ai-tools"]
+tags: ["ai presentation tools", "ai slide generators", "gamma", "beautiful.ai", "tome", "slidesai", "canva magic design", "microsoft copilot"]
+aliases:
+  - /posts/ai-presentation-tools/
 ---
 # Best AI Presentation Tools 2025: Gamma, Beautiful.ai, Tome & More Compared
 

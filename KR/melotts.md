@@ -1,6 +1,6 @@
 ---
 title: 'MeloTTS: 7.4K+ Stars — 다국어 TTS 벤치마크 Coqui TTS, ChatTTS, ...
-description: 'MeloTTS는 7.4K+ Stars를 보유한 고품질 다국어 텍스트 음성 변환 라이브러리입니다. Coqui TTS, ChatTTS, Bark와의 벤치마크 비교. Python 설치, Docker 배포, 실시간 추론, 프로덕션 하드닝을 다룹니다.'
+description: "MeloTTS는 7.4K+ Stars를 보유한 고품질 다국어 텍스트 음성 변환 라이브러리입니다. Coqui TTS, ChatTTS, Bark와의 벤치마크 비교. Python 설치, Docker 배포, 실시간 추론, 프로덕션 하드닝을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/myshell-ai/MeloTTS'
+github_repo: "https://github.com/myshell-ai/MeloTTS"
 stars: 7400
 maintainer: 'myshell-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [melotts, 텍스트음성변환, tts, 다국어, python, 음성합성, 오픈소스, cpu추론]
-aliases: - /kr/posts/melotts/
+categories: ["ai-tools"]
+tags: ["melotts", "텍스트음성변환", "tts", "다국어", "python", "음성합성", "오픈소스", "cpu추론"]
+aliases:
+  - /kr/posts/melotts/
 ---
 
 {{</* resource-info */>}}

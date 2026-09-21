@@ -1,6 +1,6 @@
 ---
 title: 'Aider: 45K+ Stars — Terminal AI Pair Programming vs Clau...
-description: 'Aider is AI pair programming in your terminal that edits code in your local git repository. Supports OpenAI, Claude, DeepSeek, Gemini, Ollama. Learn aider setup, aider tutorial, git integration, benchmarks, and comparison with Claude Code, Cursor, Codex CLI.'
+description: "Aider is AI pair programming in your terminal that edits code in your local git repository. Supports OpenAI, Claude, DeepSeek, Gemini, Ollama. Learn aider setup, aider tutorial, git integration, benchmarks, and comparison with Claude Code, Cursor, Codex CLI."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Aider-AI/aider'
+github_repo: "https://github.com/Aider-AI/aider"
 stars: 45040
 maintainer: 'paul-gauthier'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [aider, 'ai-pair-programming', 'terminal-ai', 'cli-coding', 'git-ai', 'llm-tools', 'open-source']
-aliases: - /posts/aider/-
+categories: ["llm-frameworks"]
+tags: ["aider", "ai-pair-programming", "terminal-ai", "cli-coding", "git-ai", "llm-tools", "open-source"]
+aliases:
+  - /posts/aider/-
 ---
 {{</* resource-info */>}}
 

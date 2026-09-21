@@ -1,12 +1,12 @@
 ---
 title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
-description: 'Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.'
+description: "Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026."
 date: 2026-09-19
 lastmod: 2026-09-19
 slug: 'agent-reach-internet-access-for-ai-agents-2026'
 category: 'llm-frameworks'
-tags: ['agent-reach', 'ai-agent', 'scraping', 'automation', 'python', 'no-api-cost']
-github_repo: 'https://github.com/Panniantong/Agent-Reach'
+tags: ["agent-reach", "ai-agent", "scraping", "automation", "python", "no-api-cost"]
+github_repo: "https://github.com/Panniantong/Agent-Reach"
 stars: 83111
 maintainer: 'Panniantong'
 license: MIT
@@ -231,7 +231,7 @@ def search_twitter(query: str, limit: int = 20) -> list: result = subprocess.run
 
 # Usage
 tweets = search_twitter("AI agents", 10)
-for tweet in tweets: print(f"@{tweet['user']}: {tweet['text'][:100]}...")
+for tweet in tweets: print(f"@{tweet[user]}: {tweet[text][:100]}...")
 ```
 
 ### With LangChain

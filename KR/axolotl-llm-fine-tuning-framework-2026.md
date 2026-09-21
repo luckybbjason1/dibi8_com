@@ -1,6 +1,6 @@
 ---
-title: 'Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드'
-description: 'Axolotl은 단일 YAML 구성으로 full / LoRA / QLoRA / DPO / GRPO 커버하는 오픈소스 LLM 파인튜닝 프레임워크. 12k GitHub 별, Apache 2.0. Llama / Mistral / Qwen / GLM / 10+ 패밀리 지원. 2026 완전 설치 가이드 + Axolotl이 Unsloth와 원시 HuggingFace TRL을 이기는 때.'
+title: "Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드"
+description: "Axolotl은 단일 YAML 구성으로 full / LoRA / QLoRA / DPO / GRPO 커버하는 오픈소스 LLM 파인튜닝 프레임워크. 12k GitHub 별, Apache 2.0. Llama / Mistral / Qwen / GLM / 10+ 패밀리 지원. 2026 완전 설치 가이드 + Axolotl이 Unsloth와 원시 HuggingFace TRL을 이기는 때."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/axolotl-ai-cloud/axolotl'
+github_repo: "https://github.com/axolotl-ai-cloud/axolotl"
 stars: 12000
 maintainer: 'axolotl-ai-cloud'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [axolotl, 파인튜닝, lora, qlora, dpo, 오픈소스]
-aliases: - /posts/axolotl-llm-fine-tuning-framework-2026/
+categories: ["llm-frameworks"]
+tags: ["axolotl", "파인튜닝", "lora", "qlora", "dpo", "오픈소스"]
+aliases:
+  - /posts/axolotl-llm-fine-tuning-framework-2026/
 ---
 
 Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Hugging Face Trainer 래퍼 작성한 적 있다면 **Axolotl**이 채우는 갭을 느낌. 한 YAML 파일이 전체 파인튜닝 실행 설명 — 모델, 데이터셋, LoRA config, 하이퍼파라미터, 분산 전략 — 그리고 Axolotl이 나머지 처리.

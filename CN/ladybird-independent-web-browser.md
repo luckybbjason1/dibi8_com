@@ -23,7 +23,8 @@ maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/ladybird-independent-web-browser/
+aliases:
+  - /posts/ladybird-independent-web-browser/
 faqs: - q: 'What is the Ladybird browser?'
     a: 'Ladybird is a truly independent web browser built entirely from scratch, without relying on Chromium, Firefox, or any other existing browser engine. It uses its own rendering engine (LibWeb) and JavaScript engine (LibJS), written in C++.'
   - q: 'Who created the Ladybird browser?'

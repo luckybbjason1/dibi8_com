@@ -20,7 +20,8 @@ maintainer: "LearningCircuit"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
+aliases:
+  - /kr/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
 faqs: - q: 'Local Deep Research란 무엇이며 정확도는 얼마나 되나요?'
     a: 'Local Deep Research는 LearningCircuit가 개발한 오픈소스 AI 연구 도구로, arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search 같은 소스 전반에 걸쳐 반복적인 연구 루프를 실행합니다. SimpleQA 벤치마크에서 약 95%의 정확도를 보고하며, 데이터는 사용자별로 분리된 SQLCipher 암호화 SQLite 데이터베이스(AES-256)에 저장되고 텔레메트리는 전혀 없습니다.'
   - q: 'InsForge는 무엇에 사용되나요?'

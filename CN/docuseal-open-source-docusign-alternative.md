@@ -22,10 +22,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/docuseal-open-source-docusign-alternative/
+aliases:
+  - /en/posts/docuseal-open-source-docusign-alternative/
 - /posts/aitoearn-open-source-buffer-alternative/
 - /posts/docuseal-open-source-docusign-alternative/
 faqs: - q: 'Is DocuSeal a free alternative to DocuSign?'

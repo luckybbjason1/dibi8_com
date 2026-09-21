@@ -1,10 +1,10 @@
 ---
 title: 'ChatGPT Pro vs Claude Pro 2026: $20(또는 $200) AI 구독 어느 쪽이...
-description: 'ChatGPT Plus/Pro 와 Claude Pro/Max 완전 비교 — 모델 라인업, 컨텍스트 윈도우, Projects, Artifacts, 이미지 생성, 음성 모드, 가격. 2026 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "ChatGPT Plus/Pro 와 Claude Pro/Max 완전 비교 — 모델 라인업, 컨텍스트 윈도우, Projects, Artifacts, 이미지 생성, 음성 모드, 가격. 2026 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [chatgpt, claude, openai, anthropic, ai-subscription, comparison]
-categories: [vs]
+tags: ["chatgpt", "claude", "openai", "anthropic", "ai-subscription", "comparison"]
+categories: ["vs"]
 faqs: - q: '$20/월 구독으로 ChatGPT Pro 와 Claude Pro 중 어느 쪽이 더 가성비 좋나요?'
     a: '대부분의 지식 근로자에게는 Claude Pro 가 순수 작문과 추론 품질에서 우위, ChatGPT Plus 는 기능 폭에서 우위 — 이미지 생성, 음성 모드, Custom GPTs, 웹 브라우징을 한 앱에 다 담습니다. 텍스트만 쓰면 Claude, 만능 도구라면 ChatGPT.'
   - q: '$20 와 $200 등급의 차이는?'

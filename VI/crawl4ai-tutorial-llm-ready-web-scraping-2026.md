@@ -1,6 +1,6 @@
 ---
 title: 'Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã ...
-description: 'Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn tiếng Việt chi tiết về cài đặt, trích xuất dữ liệu bằng LLM (GPT-4o, Claude, DeepSeek), crawl sâu toàn site, so sánh với Firecrawl và ScrapeGraphAI, triển khai Docker production.'
+description: "Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn tiếng Việt chi tiết về cài đặt, trích xuất dữ liệu bằng LLM (GPT-4o, Claude, DeepSeek), crawl sâu toàn site, so sánh với Firecrawl và ScrapeGraphAI, triển khai Docker production."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/unclecode/crawl4ai'
+github_repo: "https://github.com/unclecode/crawl4ai"
 stars: 63000
 maintainer: unclecode
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases: - /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
+categories: ["llm-frameworks"]
+tags: ["crawl4ai", "web-scraping", "llm-rag", "open-source"]
+aliases:
+  - /vi/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
 
 # Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã Nguồn Mở Số 1 GitHub, Xây Dựng Pipeline Dữ Liệu LLM và RAG

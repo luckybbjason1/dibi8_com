@@ -1,7 +1,6 @@
 ---
-title: 'OpenHuman이란 무엇인가?'
-lang: ko
-description: 'content/ko/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "OpenHuman이란 무엇인가?"
+description: "content/ko/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod: 2026-06-13layout: article
 category: resources
@@ -12,18 +11,17 @@ featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.
 ![OpenHuman 데스크탑 앱](https://raw.githubusercontent.com/tinyhumansai/openhuman/main/gitbooks/.gitbook/assets/demo.png)
 
 ---
-title: 'OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 하니스 2026'
-description: 'OpenHuman은 메모리 트리, 옵시디언 금고, 118개 이상의 통합, 내장 모델 라우팅을 갖춘 오픈소스 로컬 AI 에이전트입니다. Homebrew 또는 apt를 통해 설치하세요. Claude Cowork, OpenClaw, Hermes Agent와 비교해보세요.'
+title: "OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 하니스 2026"
+description: "OpenHuman은 메모리 트리, 옵시디언 금고, 118개 이상의 통합, 내장 모델 라우팅을 갖춘 오픈소스 로컬 AI 에이전트입니다. Homebrew 또는 apt를 통해 설치하세요. Claude Cowork, OpenClaw, Hermes Agent와 비교해보세요."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'openhuman-local-ai-agent-rust-2026'
 category: 'ai-tools'
-tags: ['openhuman', '로컬-ai', 'ai-에이전트', 'ai-어시스턴트', '메모리-트리', '옵시디언', '에이전틱', '오픈-소스', 'llm', '데스크탑-앱']
-github_repo: 'https://github.com/tinyhumansai/openhuman'
+tags: ["openhuman", "로컬-ai", "ai-에이전트", "ai-어시스턴트", "메모리-트리", "옵시디언", "에이전틱", "오픈-소스", "llm", "데스크탑-앱"]
+github_repo: "https://github.com/tinyhumansai/openhuman"
 stars: 31869
 maintainer: 'tinyhumansai'
 license: 'GPL-3.0'
-lang: ko
 ---
 
 # OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 활용 2026

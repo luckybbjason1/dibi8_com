@@ -215,7 +215,7 @@ searcher = MultiDatabaseSearcher(
 )
 
 results = searcher.run()
-print(f"Found {len(results)} papers across {len(set(r['database'] for r in results))} databases")
+print(f"Found {len(results)} papers across {len(set(r[database] for r in results))} databases")
 ```
 
 ### Citation Network Analysis

@@ -1,10 +1,10 @@
 ---
-title: 'Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?'
-description: 'Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비교 — 데이터베이스, 인증, 스토리지, 실시간, 엣지 함수, 가격, 종속성, 자체 호스팅. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?"
+description: "Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비교 — 데이터베이스, 인증, 스토리지, 실시간, 엣지 함수, 가격, 종속성, 자체 호스팅. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
-categories: [vs]
+tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
+categories: ["vs"]
 faqs: - q: 'Supabase와 Firebase 중 어느 쪽이 더 저렴한가?'
     a: '작은 프로젝트는 양쪽 모두 무료 한도가 넉넉하지만, 규모가 커질수록 Supabase가 구조적으로 더 저렴합니다. Postgres 쿼리는 "행 단위 읽기"로 과금되지 않기 때문입니다. Firebase Firestore는 문서 읽기마다 과금되어, 1만 행을 가져오는 대시보드 쿼리 하나가 Firebase에서는 실제 비용이 발생하지만 Supabase에서는 Pro 컴퓨트 한도 내에서는 무료입니다. 분석 위주 워크로드는 월 청구액이 5-10배 차이 납니다.'
   - q: '관계형 데이터에는 어느 쪽이 더 좋은가?'

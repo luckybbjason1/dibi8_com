@@ -1,6 +1,6 @@
 ---
 title: 'Haystack 2026: The End-to-End NLP Framework for Producti...
-description: 'Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document stores, retrievers, agents, evaluation tools, and Docker deployment.'
+description: "Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document stores, retrievers, agents, evaluation tools, and Docker deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'deepset-ai/haystack'
+github_repo: "deepset-ai/haystack"
 stars: 21000
 maintainer: 'deepset-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [haystack, nlp, rag, python, llm, 'document store', retriever, agent, openai, docker, pipeline]
-aliases: - /posts/haystack-rag-pipeline-framework/-
+categories: ["data-science"]
+tags: ["haystack", "nlp", "rag", "python", "llm", "document store", "retriever", "agent", "openai", "docker", "pipeline"]
+aliases:
+  - /posts/haystack-rag-pipeline-framework/-
 ---
 {{</* resource-info */>}}
 

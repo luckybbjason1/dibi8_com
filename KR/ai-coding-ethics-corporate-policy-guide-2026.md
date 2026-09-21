@@ -1,22 +1,23 @@
 ---
 title: 'AI 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드'
-description: '2026년 기업은 AI 허용 / AI 제한 / AI 금지 세 진영으로 갈립니다. 우리가 추적한 실제 기업 도입 패턴을 바탕으로 각 정책의 모습, 선택 기준, 법률/IP/컴플라이언스 함정을 실무적으로 정리합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "2026년 기업은 AI 허용 / AI 제한 / AI 금지 세 진영으로 갈립니다. 우리가 추적한 실제 기업 도입 패턴을 바탕으로 각 정책의 모습, 선택 기준, 법률/IP/컴플라이언스 함정을 실무적으로 정리합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [정책, 컴플라이언스, 'Claude Code', Cursor]
 application_domain: 개발 도구
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: '해당 없음'
 license_type: '해당 없음'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 편집부'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 윤리, 정책, 컴플라이언스, 2026]
-aliases: - /kr/posts/ai-coding-ethics-corporate-policy-guide-2026/
+categories: ["dev-utils"]
+tags: ["ai-coding", "윤리", "정책", "컴플라이언스", "2026"]
+aliases:
+  - /kr/posts/ai-coding-ethics-corporate-policy-guide-2026/
 faq: - q: "2026년 기업의 주요 AI 코딩 정책 입장은 무엇인가요?"
     a: "세 진영: (1) 감사 하 허용(테크 기업에서 가장 흔함) — 개발자는 AI 코딩 도구를 사용할 수 있고 코드는 일반 절차로 리뷰됩니다. (2) 승인 도구로 제한(금융/헬스케어) — DPA가 체결된 주요 벤더의 엔터프라이즈 티어만 허용. (3) 금지(일부 국방/기밀 업무) — 에어갭 환경, 로컬 전용 AI 또는 전면 금지. 각각 트레이드오프가 있습니다."
   - q: "AI 코딩의 실제 IP/법률 리스크는 무엇인가요?"

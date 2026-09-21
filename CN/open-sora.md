@@ -1,6 +1,6 @@
 ---
 title: 'Open-Sora: 29K+ Stars — Open-Source Video Generation Set...
-description: 'Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ComfyUI integration, Stable Diffusion compatibility, production deployment, benchmarks vs HunyuanVideo, CogVideo, and Wan.'
+description: "Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ComfyUI integration, Stable Diffusion compatibility, production deployment, benchmarks vs HunyuanVideo, CogVideo, and Wan."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hpcaitech/Open-Sora'
+github_repo: "https://github.com/hpcaitech/Open-Sora"
 stars: 29000
 maintainer: hpcaitech
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['open-sora', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', docker, cuda, comfyui]
-aliases: - /posts/open-sora/-
+categories: ["ai-tools"]
+tags: ["open-sora", "video-generation", "diffusion-transformer", "ai-video", "open-source", "docker", "cuda", "comfyui"]
+aliases:
+  - /posts/open-sora/-
 ---
 {{</* resource-info */>}}
 

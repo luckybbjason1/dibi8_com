@@ -5,13 +5,12 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
-tags: [egonex, understand-anything, 지식그래프, AI, 상호작용, 오픈소스, 연구, 시각화, llm]
+tags: ["egonex", "understand-anything", "지식그래프", "AI", "상호작용", "오픈소스", "연구", "시각화", "llm"]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 stars: 55799
 maintainer: Egonex-AI
 license: MIT
 featureImage: "https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"
-lang: ko
 ---
 
 ## 소개
@@ -198,11 +197,11 @@ graph.export("dl_graph.png", format="png")
 # 그래프 쿼리
 nodes = graph.get_nodes()
 edges = graph.get_edges()
-for node in nodes: print(f"Concept: {node['label']}, Confidence: {node['confidence']:.2f}")
+for node in nodes: print(f"Concept: {node[label]}, Confidence: {node[confidence]:.2f}")
 
 # 관련 개념 찾기
 related = graph.get_related("Neural Networks", depth=2)
-for concept in related: print(f"  Related: {concept['label']} ({concept['relation']})")
+for concept in related: print(f"  Related: {concept[label]} ({concept[relation]})")
 ```
 
 ### REST API 서버

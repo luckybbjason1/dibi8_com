@@ -1,6 +1,6 @@
 ---
 title: 'VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh X...
-description: 'Làm chủ VectorBT để backtest quantitative bằng Python. Xây dựng, kiểm thử và tối ưu chiến lược giao dịch với mô phỏng tốc độ Numba vectorized. Hướng dẫn đầy đủ 2026 với ví dụ code.'
+description: "Làm chủ VectorBT để backtest quantitative bằng Python. Xây dựng, kiểm thử và tối ưu chiến lược giao dịch với mô phỏng tốc độ Numba vectorized. Hướng dẫn đầy đủ 2026 với ví dụ code."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,40 +12,41 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'polakowo/vectorbt'
+github_repo: "polakowo/vectorbt"
 stars: 8900
 maintainer: polakowo
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /vi/posts/vectorbt-quantitative-backtesting/
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /vi/posts/vectorbt-quantitative-backtesting/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới thiệu: Tại sao Backtest của bạn quá chậm
 
-Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã, bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy **73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả**. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.
+Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã", "bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy **73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả**. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.
 
-Hãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng **mảng NumPy và biên dịch JIT Numba**, VectorBT xử lý **hơn 1 triệu giao dịch mỗi giây** trên một lõi CPU. Repository GitHub `polakowo/vectorbt` đã tích lũy **8.900+ star** và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026, hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas, Plotly và scikit-learn.
+Hãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng **mảng NumPy và biên dịch JIT Numba**", "VectorBT xử lý **hơn 1 triệu giao dịch mỗi giây** trên một lõi CPU. Repository GitHub `polakowo/vectorbt` đã tích lũy **8.900+ star** và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026", "hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas", "Plotly và scikit-learn.
 
-Bài hướng dẫn này bao gồm mọi thứ: cài đặt, khái niệm cốt lõi, ví dụ code thực tế, production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ, VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.
+Bài hướng dẫn này bao gồm mọi thứ: cài đặt", "khái niệm cốt lõi", "ví dụ code thực tế", "production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ", "VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.
 
 ## VectorBT là gì?
 
-VectorBT (Vector Backtesting) là một thư viện Python để backtest chiến lược giao dịch sử dụng **phép toán vectorized thay vì vòng lặp event-driven**. Không giống các backtester truyền thống xử lý từng cây nến một, VectorBT tính toán toàn bộ tín hiệu, vị thế và mảng P&L trong một lần quét NumPy. Kết quả: backtest hoàn thành trong vài giây thay vì hàng giờ, giúp việc sweep tham số quy mô lớn và pipeline machine learning thực sự khả thi trên phần cứng phổ thông.
+VectorBT (Vector Backtesting) là một thư viện Python để backtest chiến lược giao dịch sử dụng **phép toán vectorized thay vì vòng lặp event-driven**. Không giống các backtester truyền thống xử lý từng cây nến một", "VectorBT tính toán toàn bộ tín hiệu", "vị thế và mảng P&L trong một lần quét NumPy. Kết quả: backtest hoàn thành trong vài giây thay vì hàng giờ", "giúp việc sweep tham số quy mô lớn và pipeline machine learning thực sự khả thi trên phần cứng phổ thông.
 
 ## VectorBT hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi
 
 Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy
 
-Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng `(2.520, 100)` —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.
+Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng `(2.520", "100)` —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.
 
 ### Biên dịch JIT Numba
 
-Các hàm đường dẫn quan trọng được trang trí bằng `@njit` từ Numba, biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống **0,03 giây** trong VectorBT.
+Các hàm đường dẫn quan trọng được trang trí bằng `@njit` từ Numba", "biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống **0", "03 giây** trong VectorBT.
 
 ### Broadcasting cho lưới tham số
 
@@ -58,26 +59,23 @@ import pandas as pd
 
 # Tải dữ liệu — VectorBT bọc yfinance để thuận tiện
 price = vbt.YFData.download(
-    "BTC-USD",
-    start="2020-01-01",
-    end="2026-01-01",
-    interval="1d"
+    "BTC-USD", "start="2020-01-01", "end="2026-01-01", "interval="1d"
 ).get("Close")
 
-print(f"Data shape: {price.shape}")  # (2,210,) — giá đóng cửa hàng ngày
+print(f"Data shape: {price.shape}")  # (2", "210", ") — giá đóng cửa hàng ngày
 print(f"Data type: {type(price)}")   # <class 'pandas.core.series.Series'>
 ```
 
 ## Cài đặt & Thiết lập: Dưới 5 phút
 
-VectorBT cài đặt sạch qua pip. Gói cơ sở bao gồm Numba, NumPy và tích hợp pandas. Các dependency tùy chọn bổ sung tính năng tải dữ liệu yfinance và vẽ biểu đồ Plotly.
+VectorBT cài đặt sạch qua pip. Gói cơ sở bao gồm Numba", "NumPy và tích hợp pandas. Các dependency tùy chọn bổ sung tính năng tải dữ liệu yfinance và vẽ biểu đồ Plotly.
 
 ```bash
 # Cài đặt cơ bản
 pip install vectorbt
 
 # Với tất cả dependency tùy chọn (khuyến nghị)
-pip install "vectorbt[all]"
+pip install "vectorbt[all"]"
 ```
 
 Xác minh cài đặt: ```python

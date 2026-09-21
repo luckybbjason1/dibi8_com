@@ -1,22 +1,23 @@
 ---
 title: 'Cursor Cost-Saving Strategies 2026: After the Credit Pri...
-description: 'Cursor changed its pricing in 2025 — Pro users lost ~55% effective usage at the same price. Here are 7 specific cost-saving strategies that work in 2026: model selection, context discipline, hybrid stacks, and when to abandon ship.'
+description: "Cursor changed its pricing in 2025 — Pro users lost ~55% effective usage at the same price. Here are 7 specific cost-saving strategies that work in 2026: model selection, context discipline, hybrid stacks, and when to abandon ship."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
-source_version: 'Cursor 2026.05 / Post credit pricing'
+source_version: "Cursor 2026.05 / Post credit pricing"
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: Anysphere
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
-aliases: - /posts/cursor-cost-saving-strategies-2026/
+categories: ["dev-utils"]
+tags: ["cursor", "cost-optimization", "ai-coding", "2026"]
+aliases:
+  - /posts/cursor-cost-saving-strategies-2026/
 faq: - q: "What changed with Cursor's pricing in 2025?"
     a: "Mid-2025 Cursor switched from 'unlimited fast requests' to credit-based metering. Pro users at $20/month went from effectively 500 requests to ~225 effective requests. Same price, ~55% off. The change wasn't well-communicated, generated significant pushback."
   - q: "Is Cursor still worth $20/month in 2026?"

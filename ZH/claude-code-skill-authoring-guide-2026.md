@@ -1,6 +1,6 @@
 ---
-title: 'Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）'
-description: '一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）"
+description: "一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理。附实战范例与应避免的坑。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases: - /posts/claude-code-skill-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "skills", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools", "prompt-engineering"]
+aliases:
+  - /posts/claude-code-skill-authoring/
 faq: - q: "skill 放在哪里？一个 SKILL.md 最少需要什么？"
     a: "一个 skill 是位于 .claude/skills//（项目级）或 ~/.claude/skills//（用户级）下的一个目录，里面包含一个 SKILL.md 文件。最低要求是一段带 name 和 description 的 YAML frontmatter，后面跟正文里的指令。该目录还可以存放 skill 所引用的支持文件——参考文档、脚本、模板——但带这两个 frontmatter 字段的 SKILL.md 才是不可再简化的核心。"
   - q: "skill 跟直接把指令写进 CLAUDE.md 有什么区别？"

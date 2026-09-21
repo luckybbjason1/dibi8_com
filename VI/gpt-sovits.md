@@ -1,6 +1,6 @@
 ---
 title: 'GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
-description: 'GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với ComfyUI, RVC và MeloTTS. Bao gồm triển khai Docker, huấn luyện giọng nói, thiết lập API và hardening production.'
+description: "GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với ComfyUI, RVC và MeloTTS. Bao gồm triển khai Docker, huấn luyện giọng nói, thiết lập API và hardening production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RVC-Boss/GPT-SoVITS'
+github_repo: "https://github.com/RVC-Boss/GPT-SoVITS"
 stars: 57500
 maintainer: 'RVC-Boss'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', tts, 'ai-giong-noi', docker, rvc, python]
-aliases: - /vi/posts/gpt-sovits/
+categories: ["ai-tools"]
+tags: ["voice-cloning", "text-to-speech", "gpt-sovits", "tts", "ai-giong-noi", "docker", "rvc", "python"]
+aliases:
+  - /vi/posts/gpt-sovits/
 ---
 
 {{</* resource-info */>}}

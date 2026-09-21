@@ -1,6 +1,6 @@
 ---
 title: 'Dify: Xây dựng AI Agent cấp sản xuất bằng giao diện trực...
-description: 'Dify là nền tảng phát triển ứng dụng LLM mã nguồn mở với trình xây dựng workflow trực quan, pipeline RAG, và điều phối agent. Tương thích với OpenAI, Anthropic, Ollama, Qdrant, và Weaviate. Bao gồm triển khai Docker, tích hợp API, hardening sản xuất, và so sánh với Flowise, n8n, LangChain.'
+description: "Dify là nền tảng phát triển ứng dụng LLM mã nguồn mở với trình xây dựng workflow trực quan, pipeline RAG, và điều phối agent. Tương thích với OpenAI, Anthropic, Ollama, Qdrant, và Weaviate. Bao gồm triển khai Docker, tích hợp API, hardening sản xuất, và so sánh với Flowise, n8n, LangChain."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langgenius/dify'
+github_repo: "https://github.com/langgenius/dify"
 stars: 141955
 maintainer: langgenius
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [dify, 'ai agent builder', 'llm workflow', rag, 'docker deployment', 'open-source ai', 'visual workflow builder', 'production ai']
-aliases: - /vi/posts/dify/
+categories: ["llm-frameworks"]
+tags: ["dify", "ai agent builder", "llm workflow", "rag", "docker deployment", "open-source ai", "visual workflow builder", "production ai"]
+aliases:
+  - /vi/posts/dify/
 - /vi/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/
 ---
 

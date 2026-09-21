@@ -19,7 +19,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/pageindex-vectorless-reasoning-rag/
+aliases:
+  - /zh/posts/pageindex-vectorless-reasoning-rag/
 faqs: - q: 'PageIndex 是什么？它和传统 RAG 有何不同？'
     a: 'PageIndex 是 VectifyAI 开源的 RAG 系统，无需向量数据库即可检索信息。它不对文档做嵌入和分块，而是为每篇文档构建一棵层级树结构，并利用 LLM 推理来遍历这棵树，模拟人类专家阅读目录、定位相关章节的方式。'
   - q: 'PageIndex 需要向量数据库或文档分块吗？'

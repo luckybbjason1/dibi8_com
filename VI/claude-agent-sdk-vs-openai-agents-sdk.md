@@ -1,10 +1,10 @@
 ---
 title: 'Claude Agent SDK vs OpenAI Agents SDK năm 2026: Nên xây ...
-description: 'Phân tích song song hai SDK agent hàng đầu — kiến trúc (hooks+subagents vs handoffs+guardrails), công cụ tích hợp sẵn, quyền truy cập OS, giọng nói, khóa nhà cung cấp, và khi nào chọn loại nào. Cập nhật 2026.'
+description: "Phân tích song song hai SDK agent hàng đầu — kiến trúc (hooks+subagents vs handoffs+guardrails), công cụ tích hợp sẵn, quyền truy cập OS, giọng nói, khóa nhà cung cấp, và khi nào chọn loại nào. Cập nhật 2026."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
-tags: [claude-agent-sdk, openai-agents-sdk, ai-agents, comparison, agent-sdk]
-categories: [vs]
+tags: ["claude-agent-sdk", "openai-agents-sdk", "ai-agents", "comparison", "agent-sdk"]
+categories: ["vs"]
 faqs: - q: 'Sự khác biệt cốt lõi về kiến trúc giữa Claude Agent SDK và OpenAI Agents SDK là gì?'
     a: 'Chúng đại diện cho hai triết lý khác nhau. Claude Agent SDK lấy hooks và subagents làm trung tâm — bạn chặn và kiểm soát hành vi tại các điểm trong vòng đời, và ủy thác công việc cho subagents với ngữ cảnh riêng biệt. OpenAI Agents SDK lấy handoffs và guardrails làm trung tâm — cuộc hội thoại được chuyển giao giữa các agent chuyên biệt, với các lớp xác thực bảo vệ đầu vào và đầu ra. Claude thiên về ngầm định và linh hoạt; OpenAI thiên về tường minh và có cấu trúc.'
   - q: 'SDK agent nào tốt hơn cho một trợ lý lập trình/dành cho lập trình viên?'

@@ -1,6 +1,6 @@
 ---
-title: 'VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 2026'
-description: 'VideoReTalking (VRT) 是一款基于音频的唇形同步系统，用于说话人脸视频编辑。兼容 RVC、GPT-SoVITS 和 Coqui TTS。涵盖安装、推理、Gradio WebUI、生产部署，以及与 Wav2Lip 和 SadTalker 的对比测试。'
+title: "VideoReTalking: 7.2K+ Stars — AI 唇形同步视频编辑完整搭建指南 2026"
+description: "VideoReTalking (VRT) 是一款基于音频的唇形同步系统，用于说话人脸视频编辑。兼容 RVC、GPT-SoVITS 和 Coqui TTS。涵盖安装、推理、Gradio WebUI、生产部署，以及与 Wav2Lip 和 SadTalker 的对比测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/OpenTalker/video-retalking'
+github_repo: "https://github.com/OpenTalker/video-retalking"
 stars: 7200
 maintainer: OpenTalker
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [唇形同步, 视频编辑, 数字人, 深度学习, ffmpeg, pytorch, gradio, ai视频]
-aliases: - /zh/posts/video-retalking/-
+categories: ["ai-tools"]
+tags: ["唇形同步", "视频编辑", "数字人", "深度学习", "ffmpeg", "pytorch", "gradio", "ai视频"]
+aliases:
+  - /zh/posts/video-retalking/-
 ---
 
 {{</* resource-info */>}}

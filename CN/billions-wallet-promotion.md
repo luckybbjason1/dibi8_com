@@ -1,7 +1,7 @@
 ---
 title: Discover Billions Wallet - Your Ultimate Crypto Companion
-description: 'Billions Wallet promotion: secure crypto wallet with advanced features.. Comprehensive guide covering features, pricing, and best practices for 2026.
-  Manage Bitcoin, Ethereum and 100+ cryptocurrencies safely.'
+description: "Billions Wallet promotion: secure crypto wallet with advanced features.. Comprehensive guide covering features, pricing, and best practices for 2026.
+  Manage Bitcoin, Ethereum and 100+ cryptocurrencies safely."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/billions-wallet-promotion/
+aliases:
+  - /en/posts/billions-wallet-promotion/
 - /posts/billions-wallet-promotion/
 faqs: - q: 'How many cryptocurrencies does Billions Wallet support?'
     a: 'Billions Wallet supports over 1,000 digital assets across multiple blockchains, including Bitcoin, Ethereum, USDT and other stablecoins, plus many altcoins.'

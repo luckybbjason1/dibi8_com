@@ -1,6 +1,6 @@
 ---
-title: 'What Is OpenHuman?'
-description: 'content/en/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "What Is OpenHuman?"
+description: "content/en/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod: 2026-06-13layout: article
 category: resources
@@ -12,13 +12,13 @@ featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.
 
 ---
 title: 'OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026'
-description: 'OpenHuman is an open-source local AI agent with Memory Tree, Obsidian vault, 118+ integrations, and built-in model routing. Install via Homebrew or apt. Compare with Claude Cowork, OpenClaw, and Hermes Agent.'
+description: "OpenHuman is an open-source local AI agent with Memory Tree, Obsidian vault, 118+ integrations, and built-in model routing. Install via Homebrew or apt. Compare with Claude Cowork, OpenClaw, and Hermes Agent."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'openhuman-local-ai-agent-rust-2026'
 category: 'ai-tools'
-tags: ['openhuman', 'local-ai', 'ai-agent', 'ai-assistant', 'memory-tree', 'obsidian', 'agentic', 'open-source', 'llm', 'desktop-app']
-github_repo: 'https://github.com/tinyhumansai/openhuman'
+tags: ["openhuman", "local-ai", "ai-agent", "ai-assistant", "memory-tree", "obsidian", "agentic", "open-source", "llm", "desktop-app"]
+github_repo: "https://github.com/tinyhumansai/openhuman"
 stars: 31869
 maintainer: 'tinyhumansai'
 license: 'GPL-3.0'

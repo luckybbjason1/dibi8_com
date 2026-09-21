@@ -1,10 +1,10 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？'
-description: 'Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？"
+description: "Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["gemini-cli", "claude-code", "google", "anthropic", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Gemini CLI 真的免费吗？'
     a: '是的 — Gemini CLI 自带当今 AI 编码 agent 里最慷慨的免费档：每分钟 60 次模型请求、每天 1,000 次请求，用 gemini-2.0-flash-thinking 模型，免信用卡，一个 Google 账号即可。Claude Code 没有免费档 — 通过 Anthropic API 按 token 付费，或订阅 $20/月 Claude Pro（Claude Code 用量有限）。'
   - q: '哪个上下文窗口更大？'

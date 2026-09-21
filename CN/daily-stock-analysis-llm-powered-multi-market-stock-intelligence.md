@@ -1,13 +1,13 @@
 ---
 title: 'Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
-  description: 'An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and automated notifications. 48K stars. Supports zero-cost scheduled runs.'
+  description: "An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and automated notifications. 48K stars. Supports zero-cost scheduled runs."
   date: 2026-06-25
   lastmod: 2026-06-25
   draft: false
   lang: en
   github_repo: https://github.com/dailystockai/daily-stock
   category: ai-trading
-  tags: ['stock-analysis', 'llm', 'quantitative-trading', 'ai-agent', 'multi-market', 'a-stock', 'sentiment-analysis', 'automated-trading']
+tags: ["stock-analysis", "llm", "quantitative-trading", "ai-agent", "multi-market", "a-stock", "sentiment-analysis", "automated-trading"]
   slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
   featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
   license: MIT---
@@ -179,7 +179,7 @@ recommendations = ticker.recommendations
 
 # Get news sentiment
 news = ticker.news
-for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
+for item in news: print(f"{item[title]}: {item[providerPublishTime]}")
 ```
 
 ### Cryptocurrency Data
@@ -195,13 +195,13 @@ exchange = ccxt.binance({
 
 # Get ticker data
 ticker = exchange.fetch_ticker('BTC/USDT')
-print(f"Price: {ticker['last']}")
-print(f"Volume: {ticker['quoteVolume']}")
+print(f"Price: {ticker[last]}")
+print(f"Volume: {ticker[quoteVolume]}")
 
 # Get order book
 order_book = exchange.fetch_order_book('ETH/USDT')
-print(f"Bid: {order_book['bids'][0][0]}")
-print(f"Ask: {order_book['asks'][0][0]}")
+print(f"Bid: {order_book[bids][0][0]}")
+print(f"Ask: {order_book[asks][0][0]}")
 ```
 
 ## LLM-Powered Analysis

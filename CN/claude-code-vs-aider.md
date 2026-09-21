@@ -1,10 +1,10 @@
 ---
 title: 'Claude Code vs Aider in 2026: Commercial vs Open Source ...
-description: 'Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — pricing, context, agent style, cost efficiency. Updated 2026.'
+description: "Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — pricing, context, agent style, cost efficiency. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [claude-code, aider, cli, ai-coding, comparison, dev-tools, open-source]
-categories: [vs]
+tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
+categories: ["vs"]
 faqs: - q: 'Is Claude Code or Aider cheaper for daily use?'
     a: 'It depends on your usage. Claude Code is $20/month flat (Pro) or $200/month (Max), with predictable cost. Aider charges nothing for the tool but routes through your own API key — at moderate use ($5-$15/month in Anthropic API spend), Aider is cheaper; at heavy use (>$30/month in API), Claude Code Pro is cheaper because the subscription absorbs runaway costs. For under 20 sessions/week, Aider wins on cost; above that, Claude Code Pro wins.'
   - q: 'Which has better agentic autonomy?'

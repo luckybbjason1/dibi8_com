@@ -1,6 +1,6 @@
 ---
 title: 'Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
-description: 'Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/offline stores, sub-second serving, backend Redis/BigQuery, batch & real-time features và triển khai production.'
+description: "Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/offline stores, sub-second serving, backend Redis/BigQuery, batch & real-time features và triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/feast-dev/feast'
+github_repo: "https://github.com/feast-dev/feast"
 stars: 7000
 maintainer: 'feast-dev'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
-aliases: - /vi/posts/feast-feature-store-ml/
+categories: ["data-science"]
+tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "online store", "offline store", "real-time ml", "feature engineering"]
+aliases:
+  - /vi/posts/feast-feature-store-ml/
 ---
 
 {{</* resource-info */>}}

@@ -1,6 +1,6 @@
 ---
 title: 'Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
-description: 'Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimate Vocal Remover, RVC, GPT-SoVITS. Hướng dẫn demucs, demucs vs uvr, cài đặt docker demucs, và benchmark production.'
+description: "Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimate Vocal Remover, RVC, GPT-SoVITS. Hướng dẫn demucs, demucs vs uvr, cài đặt docker demucs, và benchmark production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/facebookresearch/demucs'
+github_repo: "https://github.com/facebookresearch/demucs"
 stars: 10100
 maintainer: facebookresearch
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [demucs, 'tach-nguon-nhac', 'ai-audio', 'tach-stem', pytorch, docker, 'ma-nguon-mo']
-aliases: - /vi/posts/demucs/
+categories: ["ai-tools"]
+tags: ["demucs", "tach-nguon-nhac", "ai-audio", "tach-stem", "pytorch", "docker", "ma-nguon-mo"]
+aliases:
+  - /vi/posts/demucs/
 ---
 
 {{</* resource-info */>}}

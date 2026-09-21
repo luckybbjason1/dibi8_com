@@ -1,12 +1,12 @@
 ---
-title: 'Codebase Memory MCP: 24K+ Star AI Code Intelligence Server'
-description: 'Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant.'
+title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server"
+description: "Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant."
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence
 category: llm-frameworks
-tags: ['mcp', 'code-intelligence', 'ai-agents', 'vector-search', 'open-source']
-github_repo: 'https://github.com/DeusData/codebase-memory-mcp'
+tags: ["mcp", "code-intelligence", "ai-agents", "vector-search", "open-source"]
+github_repo: "https://github.com/DeusData/codebase-memory-mcp"
 license: 'MIT'
 tech_stack: - C
   - Rust
@@ -92,13 +92,13 @@ indexer = Indexer(
 
 # Index the entire codebase
 results = indexer.index()
-print(f"Indexed {results['files']} files, {results['tokens']} tokens")
+print(f"Indexed {results[files]} files, {results[tokens]} tokens")
 # Output: Indexed 342 files, 1,247,832 tokens
 
 # Get semantic similarity for a query
 query = "How does the authentication flow work?"
 similar = indexer.search(query, top_k=5)
-for doc in similar: print(f"[{doc['score']:.2f}] {doc['path']}: {doc['snippet'][:100]}")
+for doc in similar: print(f"[{doc[score]:.2f}] {doc[path]}: {doc[snippet][:100]}")
 ```
 
 ### MCP Server Configuration

@@ -1,6 +1,6 @@
 ---
 title: 'Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
-description: 'Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Prometheus, Loki, InfluxDB, Elasticsearch. Bao gồm thiết lập Docker, cứng hóa production, so sánh với Datadog, Kibana, New Relic.'
+description: "Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Prometheus, Loki, InfluxDB, Elasticsearch. Bao gồm thiết lập Docker, cứng hóa production, so sánh với Datadog, Kibana, New Relic."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/grafana/grafana'
+github_repo: "https://github.com/grafana/grafana"
 stars: 73876
 maintainer: grafana
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [grafana, docker, 'giám sát', prometheus, 'quan sát', dashboard, devops]
-aliases: - /vi/posts/grafana/
+categories: ["dev-utils"]
+tags: ["grafana", "docker", "giám sát", "prometheus", "quan sát", "dashboard", "devops"]
+aliases:
+  - /vi/posts/grafana/
 ---
 
 {{</* resource-info */>}}

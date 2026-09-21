@@ -1,26 +1,27 @@
 ---
-title: 'Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南'
-description: 'Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookbook——全部运行在自己的硬件上。本文详解安装步骤、核心功能及与 ChatGPT Plus 的对比。'
+title: "Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南"
+description: "Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookbook——全部运行在自己的硬件上。本文详解安装步骤、核心功能及与 ChatGPT Plus 的对比。"
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
-source_version: '1.0'
+source_version: "1.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/pewdiepie-archdaemon/odysseus'
 backup_url: ''
-github_repo: 'pewdiepie-archdaemon/odysseus'
+github_repo: "pewdiepie-archdaemon/odysseus"
 stars: 63159
 maintainer: 'pewdiepie-archdaemon'
-last_maintained: '2026-06-08'
+last_maintained: "2026-06-08"
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
-categories: ['ai-tools']
-tags: [odysseus, '自部署 ai', 'ai 工作台', '本地 llm', 隐私, docker, 开源, 'chatgpt 替代', ollama, 深度调研]
-aliases: - /zh/posts/odysseus-self-hosted-ai-workspace-2026/
+categories: ["ai-tools"]
+tags: ["odysseus", "自部署 ai", "ai 工作台", "本地 llm", "隐私", "docker", "开源", "chatgpt 替代", "ollama", "深度调研"]
+aliases:
+  - /zh/posts/odysseus-self-hosted-ai-workspace-2026/
 faqs: - q: 'Odysseus 必须有 GPU 才能运行吗？'
     a: '不需要。Odysseus 本身非常轻量。只有在使用 Cookbook 功能在本地运行大模型时才需要 GPU。你可以直接连接远程 API（OpenAI、Anthropic、OpenRouter）或独立的 Ollama 实例，完全不需要本地 GPU。'
   - q: 'Odysseus 和 Open WebUI 有什么区别？'

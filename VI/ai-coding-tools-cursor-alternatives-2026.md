@@ -1,6 +1,6 @@
 ---
 title: 'Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa ...
-description: 'Cursor chuyển sang định giá credit năm 2025 làm mất lòng tin. So sánh 7 lựa chọn thay thế mạnh nhất năm 2026: Claude Code (80.8% SWE-bench), Cline (5M+ cài đặt, miễn phí), GitHub Copilot ($10/tháng), Windsurf ($15/tháng), Continue.dev, Zed. Bao gồm giá, hiệu suất, agent mode, chiến lược chuyển đổi.'
+description: "Cursor chuyển sang định giá credit năm 2025 làm mất lòng tin. So sánh 7 lựa chọn thay thế mạnh nhất năm 2026: Claude Code (80.8% SWE-bench), Cline (5M+ cài đặt, miễn phí), GitHub Copilot ($10/tháng), Windsurf ($15/tháng), Continue.dev, Zed. Bao gồm giá, hiệu suất, agent mode, chiến lược chuyển đổi."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [cursor, 'cursor-alternatives', 'claude-code', cline, 'github-copilot', windsurf, 'continue-dev', zed, 'ai-coding', 'ai-ide', 'developer-tools', comparison]
-aliases: - /vi/posts/ai-coding-tools-2026/
+categories: ["llm-frameworks"]
+tags: ["cursor", "cursor-alternatives", "claude-code", "cline", "github-copilot", "windsurf", "continue-dev", "zed", "ai-coding", "ai-ide", "developer-tools", "comparison"]
+aliases:
+  - /vi/posts/ai-coding-tools-2026/
 - /vi/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/
 faqs: - q: 'Tại sao developer rời Cursor vào năm 2026?'
     a: 'Việc Cursor chuyển sang định giá credit giữa năm 2025 đã cắt giảm sử dụng Pro hiệu quả từ ~500 request xuống ~225 request/tháng với cùng giá $20. Thiệt hại về niềm tin quan trọng hơn toán học — developer không ngại trả tiền, họ ghét khi công cụ thay đổi luật chơi giữa dự án.'

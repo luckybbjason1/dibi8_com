@@ -1,5 +1,4 @@
 ---
-lang: kr
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage 리뷰: 세계 최초의 오픈소스 에이전트 영상 제작 시스템 (52개 도구, 12개 ...
 description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. 12 production pipelines, 52 tools, 500+ agent skills. Turn any AI coding assistant into a full video studio — from animated explainers to cinematic trailers to real-footage documentaries. Zero API keys needed for basic output."
@@ -19,12 +18,13 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/calesthio/OpenMontage'
-last_maintained: '2026-06-21'
+github_repo: "https://github.com/calesthio/OpenMontage"
+last_maintained: "2026-06-21"
 draft: false
-categories: ['ai-tools']
+categories: ["ai-tools"]
 tags: ["오픈몽타주", "에이전틱 비디오", "ai 동영상 제작", "리모션", "하이퍼프레임", "비디오 생성", "오픈 소스", "클로드 코드", "커서", "멀티 에이전트", "다큐멘터리", "애니메이션"]
-aliases: - /posts/openmontage-agentic-video-production-system/
+aliases:
+  - /posts/openmontage-agentic-video-production-system/
 faqs: - q: 'OpenMontage란 무엇인가요?'
     a: 'OpenMontage는 12개의 제작 파이프라인, 52개의 제작 도구, 500개 이상의 에이전트 기술을 갖춘 세계 최초의 오픈소스 에이전트형 영상 제작 시스템입니다. 이를 통해 AI 코딩 어시스턴트(Claude Code, Cursor, Copilot, Windsurf, Codex 등)를 완전한 영상 제작 스튜디오로 변환할 수 있습니다. Sora나 Runway와 같은 단일 프롬프트 기반 영상 생성기와 달리, OpenMontage는 구조화된 파이프라인 매니페스트와 스테이지 디렉터 기술을 통해 연구, 대본 작성, 자산 생성, 편집, 최종 합성 등 전체 제작 워크플로를 조율합니다.'
   - q: 'OpenMontage는 Sora, Runway, Pika와 어떻게 다른가요?'

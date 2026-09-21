@@ -1,12 +1,12 @@
 ---
 title: 'Compound Engineering: Orchestrate Claude Code, Codex, an...
-description: 'Compound Engineering (20K stars) is a multi-agent plugin for Claude Code, Codex, and Cursor. 9 commands for brainstorm, plan, review, debug, and compound learnings. 80% planning, 20% execution workflow.'
+description: "Compound Engineering (20K stars) is a multi-agent plugin for Claude Code, Codex, and Cursor. 9 commands for brainstorm, plan, review, debug, and compound learnings. 80% planning, 20% execution workflow."
 tags: ["ai-agent", "ai-editor", "anthropic", "automation", "claude", "coding-agent", "cursor", "guide", "open-source", "reference", "tutorial"]
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
-github_repo: 'https://github.com/EveryInc/compound-engineering-plugin'
+github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
 license: 'MIT'
 featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg---
 # Compound Engineering: Multi-Agent Orchestration Plugin — 2026 Guide

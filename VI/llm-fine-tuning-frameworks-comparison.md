@@ -1,6 +1,6 @@
 ---
 title: 'So Sánh Framework Fine-Tuning LLM 2025: LoRA, QLoRA, PEF...
-description: 'So sánh chi tiết các framework fine-tuning LLM 2025: LoRA, QLoRA, PEFT Hugging Face và Unsloth. Hướng dẫn chọn phương pháp tối ưu VRAM và tốc độ.'
+description: "So sánh chi tiết các framework fine-tuning LLM 2025: LoRA, QLoRA, PEFT Hugging Face và Unsloth. Hướng dẫn chọn phương pháp tối ưu VRAM và tốc độ."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/llm-fine-tuning-frameworks-comparison/
+aliases:
+  - /posts/llm-fine-tuning-frameworks-comparison/
 ---
 
 {</* resource-info */>}

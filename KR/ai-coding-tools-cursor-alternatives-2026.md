@@ -1,6 +1,6 @@
 ---
-title: '2026 AI 코딩 도구 대전: Cursor 독주 종료 — 7가지 최고 대안 완벽 비교'
-description: 'Cursor의 2025년 credit 가격 전환으로 신뢰가 무너졌다. 2026년 7가지 최강 대안 비교: Claude Code (80.8% SWE-bench), Cline (5M+ 설치 무료), GitHub Copilot ($10/월), Windsurf ($15/월), Continue.dev, Zed. 가격, 성능, 에이전트 모드, 마이그레이션 전략까지.'
+title: "2026 AI 코딩 도구 대전: Cursor 독주 종료 — 7가지 최고 대안 완벽 비교"
+description: "Cursor의 2025년 credit 가격 전환으로 신뢰가 무너졌다. 2026년 7가지 최강 대안 비교: Claude Code (80.8% SWE-bench), Cline (5M+ 설치 무료), GitHub Copilot ($10/월), Windsurf ($15/월), Continue.dev, Zed. 가격, 성능, 에이전트 모드, 마이그레이션 전략까지."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [cursor, 'cursor-alternatives', 'claude-code', cline, 'github-copilot', windsurf, 'continue-dev', zed, 'ai-coding', 'ai-ide', 'developer-tools', comparison]
-aliases: - /kr/posts/ai-coding-tools-2026/
+categories: ["llm-frameworks"]
+tags: ["cursor", "cursor-alternatives", "claude-code", "cline", "github-copilot", "windsurf", "continue-dev", "zed", "ai-coding", "ai-ide", "developer-tools", "comparison"]
+aliases:
+  - /kr/posts/ai-coding-tools-2026/
 - /kr/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/
 faqs: - q: '2026년 개발자들이 Cursor를 떠나는 이유?'
     a: 'Cursor의 2025년 중반 크레딧 기반 가격 전환으로 Pro 사용자의 월 실효 사용량이 500 req에서 225 req로 떨어졌습니다. 같은 $20에 효용 -55%. 신뢰 손상이 수학 문제보다 더 큽니다 — 개발자는 돈을 내는 것을 꺼리지 않지만 도구가 중간에 규칙을 바꾸는 것을 싫어합니다.'

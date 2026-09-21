@@ -24,7 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/terax-ai-lightweight-ai-terminal/
+aliases:
+  - /zh/posts/terax-ai-lightweight-ai-terminal/
 faqs: - q: 'Terax AI 是什么？'
     a: 'Terax AI 是一款开源的 AI 原生终端模拟器，基于 Tauri 2 构建，采用 Rust 后端和 React 19 前端。它将原生 PTY 终端与多标签支持、集成代码编辑器、文件资源管理器以及一流的 AI 侧边栏融为一体。'
   - q: 'Terax AI 会将我的数据或 API 密钥发送到云端吗？'

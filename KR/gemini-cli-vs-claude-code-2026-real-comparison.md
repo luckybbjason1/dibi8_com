@@ -1,22 +1,23 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교'
-description: 'Google이 Claude Code와 경쟁할 Gemini CLI를 출시했습니다. 동일한 5가지 워크플로우로 두 도구를 테스트했습니다. Gemini가 이기는 지점(무료 티어, 1M 컨텍스트), Claude Code가 이기는 지점(도구 사용 신뢰성, 에이전트 루프), 그리고 언제 어느 쪽을 써야 하는지 정리합니다.'
+title: "Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교"
+description: "Google이 Claude Code와 경쟁할 Gemini CLI를 출시했습니다. 동일한 5가지 워크플로우로 두 도구를 테스트했습니다. Gemini가 이기는 지점(무료 티어, 1M 컨텍스트), Claude Code가 이기는 지점(도구 사용 신뢰성, 에이전트 루프), 그리고 언제 어느 쪽을 써야 하는지 정리합니다."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: 개발 도구
-source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
+source_version: "Gemini CLI 1.0 / Claude Code 1.0"
 licensing_model: 혼합
 license_type: '독점 소프트웨어'
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
-aliases: - /kr/posts/gemini-cli-vs-claude-code-2026-real-comparison/
+categories: ["dev-utils"]
+tags: ["gemini-cli", "claude-code", "ai-coding", "2026"]
+aliases:
+  - /kr/posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq: - q: "Gemini CLI는 Claude Code의 진지한 경쟁자인가요?"
     a: "비용에 민감하고 긴 컨텍스트가 필요한 작업에서는 그렇습니다. Gemini CLI는 넉넉한 무료 티어(분당 60회, 일일 1500회)와 1M+ 토큰의 컨텍스트 윈도우를 제공합니다. 다만 2026년 2분기 기준 도구 사용 신뢰성은 Claude Code에 뒤처지며 — Gemini의 에이전트 루프는 더 자주 끊깁니다. 대체재가 아닌 보조 도구로 쓰는 것이 가장 좋습니다."
   - q: "비용 차이는 어느 정도인가요?"

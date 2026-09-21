@@ -1,17 +1,16 @@
 ---
 title: 'AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã...
-description: 'AgentMemory (22.038 sao GitHub) cung cấp bộ nhớ bền vững cho đại lý mã hóa AI dựa trên các đánh giá thực tế. Nhớ các phiên trước, duy trì ngữ cảnh qua nhiều ngày, học từ các tương tác trước. Hỗ trợ Claude Code, Codex CLI, OpenCode và hơn thế. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và đánh giá.'
+description: "AgentMemory (22.038 sao GitHub) cung cấp bộ nhớ bền vững cho đại lý mã hóa AI dựa trên các đánh giá thực tế. Nhớ các phiên trước, duy trì ngữ cảnh qua nhiều ngày, học từ các tương tác trước. Hỗ trợ Claude Code, Codex CLI, OpenCode và hơn thế. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và đánh giá."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
-tags: ['agent memory', 'persistent memory', 'AI coding agents', 'context continuity', 'AgentMemory', 'session memory', 'agent framework', 'AI benchmark']
-github_repo: 'https://github.com/rohitg00/agentmemory'
+tags: ["agent memory", "persistent memory", "AI coding agents", "context continuity", "AgentMemory", "session memory", "agent framework", "AI benchmark"]
+github_repo: "https://github.com/rohitg00/agentmemory"
 stars: 22038
 maintainer: 'rohitg00'
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/33592279'
-lang: vi
 ---
 
 # AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã Hóa AI — 22.000 Sao Với Đánh Giá Thực Tế — Hướng Dẫn Thực Tế 2026

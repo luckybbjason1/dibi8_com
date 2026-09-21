@@ -1,5 +1,5 @@
 ---
-title: 'Polymarket Agents: Polymarket 예측 시장용 AI 자동 거래 봇 구축'
+title: "Polymarket Agents: Polymarket 예측 시장용 AI 자동 거래 봇 구축"
 description: Polymarket Agents는 Polymarket 예측 시장에서 AI가 자율적으로 거래하는 에이전트를 구축하기 위한 오픈소스. Comprehensive guide covering features, pricing, and best practices for 2026.
   개발자 프레임워크입니다.
 date: 2026-05-15 04:20:25+09:00
@@ -21,7 +21,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/polymarket-agents-ai-trading-bot-framework/
+aliases:
+  - /ko/posts/polymarket-agents-ai-trading-bot-framework/
 faqs: - q: 'Polymarket Agents란 무엇인가요?'
     a: 'Polymarket Agents는 Polymarket 예측 시장에서 자율적으로 거래하는 AI 에이전트를 구축하기 위한 오픈소스 MIT 라이선스 개발자 프레임워크입니다. 시장을 분석하는 유틸리티를 제공하며, 실시간 데이터를 위해 Polymarket API와 연동하고 거래를 자동으로 실행합니다.'
   - q: 'Polymarket Agents를 실행하기 전에 무엇을 준비해야 하나요?'

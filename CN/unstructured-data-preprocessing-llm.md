@@ -1,6 +1,6 @@
 ---
 title: 'Unstructured.io: The Data Preprocessing Pipeline Convert...
-description: 'A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that converts PDFs, DOCX, PPTX, and images into clean, structured text chunks ready for LLM and RAG pipelines.'
+description: "A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that converts PDFs, DOCX, PPTX, and images into clean, structured text chunks ready for LLM and RAG pipelines."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Unstructured-IO/unstructured'
+github_repo: "Unstructured-IO/unstructured"
 stars: 10500
 maintainer: 'Unstructured-IO'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [unstructured, 'document-parsing', llm, rag, 'data-preprocessing', pdf, chunking, 'open-source']
-aliases: - /posts/unstructured-data-preprocessing-llm/-
+categories: ["data-science"]
+tags: ["unstructured", "document-parsing", "llm", "rag", "data-preprocessing", "pdf", "chunking", "open-source"]
+aliases:
+  - /posts/unstructured-data-preprocessing-llm/-
 ---
 {{</* resource-info */>}}
 

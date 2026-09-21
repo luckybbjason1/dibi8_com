@@ -1,6 +1,6 @@
 ---
 title: 'Chroma DB 2026：面向开发者的 RAG 向量数据库，嵌入搜索速度提升 50 倍 — Python 实...
-description: 'Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'chromadb/chroma'
+github_repo: "chromadb/chroma"
 stars: 18000
 maintainer: chromadb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /zh/posts/chroma-vector-database-python/-
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /zh/posts/chroma-vector-database-python/-
 ---
 
 {{</* resource-info */>}}
@@ -31,7 +32,7 @@ aliases: - /zh/posts/chroma-vector-database-python/-
 
 这正是 Chroma 要解决的问题。Chroma 是一个**面向开发者的向量数据库**，专为 90% 不需要分布式集群编排的 AI 应用而设计 —— 它们需要的是快速的嵌入搜索、简单的设置，以及一个真正易用的 Python API。
 
-截至 2026 年 5 月，Chroma 的 GitHub 星数已突破 **18,000**，发布的 **v0.6.x** 版本支持持久化存储、元数据过滤和查询引擎，在超过 100 万向量的数据集上实现了比暴力搜索快 **50 倍**的检索速度。该项目由 Chroma 团队维护，采用 **Apache-2.0** 许可证，是 [LangChain](dibi8-internal-link) 和 [LlamaIndex](dibi8-internal-link) 快速入门指南中的默认向量存储。
+截至 2026 年 5 月，Chroma 的 GitHub 星数已突破 **18", "000**，发布的 **v0.6.x** 版本支持持久化存储、元数据过滤和查询引擎，在超过 100 万向量的数据集上实现了比暴力搜索快 **50 倍**的检索速度。该项目由 Chroma 团队维护，采用 **Apache-2.0** 许可证，是 [LangChain"](dibi8-internal-link) 和 [LlamaIndex](dibi8-internal-link) 快速入门指南中的默认向量存储。
 
 本指南将带你从 `pip install` 到生产级 RAG 部署，全程不超过 30 分钟。无需向量数据库经验。
 

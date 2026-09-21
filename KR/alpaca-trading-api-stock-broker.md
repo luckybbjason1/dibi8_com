@@ -1,6 +1,6 @@
 ---
 title: 'Alpaca Trading API 2026: 알고리즘 트레이딩을 위한 커미션 없는 주식 중개 API ...
-description: '커미션 없는 알고리즘 트레이딩을 위한 Alpaca Trading API 완벽 가이드. 설정, 주문 실행, WebSocket 스트리밍, 소수 주식, 모의 투자를 Python 코드 예제와 함께 학습하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "커미션 없는 알고리즘 트레이딩을 위한 Alpaca Trading API 완벽 가이드. 설정, 주문 실행, WebSocket 스트리밍, 소수 주식, 모의 투자를 Python 코드 예제와 함께 학습하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/alpacahq/alpaca-trade-api-python'
+github_repo: "https://github.com/alpacahq/alpaca-trade-api-python"
 stars: 4500
 maintainer: alpacahq
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['alpaca trading api']
-aliases: - /kr/posts/alpaca-trading-api-stock-broker/
+categories: ["ai-trading"]
+tags: ["alpaca trading api"]
+aliases:
+  - /kr/posts/alpaca-trading-api-stock-broker/
 ---
 
 {{</* resource-info */>}}

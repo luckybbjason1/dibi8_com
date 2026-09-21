@@ -1,12 +1,12 @@
 ---
 title: 'Nuwa-Skill: Distill Any Person Thinking Model into AI Ag...
-description: 'Nuwa-Skill (23,508 GitHub stars) distills thinking models of historical figures, experts, and influencers into reusable AI Agent Skills. Compatible with Claude Code, Codex, Cursor, Hermes, and 50+ runtimes. Install via npx skills add.'
+description: "Nuwa-Skill (23,508 GitHub stars) distills thinking models of historical figures, experts, and influencers into reusable AI Agent Skills. Compatible with Claude Code, Codex, Cursor, Hermes, and 50+ runtimes. Install via npx skills add."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
-tags: ['nuwa-skill', 'agent skills', 'thinking models', 'COT distillation', 'AI agent framework', 'Claude Code skills', 'Codex skills', 'MCP alternatives', 'agent memory']
-github_repo: 'https://github.com/alchaincyf/nuwa-skill'
+tags: ["nuwa-skill", "agent skills", "thinking models", "COT distillation", "AI agent framework", "Claude Code skills", "Codex skills", "MCP alternatives", "agent memory"]
+github_repo: "https://github.com/alchaincyf/nuwa-skill"
 stars: 23508
 maintainer: 'alchaincyf'
 license: MIT

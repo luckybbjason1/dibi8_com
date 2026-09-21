@@ -1,10 +1,10 @@
 ---
-title: 'Zed vs Cursor 2026 비교: 네이티브 속도 vs AI 깊이 — 솔직한 비교'
-description: 'Zed(Rust 네이티브·GPU 가속·오픈소스)와 Cursor(VS Code 포크·AI 우선)를 항목별 비교 — 속도, AI 기능, 가격, 생태계, 플랫폼. 2026 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Zed vs Cursor 2026 비교: 네이티브 속도 vs AI 깊이 — 솔직한 비교"
+description: "Zed(Rust 네이티브·GPU 가속·오픈소스)와 Cursor(VS Code 포크·AI 우선)를 항목별 비교 — 속도, AI 기능, 가격, 생태계, 플랫폼. 2026 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [zed, cursor, ai-editor, code-editor, ai-coding, comparison, dev-tools, rust]
-categories: [vs]
+tags: ["zed", "cursor", "ai-editor", "code-editor", "ai-coding", "comparison", "dev-tools", "rust"]
+categories: ["vs"]
 faqs: - q: 'Zed와 Cursor 중 어느 쪽이 더 빠른가요?'
     a: 'Zed가 더 빠릅니다. Rust로 작성되고 GPU 가속 렌더링을 사용하며 Electron 레이어가 없어, 키 입력 지연·파일 열기·대용량 파일 스크롤이 큰 저장소에서도 거의 즉각적으로 느껴집니다. Cursor는 VS Code 포크라 Electron의 무거운 런타임을 물려받아 메모리 사용이 많고 아주 큰 파일에서 반응이 약간 느립니다. 에디터의 원초적 속도가 최우선이면 Zed가, 밀리초보다 AI 기능 깊이가 더 중요하면 Cursor의 오버헤드는 대개 감수할 만합니다.'
   - q: 'Zed와 Cursor 중 AI 코딩 기능이 더 발전한 쪽은?'

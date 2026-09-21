@@ -1,6 +1,6 @@
 ---
 title: 'GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft ...
-description: 'GraphRAG là hệ thống RAG mô-đun, dựa trên đồ thị tri thức của Microsoft (33.403 sao GitHub, giấy phép MIT). Hướng dẫn này trình bày cách cài đặt, quy trình init/index/query, ví dụ CLI thực tế và so sánh thẳng thắn với LangChain và Haystack.'
+description: "GraphRAG là hệ thống RAG mô-đun, dựa trên đồ thị tri thức của Microsoft (33.403 sao GitHub, giấy phép MIT). Hướng dẫn này trình bày cách cài đặt, quy trình init/index/query, ví dụ CLI thực tế và so sánh thẳng thắn với LangChain và Haystack."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,21 +12,22 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/graphrag'
+github_repo: "microsoft/graphrag"
 stars: 33403
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/graphrag-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/graphrag-llm-frameworks-2026/
 faqs: - q: 'Cài graphrag thế nào?'
     a: 'Cài từ PyPI chỉ với một lệnh (Python 3.10–3.12): ```bash pip install graphrag ```'
   - q: 'Yêu cầu hệ thống để chạy graphrag là gì?'
-    a: 'GraphRAG cần Python 3.10–3.12 và quyền truy cập một mô hình ngôn ngữ (OpenAI, Azure OpenAI hoặc nhà cung cấp được hỗ trợ khác) qua khóa API. Nó chạy trên mọi hệ điều hành hiện đại hỗ trợ Python.'
+    a: 'GraphRAG cần Python 3.10–3.12 và quyền truy cập một mô hình ngôn ngữ (OpenAI", "Azure OpenAI hoặc nhà cung cấp được hỗ trợ khác) qua khóa API. Nó chạy trên mọi hệ điều hành hiện đại hỗ trợ Python.'
   - q: 'Tôi có thể đóng góp cho dự án không?'
-    a: 'Có. Dự án là mã nguồn mở theo giấy phép MIT và hoan nghênh đóng góp. Xem hướng dẫn ở tệp [CONTRIBUTING.md](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) trên GitHub.'
+    a: 'Có. Dự án là mã nguồn mở theo giấy phép MIT và hoan nghênh đóng góp. Xem hướng dẫn ở tệp [CONTRIBUTING.md"](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) trên GitHub.'
   - q: 'Báo lỗi hoặc sự cố thế nào?'
     a: 'Dùng trang GitHub Issues của kho mã. Hãy đưa càng nhiều chi tiết càng tốt — thông báo lỗi, cấu hình của bạn và các bước tái hiện vấn đề.'
   - q: 'GraphRAG khác RAG vector thông thường ở điểm nào?'

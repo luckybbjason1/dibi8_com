@@ -1,6 +1,6 @@
 ---
 title: 'Vectara 2026: The RAG-as-a-Service Platform with 90%+ An...
-description: 'A hands-on guide to Vectara, the managed RAG platform with 90%+ answer accuracy. Covers Boomerang retrieval, API integration, multi-language support, hybrid search, and production benchmarks.'
+description: "A hands-on guide to Vectara, the managed RAG platform with 90%+ answer accuracy. Covers Boomerang retrieval, API integration, multi-language support, hybrid search, and production benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'vectara/vectara-ingest'
+github_repo: "vectara/vectara-ingest"
 stars: 800
 maintainer: vectara
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [vectara, rag, 'vector search', llm, embedding, boomerang, hhem, 'hallucination detection', 'enterprise ai']
-aliases: - /posts/vectara-rag-as-service-platform/-
+categories: ["data-science"]
+tags: ["vectara", "rag", "vector search", "llm", "embedding", "boomerang", "hhem", "hallucination detection", "enterprise ai"]
+aliases:
+  - /posts/vectara-rag-as-service-platform/-
 ---
 {{</* resource-info */>}}
 
@@ -221,7 +222,7 @@ curl -X POST "https://api.vectara.io/v1/query" \
       {
         "query": "What are the pricing tiers?",
         "numResults": 10,
-        "corpusKey": [{"customerId": "'"${VECTARA_CUSTOMER_ID}"'", "corpusId": "'"${VECTARA_CORPUS_ID}"'"}],
+        "corpusKey": [{"customerId": "'${VECTARA_CUSTOMER_ID}'", "corpusId": "'${VECTARA_CORPUS_ID}'"}],
         "summary": [{"maxSummarizedResults": 5, "responseLang": "eng"}]
       }
     ]

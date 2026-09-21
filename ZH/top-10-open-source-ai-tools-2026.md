@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/top-ai-developer-productivity-tools-2026/
+aliases:
+  - /zh/posts/top-ai-developer-productivity-tools-2026/
 - /zh/posts/top-open-source-document-management-tools-2026/
 - /zh/posts/top-open-source-fintech-tools-2026/
 faqs: - q: '2026 年 Midjourney 最好的开源替代方案是什么？'

@@ -1,6 +1,6 @@
 ---
 title: 'Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằ...
-description: 'Stack 5 thành phần chạy workload AI thực tế $0-15/tháng: Ollama local + DeepSeek API + Gemini free tier + nén RTK + orchestration 9Router. Toán chi phí thực, lựa model theo loại task, thứ tự lắp ráp.'
+description: "Stack 5 thành phần chạy workload AI thực tế $0-15/tháng: Ollama local + DeepSeek API + Gemini free tier + nén RTK + orchestration 9Router. Toán chi phí thực, lựa model theo loại task, thứ tự lắp ráp."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['llm rẻ', 'free tier', 'tối ưu chi phí', stack, collection]
-aliases: - /posts/cheap-llm-stack/
+categories: ["collections"]
+tags: ["llm rẻ", "free tier", "tối ưu chi phí", "stack", "collection"]
+aliases:
+  - /posts/cheap-llm-stack/
 ---
 
 # Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằng Free Tier + Nén Token

@@ -1,6 +1,6 @@
 ---
-title: 'Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好'
-description: 'Unsloth 微调 LLM 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。GitHub 64.9k 星，双 Apache 2.0 + AGPL-3.0 license。支持 Llama 3 / Mistral / Qwen 3 / Gemma / DeepSeek 的 LoRA / QLoRA / DPO / GRPO。2026 完整单 GPU 微调指南。'
+title: "Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好"
+description: "Unsloth 微调 LLM 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。GitHub 64.9k 星，双 Apache 2.0 + AGPL-3.0 license。支持 Llama 3 / Mistral / Qwen 3 / Gemma / DeepSeek 的 LoRA / QLoRA / DPO / GRPO。2026 完整单 GPU 微调指南。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/unslothai/unsloth'
+github_repo: "https://github.com/unslothai/unsloth"
 stars: 64900
 maintainer: unslothai
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [unsloth, 微调, lora, qlora, grpo, 快速训练]
-aliases: - /posts/unsloth-fast-llm-fine-tuning-2026/-
+categories: ["llm-frameworks"]
+tags: ["unsloth", "微调", "lora", "qlora", "grpo", "快速训练"]
+aliases:
+  - /posts/unsloth-fast-llm-fine-tuning-2026/-
 ---
 
 如果 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 是生产多 GPU 微调框架，**Unsloth** 是单 GPU 速度之王。通过用自定义 Triton + Python 重写 LLM 训练 kernel 而不依赖 PyTorch 通用 autograd，Unsloth 比 HuggingFace TRL 基线**快 2×** 且**少用 70% VRAM**。

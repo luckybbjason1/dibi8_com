@@ -1,6 +1,6 @@
 ---
 title: 'Coqui TTS: 45.3K+ Stars — Bộ Công Cụ TTS Học Sâu, So Sán...
-description: 'Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọng nói XTTS v2, tổng hợp VITS. So sánh hiệu suất thực tế RTF với ChatTTS, MeloTTS, Bark và hướng dẫn triển khai Docker.'
+description: "Coqui TTS là bộ công cụ tổng hợp giọng nói học sâu mã nguồn mở. Hỗ trợ 1100+ ngôn ngữ, nhân bản giọng nói XTTS v2, tổng hợp VITS. So sánh hiệu suất thực tế RTF với ChatTTS, MeloTTS, Bark và hướng dẫn triển khai Docker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/coqui-ai/TTS'
+github_repo: "https://github.com/coqui-ai/TTS"
 stars: 45300
 maintainer: 'coqui-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['coqui tts', 'chuyển-văn-bản-thành-giọng-nói', 'nhân-bản-giọng-nói', xtts, vits, 'học-sâu', docker, python]
-aliases: - /vi/posts/coqui-tts/
+categories: ["ai-tools"]
+tags: ["coqui tts", "chuyển-văn-bản-thành-giọng-nói", "nhân-bản-giọng-nói", "xtts", "vits", "học-sâu", "docker", "python"]
+aliases:
+  - /vi/posts/coqui-tts/
 ---
 
 {{</* resource-info */>}}

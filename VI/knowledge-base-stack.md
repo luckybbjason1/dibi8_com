@@ -1,6 +1,6 @@
 ---
 title: 'Stack Knowledge Base 2026: Xây "Bộ Não Thứ Hai" Với Anyt...
-description: 'Stack knowledge base self-host 5 thành phần cho cá nhân hoặc team. AnythingLLM (UI + RAG) + RAGFlow (phân tích doc sâu) + mem0 (memory agent) + AgentMemory MCP (expose MCP) + pick vector DB. Thay $50-200/tháng SaaS (Notion AI + Mem + Glean) bằng $10-25/tháng self-host.'
+description: "Stack knowledge base self-host 5 thành phần cho cá nhân hoặc team. AnythingLLM (UI + RAG) + RAGFlow (phân tích doc sâu) + mem0 (memory agent) + AgentMemory MCP (expose MCP) + pick vector DB. Thay $50-200/tháng SaaS (Notion AI + Mem + Glean) bằng $10-25/tháng self-host."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['knowledge base', rag, 'bộ não thứ hai', stack, collection]
-aliases: - /posts/knowledge-base-stack/
+categories: ["collections"]
+tags: ["knowledge base", "rag", "bộ não thứ hai", "stack", "collection"]
+aliases:
+  - /posts/knowledge-base-stack/
 ---
 
 Bạn có 500 PDF, 2,000 ghi chú, 10 năm email, và AI trong editor không biết chúng tồn tại. Notion AI tốn $10/seat/tháng và không thấy file local. Glean tốn tối thiểu $30k/năm. Mem.ai tuyệt nhưng là SaaS — "bộ não thứ hai" của bạn sống trên phần cứng người khác.

@@ -1,17 +1,16 @@
 ---
 title: 'open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Tr...
-description: 'open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nhà cung cấp AI. Thư viện kiến thức RAG self-hosted với podcast audio đa phương tiện. Bao gồm hướng dẫn cài đặt, so sánh nhà cung cấp và benchmark thực tế.'
+description: "open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nhà cung cấp AI. Thư viện kiến thức RAG self-hosted với podcast audio đa phương tiện. Bao gồm hướng dẫn cài đặt, so sánh nhà cung cấp và benchmark thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
-tags: ['open notebook', 'notebook lm alternative', 'self hosted RAG', 'knowledge base AI', 'multimodal RAG', 'open source notebook', 'AI podcast generator', 'self hosted LLM']
-github_repo: 'https://github.com/lfnovo/open-notebook'
+tags: ["open notebook", "notebook lm alternative", "self hosted RAG", "knowledge base AI", "multimodal RAG", "open source notebook", "AI podcast generator", "self hosted LLM"]
+github_repo: "https://github.com/lfnovo/open-notebook"
 stars: 28200
 maintainer: 'lfnovo'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
-lang: vi
 ---
 
 # open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Trợ 15+ Nhà Cung Cấp AI — Self-Hosted, 28.000 Sao — Hướng Dẫn Cài Đặt 2026

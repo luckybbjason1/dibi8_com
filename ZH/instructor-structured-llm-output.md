@@ -1,6 +1,6 @@
 ---
-title: 'Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南'
-description: '停止与不稳定的LLM输出作斗争。了解Instructor如何修补OpenAI客户端，使用Pydantic模型保证有效、类型安全的JSON响应。具有重试逻辑、多提供商支持和流式传输功能。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南"
+description: "停止与不稳定的LLM输出作斗争。了解Instructor如何修补OpenAI客户端，使用Pydantic模型保证有效、类型安全的JSON响应。具有重试逻辑、多提供商支持和流式传输功能。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jxnl/instructor'
+github_repo: "https://github.com/jxnl/instructor"
 stars: 11000
 maintainer: jxnl
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [instructor]
-aliases: - /zh/posts/instructor-structured-llm-output/-
+categories: ["llm-frameworks"]
+tags: ["instructor"]
+aliases:
+  - /zh/posts/instructor-structured-llm-output/-
 ---
 
 {{</* resource-info */>}}

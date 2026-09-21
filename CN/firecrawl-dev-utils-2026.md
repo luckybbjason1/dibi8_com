@@ -1,6 +1,6 @@
 ---
 title: 'Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
-description: 'Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clean, LLM-ready markdown or structured JSON. 127,747 GitHub stars, AGPL-3.0. Covers install, the official SDKs, real code, self-hosting, and an honest comparison with Puppeteer, Scrapy, and Axios.'
+description: "Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clean, LLM-ready markdown or structured JSON. 127,747 GitHub stars, AGPL-3.0. Covers install, the official SDKs, real code, self-hosting, and an honest comparison with Puppeteer, Scrapy, and Axios."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'firecrawl/firecrawl'
+github_repo: "firecrawl/firecrawl"
 stars: 127747
 maintainer: firecrawl
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/firecrawl-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/firecrawl-dev-utils-2026/
 faqs: - q: 'How do I install Firecrawl?'
-    a: 'Install one of the official SDKs. For Node.js: ```bash npm install firecrawl ``` For Python: ```bash pip install firecrawl-py ``` Then create a client with your API key from [firecrawl.dev](https://firecrawl.dev).'
+    a: 'Install one of the official SDKs. For Node.js: ```bash npm install firecrawl ``` For Python: ```bash pip install firecrawl-py ``` Then create a client with your API key from [firecrawl.dev"](https://firecrawl.dev).'
   - q: 'Can I use Firecrawl with languages other than TypeScript?'
     a: 'Yes. Firecrawl is an HTTP API, so any language can call it. There are official SDKs for Node.js and Python, and you can hit the REST endpoints directly from anything else with an HTTP client.'
   - q: 'Do I have to use the hosted API, or can I self-host?'

@@ -19,7 +19,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/pageindex-vectorless-reasoning-rag/
+aliases:
+  - /vi/posts/pageindex-vectorless-reasoning-rag/
 faqs: - q: 'PageIndex là gì và nó khác với RAG truyền thống như thế nào?'
     a: 'PageIndex là một hệ thống RAG mã nguồn mở của VectifyAI, truy xuất thông tin mà không cần cơ sở dữ liệu vector. Thay vì embedding và chia nhỏ (chunking) tài liệu, nó xây dựng một cấu trúc cây phân cấp cho mỗi tài liệu và sử dụng khả năng suy luận của LLM để duyệt qua cây đó, mô phỏng cách một chuyên gia đọc mục lục để tìm ra phần liên quan.'
   - q: 'PageIndex có cần cơ sở dữ liệu vector hay việc chia nhỏ tài liệu không?'

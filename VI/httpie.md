@@ -1,6 +1,6 @@
 ---
 title: 'HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại S...
-description: 'HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tương thích Python, pip, Homebrew, Docker. Bao gồm cài đặt, so sánh benchmark, bảo mật production và FAQ.'
+description: "HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tương thích Python, pip, Homebrew, Docker. Bao gồm cài đặt, so sánh benchmark, bảo mật production và FAQ."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/httpie/cli'
+github_repo: "https://github.com/httpie/cli"
 stars: 38200
 maintainer: httpie
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [httpie, cli, 'http-client', 'api-testing', 'curl-thay-the', json, terminal, 'cong-cu-lap-trinh']
-aliases: - /vi/posts/httpie/
+categories: ["dev-utils"]
+tags: ["httpie", "cli", "http-client", "api-testing", "curl-thay-the", "json", "terminal", "cong-cu-lap-trinh"]
+aliases:
+  - /vi/posts/httpie/
 ---
 
 {{</* resource-info */>}}

@@ -1,22 +1,23 @@
 ---
-title: 'RAG vs 파인튜닝 2026: 실제 비용 수치로 보는 데이터 기반 의사결정 프레임워크'
-description: '언제 RAG를, 언제 파인튜닝을, 언제 둘 다 사용할 것인가. 2026년 현재 모델 가격을 반영한 현실: 작업당 비용, 지연시간, 데이터 신선도, 그리고 데이터 양·쿼리 지연 예산·업데이트 빈도에 기반한 명확한 의사결정 트리.'
+title: "RAG vs 파인튜닝 2026: 실제 비용 수치로 보는 데이터 기반 의사결정 프레임워크"
+description: "언제 RAG를, 언제 파인튜닝을, 언제 둘 다 사용할 것인가. 2026년 현재 모델 가격을 반영한 현실: 작업당 비용, 지연시간, 데이터 신선도, 그리고 데이터 양·쿼리 지연 예산·업데이트 빈도에 기반한 명확한 의사결정 트리."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
-source_version: '2026 Q2 pricing'
+source_version: "2026 Q2 pricing"
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
-aliases: - /kr/posts/rag-vs-fine-tuning-2026-decision-framework/
+categories: ["llm-frameworks"]
+tags: ["rag", "fine-tuning", "llm", "cost-optimization", "decision-framework", "2026"]
+aliases:
+  - /kr/posts/rag-vs-fine-tuning-2026-decision-framework/
 faq: - q: "2026년에 RAG가 파인튜닝보다 유리한 경우는?"
     a: "RAG가 유리한 조건: (a) 지식 베이스가 주 단위 이상으로 업데이트, (b) 인용/출처가 필요, (c) 문서 코퍼스 < 10만 chunks, (d) 200-400ms 검색 지연 허용. 파인튜닝이 유리한 조건: 스타일/포맷 일관성이 필요하고, 지식이 안정적이며, 선행 학습 비용을 감당할 수 있을 때."
   - q: "RAG의 실제 프로덕션 비용은 얼마인가?"

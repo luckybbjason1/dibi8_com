@@ -1,6 +1,6 @@
 ---
 title: 'Browser Use: 94K+ Stars — Benchmarking AI Browser Automa...
-description: 'Browser Use is an open-source Python framework that connects LLMs to real browsers via Playwright. Supports OpenAI, Anthropic, Gemini, and local models. Covers setup, WebVoyager benchmarks, Selenium comparison, production hardening, and Docker deployment.'
+description: "Browser Use is an open-source Python framework that connects LLMs to real browsers via Playwright. Supports OpenAI, Anthropic, Gemini, and local models. Covers setup, WebVoyager benchmarks, Selenium comparison, production hardening, and Docker deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/browser-use/browser-use'
+github_repo: "https://github.com/browser-use/browser-use"
 stars: 94731
 maintainer: 'browser-use'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['browser-use', 'ai-agents', playwright, 'browser-automation', 'web-scraping', llm, python, 'open-source']
-aliases: - /posts/browser-use/-
+categories: ["llm-frameworks"]
+tags: ["browser-use", "ai-agents", "playwright", "browser-automation", "web-scraping", "llm", "python", "open-source"]
+aliases:
+  - /posts/browser-use/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
 title: 'Công Cụ Làm Sạch Dữ Liệu & Thực Hành Tốt Nhất: OpenRefin...
-description: 'Hướng dẫn toàn diện về công cụ làm sạch dữ liệu: OpenRefine, Pandas, Great Expectations, Cleanlab. So sánh và best practices cho pipeline dữ liệu sạch.'
+description: "Hướng dẫn toàn diện về công cụ làm sạch dữ liệu: OpenRefine, Pandas, Great Expectations, Cleanlab. So sánh và best practices cho pipeline dữ liệu sạch."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-cleaning-tools-best-practices/
+aliases:
+  - /posts/data-cleaning-tools-best-practices/
 ---
 
 {</* resource-info */>}

@@ -1,6 +1,6 @@
 ---
 title: 'Ollama Complete Guide 2025: Run LLMs Locally on Any Hard...
-description: 'Master Ollama in 2025. Install, configure, and run LLMs locally. Model guide, API reference, hardware requirements, and production deployment tips.'
+description: "Master Ollama in 2025. Install, configure, and run LLMs locally. Model guide, API reference, hardware requirements, and production deployment tips."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ollama-local-llm-guide/-
+aliases:
+  - /posts/ollama-local-llm-guide/-
 ---
 {</* resource-info */>}
 
@@ -299,14 +300,14 @@ response = ollama.chat(
     model='llama3.1:8b',
     messages=[{'role': 'user', 'content': 'Why is Python popular?'}]
 )
-print(response['message']['content'])
+print(response[message][content])
 
 # Streaming
-for chunk in ollama.chat(model='llama3.1:8b', messages=messages, stream=True): print(chunk['message']['content'], end='', flush=True)
+for chunk in ollama.chat(model='llama3.1:8b', messages=messages, stream=True): print(chunk[message][content], end='', flush=True)
 
 # Generate
 response = ollama.generate(model='llama3.1:8b', prompt='Write a haiku about coding')
-print(response['response'])
+print(response[response])
 ```
 
 ### JavaScript/TypeScript Integration

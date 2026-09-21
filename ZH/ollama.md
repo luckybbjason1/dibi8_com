@@ -1,6 +1,6 @@
 ---
-title: 'Ollama: 137K+ Stars — 一条命令本地运行大模型，2026 完整配置指南'
-description: 'Ollama 是在本地运行 Llama、DeepSeek、Mistral 等 LLM 的最简单方式。兼容 LangChain、OpenWebUI、Continue.dev 和 Dify。涵盖 Docker 部署、Modelfile 自定义、REST API、生产加固和性能基准测试。'
+title: "Ollama: 137K+ Stars — 一条命令本地运行大模型，2026 完整配置指南"
+description: "Ollama 是在本地运行 Llama、DeepSeek、Mistral 等 LLM 的最简单方式。兼容 LangChain、OpenWebUI、Continue.dev 和 Dify。涵盖 Docker 部署、Modelfile 自定义、REST API、生产加固和性能基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/ollama/ollama'
+github_repo: "https://github.com/ollama/ollama"
 stars: 137000
 maintainer: ollama
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [ollama, 本地大模型, 'llama.cpp', deepseek, mistral, docker, modelfile, 开源]
-aliases: - /zh/posts/ollama/
+categories: ["llm-frameworks"]
+tags: ["ollama", "本地大模型", "llama.cpp", "deepseek", "mistral", "docker", "modelfile", "开源"]
+aliases:
+  - /zh/posts/ollama/
 - /zh/resources/llm-frameworks/ollama-local-llm-guide/-
 ---
 

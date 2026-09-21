@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/mempalace-guide/
+aliases:
+  - /posts/mempalace-guide/
 faqs: - q: 'How do you add persistent memory to Claude Code?'
     a: 'Run MemPalace locally and pass its MCP endpoint to Claude Code by configuring claude_code_config.json to point at http://localhost:8787/mcp with read/write access. Claude then queries MemPalace as a semantic vector database whenever it needs historical context.'
   - q: 'Does Claude Code memory persist across sessions and reboots?'

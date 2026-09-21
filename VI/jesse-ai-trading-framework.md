@@ -1,6 +1,6 @@
 ---
 title: 'Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30...
-description: 'Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chiến lược tùy chỉnh và triển khai bot giao dịch crypto trực tiếp bằng Python.'
+description: "Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chiến lược tùy chỉnh và triển khai bot giao dịch crypto trực tiếp bằng Python."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'jesse-ai/jesse'
+github_repo: "jesse-ai/jesse"
 stars: 6200
 maintainer: 'jesse-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [jesse, 'giao dịch crypto', python, backtest, 'chỉ báo kỹ thuật', 'giao dịch thuật toán', 'ai trading', 'giao dịch định lượng']
-aliases: - /vi/posts/jesse-ai-trading-framework/
+categories: ["ai-trading"]
+tags: ["jesse", "giao dịch crypto", "python", "backtest", "chỉ báo kỹ thuật", "giao dịch thuật toán", "ai trading", "giao dịch định lượng"]
+aliases:
+  - /vi/posts/jesse-ai-trading-framework/
 ---
 
 {{</* resource-info */>}}

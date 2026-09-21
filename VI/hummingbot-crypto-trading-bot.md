@@ -1,6 +1,6 @@
 ---
 title: 'Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở V...
-description: 'Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao dịch. Bao gồm thiết lập Docker, chiến lược tùy chỉnh, backtest, gateway DEX và củng cố môi trường production.'
+description: "Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao dịch. Bao gồm thiết lập Docker, chiến lược tùy chỉnh, backtest, gateway DEX và củng cố môi trường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,28 +12,29 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'hummingbot/hummingbot'
+github_repo: "hummingbot/hummingbot"
 stars: 10500
 maintainer: hummingbot
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /vi/posts/hummingbot-crypto-trading-bot/
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /vi/posts/hummingbot-crypto-trading-bot/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tại Sao Hầu Hết Bot Giao Dịch Đều Thất Bại
 
-Mọi trader tiền mã hóa đều đã từng trải qua — bạn phát hiện cơ hội chênh lệch giá giữa Binance và Coinbase, nhưng khi bạn chuyển tiền thủ công và thực hiện cả hai bên, spread đã biến mất. Hoặc tệ hơn: bạn trả tiền cho một bot "độc quyền" hộp đen, chỉ để khám phá ra nó là một dự án mã nguồn mở được đổi thương hiệu với mức giá gấp 20 lần và zero hỗ trợ.
+Mọi trader tiền mã hóa đều đã từng trải qua — bạn phát hiện cơ hội chênh lệch giá giữa Binance và Coinbase", "nhưng khi bạn chuyển tiền thủ công và thực hiện cả hai bên", "spread đã biến mất. Hoặc tệ hơn: bạn trả tiền cho một bot "độc quyền" hộp đen", "chỉ để khám phá ra nó là một dự án mã nguồn mở được đổi thương hiệu với mức giá gấp 20 lần và zero hỗ trợ.
 
-Hãy nhìn vào thực tế. Theo một cuộc khảo sát năm 2025 với 2.400 trader định lượng tiền mã hóa, **73%** đã từ bỏ ít nhất một bot giao dịch thương mại trong vòng sáu tháng, trích dẫn giá cả không minh bạch và thiếu tùy biến chiến lược là hai lý do hàng đầu. 27% còn lại? Hầu hết đã chuyển sang các lựa chọn mã nguồn mở.
+Hãy nhìn vào thực tế. Theo một cuộc khảo sát năm 2025 với 2.400 trader định lượng tiền mã hóa", "**73%** đã từ bỏ ít nhất một bot giao dịch thương mại trong vòng sáu tháng", "trích dẫn giá cả không minh bạch và thiếu tùy biến chiến lược là hai lý do hàng đầu. 27% còn lại? Hầu hết đã chuyển sang các lựa chọn mã nguồn mở.
 
-Giới thiệu **Hummingbot** — framework giao dịch thuật toán được cấp phép Apache-2.0, sở hữu hơn **10.500 GitHub stars** và kết nối với **50+ sàn giao dịch** bao gồm Binance, Coinbase, Kraken, và các giao thức phi tập trung thông qua gateway thống nhất. Trong hướng dẫn này, bạn sẽ đi từ con số 0 đến một bot market making đang chạy trong vòng 5 phút, sau đó mở rộng sang các chiến lược production-grade.
+Giới thiệu **Hummingbot** — framework giao dịch thuật toán được cấp phép Apache-2.0", "sở hữu hơn **10.500 GitHub stars** và kết nối với **50+ sàn giao dịch** bao gồm Binance", "Coinbase", "Kraken", "và các giao thức phi tập trung thông qua gateway thống nhất. Trong hướng dẫn này", "bạn sẽ đi từ con số 0 đến một bot market making đang chạy trong vòng 5 phút", "sau đó mở rộng sang các chiến lược production-grade.
 
-> **Lưu ý Affiliate:** Hướng dẫn này sử dụng liên kết affiliate sàn giao dịch. Đăng ký trên [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) hoặc [OKX](https://www.promoohubly.com/join/12190433) để hỗ trợ dự án mà không phát sinh chi phí thêm. Để giao dịch với AI, hãy xem [Minara](https://minara.ai/r/OSXG4X).
+> **Lưu ý Affiliate:** Hướng dẫn này sử dụng liên kết affiliate sàn giao dịch. Đăng ký trên [Binance"](https://www.bsmkweb.cc/register?ref=DIBI8) hoặc [OKX](https://www.promoohubly.com/join/12190433) để hỗ trợ dự án mà không phát sinh chi phí thêm. Để giao dịch với AI, hãy xem [Minara](https://minara.ai/r/OSXG4X).
 
 ## Hummingbot Là Gì?
 

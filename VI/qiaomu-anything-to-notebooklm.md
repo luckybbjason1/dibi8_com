@@ -5,13 +5,12 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm
 category: data-science
-tags: [qiaomu-notebooklm, notebooklm, chuyển đổi nội dung, Claude Code, quản lý kiến thức, công cụ AI]
+tags: ["qiaomu-notebooklm", "notebooklm", "chuyển đổi nội dung", "Claude Code", "quản lý kiến thức", "công cụ AI"]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
 stars: 5015
 maintainer: joeseesun
 license: MIT
 featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
-lang: vi
 ---
 
 ## Giới thiệu

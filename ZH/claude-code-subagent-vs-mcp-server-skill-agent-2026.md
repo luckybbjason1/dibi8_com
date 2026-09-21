@@ -1,6 +1,6 @@
 ---
 title: 'Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
-description: 'Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "subagents", "skills", "agent-sdk", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-subagent-vs-mcp-vs-skill/
 faq: - q: "skill、subagent 和 MCP server 之间一句话的区别是什么？"
     a: "skill 教 Claude 『怎么做』某件事（打包好的指令与知识，按需载入上下文），subagent 决定『谁来做』（一个拥有独立上下文窗口的委派工人），而 MCP server 决定『能触达什么』（连接外部工具与数据的通道）。skill 改变行为，subagent 保护上下文，MCP server 增加能力——这是三条不同的轴，而不是三个互相竞争的选项。"
   - q: "如果我需要 Claude 查询我们的内部数据库，那是 skill、subagent 还是 MCP server？"

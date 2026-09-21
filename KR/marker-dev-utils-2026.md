@@ -1,6 +1,6 @@
 ---
 title: 'Marker: PDF, DOCX, EPUB를 Markdown/JSON으로 빠르게 변환 — 2026 실...
-description: 'Marker(datalab-to/marker)는 PDF, DOCX, EPUB 등 문서를 Markdown, JSON, HTML, chunks로 빠르고 정확하게 변환합니다. GitHub 스타 35,694개, 코드 라이선스는 GPL-3.0. 설치, CLI와 Python API, 실제 코드 예제, LLM 모드, 그리고 대안 도구와의 솔직한 비교를 다룹니다.'
+description: "Marker(datalab-to/marker)는 PDF, DOCX, EPUB 등 문서를 Markdown, JSON, HTML, chunks로 빠르고 정확하게 변환합니다. GitHub 스타 35,694개, 코드 라이선스는 GPL-3.0. 설치, CLI와 Python API, 실제 코드 예제, LLM 모드, 그리고 대안 도구와의 솔직한 비교를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'datalab-to/marker'
+github_repo: "datalab-to/marker"
 stars: 35694
 maintainer: 'datalab-to'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data/images/datalab-logo.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/marker-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/marker-dev-utils-2026/
 faqs: - q: 'marker는 어떻게 설치하나요?'
-    a: 'PyPI에서 `pip install marker-pdf`로 설치합니다. PDF가 아닌 형식(DOCX, PPTX, XLSX, EPUB, HTML, 이미지)에는 `pip install marker-pdf[full]`을 사용하세요.'
+    a: 'PyPI에서 `pip install marker-pdf`로 설치합니다. PDF가 아닌 형식(DOCX", "PPTX", "XLSX", "EPUB", "HTML", "이미지)에는 `pip install marker-pdf[full"]`을 사용하세요.'
   - q: '상업 프로젝트에 사용할 수 있나요?'
     a: '코드는 GPL-3.0 라이선스이지만, 모델 가중치는 수정된 AI Pubs Open Rail-M 라이선스를 사용합니다. 이 라이선스는 연구·개인 사용과 자금/매출이 대략 200만 달러 미만인 기업에는 무료이며, 더 큰 상업 사용자는 Datalab의 상업용 라이선스가 필요합니다. 배포 전에 최신 조항을 확인하세요.'
   - q: 'marker는 어떤 종류의 문서를 처리할 수 있나요?'

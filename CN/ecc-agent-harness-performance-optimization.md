@@ -1,12 +1,12 @@
 ---
 title: 'ECC: Optimize Claude Code, Codex, and Cursor Performance...
-description: 'ECC (Agent Harness Performance Optimization) reduces context window usage and speeds up AI coding agent responses. Compatible with Claude Code, Codex, Opencode, Cursor, and more. Performance tuning, skill system, and MCP server setup covered.'
+description: "ECC (Agent Harness Performance Optimization) reduces context window usage and speeds up AI coding agent responses. Compatible with Claude Code, Codex, Opencode, Cursor, and more. Performance tuning, skill system, and MCP server setup covered."
 tags: ["ai-agent", "ai-editor", "anthropic", "automation", "claude", "coding-agent", "cursor", "guide", "open-source", "reference", "tutorial"]
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
-github_repo: 'https://github.com/affaan-m/ECC'
+github_repo: "https://github.com/affaan-m/ECC"
 license: 'MIT'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
 # ECC: Agent Harness Performance Optimization — 2026 Guide

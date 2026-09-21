@@ -1,6 +1,6 @@
 ---
 title: 'MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui...
-description: 'MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sánh hiệu năng với Coqui TTS, ChatTTS và Bark. Hướng dẫn cài đặt Python, triển khai Docker, suy luận thờ gian thực và cứng hóa production.'
+description: "MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sánh hiệu năng với Coqui TTS, ChatTTS và Bark. Hướng dẫn cài đặt Python, triển khai Docker, suy luận thờ gian thực và cứng hóa production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/myshell-ai/MeloTTS'
+github_repo: "https://github.com/myshell-ai/MeloTTS"
 stars: 7400
 maintainer: 'myshell-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [melotts, 'chuyen-van-ban-thanh-giong-noi', tts, 'da-ngon-ngu', python, 'tong-hop-giong-noi', 'mo-nguon', 'suy-luan-cpu']
-aliases: - /vi/posts/melotts/
+categories: ["ai-tools"]
+tags: ["melotts", "chuyen-van-ban-thanh-giong-noi", "tts", "da-ngon-ngu", "python", "tong-hop-giong-noi", "mo-nguon", "suy-luan-cpu"]
+aliases:
+  - /vi/posts/melotts/
 ---
 
 {{</* resource-info */>}}

@@ -1,6 +1,6 @@
 ---
 title: 'Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vec...
-description: 'Hướng dẫn sản xuất cho Milvus 2.5: tìm kiếm vector quy mô tỷ, xây dựng chỉ mục GPU, triển khai Kubernetes, tìm kiếm lai, và thiết lập Zilliz Cloud.'
+description: "Hướng dẫn sản xuất cho Milvus 2.5: tìm kiếm vector quy mô tỷ, xây dựng chỉ mục GPU, triển khai Kubernetes, tìm kiếm lai, và thiết lập Zilliz Cloud."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'milvus-io/milvus'
+github_repo: "milvus-io/milvus"
 stars: 32000
 maintainer: 'milvus-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 'gpu-indexing', 'ai-infrastructure']
-aliases: - /vi/posts/zilliz-milvus-vector-database-scale/
+categories: ["data-science"]
+tags: ["milvus", "zilliz", "vector-database", "ann", "similarity-search", "kubernetes", "gpu-indexing", "ai-infrastructure"]
+aliases:
+  - /vi/posts/zilliz-milvus-vector-database-scale/
 ---
 
 {{</* resource-info */>}}

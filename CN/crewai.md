@@ -1,6 +1,6 @@
 ---
 title: 'CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
-description: 'CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents. Compatible with OpenAI, Anthropic, Ollama, LangChain, and LlamaIndex. Covers installation, agent roles, task workflows, production deployment, and benchmarks.'
+description: "CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents. Compatible with OpenAI, Anthropic, Ollama, LangChain, and LlamaIndex. Covers installation, agent roles, task workflows, production deployment, and benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/crewAIInc/crewAI'
+github_repo: "https://github.com/crewAIInc/crewAI"
 stars: 51759
 maintainer: crewAIInc
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [crewai, 'multi-agent', 'ai-agents', python, 'llm-orchestration', automation, 'open-source', 'machine-learning']
-aliases: - /posts/crewai/
+categories: ["llm-frameworks"]
+tags: ["crewai", "multi-agent", "ai-agents", "python", "llm-orchestration", "automation", "open-source", "machine-learning"]
+aliases:
+  - /posts/crewai/
 - /resources/llm-frameworks/crewai-multi-agent-orchestration/-
 ---
 {{</* resource-info */>}}

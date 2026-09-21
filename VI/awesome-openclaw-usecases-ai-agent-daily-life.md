@@ -21,7 +21,8 @@ maintainer: "openclaw"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/awesome-openclaw-usecases-ai-agent-daily-life/
+aliases:
+  - /vi/posts/awesome-openclaw-usecases-ai-agent-daily-life/
 faqs: - q: 'OpenClaw được dùng để làm gì?'
     a: 'OpenClaw là một framework AI agent mã nguồn mở dùng để xây dựng các tác nhân tự động có khả năng thực thi các quy trình nhiều bước, tích hợp với API bên ngoài, xử lý dữ liệu từ nhiều nguồn và hoàn thành mục tiêu với sự can thiệp tối thiểu của con người. Nó được sử dụng trong nhiều lĩnh vực bao gồm tự động hóa mạng xã hội, sáng tạo nội dung, năng suất, nghiên cứu và giao dịch.'
   - q: 'OpenClaw khác với AutoGPT, BabyAGI và AgentGPT như thế nào?'

@@ -1,6 +1,6 @@
 ---
 title: '2025년 최고의 프롬프트 엔지니어링 프레임워크 및 도구 비교: PromptLayer, LangSmi...
-description: '2025년 최신 프롬프트 엔지니어링 프레임워크와 도구를 버전 관리, A/B 테스트, 협업 기능 중심으로 비교합니다. LangSmith, PromptLayer, W&B Prompts, Pezzo 등 주요 도구를 확인하세요.'
+description: "2025년 최신 프롬프트 엔지니어링 프레임워크와 도구를 버전 관리, A/B 테스트, 협업 기능 중심으로 비교합니다. LangSmith, PromptLayer, W&B Prompts, Pezzo 등 주요 도구를 확인하세요."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['프롬프트 엔지니어링', '프롬프트 관리', langsmith, promptlayer, 'weights & biases', 'llm 관찰 가능성']
-aliases: - /kr/posts/prompt-engineering-frameworks-tools/
+categories: ["llm-frameworks"]
+tags: ["프롬프트 엔지니어링", "프롬프트 관리", "langsmith", "promptlayer", "weights & biases", "llm 관찰 가능성"]
+aliases:
+  - /kr/posts/prompt-engineering-frameworks-tools/
 ---
 
 # 2025년 최고의 프롬프트 엔지니어링 프레임워크 및 도구 비교: PromptLayer, LangSmith, W&B Prompts

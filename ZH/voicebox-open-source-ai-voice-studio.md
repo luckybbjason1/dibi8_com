@@ -5,7 +5,7 @@ date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-tools
-tags: ['ai', '语音ai', '语音克隆', '语音转文字', '文字转语音', 'whisper', 'qwen3-tts', 'cuda', 'mlx']
+tags: ["ai", "语音ai", "语音克隆", "语音转文字", "文字转语音", "whisper", "qwen3-tts", "cuda", "mlx"]
 slug: voicebox-open-source-ai-voice-studio
 featureImage: /images/articles/voicebox-open-source-ai-voice-studio-for-cloning-dictation-and-generation.png
 github_repo: https://github.com/voicebox-ai/voicebox

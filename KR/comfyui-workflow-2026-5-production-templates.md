@@ -1,22 +1,23 @@
 ---
-title: 'ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종'
-description: '2026년 ComfyUI는 GitHub 스타 10.6만 개를 돌파했습니다. 초보자 친화적 셋업 가이드, 2026년 모델 추천, 그리고 곧바로 실무에 투입 가능한 워크플로 템플릿 5종(텍스트→이미지, 인페인트, 업스케일, 비디오, 캐릭터 일관성).'
+title: "ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종"
+description: "2026년 ComfyUI는 GitHub 스타 10.6만 개를 돌파했습니다. 초보자 친화적 셋업 가이드, 2026년 모델 추천, 그리고 곧바로 실무에 투입 가능한 워크플로 템플릿 5종(텍스트→이미지, 인페인트, 업스케일, 비디오, 캐릭터 일관성)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI 도구
-source_version: 'ComfyUI 2026.05'
+source_version: "ComfyUI 2026.05"
 licensing_model: 오픈 소스
 license_type: 'GPL-3.0'
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 106000
 maintainer: comfyanonymous
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases: - /kr/posts/comfyui-workflow-2026-5-production-templates/
+categories: ["ai-tools"]
+tags: ["comfyui", "stable-diffusion", "image-generation", "workflows", "2026"]
+aliases:
+  - /kr/posts/comfyui-workflow-2026-5-production-templates/
 faq: - q: "2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?"
     a: "워크플로 자동화와 프로덕션 용도라면: 단연코 예. ComfyUI의 노드 기반 그래프는 복잡한 다단계 파이프라인(업스케일 → 인페인트 → ControlNet → 재렌더)을 손쉽게 만들어줍니다. SD WebUI는 일회성 생성에 더 간편합니다. 대부분의 프로 AI 아티스트는 둘 다 사용합니다."
   - q: "어떤 하드웨어가 필요한가요?"

@@ -2,7 +2,7 @@
 title: Vercel AI SDK — The Universal Framework for Building AI-P...
 description: Complete guide to Vercel AI SDK, the provider-agnostic framework for building AI-powered chat interfaces, streaming responses, and tool calling. Works with React Server Components, Next.js, SvelteKit, and more.
 category: llm-frameworks
-tags: ['ai-sdk', 'vercel', 'react-server-components', 'streaming', 'tool-calling', 'llm-integration']
+tags: ["ai-sdk", "vercel", "react-server-components", "streaming", "tool-calling", "llm-integration"]
 slug: vercel-ai-sdk-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg---
@@ -274,7 +274,7 @@ const result = await generateText({
   ],
   tools: {
     getWeather: tool({
-      description: 'Get the current weather for a location',
+      description: "Get the current weather for a location",
       parameters: z.object({
         location: z.string().describe('City name, e.g. San Francisco'),
         unit: z.enum(['celsius', 'fahrenheit']).default('celsius'),
@@ -287,7 +287,7 @@ const result = await generateText({
       },
     }),
     searchWeb: tool({
-      description: 'Search the web for information',
+      description: "Search the web for information",
       parameters: z.object({
         query: z.string().describe('Search query'),
         maxResults: z.number().default(5),
@@ -316,7 +316,7 @@ const result = streamText({
   messages: [{ role: 'user', content: 'Search for React performance tips' }],
   tools: {
     search: tool({
-      description: 'Search for information on a topic',
+      description: "Search for information on a topic",
       parameters: z.object({ query: z.string() }),
       execute: async ({ query }) => {
         return await searchEngine(query);

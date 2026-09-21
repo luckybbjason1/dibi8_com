@@ -1,6 +1,6 @@
 ---
 title: 'CC Switch Review: The Missing Control Center for AI Codi...
-description: 'CC Switch is an open-source cross-platform desktop app that unifies Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode & Hermes Agent management. 74K+ GitHub stars, Rust+Tauri stack, 50+ provider presets, unified MCP server sync. Full feature breakdown, setup guide, and workflow tips.'
+description: "CC Switch is an open-source cross-platform desktop app that unifies Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode & Hermes Agent management. 74K+ GitHub stars, Rust+Tauri stack, 50+ provider presets, unified MCP server sync. Full feature breakdown, setup guide, and workflow tips."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/farion1231/cc-switch'
+github_repo: "https://github.com/farion1231/cc-switch"
 stars: 74754
 maintainer: farion1231
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['cc-switch', 'ai-cli', 'meta-tool', 'claude-code', 'developer-productivity']
-aliases: - /posts/cc-switch-unified-ai-cli-control-center-2026/-
+categories: ["dev-utils"]
+tags: ["cc-switch", "ai-cli", "meta-tool", "claude-code", "developer-productivity"]
+aliases:
+  - /posts/cc-switch-unified-ai-cli-control-center-2026/-
 ---
 {</* resource-info */>}
 

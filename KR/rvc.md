@@ -1,6 +1,6 @@
 ---
-title: 'RVC: 35K+ Stars AI 음성 변환 구축 — 2026년 10분 훈련 설정 가이드'
-description: 'RVC (Retrieval-based Voice Conversion)는 GPT-SoVITS, Coqui TTS, demucs와 호환되는 VITS 기반 음성 변환 프레임워크입니다. 본 튜토리얼은 Docker 배포, 훈련 파이프라인, API 통합 및 프로덕션 강화를 다룹니다.'
+title: "RVC: 35K+ Stars AI 음성 변환 구축 — 2026년 10분 훈련 설정 가이드"
+description: "RVC (Retrieval-based Voice Conversion)는 GPT-SoVITS, Coqui TTS, demucs와 호환되는 VITS 기반 음성 변환 프레임워크입니다. 본 튜토리얼은 Docker 배포, 훈련 파이프라인, API 통합 및 프로덕션 강화를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI'
+github_repo: "https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI"
 stars: 35700
 maintainer: 'RVC-Project'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [rvc, '음성-변환', 'ai-음성-클론', vits, '음성-합성', docker, 튜토리얼, '검색-기반-vc']
-aliases: - /kr/posts/rvc/
+categories: ["ai-tools"]
+tags: ["rvc", "음성-변환", "ai-음성-클론", "vits", "음성-합성", "docker", "튜토리얼", "검색-기반-vc"]
+aliases:
+  - /kr/posts/rvc/
 ---
 
 {{</* resource-info */>}}

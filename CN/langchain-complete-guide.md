@@ -1,6 +1,6 @@
 ---
 title: 'LangChain Complete Guide 2025: From Zero to Production-R...
-description: 'Master LangChain in 2025 with this complete guide. Learn core components, build RAG apps, create agents, and deploy production-ready AI applications.'
+description: "Master LangChain in 2025 with this complete guide. Learn core components, build RAG apps, create agents, and deploy production-ready AI applications."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/langchain-complete-guide/-
+aliases:
+  - /posts/langchain-complete-guide/-
 ---
 {</* resource-info */>}
 

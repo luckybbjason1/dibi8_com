@@ -1,6 +1,6 @@
 ---
 title: 'NocoDB 2026: The Open-Source Airtable Alternative Turnin...
-description: 'Deploy NocoDB in 5 minutes with Docker. Turn MySQL, PostgreSQL, or SQLite into a collaborative spreadsheet with auto-generated REST APIs, Kanban boards, and role-based access control.'
+description: "Deploy NocoDB in 5 minutes with Docker. Turn MySQL, PostgreSQL, or SQLite into a collaborative spreadsheet with auto-generated REST APIs, Kanban boards, and role-based access control."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'nocodb/nocodb'
+github_repo: "nocodb/nocodb"
 stars: 53000
 maintainer: nocodb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [nocodb, 'airtable-alternative', 'open-source', database, spreadsheet, 'self-hosted', docker, mysql, postgresql]
-aliases: - /posts/noco-db-airtable-alternative/-
+categories: ["dev-utils"]
+tags: ["nocodb", "airtable-alternative", "open-source", "database", "spreadsheet", "self-hosted", "docker", "mysql", "postgresql"]
+aliases:
+  - /posts/noco-db-airtable-alternative/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
-title: 'CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程'
-description: 'CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成。涵盖安装、Docker、推理、微调和基准测试。'
+title: "CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程"
+description: "CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成。涵盖安装、Docker、推理、微调和基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/zai-org/CogVideo'
+github_repo: "https://github.com/zai-org/CogVideo"
 stars: 12700
 maintainer: 'zai-org'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [cogvideo, cogvideox, 文本生成视频, 扩散transformer, 智谱ai, 视频生成, 开源ai, comfyui]
-aliases: - /zh/posts/cogvideo/-
+categories: ["ai-tools"]
+tags: ["cogvideo", "cogvideox", "文本生成视频", "扩散transformer", "智谱ai", "视频生成", "开源ai", "comfyui"]
+aliases:
+  - /zh/posts/cogvideo/-
 ---
 
 {{</* resource-info */>}}

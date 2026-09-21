@@ -1,6 +1,6 @@
 ---
 title: 'act: 70,410 GitHub Stars — Run GitHub Actions Locally, P...
-description: 'act (nektos/act) is a CLI tool that runs GitHub Actions locally using Docker containers. Compatible with Docker, GitHub Actions, Go, and VS Code. Covers installation, setup, secrets management, runner images, and production hardening.'
+description: "act (nektos/act) is a CLI tool that runs GitHub Actions locally using Docker containers. Compatible with Docker, GitHub Actions, Go, and VS Code. Covers installation, setup, secrets management, runner images, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/nektos/act'
+github_repo: "https://github.com/nektos/act"
 stars: 70410
 maintainer: nektos
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [act, 'github-actions', 'ci-cd', docker, 'local-development', devops, testing, automation]
-aliases: - /posts/act/
+categories: ["dev-utils"]
+tags: ["act", "github-actions", "ci-cd", "docker", "local-development", "devops", "testing", "automation"]
+aliases:
+  - /posts/act/
 image: "https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png"
 ---
 {{</* resource-info */>}}

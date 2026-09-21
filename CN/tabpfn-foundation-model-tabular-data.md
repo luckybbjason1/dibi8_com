@@ -21,7 +21,8 @@ maintainer: "PriorLabs"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/tabpfn-foundation-model-tabular-data/
+aliases:
+  - /en/posts/tabpfn-foundation-model-tabular-data/
 - /posts/tabpfn-foundation-model-tabular-data/
 faqs: - q: 'What is TabPFN?'
     a: 'TabPFN is a foundation model for tabular data developed by PriorLabs that analyzes structured tables such as spreadsheets, databases, and CSV files. It uses Prior-Fitted Networks pre-trained on millions of synthetic datasets, eliminating the need for hyperparameter tuning.'
@@ -183,7 +184,7 @@ import pandas as pd
 # TabPFN handles mixed data types
 df = pd.read_csv('your_data.csv')
 X = df.drop('target', axis=1)
-y = df['target']
+y = df[target]
 
 clf = TabPFNClassifier()
 clf.fit(X, y)  # Automatically detects feature types

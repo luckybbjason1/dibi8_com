@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Windsurf in 2026: Which AI IDE Wins?'
-description: 'Side-by-side breakdown of Cursor and Windsurf (Codeium) — Composer vs Cascade, pricing, performance, migration tips. Updated 2026.'
+title: "Cursor vs Windsurf in 2026: Which AI IDE Wins?"
+description: "Side-by-side breakdown of Cursor and Windsurf (Codeium) — Composer vs Cascade, pricing, performance, migration tips. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, windsurf, codeium, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Is Cursor or Windsurf cheaper?'
     a: 'Windsurf is cheaper at $15/month Pro versus Cursor''s $20/month Pro. Windsurf also offers a more generous free tier with limited Cascade credits. For pure cost optimization, Windsurf wins by $5-$10/month; for raw capability per dollar, it''s close.'
   - q: 'Which is better for agentic multi-file edits?'

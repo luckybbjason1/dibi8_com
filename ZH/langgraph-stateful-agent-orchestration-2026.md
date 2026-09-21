@@ -1,6 +1,6 @@
 ---
-title: 'LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）'
-description: 'LangGraph 是长跑、有状态 AI agent 的底层编排框架。GitHub 32.6k stars，v1.2.1。真实部署指南覆盖图设计、持久化执行、human-in-loop 检查点、LangSmith 调试、以及 LangGraph 何时胜过 CrewAI / AutoGen / 纯 LangChain。'
+title: "LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）"
+description: "LangGraph 是长跑、有状态 AI agent 的底层编排框架。GitHub 32.6k stars，v1.2.1。真实部署指南覆盖图设计、持久化执行、human-in-loop 检查点、LangSmith 调试、以及 LangGraph 何时胜过 CrewAI / AutoGen / 纯 LangChain。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -8,22 +8,23 @@ tech_stack: - Python
   - PostgreSQL
   - Redis
 application_domain: Llm Frameworks
-source_version: '1.2.1'
+source_version: "1.2.1"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langchain-ai/langgraph'
+github_repo: "https://github.com/langchain-ai/langgraph"
 stars: 32600
 maintainer: 'langchain-ai'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [langgraph, agent, 有状态, 编排, langchain, 生产]
-aliases: - /posts/langgraph-stateful-agent-orchestration-2026/-
+categories: ["llm-frameworks"]
+tags: ["langgraph", "agent", "有状态", "编排", "langchain", "生产"]
+aliases:
+  - /posts/langgraph-stateful-agent-orchestration-2026/-
 ---
 
 你写过简单 LLM agent，看过它进程重启就忘光、一个 tool call 超时就丢半进度、两个事件并发就静默搞坏状态 —— 那你撞到的就是 **LangGraph** 要打穿的墙。

@@ -1,26 +1,27 @@
 ---
 title: 'rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
-description: 'rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claude Code / Cursor / Copilot / Codex / Gemini CLI và 9 công cụ AI khác. <10ms overhead, MIT open source, cài đặt 30 giây không cấu hình.'
+description: "rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claude Code / Cursor / Copilot / Codex / Gemini CLI và 9 công cụ AI khác. <10ms overhead, MIT open source, cài đặt 30 giây không cấu hình."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
-source_version: '0.28.2'
+source_version: "0.28.2"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/rtk-ai/rtk/releases'
 backup_url: ''
-github_repo: 'https://github.com/rtk-ai/rtk'
+github_repo: "https://github.com/rtk-ai/rtk"
 stars: 0
 maintainer: 'rtk-ai'
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
-aliases: - /vi/posts/rtk/
+categories: ["llm-frameworks"]
+tags: ["rtk", "rust", "cli", "llm", "token-optimization", "ai-coding", "claude-code", "cursor", "copilot", "cost-optimization", "open-source", "developer-tools"]
+aliases:
+  - /vi/posts/rtk/
 - /vi/resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
 faqs: - q: 'rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?'
     a: 'rtk là proxy CLI Rust mã nguồn mở, tự động nén output lệnh terminal trước khi đến context window của AI agent. Giảm 60-90% token tiêu thụ cho 13 công cụ AI coding (Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI). Thực tế: hóa đơn Claude API $400/tháng giảm còn ~$80, độ trễ <10ms, mã nguồn mở MIT, cài đặt 30 giây.'

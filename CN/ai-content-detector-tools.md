@@ -1,6 +1,6 @@
 ---
 title: 'Best AI Content Detector Tools 2025: GPTZero, Turnitin A...
-description: 'Compare the best AI content detector tools of 2025. In-depth analysis of GPTZero, Turnitin AI, Copyleaks, Originality.ai, and more with accuracy tests, pricing, and use case recommendations.'
+description: "Compare the best AI content detector tools of 2025. In-depth analysis of GPTZero, Turnitin AI, Copyleaks, Originality.ai, and more with accuracy tests, pricing, and use case recommendations."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['ai content detection', gptzero, turnitin, copyleaks, 'originality.ai', 'ai writing detection', 'content authenticity']
-aliases: - /posts/ai-content-detector-tools/
+categories: ["ai-tools"]
+tags: ["ai content detection", "gptzero", "turnitin", "copyleaks", "originality.ai", "ai writing detection", "content authenticity"]
+aliases:
+  - /posts/ai-content-detector-tools/
 ---
 # Best AI Content Detector Tools 2025: GPTZero, Turnitin AI, Copyleaks & More Compared
 

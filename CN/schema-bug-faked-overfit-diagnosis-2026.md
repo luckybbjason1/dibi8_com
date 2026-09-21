@@ -1,22 +1,23 @@
 ---
 title: 'Schema Bug Faked My Overfit Diagnosis: The Backtest Post...
-description: 'Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then discovered the diagnosis itself was wrong — silent schema field mismatch made the optimizer run with default 10x leverage instead of the evolved 2x. The corrected version is healthy (ratio 1.01). The meta-lesson is uglier than the original.'
+description: "Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then discovered the diagnosis itself was wrong — silent schema field mismatch made the optimizer run with default 10x leverage instead of the evolved 2x. The corrected version is healthy (ratio 1.01). The meta-lesson is uglier than the original."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
-source_version: 'moss-trade-bot-skills v1.0.26'
+source_version: "moss-trade-bot-skills v1.0.26"
 licensing_model: Open Source
 license_type: MIT
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-26'
+last_maintained: "2026-05-26"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases: - /posts/schema-bug-faked-overfit-diagnosis-2026/
+categories: ["ai-trading"]
+tags: ["backtest", "overfit", "quant", "schema-drift", "walk-forward", "postmortem", "2026"]
+aliases:
+  - /posts/schema-bug-faked-overfit-diagnosis-2026/
 faq: - q: "What is schema drift and why does it fake backtest results?"
     a: "Schema drift means parameter field names in your config no longer match the runtime schema. The deserializer silently drops unknown fields and uses defaults. If those defaults are aggressive (like 10x leverage when you intended 2x), backtest results swing massively. The numbers look real but they came from a different strategy than the one you wrote."
   - q: "How did the original overfit diagnosis look so convincing?"

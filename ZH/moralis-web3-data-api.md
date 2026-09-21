@@ -1,6 +1,6 @@
 ---
-title: 'Moralis 2026: 为100K+ DApp提供实时链上数据的Web3数据API — 设置指南'
-description: '2026年Moralis Web3数据API完整指南。学习如何使用JavaScript、Python和Unity SDK跨10多条链获取实时区块链数据、NFT元数据、代币价格和钱包余额。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Moralis 2026: 为100K+ DApp提供实时链上数据的Web3数据API — 设置指南"
+description: "2026年Moralis Web3数据API完整指南。学习如何使用JavaScript、Python和Unity SDK跨10多条链获取实时区块链数据、NFT元数据、代币价格和钱包余额。"
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/MoralisWeb3/Moralis-JS'
+github_repo: "https://github.com/MoralisWeb3/Moralis-JS"
 stars: 3200
 maintainer: MoralisWeb3
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [moralis]
-aliases: - /zh/posts/moralis-web3-data-api/-
+categories: ["ai-trading"]
+tags: ["moralis"]
+aliases:
+  - /zh/posts/moralis-web3-data-api/-
 ---
 
 {{</* resource-info */>}}
@@ -303,7 +304,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-  description: 'Track USDC transfers',
+description: "Track USDC transfers"
   tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',

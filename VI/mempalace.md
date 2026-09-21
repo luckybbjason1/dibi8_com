@@ -19,7 +19,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/mempalace/
+aliases:
+  - /vi/posts/mempalace/
 faqs: - q: 'MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?'
     a: 'MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.'
   - q: 'Cách cài đặt MemPalace như thế nào?'

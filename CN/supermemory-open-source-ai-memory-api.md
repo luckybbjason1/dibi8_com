@@ -1,12 +1,12 @@
 ---
 title: 'Supermemory: The Fastest Open-Source AI Memory API for B...
-description: 'Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API with vector search, graph search, and session management. Integrates with LangChain, LlamaIndex, CrewAI, and any Python/JS app. Self-hosted, zero external dependencies. Includes setup guide, benchmarks, and production deployment.'
+description: "Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API with vector search, graph search, and session management. Integrates with LangChain, LlamaIndex, CrewAI, and any Python/JS app. Self-hosted, zero external dependencies. Includes setup guide, benchmarks, and production deployment."
 tags: ["ai-agent", "ai-memory", "api", "memory", "open-source", "persistence", "self-hosted"]
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'supermemory-open-source-ai-memory-api'
 category: llm-frameworks
-github_repo: 'https://github.com/supermemoryai/supermemory'
+github_repo: "https://github.com/supermemoryai/supermemory"
 license: MIT
 featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png---
 # Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything
@@ -295,7 +295,7 @@ import { Memory } from 'supermemory';
 const m = new Memory();
 await m.init();
 
-await m.add('User likes spicy food', { tags: ['diet'] });
+await m.add('User likes spicy food', { tags: [diet] });
 const results = await m.search('dietary preferences', { top_k: 5 });
 ```
 

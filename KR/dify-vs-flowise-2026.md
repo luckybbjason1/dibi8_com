@@ -1,10 +1,10 @@
 ---
-title: 'Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스'
-description: 'Dify(엔터프라이즈 RAG, 멀티 모델, 프롬프트 관리, 셀프호스팅)와 Flowise(시각적 LangChain 빌더, 경량, 오픈소스)를 항목별 비교 — 기능, 셀프호스팅, AI 파이프라인, 2026년 팀별 적합 선택.'
+title: "Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스"
+description: "Dify(엔터프라이즈 RAG, 멀티 모델, 프롬프트 관리, 셀프호스팅)와 Flowise(시각적 LangChain 빌더, 경량, 오픈소스)를 항목별 비교 — 기능, 셀프호스팅, AI 파이프라인, 2026년 팀별 적합 선택."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
-categories: [vs]
+tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'Dify와 Flowise의 차이점은 무엇인가요?'
     a: 'Dify는 LLM 애플리케이션을 구축하고 운영하는 풀스택 플랫폼입니다 — 프롬프트 관리, RAG 파이프라인, 멀티 모델 라우팅, 내장 벡터 스토리지, 그리고 애플리케이션 게시 레이어를 포함합니다. Flowise는 LangChain 기반의 경량 시각적 노드 캔버스 빌더로, LLM 컴포넌트를 시각적으로 연결하고 싶은 개발자를 위해 설계되었습니다. Dify는 더 포괄적이고 의견이 강하며, Flowise는 더 가볍고 raw LangChain 프리미티브에 가깝습니다.'
   - q: 'RAG 챗봇 구축에는 Dify와 Flowise 중 어느 쪽이 더 나은가요?'

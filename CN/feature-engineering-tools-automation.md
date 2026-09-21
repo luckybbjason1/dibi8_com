@@ -1,6 +1,6 @@
 ---
 title: 'Automated Feature Engineering Tools: Featuretools, AutoF...
-description: 'Master automated feature engineering with Featuretools, AutoFeat, and tsfresh. Comparison, code examples, and production pipeline integration.'
+description: "Master automated feature engineering with Featuretools, AutoFeat, and tsfresh. Comparison, code examples, and production pipeline integration."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/feature-engineering-tools-automation/-
+aliases:
+  - /posts/feature-engineering-tools-automation/-
 ---
 {</* resource-info */>}
 
@@ -78,8 +79,8 @@ es = es.add_dataframe(dataframe_name='transactions',
 
 # Define relationship
 relationship = ft.Relationship(
-    es['customers']['customer_id'],
-    es['transactions']['customer_id']
+    es[customers][customer_id],
+    es[transactions][customer_id]
 )
 es = es.add_relationship(relationship)
 
@@ -261,8 +262,8 @@ es = es.add_dataframe('customers', customers, index='customer_id',
 es = es.add_dataframe('transactions', transactions, index='transaction_id',
                       time_index='timestamp')
 es = es.add_relationship(ft.Relationship(
-    es['customers']['customer_id'],
-    es['transactions']['customer_id']
+    es[customers][customer_id],
+    es[transactions][customer_id]
 ))
 
 # 3. Automated feature engineering
@@ -280,7 +281,7 @@ feature_matrix = feature_matrix.fillna(0)
 
 # 5. Split data
 X = feature_matrix.drop('churned', axis=1)
-y = feature_matrix['churned']
+y = feature_matrix[churned]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
                                                      random_state=42,
                                                      stratify=y)

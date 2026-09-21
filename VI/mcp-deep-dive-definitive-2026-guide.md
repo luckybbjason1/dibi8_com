@@ -1,6 +1,6 @@
 ---
 title: 'MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn D...
-description: 'Xây dựng MCP server từ con số không với hướng dẫn chi tiết. Nắm vững Model Context Protocol của Anthropic để AI Agent kết nối ngay lập tức với database, GitHub, Slack và hàng nghìn công cụ khác — không còn code tích hợp lặp đi lặp lại.'
+description: "Xây dựng MCP server từ con số không với hướng dẫn chi tiết. Nắm vững Model Context Protocol của Anthropic để AI Agent kết nối ngay lập tức với database, GitHub, Slack và hàng nghìn công cụ khác — không còn code tích hợp lặp đi lặp lại."
 date: 2026-05-15 00:00:00+08:00
 lastmod: 2026-05-15 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/mcp-deep-dive-definitive-2026-guide/
+aliases:
+  - /vi/posts/mcp-deep-dive-definitive-2026-guide/
 ---
 
 {</* resource-info */>}

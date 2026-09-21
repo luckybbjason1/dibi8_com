@@ -1,6 +1,6 @@
 ---
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: 'Scrapy là một framework web crawling và scraping cấp cao, nhanh chóng cho Python. Tương thích với Python, Docker, Redis, PostgreSQL. Bao gồm benchmark, kiến trúc, triển khai production và so sánh với BeautifulSoup, Selenium, Playwright.'
+description: "Scrapy là một framework web crawling và scraping cấp cao, nhanh chóng cho Python. Tương thích với Python, Docker, Redis, PostgreSQL. Bao gồm benchmark, kiến trúc, triển khai production và so sánh với BeautifulSoup, Selenium, Playwright."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/scrapy/scrapy'
+github_repo: "https://github.com/scrapy/scrapy"
 stars: 61700
 maintainer: scrapy
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['web-scraping', python, crawler, async, docker, 'scrapy-tutorial', benchmark, 'data-pipeline']
-aliases: - /vi/posts/scrapy/
+categories: ["dev-utils"]
+tags: ["web-scraping", "python", "crawler", "async", "docker", "scrapy-tutorial", "benchmark", "data-pipeline"]
+aliases:
+  - /vi/posts/scrapy/
 ---
 
 {{</* resource-info */>}}

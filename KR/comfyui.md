@@ -1,6 +1,6 @@
 ---
-title: 'ComfyUI: 87K+ Stars — 노드 기반 Stable Diffusion 설정 가이드 2026'
-description: 'ComfyUI (COMFY)는 가장 강력한 노드 기반 Stable Diffusion GUI입니다. SD 1.5, SDXL, Flux, Wan, LTXV를 지원합니다. Docker 프로덕션 배포, 커스텀 노드, API 통합, AUTOMATIC1111 및 InvokeAI와의 성능 비교.'
+title: "ComfyUI: 87K+ Stars — 노드 기반 Stable Diffusion 설정 가이드 2026"
+description: "ComfyUI (COMFY)는 가장 강력한 노드 기반 Stable Diffusion GUI입니다. SD 1.5, SDXL, Flux, Wan, LTXV를 지원합니다. Docker 프로덕션 배포, 커스텀 노드, API 통합, AUTOMATIC1111 및 InvokeAI와의 성능 비교."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 87200
 maintainer: comfyanonymous
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'stable diffusion', 'ai 이미지 생성', '노드 기반 ui', docker, flux, sdxl, 머신러닝]
-aliases: - /kr/posts/comfyui/
+categories: ["ai-tools"]
+tags: ["comfyui", "stable diffusion", "ai 이미지 생성", "노드 기반 ui", "docker", "flux", "sdxl", "머신러닝"]
+aliases:
+  - /kr/posts/comfyui/
 - /kr/resources/ai-tools/comfyui-architecture-node-based-ai-image/
 ---
 

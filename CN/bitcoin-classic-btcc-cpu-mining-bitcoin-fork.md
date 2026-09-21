@@ -18,7 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+aliases:
+  - /posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
 faqs: - q: 'Can you mine Bitcoin-Classic (BTCC) with a regular CPU?'
     a: 'Yes. BTCC is designed so that a regular home computer CPU can participate in mining, with no ASIC rig or dedicated GPU required. Its very low network hashrate means ordinary CPUs can actually earn block rewards.'
   - q: 'What is the total supply and block reward of Bitcoin-Classic (BTCC)?'

@@ -1,6 +1,6 @@
 ---
 title: 'ds4: Công Cụ Mã Nguồn Mở Mà Lập Trình Viên Đang Chuyển S...
-description: 'ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor'
+description: "ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor"
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: ["Unknown"]
@@ -12,13 +12,14 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'antirez/ds4'
+github_repo: "antirez/ds4"
 stars: 10913
 maintainer: ''
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-aliases: - /posts/ds4/
+aliases:
+  - /posts/ds4/
 ---
 
 {</* resource-info */>}

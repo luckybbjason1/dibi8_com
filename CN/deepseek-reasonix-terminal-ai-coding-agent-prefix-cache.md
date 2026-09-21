@@ -1,14 +1,14 @@
 ---
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: 'A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models.'
+description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
 tags: ["ai-agent", "automation", "cli", "coding", "dev-tools", "development", "open-source", "terminal"]
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-categories: ['ai-tools']
+categories: ["ai-tools"]
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 featureImage: /images/articles/deepseek-tui-anthropic-financial-agents--117cfa-1.png
-aliases: ['/deepseek-reasonix']
+aliases: [/deepseek-reasonix]
 sources: - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
   - name: Website
@@ -17,15 +17,15 @@ sources: - name: GitHub
     url: 'https://discord.gg/XF78rEME2D'
 ---
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: 'A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models.'
+description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'coding agent', deepseek, terminal, 'self-hosted', 'open source']
-categories: ['ai-tools']
+tags: ["ai tools", "coding agent", "deepseek", "terminal", "self-hosted", "open source"]
+categories: ["ai-tools"]
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
 
-aliases: ['/deepseek-reasonix']
+aliases: [/deepseek-reasonix]
 sources: - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'
   - name: Website

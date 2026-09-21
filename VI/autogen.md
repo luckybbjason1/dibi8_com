@@ -1,6 +1,6 @@
 ---
 title: 'AutoGen: 58K+ Stars — Khám Phá Sâu Framework Multi-Agent...
-description: 'AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương thích với OpenAI, Azure, Ollama, Docker, và VS Code. Bao gồm cài đặt, thiết lập group chat, production hardening và so sánh trung thực với các lựa chọn thay thế.'
+description: "AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương thích với OpenAI, Azure, Ollama, Docker, và VS Code. Bao gồm cài đặt, thiết lập group chat, production hardening và so sánh trung thực với các lựa chọn thay thế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/microsoft/autogen'
+github_repo: "https://github.com/microsoft/autogen"
 stars: 58196
 maintainer: microsoft
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [autogen, 'multi-agent', microsoft, 'llm-framework', 'agentic-ai', python, 'crewai-alternative', 'langgraph-alternative']
-aliases: - /vi/posts/autogen/
+categories: ["llm-frameworks"]
+tags: ["autogen", "multi-agent", "microsoft", "llm-framework", "agentic-ai", "python", "crewai-alternative", "langgraph-alternative"]
+aliases:
+  - /vi/posts/autogen/
 - /vi/resources/llm-frameworks/autogen-multi-agent-framework/
 ---
 

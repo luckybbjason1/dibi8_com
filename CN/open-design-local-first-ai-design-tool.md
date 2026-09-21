@@ -20,7 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/open-design-local-first-ai-design-tool/
+aliases:
+  - /posts/open-design-local-first-ai-design-tool/
 faqs: - q: 'What is Open Design and how is it different from Claude Design?'
     a: 'Open Design is an open-source, local-first alternative to Anthropic''s Claude Design that generates web prototypes, mobile and desktop interfaces, slides, images, videos, and interactive HyperFrames. Unlike the cloud-only, proprietary Claude Design, it runs entirely offline after setup, is MIT licensed and free, and keeps all data on your own machine.'
   - q: 'Which AI coding assistants does Open Design work with?'

@@ -1,6 +1,6 @@
 ---
 title: 'AAVE v4 2026: The DeFi Lending Protocol Managing $15B+ i...
-description: 'Complete guide to integrating AAVE v4 DeFi lending protocol in 2026. Learn how to supply and borrow 30+ crypto assets, use flash loans, implement isolation mode, and integrate GHO stablecoin in your DApp.'
+description: "Complete guide to integrating AAVE v4 DeFi lending protocol in 2026. Learn how to supply and borrow 30+ crypto assets, use flash loans, implement isolation mode, and integrate GHO stablecoin in your DApp."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/aave/aave-v3-core'
+github_repo: "https://github.com/aave/aave-v3-core"
 stars: 2100
 maintainer: aave
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [aave]
-aliases: - /posts/aave-v4-defi-lending-protocol/-
+categories: ["ai-trading"]
+tags: ["aave"]
+aliases:
+  - /posts/aave-v4-defi-lending-protocol/-
 ---
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 

@@ -1,6 +1,6 @@
 ---
 title: 'Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
-description: 'Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + cách viết agent tùy chỉnh + khung quyết định skill/subagent/MCP + các kiểu thất bại khi điều phối + cách viết skill. Lộ trình đầy đủ từ lập trình đơn luồng đến một pipeline agent đáng tin cậy.'
+description: "Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + cách viết agent tùy chỉnh + khung quyết định skill/subagent/MCP + các kiểu thất bại khi điều phối + cách viết skill. Lộ trình đầy đủ từ lập trình đơn luồng đến một pipeline agent đáng tin cậy."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - Claude Code
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases: - /posts/claude-code-subagent-mastery-stack/
+categories: ["collections"]
+tags: ["claude code", "subagents", "multi-agent", "agent sdk", "mcp", "stack", "collection"]
+aliases:
+  - /posts/claude-code-subagent-mastery-stack/
 faqs: - q: 'Năm mẫu subagent trong Claude Code là gì?'
     a: 'Năm mẫu bao gồm: parallel research fan-out, worktree isolation, specialist delegation, context protection và pipeline orchestration. Chúng tạo thành lớp nền tảng của multi-agent workflow, trong đó parallel fan-out là điểm khởi đầu có ít ma sát nhất.'
   - q: 'Làm thế nào để quyết định giữa skill, subagent hay MCP server trong Claude Code?'

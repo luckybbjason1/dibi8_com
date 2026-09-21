@@ -1,6 +1,6 @@
 ---
 title: '2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsig...
-description: '세션마다 모든 것을 잊는 AI 에이전트는 2026 프로덕션에선 치명적 결함. 4대 오픈소스 메모리 레이어 심층 비교: Mem0 (48K+ stars, 21개 프레임워크 통합), agentmemory (MCP 네이티브, Claude Code/Cursor 최적), Hindsight (생체모방 3계층 + 4전략 검색), MemPalace (52K+ stars 커뮤니티 리더). 벤치마크/함정/결정 트리 포함.'
+description: "세션마다 모든 것을 잊는 AI 에이전트는 2026 프로덕션에선 치명적 결함. 4대 오픈소스 메모리 레이어 심층 비교: Mem0 (48K+ stars, 21개 프레임워크 통합), agentmemory (MCP 네이티브, Claude Code/Cursor 최적), Hindsight (생체모방 3계층 + 4전략 검색), MemPalace (52K+ stars 커뮤니티 리더). 벤치마크/함정/결정 트리 포함."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'memory-systems', mem0, agentmemory, hindsight, mempalace, mcp, rag, 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
-aliases: - /kr/posts/ai-agent-memory-systems-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "memory-systems", "mem0", "agentmemory", "hindsight", "mempalace", "mcp", "rag", "vector-database", "persistent-memory", "open-source", "llm-infrastructure"]
+aliases:
+  - /kr/posts/ai-agent-memory-systems-2026/
 - /kr/resources/dev-utils/ai-agent-memory-systems-2026/
 faqs: - q: 'Mem0, agentmemory, Hindsight, MemPalace의 차이?'
     a: 'Mem0는 프레임워크 통합이 가장 넓음(21 프레임워크, 20 벡터 백엔드). agentmemory는 코딩 에이전트에 특화되어 네이티브 MCP 사용. Hindsight는 recall 정확도가 가장 높고 생체모방 3종 메모리 + 4전략 검색. MemPalace는 커뮤니티 규모(52K+ stars) 최고.'

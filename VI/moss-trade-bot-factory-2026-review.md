@@ -1,26 +1,27 @@
 ---
 title: 'Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
-description: 'Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid perpetuals. Engine backtest cấp công nghiệp với độ chính xác Decimal — nhưng có bug Sharpe annualization và trap OVERFIT giáo khoa khi bật evolution. Quy trình setup, fix bug, so sánh 5 chiến lược, và validation 70/30 train/OOS.'
+description: "Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid perpetuals. Engine backtest cấp công nghiệp với độ chính xác Decimal — nhưng có bug Sharpe annualization và trap OVERFIT giáo khoa khi bật evolution. Quy trình setup, fix bug, so sánh 5 chiến lược, và validation 70/30 train/OOS."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
-source_version: 'v1.0.26'
+source_version: "v1.0.26"
 licensing_model: Open Source
 license_type: MIT-0
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/moss-site/moss-trade-bot-skills'
+github_repo: "https://github.com/moss-site/moss-trade-bot-skills"
 stars: 98
 maintainer: 'moss-site'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['ai-agent', quant, backtest, hyperliquid, perpetuals, 'open-source', overfitting, 'oos-validation']
-aliases: - /vi/posts/moss-trade-bot-factory-2026-review/
+categories: ["ai-trading"]
+tags: ["ai-agent", "quant", "backtest", "hyperliquid", "perpetuals", "open-source", "overfitting", "oos-validation"]
+aliases:
+  - /vi/posts/moss-trade-bot-factory-2026-review/
 faq: - q: "moss-trade-bot-factory có an toàn để cài đặt không?"
     a: "Paper backtest hoàn toàn an toàn. Audit code xác nhận: không eval/exec, HMAC ký API call không bao giờ upload secret, license MIT-0, không truy cập private key của ví. Skill là builder chiến lược quant, không phải dịch vụ custody. Live trading cần explicit bind với platform moss.site, vốn luôn trong ví Hyperliquid của bạn."
   - q: "Bug Sharpe annualization là gì?"

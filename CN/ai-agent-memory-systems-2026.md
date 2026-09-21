@@ -1,6 +1,6 @@
 ---
 title: 'AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin...
-description: 'Stateless AI agents forget everything between sessions — fatal for production use. Compare the 4 leading open-source memory layers in May 2026: Mem0 (48K+ stars, 21 framework integrations), agentmemory (MCP-native for coding agents), Hindsight (research-grade biomimetic retrieval), MemPalace (52K+ stars community leader). Includes benchmarks (LoCoMo 92.5%, LongMemEval 94.4%), production pitfalls, and decision framework.'
+description: "Stateless AI agents forget everything between sessions — fatal for production use. Compare the 4 leading open-source memory layers in May 2026: Mem0 (48K+ stars, 21 framework integrations), agentmemory (MCP-native for coding agents), Hindsight (research-grade biomimetic retrieval), MemPalace (52K+ stars community leader). Includes benchmarks (LoCoMo 92.5%, LongMemEval 94.4%), production pitfalls, and decision framework."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'memory-systems', mem0, agentmemory, hindsight, mempalace, mcp, rag, 'vector-database', 'persistent-memory', 'open-source', 'llm-infrastructure']
-aliases: - /posts/ai-agent-memory-systems-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "memory-systems", "mem0", "agentmemory", "hindsight", "mempalace", "mcp", "rag", "vector-database", "persistent-memory", "open-source", "llm-infrastructure"]
+aliases:
+  - /posts/ai-agent-memory-systems-2026/
 - /resources/dev-utils/ai-agent-memory-systems-2026/
 faqs: - q: What's the difference between Mem0, agentmemory, Hindsight, and MemPalace?'
     a: 'Mem0 leads in framework integrations (21 frameworks, 20 vector backends). agentmemory specializes in coding agents via native MCP. Hindsight has the highest recall accuracy with biomimetic 3-type memory and 4-strategy retrieval. MemPalace leads in community size (52K+ stars) with stable, well-documented vector semantic memory.'

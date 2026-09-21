@@ -19,7 +19,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/local-deep-research-local-first-ai-deep-research-tool/
+aliases:
+  - /zh/posts/local-deep-research-local-first-ai-deep-research-tool/
 faqs: - q: '什么是 Local Deep Research (LDR)？'
     a: 'Local Deep Research (LDR) 是一款开源的 AI 研究助手，它执行系统化、迭代式的研究，而不是给出快速的对话式回答。它会将一个查询拆解为多个子查询，并行搜索网络、学术数据库和本地文件，然后综合生成一份带引用的报告。'
   - q: 'Local Deep Research 能否为了隐私而完全离线运行？'

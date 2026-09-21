@@ -1,7 +1,7 @@
 ---
 title: Vercel AI SDK — 用 Edge-First 架构构建流式 AI 应用
 description: Vercel AI SDK 完全指南，用于构建生产级 AI 应用。流式传输 LLM 响应、集成多个提供商、部署到边缘且零配置。支持 React、Next.js 和任何框架。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ['ai-sdk', 'streaming', 'vercel', 'edge-compute', 'react', 'llm']
+tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
 category: llm-frameworks
 featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00

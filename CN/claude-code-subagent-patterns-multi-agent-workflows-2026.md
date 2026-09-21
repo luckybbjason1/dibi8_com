@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
-description: 'Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist delegation, context protection, and pipeline orchestration — with real prompts and tradeoffs from production use.'
+description: "Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist delegation, context protection, and pipeline orchestration — with real prompts and tradeoffs from production use."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases: - /posts/claude-code-subagent-patterns/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "ai-coding-agents", "llm-frameworks", "developer-tools", "agent-sdk"]
+aliases:
+  - /posts/claude-code-subagent-patterns/
 faq: - q: "What exactly is a subagent in Claude Code, and how is it different from running another instance of the CLI?"
     a: "A subagent is a sandboxed Claude conversation spawned from within an active Claude session via the Agent (Task) tool. The parent only sees the subagent's final report — not the intermediate tool calls, file reads, or thinking. This is the key difference from launching a second CLI: the parent's context window is protected from the subagent's exploration noise. Subagents are spawned for parallel research, deep code exploration, and isolated experiments where you don't want the parent's working memory polluted."
   - q: "When should I NOT use a subagent and just keep working in the parent session?"

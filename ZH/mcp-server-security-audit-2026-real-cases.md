@@ -1,22 +1,23 @@
 ---
-title: 'MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式'
-description: '生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前审计清单。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式"
+description: "生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前审计清单。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Community + Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases: - /zh/posts/mcp-server-security-audit-2026-real-cases/
+categories: ["llm-frameworks"]
+tags: ["mcp", "security", "audit", "claude-code", "supply-chain", "agent-security", "2026"]
+aliases:
+  - /zh/posts/mcp-server-security-audit-2026-real-cases/
 faq: - q: "Anthropic 官方维护的 MCP 服务器是否比社区版更安全？"
     a: "是的，差距明显。Anthropic 参考实现（filesystem、git、github、fetch、sequentialthinking）经过内部审查、有签名发布、有明确的安全模型。社区服务器质量参差不齐——少数经过审计，多数没有。只要 Anthropic 提供了对应版本，默认选 Anthropic；社区替代品在你证明它安全前，要按「拥有完整本地权限的不可信代码」来对待。"
   - q: "2026 年最常见的 MCP 真实攻击模式是什么？"

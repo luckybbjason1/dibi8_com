@@ -18,7 +18,8 @@ maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/toprank/
+aliases:
+  - /zh/posts/toprank/
 faqs: - q: 'Toprank 是什么？它与 SEO SaaS 工具有何不同？'
     a: 'Toprank 是一套开源的 Claude Code 技能集，能将 Anthropic 的 Claude Code CLI 转化为营销自动化引擎。与基于网页仪表板的 SaaS 工具不同，它直接运行在你现有的开发环境中，无需切换浏览器标签页，不收取月费，也不存在上下文切换的问题。'
   - q: 'Toprank 可以自动化哪些 SEO 任务？'

@@ -1,6 +1,6 @@
 ---
 title: 'Arize AI Phoenix: The Open-Source LLM Observability Tool...
-description: 'Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning, token tracking, and production deployment with LangChain & LlamaIndex.'
+description: "Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning, token tracking, and production deployment with LangChain & LlamaIndex."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Arize-ai/phoenix'
+github_repo: "Arize-ai/phoenix"
 stars: 6500
 maintainer: 'Arize AI'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [llm, observability, 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'ai infrastructure']
-aliases: - /posts/arize-ai-observability-llm/-
+categories: ["data-science"]
+tags: ["llm", "observability", "arize phoenix", "rag", "langchain", "llamaindex", "opentelemetry", "python", "docker", "ai infrastructure"]
+aliases:
+  - /posts/arize-ai-observability-llm/-
 ---
 {{</* resource-info */>}}
 

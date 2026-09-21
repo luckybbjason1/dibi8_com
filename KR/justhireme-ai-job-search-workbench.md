@@ -20,7 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/justhireme-ai-job-search-workbench/
+aliases:
+  - /kr/posts/justhireme-ai-job-search-workbench/
 faqs: - q: 'JustHireMe는 무료 오픈 소스인가요?'
     a: '네. JustHireMe는 MIT 라이선스 하에 오픈 소스로 공개되어 있으며, 구독료나 숨겨진 비용이 전혀 없습니다. 이력서와 데이터의 소유권은 전적으로 사용자에게 있으며, 점수 산출 알고리즘도 투명하게 공개되어 있습니다.'
   - q: 'JustHireMe를 사용하려면 AI API 키가 필요하거나 데이터가 클라우드로 전송되나요?'

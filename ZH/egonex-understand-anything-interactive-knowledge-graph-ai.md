@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
-tags: [egonex, understand-anything, 知识图谱, AI, 交互式, 开源, 研究, 可视化, llm]
+tags: ["egonex", "understand-anything", "知识图谱", "AI", "交互式", "开源", "研究", "可视化", "llm"]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 stars: 55799
 maintainer: Egonex-AI

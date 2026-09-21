@@ -19,7 +19,8 @@ maintainer: "yikart"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/aitoearn-ai-monetization/
+aliases:
+  - /kr/posts/aitoearn-ai-monetization/
 faqs: - q: 'AiToEarn이란 무엇인가요?'
     a: 'AiToEarn은 크리에이터가 글, 이미지, 영상 스크립트, 코드 같은 AI 생성 콘텐츠를 수동 수입원으로 전환하도록 돕는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. AI 콘텐츠 생성, 원클릭 멀티 플랫폼 배포, 내장형 수익화 기능을 하나의 셀프 호스팅 도구에 통합했습니다.'
   - q: 'AiToEarn은 크리에이터에게 어떻게 수익을 만들어 주나요?'

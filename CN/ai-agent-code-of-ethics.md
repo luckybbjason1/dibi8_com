@@ -1,6 +1,6 @@
 ---
 title: 'The AI Agent Code of Ethics (2026): A Practical Governan...
-description: 'A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable rules with engineering controls: least-privilege authorization, full auditability, human-in-the-loop reversibility, bounded autonomy, an unbroken accountability chain, fail-safe defaults, and privacy by design. Includes a pre-deployment checklist for developers shipping agents in 2026.'
+description: "A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable rules with engineering controls: least-privilege authorization, full auditability, human-in-the-loop reversibility, bounded autonomy, an unbroken accountability chain, fail-safe defaults, and privacy by design. Includes a pre-deployment checklist for developers shipping agents in 2026."
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
 tech_stack: - AI Agents
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-06-04'
+last_maintained: "2026-06-04"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai agent', 'ai ethics', 'responsible ai', 'ai governance', 'agent safety', alignment, 'code of ethics']
-aliases: - /posts/ai-agent-code-of-ethics/
+categories: ["collections"]
+tags: ["ai agent", "ai ethics", "responsible ai", "ai governance", "agent safety", "alignment", "code of ethics"]
+aliases:
+  - /posts/ai-agent-code-of-ethics/
 faqs: - q: 'How is AI agent ethics different from chatbot ethics?'
     a: 'A chatbot produces text; an agent takes actions — it calls tools, moves money, sends emails, edits files, and triggers real-world effects. Chatbot ethics is mostly about what is said (bias, toxicity, misinformation). Agent ethics is about what is done: authorization, reversibility, and accountability for irreversible actions. The harm surface is operational, not just informational, so the controls must be engineering controls, not content filters.'
   - q: 'What is least-privilege authorization for an AI agent?'

@@ -1,26 +1,27 @@
 ---
 title: 'Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cun...
-description: 'Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go module, cấu hình MCP, extension editor và extension trình duyệt tìm các gói đã bị xâm phạm — không thực thi bất kỳ dòng code nào.'
+description: "Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go module, cấu hình MCP, extension editor và extension trình duyệt tìm các gói đã bị xâm phạm — không thực thi bất kỳ dòng code nào."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Go, Security, CLI]
 application_domain: Dev Utils
-source_version: '0.1.1'
+source_version: "0.1.1"
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/perplexityai/bumblebee'
 backup_url: ''
-github_repo: 'perplexityai/bumblebee'
+github_repo: "perplexityai/bumblebee"
 stars: 1500
 maintainer: perplexityai
-last_maintained: '2026-05-22'
+last_maintained: "2026-05-22"
 featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
-categories: ['dev-utils']
-tags: [bumblebee, 'supply-chain', security, mcp, go, npm, pypi, 'perplexity-ai']
-aliases: - /vi/posts/bumblebee-supply-chain-scanner-perplexity-2026/
+categories: ["dev-utils"]
+tags: ["bumblebee", "supply-chain", "security", "mcp", "go", "npm", "pypi", "perplexity-ai"]
+aliases:
+  - /vi/posts/bumblebee-supply-chain-scanner-perplexity-2026/
 faqs: - q: 'Bumblebee là gì và quét những gì?'
     a: 'Bumblebee là bộ quét endpoint nhà phát triển chỉ đọc, mã nguồn mở của Perplexity AI. Nó quét metadata trên đĩa của npm, pnpm, Yarn, PyPI, Go module, RubyGems, cấu hình MCP, extension editor (VS Code, Cursor, Windsurf, Zed) và extension trình duyệt. Không bao giờ thực thi install script hay gọi package manager.'
   - q: 'Tại sao nhà phát triển AI cần quét cấu hình MCP?'

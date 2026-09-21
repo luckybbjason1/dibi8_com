@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/discover-tikchain-your-gateway-to-social-media-blockchain/
+aliases:
+  - /kr/posts/discover-tikchain-your-gateway-to-social-media-blockchain/
 faqs: - q: 'TikChain에서 토큰을 어떻게 받을 수 있나요?'
     a: '콘텐츠 제작과 좋아요·공유 등의 소셜 미디어 활동을 통해 TikChain의 네이티브 유틸리티 토큰을 받을 수 있으며, 커뮤니티 참여 및 추천 프로그램을 통해서도 획득할 수 있습니다. 토큰을 스테이킹하여 잠그면 추가 혜택도 받을 수 있습니다.'
   - q: 'TikChain은 어떤 소셜 미디어 플랫폼을 지원하나요?'

@@ -1,6 +1,6 @@
 ---
-title: 'Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指南'
-description: 'Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指南"
+description: "Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'dagster-io/dagster'
+github_repo: "dagster-io/dagster"
 stars: 14000
 maintainer: 'dagster-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [dagster, 'data-pipeline', orchestration, etl, 'apache-airflow', dbt, python, docker, 'data-engineering', 'asset-centric', 数据管道, 数据编排]
-aliases: - /zh/posts/dagster-data-pipeline-orchestrator/-
+categories: ["data-science"]
+tags: ["dagster", "data-pipeline", "orchestration", "etl", "apache-airflow", "dbt", "python", "docker", "data-engineering", "asset-centric", "数据管道", "数据编排"]
+aliases:
+  - /zh/posts/dagster-data-pipeline-orchestrator/-
 ---
 
 {{</* resource-info */>}}

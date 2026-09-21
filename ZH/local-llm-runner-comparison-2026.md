@@ -1,6 +1,6 @@
 ---
 title: 'Ollama vs LM Studio vs llama.cpp vs vLLM 2026：诚实的本地 LLM ...
-description: '2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王。30 秒决策树按场景。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王。30 秒决策树按场景。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, C++, CUDA, Metal]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['local llm', ollama, vllm, 'llama.cpp', 'lm studio', 对比, hub文章]
-aliases: - /posts/local-llm-runner-comparison-2026/-
+categories: ["llm-frameworks"]
+tags: ["local llm", "ollama", "vllm", "llama.cpp", "lm studio", "对比", "hub文章"]
+aliases:
+  - /posts/local-llm-runner-comparison-2026/-
 ---
 
 2026"本地跑 LLM"的答案碎片化成 4 个严肃选择，各有明确甜点。这是我们希望早有的 hub article —— **Ollama**（137k 星，默认）、**LM Studio**（UI 最美，对非程序员最易）、**llama.cpp**（112k 星，多数其他工具底下的 C/C++ 引擎）、**vLLM**（80.7k 星，生产吞吐之王）的硬碰硬。

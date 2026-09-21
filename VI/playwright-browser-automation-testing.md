@@ -1,6 +1,6 @@
 ---
 title: 'Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhan...
-description: 'Làm chủ Playwright 1.51 để tự động hóa đa trình duyệt. Hỗ trợ Chrome, Firefox, WebKit. Tự động chờ, tracing, codegen và kiểm thử song song. Nhanh hơn Selenium 3 lần.'
+description: "Làm chủ Playwright 1.51 để tự động hóa đa trình duyệt. Hỗ trợ Chrome, Firefox, WebKit. Tự động chờ, tracing, codegen và kiểm thử song song. Nhanh hơn Selenium 3 lần."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/playwright'
+github_repo: "microsoft/playwright"
 stars: 72000
 maintainer: microsoft
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [playwright, 'tự động hóa trình duyệt', 'kiểm thử', 'web scraping', python, e2e]
-aliases: - /vi/posts/playwright-browser-automation-testing/
+categories: ["dev-utils"]
+tags: ["playwright", "tự động hóa trình duyệt", "kiểm thử", "web scraping", "python", "e2e"]
+aliases:
+  - /vi/posts/playwright-browser-automation-testing/
 ---
 
 {{</* resource-info */>}}

@@ -18,7 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/wifi-forge-safe-wifi-hacking-lab/
+aliases:
+  - /posts/wifi-forge-safe-wifi-hacking-lab/
 faqs: - q: 'What is WiFi-Forge?'
     a: 'WiFi-Forge is an open-source project from Black Hills InfoSec that provides a safe, legal sandbox for practicing wireless attacks. It runs a virtual lab on your laptop with no hardware to buy and no risk of touching networks you don''t own.'
   - q: 'Do I need a special WiFi adapter to learn WiFi hacking with WiFi-Forge?'

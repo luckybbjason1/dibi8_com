@@ -2,7 +2,7 @@
 title: OpenAI Whisper — The Ultimate Open-Source Speech-to-Text ...
 description: Complete guide to OpenAI Whisper, the state-of-the-art open-source speech recognition system. Supports 99+ languages, multilingual transcription, and speaker diarization.
 category: ai-tools
-tags: ['speech-recognition', 'openai', 'whisper', 'transcription', 'multilingual', 'voice-to-text']
+tags: ["speech-recognition", "openai", "whisper", "transcription", "multilingual", "voice-to-text"]
 slug: openai-whisper-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/openai-whisper-speech-recognition.jpg---
@@ -160,7 +160,7 @@ result = model.transcribe(
 with open("transcript.txt", "w") as f: f.write(result["text"])
 
 # Save with timestamps
-for segment in result["segments"]: print(f"[{segment['start']:.2f}s] {segment['text']}")
+for segment in result["segments"]: print(f"[{segment[start]:.2f}s] {segment[text]}")
 ```
 
 ### Batch Processing Multiple Files
@@ -217,7 +217,7 @@ result = model.transcribe("video.mp4", word_timestamps=True)
 # Generate SRT file
 with open("subtitles.srt", "w") as f: for i, segment in enumerate(result["segments"], 1): start = format_timestamp(segment["start"])
         end = format_timestamp(segment["end"])
-        f.write(f"{i}\n{start} --> {end}\n{segment['text'].strip()}\n\n")
+        f.write(f"{i}\n{start} --> {end}\n{segment[text].strip()}\n\n")
 ```
 
 ## Advanced Transcription Techniques
@@ -234,7 +234,7 @@ result = model.transcribe(
     verbose=True
 )
 
-for word_info in result["segments"][0]["words"]: print(f"{word_info['word']}: {word_info['start']:.2f}s - {word_info['end']:.2f}s")
+for word_info in result["segments"][0]["words"]: print(f"{word_info[word]}: {word_info[start]:.2f}s - {word_info[end]:.2f}s")
 ```
 
 ### Language Detection and Translation
@@ -246,7 +246,7 @@ model = whisper.load_model("medium")
 
 # Auto-detect language
 result = model.transcribe("japanese_audio.mp3", verbose=True)
-print(f"Detected language: {result['language']}")  # Japanese
+print(f"Detected language: {result[language]}")  # Japanese
 
 # Force translation to English
 result = model.transcribe(

@@ -21,7 +21,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/ml-systems-book-mit-press-textbook/
+aliases:
+  - /zh/posts/ml-systems-book-mit-press-textbook/
 faqs: - q: 'ML Systems Book 涵盖哪些主题？'
     a: 'ML Systems Book 涵盖分布式训练（数据并行、模型并行、流水线并行及容错机制）、模型推理服务（批量推理与实时推理、版本管理、自动扩缩容）、硬件加速（GPU、TPU、ASIC、量化、剪枝）、ML 基础设施（特征存储、实验追踪、CI/CD、监控）以及成本优化（抢占式实例、模型压缩、动态批处理）。'
   - q: 'ML Systems Book 共有几章，内容如何组织？'

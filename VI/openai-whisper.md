@@ -1,6 +1,6 @@
 ---
 title: 'OpenAI Whisper: 99.8K+ Stars — Hướng Dẫn Cài Đặt ASR Đầy...
-description: 'OpenAI Whisper (ASR) nhận dạng giọng nói mạnh mẽ qua giám sát yếu quy mô lớn. Tương thích với WhisperX, faster-whisper, LibreTranslate. Bao gồm whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
+description: "OpenAI Whisper (ASR) nhận dạng giọng nói mạnh mẽ qua giám sát yếu quy mô lớn. Tương thích với WhisperX, faster-whisper, LibreTranslate. Bao gồm whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/openai/whisper'
+github_repo: "https://github.com/openai/whisper"
 stars: 99800
 maintainer: openai
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [whisper, 'nhan-dang-giong-noi', asr, openai, 'faster-whisper', whisperx, python, docker, 'hoc-may']
-aliases: - /vi/posts/openai-whisper/
+categories: ["ai-tools"]
+tags: ["whisper", "nhan-dang-giong-noi", "asr", "openai", "faster-whisper", "whisperx", "python", "docker", "hoc-may"]
+aliases:
+  - /vi/posts/openai-whisper/
 ---
 
 {{</* resource-info */>}}

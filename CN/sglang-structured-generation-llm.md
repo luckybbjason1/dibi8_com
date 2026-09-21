@@ -1,7 +1,7 @@
 ---
 title: SGLang — Structured Generation and Fast LLM Serving Engine
 description: Complete guide to SGLang (Structured Generation Language). High-performance LLM serving with constrained decoding, JSON schema enforcement, parallel execution, and 25x speedup over vLLM for structured outputs.
-tags: ['llm-serving', 'structured-generation', 'constrained-decoding', 'inference', 'performance']
+tags: ["llm-serving", "structured-generation", "constrained-decoding", "inference", "performance"]
 category: llm-frameworks
 featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
@@ -374,7 +374,7 @@ results = sgl.compile(
     scheduler_policy="lookahead"  # Optimal scheduling policy
 )
 
-for i, result in enumerate(results): print(f"Doc {i}: {result['summary']}")
+for i, result in enumerate(results): print(f"Doc {i}: {result[summary]}")
 ```
 
 ### Pattern 3: Streaming with Structured Output
@@ -400,7 +400,7 @@ stream = client.generate(
 )
 
 for chunk in stream: if chunk["event_type"] == "text": print(chunk["text"], end="", flush=True)
-    elif chunk["event_type"] == "usage": print(f"\n\nTokens: {chunk['prompt_tokens']} in, {chunk['completion_tokens']} out")
+    elif chunk["event_type"] == "usage": print(f"\n\nTokens: {chunk[prompt_tokens]} in, {chunk[completion_tokens]} out")
 ```
 
 ### Pattern 4: Function Calling Pipeline

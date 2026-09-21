@@ -20,7 +20,8 @@ maintainer: "D4Vinci"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/scrapling-python-stealthy-web-scraping-review/
+aliases:
+  - /zh/posts/scrapling-python-stealthy-web-scraping-review/
 faqs: - q: 'Python 中的 Scrapling 是什么？'
     a: 'Scrapling 是一个 Python 3.10+ 网页抓取框架，通过统一的选择器 API 封装了三种抓取后端：带 TLS 指纹模拟的普通 HTTP、隐身模式反检测浏览器，以及完整的 Playwright 驱动浏览器。它将 Scrapy 风格的爬虫、curl_cffi 风格的 TLS 指纹伪造，以及免检测 Playwright 整合进一个 import 中。'
   - q: 'Scrapling 的三种 fetcher 分别是什么？各在什么场景下使用？'

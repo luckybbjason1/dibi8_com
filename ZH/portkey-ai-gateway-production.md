@@ -1,5 +1,5 @@
 ---
-title: 'Portkey AI Gateway 2026: 管理200+模型的LLM网关与可观测性 — 生产环境部署'
+title: "Portkey AI Gateway 2026: 管理200+模型的LLM网关与可观测性 — 生产环境部署"
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Portkey-AI/gateway'
+github_repo: "https://github.com/Portkey-AI/gateway"
 stars: 14000
 maintainer: 'Portkey-AI'
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['portkey ai gateway']
-aliases: - /zh/posts/portkey-ai-gateway-production/-
+categories: ["llm-frameworks"]
+tags: ["portkey ai gateway"]
+aliases:
+  - /zh/posts/portkey-ai-gateway-production/-
 ---
 
 {{</* resource-info */>}}

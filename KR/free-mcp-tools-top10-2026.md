@@ -1,10 +1,10 @@
 ---
-title: '2026 무료 MCP 툴 Top 10: 최고의 Model Context Protocol 서버 추천'
-description: 'Claude, Cursor, 모든 MCP 호환 AI 클라이언트를 위한 최고의 무료 MCP 서버 10선 — 파일시스템, 웹 검색, 메모리, GitHub, 데이터베이스 등. 전부 오픈소스, 비용 제로.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026 무료 MCP 툴 Top 10: 최고의 Model Context Protocol 서버 추천"
+description: "Claude, Cursor, 모든 MCP 호환 AI 클라이언트를 위한 최고의 무료 MCP 서버 10선 — 파일시스템, 웹 검색, 메모리, GitHub, 데이터베이스 등. 전부 오픈소스, 비용 제로.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [mcp, 모델컨텍스트프로토콜, 무료mcp툴, mcp서버, claude-mcp, 오픈소스ai, ai툴]
-categories: [tools]
+tags: ["mcp", "모델컨텍스트프로토콜", "무료mcp툴", "mcp서버", "claude-mcp", "오픈소스ai", "ai툴"]
+categories: ["tools"]
 faqs: - q: 'MCP란 무엇이고 왜 중요한가요?'
     a: 'MCP(Model Context Protocol)는 Anthropic이 만든 개방형 표준으로, Claude 같은 AI 모델이 외부 도구·데이터베이스·서비스에 표준화된 방식으로 연결될 수 있게 합니다. 각 AI 앱이 커스텀 통합을 따로 만들지 않아도 되도록 범용 커넥터를 제공합니다. MCP 서버는 파일 읽기·웹 검색·DB 쿼리 같은 기능을 노출하고, MCP 호환 AI 클라이언트라면 어디서나 사용할 수 있습니다.'
   - q: '이 MCP 툴들은 정말 무료인가요?'

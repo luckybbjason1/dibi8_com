@@ -1,22 +1,23 @@
 ---
 title: 'Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộn...
-description: 'Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, Brave Search, Fetch. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm kiểm tra trước khi cài đặt, mỗi server chỉ mất 5 phút.'
+description: "Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, Brave Search, Fetch. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm kiểm tra trước khi cài đặt, mỗi server chỉ mất 5 phút."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Community + Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases: - /vi/posts/mcp-server-security-audit-2026-real-cases/
+categories: ["llm-frameworks"]
+tags: ["mcp", "security", "audit", "claude-code", "supply-chain", "agent-security", "2026"]
+aliases:
+  - /vi/posts/mcp-server-security-audit-2026-real-cases/
 faq: - q: "MCP server do Anthropic bảo trì có an toàn hơn server cộng đồng không?"
     a: "Có, đáng kể. Các server tham chiếu của Anthropic (filesystem, git, github, fetch, sequentialthinking) đều được review nội bộ, có release đã ký, và có security model rõ ràng. Server cộng đồng thì khác nhau rất nhiều — một số được kiểm toán, đa số thì không. Ưu tiên Anthropic khi có phiên bản tương ứng; coi các lựa chọn cộng đồng là mã nguồn không tin cậy với quyền local đầy đủ cho đến khi bạn chứng minh được điều ngược lại."
   - q: "Mẫu tấn công MCP thực tế lớn nhất năm 2026 là gì?"

@@ -1,6 +1,6 @@
 ---
 title: 'Wan 2.1: 16.1K+ Stars — Open Video Generation Deep Dive ...
-description: 'Wan 2.1 is an open suite of video foundation models by Alibaba with SOTA performance. Supports ComfyUI, Diffusers, and Gradio. Covers T2V, I2V, video editing, and text generation with 1.3B and 14B parameter variants.'
+description: "Wan 2.1 is an open suite of video foundation models by Alibaba with SOTA performance. Supports ComfyUI, Diffusers, and Gradio. Covers T2V, I2V, video editing, and text generation with 1.3B and 14B parameter variants."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Wan-Video/Wan2.1'
+github_repo: "https://github.com/Wan-Video/Wan2.1"
 stars: 16100
 maintainer: 'Wan-Video'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['wan-2-1', 'video-generation', 'diffusion-transformer', 'ai-video', 'open-source', alibaba, comfyui, diffusers]
-aliases: - /posts/wan-2-1/-
+categories: ["ai-tools"]
+tags: ["wan-2-1", "video-generation", "diffusion-transformer", "ai-video", "open-source", "alibaba", "comfyui", "diffusers"]
+aliases:
+  - /posts/wan-2-1/-
 ---
 {{</* resource-info */>}}
 

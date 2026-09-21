@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：...
-description: '你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub 星标的真相，以及"内置已经够用"与"该升级了"之间那条诚实的分界线。'
+description: "你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub 星标的真相，以及"内置已经够用"与"该升级了"之间那条诚实的分界线。"
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
-aliases: - /posts/claude-subagents-vs-langgraph-crewai-autogen/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "langgraph", "crewai", "autogen", "multi-agent", "agent-sdk", "llm-frameworks", "orchestration"]
+aliases:
+  - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq: - q: "如果我已经在用 Claude Code subagent，还需要 LangGraph 或 CrewAI 吗？"
     a: "大概率暂时还不需要。Claude Code subagent 已经能给你并行扇出、隔离的上下文窗口和专家委派——这覆盖了大多数真实的多智能体工作。当你需要 subagent 原生不提供的能力时，才升级到 LangGraph 或 CrewAI 这样的独立框架：跨运行的持久化状态 checkpointing、human-in-the-loop 审批关卡、在一条流水线里混用多家模型厂商，或为合规留下审计轨迹。如果你的需求只是『并行跑五个研究员然后合并结果』，内置 subagent 今天就能做到，无需任何新基础设施。"
   - q: "2026 年哪个多智能体框架的 GitHub 星标最多？"

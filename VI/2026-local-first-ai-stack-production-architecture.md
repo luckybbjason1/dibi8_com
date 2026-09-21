@@ -1,6 +1,6 @@
 ---
 title: 'Local-First AI Stack 2026: Kiến trúc tham chiếu cho prod...
-description: 'Kiến trúc tham chiếu hoàn chỉnh để build ứng dụng AI cấp production trong năm 2026 mà không bị khóa vào cloud — 7 layer, 14 tool open-source, kèm số liệu hiệu năng thực tế. Bao quát local LLM runtime, symbol-level code intelligence (CodeGraph), unified CLI control (CC Switch), cost-aware proxy (rtk), persistent agent memory (agentmemory/MemPalace), on-device TTS (Supertonic), và phương pháp luận 12-Factor Agents. Toàn bộ stack giúp bạn ship tính năng LLM theo cách scale được về mặt kinh tế.'
+description: "Kiến trúc tham chiếu hoàn chỉnh để build ứng dụng AI cấp production trong năm 2026 mà không bị khóa vào cloud — 7 layer, 14 tool open-source, kèm số liệu hiệu năng thực tế. Bao quát local LLM runtime, symbol-level code intelligence (CodeGraph), unified CLI control (CC Switch), cost-aware proxy (rtk), persistent agent memory (agentmemory/MemPalace), on-device TTS (Supertonic), và phương pháp luận 12-Factor Agents. Toàn bộ stack giúp bạn ship tính năng LLM theo cách scale được về mặt kinh tế."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial team'
-last_maintained: '2026-05-23'
+last_maintained: "2026-05-23"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['hub article', 'local-first-ai', 'production-ai', 'self-hosted-ai', 'ai-architecture', 'ai-stack-2026', 'agent-infrastructure', codegraph, '12-factor-agents', supertonic, 'cc-switch', rtk, agentmemory, mempalace, mcp, ds4, opencode, 'hermes-agent']
-aliases: - /vi/posts/2026-local-first-ai-stack-production-architecture/
+categories: ["llm-frameworks"]
+tags: ["hub article", "local-first-ai", "production-ai", "self-hosted-ai", "ai-architecture", "ai-stack-2026", "agent-infrastructure", "codegraph", "12-factor-agents", "supertonic", "cc-switch", "rtk", "agentmemory", "mempalace", "mcp", "ds4", "opencode", "hermes-agent"]
+aliases:
+  - /vi/posts/2026-local-first-ai-stack-production-architecture/
 ---
 
 # Local-First AI Stack 2026: Kiến trúc tham chiếu cho production (kèm 14 tool open-source)

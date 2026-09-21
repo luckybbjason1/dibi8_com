@@ -1,17 +1,16 @@
 ---
 title: 'Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 —...
-description: 'Headroom (19,745 GitHub stars)는 도구 출력, 로그, 파일, RAG 청크를 LLM에 전달하기 전 압축합니다. 60-95% 적은 토큰, 동일한 답변. Python 라이브러리, 프록시, MCP 서버 포함. 설치 튜토리얼, 아키텍처 분석, 실제 벤치마킹 포함.'
+description: "Headroom (19,745 GitHub stars)는 도구 출력, 로그, 파일, RAG 청크를 LLM에 전달하기 전 압축합니다. 60-95% 적은 토큰, 동일한 답변. Python 라이브러리, 프록시, MCP 서버 포함. 설치 튜토리얼, 아키텍처 분석, 실제 벤치마킹 포함."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
-tags: ['토큰 압축', 'LLM 토큰 최적화', 'MCP 서버', 'RAG 압축', 'Headroom', '컨텍스트 최적화', '토큰 비용 절감', 'AI 에이전트']
-github_repo: 'https://github.com/chopratejas/headroom'
+tags: ["토큰 압축", "LLM 토큰 최적화", "MCP 서버", "RAG 압축", "Headroom", "컨텍스트 최적화", "토큰 비용 절감", "AI 에이전트"]
+github_repo: "https://github.com/chopratejas/headroom"
 stars: 19745
 maintainer: 'chopratejas'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
-lang: ko
 ---
 
 # Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 — 2026 실전 가이드

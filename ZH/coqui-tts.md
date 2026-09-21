@@ -1,6 +1,6 @@
 ---
 title: 'Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS...
-description: 'Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比，含 Docker 部署方案和生产环境配置。'
+description: "Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比，含 Docker 部署方案和生产环境配置。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/coqui-ai/TTS'
+github_repo: "https://github.com/coqui-ai/TTS"
 stars: 45300
 maintainer: 'coqui-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['coqui tts', 文本转语音, 语音克隆, xtts, vits, 深度学习, docker, python]
-aliases: - /zh/posts/coqui-tts/-
+categories: ["ai-tools"]
+tags: ["coqui tts", "文本转语音", "语音克隆", "xtts", "vits", "深度学习", "docker", "python"]
+aliases:
+  - /zh/posts/coqui-tts/-
 ---
 
 {{</* resource-info */>}}

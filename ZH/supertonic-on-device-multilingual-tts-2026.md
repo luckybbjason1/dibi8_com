@@ -1,26 +1,27 @@
 ---
-title: 'Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）'
-description: 'Supertonic（GitHub 9.9K+ stars）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最具说服力的本地多语种 TTS 模型。9900 万参数、31 种语言（含韩语/日语/越南语/中文）、44.1kHz 录音棚级音质、10 个表情标签，通过 ONNX Runtime 跑在 CPU 上——无云端、无 API、无 GPU。Python、Node.js、浏览器（WebGPU/WASM）、iOS、Android、Rust、Flutter 全平台 SDK。完整功能拆解、安装、代码示例与 2026 本地 TTS 横向对比。'
+title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）"
+description: "Supertonic（GitHub 9.9K+ stars）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最具说服力的本地多语种 TTS 模型。9900 万参数、31 种语言（含韩语/日语/越南语/中文）、44.1kHz 录音棚级音质、10 个表情标签，通过 ONNX Runtime 跑在 CPU 上——无云端、无 API、无 GPU。Python、Node.js、浏览器（WebGPU/WASM）、iOS、Android、Rust、Flutter 全平台 SDK。完整功能拆解、安装、代码示例与 2026 本地 TTS 横向对比。"
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
-source_version: 'v2.0.0'
+source_version: "v2.0.0"
 licensing_model: Open Source
 license_type: MIT (code) / OpenRAIL-M (model)
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/supertone-inc/supertonic'
+github_repo: "https://github.com/supertone-inc/supertonic"
 stars: 9900
 maintainer: 'supertone-inc'
-last_maintained: '2026-01-06'
+last_maintained: "2026-01-06"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [supertonic, 'text-to-speech', tts, 'on-device-ai', onnx, multilingual, 'open-source-tts', 'edge-ai', 'korean-tts', 'japanese-tts']
-aliases: - /zh/posts/supertonic-on-device-multilingual-tts-2026/-
+categories: ["ai-tools"]
+tags: ["supertonic", "text-to-speech", "tts", "on-device-ai", "onnx", "multilingual", "open-source-tts", "edge-ai", "korean-tts", "japanese-tts"]
+aliases:
+  - /zh/posts/supertonic-on-device-multilingual-tts-2026/-
 ---
 # Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）
 

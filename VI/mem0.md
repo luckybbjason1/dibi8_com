@@ -1,6 +1,6 @@
 ---
 title: 'Mem0: 56K+ Stars — Hướng Dẫn Tinh Chỉnh Hiệu Suất Bộ Nhớ...
-description: 'Mem0 (mem0ai) là lớp bộ nhớ phổ quát cho AI agent. Tương thích với Claude Code, OpenAI, LangChain, CrewAI, Cursor. Bao gồm hướng dẫn mem0, thiết lập bộ nhớ liên tục, tinh chỉnh vector store và benchmark triển khai production.'
+description: "Mem0 (mem0ai) là lớp bộ nhớ phổ quát cho AI agent. Tương thích với Claude Code, OpenAI, LangChain, CrewAI, Cursor. Bao gồm hướng dẫn mem0, thiết lập bộ nhớ liên tục, tinh chỉnh vector store và benchmark triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/mem0ai/mem0'
+github_repo: "https://github.com/mem0ai/mem0"
 stars: 56205
 maintainer: mem0ai
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mem0, 'ai-agent-memory', 'bộ-nhớ-liên-tục', langchain, 'vector-store', 'tinh-chỉnh-bộ-nhớ', 'hướng-dẫn-mem0', 'mem0-vs-langchain', crewai, 'mã-nguồn-mở']
-aliases: - /vi/posts/mem0/
+categories: ["llm-frameworks"]
+tags: ["mem0", "ai-agent-memory", "bộ-nhớ-liên-tục", "langchain", "vector-store", "tinh-chỉnh-bộ-nhớ", "hướng-dẫn-mem0", "mem0-vs-langchain", "crewai", "mã-nguồn-mở"]
+aliases:
+  - /vi/posts/mem0/
 ---
 
 {{</* resource-info */>}}

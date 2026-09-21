@@ -1,17 +1,16 @@
 ---
 title: 'Langflow: 148k sao cho các quy trình làm việc LLM trực q...
-description: 'Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất.'
+description: "Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất."
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: 'langflow'
 category: 'llm-frameworks'
-tags: [langflow, quy trình làm việc LLM, lập trình trực quan, tác nhân AI, LangChain, lập trình dựa trên luồng, kỹ thuật prompt, triển khai, AI mã thấp]
-github_repo: 'https://github.com/langflow-ai/langflow'
+tags: ["langflow", "quy trình làm việc LLM", "lập trình trực quan", "tác nhân AI", "LangChain", "lập trình dựa trên luồng", "kỹ thuật prompt", "triển khai", "AI mã thấp"]
+github_repo: "https://github.com/langflow-ai/langflow"
 stars: 148710
 maintainer: 'langflow-ai'
 license: MIT
 featureImage: 'https://deepwiki.com/badge.svg'
-lang: vi
 ---
 
 # Langflow: 148k sao cho các quy trình làm việc LLM trực quan -- Phân tích chuyên sâu kỹ thuật 2026

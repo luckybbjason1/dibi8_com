@@ -1,11 +1,11 @@
 ---
-title: 'MoneyPrinterTurbo：一键式 AI 视频生成器，拥有 9 万多颗星'
-description: '给 MoneyPrinterTurbo 一个视频主题或关键词，它会自动生成脚本、库存素材、字幕、背景音乐和高清短视频。支持 TikTok、YouTube Shorts、Instagram Reels。拥有超过 9 万个 GitHub 星标。'
+title: "MoneyPrinterTurbo：一键式 AI 视频生成器，拥有 9 万多颗星"
+description: "给 MoneyPrinterTurbo 一个视频主题或关键词，它会自动生成脚本、库存素材、字幕、背景音乐和高清短视频。支持 TikTok、YouTube Shorts、Instagram Reels。拥有超过 9 万个 GitHub 星标。"
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
-categories: ['ai-tools']
+tags: ["ai tools", "video generation", "short videos", "automation", "self-hosted", "docker"]
+categories: ["ai-tools"]
 slug: moneyprinterturbo-one-click-ai-video-generator
 featureImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/moneyprinterturbo']
@@ -47,12 +47,12 @@ sources: - name: GitHub
 
 
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'
-description: 'Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.'
+description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'video generation', 'short videos', automation, 'self-hosted', docker]
-categories: ['ai-tools']
+tags: ["ai tools", "video generation", "short videos", "automation", "self-hosted", "docker"]
+categories: ["ai-tools"]
 slug: moneyprinterturbo-one-click-ai-video-generator
 
 aliases: ['/moneyprinterturbo']

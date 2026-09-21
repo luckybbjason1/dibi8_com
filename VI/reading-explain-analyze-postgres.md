@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/reading-explain-analyze-postgres/
+aliases:
+  - /vi/posts/reading-explain-analyze-postgres/
 faqs: - q: 'Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có nghĩa là gì?'
     a: 'Giá trị actual time thứ hai của node ngoài cùng là thời gian thực tế (tính bằng mili giây) mà toàn bộ truy vấn tiêu tốn cho một lần thực thi node đó. Tất cả các node bên dưới phân tích chi tiết thời gian tổng đó đã được sử dụng ở đâu.'
   - q: 'Làm thế nào để phát hiện query plan có vấn đề qua số lượng hàng trong EXPLAIN ANALYZE?'

@@ -1,6 +1,6 @@
 ---
 title: 'Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
-description: 'Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch hoặc JSON có cấu trúc, sẵn sàng cho LLM. 127,747 sao GitHub, giấy phép AGPL-3.0. Bao gồm cài đặt, các SDK chính thức, code thực tế, self-host và so sánh thẳng thắn với Puppeteer, Scrapy, Axios.'
+description: "Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch hoặc JSON có cấu trúc, sẵn sàng cho LLM. 127,747 sao GitHub, giấy phép AGPL-3.0. Bao gồm cài đặt, các SDK chính thức, code thực tế, self-host và so sánh thẳng thắn với Puppeteer, Scrapy, Axios."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'firecrawl/firecrawl'
+github_repo: "firecrawl/firecrawl"
 stars: 127747
 maintainer: firecrawl
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/firecrawl-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/firecrawl-dev-utils-2026/
 faqs: - q: 'Tôi cài Firecrawl như thế nào?'
-    a: 'Hãy cài một trong các SDK chính thức. Với Node.js: ```bash npm install firecrawl ``` Với Python: ```bash pip install firecrawl-py ``` Sau đó tạo một client bằng API key lấy từ [firecrawl.dev](https://firecrawl.dev).'
+    a: 'Hãy cài một trong các SDK chính thức. Với Node.js: ```bash npm install firecrawl ``` Với Python: ```bash pip install firecrawl-py ``` Sau đó tạo một client bằng API key lấy từ [firecrawl.dev"](https://firecrawl.dev).'
   - q: 'Tôi có thể dùng Firecrawl với các ngôn ngữ khác ngoài TypeScript không?'
     a: 'Có. Firecrawl là một HTTP API, nên bất kỳ ngôn ngữ nào cũng có thể gọi nó. Có SDK chính thức cho Node.js và Python, và với các ngôn ngữ khác bạn có thể gọi trực tiếp các endpoint REST bằng một HTTP client bất kỳ.'
   - q: 'Tôi bắt buộc phải dùng API được lưu trữ, hay có thể self-host?'

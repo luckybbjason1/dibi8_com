@@ -19,7 +19,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/ml-systems-book-mit-press-textbook/
+aliases:
+  - /posts/ml-systems-book-mit-press-textbook/
 faqs: - q: 'What topics does the ML Systems Book cover?'
     a: 'The ML Systems Book covers distributed training (data, model, and pipeline parallelism, plus fault tolerance), model serving (batch and real-time inference, versioning, auto-scaling), hardware acceleration (GPU, TPU, ASICs, quantization, pruning), ML infrastructure (feature stores, experiment tracking, CI/CD, monitoring), and cost optimization (spot instances, model compression, dynamic batching).'
   - q: 'How many chapters does the ML Systems Book have and how is it organized?'

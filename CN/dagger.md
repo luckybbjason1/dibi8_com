@@ -1,6 +1,6 @@
 ---
 title: 'Dagger: Programmable CI/CD with 15K+ Stars — Comparison ...
-description: 'Dagger is a programmable CI/CD engine that runs pipelines in containers. Compatible with Docker, Go, Python, TypeScript. Covers Dagger setup, tutorial, vs GitHub Actions, and production hardening.'
+description: "Dagger is a programmable CI/CD engine that runs pipelines in containers. Compatible with Docker, Go, Python, TypeScript. Covers Dagger setup, tutorial, vs GitHub Actions, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/dagger/dagger'
+github_repo: "https://github.com/dagger/dagger"
 stars: 15829
 maintainer: dagger
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [cicd, devops, containers, 'pipeline-as-code', docker, 'github-actions', 'gitlab-ci', 'build-automation']
-aliases: - /posts/dagger/-
+categories: ["dev-utils"]
+tags: ["cicd", "devops", "containers", "pipeline-as-code", "docker", "github-actions", "gitlab-ci", "build-automation"]
+aliases:
+  - /posts/dagger/-
 ---
 {{</* resource-info */>}}
 

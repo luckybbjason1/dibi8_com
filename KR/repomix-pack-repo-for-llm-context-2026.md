@@ -1,26 +1,27 @@
 ---
-title: 'repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정'
-description: 'repomix(구 repopack)는 Git 저장소 전체를 Claude, ChatGPT, Gemini의 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 변환합니다. 14k+ 스타, 제로 설정, npx로 즉시 실행.'
+title: "repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정"
+description: "repomix(구 repopack)는 Git 저장소 전체를 Claude, ChatGPT, Gemini의 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 변환합니다. 14k+ 스타, 제로 설정, npx로 즉시 실행."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
-source_version: 'v0.3'
+source_version: "v0.3"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
-download_url: 'https://github.com/yamadashy/repomix'
+download_url: "https://github.com/yamadashy/repomix"
 backup_url: ''
-github_repo: 'yamadashy/repomix'
+github_repo: "yamadashy/repomix"
 stars: 14200
 maintainer: yamadashy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
-categories: ['dev-utils']
-tags: [repomix, repopack, ai코딩, llm컨텍스트, 코드베이스패킹, claude, chatgpt, 개발자도구, 오픈소스]
-aliases: - /kr/posts/repomix-pack-repo-for-llm-context-2026/
+categories: ["dev-utils"]
+tags: ["repomix", "repopack", "ai코딩", "llm컨텍스트", "코드베이스패킹", "claude", "chatgpt", "개발자도구", "오픈소스"]
+aliases:
+  - /kr/posts/repomix-pack-repo-for-llm-context-2026/
 faqs: - q: 'repomix란 무엇이며 이전 이름은 무엇이었습니까?'
     a: 'repomix(구 repopack)는 전체 Git 저장소를 LLM 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 패킹하는 오픈소스 CLI 도구입니다. npm의 기존 "repack" 명령과의 혼동을 피하기 위해 2025년에 "repopack"에서 "repomix"로 이름이 변경되었습니다. yamadashy가 개발했으며 MIT 라이선스입니다.'
   - q: 'repomix가 지원하는 출력 형식은 무엇입니까?'

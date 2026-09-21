@@ -1,6 +1,6 @@
 ---
 title: 'nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,00...
-description: 'Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $100 미만으로 GPT-2 수준의 챗봇을 처음부터 훈련하도록 설계되었습니다.'
+description: "Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $100 미만으로 GPT-2 수준의 챗봇을 처음부터 훈련하도록 설계되었습니다."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']
@@ -10,17 +10,18 @@ licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
-download_url: 'https://github.com/karpathy/nanochat'
+download_url: "https://github.com/karpathy/nanochat"
 backup_url: ''
-github_repo: 'karpathy/nanochat'
+github_repo: "karpathy/nanochat"
 stars: 54700
 maintainer: karpathy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [nanochat, karpathy, 'llm-훈련', pytorch, gpt, 자체호스팅, 오픈소스, transformer]
-aliases: - /kr/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
+categories: ["llm-frameworks"]
+tags: ["nanochat", "karpathy", "llm-훈련", "pytorch", "gpt", "자체호스팅", "오픈소스", "transformer"]
+aliases:
+  - /kr/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
 faqs: - q: 'nanochat란 무엇이며 누가 만들었습니까?'
     a: 'nanochat는 Andrej Karpathy(OpenAI 공동창립자, 전 테슬라 AI 총감독)가 만든 최소한의 전체 스택 LLM 훈련·추론 파이프라인입니다. 기존 nanoGPT가 사전학습만 다뤘던 것과 달리, nanochat는 Rust BPE 토크나이저, 사전학습, 지도 파인튜닝, 평가, 추론 서버, 채팅 UI를 포함한 완전한 파이프라인을 약 8,000줄의 읽기 쉬운 코드로 제공합니다.'
   - q: 'nanochat로 모델 훈련 비용은 얼마입니까?'

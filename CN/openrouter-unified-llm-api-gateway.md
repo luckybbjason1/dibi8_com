@@ -1,6 +1,6 @@
 ---
 title: 'OpenRouter: The Unified LLM API Gateway Connecting 300+ ...
-description: 'Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn setup, integration, benchmarks, and production deployment in 5 minutes.'
+description: "Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn setup, integration, benchmarks, and production deployment in 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'openrouter/openrouter'
+github_repo: "openrouter/openrouter"
 stars: 15000
 maintainer: alexanderatallah
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [openrouter, llm, 'api gateway', ai, openai, claude, 'machine learning', 'cost optimization']
-aliases: - /posts/openrouter-unified-llm-api-gateway/-
+categories: ["llm-frameworks"]
+tags: ["openrouter", "llm", "api gateway", "ai", "openai", "claude", "machine learning", "cost optimization"]
+aliases:
+  - /posts/openrouter-unified-llm-api-gateway/-
 ---
 {{</* resource-info */>}}
 

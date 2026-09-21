@@ -1,6 +1,6 @@
 ---
-title: 'ds4 实测 2026：开源 DeepSeek 运行时新选择'
-description: 'ds4 是 2026 年最快增长的开源 DeepSeek 兼容 LLM runtime。Apache-2.0 协议、OpenAI API 兼容、跑 DeepSeek V3 / V3.1 / V4 权重比 vLLM 延迟低 40%。含完整部署指南、vLLM/Ollama/TGI 基准对比、生产硬化、与 Claude Code / Cursor / LangChain / Continue.dev 集成。'
+title: "ds4 实测 2026：开源 DeepSeek 运行时新选择"
+description: "ds4 是 2026 年最快增长的开源 DeepSeek 兼容 LLM runtime。Apache-2.0 协议、OpenAI API 兼容、跑 DeepSeek V3 / V3.1 / V4 权重比 vLLM 延迟低 40%。含完整部署指南、vLLM/Ollama/TGI 基准对比、生产硬化、与 Claude Code / Cursor / LangChain / Continue.dev 集成。"
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases: - /zh/posts/ds4-open-source-deepseek-alternative-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "open-source", "developer-tools", "llm-infrastructure"]
+aliases:
+  - /zh/posts/ds4-open-source-deepseek-alternative-2026/
 - /zh/resources/dev-utils/ds4-open-source-deepseek-alternative-2026/
 faqs: - q: 'ds4 是什么？跟 vLLM 或 Ollama 有什么不同？'
     a: 'ds4 是专为 DeepSeek 模型架构（V3, V3.1, V4）优化的开源 LLM runtime。不同于通用 runtime（vLLM, Ollama, TGI），ds4 实现 DeepSeek 专属优化：MoE routing batching、attention sink 处理、prefill/decode 分离。结果：DeepSeek 负载延迟降 40%、吞吐量 2×。Apache-2.0 协议、OpenAI API 兼容。'

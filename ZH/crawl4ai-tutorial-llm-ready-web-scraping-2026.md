@@ -1,6 +1,6 @@
 ---
 title: 'Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭建 LLM 数据采集与 RAG...
-description: 'Crawl4AI 是 2026 年 GitHub 排名第一的开源网页爬虫，63k+ Stars，专为 LLM、AI Agent 和 RAG 管道设计。本文提供完整中文教程，涵盖安装、LLM 结构化提取、深度爬取、对比 Firecrawl 与 ScrapeGraphAI，以及生产环境部署方案。'
+description: "Crawl4AI 是 2026 年 GitHub 排名第一的开源网页爬虫，63k+ Stars，专为 LLM、AI Agent 和 RAG 管道设计。本文提供完整中文教程，涵盖安装、LLM 结构化提取、深度爬取、对比 Firecrawl 与 ScrapeGraphAI，以及生产环境部署方案。"
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/unclecode/crawl4ai'
+github_repo: "https://github.com/unclecode/crawl4ai"
 stars: 63000
 maintainer: unclecode
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases: - /zh/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/-
+categories: ["llm-frameworks"]
+tags: ["crawl4ai", "web-scraping", "llm-rag", "open-source"]
+aliases:
+  - /zh/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/-
 ---
 
 {</* resource-info */>}

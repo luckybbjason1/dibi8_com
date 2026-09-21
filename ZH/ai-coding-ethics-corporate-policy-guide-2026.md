@@ -1,22 +1,23 @@
 ---
 title: 'AI 编码伦理 2026：企业"允许 vs 限制"策略指南'
-description: '2026 年的企业分化为"AI 允许 / AI 限制 / AI 禁止"三大阵营。基于我们追踪的真实企业落地模式，实用解读每种策略的样貌、如何抉择，以及法律/知识产权/合规上的暗礁。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "2026 年的企业分化为"AI 允许 / AI 限制 / AI 禁止"三大阵营。基于我们追踪的真实企业落地模式，实用解读每种策略的样貌、如何抉择，以及法律/知识产权/合规上的暗礁。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [策略, 合规, 'Claude Code', Cursor]
 application_domain: 开发工具
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 不适用
 license_type: 不适用
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 编辑部'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 伦理, 策略, 合规, 2026]
-aliases: - /zh/posts/ai-coding-ethics-corporate-policy-guide-2026/
+categories: ["dev-utils"]
+tags: ["ai-coding", "伦理", "策略", "合规", "2026"]
+aliases:
+  - /zh/posts/ai-coding-ethics-corporate-policy-guide-2026/
 faq: - q: "2026 年企业对 AI 编码的主流策略立场有哪些？"
     a: "三大阵营：(1) 允许并审计（科技公司最常见）—— 开发者可使用 AI 编码工具，代码照常评审。(2) 限制使用已批准工具（金融/医疗）—— 仅允许主流厂商带 DPA 的企业版。(3) 禁止（部分国防/涉密工作）—— 物理隔离环境、仅本地 AI 或完全不用。每种都有取舍。"
   - q: "AI 编码真实的知识产权/法律风险有哪些？"

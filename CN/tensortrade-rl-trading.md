@@ -1,6 +1,6 @@
 ---
 title: 'TensorTrade: The Reinforcement Learning Trading Framewor...
-description: 'Master TensorTrade for RL-based algorithmic trading. Build custom Gym environments, integrate Stable Baselines3, and deploy production-ready portfolio management strategies with real benchmarks.'
+description: "Master TensorTrade for RL-based algorithmic trading. Build custom Gym environments, integrate Stable Baselines3, and deploy production-ready portfolio management strategies with real benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'tensortrade-org/tensortrade'
+github_repo: "tensortrade-org/tensortrade"
 stars: 4300
 maintainer: 'tensortrade-org'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [tensortrade, 'reinforcement learning', 'algorithmic trading', 'openai gym', 'stable baselines3', 'portfolio management', python, 'machine learning', 'crypto trading', 'quantitative finance']
-aliases: - /posts/tensortrade-rl-trading/-
+categories: ["ai-trading"]
+tags: ["tensortrade", "reinforcement learning", "algorithmic trading", "openai gym", "stable baselines3", "portfolio management", "python", "machine learning", "crypto trading", "quantitative finance"]
+aliases:
+  - /posts/tensortrade-rl-trading/-
 ---
 {{</* resource-info */>}}
 

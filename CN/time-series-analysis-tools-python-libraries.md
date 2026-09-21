@@ -1,6 +1,6 @@
 ---
 title: 'Time Series Analysis in Python: Complete Toolkit with Pr...
-description: 'Master Python time series analysis with Prophet, sktime, statsmodels ARIMA, and Darts. Compare tools, build forecasting pipelines, and avoid common pitfalls.'
+description: "Master Python time series analysis with Prophet, sktime, statsmodels ARIMA, and Darts. Compare tools, build forecasting pipelines, and avoid common pitfalls."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/time-series-analysis-tools-python-libraries/
+aliases:
+  - /posts/time-series-analysis-tools-python-libraries/
 ---
 # Time Series Analysis in Python: Complete Toolkit with Prophet, sktime, ARIMA & Darts
 

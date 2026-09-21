@@ -1,6 +1,6 @@
 ---
-title: 'Milvus/Zilliz 2026：毫秒级延迟处理百亿向量的向量数据库——部署指南'
-description: 'Milvus 2.5 生产指南：十亿级向量检索、GPU 加速索引构建、Kubernetes 部署、混合搜索与 Zilliz Cloud 配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Milvus/Zilliz 2026：毫秒级延迟处理百亿向量的向量数据库——部署指南"
+description: "Milvus 2.5 生产指南：十亿级向量检索、GPU 加速索引构建、Kubernetes 部署、混合搜索与 Zilliz Cloud 配置。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'milvus-io/milvus'
+github_repo: "milvus-io/milvus"
 stars: 32000
 maintainer: 'milvus-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [milvus, zilliz, 向量数据库, ann, 相似性搜索, kubernetes, gpu索引, ai基础设施]
-aliases: - /zh/posts/zilliz-milvus-vector-database-scale/-
+categories: ["data-science"]
+tags: ["milvus", "zilliz", "向量数据库", "ann", "相似性搜索", "kubernetes", "gpu索引", "ai基础设施"]
+aliases:
+  - /zh/posts/zilliz-milvus-vector-database-scale/-
 ---
 
 {{</* resource-info */>}}

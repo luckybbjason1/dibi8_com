@@ -1,22 +1,23 @@
 ---
-title: 'GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가이드'
-description: '생성형 엔진 최적화(GEO)는 새로운 SEO입니다. Google AI Overviews, ChatGPT Search, Perplexity 인용을 위한 최적화 방법. dibi8.com에서 실제로 운영한 최적화 기법 — FAQ schema, 인용 가능성 점수, llms.txt.'
+title: "GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가이드"
+description: "생성형 엔진 최적화(GEO)는 새로운 SEO입니다. Google AI Overviews, ChatGPT Search, Perplexity 인용을 위한 최적화 방법. dibi8.com에서 실제로 운영한 최적화 기법 — FAQ schema, 인용 가능성 점수, llms.txt."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: 개발자 도구
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'N/A'
 license_type: 'N/A'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 편집부'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [seo, geo, 'ai-overviews', optimization, 2026]
-aliases: - /kr/posts/geo-ai-overviews-optimization-2026-practical/
+categories: ["dev-utils"]
+tags: ["seo", "geo", "ai-overviews", "optimization", "2026"]
+aliases:
+  - /kr/posts/geo-ai-overviews-optimization-2026-practical/
 faq: - q: "GEO란 무엇이며 SEO와 어떻게 다른가요?"
     a: "생성형 엔진 최적화(GEO)는 AI가 생성한 답변(Google AI Overviews, ChatGPT Search, Perplexity, Bing Copilot)을 위한 최적화입니다. SEO는 블루링크 순위를 최적화하지만, GEO는 AI가 생성한 답변에서 출처로 인용되는 것을 최적화합니다. 신호는 일부 겹치지만(콘텐츠 품질, schema) 우선순위가 다릅니다 — GEO는 구조화된 데이터와 원자적 답변 블록에 더 큰 비중을 둡니다."
   - q: "FAQ schema가 실제로 효과가 있나요?"

@@ -1,6 +1,6 @@
 ---
-title: 'GraphRAG：微软基于知识图谱的 RAG，让大模型答得更准（33K Stars）——2026 实战指南'
-description: 'GraphRAG 是微软推出的模块化、基于知识图谱的 RAG 系统（33,403 个 GitHub star，MIT 协议）。本指南讲解安装、init/index/query 工作流、真实 CLI 示例，以及与 LangChain、Haystack 的诚实对比。'
+title: "GraphRAG：微软基于知识图谱的 RAG，让大模型答得更准（33K Stars）——2026 实战指南"
+description: "GraphRAG 是微软推出的模块化、基于知识图谱的 RAG 系统（33,403 个 GitHub star，MIT 协议）。本指南讲解安装、init/index/query 工作流、真实 CLI 示例，以及与 LangChain、Haystack 的诚实对比。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,21 +12,22 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/graphrag'
+github_repo: "microsoft/graphrag"
 stars: 33403
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/graphrag-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/graphrag-llm-frameworks-2026/
 faqs: - q: '怎么安装 graphrag？'
     a: '从 PyPI 一条命令搞定（Python 3.10–3.12）： ```bash pip install graphrag ```'
   - q: '运行 graphrag 的系统要求是什么？'
     a: 'GraphRAG 需要 Python 3.10–3.12，以及通过 API key 访问一个语言模型（OpenAI、Azure OpenAI 或其他受支持的供应商）。任何支持 Python 的现代操作系统都能运行。'
   - q: '我可以为这个项目做贡献吗？'
-    a: '可以。项目以 MIT 协议开源，欢迎贡献。贡献指南见 GitHub 上的 [CONTRIBUTING.md](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) 文件。'
+    a: '可以。项目以 MIT 协议开源，欢迎贡献。贡献指南见 GitHub 上的 [CONTRIBUTING.md"](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) 文件。'
   - q: '怎么报告问题或 bug？'
     a: '用仓库的 GitHub Issues 页面。请尽量提供详细信息——错误消息、你的配置，以及复现问题的步骤。'
   - q: 'GraphRAG 和普通的向量 RAG 有什么区别？'

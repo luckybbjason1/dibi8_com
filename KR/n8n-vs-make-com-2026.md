@@ -1,10 +1,10 @@
 ---
-title: 'n8n vs Make.com 2026 비교: 오픈소스 제어권 vs 시각적 간편함'
-description: 'n8n(셀프호스팅·개발자 친화적 워크플로 자동화)과 Make.com(클라우드 전용 시각적 시나리오 빌더)를 항목별 비교 — 가격, 통합 수, AI 기능, 셀프호스팅, 2026년 추천.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "n8n vs Make.com 2026 비교: 오픈소스 제어권 vs 시각적 간편함"
+description: "n8n(셀프호스팅·개발자 친화적 워크플로 자동화)과 Make.com(클라우드 전용 시각적 시나리오 빌더)를 항목별 비교 — 가격, 통합 수, AI 기능, 셀프호스팅, 2026년 추천.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [n8n, make.com, integromat, workflow-automation, zapier-alternative, no-code, comparison, ai-automation]
-categories: [vs]
+tags: ["n8n", "make.com", "integromat", "workflow-automation", "zapier-alternative", "no-code", "comparison", "ai-automation"]
+categories: ["vs"]
 faqs: - q: '워크플로 자동화에 n8n과 Make.com 중 어느 쪽을 써야 하나요?'
     a: '셀프호스팅을 원하거나 데이터를 완전히 제어해야 하거나 워크플로 노드 안에서 JavaScript를 작성하고 싶은 개발자라면 n8n을 선택하세요. 코드를 모르거나 소규모 사업주로서 학습 곡선이 낮은 세련된 시각적 빌더와 방대한 앱 커넥터 라이브러리가 필요하다면 Make.com을 선택하세요. 요약: 기술 팀은 제어권을 위해 n8n, 속도와 간편함을 위해 Make.com입니다.'
   - q: 'n8n은 무료인가요? Make.com과 가격을 비교하면?'

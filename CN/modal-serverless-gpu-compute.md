@@ -1,7 +1,7 @@
 ---
 title: Modal Serverless GPU Compute — Run ML Pipelines Without I...
 description: Complete guide to Modal serverless GPU infrastructure. Deploy LLM inference, fine-tuning pipelines, and batch ML workloads with zero cluster management. Compare pricing, benchmarks, and real-world patterns.
-tags: ['serverless', 'gpu', 'machine-learning', 'inference', 'llm', 'cloud-compute']
+tags: ["serverless", "gpu", "machine-learning", "inference", "llm", "cloud-compute"]
 category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00

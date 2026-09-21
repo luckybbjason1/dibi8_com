@@ -1,6 +1,6 @@
 ---
-title: '多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）'
-description: 'Claude Code 多智能体流水线的五种真实失败模式——轻信未经核验的报告、上下文串台、失控的扇出、静默截断、孤儿 worktree——每一种都附带症状、根因和修复方案。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）"
+description: "Claude Code 多智能体流水线的五种真实失败模式——轻信未经核验的报告、上下文串台、失控的扇出、静默截断、孤儿 worktree——每一种都附带症状、根因和修复方案。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases: - /posts/multi-agent-pipeline-postmortem/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "agent-sdk", "debugging", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/multi-agent-pipeline-postmortem/
 faq: - q: "最常见的单个多智能体失败是什么？"
     a: "轻信子智能体的报告，而不去核验它实际产出的结果。子智能体返回的是它打算做什么的散文式摘要——而不是它实际做了什么的可靠记录。经典的翻车是：编排器读到『我重构了 auth 模块，所有测试都通过了』，就把这一步标记为完成、继续往下走——可实际上子智能体只做了能通过类型检查、但运行时会崩的浅层改动，而且压根没跑过测试。永远要对照基准事实核验：git diff、测试退出码、重新读一遍文件。摘要是一个声明，不是证据。"
   - q: "怎么阻止两个子智能体破坏彼此的工作？"

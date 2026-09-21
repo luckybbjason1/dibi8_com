@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
-tags: [ruvnet, ruview, WiFi, 空间智能, 位置追踪, 网状网络, 智能建筑, Python, 开源]
+tags: ["ruvnet", "ruview", "WiFi", "空间智能", "位置追踪", "网状网络", "智能建筑", "Python", "开源"]
 ---
 
 ## 简介

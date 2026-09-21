@@ -1,6 +1,6 @@
 ---
 title: 'Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà C...
-description: 'Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khiển việc nạp, tiết lộ tăng dần (progressive disclosure), và khi nào một skill vượt trội hơn CLAUDE.md hay một subagent. Kèm ví dụ thực tế và những sai lầm cần tránh.'
+description: "Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khiển việc nạp, tiết lộ tăng dần (progressive disclosure), và khi nào một skill vượt trội hơn CLAUDE.md hay một subagent. Kèm ví dụ thực tế và những sai lầm cần tránh."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases: - /posts/claude-code-skill-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "skills", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools", "prompt-engineering"]
+aliases:
+  - /posts/claude-code-skill-authoring/
 faq: - q: "Skill nằm ở đâu và một SKILL.md tối thiểu cần những gì?"
     a: "Một skill là một thư mục nằm dưới .claude/skills/<name>/ (phạm vi dự án) hoặc ~/.claude/skills/<name>/ (phạm vi người dùng), chứa một file SKILL.md. Mức tối thiểu là phần frontmatter YAML với một name và một description, theo sau là các chỉ dẫn trong phần thân. Thư mục cũng có thể chứa các file hỗ trợ — tài liệu tham khảo, script, template — mà skill trỏ tới, nhưng SKILL.md với hai trường frontmatter đó chính là phần lõi không thể giản lược."
   - q: "Khác biệt giữa một skill và việc chỉ đưa chỉ dẫn vào CLAUDE.md là gì?"

@@ -1,12 +1,12 @@
 ---
 title: 'NVIDIA Cosmos: Open-Source World Models for Physical AI ...
-description: 'NVIDIA Cosmos is an open platform of world models, datasets, and tools for building Physical AI — robots, autonomous vehicles, smart infrastructure. Cosmos 3 uses Mixture-of-Transformers for unified language, image, video, audio, and action generation. 16B and 64B models available.'
+description: "NVIDIA Cosmos is an open platform of world models, datasets, and tools for building Physical AI — robots, autonomous vehicles, smart infrastructure. Cosmos 3 uses Mixture-of-Transformers for unified language, image, video, audio, and action generation. 16B and 64B models available."
 tags: ["open-source", "self-hosted"]
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'nvidia-cosmos-world-models-platform-2026'
 category: ai-tools
-github_repo: 'https://github.com/NVIDIA/cosmos'
+github_repo: "https://github.com/NVIDIA/cosmos"
 license: 'Apache-2.0'
 featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg---
 ![NVIDIA Cosmos platform](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)

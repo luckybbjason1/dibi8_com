@@ -1,6 +1,6 @@
 ---
 title: 'Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu v...
-description: 'Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenAI, Anthropic, Ollama, Docker, AWS. Bao gồm cài đặt, hệ thống đa Agent, benchmark, so sánh với CrewAI, AutoGen, LangChain.'
+description: "Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenAI, Anthropic, Ollama, Docker, AWS. Bao gồm cài đặt, hệ thống đa Agent, benchmark, so sánh với CrewAI, AutoGen, LangChain."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/agno-agi/agno'
+github_repo: "https://github.com/agno-agi/agno"
 stars: 40233
 maintainer: 'agno-agi'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [agno, 'ai-agent', 'python-sdk', 'multi-agent', 'mã-nguồn-mở', 'framework-nhẹ', 'nền-tảng-agent', ollama, openai]
-aliases: - /vi/posts/agno/
+categories: ["llm-frameworks"]
+tags: ["agno", "ai-agent", "python-sdk", "multi-agent", "mã-nguồn-mở", "framework-nhẹ", "nền-tảng-agent", "ollama", "openai"]
+aliases:
+  - /vi/posts/agno/
 ---
 
 {{</* resource-info */>}}

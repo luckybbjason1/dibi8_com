@@ -1,6 +1,6 @@
 ---
 title: 'Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser ...
-description: 'Browser Use là framework Python mã nguồn mở kết nối LLM với trình duyệt thực qua Playwright. Hỗ trợ OpenAI, Anthropic, Gemini và mô hình local. Bao gồm cài đặt, benchmark WebVoyager, so sánh Selenium, hardening production và triển khai Docker.'
+description: "Browser Use là framework Python mã nguồn mở kết nối LLM với trình duyệt thực qua Playwright. Hỗ trợ OpenAI, Anthropic, Gemini và mô hình local. Bao gồm cài đặt, benchmark WebVoyager, so sánh Selenium, hardening production và triển khai Docker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/browser-use/browser-use'
+github_repo: "https://github.com/browser-use/browser-use"
 stars: 94731
 maintainer: 'browser-use'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['browser-use', 'ai-agent', playwright, 'tu-dong-hoa-trinh-duyet', 'web-scraping', 'mo-hinh-ngon-ngu-lon', python, 'ma-nguon-mo']
-aliases: - /vi/posts/browser-use/
+categories: ["llm-frameworks"]
+tags: ["browser-use", "ai-agent", "playwright", "tu-dong-hoa-trinh-duyet", "web-scraping", "mo-hinh-ngon-ngu-lon", "python", "ma-nguon-mo"]
+aliases:
+  - /vi/posts/browser-use/
 ---
 
 {{</* resource-info */>}}

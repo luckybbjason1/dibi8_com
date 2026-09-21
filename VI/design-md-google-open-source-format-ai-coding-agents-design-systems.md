@@ -1,14 +1,13 @@
 ---
 title: 'DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống t...
-description: 'DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho các tác nhân lập trình AI. 20,8 nghìn sao trên GitHub. Tìm hiểu cách nó kết nối các hệ thống thiết kế và tạo mã AI với các token YAML và các ràng buộc dựa trên văn bản.'
+description: "DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho các tác nhân lập trình AI. 20,8 nghìn sao trên GitHub. Tìm hiểu cách nó kết nối các hệ thống thiết kế và tạo mã AI với các token YAML và các ràng buộc dựa trên văn bản."
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
 lastmod: 2026-06-27
 slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
-github_repo: 'https://github.com/google-labs-code/design.md'
+github_repo: "https://github.com/google-labs-code/design.md"
 license: Apache-2.0
-lang: vi
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 

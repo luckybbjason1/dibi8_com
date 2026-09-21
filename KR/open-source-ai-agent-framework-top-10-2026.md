@@ -1,22 +1,23 @@
 ---
-title: '오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹'
-description: '2026년 프로덕션 채택률 기준 10대 오픈소스 AI 에이전트 프레임워크: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. 강점, 함정, 그리고 용도별 선택 가이드.'
+title: "오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹"
+description: "2026년 프로덕션 채택률 기준 10대 오픈소스 AI 에이전트 프레임워크: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. 강점, 함정, 그리고 용도별 선택 가이드."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: LLM 프레임워크
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 오픈소스
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: '여러 OSS 커뮤니티'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agent', framework, langgraph, crewai, autogen, 2026]
-aliases: - /kr/posts/open-source-ai-agent-framework-top-10-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agent", "framework", "langgraph", "crewai", "autogen", "2026"]
+aliases:
+  - /kr/posts/open-source-ai-agent-framework-top-10-2026/
 faq: - q: "2026년에는 어떤 AI 에이전트 프레임워크를 선택해야 할까요?"
     a: "상태 기반의 프로덕션 그래프 워크플로우에는 LangGraph. 다중 에이전트 역할 기반 협업에는 CrewAI. 연구 및 Microsoft 생태계에는 AutoGen. TypeScript 우선 팀에는 Mastra. 언어 선호와 아키텍처 스타일로 선택하세요 — 마케팅이 말하는 것보다 서로 더 비슷합니다."
   - q: "에이전트 프레임워크의 종속성은 감수할 가치가 있나요?"

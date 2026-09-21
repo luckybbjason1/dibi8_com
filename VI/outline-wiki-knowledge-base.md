@@ -1,6 +1,6 @@
 ---
 title: 'Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
-description: 'Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết.'
+description: "Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'outline/outline'
+github_repo: "outline/outline"
 stars: 32000
 maintainer: outline
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [outline, wiki, 'knowledge-base', 'team-docs', 'ma-nguon-mo', 'tu-luu-tru', docker, 'cong-tac', markdown]
-aliases: - /vi/posts/outline-wiki-knowledge-base/
+categories: ["dev-utils"]
+tags: ["outline", "wiki", "knowledge-base", "team-docs", "ma-nguon-mo", "tu-luu-tru", "docker", "cong-tac", "markdown"]
+aliases:
+  - /vi/posts/outline-wiki-knowledge-base/
 ---
 
 {{</* resource-info */>}}

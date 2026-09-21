@@ -1,6 +1,6 @@
 ---
-title: 'ComfyUI: 87K+ Stars — 节点式 Stable Diffusion 部署指南 2026'
-description: 'ComfyUI (COMFY) 是最强大的节点式 Stable Diffusion 图形界面。支持 SD 1.5、SDXL、Flux、Wan、LTXV。Docker 生产级部署、自定义节点、API 集成、与 AUTOMATIC1111 和 InvokeAI 的性能对比。'
+title: "ComfyUI: 87K+ Stars — 节点式 Stable Diffusion 部署指南 2026"
+description: "ComfyUI (COMFY) 是最强大的节点式 Stable Diffusion 图形界面。支持 SD 1.5、SDXL、Flux、Wan、LTXV。Docker 生产级部署、自定义节点、API 集成、与 AUTOMATIC1111 和 InvokeAI 的性能对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 87200
 maintainer: comfyanonymous
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'stable diffusion', 'ai 图像生成', 节点式界面, docker, flux, sdxl, 机器学习]
-aliases: - /zh/posts/comfyui/
+categories: ["ai-tools"]
+tags: ["comfyui", "stable diffusion", "ai 图像生成", "节点式界面", "docker", "flux", "sdxl", "机器学习"]
+aliases:
+  - /zh/posts/comfyui/
 - /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/-
 ---
 

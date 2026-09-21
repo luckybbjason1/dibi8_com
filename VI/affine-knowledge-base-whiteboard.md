@@ -1,6 +1,6 @@
 ---
 title: 'AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản...
-description: 'Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ, bảng vẽ edgeless, trợ lý viết AI, triển khai Docker trong 5 phút.'
+description: "Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ, bảng vẽ edgeless, trợ lý viết AI, triển khai Docker trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'toeverything/AFFiNE'
+github_repo: "toeverything/AFFiNE"
 stars: 47000
 maintainer: toeverything
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [affine, 'knowledge-base', whiteboard, 'tự-lưu-trữ', docker, 'thay-thế-notion', 'thay-thế-miro', crdt, 'ưu-tiên-cục-bộ', 'ai-viết']
-aliases: - /vi/posts/affine-knowledge-base-whiteboard/
+categories: ["dev-utils"]
+tags: ["affine", "knowledge-base", "whiteboard", "tự-lưu-trữ", "docker", "thay-thế-notion", "thay-thế-miro", "crdt", "ưu-tiên-cục-bộ", "ai-viết"]
+aliases:
+  - /vi/posts/affine-knowledge-base-whiteboard/
 ---
 
 {{</* resource-info */>}}

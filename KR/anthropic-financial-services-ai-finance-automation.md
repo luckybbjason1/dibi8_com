@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/anthropic-financial-services-ai-finance-automation/
+aliases:
+  - /ko/posts/anthropic-financial-services-ai-finance-automation/
 - /posts/anthropics-claude-financial-services-ai-agents.ko/
 faqs: - q: 'Anthropic Financial Services 에이전트는 어떤 금융 워크플로를 자동화할 수 있나요?'
     a: '네 가지 버티컬에 대해 이름이 붙은 엔드투엔드 에이전트를 제공합니다: 투자은행(피치덱, 컴프, 선례 거래, LBO 모델), 주식 리서치(섹터 개요, 실적 리뷰, DCF/3-statement 모델), 사모펀드 운용 관리(밸류에이션 검토, GL 대사, 월말 마감, LP 명세서 감사), 그리고 자산관리 운영(KYC 스크리닝 및 온보딩). 각각은 범용 챗봇이 아니라 실제 애널리스트 업무에 대응합니다.'

@@ -1,6 +1,6 @@
 ---
 title: 'Activepieces: The Open-Source Zapier Alternative with 20...
-description: 'Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integrations, AI actions, and a visual builder — at a fraction of Zapier''s cost.'
+description: "Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integrations, AI actions, and a visual builder — at a fraction of Zapier"'s cost.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'activepieces/activepieces'
+github_repo: "activepieces/activepieces"
 stars: 13000
 maintainer: activepieces
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [activepieces, 'workflow automation', 'zapier alternative', 'self-hosted', docker, 'no-code', 'open-source', typescript, 'ai actions', webhooks]
-aliases: - /posts/activepieces-workflow-automation/-
+categories: ["dev-utils"]
+tags: ["activepieces", "workflow automation", "zapier alternative", "self-hosted", "docker", "no-code", "open-source", "typescript", "ai actions", "webhooks"]
+aliases:
+  - /posts/activepieces-workflow-automation/-
 ---
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 

@@ -1,14 +1,13 @@
 ---
 title: 'Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn t...
-description: 'Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao.'
+description: "Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao."
 date: 2026-06-11
 lastmod: 2026-06-11
 slug: 'ohmyzsh'
 category: dev-utils
-tags: [ohmyzsh, zsh, dev-tools, terminal, bash, shell, productivity, linux]
-github_repo: 'https://github.com/ohmyzsh/ohmyzsh'
+tags: ["ohmyzsh", "zsh", "dev-tools", "terminal", "bash", "shell", "productivity", "linux"]
+github_repo: "https://github.com/ohmyzsh/ohmyzsh"
 license: MIT
-lang: vi
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 

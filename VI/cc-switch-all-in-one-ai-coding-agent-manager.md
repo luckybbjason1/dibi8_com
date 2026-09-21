@@ -4,7 +4,6 @@ description: "Hướng dẫn đầy đủ về CC Switch — ứng dụng deskto
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
-lang: vi
 slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---

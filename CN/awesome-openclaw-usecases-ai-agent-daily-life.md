@@ -20,7 +20,8 @@ maintainer: "openclaw"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /en/posts/awesome-openclaw-usecases-ai-agent-daily-life/
+aliases:
+  - /en/posts/awesome-openclaw-usecases-ai-agent-daily-life/
 - /posts/awesome-openclaw-usecases-ai-agent-daily-life/
 faqs: - q: 'What is OpenClaw used for?'
     a: 'OpenClaw is an open-source AI agent framework for building autonomous agents that execute multi-step workflows, integrate with external APIs, process data from multiple sources, and complete goals with minimal human intervention. It is used across domains including social media automation, content creation, productivity, research, and trading.'

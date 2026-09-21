@@ -1,6 +1,6 @@
 ---
 title: 'OpenRouter: 300개 이상 모델을 연결하는 통합 LLM API 게이트웨이, 40% 비용 절감...
-description: 'OpenRouter 완벽 가이드: 60개 이상 제공업체의 300개 이상 AI 모델에 단일 OpenAI 호환 엔드포인트로 액세스합니다. 5분 안에 설정, 통합, 벤치마크, 프로덕션 배포를 학습하세요.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "OpenRouter 완벽 가이드: 60개 이상 제공업체의 300개 이상 AI 모델에 단일 OpenAI 호환 엔드포인트로 액세스합니다. 5분 안에 설정, 통합, 벤치마크, 프로덕션 배포를 학습하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'openrouter/openrouter'
+github_repo: "openrouter/openrouter"
 stars: 15000
 maintainer: alexanderatallah
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [openrouter, llm, 'api 게이트웨이', 인공지능, openai, claude, 머신러닝, '비용 최적화']
-aliases: - /kr/posts/openrouter-unified-llm-api-gateway/
+categories: ["llm-frameworks"]
+tags: ["openrouter", "llm", "api 게이트웨이", "인공지능", "openai", "claude", "머신러닝", "비용 최적화"]
+aliases:
+  - /kr/posts/openrouter-unified-llm-api-gateway/
 ---
 
 {{</* resource-info */>}}

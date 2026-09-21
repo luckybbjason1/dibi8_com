@@ -1,6 +1,6 @@
 ---
 title: 'ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại ...
-description: 'ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, MeloTTS, GPT-SoVITS. Bao gồm cài đặt, benchmark, triển khai production và bảng so sánh.'
+description: "ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, MeloTTS, GPT-SoVITS. Bao gồm cài đặt, benchmark, triển khai production và bảng so sánh."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/2noise/ChatTTS'
+github_repo: "https://github.com/2noise/ChatTTS"
 stars: 39300
 maintainer: 2noise
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [chattts, 'text-to-speech', tts, 'ai-hội-thoại', 'llm-assistant', 'tổng-hợp-giọng-nói', 'mã-nguồn-mở', benchmark]
-aliases: - /vi/posts/chattts/
+categories: ["ai-tools"]
+tags: ["chattts", "text-to-speech", "tts", "ai-hội-thoại", "llm-assistant", "tổng-hợp-giọng-nói", "mã-nguồn-mở", "benchmark"]
+aliases:
+  - /vi/posts/chattts/
 - /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
 ---
 

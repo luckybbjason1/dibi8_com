@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/agent-skills-production-grade-ai-coding/
+aliases:
+  - /en/posts/agent-skills-production-grade-ai-coding/
 - /posts/addy-osmani-agent-skills-production-grade-ai-coding-agents/
 - /posts/agent-skills-production-grade-ai-coding/
 - /posts/ai-coding-assistants-2026/

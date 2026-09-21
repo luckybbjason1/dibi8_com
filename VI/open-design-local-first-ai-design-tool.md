@@ -20,7 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/open-design-local-first-ai-design-tool/
+aliases:
+  - /vi/posts/open-design-local-first-ai-design-tool/
 faqs: - q: 'Open Design là gì và khác gì so với Claude Design?'
     a: 'Open Design là giải pháp thay thế mã nguồn mở, ưu tiên chạy cục bộ cho Claude Design của Anthropic, có khả năng tạo ra prototype web, giao diện di động và desktop, slide, hình ảnh, video và HyperFrame tương tác. Khác với Claude Design chỉ hoạt động trên đám mây, Open Design chạy hoàn toàn offline sau khi cài đặt, được cấp phép MIT và miễn phí.'
   - q: 'Open Design hoạt động với những trợ lý lập trình AI nào?'

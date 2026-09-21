@@ -1,22 +1,23 @@
 ---
 title: 'GEO / AI Overviews Optimization 2026: A Practical Guide ...
-description: 'Generative Engine Optimization (GEO) is the new SEO. How to optimize for Google AI Overviews, ChatGPT Search, and Perplexity citations. Real techniques from running optimization on dibi8.com — FAQ schema, citability scoring, llms.txt.'
+description: "Generative Engine Optimization (GEO) is the new SEO. How to optimize for Google AI Overviews, ChatGPT Search, and Perplexity citations. Real techniques from running optimization on dibi8.com — FAQ schema, citability scoring, llms.txt."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: Dev Utils
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'N/A'
 license_type: 'N/A'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [seo, geo, 'ai-overviews', optimization, 2026]
-aliases: - /posts/geo-ai-overviews-optimization-2026-practical/
+categories: ["dev-utils"]
+tags: ["seo", "geo", "ai-overviews", "optimization", "2026"]
+aliases:
+  - /posts/geo-ai-overviews-optimization-2026-practical/
 faq: - q: "What is GEO and how does it differ from SEO?"
     a: "Generative Engine Optimization (GEO) is optimizing for AI-generated answers (Google AI Overviews, ChatGPT Search, Perplexity, Bing Copilot). SEO optimizes for blue-link rankings; GEO optimizes for being cited as a source in AI-generated answers. The signals overlap (content quality, schema) but priorities differ — GEO weighs structured data and atomic answer blocks more heavily."
   - q: "Does FAQ schema actually move the needle?"

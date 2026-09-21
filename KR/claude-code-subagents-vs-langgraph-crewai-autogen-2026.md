@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (...
-description: '당신은 이미 Claude Code 안에서 subagent를 오케스트레이션하고 있다. 정말 LangGraph, CrewAI, AutoGen이 필요할까? 실제 벤치마크, GitHub 스타의 현실, 그리고 "내장 기능으로 충분하다"와 "이제 넘어갈 때다" 사이의 솔직한 경계선을 담은 2026 의사결정 가이드.'
+description: "당신은 이미 Claude Code 안에서 subagent를 오케스트레이션하고 있다. 정말 LangGraph, CrewAI, AutoGen이 필요할까? 실제 벤치마크, GitHub 스타의 현실, 그리고 "내장 기능으로 충분하다"와 "이제 넘어갈 때다" 사이의 솔직한 경계선을 담은 2026 의사결정 가이드."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', langgraph, crewai, autogen, 'multi-agent', 'agent-sdk', 'llm-frameworks', orchestration]
-aliases: - /posts/claude-subagents-vs-langgraph-crewai-autogen/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "langgraph", "crewai", "autogen", "multi-agent", "agent-sdk", "llm-frameworks", "orchestration"]
+aliases:
+  - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq: - q: "이미 Claude Code subagent를 쓰고 있다면 LangGraph나 CrewAI가 필요할까요?"
     a: "아마 아직은 아닙니다. Claude Code subagent는 이미 병렬 fan-out, 격리된 컨텍스트 윈도우, 전문가 위임을 제공하며 — 이것만으로도 실제 멀티 에이전트 작업의 대부분을 커버합니다. LangGraph나 CrewAI 같은 독립 프레임워크로 넘어가는 시점은 subagent가 기본 제공하지 않는 것이 필요할 때입니다: 실행 간 지속되는 상태 checkpointing, human-in-the-loop 승인 게이트, 하나의 파이프라인에서 여러 모델 벤더 혼용, 또는 컴플라이언스를 위한 감사 추적. '연구자 다섯을 병렬로 돌리고 결과를 합친다'가 당신의 필요라면, 내장 subagent가 추가 인프라 없이 오늘 당장 그것을 제공합니다."
   - q: "2026년 기준 GitHub 스타가 가장 많은 멀티 에이전트 프레임워크는 무엇인가요?"

@@ -1,22 +1,23 @@
 ---
-title: 'GEO / AI Overviews 优化 2026：来自真实站点数据的实战指南'
-description: '生成式引擎优化（GEO）就是新的 SEO。如何针对 Google AI Overviews、ChatGPT Search 和 Perplexity 引用进行优化。来自 dibi8.com 实战优化的真实技巧——FAQ schema、可引用性评分、llms.txt。'
+title: "GEO / AI Overviews 优化 2026：来自真实站点数据的实战指南"
+description: "生成式引擎优化（GEO）就是新的 SEO。如何针对 Google AI Overviews、ChatGPT Search 和 Perplexity 引用进行优化。来自 dibi8.com 实战优化的真实技巧——FAQ schema、可引用性评分、llms.txt。"
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: 开发工具
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'N/A'
 license_type: 'N/A'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 编辑部'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [seo, geo, 'ai-overviews', optimization, 2026]
-aliases: - /zh/posts/geo-ai-overviews-optimization-2026-practical/
+categories: ["dev-utils"]
+tags: ["seo", "geo", "ai-overviews", "optimization", "2026"]
+aliases:
+  - /zh/posts/geo-ai-overviews-optimization-2026-practical/
 faq: - q: "什么是 GEO？它和 SEO 有什么区别？"
     a: "生成式引擎优化（GEO）是针对 AI 生成的答案进行优化（Google AI Overviews、ChatGPT Search、Perplexity、Bing Copilot）。SEO 优化的是蓝色链接排名；GEO 优化的是在 AI 生成的答案中被作为来源引用。两者的信号有重叠（内容质量、schema），但优先级不同——GEO 对结构化数据和原子答案块的权重更高。"
   - q: "FAQ schema 真的有效果吗？"

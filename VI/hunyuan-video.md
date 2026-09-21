@@ -1,6 +1,6 @@
 ---
 title: 'HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
-description: 'HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI, Diffusers, Gradio API. Bao gồm Docker, FP8 quantization, đa GPU, và production hardening.'
+description: "HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI, Diffusers, Gradio API. Bao gồm Docker, FP8 quantization, đa GPU, và production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Tencent-Hunyuan/HunyuanVideo'
+github_repo: "https://github.com/Tencent-Hunyuan/HunyuanVideo"
 stars: 12100
 maintainer: 'Tencent-Hunyuan'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['tạo-video', 'diffusion-transformer', tencent, hunyuanvideo, comfyui, docker, fp8, 'đa-phương-thức']
-aliases: - /vi/posts/hunyuan-video/
+categories: ["ai-tools"]
+tags: ["tạo-video", "diffusion-transformer", "tencent", "hunyuanvideo", "comfyui", "docker", "fp8", "đa-phương-thức"]
+aliases:
+  - /vi/posts/hunyuan-video/
 ---
 
 {{</* resource-info */>}}

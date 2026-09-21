@@ -1,6 +1,6 @@
 ---
-title: 'Freqtrade 2026：使用机器学习构建AI驱动的加密货币交易策略 — 完整机器人设置指南'
-description: 'Freqtrade与FreqAI实战部署指南，开源Python加密货币交易机器人，集成机器学习。涵盖Docker设置、超参数优化、回测、Telegram集成和生产环境部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Freqtrade 2026：使用机器学习构建AI驱动的加密货币交易策略 — 完整机器人设置指南"
+description: "Freqtrade与FreqAI实战部署指南，开源Python加密货币交易机器人，集成机器学习。涵盖Docker设置、超参数优化、回测、Telegram集成和生产环境部署。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'freqtrade/freqtrade'
+github_repo: "freqtrade/freqtrade"
 stars: 37000
 maintainer: freqtrade
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /zh/posts/freqtrade-ai-trading-strategies/-
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /zh/posts/freqtrade-ai-trading-strategies/-
 ---
 
 {{</* resource-info */>}}
@@ -31,9 +32,9 @@ aliases: - /zh/posts/freqtrade-ai-trading-strategies/-
 
 这里有一个残酷的真相：**90%的自建交易机器人**在前3个月内失败。不是因为想法不好，而是因为构建生产级机器人需要处理没人提及的边缘情况 — 交易所停机、部分成交、网络超时、速率限制、滑点，以及实时看着机器人亏钱的心理压力。
 
-**Freqtrade** 解决了这个问题。凭借 **37,000+ GitHub星标**，它是最受欢迎的开源Python加密货币交易机器人框架。内置的 **FreqAI** 模块为你的策略添加机器学习预测。你获得带有滑点和价差建模的回测、通过Optuna进行超参数优化，以及用于监控的Telegram机器人 —— 全部集成在5分钟内部署的Docker容器中。
+**Freqtrade** 解决了这个问题。凭借 **37", "000+ GitHub星标**，它是最受欢迎的开源Python加密货币交易机器人框架。内置的 **FreqAI** 模块为你的策略添加机器学习预测。你获得带有滑点和价差建模的回测、通过Optuna进行超参数优化，以及用于监控的Telegram机器人 —— 全部集成在5分钟内部署的Docker容器中。
 
-> **联盟营销说明：** 本指南包含交易所联盟链接。通过 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 或 [OKX](https://www.promoohubly.com/join/12190433) 注册以支持本项目。如需AI增强交易信号，请查看 [Minara](https://minara.ai/r/OSXG4X)。
+> **联盟营销说明：** 本指南包含交易所联盟链接。通过 [Binance"](https://www.bsmkweb.cc/register?ref=DIBI8) 或 [OKX](https://www.promoohubly.com/join/12190433) 注册以支持本项目。如需AI增强交易信号，请查看 [Minara](https://minara.ai/r/OSXG4X)。
 
 ## Freqtrade 是什么？
 

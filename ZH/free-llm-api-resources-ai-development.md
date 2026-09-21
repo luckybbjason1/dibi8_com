@@ -18,7 +18,8 @@ maintainer: "cheahjs"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/free-llm-api-resources-ai-development/
+aliases:
+  - /zh/posts/free-llm-api-resources-ai-development/
 faqs: - q: '最快的免费 LLM 推理服务商是哪个？'
     a: 'Groq 提供最快的免费推理，速度超过每秒 800 tokens。它的免费层级完全免费，但有速率限制，约为每分钟 20 个请求和每分钟 6,000 tokens。'
   - q: '如何在本地免费运行 LLM 并完全保护隐私？'

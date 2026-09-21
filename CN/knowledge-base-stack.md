@@ -1,6 +1,6 @@
 ---
 title: 'The Knowledge Base Stack 2026: Build Your "Second Brain"...
-description: 'A 5-component self-hosted knowledge base stack for personal or team use. AnythingLLM (UI + RAG) + RAGFlow (deep doc parsing) + mem0 (agent memory) + AgentMemory MCP (MCP exposure) + vector DB pick. Replaces $50-200/mo SaaS (Notion AI + Mem + Glean) with $10-25/mo self-hosted.'
+description: "A 5-component self-hosted knowledge base stack for personal or team use. AnythingLLM (UI + RAG) + RAGFlow (deep doc parsing) + mem0 (agent memory) + AgentMemory MCP (MCP exposure) + vector DB pick. Replaces $50-200/mo SaaS (Notion AI + Mem + Glean) with $10-25/mo self-hosted."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['knowledge base', rag, 'second brain', stack, collection]
-aliases: - /posts/knowledge-base-stack/-
+categories: ["collections"]
+tags: ["knowledge base", "rag", "second brain", "stack", "collection"]
+aliases:
+  - /posts/knowledge-base-stack/-
 ---
 You've got 500 PDFs, 2,000 notes, 10 years of email, and the AI in your editor doesn't know any of it exists. Notion AI is $10/seat/mo and can't see your local files. Glean costs $30k/year minimum. Mem.ai is great but it's a SaaS — your "second brain" lives on someone else's hardware.
 

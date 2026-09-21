@@ -1,6 +1,6 @@
 ---
 title: 'Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
-description: 'Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PDF, DOCX, PPTX và hình ảnh thành các đoạn văn bản sạch, có cấu trúc sẵn sàng cho pipeline LLM và RAG.'
+description: "Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PDF, DOCX, PPTX và hình ảnh thành các đoạn văn bản sạch, có cấu trúc sẵn sàng cho pipeline LLM và RAG."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Unstructured-IO/unstructured'
+github_repo: "Unstructured-IO/unstructured"
 stars: 10500
 maintainer: 'Unstructured-IO'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [unstructured, 'phân-tích-tài-liệu', llm, rag, 'tiền-xử-lý-dữ-liệu', pdf, chunking, 'mã-nguồn-mở']
-aliases: - /vi/posts/unstructured-data-preprocessing-llm/
+categories: ["data-science"]
+tags: ["unstructured", "phân-tích-tài-liệu", "llm", "rag", "tiền-xử-lý-dữ-liệu", "pdf", "chunking", "mã-nguồn-mở"]
+aliases:
+  - /vi/posts/unstructured-data-preprocessing-llm/
 ---
 
 {{</* resource-info */>}}

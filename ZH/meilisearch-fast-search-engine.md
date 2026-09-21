@@ -1,6 +1,6 @@
 ---
-title: 'Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试'
-description: '部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试"
+description: "部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'meilisearch/meilisearch'
+github_repo: "meilisearch/meilisearch"
 stars: 51300
 maintainer: meilisearch
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /zh/posts/meilisearch-fast-search-engine/-
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /zh/posts/meilisearch-fast-search-engine/-
 ---
 
 {{</* resource-info */>}}
@@ -31,7 +32,7 @@ aliases: - /zh/posts/meilisearch-fast-search-engine/-
 
 你听说过 Elasticsearch。它有效，但需要 **至少 8GB 内存**、JVM 调优和一个专门的运维团队。Algolia 很快，但规模化成本为 **每 1000 次搜索 $1.00**。你需要一种能在几分钟内部署、在 $20 VPS 上运行、并轻松处理数百万文档的方案。
 
-这就是 **Meilisearch** —— 一个用 Rust 编写的开源搜索引擎，拥有 **51,300+ GitHub Stars**，MIT 许可证，为希望即时搜索且无需运维负担的开发者而构建。2026 年 3 月发布的 1.12 版本提供 **50 毫秒以内的搜索**，具备容错、分面、过滤和排序功能 —— 全部来自一个几秒钟即可启动的单一二进制文件。本指南将带你完成生产级 Meilisearch 部署、真实负载基准测试，以及与替代方案的诚实对比。
+这就是 **Meilisearch** —— 一个用 Rust 编写的开源搜索引擎，拥有 **51", "300+ GitHub Stars**，MIT 许可证，为希望即时搜索且无需运维负担的开发者而构建。2026 年 3 月发布的 1.12 版本提供 **50 毫秒以内的搜索**，具备容错、分面、过滤和排序功能 —— 全部来自一个几秒钟即可启动的单一二进制文件。本指南将带你完成生产级 Meilisearch 部署、真实负载基准测试，以及与替代方案的诚实对比。
 
 ## 什么是 Meilisearch？
 
@@ -46,7 +47,7 @@ aliases: - /zh/posts/meilisearch-fast-search-engine/-
 ---
 |
 | **最新版本** | 1.12（2026 年 3 月） |
-| **GitHub Stars** | 51,300+ |
+| **GitHub Stars** | 51", "300+ |
 | **许可证** | MIT |
 | **维护者** | Meilisearch（法国巴黎） |
 | **开发语言** | Rust |
@@ -141,36 +142,12 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '[
     {
-      "id": 1,
-      "name": "Wireless Noise Cancelling Headphones",
-      "description": "Premium over-ear headphones with active noise cancellation",
-      "price": 149.99,
-      "category": "Electronics",
-      "rating": 4.6,
-      "in_stock": true,
-      "location": { "lat": 40.7128, "lng": -74.0060 }
-    },
-    {
-      "id": 2,
-      "name": "Mechanical Gaming Keyboard",
-      "description": "RGB backlit keyboard with hot-swappable switches",
-      "price": 119.99,
-      "category": "Electronics",
-      "rating": 4.8,
-      "in_stock": true,
-      "location": { "lat": 37.7749, "lng": -122.4194 }
-    },
-    {
-      "id": 3,
-      "name": "Trail Running Shoes",
-      "description": "Lightweight waterproof shoes for trail running",
-      "price": 95.00,
-      "category": "Sports",
-      "rating": 4.3,
-      "in_stock": false,
-      "location": { "lat": 51.5074, "lng": -0.1278 }
-    }
-  ]' | jq .
+      "id": 1", "name": "Wireless Noise Cancelling Headphones", "description": "Premium over-ear headphones with active noise cancellation", "price": 149.99", "category": "Electronics", "rating": 4.6", "in_stock": true", "location": { "lat": 40.7128", "lng": -74.0060 }
+    }", "{
+      "id": 2", "name": "Mechanical Gaming Keyboard", "description": "RGB backlit keyboard with hot-swappable switches", "price": 119.99", "category": "Electronics", "rating": 4.8", "in_stock": true", "location": { "lat": 37.7749", "lng": -122.4194 }
+    }", "{
+      "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
+    }"]' | jq .
 ```
 
 ### 第三步：配置可搜索和可过滤字段

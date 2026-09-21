@@ -21,7 +21,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/polymarket-agents-ai-trading-bot-framework/
+aliases:
+  - /vi/posts/polymarket-agents-ai-trading-bot-framework/
 faqs: - q: 'Polymarket Agents là gì?'
     a: 'Polymarket Agents là một framework dành cho nhà phát triển, mã nguồn mở và được cấp phép MIT, dùng để xây dựng các AI agent giao dịch tự động trên thị trường dự đoán Polymarket. Nó cung cấp các tiện ích để phân tích thị trường, tích hợp với Polymarket API để lấy dữ liệu thời gian thực và tự động thực hiện giao dịch.'
   - q: 'Tôi cần thiết lập những gì trước khi chạy Polymarket Agents?'

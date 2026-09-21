@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
-tags: [字节跳动, ui-tars, 视觉语言模型, AI Agent, 桌面自动化, GUI Agent, 开源, 多模态 AI]
+tags: ["字节跳动", "ui-tars", "视觉语言模型", "AI Agent", "桌面自动化", "GUI Agent", "开源", "多模态 AI"]
 github_repo: "https://github.com/bytedance/UI-TARS-desktop"
 stars: 36263
 maintainer: bytedance

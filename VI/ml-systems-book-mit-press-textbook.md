@@ -21,7 +21,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/ml-systems-book-mit-press-textbook/
+aliases:
+  - /vi/posts/ml-systems-book-mit-press-textbook/
 faqs: - q: 'ML Systems Book bao gồm những chủ đề gì?'
     a: 'ML Systems Book đề cập đến huấn luyện phân tán (song song hóa dữ liệu, mô hình và pipeline, cùng khả năng chịu lỗi), phục vụ mô hình (suy luận theo lô và thời gian thực, quản lý phiên bản, tự động mở rộng), tăng tốc phần cứng (GPU, TPU, ASIC, lượng tử hóa, tỉa thưa), hạ tầng ML (feature store, theo dõi thực nghiệm, CI/CD, giám sát) và tối ưu hóa chi phí (spot instance, nén mô hình, dynamic batching).'
   - q: 'ML Systems Book có bao nhiêu chương và được tổ chức như thế nào?'

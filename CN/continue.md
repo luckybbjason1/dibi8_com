@@ -1,6 +1,6 @@
 ---
 title: 'Continue.dev: 33K+ Stars — Open-Source AI Code Assistant...
-description: 'Continue.dev (open-source AI code assistant) VS Code/JetBrains plugin. Supports any LLM: Ollama, OpenAI, Anthropic, Gemini. Comparison vs GitHub Copilot, Cursor, Tabby. Setup tutorial, config examples, benchmarks.'
+description: "Continue.dev (open-source AI code assistant) VS Code/JetBrains plugin. Supports any LLM: Ollama, OpenAI, Anthropic, Gemini. Comparison vs GitHub Copilot, Cursor, Tabby. Setup tutorial, config examples, benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/continuedev/continue'
+github_repo: "https://github.com/continuedev/continue"
 stars: 33277
 maintainer: continuedev
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['continue.dev', 'ai-code-assistant', 'vs-code', jetbrains, 'open-source', ollama, 'copilot-alternative', 'local-llm', mcp]
-aliases: - /posts/continue/-
+categories: ["llm-frameworks"]
+tags: ["continue.dev", "ai-code-assistant", "vs-code", "jetbrains", "open-source", "ollama", "copilot-alternative", "local-llm", "mcp"]
+aliases:
+  - /posts/continue/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
 title: 'LazyDocker: 51,092 GitHub Stars — Complete Terminal Dock...
-description: 'LazyDocker (LD) is a terminal UI for managing Docker containers, images, volumes, and logs. Compatible with Docker, Docker Compose, Go, and Terminal. Covers installation, keybindings, configuration, and production hardening.'
+description: "LazyDocker (LD) is a terminal UI for managing Docker containers, images, volumes, and logs. Compatible with Docker, Docker Compose, Go, and Terminal. Covers installation, keybindings, configuration, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jesseduffield/lazydocker'
+github_repo: "https://github.com/jesseduffield/lazydocker"
 stars: 51092
 maintainer: jesseduffield
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [lazydocker, docker, 'terminal-ui', devops, containers, 'cli-tools', 'docker-compose', tui]
-aliases: - /posts/lazydocker/-
+categories: ["dev-utils"]
+tags: ["lazydocker", "docker", "terminal-ui", "devops", "containers", "cli-tools", "docker-compose", "tui"]
+aliases:
+  - /posts/lazydocker/-
 ---
 {{</* resource-info */>}}
 

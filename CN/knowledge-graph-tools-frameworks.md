@@ -1,6 +1,6 @@
 ---
 title: 'Best Knowledge Graph Tools & Frameworks 2025: Neo4j, RDF...
-description: 'Compare the top knowledge graph tools and frameworks of 2025. In-depth analysis of Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph, and Dgraph with query language comparisons, use case recommendations, and FAQs.'
+description: "Compare the top knowledge graph tools and frameworks of 2025. In-depth analysis of Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph, and Dgraph with query language comparisons, use case recommendations, and FAQs."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: ['knowledge graph', neo4j, 'graph database', 'amazon neptune', stardog, tigergraph, rdf, cypher]
-aliases: - /posts/knowledge-graph-tools-frameworks/
+categories: ["data-science"]
+tags: ["knowledge graph", "neo4j", "graph database", "amazon neptune", "stardog", "tigergraph", "rdf", "cypher"]
+aliases:
+  - /posts/knowledge-graph-tools-frameworks/
 ---
 # Best Knowledge Graph Tools & Frameworks 2025: Neo4j, RDFlib, Amazon Neptune, Stardog Compared
 

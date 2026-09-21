@@ -1,6 +1,6 @@
 ---
 title: 'ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cư...
-description: 'ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, tối thiểu 4 GB VRAM, RTF 0.3 trên RTX 4090, điều khiển prosody tinh tế bao gồm cười và tạm dừng. Hướng dẫn cài đặt + thiết lập production 2026 đầy đủ.'
+description: "ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, tối thiểu 4 GB VRAM, RTF 0.3 trên RTX 4090, điều khiển prosody tinh tế bao gồm cười và tạm dừng. Hướng dẫn cài đặt + thiết lập production 2026 đầy đủ."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -14,15 +14,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/2noise/ChatTTS'
+github_repo: "https://github.com/2noise/ChatTTS"
 stars: 39300
 maintainer: 2noise
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [chattts, tts, 'giọng nói', 'hội thoại', 'mã nguồn mở']
-aliases: - /posts/chattts-dialogue-tts-2026/
+categories: ["ai-tools"]
+tags: ["chattts", "tts", "giọng nói", "hội thoại", "mã nguồn mở"]
+aliases:
+  - /posts/chattts-dialogue-tts-2026/
 ---
 
 Hầu hết TTS mã nguồn mở năm 2026 vẫn nghe như "người dẫn GPS thập niên 1990 với reverb thêm." **ChatTTS** là ngoại lệ đầu tiên được áp dụng rộng rãi — mô hình tiếng nói tạo sinh 39.3k sao GitHub, được huấn luyện đặc biệt cho **hội thoại** (không phải thuyết minh), với điều khiển token cấp về cười, tạm dừng, từ chêm, và prosody cuối cùng vượt ngưỡng "không làm bạn nhăn mặt".

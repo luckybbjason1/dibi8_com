@@ -1,5 +1,5 @@
 ---
-title: 'TabPFN: 표 형식 데이터 기반 모델 — 구조화된 데이터의 AI 혁신'
+title: "TabPFN: 표 형식 데이터 기반 모델 — 구조화된 데이터의 AI 혁신"
 description: TabPFN을 발견하세요 — 표 형식 데이터의 기반 모델로, 기존 ML 방법을 능가합니다. 하이퍼파라미터 튜닝이 필요 없고,. Comprehensive guide covering features, pricing, and best practices for 2026.
   몇 초 만에 작동합니다.
 date: 2026-05-15 04:20:25+09:00
@@ -19,7 +19,8 @@ maintainer: "PriorLabs"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/tabpfn-foundation-model-tabular-data/
+aliases:
+  - /ko/posts/tabpfn-foundation-model-tabular-data/
 faqs: - q: 'TabPFN이란 무엇인가요?'
     a: 'TabPFN은 PriorLabs가 개발한 표 형식 데이터용 파운데이션 모델로, 스프레드시트·데이터베이스·CSV 파일과 같은 구조화된 테이블을 분석합니다. 수백만 개의 합성 데이터셋으로 사전 학습된 Prior-Fitted Networks를 기반으로 하며, 하이퍼파라미터 튜닝이 전혀 필요 없습니다.'
   - q: 'TabPFN은 하이퍼파라미터 튜닝이 필요한가요?'

@@ -1,6 +1,6 @@
 ---
 title: 'Caddy: Production Web Server with 72K+ Stars — Auto HTTP...
-description: 'Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS. Compatible with Docker, Let''''s Encrypt, Prometheus, and Grafana. Covers Caddyfile tutorial, Docker setup, production hardening, and monitoring.'
+description: "Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS. Compatible with Docker, Let"'''s Encrypt, Prometheus, and Grafana. Covers Caddyfile tutorial, Docker setup, production hardening, and monitoring.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/caddyserver/caddy'
+github_repo: "https://github.com/caddyserver/caddy"
 stars: 72595
 maintainer: caddyserver
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
-aliases: - /posts/caddy/-
+categories: ["dev-utils"]
+tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]
+aliases:
+  - /posts/caddy/-
 ---
 {{</* resource-info */>}}
 
@@ -317,11 +318,11 @@ global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: caddy
-    static_configs: - targets: ['caddy:2019']
+    static_configs: - targets: [caddy:2019]
     metrics_path: /metrics
 
   - job_name: 'node-exporter'
-    static_configs: - targets: ['node-exporter:9100']
+    static_configs: - targets: [node-exporter:9100]
 ```
 
 ### On-Demand TLS for Multi-Tenant SaaS

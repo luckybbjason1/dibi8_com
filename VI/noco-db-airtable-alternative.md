@@ -1,6 +1,6 @@
 ---
 title: 'NocoDB 2026 Hướng Dẫn Đầy Đủ: Giải Pháp Thay Thế Airtabl...
-description: 'Triển khai NocoDB trong 5 phút với Docker. Biến MySQL, PostgreSQL hoặc SQLite thành bảng tính cộng tác với REST API tự động, bảng Kanban và kiểm soát truy cập dựa trên vai trò.'
+description: "Triển khai NocoDB trong 5 phút với Docker. Biến MySQL, PostgreSQL hoặc SQLite thành bảng tính cộng tác với REST API tự động, bảng Kanban và kiểm soát truy cập dựa trên vai trò."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'nocodb/nocodb'
+github_repo: "nocodb/nocodb"
 stars: 53000
 maintainer: nocodb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [nocodb, 'thay-the-airtable', 'ma-nguon-mo', 'co-so-du-lieu', 'bang-tinh', 'tu-luu-tru', docker, mysql, postgresql]
-aliases: - /vi/posts/noco-db-airtable-alternative/
+categories: ["dev-utils"]
+tags: ["nocodb", "thay-the-airtable", "ma-nguon-mo", "co-so-du-lieu", "bang-tinh", "tu-luu-tru", "docker", "mysql", "postgresql"]
+aliases:
+  - /vi/posts/noco-db-airtable-alternative/
 ---
 
 {{</* resource-info */>}}

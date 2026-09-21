@@ -1,12 +1,12 @@
 ---
 title: 'Langflow: 148k Stars for Visual LLM Workflows -- Technic...
-description: 'Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging Face, Anthropic. Covers setup, integrations, benchmarks, and production hardening.'
+description: "Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging Face, Anthropic. Covers setup, integrations, benchmarks, and production hardening."
 date: 2026-05-23
 lastmod: 2026-05-23
 slug: 'langflow'
 category: 'llm-frameworks'
-tags: [langflow, llm workflows, visual programming, AI agents, LangChain, flow-based programming, prompt engineering, deployment, low-code AI]
-github_repo: 'https://github.com/langflow-ai/langflow'
+tags: ["langflow", "llm workflows", "visual programming", "AI agents", "LangChain", "flow-based programming", "prompt engineering", "deployment", "low-code AI"]
+github_repo: "https://github.com/langflow-ai/langflow"
 stars: 148710
 maintainer: 'langflow-ai'
 license: MIT

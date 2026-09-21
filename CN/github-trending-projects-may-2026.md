@@ -21,7 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/github-trending-projects-may-2026/
+aliases:
+  - /posts/github-trending-projects-may-2026/
 faqs: - q: 'What is DeepSeek-TUI and how is it different from Cursor or GitHub Copilot?'
     a: 'DeepSeek-TUI is a terminal-based AI coding agent that runs locally via the `deepseek` command, streaming reasoning blocks and reading/writing files on disk with approval gates before any filesystem changes. Unlike Cursor or Copilot, which run as full GUI editors, it is built for terminal users working in tmux, neovim, or zsh, with no browser-to-IDE context switching.'
   - q: 'How does DeepSeek-TUI''s auto mode save money?'

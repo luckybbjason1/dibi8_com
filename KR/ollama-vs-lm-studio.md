@@ -1,10 +1,10 @@
 ---
-title: 'Ollama vs LM Studio 2026: 어떤 로컬 LLM 러너가 더 좋은가?'
-description: 'Ollama와 LM Studio 정면 비교 — CLI vs GUI, 모델 라이브러리, GPU 지원, OpenAI 호환 API, 양자화, 셀프 호스팅. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Ollama vs LM Studio 2026: 어떤 로컬 LLM 러너가 더 좋은가?"
+description: "Ollama와 LM Studio 정면 비교 — CLI vs GUI, 모델 라이브러리, GPU 지원, OpenAI 호환 API, 양자화, 셀프 호스팅. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [ollama, lm-studio, local-llm, gguf, self-hosting, comparison]
-categories: [vs]
+tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]
+categories: ["vs"]
 faqs: - q: 'Ollama와 LM Studio 중 초보자에게 더 좋은 것은?'
     a: 'LM Studio가 완전 초보자에게 더 친근합니다 — 잘 다듬어진 GUI, 앱 내 모델 브라우저, 클릭으로 로드하는 흐름을 제공합니다. Ollama는 CLI 우선("docker run" 스타일)으로, 개발자에게는 한 줄 `ollama run llama3` 설치가 빠르지만 CLI를 안 쓰는 사용자는 벽에 부딪힙니다. LM Studio로 시작하고 파이프라인에 스크립트로 넣고 싶을 때 Ollama로 옮기세요.'
   - q: '앱에 API를 제공하려면 어느 쪽이 더 좋나요?'

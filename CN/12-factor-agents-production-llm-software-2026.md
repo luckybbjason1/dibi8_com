@@ -1,6 +1,6 @@
 ---
-title: '12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）'
-description: 'HumanLayer 出品的 12-Factor Agents（22K+ GitHub stars）定义了 demo 级 LLM 原型与真实用户依赖的生产级 agent 之间的设计模式分水岭。完整拆解 12 条原则——拥有自己的 prompt、拥有自己的上下文窗口、stateless reducer 模型、控制流自主、人在环 via tool call、紧凑错误、聚焦小 agent 等。附 Claude Code / Codex / OpenCode / MCP 栈实战应用指引。'
+title: "12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）"
+description: "HumanLayer 出品的 12-Factor Agents（22K+ GitHub stars）定义了 demo 级 LLM 原型与真实用户依赖的生产级 agent 之间的设计模式分水岭。完整拆解 12 条原则——拥有自己的 prompt、拥有自己的上下文窗口、stateless reducer 模型、控制流自主、人在环 via tool call、紧凑错误、聚焦小 agent 等。附 Claude Code / Codex / OpenCode / MCP 栈实战应用指引。"
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/humanlayer/12-factor-agents'
+github_repo: "https://github.com/humanlayer/12-factor-agents"
 stars: 22000
 maintainer: humanlayer
-last_maintained: '2026-05-22'
+last_maintained: "2026-05-22"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', humanlayer, 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
-aliases: - /zh/posts/12-factor-agents-production-llm-software-2026/
+categories: ["llm-frameworks"]
+tags: ["12-factor-agents", "production-ai", "llm-engineering", "agent-architecture", "humanlayer", "agent-design-patterns", "context-window", "prompt-engineering", "tool-calls", "developer-productivity"]
+aliases:
+  - /zh/posts/12-factor-agents-production-llm-software-2026/
 image: "https://github.com/humanlayer/12-factor-agents/blob/main/img/110-natural-language-tool-calls.png"
 ---
 ![Hero Image](https://picsum.photos/seed/large-language-model/1200x800)

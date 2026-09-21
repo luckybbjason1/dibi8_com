@@ -1,12 +1,12 @@
 ---
 title: 'Trivy: Stop Shipping Vulnerable Containers to Production...
-description: 'Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works with Kubernetes, Docker, GitHub Actions, and CI pipelines. Scans 600K+ CVEs, secrets, and misconfigurations. Covers installation, policy-as-code, and production hardening.'
+description: "Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works with Kubernetes, Docker, GitHub Actions, and CI pipelines. Scans 600K+ CVEs, secrets, and misconfigurations. Covers installation, policy-as-code, and production hardening."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
-tags: ['security', 'containers', 'vulnerability-scanning', 'devops', 'kubernetes', 'sast', 'iac', 'supply-chain']
-github_repo: 'https://github.com/aquasecurity/trivy'
+tags: ["security", "containers", "vulnerability-scanning", "devops", "kubernetes", "sast", "iac", "supply-chain"]
+github_repo: "https://github.com/aquasecurity/trivy"
 stars: 36261
 maintainer: 'aquasecurity'
 license: Apache-2.0

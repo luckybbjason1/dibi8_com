@@ -1,6 +1,6 @@
 ---
-title: 'Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter'
-description: 'Demucs 是 Meta AI 开发的混合频谱图和波形域源分离模型。兼容 Ultimate Vocal Remover、RVC、GPT-SoVITS。涵盖 demucs 教程、demucs vs uvr、demucs Docker 部署和生产环境基准测试。'
+title: "Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter"
+description: "Demucs 是 Meta AI 开发的混合频谱图和波形域源分离模型。兼容 Ultimate Vocal Remover、RVC、GPT-SoVITS。涵盖 demucs 教程、demucs vs uvr、demucs Docker 部署和生产环境基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/facebookresearch/demucs'
+github_repo: "https://github.com/facebookresearch/demucs"
 stars: 10100
 maintainer: facebookresearch
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [demucs, 音乐源分离, ai音频, 音轨分离, pytorch, docker, 开源]
-aliases: - /zh/posts/demucs/-
+categories: ["ai-tools"]
+tags: ["demucs", "音乐源分离", "ai音频", "音轨分离", "pytorch", "docker", "开源"]
+aliases:
+  - /zh/posts/demucs/-
 ---
 
 {{</* resource-info */>}}

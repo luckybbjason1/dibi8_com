@@ -1,22 +1,23 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026：5 个工作流的真实对比'
-description: 'Google 发布了 Gemini CLI 来对标 Claude Code。在同样的 5 个工作流上实测两者：Gemini 胜在哪里（免费额度、1M 上下文），Claude Code 胜在哪里（工具调用可靠性、智能体循环），以及什么场景该用谁。'
+title: "Gemini CLI vs Claude Code 2026：5 个工作流的真实对比"
+description: "Google 发布了 Gemini CLI 来对标 Claude Code。在同样的 5 个工作流上实测两者：Gemini 胜在哪里（免费额度、1M 上下文），Claude Code 胜在哪里（工具调用可靠性、智能体循环），以及什么场景该用谁。"
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: 开发工具
-source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
+source_version: "Gemini CLI 1.0 / Claude Code 1.0"
 licensing_model: 混合授权
 license_type: 专有软件
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
-aliases: - /zh/posts/gemini-cli-vs-claude-code-2026-real-comparison/
+categories: ["dev-utils"]
+tags: ["gemini-cli", "claude-code", "ai-coding", "2026"]
+aliases:
+  - /zh/posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq: - q: "Gemini CLI 算得上 Claude Code 的真正竞争对手吗？"
     a: "在成本敏感和长上下文场景里算。Gemini CLI 拥有非常慷慨的免费额度（60 次/分钟、1500 次/天）以及 1M+ token 的上下文窗口。但在 2026 年 Q2，工具调用的可靠性仍落后于 Claude Code —— Gemini 的智能体循环更容易中断。最佳定位是第二工具，而非替代品。"
   - q: "两者成本差异有多大？"

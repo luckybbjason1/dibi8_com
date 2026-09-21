@@ -1,6 +1,6 @@
 ---
-title: '2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10'
-description: '2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10"
+description: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Docker
@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/top-ai-developer-productivity-tools-2026/
+aliases:
+  - /ko/posts/top-ai-developer-productivity-tools-2026/
 - /ko/posts/top-open-source-document-management-tools-2026/
 - /ko/posts/top-open-source-fintech-tools-2026/
 faqs: - q: '2026년 Midjourney의 가장 좋은 오픈소스 대안은 무엇인가요?'

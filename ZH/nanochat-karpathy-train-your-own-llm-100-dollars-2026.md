@@ -1,6 +1,6 @@
 ---
 title: 'nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L...
-description: '由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: 'https://github.com/karpathy/nanochat'
 backup_url: ''
-github_repo: 'karpathy/nanochat'
+github_repo: "karpathy/nanochat"
 stars: 54700
 maintainer: karpathy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [nanochat, karpathy, llm训练, pytorch, gpt, 自托管llm, 开源, transformer, 微调]
-aliases: - /zh/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
+categories: ["llm-frameworks"]
+tags: ["nanochat", "karpathy", "llm训练", "pytorch", "gpt", "自托管llm", "开源", "transformer", "微调"]
+aliases:
+  - /zh/posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
 faqs: - q: 'nanochat 是什么？谁开发的？'
     a: 'nanochat 是 Andrej Karpathy（OpenAI 联合创始人、前特斯拉 AI 总监）开发的极简全栈 LLM 训练与推理管道。与他之前只覆盖预训练的 nanoGPT 不同，nanochat 包含完整流程：Rust BPE 分词器、预训练、有监督微调、评估、推理服务器和 ChatGPT 风格的聊天 UI，全部约 8000 行可读代码。'
   - q: '用 nanochat 训练模型需要多少钱？'

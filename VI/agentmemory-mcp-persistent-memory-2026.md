@@ -1,6 +1,6 @@
 ---
 title: 'Bộ Nhớ Liên Tục cho AI Coding Agent 2026: Hướng Dẫn Toàn...
-description: 'Dừng việc dạy lại Claude Code quy ước dự án. Tìm hiểu cách agentmemory và Giao thức Ngữ cảnh Mô hình (MCP) cấp bộ nhớ liên tục xuyên phiên cho AI coding agent, kèm hướng dẫn cài đặt và chiến lược chia sẻ nhóm.'
+description: "Dừng việc dạy lại Claude Code quy ước dự án. Tìm hiểu cách agentmemory và Giao thức Ngữ cảnh Mô hình (MCP) cấp bộ nhớ liên tục xuyên phiên cho AI coding agent, kèm hướng dẫn cài đặt và chiến lược chia sẻ nhóm."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
 tech_stack: []
@@ -12,13 +12,14 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/rohitg00/agentmemory'
+github_repo: "https://github.com/rohitg00/agentmemory"
 stars: 0
 maintainer: 'rohitg00'
-last_maintained: '2026-05-17'
+last_maintained: "2026-05-17"
 featureImage: ''
 draft: false
-aliases: - /posts/agentmemory-mcp-persistent-memory-2026/
+aliases:
+  - /posts/agentmemory-mcp-persistent-memory-2026/
 ---
 
 {</* resource-info */>}

@@ -1,17 +1,16 @@
 ---
-title: 'Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南'
-description: 'Nuwa-Skill（23,508 顆 GitHub 星）將歷史人物、專家和影響者的思維模型提煉為可複用的 AI Agent 技能。相容 Claude Code、Codex、Cursor、Hermes 等 50+ 執行環境。透過 npx skills add 安裝。'
+title: "Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南"
+description: "Nuwa-Skill（23,508 顆 GitHub 星）將歷史人物、專家和影響者的思維模型提煉為可複用的 AI Agent 技能。相容 Claude Code、Codex、Cursor、Hermes 等 50+ 執行環境。透過 npx skills add 安裝。"
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
-tags: ['nuwa-skill', 'Agent 技能', '思維模型', 'COT 提煉', 'AI Agent 框架', 'Claude Code 技能', 'Codex 技能', 'MCP 替代方案', 'Agent 記憶體']
-github_repo: 'https://github.com/alchaincyf/nuwa-skill'
+tags: ["nuwa-skill", "Agent 技能", "思維模型", "COT 提煉", "AI Agent 框架", "Claude Code 技能", "Codex 技能", "MCP 替代方案", "Agent 記憶體"]
+github_repo: "https://github.com/alchaincyf/nuwa-skill"
 stars: 23508
 maintainer: 'alchaincyf'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif'
-lang: zh
 ---
 
 # Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南

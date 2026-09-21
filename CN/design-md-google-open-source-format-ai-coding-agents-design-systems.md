@@ -1,12 +1,12 @@
 ---
 title: "DESIGN.md: Google's Open-Source Format for Giving AI Cod..."
-description: 'DESIGN.md by Google Labs Code is an open-source format specification for describing visual identity to AI coding agents. 20.8k GitHub stars. Learn how it bridges design systems and AI code generation with YAML tokens and prose-based constraints.'
+description: "DESIGN.md by Google Labs Code is an open-source format specification for describing visual identity to AI coding agents. 20.8k GitHub stars. Learn how it bridges design systems and AI code generation with YAML tokens and prose-based constraints."
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
 lastmod: 2026-06-27
 slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
-github_repo: 'https://github.com/google-labs-code/design.md'
+github_repo: "https://github.com/google-labs-code/design.md"
 license: Apache-2.0
 featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---

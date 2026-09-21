@@ -18,7 +18,8 @@ maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/toprank/
+aliases:
+  - /posts/toprank/
 faqs: - q: 'What is Toprank and how is it different from SEO SaaS tools?'
     a: 'Toprank is an open-source suite of Claude Code skills that turns Anthropic''s Claude Code CLI into a marketing automation engine. Unlike web-dashboard SaaS tools, it runs inside your existing development environment with no browser tabs, monthly seat fees, or context switching.'
   - q: 'What SEO tasks can Toprank automate?'

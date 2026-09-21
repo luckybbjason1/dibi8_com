@@ -1,6 +1,6 @@
 ---
 title: 'CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi...
-description: 'Comprehensive guide to CoW Protocol, the MEV-protected DEX aggregator using batch auctions and solver competition to save traders $100M+ in slippage. Includes SDK integration, trading bot setup, and best practices.'
+description: "Comprehensive guide to CoW Protocol, the MEV-protected DEX aggregator using batch auctions and solver competition to save traders $100M+ in slippage. Includes SDK integration, trading bot setup, and best practices."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/cowprotocol/contracts'
+github_repo: "https://github.com/cowprotocol/contracts"
 stars: 700
 maintainer: cowprotocol
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'sandwich attack', 'coincidence of wants', solver, 'defi trading', 'gasless orders', 'anti-mev']
-aliases: - /posts/cow-protocol-mev-protection/-
+categories: ["ai-trading"]
+tags: ["cow protocol", "mev protection", "dex aggregator", "batch auction", "sandwich attack", "coincidence of wants", "solver", "defi trading", "gasless orders", "anti-mev"]
+aliases:
+  - /posts/cow-protocol-mev-protection/-
 ---
 {{</* resource-info */>}}
 

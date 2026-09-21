@@ -1,6 +1,6 @@
 ---
 title: 'Vercel v0 Open Source Alternative: Build UIs Locally wit...
-description: 'Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/open-codesign-vs-vercel-v0/
+aliases:
+  - /posts/open-codesign-vs-vercel-v0/
 faqs: - q: 'Is there a self-hosted, open-source alternative to Vercel v0?'
     a: 'Yes. Open Codesign is an open-source, self-hosted UI generator that offers a prompt-to-preview workflow similar to v0. You run the frontend locally and connect it to local LLMs or your own API keys, so it is not tied to Vercel''s hosting ecosystem.'
   - q: 'What is the best free alternative to v0 by Vercel?'

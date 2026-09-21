@@ -1,6 +1,6 @@
 ---
-title: 'AI-SEO 与 GEO 工具栈 2026：6 款免费工具搞定传统 SEO + 生成式引擎优化'
-description: 'AI 时代 SEO 的完整免费工具包：llms.txt 生成器 + AI 爬虫 robots.txt + meta 标签 + Schema.org JSON-LD + hreflang + OG 卡片预览。同时覆盖经典搜索（Google/Bing）与生成式引擎（ChatGPT、Claude、Perplexity）。全部基于浏览器运行，无需注册。'
+title: "AI-SEO 与 GEO 工具栈 2026：6 款免费工具搞定传统 SEO + 生成式引擎优化"
+description: "AI 时代 SEO 的完整免费工具包：llms.txt 生成器 + AI 爬虫 robots.txt + meta 标签 + Schema.org JSON-LD + hreflang + OG 卡片预览。同时覆盖经典搜索（Google/Bing）与生成式引擎（ChatGPT、Claude、Perplexity）。全部基于浏览器运行，无需注册。"
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - HTML
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases: - /posts/ai-seo-geo-toolkit-stack/
+categories: ["collections"]
+tags: ["seo", "geo", "llms.txt", "schema", "meta tags", "stack", "collection"]
+aliases:
+  - /posts/ai-seo-geo-toolkit-stack/
 faqs: - q: '什么是 llms.txt，它为何在 2026 年对 SEO 至关重要？'
     a: 'llms.txt 是「AI 版 robots.txt」——一个告诉 ChatGPT、Claude、Perplexity 等生成式引擎爬虫如何解读你网站结构的文件。它之所以重要，是因为生成式引擎已成为全新的内容发现渠道，能被 AI 搜索引用，相当于 2026 年版的谷歌首页排名。'
   - q: '如何控制哪些 AI 爬虫可以访问我的网站？'

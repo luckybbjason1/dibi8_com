@@ -1,12 +1,12 @@
 ---
-description: 'Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time.'
+description: "Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: cognee-ai-memory-platform
-title: 'Cognee：26K+ Star 开源人工智能内存平台'
+title: "Cognee：26K+ Star 开源人工智能内存平台"
 category: llm-frameworks
-tags: ['ai-memory', 'rag', 'knowledge-graph', 'ai-agents', 'open-source']
-github_repo: 'https://github.com/topoteretes/cognee'
+tags: ["ai-memory", "rag", "knowledge-graph", "ai-agents", "open-source"]
+github_repo: "https://github.com/topoteretes/cognee"
 license: 'MIT'
 tech_stack: - Python
   - TypeScript

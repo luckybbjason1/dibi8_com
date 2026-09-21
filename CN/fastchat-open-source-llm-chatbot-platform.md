@@ -2,7 +2,7 @@
 title: FastChat — Build Your Own Open-Source ChatGPT Clone with ...
 description: Complete guide to LMSYS FastChat, the open-source platform for training, serving, and evaluating large language model chatbots. Build production AI assistants with Vicuna, Alpaca, and more.
 category: llm-frameworks
-tags: ['fastchat', 'llm-chatbot', 'openai-alternative', 'vicuna', 'alpaca', 'llm-evaluation']
+tags: ["fastchat", "llm-chatbot", "openai-alternative", "vicuna", "alpaca", "llm-evaluation"]
 slug: fastchat-open-source-llm-chatbot-platform
 date: 2026-07-17 00:00:00+00:00
 lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg---

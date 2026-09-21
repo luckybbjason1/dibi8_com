@@ -19,10 +19,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/anthropic-financial-services-ai-finance-automation/
+aliases:
+  - /en/posts/anthropic-financial-services-ai-finance-automation/
 - /posts/anthropic-financial-services-ai-finance-automation/
 - /posts/anthropics-claude-financial-services-ai-agents/
 faqs: - q: 'What financial workflows can Anthropic Financial Services agents automate?'

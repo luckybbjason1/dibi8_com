@@ -1,6 +1,6 @@
 ---
 title: 'Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
-description: 'Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations.'
+description: "Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/FlowiseAI/Flowise'
+github_repo: "https://github.com/FlowiseAI/Flowise"
 stars: 52948
 maintainer: FlowiseAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [flowise, langchain, 'ai agents', rag, docker, llm, 'open source', 'no-code']
-aliases: - /posts/flowise/
+categories: ["llm-frameworks"]
+tags: ["flowise", "langchain", "ai agents", "rag", "docker", "llm", "open source", "no-code"]
+aliases:
+  - /posts/flowise/
 - /resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
 {{</* resource-info */>}}
@@ -345,7 +346,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
         size: medium
       },
       chatWindow: {
-        title: 'Support Assistant',
+title: "Support Assistant"
         welcomeMessage: 'Hello! How can I help you today?',
         backgroundColor: '#ffffff',
         height: 700,

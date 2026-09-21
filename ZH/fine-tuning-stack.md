@@ -1,6 +1,6 @@
 ---
-title: 'Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线'
-description: '完整 LLM 微调 stack：Unsloth（单 GPU 快速实验）+ Axolotl（生产多 GPU）+ HuggingFace datasets/Hub + Weights & Biases（eval 跟踪）+ vLLM（serving）。$50-300/月训练基础设施。完整管线：数据集准备 → 实验 → 生产微调 → eval → 部署。'
+title: "Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线"
+description: "完整 LLM 微调 stack：Unsloth（单 GPU 快速实验）+ Axolotl（生产多 GPU）+ HuggingFace datasets/Hub + Weights & Biases（eval 跟踪）+ vLLM（serving）。$50-300/月训练基础设施。完整管线：数据集准备 → 实验 → 生产微调 → eval → 部署。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['fine-tuning', llm, stack, 合集]
-aliases: - /posts/fine-tuning-stack/-
+categories: ["collections"]
+tags: ["fine-tuning", "llm", "stack", "合集"]
+aliases:
+  - /posts/fine-tuning-stack/-
 ---
 
 2026 LLM 微调终于有了一致的 stack —— 用胶带粘 HuggingFace Trainer + DeepSpeed config + 自定义 eval 脚本的日子结束了。这个合集组装的是 **5 组件管线**，从原始数据集到生产部署的微调模型，快速迭代（Unsloth）和生产部署（Axolotl）干净分离。按规模 $50-300/月训练基础设施。

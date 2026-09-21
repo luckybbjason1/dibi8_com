@@ -1,6 +1,6 @@
 ---
 title: 'Meilisearch: The Lightning-Fast Open-Source Search Engin...
-description: 'Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup, SDK integrations, production benchmarks, and honest comparison.'
+description: "Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup, SDK integrations, production benchmarks, and honest comparison."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,29 +12,30 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'meilisearch/meilisearch'
+github_repo: "meilisearch/meilisearch"
 stars: 51300
 maintainer: meilisearch
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/meilisearch-fast-search-engine/-
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/meilisearch-fast-search-engine/-
 ---
 {{</* resource-info */>}}
 
 ## Introduction: Your Database's `LIKE` Query Is Killing Your UX
 
-Search is the highest-traffic interaction on most applications. Yet, **63% of web applications still use database `LIKE` queries** for search in 2026. The result? Queries that take **300ms to 3 seconds** on datasets over 100,000 rows. Users abandon searches after 500ms. You are bleeding engagement.
+Search is the highest-traffic interaction on most applications. Yet", "**63% of web applications still use database `LIKE` queries** for search in 2026. The result? Queries that take **300ms to 3 seconds** on datasets over 100", "000 rows. Users abandon searches after 500ms. You are bleeding engagement.
 
-You have heard of Elasticsearch. It works, but it needs **8GB RAM minimum**, JVM tuning, and a dedicated ops team. Algolia is fast but costs **$1.00 per 1,000 searches** at scale. You need something that deploys in minutes, runs on a $20 VPS, and handles millions of documents without breaking a sweat.
+You have heard of Elasticsearch. It works", "but it needs **8GB RAM minimum**", "JVM tuning", "and a dedicated ops team. Algolia is fast but costs **$1.00 per 1", "000 searches** at scale. You need something that deploys in minutes", "runs on a $20 VPS", "and handles millions of documents without breaking a sweat.
 
-Enter **Meilisearch** — an open-source search engine written in Rust, with **51,300+ GitHub stars**, MIT licensed, and built for developers who want instant search without the operational burden. Version 1.12 (released March 2026) delivers **sub-50ms search** with typo tolerance, faceting, filtering, and sorting — all from a single binary that starts in seconds. This guide walks you through a production-ready Meilisearch deployment, benchmarks against real-world loads, and honest comparisons with alternatives.
+Enter **Meilisearch** — an open-source search engine written in Rust", "with **51", "300+ GitHub stars**", "MIT licensed", "and built for developers who want instant search without the operational burden. Version 1.12 (released March 2026) delivers **sub-50ms search** with typo tolerance", "faceting", "filtering", "and sorting — all from a single binary that starts in seconds. This guide walks you through a production-ready Meilisearch deployment", "benchmarks against real-world loads", "and honest comparisons with alternatives.
 
 ## What Is Meilisearch?
 
-**Meilisearch** is an open-source, lightning-fast search engine optimized for building delightful search experiences. Written in Rust for memory safety and speed, it focuses on **developer ergonomics** — minimal setup, intuitive API, and relevance that works out of the box. Unlike Elasticsearch's complex query DSL, Meilisearch's API feels like talking to a modern REST service.
+**Meilisearch** is an open-source", "lightning-fast search engine optimized for building delightful search experiences. Written in Rust for memory safety and speed", "it focuses on **developer ergonomics** — minimal setup", "intuitive API", "and relevance that works out of the box. Unlike Elasticsearch's complex query DSL", "Meilisearch's API feels like talking to a modern REST service.
 
 Key facts: | Attribute | Detail |
 |
@@ -43,14 +44,14 @@ Key facts: | Attribute | Detail |
 ---
 |
 | **Latest Version** | 1.12 (March 2026) |
-| **GitHub Stars** | 51,300+ |
+| **GitHub Stars** | 51", "300+ |
 | **License** | MIT |
-| **Maintainer** | Meilisearch (Paris, France) |
+| **Maintainer** | Meilisearch (Paris", "France) |
 | **Written In** | Rust |
 | **API Style** | RESTful JSON over HTTP |
-| **Official SDKs** | JavaScript, Python, PHP, Ruby, Go, Rust, Swift, Dart, .NET, Java |
-| **Deployment** | Self-hosted (Docker, binary), Meilisearch Cloud, or embedded |
-| **AI Search** | Meilisearch AI (vector + hybrid, v1.10+) |
+| **Official SDKs** | JavaScript", "Python", "PHP", "Ruby", "Go", "Rust", "Swift", "Dart", ".NET", "Java |
+| **Deployment** | Self-hosted (Docker", "binary)", "Meilisearch Cloud", "or embedded |
+| **AI Search** | Meilisearch AI (vector + hybrid", "v1.10+) |
 
 ## How Meilisearch Works
 
@@ -58,7 +59,7 @@ Meilisearch's architecture is purpose-built for low-latency full-text search. Un
 
 ### Inverted Index with LMDB Storage
 
-Meilisearch uses an **inverted index** stored via LMDB (Lightning Memory-Mapped Database). Unlike Typesense's pure in-memory approach, Meilisearch memory-maps index segments from disk. This means: - **Lower RAM requirements**: The index does not need to fit entirely in RAM
+Meilisearch uses an **inverted index** stored via LMDB (Lightning Memory-Mapped Database). Unlike Typesense's pure in-memory approach", "Meilisearch memory-maps index segments from disk. This means: - **Lower RAM requirements**: The index does not need to fit entirely in RAM
 - **Fast cold starts**: Memory-mapped pages load on demand
 - **Predictable performance**: OS page cache handles hot segments automatically
 
@@ -76,12 +77,12 @@ Meilisearch uses a custom ranking rule system. Default ranking rules (applied in
 2. **Typo** — fewer typos rank higher
 3. **Proximity** — words closer together rank higher
 4. **Attribute** — matches in more important fields rank higher
-5. **Sort** — custom sort order (e.g., price asc)
+5. **Sort** — custom sort order (e.g.", "price asc)
 6. **Exactness** — exact matches rank higher than partial matches
 
-You can customize, add, or remove ranking rules via the settings API.
+You can customize", "add", "or remove ranking rules via the settings API.
 
-### Faceting, Filtering, and Sorting
+### Faceting", "Filtering", "and Sorting
 
 Meilisearch supports: - **Dynamic faceting** — request facet counts for any filterable attribute
 - **Complex filters** — `price >= 10 AND (category = "shoes" OR in_stock = true)`
@@ -115,7 +116,7 @@ curl -s http://localhost:7700/health | jq .
 
 ### Step 2: Create an Index and Add Documents
 
-Meilisearch uses "indexes" instead of "collections." Unlike Typesense, **Meilisearch does not require a predefined schema** — it auto-detects field types on first document ingestion.
+Meilisearch uses "indexes" instead of "collections." Unlike Typesense", "**Meilisearch does not require a predefined schema** — it auto-detects field types on first document ingestion.
 
 ```bash
 # Create index
@@ -130,36 +131,12 @@ curl -s -X POST 'http://localhost:7700/indexes/products/documents' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
   -d '[
     {
-      "id": 1,
-      "name": "Wireless Noise Cancelling Headphones",
-      "description": "Premium over-ear headphones with active noise cancellation",
-      "price": 149.99,
-      "category": "Electronics",
-      "rating": 4.6,
-      "in_stock": true,
-      "location": { "lat": 40.7128, "lng": -74.0060 }
-    },
-    {
-      "id": 2,
-      "name": "Mechanical Gaming Keyboard",
-      "description": "RGB backlit keyboard with hot-swappable switches",
-      "price": 119.99,
-      "category": "Electronics",
-      "rating": 4.8,
-      "in_stock": true,
-      "location": { "lat": 37.7749, "lng": -122.4194 }
-    },
-    {
-      "id": 3,
-      "name": "Trail Running Shoes",
-      "description": "Lightweight waterproof shoes for trail running",
-      "price": 95.00,
-      "category": "Sports",
-      "rating": 4.3,
-      "in_stock": false,
-      "location": { "lat": 51.5074, "lng": -0.1278 }
-    }
-  ]' | jq .
+      "id": 1", "name": "Wireless Noise Cancelling Headphones", "description": "Premium over-ear headphones with active noise cancellation", "price": 149.99", "category": "Electronics", "rating": 4.6", "in_stock": true", "location": { "lat": 40.7128", "lng": -74.0060 }
+    }", "{
+      "id": 2", "name": "Mechanical Gaming Keyboard", "description": "RGB backlit keyboard with hot-swappable switches", "price": 119.99", "category": "Electronics", "rating": 4.8", "in_stock": true", "location": { "lat": 37.7749", "lng": -122.4194 }
+    }", "{
+      "id": 3", "name": "Trail Running Shoes", "description": "Lightweight waterproof shoes for trail running", "price": 95.00", "category": "Sports", "rating": 4.3", "in_stock": false", "location": { "lat": 51.5074", "lng": -0.1278 }
+    }"]' | jq .
 ```
 
 ### Step 3: Configure Searchable and Filterable Fields
@@ -233,7 +210,7 @@ const index = client.index(products);
 async function search(query) {
   const results = await index.search(query, {
     filter: 'price >= 50 AND in_stock = true',
-    sort: ['rating:desc'],
+    sort: [rating:desc],
     facets: [category],
     limit: 10,
     attributesToHighlight: [name, description]
@@ -272,7 +249,7 @@ results = index.search(
     'running shoes',
     {
         filter: 'price >= 50 AND price <= 200',
-        sort: ['rating:desc'],
+        sort: [rating:desc],
         facets: [category, in_stock],
         limit: 20,
         attributesToHighlight: [name, description]
@@ -352,7 +329,7 @@ $index = $client->index(products);
 // Search with typo tolerance
 $results = $index->search(keybord, [
     filter => 'in_stock = true',
-    sort => ['price:asc'],
+    sort => [price:asc],
     limit => 10,
     facets => [category]
 ]);

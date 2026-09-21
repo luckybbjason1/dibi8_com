@@ -1,10 +1,10 @@
 ---
-title: '2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀'
-description: 'LangGraph(저수준 상태 기반 에이전트 그래프)와 CrewAI(고수준 역할 기반 멀티 에이전트 팀) 정면 비교 — 제어, 학습 곡선, 상태, 멀티 에이전트 설계, 프로덕션 안정성. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀"
+description: "LangGraph(저수준 상태 기반 에이전트 그래프)와 CrewAI(고수준 역할 기반 멀티 에이전트 팀) 정면 비교 — 제어, 학습 곡선, 상태, 멀티 에이전트 설계, 프로덕션 안정성. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [langgraph, crewai, ai-agents, multi-agent, agent-framework, orchestration, llm, comparison]
-categories: [vs]
+tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]
+categories: ["vs"]
 faqs: - q: 'LangGraph와 CrewAI 중 무엇을 써야 하나요?'
     a: '에이전트 워크플로를 세밀하게 제어해야 한다면 — 명시적 분기, 루프, 공유 상태, 지속적 체크포인트 — 그리고 복잡한 시스템을 프로덕션에 배포한다면 LangGraph를 쓰세요. 역할을 연기하는 에이전트 팀을 빠르게 꾸리고 싶고 저수준 제어보다 프로토타이핑 속도를 중시한다면 CrewAI를 쓰세요. 경험칙: 정확히 추론해야 하는 제어 가능한 상태 기반 워크플로에는 LangGraph, "전문가 팀" 멘탈 모델로 멀티 에이전트 협업을 빠르게 띄우려면 CrewAI입니다.'
   - q: 'LangGraph가 CrewAI보다 배우기 어렵나요?'

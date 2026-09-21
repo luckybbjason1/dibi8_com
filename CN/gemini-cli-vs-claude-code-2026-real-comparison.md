@@ -1,22 +1,23 @@
 ---
 title: 'Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...
-description: 'Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Gemini wins (free tier, 1M context), where Claude Code wins (tool-use reliability, agentic loops), and which to use when.'
+description: "Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Gemini wins (free tier, 1M context), where Claude Code wins (tool-use reliability, agentic loops), and which to use when."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: Dev Utils
-source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
+source_version: "Gemini CLI 1.0 / Claude Code 1.0"
 licensing_model: Mixed
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
-aliases: - /posts/gemini-cli-vs-claude-code-2026-real-comparison/
+categories: ["dev-utils"]
+tags: ["gemini-cli", "claude-code", "ai-coding", "2026"]
+aliases:
+  - /posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq: - q: "Is Gemini CLI a serious Claude Code competitor?"
     a: "Yes for cost-sensitive and long-context work. Gemini CLI has a generous free tier (60 req/min, 1500 req/day) and 1M+ token context window. But tool-use reliability lags Claude Code in 2026 Q2 — Gemini's agentic loops break more often. Best as second tool, not replacement."
   - q: "What's the cost difference?"

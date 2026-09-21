@@ -1,6 +1,6 @@
 ---
 title: 'Ultimate Vocal Remover: 24.7K+ Stars — Complete Setup Gu...
-description: 'Ultimate Vocal Remover (UVR) is a GUI application for vocal removal using deep neural networks. Compatible with demucs, RVC, GPT-SoVITS. Covers Windows, macOS, Linux installation, model selection, batch processing, and production hardening.'
+description: "Ultimate Vocal Remover (UVR) is a GUI application for vocal removal using deep neural networks. Compatible with demucs, RVC, GPT-SoVITS. Covers Windows, macOS, Linux installation, model selection, batch processing, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Anjok07/ultimatevocalremovergui'
+github_repo: "https://github.com/Anjok07/ultimatevocalremovergui"
 stars: 24700
 maintainer: Anjok07
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['vocal-remover', 'audio-separation', 'deep-learning', pytorch, demucs, 'mdx-net', 'ai-audio', karaoke, 'music-production']
-aliases: - /posts/ultimate-vocal-remover/-
+categories: ["ai-tools"]
+tags: ["vocal-remover", "audio-separation", "deep-learning", "pytorch", "demucs", "mdx-net", "ai-audio", "karaoke", "music-production"]
+aliases:
+  - /posts/ultimate-vocal-remover/-
 ---
 {{</* resource-info */>}}
 

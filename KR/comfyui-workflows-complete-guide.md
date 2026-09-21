@@ -1,13 +1,12 @@
 ---
 title: ComfyUI 워크플로우 — AI 이미지 생성을 위한 시각적 프로그래밍 언어
-description: 'ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프라인 구축, 의존성 관리, 공유 가능한 워크플로우 템플릿 생성으로 전문 AI 이미지 생성 구현.'. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ['comfyui', 'ai-image-generation', 'workflow', 'nodes', 'stable-diffusion', 'visual-programming']
+description: "ComfyUI 완전 가이드: 노드를 연결해 복잡한 파이프라인 구축, 의존성 관리, 공유 가능한 워크플로우 템플릿 생성으로 전문 AI 이미지 생성 구현.". Comprehensive guide covering features, pricing, and best practices for 2026.
+tags: ["comfyui", "ai-image-generation", "workflow", "nodes", "stable-diffusion", "visual-programming"]
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: comfyui-workflows-complete-guide
-lang: ko
 ---
 
 ## TL;DR

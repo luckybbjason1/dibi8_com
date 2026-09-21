@@ -1,6 +1,6 @@
 ---
-title: '使用大语言模型进行数据分析的完整工作流：PandasAI、Code Interpreter与OpenAI实战指南'
-description: '全面解析LLM数据分析工作流，深度对比PandasAI、ChatGPT Code Interpreter与OpenAI API三种方案，含实战代码与安全最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "使用大语言模型进行数据分析的完整工作流：PandasAI、Code Interpreter与OpenAI实战指南"
+description: "全面解析LLM数据分析工作流，深度对比PandasAI、ChatGPT Code Interpreter与OpenAI API三种方案，含实战代码与安全最佳实践。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/llm-data-analysis-workflow-complete-guide/-
+aliases:
+  - /posts/llm-data-analysis-workflow-complete-guide/-
 ---
 
 {</* resource-info */>}

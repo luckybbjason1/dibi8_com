@@ -1,22 +1,23 @@
 ---
 title: 'Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested...
-description: 'Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory usage, setup time, and which is right for hobby vs production self-hosted deployment.'
+description: "Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory usage, setup time, and which is right for hobby vs production self-hosted deployment."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM Frameworks
-source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
+source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
-github_repo: 'https://github.com/ollama/ollama'
+github_repo: "https://github.com/ollama/ollama"
 stars: 95000
 maintainer: 'Ollama (jmorganca) / vLLM (vllm-project) / LocalAI (mudler)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases: - /posts/self-hosted-llm-2026-ollama-vllm-localai/
+categories: ["llm-frameworks"]
+tags: ["self-hosted", "llm", "ollama", "vllm", "localai", "inference", "2026"]
+aliases:
+  - /posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq: - q: "Which self-hosted LLM stack is best in 2026?"
     a: "Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code)."
   - q: "What hardware do I actually need?"

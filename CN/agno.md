@@ -1,6 +1,6 @@
 ---
 title: 'Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
-description: 'Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars. Supports OpenAI, Anthropic, Ollama, Docker, AWS. Covers installation, multi-agent systems, benchmarks, production hardening, and comparison with CrewAI, AutoGen, and LangChain.'
+description: "Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars. Supports OpenAI, Anthropic, Ollama, Docker, AWS. Covers installation, multi-agent systems, benchmarks, production hardening, and comparison with CrewAI, AutoGen, and LangChain."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/agno-agi/agno'
+github_repo: "https://github.com/agno-agi/agno"
 stars: 40233
 maintainer: 'agno-agi'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [agno, 'ai-agent', 'python-sdk', 'multi-agent', 'open-source', 'lightweight-framework', 'agent-platform', ollama, openai]
-aliases: - /posts/agno/-
+categories: ["llm-frameworks"]
+tags: ["agno", "ai-agent", "python-sdk", "multi-agent", "open-source", "lightweight-framework", "agent-platform", "ollama", "openai"]
+aliases:
+  - /posts/agno/-
 ---
 {{</* resource-info */>}}
 

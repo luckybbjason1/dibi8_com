@@ -1,6 +1,6 @@
 ---
 title: 'Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2...
-description: 'Grafana is the open-source visualization and analytics platform for monitoring. Covers Prometheus, Loki, InfluxDB, Elasticsearch integration. Includes Docker setup, production hardening, and comparison with Datadog, Kibana, New Relic.'
+description: "Grafana is the open-source visualization and analytics platform for monitoring. Covers Prometheus, Loki, InfluxDB, Elasticsearch integration. Includes Docker setup, production hardening, and comparison with Datadog, Kibana, New Relic."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/grafana/grafana'
+github_repo: "https://github.com/grafana/grafana"
 stars: 73876
 maintainer: grafana
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [grafana, docker, monitoring, prometheus, observability, dashboard, devops]
-aliases: - /posts/grafana/-
+categories: ["dev-utils"]
+tags: ["grafana", "docker", "monitoring", "prometheus", "observability", "dashboard", "devops"]
+aliases:
+  - /posts/grafana/-
 ---
 {{</* resource-info */>}}
 
@@ -135,13 +136,13 @@ global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: prometheus
-    static_configs: - targets: ['localhost:9090']
+    static_configs: - targets: [localhost:9090]
 
   - job_name: 'node-exporter'
-    static_configs: - targets: ['node-exporter:9100']
+    static_configs: - targets: [node-exporter:9100]
 
   - job_name: grafana
-    static_configs: - targets: ['grafana:3000']
+    static_configs: - targets: [grafana:3000]
 ```
 
 **loki/loki-config.yml:**

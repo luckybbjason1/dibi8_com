@@ -1,6 +1,6 @@
 ---
 title: 'Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướn...
-description: 'Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thích với LangChain, OpenWebUI, Continue.dev và Dify. Bao gồm thiết lập Docker, tùy chỉnh Modelfile, REST API, production hardening và benchmark hiệu năng.'
+description: "Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thích với LangChain, OpenWebUI, Continue.dev và Dify. Bao gồm thiết lập Docker, tùy chỉnh Modelfile, REST API, production hardening và benchmark hiệu năng."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/ollama/ollama'
+github_repo: "https://github.com/ollama/ollama"
 stars: 137000
 maintainer: ollama
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [ollama, 'llm-local', 'llama.cpp', deepseek, mistral, docker, modelfile, 'open-source']
-aliases: - /vi/posts/ollama/
+categories: ["llm-frameworks"]
+tags: ["ollama", "llm-local", "llama.cpp", "deepseek", "mistral", "docker", "modelfile", "open-source"]
+aliases:
+  - /vi/posts/ollama/
 - /vi/resources/llm-frameworks/ollama-local-llm-guide/
 ---
 

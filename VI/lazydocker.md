@@ -1,6 +1,6 @@
 ---
 title: 'LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
-description: 'LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Docker, Docker Compose, Go và Terminal. Bao gồm cài đặt, phím tắt, cấu hình và bảo mật production.'
+description: "LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Docker, Docker Compose, Go và Terminal. Bao gồm cài đặt, phím tắt, cấu hình và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jesseduffield/lazydocker'
+github_repo: "https://github.com/jesseduffield/lazydocker"
 stars: 51092
 maintainer: jesseduffield
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [lazydocker, docker, 'terminal-ui', devops, containers, 'cli-tools', 'docker-compose', tui]
-aliases: - /vi/posts/lazydocker/
+categories: ["dev-utils"]
+tags: ["lazydocker", "docker", "terminal-ui", "devops", "containers", "cli-tools", "docker-compose", "tui"]
+aliases:
+  - /vi/posts/lazydocker/
 ---
 
 {{</* resource-info */>}}

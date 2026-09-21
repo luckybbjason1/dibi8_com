@@ -1,6 +1,6 @@
 ---
 title: 'WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Producti...
-description: 'WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với faster-whisper, pyannote.audio và OpenAI Whisper. Bao gồm Docker, Python API, benchmark và production hardening.'
+description: "WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với faster-whisper, pyannote.audio và OpenAI Whisper. Bao gồm Docker, Python API, benchmark và production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/m-bain/whisperX'
+github_repo: "https://github.com/m-bain/whisperX"
 stars: 22000
 maintainer: 'm-bain'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [whisperx, asr, 'nhận-dạng-giọng-nói', 'phân-tách-ngưới-nói', 'timestamp-từ', 'faster-whisper', pyannote, docker]
-aliases: - /vi/posts/whisperx/
+categories: ["ai-tools"]
+tags: ["whisperx", "asr", "nhận-dạng-giọng-nói", "phân-tách-ngưới-nói", "timestamp-từ", "faster-whisper", "pyannote", "docker"]
+aliases:
+  - /vi/posts/whisperx/
 ---
 
 {{</* resource-info */>}}

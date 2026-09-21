@@ -1,6 +1,6 @@
 ---
 title: 'Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mề...
-description: '12-Factor Agents của HumanLayer (22K+ stars GitHub) định nghĩa các design pattern phân định prototype LLM cấp demo với agent cấp production mà khách hàng thực sự phụ thuộc. Phân tích đầy đủ 12 nguyên tắc — sở hữu prompt, sở hữu context window, mô hình stateless reducer, sở hữu control flow, human-in-the-loop qua tool call, error gọn, agent nhỏ tập trung, và hơn nữa. Kèm hướng dẫn áp dụng thực tế cho Claude Code, Codex, OpenCode và stack agent dựa trên MCP.'
+description: "12-Factor Agents của HumanLayer (22K+ stars GitHub) định nghĩa các design pattern phân định prototype LLM cấp demo với agent cấp production mà khách hàng thực sự phụ thuộc. Phân tích đầy đủ 12 nguyên tắc — sở hữu prompt, sở hữu context window, mô hình stateless reducer, sở hữu control flow, human-in-the-loop qua tool call, error gọn, agent nhỏ tập trung, và hơn nữa. Kèm hướng dẫn áp dụng thực tế cho Claude Code, Codex, OpenCode và stack agent dựa trên MCP."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/humanlayer/12-factor-agents'
+github_repo: "https://github.com/humanlayer/12-factor-agents"
 stars: 22000
 maintainer: humanlayer
-last_maintained: '2026-05-22'
+last_maintained: "2026-05-22"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['12-factor-agents', 'production-ai', 'llm-engineering', 'agent-architecture', humanlayer, 'agent-design-patterns', 'context-window', 'prompt-engineering', 'tool-calls', 'developer-productivity']
-aliases: - /vi/posts/12-factor-agents-production-llm-software-2026/
+categories: ["llm-frameworks"]
+tags: ["12-factor-agents", "production-ai", "llm-engineering", "agent-architecture", "humanlayer", "agent-design-patterns", "context-window", "prompt-engineering", "tool-calls", "developer-productivity"]
+aliases:
+  - /vi/posts/12-factor-agents-production-llm-software-2026/
 ---
 
 # Giải mã 12-Factor Agents: 12 nguyên tắc xây dựng phần mềm LLM cấp Production (Hướng dẫn 2026)

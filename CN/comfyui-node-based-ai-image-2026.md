@@ -1,6 +1,6 @@
 ---
 title: 'ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...
-description: 'ComfyUI is the 114k-star node-based visual workflow engine for SD/SDXL/Flux/Wan/Hunyuan and more. Supports image, video, audio, and 3D generation. Complete 2026 install guide covering node basics, workflow JSON import, ComfyUI Manager, and when ComfyUI beats AUTOMATIC1111.'
+description: "ComfyUI is the 114k-star node-based visual workflow engine for SD/SDXL/Flux/Wan/Hunyuan and more. Supports image, video, audio, and 3D generation. Complete 2026 install guide covering node basics, workflow JSON import, ComfyUI Manager, and when ComfyUI beats AUTOMATIC1111."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -14,15 +14,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 114000
 maintainer: comfyanonymous
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'image generation', 'video generation', 'node-based', workflow, 'open-source']
-aliases: - /posts/comfyui-node-based-ai-image-2026/-
+categories: ["ai-tools"]
+tags: ["comfyui", "image generation", "video generation", "node-based", "workflow", "open-source"]
+aliases:
+  - /posts/comfyui-node-based-ai-image-2026/-
 ---
 If [AUTOMATIC1111](/resources/ai-tools/stable-diffusion-webui-2026/) is "Photoshop for AI image generation" (you type, the image happens), **ComfyUI** is **"Blender's node editor for generative AI"** — you build the workflow as a directed graph of nodes, with explicit control over every model, sampler, conditioning step, and post-process. 114k GitHub stars, GPL-3.0, supports literally every generative AI model family released in 2024-2026: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (image / video / 3D), PixArt, AuraFlow, LTX-Video.
 

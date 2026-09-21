@@ -1,6 +1,6 @@
 ---
 title: 'nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f...
-description: 'nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretraining, finetuning, evaluation, inference, and chat UI — designed to train a GPT-2-level chatbot from scratch for under $100 on a single 8×H100 node.'
+description: "nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretraining, finetuning, evaluation, inference, and chat UI — designed to train a GPT-2-level chatbot from scratch for under $100 on a single 8×H100 node."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: 'https://github.com/karpathy/nanochat'
 backup_url: ''
-github_repo: 'karpathy/nanochat'
+github_repo: "karpathy/nanochat"
 stars: 54700
 maintainer: karpathy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: '/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg'
 draft: false
-categories: ['llm-frameworks']
-tags: [nanochat, karpathy, 'llm-training', pytorch, gpt, 'self-hosted-llm', 'open-source', transformer, 'fine-tuning']
-aliases: - /posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
+categories: ["llm-frameworks"]
+tags: ["nanochat", "karpathy", "llm-training", "pytorch", "gpt", "self-hosted-llm", "open-source", "transformer", "fine-tuning"]
+aliases:
+  - /posts/nanochat-karpathy-train-your-own-llm-100-dollars-2026/
 faqs: - q: 'What is nanochat and who built it?'
     a: 'nanochat is a minimal, full-stack LLM training and inference pipeline built by Andrej Karpathy (founding member of OpenAI, former Director of AI at Tesla). Unlike his earlier nanoGPT which only covered pretraining, nanochat includes the complete pipeline: custom Rust BPE tokenizer, pretraining, supervised finetuning on conversations and tool use, evaluation, inference, and a working ChatGPT-style web UI — all in about 8,000 lines of readable Python and Rust.'
   - q: 'How much does it cost to train a model with nanochat?'

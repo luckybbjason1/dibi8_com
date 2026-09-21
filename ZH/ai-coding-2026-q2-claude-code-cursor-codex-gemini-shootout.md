@@ -1,11 +1,11 @@
 ---
 title: 'AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Cod...
-description: '2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 TypeScript 代码库 5 工作流实测、MCP 支持、上下文窗口经济学、定价分析、各自真正胜出场景。'
+description: "2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 TypeScript 代码库 5 工作流实测、MCP 支持、上下文窗口经济学、定价分析、各自真正胜出场景。"
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
-source_version: 'Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0'
+source_version: "Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0"
 licensing_model: 'Commercial / Mixed'
 license_type: 'Proprietary + Open-source CLIs'
 file_size: ''
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI / Google'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai 编程', agent, 2026]
-aliases: - /zh/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
+categories: ["dev-utils"]
+tags: ["claude-code", "cursor", "codex-cli", "gemini-cli", "ai 编程", "agent", "2026"]
+aliases:
+  - /zh/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
 faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
     a: "没有单一赢家。Claude Code 1.0 在长上下文重构上领先（200K+ context，工具调用扎实）。Cursor Pro 在 IDE 体验和 tab 补全延迟上赢。OpenAI Codex CLI 最适合 shell 重的工作流，跟 GPT-5 集成好。Gemini CLI 最便宜，1M+ 上下文窗口最大但工具调用可靠性较低。多数专业开发者用其中 2 个 — 通常是 Claude Code + Cursor。"
   - q: "重度用户每月花多少？"

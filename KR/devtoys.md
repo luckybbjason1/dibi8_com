@@ -1,6 +1,6 @@
 ---
-title: 'DevToys: 31,533 GitHub Stars — 개발자 유틸리티 제품군 2026 완벽 설치 가이드'
-description: 'DevToys는 물론이고 오프라인 개발자용 스위스 아미 나이프입니다. JSON, Base64, JWT, 정규식 등 30개 이상의 도구를 Windows, macOS, Linux에서 사용할 수 있는 크로스 플랫폼 유틸리티로 스마트 감지 및 CLI 지원 기능을 갖추고 있습니다.'
+title: "DevToys: 31,533 GitHub Stars — 개발자 유틸리티 제품군 2026 완벽 설치 가이드"
+description: "DevToys는 물론이고 오프라인 개발자용 스위스 아미 나이프입니다. JSON, Base64, JWT, 정규식 등 30개 이상의 도구를 Windows, macOS, Linux에서 사용할 수 있는 크로스 플랫폼 유틸리티로 스마트 감지 및 CLI 지원 기능을 갖추고 있습니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/DevToys-app/DevToys'
+github_repo: "https://github.com/DevToys-app/DevToys"
 stars: 31533
 maintainer: 'DevToys-app'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [devtoys, 개발자도구, 오프라인도구, json포맷터, base64인코더, jwt디코더, 정규식테스트, 크로스플랫폼, 오픈소스]
-aliases: - /kr/posts/devtoys/
+categories: ["dev-utils"]
+tags: ["devtoys", "개발자도구", "오프라인도구", "json포맷터", "base64인코더", "jwt디코더", "정규식테스트", "크로스플랫폼", "오픈소스"]
+aliases:
+  - /kr/posts/devtoys/
 ---
 
 {{</* resource-info */>}}

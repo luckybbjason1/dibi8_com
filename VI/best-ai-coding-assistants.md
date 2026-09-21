@@ -1,7 +1,6 @@
 ---
-title: 'Trợ Lý Lập Trình AI Tốt Nhất 2026'
-lang: vi
-description: 'Những trợ lý lập trình AI tốt nhất cho nhà phát triển năm 2026 — từ Claude Code và Cursor đến GitHub Copilot và Devin. So sánh tính năng, giá cả và hiệu suất.'
+title: "Trợ Lý Lập Trình AI Tốt Nhất 2026"
+description: "Những trợ lý lập trình AI tốt nhất cho nhà phát triển năm 2026 — từ Claude Code và Cursor đến GitHub Copilot và Devin. So sánh tính năng, giá cả và hiệu suất."
 layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00

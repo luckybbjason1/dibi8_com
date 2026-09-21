@@ -24,7 +24,8 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /en/posts/hermes-agent-self-improving-ai-agent/
+aliases:
+  - /en/posts/hermes-agent-self-improving-ai-agent/
 - /posts/genericagent-self-evolving-ai-agent/
 - /posts/hermes-agent-self-improving-ai-agent/
 faqs: - q: 'What makes Hermes Agent different from tools like Claude Code, Cursor, or GitHub Copilot?'

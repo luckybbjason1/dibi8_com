@@ -1,10 +1,10 @@
 ---
-title: 'VS Code Copilot vs Cursor 2026: 어느 AI 코딩 도구가 이길까?'
-description: 'GitHub Copilot in VS Code(Microsoft)와 Cursor 비교 — 가격 $10 vs $20/월, 자동완성 vs 에이전트, 엔터프라이즈 통합. 2026 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "VS Code Copilot vs Cursor 2026: 어느 AI 코딩 도구가 이길까?"
+description: "GitHub Copilot in VS Code(Microsoft)와 Cursor 비교 — 가격 $10 vs $20/월, 자동완성 vs 에이전트, 엔터프라이즈 통합. 2026 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [vscode, copilot, cursor, ai-coding, comparison, dev-tools, github]
-categories: [vs]
+tags: ["vscode", "copilot", "cursor", "ai-coding", "comparison", "dev-tools", "github"]
+categories: ["vs"]
 faqs: - q: 'GitHub Copilot과 Cursor 중 어느 쪽이 더 저렴한가요?'
     a: 'GitHub Copilot in VS Code가 개인 $10/월로 Cursor Pro $20/월보다 저렴합니다. Copilot Business는 $19/사용자/월, Enterprise는 $39/사용자/월입니다. 순수 가격으로는 Copilot이 절반 — 다만 Cursor는 단일 $20 티어에 더 공격적인 에이전트 기능을 포함합니다.'
   - q: '멀티파일 에이전트 편집은 어느 쪽이 더 좋나요?'

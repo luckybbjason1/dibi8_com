@@ -1,10 +1,10 @@
 ---
 title: 'Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt ...
-description: 'So sánh trực tiếp Google Gemini CLI và Anthropic Claude Code — gói miễn phí, cửa sổ context, phong cách agent, đa phương thức, sử dụng tool, mẹo chuyển đổi. Cập nhật 2026.'
+description: "So sánh trực tiếp Google Gemini CLI và Anthropic Claude Code — gói miễn phí, cửa sổ context, phong cách agent, đa phương thức, sử dụng tool, mẹo chuyển đổi. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["gemini-cli", "claude-code", "google", "anthropic", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Gemini CLI có thực sự miễn phí không?'
     a: 'Có — Gemini CLI đi kèm gói miễn phí hào phóng nhất trong các agent AI coding hiện nay: 60 request mỗi phút và 1.000 request mỗi ngày dùng gemini-2.0-flash-thinking, không cần thẻ tín dụng, chỉ cần tài khoản Google. Claude Code không có gói miễn phí — phải trả theo token qua Anthropic API hoặc qua gói Claude Pro $20/tháng với dung lượng Claude Code hạn chế.'
   - q: 'Cái nào có cửa sổ context lớn hơn?'

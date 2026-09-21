@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm
 category: data-science
-tags: [qiaomu-notebooklm, notebooklm, content conversion, Claude Code, knowledge management, AI tools]
+tags: ["qiaomu-notebooklm", "notebooklm", "content conversion", "Claude Code", "knowledge management", "AI tools"]
 github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
 stars: 5015
 maintainer: joeseesun

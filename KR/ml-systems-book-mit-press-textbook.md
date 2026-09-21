@@ -21,7 +21,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/ml-systems-book-mit-press-textbook/
+aliases:
+  - /kr/posts/ml-systems-book-mit-press-textbook/
 faqs: - q: 'ML Systems Book은 어떤 주제를 다루나요?'
     a: 'ML Systems Book은 분산 학습(데이터 병렬처리, 모델 병렬처리, 파이프라인 병렬처리 및 내결함성), 모델 서빙(배치 및 실시간 추론, 버전 관리, 자동 스케일링), 하드웨어 가속(GPU, TPU, ASIC, 양자화, 가지치기), ML 인프라(피처 스토어, 실험 추적, CI/CD, 모니터링), 그리고 비용 최적화(스팟 인스턴스, 모델 압축, 동적 배치)를 다룹니다.'
   - q: 'ML Systems Book은 몇 개의 챕터로 구성되어 있으며 어떻게 편성되어 있나요?'

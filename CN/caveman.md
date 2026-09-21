@@ -21,7 +21,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases: - /posts/caveman/
+aliases:
+  - /posts/caveman/
 faqs: - q: 'What is Caveman for Claude Code?'
     a: 'Caveman is a Claude Code skill that makes Claude respond in compressed, terse, caveman-style language by dropping filler, articles, and polite preamble. It reduces output tokens by 65% on average without losing technical accuracy.'
   - q: 'How much does Caveman reduce token usage?'

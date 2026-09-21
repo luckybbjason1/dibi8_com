@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/agent-reach-ai-agent-internet-access/
+aliases:
+  - /zh/posts/agent-reach-ai-agent-internet-access/
 faqs: - q: 'Agent Reach 是什么，它能做什么？'
     a: 'Agent Reach 是由 Panniantong 开发的一款开源 MIT 许可脚手架工具，只需一条命令就能让 AI agent 即时访问 15+ 个互联网平台。它会自动为每个平台选择、安装并配置最合适的开源工具，而不是用一层抽象把这些工具包起来。'
   - q: 'Agent Reach 支持哪些平台？'

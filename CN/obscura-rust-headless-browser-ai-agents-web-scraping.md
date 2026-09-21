@@ -1,12 +1,12 @@
 ---
 title: 'Obscura: Rust Headless Browser for AI Agents — 14,000 St...
-description: 'Obscura (14,788 GitHub stars) is a Rust headless browser engine for AI agents and web scraping. 30MB memory, 85ms page load, built-in anti-detection. Drop-in replacement for headless Chrome with Puppeteer and Playwright support. Docker and binary installs.'
+description: "Obscura (14,788 GitHub stars) is a Rust headless browser engine for AI agents and web scraping. 30MB memory, 85ms page load, built-in anti-detection. Drop-in replacement for headless Chrome with Puppeteer and Playwright support. Docker and binary installs."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
-tags: ['obscura', 'headless browser', 'Rust browser', 'web scraping', 'AI agent tools', 'Puppeteer alternative', 'Playwright alternative', 'anti-detection', 'stealth browsing']
-github_repo: 'https://github.com/h4ckf0r0day/obscura'
+tags: ["obscura", "headless browser", "Rust browser", "web scraping", "AI agent tools", "Puppeteer alternative", "Playwright alternative", "anti-detection", "stealth browsing"]
+github_repo: "https://github.com/h4ckf0r0day/obscura"
 stars: 14788
 maintainer: 'h4ckf0r0day'
 license: Apache-2.0
@@ -422,7 +422,7 @@ obscura --proxy socks5://127.0.0.1:1080 \
 const browser = await puppeteer.connect({
   browserURL: 'http://localhost:9222',
   defaultBrowserOptions: {
-    args: ['--proxy-server=http://proxy:8080']
+    args: [--proxy-server=http://proxy:8080]
   }
 });
 ```

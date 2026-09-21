@@ -19,7 +19,8 @@ maintainer: "cheahjs"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /posts/free-llm-api-resources-ai-development/
+aliases:
+  - /posts/free-llm-api-resources-ai-development/
 faqs: - q: 'What is the fastest free LLM inference provider?'
     a: 'Groq offers the fastest free inference at over 800 tokens per second. Its free tier is completely free but rate limited to around 20 requests per minute and 6,000 tokens per minute.'
   - q: 'How can I run LLMs locally for free with full privacy?'

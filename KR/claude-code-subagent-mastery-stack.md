@@ -1,6 +1,6 @@
 ---
-title: 'Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로'
-description: 'Claude Code 멀티 에이전트 워크플로를 마스터하기 위한 완전한 학습 + 도구 스택: 5가지 서브에이전트 패턴 + 커스텀 에이전트 작성 + 스킬/서브에이전트/MCP 의사결정 프레임워크 + 오케스트레이션 실패 모드 + 스킬 작성. 단일 스레드 코딩에서 신뢰할 수 있는 에이전트 파이프라인으로 가는 전체 경로.'
+title: "Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로"
+description: "Claude Code 멀티 에이전트 워크플로를 마스터하기 위한 완전한 학습 + 도구 스택: 5가지 서브에이전트 패턴 + 커스텀 에이전트 작성 + 스킬/서브에이전트/MCP 의사결정 프레임워크 + 오케스트레이션 실패 모드 + 스킬 작성. 단일 스레드 코딩에서 신뢰할 수 있는 에이전트 파이프라인으로 가는 전체 경로."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - Claude Code
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases: - /posts/claude-code-subagent-mastery-stack/
+categories: ["collections"]
+tags: ["claude code", "subagents", "multi-agent", "agent sdk", "mcp", "stack", "collection"]
+aliases:
+  - /posts/claude-code-subagent-mastery-stack/
 faqs: - q: 'Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인가요?'
     a: '다섯 가지 패턴은 병렬 리서치 팬아웃, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션입니다. 이들은 다중 에이전트 워크플로의 기반 레이어를 구성하며, 병렬 팬아웃이 가장 마찰이 적은 시작점입니다.'
   - q: 'Claude Code에서 skill, subagent, MCP server 중 무엇을 선택해야 할까요?'

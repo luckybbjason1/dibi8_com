@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
-tags: [微软, markitdown, markdown, python, cli, pdf转换器, 文档处理, AI, 开源]
+tags: ["微软", "markitdown", "markdown", "python", "cli", "pdf转换器", "文档处理", "AI", "开源"]
 ---
 
 ## 简介

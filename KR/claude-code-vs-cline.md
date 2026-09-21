@@ -1,10 +1,10 @@
 ---
-title: '2026년 Claude Code vs Cline: 자율성이냐 통제냐?'
-description: 'Claude Code와 Cline을 나란히 분석 — 터미널 자율성 vs VS Code 단계별 승인, 모델 지원, 가격, 그리고 각각을 언제 선택할지. 에이전트형 코딩의 통제 대 자율성 결정. 2026년 업데이트.'
+title: "2026년 Claude Code vs Cline: 자율성이냐 통제냐?"
+description: "Claude Code와 Cline을 나란히 분석 — 터미널 자율성 vs VS Code 단계별 승인, 모델 지원, 가격, 그리고 각각을 언제 선택할지. 에이전트형 코딩의 통제 대 자율성 결정. 2026년 업데이트."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
-tags: [claude-code, cline, ai-coding, agentic, comparison, dev-tools]
-categories: [vs]
+tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Claude Code와 Cline의 핵심 차이는 무엇인가요?'
     a: '철학입니다. Claude Code는 Anthropic의 터미널 네이티브 에이전트로, Claude 모델에 맞춰 튜닝되어 자율적으로 동작하도록 만들어졌습니다 — 계획하고, 편집하고, 테스트를 실행하고, 재시도하는 모든 과정을 하나의 루프 안에서 처리합니다. Cline은 어떤 모델과도 동작하는 오픈소스 VS Code 확장으로, 모든 diff, 명령, 웹 페치를 실행하기 전에 사용자에게 승인을 요청합니다. Claude Code는 자율성과 토큰당 품질에 최적화되어 있고, Cline은 통제와 모델 자유도에 최적화되어 있습니다. 두 도구로 표현된 자율성 대 통제의 트레이드오프인 셈입니다.'
   - q: 'Cline이 Claude Code보다 저렴한가요?'

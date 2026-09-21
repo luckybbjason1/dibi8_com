@@ -1,12 +1,12 @@
 ---
 title: 'AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks —...
-description: 'We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, here is the 5-layer method that got us cited by Google SGE, Perplexity, and ChatGPT.'
+description: "We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, here is the 5-layer method that got us cited by Google SGE, Perplexity, and ChatGPT."
 tags: ["open-source"]
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
-github_repo: 'https://github.com/dibi8-com/dibi8'
+github_repo: "https://github.com/dibi8-com/dibi8"
 license: 'MIT'
 featureImage: /images/articles/ai-seo
 ---

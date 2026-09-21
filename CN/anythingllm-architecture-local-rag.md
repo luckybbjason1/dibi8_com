@@ -21,7 +21,8 @@ maintainer: "Mintplex-Labs"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /posts/anythingllm-architecture-local-rag/
+aliases:
+  - /posts/anythingllm-architecture-local-rag/
 - /posts/local-first-architecture-guide/
 faqs: - q: 'How do I fix AnythingLLM ''Connection Refused'' when connecting to Ollama inside Docker?'
     a: 'Inside a Docker container, localhost refers to the container itself, not the host machine, so point AnythingLLM''s LLM URL to http://host.docker.internal:11434. You must also launch Ollama with the environment variable OLLAMA_HOST=0.0.0.0 to allow access across network interfaces.'

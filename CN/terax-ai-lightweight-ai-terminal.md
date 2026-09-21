@@ -24,7 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /posts/terax-ai-lightweight-ai-terminal/
+aliases:
+  - /posts/terax-ai-lightweight-ai-terminal/
 faqs: - q: 'What is Terax AI?'
     a: 'Terax AI is an open-source, AI-native terminal emulator built on Tauri 2 with a Rust backend and a React 19 frontend. It combines a native PTY terminal with multi-tab support, an integrated code editor, a file explorer, and a first-class AI side-panel.'
   - q: 'Does Terax AI send my data or API keys to the cloud?'

@@ -1,6 +1,6 @@
 ---
-title: 'ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制'
-description: 'ChatTTS 是专为对话（不是朗读）打造的开源 TTS。GitHub 39.3k 星，最低 4 GB VRAM，RTX 4090 上 RTF 0.3，含笑声 / 停顿的精细 prosody 控制。2026 完整安装 + 生产设置指南。'
+title: "ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制"
+description: "ChatTTS 是专为对话（不是朗读）打造的开源 TTS。GitHub 39.3k 星，最低 4 GB VRAM，RTX 4090 上 RTF 0.3，含笑声 / 停顿的精细 prosody 控制。2026 完整安装 + 生产设置指南。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -14,15 +14,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/2noise/ChatTTS'
+github_repo: "https://github.com/2noise/ChatTTS"
 stars: 39300
 maintainer: 2noise
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [chattts, tts, 语音, 对话, 开源]
-aliases: - /posts/chattts-dialogue-tts-2026/-
+categories: ["ai-tools"]
+tags: ["chattts", "tts", "语音", "对话", "开源"]
+aliases:
+  - /posts/chattts-dialogue-tts-2026/-
 ---
 
 2026 多数开源 TTS 还是"90 年代 GPS 旁白加点混响"的味道。**ChatTTS** 是第一个被广泛采用的例外 —— 39.3k 星的生成式语音模型，专为**对话**（不是朗读）训练，含 token 级笑声 / 停顿 / 插入语 / prosody 控制，终于跨过"听了不让人皱眉"的门槛。

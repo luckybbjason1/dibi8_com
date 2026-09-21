@@ -1,6 +1,6 @@
 ---
 title: 'MLflow 2026: The Open-Source ML Lifecycle Platform Track...
-description: 'Complete guide to MLflow for ML experiment tracking, model registry, and model serving. Covers setup, Python SDK, production deployment, and benchmarks for 10,000+ experiments.'
+description: "Complete guide to MLflow for ML experiment tracking, model registry, and model serving. Covers setup, Python SDK, production deployment, and benchmarks for 10,000+ experiments."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'mlflow/mlflow'
+github_repo: "mlflow/mlflow"
 stars: 21000
 maintainer: mlflow
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [mlflow, 'machine learning', mlops, 'experiment tracking', 'model registry', 'model serving', python, 'open source', 'data science']
-aliases: - /posts/mlflow-experiment-tracking-production/-
+categories: ["data-science"]
+tags: ["mlflow", "machine learning", "mlops", "experiment tracking", "model registry", "model serving", "python", "open source", "data science"]
+aliases:
+  - /posts/mlflow-experiment-tracking-production/-
 ---
 {{</* resource-info */>}}
 

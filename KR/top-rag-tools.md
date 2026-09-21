@@ -1,7 +1,6 @@
 ---
-title: 'AI 지식 베이스를 위한 최고의 RAG 도구'
-lang: ko
-description: 'AI 지식 베이스 구축을 위한 최고의 RAG(검색 증강 생성) 도구 — LangChain부터 LlamaIndex, ChromaDB부터 Weaviate까지.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI 지식 베이스를 위한 최고의 RAG 도구"
+description: "AI 지식 베이스 구축을 위한 최고의 RAG(검색 증강 생성) 도구 — LangChain부터 LlamaIndex, ChromaDB부터 Weaviate까지.". Comprehensive guide covering features, pricing, and best practices for 2026.
 layout: simple
 date: 2026-06-28 00:00:00+08:00
 lastmod: 2026-06-28 00:00:00+08:00

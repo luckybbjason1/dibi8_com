@@ -1,17 +1,16 @@
 ---
 title: 'Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 20...
-description: 'Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot을 지원합니다. Docker 및 네이티브 Linux/macOS 설치가 가능합니다.'
+description: "Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot을 지원합니다. Docker 및 네이티브 Linux/macOS 설치가 가능합니다."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
 category: ai-tools
-tags: ['odysseus', '자체 호스팅 AI', 'AI 워크스페이스', '로컬 AI', '딥 리서치', 'AI 에이전트', '채팅 인터페이스', '오픈소스 AI', '홈랩 AI']
+tags: ["odysseus", "자체 호스팅 AI", "AI 워크스페이스", "로컬 AI", "딥 리서치", "AI 에이전트", "채팅 인터페이스", "오픈소스 AI", "홈랩 AI"]
 github_repo: https://github.com/pewdiepie-archdaemon/odysseus
 stars: 65243
 maintainer: pewdiepie-archdaemon
 license: MIT
 featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg
-lang: ko
 ---
 
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026

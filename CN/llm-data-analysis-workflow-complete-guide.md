@@ -1,6 +1,6 @@
 ---
 title: 'Using LLMs for Data Analysis: Complete Workflow with Pan...
-description: 'Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build complete workflows for conversational data science.'
+description: "Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build complete workflows for conversational data science."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/llm-data-analysis-workflow-complete-guide/-
+aliases:
+  - /posts/llm-data-analysis-workflow-complete-guide/-
 ---
 {</* resource-info */>}
 
@@ -36,7 +37,7 @@ However, LLMs carry specific limitations in analytical contexts. Hallucination â
 
 ## PandasAI: Conversational DataFrame Operations
 
-PandasAI, an open-source library maintained on [GitHub](https://github.com/gventuri/pandas-ai), adds generative AI capabilities directly to Pandas DataFrames. Instead of writing `df.groupby('region')['sales'].sum().sort_values(ascending=False)`, you write `df.chat("What are total sales by region, sorted highest to lowest?")` and PandasAI generates the appropriate code, executes it, and returns the result. The library abstracts away prompt engineering and code generation, presenting a clean interface that feels like an extension of Pandas itself.
+PandasAI, an open-source library maintained on [GitHub](https://github.com/gventuri/pandas-ai), adds generative AI capabilities directly to Pandas DataFrames. Instead of writing `df.groupby('region')[sales].sum().sort_values(ascending=False)`, you write `df.chat("What are total sales by region, sorted highest to lowest?")` and PandasAI generates the appropriate code, executes it, and returns the result. The library abstracts away prompt engineering and code generation, presenting a clean interface that feels like an extension of Pandas itself.
 
 Behind the scenes, PandasAI constructs detailed prompts that include DataFrame schemas (column names, types, sample values), conversation history, and the user's question. The LLM generates Python code which PandasAI executes in a controlled environment, with options for Docker sandboxing to isolate potentially harmful operations. Results format automatically based on query type â€” tables for data retrieval, matplotlib or seaborn plots for visualization requests, and natural language summaries for analytical questions.
 

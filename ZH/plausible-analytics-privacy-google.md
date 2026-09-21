@@ -1,6 +1,6 @@
 ---
 title: 'Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
-description: 'Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'plausible/analytics'
+github_repo: "plausible/analytics"
 stars: 21000
 maintainer: plausible
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [plausible, analytics, 隐私, gdpr, 'google-analytics替代品', 自建部署, docker, elixir, 轻量级]
-aliases: - /zh/posts/plausible-analytics-privacy-google/-
+categories: ["dev-utils"]
+tags: ["plausible", "analytics", "隐私", "gdpr", "google-analytics替代品", "自建部署", "docker", "elixir", "轻量级"]
+aliases:
+  - /zh/posts/plausible-analytics-privacy-google/-
 ---
 
 {{</* resource-info */>}}

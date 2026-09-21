@@ -1,12 +1,12 @@
 ---
 title: 'ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 ...
-description: 'ECC（Agent Harness 性能优化）可减少上下文窗口用量并加快 AI 编码代理的响应速度。兼容 Claude Code、Codex、Opencode、Cursor 等。涵盖性能调优、技能系统和 MCP 服务器配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "ECC（Agent Harness 性能优化）可减少上下文窗口用量并加快 AI 编码代理的响应速度。兼容 Claude Code、Codex、Opencode、Cursor 等。涵盖性能调优、技能系统和 MCP 服务器配置。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
-tags: ['ECC', 'agent-optimization', 'claude-code', 'codex', 'cursor', 'performance', 'mcp']
-github_repo: 'https://github.com/affaan-m/ECC'
+tags: ["ECC", "agent-optimization", "claude-code", "codex", "cursor", "performance", "mcp"]
+github_repo: "https://github.com/affaan-m/ECC"
 license: 'MIT'
 featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png---
 

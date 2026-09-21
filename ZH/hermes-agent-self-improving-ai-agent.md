@@ -20,7 +20,8 @@ maintainer: "NousResearch"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/genericagent-self-evolving-ai-agent.zh/
+aliases:
+  - /zh/posts/genericagent-self-evolving-ai-agent.zh/
 - /zh/posts/hermes-agent-self-improving-ai-agent/
 faqs: - q: 'Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工具有什么不同？'
     a: 'Hermes Agent 内置了自学习循环、跨会话的持久记忆，以及一套技能系统，这些都是那些工具所不具备的。它还能在 6 个消息平台上运行，支持 cron 定时调度和 MCP，并且开源、可自托管；而其他工具只局限于 CLI、桌面端或 IDE，且要收取订阅费或 API 费用。'

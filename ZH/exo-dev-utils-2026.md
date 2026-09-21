@@ -1,6 +1,6 @@
 ---
-title: 'exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）——2026 实战指南'
-description: 'exo 把你的 Mac、PC 乃至手机组成一个集群，在本地运行前沿 AI 大模型。45,088 个 GitHub star，Apache-2.0 协议。涵盖安装、控制台、兼容 OpenAI/Claude/Ollama 的 API、真实命令以及一份诚实的横向对比。'
+title: "exo：把自己的多台设备组成集群跑前沿大模型（45K Stars）——2026 实战指南"
+description: "exo 把你的 Mac、PC 乃至手机组成一个集群，在本地运行前沿 AI 大模型。45,088 个 GitHub star，Apache-2.0 协议。涵盖安装、控制台、兼容 OpenAI/Claude/Ollama 的 API、真实命令以及一份诚实的横向对比。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'exo-explore/exo'
+github_repo: "exo-explore/exo"
 stars: 45088
 maintainer: 'exo-explore'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/dashboard-cluster-view.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/exo-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/exo-dev-utils-2026/
 faqs: - q: '怎么安装 exo？'
     a: '在 Mac 上，最省事的方式是用预编译应用： ```bash brew install --cask exo ``` 要在 macOS 或 Linux 上运行最新源码，克隆仓库并用 `uv` 启动： ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
   - q: 'exo 能在什么硬件上运行？'
@@ -28,7 +29,7 @@ faqs: - q: '怎么安装 exo？'
   - q: '怎么用 exo 组建集群？'
     a: '在你想纳入集群的每台设备上启动 exo： ```bash uv run exo ``` 各节点会在同一网络中自动相互发现——既不用写节点列表，也不用配置主节点/工作节点。'
   - q: '怎么向 exo 发请求？'
-    a: 'exo 在 52415 端口提供一个兼容 OpenAI/Claude/Ollama 的 API。例如： ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}]}'' ```'
+    a: 'exo 在 52415 端口提供一个兼容 OpenAI/Claude/Ollama 的 API。例如： ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}"]}'' ```'
   - q: '在哪里看集群状态？'
     a: '在浏览器里打开 `http://localhost:52415` 的控制台。它会显示每一台被发现的设备、模型在它们之间的切分方式，以及实时的吞吐量和内存占用。'---
 

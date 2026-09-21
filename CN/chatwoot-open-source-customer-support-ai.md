@@ -1,6 +1,6 @@
 ---
 title: 'Chatwoot 2026: The Open-Source Customer Support Platform...
-description: 'Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integrate AI agents, connect multi-channels. Real benchmarks and production setup.'
+description: "Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integrate AI agents, connect multi-channels. Real benchmarks and production setup."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'chatwoot/chatwoot'
+github_repo: "chatwoot/chatwoot"
 stars: 23000
 maintainer: chatwoot
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [chatwoot, 'customer-support', 'open-source', 'ai-chatbot', 'self-hosted', docker, 'ruby-on-rails', 'live-chat']
-aliases: - /posts/chatwoot-open-source-customer-support-ai/-
+categories: ["dev-utils"]
+tags: ["chatwoot", "customer-support", "open-source", "ai-chatbot", "self-hosted", "docker", "ruby-on-rails", "live-chat"]
+aliases:
+  - /posts/chatwoot-open-source-customer-support-ai/-
 ---
 {{</* resource-info */>}}
 
@@ -461,7 +462,7 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 # Add to your prometheus.yml
 
 scrape_configs: - job_name: chatwoot
-    static_configs: - targets: ['support.yourdomain.com:3000']
+    static_configs: - targets: [support.yourdomain.com:3000]
     metrics_path: '/metrics'
     scrape_interval: 30s
 ```

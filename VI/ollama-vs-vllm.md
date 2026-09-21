@@ -1,10 +1,10 @@
 ---
 title: 'Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughpu...
-description: 'So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughput cao) — dễ dùng, throughput, phần cứng, đồng thời, chi phí ở quy mô. Cập nhật 2026.'
+description: "So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughput cao) — dễ dùng, throughput, phần cứng, đồng thời, chi phí ở quy mô. Cập nhật 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [ollama, vllm, local-llm, inference, llm-serving, comparison, dev-tools, self-hosted]
-categories: [vs]
+tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'Nên dùng Ollama hay vLLM để phục vụ một LLM?'
     a: 'Dùng Ollama nếu bạn phục vụ một vài người dùng tại local — trên laptop, Mac hoặc một máy dev đơn lẻ — và coi trọng việc cài đặt bằng một lệnh. Dùng vLLM nếu bạn phục vụ nhiều người dùng đồng thời trong production và cần throughput cao trên GPU. Quy tắc chung: Ollama cho phát triển và prototype local, vLLM cho phục vụ production ở quy mô. Nhiều đội dùng Ollama khi phát triển và chuyển sang vLLM khi triển khai production.'
   - q: 'Vì sao vLLM nhanh hơn Ollama khi tải nặng?'

@@ -1,6 +1,6 @@
 ---
 title: 'Các Công Cụ Và Framework Xây Dựng Đồ Thị Tri Thức Tốt Nh...
-description: 'So sánh chi tiết các công cụ và framework xây dựng đồ thị tri thức hàng đầu năm 2025. Tìm hiểu Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph và Dgraph để lựa chọn nền tảng phù hợp.'
+description: "So sánh chi tiết các công cụ và framework xây dựng đồ thị tri thức hàng đầu năm 2025. Tìm hiểu Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph và Dgraph để lựa chọn nền tảng phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: ['knowledge graph', 'graph database', neo4j, 'amazon neptune', stardog, rdf, cypher, sparql]
-aliases: - /vi/posts/knowledge-graph-tools-frameworks/
+categories: ["data-science"]
+tags: ["knowledge graph", "graph database", "neo4j", "amazon neptune", "stardog", "rdf", "cypher", "sparql"]
+aliases:
+  - /vi/posts/knowledge-graph-tools-frameworks/
 ---
 
 # Các Công Cụ Và Framework Xây Dựng Đồ Thị Tri Thức Tốt Nhất 2025: So Sánh Neo4j, RDFlib, Amazon Neptune, Stardog

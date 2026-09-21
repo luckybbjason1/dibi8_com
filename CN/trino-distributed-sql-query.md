@@ -1,6 +1,6 @@
 ---
 title: 'Trino 2026: The Distributed SQL Query Engine Analyzing P...
-description: 'Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+ connector configuration, performance tuning, and real-world benchmarks.'
+description: "Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+ connector configuration, performance tuning, and real-world benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'trinodb/trino'
+github_repo: "trinodb/trino"
 stars: 11000
 maintainer: trinodb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [trino, presto, 'distributed sql', 'big data', analytics, 'data lake', hive, iceberg, 'query engine', 'self-hosted']
-aliases: - /posts/trino-distributed-sql-query/-
+categories: ["data-science"]
+tags: ["trino", "presto", "distributed sql", "big data", "analytics", "data lake", "hive", "iceberg", "query engine", "self-hosted"]
+aliases:
+  - /posts/trino-distributed-sql-query/-
 ---
 {{</* resource-info */>}}
 

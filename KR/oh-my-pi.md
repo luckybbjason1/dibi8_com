@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: oh-my-pi
 category: dev-utils
-tags: ['raspberry pi', '스마트 홈', 'iot', '엣지 컴퓨팅', '홈 오토메이션', 'linux', '자동화']
+tags: ["raspberry pi", "스마트 홈", "iot", "엣지 컴퓨팅", "홈 오토메이션", "linux", "자동화"]
 github_repo: "https://github.com/can1357/oh-my-pi"
 license: MIT
 images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
@@ -17,7 +17,6 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
     alt: "스마트 홈 다이어그램"
     role: diagram
-lang: kr
 featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 

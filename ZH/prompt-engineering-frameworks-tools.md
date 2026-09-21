@@ -1,6 +1,6 @@
 ---
-title: '2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测'
-description: '深入对比LangSmith、PromptLayer、Weights & Biases Prompts、Pezzo、Prompt Flow等主流提示词工程框架，涵盖版本控制、A/B测试、协作功能和定价策略，助力团队构建高效的LLM提示词管理体系。'
+title: "2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测"
+description: "深入对比LangSmith、PromptLayer、Weights & Biases Prompts、Pezzo、Prompt Flow等主流提示词工程框架，涵盖版本控制、A/B测试、协作功能和定价策略，助力团队构建高效的LLM提示词管理体系。"
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [提示词工程, langsmith, promptlayer, 'w&b', llm开发]
-aliases: - /zh/posts/prompt-engineering-frameworks-tools/-
+categories: ["llm-frameworks"]
+tags: ["提示词工程", "langsmith", "promptlayer", "w&b", "llm开发"]
+aliases:
+  - /zh/posts/prompt-engineering-frameworks-tools/-
 ---
 # 2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测
 

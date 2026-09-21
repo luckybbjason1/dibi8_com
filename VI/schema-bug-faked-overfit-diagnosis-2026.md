@@ -1,22 +1,23 @@
 ---
 title: 'Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cá...
-description: 'Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đó phát hiện chính chẩn đoán đó là sai — lỗi không khớp tên trường schema âm thầm khiến optimizer chạy với leverage mặc định 10x thay vì 2x đã được tiến hóa. Phiên bản đã sửa thì lành mạnh (tỷ lệ 1.01). Bài học meta còn xấu xí hơn bản gốc.'
+description: "Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đó phát hiện chính chẩn đoán đó là sai — lỗi không khớp tên trường schema âm thầm khiến optimizer chạy với leverage mặc định 10x thay vì 2x đã được tiến hóa. Phiên bản đã sửa thì lành mạnh (tỷ lệ 1.01). Bài học meta còn xấu xí hơn bản gốc."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
-source_version: 'moss-trade-bot-skills v1.0.26'
+source_version: "moss-trade-bot-skills v1.0.26"
 licensing_model: Mã nguồn mở
 license_type: MIT
 github_repo: ''
 stars: 0
 maintainer: 'Ban biên tập dibi8'
-last_maintained: '2026-05-26'
+last_maintained: "2026-05-26"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases: - /vi/posts/schema-bug-faked-overfit-diagnosis-2026/
+categories: ["ai-trading"]
+tags: ["backtest", "overfit", "quant", "schema-drift", "walk-forward", "postmortem", "2026"]
+aliases:
+  - /vi/posts/schema-bug-faked-overfit-diagnosis-2026/
 faq: - q: "Schema drift là gì và tại sao nó lại ngụy tạo kết quả backtest?"
     a: "Schema drift nghĩa là tên trường tham số trong config của bạn không còn khớp với schema runtime nữa. Bộ deserialize sẽ âm thầm loại bỏ các trường lạ và dùng giá trị mặc định. Nếu các mặc định đó hung hãn (như leverage 10x trong khi bạn dự định 2x), kết quả backtest sẽ dao động kinh khủng. Các con số trông thật nhưng chúng đến từ một chiến lược khác hẳn với chiến lược bạn đã viết."
   - q: "Tại sao chẩn đoán overfit ban đầu trông thuyết phục đến vậy?"

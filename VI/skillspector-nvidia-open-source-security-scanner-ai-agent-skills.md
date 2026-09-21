@@ -1,14 +1,13 @@
 ---
 title: 'SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ nă...
-description: 'Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro bảo mật trước khi cài đặt kỹ năng. Đạt 10K sao từ NVIDIA. Bảo vệ Claude Code, Codex CLI và các khung tác nhân khác.'
+description: "Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro bảo mật trước khi cài đặt kỹ năng. Đạt 10K sao từ NVIDIA. Bảo vệ Claude Code, Codex CLI và các khung tác nhân khác."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: dev-utils
-tags: ['security', 'ai-agents', 'scanner', 'vulnerability-detection', 'claude-code', 'codex', 'mcp', 'agent-skills', 'nvidia']
+tags: ["security", "ai-agents", "scanner", "vulnerability-detection", "claude-code", "codex", "mcp", "agent-skills", "nvidia"]
 slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
 featureImage: /images/articles/skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills.png
-lang: vi
 github_repo: https://github.com/NVIDIA/SkillSpector
 license: Apache-2.0
 ---

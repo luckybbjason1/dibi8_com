@@ -1,6 +1,6 @@
 ---
 title: 'PancakeSwap 트레이딩 봇 2026: Python으로 BSC에서 자동화된 DeFi 전략 구축 ...
-description: 'Binance Smart Chain에서 프로덕션 수준의 PancakeSwap 트레이딩 봇을 구축하세요. Web3.py 통합, 자동화 전략, 유동성 풀 모니터링, MEV 보호 및 Python 봇 프레임워크 — 2026년 실제 벤치마크 포함.'
+description: "Binance Smart Chain에서 프로덕션 수준의 PancakeSwap 트레이딩 봇을 구축하세요. Web3.py 통합, 자동화 전략, 유동성 풀 모니터링, MEV 보호 및 Python 봇 프레임워크 — 2026년 실제 벤치마크 포함."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'pancakeswap/pancake-swap-core'
+github_repo: "pancakeswap/pancake-swap-core"
 stars: 2500
 maintainer: pancakeswap
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', '트레이딩 봇', bsc, '자동화 트레이딩', '유동성 풀', 'mev 보호', python, '암호화폐 봇', 'dex 트레이딩']
-aliases: - /kr/posts/pancake-trading-bot-defi-bsc/
+categories: ["ai-trading"]
+tags: ["pancakeswap", "defi", "binance smart chain", "web3.py", "트레이딩 봇", "bsc", "자동화 트레이딩", "유동성 풀", "mev 보호", "python", "암호화폐 봇", "dex 트레이딩"]
+aliases:
+  - /kr/posts/pancake-trading-bot-defi-bsc/
 ---
 
 {{</* resource-info */>}}

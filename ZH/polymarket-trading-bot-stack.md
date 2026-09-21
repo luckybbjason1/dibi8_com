@@ -20,7 +20,8 @@ maintainer: "QwenLM"
 last_maintained: "2026-03-24"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/polymarket-trading-bot-stack/
+aliases:
+  - /zh/posts/polymarket-trading-bot-stack/
 faqs: - q: '为什么机器人可以通过 Binance 和 Polymarket 之间的套利获利？'
     a: 'Polymarket 的价格更新速度慢于底层资产在 Binance 上的价格波动。2024 年，这一延迟平均为 12 秒，到 2026 年第一季度，竞争将其压缩至约 2.7 秒。机器人可以读取 Binance 上的真实价格变动，并在市场修正之前抢先以 Polymarket 上的滞后价格成交。'
   - q: '哪类 Polymarket 合约最适合自动化交易？'

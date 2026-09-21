@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
-tags: [egonex, understand-anything, knowledge-graph, AI, interactive, open-source, research, visualization, llm]
+tags: ["egonex", "understand-anything", "knowledge-graph", "AI", "interactive", "open-source", "research", "visualization", "llm"]
 github_repo: "https://github.com/Egonex-AI/Understand-Anything"
 stars: 55799
 maintainer: Egonex-AI
@@ -198,11 +198,11 @@ graph.export("dl_graph.png", format="png")
 # Query the graph
 nodes = graph.get_nodes()
 edges = graph.get_edges()
-for node in nodes: print(f"Concept: {node['label']}, Confidence: {node['confidence']:.2f}")
+for node in nodes: print(f"Concept: {node[label]}, Confidence: {node[confidence]:.2f}")
 
 # Find related concepts
 related = graph.get_related("Neural Networks", depth=2)
-for concept in related: print(f"  Related: {concept['label']} ({concept['relation']})")
+for concept in related: print(f"  Related: {concept[label]} ({concept[relation]})")
 ```
 
 ### REST API Server

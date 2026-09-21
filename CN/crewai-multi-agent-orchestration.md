@@ -1,6 +1,6 @@
 ---
 title: 'CrewAI: Build Multi-Agent AI Teams That Collaborate Auto...
-description: 'A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role-based agents, task delegation, memory sharing, and autonomous collaboration patterns.'
+description: "A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role-based agents, task delegation, memory sharing, and autonomous collaboration patterns."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'joaomdmoura/crewAI'
+github_repo: "joaomdmoura/crewAI"
 stars: 28000
 maintainer: joaomdmoura
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [crewai, 'multi-agent', 'ai-agents', orchestration, 'autonomous-agents', llm, python, 'open-source']
-aliases: - /posts/crewai-multi-agent-orchestration/-
+categories: ["llm-frameworks"]
+tags: ["crewai", "multi-agent", "ai-agents", "orchestration", "autonomous-agents", "llm", "python", "open-source"]
+aliases:
+  - /posts/crewai-multi-agent-orchestration/-
 ---
 {{</* resource-info */>}}
 

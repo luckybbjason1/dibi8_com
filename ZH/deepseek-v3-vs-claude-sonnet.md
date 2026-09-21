@@ -1,10 +1,10 @@
 ---
 title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万...
-description: 'DeepSeek V3.5（685B MoE，开源权重）和 Claude Sonnet 4.6 横向对比 — 每百万 token 价格、上下文窗口、SWE-bench、中文能力、API 可用性。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "DeepSeek V3.5（685B MoE，开源权重）和 Claude Sonnet 4.6 横向对比 — 每百万 token 价格、上下文窗口、SWE-bench、中文能力、API 可用性。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [deepseek, claude-sonnet, anthropic, llm, comparison, open-source, ai-coding]
-categories: [vs]
+tags: ["deepseek", "claude-sonnet", "anthropic", "llm", "comparison", "open-source", "ai-coding"]
+categories: ["vs"]
 faqs: - q: 'DeepSeek V3.5 真的比 Claude Sonnet 4.6 便宜 10 倍吗？'
     a: '原始 token 价格上是的。DeepSeek V3.5 输入约 $0.27/百万 token，输出约 $1.10/百万；Claude Sonnet 4.6 输入 $3、输出 $15。输入便宜 ~11 倍，输出便宜 ~13 倍。但 Sonnet 推理压缩更好（单任务用的 token 更少），且支持 1M 上下文（DeepSeek 是 128K），所以实际工作负载上的差距更接近 5-7 倍。'
   - q: '写代码选 DeepSeek V3.5 还是 Claude Sonnet 4.6？'

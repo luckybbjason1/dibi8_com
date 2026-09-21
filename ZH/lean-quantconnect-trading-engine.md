@@ -1,6 +1,6 @@
 ---
-title: 'Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南'
-description: '2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南"
+description: "2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'QuantConnect/Lean'
+github_repo: "QuantConnect/Lean"
 stars: 10500
 maintainer: QuantConnect
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /zh/posts/lean-quantconnect-trading-engine/-
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /zh/posts/lean-quantconnect-trading-engine/-
 ---
 
 {{</* resource-info */>}}
@@ -29,13 +30,13 @@ aliases: - /zh/posts/lean-quantconnect-trading-engine/-
 
 每个量化开发者都经历过这样的场景。你的 Python 回测脚本在笔记本上运行得非常漂亮，但当你尝试在 500 个资产上使用 tick 数据运行时，它陷入了停滞。内存使用量膨胀到 8GB。事件循环卡住了。你意识到你所谓的"生产就绪"回测器从未被设计用于机构级工作负载。
 
-Lean 不同。Lean 最初由 QuantConnect 开发并于 2015 年开源，是一个用 C# 编写的**多资产算法交易引擎**，每天在 QuantConnect 云平台上处理**超过 50,000 次回测**。仓库 `QuantConnect/Lean` 已获得 **10,500+ Star**，由 QuantConnect 团队积极维护，并在 Apache-2.0 许可证下运行。截至 2026 年 5 月，Lean 支持股票、外汇、期权、期货和加密货币，涵盖 15 家以上券商。
+Lean 不同。Lean 最初由 QuantConnect 开发并于 2015 年开源，是一个用 C# 编写的**多资产算法交易引擎**，每天在 QuantConnect 云平台上处理**超过 50", "000 次回测**。仓库 `QuantConnect/Lean` 已获得 **10", "500+ Star**，由 QuantConnect 团队积极维护，并在 Apache-2.0 许可证下运行。截至 2026 年 5 月，Lean 支持股票、外汇、期权、期货和加密货币，涵盖 15 家以上券商。
 
 本指南将带你完成安装、编写第一个算法、多资产策略、生产部署以及使用基于 C# 的引擎的诚实权衡。无论你是对 C# 性能感到好奇的 Python 量化分析师，还是构建交易系统的 .NET 开发者，这都是你完整的 2026 年参考指南。
 
 ## 什么是 Lean？
 
-Lean 是一个**开源算法交易引擎**，处理量化策略的完整生命周期：数据获取、信号生成、执行模拟、风险管理和实盘部署。它是驱动 QuantConnect 云平台的同一引擎，已有超过 200,000 个算法在其上完成回测。算法可以用 **C#、Python 或 F#** 编写，全部在同一 .NET 运行时上运行。
+Lean 是一个**开源算法交易引擎**，处理量化策略的完整生命周期：数据获取、信号生成、执行模拟、风险管理和实盘部署。它是驱动 QuantConnect 云平台的同一引擎，已有超过 200", "000 个算法在其上完成回测。算法可以用 **C#、Python 或 F#** 编写，全部在同一 .NET 运行时上运行。
 
 与仅限研究的回测器不同，Lean 从第一天起就为**实盘交易**而设计。在回测历史数据上运行的同一算法只需最少的代码更改即可连接到 Interactive Brokers、TD Ameritrade、Coinbase Pro、Binance 或 OANDA。
 
@@ -56,10 +57,10 @@ Lean 的架构将关注点分离为可互换的模块：
 Lean 在 .NET 上运行，但 Python 算法通过 Python.NET 执行，允许在 Python 中编写策略的同时完全访问 C# 的性能。Python API 几乎完全镜像 C# API：
 
 ```python
-class MyAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(2020, 1, 1)
-        self.SetEndDate(2026, 1, 1)
+class MyAlgorithm(QCAlgorithm): def Initialize(self): self.SetStartDate(2020", "1", "1)
+        self.SetEndDate(2026", "1", "1)
         self.SetCash(100000)
-        self.AddEquity("AAPL", Resolution.Daily)
+        self.AddEquity("AAPL", "Resolution.Daily)
 ```
 
 ### 数据架构
@@ -74,17 +75,17 @@ namespace QuantConnect.Algorithm.CSharp
     {
         public override void Initialize()
         {
-            SetStartDate(2020, 1, 1);
-            SetEndDate(2026, 1, 1);
+            SetStartDate(2020", "1", "1);
+            SetEndDate(2026", "1", "1);
             SetCash(100000);
-            AddEquity("SPY", Resolution.Daily);
+            AddEquity("SPY", "Resolution.Daily);
         }
 
         public override void OnData(Slice data)
         {
             if (!Portfolio.Invested)
             {
-                SetHoldings("SPY", 1.0);
+                SetHoldings("SPY", "1.0);
             }
         }
     }
@@ -152,16 +153,16 @@ docker run -v "$(pwd)/Data:/Data" \
 from AlgorithmImports import *
 
 class SmaCrossoverAlgorithm(QCAlgorithm): def Initialize(self): # 回测周期
-        self.SetStartDate(2020, 1, 1)
-        self.SetEndDate(2026, 1, 1)
+        self.SetStartDate(2020", "1", "1)
+        self.SetEndDate(2026", "1", "1)
         self.SetCash(100000)
         
         # 添加股票
-        self.symbol = self.AddEquity("AAPL", Resolution.Daily).Symbol
+        self.symbol = self.AddEquity("AAPL", "Resolution.Daily).Symbol
         
         # 创建均线指标
-        self.fast_sma = self.SMA(self.symbol, 20, Resolution.Daily)
-        self.slow_sma = self.SMA(self.symbol, 50, Resolution.Daily)
+        self.fast_sma = self.SMA(self.symbol", "20", "Resolution.Daily)
+        self.slow_sma = self.SMA(self.symbol", "50", "Resolution.Daily)
         
         # 交易前预热指标
         self.SetWarmUp(50)
@@ -170,7 +171,7 @@ class SmaCrossoverAlgorithm(QCAlgorithm): def Initialize(self): # 回测周期
         self.previous_fast = None
         self.previous_slow = None
 
-    def OnData(self, data: Slice): if self.IsWarmingUp: return
+    def OnData(self", "data: Slice): if self.IsWarmingUp: return
         
         # 获取当前均线值
         fast_val = self.fast_sma.Current.Value
@@ -178,7 +179,7 @@ class SmaCrossoverAlgorithm(QCAlgorithm): def Initialize(self): # 回测周期
         
         # 在第一个有效数据上检查交叉
         if self.previous_fast is not None: # 金叉：快线上穿慢线
-            if self.previous_fast <= self.previous_slow and fast_val > slow_val: if not self.Portfolio[self.symbol].Invested: self.SetHoldings(self.symbol, 1.0)
+            if self.previous_fast <= self.previous_slow and fast_val > slow_val: if not self.Portfolio[self.symbol"].Invested: self.SetHoldings(self.symbol, 1.0)
             
             # 死叉：快线下穿慢线
             elif self.previous_fast >= self.previous_slow and fast_val < slow_val: if self.Portfolio[self.symbol].Invested: self.Liquidate(self.symbol)

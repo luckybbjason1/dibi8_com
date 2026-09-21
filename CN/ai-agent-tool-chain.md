@@ -1,6 +1,6 @@
 ---
 title: 'AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
-description: 'Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + mem0 for memory + OpenClaw for multi-agent coordination + Hermes Agent for self-improvement + e2b for sandboxed code execution. $20-60/mo self-hosted. Real assembly with internal-linked deep dives.'
+description: "Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + mem0 for memory + OpenClaw for multi-agent coordination + Hermes Agent for self-improvement + e2b for sandboxed code execution. $20-60/mo self-hosted. Real assembly with internal-linked deep dives."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai agent', 'tool chain', langgraph, mcp, stack, collection]
-aliases: - /posts/ai-agent-tool-chain/-
+categories: ["collections"]
+tags: ["ai agent", "tool chain", "langgraph", "mcp", "stack", "collection"]
+aliases:
+  - /posts/ai-agent-tool-chain/-
 ---
 "AI agent" stopped being a research topic in 2025 and became a production engineering category in 2026. The teams shipping real autonomous agents — customer support bots that survive restarts, coding agents that refactor across a hundred files, research agents that run for hours — converged on a remarkably consistent stack. This collection assembles it.
 

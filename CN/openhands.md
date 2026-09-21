@@ -1,6 +1,6 @@
 ---
 title: 'OpenHands: 74K+ Stars — AI Software Engineer That Writes...
-description: 'OpenHands is an AI-driven development platform that acts as a software engineering agent. Compatible with VS Code, Docker, GitHub, GitLab, Claude, and OpenAI. Covers Docker setup, model configuration, headless CI/CD mode, and production hardening.'
+description: "OpenHands is an AI-driven development platform that acts as a software engineering agent. Compatible with VS Code, Docker, GitHub, GitLab, Claude, and OpenAI. Covers Docker setup, model configuration, headless CI/CD mode, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/OpenHands/OpenHands'
+github_repo: "https://github.com/OpenHands/OpenHands"
 stars: 74200
 maintainer: OpenHands
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [openhands, 'ai coding agent', docker, 'swe-bench', claude, openai, 'self-hosted', automation]
-aliases: - /posts/openhands/
+categories: ["llm-frameworks"]
+tags: ["openhands", "ai coding agent", "docker", "swe-bench", "claude", "openai", "self-hosted", "automation"]
+aliases:
+  - /posts/openhands/
 - /resources/llm-frameworks/openhands-architecture-ai-programmer-agent/-
 ---
 {{</* resource-info */>}}

@@ -1,10 +1,10 @@
 ---
 title: 'LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên ...
-description: 'So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai trò, cấp cao) — kiểm soát, đường cong học tập, trạng thái, thiết kế đa agent và độ bền khi chạy production. Cập nhật 2026.'
+description: "So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai trò, cấp cao) — kiểm soát, đường cong học tập, trạng thái, thiết kế đa agent và độ bền khi chạy production. Cập nhật 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [langgraph, crewai, ai-agents, multi-agent, agent-framework, orchestration, llm, comparison]
-categories: [vs]
+tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]
+categories: ["vs"]
 faqs: - q: 'Tôi nên dùng LangGraph hay CrewAI?'
     a: 'Dùng LangGraph nếu bạn cần kiểm soát chi tiết một workflow agent — phân nhánh tường minh, vòng lặp, trạng thái chia sẻ và checkpoint bền vững — và bạn đang đưa một hệ thống phức tạp lên production. Dùng CrewAI nếu bạn muốn dựng nhanh một nhóm agent đóng vai trò và coi trọng tốc độ prototype hơn là kiểm soát ở mức thấp. Quy tắc chung: LangGraph cho các workflow có trạng thái, kiểm soát được mà bạn phải suy luận chính xác; CrewAI để chạy nhanh một hệ đa agent với mô hình tư duy "nhóm chuyên gia".'
   - q: 'LangGraph có khó học hơn CrewAI không?'

@@ -24,7 +24,8 @@ maintainer: "QwenLM"
 last_maintained: "2026-03-24"
 featureImage: ''
 draft: false
-aliases: - /en/posts/polymarket-trading-bot-stack/
+aliases:
+  - /en/posts/polymarket-trading-bot-stack/
 - /posts/polymarket-trading-bot-automated/
 - /posts/polymarket-trading-bot-framework/
 - /posts/polymarket-trading-bot-stack/

@@ -18,7 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/wifi-forge-safe-wifi-hacking-lab/
+aliases:
+  - /zh/posts/wifi-forge-safe-wifi-hacking-lab/
 faqs: - q: 'WiFi-Forge 是什么？'
     a: 'WiFi-Forge 是 Black Hills InfoSec 推出的开源项目，提供一个安全合法的沙盒环境，供你练习无线攻击技术。它在你的笔记本上运行一个虚拟实验室，无需购买任何硬件，也不存在接触他人网络的风险。'
   - q: '使用 WiFi-Forge 学习 WiFi 攻击，我需要专用 WiFi 网卡吗？'

@@ -1,6 +1,6 @@
 ---
 title: 'markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전...
-description: 'markitdown은 각종 파일과 오피스 문서를 마크다운으로 변환해 주는 마이크로소프트의 파이썬 도구입니다. GitHub 스타 141,153개, MIT 라이선스. 설치, 핵심 CLI 및 파이썬 사용법, 실제 코드 예제, 그리고 pandoc·docx2txt와의 솔직한 비교를 다룹니다.'
+description: "markitdown은 각종 파일과 오피스 문서를 마크다운으로 변환해 주는 마이크로소프트의 파이썬 도구입니다. GitHub 스타 141,153개, MIT 라이선스. 설치, 핵심 CLI 및 파이썬 사용법, 실제 코드 예제, 그리고 pandoc·docx2txt와의 솔직한 비교를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/markitdown'
+github_repo: "microsoft/markitdown"
 stars: 141153
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/markitdown-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/markitdown-dev-utils-2026/
 faqs: - q: 'markitdown은 어떻게 설치하나요?'
-    a: 'pip로 설치합니다. 보통은 모든 포맷 extras를 함께 설치합니다. ```bash pip install ''markitdown[all]'' ```'
+    a: 'pip로 설치합니다. 보통은 모든 포맷 extras를 함께 설치합니다. ```bash pip install ''markitdown[all"]'' ```'
   - q: 'markitdown은 모든 종류의 오피스 문서를 변환할 수 있나요?'
     a: 'Word(.docx), Excel(.xlsx), PowerPoint(.pptx), PDF, HTML, 이미지, 오디오 등 매우 다양한 포맷을 지원하지만, 모든 포맷의 모든 기능이 보존되는 것은 아닙니다. 지원되는 유형과 필요한 extras는 문서를 확인하세요.'
   - q: 'markitdown은 어떤 라이선스로 배포되나요?'

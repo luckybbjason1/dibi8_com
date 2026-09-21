@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/reading-explain-analyze-postgres/
+aliases:
+  - /zh/posts/reading-explain-analyze-postgres/
 faqs: - q: 'EXPLAIN ANALYZE 输出中，顶行的 actual time 代表什么意思？'
     a: '最外层节点的第二个 actual time 值，是整条查询在毫秒级别的实际挂钟耗时（该节点执行一次的时间）。它下面的每个节点则进一步拆解了这段总耗时花在了哪里。'
   - q: '如何通过 EXPLAIN ANALYZE 的行数判断查询计划有问题？'

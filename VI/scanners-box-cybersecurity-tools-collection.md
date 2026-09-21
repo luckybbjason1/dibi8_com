@@ -24,7 +24,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/scanners-box-cybersecurity-tools-collection/
+aliases:
+  - /vi/posts/scanners-box-cybersecurity-tools-collection/
 faqs: - q: 'Scanners-Box là gì?'
     a: 'Scanners-Box là một bộ sưu tập được tuyển chọn gồm hơn 200 công cụ an ninh mạng mã nguồn mở thuộc hơn 15 danh mục, bao gồm liệt kê tên miền phụ, SQL injection, fuzzing, quét cổng, social engineering và nhiều lĩnh vực khác. Ban đầu nó được tạo ra cho cộng đồng bảo mật Trung Quốc (t00ls) và hướng đến các kiểm thử viên thâm nhập cũng như nhà nghiên cứu bảo mật.'
   - q: 'Scanners-Box khuyến nghị những công cụ nào để kiểm thử SQL injection?'

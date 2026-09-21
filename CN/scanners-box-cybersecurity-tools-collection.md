@@ -24,7 +24,8 @@ maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
 featureImage: ''
 draft: false
-aliases: - /en/posts/scanners-box-cybersecurity-tools-collection/
+aliases:
+  - /en/posts/scanners-box-cybersecurity-tools-collection/
 - /posts/scanners-box-cybersecurity-tools-collection/
 faqs: - q: 'What is Scanners-Box?'
     a: 'Scanners-Box is a curated collection of 200+ open-source cybersecurity tools across 15+ categories, covering subdomain enumeration, SQL injection, fuzzing, port scanning, social engineering, and more. It was originally created for the Chinese security community (t00ls) and is aimed at penetration testers and security researchers.'

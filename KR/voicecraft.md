@@ -1,6 +1,6 @@
 ---
 title: 'VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 ...
-description: 'VoiceCraft는 신경 코덱 언어 모델 기반의 제로샷 음성 편집 및 TTS 모델로, GPT-SoVITS, Coqui TTS, RVC와 호환됩니다. 설치 튜토리얼, 벤치마크, Docker 배포, 비교표를 다룹니다.'
+description: "VoiceCraft는 신경 코덱 언어 모델 기반의 제로샷 음성 편집 및 TTS 모델로, GPT-SoVITS, Coqui TTS, RVC와 호환됩니다. 설치 튜토리얼, 벤치마크, Docker 배포, 비교표를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jasonppy/VoiceCraft'
+github_repo: "https://github.com/jasonppy/VoiceCraft"
 stars: 8500
 maintainer: jasonppy
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [voicecraft, '제로샷-tts', 음성편집, 신경코덱, 보이스클론, 'ai-오디오', docker, python]
-aliases: - /kr/posts/voicecraft/
+categories: ["ai-tools"]
+tags: ["voicecraft", "제로샷-tts", "음성편집", "신경코덱", "보이스클론", "ai-오디오", "docker", "python"]
+aliases:
+  - /kr/posts/voicecraft/
 ---
 
 {{</* resource-info */>}}

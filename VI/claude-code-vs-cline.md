@@ -1,10 +1,10 @@
 ---
-title: 'Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?'
-description: 'So sánh trực tiếp Claude Code và Cline — tính tự chủ trên terminal so với cách phê duyệt từng bước trong VS Code, hỗ trợ mô hình, giá cả và khi nào nên chọn cái nào. Quyết định kiểm soát-hay-tự chủ cho lập trình agentic. Cập nhật 2026.'
+title: "Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?"
+description: "So sánh trực tiếp Claude Code và Cline — tính tự chủ trên terminal so với cách phê duyệt từng bước trong VS Code, hỗ trợ mô hình, giá cả và khi nào nên chọn cái nào. Quyết định kiểm soát-hay-tự chủ cho lập trình agentic. Cập nhật 2026."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
-tags: [claude-code, cline, ai-coding, agentic, comparison, dev-tools]
-categories: [vs]
+tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Sự khác biệt cốt lõi giữa Claude Code và Cline là gì?'
     a: 'Triết lý. Claude Code là agent gốc terminal của Anthropic, được tinh chỉnh cho các mô hình Claude và xây dựng để chạy tự chủ — lập kế hoạch, chỉnh sửa, chạy kiểm thử, thử lại, tất cả trong một vòng lặp. Cline là một tiện ích mở rộng VS Code mã nguồn mở hoạt động với bất kỳ mô hình nào và yêu cầu bạn phê duyệt mọi diff, lệnh và lượt tải web trước khi nó chạy. Claude Code tối ưu cho tính tự chủ và chất lượng trên mỗi token; Cline tối ưu cho khả năng kiểm soát và tự do chọn mô hình. Đó là sự đánh đổi tự chủ-hay-kiểm soát trong hai công cụ.'
   - q: 'Cline có rẻ hơn Claude Code không?'

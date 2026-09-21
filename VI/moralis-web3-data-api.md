@@ -253,7 +253,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-  description: 'Track USDC transfers',. Comprehensive guide covering features, pricing, and best practices for 2026.
+  description: "Track USDC transfers",. Comprehensive guide covering features, pricing, and best practices for 2026.
   tag: 'usdc_transfers',
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',

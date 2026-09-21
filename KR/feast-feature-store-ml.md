@@ -1,6 +1,6 @@
 ---
-title: 'Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드'
-description: 'Feast 완벽 가이드 — 가장 널리 사용되는 오픈소스 피처 스토어. 피처 레지스트리, 온라인/오프라인 스토어, 서브세컨드 서빙, Redis/BigQuery 백엔드, 배치 및 실시간 피처, 프로덕션 배포를 다룹니다.'
+title: "Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드"
+description: "Feast 완벽 가이드 — 가장 널리 사용되는 오픈소스 피처 스토어. 피처 레지스트리, 온라인/오프라인 스토어, 서브세컨드 서빙, Redis/BigQuery 백엔드, 배치 및 실시간 피처, 프로덕션 배포를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/feast-dev/feast'
+github_repo: "https://github.com/feast-dev/feast"
 stars: 7000
 maintainer: 'feast-dev'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
-aliases: - /kr/posts/feast-feature-store-ml/
+categories: ["data-science"]
+tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "online store", "offline store", "real-time ml", "feature engineering"]
+aliases:
+  - /kr/posts/feast-feature-store-ml/
 ---
 
 {{</* resource-info */>}}

@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/discover-tikchain-your-gateway-to-social-media-blockchain/
+aliases:
+  - /vi/posts/discover-tikchain-your-gateway-to-social-media-blockchain/
 faqs: - q: 'Làm thế nào để kiếm token trên TikChain?'
     a: 'Bạn có thể kiếm token tiện ích gốc của TikChain thông qua việc tạo nội dung và tương tác trên mạng xã hội như thích và chia sẻ, cùng với tham gia cộng đồng và chương trình giới thiệu. Token cũng có thể được stake để khóa nhằm nhận thêm quyền lợi.'
   - q: 'TikChain hỗ trợ những nền tảng mạng xã hội nào?'

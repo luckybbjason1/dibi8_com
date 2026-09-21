@@ -1,6 +1,6 @@
 ---
 title: 'Vector Database Comparison 2025: Pinecone vs Weaviate vs...
-description: 'Compare the top vector databases of 2025: Pinecone, Weaviate, Chroma, and Milvus. Find the best vector DB for your RAG application with benchmarks, pricing, and use cases.'
+description: "Compare the top vector databases of 2025: Pinecone, Weaviate, Chroma, and Milvus. Find the best vector DB for your RAG application with benchmarks, pricing, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/vector-database-comparison/-
+aliases:
+  - /posts/vector-database-comparison/-
 ---
 {</* resource-info */>}
 

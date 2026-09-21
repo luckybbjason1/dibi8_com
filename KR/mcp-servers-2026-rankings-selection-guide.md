@@ -1,22 +1,23 @@
 ---
-title: 'MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리'
-description: 'Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파했습니다. 카테고리별 상위 30개 랭킹, stdio / HTTP-SSE / OAuth-bridged 서버의 아키텍처 트레이드오프, 그리고 registry에 빠지지 않고 서버를 선택하는 결정 트리.'
+title: "MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리"
+description: "Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파했습니다. 카테고리별 상위 30개 랭킹, stdio / HTTP-SSE / OAuth-bridged 서버의 아키텍처 트레이드오프, 그리고 registry에 빠지지 않고 서버를 선택하는 결정 트리."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + Community'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 개발자도구, 통합, 2026]
-aliases: - /kr/posts/mcp-servers-2026-rankings-selection-guide/
+categories: ["llm-frameworks"]
+tags: ["mcp", "model-context-protocol", "claude-code", "ai-agents", "개발자도구", "통합", "2026"]
+aliases:
+  - /kr/posts/mcp-servers-2026-rankings-selection-guide/
 faq: - q: "MCP는 무엇이고 2026년에 왜 중요한가요?"
     a: "Model Context Protocol(MCP)은 Anthropic이 2024년 말 오픈한 프로토콜로, AI 에이전트를 외부 도구/데이터 소스/서비스에 연결합니다. 2026년에는 사실상 AI 에이전트 플러그인 표준이 되어 Claude Code, Cursor, Codex CLI, Gemini CLI 등 주요 AI 코딩 에이전트가 모두 지원합니다. 2024년 말 약 30개에서 2026년 중반 1000+ 공개 서버로 성장."
   - q: "stdio, HTTP, SSE-based 중 어떤 MCP 서버를 사용해야 하나요?"

@@ -1,6 +1,6 @@
 ---
 title: 'Top Jupyter Notebook Alternatives in 2024: JupyterLab vs...
-description: 'Compare the best Jupyter Notebook alternatives for 2024 — JupyterLab, Google Colab, Deepnote, and Hex — with pricing, features, and use cases.'
+description: "Compare the best Jupyter Notebook alternatives for 2024 — JupyterLab, Google Colab, Deepnote, and Hex — with pricing, features, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/jupyter-notebook-alternatives-comparison/
+aliases:
+  - /posts/jupyter-notebook-alternatives-comparison/
 ---
 # Top Jupyter Notebook Alternatives in 2024: JupyterLab vs Google Colab vs Deepnote vs Hex Compared
 

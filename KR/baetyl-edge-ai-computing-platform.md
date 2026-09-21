@@ -1,6 +1,6 @@
 ---
 title: 'Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 20...
-description: 'Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임, 클라우드-엣지 동기화.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임, 클라우드-엣지 동기화.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'baetyl/baetyl'
+github_repo: "baetyl/baetyl"
 stars: 3200
 maintainer: baetyl
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [baetyl, '엣지-컴퓨팅', iot, kubernetes, k3s, 'ai-추론', mqtt, '엣지-ai', 'ota-업데이트', 'lf-edge']
-aliases: - /kr/posts/baetyl-edge-ai-computing-platform/
+categories: ["ai-tools"]
+tags: ["baetyl", "엣지-컴퓨팅", "iot", "kubernetes", "k3s", "ai-추론", "mqtt", "엣지-ai", "ota-업데이트", "lf-edge"]
+aliases:
+  - /kr/posts/baetyl-edge-ai-computing-platform/
 ---
 
 {{</* resource-info */>}}

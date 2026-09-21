@@ -18,7 +18,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/ai-trader/
+aliases:
+  - /vi/posts/ai-trader/
 faqs: - q: 'AI-Trader của HKUDS là gì?'
     a: 'AI-Trader là hệ thống giao dịch AI tự động hoàn toàn mã nguồn mở, được phát triển bởi Phòng thí nghiệm Khoa học Dữ liệu của Đại học Hồng Kông (HKUDS). Hệ thống sử dụng học tăng cường và cơ chế cộng tác đa tác nhân để giao dịch cổ phiếu, tiền mã hóa, ngoại hối và hợp đồng tương lai, được phát hành theo giấy phép MIT.'
   - q: 'AI-Trader hỗ trợ những thị trường và tài sản nào?'

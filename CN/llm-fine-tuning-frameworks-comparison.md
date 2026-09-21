@@ -1,6 +1,6 @@
 ---
 title: 'LLM Fine-Tuning Frameworks Compared: LoRA, QLoRA, PEFT &...
-description: 'Compare LLM fine-tuning frameworks: LoRA, QLoRA, PEFT, and Unsloth. Learn parameter-efficient fine-tuning with benchmarks, VRAM requirements, and step-by-step tutorials.'
+description: "Compare LLM fine-tuning frameworks: LoRA, QLoRA, PEFT, and Unsloth. Learn parameter-efficient fine-tuning with benchmarks, VRAM requirements, and step-by-step tutorials."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/llm-fine-tuning-frameworks-comparison/-
+aliases:
+  - /posts/llm-fine-tuning-frameworks-comparison/-
 ---
 {</* resource-info */>}
 
@@ -325,8 +326,8 @@ from datasets import load_dataset
 
 dataset = load_dataset("yahma/alpaca-cleaned", split="train")
 
-def format_prompt(example): if example["input"]: prompt = f"### Instruction:\n{example['instruction']}\n\n### Input:\n{example['input']}\n\n### Response:\n{example['output']}"
-    else: prompt = f"### Instruction:\n{example['instruction']}\n\n### Response:\n{example['output']}"
+def format_prompt(example): if example["input"]: prompt = f"### Instruction:\n{example[instruction]}\n\n### Input:\n{example[input]}\n\n### Response:\n{example[output]}"
+    else: prompt = f"### Instruction:\n{example[instruction]}\n\n### Response:\n{example[output]}"
     return {"text": prompt}
 
 formatted_dataset = dataset.map(format_prompt)

@@ -1,22 +1,23 @@
 ---
-title: 'AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM 实测对比'
-description: '没有持久化记忆的 Agent 每次会话都从零开始。在同一个多会话负载下实测 Letta、Mem0、A-MEM：到底谁能真正留住上下文、谁更省钱、什么时候应该自研。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM 实测对比"
+description: "没有持久化记忆的 Agent 每次会话都从零开始。在同一个多会话负载下实测 Letta、Mem0、A-MEM：到底谁能真正留住上下文、谁更省钱、什么时候应该自研。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
-source_version: 'Letta 0.8 / Mem0 0.2 / A-MEM 1.3'
+source_version: "Letta 0.8 / Mem0 0.2 / A-MEM 1.3"
 licensing_model: 开源
 license_type: 'Apache-2.0 / MIT'
 github_repo: ''
 stars: 0
 maintainer: 'Letta / Mem0AI / A-MEM 团队'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agent', memory, persistence, letta, mem0, 2026]
-aliases: - /zh/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agent", "memory", "persistence", "letta", "mem0", "2026"]
+aliases:
+  - /zh/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
 faq: - q: "为什么 AI Agent 需要持久化记忆？"
     a: "没有持久化，每次会话都得从零开始 —— Agent 记不住昨天的偏好、决策或上下文。对于持续协作的场景（编程搭档、研究助理、面向客户的聊天机器人），持久化记忆就是「工具」和「伙伴」的分水岭。"
   - q: "这三者的路线有何不同？"

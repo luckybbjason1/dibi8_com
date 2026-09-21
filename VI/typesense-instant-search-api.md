@@ -1,6 +1,6 @@
 ---
 title: 'Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1...
-description: 'Thiết lập Typesense 27.1 cho tìm kiếm tức thì với khả năng chịu lỗi chính tả, thởi gian phản hồi dưới 50ms. Hướng dẫn triển khai Docker, tích hợp SDK, và đánh giá hiệu suất production.'
+description: "Thiết lập Typesense 27.1 cho tìm kiếm tức thì với khả năng chịu lỗi chính tả, thởi gian phản hồi dưới 50ms. Hướng dẫn triển khai Docker, tích hợp SDK, và đánh giá hiệu suất production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,41 +12,42 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'typesense/typesense'
+github_repo: "typesense/typesense"
 stars: 23200
 maintainer: typesense
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /vi/posts/typesense-instant-search-api/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /vi/posts/typesense-instant-search-api/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm
 
-Năm 2026, ngưởi dùng mong đợi kết quả tìm kiếm **xuất hiện trước khi họ gõ xong**. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm, bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy **độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%**. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày, đó là 70.000 tương tác bị mất — mỗi ngày.
+Năm 2026", "ngưởi dùng mong đợi kết quả tìm kiếm **xuất hiện trước khi họ gõ xong**. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm", "bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy **độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%**. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày", "đó là 70.000 tương tác bị mất — mỗi ngày.
 
-Hầu hết các đội ngũ bắt đầu với truy vấn `LIKE` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng, truy vấn mất **500ms–2 giây**. Ở 1 triệu hàng, CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.
+Hầu hết các đội ngũ bắt đầu với truy vấn `LIKE` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng", "truy vấn mất **500ms–2 giây**. Ở 1 triệu hàng", "CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.
 
-Hãy làm quen với **Typesense** — một công cụ tìm kiếm mã nguồn mở, chịu lỗi chính tả, được thiết kế cho **tìm kiếm tức thì dưới 50ms**. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn **1 triệu lượt tìm kiếm mỗi ngày** trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0, có **hơn 23.200 GitHub Stars**, và cung cấp SDK cho JavaScript, Python, Ruby, Go, PHP, và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.
+Hãy làm quen với **Typesense** — một công cụ tìm kiếm mã nguồn mở", "chịu lỗi chính tả", "được thiết kế cho **tìm kiếm tức thì dưới 50ms**. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn **1 triệu lượt tìm kiếm mỗi ngày** trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0", "có **hơn 23.200 GitHub Stars**", "và cung cấp SDK cho JavaScript", "Python", "Ruby", "Go", "PHP", "và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.
 
 ## Typesense Là Gì?
 
-**Typesense** là một công cụ tìm kiếm mã nguồn mở, chịu lỗi chính tả, được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng, Typesense tập trung độc quyền vào việc cung cấp **kết quả tìm kiếm có độ trễ thấp, được tinh chỉnh về mức độ liên quan** với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.
+**Typesense** là một công cụ tìm kiếm mã nguồn mở", "chịu lỗi chính tả", "được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng", "Typesense tập trung độc quyền vào việc cung cấp **kết quả tìm kiếm có độ trễ thấp", "được tinh chỉnh về mức độ liên quan** với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.
 
 Các sự kiện chính: | Thuộc tính | Chi tiết |
 |---|---|
 | **Phiên bản mới nhất** | 27.1 (Tháng 4/2026) |
 | **GitHub Stars** | 23.200+ |
 | **Giấy phép** | GPL-3.0 |
-| **Ngưởi duy trì** | Typesense, Inc. |
+| **Ngưởi duy trì** | Typesense", "Inc. |
 | **Viết bằng** | C++ (hiệu suất cao) |
 | **Kiểu API** | RESTful JSON qua HTTP |
-| **SDK chính thức** | JavaScript, Python, Ruby, Go, PHP, Dart, Swift, .NET |
-| **Triển khai** | Tự lưu trữ (Docker, binary) hoặc Typesense Cloud |
+| **SDK chính thức** | JavaScript", "Python", "Ruby", "Go", "PHP", "Dart", "Swift", ".NET |
+| **Triển khai** | Tự lưu trữ (Docker", "binary) hoặc Typesense Cloud |
 
 ## Typesense Hoạt Động Như Thế Nào
 
@@ -54,18 +55,18 @@ Hiểu kiến trúc Typesense giúp bạn điều chỉnh nó cho production.
 
 ### Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa
 
-Typesense giữ **toàn bộ chỉ mục tìm kiếm trong bộ nhớ** bằng cấu trúc dữ liệu inverted index. Đây là lý do tại sao nó đạt được **độ trễ truy vấn dưới 50ms** — không có I/O đĩa trong quá trình tìm kiếm. Các tài liệu được lưu trữ trên đĩa dưới dạng write-ahead log (WAL) để đảm bảo độ bền. Khi khởi động lại, Typesense xây dựng lại chỉ mục trong bộ nhớ từ đĩa.
+Typesense giữ **toàn bộ chỉ mục tìm kiếm trong bộ nhớ** bằng cấu trúc dữ liệu inverted index. Đây là lý do tại sao nó đạt được **độ trễ truy vấn dưới 50ms** — không có I/O đĩa trong quá trình tìm kiếm. Các tài liệu được lưu trữ trên đĩa dưới dạng write-ahead log (WAL) để đảm bảo độ bền. Khi khởi động lại", "Typesense xây dựng lại chỉ mục trong bộ nhớ từ đĩa.
 
 ### Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa
 
-Typesense sử dụng **khoảng cách Levenshtein** để tự động xử lý lỗi chính tả. Theo mặc định, nó chịu được tối đa 1 khoảng cách chỉnh sửa cho từ từ 4 ký tự trở lên, và 2 khoảng cách cho từ từ 8 ký tự trở lên. Điều này diễn ra mà không cần cấu hình — ngưởi dùng tìm kiếm "iphnoe" vẫn tìm thấy kết quả "iPhone".
+Typesense sử dụng **khoảng cách Levenshtein** để tự động xử lý lỗi chính tả. Theo mặc định", "nó chịu được tối đa 1 khoảng cách chỉnh sửa cho từ từ 4 ký tự trở lên", "và 2 khoảng cách cho từ từ 8 ký tự trở lên. Điều này diễn ra mà không cần cấu hình — ngưởi dùng tìm kiếm "iphnoe" vẫn tìm thấy kết quả "iPhone".
 
-### Tìm Kiếm Phân Loại, Lọc, và Địa Lý
+### Tìm Kiếm Phân Loại", "Lọc", "và Địa Lý
 
 Typesense hỗ trợ: - **Tìm kiếm phân loại (Faceted search)** — tổng hợp đếm động theo danh mục
 - **Bộ lọc phạm vi số** — `price:>=10&&<=100`
 - **Tìm kiếm địa lý** — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ
-- **Sắp xếp** — theo mức độ liên quan, trường số, hoặc khoảng cách địa lý
+- **Sắp xếp** — theo mức độ liên quan", "trường số", "hoặc khoảng cách địa lý
 - **Lọc** — các tổ hợp boolean của bất kỳ trường đã lập chỉ mục nào
 - **Từ đồng nghĩa** — định nghĩa các tập tương đương (ví dụ: "tv" = "television")
 - **Điều phối kết quả** — thủ công thúc đẩy hoặc ẩn các kết quả cụ thể
@@ -113,16 +114,8 @@ curl -s "http://localhost:8108/collections" \
   -H "Content-Type: application/json" \
   -H "X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY" \
   -d '{
-    "name": "products",
-    "fields": [
-      { "name": "name", "type": "string", "facet": false },
-      { "name": "description", "type": "string", "facet": false },
-      { "name": "price", "type": "float", "facet": true, "sort": true },
-      { "name": "category", "type": "string", "facet": true },
-      { "name": "rating", "type": "float", "facet": true, "sort": true },
-      { "name": "in_stock", "type": "bool", "facet": true },
-      { "name": "location", "type": "geopoint" }
-    ],
+    "name": "products", "fields": [
+      { "name": "name", "type": "string", "facet": false }", "{ "name": "description", "type": "string", "facet": false }", "{ "name": "price", "type": "float", "facet": true", "sort": true }", "{ "name": "category", "type": "string", "facet": true }", "{ "name": "rating", "type": "float", "facet": true", "sort": true }", "{ "name": "in_stock", "type": "bool", "facet": true }", "{ "name": "location", "type": "geopoint" }"],
     "default_sorting_field": "rating"
   }' | jq .
 ```

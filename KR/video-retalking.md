@@ -1,6 +1,6 @@
 ---
 title: 'VideoReTalking: 7.2K+ Stars — AI 입술 동기화 영상 편집 완벽 설치 가이드 ...
-description: 'VideoReTalking (VRT)은 말하는 얼굴 영상 편집을 위한 오디오 기반 입술 동기화 시스템이다. RVC, GPT-SoVITS, Coqui TTS와 호환. 설치, 추론, Gradio WebUI, 프로덕션 배포, Wav2Lip 및 SadTalker와의 벤치마크 포함.'
+description: "VideoReTalking (VRT)은 말하는 얼굴 영상 편집을 위한 오디오 기반 입술 동기화 시스템이다. RVC, GPT-SoVITS, Coqui TTS와 호환. 설치, 추론, Gradio WebUI, 프로덕션 배포, Wav2Lip 및 SadTalker와의 벤치마크 포함."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/OpenTalker/video-retalking'
+github_repo: "https://github.com/OpenTalker/video-retalking"
 stars: 7200
 maintainer: OpenTalker
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [립싱크, 영상편집, 토킹헤드, 딥페이크, ffmpeg, pytorch, gradio, ai영상]
-aliases: - /kr/posts/video-retalking/
+categories: ["ai-tools"]
+tags: ["립싱크", "영상편집", "토킹헤드", "딥페이크", "ffmpeg", "pytorch", "gradio", "ai영상"]
+aliases:
+  - /kr/posts/video-retalking/
 ---
 
 {{</* resource-info */>}}

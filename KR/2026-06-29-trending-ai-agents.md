@@ -30,7 +30,6 @@ What makes W26 particularly interesting is the diversity of domains represented.
 Here are the 5 most noteworthy repos from GitHub Trending (weekly) that haven't been covered in previous editions. from GitHub Trending (weekly) that haven't been covered in previous editions.
 
 ---
-lang: kr
 ## 1. Palmier Pro — AI Video Editor for macOS
 
 **이번 주 별점**: 6,126 | **총 별점**: 9,295 | **언어**: Swift | **라이선스**: GPL-3.0

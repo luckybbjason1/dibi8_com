@@ -1,6 +1,6 @@
 ---
 title: 'Apache Superset 2026: The Open-Source Data Exploration P...
-description: 'Complete guide to Apache Superset 2026 — install via Docker in 5 minutes, connect 30+ data sources, build 50+ chart types, and deploy production-ready dashboards with role-based access control.'
+description: "Complete guide to Apache Superset 2026 — install via Docker in 5 minutes, connect 30+ data sources, build 50+ chart types, and deploy production-ready dashboards with role-based access control."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'apache/superset'
+github_repo: "apache/superset"
 stars: 66000
 maintainer: apache
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: ['apache superset', 'data visualization', bi, dashboard, 'open source', docker, sql, analytics]
-aliases: - /posts/preset-superset-data-exploration/-
+categories: ["data-science"]
+tags: ["apache superset", "data visualization", "bi", "dashboard", "open source", "docker", "sql", "analytics"]
+aliases:
+  - /posts/preset-superset-data-exploration/-
 ---
 {{</* resource-info */>}}
 

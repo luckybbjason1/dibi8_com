@@ -1,22 +1,23 @@
 ---
-title: '2026 向量数据库选型：Qdrant vs Weaviate vs Milvus（真实负载实测）'
-description: '在同一份 500 万向量负载上实测 Qdrant、Weaviate、Milvus。延迟、吞吐、内存、上手成本。原型 vs 生产分别该选谁，以及什么情况下直接放弃向量数据库改用 SQLite FTS5。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026 向量数据库选型：Qdrant vs Weaviate vs Milvus（真实负载实测）"
+description: "在同一份 500 万向量负载上实测 Qdrant、Weaviate、Milvus。延迟、吞吐、内存、上手成本。原型 vs 生产分别该选谁，以及什么情况下直接放弃向量数据库改用 SQLite FTS5。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
-source_version: 'Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5'
+source_version: "Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5"
 licensing_model: Open Source
 license_type: 'Apache-2.0'
-github_repo: 'https://github.com/qdrant/qdrant'
+github_repo: "https://github.com/qdrant/qdrant"
 stars: 25000
 maintainer: 'Qdrant / Weaviate / Zilliz'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
-aliases: - /zh/posts/vector-db-2026-qdrant-weaviate-milvus/
+categories: ["llm-frameworks"]
+tags: ["vector-database", "qdrant", "weaviate", "milvus", "rag", "2026"]
+aliases:
+  - /zh/posts/vector-db-2026-qdrant-weaviate-milvus/
 faq: - q: "2026 年哪款向量数据库最好？"
     a: "个人或小团队 RAG 选 Qdrant（最简单，单机最快）；带混合检索（向量 + 关键词 + 过滤）的生产环境选 Weaviate；十亿级负载选 Milvus（水平扩展最强）。三家在 2026 年都已经足够成熟。"
   - q: "什么时候应该放弃向量数据库改用 SQLite FTS5？"

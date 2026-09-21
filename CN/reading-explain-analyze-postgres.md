@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/reading-explain-analyze-postgres/
+aliases:
+  - /en/posts/reading-explain-analyze-postgres/
 - /posts/reading-explain-analyze-postgres/
 faqs: - q: 'What does the top line''s actual time mean in EXPLAIN ANALYZE output?'
     a: 'The outermost node''s second actual time value is the wall-clock cost of the whole query in milliseconds for one execution of that node. Every node below it breaks down where that total time was spent.'

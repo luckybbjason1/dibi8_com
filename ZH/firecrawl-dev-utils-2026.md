@@ -1,6 +1,6 @@
 ---
-title: 'Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南'
-description: 'Firecrawl 是开源的网页数据 API，能把网页抓取、爬取、映射、搜索成干净、可直接喂给 LLM 的 Markdown 或结构化 JSON。127,747 GitHub stars，AGPL-3.0。涵盖安装、官方 SDK、真实代码、自托管，以及与 Puppeteer、Scrapy、Axios 的客观对比。'
+title: "Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南"
+description: "Firecrawl 是开源的网页数据 API，能把网页抓取、爬取、映射、搜索成干净、可直接喂给 LLM 的 Markdown 或结构化 JSON。127,747 GitHub stars，AGPL-3.0。涵盖安装、官方 SDK、真实代码、自托管，以及与 Puppeteer、Scrapy、Axios 的客观对比。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'firecrawl/firecrawl'
+github_repo: "firecrawl/firecrawl"
 stars: 127747
 maintainer: firecrawl
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/firecrawl-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/firecrawl-dev-utils-2026/
 faqs: - q: '如何安装 Firecrawl？'
-    a: '安装一个官方 SDK 即可。Node.js： ```bash npm install firecrawl ``` Python： ```bash pip install firecrawl-py ``` 然后用你从 [firecrawl.dev](https://firecrawl.dev) 获取的 API key 创建客户端。'
+    a: '安装一个官方 SDK 即可。Node.js： ```bash npm install firecrawl ``` Python： ```bash pip install firecrawl-py ``` 然后用你从 [firecrawl.dev"](https://firecrawl.dev) 获取的 API key 创建客户端。'
   - q: '除了 TypeScript，我能用别的语言使用 Firecrawl 吗？'
     a: '可以。Firecrawl 是一个 HTTP API，因此任何语言都能调用它。官方提供了 Node.js 和 Python 的 SDK，其他语言也可以用任意 HTTP 客户端直接请求 REST 端点。'
   - q: '我必须用托管 API，还是可以自托管？'

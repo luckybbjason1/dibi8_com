@@ -1,5 +1,5 @@
 ---
-title: 'Agent Reach: Give Your AI Agent Internet Superpowers'
+title: "Agent Reach: Give Your AI Agent Internet Superpowers"
 description: Agent Reach is an open-source scaffolding tool that gives AI agents instant. Comprehensive guide covering features, pricing, and best practices for 2026.
   access to YouTube, Twitter, Reddit, Xiaohongshu, Bilibili and 15+ platforms with
   one command.
@@ -19,10 +19,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/agent-reach-ai-agent-internet-access/
+aliases:
+  - /en/posts/agent-reach-ai-agent-internet-access/
 - /posts/agent-reach-ai-agent-internet-access/
 - /posts/agent-reach-give-your-ai-agent-internet-superpowers/
 - /posts/agent-reach/

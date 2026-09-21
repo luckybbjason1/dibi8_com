@@ -20,7 +20,8 @@ maintainer: "yikart"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/aitoearn-ai-monetization/
+aliases:
+  - /vi/posts/aitoearn-ai-monetization/
 faqs: - q: 'AiToEarn là gì?'
     a: 'AiToEarn là một nền tảng kiếm tiền từ nội dung AI mã nguồn mở, giúp người sáng tạo biến nội dung do AI tạo ra như bài viết, hình ảnh, kịch bản video và mã nguồn thành các nguồn thu nhập thụ động. Nó kết hợp việc tạo nội dung AI, phân phối đa nền tảng chỉ với một cú nhấp và tính năng kiếm tiền tích hợp trong một công cụ tự lưu trữ duy nhất.'
   - q: 'AiToEarn giúp người sáng tạo kiếm tiền như thế nào?'

@@ -1,6 +1,6 @@
 ---
-title: '代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程'
-description: '2025年最全代码质量工具配置指南，涵盖JavaScript/TypeScript的ESLint与Prettier、Python的Black与Ruff、Go与Rust的格式化工具，含pre-commit与CI/CD集成方案。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程"
+description: "2025年最全代码质量工具配置指南，涵盖JavaScript/TypeScript的ESLint与Prettier、Python的Black与Ruff、Go与Rust的格式化工具，含pre-commit与CI/CD集成方案。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/-
+aliases:
+  - /posts/code-quality-tools-eslint-prettier-black-ruff/-
 ---
 # 代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程
 

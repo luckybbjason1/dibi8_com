@@ -5,13 +5,12 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: 12-factor-agents
 category: llm-frameworks
-tags: [12-factor-agents, LLM, AI agents, observability, reliability, human-layer, framework]
+tags: ["12-factor-agents", "LLM", "AI agents", "observability", "reliability", "human-layer", "framework"]
 github_repo: https://github.com/humanlayer/12-factor-agents
 stars: 23161
 maintainer: humanlayer
 license: Apache-2.0
 featureImage: https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-agents-banner.png
-lang: ko
 ---
 
 ## 소개

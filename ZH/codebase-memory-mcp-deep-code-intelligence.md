@@ -1,12 +1,12 @@
 ---
-description: 'Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant.'
+description: "Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases into persistent memory for AI agents. Transform any LLM into a codebase-aware assistant."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence
-title: '代码库内存MCP：24K+星型AI代码智能服务器'
+title: "代码库内存MCP：24K+星型AI代码智能服务器"
 category: llm-frameworks
-tags: ['mcp', 'code-intelligence', 'ai-agents', 'vector-search', 'open-source']
-github_repo: 'https://github.com/DeusData/codebase-memory-mcp'
+tags: ["mcp", "code-intelligence", "ai-agents", "vector-search", "open-source"]
+github_repo: "https://github.com/DeusData/codebase-memory-mcp"
 license: 'MIT'
 tech_stack: - C
   - Rust

@@ -1,17 +1,16 @@
 ---
 title: 'TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전...
-description: 'TradingAgents는 오픈소스 LLM 멀티 에이전트 프레임워크입니다(82,254 GitHub stars, Apache-2.0). 트레이딩 회사를 시뮬레이션해 분석가·리서처·트레이더·리스크 에이전트가 BUY/SELL/HOLD 결정을 토론합니다. LangGraph 기반. 설치, 에이전트 파이프라인, CLI + Python API, Qlib·단일 에이전트 봇과의 솔직한 비교를 다룹니다.'
+description: "TradingAgents는 오픈소스 LLM 멀티 에이전트 프레임워크입니다(82,254 GitHub stars, Apache-2.0). 트레이딩 회사를 시뮬레이션해 분석가·리서처·트레이더·리스크 에이전트가 BUY/SELL/HOLD 결정을 토론합니다. LangGraph 기반. 설치, 에이전트 파이프라인, CLI + Python API, Qlib·단일 에이전트 봇과의 솔직한 비교를 다룹니다."
 date: 2026-06-02
 lastmod: 2026-06-02
 slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
-tags: ['TradingAgents', 'LLM 에이전트', '알고리즘 트레이딩', 'LangGraph', '멀티 에이전트', 'AI 트레이딩', '퀀트', '금융 AI']
-github_repo: 'https://github.com/TauricResearch/TradingAgents'
+tags: ["TradingAgents", "LLM 에이전트", "알고리즘 트레이딩", "LangGraph", "멀티 에이전트", "AI 트레이딩", "퀀트", "금융 AI"]
+github_repo: "https://github.com/TauricResearch/TradingAgents"
 stars: 82254
 maintainer: 'TauricResearch'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
-lang: ko
 ---
 
 # TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전 가이드

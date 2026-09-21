@@ -20,7 +20,8 @@ maintainer: "browser-use"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /posts/browser-harness-self-healing-llm-web-automation/
+aliases:
+  - /posts/browser-harness-self-healing-llm-web-automation/
 faqs: - q: 'What is Browser Harness?'
     a: 'Browser Harness is a self-healing browser control framework that lets large language models autonomously complete web tasks the way a human would. It is written in Python, supports both Playwright and Selenium, and is maintained by the browser-use team.'
   - q: 'How does Browser Harness''s self-healing mechanism work?'

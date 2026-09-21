@@ -1,26 +1,27 @@
 ---
 title: 'MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
-description: 'The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries.'
+description: "The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: 'Various (mostly MIT / Apache-2.0)'
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + Community'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 'developer-tools', integration, 2026]
-aliases: - /posts/mcp-servers-2026-rankings-selection-guide/
+categories: ["llm-frameworks"]
+tags: ["mcp", "model-context-protocol", "claude-code", "ai-agents", "developer-tools", "integration", "2026"]
+aliases:
+  - /posts/mcp-servers-2026-rankings-selection-guide/
 faq: - q: "What is MCP and why does it matter in 2026?"
     a: "Model Context Protocol (MCP) is Anthropic's open spec for connecting AI agents to external tools, data sources, and services. In 2026 it became the de facto plug-in standard supported by Claude Code, Cursor, Codex CLI, Gemini CLI, and most major AI coding agents. The ecosystem grew from ~30 servers in late 2024 to 1000+ public servers by mid-2026."
   - q: "Should I use stdio, HTTP, or SSE-based MCP servers?"

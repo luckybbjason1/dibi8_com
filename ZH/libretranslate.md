@@ -1,6 +1,6 @@
 ---
-title: 'LibreTranslate: 14.4K+ Stars 的自托管翻译 API — 2026 生产部署指南'
-description: 'LibreTranslate (LT) 是一个基于 Argos Translate 的免费开源机器翻译 API。支持 Docker、CUDA GPU、30+ 种语言及离线部署。涵盖安装配置、性能基准测试、监控以及与 OpenAI Whisper、Coqui TTS、Argos Translate 的集成。'
+title: "LibreTranslate: 14.4K+ Stars 的自托管翻译 API — 2026 生产部署指南"
+description: "LibreTranslate (LT) 是一个基于 Argos Translate 的免费开源机器翻译 API。支持 Docker、CUDA GPU、30+ 种语言及离线部署。涵盖安装配置、性能基准测试、监控以及与 OpenAI Whisper、Coqui TTS、Argos Translate 的集成。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/LibreTranslate/LibreTranslate'
+github_repo: "https://github.com/LibreTranslate/LibreTranslate"
 stars: 14400
 maintainer: LibreTranslate
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [libretranslate, 机器翻译, 自托管, docker, api, 开源, 'argos translate', 自然语言处理]
-aliases: - /zh/posts/libretranslate/-
+categories: ["ai-tools"]
+tags: ["libretranslate", "机器翻译", "自托管", "docker", "api", "开源", "argos translate", "自然语言处理"]
+aliases:
+  - /zh/posts/libretranslate/-
 ---
 
 {{</* resource-info */>}}

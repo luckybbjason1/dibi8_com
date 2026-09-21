@@ -1,6 +1,6 @@
 ---
 title: 'Chroma DB 2026: 개발자 친화적 RAG 벡터 데이터베이스, 50배 더 빠른 임베딩 — Py...
-description: 'Chroma 벡터 데이터베이스 Python 실전 가이드. 설치, RAG 통합, 임베딩 검색, 프로덕션 배포까지. 벤치마크, 비교 분석, 실제 사례 포함.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Chroma 벡터 데이터베이스 Python 실전 가이드. 설치, RAG 통합, 임베딩 검색, 프로덕션 배포까지. 벤치마크, 비교 분석, 실제 사례 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'chromadb/chroma'
+github_repo: "chromadb/chroma"
 stars: 18000
 maintainer: chromadb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /kr/posts/chroma-vector-database-python/
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /kr/posts/chroma-vector-database-python/
 ---
 
 {{</* resource-info */>}}
@@ -29,9 +30,9 @@ aliases: - /kr/posts/chroma-vector-database-python/
 
 RAG 앱을 만들었다. 문서 500개까지는 잘 돌아갔다. 그런데 5만 개가 되니 검색 속도가 급격히 느려졌다. 지연 시간이 200ms에서 4초로 치솟았다. 사용자들이 눈치 챘다. PostgreSQL + pgvector를 시도핶지만 설정이 우주선 조종 수준이었다. Pinecone은 써 봤는데 가격이 트래픽보다 더 빨리 올랐다.
 
-이것이 바로 Chroma가 해결하는 문제다. Chroma는 **개발자 우선 벡터 데이터베이스**로, 분산 클러스터 오케스트레이션이 필요 없는 90%의 AI 애플리케이션을 위해 설계되었다 — 빠른 임베딩 검색, 간단한 설정, 그리고 진짜로 직관적인 Python API가 필요한 개발자들을 위한 것이다.
+이것이 바로 Chroma가 해결하는 문제다. Chroma는 **개발자 우선 벡터 데이터베이스**로", "분산 클러스터 오케스트레이션이 필요 없는 90%의 AI 애플리케이션을 위해 설계되었다 — 빠른 임베딩 검색", "간단한 설정", "그리고 진짜로 직관적인 Python API가 필요한 개발자들을 위한 것이다.
 
-2026년 5월 기준, Chroma는 GitHub 스타 **18,000개**를 돌파했고, 지속 저장소, 메타데이터 필터링, 쿼리 엔진을 탑재한 **v0.6.x**를 출시했다. 100만 벡터 이상의 데이터셋에서 단순 무차별 탐색 대비 **50배 더 빠른 검색** 속도를 제공한다. 이 프로젝트는 Chroma 팀이 **Apache-2.0** 라이선스로 유지보수하며, [LangChain](dibi8-internal-link)과 [LlamaIndex](dibi8-internal-link) 퀵스타트 가이드의 기본 벡터 저장소다.
+2026년 5월 기준", "Chroma는 GitHub 스타 **18", "000개**를 돌파했고", "지속 저장소", "메타데이터 필터링", "쿼리 엔진을 탑재한 **v0.6.x**를 출시했다. 100만 벡터 이상의 데이터셋에서 단순 무차별 탐색 대비 **50배 더 빠른 검색** 속도를 제공한다. 이 프로젝트는 Chroma 팀이 **Apache-2.0** 라이선스로 유지보수하며", "[LangChain"](dibi8-internal-link)과 [LlamaIndex](dibi8-internal-link) 퀵스타트 가이드의 기본 벡터 저장소다.
 
 이 가이드는 `pip install`부터 프로덕션급 RAG 배포까지 30분 안에 완료할 수 있게 안내한다. 벡터 데이터베이스 경험이 없어도 된다.
 

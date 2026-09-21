@@ -1,6 +1,6 @@
 ---
 title: 'Appwrite 2026: Auth, DB, Storage를 갖춘 오픈소스 Firebase 대안 — ...
-description: 'Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치마크, 프로덕션 하드닝.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치마크, 프로덕션 하드닝.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'appwrite/appwrite'
+github_repo: "appwrite/appwrite"
 stars: 47200
 maintainer: appwrite
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [appwrite, 'backend-as-a-service', 'firebase 대안', docker, 오픈소스, 인증, 데이터베이스, '클우드 함수', 셀프호스팅]
-aliases: - /kr/posts/appwrite-backend-as-service/
+categories: ["dev-utils"]
+tags: ["appwrite", "backend-as-a-service", "firebase 대안", "docker", "오픈소스", "인증", "데이터베이스", "클우드 함수", "셀프호스팅"]
+aliases:
+  - /kr/posts/appwrite-backend-as-service/
 ---
 
 {{</* resource-info */>}}
@@ -183,7 +184,7 @@ doc = databases.create_document(
     document_id=ID.unique(),
     data={title: 'From Python', status: active, score: 95.5}
 )
-print(f"Created document: {doc['$id']}")
+print(f"Created document: {doc[$id]}")
 
 # 쿼리 조건이 포함된 목록 조회
 results = databases.list_documents(
@@ -276,7 +277,7 @@ export default async ({ req, res, log, error }) => {
   const client = new Client()
     .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT)
     .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
-    .setKey(req.headers['x-appwrite-key']);
+    .setKey(req.headers[x-appwrite-key]);
 
   const databases = new Databases(client);
   const messaging = new Messaging(client);
@@ -395,7 +396,7 @@ await databases.createDocument(
 Appwrite는 Prometheus 수집을 위한 `/_metrics` 엔드포인트를 노출한다: ```yaml
 # prometheus.yml
 scrape_configs: - job_name: appwrite
-    static_configs: - targets: ['appwrite:80']
+    static_configs: - targets: [appwrite:80]
     metrics_path: '/_metrics'
 ```
 

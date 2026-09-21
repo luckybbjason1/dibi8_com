@@ -1,6 +1,6 @@
 ---
 title: 'GPT-SoVITS: 57.5K+ Stars — Deploy AI Voice Cloning Produ...
-description: 'GPT-SoVITS (GSV) is a few-shot voice cloning and TTS tool with zero-shot capabilities. Supports ComfyUI, RVC, and MeloTTS integration. Covers Docker deployment, voice training, API setup, and production hardening.'
+description: "GPT-SoVITS (GSV) is a few-shot voice cloning and TTS tool with zero-shot capabilities. Supports ComfyUI, RVC, and MeloTTS integration. Covers Docker deployment, voice training, API setup, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RVC-Boss/GPT-SoVITS'
+github_repo: "https://github.com/RVC-Boss/GPT-SoVITS"
 stars: 57500
 maintainer: 'RVC-Boss'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['voice-cloning', 'text-to-speech', 'gpt-sovits', tts, 'ai-voice', docker, rvc, python]
-aliases: - /posts/gpt-sovits/-
+categories: ["ai-tools"]
+tags: ["voice-cloning", "text-to-speech", "gpt-sovits", "tts", "ai-voice", "docker", "rvc", "python"]
+aliases:
+  - /posts/gpt-sovits/-
 ---
 {{</* resource-info */>}}
 

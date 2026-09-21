@@ -1,6 +1,6 @@
 ---
 title: 'Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
-description: 'FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅, Telegram 통합 및 프로덕션 배포를 다룹니다.'
+description: "FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅, Telegram 통합 및 프로덕션 배포를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,28 +12,29 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'freqtrade/freqtrade'
+github_repo: "freqtrade/freqtrade"
 stars: 37000
 maintainer: freqtrade
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /kr/posts/freqtrade-ai-trading-strategies/
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /kr/posts/freqtrade-ai-trading-strategies/
 ---
 
 {{</* resource-info */>}}
 
 ## 소개: 90%의 DIY 트레이딩 봇이 돈을 잃는 이유
 
-당신은 유튜브 영상을 봤을 것입니다 — "파이썬으로 암호화폐 트레이딩 봇을 만들었는데 하루에 500달러를 벌었어요." 그들이 보여주지 않는 것은 6개월간의 계좌 폭파, 새벽 3시에 거래소 API가 변경될 때의 디버깅 세션, 그리고 백테스트에서는 완벽하게 작동했지만 라이브 시장에서는 돈을 쏟아붓던 전략들입니다.
+당신은 유튜브 영상을 봤을 것입니다 — "파이썬으로 암호화폐 트레이딩 봇을 만들었는데 하루에 500달러를 벌었어요." 그들이 보여주지 않는 것은 6개월간의 계좌 폭파", "새벽 3시에 거래소 API가 변경될 때의 디버깅 세션", "그리고 백테스트에서는 완벽하게 작동했지만 라이브 시장에서는 돈을 쏟아붓던 전략들입니다.
 
-이것이 불편한 진실입니다: **90%의 자체 제작 트레이딩 봇**이 첫 3개월 이내에 실패합니다. 아이디어가 나쁘기 때문이 아니라, 프로덕션급 봇을 구축하려면 아묏도 언급하지 않는 엣지 케이스들을 처리해야 하기 때문입니다 — 거래소 다운타임, 부분 체결, 네트워크 타임아웃, 속도 제한, 슬리피지, 그리고 봇이 실시간으로 돈을 잃는 것을 지켜보는 심리적 압박.
+이것이 불편한 진실입니다: **90%의 자체 제작 트레이딩 봇**이 첫 3개월 이내에 실패합니다. 아이디어가 나쁘기 때문이 아니라", "프로덕션급 봇을 구축하려면 아묏도 언급하지 않는 엣지 케이스들을 처리해야 하기 때문입니다 — 거래소 다운타임", "부분 체결", "네트워크 타임아웃", "속도 제한", "슬리피지", "그리고 봇이 실시간으로 돈을 잃는 것을 지켜보는 심리적 압박.
 
-**Freqtrade**가 이것을 해결합니다. **37,000개 이상의 GitHub 스타**를 보유한 이 프로젝트는 Python으로 작성된 가장 인기 있는 오픈소스 암호화폐 트레이딩 봇 프레임워크입니다. 내장된 **FreqAI** 모듈은 머신러닝 예측을 전략에 추가합니다. 슬리피지와 스프레드 모델링을 포함한 백테스팅, Optuna를 통한 하이퍼파라미터 최적화, 모니터링을 위한 Telegram 봇 — 모두 5분이면 배포되는 Docker 컨테이너 안에 있습니다.
+**Freqtrade**가 이것을 해결합니다. **37", "000개 이상의 GitHub 스타**를 보유한 이 프로젝트는 Python으로 작성된 가장 인기 있는 오픈소스 암호화폐 트레이딩 봇 프레임워크입니다. 내장된 **FreqAI** 모듈은 머신러닝 예측을 전략에 추가합니다. 슬리피지와 스프레드 모델링을 포함한 백테스팅", "Optuna를 통한 하이퍼파라미터 최적화", "모니터링을 위한 Telegram 봇 — 모두 5분이면 배포되는 Docker 컨테이너 안에 있습니다.
 
-> **제휴 안내:** 이 가이드에는 거래소 제휴 링크가 포함되어 있습니다. [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입하여 프로젝트를 지원하세요. AI 강화 트레이딩 신호는 [Minara](https://minara.ai/r/OSXG4X)를 확인하세요.
+> **제휴 안내:** 이 가이드에는 거래소 제휴 링크가 포함되어 있습니다. [Binance"](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)에 가입하여 프로젝트를 지원하세요. AI 강화 트레이딩 신호는 [Minara](https://minara.ai/r/OSXG4X)를 확인하세요.
 
 ## Freqtrade란 무엇인가?
 

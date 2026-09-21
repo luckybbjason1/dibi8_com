@@ -1,22 +1,23 @@
 ---
 title: 'Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc,...
-description: 'Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự nhiên, trong đó AI xử lý cú pháp. Kỹ sư Toss và Kakao dùng hằng ngày. Đây là ý nghĩa, quy trình làm việc và lý do nó quan trọng ngoài Hàn Quốc.'
+description: "Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự nhiên, trong đó AI xử lý cú pháp. Kỹ sư Toss và Kakao dùng hằng ngày. Đây là ý nghĩa, quy trình làm việc và lý do nó quan trọng ngoài Hàn Quốc."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Phát triển dựa trên AI', 'Lập trình bằng ngôn ngữ tự nhiên']
 application_domain: Công cụ lập trình
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'Hỗn hợp'
 license_type: 'Không áp dụng (quy trình)'
 github_repo: ''
 stars: 0
 maintainer: 'Cộng đồng dev Hàn Quốc'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['vibe-coding', 'ai-coding', korea, workflow, 2026]
-aliases: - /vi/posts/vibe-coding-2026-korean-concept-explained/
+categories: ["dev-utils"]
+tags: ["vibe-coding", "ai-coding", "korea", "workflow", "2026"]
+aliases:
+  - /vi/posts/vibe-coding-2026-korean-concept-explained/
 faq: - q: "'Vibe coding' là gì?"
     a: "Là thuật ngữ của lập trình viên Hàn Quốc (바이브 코딩) chỉ quy trình lập trình ưu tiên AI: bạn mô tả điều muốn làm bằng ngôn ngữ tự nhiên và AI tạo ra phần triển khai. Ra đời khoảng năm 2025 trong giới fintech Hàn Quốc (Toss, Kakao). Nay đang lan ra toàn cầu như tên gọi cho cách tiếp cận mà Andrej Karpathy đã mô tả đầu năm 2025."
   - q: "Nó khác gì so với 'chỉ dùng công cụ AI viết code'?"

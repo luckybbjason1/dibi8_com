@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Claude Code in 2026: Which AI Coding Tool Wins?'
-description: 'Side-by-side breakdown of Cursor and Claude Code — pricing, performance, ideal use cases, migration tips. Updated 2026.'
+title: "Cursor vs Claude Code in 2026: Which AI Coding Tool Wins?"
+description: "Side-by-side breakdown of Cursor and Claude Code — pricing, performance, ideal use cases, migration tips. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, claude-code, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "claude-code", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Is Cursor or Claude Code cheaper?'
     a: 'Cursor starts at $20/month; Claude Code is pay-per-token via Anthropic API (typical heavy users spend $200-400/month). For predictable monthly cost, Cursor wins. For occasional power use, Claude Code can be cheaper if you cap usage.'
   - q: 'Can Cursor and Claude Code be used together?'

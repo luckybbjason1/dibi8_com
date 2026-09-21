@@ -1,6 +1,6 @@
 ---
 title: 'LangGraph 1.2 in Production: Stateful Agent Orchestratio...
-description: 'LangGraph is a low-level orchestration framework for long-running, stateful AI agents. 32.6k GitHub stars, v1.2.1. Real deploy guide covering graph design, durable execution, human-in-loop checkpoints, LangSmith debugging, and when LangGraph beats CrewAI / AutoGen / pure LangChain.'
+description: "LangGraph is a low-level orchestration framework for long-running, stateful AI agents. 32.6k GitHub stars, v1.2.1. Real deploy guide covering graph design, durable execution, human-in-loop checkpoints, LangSmith debugging, and when LangGraph beats CrewAI / AutoGen / pure LangChain."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -8,22 +8,23 @@ tech_stack: - Python
   - PostgreSQL
   - Redis
 application_domain: Llm Frameworks
-source_version: '1.2.1'
+source_version: "1.2.1"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/langchain-ai/langgraph'
+github_repo: "https://github.com/langchain-ai/langgraph"
 stars: 32600
 maintainer: 'langchain-ai'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [langgraph, agent, stateful, orchestration, langchain, production]
-aliases: - /posts/langgraph-stateful-agent-orchestration-2026/-
+categories: ["llm-frameworks"]
+tags: ["langgraph", "agent", "stateful", "orchestration", "langchain", "production"]
+aliases:
+  - /posts/langgraph-stateful-agent-orchestration-2026/-
 ---
 If you've built a simple LLM agent and watched it forget everything when the process restarts, lose half its progress when one tool call times out, or silently corrupt state when two events fire concurrently — you've hit the wall **LangGraph** is designed to break through.
 

@@ -1,6 +1,6 @@
 ---
-title: 'Ultimate Vocal Remover: 24.7K+ Stars — 2026 完整安装配置指南'
-description: 'Ultimate Vocal Remover (UVR) 是一个基于深度神经网络的人声分离 GUI 工具。兼容 demucs、RVC、GPT-SoVITS。涵盖 Windows、macOS、Linux 安装、模型选择、批量处理和生产级配置。'
+title: "Ultimate Vocal Remover: 24.7K+ Stars — 2026 完整安装配置指南"
+description: "Ultimate Vocal Remover (UVR) 是一个基于深度神经网络的人声分离 GUI 工具。兼容 demucs、RVC、GPT-SoVITS。涵盖 Windows、macOS、Linux 安装、模型选择、批量处理和生产级配置。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Anjok07/ultimatevocalremovergui'
+github_repo: "https://github.com/Anjok07/ultimatevocalremovergui"
 stars: 24700
 maintainer: Anjok07
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [人声移除, 音频分离, 深度学习, pytorch, demucs, 'mdx-net', ai音频, 卡拉ok, 音乐制作]
-aliases: - /zh/posts/ultimate-vocal-remover/-
+categories: ["ai-tools"]
+tags: ["人声移除", "音频分离", "深度学习", "pytorch", "demucs", "mdx-net", "ai音频", "卡拉ok", "音乐制作"]
+aliases:
+  - /zh/posts/ultimate-vocal-remover/-
 ---
 
 {{</* resource-info */>}}

@@ -1,6 +1,6 @@
 ---
 title: 'So Sánh Công Cụ AutoML: Hướng Dẫn AutoGluon, H2O, TPOT, ...
-description: 'Đánh giá chi tiết 5 công cụ AutoML hàng đầu: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML. So sánh tính năng, tốc độ, khả năng triển khai và chi phí.'
+description: "Đánh giá chi tiết 5 công cụ AutoML hàng đầu: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML. So sánh tính năng, tốc độ, khả năng triển khai và chi phí."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/automl-tools-comparison-guide/
+aliases:
+  - /posts/automl-tools-comparison-guide/
 ---
 
 {</* resource-info */>}

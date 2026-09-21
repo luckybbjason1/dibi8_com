@@ -1,6 +1,6 @@
 ---
 title: 'Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
-description: 'Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML và chunks một cách nhanh chóng, chính xác. 35.694 sao GitHub, mã nguồn theo giấy phép GPL-3.0. Bao gồm cài đặt, CLI và Python API, ví dụ mã thực tế, chế độ LLM, cùng so sánh khách quan với các công cụ thay thế.'
+description: "Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML và chunks một cách nhanh chóng, chính xác. 35.694 sao GitHub, mã nguồn theo giấy phép GPL-3.0. Bao gồm cài đặt, CLI và Python API, ví dụ mã thực tế, chế độ LLM, cùng so sánh khách quan với các công cụ thay thế."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'datalab-to/marker'
+github_repo: "datalab-to/marker"
 stars: 35694
 maintainer: 'datalab-to'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data/images/datalab-logo.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/marker-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/marker-dev-utils-2026/
 faqs: - q: 'Cài marker như thế nào?'
-    a: 'Cài từ PyPI bằng `pip install marker-pdf`. Với các định dạng không phải PDF (DOCX, PPTX, XLSX, EPUB, HTML, hình ảnh), dùng `pip install marker-pdf[full]`.'
+    a: 'Cài từ PyPI bằng `pip install marker-pdf`. Với các định dạng không phải PDF (DOCX", "PPTX", "XLSX", "EPUB", "HTML", "hình ảnh)", "dùng `pip install marker-pdf[full"]`.'
   - q: 'Tôi có thể dùng công cụ này cho dự án thương mại không?'
     a: 'Mã nguồn theo giấy phép GPL-3.0, nhưng trọng số mô hình dùng giấy phép AI Pubs Open Rail-M đã sửa đổi. Giấy phép đó miễn phí cho nghiên cứu, sử dụng cá nhân và các công ty có vốn/doanh thu dưới khoảng 2 triệu USD; người dùng thương mại lớn hơn cần giấy phép thương mại từ Datalab. Hãy kiểm tra điều khoản hiện hành trước khi triển khai.'
   - q: 'marker xử lý được những loại tài liệu nào?'

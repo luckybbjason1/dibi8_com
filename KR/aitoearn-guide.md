@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/aitoearn-guide/
+aliases:
+  - /kr/posts/aitoearn-guide/
 faqs: - q: 'AiToEarn은 Buffer와 Hootsuite의 무료 대안인가요?'
     a: '네. AiToEarn은 오픈소스(MIT 라이선스)이며 셀프호스팅 방식이라 월 비용이 $0입니다. Buffer는 월 $120+, Hootsuite는 월 $249+인 것과 대조됩니다. 또한 유료 플랜에서 부과하는 게시물 수 제한도 없습니다.'
   - q: 'AiToEarn은 소홍서(RED)와 Instagram에 동시에 게시할 수 있나요?'

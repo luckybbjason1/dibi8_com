@@ -1,6 +1,6 @@
 ---
 title: 'CopilotKit: 31K+ Stars — React 또는 Angular 앱에 AI Copilot ...
-description: 'CopilotKit은 인앱 AI Copilot과 생성형 UI를 위한 오픈소스 프론트엔드 스택입니다. 사전 제작 컴포넌트, useCopilotAction Hooks, 프로덕션 배포로 React Angular AI 어시스턴트를 구축하세요. 설치, LangChain 통합, 셀프 호스팅, Vercel AI SDK와의 성능 비교를 다룹니다.'
+description: "CopilotKit은 인앱 AI Copilot과 생성형 UI를 위한 오픈소스 프론트엔드 스택입니다. 사전 제작 컴포넌트, useCopilotAction Hooks, 프로덕션 배포로 React Angular AI 어시스턴트를 구축하세요. 설치, LangChain 통합, 셀프 호스팅, Vercel AI SDK와의 성능 비교를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/CopilotKit/CopilotKit'
+github_repo: "https://github.com/CopilotKit/CopilotKit"
 stars: 31536
 maintainer: CopilotKit
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [copilotkit, 'react-ai', 생성형ui, 'ai-copilot', langchain, '프론트엔드-에이전트', typescript, 오픈소스]
-aliases: - /kr/posts/copilotkit/
+categories: ["llm-frameworks"]
+tags: ["copilotkit", "react-ai", "생성형ui", "ai-copilot", "langchain", "프론트엔드-에이전트", "typescript", "오픈소스"]
+aliases:
+  - /kr/posts/copilotkit/
 ---
 
 {{</* resource-info */>}}

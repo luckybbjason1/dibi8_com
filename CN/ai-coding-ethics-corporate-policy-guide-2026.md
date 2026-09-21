@@ -1,22 +1,23 @@
 ---
 title: 'AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
-description: 'Companies in 2026 split into AI-allow / AI-restrict / AI-forbid camps. Practical guide for what each policy looks like, how to choose, and the legal/IP/compliance gotchas — based on real corporate adoption patterns we tracked.'
+description: "Companies in 2026 split into AI-allow / AI-restrict / AI-forbid camps. Practical guide for what each policy looks like, how to choose, and the legal/IP/compliance gotchas — based on real corporate adoption patterns we tracked."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Policy, Compliance, 'Claude Code', Cursor]
 application_domain: Dev Utils
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'N/A'
 license_type: 'N/A'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', ethics, policy, compliance, 2026]
-aliases: - /posts/ai-coding-ethics-corporate-policy-guide-2026/
+categories: ["dev-utils"]
+tags: ["ai-coding", "ethics", "policy", "compliance", "2026"]
+aliases:
+  - /posts/ai-coding-ethics-corporate-policy-guide-2026/
 faq: - q: "What are the main corporate AI coding policy stances in 2026?"
     a: "Three camps: (1) Allow with audit (most common in tech) — developers can use AI coding tools, code is reviewed. (2) Restrict to approved tools (financial / healthcare) — only enterprise tier of major vendors with DPAs. (3) Forbid (some defense / classified work) — air-gapped, local-only AI or none. Each has trade-offs."
   - q: "What are the real IP/legal risks of AI coding?"

@@ -1,6 +1,6 @@
 ---
 title: 'Metabase 2026: The Open-Source Business Intelligence Too...
-description: 'Complete guide to Metabase v60.2: open-source BI with visual query builder, dashboards, SQL editor, alerts, embedding, and Docker self-hosting. 41,000+ GitHub stars.'
+description: "Complete guide to Metabase v60.2: open-source BI with visual query builder, dashboards, SQL editor, alerts, embedding, and Docker self-hosting. 41,000+ GitHub stars."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'metabase/metabase'
+github_repo: "metabase/metabase"
 stars: 41000
 maintainer: metabase
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [metabase, bi, 'business-intelligence', 'open-source', tableau, dashboards, sql, docker, 'self-hosted', analytics, 'data-visualization', 'apache-superset']
-aliases: - /posts/metabase-business-intelligence-open/-
+categories: ["data-science"]
+tags: ["metabase", "bi", "business-intelligence", "open-source", "tableau", "dashboards", "sql", "docker", "self-hosted", "analytics", "data-visualization", "apache-superset"]
+aliases:
+  - /posts/metabase-business-intelligence-open/-
 ---
 {{</* resource-info */>}}
 

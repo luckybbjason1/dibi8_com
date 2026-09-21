@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: ai-engineering-from-scratch
 category: llm-frameworks
-tags: ['ai 工程', 'llm', '微调', 'rag', 'agent 框架', '生产部署', '机器学习']
+tags: ["ai 工程", "llm", "微调", "rag", "agent 框架", "生产部署", "机器学习"]
 github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
 license: MIT
 images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"

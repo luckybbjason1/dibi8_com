@@ -1,22 +1,23 @@
 ---
-title: 'Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후'
-description: 'Cursor가 2025년 가격 정책을 바꿨다 — Pro 사용자는 같은 가격에 실효 사용량이 약 55% 줄었다. 2026년 실제로 효과가 있는 7가지 절감 전략: 모델 선택, 컨텍스트 규율, 하이브리드 스택, 그리고 언제 갈아탈지.'
+title: "Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후"
+description: "Cursor가 2025년 가격 정책을 바꿨다 — Pro 사용자는 같은 가격에 실효 사용량이 약 55% 줄었다. 2026년 실제로 효과가 있는 7가지 절감 전략: 모델 선택, 컨텍스트 규율, 하이브리드 스택, 그리고 언제 갈아탈지."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
-source_version: 'Cursor 2026.05 / 크레딧 과금 이후'
+source_version: "Cursor 2026.05 / 크레딧 과금 이후"
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: Anysphere
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
-aliases: - /kr/posts/cursor-cost-saving-strategies-2026/
+categories: ["dev-utils"]
+tags: ["cursor", "cost-optimization", "ai-coding", "2026"]
+aliases:
+  - /kr/posts/cursor-cost-saving-strategies-2026/
 faq: - q: "2025년 Cursor 가격 정책에서 무엇이 바뀌었나요?"
     a: "2025년 중반 Cursor는 '무제한 fast requests'에서 크레딧 기반 과금으로 전환했습니다. $20/월 Pro 사용자는 실효 약 500회 요청에서 약 225회로 줄었습니다. 같은 가격에 약 55% 할인 효과가 사라진 셈입니다. 변경 사항이 충분히 공지되지 않아 큰 반발을 샀습니다."
   - q: "2026년에도 Cursor가 $20/월 가치가 있나요?"

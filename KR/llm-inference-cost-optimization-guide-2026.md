@@ -1,14 +1,13 @@
 ---
 title: "LLM 추론 비용 최적화: 페니 단위로 모든 모델 실행 — 2026년 결정 가이드"
-description: 'LLM 추론 비용 최적화 가이드. Ollama, vLLM, llama.cpp 양자화 비교. API 비용을 90%+ 절감. 3 벤치마크, 6 배포 방법.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "LLM 추론 비용 최적화 가이드. Ollama, vLLM, llama.cpp 양자화 비교. API 비용을 90%+ 절감. 3 벤치마크, 6 배포 방법.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-16
 lastmod: 2026-06-16
 slug: 'llm-inference-cost-optimization-guide-2026'
 category: dev-utils
-tags: ['LLM cost optimization', 'cheap LLM inference', 'quantization', 'Ollama', 'vLLM', 'llama.cpp', 'reduce API costs', 'local LLM']
-github_repo: 'https://github.com/ollama/ollama'
+tags: ["LLM cost optimization", "cheap LLM inference", "quantization", "Ollama", "vLLM", "llama.cpp", "reduce API costs", "local LLM"]
+github_repo: "https://github.com/ollama/ollama"
 license: MIT
-lang: kr
 featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
 ---
 

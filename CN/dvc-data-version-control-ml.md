@@ -1,6 +1,6 @@
 ---
 title: 'DVC: The Git for Data Versioning ML Pipelines — Reproduc...
-description: 'Complete guide to DVC (Data Version Control) — version datasets, models, and ML pipelines with Git-like workflows. Covers installation, S3/GCS/Azure backends, CI/CD integration, benchmarks, and production hardening.'
+description: "Complete guide to DVC (Data Version Control) — version datasets, models, and ML pipelines with Git-like workflows. Covers installation, S3/GCS/Azure backends, CI/CD integration, benchmarks, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/iterative/dvc'
+github_repo: "https://github.com/iterative/dvc"
 stars: 15600
 maintainer: Iterative
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [dvc, 'data version control', mlops, git, 'machine learning', reproducibility, s3, gcs, azure, pipeline]
-aliases: - /posts/dvc-data-version-control-ml/-
+categories: ["data-science"]
+tags: ["dvc", "data version control", "mlops", "git", "machine learning", "reproducibility", "s3", "gcs", "azure", "pipeline"]
+aliases:
+  - /posts/dvc-data-version-control-ml/-
 ---
 {{</* resource-info */>}}
 

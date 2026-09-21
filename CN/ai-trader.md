@@ -19,7 +19,8 @@ maintainer: "HKUDS"
 last_maintained: "2026-05-13"
 featureImage: ""
 draft: false
-aliases: - /posts/ai-trader/
+aliases:
+  - /posts/ai-trader/
 faqs: - q: 'What is AI-Trader by HKUDS?'
     a: 'AI-Trader is an open-source fully automated AI trading agent system developed by the Hong Kong University Data Science Lab (HKUDS). It uses reinforcement learning and multi-agent collaboration to trade stocks, crypto, forex, and futures, and is released under the MIT license.'
   - q: 'Which markets and assets does AI-Trader support?'

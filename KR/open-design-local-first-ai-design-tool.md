@@ -20,7 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/open-design-local-first-ai-design-tool/
+aliases:
+  - /kr/posts/open-design-local-first-ai-design-tool/
 faqs: - q: 'Open Design이란 무엇이며 Claude Design과 어떻게 다른가요?'
     a: 'Open Design은 Anthropic의 Claude Design에 대한 오픈소스/로컬 우선 대안으로, 웹 프로토타입, 모바일 및 데스크톱 인터페이스, 슬라이드, 이미지, 동영상, 그리고 인터랙티브 HyperFrame을 생성할 수 있습니다. 클라우드 전용의 Claude Design과 달리, 초기 설정 후 완전히 오프라인으로 실행되며 MIT 라이선스로 무료 제공됩니다.'
   - q: 'Open Design은 어떤 AI 코딩 어시스턴트와 함께 사용할 수 있나요?'

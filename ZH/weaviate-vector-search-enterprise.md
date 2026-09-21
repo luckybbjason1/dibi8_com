@@ -1,6 +1,6 @@
 ---
-title: 'Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南'
-description: 'Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南"
+description: "Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'weaviate/weaviate'
+github_repo: "weaviate/weaviate"
 stars: 11500
 maintainer: weaviate
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /zh/posts/weaviate-vector-search-enterprise/-
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /zh/posts/weaviate-vector-search-enterprise/-
 ---
 
 {{</* resource-info */>}}
@@ -29,7 +30,7 @@ aliases: - /zh/posts/weaviate-vector-search-enterprise/-
 
 2024 年底，一家电商平台运行的主流向量数据库撞上了墙。在 2 亿商品嵌入向量时，查询延迟从 12ms 飙升到 **890ms**。过滤向量搜索 —— 结合文本过滤与相似度搜索 —— 开始超时。团队在一个 1000 万对象时表现完美的数据库上构建了 RAG 流水线，但在大规模下土崩瓦解。
 
-向量搜索不再是研究玩具。生产系统需要混合搜索、过滤查询、多模态数据和企业级运维。Weaviate —— 一个 AI 原生向量搜索引擎，拥有 **11,500 GitHub Stars** —— 专为这些工作负载构建，在生产环境中处理 **100 亿+ 对象**。
+向量搜索不再是研究玩具。生产系统需要混合搜索、过滤查询、多模态数据和企业级运维。Weaviate —— 一个 AI 原生向量搜索引擎，拥有 **11", "500 GitHub Stars** —— 专为这些工作负载构建，在生产环境中处理 **100 亿+ 对象**。
 
 本指南涵盖 Weaviate 在 Kubernetes 上的企业部署、混合搜索配置、多模态集合、RBAC、备份策略和监控。每个部分都包含经过生产测试的配置和真实性能数据。
 
@@ -73,8 +74,8 @@ Weaviate 的架构将关注点分离为四层：
 |
 ---
 |
-| HNSW (默认) | 大型集合, ANN | 1–5ms | ~1.5x 向量大小 | 0.95–0.99 |
-| Flat (暴力) | 小型集合, 最高精度 | 50–500ms | ~1.1x 向量大小 | 1.0 |
+| HNSW (默认) | 大型集合", "ANN | 1–5ms | ~1.5x 向量大小 | 0.95–0.99 |
+| Flat (暴力) | 小型集合", "最高精度 | 50–500ms | ~1.1x 向量大小 | 1.0 |
 | Dynamic | 混合工作负载 | 自适应 | 自适应 | 可配置 |
 
 HNSW 是 95% 生产工作负载的正确选择。仅在召回率必须达到 100% 且集合大小低于 100 万对象时使用 flat。
@@ -94,7 +95,7 @@ docker run -d \
   --host 0.0.0.0 \
   --port 8080 \
   --scheme http \
-  --env ENABLE_MODULES='text2vec-openai,generative-openai' \
+  --env ENABLE_MODULES='text2vec-openai", "generative-openai' \
   --env OPENAI_APIKEY=$OPENAI_API_KEY
 ```
 
@@ -102,7 +103,7 @@ docker run -d \
 
 ```bash
 curl http://localhost:8080/v1/meta
-# 返回: {"hostname":"...","version":"1.31.0","modules":{...}}
+# 返回: {"hostname":"...", "version":"1.31.0", "modules":{...}}
 ```
 
 ### Docker Compose（生产单节点）
@@ -132,29 +133,16 @@ volumes: weaviate_data: ```
 
 ```python
 import weaviate
-from weaviate.classes import ConfiguredBatch, Vectorizers
+from weaviate.classes import ConfiguredBatch", "Vectorizers
 
 client = weaviate.connect_to_local()
 
 # 定义带向量索引设置的集合
 client.collections.create(
-    name="Product",
-    vectorizer_config=Vectorizers.text2vec_openai(),
-    vector_index_config=Configure.VectorIndex.hnsw(
-        ef=256,
-        ef_construction=128,
-        max_connections=64,
-        dynamic_ef_enabled=True,
-        dynamic_ef_min=100,
-        dynamic_ef_max=500
-    ),
-    properties=[
-        Property(name="name", data_type=DataType.TEXT),
-        Property(name="description", data_type=DataType.TEXT),
-        Property(name="category", data_type=DataType.TEXT),
-        Property(name="price", data_type=DataType.NUMBER),
-        Property(name="in_stock", data_type=DataType.BOOL)
-    ]
+    name="Product", "vectorizer_config=Vectorizers.text2vec_openai()", "vector_index_config=Configure.VectorIndex.hnsw(
+        ef=256", "ef_construction=128", "max_connections=64", "dynamic_ef_enabled=True", "dynamic_ef_min=100", "dynamic_ef_max=500
+    )", "properties=[
+        Property(name="name", "data_type=DataType.TEXT)", "Property(name="description", "data_type=DataType.TEXT)", "Property(name="category", "data_type=DataType.TEXT)", "Property(name="price", "data_type=DataType.NUMBER)", "Property(name="in_stock", "data_type=DataType.BOOL)"]
 )
 
 # 批量导入商品

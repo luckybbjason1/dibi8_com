@@ -1,6 +1,6 @@
 ---
 title: 'Các Công Cụ API Gateway Cho Lập Trình Viên Tốt Nhất 2025...
-description: 'So sánh chi tiết các công cụ API Gateway hàng đầu năm 2025. Tìm hiểu Kong, NGINX Plus, Traefik, Google Apigee, AWS API Gateway và Tyk để bảo vệ và quản lý API hiệu quả.'
+description: "So sánh chi tiết các công cụ API Gateway hàng đầu năm 2025. Tìm hiểu Kong, NGINX Plus, Traefik, Google Apigee, AWS API Gateway và Tyk để bảo vệ và quản lý API hiệu quả."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['api gateway', kong, nginx, traefik, apigee, microservices, devops]
-aliases: - /vi/posts/developer-api-gateway-tools/
+categories: ["dev-utils"]
+tags: ["api gateway", "kong", "nginx", "traefik", "apigee", "microservices", "devops"]
+aliases:
+  - /vi/posts/developer-api-gateway-tools/
 ---
 
 {</* resource-info */>}

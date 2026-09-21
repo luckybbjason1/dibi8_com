@@ -1,6 +1,6 @@
 ---
 title: 'faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
-description: 'faster-whisper (SYSTRAN) reimplements OpenAI Whisper via CTranslate2 for 4x speedup. Covers faster whisper tutorial, benchmark data, Docker setup, Python API, VAD filter, batch processing, and production hardening with WhisperX and whisper.cpp integration.'
+description: "faster-whisper (SYSTRAN) reimplements OpenAI Whisper via CTranslate2 for 4x speedup. Covers faster whisper tutorial, benchmark data, Docker setup, Python API, VAD filter, batch processing, and production hardening with WhisperX and whisper.cpp integration."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/SYSTRAN/faster-whisper'
+github_repo: "https://github.com/SYSTRAN/faster-whisper"
 stars: 23000
 maintainer: SYSTRAN
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['faster-whisper', 'speech-to-text', ctranslate2, 'openai whisper', 'voice recognition', python, docker, asr]
-aliases: - /posts/faster-whisper/-
+categories: ["ai-tools"]
+tags: ["faster-whisper", "speech-to-text", "ctranslate2", "openai whisper", "voice recognition", "python", "docker", "asr"]
+aliases:
+  - /posts/faster-whisper/-
 ---
 {{</* resource-info */>}}
 

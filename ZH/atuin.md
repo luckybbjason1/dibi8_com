@@ -1,6 +1,6 @@
 ---
 title: 'Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2...
-description: 'Atuin 将 shell 历史记录替换为 SQLite 数据库，记录命令上下文（退出码、工作目录、执行时长），并通过端到端加密在多台机器间同步历史记录。支持 Bash、Zsh、Fish、Nushell。涵盖安装、自托管、配置，以及 Atuin vs mcfly vs fzf vs Hstr 对比。'
+description: "Atuin 将 shell 历史记录替换为 SQLite 数据库，记录命令上下文（退出码、工作目录、执行时长），并通过端到端加密在多台机器间同步历史记录。支持 Bash、Zsh、Fish、Nushell。涵盖安装、自托管、配置，以及 Atuin vs mcfly vs fzf vs Hstr 对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/atuinsh/atuin'
+github_repo: "https://github.com/atuinsh/atuin"
 stars: 29794
 maintainer: atuinsh
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [atuin, shell历史, 命令行工具, sqlite, rust, 同步, bash, zsh, fish]
-aliases: - /zh/posts/atuin/-
+categories: ["dev-utils"]
+tags: ["atuin", "shell历史", "命令行工具", "sqlite", "rust", "同步", "bash", "zsh", "fish"]
+aliases:
+  - /zh/posts/atuin/-
 ---
 
 {{</* resource-info */>}}

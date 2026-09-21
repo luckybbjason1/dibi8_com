@@ -1,6 +1,6 @@
 ---
 title: 'Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
-description: 'Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương thích Docker, Let''''s Encrypt, Prometheus, Grafana. Bao gồm hướng dẫn Caddyfile, cài đặt Docker, production hardening và giám sát.'
+description: "Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương thích Docker, Let"'''s Encrypt, Prometheus, Grafana. Bao gồm hướng dẫn Caddyfile, cài đặt Docker, production hardening và giám sát.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/caddyserver/caddy'
+github_repo: "https://github.com/caddyserver/caddy"
 stars: 72595
 maintainer: caddyserver
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [caddy, 'web-server', 'reverse-proxy', 'auto-https', docker, devops, ssl, http3]
-aliases: - /vi/posts/caddy/
+categories: ["dev-utils"]
+tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]
+aliases:
+  - /vi/posts/caddy/
 ---
 
 {{</* resource-info */>}}

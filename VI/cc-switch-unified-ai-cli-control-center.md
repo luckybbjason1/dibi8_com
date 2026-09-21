@@ -1,17 +1,16 @@
 ---
 title: 'cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất ...
-description: 'cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw và Hermes Agent vào một trung tâm điều khiển. Một binary duy nhất, không phụ thuộc. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế.'
+description: "cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw và Hermes Agent vào một trung tâm điều khiển. Một binary duy nhất, không phụ thuộc. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
-tags: ['quản lý AI CLI', 'thay thế Claude Code', 'công cụ AI mã hóa', 'năng suất nhà phát triển', 'CLI đa agent', 'cc-switch', 'agent AI mã hóa', 'proxy CLI']
-github_repo: 'https://github.com/farion1231/cc-switch'
+tags: ["quản lý AI CLI", "thay thế Claude Code", "công cụ AI mã hóa", "năng suất nhà phát triển", "CLI đa agent", "cc-switch", "agent AI mã hóa", "proxy CLI"]
+github_repo: "https://github.com/farion1231/cc-switch"
 stars: 95900
 maintainer: 'farion1231'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
-lang: vi
 ---
 
 # cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất 6+ công cụ AI mã hóa — Hướng dẫn thực tế 2026

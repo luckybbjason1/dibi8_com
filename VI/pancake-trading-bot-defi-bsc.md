@@ -1,6 +1,6 @@
 ---
 title: 'PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
-description: 'Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiến lược tự động, giám sát liquidity pool, bảo vệ MEV và framework bot Python — kèm benchmark 2026.'
+description: "Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiến lược tự động, giám sát liquidity pool, bảo vệ MEV và framework bot Python — kèm benchmark 2026."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'pancakeswap/pancake-swap-core'
+github_repo: "pancakeswap/pancake-swap-core"
 stars: 2500
 maintainer: pancakeswap
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', 'trading bot', bsc, 'giao dịch tự động', 'liquidity pool', 'mev protection', python, 'crypto bot', 'dex trading']
-aliases: - /vi/posts/pancake-trading-bot-defi-bsc/
+categories: ["ai-trading"]
+tags: ["pancakeswap", "defi", "binance smart chain", "web3.py", "trading bot", "bsc", "giao dịch tự động", "liquidity pool", "mev protection", "python", "crypto bot", "dex trading"]
+aliases:
+  - /vi/posts/pancake-trading-bot-defi-bsc/
 ---
 
 {{</* resource-info */>}}

@@ -18,7 +18,8 @@ maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/wifi-forge-safe-wifi-hacking-lab/
+aliases:
+  - /vi/posts/wifi-forge-safe-wifi-hacking-lab/
 faqs: - q: 'WiFi-Forge là gì?'
     a: 'WiFi-Forge là dự án mã nguồn mở của Black Hills InfoSec, cung cấp môi trường sandbox an toàn và hợp pháp để luyện tập các kỹ thuật tấn công không dây. Nó chạy một phòng lab ảo ngay trên laptop của bạn, không cần mua phần cứng và không có rủi ro đụng chạm vào mạng của người khác.'
   - q: 'Tôi có cần adapter WiFi đặc biệt để học tấn công WiFi với WiFi-Forge không?'

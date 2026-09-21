@@ -1,6 +1,6 @@
 ---
 title: 'Arize AI Phoenix: RAG 파이프라인 100% 추적하는 오픈소스 LLM 옵저버빌리티 도구...
-description: '2026년 Arize Phoenix 완벽 가이드: 오픈소스 LLM 옵저버빌리티, RAG 추적, 프롬프트 버전 관리, 토큰 사용량 추적, LangChain 및 LlamaIndex 프로덕션 배포.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "2026년 Arize Phoenix 완벽 가이드: 오픈소스 LLM 옵저버빌리티, RAG 추적, 프롬프트 버전 관리, 토큰 사용량 추적, LangChain 및 LlamaIndex 프로덕션 배포.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Arize-ai/phoenix'
+github_repo: "Arize-ai/phoenix"
 stars: 6500
 maintainer: 'Arize AI'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [llm, 옵저버빌리티, 'arize phoenix', rag, langchain, llamaindex, opentelemetry, python, docker, 'ai 인프라']
-aliases: - /kr/posts/arize-ai-observability-llm/
+categories: ["data-science"]
+tags: ["llm", "옵저버빌리티", "arize phoenix", "rag", "langchain", "llamaindex", "opentelemetry", "python", "docker", "ai 인프라"]
+aliases:
+  - /kr/posts/arize-ai-observability-llm/
 ---
 
 {{</* resource-info */>}}

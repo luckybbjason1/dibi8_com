@@ -1,6 +1,6 @@
 ---
 title: 'Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
-description: 'Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Hướng dẫn cài đặt Docker, bảo mật production, triển khai API và đánh giá trung thực.'
+description: "Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Hướng dẫn cài đặt Docker, bảo mật production, triển khai API và đánh giá trung thực."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/FlowiseAI/Flowise'
+github_repo: "https://github.com/FlowiseAI/Flowise"
 stars: 52948
 maintainer: FlowiseAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [flowise, langchain, 'ai agent', rag, docker, llm, 'mã nguồn mở', 'no-code']
-aliases: - /vi/posts/flowise/
+categories: ["llm-frameworks"]
+tags: ["flowise", "langchain", "ai agent", "rag", "docker", "llm", "mã nguồn mở", "no-code"]
+aliases:
+  - /vi/posts/flowise/
 - /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 'Outline: The Open-Source Wiki & Knowledge Base Built for...
-description: 'Deploy Outline with Docker in 10 minutes. Build a real-time collaborative wiki for your engineering team with Markdown editor, Slack integration, full-text search, and granular permissions.'
+description: "Deploy Outline with Docker in 10 minutes. Build a real-time collaborative wiki for your engineering team with Markdown editor, Slack integration, full-text search, and granular permissions."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'outline/outline'
+github_repo: "outline/outline"
 stars: 32000
 maintainer: outline
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [outline, wiki, 'knowledge-base', 'team-docs', 'open-source', 'self-hosted', docker, collaboration, markdown]
-aliases: - /posts/outline-wiki-knowledge-base/-
+categories: ["dev-utils"]
+tags: ["outline", "wiki", "knowledge-base", "team-docs", "open-source", "self-hosted", "docker", "collaboration", "markdown"]
+aliases:
+  - /posts/outline-wiki-knowledge-base/-
 ---
 {{</* resource-info */>}}
 

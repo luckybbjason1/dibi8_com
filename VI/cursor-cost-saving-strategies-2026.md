@@ -1,22 +1,23 @@
 ---
 title: 'Chiến lược tiết kiệm chi phí Cursor 2026: Sau khi đổi sa...
-description: 'Cursor đã đổi giá năm 2025 — người dùng Pro mất khoảng 55% mức sử dụng hiệu dụng với cùng mức giá. Đây là 7 chiến lược tiết kiệm cụ thể hoạt động trong 2026: chọn model, kỷ luật context, stack lai, và khi nào nên bỏ Cursor.'
+description: "Cursor đã đổi giá năm 2025 — người dùng Pro mất khoảng 55% mức sử dụng hiệu dụng với cùng mức giá. Đây là 7 chiến lược tiết kiệm cụ thể hoạt động trong 2026: chọn model, kỷ luật context, stack lai, và khi nào nên bỏ Cursor."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
-source_version: 'Cursor 2026.05 / Sau khi đổi sang credit'
+source_version: "Cursor 2026.05 / Sau khi đổi sang credit"
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: Anysphere
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [cursor, 'cost-optimization', 'ai-coding', 2026]
-aliases: - /vi/posts/cursor-cost-saving-strategies-2026/
+categories: ["dev-utils"]
+tags: ["cursor", "cost-optimization", "ai-coding", "2026"]
+aliases:
+  - /vi/posts/cursor-cost-saving-strategies-2026/
 faq: - q: "Giá Cursor đã thay đổi gì trong 2025?"
     a: "Giữa năm 2025 Cursor chuyển từ 'fast requests không giới hạn' sang tính theo credit. Người dùng Pro $20/tháng đi từ khoảng 500 request hiệu dụng xuống còn ~225 request hiệu dụng. Cùng giá, giảm ~55%. Thay đổi không được thông báo rõ ràng, tạo ra phản ứng dữ dội."
   - q: "Cursor có còn đáng giá $20/tháng trong 2026 không?"

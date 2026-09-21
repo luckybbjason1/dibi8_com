@@ -20,7 +20,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/caveman/
+aliases:
+  - /kr/posts/caveman/
 faqs: - q: 'Claude Code용 Caveman은 무엇인가요?'
     a: 'Caveman은 Claude가 불필요한 표현, 관사, 정중한 서두를 생략하고 압축된 원시인 스타일의 간결한 언어로 응답하도록 만드는 Claude Code 스킬입니다. 기술적 정확성을 그대로 유지하면서 평균 65%의 출력 토큰을 줄여줍니다.'
   - q: 'Caveman은 토큰 사용량을 얼마나 줄여주나요?'

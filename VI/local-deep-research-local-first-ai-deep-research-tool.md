@@ -19,7 +19,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/local-deep-research-local-first-ai-deep-research-tool/
+aliases:
+  - /vi/posts/local-deep-research-local-first-ai-deep-research-tool/
 faqs: - q: 'Local Deep Research (LDR) là gì?'
     a: 'Local Deep Research (LDR) là một trợ lý nghiên cứu AI mã nguồn mở, thực hiện nghiên cứu có hệ thống và lặp đi lặp lại thay vì đưa ra câu trả lời nhanh kiểu trò chuyện. Nó phân rã một truy vấn thành các truy vấn con, tìm kiếm song song trên web, cơ sở dữ liệu học thuật và các tệp cục bộ, rồi tổng hợp thành một báo cáo có trích dẫn.'
   - q: 'Local Deep Research có thể chạy hoàn toàn ngoại tuyến để đảm bảo quyền riêng tư không?'

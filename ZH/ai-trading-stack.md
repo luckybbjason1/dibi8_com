@@ -1,6 +1,6 @@
 ---
-title: 'AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市场）'
-description: '自托管 AI 交易 stack：ta-lib（信号）+ vectorbt（回测）+ freqtrade（执行）+ AI Trader（AI 策略层）+ Hyperliquid（perp DEX 场所）+ Polymarket Agents（预测市场）+ Minara（AI+crypto hub）。$30-150/月基础设施，真生产级量化管线，不是玩具。'
+title: "AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市场）"
+description: "自托管 AI 交易 stack：ta-lib（信号）+ vectorbt（回测）+ freqtrade（执行）+ AI Trader（AI 策略层）+ Hyperliquid（perp DEX 场所）+ Polymarket Agents（预测市场）+ Minara（AI+crypto hub）。$30-150/月基础设施，真生产级量化管线，不是玩具。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai 交易', 量化, 加密货币, hyperliquid, polymarket, stack, 合集]
-aliases: - /posts/ai-trading-stack/-
+categories: ["collections"]
+tags: ["ai 交易", "量化", "加密货币", "hyperliquid", "polymarket", "stack", "合集"]
+aliases:
+  - /posts/ai-trading-stack/-
 ---
 
 > ⚠️ **免责声明**：本文是构建 AI 交易 stack 的技术指南，**不是投资建议**。量化交易有实质性的资本损失风险。部署真金前在 paper / testnet 上充分测试。过去回测表现不预测未来收益。

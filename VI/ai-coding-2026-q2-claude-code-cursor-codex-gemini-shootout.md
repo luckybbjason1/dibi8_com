@@ -1,22 +1,23 @@
 ---
 title: 'AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro...
-description: 'Đánh giá ngang hàng 4 AI coding agent hàng đầu giữa 2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. Test thực tế 5 workflow trên cùng codebase 50K LOC TypeScript, hỗ trợ MCP, kinh tế context window, phân tích giá.'
+description: "Đánh giá ngang hàng 4 AI coding agent hàng đầu giữa 2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. Test thực tế 5 workflow trên cùng codebase 50K LOC TypeScript, hỗ trợ MCP, kinh tế context window, phân tích giá."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
-source_version: 'Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0'
+source_version: "Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0"
 licensing_model: 'Commercial / Mixed'
 license_type: 'Proprietary + Open-source CLIs'
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI / Google'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['claude-code', cursor, 'codex-cli', 'gemini-cli', 'ai-coding', agent, 2026]
-aliases: - /vi/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
+categories: ["dev-utils"]
+tags: ["claude-code", "cursor", "codex-cli", "gemini-cli", "ai-coding", "agent", "2026"]
+aliases:
+  - /vi/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/
 faq: - q: "AI coding agent nào tốt nhất Q2 2026?"
     a: "Không có người chiến thắng duy nhất. Claude Code 1.0 dẫn đầu refactor long-context (200K+ context, tool use mạnh). Cursor Pro thắng về raw IDE ergonomics và độ trễ tab-completion. OpenAI Codex CLI tối ưu cho workflow shell-heavy và tích hợp tốt với GPT-5. Gemini CLI rẻ nhất và có context window 1M+. Hầu hết developer dùng 2 trong 4 — thường là Claude Code + Cursor."
   - q: "Chi phí hàng tháng cho heavy user là bao nhiêu?"

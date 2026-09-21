@@ -1,26 +1,27 @@
 ---
-title: 'AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额'
-description: '开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额"
+description: "开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
-source_version: '1.0.0'
+source_version: "1.0.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'luckybbjason1/ai-token-monitor'
+github_repo: "luckybbjason1/ai-token-monitor"
 stars: 0
 maintainer: luckybbjason1
-last_maintained: '2026-06-06'
+last_maintained: "2026-06-06"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai token监控', claude配额, gemini配额追踪, 'grok token', 'kimi api', conky小工具, linux桌面, 开源, python, 开发者工具]
-aliases: - /zh/posts/ai-token-monitor-conky-linux/
+categories: ["dev-utils"]
+tags: ["ai token监控", "claude配额", "gemini配额追踪", "grok token", "kimi api", "conky小工具", "linux桌面", "开源", "python", "开发者工具"]
+aliases:
+  - /zh/posts/ai-token-monitor-conky-linux/
 faqs: - q: 'AI Token Monitor 支持 macOS 或 Windows 吗？'
     a: '目前桌面显示层依赖 Conky，仅支持 Linux。核心 Python 脚本（api_fetcher.py）可在任意操作系统运行，但视觉渲染需要 Conky。仓库中有基于 tkinter 的跨平台版本（monitor.py），但在 GNOME 环境下无边框窗口可能不可见，属实验性功能。'
   - q: '工具如何读取 Claude API 的 Token 余额？'

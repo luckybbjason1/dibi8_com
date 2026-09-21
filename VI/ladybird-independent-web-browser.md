@@ -23,7 +23,8 @@ maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/ladybird-independent-web-browser/
+aliases:
+  - /vi/posts/ladybird-independent-web-browser/
 faqs: - q: 'Trình duyệt Ladybird là gì?'
     a: 'Ladybird là một trình duyệt web hoàn toàn độc lập, được xây dựng từ đầu mà không dựa trên Chromium, Firefox hay bất kỳ engine trình duyệt hiện có nào. Nó sử dụng engine kết xuất riêng (LibWeb) và engine JavaScript riêng (LibJS), được viết bằng C++.'
   - q: 'Ai là người tạo ra trình duyệt Ladybird?'

@@ -1,22 +1,23 @@
 ---
 title: 'LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực...
-description: 'Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức sử dụng bộ nhớ, thời gian thiết lập, và đâu là lựa chọn phù hợp cho nghiệp dư so với triển khai sản xuất tự lưu trữ.'
+description: "Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức sử dụng bộ nhớ, thời gian thiết lập, và đâu là lựa chọn phù hợp cho nghiệp dư so với triển khai sản xuất tự lưu trữ."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: Framework LLM
-source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
+source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"
 licensing_model: Mã Nguồn Mở
 license_type: 'MIT / Apache-2.0'
-github_repo: 'https://github.com/ollama/ollama'
+github_repo: "https://github.com/ollama/ollama"
 stars: 95000
 maintainer: 'Ollama (jmorganca) / vLLM (vllm-project) / LocalAI (mudler)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases: - /vi/posts/self-hosted-llm-2026-ollama-vllm-localai/
+categories: ["llm-frameworks"]
+tags: ["self-hosted", "llm", "ollama", "vllm", "localai", "inference", "2026"]
+aliases:
+  - /vi/posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq: - q: "Stack LLM tự lưu trữ nào tốt nhất vào năm 2026?"
     a: "Tùy vào workload. Ollama cho nghiệp dư/dev (thiết lập dễ nhất, đơn người dùng). vLLM cho sản xuất (throughput cao nhất, đa người dùng). LocalAI làm bản thay thế tương thích OpenAI API (hỗ trợ rộng nhất về mô hình, đích thay thế cho code OpenAI client hiện có)."
   - q: "Tôi thực sự cần phần cứng gì?"

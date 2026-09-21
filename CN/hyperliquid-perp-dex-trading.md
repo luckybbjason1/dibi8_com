@@ -1,6 +1,6 @@
 ---
 title: 'Hyperliquid 2026: The On-Chain Perpetual DEX Processing ...
-description: 'Comprehensive guide to Hyperliquid, the fully on-chain perpetual DEX processing $2B+ daily volume with 100+ trading pairs, up to 50x leverage, HyperEVM smart contracts, and Python SDK for bot integration.'
+description: "Comprehensive guide to Hyperliquid, the fully on-chain perpetual DEX processing $2B+ daily volume with 100+ trading pairs, up to 50x leverage, HyperEVM smart contracts, and Python SDK for bot integration."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hyperliquid-dex'
+github_repo: "https://github.com/hyperliquid-dex"
 stars: 0
 maintainer: hyperliquid
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'trading bot', hyperevm, 'python sdk', 'websocket api', clob, 'defi trading', 'algorithmic trading']
-aliases: - /posts/hyperliquid-perp-dex-trading/-
+categories: ["ai-trading"]
+tags: ["hyperliquid", "perpetual dex", "on-chain trading", "leverage trading", "trading bot", "hyperevm", "python sdk", "websocket api", "clob", "defi trading", "algorithmic trading"]
+aliases:
+  - /posts/hyperliquid-perp-dex-trading/-
 ---
 {{</* resource-info */>}}
 

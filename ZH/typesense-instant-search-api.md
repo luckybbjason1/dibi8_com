@@ -1,6 +1,6 @@
 ---
-title: 'Typesense 2026: 开源即时搜索 API 日处理 100 万次查询 — 自托管部署指南'
-description: '使用 Typesense 27.1 搭建容错型即时搜索，响应时间低于 50 毫秒。包含 Docker 部署、SDK 集成和生产环境基准测试的完整步骤指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Typesense 2026: 开源即时搜索 API 日处理 100 万次查询 — 自托管部署指南"
+description: "使用 Typesense 27.1 搭建容错型即时搜索，响应时间低于 50 毫秒。包含 Docker 部署、SDK 集成和生产环境基准测试的完整步骤指南。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'typesense/typesense'
+github_repo: "typesense/typesense"
 stars: 23200
 maintainer: typesense
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /zh/posts/typesense-instant-search-api/-
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /zh/posts/typesense-instant-search-api/-
 ---
 
 {{</* resource-info */>}}
@@ -29,9 +30,9 @@ aliases: - /zh/posts/typesense-instant-search-api/-
 
 2026 年，用户期望搜索结果在他们**敲完键盘之前**就已经出现。如果你的应用搜索响应时间超过 100 毫秒，你正在流失用户。Akamai 的一项研究表明，**搜索响应延迟 100 毫秒，转化率会下降 7%**。对于一个日处理 100 万次搜索的网站来说，这意味着每天损失 7 万次交互。
 
-大多数团队最初使用数据库的 `LIKE` 查询。1,000 行数据时没问题。到了 10 万行，查询时间变成 **500 毫秒到 2 秒**。到了 100 万行，数据库 CPU 飙到 100%，用户直接离开。你需要一个专用的搜索引擎。
+大多数团队最初使用数据库的 `LIKE` 查询。1", "000 行数据时没问题。到了 10 万行，查询时间变成 **500 毫秒到 2 秒**。到了 100 万行，数据库 CPU 飙到 100%，用户直接离开。你需要一个专用的搜索引擎。
 
-这就是 **Typesense** —— 一个开源、容错的搜索引擎，专为 **50 毫秒以内的即时搜索** 而设计。2026 年 4 月发布的 27.1 版本，单台普通服务器就能日处理 **100 万次以上搜索**。它采用 GPL-3.0 许可证，拥有 **23,200+ GitHub Stars**，支持 JavaScript、Python、Ruby、Go、PHP 等 SDK。本指南将带你完成生产级的 Typesense 自托管部署，**5 分钟内**即可运行。
+这就是 **Typesense** —— 一个开源、容错的搜索引擎，专为 **50 毫秒以内的即时搜索** 而设计。2026 年 4 月发布的 27.1 版本，单台普通服务器就能日处理 **100 万次以上搜索**。它采用 GPL-3.0 许可证，拥有 **23", "200+ GitHub Stars**，支持 JavaScript、Python、Ruby、Go、PHP 等 SDK。本指南将带你完成生产级的 Typesense 自托管部署，**5 分钟内**即可运行。
 
 ## 什么是 Typesense？
 
@@ -46,9 +47,9 @@ aliases: - /zh/posts/typesense-instant-search-api/-
 ---
 |
 | **最新版本** | 27.1（2026 年 4 月） |
-| **GitHub Stars** | 23,200+ |
+| **GitHub Stars** | 23", "200+ |
 | **许可证** | GPL-3.0 |
-| **维护者** | Typesense, Inc. |
+| **维护者** | Typesense", "Inc. |
 | **开发语言** | C++（高性能） |
 | **API 风格** | HTTP RESTful JSON |
 | **官方 SDK** | JavaScript、Python、Ruby、Go、PHP、Dart、Swift、.NET |
@@ -125,16 +126,8 @@ curl -s "http://localhost:8108/collections" \
   -H "Content-Type: application/json" \
   -H "X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY" \
   -d '{
-    "name": "products",
-    "fields": [
-      { "name": "name", "type": "string", "facet": false },
-      { "name": "description", "type": "string", "facet": false },
-      { "name": "price", "type": "float", "facet": true, "sort": true },
-      { "name": "category", "type": "string", "facet": true },
-      { "name": "rating", "type": "float", "facet": true, "sort": true },
-      { "name": "in_stock", "type": "bool", "facet": true },
-      { "name": "location", "type": "geopoint" }
-    ],
+    "name": "products", "fields": [
+      { "name": "name", "type": "string", "facet": false }", "{ "name": "description", "type": "string", "facet": false }", "{ "name": "price", "type": "float", "facet": true", "sort": true }", "{ "name": "category", "type": "string", "facet": true }", "{ "name": "rating", "type": "float", "facet": true", "sort": true }", "{ "name": "in_stock", "type": "bool", "facet": true }", "{ "name": "location", "type": "geopoint" }"],
     "default_sorting_field": "rating"
   }' | jq .
 ```

@@ -1,5 +1,4 @@
 ---
-lang: vi
 slug: openmontage-agentic-video-production-system
 title: "Đánh giá OpenMontage: Hệ thống Sản xuất Video Tự chủ Mã ...
 description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. 12 production pipelines, 52 tools, 500+ agent skills. Turn any AI coding assistant into a full video studio — from animated explainers to cinematic trailers to real-footage documentaries. Zero API keys needed for basic output."
@@ -19,12 +18,13 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/calesthio/OpenMontage'
-last_maintained: '2026-06-21'
+github_repo: "https://github.com/calesthio/OpenMontage"
+last_maintained: "2026-06-21"
 draft: false
-categories: ['ai-tools']
+categories: ["ai-tools"]
 tags: ["mởmontage", "video có tính chủ động", "sản xuất video bằng ai", "sự di chuyển", "khung siêu", "tạo video", "mã nguồn mở", "claude-code", "con trỏ", "đa tác nhân", "phim tài liệu", "hoạt hình"]
-aliases: - /posts/openmontage-agentic-video-production-system/
+aliases:
+  - /posts/openmontage-agentic-video-production-system/
 faqs: - q: 'OpenMontage là gì?'
     a: 'OpenMontage là hệ thống sản xuất video tác nhân nguồn mở đầu tiên trên thế giới với 12 quy trình sản xuất, 52 công cụ sản xuất và hơn 500 kỹ năng tác nhân. Nó biến bất kỳ trợ lý lập trình AI nào (Claude Code, Cursor, Copilot, Windsurf hoặc Codex) thành một studio sản xuất video hoàn chỉnh. Khác với các bộ tạo video chỉ bằng một lệnh như Sora hay Runway, OpenMontage điều phối một quy trình sản xuất đầy đủ — nghiên cứu, viết kịch bản, tạo tài sản, chỉnh sửa và tổng hợp cuối cùng — thông qua các bản khai quạt quy trình có cấu trúc và các kỹ năng đạo diễn giai đoạn.'
   - q: 'OpenMontage khác Sora, Runway và Pika như thế nào?'

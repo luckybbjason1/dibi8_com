@@ -1,6 +1,6 @@
 ---
 title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so vớ...
-description: 'VoiceCraft là mô hình ngôn ngữ codec thần kinh zero-shot speech editing và TTS, tương thích với GPT-SoVITS, Coqui TTS, RVC. Hướng dẫn cài đặt, benchmark, triển khai Docker và bảng so sánh.'
+description: "VoiceCraft là mô hình ngôn ngữ codec thần kinh zero-shot speech editing và TTS, tương thích với GPT-SoVITS, Coqui TTS, RVC. Hướng dẫn cài đặt, benchmark, triển khai Docker và bảng so sánh."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jasonppy/VoiceCraft'
+github_repo: "https://github.com/jasonppy/VoiceCraft"
 stars: 8500
 maintainer: jasonppy
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [voicecraft, 'zero-shot-tts', 'chinh-sua-giong-noi', 'neural-codec', 'voice-cloning', 'ai-audio', docker, python]
-aliases: - /vi/posts/voicecraft/
+categories: ["ai-tools"]
+tags: ["voicecraft", "zero-shot-tts", "chinh-sua-giong-noi", "neural-codec", "voice-cloning", "ai-audio", "docker", "python"]
+aliases:
+  - /vi/posts/voicecraft/
 ---
 
 {{</* resource-info */>}}

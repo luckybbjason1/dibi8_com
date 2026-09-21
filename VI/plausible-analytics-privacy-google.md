@@ -1,6 +1,6 @@
 ---
 title: 'Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền R...
-description: 'Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, script tracking <1KB. Nhanh hơn Google Analytics 45 lần. Benchmark thực tế và Docker deployment.'
+description: "Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, script tracking <1KB. Nhanh hơn Google Analytics 45 lần. Benchmark thực tế và Docker deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'plausible/analytics'
+github_repo: "plausible/analytics"
 stars: 21000
 maintainer: plausible
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [plausible, analytics, 'quyền-riêng-tư', gdpr, 'thay-thế-google-analytics', 'tự-host', docker, elixir, nhẹ]
-aliases: - /vi/posts/plausible-analytics-privacy-google/
+categories: ["dev-utils"]
+tags: ["plausible", "analytics", "quyền-riêng-tư", "gdpr", "thay-thế-google-analytics", "tự-host", "docker", "elixir", "nhẹ"]
+aliases:
+  - /vi/posts/plausible-analytics-privacy-google/
 ---
 
 {{</* resource-info */>}}

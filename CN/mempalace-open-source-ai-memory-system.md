@@ -1,12 +1,12 @@
 ---
 title: 'MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
-description: 'MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves it with semantic search. Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent. ChromaDB backend, pluggable storage, 0 external API calls. Includes setup guide, benchmarks, and architecture breakdown.'
+description: "MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves it with semantic search. Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent. ChromaDB backend, pluggable storage, 0 external API calls. Includes setup guide, benchmarks, and architecture breakdown."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
-tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
-github_repo: 'https://github.com/MemPalace/mempalace'
+tags: ["ai-memory", "local-first", "mempalace", "semantic-search", "chromadb", "long-term-memory", "mcp-agent", "verbatim-storage"]
+github_repo: "https://github.com/MemPalace/mempalace"
 stars: 55206
 maintainer: 'MemPalace'
 license: MIT

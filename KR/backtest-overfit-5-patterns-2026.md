@@ -1,22 +1,23 @@
 ---
-title: '백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)'
-description: '옵티마이저 산출 전략 50+ 건의 실거래 결과를 바탕으로 5가지 뚜렷한 과적합 패턴을 정리했다: walk-forward 괴리, 레짐 플립, 파라미터 절벽, 인디케이터 스태킹, 생존 편향. 각 패턴마다 재현 가능한 합성 예시 + 탐지 신호를 함께 정리했다.'
+title: "백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)"
+description: "옵티마이저 산출 전략 50+ 건의 실거래 결과를 바탕으로 5가지 뚜렷한 과적합 패턴을 정리했다: walk-forward 괴리, 레짐 플립, 파라미터 절벽, 인디케이터 스태킹, 생존 편향. 각 패턴마다 재현 가능한 합성 예시 + 탐지 신호를 함께 정리했다."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
-source_version: 'pandas 2.2+ / vectorbt 0.27+'
+source_version: "pandas 2.2+ / vectorbt 0.27+"
 licensing_model: Open Source
 license_type: MIT
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
-aliases: - /kr/posts/backtest-overfit-5-patterns-2026/
+categories: ["ai-trading"]
+tags: ["backtest", "overfit", "quant", "walk-forward", "machine-learning", "2026"]
+aliases:
+  - /kr/posts/backtest-overfit-5-patterns-2026/
 faq: - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?"
     a: "두 가지 이유가 있다. 첫째, 모든 백테스트는 단일 표본이다 — '우주를 다시 돌릴' 수 없다. 둘째, 옵티마이저는 단일 표본에서 신호처럼 보이는 노이즈에 매우 잘 적합된다. Walk-forward 분석이 표본을 분할해 주지만, 대부분의 리테일 백테스터는 이 단계를 통째로 건너뛴다."
   - q: "가장 교활한 과적합 패턴은 무엇인가요?"

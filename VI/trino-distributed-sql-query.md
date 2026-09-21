@@ -1,6 +1,6 @@
 ---
 title: 'Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Li...
-description: 'Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấu hình 40+ connector, tối ưu hiệu suất và benchmark thực tế.'
+description: "Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấu hình 40+ connector, tối ưu hiệu suất và benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'trinodb/trino'
+github_repo: "trinodb/trino"
 stars: 11000
 maintainer: trinodb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [trino, presto, 'sql phân tán', 'big data', 'phân tích dữ liệu', 'data lake', hive, iceberg, 'query engine', 'tự host']
-aliases: - /vi/posts/trino-distributed-sql-query/
+categories: ["data-science"]
+tags: ["trino", "presto", "sql phân tán", "big data", "phân tích dữ liệu", "data lake", "hive", "iceberg", "query engine", "tự host"]
+aliases:
+  - /vi/posts/trino-distributed-sql-query/
 ---
 
 {{</* resource-info */>}}

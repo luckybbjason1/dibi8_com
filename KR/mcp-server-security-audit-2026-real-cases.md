@@ -1,22 +1,23 @@
 ---
-title: 'MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴'
-description: '프로덕션에서 인기 커뮤니티 MCP 서버 5종을 감사했다: GitHub, Slack, Postgres, Brave Search, Fetch. 구체적 취약점, 익스플로잇 시연, 서버당 5분이면 끝나는 8가지 설치 전 감사 체크리스트.'
+title: "MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴"
+description: "프로덕션에서 인기 커뮤니티 MCP 서버 5종을 감사했다: GitHub, Slack, Postgres, Brave Search, Fetch. 구체적 취약점, 익스플로잇 시연, 서버당 5분이면 끝나는 8가지 설치 전 감사 체크리스트."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Community + Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, security, audit, 'claude-code', 'supply-chain', 'agent-security', 2026]
-aliases: - /kr/posts/mcp-server-security-audit-2026-real-cases/
+categories: ["llm-frameworks"]
+tags: ["mcp", "security", "audit", "claude-code", "supply-chain", "agent-security", "2026"]
+aliases:
+  - /kr/posts/mcp-server-security-audit-2026-real-cases/
 faq: - q: "Anthropic이 유지보수하는 MCP 서버가 커뮤니티 서버보다 안전한가?"
     a: "그렇다, 실질적으로 안전하다. Anthropic 참조 서버(filesystem, git, github, fetch, sequentialthinking)는 내부 리뷰, 서명된 릴리스, 정의된 보안 모델을 갖고 있다. 커뮤니티 서버는 편차가 크다 — 일부는 감사를 받았지만 대부분은 그렇지 않다. Anthropic 버전이 있다면 기본값으로 선택하고, 커뮤니티 대안은 검증 전까지는 전체 로컬 권한을 가진 신뢰할 수 없는 코드로 취급하라."
   - q: "2026년 실제로 가장 큰 MCP 공격 패턴은 무엇인가?"

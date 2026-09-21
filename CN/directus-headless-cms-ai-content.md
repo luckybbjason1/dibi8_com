@@ -1,6 +1,6 @@
 ---
 title: 'Directus: The Open-Source Headless CMS Powering AI Conte...
-description: 'Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content versioning, AI content workflows, and self-hosted Docker deployment. REST and GraphQL API benchmarks.'
+description: "Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content versioning, AI content workflows, and self-hosted Docker deployment. REST and GraphQL API benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'directus/directus'
+github_repo: "directus/directus"
 stars: 29100
 maintainer: directus
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [directus, 'headless cms', 'content management', api, docker, 'open source', ai, graphql, rest, 'self-hosted']
-aliases: - /posts/directus-headless-cms-ai-content/-
+categories: ["dev-utils"]
+tags: ["directus", "headless cms", "content management", "api", "docker", "open source", "ai", "graphql", "rest", "self-hosted"]
+aliases:
+  - /posts/directus-headless-cms-ai-content/-
 ---
 {{</* resource-info */>}}
 
@@ -277,7 +278,7 @@ const client = createDirectus('http://localhost:8055')
 const articles = await client.request(
   readItems(articles, {
     filter: { status: { _eq: published } },
-    sort: ['-published_at'],
+    sort: [-published_at],
     limit: 10,
     fields: [id, title, seo_score, published_at]
   })
@@ -522,7 +523,7 @@ const adminPermissions = {
   role: 'admin-role-id',
   action: read,
   permissions: {},
-  fields: ['*'], // All fields
+  fields: [*], // All fields
   validation: null
 };
 ```

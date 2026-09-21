@@ -1,22 +1,23 @@
 ---
-title: 'ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板'
-description: 'ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板"
+description: "ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI 工具
-source_version: 'ComfyUI 2026.05'
+source_version: "ComfyUI 2026.05"
 licensing_model: 开源
 license_type: 'GPL-3.0'
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 106000
 maintainer: comfyanonymous
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'stable-diffusion', 'image-generation', workflows, 2026]
-aliases: - /zh/posts/comfyui-workflow-2026-5-production-templates/
+categories: ["ai-tools"]
+tags: ["comfyui", "stable-diffusion", "image-generation", "workflows", "2026"]
+aliases:
+  - /zh/posts/comfyui-workflow-2026-5-production-templates/
 faq: - q: "2026 年 ComfyUI 比 Stable Diffusion WebUI 更好用吗？"
     a: "在工作流自动化和生产场景下：是的，毫无悬念。ComfyUI 基于节点图，让复杂的多步流水线（放大 → 局部重绘 → ControlNet → 再次渲染）变得轻而易举。SD WebUI 更适合一次性出图。大多数职业 AI 艺术家两个都用。"
   - q: "需要什么样的硬件？"

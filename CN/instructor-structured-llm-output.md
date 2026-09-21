@@ -1,6 +1,6 @@
 ---
 title: 'Instructor: The Python Library That Forces LLMs to Outpu...
-description: 'Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guarantee valid, type-safe JSON responses using Pydantic models. Features retry logic, multi-provider support, and streaming.'
+description: "Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guarantee valid, type-safe JSON responses using Pydantic models. Features retry logic, multi-provider support, and streaming."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jxnl/instructor'
+github_repo: "https://github.com/jxnl/instructor"
 stars: 11000
 maintainer: jxnl
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [instructor]
-aliases: - /posts/instructor-structured-llm-output/-
+categories: ["llm-frameworks"]
+tags: ["instructor"]
+aliases:
+  - /posts/instructor-structured-llm-output/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
 title: 'Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
-description: 'Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, retry tự động, và server tự host. Triển khai pipeline dữ liệu trong 5 phút.'
+description: "Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, retry tự động, và server tự host. Triển khai pipeline dữ liệu trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,24 +12,25 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'PrefectHQ/prefect'
+github_repo: "PrefectHQ/prefect"
 stars: 18000
 maintainer: PrefectHQ
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /vi/posts/prefect-workflow-orchestration/
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /vi/posts/prefect-workflow-orchestration/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Cron Jobs Củɑ Bạn Là Một Quả Bom Hẹn Giờ
 
-Lúc 3:17 sáng, pipeline ETL quan trọng của bạn đã thất bại trong im lặng. File log là một bức tường text 400MB trên một server không ai kiểm tra. Dashboard downstream hiển thị dữ liệu cũ từ thứ Ba, nhưng hôm nay đã là thứ Năm. Team của bạn phát hiện ra sự cố 14 giờ sau đó trong một cuộc gọi với khách hàng. Đây không phải là sự cố. Đây là trạng thái mặc định của các workflow không được quản lý.
+Lúc 3:17 sáng", "pipeline ETL quan trọng của bạn đã thất bại trong im lặng. File log là một bức tường text 400MB trên một server không ai kiểm tra. Dashboard downstream hiển thị dữ liệu cũ từ thứ Ba", "nhưng hôm nay đã là thứ Năm. Team của bạn phát hiện ra sự cố 14 giờ sau đó trong một cuộc gọi với khách hàng. Đây không phải là sự cố. Đây là trạng thái mặc định của các workflow không được quản lý.
 
-Một [khảo sát data engineering 2025](https://prefect.io) cho thấy **72% lỗi pipeline dữ liệu không được phát hiện trong hơn 6 giờ**, và **lập lịch dựa trên cron vẫn là phương pháp điều phối chính cho 61% team**. Cron không retry các task thất bại. Nó không cảnh báo khi có vấn đề. Nó không cho bạn biết hệ thống downstream nào bị ảnh hưởng. Nó chỉ chạy lệnh và hy vọng mọi thứ tốt đẹp.
+Một [khảo sát data engineering 2025"](https://prefect.io) cho thấy **72% lỗi pipeline dữ liệu không được phát hiện trong hơn 6 giờ**, và **lập lịch dựa trên cron vẫn là phương pháp điều phối chính cho 61% team**. Cron không retry các task thất bại. Nó không cảnh báo khi có vấn đề. Nó không cho bạn biết hệ thống downstream nào bị ảnh hưởng. Nó chỉ chạy lệnh và hy vọng mọi thứ tốt đẹp.
 
 Prefect 3.x (v3.3.0, phát hành 2026-03-20) là một engine điều phối workflow Python-native được xây dựng để thay thế sự hỗn loạn này bằng các pipeline có cấu trúc, có thể quan sát, và có khả năng phục hồi. Với **~18,000 GitHub Stars**, giấy phép **Apache-2.0**, và kiến trúc async hiện đại, Prefect mang đến cho bạn **lập lịch task dưới 1 giây**, **tự động retry với exponential backoff**, **dashboard quan sát real-time**, và khả năng tự host toàn bộ control plane. Tất cả từ code Python thuần túy. Không cần YAML.
 

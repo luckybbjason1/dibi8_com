@@ -19,7 +19,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/howtocook-programmer-open-source-cookbook/
+aliases:
+  - /zh/posts/howtocook-programmer-open-source-cookbook/
 faqs: - q: '什么是 HowToCook？'
     a: 'HowToCook（程序员做饭指南）是由程序员 Anduin2017 创建的开源菜谱项目，收录了 297 道菜谱，以开发者习惯的精确和清晰方式编写，就像阅读技术文档一样。'
   - q: 'HowToCook 与传统菜谱有何不同？'

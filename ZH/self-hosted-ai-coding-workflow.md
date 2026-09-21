@@ -1,6 +1,6 @@
 ---
-title: '自托管 AI 编程工作流：2026 年 $6/月 完整 stack'
-description: '7 个组件的自托管 AI 编程 stack，用 $6/月 的基础设施替换掉 $290/月 的 SaaS 订阅（Cursor + Claude Code Pro + Copilot + Replit）。真实数字、真实配置、完整一步步组装指南。'
+title: "自托管 AI 编程工作流：2026 年 $6/月 完整 stack"
+description: "7 个组件的自托管 AI 编程 stack，用 $6/月 的基础设施替换掉 $290/月 的 SaaS 订阅（Cursor + Claude Code Pro + Copilot + Replit）。真实数字、真实配置、完整一步步组装指南。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [自托管, 'ai 编程', stack, 工作流, 合集]
-aliases: - /posts/self-hosted-ai-coding-workflow/-
+categories: ["collections"]
+tags: ["自托管", "ai 编程", "stack", "工作流", "合集"]
+aliases:
+  - /posts/self-hosted-ai-coding-workflow/-
 ---
 
 如果你正在付 $20/月 给 Cursor + $80/月 给 Claude Code Pro + $19/月 给 Copilot + $50/月 给 Replit credits + $120/月 给 OpenAI API 充值，你的 AI 编程月支出是 **$289/月**。12 个月就是 **$3,468** —— 而这些工具你不拥有、不能审计、随时可能被限流或停服。

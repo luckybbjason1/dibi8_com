@@ -1,26 +1,27 @@
 ---
 title: 'rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills...
-description: 'rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context. 60–90% token savings across 100+ commands and 13 AI coding tools (Claude Code, Cursor, Copilot, Codex, Gemini CLI). MIT licensed, <10ms overhead, 30-second install.'
+description: "rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your LLM context. 60–90% token savings across 100+ commands and 13 AI coding tools (Claude Code, Cursor, Copilot, Codex, Gemini CLI). MIT licensed, <10ms overhead, 30-second install."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
-source_version: '0.28.2'
+source_version: "0.28.2"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/rtk-ai/rtk/releases'
 backup_url: ''
-github_repo: 'https://github.com/rtk-ai/rtk'
+github_repo: "https://github.com/rtk-ai/rtk"
 stars: 0
 maintainer: 'rtk-ai'
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rtk, rust, cli, llm, 'token-optimization', 'ai-coding', 'claude-code', cursor, copilot, 'cost-optimization', 'open-source', 'developer-tools']
-aliases: - /posts/rtk/
+categories: ["llm-frameworks"]
+tags: ["rtk", "rust", "cli", "llm", "token-optimization", "ai-coding", "claude-code", "cursor", "copilot", "cost-optimization", "open-source", "developer-tools"]
+aliases:
+  - /posts/rtk/
 - /resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/
 faqs: - q: "What is rtk and how much can it save on AI coding bills?"
     a: "rtk is an open-source Rust CLI proxy that compresses command output before it reaches your AI agent's context window. It cuts LLM token consumption by 60-90% across 13 AI coding tools (Claude Code, Cursor, GitHub Copilot, Gemini CLI, etc.). Real benchmark: $400/month Claude Code bill drops to ~$80, with <10ms latency overhead. MIT licensed. 30-second install."

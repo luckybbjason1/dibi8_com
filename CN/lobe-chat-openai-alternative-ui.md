@@ -1,6 +1,6 @@
 ---
 title: 'Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...
-description: 'Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system, PWA, multi-language UI. Complete Docker setup guide with benchmarks and comparisons.'
+description: "Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system, PWA, multi-language UI. Complete Docker setup guide with benchmarks and comparisons."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'lobehub/lobe-chat'
+github_repo: "lobehub/lobe-chat"
 stars: 60000
 maintainer: lobehub
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['lobe chat', chatgpt, 'openai alternative', llm, 'self-hosted', docker, pwa, 'plugin system', ai, 'chat ui']
-aliases: - /posts/lobe-chat-openai-alternative-ui/-
+categories: ["ai-tools"]
+tags: ["lobe chat", "chatgpt", "openai alternative", "llm", "self-hosted", "docker", "pwa", "plugin system", "ai", "chat ui"]
+aliases:
+  - /posts/lobe-chat-openai-alternative-ui/-
 ---
 {{</* resource-info */>}}
 

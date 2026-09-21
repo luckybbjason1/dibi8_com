@@ -1,26 +1,27 @@
 ---
 title: 'Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...
-description: 'Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docker command gives you chat, agents, deep research, email triage, calendar, notes, and a model cookbook — all on your own hardware. This guide covers installation, key features, and how it stacks up against ChatGPT Plus and Claude.ai.'
+description: "Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docker command gives you chat, agents, deep research, email triage, calendar, notes, and a model cookbook — all on your own hardware. This guide covers installation, key features, and how it stacks up against ChatGPT Plus and Claude.ai."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
-source_version: '1.0'
+source_version: "1.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/pewdiepie-archdaemon/odysseus'
 backup_url: ''
-github_repo: 'pewdiepie-archdaemon/odysseus'
+github_repo: "pewdiepie-archdaemon/odysseus"
 stars: 63159
 maintainer: 'pewdiepie-archdaemon'
-last_maintained: '2026-06-08'
+last_maintained: "2026-06-08"
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
-categories: ['ai-tools']
-tags: [odysseus, 'self-hosted ai', 'ai workspace', 'local llm', privacy, docker, 'open source', 'chatgpt alternative', ollama, 'deep research']
-aliases: - /posts/odysseus-self-hosted-ai-workspace-2026/
+categories: ["ai-tools"]
+tags: ["odysseus", "self-hosted ai", "ai workspace", "local llm", "privacy", "docker", "open source", "chatgpt alternative", "ollama", "deep research"]
+aliases:
+  - /posts/odysseus-self-hosted-ai-workspace-2026/
 faqs: - q: 'Does Odysseus require a GPU?'
     a: 'No. Odysseus itself is lightweight. The GPU requirement only applies if you want to run local models via the Cookbook feature. You can connect to remote APIs (OpenAI, Anthropic, OpenRouter) or a separate Ollama instance without any local GPU.'
   - q: 'How is Odysseus different from Open WebUI?'

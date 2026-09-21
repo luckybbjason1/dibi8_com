@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/
+aliases:
+  - /zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/
 - /zh/posts/agent-skills-production-grade-ai-coding/
 faqs: - q: 'Addy Osmani 开发的 Agent Skills 是什么？'
     a: 'Agent Skills 是一个开源合集，包含 20 项生产级工程技能和 7 个斜杠命令，把资深工程师的工作流、质量门禁和最佳实践编码固化下来，供 AI 编码智能体使用。它由 Addy Osmani 打造，覆盖完整的软件开发生命周期：DEFINE、PLAN、BUILD、VERIFY、REVIEW、SHIP。'

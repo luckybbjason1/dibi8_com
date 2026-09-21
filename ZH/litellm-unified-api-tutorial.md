@@ -1,6 +1,6 @@
 ---
-title: 'LiteLLM统一调用多模型教程2025：一个API接入100+大模型'
-description: 'LiteLLM完整教程：用统一API调用OpenAI、Anthropic、Gemini等100+模型。涵盖代理部署、负载均衡、成本优化等企业级实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "LiteLLM统一调用多模型教程2025：一个API接入100+大模型"
+description: "LiteLLM完整教程：用统一API调用OpenAI、Anthropic、Gemini等100+模型。涵盖代理部署、负载均衡、成本优化等企业级实践。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/litellm-unified-api-tutorial/-
+aliases:
+  - /posts/litellm-unified-api-tutorial/-
 ---
 
 {</* resource-info */>}

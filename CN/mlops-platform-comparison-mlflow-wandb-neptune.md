@@ -1,6 +1,6 @@
 ---
 title: 'MLflow vs Weights & Biases vs Neptune: MLOps Experiment ...
-description: 'Compare MLflow, Weights & Biases, and Neptune for MLOps experiment tracking. Pricing, features, deployment options, and LLM support analyzed.'
+description: "Compare MLflow, Weights & Biases, and Neptune for MLOps experiment tracking. Pricing, features, deployment options, and LLM support analyzed."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/mlops-platform-comparison-mlflow-wandb-neptune/
+aliases:
+  - /posts/mlops-platform-comparison-mlflow-wandb-neptune/
 ---
 # MLflow vs Weights & Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024
 
@@ -267,14 +268,14 @@ X_train, X_test, y_train, y_test = train_test_split(
     iris.data, iris.target, test_size=0.2, random_state=42
 )
 
-run['parameters/n_estimators'] = 100
-run['parameters/max_depth'] = 5
+run[parameters/n_estimators] = 100
+run[parameters/max_depth] = 5
 
 clf = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
 clf.fit(X_train, y_train)
 accuracy = accuracy_score(y_test, clf.predict(X_test))
 
-run['metrics/accuracy'] = accuracy
+run[metrics/accuracy] = accuracy
 run.stop()
 ```
 

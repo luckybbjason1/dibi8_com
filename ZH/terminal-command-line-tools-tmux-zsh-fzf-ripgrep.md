@@ -1,6 +1,6 @@
 ---
-title: '终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南'
-description: '从zsh到tmux，从fzf到ripgrep，打造现代化终端工作流。2025年开发者必备的CLI效率工具完整配置指南。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南"
+description: "从zsh到tmux，从fzf到ripgrep，打造现代化终端工作流。2025年开发者必备的CLI效率工具完整配置指南。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
+aliases:
+  - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
 ---
 
 {</* resource-info */>}

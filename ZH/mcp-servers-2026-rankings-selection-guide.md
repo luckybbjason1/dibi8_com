@@ -1,26 +1,27 @@
 ---
-title: 'MCP 服务器 2026: 100+ 生态地图 + 选型决策树'
-description: 'Model Context Protocol 生态在 2026 年中突破 1000+ 公开服务器。本指南按类目排名前 30 个，解释 stdio、HTTP/SSE 和 OAuth-bridged 服务器的架构权衡，并给出不淹没在注册表中的选型决策树。'
+title: "MCP 服务器 2026: 100+ 生态地图 + 选型决策树"
+description: "Model Context Protocol 生态在 2026 年中突破 1000+ 公开服务器。本指南按类目排名前 30 个，解释 stdio、HTTP/SSE 和 OAuth-bridged 服务器的架构权衡，并给出不淹没在注册表中的选型决策树。"
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
-source_version: 'MCP 2025-06 spec'
+source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: 'Various (mostly MIT / Apache-2.0)'
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + Community'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mcp, 'model-context-protocol', 'claude-code', 'ai-agents', 开发者工具, 集成, 2026]
-aliases: - /zh/posts/mcp-servers-2026-rankings-selection-guide/
+categories: ["llm-frameworks"]
+tags: ["mcp", "model-context-protocol", "claude-code", "ai-agents", "开发者工具", "集成", "2026"]
+aliases:
+  - /zh/posts/mcp-servers-2026-rankings-selection-guide/
 faq: - q: "什么是 MCP？为什么 2026 年这么重要？"
     a: "Model Context Protocol（MCP）是 Anthropic 2024 年底开源的协议，用于连接 AI agent 到外部工具、数据源和服务。2026 年它成为事实上的 AI agent 插件标准，被 Claude Code、Cursor、Codex CLI、Gemini CLI 等主流 AI 编码 agent 支持。生态从 2024 年底约 30 个服务器增长到 2026 年中 1000+ 公开服务器。"
   - q: "stdio、HTTP 还是 SSE-based MCP server 怎么选？"

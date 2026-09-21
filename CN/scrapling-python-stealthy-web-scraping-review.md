@@ -1,7 +1,7 @@
 ---
 title: 'Scrapling Reviewed: A Faster, Stealthier Take on Python ...
-description: 'Scrapling review: Python stealthy web scraping library. Bypass anti-bot. Comprehensive guide covering features, pricing, and best practices for 2026.
-  measures, handle dynamic content and scrape at scale with ease.'
+description: "Scrapling review: Python stealthy web scraping library. Bypass anti-bot. Comprehensive guide covering features, pricing, and best practices for 2026.
+  measures, handle dynamic content and scrape at scale with ease."
 date: 2026-05-15 04:20:25+09:00
 lastmod: 2026-05-15 04:20:25+09:00
 tech_stack: - Go
@@ -22,7 +22,8 @@ maintainer: "D4Vinci"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /en/posts/scrapling-python-stealthy-web-scraping-review/
+aliases:
+  - /en/posts/scrapling-python-stealthy-web-scraping-review/
 - /posts/scrapling-python-stealthy-web-scraping-review/
 faqs: - q: 'What is Scrapling in Python?'
     a: 'Scrapling is a Python 3.10+ web scraping framework that wraps three fetching backends behind one consistent selector API: plain HTTP with TLS fingerprint impersonation, a stealth-mode anti-detection browser, and a full Playwright-driven browser. It combines Scrapy-style spidering, curl_cffi-style TLS fingerprinting, and an undetected Playwright in a single import.'

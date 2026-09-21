@@ -1,26 +1,27 @@
 ---
-title: 'eigenlayer-restaking-defi'
-description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "eigenlayer-restaking-defi"
+description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
-source_version: ''
+source_version: "'
 licensing_model: Open Source
 license_type: BUSL-1.1
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Layr-Labs/eigenlayer-contracts'
+github_repo: "https://github.com/Layr-Labs/eigenlayer-contracts"
 stars: 800
 maintainer: 'Layr-Labs'
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [eigenlayer]
-aliases: - /kr/posts/eigenlayer-restaking-defi/
+categories: ["ai-trading"]
+tags: ["eigenlayer"]
+aliases:
+  - /kr/posts/eigenlayer-restaking-defi/
 ---
 
 {{</* resource-info */>}}

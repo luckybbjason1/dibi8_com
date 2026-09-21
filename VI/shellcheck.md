@@ -1,6 +1,6 @@
 ---
 title: 'ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
-description: 'ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Actions, VS Code. Bao gồm cài đặt, cấu hình CI/CD, và tăng cường production.'
+description: "ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Actions, VS Code. Bao gồm cài đặt, cấu hình CI/CD, và tăng cường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/koalaman/shellcheck'
+github_repo: "https://github.com/koalaman/shellcheck"
 stars: 39456
 maintainer: koalaman
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [shellcheck, bash, 'phân-tích-tĩnh', linting, 'shell-script', devops, 'ci-cd', docker]
-aliases: - /vi/posts/shellcheck/
+categories: ["dev-utils"]
+tags: ["shellcheck", "bash", "phân-tích-tĩnh", "linting", "shell-script", "devops", "ci-cd", "docker"]
+aliases:
+  - /vi/posts/shellcheck/
 ---
 
 {{</* resource-info */>}}

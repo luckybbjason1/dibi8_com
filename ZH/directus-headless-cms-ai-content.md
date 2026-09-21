@@ -1,6 +1,6 @@
 ---
-title: 'Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南'
-description: 'Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南"
+description: "Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准测试。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'directus/directus'
+github_repo: "directus/directus"
 stars: 29100
 maintainer: directus
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [directus, 'headless cms', 内容管理, api, docker, 开源, ai, graphql, rest, 自托管]
-aliases: - /zh/posts/directus-headless-cms-ai-content/-
+categories: ["dev-utils"]
+tags: ["directus", "headless cms", "内容管理", "api", "docker", "开源", "ai", "graphql", "rest", "自托管"]
+aliases:
+  - /zh/posts/directus-headless-cms-ai-content/-
 ---
 
 {{</* resource-info */>}}

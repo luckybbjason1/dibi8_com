@@ -1,10 +1,10 @@
 ---
-title: '2026 年最佳免费 MCP 工具 Top 10：精选 Model Context Protocol 服务器'
-description: '2026 年 10 款最佳免费 MCP 服务器——文件系统、网页搜索、记忆、GitHub、数据库等，全部开源零成本，适配 Claude、Cursor 和所有支持 MCP 的 AI 客户端。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026 年最佳免费 MCP 工具 Top 10：精选 Model Context Protocol 服务器"
+description: "2026 年 10 款最佳免费 MCP 服务器——文件系统、网页搜索、记忆、GitHub、数据库等，全部开源零成本，适配 Claude、Cursor 和所有支持 MCP 的 AI 客户端。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [mcp, 模型上下文协议, 免费mcp工具, mcp服务器, claude-mcp, 开源ai, ai工具]
-categories: [tools]
+tags: ["mcp", "模型上下文协议", "免费mcp工具", "mcp服务器", "claude-mcp", "开源ai", "ai工具"]
+categories: ["tools"]
 faqs: - q: 'MCP 是什么，为什么重要？'
     a: 'MCP（模型上下文协议）是 Anthropic 推出的开放标准，让 Claude 等 AI 模型以统一方式连接外部工具、数据库和服务。过去每个 AI 应用都要自己搭集成，MCP 提供了一个通用连接器。MCP 服务器暴露能力（文件读写、网页搜索、数据库查询），任何支持 MCP 的 AI 客户端都能调用。'
   - q: '这些 MCP 工具真的免费吗？'

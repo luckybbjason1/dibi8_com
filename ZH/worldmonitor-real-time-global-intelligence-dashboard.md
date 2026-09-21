@@ -5,7 +5,7 @@ date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-tools
-tags: [ai, 仪表盘, 地缘政治, 监控, 新闻, 开源, osint, palantir, 态势感知]
+tags: ["ai", "仪表盘", "地缘政治", "监控", "新闻", "开源", "osint", "palantir", "态势感知"]
 slug: worldmonitor-real-time-global-intelligence-dashboard
 featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
 github_repo: https://github.com/WorldMonitorHQ/worldmonitor
@@ -133,27 +133,27 @@ WorldMonitor 支持多种数据源类型。在 `config.yaml` 中配置它们：
 data_sources: rss_feeds: enabled: true
     sources: - name: "Reuters"
         url: "https://feeds.reuters.com/reuters/worldNews"
-        categories: ["politics", "business"]
+categories: ["politics", "business"]
         refresh_interval: 300
       - name: "BBC World"
         url: "http://feeds.bbci.co.uk/news/world/rss.xml"
-        categories: ["politics", "health"]
+categories: ["politics", "health"]
         refresh_interval: 300
       - name: "Al Jazeera"
         url: "https://www.aljazeera.com/xml/rss/all.xml"
-        categories: ["politics", "conflict"]
+categories: ["politics", "conflict"]
         refresh_interval: 600
 
   api_feeds: enabled: true
     sources: - name: "GDELT"
         api_key: "${GDELT_API_KEY}"
         endpoint: "https://api.gdeltproject.org/api/v2/event/doc"
-        categories: ["conflict", "political"]
+categories: ["conflict", "political"]
         refresh_interval: 900
       - name: "ACLED"
         api_key: "${ACLED_API_KEY}"
         endpoint: "https://api.acled.info/v1/events"
-        categories: ["conflict", "protest"]
+categories: ["conflict", "protest"]
         refresh_interval: 3600
 
   web_scrapers: enabled: true

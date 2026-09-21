@@ -1,5 +1,5 @@
 ---
-title: 'Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상'
+title: "Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상"
 description: Pixelle-Video는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. 주제를 입력하면 자동으로 스크립트, AI. Comprehensive guide covering features, pricing, and best practices for 2026.
   이미지, 음성 해설, 배경음악이 포함된 완성된 영상을 생성합니다.
 date: 2026-05-15 04:20:25+09:00
@@ -19,7 +19,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/pixelle-video-ai-short-video-generator/
+aliases:
+  - /ko/posts/pixelle-video-ai-short-video-generator/
 faqs: - q: 'Pixelle-Video란 무엇인가요?'
     a: 'Pixelle-Video는 단 하나의 주제를 입력하면 완성된 짧은 동영상을 자동으로 만들어 주는 오픈소스 MIT 라이선스 AI 엔진입니다. 하나의 입력으로 스크립트 작성, 장면에 맞는 AI 이미지 또는 영상 생성, TTS를 이용한 보이스오버 합성, 배경음악 추가까지 자동으로 처리한 뒤 최종 영상을 렌더링합니다.'
   - q: 'Pixelle-Video는 무료이고 오픈소스인가요?'

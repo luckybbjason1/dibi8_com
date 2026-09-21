@@ -1,22 +1,23 @@
 ---
 title: '2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드...
-description: '동일한 500만 벡터 워크로드로 Qdrant, Weaviate, Milvus를 실측했습니다. 레이턴시, 처리량, 메모리, 설치 난이도. 프로토타입과 프로덕션 각각 어디에 적합한지, 그리고 언제 벡터 DB 대신 SQLite FTS5를 써야 하는지 정리합니다.'
+description: "동일한 500만 벡터 워크로드로 Qdrant, Weaviate, Milvus를 실측했습니다. 레이턴시, 처리량, 메모리, 설치 난이도. 프로토타입과 프로덕션 각각 어디에 적합한지, 그리고 언제 벡터 DB 대신 SQLite FTS5를 써야 하는지 정리합니다."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
-source_version: 'Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5'
+source_version: "Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5"
 licensing_model: Open Source
 license_type: 'Apache-2.0'
-github_repo: 'https://github.com/qdrant/qdrant'
+github_repo: "https://github.com/qdrant/qdrant"
 stars: 25000
 maintainer: 'Qdrant / Weaviate / Zilliz'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['vector-database', qdrant, weaviate, milvus, rag, 2026]
-aliases: - /kr/posts/vector-db-2026-qdrant-weaviate-milvus/
+categories: ["llm-frameworks"]
+tags: ["vector-database", "qdrant", "weaviate", "milvus", "rag", "2026"]
+aliases:
+  - /kr/posts/vector-db-2026-qdrant-weaviate-milvus/
 faq: - q: "2026년에 가장 좋은 벡터 DB는?"
     a: "개인 또는 소규모 팀 RAG에는 Qdrant(가장 단순하고 단일 노드에서 가장 빠름). 하이브리드 검색(벡터 + 키워드 + 필터)이 필요한 프로덕션에는 Weaviate. 십억 단위 워크로드에는 Milvus(수평 확장 최강). 2026년 기준 세 가지 모두 안정적입니다."
   - q: "언제 벡터 DB 대신 SQLite FTS5를 써야 하나요?"

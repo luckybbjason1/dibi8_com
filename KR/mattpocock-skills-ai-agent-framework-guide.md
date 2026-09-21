@@ -5,8 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
-tags: [matt-pocock, skills, AI 에이전트, CLI 프레임워크, AI 코딩 도구, 에이전트 기능, 개발자 도구, 오픈소스]
-lang: ko
+tags: ["matt-pocock", "skills", "AI 에이전트", "CLI 프레임워크", "AI 코딩 도구", "에이전트 기능", "개발자 도구", "오픈소스"]
 ---
 
 ## 소개

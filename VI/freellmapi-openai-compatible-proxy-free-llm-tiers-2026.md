@@ -1,11 +1,11 @@
 ---
 title: 'FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điể...
-description: 'Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa thành một proxy duy nhất. ~1,7 tỷ token/tháng. Cài đặt Docker, tích hợp Claude Code, gọi công cụ, phát trực tiếp, chuỗi dự phòng.'
+description: "Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa thành một proxy duy nhất. ~1,7 tỷ token/tháng. Cài đặt Docker, tích hợp Claude Code, gọi công cụ, phát trực tiếp, chuỗi dự phòng."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'llm proxy', 'free tier', 'openai compatible', 'self-hosted', docker]
-categories: ['ai-tools']
+tags: ["ai tools", "llm proxy", "free tier", "openai compatible", "self-hosted", "docker"]
+categories: ["ai-tools"]
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 featureImage: 'https://images.pexels.com/photos/8644020/pexels-photo-8644020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/freellmapi']
@@ -13,16 +13,15 @@ sources: - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'
   - name: 'Official Site'
     url: 'https://freellmapi.co'
-lang: vi
 ---
 
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
-description: 'Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains.'
+description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
-tags: ['ai tools', 'llm proxy', 'free tier', 'openai compatible', 'self-hosted', docker]
-categories: ['ai-tools']
+tags: ["ai tools", "llm proxy", "free tier", "openai compatible", "self-hosted", "docker"]
+categories: ["ai-tools"]
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
 
 aliases: ['/freellmapi']

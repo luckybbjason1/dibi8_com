@@ -1,5 +1,5 @@
 ---
-title: 'OpenClaw 42개 실제 사용 사례: 사람들이 일상에서 AI 에이전트를 사용하는 방법'
+title: "OpenClaw 42개 실제 사용 사례: 사람들이 일상에서 AI 에이전트를 사용하는 방법"
 description: OpenClaw AI 에이전트의 42개 실제 사용 사례를 탐색하세요 — 소셜 미디어 자동화부터 게임 개발, 팟캐스트 제작 및. Comprehensive guide covering features, pricing, and best practices for 2026.
   자율 거래까지.
 date: 2026-05-15 04:20:25+09:00
@@ -20,7 +20,8 @@ maintainer: "openclaw"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/awesome-openclaw-usecases-ai-agent-daily-life/
+aliases:
+  - /ko/posts/awesome-openclaw-usecases-ai-agent-daily-life/
 faqs: - q: 'OpenClaw는 무엇에 사용되나요?'
     a: 'OpenClaw는 다단계 워크플로우를 실행하고, 외부 API와 연동하며, 여러 소스의 데이터를 처리하고, 최소한의 사람 개입으로 목표를 완수하는 자율 에이전트를 구축하기 위한 오픈소스 AI agent 프레임워크입니다. 소셜 미디어 자동화, 콘텐츠 제작, 생산성, 리서치, 트레이딩 등 다양한 분야에서 사용됩니다.'
   - q: 'OpenClaw는 AutoGPT, BabyAGI, AgentGPT와 어떻게 다른가요?'

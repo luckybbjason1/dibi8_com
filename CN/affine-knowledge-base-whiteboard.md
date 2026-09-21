@@ -1,6 +1,6 @@
 ---
 title: 'AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
-description: 'Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edgeless whiteboard, AI writing assistant, Docker setup in 5 minutes.'
+description: "Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edgeless whiteboard, AI writing assistant, Docker setup in 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'toeverything/AFFiNE'
+github_repo: "toeverything/AFFiNE"
 stars: 47000
 maintainer: toeverything
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [affine, 'knowledge-base', whiteboard, 'self-hosted', docker, 'notion-alternative', 'miro-alternative', crdt, 'local-first', 'ai-writing']
-aliases: - /posts/affine-knowledge-base-whiteboard/-
+categories: ["dev-utils"]
+tags: ["affine", "knowledge-base", "whiteboard", "self-hosted", "docker", "notion-alternative", "miro-alternative", "crdt", "local-first", "ai-writing"]
+aliases:
+  - /posts/affine-knowledge-base-whiteboard/-
 ---
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 

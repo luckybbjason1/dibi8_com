@@ -1,6 +1,6 @@
 ---
 title: 'Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ S...
-description: 'Atuin thay thế lịch sử shell bằng SQLite, ghi ngữ cảnh lệnh (mã thoát, thư mục, thờ gian), đồng bộ hóa lịch sử qua nhiều máy với mã hóa E2E. Hỗ trợ Bash, Zsh, Fish, Nushell. Bao gồm cài đặt, tự host, cấu hình và so sánh Atuin vs mcfly vs fzf vs Hstr.'
+description: "Atuin thay thế lịch sử shell bằng SQLite, ghi ngữ cảnh lệnh (mã thoát, thư mục, thờ gian), đồng bộ hóa lịch sử qua nhiều máy với mã hóa E2E. Hỗ trợ Bash, Zsh, Fish, Nushell. Bao gồm cài đặt, tự host, cấu hình và so sánh Atuin vs mcfly vs fzf vs Hstr."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/atuinsh/atuin'
+github_repo: "https://github.com/atuinsh/atuin"
 stars: 29794
 maintainer: atuinsh
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [atuin, 'lich-su-shell', 'cong-cu-cli', sqlite, rust, 'dong-bo', bash, zsh, fish]
-aliases: - /vi/posts/atuin/
+categories: ["dev-utils"]
+tags: ["atuin", "lich-su-shell", "cong-cu-cli", "sqlite", "rust", "dong-bo", "bash", "zsh", "fish"]
+aliases:
+  - /vi/posts/atuin/
 ---
 
 {{</* resource-info */>}}

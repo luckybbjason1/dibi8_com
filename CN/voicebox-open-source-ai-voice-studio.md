@@ -1,13 +1,13 @@
 ---
 title: 'VoiceBox: The Open-Source AI Voice Studio for Cloning, D...
-  description: 'A full-stack open-source AI voice studio that lets you clone any voice, generate speech, and dictate into any app. 33K stars. Runs locally on your machine with CUDA or Apple Silicon support.'
+  description: "A full-stack open-source AI voice studio that lets you clone any voice, generate speech, and dictate into any app. 33K stars. Runs locally on your machine with CUDA or Apple Silicon support."
   date: 2026-06-25
   lastmod: 2026-06-25
   draft: false
   lang: en
   github_repo: https://github.com/voicebox-ai/voicebox
   category: ai-tools
-  tags: ['ai', 'voice-ai', 'voice-clone', 'speech-to-text', 'text-to-speech', 'whisper', 'qwen3-tts', 'cuda', 'mlx']
+tags: ["ai", "voice-ai", "voice-clone", "speech-to-text", "text-to-speech", "whisper", "qwen3-tts", "cuda", "mlx"]
   slug: voicebox-open-source-ai-voice-studio
   featureImage: /images/articles/voicebox-open-source-ai-voice-studio-for-cloning-dictation-and-generation.png
   license: MIT---

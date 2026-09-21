@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: "mattpocock-skills-ai-agent-framework-guide"
 category: dev-utils
-tags: [matt-pocock, skills, AI agents, CLI framework, AI coding tools, agent capabilities, developer tools, open-source]
+tags: ["matt-pocock", "skills", "AI agents", "CLI framework", "AI coding tools", "agent capabilities", "developer tools", "open-source"]
 github_repo: "https://github.com/mattpocock/skills"
 stars: 122865
 maintainer: mattpocock

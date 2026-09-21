@@ -1,26 +1,27 @@
 ---
 title: 'Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...
-description: 'Hands-on review of moss-trade-bot-skills v1.0.26: a natural-language quant agent builder for Hyperliquid perps. Industrial-grade backtest engine with Decimal precision and depth-book modeling — but a Sharpe annualization bug and a textbook OVERFIT trap once you enable evolution. Setup walkthrough, OOS validation results, and the honest take on whether evolved params survive out-of-sample.'
+description: "Hands-on review of moss-trade-bot-skills v1.0.26: a natural-language quant agent builder for Hyperliquid perps. Industrial-grade backtest engine with Decimal precision and depth-book modeling — but a Sharpe annualization bug and a textbook OVERFIT trap once you enable evolution. Setup walkthrough, OOS validation results, and the honest take on whether evolved params survive out-of-sample."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
-source_version: 'v1.0.26'
+source_version: "v1.0.26"
 licensing_model: Open Source
 license_type: MIT-0
 file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/moss-site/moss-trade-bot-skills'
+github_repo: "https://github.com/moss-site/moss-trade-bot-skills"
 stars: 98
 maintainer: 'moss-site'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['ai-agent', quant, backtest, hyperliquid, perpetuals, 'open-source', overfitting, 'oos-validation']
-aliases: - /posts/moss-trade-bot-factory-2026-review/
+categories: ["ai-trading"]
+tags: ["ai-agent", "quant", "backtest", "hyperliquid", "perpetuals", "open-source", "overfitting", "oos-validation"]
+aliases:
+  - /posts/moss-trade-bot-factory-2026-review/
 faq: - q: "Is moss-trade-bot-factory safe to install?"
     a: "Yes for paper trading. Code audit confirms no eval/exec, HMAC-signed API calls that never upload your secret, MIT-0 license, and no wallet private key access. The skill is a quant strategy builder, not a custodial service. Live trading requires explicit bind to moss.site platform and connects to your own Hyperliquid wallet."
   - q: "What is the Sharpe annualization bug?"

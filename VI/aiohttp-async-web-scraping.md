@@ -1,6 +1,6 @@
 ---
 title: 'aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất...
-description: 'Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connection pooling, session management, rate limiting và triển khai production.'
+description: "Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connection pooling, session management, rate limiting và triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'aio-libs/aiohttp'
+github_repo: "aio-libs/aiohttp"
 stars: 15200
 maintainer: 'aio-libs'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [aiohttp, 'bất đồng bộ', 'web scraping', python, 'http client', asyncio]
-aliases: - /vi/posts/aiohttp-async-web-scraping/
+categories: ["dev-utils"]
+tags: ["aiohttp", "bất đồng bộ", "web scraping", "python", "http client", "asyncio"]
+aliases:
+  - /vi/posts/aiohttp-async-web-scraping/
 ---
 
 {{</* resource-info */>}}

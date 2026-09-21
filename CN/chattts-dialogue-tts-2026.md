@@ -1,6 +1,6 @@
 ---
 title: 'ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
-description: 'ChatTTS is the open-source TTS purpose-built for dialogue (not narration). 39.3k GitHub stars, 4 GB VRAM minimum, RTF 0.3 on RTX 4090, fine-grained prosodic control including laughter and pauses. Complete 2026 install + production setup guide.'
+description: "ChatTTS is the open-source TTS purpose-built for dialogue (not narration). 39.3k GitHub stars, 4 GB VRAM minimum, RTF 0.3 on RTX 4090, fine-grained prosodic control including laughter and pauses. Complete 2026 install + production setup guide."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -14,15 +14,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/2noise/ChatTTS'
+github_repo: "https://github.com/2noise/ChatTTS"
 stars: 39300
 maintainer: 2noise
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [chattts, tts, voice, dialogue, 'open-source']
-aliases: - /posts/chattts-dialogue-tts-2026/-
+categories: ["ai-tools"]
+tags: ["chattts", "tts", "voice", "dialogue", "open-source"]
+aliases:
+  - /posts/chattts-dialogue-tts-2026/-
 ---
 Most open-source TTS in 2026 still sounds like "1990s GPS narrator with extra reverb." **ChatTTS** is the first widely-adopted exception — a 39.3k-star generative speech model specifically trained for **dialogue**, not narration, with token-level control over laughter, pauses, interjections, and prosody that finally crosses the "doesn't make you wince" threshold.
 

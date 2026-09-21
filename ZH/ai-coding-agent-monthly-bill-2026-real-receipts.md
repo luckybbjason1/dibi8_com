@@ -1,22 +1,23 @@
 ---
 title: 'AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro...
-description: '实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任务成本拆解、各家何时回本、切换的临界点。'
+description: "实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任务成本拆解、各家何时回本、切换的临界点。"
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
-source_version: 'May 2026 30-day window'
+source_version: "May 2026 30-day window"
 licensing_model: Commercial
 license_type: Proprietary
 github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'claude-code', cursor, 'codex-cli', pricing, 2026]
-aliases: - /zh/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
+categories: ["dev-utils"]
+tags: ["ai-coding", "claude-code", "cursor", "codex-cli", "pricing", "2026"]
+aliases:
+  - /zh/posts/ai-coding-agent-monthly-bill-2026-real-receipts/
 faq: - q: "Claude Max（$200）相比 API 按量付费值不值？"
     a: "临界点：如果你每个工作日使用 Claude Code 超过约 3 小时，Max 划算。低于这个量，按量付费搭配 Sonnet 4.6 大约落在 $80-150 区间。超过 4 小时/天，相比 API 能实打实省下钱。"
   - q: "30 天追踪下来最大的意外是什么？"

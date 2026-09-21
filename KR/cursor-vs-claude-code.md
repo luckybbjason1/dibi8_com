@@ -1,10 +1,10 @@
 ---
-title: 'Cursor vs Claude Code 2026: 어떤 AI 코딩 도구가 더 좋은가?'
-description: 'Cursor와 Claude Code의 정면 비교 — 가격, 성능, 사용 사례, 마이그레이션 팁. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Cursor vs Claude Code 2026: 어떤 AI 코딩 도구가 더 좋은가?"
+description: "Cursor와 Claude Code의 정면 비교 — 가격, 성능, 사용 사례, 마이그레이션 팁. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [cursor, claude-code, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["cursor", "claude-code", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Cursor와 Claude Code 중 어느 쪽이 더 저렴한가요?'
     a: 'Cursor는 월 $20부터 시작합니다. Claude Code는 Anthropic API를 통한 토큰 단위 과금이며, 헤비 유저는 보통 월 $200-400를 씁니다. 예측 가능한 월 비용이라면 Cursor, 가끔 헤비하게 쓰면서 사용량을 제어할 수 있다면 Claude Code가 더 저렴할 수 있습니다.'
   - q: 'Cursor와 Claude Code를 함께 쓸 수 있나요?'

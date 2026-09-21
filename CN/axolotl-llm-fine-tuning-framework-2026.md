@@ -1,6 +1,6 @@
 ---
 title: 'Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...
-description: 'Axolotl is the open-source LLM fine-tuning framework with single-YAML config across full / LoRA / QLoRA / DPO / GRPO. 12k GitHub stars, Apache 2.0. Supports Llama / Mistral / Qwen / GLM / 10+ families. Complete 2026 install guide + when Axolotl beats Unsloth and raw HuggingFace TRL.'
+description: "Axolotl is the open-source LLM fine-tuning framework with single-YAML config across full / LoRA / QLoRA / DPO / GRPO. 12k GitHub stars, Apache 2.0. Supports Llama / Mistral / Qwen / GLM / 10+ families. Complete 2026 install guide + when Axolotl beats Unsloth and raw HuggingFace TRL."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -15,15 +15,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/axolotl-ai-cloud/axolotl'
+github_repo: "https://github.com/axolotl-ai-cloud/axolotl"
 stars: 12000
 maintainer: 'axolotl-ai-cloud'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [axolotl, 'fine-tuning', lora, qlora, dpo, 'open-source']
-aliases: - /posts/axolotl-llm-fine-tuning-framework-2026/-
+categories: ["llm-frameworks"]
+tags: ["axolotl", "fine-tuning", "lora", "qlora", "dpo", "open-source"]
+aliases:
+  - /posts/axolotl-llm-fine-tuning-framework-2026/-
 ---
 If you've ever tried to fine-tune a Llama model and ended up writing 300 lines of PyTorch + DeepSpeed config + Hugging Face Trainer wrapper, you've felt the gap **Axolotl** fills. One YAML file describes your entire fine-tuning run — model, dataset, LoRA config, hyperparams, distributed strategy — and Axolotl handles the rest.
 

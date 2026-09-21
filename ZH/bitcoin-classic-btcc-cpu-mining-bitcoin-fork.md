@@ -18,7 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+aliases:
+  - /zh/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
 faqs: - q: '普通 CPU 可以挖 Bitcoin-Classic（BTCC）吗？'
     a: '可以。BTCC 的设计初衷就是让普通家用电脑的 CPU 也能参与挖矿，无需 ASIC 矿机或专用 GPU。由于网络算力极低，普通 CPU 确实可以赚取区块奖励。'
   - q: 'Bitcoin-Classic（BTCC）的总供应量和区块奖励是多少？'

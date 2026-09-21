@@ -1,6 +1,6 @@
 ---
 title: 'Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperli...
-description: 'Minara là nền tảng giao dịch AI-native được xây dựng trên Hyperliquid, cho phép bạn đặt câu hỏi, nhận phân tích thị trường thời gian thực và thực hiện giao dịch crypto / cổ phiếu / hàng hóa trong một giao diện chat duy nhất. Đánh giá thực tế 2 tuần: hướng dẫn đăng ký, năm trường hợp sử dụng thực, phân tích giá, và mô hình kinh tế 10% hoa hồng giới thiệu + 20% Spark token rebate.'
+description: "Minara là nền tảng giao dịch AI-native được xây dựng trên Hyperliquid, cho phép bạn đặt câu hỏi, nhận phân tích thị trường thời gian thực và thực hiện giao dịch crypto / cổ phiếu / hàng hóa trong một giao diện chat duy nhất. Đánh giá thực tế 2 tuần: hướng dẫn đăng ký, năm trường hợp sử dụng thực, phân tích giá, và mô hình kinh tế 10% hoa hồng giới thiệu + 20% Spark token rebate."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'Minara'
-last_maintained: '2026-05-17'
+last_maintained: "2026-05-17"
 featureImage: ''
 draft: false
-aliases: - /posts/minara-ai-trading-hyperliquid-review-2026/
+aliases:
+  - /posts/minara-ai-trading-hyperliquid-review-2026/
 ---
 
 {{</* resource-info */>}}

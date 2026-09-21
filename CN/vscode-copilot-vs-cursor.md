@@ -1,10 +1,10 @@
 ---
 title: 'VS Code Copilot vs Cursor in 2026: Which AI Coding Tool ...
-description: 'Side-by-side breakdown of GitHub Copilot in VS Code (Microsoft) and Cursor — pricing $10 vs $20/mo, autocomplete vs agentic, enterprise integration. Updated 2026.'
+description: "Side-by-side breakdown of GitHub Copilot in VS Code (Microsoft) and Cursor — pricing $10 vs $20/mo, autocomplete vs agentic, enterprise integration. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [vscode, copilot, cursor, ai-coding, comparison, dev-tools, github]
-categories: [vs]
+tags: ["vscode", "copilot", "cursor", "ai-coding", "comparison", "dev-tools", "github"]
+categories: ["vs"]
 faqs: - q: 'Is GitHub Copilot or Cursor cheaper?'
     a: 'GitHub Copilot in VS Code is cheaper at $10/month for Individual versus Cursor''s $20/month Pro. Copilot Business is $19/user/month and Enterprise is $39/user/month. For pure cost, Copilot wins by half — but Cursor includes more aggressive agentic features in its single $20 tier.'
   - q: 'Which is better for agentic multi-file edits?'

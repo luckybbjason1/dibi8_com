@@ -1,22 +1,23 @@
 ---
 title: '2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI — 처리량·비용·구...
-description: '동일한 RTX 4090에서 Llama 3.3 70B로 Ollama, vLLM, LocalAI를 테스트했습니다. 실제 토큰/초, 메모리 사용량, 구축 시간, 그리고 취미용과 프로덕션 셀프 호스팅에서 무엇이 적합한지.'
+description: "동일한 RTX 4090에서 Llama 3.3 70B로 Ollama, vLLM, LocalAI를 테스트했습니다. 실제 토큰/초, 메모리 사용량, 구축 시간, 그리고 취미용과 프로덕션 셀프 호스팅에서 무엇이 적합한지."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM 프레임워크
-source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
+source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"
 licensing_model: 오픈 소스
 license_type: 'MIT / Apache-2.0'
-github_repo: 'https://github.com/ollama/ollama'
+github_repo: "https://github.com/ollama/ollama"
 stars: 95000
 maintainer: 'Ollama (jmorganca) / vLLM (vllm-project) / LocalAI (mudler)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases: - /kr/posts/self-hosted-llm-2026-ollama-vllm-localai/
+categories: ["llm-frameworks"]
+tags: ["self-hosted", "llm", "ollama", "vllm", "localai", "inference", "2026"]
+aliases:
+  - /kr/posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq: - q: "2026년 최고의 셀프 호스팅 LLM 스택은 무엇인가요?"
     a: "워크로드에 따라 다릅니다. 취미/개발용은 Ollama(가장 쉬운 구축, 단일 사용자). 프로덕션은 vLLM(최고 처리량, 멀티 사용자). OpenAI API 호환 대체품은 LocalAI(가장 광범위한 모델 지원, 기존 OpenAI 클라이언트 코드의 교체 대상)."
   - q: "실제로 어떤 하드웨어가 필요한가요?"

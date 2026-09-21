@@ -1,10 +1,10 @@
 ---
 title: 'Ollama vs LM Studio 2026: Trình chạy LLM cục bộ nào tốt ...
-description: 'So sánh trực tiếp Ollama và LM Studio — CLI vs GUI, thư viện mô hình, hỗ trợ GPU, API tương thích OpenAI, lượng tử hóa, tự host. Cập nhật 2026.'
+description: "So sánh trực tiếp Ollama và LM Studio — CLI vs GUI, thư viện mô hình, hỗ trợ GPU, API tương thích OpenAI, lượng tử hóa, tự host. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [ollama, lm-studio, local-llm, gguf, self-hosting, comparison]
-categories: [vs]
+tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]
+categories: ["vs"]
 faqs: - q: 'Ollama hay LM Studio tốt hơn cho người mới?'
     a: 'LM Studio thân thiện hơn với người mới hoàn toàn — đi kèm GUI bóng bẩy, trình duyệt mô hình trong ứng dụng và luồng click-to-load. Ollama là CLI-first (kiểu "docker run"); cài một dòng `ollama run llama3` nhanh cho dev nhưng người không dùng CLI sẽ vấp tường. Bắt đầu với LM Studio, chuyển sang Ollama khi muốn script hóa vào pipeline.'
   - q: 'Cái nào tốt hơn để phục vụ API cho app của tôi?'

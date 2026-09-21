@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/docuseal-open-source-docusign-alternative/
+aliases:
+  - /zh/posts/docuseal-open-source-docusign-alternative/
 faqs: - q: 'DocuSeal 是 DocuSign 的免费替代品吗？'
     a: '是的。DocuSeal 是一款开源、可自托管的文档签署平台，无需支付任何许可费用，而 DocuSign 每位用户每月收费 $10-$60。一家 100 人的公司通过自托管部署，三年内可节省约 94% 的费用。'
   - q: 'DocuSeal 使用什么许可证？可以用于商业用途吗？'

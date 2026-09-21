@@ -1,6 +1,6 @@
 ---
 title: 'AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Tradit...
-description: 'The complete free toolkit for SEO in the AI era: llms.txt generator + AI-crawler robots.txt + meta tags + Schema.org JSON-LD + hreflang + OG card preview. Covers both classic search (Google/Bing) and generative engines (ChatGPT, Claude, Perplexity). All browser-based, no signup.'
+description: "The complete free toolkit for SEO in the AI era: llms.txt generator + AI-crawler robots.txt + meta tags + Schema.org JSON-LD + hreflang + OG card preview. Covers both classic search (Google/Bing) and generative engines (ChatGPT, Claude, Perplexity). All browser-based, no signup."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - HTML
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases: - /posts/ai-seo-geo-toolkit-stack/
+categories: ["collections"]
+tags: ["seo", "geo", "llms.txt", "schema", "meta tags", "stack", "collection"]
+aliases:
+  - /posts/ai-seo-geo-toolkit-stack/
 faqs: - q: 'What is llms.txt and why does it matter for SEO in 2026?'
     a: 'llms.txt is the "robots.txt for AI" — a file that tells generative-engine crawlers like ChatGPT, Claude, and Perplexity how to read your site''s structure. It matters because generative engines are a new discovery surface, and being citable by AI search is the 2026 equivalent of ranking on Google''s page 1.'
   - q: 'How do I control which AI crawlers can access my website?'

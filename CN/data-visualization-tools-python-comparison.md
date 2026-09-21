@@ -1,6 +1,6 @@
 ---
 title: 'Matplotlib vs Seaborn vs Plotly vs Observable: Data Visu...
-description: 'Compare Matplotlib, Seaborn, Plotly, and Observable Plot for Python data visualization. Features, code examples, and use-case recommendations.'
+description: "Compare Matplotlib, Seaborn, Plotly, and Observable Plot for Python data visualization. Features, code examples, and use-case recommendations."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-visualization-tools-python-comparison/
+aliases:
+  - /posts/data-visualization-tools-python-comparison/
 ---
 # Matplotlib vs Seaborn vs Plotly vs Observable: Data Visualization Tool Guide 2024
 
@@ -44,7 +45,7 @@ Matplotlib's core strength is control. You can specify the exact position of eve
 ### Matplotlib Tips for Better Visuals
 
 - **Use style sheets.** Apply `plt.style.use('seaborn-v0_8-whitegrid')` or custom stylesheets to improve aesthetics without manual tweaking. Matplotlib includes 26 built-in styles.
-- **Configure rcParams globally.** Set default figure sizes, font families, and line widths in `matplotlibrc` or via `plt.rcParams['figure.figsize'] = (10, 6)` to avoid repeating parameters in every script.
+- **Configure rcParams globally.** Set default figure sizes, font families, and line widths in `matplotlibrc` or via `plt.rcParams[figure.figsize] = (10, 6)` to avoid repeating parameters in every script.
 - **Master subplots.** `plt.subplots()` with `gridspec_kw` creates complex layouts with shared axes and custom spacing. Use `constrained_layout=True` to prevent label overlap.
 - **Save in vector formats.** Export publication figures as PDF or SVG rather than PNG. Vector formats scale infinitely and maintain sharp text at any zoom level.
 - **Leverage the animation module.** The `matplotlib.animation` module creates time-series visualizations and algorithm demonstrations that export as GIFs or MP4s.

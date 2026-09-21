@@ -1,6 +1,6 @@
 ---
-title: 'bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less'
-description: 'bat 是带语法高亮和 Git 集成的 cat(1) 克隆。兼容 Rust、Git、Homebrew、Cargo。涵盖安装教程、性能基准测试、配置文件以及与 cat、less、ccat 的对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less"
+description: "bat 是带语法高亮和 Git 集成的 cat(1) 克隆。兼容 Rust、Git、Homebrew、Cargo。涵盖安装教程、性能基准测试、配置文件以及与 cat、less、ccat 的对比。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/sharkdp/bat'
+github_repo: "https://github.com/sharkdp/bat"
 stars: 58940
 maintainer: sharkdp
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [bat, 'cat 替代品', 语法高亮, 命令行工具, rust, 终端工具, 文件查看器, cli]
-aliases: - /zh/posts/bat/-
+categories: ["dev-utils"]
+tags: ["bat", "cat 替代品", "语法高亮", "命令行工具", "rust", "终端工具", "文件查看器", "cli"]
+aliases:
+  - /zh/posts/bat/-
 ---
 
 {{</* resource-info */>}}

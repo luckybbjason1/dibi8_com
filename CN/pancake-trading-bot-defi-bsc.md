@@ -1,6 +1,6 @@
 ---
 title: 'PancakeSwap Trading Bot 2026: Build Automated DeFi Strat...
-description: 'Build production-ready PancakeSwap trading bots on Binance Smart Chain. Web3.py integration, automated strategies, liquidity pool monitoring, MEV protection, and Python bot framework — with real 2026 benchmarks.'
+description: "Build production-ready PancakeSwap trading bots on Binance Smart Chain. Web3.py integration, automated strategies, liquidity pool monitoring, MEV protection, and Python bot framework — with real 2026 benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'pancakeswap/pancake-swap-core'
+github_repo: "pancakeswap/pancake-swap-core"
 stars: 2500
 maintainer: pancakeswap
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [pancakeswap, defi, 'binance smart chain', 'web3.py', 'trading bot', bsc, 'automated trading', 'liquidity pool', 'mev protection', python, 'crypto bot', 'dex trading']
-aliases: - /posts/pancake-trading-bot-defi-bsc/-
+categories: ["ai-trading"]
+tags: ["pancakeswap", "defi", "binance smart chain", "web3.py", "trading bot", "bsc", "automated trading", "liquidity pool", "mev protection", "python", "crypto bot", "dex trading"]
+aliases:
+  - /posts/pancake-trading-bot-defi-bsc/-
 ---
 {{</* resource-info */>}}
 

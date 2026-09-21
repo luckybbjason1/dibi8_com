@@ -1,6 +1,6 @@
 ---
-title: 'LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026'
-description: 'LlamaIndex 是构建生产级 RAG 系统的数据框架，支持 OpenAI、Anthropic、Ollama、Qdrant、Weaviate、Chroma。涵盖 Docker 部署、查询引擎、Agent、与 LangChain/Haystack/RAGFlow 的基准对比。'
+title: "LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026"
+description: "LlamaIndex 是构建生产级 RAG 系统的数据框架，支持 OpenAI、Anthropic、Ollama、Qdrant、Weaviate、Chroma。涵盖 Docker 部署、查询引擎、Agent、与 LangChain/Haystack/RAGFlow 的基准对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/run-llama/llama_index'
+github_repo: "https://github.com/run-llama/llama_index"
 stars: 49517
 maintainer: 'run-llama'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [llamaindex, rag, llm, 向量数据库, 检索增强生成, openai, ollama, qdrant, python, docker]
-aliases: - /zh/posts/llamaindex/-
+categories: ["llm-frameworks"]
+tags: ["llamaindex", "rag", "llm", "向量数据库", "检索增强生成", "openai", "ollama", "qdrant", "python", "docker"]
+aliases:
+  - /zh/posts/llamaindex/-
 ---
 
 {{</* resource-info */>}}

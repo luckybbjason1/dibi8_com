@@ -1,6 +1,6 @@
 ---
-title: '代码搜索替换工具：从grep到ripgrep、sd及现代替代方案完整指南'
-description: 'grep太慢？探索ripgrep、fzf、sd等现代代码搜索替换工具，附性能基准测试和实用工作流，全面提升命令行搜索效率。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "代码搜索替换工具：从grep到ripgrep、sd及现代替代方案完整指南"
+description: "grep太慢？探索ripgrep、fzf、sd等现代代码搜索替换工具，附性能基准测试和实用工作流，全面提升命令行搜索效率。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/code-search-replace-tools-grep-modern-alternatives/-
+aliases:
+  - /posts/code-search-replace-tools-grep-modern-alternatives/-
 ---
 
 {</* resource-info */>}

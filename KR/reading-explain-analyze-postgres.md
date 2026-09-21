@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/reading-explain-analyze-postgres/
+aliases:
+  - /ko/posts/reading-explain-analyze-postgres/
 faqs: - q: 'EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 의미하나요?'
     a: '가장 바깥쪽 노드의 두 번째 actual time 값은 해당 노드가 한 번 실행되는 동안 전체 쿼리에 소요된 실제 벽시계 시간(밀리초 단위)입니다. 그 아래의 모든 노드는 그 총 시간이 어디에 쓰였는지를 세분화해서 보여줍니다.'
   - q: 'EXPLAIN ANALYZE 의 행 수로 잘못된 쿼리 플랜을 어떻게 찾나요?'

@@ -1,6 +1,6 @@
 ---
 title: 'Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Gu...
-description: 'Mem0 (mem0ai) is a universal memory layer for AI agents. Compatible with Claude Code, OpenAI, LangChain, CrewAI, Cursor. Covers mem0 tutorial, persistent memory setup, vector store tuning, and production deployment benchmarks.'
+description: "Mem0 (mem0ai) is a universal memory layer for AI agents. Compatible with Claude Code, OpenAI, LangChain, CrewAI, Cursor. Covers mem0 tutorial, persistent memory setup, vector store tuning, and production deployment benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/mem0ai/mem0'
+github_repo: "https://github.com/mem0ai/mem0"
 stars: 56205
 maintainer: mem0ai
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mem0, 'ai-agent-memory', 'persistent-memory', langchain, 'vector-store', 'memory-tuning', 'mem0-tutorial', 'mem0-vs-langchain', crewai, 'open-source']
-aliases: - /posts/mem0/-
+categories: ["llm-frameworks"]
+tags: ["mem0", "ai-agent-memory", "persistent-memory", "langchain", "vector-store", "memory-tuning", "mem0-tutorial", "mem0-vs-langchain", "crewai", "open-source"]
+aliases:
+  - /posts/mem0/-
 ---
 {{</* resource-info */>}}
 

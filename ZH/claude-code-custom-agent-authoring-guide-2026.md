@@ -1,6 +1,6 @@
 ---
-title: 'Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）'
-description: '完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）"
+description: "完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-custom-agent-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-custom-agent-authoring/
 faq: - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
     a: "自定义 agent 是带 YAML frontmatter 的 Markdown 文件，存放在项目里的 .claude/agents/ 目录（或 ~/.claude/agents/ 用于希望在所有项目中都可用的 agent）。文件名去掉 .md 后缀并不是 agent 的身份——frontmatter 里的 name 字段才是。frontmatter 声明 name、description、可选的 tools 白名单和可选的 model；结尾--- 之下的全部内容就是 agent 的系统提示词。"
   - q: "description 字段和系统提示词正文有什么区别？"

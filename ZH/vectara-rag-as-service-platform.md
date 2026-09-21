@@ -1,6 +1,6 @@
 ---
-title: 'Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试'
-description: 'Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试"
+description: "Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'vectara/vectara-ingest'
+github_repo: "vectara/vectara-ingest"
 stars: 800
 maintainer: vectara
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [vectara, rag, 向量搜索, llm, embedding, boomerang, hhem, 幻觉检测, 企业ai]
-aliases: - /zh/posts/vectara-rag-as-service-platform/-
+categories: ["data-science"]
+tags: ["vectara", "rag", "向量搜索", "llm", "embedding", "boomerang", "hhem", "幻觉检测", "企业ai"]
+aliases:
+  - /zh/posts/vectara-rag-as-service-platform/-
 ---
 
 {{</* resource-info */>}}

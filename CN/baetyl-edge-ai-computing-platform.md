@@ -1,6 +1,6 @@
 ---
 title: 'Baetyl: The Cloud-Native Edge AI Computing Platform Depl...
-description: 'Deploy Baetyl v2.4 to bring Kubernetes-native edge computing to IoT devices. AI model inference, MQTT/BACnet support, OTA updates, K3s runtime, and cloud-edge synchronization.'
+description: "Deploy Baetyl v2.4 to bring Kubernetes-native edge computing to IoT devices. AI model inference, MQTT/BACnet support, OTA updates, K3s runtime, and cloud-edge synchronization."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'baetyl/baetyl'
+github_repo: "baetyl/baetyl"
 stars: 3200
 maintainer: baetyl
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [baetyl, 'edge-computing', iot, kubernetes, k3s, 'ai-inference', mqtt, 'edge-ai', 'ota-updates', 'lf-edge']
-aliases: - /posts/baetyl-edge-ai-computing-platform/-
+categories: ["ai-tools"]
+tags: ["baetyl", "edge-computing", "iot", "kubernetes", "k3s", "ai-inference", "mqtt", "edge-ai", "ota-updates", "lf-edge"]
+aliases:
+  - /posts/baetyl-edge-ai-computing-platform/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
 title: 'LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오...
-description: 'LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock과 호환. Docker 배포, 가상 키, 로드 밸런싱, 캐싱, 프로덕션 하드닝을 다룹니다.'
+description: "LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock과 호환. Docker 배포, 가상 키, 로드 밸런싱, 캐싱, 프로덕션 하드닝을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/BerriAI/litellm'
+github_repo: "https://github.com/BerriAI/litellm"
 stars: 22500
 maintainer: BerriAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [litellm, 'llm-게이트웨이', 오픈소스, docker, 프로덕션, 'ai-인프라', '프록시-서버', '멀티-모델']
-aliases: - /kr/posts/litellm/
+categories: ["llm-frameworks"]
+tags: ["litellm", "llm-게이트웨이", "오픈소스", "docker", "프로덕션", "ai-인프라", "프록시-서버", "멀티-모델"]
+aliases:
+  - /kr/posts/litellm/
 - /kr/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
 

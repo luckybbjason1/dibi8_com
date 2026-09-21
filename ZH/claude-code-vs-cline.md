@@ -1,10 +1,10 @@
 ---
-title: 'Claude Code 对比 Cline（2026）：自主还是掌控？'
-description: 'Claude Code 与 Cline 逐项对比——终端自主执行 vs VS Code 逐步审批、模型支持、定价，以及各自的适用场景。智能体编程中"掌控 vs 自主"的抉择。2026 更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code 对比 Cline（2026）：自主还是掌控？"
+description: "Claude Code 与 Cline 逐项对比——终端自主执行 vs VS Code 逐步审批、模型支持、定价，以及各自的适用场景。智能体编程中"掌控 vs 自主"的抉择。2026 更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
-tags: [claude-code, cline, ai-coding, agentic, comparison, dev-tools]
-categories: [vs]
+tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Claude Code 和 Cline 的核心区别是什么？'
     a: '理念之别。Claude Code 是 Anthropic 的终端原生智能体，针对 Claude 模型调优，天生就是为自主运行而生——规划、编辑、跑测试、重试，全在一个循环里完成。Cline 则是一个开源的 VS Code 扩展，兼容任意模型，并要求你在每次运行前批准每一处 diff、每条命令、每次网络抓取。Claude Code 为自主性和单 token 质量而优化；Cline 为掌控力和模型自由而优化。这正是同一权衡——自主 vs 掌控——在两款工具上的体现。'
   - q: 'Cline 比 Claude Code 更便宜吗？'

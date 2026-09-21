@@ -1,6 +1,6 @@
 ---
 title: 'RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Min...
-description: 'RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GPT-SoVITS, Coqui TTS, and demucs. This tutorial covers Docker deployment, training pipelines, API integration, and production hardening.'
+description: "RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GPT-SoVITS, Coqui TTS, and demucs. This tutorial covers Docker deployment, training pipelines, API integration, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI'
+github_repo: "https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI"
 stars: 35700
 maintainer: 'RVC-Project'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [rvc, 'voice-conversion', 'ai-voice-cloning', vits, 'speech-synthesis', docker, tutorial, 'retrieval-vc']
-aliases: - /posts/rvc/-
+categories: ["ai-tools"]
+tags: ["rvc", "voice-conversion", "ai-voice-cloning", "vits", "speech-synthesis", "docker", "tutorial", "retrieval-vc"]
+aliases:
+  - /posts/rvc/-
 ---
 {{</* resource-info */>}}
 

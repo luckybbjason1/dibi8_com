@@ -1,10 +1,10 @@
 ---
-title: 'LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队'
-description: 'LangGraph（低层级有状态代理图）与 CrewAI（高层级基于角色的多代理团队）逐项对比——控制力、学习曲线、状态、多代理设计与生产可靠性。2026 更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队"
+description: "LangGraph（低层级有状态代理图）与 CrewAI（高层级基于角色的多代理团队）逐项对比——控制力、学习曲线、状态、多代理设计与生产可靠性。2026 更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [langgraph, crewai, ai-agents, multi-agent, agent-framework, orchestration, llm, comparison]
-categories: [vs]
+tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]
+categories: ["vs"]
 faqs: - q: '我该用 LangGraph 还是 CrewAI？'
     a: '如果你需要对一个代理工作流做细粒度控制——明确的分支、循环、共享状态和持久化检查点——并且要把复杂系统部署到生产，就用 LangGraph。如果你想快速搭起一组扮演角色的代理、看重原型速度胜过底层控制，就用 CrewAI。经验法则：LangGraph 适合你必须精确推理的可控、有状态工作流；CrewAI 适合用“专家团队”的心智模型快速跑起多代理协作。'
   - q: 'LangGraph 比 CrewAI 更难学吗？'

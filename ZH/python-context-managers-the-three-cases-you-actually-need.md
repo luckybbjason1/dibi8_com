@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/python-context-managers-the-three-cases-you-actually-need/
+aliases:
+  - /zh/posts/python-context-managers-the-three-cases-you-actually-need/
 faqs: - q: '什么时候应该自己编写自定义上下文管理器，而不是直接用 try/finally？'
     a: '当省略清理代码会让下一个人静默泄漏资源时，或者当你发现同一段「获取/释放 try/finally」模式在代码库里反复出现时，就应该封装成上下文管理器。好处在于 try/finally 住在辅助函数里，每个调用者自动享有它，再也不会有人忘记写 finally 块。'
   - q: '如何创建一个能临时设置环境变量、退出后自动还原的上下文管理器？'

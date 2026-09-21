@@ -18,10 +18,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/agent-skills-production-grade-ai-coding/
+aliases:
+  - /ko/posts/agent-skills-production-grade-ai-coding/
 - /posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.ko/
 faqs: - q: 'Addy Osmani가 만든 Agent Skills란 무엇인가요?'
     a: 'Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령으로 구성된 오픈소스 모음으로, 시니어 엔지니어의 워크플로, 품질 게이트, 모범 사례를 AI 코딩 에이전트용으로 코드화한 것입니다. Addy Osmani가 만들었으며 전체 소프트웨어 개발 생명주기인 DEFINE, PLAN, BUILD, VERIFY, REVIEW, SHIP에 매핑됩니다.'

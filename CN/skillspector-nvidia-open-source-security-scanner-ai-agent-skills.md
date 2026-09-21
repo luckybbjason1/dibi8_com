@@ -1,13 +1,13 @@
 ---
 title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ..."
-  description: 'A security scanner for AI agent skills that detects vulnerabilities, malicious patterns, and security risks before installing agent skills. 10K stars from NVIDIA. Protect Claude Code, Codex CLI, and other agent frameworks.'
+  description: "A security scanner for AI agent skills that detects vulnerabilities, malicious patterns, and security risks before installing agent skills. 10K stars from NVIDIA. Protect Claude Code, Codex CLI, and other agent frameworks."
   date: 2026-06-25
   lastmod: 2026-06-25
   draft: false
   lang: en
   github_repo: https://github.com/NVIDIA/SkillSpector
   category: dev-utils
-  tags: [security, 'ai-agents', scanner, 'vulnerability-detection', 'claude-code', codex, mcp, 'agent-skills', nvidia]
+tags: ["security", "ai-agents", "scanner", "vulnerability-detection", "claude-code", "codex", "mcp", "agent-skills", "nvidia"]
   slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
   featureImage: /images/articles/skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills.png
   license: Apache-2.0---

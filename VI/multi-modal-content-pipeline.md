@@ -1,6 +1,6 @@
 ---
 title: 'Pipeline Nội Dung Đa Phương Thức 2026: Stack 5 Thành Phầ...
-description: 'Stack nội dung đa phương thức self-host: faster-whisper (STT) + ChatTTS (TTS hội thoại) + Stable Diffusion WebUI (ảnh) + ComfyUI (engine workflow + video) + FFmpeg (ráp). Tạo podcast, video ngắn, bài viết có hình AI minh họa $30-80/tháng vs $200-500/tháng SaaS.'
+description: "Stack nội dung đa phương thức self-host: faster-whisper (STT) + ChatTTS (TTS hội thoại) + Stable Diffusion WebUI (ảnh) + ComfyUI (engine workflow + video) + FFmpeg (ráp). Tạo podcast, video ngắn, bài viết có hình AI minh họa $30-80/tháng vs $200-500/tháng SaaS."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['đa phương thức', 'pipeline nội dung', podcast, video, tts, stack, collection]
-aliases: - /posts/multi-modal-content-pipeline/
+categories: ["collections"]
+tags: ["đa phương thức", "pipeline nội dung", "podcast", "video", "tts", "stack", "collection"]
+aliases:
+  - /posts/multi-modal-content-pipeline/
 ---
 
 Nền kinh tế creator năm 2026 chạy trên nội dung đa phương thức — podcast với co-host AI, video ngắn với narration AI trên visual sinh ra, bài blog với ảnh header minh họa AI, sách nói đọc bởi giọng AI ổn định. Cách stack SaaS tốn $200-500/tháng (ElevenLabs + Midjourney + Descript + Pictory + chục thứ khác). Bộ sưu tập này lắp ráp **lựa chọn thay thế self-host 5 thành phần $30-80/tháng** — dùng cùng mô hình SaaS providers dùng, trên GPU bạn thuê theo giờ.

@@ -1,14 +1,13 @@
 ---
 title: 'Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel...
-description: 'Cơ sở hạ tầng AI Cá nhân (PAI) của Daniel Miessler là Hệ điều hành Cuộc sống với 45 kỹ năng, 171 quy trình làm việc, daemon Pulse và Algorithm v6.3.0. Cài đặt bằng một lệnh, giấy phép MIT. Kết hợp chiến lược, thực thi và phản ánh thành một hệ thống duy nhất.'
+description: "Cơ sở hạ tầng AI Cá nhân (PAI) của Daniel Miessler là Hệ điều hành Cuộc sống với 45 kỹ năng, 171 quy trình làm việc, daemon Pulse và Algorithm v6.3.0. Cài đặt bằng một lệnh, giấy phép MIT. Kết hợp chiến lược, thực thi và phản ánh thành một hệ thống duy nhất."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
-tags: ['pai', 'personal-ai', 'daniel-miessler', 'life-os', 'algorithm', 'skills', 'automation']
-github_repo: 'https://github.com/danielmiessler/Personal_AI_Infrastructure'
+tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
+github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
 license: 'MIT'
-lang: vi
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 

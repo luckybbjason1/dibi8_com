@@ -1,6 +1,6 @@
 ---
 title: 'Baetyl: Nền tảng điện toán AI biên cloud-native triển kh...
-description: 'Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình AI, hỗ trợ MQTT/BACnet, cập nhật OTA, runtime K3s, đồng bộ cloud-biên.'
+description: "Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình AI, hỗ trợ MQTT/BACnet, cập nhật OTA, runtime K3s, đồng bộ cloud-biên."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'baetyl/baetyl'
+github_repo: "baetyl/baetyl"
 stars: 3200
 maintainer: baetyl
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [baetyl, 'điện-toán-biên', iot, kubernetes, k3s, 'suy-luận-ai', mqtt, 'ai-biên', 'cập-nhật-ota', 'lf-edge']
-aliases: - /vi/posts/baetyl-edge-ai-computing-platform/
+categories: ["ai-tools"]
+tags: ["baetyl", "điện-toán-biên", "iot", "kubernetes", "k3s", "suy-luận-ai", "mqtt", "ai-biên", "cập-nhật-ota", "lf-edge"]
+aliases:
+  - /vi/posts/baetyl-edge-ai-computing-platform/
 ---
 
 {{</* resource-info */>}}

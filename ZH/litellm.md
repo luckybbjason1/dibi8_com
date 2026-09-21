@@ -1,6 +1,6 @@
 ---
 title: 'LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
-description: 'LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖 Docker 部署、虚拟密钥、负载均衡、缓存和生产加固。'
+description: "LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖 Docker 部署、虚拟密钥、负载均衡、缓存和生产加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/BerriAI/litellm'
+github_repo: "https://github.com/BerriAI/litellm"
 stars: 22500
 maintainer: BerriAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [litellm, llm网关, 开源, docker, 生产部署, ai基础设施, 代理服务器, 多模型]
-aliases: - /zh/posts/litellm/
+categories: ["llm-frameworks"]
+tags: ["litellm", "llm网关", "开源", "docker", "生产部署", "ai基础设施", "代理服务器", "多模型"]
+aliases:
+  - /zh/posts/litellm/
 - /zh/resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
 

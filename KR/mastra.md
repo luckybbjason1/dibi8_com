@@ -1,6 +1,6 @@
 ---
 title: 'Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI ...
-description: 'Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토리얼, 워크플로우, RAG, 메모리, 관측 가능성, 벤치마크, 프로덕션 하드닝을 다룹니다.'
+description: "Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토리얼, 워크플로우, RAG, 메모리, 관측 가능성, 벤치마크, 프로덕션 하드닝을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/mastra-ai/mastra'
+github_repo: "https://github.com/mastra-ai/mastra"
 stars: 24050
 maintainer: 'mastra-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [mastra, typescript, ai프레임워크, 에이전트, llm, mastra튜토리얼, 'mastra-vs-langchain', 오픈소스]
-aliases: - /kr/posts/mastra/
+categories: ["llm-frameworks"]
+tags: ["mastra", "typescript", "ai프레임워크", "에이전트", "llm", "mastra튜토리얼", "mastra-vs-langchain", "오픈소스"]
+aliases:
+  - /kr/posts/mastra/
 ---
 
 {{</* resource-info */>}}
@@ -156,7 +157,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: '낮부 문서 검색',
+  description: "낮부 문서 검색",
   inputSchema: z.object({
     query: z.string().describe('검색 쿼리'),
   }),

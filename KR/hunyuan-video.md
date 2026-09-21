@@ -1,6 +1,6 @@
 ---
-title: 'HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드'
-description: 'HunyuanVideo (HYV)은 텐센트가 개발한 130억 파라미터 오픈소스 비디오 생성 프레임워크. ComfyUI, Diffusers, Gradio API 지원. Docker 설치, FP8 양자화, 다중 GPU 추론, 프로덕션 하드닝 포함.'
+title: "HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드"
+description: "HunyuanVideo (HYV)은 텐센트가 개발한 130억 파라미터 오픈소스 비디오 생성 프레임워크. ComfyUI, Diffusers, Gradio API 지원. Docker 설치, FP8 양자화, 다중 GPU 추론, 프로덕션 하드닝 포함."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/Tencent-Hunyuan/HunyuanVideo'
+github_repo: "https://github.com/Tencent-Hunyuan/HunyuanVideo"
 stars: 12100
 maintainer: 'Tencent-Hunyuan'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [비디오생성, 디퓨전트랜스포머, 텐센트, hunyuanvideo, comfyui, docker, fp8, 멀티모달]
-aliases: - /kr/posts/hunyuan-video/
+categories: ["ai-tools"]
+tags: ["비디오생성", "디퓨전트랜스포머", "텐센트", "hunyuanvideo", "comfyui", "docker", "fp8", "멀티모달"]
+aliases:
+  - /kr/posts/hunyuan-video/
 ---
 
 {{</* resource-info */>}}

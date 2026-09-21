@@ -1,6 +1,6 @@
 ---
 title: 'Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm t...
-description: 'Hướng dẫn đầy đủ năm 2026 về tác nhân tự chủ Auto-GPT. Cài đặt mới, giao thức tác nhân, duyệt web, điều phối đa tác nhân, triển khai Docker, benchmark so với tác nhân mới hơn, và đánh giá trung thực về hạn chế.'
+description: "Hướng dẫn đầy đủ năm 2026 về tác nhân tự chủ Auto-GPT. Cài đặt mới, giao thức tác nhân, duyệt web, điều phối đa tác nhân, triển khai Docker, benchmark so với tác nhân mới hơn, và đánh giá trung thực về hạn chế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,22 +12,23 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Significant-Gravitas/AutoGPT'
+github_repo: "Significant-Gravitas/AutoGPT"
 stars: 172000
 maintainer: 'Significant-Gravitas'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /vi/posts/auto-gpt-autonomous-agent-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /vi/posts/auto-gpt-autonomous-agent-2026/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới thiệu: Agent đã mở đầu tất cả — Và tại sao nó quay lại
 
-Vào tháng 3 năm 2023, Auto-GPT đã phá vỡ GitHub. Nó tăng từ zero lên **100.000 sao chỉ trong 18 ngày** — tốc độ tăng trưởng nhanh nhất mà nền tảng từng chứng kiến. Các lập trình viên kinh ngạc chứng kiến LLM tự động duyệt web, viết code, quản lý file và lặp đi lặp lại hướng tới mục tiêu mà không cần can thiệp từ con ngườii. Rồi sự hào hứng nguội dần. Cài đặt rất khó khăn. Tài liệu rồi rác. Các framework mới như [CrewAI](dibi8-internal-link) và [LangGraph](dibi8-internal-link) hứa hẹn API sạch sẽ hơn.
+Vào tháng 3 năm 2023", "Auto-GPT đã phá vỡ GitHub. Nó tăng từ zero lên **100.000 sao chỉ trong 18 ngày** — tốc độ tăng trưởng nhanh nhất mà nền tảng từng chứng kiến. Các lập trình viên kinh ngạc chứng kiến LLM tự động duyệt web", "viết code", "quản lý file và lặp đi lặp lại hướng tới mục tiêu mà không cần can thiệp từ con ngườii. Rồi sự hào hứng nguội dần. Cài đặt rất khó khăn. Tài liệu rồi rác. Các framework mới như [CrewAI"](dibi8-internal-link) và [LangGraph](dibi8-internal-link) hứa hẹn API sạch sẽ hơn.
 
 Nhanh chóng chuyển sang tháng 5 năm 2026. Auto-GPT đã vượt qua **172.000 sao GitHub**, phát hành một cuộc đại tu kiến trúc hoàn chỉnh, và — quan trọng nhất — **giảm thờii gian thiết lập từ 45 phút xuống dưới 9 phút**. Dự án, được duy trì bởi **Significant-Gravitas** theo giấy phép **MIT**, đã phát hành **Agent Protocol**, một lớp giao tiếp chuẩn hóa giúp điều phối đa agent thực sự hoạt động. Module duyệt web sử dụng Playwright với xử lý CAPTCHA tự động. Thao tác file hỗ trợ thực thi sandboxed. Quản lý bộ nhớ sử dụng sự kết hợp của Chroma vector storage và Redis caching.
 

@@ -24,7 +24,8 @@ maintainer: "crynta"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/terax-ai-lightweight-ai-terminal/
+aliases:
+  - /vi/posts/terax-ai-lightweight-ai-terminal/
 faqs: - q: 'Terax AI là gì?'
     a: 'Terax AI là một trình giả lập terminal mã nguồn mở, tích hợp AI ngay từ nền tảng, được xây dựng trên Tauri 2 với backend Rust và frontend React 19. Nó kết hợp terminal PTY gốc với hỗ trợ đa tab, trình soạn thảo code tích hợp, trình khám phá file và bảng AI chuyên dụng ở thanh bên.'
   - q: 'Terax AI có gửi dữ liệu hoặc API key của tôi lên cloud không?'

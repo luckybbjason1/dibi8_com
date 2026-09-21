@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: taste-skill
 category: dev-utils
-tags: ['ai 디자인', '에이전트 스킬', '저질 방지', '프론트엔드', 'codex', 'cursor', 'claude code', '프롬프트 엔지니어링']
+tags: ["ai 디자인", "에이전트 스킬", "저질 방지", "프론트엔드", "codex", "cursor", "claude code", "프롬프트 엔지니어링"]
 github_repo: "https://github.com/Leonxlnx/taste-skill"
 license: MIT
 images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
@@ -17,7 +17,6 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
   - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
     alt: "Taste Skill GitHub OG"
     role: reference
-lang: kr
 featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 

@@ -1,13 +1,12 @@
 ---
 title: LlamaFile — 단일 휴대용 바이너리로 로컬 LLM 실행
 description: Meta/MLC AI의 LlamaFile 완전 가이드. 설치, GPU 필요성 또는 복잡한 설정 없이 로컬에서 100개 이상의 오픈소스 LLM을 실행하세요. 하나의 바이너리, 모든 플랫폼.. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ['llamafile', 'local-llm', 'portable-binary', 'meta-ai', 'mlc-llm', 'privacy']
+tags: ["llamafile", "local-llm", "portable-binary", "meta-ai", "mlc-llm", "privacy"]
 category: dev-utils
 featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00draft: false
 slug: llamafile-portable-local-llm
-lang: ko
 ---
 
 ## TL;DR

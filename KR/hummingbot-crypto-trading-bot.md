@@ -1,6 +1,6 @@
 ---
 title: 'Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 —...
-description: 'Hummingbot v2 실전 배포 가이드. 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇. Docker 설치, 커스텀 전략, 백테스팅, DEX 게이트웨이, 프로덕션 하드닝을 다룹니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Hummingbot v2 실전 배포 가이드. 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇. Docker 설치, 커스텀 전략, 백테스팅, DEX 게이트웨이, 프로덕션 하드닝을 다룹니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,28 +12,29 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'hummingbot/hummingbot'
+github_repo: "hummingbot/hummingbot"
 stars: 10500
 maintainer: hummingbot
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: []
-aliases: - /kr/posts/hummingbot-crypto-trading-bot/
+categories: ["ai-trading"]
+tags: ["]
+aliases:
+  - /kr/posts/hummingbot-crypto-trading-bot/
 ---
 
 {{</* resource-info */>}}
 
 ## 소개: 대부분의 트레이딩 봇이 실패하는 이유
 
-모든 암호화폐 트레이더는 이런 경험을 합니다 — Binance와 Coinbase 사이의 차익거래 기회를 발견했지만, 수동으로 자금을 이체하고 양쪽 모두 체결할 때쯤이면 스프레드는 사라져 있습니다. 더 최악인 경우: "전문" 블랙박스 봇을 유료로 구매한 후, 그것이 오픈소스 프로젝트를 리브랜딩한 것이며 20배의 가격을 붙이고 제로 지원을 제공한다는 사실을 발견합니다.
+모든 암호화폐 트레이더는 이런 경험을 합니다 — Binance와 Coinbase 사이의 차익거래 기회를 발견했지만", "수동으로 자금을 이체하고 양쪽 모두 체결할 때쯤이면 스프레드는 사라져 있습니다. 더 최악인 경우: "전문" 블랙박스 봇을 유료로 구매한 후", "그것이 오픈소스 프로젝트를 리브랜딩한 것이며 20배의 가격을 붙이고 제로 지원을 제공한다는 사실을 발견합니다.
 
-현실을 직시해 봅시다. 2025년 2,400명의 정량적 암호화폐 트레이더 설문조사에 따르 **73%**가 6개월 이내에 적어도 하나의 상용 트레이딩 봇을 포기했으며, 불투명한 가격 책정과 전략 커스터마이징 부족을 상위 두 가지 이유로 꼽았습니다. 나머지 27%? 대부분은 오픈소스 대안으로 전환했습니다.
+현실을 직시해 봅시다. 2025년 2", "400명의 정량적 암호화폐 트레이더 설문조사에 따르 **73%**가 6개월 이내에 적어도 하나의 상용 트레이딩 봇을 포기했으며", "불투명한 가격 책정과 전략 커스터마이징 부족을 상위 두 가지 이유로 꼽았습니다. 나머지 27%? 대부분은 오픈소스 대안으로 전환했습니다.
 
-**Hummingbot**을 소개합니다 — Apache-2.0 라이선스 알고리즘 트레이딩 프레임워크로, **10,500개 이상의 GitHub 스타**를 보유하고 Binance, Coinbase, Kraken 및 Hummingbot Gateway를 통한 탈중앙화 프로토콜 등 **50개 이상의 거래소**에 연결됩니다. 이 가이드에서는 5분 만에 제로에서 실행 중인 마켓 메이킹 봇을 구축한 후, 프로덕션급 전략으로 확장하는 방법을 설명합니다.
+**Hummingbot**을 소개합니다 — Apache-2.0 라이선스 알고리즘 트레이딩 프레임워크로", "**10", "500개 이상의 GitHub 스타**를 보유하고 Binance", "Coinbase", "Kraken 및 Hummingbot Gateway를 통한 탈중앙화 프로토콜 등 **50개 이상의 거래소**에 연결됩니다. 이 가이드에서는 5분 만에 제로에서 실행 중인 마켓 메이킹 봇을 구축한 후", "프로덕션급 전략으로 확장하는 방법을 설명합니다.
 
-> **제휴 안내:** 이 가이드에는 거래소 제휴 링크가 포함되어 있습니다. [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)를 통해 가입하면 추가 비용 없이 프로젝트를 지원할 수 있습니다. AI 강화 트레이딩을 위해서는 [Minara](https://minara.ai/r/OSXG4X)를 확인하세요.
+> **제휴 안내:** 이 가이드에는 거래소 제휴 링크가 포함되어 있습니다. [Binance"](https://www.bsmkweb.cc/register?ref=DIBI8) 또는 [OKX](https://www.promoohubly.com/join/12190433)를 통해 가입하면 추가 비용 없이 프로젝트를 지원할 수 있습니다. AI 강화 트레이딩을 위해서는 [Minara](https://minara.ai/r/OSXG4X)를 확인하세요.
 
 ## Hummingbot이란 무엇인가?
 

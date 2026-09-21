@@ -1,26 +1,27 @@
 ---
 title: 'repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
-description: 'repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh của Claude, ChatGPT, Gemini. 14k+ sao, không cần cấu hình, chạy ngay với npx.'
+description: "repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh của Claude, ChatGPT, Gemini. 14k+ sao, không cần cấu hình, chạy ngay với npx."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
-source_version: 'v0.3'
+source_version: "v0.3"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
-github_repo: 'yamadashy/repomix'
+github_repo: "yamadashy/repomix"
 stars: 14200
 maintainer: yamadashy
-last_maintained: '2026-06-01'
+last_maintained: "2026-06-01"
 featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
-categories: ['dev-utils']
-tags: [repomix, repopack, 'ai-coding', 'llm-context', 'đóng-gói-codebase', claude, chatgpt, 'công-cụ-dev', 'mã-nguồn-mở']
-aliases: - /vi/posts/repomix-pack-repo-for-llm-context-2026/
+categories: ["dev-utils"]
+tags: ["repomix", "repopack", "ai-coding", "llm-context", "đóng-gói-codebase", "claude", "chatgpt", "công-cụ-dev", "mã-nguồn-mở"]
+aliases:
+  - /vi/posts/repomix-pack-repo-for-llm-context-2026/
 faqs: - q: 'repomix là gì và tên cũ của nó là gì?'
     a: 'repomix (tên cũ repopack) là công cụ CLI mã nguồn mở đóng gói toàn bộ repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh LLM. Đổi tên từ "repopack" sang "repomix" vào năm 2025 để tránh nhầm lẫn với lệnh "repack" của npm. Phát triển bởi yamadashy, giấy phép MIT.'
   - q: 'repomix hỗ trợ những định dạng đầu ra nào?'

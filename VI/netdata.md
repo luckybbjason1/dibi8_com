@@ -1,6 +1,6 @@
 ---
 title: 'Netdata: Giám Sát Thở Gian Thự 78K+ Star — Hướng Dẫn Tin...
-description: 'Netdata (ND) là agent giám sát thở gian thực hiệu suất cao với metrics từng giây và khả năng trực quan hóa. Tương thích với Docker, Kubernetes, Prometheus và Grafana. Bao gồm hướng dẫn netdata, cài đặt netdata, giám sát thở gian thực, netdata vs prometheus, và tinh chỉnh hiệu suất netdata.'
+description: "Netdata (ND) là agent giám sát thở gian thực hiệu suất cao với metrics từng giây và khả năng trực quan hóa. Tương thích với Docker, Kubernetes, Prometheus và Grafana. Bao gồm hướng dẫn netdata, cài đặt netdata, giám sát thở gian thực, netdata vs prometheus, và tinh chỉnh hiệu suất netdata."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/netdata/netdata'
+github_repo: "https://github.com/netdata/netdata"
 stars: 78874
 maintainer: netdata
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [netdata, 'giám-sát', 'khả-năng-quan-sát', 'tinh-chỉnh-hiệu-suất', docker, kubernetes, 'metrics-thở-gian-thự']
-aliases: - /vi/posts/netdata/
+categories: ["dev-utils"]
+tags: ["netdata", "giám-sát", "khả-năng-quan-sát", "tinh-chỉnh-hiệu-suất", "docker", "kubernetes", "metrics-thở-gian-thự"]
+aliases:
+  - /vi/posts/netdata/
 ---
 
 {{</* resource-info */>}}

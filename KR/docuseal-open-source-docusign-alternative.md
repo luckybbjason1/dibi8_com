@@ -19,10 +19,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/docuseal-open-source-docusign-alternative/
+aliases:
+  - /ko/posts/docuseal-open-source-docusign-alternative/
 faqs: - q: 'DocuSeal은 DocuSign의 무료 대안인가요?'
     a: '네. DocuSeal은 라이선스 비용이 없는 오픈소스 자체 호스팅 문서 서명 플랫폼으로, 사용자당 월 $10-$60를 청구하는 DocuSign을 대체할 수 있습니다. 100인 규모의 기업이 자체 호스팅으로 전환할 경우 3년간 약 94%의 비용을 절감할 수 있습니다.'
   - q: 'DocuSeal은 어떤 라이선스를 사용하며, 상업적으로 이용할 수 있나요?'

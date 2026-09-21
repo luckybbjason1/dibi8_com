@@ -1,6 +1,6 @@
 ---
-title: 'Qdrant：基于Rust的向量数据库，以10ms延迟处理100万+向量 — 2026年自托管部署指南'
-description: '部署Qdrant向量数据库用于生产级相似度搜索。涵盖HNSW索引、负载过滤、多租户、Docker部署以及Python/Go/JS客户端的完整指南，附带真实基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Qdrant：基于Rust的向量数据库，以10ms延迟处理100万+向量 — 2026年自托管部署指南"
+description: "部署Qdrant向量数据库用于生产级相似度搜索。涵盖HNSW索引、负载过滤、多租户、Docker部署以及Python/Go/JS客户端的完整指南，附带真实基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'qdrant/qdrant'
+github_repo: "qdrant/qdrant"
 stars: 22000
 maintainer: qdrant
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [qdrant, 向量数据库, rust, hnsw, 相似度搜索, docker, 自托管, ai]
-aliases: - /zh/posts/qdrant-vector-database-rust/-
+categories: ["data-science"]
+tags: ["qdrant", "向量数据库", "rust", "hnsw", "相似度搜索", "docker", "自托管", "ai"]
+aliases:
+  - /zh/posts/qdrant-vector-database-rust/-
 ---
 
 {{</* resource-info */>}}

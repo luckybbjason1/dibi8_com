@@ -1,6 +1,6 @@
 ---
-title: 'Open-Sora: 29K+ Stars — 开源视频生成完整安装指南 2026'
-description: 'Open-Sora 是拥有 29K+ GitHub stars 的开源视频生成框架。涵盖 Docker 安装、ComfyUI 集成、Stable Diffusion 兼容、生产部署、与 HunyuanVideo、CogVideo、Wan 的性能对比基准测试。'
+title: "Open-Sora: 29K+ Stars — 开源视频生成完整安装指南 2026"
+description: "Open-Sora 是拥有 29K+ GitHub stars 的开源视频生成框架。涵盖 Docker 安装、ComfyUI 集成、Stable Diffusion 兼容、生产部署、与 HunyuanVideo、CogVideo、Wan 的性能对比基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hpcaitech/Open-Sora'
+github_repo: "https://github.com/hpcaitech/Open-Sora"
 stars: 29000
 maintainer: hpcaitech
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['open-sora', 视频生成, 扩散transformer, ai视频, 开源, docker, cuda, comfyui]
-aliases: - /zh/posts/open-sora/-
+categories: ["ai-tools"]
+tags: ["open-sora", "视频生成", "扩散transformer", "ai视频", "开源", "docker", "cuda", "comfyui"]
+aliases:
+  - /zh/posts/open-sora/-
 ---
 
 {{</* resource-info */>}}

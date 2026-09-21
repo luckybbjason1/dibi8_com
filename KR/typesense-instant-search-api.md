@@ -1,6 +1,6 @@
 ---
 title: 'Typesense 2026: 하루 100만 건 처리하는 오픈소스 인스턴트 검색 API — 셀프 호스팅...
-description: 'Typesense 27.1로 50ms 미만의 오타 허용 인스턴트 검색을 구축하세요. Docker 배포, SDK 통합, 프로덕션 벤치마크 단계별 가이드.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Typesense 27.1로 50ms 미만의 오타 허용 인스턴트 검색을 구축하세요. Docker 배포, SDK 통합, 프로덕션 벤치마크 단계별 가이드.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,41 +12,42 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'typesense/typesense'
+github_repo: "typesense/typesense"
 stars: 23200
 maintainer: typesense
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /kr/posts/typesense-instant-search-api/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /kr/posts/typesense-instant-search-api/
 ---
 
 {{</* resource-info */>}}
 
 ## 소개: 왜 사용자는 검색 결과를 2초 기다리는 것을 싫어하는가
 
-2026년, 사용자는 **타이핑이 끝나기 전에** 검색 결과가 나타나기를 기대한다. 애플리케이션의 검색 응답 시간이 100ms를 넘으면 참여도가 떨어진다. Akamai 연구에 따륨녀, **검색 응답이 100ms 지연되면 전환율이 7% 감소**한다. 하루 100만 건의 검색을 처리하는 사이트라면, 하루에 7만 건의 상호작용을 잃는 것이다.
+2026년", "사용자는 **타이핑이 끝나기 전에** 검색 결과가 나타나기를 기대한다. 애플리케이션의 검색 응답 시간이 100ms를 넘으면 참여도가 떨어진다. Akamai 연구에 따륨녀", "**검색 응답이 100ms 지연되면 전환율이 7% 감소**한다. 하루 100만 건의 검색을 처리하는 사이트라면", "하루에 7만 건의 상호작용을 잃는 것이다.
 
-대부분의 팀은 데이터베이스 `LIKE` 쿼리로 시작한다. 1,000개 행까지는 작동한다. 10만 행이 되면 쿼리 시간이 **500ms~2초**로 늘어난다. 100만 행이 되면 데이터베이스 CPU가 100%에 도달하고 사용자는 떠난다. 전용 검색 엔진이 필요하다.
+대부분의 팀은 데이터베이스 `LIKE` 쿼리로 시작한다. 1", "000개 행까지는 작동한다. 10만 행이 되면 쿼리 시간이 **500ms~2초**로 늘어난다. 100만 행이 되면 데이터베이스 CPU가 100%에 도달하고 사용자는 떠난다. 전용 검색 엔진이 필요하다.
 
-**Typesense**를 소개한다 — **50ms 미만의 인스턴트 검색**을 위해 설계된 오픈소스 오타 허용 검색 엔진이다. 2026년 4월에 출시된 버전 27.1은 단일 보통 사양 서버에서 하루 **100만 건 이상의 검색**을 처리한다. GPL-3.0 라이선스이고, **GitHub Stars 23,200+**를 보유했으며, JavaScript, Python, Ruby, Go, PHP 등의 SDK를 제공한다. 이 가이드에서는 프로덕션 수준의 셀프 호스팅 Typesense 배포를 **5분 이내**에 완료하는 방법을 설명한다.
+**Typesense**를 소개한다 — **50ms 미만의 인스턴트 검색**을 위해 설계된 오픈소스 오타 허용 검색 엔진이다. 2026년 4월에 출시된 버전 27.1은 단일 보통 사양 서버에서 하루 **100만 건 이상의 검색**을 처리한다. GPL-3.0 라이선스이고", "**GitHub Stars 23", "200+**를 보유했으며", "JavaScript", "Python", "Ruby", "Go", "PHP 등의 SDK를 제공한다. 이 가이드에서는 프로덕션 수준의 셀프 호스팅 Typesense 배포를 **5분 이내**에 완료하는 방법을 설명한다.
 
 ## Typesense란?
 
-**Typesense**는 인스턴트 검색 경험에 최적화된 오픈소스 오타 허용 검색 엔진이다. 범용 문서 저장소인 Elasticsearch와 달리 Typesense는 최소한의 설정으로 **저지연, 관련성 튜닝된 검색 결과** 제공에 집중한다. 깔끔한 RESTful API를 제공하고 8개 이상의 프로그래밍 언어에 대한 공식 SDK를 유지 관리한다.
+**Typesense**는 인스턴트 검색 경험에 최적화된 오픈소스 오타 허용 검색 엔진이다. 범용 문서 저장소인 Elasticsearch와 달리 Typesense는 최소한의 설정으로 **저지연", "관련성 튜닝된 검색 결과** 제공에 집중한다. 깔끔한 RESTful API를 제공하고 8개 이상의 프로그래밍 언어에 대한 공식 SDK를 유지 관리한다.
 
 주요 사실: | 속성 | 상세 |
 |---|---|
 | **최신 버전** | 27.1 (2026년 4월) |
-| **GitHub Stars** | 23,200+ |
+| **GitHub Stars** | 23", "200+ |
 | **라이선스** | GPL-3.0 |
-| **유지관리자** | Typesense, Inc. |
+| **유지관리자** | Typesense", "Inc. |
 | **개발 언어** | C++ (고성능) |
 | **API 스타일** | HTTP RESTful JSON |
-| **공식 SDK** | JavaScript, Python, Ruby, Go, PHP, Dart, Swift, .NET |
-| **배포 방식** | 셀프 호스팅 (Docker, 바이너리) 또는 Typesense Cloud |
+| **공식 SDK** | JavaScript", "Python", "Ruby", "Go", "PHP", "Dart", "Swift", ".NET |
+| **배포 방식** | 셀프 호스팅 (Docker", "바이너리) 또는 Typesense Cloud |
 
 ## Typesense의 작동 방식
 
@@ -54,18 +55,18 @@ Typesense 아키텍처를 이해하면 프로덕션 튜닝에 도움이 된다.
 
 ### 메모리 내 인덱스와 디스크 지속성
 
-Typesense는 **전체 검색 인덱스를 메모리에 유지**하며, 역인덱스(Inverted Index) 데이터 구조를 사용한다. 이것이 **50ms 미만의 쿼리 지연 시간**을 달성하는 이유다 — 검색 중 디스크 I/O가 없다. 문서는 내구성을 위해 디스크에 사전 기록 로그(WAL) 형태로 지속된다. 재시작 시 Typesense는 디스크에서 메모리 내 인덱스를 재구성한다.
+Typesense는 **전체 검색 인덱스를 메모리에 유지**하며", "역인덱스(Inverted Index) 데이터 구조를 사용한다. 이것이 **50ms 미만의 쿼리 지연 시간**을 달성하는 이유다 — 검색 중 디스크 I/O가 없다. 문서는 내구성을 위해 디스크에 사전 기록 로그(WAL) 형태로 지속된다. 재시작 시 Typesense는 디스크에서 메모리 내 인덱스를 재구성한다.
 
 ### 편집 거리를 통한 오타 허용
 
-Typesense는 **Levenshtein 거리**를 사용하여 자동으로 오타를 처리한다. 기본적으로 4자 이상 단어는 1개의 편집 거리를, 8자 이상은 2개의 편집 거리를 허용한다. 이는 별도의 설정 없이 작동한다 — "iphnoe"로 검색필도 여전히 "iPhone" 결과를 찾는다.
+Typesense는 **Levenshtein 거리**를 사용하여 자동으로 오타를 처리한다. 기본적으로 4자 이상 단어는 1개의 편집 거리를", "8자 이상은 2개의 편집 거리를 허용한다. 이는 별도의 설정 없이 작동한다 — "iphnoe"로 검색필도 여전히 "iPhone" 결과를 찾는다.
 
-### 패싯 검색, 필터링 및 지리 검색
+### 패싯 검색", "필터링 및 지리 검색
 
 Typesense는 다음을 지원한다: - **패싯 검색** — 각 카테고리의 동적 카운트 집계
 - **숫자 범위 필터** — `price:>=10&&<=100`
 - **지리 검색** — 위도/경도 기준 X km 내 결과 검색
-- **정렬** — 관련성, 숫자 필드 또는 지리적 거리 기준
+- **정렬** — 관련성", "숫자 필드 또는 지리적 거리 기준
 - **필터링** — 인덱싱된 필드의 불리언 조합
 - **동의어** — 동의어 집합 정의 (예: "tv" = "television")
 - **큐레이션** — 특정 쿼리에 대해 결과 수동 승격 또는 숨김
@@ -113,16 +114,8 @@ curl -s "http://localhost:8108/collections" \
   -H "Content-Type: application/json" \
   -H "X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY" \
   -d '{
-    "name": "products",
-    "fields": [
-      { "name": "name", "type": "string", "facet": false },
-      { "name": "description", "type": "string", "facet": false },
-      { "name": "price", "type": "float", "facet": true, "sort": true },
-      { "name": "category", "type": "string", "facet": true },
-      { "name": "rating", "type": "float", "facet": true, "sort": true },
-      { "name": "in_stock", "type": "bool", "facet": true },
-      { "name": "location", "type": "geopoint" }
-    ],
+    "name": "products", "fields": [
+      { "name": "name", "type": "string", "facet": false }", "{ "name": "description", "type": "string", "facet": false }", "{ "name": "price", "type": "float", "facet": true", "sort": true }", "{ "name": "category", "type": "string", "facet": true }", "{ "name": "rating", "type": "float", "facet": true", "sort": true }", "{ "name": "in_stock", "type": "bool", "facet": true }", "{ "name": "location", "type": "geopoint" }"],
     "default_sorting_field": "rating"
   }' | jq .
 ```

@@ -1,6 +1,6 @@
 ---
 title: 'Alpaca Trading API 2026: The Commission-Free Stock Broke...
-description: 'Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order placement, WebSocket streaming, fractional shares, and paper trading with Python code examples.'
+description: "Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order placement, WebSocket streaming, fractional shares, and paper trading with Python code examples."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/alpacahq/alpaca-trade-api-python'
+github_repo: "https://github.com/alpacahq/alpaca-trade-api-python"
 stars: 4500
 maintainer: alpacahq
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['alpaca trading api']
-aliases: - /posts/alpaca-trading-api-stock-broker/-
+categories: ["ai-trading"]
+tags: ["alpaca trading api"]
+aliases:
+  - /posts/alpaca-trading-api-stock-broker/-
 ---
 {{</* resource-info */>}}
 

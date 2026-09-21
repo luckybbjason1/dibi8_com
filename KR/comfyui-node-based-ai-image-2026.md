@@ -1,6 +1,6 @@
 ---
-title: 'ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플로우 엔진 완전 가이드'
-description: 'ComfyUI는 SD/SDXL/Flux/Wan/Hunyuan 등을 지원하는 114k 별 노드 기반 시각 워크플로우 엔진. 이미지, 비디오, 오디오, 3D 생성 지원. 2026 완전 설치 가이드: 노드 기초, workflow JSON 임포트, ComfyUI Manager, ComfyUI가 AUTOMATIC1111을 이기는 때.'
+title: "ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플로우 엔진 완전 가이드"
+description: "ComfyUI는 SD/SDXL/Flux/Wan/Hunyuan 등을 지원하는 114k 별 노드 기반 시각 워크플로우 엔진. 이미지, 비디오, 오디오, 3D 생성 지원. 2026 완전 설치 가이드: 노드 기초, workflow JSON 임포트, ComfyUI Manager, ComfyUI가 AUTOMATIC1111을 이기는 때."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 114000
 maintainer: comfyanonymous
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, '이미지 생성', '비디오 생성', '노드 기반', 워크플로우, 오픈소스]
-aliases: - /posts/comfyui-node-based-ai-image-2026/
+categories: ["ai-tools"]
+tags: ["comfyui", "이미지 생성", "비디오 생성", "노드 기반", "워크플로우", "오픈소스"]
+aliases:
+  - /posts/comfyui-node-based-ai-image-2026/
 ---
 
 [AUTOMATIC1111](/kr/resources/ai-tools/stable-diffusion-webui-2026/)이 "AI 이미지 생성의 Photoshop"이라면 (타이핑하면 이미지 나옴), **ComfyUI**는 **"생성형 AI를 위한 Blender 노드 에디터"** — 워크플로우를 노드의 방향성 그래프로 구축, 모든 모델, 샘플러, 조건화 단계, 후처리에 명시적 제어. 114k GitHub 별, GPL-3.0, 2024-2026 출시된 거의 모든 생성형 AI 모델 패밀리 지원: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (이미지/비디오/3D), PixArt, AuraFlow, LTX-Video.

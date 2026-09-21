@@ -1,6 +1,6 @@
 ---
 title: 'Milvus/Zilliz 2026: The Vector Database Handling 10 Bill...
-description: 'Production guide for Milvus 2.5: billion-scale vector search, GPU-accelerated indexing, Kubernetes deployment, hybrid search, and Zilliz Cloud setup.'
+description: "Production guide for Milvus 2.5: billion-scale vector search, GPU-accelerated indexing, Kubernetes deployment, hybrid search, and Zilliz Cloud setup."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'milvus-io/milvus'
+github_repo: "milvus-io/milvus"
 stars: 32000
 maintainer: 'milvus-io'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [milvus, zilliz, 'vector-database', ann, 'similarity-search', kubernetes, 'gpu-indexing', 'ai-infrastructure']
-aliases: - /posts/zilliz-milvus-vector-database-scale/-
+categories: ["data-science"]
+tags: ["milvus", "zilliz", "vector-database", "ann", "similarity-search", "kubernetes", "gpu-indexing", "ai-infrastructure"]
+aliases:
+  - /posts/zilliz-milvus-vector-database-scale/-
 ---
 {{</* resource-info */>}}
 

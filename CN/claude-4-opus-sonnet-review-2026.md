@@ -1,10 +1,10 @@
 ---
-title: 'Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested'
-description: 'Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricing, and how Claude 4 compares to GPT-4o and Gemini 1.5 Pro. Updated June 2026.'
+title: "Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested"
+description: "Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricing, and how Claude 4 compares to GPT-4o and Gemini 1.5 Pro. Updated June 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm-review, ai-coding, reasoning]
-categories: [review]
+tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "llm-review", "ai-coding", "reasoning"]
+categories: ["review"]
 faqs: - q: 'Is Claude Opus 4 worth the cost over Sonnet 4?'
     a: 'For most developers, Sonnet 4 is the sweet spot. Opus 4 shines on multi-step reasoning chains, long legal or research documents, and agentic loops that require sustained accuracy over 10+ steps. If your workload is primarily code generation, summarization, or chat, Sonnet 4 delivers 85-90% of Opus 4 quality at roughly half the API cost. Upgrade to Opus 4 when you need the last 10-15% of accuracy on hard tasks.'
   - q: 'How does Claude 4 compare to GPT-4o?'

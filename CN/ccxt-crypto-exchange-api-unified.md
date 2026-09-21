@@ -1,6 +1,6 @@
 ---
 title: 'CCXT 2026: The Universal Crypto Exchange API Unifying 10...
-description: 'Master CCXT, the #1 open-source crypto trading library. Connect to 100+ exchanges with one unified API. Build Python trading bots with real-time WebSocket data, built-in rate limiting, and backtesting support.'
+description: "Master CCXT, the #1 open-source crypto trading library. Connect to 100+ exchanges with one unified API. Build Python trading bots with real-time WebSocket data, built-in rate limiting, and backtesting support."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/ccxt/ccxt'
+github_repo: "https://github.com/ccxt/ccxt"
 stars: 35000
 maintainer: ccxt
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [ccxt]
-aliases: - /posts/ccxt-crypto-exchange-api-unified/-
+categories: ["ai-trading"]
+tags: ["ccxt"]
+aliases:
+  - /posts/ccxt-crypto-exchange-api-unified/-
 ---
 {{</* resource-info */>}}
 
@@ -488,7 +489,7 @@ class CCXTDataProvider: """CCXT-based data provider for backtesting frameworks."
         df[sma_20] = ta.sma(df[close], length=20)
         df[sma_50] = ta.sma(df[close], length=50)
         df[rsi] = ta.rsi(df[close], length=14)
-        df[bbands] = ta.bbands(df[close], length=20)['BBU_20_2.0']
+        df[bbands] = ta.bbands(df[close], length=20)[BBU_20_2.0]
         df[atr] = ta.atr(df[high], df[low], df[close], length=14)
         return df
 

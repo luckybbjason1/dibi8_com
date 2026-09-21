@@ -1,6 +1,6 @@
 ---
 title: 'Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
-description: 'Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency, LiteLLM 8ms P95, OpenRouter 100-150ms. Decision tree by use case, cost breakdown at $1K/mo spend, and when 9Router beats all three.'
+description: "Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency, LiteLLM 8ms P95, OpenRouter 100-150ms. Decision tree by use case, cost breakdown at $1K/mo spend, and when 9Router beats all three."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['llm gateway', portkey, litellm, openrouter, comparison]
-aliases: - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
+categories: ["llm-frameworks"]
+tags: ["llm gateway", "portkey", "litellm", "openrouter", "comparison"]
+aliases:
+  - /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/
 ---
 # Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost & Self-Hosting)
 

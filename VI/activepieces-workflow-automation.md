@@ -1,6 +1,6 @@
 ---
 title: 'Activepieces: Giải pháp thay thế Zapier mã nguồn mở với ...
-description: 'Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứng dụng, AI actions và trình xây dựng trực quan — chi phí chỉ bằng một phần nhỏ của Zapier.'
+description: "Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứng dụng, AI actions và trình xây dựng trực quan — chi phí chỉ bằng một phần nhỏ của Zapier."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'activepieces/activepieces'
+github_repo: "activepieces/activepieces"
 stars: 13000
 maintainer: activepieces
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [activepieces, 'tự động hóa workflow', 'giải pháp thay thế zapier', 'self-hosted', docker, 'no-code', 'mã nguồn mở', typescript, 'ai actions', webhooks]
-aliases: - /vi/posts/activepieces-workflow-automation/
+categories: ["dev-utils"]
+tags: ["activepieces", "tự động hóa workflow", "giải pháp thay thế zapier", "self-hosted", "docker", "no-code", "mã nguồn mở", "typescript", "ai actions", "webhooks"]
+aliases:
+  - /vi/posts/activepieces-workflow-automation/
 ---
 
 {{</* resource-info */>}}

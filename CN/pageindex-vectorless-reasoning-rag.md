@@ -18,7 +18,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/pageindex-vectorless-reasoning-rag/
+aliases:
+  - /posts/pageindex-vectorless-reasoning-rag/
 faqs: - q: 'What is PageIndex and how is it different from traditional RAG?'
     a: 'PageIndex is an open-source RAG system from VectifyAI that retrieves information without a vector database. Instead of embedding and chunking documents, it builds a hierarchical tree structure of each document and uses LLM reasoning to traverse it, mimicking how a human expert reads a table of contents to find the relevant section.'
   - q: 'Does PageIndex require a vector database or document chunking?'

@@ -1,5 +1,5 @@
 ---
-title: 'Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대'
+title: "Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대"
 description: Ladybird를 발견하세요 — 처음부터 구축된 진정한 독립 웹 브라우저. Chrome 의존성 없음, 기업 영향 없음, 순수. Comprehensive guide covering features, pricing, and best practices for 2026.
   오픈소스.
 date: 2026-05-15 04:20:25+09:00
@@ -22,7 +22,8 @@ maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/ladybird-independent-web-browser/
+aliases:
+  - /ko/posts/ladybird-independent-web-browser/
 faqs: - q: 'Ladybird 브라우저란 무엇인가요?'
     a: 'Ladybird는 Chromium, Firefox 또는 기존의 어떤 브라우저 엔진에도 의존하지 않고 완전히 처음부터 만들어진 진정한 독립 웹 브라우저입니다. C++로 작성된 자체 렌더링 엔진(LibWeb)과 JavaScript 엔진(LibJS)을 사용합니다.'
   - q: 'Ladybird 브라우저는 누가 만들었나요?'

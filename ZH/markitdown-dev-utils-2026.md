@@ -1,6 +1,6 @@
 ---
 title: 'markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实...
-description: 'markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 Python 用法、真实代码示例，以及与 pandoc、docx2txt 的客观对比。'
+description: "markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 Python 用法、真实代码示例，以及与 pandoc、docx2txt 的客观对比。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/markitdown'
+github_repo: "microsoft/markitdown"
 stars: 141153
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/markitdown-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/markitdown-dev-utils-2026/
 faqs: - q: '怎么安装 markitdown？'
-    a: '用 pip 安装即可。常见做法是把所有格式的 extras 一起装上： ```bash pip install ''markitdown[all]'' ```'
+    a: '用 pip 安装即可。常见做法是把所有格式的 extras 一起装上： ```bash pip install ''markitdown[all"]'' ```'
   - q: 'markitdown 能转换所有类型的 Office 文档吗？'
     a: '它支持很多种格式——Word（.docx）、Excel（.xlsx）、PowerPoint（.pptx）、PDF、HTML、图片和音频——但并非每种格式的每个特性都会被保留。具体支持哪些类型、需要哪些 extras，请查阅文档。'
   - q: 'markitdown 采用什么开源协议？'

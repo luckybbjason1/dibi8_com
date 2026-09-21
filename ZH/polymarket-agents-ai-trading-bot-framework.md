@@ -20,7 +20,8 @@ maintainer: "Polymarket"
 last_maintained: "2024-11-05"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/polymarket-agents-ai-trading-bot-framework/
+aliases:
+  - /zh/posts/polymarket-agents-ai-trading-bot-framework/
 faqs: - q: '什么是 Polymarket Agents？'
     a: 'Polymarket Agents 是一个开源、采用 MIT 许可的开发者框架，用于构建在 Polymarket 预测市场上自主交易的 AI 智能体。它提供了分析市场的工具，可对接 Polymarket API 获取实时数据，并自动执行交易。'
   - q: '运行 Polymarket Agents 之前我需要做哪些准备？'

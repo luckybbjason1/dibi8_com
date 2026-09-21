@@ -1,22 +1,23 @@
 ---
-title: 'Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택'
-description: '다양한 MCP 서버 조합으로 Claude Code를 운영해본 끝에, 성능·보안·시작 시간의 균형을 맞춘 10 서버 프로덕션 스택으로 정착했습니다. 각 서버가 왜 포함되었는지, 무엇을 하는지, 그리고 1인 사용자와 팀 환경에서 어떻게 구성할지 정리합니다.'
+title: "Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택"
+description: "다양한 MCP 서버 조합으로 Claude Code를 운영해본 끝에, 성능·보안·시작 시간의 균형을 맞춘 10 서버 프로덕션 스택으로 정착했습니다. 각 서버가 왜 포함되었는지, 무엇을 하는지, 그리고 1인 사용자와 팀 환경에서 어떻게 구성할지 정리합니다."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM 프레임워크
-source_version: 'MCP 2025-06 / Claude Code 1.0'
+source_version: "MCP 2025-06 / Claude Code 1.0"
 licensing_model: 혼합
 license_type: 다양
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + 커뮤니티'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, configuration, production, 2026]
-aliases: - /kr/posts/claude-code-mcp-advanced-10-server-stack-2026/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "configuration", "production", "2026"]
+aliases:
+  - /kr/posts/claude-code-mcp-advanced-10-server-stack-2026/
 faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
     a: "10개를 넘어가면 시작 지연이 눈에 띄게 늘어납니다. 서버 하나당 Claude Code 초기화에 100~300ms가 추가됩니다. 아래 10 서버 스택이 최적점이며, 시작이 느려졌다고 느끼지 않으면서 90%의 워크플로를 커버합니다."
   - q: "글로벌 설정과 프로젝트별 MCP 설정 중 어느 쪽을 써야 하나요?"

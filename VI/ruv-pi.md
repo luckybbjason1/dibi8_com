@@ -5,13 +5,12 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: ruv-pi
 category: llm-frameworks
-tags: [ruv-pi, pi-agent, coding agent, LLM, multi-provider, AI coding, self-extensible]
+tags: ["ruv-pi", "pi-agent", "coding agent", "LLM", "multi-provider", "AI coding", "self-extensible"]
 github_repo: https://github.com/earendil-works/pi
 stars: 61200
 maintainer: earendil-works
 license: MIT
 featureImage: https://raw.githubusercontent.com/earendil-works/pi/main/docs/assets/pi-hero-banner.png
-lang: vi
 ---
 
 ## Giới thiệu

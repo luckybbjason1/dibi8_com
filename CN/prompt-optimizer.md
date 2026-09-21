@@ -5,7 +5,8 @@ date: 2026-05-19
 lastmod: 2026-05-19
 layout: "tool-prompt-optimizer"
 tool_id: "prompt-optimizer"
-aliases: - /posts/prompt-optimizer/
+aliases:
+  - /posts/prompt-optimizer/
 ---
 # Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)
 

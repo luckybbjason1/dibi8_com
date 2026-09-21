@@ -1,10 +1,10 @@
 ---
-title: 'n8n vs Make.com 2026 对比：开源自托管 vs 视觉化简易操作'
-description: '全面对比 n8n（自托管、开发者友好的工作流自动化）与 Make.com（云端可视化场景构建器）— 定价、集成数量、AI 功能、自托管能力及 2026 年各自的适用场景。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "n8n vs Make.com 2026 对比：开源自托管 vs 视觉化简易操作"
+description: "全面对比 n8n（自托管、开发者友好的工作流自动化）与 Make.com（云端可视化场景构建器）— 定价、集成数量、AI 功能、自托管能力及 2026 年各自的适用场景。"
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [n8n, make.com, integromat, workflow-automation, zapier-alternative, no-code, comparison, ai-automation]
-categories: [vs]
+tags: ["n8n", "make.com", "integromat", "workflow-automation", "zapier-alternative", "no-code", "comparison", "ai-automation"]
+categories: ["vs"]
 faqs: - q: '工作流自动化该选 n8n 还是 Make.com？'
     a: '如果你是开发者，想自托管、需要完整数据控制权，或要在工作流节点里写 JavaScript，选 n8n。如果你是非开发人员或小企业主，想要上手快、有大量现成应用连接器的可视化构建器，选 Make.com。一句话：技术团队要控制权选 n8n，要速度和简单选 Make.com。'
   - q: 'n8n 是免费的吗？和 Make.com 的定价怎么比？'

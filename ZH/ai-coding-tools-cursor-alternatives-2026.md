@@ -1,6 +1,6 @@
 ---
-title: '2026 AI 编程工具大洗牌：Cursor 不再唯一选择 — 7 大替代品深度对比'
-description: 'Cursor 2025 中转 credit 定价后用户信任崩塌。2026 年 7 个最强替代品全对比：Claude Code (80.8% SWE-bench)、Cline (5M+ 安装免费)、GitHub Copilot ($10/月)、Windsurf ($15/月)、Continue.dev、Zed。覆盖价格、性能、agent 模式、迁移策略。'
+title: "2026 AI 编程工具大洗牌：Cursor 不再唯一选择 — 7 大替代品深度对比"
+description: "Cursor 2025 中转 credit 定价后用户信任崩塌。2026 年 7 个最强替代品全对比：Claude Code (80.8% SWE-bench)、Cline (5M+ 安装免费)、GitHub Copilot ($10/月)、Windsurf ($15/月)、Continue.dev、Zed。覆盖价格、性能、agent 模式、迁移策略。"
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [cursor, 'cursor-alternatives', 'claude-code', cline, 'github-copilot', windsurf, 'continue-dev', zed, 'ai-coding', 'ai-ide', 'developer-tools', comparison]
-aliases: - /zh/posts/ai-coding-tools-2026/
+categories: ["llm-frameworks"]
+tags: ["cursor", "cursor-alternatives", "claude-code", "cline", "github-copilot", "windsurf", "continue-dev", "zed", "ai-coding", "ai-ide", "developer-tools", "comparison"]
+aliases:
+  - /zh/posts/ai-coding-tools-2026/
 - /zh/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/
 faqs: - q: '为什么 2026 年开发者纷纷离开 Cursor？'
     a: 'Cursor 2025 中转 credit 计费让 Pro 用户月用量从 ~500 req 降到 ~225 req，同价钱效用 55% off。信任崩塌比数学问题更严重——开发者不介意付钱，介意工具中途改规则。'

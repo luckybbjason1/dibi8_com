@@ -1,6 +1,6 @@
 ---
 title: 'Đánh Giá ds4 2026: DeepSeek Mã Nguồn Mở Mà Developer Đan...
-description: 'ds4 là runtime LLM mã nguồn mở tương thích DeepSeek phát triển nhanh nhất năm 2026. Giấy phép Apache-2.0, tương thích OpenAI API, chạy weights DeepSeek V3 / V3.1 / V4 với độ trễ thấp hơn vLLM 40%. Hướng dẫn setup đầy đủ, so sánh benchmark với vLLM/Ollama/TGI, củng cố production, tích hợp công cụ (Claude Code, Cursor, LangChain, Continue.dev).'
+description: "ds4 là runtime LLM mã nguồn mở tương thích DeepSeek phát triển nhanh nhất năm 2026. Giấy phép Apache-2.0, tương thích OpenAI API, chạy weights DeepSeek V3 / V3.1 / V4 với độ trễ thấp hơn vLLM 40%. Hướng dẫn setup đầy đủ, so sánh benchmark với vLLM/Ollama/TGI, củng cố production, tích hợp công cụ (Claude Code, Cursor, LangChain, Continue.dev)."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases: - /vi/posts/ds4-open-source-deepseek-alternative-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "open-source", "developer-tools", "llm-infrastructure"]
+aliases:
+  - /vi/posts/ds4-open-source-deepseek-alternative-2026/
 - /vi/resources/dev-utils/ds4-open-source-deepseek-alternative-2026/
 faqs: - q: 'ds4 là gì và khác vLLM hay Ollama như thế nào?'
     a: 'ds4 là runtime LLM mã nguồn mở được tối ưu hóa đặc biệt cho kiến trúc model DeepSeek (V3, V3.1, V4). Khác với runtime đa năng (vLLM, Ollama, TGI), ds4 triển khai tối ưu hóa dành riêng cho DeepSeek: MoE routing batching, xử lý attention sink, tách prefill/decode. Kết quả: giảm 40% độ trễ và 2x throughput trên workload DeepSeek. License Apache-2.0, tương thích OpenAI API.'

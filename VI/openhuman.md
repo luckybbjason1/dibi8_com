@@ -1,7 +1,6 @@
 ---
-title: 'OpenHuman là gì?'
-lang: vi
-description: 'content/vi/resources/openhuman.md'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "OpenHuman là gì?"
+description: "content/vi/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-18
 lastmod: 2026-06-18layout: article
 category: resources

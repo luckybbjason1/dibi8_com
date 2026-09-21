@@ -20,7 +20,8 @@ maintainer: "LearningCircuit"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
+aliases:
+  - /vi/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
 faqs: - q: 'Local Deep Research là gì và độ chính xác của nó ra sao?'
     a: 'Local Deep Research là một công cụ nghiên cứu AI mã nguồn mở của LearningCircuit, chạy một vòng lặp nghiên cứu lặp đi lặp lại trên các nguồn như arXiv, PubMed, Semantic Scholar, SearXNG, Tavily và Brave Search. Nó báo cáo độ chính xác khoảng 95% trên benchmark SimpleQA và lưu trữ dữ liệu trong cơ sở dữ liệu SQLite được mã hóa bằng SQLCipher (AES-256) riêng cho từng người dùng, không có telemetry.'
   - q: 'InsForge được dùng để làm gì?'

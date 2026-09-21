@@ -20,7 +20,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/caveman/
+aliases:
+  - /vi/posts/caveman/
 faqs: - q: 'Caveman dành cho Claude Code là gì?'
     a: 'Caveman là một skill của Claude Code, giúp Claude phản hồi bằng ngôn ngữ nén gọn, súc tích theo phong cách người tiền sử — bỏ qua các từ đệm, mạo từ và lời mở đầu xã giao. Trung bình giảm 65% token đầu ra mà không làm giảm độ chính xác kỹ thuật.'
   - q: 'Caveman giảm được bao nhiêu token?'

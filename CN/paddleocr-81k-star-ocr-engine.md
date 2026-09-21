@@ -1,12 +1,12 @@
 ---
 title: 'PaddleOCR: The 81K-Star Open-Source OCR Engine That Outp...
-description: 'PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. Includes setup guide, benchmarks, and production deployment.'
+description: "PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. Includes setup guide, benchmarks, and production deployment."
 tags: ["ocr", "open-source", "paddlepaddle", "self-hosted", "text-detection"]
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'paddleocr-81k-star-ocr-engine'
 category: ai-tools
-github_repo: 'https://github.com/PaddlePaddle/PaddleOCR'
+github_repo: "https://github.com/PaddlePaddle/PaddleOCR"
 license: Apache-2.0
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
 # PaddleOCR: The 81K-Star Open-Source OCR Engine That Outperforms Cloud Services at 0 Cost
@@ -348,8 +348,8 @@ import base64
 app = Flask(__name__)
 ocr = PaddleOCR(use_angle_cls=True, lang='en')
 
-@app.route('/ocr', methods=['POST'])
-def ocr_endpoint(): image_data = request.files['image'].read()
+@app.route('/ocr', methods=[POST])
+def ocr_endpoint(): image_data = request.files[image].read()
     result = ocr.ocr(image_data, cls=True)
     return jsonify({"text": [line[1][0] for line in result[0]]})
 

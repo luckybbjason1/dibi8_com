@@ -19,7 +19,8 @@ maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/howtocook-programmer-open-source-cookbook/
+aliases:
+  - /vi/posts/howtocook-programmer-open-source-cookbook/
 faqs: - q: 'HowToCook là gì?'
     a: 'HowToCook (程序员做饭指南) là dự án sách nấu ăn mã nguồn mở do lập trình viên Anduin2017 tạo ra, bao gồm 297 công thức nấu ăn được viết với độ chính xác và rõ ràng mà các nhà phát triển quen thuộc trong tài liệu kỹ thuật.'
   - q: 'HowToCook khác gì so với các công thức nấu ăn truyền thống?'

@@ -1,6 +1,6 @@
 ---
 title: 'Self-Hosted AI Coding Workflow: The Complete $6/Month St...
-description: 'A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + Claude Code Pro + Copilot + Replit) with $6/month of infrastructure. Real numbers, real config, full step-by-step assembly.'
+description: "A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + Claude Code Pro + Copilot + Replit) with $6/month of infrastructure. Real numbers, real config, full step-by-step assembly."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['self-hosted', 'ai coding', stack, workflow, collection]
-aliases: - /posts/self-hosted-ai-coding-workflow/-
+categories: ["collections"]
+tags: ["self-hosted", "ai coding", "stack", "workflow", "collection"]
+aliases:
+  - /posts/self-hosted-ai-coding-workflow/-
 ---
 If you've been paying $20/mo for Cursor + $80/mo for Claude Code Pro + $19/mo for Copilot + $50/mo for Replit credits + $120/mo for OpenAI API top-ups, you're at **$289/month** of AI coding spend. After 12 months that's **$3,468** — for tools you don't own, can't audit, and can have rate-limited or shut off without notice.
 

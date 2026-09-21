@@ -1,14 +1,13 @@
 ---
-title: '개인 AI 인프라: Daniel Miessler의 에이전트 AI 설정 — 2026 완성판 가이드'
-description: 'Daniel Miessler의 개인 AI 인프라(PAI)는 45개의 스킬, 171개의 워크플로우, 파스 데몬, 알고리즘 v6.3.0을 갖춘 라이프 오퍼레이팅 시스템입니다. 원라인 설치, MIT 라이선스. 전략, 실행, 성찰을 하나의 시스템으로 결합합니다.'
+title: "개인 AI 인프라: Daniel Miessler의 에이전트 AI 설정 — 2026 완성판 가이드"
+description: "Daniel Miessler의 개인 AI 인프라(PAI)는 45개의 스킬, 171개의 워크플로우, 파스 데몬, 알고리즘 v6.3.0을 갖춘 라이프 오퍼레이팅 시스템입니다. 원라인 설치, MIT 라이선스. 전략, 실행, 성찰을 하나의 시스템으로 결합합니다."
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
-tags: ['pai', 'personal-ai', 'daniel-miessler', 'life-os', 'algorithm', 'skills', 'automation']
-github_repo: 'https://github.com/danielmiessler/Personal_AI_Infrastructure'
+tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
+github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
 license: 'MIT'
-lang: kr
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 

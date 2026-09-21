@@ -1,17 +1,16 @@
 ---
 title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra...
-description: 'CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark.'
+description: "CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
-tags: ['stealth browser', cloakbrowser, 'bot detection', 'web scraping', 'fingerprint spoofing', 'playwright replacement', 'anti-detection', 'scraping tool']
-github_repo: 'https://github.com/CloakHQ/CloakBrowser'
+tags: ["stealth browser", "cloakbrowser", "bot detection", "web scraping", "fingerprint spoofing", "playwright replacement", "anti-detection", "scraping tool"]
+github_repo: "https://github.com/CloakHQ/CloakBrowser"
 stars: 25077
 maintainer: CloakHQ
 license: MIT
 featureImage: 'https://avatars.githubusercontent.com/u/17126204'
-lang: vi
 ---
 
 # CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra Bot — 25.000 Sao cho Scraping — Hướng Dẫn Thực Tế 2026

@@ -1,6 +1,6 @@
 ---
 title: 'Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
-description: 'Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go, Python, TypeScript. Bao gồm cài đặt Dagger, hướng dẫn, so sánh với GitHub Actions và tăng cường production.'
+description: "Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go, Python, TypeScript. Bao gồm cài đặt Dagger, hướng dẫn, so sánh với GitHub Actions và tăng cường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/dagger/dagger'
+github_repo: "https://github.com/dagger/dagger"
 stars: 15829
 maintainer: dagger
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [cicd, devops, containers, 'pipeline-code', docker, 'github-actions', 'gitlab-ci', 'build-automation']
-aliases: - /vi/posts/dagger/
+categories: ["dev-utils"]
+tags: ["cicd", "devops", "containers", "pipeline-code", "docker", "github-actions", "gitlab-ci", "build-automation"]
+aliases:
+  - /vi/posts/dagger/
 ---
 
 {{</* resource-info */>}}

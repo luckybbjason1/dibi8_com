@@ -1,10 +1,10 @@
 ---
-title: 'Supabase vs Firebase in 2026: Which BaaS Wins?'
-description: 'Postgres open-source Supabase vs Google NoSQL Firebase — database, auth, storage, realtime, edge functions, pricing, lock-in, self-hosting. Updated 2026.'
+title: "Supabase vs Firebase in 2026: Which BaaS Wins?"
+description: "Postgres open-source Supabase vs Google NoSQL Firebase — database, auth, storage, realtime, edge functions, pricing, lock-in, self-hosting. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [supabase, firebase, baas, postgres, firestore, comparison, backend]
-categories: [vs]
+tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
+categories: ["vs"]
 faqs: - q: 'Is Supabase or Firebase cheaper?'
     a: 'For small projects both have generous free tiers, but Supabase is structurally cheaper at scale because Postgres reads are not metered per-row. Firebase Firestore bills per document read — a single dashboard query that pulls 10K docs costs real money on Firebase but is free on Supabase if it stays inside the included compute. For analytics-heavy workloads, Supabase wins by 5-10x on monthly bills.'
   - q: 'Which is better for relational data?'

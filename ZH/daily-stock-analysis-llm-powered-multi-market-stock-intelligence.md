@@ -5,7 +5,7 @@ date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-trading
-tags: ['股票分析', 'llm', '量化交易', 'ai代理', '多市场', 'a股', '情绪分析', '自动交易']
+tags: ["股票分析", "llm", "量化交易", "ai代理", "多市场", "a股", "情绪分析", "自动交易"]
 slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
 featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
 github_repo: https://github.com/dailystockai/daily-stock

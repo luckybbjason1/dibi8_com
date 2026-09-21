@@ -19,7 +19,8 @@ maintainer: "searxng"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/local-deep-research-local-first-ai-deep-research-tool/
+aliases:
+  - /kr/posts/local-deep-research-local-first-ai-deep-research-tool/
 faqs: - q: 'Local Deep Research (LDR)란 무엇인가요?'
     a: 'Local Deep Research (LDR)는 빠른 채팅형 답변을 제공하는 대신 체계적이고 반복적인 연구를 수행하는 오픈소스 AI 연구 어시스턴트입니다. 질의를 하위 질의로 분해하여 웹, 학술 데이터베이스, 로컬 파일을 병렬로 검색한 다음, 인용이 포함된 보고서로 종합합니다.'
   - q: 'Local Deep Research를 프라이버시를 위해 완전히 오프라인으로 실행할 수 있나요?'

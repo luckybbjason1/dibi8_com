@@ -1,6 +1,6 @@
 ---
 title: 'So Sánh Công Cụ Tìm Kiếm AI: Perplexity vs Google Gemini...
-description: 'So sánh chi tiết Perplexity, Google Gemini, ChatGPT Search và các công cụ tìm kiếm AI hàng đầu 2025. Đánh giá độ chính xác, tốc độ, nguồn tham khảo và tính năng nổi bật.'
+description: "So sánh chi tiết Perplexity, Google Gemini, ChatGPT Search và các công cụ tìm kiếm AI hàng đầu 2025. Đánh giá độ chính xác, tốc độ, nguồn tham khảo và tính năng nổi bật."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-search-tools-perplexity-gemini-chatgpt/
+aliases:
+  - /posts/ai-search-tools-perplexity-gemini-chatgpt/
 ---
 
 # So Sánh Công Cụ Tìm Kiếm AI: Perplexity vs Google Gemini vs ChatGPT Search 2025

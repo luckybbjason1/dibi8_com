@@ -1,22 +1,23 @@
 ---
 title: 'Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
-description: 'Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Điểm mạnh, lưu ý, và lựa chọn theo từng trường hợp sử dụng.'
+description: "Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Điểm mạnh, lưu ý, và lựa chọn theo từng trường hợp sử dụng."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: Framework LLM
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Mã nguồn mở
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Các cộng đồng OSS khác nhau'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agent', framework, langgraph, crewai, autogen, 2026]
-aliases: - /vi/posts/open-source-ai-agent-framework-top-10-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agent", "framework", "langgraph", "crewai", "autogen", "2026"]
+aliases:
+  - /vi/posts/open-source-ai-agent-framework-top-10-2026/
 faq: - q: "Nên chọn framework AI agent nào vào năm 2026?"
     a: "LangGraph cho workflow dạng đồ thị có trạng thái trong sản xuất. CrewAI cho cộng tác đa agent dựa trên vai trò. AutoGen cho nghiên cứu và hệ sinh thái Microsoft. Mastra cho các team ưu tiên TypeScript. Chọn theo sở thích ngôn ngữ và phong cách kiến trúc — chúng giống nhau hơn marketing thể hiện."
   - q: "Có đáng để bị khóa vào một framework agent không?"

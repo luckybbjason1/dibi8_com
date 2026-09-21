@@ -5,7 +5,7 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: academic-research-skills
 category: dev-utils
-tags: ['nghiên cứu học thuật', 'tổng quan tài liệu', 'nghiên cứu AI', 'phân tích bài báo', 'tổng hợp', 'claude code', 'tự động hóa nghiên cứu']
+tags: ["nghiên cứu học thuật", "tổng quan tài liệu", "nghiên cứu AI", "phân tích bài báo", "tổng hợp", "claude code", "tự động hóa nghiên cứu"]
 github_repo: "https://github.com/Imbad0202/academic-research-skills"
 license: Other
 images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
@@ -17,7 +17,6 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
     alt: "Kiến trúc Kỹ năng"
     role: architecture
-lang: vi
 featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 

@@ -1,10 +1,10 @@
 ---
-title: '2026 年 Claude Agent SDK 与 OpenAI Agents SDK 对比：该选哪个来开发？'
-description: '两大主流 agent SDK 的逐项对比——架构（hooks+subagents 对 handoffs+guardrails）、内置工具、操作系统访问、语音、厂商锁定，以及各自的适用场景。2026 年更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026 年 Claude Agent SDK 与 OpenAI Agents SDK 对比：该选哪个来开发？"
+description: "两大主流 agent SDK 的逐项对比——架构（hooks+subagents 对 handoffs+guardrails）、内置工具、操作系统访问、语音、厂商锁定，以及各自的适用场景。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
-tags: [claude-agent-sdk, openai-agents-sdk, ai-agents, comparison, agent-sdk]
-categories: [vs]
+tags: ["claude-agent-sdk", "openai-agents-sdk", "ai-agents", "comparison", "agent-sdk"]
+categories: ["vs"]
 faqs: - q: 'Claude Agent SDK 和 OpenAI Agents SDK 在核心架构上有什么区别？'
     a: '它们体现了两种不同的理念。Claude Agent SDK 围绕 hooks 和 subagents 展开——你在生命周期节点上拦截并控制行为，并把工作委派给拥有隔离上下文的 subagents。OpenAI Agents SDK 则围绕 handoffs 和 guardrails 展开——对话在各个专门化 agent 之间转移，由验证层保护输入与输出。Claude 偏向隐式与灵活；OpenAI 偏向显式与结构化。'
   - q: '哪个 agent SDK 更适合做编码/开发者助手？'

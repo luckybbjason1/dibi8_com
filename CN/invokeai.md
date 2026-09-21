@@ -1,6 +1,6 @@
 ---
-title: 'InvokeAI: 27.2K+ Stars — Complete Setup Guide for 2026'
-description: 'InvokeAI (Invoke) is the leading creative engine for Stable Diffusion models with an industry-leading WebUI. Compatible with SD 1.5, SDXL, FLUX, and ControlNet. Covers Docker install, workflow setup, benchmarks vs AUTOMATIC1111 and ComfyUI, and production hardening.'
+title: "InvokeAI: 27.2K+ Stars — Complete Setup Guide for 2026"
+description: "InvokeAI (Invoke) is the leading creative engine for Stable Diffusion models with an industry-leading WebUI. Compatible with SD 1.5, SDXL, FLUX, and ControlNet. Covers Docker install, workflow setup, benchmarks vs AUTOMATIC1111 and ComfyUI, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/invoke-ai/InvokeAI'
+github_repo: "https://github.com/invoke-ai/InvokeAI"
 stars: 27200
 maintainer: 'invoke-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [invokeai, 'stable diffusion', 'ai image generation', docker, flux, sdxl, webui, 'open-source']
-aliases: - /posts/invokeai/-
+categories: ["ai-tools"]
+tags: ["invokeai", "stable diffusion", "ai image generation", "docker", "flux", "sdxl", "webui", "open-source"]
+aliases:
+  - /posts/invokeai/-
 ---
 {{</* resource-info */>}}
 

@@ -1,6 +1,6 @@
 ---
 title: 'DVC vs LakeFS vs Delta Lake: Hướng Dẫn Chọn Công Cụ Quản...
-description: 'So sánh chi tiết DVC, LakeFS và Delta Lake - 3 công cụ quản lý phiên bản dữ liệu hàng đầu cho ML. Tìm hiểu tính năng, kiến trúc và cách chọn công cụ phù hợp.'
+description: "So sánh chi tiết DVC, LakeFS và Delta Lake - 3 công cụ quản lý phiên bản dữ liệu hàng đầu cho ML. Tìm hiểu tính năng, kiến trúc và cách chọn công cụ phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-version-control-dvc-lakefs-delta-lake/
+aliases:
+  - /posts/data-version-control-dvc-lakefs-delta-lake/
 ---
 
 {</* resource-info */>}

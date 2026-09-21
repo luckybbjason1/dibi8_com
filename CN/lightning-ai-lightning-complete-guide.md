@@ -2,7 +2,7 @@
 title: Lightning AI — The PyTorch Lightweight Toolkit for Produc...
 description: Complete guide to Lightning AI, the PyTorch lightweight toolkit for scaling training, inference, and deployment. Build production-ready ML pipelines with PyTorch Lightning.
 category: data-science
-tags: ['lightning', 'pytorch-lightning', 'production-ml', 'model-training', 'inference', 'deployment']
+tags: ["lightning", "pytorch-lightning", "production-ml", "model-training", "inference", "deployment"]
 slug: lightning-ai-pytorch-lightning-complete-guide
 date: 2026-07-17 00:00:00+00:00
 lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/lightning-ai-pytorch.jpg---
@@ -120,9 +120,9 @@ class AdvancedClassifier(pl.LightningModule): def __init__(self, config): super(
         self.model = self.build_model()
         self.metrics = {
             'accuracy': torchmetrics.Accuracy(task='multiclass', 
-                                            num_classes=config['num_classes']),
+                                            num_classes=config[num_classes]),
             'f1': torchmetrics.F1Score(task='multiclass', 
-                                      num_classes=config['num_classes'],
+                                      num_classes=config[num_classes],
                                       average='macro'),
         }
         
@@ -150,7 +150,7 @@ class AdvancedClassifier(pl.LightningModule): def __init__(self, config): super(
         self.log('train_acc', acc, prog_bar=True)
         return loss
     
-    def validation_epoch_end(self, outputs): avg_loss = torch.stack([x['loss'] for x in outputs]).mean()
+    def validation_epoch_end(self, outputs): avg_loss = torch.stack([x[loss] for x in outputs]).mean()
         self.log('val_loss_avg', avg_loss, sync_dist=True)
 ```
 
@@ -211,7 +211,7 @@ class EarlyStoppingByLoss(pl.callbacks.EarlyStopping): def __init__(self, patien
             mode='min'
         )
     
-    def on_validation_epoch_end(self, trainer, pl_module): current_loss = trainer.callback_metrics['val_loss']
+    def on_validation_epoch_end(self, trainer, pl_module): current_loss = trainer.callback_metrics[val_loss]
         if current_loss < self.best_score - self.min_delta: self.best_score = current_loss
             self.wait_count = 0
         else: self.wait_count += 1
@@ -301,8 +301,8 @@ torch.onnx.export(
     model,
     example_input,
     'model.onnx',
-    input_names=['input'],
-    output_names=['output'],
+    input_names=[input],
+    output_names=[output],
     dynamic_axes={
         'input': {0: 'batch_size'},
         'output': {0: 'batch_size'}
@@ -324,7 +324,7 @@ model = AdvancedClassifier.load_from_checkpoint('best_model.ckpt')
 model.eval()
 
 @app.post("/predict")
-async def predict(data: dict): input_tensor = torch.tensor(data['features'])
+async def predict(data: dict): input_tensor = torch.tensor(data[features])
     with torch.no_grad(): output = model(input_tensor)
         probabilities = F.softmax(output, dim=1)
     
@@ -423,8 +423,8 @@ trainer = pl.Trainer(
 )
 
 # Or manually in training step
-def training_step(self, batch, batch_idx): with torch.autocast(device_type='cuda', dtype=torch.float16): outputs = self(batch['inputs'])
-        loss = self.loss_fn(outputs, batch['targets'])
+def training_step(self, batch, batch_idx): with torch.autocast(device_type='cuda', dtype=torch.float16): outputs = self(batch[inputs])
+        loss = self.loss_fn(outputs, batch[targets])
     
     self.log('loss', loss)
     return loss
@@ -536,7 +536,7 @@ def objective(trial): # Define search space
     # Train and evaluate
     trainer.fit(model, train_dataloader, val_dataloader)
     
-    return trainer.callback_metrics['val_loss'].item()
+    return trainer.callback_metrics[val_loss].item()
 
 # Run optimization study
 study = optuna.create_study(direction='minimize')
@@ -623,7 +623,7 @@ REQUEST_LATENCY = Histogram('model_request_latency_seconds', 'Request latency')
 PREDICTION_CONFIDENCE = Gauge('prediction_confidence', 'Average confidence')
 
 class MonitoringCallback(pl.Callback): def on_validation_epoch_end(self, trainer, pl_module): REQUEST_COUNT.inc()
-        PREDICTION_CONFIDENCE.set(pl_module.callback_metrics['val_accuracy'].item())
+        PREDICTION_CONFIDENCE.set(pl_module.callback_metrics[val_accuracy].item())
 ```
 
 ### A/B Testing Framework
@@ -779,7 +779,7 @@ def objective(trial): # Define search space
     # Train and evaluate
     trainer.fit(model, train_dataloader, val_dataloader)
     
-    return trainer.callback_metrics['val_loss'].item()
+    return trainer.callback_metrics[val_loss].item()
 
 # Run optimization study
 study = optuna.create_study(direction='minimize')
@@ -866,7 +866,7 @@ REQUEST_LATENCY = Histogram('model_request_latency_seconds', 'Request latency')
 PREDICTION_CONFIDENCE = Gauge('prediction_confidence', 'Average confidence')
 
 class MonitoringCallback(pl.Callback): def on_validation_epoch_end(self, trainer, pl_module): REQUEST_COUNT.inc()
-        PREDICTION_CONFIDENCE.set(pl_module.callback_metrics['val_accuracy'].item())
+        PREDICTION_CONFIDENCE.set(pl_module.callback_metrics[val_accuracy].item())
 ```
 
 ### A/B Testing Framework

@@ -1,6 +1,6 @@
 ---
 title: 'Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
-description: 'Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang retrieval, tích hợp API, hỗ trợ đa ngôn ngữ, tìm kiếm hybrid và benchmark production.'
+description: "Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang retrieval, tích hợp API, hỗ trợ đa ngôn ngữ, tìm kiếm hybrid và benchmark production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'vectara/vectara-ingest'
+github_repo: "vectara/vectara-ingest"
 stars: 800
 maintainer: vectara
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [vectara, rag, 'tìm kiếm vector', llm, embedding, boomerang, hhem, 'phát hiện hallucination', 'ai doanh nghiệp']
-aliases: - /vi/posts/vectara-rag-as-service-platform/
+categories: ["data-science"]
+tags: ["vectara", "rag", "tìm kiếm vector", "llm", "embedding", "boomerang", "hhem", "phát hiện hallucination", "ai doanh nghiệp"]
+aliases:
+  - /vi/posts/vectara-rag-as-service-platform/
 ---
 
 {{</* resource-info */>}}

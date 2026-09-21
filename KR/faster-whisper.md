@@ -1,6 +1,6 @@
 ---
 title: 'faster-whisper: 23K+ Stars로 4배 빠른 음성-텍스트 변환 — 2026년 Whis...
-description: 'faster-whisper(SYSTRAN)는 CTranslate2로 OpenAI Whisper를 재구현하여 4배 속도 향상을 달성합니다. faster whisper 튜토리얼, 벤치마크 데이터, Docker 설정, Python API, VAD 필터, 배치 처리, WhisperX 및 whisper.cpp과의 프로덕션 통합을 다룹니다.'
+description: "faster-whisper(SYSTRAN)는 CTranslate2로 OpenAI Whisper를 재구현하여 4배 속도 향상을 달성합니다. faster whisper 튜토리얼, 벤치마크 데이터, Docker 설정, Python API, VAD 필터, 배치 처리, WhisperX 및 whisper.cpp과의 프로덕션 통합을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/SYSTRAN/faster-whisper'
+github_repo: "https://github.com/SYSTRAN/faster-whisper"
 stars: 23000
 maintainer: SYSTRAN
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['faster-whisper', '음성-텍스트변환', ctranslate2, 'openai-whisper', 음성인식, python, docker, asr]
-aliases: - /kr/posts/faster-whisper/
+categories: ["ai-tools"]
+tags: ["faster-whisper", "음성-텍스트변환", "ctranslate2", "openai-whisper", "음성인식", "python", "docker", "asr"]
+aliases:
+  - /kr/posts/faster-whisper/
 ---
 
 {{</* resource-info */>}}

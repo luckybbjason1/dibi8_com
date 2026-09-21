@@ -1,6 +1,6 @@
 ---
-title: 'Prefect 2026: 面向数据与 AI 流水线的现代工作流编排引擎 —— 自托管设置指南'
-description: '关于 Prefect 3.x 的实战指南——这款 Python 原生工作流编排器支持异步执行、内置重试和自托管服务器。在 5 分钟内部署你的数据流水线。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Prefect 2026: 面向数据与 AI 流水线的现代工作流编排引擎 —— 自托管设置指南"
+description: "关于 Prefect 3.x 的实战指南——这款 Python 原生工作流编排器支持异步执行、内置重试和自托管服务器。在 5 分钟内部署你的数据流水线。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'PrefectHQ/prefect'
+github_repo: "PrefectHQ/prefect"
 stars: 18000
 maintainer: PrefectHQ
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /zh/posts/prefect-workflow-orchestration/-
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /zh/posts/prefect-workflow-orchestration/-
 ---
 
 {{</* resource-info */>}}
@@ -29,7 +30,7 @@ aliases: - /zh/posts/prefect-workflow-orchestration/-
 
 凌晨 3:17，你的关键 ETL 流水线悄无声息地失败了。日志文件是服务器上没人查看的 400MB 文本墙。下游仪表板显示的是周二的过时数据，但现在是周四。你的团队在客户电话会议中 14 小时后才发现这次故障。这不是宕机。这是无管理工作流的默认状态。
 
-一项 [2025 年数据工程调查](https://prefect.io) 发现，**72% 的数据流水线故障在 6 小时以上才被发现**，而 **基于 cron 的调度仍然是 61% 团队的主要编排方法**。Cron 不会重试失败的任务。它不会在出问题时提醒你。它不会显示哪些下游系统受到影响。它只是运行命令并寄希望于一切顺利。
+一项 [2025 年数据工程调查"](https://prefect.io) 发现，**72% 的数据流水线故障在 6 小时以上才被发现**，而 **基于 cron 的调度仍然是 61% 团队的主要编排方法**。Cron 不会重试失败的任务。它不会在出问题时提醒你。它不会显示哪些下游系统受到影响。它只是运行命令并寄希望于一切顺利。
 
 Prefect 3.x（v3.3.0，2026-03-20 发布）是一个 Python 原生工作流编排引擎，旨在用结构化、可观察、有弹性的流水线取代这种混乱。凭借 **~18,000 GitHub Stars**、**Apache-2.0 许可证**和现代异步架构，Prefect 为你提供**亚秒级任务调度**、**带指数退避的自动重试**、**实时可观察性仪表板**以及自托管整个控制平面的能力。全部通过纯 Python 代码实现。无需 YAML。
 
@@ -660,13 +661,13 @@ deployments: - name: daily-etl
     work_pool: name: docker-pool
     schedule: cron: "0 6 * * *"
     parameters: endpoint: "https://api.production.example.com/v1/data"
-    tags: ["production", "etl", "daily"]
+tags: ["production", "etl", "daily"]
     
   - name: hourly-analytics
     entrypoint: analytics_pipeline.py:hourly_flow
     work_pool: name: k8s-pool
     schedule: interval: 3600
-    tags: ["production", "analytics"]
+tags: ["production", "analytics"]
 ```
 
 ### 监控和告警

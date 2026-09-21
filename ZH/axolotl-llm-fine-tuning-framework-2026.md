@@ -1,6 +1,6 @@
 ---
-title: 'Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南'
-description: 'Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama / Mistral / Qwen / GLM / 10+ 家族。完整 2026 安装指南 + 何时 Axolotl 胜过 Unsloth 和原生 HF TRL。'
+title: "Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南"
+description: "Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama / Mistral / Qwen / GLM / 10+ 家族。完整 2026 安装指南 + 何时 Axolotl 胜过 Unsloth 和原生 HF TRL。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/axolotl-ai-cloud/axolotl'
+github_repo: "https://github.com/axolotl-ai-cloud/axolotl"
 stars: 12000
 maintainer: 'axolotl-ai-cloud'
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [axolotl, 微调, lora, qlora, dpo, 开源]
-aliases: - /posts/axolotl-llm-fine-tuning-framework-2026/-
+categories: ["llm-frameworks"]
+tags: ["axolotl", "微调", "lora", "qlora", "dpo", "开源"]
+aliases:
+  - /posts/axolotl-llm-fine-tuning-framework-2026/-
 ---
 
 你试过微调 Llama 模型，最后写了 300 行 PyTorch + DeepSpeed config + Hugging Face Trainer 包装，那你感受到了 **Axolotl** 填的坑。一个 YAML 文件描述整个微调跑 —— 模型、数据集、LoRA 配置、超参、分布式策略 —— Axolotl 处理其余。

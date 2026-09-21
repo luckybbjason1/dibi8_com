@@ -1,6 +1,6 @@
 ---
 title: 'Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Tex...
-description: 'Compare the best AI voice tools of 2025 for text-to-speech and transcription. ElevenLabs, Murf.ai, Whisper, Otter.ai, and more with pricing, accuracy, and use cases.'
+description: "Compare the best AI voice tools of 2025 for text-to-speech and transcription. ElevenLabs, Murf.ai, Whisper, Otter.ai, and more with pricing, accuracy, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-voice-tools-text-to-speech-transcription/
+aliases:
+  - /posts/ai-voice-tools-text-to-speech-transcription/
 ---
 # Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Text Comparison
 

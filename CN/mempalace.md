@@ -19,7 +19,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/mempalace/
+aliases:
+  - /posts/mempalace/
 faqs: - q: 'What is MemPalace and how does it give an AI memory?'
     a: 'MemPalace is a free, open-source, local-first AI memory system that stores your conversation and project history as verbatim text and retrieves it with semantic search. It creates a structured memory layer outside the model so your AI assistant can recall exact past context instead of starting every chat from zero.'
   - q: 'How do you install MemPalace?'

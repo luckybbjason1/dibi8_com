@@ -1,17 +1,16 @@
 ---
 title: 'MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark...
-description: 'MemPalace là hệ thống bộ nhớ AI ưu tiên cục bộ, lưu trữ lịch sử cuộc trò chuyện dưới dạng văn bản nguyên bản và truy xuất bằng tìm kiếm ngữ nghĩa. Tích hợp với Claude Code, Cursor, Windsurf và bất kỳ agent tương thích MCP. Backend ChromaDB, lưu trữ có thể tháo rời, không gọi API ngoài. Bao gồm hướng dẫn cài đặt, benchmark và phân tích kiến trúc.'
+description: "MemPalace là hệ thống bộ nhớ AI ưu tiên cục bộ, lưu trữ lịch sử cuộc trò chuyện dưới dạng văn bản nguyên bản và truy xuất bằng tìm kiếm ngữ nghĩa. Tích hợp với Claude Code, Cursor, Windsurf và bất kỳ agent tương thích MCP. Backend ChromaDB, lưu trữ có thể tháo rời, không gọi API ngoài. Bao gồm hướng dẫn cài đặt, benchmark và phân tích kiến trúc."
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
-tags: ['ai-memory', 'local-first', 'mempalace', 'semantic-search', 'chromadb', 'long-term-memory', 'mcp-agent', 'verbatim-storage']
-github_repo: 'https://github.com/MemPalace/mempalace'
+tags: ["ai-memory", "local-first", "mempalace", "semantic-search", "chromadb", "long-term-memory", "mcp-agent", "verbatim-storage"]
+github_repo: "https://github.com/MemPalace/mempalace"
 stars: 55206
 maintainer: 'MemPalace'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
-lang: vi
 ---
 
 # MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark tốt nhất, tiết kiệm 96.6% R@5 trên LongMemEval — Không gọi API

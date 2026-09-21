@@ -1,17 +1,16 @@
 ---
-title: 'Weights & Biases (W&B): 전문가처럼 실험 추적하기 — ML 실험 플랫폼 2026'
-description: 'Weights & Biases (wandb/wandb)는 ML 실험을 추적, 비교, 배포하기 위한 AI 개발자 플랫폼입니다. PyTorch, TensorFlow, Hugging Face 및 LLM 파인튜닝을 지원합니다. 실험 추적, 데이터세트 버전 관리, 모델 레지스트리, 프로덕션 모니터링을 다룹니다.'
+title: "Weights & Biases (W&B): 전문가처럼 실험 추적하기 — ML 실험 플랫폼 2026"
+description: "Weights & Biases (wandb/wandb)는 ML 실험을 추적, 비교, 배포하기 위한 AI 개발자 플랫폼입니다. PyTorch, TensorFlow, Hugging Face 및 LLM 파인튜닝을 지원합니다. 실험 추적, 데이터세트 버전 관리, 모델 레지스트리, 프로덕션 모니터링을 다룹니다."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
-tags: ['ml-ops', 'experiment-tracking', 'deep-learning', 'pytorch', 'llm', 'model-registry', 'mlops']
-github_repo: 'https://github.com/wandb/wandb'
+tags: ["ml-ops", "experiment-tracking", "deep-learning", "pytorch", "llm", "model-registry", "mlops"]
+github_repo: "https://github.com/wandb/wandb"
 stars: 11114
 maintainer: 'wandb'
 license: MIT
 featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
-lang: ko
 ---
 
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)

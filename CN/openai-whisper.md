@@ -1,6 +1,6 @@
 ---
 title: 'OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutori...
-description: 'OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with WhisperX, faster-whisper, LibreTranslate. Covers whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker.'
+description: "OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with WhisperX, faster-whisper, LibreTranslate. Covers whisper tutorial, whisper vs whisperx, speech recognition setup, whisper python, whisper docker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/openai/whisper'
+github_repo: "https://github.com/openai/whisper"
 stars: 99800
 maintainer: openai
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [whisper, 'speech-recognition', asr, openai, 'faster-whisper', whisperx, python, docker, 'machine-learning']
-aliases: - /posts/openai-whisper/-
+categories: ["ai-tools"]
+tags: ["whisper", "speech-recognition", "asr", "openai", "faster-whisper", "whisperx", "python", "docker", "machine-learning"]
+aliases:
+  - /posts/openai-whisper/-
 ---
 {{</* resource-info */>}}
 

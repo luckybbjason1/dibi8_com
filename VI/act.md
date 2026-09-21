@@ -1,6 +1,6 @@
 ---
 title: 'act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hư...
-description: 'act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thích với Docker, GitHub Actions, Go và VS Code. Bao gồm cài đặt, thiết lập, quản lý secrets, runner images và production hardening.'
+description: "act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thích với Docker, GitHub Actions, Go và VS Code. Bao gồm cài đặt, thiết lập, quản lý secrets, runner images và production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/nektos/act'
+github_repo: "https://github.com/nektos/act"
 stars: 70410
 maintainer: nektos
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [act, 'github-actions', 'ci-cd', docker, 'phat-trien-local', devops, 'kiem-tra', 'tu-dong-hoa']
-aliases: - /vi/posts/act/
+categories: ["dev-utils"]
+tags: ["act", "github-actions", "ci-cd", "docker", "phat-trien-local", "devops", "kiem-tra", "tu-dong-hoa"]
+aliases:
+  - /vi/posts/act/
 ---
 
 {{</* resource-info */>}}

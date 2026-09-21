@@ -1,6 +1,6 @@
 ---
 title: 'Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn...
-description: 'Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, xây dựng 50+ loại biểu đồ, và triển khai dashboard sẵn sàng production với phân quyền theo vai trò.'
+description: "Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, xây dựng 50+ loại biểu đồ, và triển khai dashboard sẵn sàng production với phân quyền theo vai trò."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'apache/superset'
+github_repo: "apache/superset"
 stars: 66000
 maintainer: apache
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: ['apache superset', 'trực quan hóa dữ liệu', bi, dashboard, 'mã nguồn mở', docker, sql, 'phân tích']
-aliases: - /vi/posts/preset-superset-data-exploration/
+categories: ["data-science"]
+tags: ["apache superset", "trực quan hóa dữ liệu", "bi", "dashboard", "mã nguồn mở", "docker", "sql", "phân tích"]
+aliases:
+  - /vi/posts/preset-superset-data-exploration/
 ---
 
 {{</* resource-info */>}}

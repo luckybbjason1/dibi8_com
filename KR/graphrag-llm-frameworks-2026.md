@@ -1,6 +1,6 @@
 ---
 title: 'GraphRAG: 마이크로소프트의 지식 그래프 기반 RAG로 더 나은 LLM 답변 (33K Stars...
-description: 'GraphRAG는 마이크로소프트의 모듈형 지식 그래프 기반 RAG 시스템입니다(GitHub 33,403 스타, MIT 라이선스). 이 가이드는 설치, init/index/query 워크플로, 실제 CLI 예제, 그리고 LangChain·Haystack과의 솔직한 비교를 다룹니다.'
+description: "GraphRAG는 마이크로소프트의 모듈형 지식 그래프 기반 RAG 시스템입니다(GitHub 33,403 스타, MIT 라이선스). 이 가이드는 설치, init/index/query 워크플로, 실제 CLI 예제, 그리고 LangChain·Haystack과의 솔직한 비교를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,21 +12,22 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'microsoft/graphrag'
+github_repo: "microsoft/graphrag"
 stars: 33403
 maintainer: microsoft
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: []
-aliases: - /posts/graphrag-llm-frameworks-2026/
+categories: ["llm-frameworks"]
+tags: ["]
+aliases:
+  - /posts/graphrag-llm-frameworks-2026/
 faqs: - q: 'graphrag는 어떻게 설치하나요?'
     a: 'PyPI에서 한 줄로 설치합니다(Python 3.10–3.12): ```bash pip install graphrag ```'
   - q: 'graphrag 실행에 필요한 시스템 요건은 무엇인가요?'
-    a: 'GraphRAG에는 Python 3.10–3.12와, API 키를 통한 언어 모델 접근(OpenAI, Azure OpenAI 또는 그 밖의 지원 제공자)이 필요합니다. Python을 지원하는 모든 현대 운영체제에서 동작합니다.'
+    a: 'GraphRAG에는 Python 3.10–3.12와", "API 키를 통한 언어 모델 접근(OpenAI", "Azure OpenAI 또는 그 밖의 지원 제공자)이 필요합니다. Python을 지원하는 모든 현대 운영체제에서 동작합니다.'
   - q: '프로젝트에 기여할 수 있나요?'
-    a: '네. 이 프로젝트는 MIT 라이선스로 오픈소스이며 기여를 환영합니다. 가이드라인은 GitHub의 [CONTRIBUTING.md](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) 파일을 참고하세요.'
+    a: '네. 이 프로젝트는 MIT 라이선스로 오픈소스이며 기여를 환영합니다. 가이드라인은 GitHub의 [CONTRIBUTING.md"](https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md) 파일을 참고하세요.'
   - q: '문제나 버그는 어떻게 신고하나요?'
     a: '저장소의 GitHub Issues 페이지를 이용하세요. 오류 메시지, 설정, 재현 단계 등 가능한 한 자세한 정보를 포함해 주세요.'
   - q: 'GraphRAG는 일반 벡터 RAG와 무엇이 다른가요?'

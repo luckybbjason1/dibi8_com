@@ -1,6 +1,6 @@
 ---
 title: 'Quy Trình Git và Công Cụ Hợp Tác Nhóm: Hướng Dẫn Đầy Đủ ...
-description: 'Tìm hiểu các chiến lược branching Git (GitFlow, GitHub Flow, Trunk-Based), công cụ hợp tác nhóm, và thực tiễn code review tốt nhất năm 2025.'
+description: "Tìm hiểu các chiến lược branching Git (GitFlow, GitHub Flow, Trunk-Based), công cụ hợp tác nhóm, và thực tiễn code review tốt nhất năm 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/git-workflow-team-collaboration-tools/
+aliases:
+  - /posts/git-workflow-team-collaboration-tools/
 ---
 
 {</* resource-info */>}

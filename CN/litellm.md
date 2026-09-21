@@ -1,6 +1,6 @@
 ---
 title: 'LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
-description: 'LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening.'
+description: "LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/BerriAI/litellm'
+github_repo: "https://github.com/BerriAI/litellm"
 stars: 22500
 maintainer: BerriAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [litellm, 'llm-gateway', 'open-source', docker, production, 'ai-infrastructure', 'proxy-server', 'multi-model']
-aliases: - /posts/litellm/
+categories: ["llm-frameworks"]
+tags: ["litellm", "llm-gateway", "open-source", "docker", "production", "ai-infrastructure", "proxy-server", "multi-model"]
+aliases:
+  - /posts/litellm/
 - /resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
 {{</* resource-info */>}}

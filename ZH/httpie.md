@@ -1,6 +1,6 @@
 ---
 title: 'HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wge...
-description: 'HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题解答。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题解答。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/httpie/cli'
+github_repo: "https://github.com/httpie/cli"
 stars: 38200
 maintainer: httpie
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [httpie, 命令行, http客户端, api测试, curl替代, json, 终端, 开发工具]
-aliases: - /zh/posts/httpie/-
+categories: ["dev-utils"]
+tags: ["httpie", "命令行", "http客户端", "api测试", "curl替代", "json", "终端", "开发工具"]
+aliases:
+  - /zh/posts/httpie/-
 ---
 
 {{</* resource-info */>}}

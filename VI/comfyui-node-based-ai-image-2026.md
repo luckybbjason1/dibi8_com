@@ -1,6 +1,6 @@
 ---
 title: 'ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh...
-description: 'ComfyUI là engine workflow trực quan dựa node 114k sao cho SD/SDXL/Flux/Wan/Hunyuan và hơn nữa. Hỗ trợ sinh hình ảnh, video, âm thanh, và 3D. Hướng dẫn cài đặt 2026 đầy đủ bao gồm cơ bản node, import workflow JSON, ComfyUI Manager, và khi ComfyUI thắng AUTOMATIC1111.'
+description: "ComfyUI là engine workflow trực quan dựa node 114k sao cho SD/SDXL/Flux/Wan/Hunyuan và hơn nữa. Hỗ trợ sinh hình ảnh, video, âm thanh, và 3D. Hướng dẫn cài đặt 2026 đầy đủ bao gồm cơ bản node, import workflow JSON, ComfyUI Manager, và khi ComfyUI thắng AUTOMATIC1111."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/comfyanonymous/ComfyUI'
+github_repo: "https://github.com/comfyanonymous/ComfyUI"
 stars: 114000
 maintainer: comfyanonymous
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [comfyui, 'sinh ảnh', 'sinh video', 'dựa node', workflow, 'mã nguồn mở']
-aliases: - /posts/comfyui-node-based-ai-image-2026/
+categories: ["ai-tools"]
+tags: ["comfyui", "sinh ảnh", "sinh video", "dựa node", "workflow", "mã nguồn mở"]
+aliases:
+  - /posts/comfyui-node-based-ai-image-2026/
 ---
 
 Nếu [AUTOMATIC1111](/vi/resources/ai-tools/stable-diffusion-webui-2026/) là "Photoshop cho sinh ảnh AI" (bạn gõ, ảnh xảy ra), **ComfyUI** là **"node editor của Blender cho AI tạo sinh"** — bạn xây workflow như graph có hướng các node, với điều khiển rõ ràng trên mọi mô hình, sampler, bước điều kiện hóa, và hậu xử lý. 114k sao GitHub, GPL-3.0, hỗ trợ hầu như mọi họ mô hình AI tạo sinh ra mắt 2024-2026: SD 1.x, SDXL, SD3/3.5, Flux (1 & 2), Wan, Hunyuan (hình ảnh / video / 3D), PixArt, AuraFlow, LTX-Video.

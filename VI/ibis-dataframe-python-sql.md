@@ -1,6 +1,6 @@
 ---
-title: 'ibis-dataframe-python-sql'
-description: '{'en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backends including DuckDB, PostgreSQL, BigQuery, and Snowflake. Learn how lazy evaluation and type-safe expressions deliver 10x performance over pandas.'', 'zh': ''发现 Ibis，这款将表达式编译为 SQL 的 Python DataFrame 库，支持 DuckDB、PostgreSQL、BigQuery、Snowflake 等 20+ 后端。了解惰性求值和类型安全表达式如何带来比 pandas 快 10 倍的性能。'', 'ko': ''DuckDB, PostgreSQL, BigQuery, Snowflake를 포함한 20개 이상의 백엔드를 위해 표현식을 SQL로 컴파일하는 Python DataFrame 라이브러리 Ibis를 알아보세요. 지연 평가와 타입 안전 표현식이 pandas보다 10배 빠른 성능을 제공하는 방법을 배워보세요.'', 'vi': ''Khám phá Ibis, thư viện DataFrame Python biên dịch biểu thức thành SQL cho 20+ backend bao gồm DuckDB, PostgreSQL, BigQuery và Snowflake. Tìm hiểu cách đánh giá lưới và biểu thức kiểu an toàn mang lại hiệu suất gấp 10 lần so với pandas.''}'
+title: "ibis-dataframe-python-sql"
+description: "{"en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backends including DuckDB, PostgreSQL, BigQuery, and Snowflake. Learn how lazy evaluation and type-safe expressions deliver 10x performance over pandas.'', 'zh': ''发现 Ibis，这款将表达式编译为 SQL 的 Python DataFrame 库，支持 DuckDB、PostgreSQL、BigQuery、Snowflake 等 20+ 后端。了解惰性求值和类型安全表达式如何带来比 pandas 快 10 倍的性能。'', 'ko': ''DuckDB, PostgreSQL, BigQuery, Snowflake를 포함한 20개 이상의 백엔드를 위해 표현식을 SQL로 컴파일하는 Python DataFrame 라이브러리 Ibis를 알아보세요. 지연 평가와 타입 안전 표현식이 pandas보다 10배 빠른 성능을 제공하는 방법을 배워보세요.'', 'vi': ''Khám phá Ibis, thư viện DataFrame Python biên dịch biểu thức thành SQL cho 20+ backend bao gồm DuckDB, PostgreSQL, BigQuery và Snowflake. Tìm hiểu cách đánh giá lưới và biểu thức kiểu an toàn mang lại hiệu suất gấp 10 lần so với pandas.''}'
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [ibis]
-aliases: - /vi/posts/ibis-dataframe-python-sql/
+categories: ["data-science"]
+tags: ["ibis"]
+aliases:
+  - /vi/posts/ibis-dataframe-python-sql/
 ---
 
 {{</* resource-info */>}}

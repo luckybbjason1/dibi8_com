@@ -1,10 +1,10 @@
 ---
-title: 'Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?'
-description: 'Side-by-side breakdown of Ollama and LM Studio — CLI vs GUI, model library, GPU support, OpenAI-compatible API, quantization, self-hosting. Updated 2026.'
+title: "Ollama vs LM Studio in 2026: Which Local LLM Runner Wins?"
+description: "Side-by-side breakdown of Ollama and LM Studio — CLI vs GUI, model library, GPU support, OpenAI-compatible API, quantization, self-hosting. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [ollama, lm-studio, local-llm, gguf, self-hosting, comparison]
-categories: [vs]
+tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]
+categories: ["vs"]
 faqs: - q: 'Is Ollama or LM Studio better for beginners?'
     a: 'LM Studio is friendlier for absolute beginners — it ships with a polished GUI, an in-app model browser, and a click-to-load workflow. Ollama is CLI-first ("docker run" style); a one-line `ollama run llama3` install is fast for devs, but non-CLI users hit a wall. Start with LM Studio, graduate to Ollama when you want to script it into pipelines.'
   - q: 'Which one is better for serving an API to my app?'

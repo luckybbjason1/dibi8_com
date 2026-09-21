@@ -1,6 +1,6 @@
 ---
 title: 'Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị T...
-description: 'Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu tượng, mà là bảy quy tắc bắt buộc, mỗi quy tắc đi kèm một biện pháp kiểm soát kỹ thuật cụ thể: cấp quyền tối thiểu, khả năng kiểm toán đầy đủ, tính đảo ngược có con người trong vòng lặp, tự chủ có giới hạn, chuỗi trách nhiệm không gián đoạn, mặc định an toàn khi lỗi, và thiết kế ưu tiên quyền riêng tư. Kèm danh sách kiểm tra trước khi triển khai dành cho lập trình viên năm 2026.'
+description: "Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu tượng, mà là bảy quy tắc bắt buộc, mỗi quy tắc đi kèm một biện pháp kiểm soát kỹ thuật cụ thể: cấp quyền tối thiểu, khả năng kiểm toán đầy đủ, tính đảo ngược có con người trong vòng lặp, tự chủ có giới hạn, chuỗi trách nhiệm không gián đoạn, mặc định an toàn khi lỗi, và thiết kế ưu tiên quyền riêng tư. Kèm danh sách kiểm tra trước khi triển khai dành cho lập trình viên năm 2026."
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
 tech_stack: - AI Agents
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-06-04'
+last_maintained: "2026-06-04"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai agent', 'đạo đức ai', 'ai có trách nhiệm', 'quản trị ai', 'an toàn agent', 'căn chỉnh', 'quy tắc đạo đức']
-aliases: - /vi/posts/ai-agent-code-of-ethics/
+categories: ["collections"]
+tags: ["ai agent", "đạo đức ai", "ai có trách nhiệm", "quản trị ai", "an toàn agent", "căn chỉnh", "quy tắc đạo đức"]
+aliases:
+  - /vi/posts/ai-agent-code-of-ethics/
 faqs: - q: 'Đạo đức AI agent khác gì với đạo đức chatbot?'
     a: 'Chatbot tạo ra văn bản; agent thực hiện hành động — nó gọi công cụ, chuyển tiền, gửi email, sửa tệp và gây ra hậu quả trong thế giới thực. Đạo đức chatbot chủ yếu xoay quanh "nói gì" (thiên kiến, độc hại, thông tin sai). Đạo đức agent xoay quanh "làm gì": cấp quyền, tính đảo ngược, và trách nhiệm cho các hành động không thể hoàn tác. Bề mặt gây hại thuộc về vận hành chứ không chỉ thông tin, nên biện pháp kiểm soát phải là kiểm soát kỹ thuật, không phải bộ lọc nội dung.'
   - q: 'Cấp quyền tối thiểu cho một AI agent là gì?'

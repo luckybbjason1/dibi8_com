@@ -1,14 +1,13 @@
 ---
 title: 'VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, C...
-description: 'Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép vào bất kỳ ứng dụng nào. 33K sao. Chạy cục bộ trên máy của bạn với hỗ trợ CUDA hoặc Apple Silicon.'
+description: "Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép vào bất kỳ ứng dụng nào. 33K sao. Chạy cục bộ trên máy của bạn với hỗ trợ CUDA hoặc Apple Silicon."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-tools
-tags: ['ai', 'giọng-ai', 'nhân-bản-giọng', 'chuyển-âm-thành-chữ', 'chuyển-chữ-thành-âm', 'whisper', 'qwen3-tts', 'cuda', 'mlx']
+tags: ["ai", "giọng-ai", "nhân-bản-giọng", "chuyển-âm-thành-chữ", "chuyển-chữ-thành-âm", "whisper", "qwen3-tts", "cuda", "mlx"]
 slug: voicebox-open-source-ai-voice-studio
 featureImage: /images/articles/voicebox-open-source-ai-voice-studio-for-cloning-dictation-and-generation.png
-lang: vi
 github_repo: https://github.com/voicebox-ai/voicebox
 license: MIT
 ---

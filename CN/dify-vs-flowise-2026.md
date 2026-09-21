@@ -1,10 +1,10 @@
 ---
 title: 'Dify vs Flowise in 2026: Full-Stack AI App Platform vs L...
-description: 'Side-by-side comparison of Dify (enterprise RAG, multi-model, prompt management, self-hostable) and Flowise (node-canvas LangChain builder, lightweight, open-source) — features, self-hosting, AI pipelines, and which fits your team in 2026.'
+description: "Side-by-side comparison of Dify (enterprise RAG, multi-model, prompt management, self-hostable) and Flowise (node-canvas LangChain builder, lightweight, open-source) — features, self-hosting, AI pipelines, and which fits your team in 2026."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
-categories: [vs]
+tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'What is the difference between Dify and Flowise?'
     a: 'Dify is a full-stack platform for building and operating LLM applications — it includes prompt management, RAG pipelines, multi-model routing, built-in vector storage, and an application publish layer. Flowise is a lightweight visual node-canvas builder on top of LangChain, designed for developers who want to visually chain LLM components. Dify is broader and more opinionated; Flowise is leaner and closer to raw LangChain primitives.'
   - q: 'Is Dify or Flowise better for building a RAG chatbot?'

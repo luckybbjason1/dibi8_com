@@ -18,7 +18,8 @@ maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
+aliases:
+  - /kr/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/
 faqs: - q: '일반 CPU로 Bitcoin-Classic (BTCC)을 채굴할 수 있나요?'
     a: '네. BTCC는 일반 가정용 컴퓨터 CPU도 채굴에 참여할 수 있도록 설계되었으며, ASIC 장비나 전용 GPU가 필요하지 않습니다. 네트워크 해시레이트가 매우 낮기 때문에 일반 CPU로도 실제로 블록 보상을 받을 수 있습니다.'
   - q: 'Bitcoin-Classic (BTCC)의 총 공급량과 블록 보상은 얼마인가요?'

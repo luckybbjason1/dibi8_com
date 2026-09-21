@@ -1,6 +1,6 @@
 ---
 title: 'Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng c...
-description: 'Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dung, AI content workflows, và triển khai Docker tự host. Benchmark API REST và GraphQL.'
+description: "Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dung, AI content workflows, và triển khai Docker tự host. Benchmark API REST và GraphQL."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'directus/directus'
+github_repo: "directus/directus"
 stars: 29100
 maintainer: directus
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [directus, 'headless cms', 'quản lý nội dung', api, docker, 'mã nguồn mở', ai, graphql, rest, 'tự host']
-aliases: - /vi/posts/directus-headless-cms-ai-content/
+categories: ["dev-utils"]
+tags: ["directus", "headless cms", "quản lý nội dung", "api", "docker", "mã nguồn mở", "ai", "graphql", "rest", "tự host"]
+aliases:
+  - /vi/posts/directus-headless-cms-ai-content/
 ---
 
 {{</* resource-info */>}}

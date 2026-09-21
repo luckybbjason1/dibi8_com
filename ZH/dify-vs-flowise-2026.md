@@ -1,10 +1,10 @@
 ---
-title: 'Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布'
-description: '全面对比 Dify（企业级 RAG、多模型路由、提示词管理、可自托管）与 Flowise（可视化 LangChain 节点构建器、轻量、开源）— 功能、自托管、AI 流水线及 2026 年适用场景。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布"
+description: "全面对比 Dify（企业级 RAG、多模型路由、提示词管理、可自托管）与 Flowise（可视化 LangChain 节点构建器、轻量、开源）— 功能、自托管、AI 流水线及 2026 年适用场景。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
-tags: [dify, flowise, langchain, llm-apps, no-code-ai, rag, ai-builder, comparison, self-hosted]
-categories: [vs]
+tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'Dify 和 Flowise 有什么区别？'
     a: 'Dify 是一个构建和运营 LLM 应用的全栈平台——包含提示词管理、RAG 流水线、多模型路由、内置向量存储和应用发布层。Flowise 是基于 LangChain 的轻量可视化节点画布构建器，专为想直观地链接 LLM 组件的开发者设计。Dify 功能更全面、更有主见；Flowise 更精简，更接近原始的 LangChain 原语。'
   - q: 'Dify 还是 Flowise 更适合构建 RAG 聊天机器人？'

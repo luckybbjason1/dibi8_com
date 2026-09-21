@@ -1,6 +1,6 @@
 ---
-title: 'Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026'
-description: 'Define and run multi-container applications with Docker using declarative YAML configuration.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026"
+description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/docker/compose'
+github_repo: "https://github.com/docker/compose"
 stars: 37393
 maintainer: docker
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['docker-compose', 容器编排, devops, docker, 微服务, 部署, yaml, 多容器]
-aliases: - /zh/posts/docker-compose/-
+categories: ["dev-utils"]
+tags: ["docker-compose", "容器编排", "devops", "docker", "微服务", "部署", "yaml", "多容器"]
+aliases:
+  - /zh/posts/docker-compose/-
 ---
 
 {{</* resource-info */>}}

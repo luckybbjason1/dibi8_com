@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만...
-description: 'Claude Code 커스텀 서브에이전트를 작성하는 완벽 가이드 — frontmatter 필드, 시스템 프롬프트 설계, 도구 화이트리스트, 그리고 바로 투입 가능한 두 가지 예제(마이그레이션 리뷰어, 보안 게이트)와 피해야 할 실수까지.'
+description: "Claude Code 커스텀 서브에이전트를 작성하는 완벽 가이드 — frontmatter 필드, 시스템 프롬프트 설계, 도구 화이트리스트, 그리고 바로 투입 가능한 두 가지 예제(마이그레이션 리뷰어, 보안 게이트)와 피해야 할 실수까지."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'custom-agents', 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-custom-agent-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-custom-agent-authoring/
 faq: - q: "커스텀 에이전트 정의 파일은 어디에 두며, 어떤 형식인가요?"
     a: "커스텀 에이전트는 YAML frontmatter가 붙은 Markdown 파일로, 프로젝트의 .claude/agents/ 디렉터리(또는 모든 프로젝트에서 쓰고 싶다면 ~/.claude/agents/)에 저장합니다. 파일명에서 .md 확장자를 뗀 것이 에이전트의 정체성은 아닙니다 — frontmatter의 name 필드가 정체성입니다. frontmatter는 name, description, 선택적 tools 화이트리스트, 선택적 model을 선언하며, 닫는 --- 아래의 모든 내용이 에이전트의 시스템 프롬프트입니다."
   - q: "description 필드와 시스템 프롬프트 본문은 어떻게 다른가요?"

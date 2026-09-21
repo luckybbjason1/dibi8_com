@@ -1,6 +1,6 @@
 ---
 title: 'Tabby: Self-Hosted AI Coding Assistant with 33K+ Stars —...
-description: 'Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docker setup, IDE integration, benchmarks, and production hardening.'
+description: "Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docker setup, IDE integration, benchmarks, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/TabbyML/tabby'
+github_repo: "https://github.com/TabbyML/tabby"
 stars: 33530
 maintainer: TabbyML
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [tabby, 'ai-coding-assistant', 'self-hosted', 'github-copilot-alternative', 'code-completion', docker, 'open-source']
-aliases: - /posts/tabby/-
+categories: ["llm-frameworks"]
+tags: ["tabby", "ai-coding-assistant", "self-hosted", "github-copilot-alternative", "code-completion", "docker", "open-source"]
+aliases:
+  - /posts/tabby/-
 ---
 {{</* resource-info */>}}
 

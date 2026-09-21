@@ -1,6 +1,6 @@
 ---
 title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: 'Scrapy is a fast high-level web crawling and scraping framework for Python. Compatible with Python, Docker, Redis, PostgreSQL. Covers benchmarks, architecture, production deployment, and comparison with BeautifulSoup, Selenium, and Playwright.'
+description: "Scrapy is a fast high-level web crawling and scraping framework for Python. Compatible with Python, Docker, Redis, PostgreSQL. Covers benchmarks, architecture, production deployment, and comparison with BeautifulSoup, Selenium, and Playwright."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/scrapy/scrapy'
+github_repo: "https://github.com/scrapy/scrapy"
 stars: 61700
 maintainer: scrapy
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['web-scraping', python, crawler, async, docker, 'scrapy-tutorial', benchmark, 'data-pipeline']
-aliases: - /posts/scrapy/-
+categories: ["dev-utils"]
+tags: ["web-scraping", "python", "crawler", "async", "docker", "scrapy-tutorial", "benchmark", "data-pipeline"]
+aliases:
+  - /posts/scrapy/-
 ---
 {{</* resource-info */>}}
 
@@ -120,8 +121,8 @@ price_monitor/
 import scrapy
 
 class ProductsSpider(scrapy.Spider): name = products
-    allowed_domains = ['example.com']
-    start_urls = ['https://example.com/products']
+    allowed_domains = [example.com]
+    start_urls = [https://example.com/products]
     
     custom_settings = {
         CONCURRENT_REQUESTS: 16,
@@ -392,7 +393,7 @@ USER_AGENTS = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0',
 ]
 
-class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers['User-Agent'] = random.choice(USER_AGENTS)
+class RotateUserAgentMiddleware: def process_request(self, request, spider): request.headers[User-Agent] = random.choice(USER_AGENTS)
 ```
 
 ### Monitoring with Stats Collection

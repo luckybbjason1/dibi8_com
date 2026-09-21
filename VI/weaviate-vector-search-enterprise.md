@@ -1,6 +1,6 @@
 ---
 title: 'Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10...
-description: 'Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search, multi-modal, RBAC, monitoring, và benchmarks cho 10B+ đối tượng.'
+description: "Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search, multi-modal, RBAC, monitoring, và benchmarks cho 10B+ đối tượng."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,34 +12,35 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'weaviate/weaviate'
+github_repo: "weaviate/weaviate"
 stars: 11500
 maintainer: weaviate
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /vi/posts/weaviate-vector-search-enterprise/
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /vi/posts/weaviate-vector-search-enterprise/
 ---
 
 {{</* resource-info */>}}
 
 ## Giới Thiệu: Khi Vector Database của Bạn Chết Tại 100M Đối Tượng
 
-Cuối năm 2024, một nền tảng thương mại điện tử chạy vector database phổ biến đã đập vào tường. Ở mức 200 triệu product embeddings, query latency tăng từ 12ms lên **890ms**. Filtered vector searches — kết hợp text filters với similarity search — bắt đầu timeout. Team đã xây RAG pipeline trên database hoạt động tuyệt vờ i ở 10M đối tượng nhưng sụp đổ ở quy mô lớn.
+Cuối năm 2024", "một nền tảng thương mại điện tử chạy vector database phổ biến đã đập vào tường. Ở mức 200 triệu product embeddings", "query latency tăng từ 12ms lên **890ms**. Filtered vector searches — kết hợp text filters với similarity search — bắt đầu timeout. Team đã xây RAG pipeline trên database hoạt động tuyệt vờ i ở 10M đối tượng nhưng sụp đổ ở quy mô lớn.
 
-Vector search không còn là đồ chơi nghiên cứu. Hệ thống production ở quy mô cần hybrid search, filtered queries, multi-modal data, và operations cấp doanh nghiệp. Weaviate — vector search engine AI-native với **11,500 GitHub stars** — được xây dựng chuyên cho các workload này, xử lý **10 tỷ+ đối tượng** trong production deployments.
+Vector search không còn là đồ chơi nghiên cứu. Hệ thống production ở quy mô cần hybrid search", "filtered queries", "multi-modal data", "và operations cấp doanh nghiệp. Weaviate — vector search engine AI-native với **11", "500 GitHub stars** — được xây dựng chuyên cho các workload này", "xử lý **10 tỷ+ đối tượng** trong production deployments.
 
-Hướng dẫn này đi qua deployment doanh nghiệp của Weaviate trên Kubernetes, cấu hình hybrid search, collections multi-modal, RBAC, chiến lược backup, và monitoring. Mỗi phần bao gồm cấu hình đã kiểm tra production và số liệu hiệu năng thực.
+Hướng dẫn này đi qua deployment doanh nghiệp của Weaviate trên Kubernetes", "cấu hình hybrid search", "collections multi-modal", "RBAC", "chiến lược backup", "và monitoring. Mỗi phần bao gồm cấu hình đã kiểm tra production và số liệu hiệu năng thực.
 
 ---
 
 ## Weaviate Là Gì?
 
-Weaviate là vector search engine AI-native mã nguồn mở được viết bằng Go. Ra mắt lần đầu năm 2018 và hiện tại ở **v1.31.0**, nó kết hợp vector similarity search với structured filtering, hybrid ranking, và querying dựa trên GraphQL. Khác với vector databases gắn search vào storage layer, Weaviate được thiết kế từ đầu xoay quanh bài toán vector search.
+Weaviate là vector search engine AI-native mã nguồn mở được viết bằng Go. Ra mắt lần đầu năm 2018 và hiện tại ở **v1.31.0**", "nó kết hợp vector similarity search với structured filtering", "hybrid ranking", "và querying dựa trên GraphQL. Khác với vector databases gắn search vào storage layer", "Weaviate được thiết kế từ đầu xoay quanh bài toán vector search.
 
-Weaviate hỗ trợ nhiều vectorizer modules (OpenAI, Cohere, Hugging Face, Google) và loại vector index (HNSW cho approximate search, flat cho brute-force). Kiến trúc module của nó cho phép embeddings có thể plug-in, custom vectorizers, và tích hợp với bất kỳ model serving infrastructure nào.
+Weaviate hỗ trợ nhiều vectorizer modules (OpenAI", "Cohere", "Hugging Face", "Google) và loại vector index (HNSW cho approximate search", "flat cho brute-force). Kiến trúc module của nó cho phép embeddings có thể plug-in", "custom vectorizers", "và tích hợp với bất kỳ model serving infrastructure nào.
 
 Dự án được Weaviate B.V. duy trì theo giấy phép **BSD-3-Clause**. Weaviate Cloud (WCD) cung cấp tùy chọn fully managed cho teams thích không tự host.
 
@@ -49,20 +50,20 @@ Dự án được Weaviate B.V. duy trì theo giấy phép **BSD-3-Clause**. Wea
 
 ### Các Thành Phần Cốt Lõi
 
-Kiến trúc Weaviate tách biệt concerns thành bốn lớp: **Ingestion Layer**: Xử lý data validation, vectorization (nếu dùng module), và indexing. Objects đến được validate theo schema, vectors được generate hoặc cung cấp, và object được ghi song song vào inverted index và vector index.
+Kiến trúc Weaviate tách biệt concerns thành bốn lớp: **Ingestion Layer**: Xử lý data validation", "vectorization (nếu dùng module)", "và indexing. Objects đến được validate theo schema", "vectors được generate hoặc cung cấp", "và object được ghi song song vào inverted index và vector index.
 
-**Vector Index Layer**: Đồ thị HNSW (Hierarchical Navigable Small World) index vectors cho approximate nearest neighbor search. Weaviate sử dụng HNSW implementation tùy chỉnh với các tham số có thể điều chỉnh `ef`, `maxConnections`, và `dynamicEF`. Cho collections nhỏ hoặc maximum recall, tùy chọn flat index có sẵn.
+**Vector Index Layer**: Đồ thị HNSW (Hierarchical Navigable Small World) index vectors cho approximate nearest neighbor search. Weaviate sử dụng HNSW implementation tùy chỉnh với các tham số có thể điều chỉnh `ef`", "`maxConnections`", "và `dynamicEF`. Cho collections nhỏ hoặc maximum recall", "tùy chọn flat index có sẵn.
 
-**Inverted Index Layer**: Inverted index hỗ trợ BM25 cho text search, filtering, và hybrid ranking. Đây là điểm khác biệt quan trọng —— hầu hết vector databases thiếu robust text search một cách native.
+**Inverted Index Layer**: Inverted index hỗ trợ BM25 cho text search", "filtering", "và hybrid ranking. Đây là điểm khác biệt quan trọng —— hầu hết vector databases thiếu robust text search một cách native.
 
-**Query Layer**: GraphQL, REST, và gRPC APIs xử lý queries đến. Query planner tối ưu filtered vector searches bằng cách giao nhau inverted index results với vector index traversal.
+**Query Layer**: GraphQL", "REST", "và gRPC APIs xử lý queries đến. Query planner tối ưu filtered vector searches bằng cách giao nhau inverted index results với vector index traversal.
 
 ### Các Loại Vector Index
 
 | Loại Index | Tốt Nhất Cho | Query Latency | Memory Overhead | Recall |
 |---|---|---|---|---|
-| HNSW (mặc định) | Collections lớn, ANN | 1–5ms | ~1.5x vector size | 0.95–0.99 |
-| Flat (brute-force) | Collections nhỏ, max accuracy | 50–500ms | ~1.1x vector size | 1.0 |
+| HNSW (mặc định) | Collections lớn", "ANN | 1–5ms | ~1.5x vector size | 0.95–0.99 |
+| Flat (brute-force) | Collections nhỏ", "max accuracy | 50–500ms | ~1.1x vector size | 1.0 |
 | Dynamic | Workloads hỗn hợp | Adaptive | Adaptive | Configurable |
 
 HNSW là lựa chọn đúng cho 95% production workloads. Chỉ dùng flat khi recall phải 100% và collection size dưới 1M đối tượng.
@@ -82,13 +83,13 @@ docker run -d \
   --host 0.0.0.0 \
   --port 8080 \
   --scheme http \
-  --env ENABLE_MODULES='text2vec-openai,generative-openai' \
+  --env ENABLE_MODULES='text2vec-openai", "generative-openai' \
   --env OPENAI_APIKEY=$OPENAI_API_KEY
 ```
 
 Xác nhận instance: ```bash
 curl http://localhost:8080/v1/meta
-# Trả về: {"hostname":"...","version":"1.31.0","modules":{...}}
+# Trả về: {"hostname":"...", "version":"1.31.0", "modules":{...}}
 ```
 
 ### Docker Compose (Production Single-Node)
@@ -118,29 +119,16 @@ Khởi động: `docker-compose up -d`
 
 ```python
 import weaviate
-from weaviate.classes import ConfiguredBatch, Vectorizers
+from weaviate.classes import ConfiguredBatch", "Vectorizers
 
 client = weaviate.connect_to_local()
 
 # Định nghĩa collection với vector index settings
 client.collections.create(
-    name="Product",
-    vectorizer_config=Vectorizers.text2vec_openai(),
-    vector_index_config=Configure.VectorIndex.hnsw(
-        ef=256,
-        ef_construction=128,
-        max_connections=64,
-        dynamic_ef_enabled=True,
-        dynamic_ef_min=100,
-        dynamic_ef_max=500
-    ),
-    properties=[
-        Property(name="name", data_type=DataType.TEXT),
-        Property(name="description", data_type=DataType.TEXT),
-        Property(name="category", data_type=DataType.TEXT),
-        Property(name="price", data_type=DataType.NUMBER),
-        Property(name="in_stock", data_type=DataType.BOOL)
-    ]
+    name="Product", "vectorizer_config=Vectorizers.text2vec_openai()", "vector_index_config=Configure.VectorIndex.hnsw(
+        ef=256", "ef_construction=128", "max_connections=64", "dynamic_ef_enabled=True", "dynamic_ef_min=100", "dynamic_ef_max=500
+    )", "properties=[
+        Property(name="name", "data_type=DataType.TEXT)", "Property(name="description", "data_type=DataType.TEXT)", "Property(name="category", "data_type=DataType.TEXT)", "Property(name="price", "data_type=DataType.NUMBER)", "Property(name="in_stock", "data_type=DataType.BOOL)"]
 )
 
 # Batch import products

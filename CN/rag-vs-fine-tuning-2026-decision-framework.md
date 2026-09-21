@@ -1,22 +1,23 @@
 ---
 title: 'RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor...
-description: 'When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-task, latency, data freshness, and a clear decision tree based on data volume, query latency budget, and update frequency.'
+description: "When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-task, latency, data freshness, and a clear decision tree based on data volume, query latency budget, and update frequency."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
-source_version: '2026 Q2 pricing'
+source_version: "2026 Q2 pricing"
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [rag, 'fine-tuning', llm, 'cost-optimization', 'decision-framework', 2026]
-aliases: - /posts/rag-vs-fine-tuning-2026-decision-framework/
+categories: ["llm-frameworks"]
+tags: ["rag", "fine-tuning", "llm", "cost-optimization", "decision-framework", "2026"]
+aliases:
+  - /posts/rag-vs-fine-tuning-2026-decision-framework/
 faq: - q: "When does RAG win over fine-tuning in 2026?"
     a: "RAG wins when (a) your knowledge base updates more than weekly, (b) you need citation/provenance, (c) document corpus < 100K chunks, (d) latency budget allows ~200-400ms retrieval. Fine-tuning wins when you need style/format consistency, when knowledge is stable, and when you can afford the upfront training cost."
   - q: "How much does RAG actually cost in production?"

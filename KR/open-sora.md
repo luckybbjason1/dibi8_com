@@ -1,6 +1,6 @@
 ---
-title: 'Open-Sora: 29K+ Stars — 오픈소스 비디오 생성 완벽 설치 가이드 2026'
-description: 'Open-Sora는 29K+ GitHub stars를 보유한 오픈소스 비디오 생성 프레임워크입니다. Docker 설치, ComfyUI 통합, Stable Diffusion 호환, 프로덕션 배포, HunyuanVideo, CogVideo, Wan과의 성능 비교 벤치마크를 다룹니다.'
+title: "Open-Sora: 29K+ Stars — 오픈소스 비디오 생성 완벽 설치 가이드 2026"
+description: "Open-Sora는 29K+ GitHub stars를 보유한 오픈소스 비디오 생성 프레임워크입니다. Docker 설치, ComfyUI 통합, Stable Diffusion 호환, 프로덕션 배포, HunyuanVideo, CogVideo, Wan과의 성능 비교 벤치마크를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hpcaitech/Open-Sora'
+github_repo: "https://github.com/hpcaitech/Open-Sora"
 stars: 29000
 maintainer: hpcaitech
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['open-sora', '비디오-생성', '확산-transformer', 'ai-비디오', 오픈소스, docker, cuda, comfyui]
-aliases: - /kr/posts/open-sora/
+categories: ["ai-tools"]
+tags: ["open-sora", "비디오-생성", "확산-transformer", "ai-비디오", "오픈소스", "docker", "cuda", "comfyui"]
+aliases:
+  - /kr/posts/open-sora/
 ---
 
 {{</* resource-info */>}}

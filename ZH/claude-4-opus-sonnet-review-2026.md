@@ -1,10 +1,10 @@
 ---
-title: 'Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试'
-description: 'Claude 4 全系横评：Opus 4、Sonnet 4、Haiku 4 — 编程、推理、上下文、定价，以及与 GPT-4o、Gemini 1.5 Pro 的对比。2026 年 6 月更新。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试"
+description: "Claude 4 全系横评：Opus 4、Sonnet 4、Haiku 4 — 编程、推理、上下文、定价，以及与 GPT-4o、Gemini 1.5 Pro 的对比。2026 年 6 月更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [claude-4, claude-opus-4, claude-sonnet-4, anthropic, llm评测, ai编程, 推理模型]
-categories: [review]
+tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "llm评测", "ai编程", "推理模型"]
+categories: ["review"]
 faqs: - q: 'Claude Opus 4 比 Sonnet 4 贵，值吗？'
     a: '对大多数开发者来说，Sonnet 4 是最优解。Opus 4 在多步推理链、长篇法律或研究文档、需要 10 步以上持续高精度的 agent 循环中才真正发力。如果你的主要场景是代码生成、摘要或对话，Sonnet 4 能达到 Opus 4 约 85-90% 的质量，API 成本只有一半左右。只有当你能在具体任务上量化出那最后 10-15% 的精度差距时，才值得升级 Opus 4。'
   - q: 'Claude 4 和 GPT-4o 谁更强？'

@@ -20,7 +20,8 @@ maintainer: "yikart"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/aitoearn-ai-monetization/
+aliases:
+  - /posts/aitoearn-ai-monetization/
 faqs: - q: 'What is AiToEarn?'
     a: 'AiToEarn is an open-source AI content monetization platform that helps creators turn AI-generated content such as articles, images, video scripts, and code into passive income streams. It combines AI content generation, one-click multi-platform distribution, and built-in monetization in a single self-hosted tool.'
   - q: 'How does AiToEarn make money for creators?'

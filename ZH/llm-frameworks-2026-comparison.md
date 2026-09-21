@@ -2,8 +2,8 @@
 title: "LLM Frameworks 2026 - LangChain vs LlamaIndex"
 date: "2026-09-20"
 description: "Compare top LLM frameworks in 2026. LangChain, LlamaIndex, LangGraph, CrewAI features, pricing, and use cases."
-tags: [llm-framework, langchain, llamaindex, langgraph, crewai]
-categories: [llm-frameworks, ai-tools]
+tags: ["llm-framework", "langchain", "llamaindex", "langgraph", "crewai"]
+categories: ["llm-frameworks", "ai-tools"]
 image: "https://picsum.photos/seed/llm-frameworks/1200x630"
 ---
 {

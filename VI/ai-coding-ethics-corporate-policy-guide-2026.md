@@ -1,22 +1,23 @@
 ---
 title: 'Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệ...
-description: 'Năm 2026, các doanh nghiệp phân hóa thành ba phe: AI-cho phép / AI-hạn chế / AI-cấm. Hướng dẫn thực tế về diện mạo của từng chính sách, cách lựa chọn và những cạm bẫy pháp lý/IP/tuân thủ — dựa trên các mô hình áp dụng thực tế mà chúng tôi đã theo dõi.'
+description: "Năm 2026, các doanh nghiệp phân hóa thành ba phe: AI-cho phép / AI-hạn chế / AI-cấm. Hướng dẫn thực tế về diện mạo của từng chính sách, cách lựa chọn và những cạm bẫy pháp lý/IP/tuân thủ — dựa trên các mô hình áp dụng thực tế mà chúng tôi đã theo dõi."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Chính sách', 'Tuân thủ', 'Claude Code', Cursor]
 application_domain: Công cụ phát triển
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: 'Không áp dụng'
 license_type: 'Không áp dụng'
 github_repo: ''
 stars: 0
 maintainer: 'Ban biên tập dibi8'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'đạo đức', 'chính sách', 'tuân thủ', 2026]
-aliases: - /vi/posts/ai-coding-ethics-corporate-policy-guide-2026/
+categories: ["dev-utils"]
+tags: ["ai-coding", "đạo đức", "chính sách", "tuân thủ", "2026"]
+aliases:
+  - /vi/posts/ai-coding-ethics-corporate-policy-guide-2026/
 faq: - q: "Các lập trường chính sách AI Coding chính của doanh nghiệp năm 2026 là gì?"
     a: "Ba phe: (1) Cho phép kèm kiểm toán (phổ biến nhất trong ngành công nghệ) — lập trình viên có thể dùng công cụ AI Coding, mã được review như thường lệ. (2) Hạn chế ở các công cụ được phê duyệt (tài chính / y tế) — chỉ cho phép tier doanh nghiệp của các nhà cung cấp lớn có DPA. (3) Cấm (một số công việc quốc phòng / mật) — môi trường air-gap, chỉ AI cục bộ hoặc không dùng AI. Mỗi phe đều có đánh đổi."
   - q: "Rủi ro IP/pháp lý thực sự của AI Coding là gì?"

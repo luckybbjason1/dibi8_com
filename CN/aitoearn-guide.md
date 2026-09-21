@@ -19,7 +19,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/aitoearn-guide/
+aliases:
+  - /posts/aitoearn-guide/
 faqs: - q: 'Is AiToEarn a free alternative to Buffer and Hootsuite?'
     a: 'Yes. AiToEarn is open-source (MIT-licensed) and self-hosted, so it costs $0 per month, versus Buffer at $120+/month and Hootsuite at $249+/month. It also removes the post-volume caps that those paid tiers impose.'
   - q: 'Can AiToEarn publish to Xiaohongshu (RED) and Instagram at the same time?'

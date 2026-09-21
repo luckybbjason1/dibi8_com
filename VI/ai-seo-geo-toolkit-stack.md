@@ -1,6 +1,6 @@
 ---
 title: 'Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO...
-description: 'Bộ công cụ miễn phí hoàn chỉnh cho SEO trong kỷ nguyên AI: trình tạo llms.txt + robots.txt cho AI-crawler + meta tags + Schema.org JSON-LD + hreflang + xem trước OG card. Bao quát cả tìm kiếm cổ điển (Google/Bing) lẫn các công cụ tạo sinh (ChatGPT, Claude, Perplexity). Tất cả chạy trên trình duyệt, không cần đăng ký.'
+description: "Bộ công cụ miễn phí hoàn chỉnh cho SEO trong kỷ nguyên AI: trình tạo llms.txt + robots.txt cho AI-crawler + meta tags + Schema.org JSON-LD + hreflang + xem trước OG card. Bao quát cả tìm kiếm cổ điển (Google/Bing) lẫn các công cụ tạo sinh (ChatGPT, Claude, Perplexity). Tất cả chạy trên trình duyệt, không cần đăng ký."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - HTML
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: [seo, geo, 'llms.txt', schema, 'meta tags', stack, collection]
-aliases: - /posts/ai-seo-geo-toolkit-stack/
+categories: ["collections"]
+tags: ["seo", "geo", "llms.txt", "schema", "meta tags", "stack", "collection"]
+aliases:
+  - /posts/ai-seo-geo-toolkit-stack/
 faqs: - q: 'llms.txt là gì và tại sao nó quan trọng với SEO năm 2026?'
     a: 'llms.txt là "robots.txt dành cho AI" — một file cho các crawler của công cụ tạo sinh như ChatGPT, Claude và Perplexity biết cách đọc cấu trúc website của bạn. Nó quan trọng vì các công cụ tạo sinh là kênh khám phá nội dung hoàn toàn mới, và được AI search trích dẫn chính là phiên bản 2026 của việc lên trang 1 Google.'
   - q: 'Làm thế nào để kiểm soát các AI crawler nào được phép truy cập website của tôi?'

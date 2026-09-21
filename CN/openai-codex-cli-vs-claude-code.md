@@ -1,10 +1,10 @@
 ---
-title: 'OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?'
-description: 'Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M context) — pricing, sandbox, enterprise, tool integration. Updated 2026.'
+title: "OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?"
+description: "Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M context) — pricing, sandbox, enterprise, tool integration. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [openai-codex-cli, claude-code, gpt-5-codex, sonnet-4-6, ai-coding, comparison, agent-cli]
-categories: [vs]
+tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
+categories: ["vs"]
 faqs: - q: 'Is OpenAI Codex CLI free?'
     a: 'The CLI itself is open-source (Apache 2.0, released November 2025) and free to install. You pay only for model API calls — gpt-5-codex usage is billed via your OpenAI API key (around $1.50/1M input, $10/1M output as of 2026). Claude Code is also free to install but requires either a Pro/Max subscription ($20-$200/mo) or pay-as-you-go API credits through Sonnet 4.6.'
   - q: 'Which has the bigger context window?'

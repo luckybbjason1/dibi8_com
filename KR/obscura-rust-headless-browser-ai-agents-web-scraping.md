@@ -1,17 +1,16 @@
 ---
 title: 'Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms ...
-description: 'Obscura（14,788 顆 GitHub 星）是一款為 AI 代理和網頁爬蟲設計的 Rust 無頭瀏覽器引擎。30MB 記憶體、85ms 頁面載入，內建反偵測功能。為 Puppeteer 和 Playwright 提供即插即用取代方案，支援 Docker 和二進位安裝。'
+description: "Obscura（14,788 顆 GitHub 星）是一款為 AI 代理和網頁爬蟲設計的 Rust 無頭瀏覽器引擎。30MB 記憶體、85ms 頁面載入，內建反偵測功能。為 Puppeteer 和 Playwright 提供即插即用取代方案，支援 Docker 和二進位安裝。"
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
-tags: ['obscura', '無頭瀏覽器', 'Rust 瀏覽器', '網頁爬蟲', 'AI 代理工具', 'Puppeteer 替代方案', 'Playwright 替代方案', '反偵測', '隱密瀏覽']
-github_repo: 'https://github.com/h4ckf0r0day/obscura'
+tags: ["obscura", "無頭瀏覽器", "Rust 瀏覽器", "網頁爬蟲", "AI 代理工具", "Puppeteer 替代方案", "Playwright 替代方案", "反偵測", "隱密瀏覽"]
+github_repo: "https://github.com/h4ckf0r0day/obscura"
 stars: 14788
 maintainer: 'h4ckf0r0day'
 license: Apache-2.0
 featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
-lang: zh
 ---
 
 # Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南

@@ -1,22 +1,23 @@
 ---
 title: 'Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe...
-description: 'After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward divergence, regime-flip, parameter-cliff, indicator-stacking, and survivorship. Each with reproducible synthetic example + the detection signal.'
+description: "After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward divergence, regime-flip, parameter-cliff, indicator-stacking, and survivorship. Each with reproducible synthetic example + the detection signal."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
-source_version: 'pandas 2.2+ / vectorbt 0.27+'
+source_version: "pandas 2.2+ / vectorbt 0.27+"
 licensing_model: Open Source
 license_type: MIT
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [backtest, overfit, quant, 'walk-forward', 'machine-learning', 2026]
-aliases: - /posts/backtest-overfit-5-patterns-2026/
+categories: ["ai-trading"]
+tags: ["backtest", "overfit", "quant", "walk-forward", "machine-learning", "2026"]
+aliases:
+  - /posts/backtest-overfit-5-patterns-2026/
 faq: - q: "Why is overfit detection so hard in backtests?"
     a: "Two reasons. First, every backtest is a single sample — you can't 'rerun the universe.' Second, optimizers are very good at fitting noise that looks like signal in a single sample. Walk-forward analysis splits the sample, but most retail backtesters skip this step entirely."
   - q: "What's the most insidious overfit pattern?"

@@ -1,22 +1,23 @@
 ---
-title: 'Claude Code MCP 进阶 2026：10 服务器生产级技术栈'
-description: '在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何针对个人 vs 团队场景进行配置。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code MCP 进阶 2026：10 服务器生产级技术栈"
+description: "在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何针对个人 vs 团队场景进行配置。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM 框架
-source_version: 'MCP 2025-06 / Claude Code 1.0'
+source_version: "MCP 2025-06 / Claude Code 1.0"
 licensing_model: 混合
 license_type: 多种
-github_repo: 'https://github.com/modelcontextprotocol/servers'
+github_repo: "https://github.com/modelcontextprotocol/servers"
 stars: 60000
 maintainer: 'Anthropic + 社区'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, configuration, production, 2026]
-aliases: - /zh/posts/claude-code-mcp-advanced-10-server-stack-2026/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "configuration", "production", "2026"]
+aliases:
+  - /zh/posts/claude-code-mcp-advanced-10-server-stack-2026/
 faq: - q: "多少个 MCP 服务器算太多？"
     a: "超过 10 个就会带来明显的启动延迟。每个服务器会给 Claude Code 初始化增加 100-300ms。下文这套 10 服务器技术栈是甜蜜点——能覆盖 90% 的工作流，又不会让启动变得迟钝。"
   - q: "应该使用全局还是按项目的 MCP 配置？"

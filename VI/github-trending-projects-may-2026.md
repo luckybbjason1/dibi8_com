@@ -21,7 +21,8 @@ maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/github-trending-projects-may-2026/
+aliases:
+  - /vi/posts/github-trending-projects-may-2026/
 faqs: - q: 'DeepSeek-TUI là gì và nó khác với Cursor hay GitHub Copilot như thế nào?'
     a: 'DeepSeek-TUI là một AI agent lập trình chạy trên terminal, hoạt động cục bộ thông qua lệnh `deepseek`, truyền trực tiếp các khối suy luận đồng thời đọc/ghi tệp trên ổ đĩa với các cổng phê duyệt trước bất kỳ thay đổi nào trên hệ thống tệp. Khác với Cursor hay Copilot vốn chạy như những trình soạn thảo GUI đầy đủ, nó được xây dựng cho người dùng terminal làm việc trong tmux, neovim hoặc zsh, không cần chuyển đổi ngữ cảnh giữa trình duyệt và IDE.'
   - q: 'Chế độ auto của DeepSeek-TUI tiết kiệm chi phí như thế nào?'

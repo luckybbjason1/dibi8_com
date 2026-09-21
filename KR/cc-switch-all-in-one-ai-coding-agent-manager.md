@@ -4,7 +4,6 @@ description: "CC 스위치에 대한 완벽한 가이드 — Claude Code, Codex,
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
-lang: kr
 slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---

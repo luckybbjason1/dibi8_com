@@ -1,22 +1,23 @@
 ---
-title: 'Aider vs Cline vs OpenHands 2026：开源编程 Agent 三方诚实对比'
-description: '在同一个 5K 行 TypeScript 代码库上实测三款开源 AI 编程 Agent。给出具体基准数据、各自胜出场景、各自短板，以及自带 API Key 模式的真实成本与商业方案的对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Aider vs Cline vs OpenHands 2026：开源编程 Agent 三方诚实对比"
+description: "在同一个 5K 行 TypeScript 代码库上实测三款开源 AI 编程 Agent。给出具体基准数据、各自胜出场景、各自短板，以及自带 API Key 模式的真实成本与商业方案的对比。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
-source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
+source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Aider (paul-gauthier) / Cline (cline-bot) / OpenHands (All-Hands-AI)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases: - /zh/posts/aider-cline-openhands-2026-honest-comparison/
+categories: ["dev-utils"]
+tags: ["ai-coding", "open-source", "aider", "cline", "openhands", "2026"]
+aliases:
+  - /zh/posts/aider-cline-openhands-2026-honest-comparison/
 faq: - q: "2026 年最好的开源编程 Agent 是哪个？"
     a: "看情况。Aider 适合终端优先的 git 友好编辑（模型无关、速度最快）。Cline 适合 IDE 原生集成的 VS Code（对非 CLI 用户体验最好）。OpenHands 适合完全自主的多步骤 Agent 工作（浏览器 + Shell + 代码库）。大多数资深用户都把 Aider 当默认工具，再用 Cline 或 OpenHands 处理特定任务。"
   - q: "和 Claude Code 或 Cursor 比成本如何？"

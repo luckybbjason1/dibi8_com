@@ -1,6 +1,6 @@
 ---
 title: 'Hayhooks: Triển khai Haystack Pipeline thành REST API ch...
-description: 'Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. Bao gồm triển khai một lệnh, hỗ trợ container, tài liệu OpenAPI tự động và benchmark thực tế.'
+description: "Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. Bao gồm triển khai một lệnh, hỗ trợ container, tài liệu OpenAPI tự động và benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'deepset-ai/hayhooks'
+github_repo: "deepset-ai/hayhooks"
 stars: 600
 maintainer: 'deepset-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [hayhooks, haystack, nlp, 'rest api', llm, 'pipeline deployment', docker, python, openapi]
-aliases: - /vi/posts/hayhooks-api-deployment-llm/
+categories: ["data-science"]
+tags: ["hayhooks", "haystack", "nlp", "rest api", "llm", "pipeline deployment", "docker", "python", "openapi"]
+aliases:
+  - /vi/posts/hayhooks-api-deployment-llm/
 ---
 
 {{</* resource-info */>}}

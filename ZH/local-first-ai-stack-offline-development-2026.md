@@ -1,22 +1,23 @@
 ---
-title: '本地优先 AI 技术栈 2026：完全离线的 AI 开发环境'
-description: '2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、物理隔离、出差）。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "本地优先 AI 技术栈 2026：完全离线的 AI 开发环境"
+description: "2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、物理隔离、出差）。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
 application_domain: LLM Frameworks
-source_version: '2026 Q2'
+source_version: "2026 Q2"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Various OSS'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['local-first', offline, ollama, 'ai-coding', privacy, 2026]
-aliases: - /zh/posts/local-first-ai-stack-offline-development-2026/
+categories: ["llm-frameworks"]
+tags: ["local-first", "offline", "ollama", "ai-coding", "privacy", "2026"]
+aliases:
+  - /zh/posts/local-first-ai-stack-offline-development-2026/
 faq: - q: "2026 年为什么要做完全离线？"
     a: "三个真实原因：(1) 隐私/合规——金融、医疗、政府等受监管行业不能把代码发给 OpenAI/Anthropic。(2) 物理隔离环境——涉及安全审查的工作。(3) 可靠性——跨国出差网络差、或者 API 宕机时仍然能工作。"
   - q: "到底需要什么硬件？"

@@ -1,6 +1,6 @@
 ---
-title: 'Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会'
-description: '掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智能体流水线的完整路径。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会"
+description: "掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智能体流水线的完整路径。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
 tech_stack: - Claude Code
@@ -19,12 +19,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-30'
+last_maintained: "2026-05-30"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['claude code', subagents, 'multi-agent', 'agent sdk', mcp, stack, collection]
-aliases: - /posts/claude-code-subagent-mastery-stack/
+categories: ["collections"]
+tags: ["claude code", "subagents", "multi-agent", "agent sdk", "mcp", "stack", "collection"]
+aliases:
+  - /posts/claude-code-subagent-mastery-stack/
 faqs: - q: 'Claude Code 的五种子代理模式是什么？'
     a: '五种模式分别是：并行研究扇出、worktree 隔离、专家委派、上下文保护和流水线编排。它们构成多代理工作流的基础层，其中并行扇出是摩擦最低的入门起点。'
   - q: '我该如何在 Claude Code 的 skill、subagent 和 MCP server 之间做选择？'

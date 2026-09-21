@@ -1,10 +1,9 @@
 ---
 title: 'TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Googl...
-description: 'Hướng dẫn đầy đủ về TimesFM 2.5 — mô hình chuỗi thời gian tiên tiến nhất của Google Research. Cài đặt, cấu hình, benchmark và các ví dụ thực tế.'
+description: "Hướng dẫn đầy đủ về TimesFM 2.5 — mô hình chuỗi thời gian tiên tiến nhất của Google Research. Cài đặt, cấu hình, benchmark và các ví dụ thực tế."
 date: 2026-06-19
 lastmod: 2026-06-19tags: []
 category: "data-science"
-lang: vi
 slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/fine-tuning-stack.png
 ---

@@ -1,6 +1,6 @@
 ---
 title: 'Data Cleaning Tools & Best Practices: OpenRefine, Python...
-description: 'Master data cleaning with OpenRefine, Pandas, Great Expectations & automated tools. Learn best practices for production-ready data quality workflows.'
+description: "Master data cleaning with OpenRefine, Pandas, Great Expectations & automated tools. Learn best practices for production-ready data quality workflows."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-cleaning-tools-best-practices/
+aliases:
+  - /posts/data-cleaning-tools-best-practices/
 ---
 # Data Cleaning Tools & Best Practices: OpenRefine, Python Libraries & Automated Solutions
 

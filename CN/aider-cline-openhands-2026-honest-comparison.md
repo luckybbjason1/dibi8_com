@@ -1,22 +1,23 @@
 ---
 title: 'Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
-description: 'Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete benchmark numbers, where each wins, where each falls short, and the BYO-API-key cost reality vs commercial alternatives.'
+description: "Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete benchmark numbers, where each wins, where each falls short, and the BYO-API-key cost reality vs commercial alternatives."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
-source_version: 'Aider 0.78 / Cline 3.4 / OpenHands 0.42'
+source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 github_repo: ''
 stars: 0
 maintainer: 'Aider (paul-gauthier) / Cline (cline-bot) / OpenHands (All-Hands-AI)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['ai-coding', 'open-source', aider, cline, openhands, 2026]
-aliases: - /posts/aider-cline-openhands-2026-honest-comparison/
+categories: ["dev-utils"]
+tags: ["ai-coding", "open-source", "aider", "cline", "openhands", "2026"]
+aliases:
+  - /posts/aider-cline-openhands-2026-honest-comparison/
 faq: - q: "Which OSS coding agent is best in 2026?"
     a: "It depends. Aider for terminal-first git-aware editing (model-agnostic, fastest). Cline for IDE-native VS Code integration (best UX for non-CLI users). OpenHands for fully autonomous multi-step agent work (browser + shell + repo). Most experienced users keep Aider as default + add Cline or OpenHands for specific tasks."
   - q: "How does cost compare to Claude Code or Cursor?"

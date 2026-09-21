@@ -1,26 +1,27 @@
 ---
 title: 'Bumblebee 2026: Perplexity AI Open-Sources Its Internal ...
-description: 'Bumblebee is Perplexity AI''s open-source, read-only supply-chain scanner that checks npm, PyPI, Go modules, MCP configs, editor extensions, and browser extensions for known compromised packages — without executing a single line of your code.'
+description: "Bumblebee is Perplexity AI"'s open-source, read-only supply-chain scanner that checks npm, PyPI, Go modules, MCP configs, editor extensions, and browser extensions for known compromised packages — without executing a single line of your code.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: [Go, Security, CLI]
 application_domain: Dev Utils
-source_version: '0.1.1'
+source_version: "0.1.1"
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''
 file_md5: ''
 download_url: 'https://github.com/perplexityai/bumblebee'
 backup_url: ''
-github_repo: 'perplexityai/bumblebee'
+github_repo: "perplexityai/bumblebee"
 stars: 1500
 maintainer: perplexityai
-last_maintained: '2026-05-22'
+last_maintained: "2026-05-22"
 featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
-categories: ['dev-utils']
-tags: [bumblebee, 'supply-chain', security, mcp, 'developer-tools', go, npm, pypi, 'perplexity-ai']
-aliases: - /posts/bumblebee-supply-chain-scanner-perplexity-2026/
+categories: ["dev-utils"]
+tags: ["bumblebee", "supply-chain", "security", "mcp", "developer-tools", "go", "npm", "pypi", "perplexity-ai"]
+aliases:
+  - /posts/bumblebee-supply-chain-scanner-perplexity-2026/
 faqs: - q: 'What is Bumblebee and what does it scan?'
     a: 'Bumblebee is a read-only developer endpoint scanner open-sourced by Perplexity AI. It scans on-disk metadata for npm, pnpm, Yarn, Bun, PyPI, Go modules, RubyGems, Composer, MCP configurations, editor extensions (VS Code, Cursor, Windsurf, Zed), and browser extensions. It never executes install scripts or invokes package managers — it only reads what is already on disk.'
   - q: 'Why does Bumblebee matter for AI developers using MCP?'

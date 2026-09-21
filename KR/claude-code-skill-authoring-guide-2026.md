@@ -1,6 +1,6 @@
 ---
 title: 'Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 ...
-description: 'Claude Code 스킬 작성 완전 가이드 — SKILL.md 구조, 로딩을 제어하는 트리거 description, 점진적 공개(progressive disclosure), 그리고 스킬이 CLAUDE.md나 서브에이전트보다 나은 경우. 실전 예제와 피해야 할 실수까지.'
+description: "Claude Code 스킬 작성 완전 가이드 — SKILL.md 구조, 로딩을 제어하는 트리거 description, 점진적 공개(progressive disclosure), 그리고 스킬이 CLAUDE.md나 서브에이전트보다 나은 경우. 실전 예제와 피해야 할 실수까지."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', skills, 'agent-sdk', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'prompt-engineering']
-aliases: - /posts/claude-code-skill-authoring/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "skills", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools", "prompt-engineering"]
+aliases:
+  - /posts/claude-code-skill-authoring/
 faq: - q: "스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 무엇인가요?"
     a: "스킬은 SKILL.md 파일을 담은 디렉터리로, .claude/skills/<name>/ (프로젝트 범위) 또는 ~/.claude/skills/<name>/ (사용자 범위) 아래에 위치합니다. 최소 구성은 name과 description을 담은 YAML 프런트매터, 그리고 그 뒤에 본문으로 들어가는 지시문입니다. 디렉터리에는 스킬이 가리키는 보조 파일 — 참조 문서, 스크립트, 템플릿 — 도 함께 둘 수 있지만, 이 두 프런트매터 필드를 갖춘 SKILL.md가 더 이상 줄일 수 없는 핵심입니다."
   - q: "스킬과 단순히 CLAUDE.md에 지시문을 넣는 것의 차이는 무엇인가요?"

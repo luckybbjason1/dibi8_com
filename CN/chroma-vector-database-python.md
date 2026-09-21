@@ -1,6 +1,6 @@
 ---
 title: 'Chroma DB 2026: The Developer-Friendly Vector Database f...
-description: 'A practical guide to Chroma vector database with Python. Learn installation, RAG integration, embeddings search, and production deployment. Benchmarks, comparisons, and real-world use cases.'
+description: "A practical guide to Chroma vector database with Python. Learn installation, RAG integration, embeddings search, and production deployment. Benchmarks, comparisons, and real-world use cases."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,25 +12,26 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'chromadb/chroma'
+github_repo: "chromadb/chroma"
 stars: 18000
 maintainer: chromadb
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: []
-aliases: - /posts/chroma-vector-database-python/-
+categories: ["data-science"]
+tags: ["]
+aliases:
+  - /posts/chroma-vector-database-python/-
 ---
 {{</* resource-info */>}}
 
 ## Introduction: Why Your RAG Pipeline Needs a Better Vector Store
 
-You built a RAG app. It worked fine with 500 documents. Then you hit 50,000 and the search started crawling. Latency jumped from 200ms to 4 seconds. Your users noticed. You tried PostgreSQL with pgvector, but the setup felt like configuring a spaceship. You tried Pinecone, but the pricing scaled faster than your traffic.
+You built a RAG app. It worked fine with 500 documents. Then you hit 50", "000 and the search started crawling. Latency jumped from 200ms to 4 seconds. Your users noticed. You tried PostgreSQL with pgvector", "but the setup felt like configuring a spaceship. You tried Pinecone", "but the pricing scaled faster than your traffic.
 
-This is the exact problem Chroma solves. Chroma is a **developer-first vector database** designed for the 90% of AI applications that do not need distributed cluster orchestration — they need fast embeddings search, simple setup, and a Python API that actually makes sense.
+This is the exact problem Chroma solves. Chroma is a **developer-first vector database** designed for the 90% of AI applications that do not need distributed cluster orchestration — they need fast embeddings search", "simple setup", "and a Python API that actually makes sense.
 
-As of May 2026, Chroma has crossed **18,000 GitHub stars**, ships **v0.6.x** with persistent storage, metadata filtering, and a query engine that benchmarks at **50x faster retrieval** than naive flat-index brute force on datasets exceeding 1M vectors. The project is maintained by the Chroma team under **Apache-2.0** and is the default vector store in the [LangChain](dibi8-internal-link) and [LlamaIndex](dibi8-internal-link) quickstart guides.
+As of May 2026", "Chroma has crossed **18", "000 GitHub stars**", "ships **v0.6.x** with persistent storage", "metadata filtering", "and a query engine that benchmarks at **50x faster retrieval** than naive flat-index brute force on datasets exceeding 1M vectors. The project is maintained by the Chroma team under **Apache-2.0** and is the default vector store in the [LangChain"](dibi8-internal-link) and [LlamaIndex](dibi8-internal-link) quickstart guides.
 
 This guide gets you from `pip install` to production-ready RAG in under 30 minutes. No prior vector database experience required.
 

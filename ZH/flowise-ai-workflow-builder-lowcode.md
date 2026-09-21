@@ -1,6 +1,6 @@
 ---
-title: 'Flowise 2026 完整指南：低代码 AI 工作流构建器 — 可视化部署 LangChain Agent'
-description: 'Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Flowise 2026 完整指南：低代码 AI 工作流构建器 — 可视化部署 LangChain Agent"
+description: "Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'FlowiseAI/Flowise'
+github_repo: "FlowiseAI/Flowise"
 stars: 45000
 maintainer: FlowiseAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [flowise, langchain, 低代码, ai工作流, docker, 自托管, agent构建器, 无代码, 开源, 聊天机器人]
-aliases: - /zh/posts/flowise-ai-workflow-builder-lowcode/-
+categories: ["ai-tools"]
+tags: ["flowise", "langchain", "低代码", "ai工作流", "docker", "自托管", "agent构建器", "无代码", "开源", "聊天机器人"]
+aliases:
+  - /zh/posts/flowise-ai-workflow-builder-lowcode/-
 ---
 
 {{</* resource-info */>}}

@@ -1,6 +1,6 @@
 ---
 title: '2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-b...
-description: '深入对比EleutherAI LM Evaluation Harness、OpenCompass、BIG-bench、HELM、AlpacaEval、DeepEval等主流LLM评估框架，详解MMLU、HumanEval、TruthfulQA等基准测试，助力构建科学的LLM评估体系。'
+description: "深入对比EleutherAI LM Evaluation Harness、OpenCompass、BIG-bench、HELM、AlpacaEval、DeepEval等主流LLM评估框架，详解MMLU、HumanEval、TruthfulQA等基准测试，助力构建科学的LLM评估体系。"
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [llm评估, 基准测试, eleutherai, opencompass, 'big-bench']
-aliases: - /zh/posts/llm-evaluation-benchmarking-frameworks/-
+categories: ["llm-frameworks"]
+tags: ["llm评估", "基准测试", "eleutherai", "opencompass", "big-bench"]
+aliases:
+  - /zh/posts/llm-evaluation-benchmarking-frameworks/-
 ---
 # 2025年LLM评估与基准测试框架对比：EleutherAI LM Eval、OpenCompass、BIG-bench全面评测
 

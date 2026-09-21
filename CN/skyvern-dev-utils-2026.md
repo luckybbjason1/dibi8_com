@@ -1,6 +1,6 @@
 ---
 title: 'Skyvern: Automate Browser Workflows with AI Agents (21K ...
-description: 'Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-3.0). Covers installation, the real Python API, working code examples, and an honest comparison with Selenium and Playwright.'
+description: "Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-3.0). Covers installation, the real Python API, working code examples, and an honest comparison with Selenium and Playwright."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Skyvern-AI/skyvern'
+github_repo: "Skyvern-AI/skyvern"
 stars: 21803
 maintainer: 'Skyvern-AI'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/skyvern-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/skyvern-dev-utils-2026/
 faqs: - q: 'How do I install Skyvern-AI/skyvern?'
-    a: 'Install with pip and run the quickstart: ```bash pip install "skyvern[all]" skyvern quickstart ``` The quickstart helps you configure an LLM provider and launches the local server and UI.'
+    a: 'Install with pip and run the quickstart: ```bash pip install "skyvern[all"]" skyvern quickstart ``` The quickstart helps you configure an LLM provider and launches the local server and UI.'
   - q: 'What are the system requirements for running Skyvern-AI/skyvern?'
     a: 'Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.'
   - q: 'Can I use Skyvern-AI/skyvern for commercial projects?'

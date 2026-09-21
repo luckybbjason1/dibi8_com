@@ -1,10 +1,10 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026: 어떤 AI 코딩 에이전트가 더 좋은가?'
-description: 'Google Gemini CLI와 Anthropic Claude Code의 정면 비교 — 무료 등급, 컨텍스트 윈도우, 에이전트 스타일, 멀티모달, 도구 사용, 마이그레이션 팁. 2026년 업데이트.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Gemini CLI vs Claude Code 2026: 어떤 AI 코딩 에이전트가 더 좋은가?"
+description: "Google Gemini CLI와 Anthropic Claude Code의 정면 비교 — 무료 등급, 컨텍스트 윈도우, 에이전트 스타일, 멀티모달, 도구 사용, 마이그레이션 팁. 2026년 업데이트.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [gemini-cli, claude-code, google, anthropic, ai-coding, comparison, dev-tools]
-categories: [vs]
+tags: ["gemini-cli", "claude-code", "google", "anthropic", "ai-coding", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'Gemini CLI는 정말 무료인가요?'
     a: '네 — Gemini CLI는 오늘날 AI 코딩 에이전트 중 가장 너그러운 무료 등급을 제공합니다: gemini-2.0-flash-thinking으로 분당 60회, 일일 1,000회 요청, 신용카드 불필요, Google 계정만 있으면 됩니다. Claude Code는 무료 등급이 없습니다 — Anthropic API에 토큰당 과금하거나 월 $20 Claude Pro(Claude Code 사용량 제한)를 구독해야 합니다.'
   - q: '어느 쪽이 컨텍스트 윈도우가 더 큰가요?'

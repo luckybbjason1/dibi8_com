@@ -5,7 +5,7 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: hkuds-ai-trader
 category: ai-trading
-tags: [ai-trader, HKUDS, ai-trading, agent-native, autonomous trading, portfolio management, AI agents]
+tags: ["ai-trader", "HKUDS", "ai-trading", "agent-native", "autonomous trading", "portfolio management", "AI agents"]
 github_repo: https://github.com/HKUDS/AI-Trader
 stars: 19464
 maintainer: HKUDS

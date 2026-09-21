@@ -1,5 +1,4 @@
 ---
-lang: vi
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: "Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử...
 description: "Presidio (hơn 9.4K sao trên GitHub) từ Microsoft là một khuôn khổ mã nguồn mở để phát hiện, chỉnh sửa, che dấu và ẩn dữ liệu nhạy cảm (PII) trên văn bản, hình ảnh và dữ liệu có cấu trúc. Hỗ trợ NLP, regex, nhận diện dựa trên quy tắc, chỉnh sửa hình ảnh DICOM và các quy trình tùy chỉnh. Được cấp phép MIT, được chứng nhận Thực hành Tốt nhất OpenSSF."
@@ -18,12 +17,13 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/microsoft/presidio'
-last_maintained: '2026-06-21'
+github_repo: "https://github.com/microsoft/presidio"
+last_maintained: "2026-06-21"
 draft: false
-categories: ['dev-utils']
+categories: ["dev-utils"]
 tags: ["pháo đài", "phát hiện pii", "ẩn dữ liệu", "ẩn danh dữ liệu", "microsoft", "xử lý ngôn ngữ tự nhiên", "nhận dạng thực thể có tên", "chỉnh sửa hình ảnh", "dicom", "gdpr", "hipaa", "mở-ssf", "quyền riêng tư", "bảo vệ dữ liệu"]
-aliases: - /posts/microsoft-presidio-pii-detection-redaction-sdk/
+aliases:
+  - /posts/microsoft-presidio-pii-detection-redaction-sdk/
 faqs: - q: 'Microsoft Presidio là gì?'
     a: 'Presidio là một SDK mã nguồn mở từ Microsoft để phát hiện, chỉnh sửa, che giấu và ẩn danh thông tin cá nhân có thể nhận dạng được (PII) trên văn bản, hình ảnh và dữ liệu có cấu trúc. Được đặt theo từ tiếng Latin có nghĩa là "bảo vệ" hoặc "pháo đài", nó cung cấp các mô-đun tách PII theo ngữ cảnh, có thể cắm thêm và tùy chỉnh. Nó hỗ trợ Nhận dạng Thực thể Đặt tên (NER), biểu thức chính quy, logic dựa trên quy tắc và kiểm tra số dư trên nhiều ngôn ngữ.'
   - q: 'Những thành phần nào tạo nên Presidio?'

@@ -1,6 +1,6 @@
 ---
-title: 'Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南'
-description: '部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南"
+description: "部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'baetyl/baetyl'
+github_repo: "baetyl/baetyl"
 stars: 3200
 maintainer: baetyl
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [baetyl, 边缘计算, iot, kubernetes, k3s, ai推理, mqtt, 边缘ai, ota更新, 'lf-edge']
-aliases: - /zh/posts/baetyl-edge-ai-computing-platform/-
+categories: ["ai-tools"]
+tags: ["baetyl", "边缘计算", "iot", "kubernetes", "k3s", "ai推理", "mqtt", "边缘ai", "ota更新", "lf-edge"]
+aliases:
+  - /zh/posts/baetyl-edge-ai-computing-platform/-
 ---
 
 {{</* resource-info */>}}

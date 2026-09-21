@@ -1,6 +1,6 @@
 ---
 title: 'Matplotlib vs Seaborn vs Plotly vs Observable: Hướng Dẫn...
-description: 'So sánh chi tiết Matplotlib, Seaborn, Plotly và Observable. Bảng tính năng, ví dụ code, hướng dẫn chọn công cụ trực quan hóa dữ liệu Python phù hợp.'
+description: "So sánh chi tiết Matplotlib, Seaborn, Plotly và Observable. Bảng tính năng, ví dụ code, hướng dẫn chọn công cụ trực quan hóa dữ liệu Python phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/data-visualization-tools-python-comparison/
+aliases:
+  - /posts/data-visualization-tools-python-comparison/
 ---
 
 {</* resource-info */>}

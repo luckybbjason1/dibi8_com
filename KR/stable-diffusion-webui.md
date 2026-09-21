@@ -1,6 +1,6 @@
 ---
-title: 'Stable Diffusion WebUI: 159K+ Stars — 2026 완전 설치 가이드'
-description: 'Stable Diffusion WebUI (AUTOMATIC1111)는 가장 인기 있는 로컬 AI 이미지 생성 웹 인터페이스입니다. ControlNet, LoRA, ComfyUI 워크플로우와 호환됩니다. Windows, Linux, Docker 설치, 확장 구성, 프로덕션 하드닝 및 GPU 벤치마크를 다룹니다.'
+title: "Stable Diffusion WebUI: 159K+ Stars — 2026 완전 설치 가이드"
+description: "Stable Diffusion WebUI (AUTOMATIC1111)는 가장 인기 있는 로컬 AI 이미지 생성 웹 인터페이스입니다. ControlNet, LoRA, ComfyUI 워크플로우와 호환됩니다. Windows, Linux, Docker 설치, 확장 구성, 프로덕션 하드닝 및 GPU 벤치마크를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui'
+github_repo: "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
 stars: 159000
 maintainer: AUTOMATIC1111
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['stable-diffusion', automatic1111, '이미지-생성', 'ai-webui', controlnet, lora, docker, gpu]
-aliases: - /kr/posts/stable-diffusion-webui/
+categories: ["ai-tools"]
+tags: ["stable-diffusion", "automatic1111", "이미지-생성", "ai-webui", "controlnet", "lora", "docker", "gpu"]
+aliases:
+  - /kr/posts/stable-diffusion-webui/
 ---
 
 {{</* resource-info */>}}

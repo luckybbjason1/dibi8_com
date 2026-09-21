@@ -1,6 +1,6 @@
 ---
 title: '서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
-description: 'Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴을 곁들여, 올바른 확장을 선택하기 위한 의사결정 프레임워크를 제시한다.'
+description: "Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴을 곁들여, 올바른 확장을 선택하기 위한 의사결정 프레임워크를 제시한다."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "subagents", "skills", "agent-sdk", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-subagent-vs-mcp-vs-skill/
 faq: - q: "스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 말하면?"
     a: "스킬은 Claude에게 어떤 일을 『어떻게』 하는지 가르치고(컨텍스트에 로드되는 패키지화된 지침과 지식), 서브에이전트는 그 일을 『누가』 하느냐이며(자체 컨텍스트 윈도우를 가진 위임된 작업자), MCP 서버는 Claude가 『무엇에』 닿을 수 있느냐다(외부 도구 및 데이터로의 연결). 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다 — 서로 경쟁하는 세 가지 선택지가 아니라, 세 가지 서로 다른 축이다."
   - q: "Claude가 우리 내부 데이터베이스를 조회해야 한다면, 이건 스킬인가 서브에이전트인가 MCP 서버인가?"

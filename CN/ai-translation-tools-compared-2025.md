@@ -1,6 +1,6 @@
 ---
 title: 'Best AI Translation Tools 2025: Google Translate vs Deep...
-description: 'Compare the best AI translation tools of 2025 — Google Translate, DeepL, ChatGPT, Microsoft Translator, Smartcat, and Reverso. See quality, pricing, and language coverage side by side.'
+description: "Compare the best AI translation tools of 2025 — Google Translate, DeepL, ChatGPT, Microsoft Translator, Smartcat, and Reverso. See quality, pricing, and language coverage side by side."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-translation-tools-compared-2025/
+aliases:
+  - /posts/ai-translation-tools-compared-2025/
 ---
 # Best AI Translation Tools 2025: Google Translate vs DeepL vs ChatGPT Compared
 

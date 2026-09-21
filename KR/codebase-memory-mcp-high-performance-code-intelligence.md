@@ -1,10 +1,9 @@
 ---
-title: '코드베이스-메모리-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스'
-description: '코드베이스-메모리-MCP에 대한 깊은 탐구 — 전체 저장소를 밀리초 단위로 인덱싱하는 가장 빠른 코드 인텔리전스 MCP 서버입니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "코드베이스-메모리-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스"
+description: "코드베이스-메모리-MCP에 대한 깊은 탐구 — 전체 저장소를 밀리초 단위로 인덱싱하는 가장 빠른 코드 인텔리전스 MCP 서버입니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-19
 lastmod: 2026-06-19tags: []
 category: "dev-utils"
-lang: kr
 slug: codebase-memory-mcp-high-performance-code-intelligence
 featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
 ---

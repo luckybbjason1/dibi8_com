@@ -1,6 +1,6 @@
 ---
 title: 'Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black...
-description: 'Hướng dẫn cấu hình chi tiết ESLint, Prettier, Black, Ruff cho JavaScript, TypeScript và Python. Tìm hiểu pre-commit hooks và CI/CD integration năm 2025.'
+description: "Hướng dẫn cấu hình chi tiết ESLint, Prettier, Black, Ruff cho JavaScript, TypeScript và Python. Tìm hiểu pre-commit hooks và CI/CD integration năm 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/code-quality-tools-eslint-prettier-black-ruff/
+aliases:
+  - /posts/code-quality-tools-eslint-prettier-black-ruff/
 ---
 
 {</* resource-info */>}

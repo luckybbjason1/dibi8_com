@@ -1,14 +1,13 @@
 ---
-title: '일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템'
+title: "일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템"
 description: 실시간 뉴스, 의사결정 대시보드 및 자동화된 알림을 갖춘 LLM 기반 다시장 주식 분석 시스템. 48K 스타. 무료 예약 실행 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
 category: ai-trading
-tags: ['주식분석', 'llm', '퀀트트레이딩', 'ai에이전트', '다시장', 'a주식', '감정분석', '자동거래']
+tags: ["주식분석", "llm", "퀀트트레이딩", "ai에이전트", "다시장", "a주식", "감정분석", "자동거래"]
 slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
 featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-lang: kr
 github_repo: https://github.com/dailystockai/daily-stock
 license: MIT
 ---
@@ -179,7 +178,7 @@ recommendations = ticker.recommendations
 
 # 뉴스 감정 가져오기
 news = ticker.news
-for item in news: print(f"{item['title']}: {item['providerPublishTime']}")
+for item in news: print(f"{item[title]}: {item[providerPublishTime]}")
 ```
 
 ### 암호화폐 데이터
@@ -195,13 +194,13 @@ exchange = ccxt.binance({
 
 # 티커 데이터 가져오기
 ticker = exchange.fetch_ticker('BTC/USDT')
-print(f"가격: {ticker['last']}")
-print(f"거래량: {ticker['quoteVolume']}")
+print(f"가격: {ticker[last]}")
+print(f"거래량: {ticker[quoteVolume]}")
 
 # 호가창 가져오기
 order_book = exchange.fetch_order_book('ETH/USDT')
-print(f"매수: {order_book['bids'][0][0]}")
-print(f"매도: {order_book['asks'][0][0]}")
+print(f"매수: {order_book[bids][0][0]}")
+print(f"매도: {order_book[asks][0][0]}")
 ```
 
 ## LLM 기반 분석

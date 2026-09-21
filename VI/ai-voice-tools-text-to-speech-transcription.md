@@ -1,6 +1,6 @@
 ---
-title: 'Các Công Cụ Giọng Nói AI Tốt Nhất 2025: So Sánh TTS Và STT'
-description: 'Đánh giá chi tiết công cụ chuyển văn bản thành giọng nói và ghi chép AI 2025: ElevenLabs, Murf.ai, Play.ht, OpenAI TTS, Otter.ai, Whisper và Rev.ai. So sánh chất lượng, giá cả.'
+title: "Các Công Cụ Giọng Nói AI Tốt Nhất 2025: So Sánh TTS Và STT"
+description: "Đánh giá chi tiết công cụ chuyển văn bản thành giọng nói và ghi chép AI 2025: ElevenLabs, Murf.ai, Play.ht, OpenAI TTS, Otter.ai, Whisper và Rev.ai. So sánh chất lượng, giá cả."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/ai-voice-tools-text-to-speech-transcription/
+aliases:
+  - /posts/ai-voice-tools-text-to-speech-transcription/
 ---
 
 # Các Công Cụ Giọng Nói AI Tốt Nhất 2025: So Sánh TTS Và STT

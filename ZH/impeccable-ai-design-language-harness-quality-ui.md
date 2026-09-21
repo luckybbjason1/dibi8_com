@@ -1,12 +1,12 @@
 ---
-title: 'Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测'
-description: 'Impeccable（3.7 万星标）是为 AI 编码代理设计的编程语言，包含 23 个命令、41 个检测规则和实时浏览器迭代。通过确定性的设计质量检查修复 AI 生成的 UI 粗糙问题。兼容 Claude Code、Cursor 和 Codex。'
+title: "Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测"
+description: "Impeccable（3.7 万星标）是为 AI 编码代理设计的编程语言，包含 23 个命令、41 个检测规则和实时浏览器迭代。通过确定性的设计质量检查修复 AI 生成的 UI 粗糙问题。兼容 Claude Code、Cursor 和 Codex。"
 date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
-tags: ['impeccable', 'design-language', 'ai-design', 'frontend', 'claude-code', 'cursor']
-github_repo: 'https://github.com/pbakaus/impeccable'
+tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
+github_repo: "https://github.com/pbakaus/impeccable"
 license: 'Apache-2.0'
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png---
 

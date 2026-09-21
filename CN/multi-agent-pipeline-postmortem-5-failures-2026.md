@@ -1,6 +1,6 @@
 ---
 title: 'Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
-description: 'Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context bleed, runaway fan-out, silent truncation, and orphaned worktrees — each with the symptom, the root cause, and the fix.'
+description: "Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context bleed, runaway fan-out, silent truncation, and orphaned worktrees — each with the symptom, the root cause, and the fix."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'agent-sdk', debugging, 'llm-frameworks', 'developer-tools']
-aliases: - /posts/multi-agent-pipeline-postmortem/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "agent-sdk", "debugging", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/multi-agent-pipeline-postmortem/
 faq: - q: "What's the single most common multi-agent failure?"
     a: "Trusting a subagent's report without verifying its actual output. Subagents return a prose summary of what they intended to do — not a guaranteed record of what they did. The classic failure is an orchestrator that reads 'I refactored the auth module and all tests pass,' marks the step done, and moves on — when in reality the subagent made shallow edits that type-check but break at runtime, and never actually ran the tests. Always verify against ground truth: git diff, test exit codes, a re-read of the file. The summary is a claim, not evidence."
   - q: "How do I stop two subagents from corrupting each other's work?"

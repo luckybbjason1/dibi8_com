@@ -1,5 +1,5 @@
 ---
-title: 'Mistral AI 2026: 使用8x7B MoE架构部署生产级本地LLM — 完整设置指南'
+title: "Mistral AI 2026: 使用8x7B MoE架构部署生产级本地LLM — 完整设置指南"
 description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/mistralai/mistral-inference'
+github_repo: "https://github.com/mistralai/mistral-inference"
 stars: 9500
 maintainer: mistralai
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['mistral ai']
-aliases: - /zh/posts/mistral-ai-local-llm-deployment/-
+categories: ["ai-tools"]
+tags: ["mistral ai"]
+aliases:
+  - /zh/posts/mistral-ai-local-llm-deployment/-
 ---
 
 {{</* resource-info */>}}

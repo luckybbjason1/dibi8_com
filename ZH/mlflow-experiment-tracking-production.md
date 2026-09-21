@@ -1,6 +1,6 @@
 ---
-title: 'MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南'
-description: 'MLflow 在 ML 实验追踪、模型注册表和模型服务方面的完整指南。涵盖设置、Python SDK、生产部署和 10,000+ 实验的基准测试。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南"
+description: "MLflow 在 ML 实验追踪、模型注册表和模型服务方面的完整指南。涵盖设置、Python SDK、生产部署和 10,000+ 实验的基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'mlflow/mlflow'
+github_repo: "mlflow/mlflow"
 stars: 21000
 maintainer: mlflow
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [mlflow, 机器学习, mlops, 实验追踪, 模型注册表, 模型服务, python, 开源, 数据科学]
-aliases: - /zh/posts/mlflow-experiment-tracking-production/-
+categories: ["data-science"]
+tags: ["mlflow", "机器学习", "mlops", "实验追踪", "模型注册表", "模型服务", "python", "开源", "数据科学"]
+aliases:
+  - /zh/posts/mlflow-experiment-tracking-production/-
 ---
 
 {{</* resource-info */>}}

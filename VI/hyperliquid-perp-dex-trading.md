@@ -1,6 +1,6 @@
 ---
 title: 'Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối ...
-description: 'Hướng dẫn toàn diện về Hyperliquid, sàn Perpetual DEX hoàn toàn on-chain xử lý khối lượng $2B+ hàng ngày với 100+ cặp giao dịch, đòn bẩy 50x, HyperEVM và Python SDK.'
+description: "Hướng dẫn toàn diện về Hyperliquid, sàn Perpetual DEX hoàn toàn on-chain xử lý khối lượng $2B+ hàng ngày với 100+ cặp giao dịch, đòn bẩy 50x, HyperEVM và Python SDK."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hyperliquid-dex'
+github_repo: "https://github.com/hyperliquid-dex"
 stars: 0
 maintainer: hyperliquid
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [hyperliquid, 'perpetual dex', 'on-chain trading', 'leverage trading', 'trading bot', hyperevm, 'python sdk', 'websocket api', clob, 'defi trading', 'algorithmic trading']
-aliases: - /vi/posts/hyperliquid-perp-dex-trading/
+categories: ["ai-trading"]
+tags: ["hyperliquid", "perpetual dex", "on-chain trading", "leverage trading", "trading bot", "hyperevm", "python sdk", "websocket api", "clob", "defi trading", "algorithmic trading"]
+aliases:
+  - /vi/posts/hyperliquid-perp-dex-trading/
 ---
 
 {{</* resource-info */>}}

@@ -1,22 +1,23 @@
 ---
 title: 'Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 q...
-description: 'Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: nơi Gemini thắng (gói miễn phí, ngữ cảnh 1M), nơi Claude Code thắng (độ tin cậy khi dùng công cụ, vòng lặp agentic) và khi nào nên dùng cái nào.'
+description: "Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: nơi Gemini thắng (gói miễn phí, ngữ cảnh 1M), nơi Claude Code thắng (độ tin cậy khi dùng công cụ, vòng lặp agentic) và khi nào nên dùng cái nào."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: Công cụ phát triển
-source_version: 'Gemini CLI 1.0 / Claude Code 1.0'
+source_version: "Gemini CLI 1.0 / Claude Code 1.0"
 licensing_model: 'Hỗn hợp'
 license_type: 'Phần mềm độc quyền'
 github_repo: ''
 stars: 0
 maintainer: 'Google / Anthropic'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: ['gemini-cli', 'claude-code', 'ai-coding', 2026]
-aliases: - /vi/posts/gemini-cli-vs-claude-code-2026-real-comparison/
+categories: ["dev-utils"]
+tags: ["gemini-cli", "claude-code", "ai-coding", "2026"]
+aliases:
+  - /vi/posts/gemini-cli-vs-claude-code-2026-real-comparison/
 faq: - q: "Gemini CLI có phải là đối thủ thực sự của Claude Code không?"
     a: "Có, với các tác vụ nhạy về chi phí và cần ngữ cảnh dài. Gemini CLI có gói miễn phí rất hào phóng (60 yêu cầu/phút, 1500 yêu cầu/ngày) và cửa sổ ngữ cảnh hơn 1M token. Tuy nhiên, độ tin cậy khi sử dụng công cụ vẫn kém Claude Code trong Q2 2026 — các vòng lặp agentic của Gemini hay bị đứt hơn. Nên xem nó là công cụ thứ hai, không phải thay thế."
   - q: "Sự khác biệt về chi phí là bao nhiêu?"

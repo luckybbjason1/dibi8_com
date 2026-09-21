@@ -1,6 +1,6 @@
 ---
-title: 'BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰'
-description: 'BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프 호스팅.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰"
+description: "BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프 호스팅.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'BookStackApp/BookStack'
+github_repo: "BookStackApp/BookStack"
 stars: 18700
 maintainer: BookStackApp
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [bookstack, 문서화, wiki, '셀프 호스팅', php, laravel, '지식 베이스', markdown, docker, 오픈소스]
-aliases: - /kr/posts/bookstack-documentation-wiki/
+categories: ["dev-utils"]
+tags: ["bookstack", "문서화", "wiki", "셀프 호스팅", "php", "laravel", "지식 베이스", "markdown", "docker", "오픈소스"]
+aliases:
+  - /kr/posts/bookstack-documentation-wiki/
 ---
 
 {{</* resource-info */>}}
@@ -267,7 +268,7 @@ BookStack은 또한 Draw.io 통합을 통해 임베디드 다이어그램을 지
 name: Publish API Docs to BookStack
 
 on: push: branches: [main]
-    paths: ['docs/**']
+    paths: [docs/**]
 
 jobs: publish: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
@@ -277,7 +278,7 @@ jobs: publish: runs-on: ubuntu-latest
           curl -X PUT \
             -H "Authorization: Token ${{ secrets.BOOKSTACK_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"name": "API Documentation", "html": "'"$(cat docs/api.html | base64 -w 0)"'"}' \
+            -d '{"name": "API Documentation", "html": "'$(cat docs/api.html | base64 -w 0)'"}' \
             "https://docs.yourdomain.com/api/pages/42"
 ```
 

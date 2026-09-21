@@ -1,6 +1,6 @@
 ---
 title: 'Log Monitoring & Observability Tools for Developers: 202...
-description: 'Compare Grafana Loki, ELK, Datadog, New Relic, and open-source observability stacks. Setup guides, pricing, and benchmarks for developer monitoring in 2025.'
+description: "Compare Grafana Loki, ELK, Datadog, New Relic, and open-source observability stacks. Setup guides, pricing, and benchmarks for developer monitoring in 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/log-monitoring-observability-tools-developers/
+aliases:
+  - /posts/log-monitoring-observability-tools-developers/
 ---
 # Log Monitoring & Observability Tools for Developers: 2025 Complete Guide
 

@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /en/posts/accept-payments-all-currencies/
+aliases:
+  - /en/posts/accept-payments-all-currencies/
 - /posts/accept-payments-all-currencies/
 faqs: - q: 'What currencies can you accept with NowPayments?'
     a: 'NowPayments lets merchants accept payments in over 100 cryptocurrencies, including Bitcoin, Ethereum, and USDT, alongside major fiat currencies such as USD, EUR, and JPY. This removes the regional and currency limits of traditional payment processors.'

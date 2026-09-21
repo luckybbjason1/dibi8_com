@@ -1,10 +1,10 @@
 ---
 title: 'VS Code Copilot vs Cursor 2026: Công cụ AI Coding nào th...
-description: 'So sánh GitHub Copilot trong VS Code (Microsoft) và Cursor — giá $10 vs $20/tháng, autocomplete vs agentic, tích hợp doanh nghiệp. Cập nhật 2026.'
+description: "So sánh GitHub Copilot trong VS Code (Microsoft) và Cursor — giá $10 vs $20/tháng, autocomplete vs agentic, tích hợp doanh nghiệp. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
-tags: [vscode, copilot, cursor, ai-coding, comparison, dev-tools, github]
-categories: [vs]
+tags: ["vscode", "copilot", "cursor", "ai-coding", "comparison", "dev-tools", "github"]
+categories: ["vs"]
 faqs: - q: 'GitHub Copilot hay Cursor rẻ hơn?'
     a: 'GitHub Copilot trong VS Code rẻ hơn với $10/tháng cho gói Individual so với $20/tháng Pro của Cursor. Copilot Business là $19/người/tháng và Enterprise là $39/người/tháng. Xét thuần giá, Copilot thắng với một nửa chi phí — nhưng Cursor gói gọn tính năng agentic mạnh hơn trong một tier $20.'
   - q: 'Loại nào tốt hơn cho chỉnh sửa multi-file kiểu agentic?'

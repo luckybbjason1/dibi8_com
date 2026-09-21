@@ -1,22 +1,23 @@
 ---
-title: 'schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘'
-description: '跑了 7 个量化实验，发现「教科书级 overfit」（Train PF 2.08 → OOS 0.94，比值 2.21）。然后才发现诊断本身就是错的 —— schema 字段静默错配导致 optimizer 用默认 10x leverage 跑，而不是进化出来的 2x。修正版本健康（比值 1.01）。这个 meta 教训比原诊断本身更难看。'
+title: "schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘"
+description: "跑了 7 个量化实验，发现「教科书级 overfit」（Train PF 2.08 → OOS 0.94，比值 2.21）。然后才发现诊断本身就是错的 —— schema 字段静默错配导致 optimizer 用默认 10x leverage 跑，而不是进化出来的 2x。修正版本健康（比值 1.01）。这个 meta 教训比原诊断本身更难看。"
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
-source_version: 'moss-trade-bot-skills v1.0.26'
+source_version: "moss-trade-bot-skills v1.0.26"
 licensing_model: Open Source
 license_type: MIT
 github_repo: ''
 stars: 0
 maintainer: 'dibi8 editorial'
-last_maintained: '2026-05-26'
+last_maintained: "2026-05-26"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: [backtest, overfit, quant, 'schema-drift', 'walk-forward', postmortem, 2026]
-aliases: - /zh/posts/schema-bug-faked-overfit-diagnosis-2026/
+categories: ["ai-trading"]
+tags: ["backtest", "overfit", "quant", "schema-drift", "walk-forward", "postmortem", "2026"]
+aliases:
+  - /zh/posts/schema-bug-faked-overfit-diagnosis-2026/
 faq: - q: "什么是 schema drift？为什么它能伪造回测结果？"
     a: "schema drift 指的是你 config 里的参数字段名跟运行时的 schema 已经对不上了。deserialization 会静默丢掉未知字段并使用默认值。如果这些默认值很激进（比如你本来想要 2x leverage，默认却是 10x），回测结果就会剧烈摇摆。数字看着像真的，但它来自一个跟你写的策略完全不同的策略。"
   - q: "原始的 overfit 诊断为什么看起来那么有说服力？"

@@ -1,6 +1,6 @@
 ---
 title: 'BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, ...
-description: 'Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Markdown, cấu trúc kệ sách/chương/trang, và hỗ trợ LDAP/SSO. Tự host trong 5 phút.'
+description: "Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Markdown, cấu trúc kệ sách/chương/trang, và hỗ trợ LDAP/SSO. Tự host trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'BookStackApp/BookStack'
+github_repo: "BookStackApp/BookStack"
 stars: 18700
 maintainer: BookStackApp
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [bookstack, 'tài liệu', wiki, 'tự host', php, laravel, 'cơ sở kiến thức', markdown, docker, 'mã nguồn mở']
-aliases: - /vi/posts/bookstack-documentation-wiki/
+categories: ["dev-utils"]
+tags: ["bookstack", "tài liệu", "wiki", "tự host", "php", "laravel", "cơ sở kiến thức", "markdown", "docker", "mã nguồn mở"]
+aliases:
+  - /vi/posts/bookstack-documentation-wiki/
 ---
 
 {{</* resource-info */>}}

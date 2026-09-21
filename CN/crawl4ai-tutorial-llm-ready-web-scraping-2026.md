@@ -1,6 +1,6 @@
 ---
 title: 'Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
-description: 'Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friendly web scrapers, RAG data pipelines, and AI Agent tools with this open-source Python crawler. Includes installation guide, LLM extraction strategies, deep crawl configs, and comparison with Firecrawl and ScrapeGraphAI.'
+description: "Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friendly web scrapers, RAG data pipelines, and AI Agent tools with this open-source Python crawler. Includes installation guide, LLM extraction strategies, deep crawl configs, and comparison with Firecrawl and ScrapeGraphAI."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/unclecode/crawl4ai'
+github_repo: "https://github.com/unclecode/crawl4ai"
 stars: 63000
 maintainer: unclecode
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [crawl4ai, 'web-scraping', 'llm-rag', 'open-source']
-aliases: - /posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
+categories: ["llm-frameworks"]
+tags: ["crawl4ai", "web-scraping", "llm-rag", "open-source"]
+aliases:
+  - /posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/
 ---
 # Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and RAG Pipelines with the Fastest-Growing Open-Source Crawler
 

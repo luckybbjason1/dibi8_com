@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/aitoearn-guide/
+aliases:
+  - /vi/posts/aitoearn-guide/
 faqs: - q: 'AiToEarn có phải là lựa chọn thay thế miễn phí cho Buffer và Hootsuite không?'
     a: 'Có. AiToEarn là phần mềm mã nguồn mở (giấy phép MIT) và tự lưu trữ, do đó chi phí là $0/tháng, trong khi Buffer từ $120+/tháng và Hootsuite từ $249+/tháng. Ngoài ra, nó cũng không giới hạn số lượng bài đăng như các gói trả phí kia.'
   - q: 'AiToEarn có thể đăng lên Xiaohongshu (RED) và Instagram cùng lúc không?'

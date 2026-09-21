@@ -1,6 +1,6 @@
 ---
-title: 'Grafana: 73,876 GitHub Stars — Docker 배포 가이드 2026'
-description: 'Grafana는 모니터링과 관측 가능성을 위한 오픈소스 시각화 및 분석 플랫폼이다. Prometheus, Loki, InfluxDB, Elasticsearch 통합 포함. Docker 설정, 프로덕션 강화, Datadog, Kibana, New Relic과의 비교 포함.'
+title: "Grafana: 73,876 GitHub Stars — Docker 배포 가이드 2026"
+description: "Grafana는 모니터링과 관측 가능성을 위한 오픈소스 시각화 및 분석 플랫폼이다. Prometheus, Loki, InfluxDB, Elasticsearch 통합 포함. Docker 설정, 프로덕션 강화, Datadog, Kibana, New Relic과의 비교 포함."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/grafana/grafana'
+github_repo: "https://github.com/grafana/grafana"
 stars: 73876
 maintainer: grafana
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [grafana, docker, 모니터링, prometheus, 관측가능성, 대시보드, 데브옵스]
-aliases: - /kr/posts/grafana/
+categories: ["dev-utils"]
+tags: ["grafana", "docker", "모니터링", "prometheus", "관측가능성", "대시보드", "데브옵스"]
+aliases:
+  - /kr/posts/grafana/
 ---
 
 {{</* resource-info */>}}
@@ -136,13 +137,13 @@ global: scrape_interval: 15s
   evaluation_interval: 15s
 
 scrape_configs: - job_name: prometheus
-    static_configs: - targets: ['localhost:9090']
+    static_configs: - targets: [localhost:9090]
 
   - job_name: 'node-exporter'
-    static_configs: - targets: ['node-exporter:9100']
+    static_configs: - targets: [node-exporter:9100]
 
   - job_name: grafana
-    static_configs: - targets: ['grafana:3000']
+    static_configs: - targets: [grafana:3000]
 ```
 
 **loki/loki-config.yml:**

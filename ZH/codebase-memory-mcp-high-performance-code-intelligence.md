@@ -1,6 +1,6 @@
 ---
-title: 'Codebase-Memory-MCP：AI 编码代理的高性能代码智能'
-description: '深入探讨 codebase-memory-mcp——最快的代码智能 MCP 服务器，可在毫秒内索引整个代码库。完整安装指南、比较和实际用例。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Codebase-Memory-MCP：AI 编码代理的高性能代码智能"
+description: "深入探讨 codebase-memory-mcp——最快的代码智能 MCP 服务器，可在毫秒内索引整个代码库。完整安装指南、比较和实际用例。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-19
 lastmod: 2026-06-19tags: []
 category: "dev-utils"

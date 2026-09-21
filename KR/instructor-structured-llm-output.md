@@ -1,6 +1,6 @@
 ---
 title: 'Instructor: LLM이 100% 유효한 JSON을 출력하도록 강제하는 Python 라이브러리 ...
-description: '일관성 없는 LLM 출력과의 투쟁을 멈추세요. Instructor가 Pydantic 모델을 사용하여 유효하고 타입 안전한 JSON 응답을 보장하기 위해 OpenAI 클라이언트를 패치하는 방법을 알아보세요. 재시도 로직, 다중 공급자 지원 및 스트리밍 기능을 갖추고 있습니다.'
+description: "일관성 없는 LLM 출력과의 투쟁을 멈추세요. Instructor가 Pydantic 모델을 사용하여 유효하고 타입 안전한 JSON 응답을 보장하기 위해 OpenAI 클라이언트를 패치하는 방법을 알아보세요. 재시도 로직, 다중 공급자 지원 및 스트리밍 기능을 갖추고 있습니다."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/jxnl/instructor'
+github_repo: "https://github.com/jxnl/instructor"
 stars: 11000
 maintainer: jxnl
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [instructor]
-aliases: - /kr/posts/instructor-structured-llm-output/
+categories: ["llm-frameworks"]
+tags: ["instructor"]
+aliases:
+  - /kr/posts/instructor-structured-llm-output/
 ---
 
 {{</* resource-info */>}}

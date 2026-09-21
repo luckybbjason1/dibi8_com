@@ -19,7 +19,8 @@ maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/caveman/
+aliases:
+  - /zh/posts/caveman/
 faq: - q: "Caveman 会影响 AI 的思考质量吗?"
     a: "**不会。** Caveman 只压缩**输出 Token**（AI 说出来的话），不影响**思考/推理 Token**（AI 内部思考过程）。AI 的\"大脑\"保持不变，只是\"嘴巴\"变小了。"
   - q: "所有任务都能省 65% 吗?"

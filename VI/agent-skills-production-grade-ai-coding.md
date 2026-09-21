@@ -19,10 +19,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.vi/
+aliases:
+  - /vi/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.vi/
 - /vi/posts/agent-skills-production-grade-ai-coding/
 faqs: - q: 'Agent Skills của Addy Osmani là gì?'
     a: 'Agent Skills là một bộ sưu tập mã nguồn mở gồm 20 kỹ năng kỹ thuật cấp sản xuất và 7 lệnh slash, mã hóa các quy trình làm việc, cổng chất lượng và thực tiễn tốt nhất của kỹ sư cấp cao dành cho các agent lập trình AI. Nó được Addy Osmani xây dựng và ánh xạ tới toàn bộ vòng đời phát triển phần mềm: DEFINE, PLAN, BUILD, VERIFY, REVIEW, SHIP.'

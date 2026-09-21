@@ -16,10 +16,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /ko/posts/aiwind-ai-prompt-library/
+aliases:
+  - /ko/posts/aiwind-ai-prompt-library/
 faqs: - q: 'AiWind은 무료로 사용할 수 있나요?'
     a: '네, AiWind는 aiwind.org에서 제공하는 완전 무료 AI 프롬프트 라이브러리로, 유료 플랜이 없습니다. 1000개 이상의 전문 프롬프트를 제공하며 지속적으로 업데이트됩니다.'
   - q: 'AiWind는 어떤 AI 이미지 모델의 프롬프트를 지원하나요?'

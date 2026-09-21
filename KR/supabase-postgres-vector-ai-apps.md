@@ -1,6 +1,6 @@
 ---
 title: 'Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Fi...
-description: 'Supabase 완벽 가이드: Postgres + pgvector를 갖춘 오픈소스 Firebase 대안. 인증, 스토리지, 실시간, Edge 함수, RAG 파이프라인 통합, 자체 호스팅 Docker 배포, 행 수준 보안.'
+description: "Supabase 완벽 가이드: Postgres + pgvector를 갖춘 오픈소스 Firebase 대안. 인증, 스토리지, 실시간, Edge 함수, RAG 파이프라인 통합, 자체 호스팅 Docker 배포, 행 수준 보안."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'supabase/supabase'
+github_repo: "supabase/supabase"
 stars: 80000
 maintainer: supabase
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [supabase, postgres, '벡터 검색', 'firebase 대안', pgvector, 'ai 앱', rag, 오픈소스, docker, 'edge 함수']
-aliases: - /kr/posts/supabase-postgres-vector-ai-apps/
+categories: ["dev-utils"]
+tags: ["supabase", "postgres", "벡터 검색", "firebase 대안", "pgvector", "ai 앱", "rag", "오픈소스", "docker", "edge 함수"]
+aliases:
+  - /kr/posts/supabase-postgres-vector-ai-apps/
 ---
 
 {{</* resource-info */>}}

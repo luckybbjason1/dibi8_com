@@ -20,7 +20,8 @@ maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /vi/posts/justhireme-ai-job-search-workbench/
+aliases:
+  - /vi/posts/justhireme-ai-job-search-workbench/
 faqs: - q: 'JustHireMe có miễn phí và mã nguồn mở không?'
     a: 'Có. JustHireMe là phần mềm mã nguồn mở theo giấy phép MIT, không có phí đăng ký hay chi phí ẩn. Bạn là chủ sở hữu toàn bộ hồ sơ và dữ liệu của mình, và thuật toán chấm điểm hoàn toàn minh bạch.'
   - q: 'JustHireMe có yêu cầu API key AI hoặc gửi dữ liệu của tôi lên đám mây không?'

@@ -20,7 +20,8 @@ maintainer: "LearningCircuit"
 last_maintained: "2026-05-16"
 featureImage: ""
 draft: false
-aliases: - /posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
+aliases:
+  - /posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
 faqs: - q: 'What is Local Deep Research and how accurate is it?'
     a: 'Local Deep Research is an open-source AI research tool by LearningCircuit that runs an iterative research loop across sources like arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, and Brave Search. It reports roughly 95% accuracy on the SimpleQA benchmark and stores data in a per-user SQLCipher-encrypted SQLite database (AES-256) with no telemetry.'
   - q: 'What is InsForge used for?'

@@ -1,17 +1,16 @@
 ---
 title: 'Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích ...
-description: 'Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS.'
+description: "Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS."
 date: 2026-06-09
 lastmod: 2026-06-09
 slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
 category: ai-tools
-tags: ['odysseus', 'AI tự lưu trữ', 'Không gian AI', 'AI cục bộ', 'nghiên cứu chuyên sâu', 'tác nhân AI', 'giao diện trò chuyện', 'AI mã nguồn mở', 'AI lab tại gia']
+tags: ["odysseus", "AI tự lưu trữ", "Không gian AI", "AI cục bộ", "nghiên cứu chuyên sâu", "tác nhân AI", "giao diện trò chuyện", "AI mã nguồn mở", "AI lab tại gia"]
 github_repo: https://github.com/pewdiepie-archdaemon/odysseus
 stars: 65243
 maintainer: pewdiepie-archdaemon
 license: MIT
 featureImage: https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg
-lang: vi
 ---
 
 # Odysseus: Self-Hosted AI Workspace with 10+ Built-in Tools — 65,000 Stars — Full Setup Guide 2026

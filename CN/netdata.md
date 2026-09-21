@@ -1,6 +1,6 @@
 ---
 title: 'Netdata: Real-Time Monitoring with 78K+ Stars — Performa...
-description: 'Netdata (ND) is a high-performance real-time monitoring agent with per-second metrics and visualization. Compatible with Docker, Kubernetes, Prometheus, and Grafana. Covers netdata tutorial, netdata setup, real time monitoring, netdata vs prometheus, and netdata performance tuning.'
+description: "Netdata (ND) is a high-performance real-time monitoring agent with per-second metrics and visualization. Compatible with Docker, Kubernetes, Prometheus, and Grafana. Covers netdata tutorial, netdata setup, real time monitoring, netdata vs prometheus, and netdata performance tuning."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/netdata/netdata'
+github_repo: "https://github.com/netdata/netdata"
 stars: 78874
 maintainer: netdata
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [netdata, monitoring, observability, 'performance-tuning', docker, kubernetes, 'real-time-metrics']
-aliases: - /posts/netdata/-
+categories: ["dev-utils"]
+tags: ["netdata", "monitoring", "observability", "performance-tuning", "docker", "kubernetes", "real-time-metrics"]
+aliases:
+  - /posts/netdata/-
 ---
 {{</* resource-info */>}}
 

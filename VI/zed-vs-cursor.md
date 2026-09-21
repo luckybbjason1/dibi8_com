@@ -1,10 +1,10 @@
 ---
 title: 'Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So S...
-description: 'So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) — tốc độ, tính năng AI, giá, hệ sinh thái, nền tảng. Cập nhật 2026.'
+description: "So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) — tốc độ, tính năng AI, giá, hệ sinh thái, nền tảng. Cập nhật 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [zed, cursor, ai-editor, code-editor, ai-coding, comparison, dev-tools, rust]
-categories: [vs]
+tags: ["zed", "cursor", "ai-editor", "code-editor", "ai-coding", "comparison", "dev-tools", "rust"]
+categories: ["vs"]
 faqs: - q: 'Zed hay Cursor nhanh hơn?'
     a: 'Zed nhanh hơn. Nó được viết bằng Rust với kết xuất tăng tốc GPU và không có lớp Electron, nên độ trễ gõ phím, mở tệp và cuộn tệp lớn gần như tức thì ngay cả trên kho mã lớn. Cursor là fork của VS Code nên kế thừa runtime nặng của Electron, do đó tốn RAM hơn và phản hồi chậm hơn một chút trên tệp rất lớn. Nếu tốc độ thuần của trình soạn thảo là ưu tiên hàng đầu, Zed thắng; nếu chiều sâu tính năng AI quan trọng hơn vài mili-giây, chi phí của Cursor thường chấp nhận được.'
   - q: 'Zed hay Cursor có tính năng lập trình AI tiên tiến hơn?'

@@ -1,26 +1,27 @@
 ---
 title: 'Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 202...
-description: 'Odysseus는 오픈소스 프라이버시 우선 AI 워크스페이스입니다 (9일 63,000 스타, MIT 라이선스). Docker 명령어 하나로 채팅, AI 에이전트, 딥 리서치, 이메일 분류, 캘린더, 메모, 모델 쿡북을 내 서버에서 직접 실행할 수 있습니다. 설치 방법, 주요 기능, ChatGPT Plus 비교를 상세히 정리했습니다.'
+description: "Odysseus는 오픈소스 프라이버시 우선 AI 워크스페이스입니다 (9일 63,000 스타, MIT 라이선스). Docker 명령어 하나로 채팅, AI 에이전트, 딥 리서치, 이메일 분류, 캘린더, 메모, 모델 쿡북을 내 서버에서 직접 실행할 수 있습니다. 설치 방법, 주요 기능, ChatGPT Plus 비교를 상세히 정리했습니다."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
-source_version: '1.0'
+source_version: "1.0"
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
 file_md5: ''
-download_url: 'https://github.com/pewdiepie-archdaemon/odysseus'
+download_url: "https://github.com/pewdiepie-archdaemon/odysseus"
 backup_url: ''
-github_repo: 'pewdiepie-archdaemon/odysseus'
+github_repo: "pewdiepie-archdaemon/odysseus"
 stars: 63159
 maintainer: 'pewdiepie-archdaemon'
-last_maintained: '2026-06-08'
+last_maintained: "2026-06-08"
 featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
-categories: ['ai-tools']
-tags: [odysseus, '셀프호스팅 ai', 'ai 워크스페이스', '로컬 llm', 프라이버시, docker, 오픈소스, 'chatgpt 대안', ollama, '딥 리서치']
-aliases: - /kr/posts/odysseus-self-hosted-ai-workspace-2026/
+categories: ["ai-tools"]
+tags: ["odysseus", "셀프호스팅 ai", "ai 워크스페이스", "로컬 llm", "프라이버시", "docker", "오픈소스", "chatgpt 대안", "ollama", "딥 리서치"]
+aliases:
+  - /kr/posts/odysseus-self-hosted-ai-workspace-2026/
 faqs: - q: 'Odysseus를 실행하려면 GPU가 필요한가요?'
     a: '아니요. Odysseus 자체는 매우 가볍습니다. GPU는 Cookbook 기능으로 로컬 모델을 실행할 때만 필요합니다. OpenAI, Anthropic, OpenRouter 같은 원격 API나 별도 Ollama 인스턴스에 연결하면 로컬 GPU 없이도 모든 기능을 사용할 수 있습니다.'
   - q: 'Odysseus와 Open WebUI의 차이점은 무엇인가요?'

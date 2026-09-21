@@ -1,6 +1,6 @@
 ---
 title: 'Docmost 2026: The Open-Source Notion Alternative for Rea...
-description: 'Complete self-hosting guide for Docmost, the open-source collaborative wiki with real-time editing, Notion-like block editor, nested pages, and PostgreSQL backend. Deploy in 5 minutes.'
+description: "Complete self-hosting guide for Docmost, the open-source collaborative wiki with real-time editing, Notion-like block editor, nested pages, and PostgreSQL backend. Deploy in 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'docmost/docmost'
+github_repo: "docmost/docmost"
 stars: 20100
 maintainer: docmost
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [docmost, 'notion alternative', wiki, 'real-time collaboration', 'self-hosted', documentation, postgresql, docker, 'open source', 'team docs']
-aliases: - /posts/docmost-team-docs-collaboration/-
+categories: ["dev-utils"]
+tags: ["docmost", "notion alternative", "wiki", "real-time collaboration", "self-hosted", "documentation", "postgresql", "docker", "open source", "team docs"]
+aliases:
+  - /posts/docmost-team-docs-collaboration/-
 ---
 {{</* resource-info */>}}
 
@@ -278,7 +279,7 @@ For context: Notion charges $10/user/month. At 20 users, that is $200/month. Doc
 name: Publish Docs to Docmost
 
 on: push: branches: [main]
-    paths: ['docs/**']
+    paths: [docs/**]
 
 jobs: publish: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4

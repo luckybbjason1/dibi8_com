@@ -1,6 +1,6 @@
 ---
 title: 'Subagent vs MCP Server vs Skill: When to Build Each Clau...
-description: 'Claude Code has three extension points — skills, subagents, and MCP servers — and they solve different problems. A decision framework for choosing the right one, with worked scenarios and the anti-patterns that waste your time.'
+description: "Claude Code has three extension points — skills, subagents, and MCP servers — and they solve different problems. A decision framework for choosing the right one, with worked scenarios and the anti-patterns that waste your time."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', mcp, subagents, skills, 'agent-sdk', 'llm-frameworks', 'developer-tools']
-aliases: - /posts/claude-code-subagent-vs-mcp-vs-skill/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "mcp", "subagents", "skills", "agent-sdk", "llm-frameworks", "developer-tools"]
+aliases:
+  - /posts/claude-code-subagent-vs-mcp-vs-skill/
 faq: - q: "What's the one-sentence difference between a skill, a subagent, and an MCP server?"
     a: "A skill teaches Claude HOW to do something (packaged instructions and knowledge loaded into context), a subagent is WHO does it (a delegated worker with its own context window), and an MCP server is WHAT it can reach (a connection to external tools and data). Skills change behavior, subagents protect context, MCP servers add capabilities — three different axes, not three competing options."
   - q: "If I need Claude to query our internal database, is that a skill, a subagent, or an MCP server?"

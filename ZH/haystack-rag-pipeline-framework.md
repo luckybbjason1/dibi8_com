@@ -1,6 +1,6 @@
 ---
-title: 'Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南'
-description: '2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南"
+description: "2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'deepset-ai/haystack'
+github_repo: "deepset-ai/haystack"
 stars: 21000
 maintainer: 'deepset-ai'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [haystack, nlp, rag, python, llm, 文档存储, 检索器, agent, openai, docker, 流水线]
-aliases: - /zh/posts/haystack-rag-pipeline-framework/-
+categories: ["data-science"]
+tags: ["haystack", "nlp", "rag", "python", "llm", "文档存储", "检索器", "agent", "openai", "docker", "流水线"]
+aliases:
+  - /zh/posts/haystack-rag-pipeline-framework/-
 ---
 
 {{</* resource-info */>}}

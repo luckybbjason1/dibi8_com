@@ -1,6 +1,6 @@
 ---
 title: 'The AI Trading Stack 2026: 7-Component Open-Source Quant...
-description: 'Self-hosted AI trading stack: ta-lib (signals) + vectorbt (backtest) + freqtrade (execution) + AI Trader (AI strategy layer) + Hyperliquid (perp DEX venue) + Polymarket Agents (prediction markets) + Minara (AI+crypto hub). $30-150/mo infrastructure, real production-grade quant pipeline, not a toy.'
+description: "Self-hosted AI trading stack: ta-lib (signals) + vectorbt (backtest) + freqtrade (execution) + AI Trader (AI strategy layer) + Hyperliquid (perp DEX venue) + Polymarket Agents (prediction markets) + Minara (AI+crypto hub). $30-150/mo infrastructure, real production-grade quant pipeline, not a toy."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['ai trading', quant, crypto, hyperliquid, polymarket, stack, collection]
-aliases: - /posts/ai-trading-stack/-
+categories: ["collections"]
+tags: ["ai trading", "quant", "crypto", "hyperliquid", "polymarket", "stack", "collection"]
+aliases:
+  - /posts/ai-trading-stack/-
 ---
 > ⚠️ **Disclaimer**: This is a technical guide to building an AI trading stack, not investment advice. Quantitative trading carries substantial risk of capital loss. Test extensively on paper / testnet before deploying real capital. Past backtest performance does not predict future returns.
 

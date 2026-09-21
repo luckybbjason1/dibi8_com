@@ -17,10 +17,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: ''
-last_maintained: '2026-05-15'
+last_maintained: "2026-05-15"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/anthropics-claude-financial-services-ai-agents.zh/
+aliases:
+  - /zh/posts/anthropics-claude-financial-services-ai-agents.zh/
 - /zh/posts/anthropic-financial-services-ai-finance-automation/
 faqs: - q: 'Anthropic Financial Services 智能体能自动化哪些金融工作流？'
     a: '它针对四大垂直领域提供命名化的端到端智能体：投资银行（路演材料、可比公司、先例交易、LBO 模型）、股票研究（行业概览、财报点评、DCF/三表模型）、私募股权基金管理（估值复核、总账对账、月末结账、LP 对账单审计）以及财富管理运营（KYC 筛查与开户）。每一个都对应真实的分析师岗位，而不是泛泛的聊天机器人。'

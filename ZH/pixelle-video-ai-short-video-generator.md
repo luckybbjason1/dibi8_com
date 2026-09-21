@@ -18,7 +18,8 @@ maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
 featureImage: ''
 draft: false
-aliases: - /zh/posts/pixelle-video-ai-short-video-generator/
+aliases:
+  - /zh/posts/pixelle-video-ai-short-video-generator/
 faqs: - q: 'Pixelle-Video 是什么？'
     a: 'Pixelle-Video 是一款开源、MIT 授权的 AI 引擎，能将单个主题自动生成完整的短视频。只需输入一个主题，它就会自动撰写脚本、生成配套 AI 图片或视频、用 TTS 合成配音，并在渲染最终视频前添加背景音乐。'
   - q: 'Pixelle-Video 是免费开源的吗？'

@@ -1,6 +1,6 @@
 ---
 title: 'RAGFlow: 80K+ Stars를 가진 프로덕션급 RAG 엔진 배포하기 — 2026년 Docker...
-description: 'RAGFlow는 심층 문서 이해와 내장 에이전트 기능을 갖춘 오픈소스 검색 증강 생성(RAG) 엔진입니다. Ollama, OpenAI, Qdrant, Elasticsearch, Redis와 호환됩니다. Docker 배포, 문서 수집, 검색 튜닝 및 프로덕션 하드닝을 다룹니다.'
+description: "RAGFlow는 심층 문서 이해와 내장 에이전트 기능을 갖춘 오픈소스 검색 증강 생성(RAG) 엔진입니다. Ollama, OpenAI, Qdrant, Elasticsearch, Redis와 호환됩니다. Docker 배포, 문서 수집, 검색 튜닝 및 프로덕션 하드닝을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/infiniflow/ragflow'
+github_repo: "https://github.com/infiniflow/ragflow"
 stars: 80853
 maintainer: infiniflow
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [ragflow, rag엔진, 문서이해, docker배포, llm에이전트, 프로덕션rag, 오픈소스ai]
-aliases: - /kr/posts/ragflow/
+categories: ["llm-frameworks"]
+tags: ["ragflow", "rag엔진", "문서이해", "docker배포", "llm에이전트", "프로덕션rag", "오픈소스ai"]
+aliases:
+  - /kr/posts/ragflow/
 ---
 
 {{</* resource-info */>}}

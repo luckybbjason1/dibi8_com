@@ -1,6 +1,6 @@
 ---
-title: 'RAG检索增强生成架构实现指南2025：构建生产级系统'
-description: '2025年RAG架构完整实现指南：从Naive RAG到Advanced RAG、Agentic RAG，涵盖分块策略、Embedding选型、向量数据库、重排序等全流程优化。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "RAG检索增强生成架构实现指南2025：构建生产级系统"
+description: "2025年RAG架构完整实现指南：从Naive RAG到Advanced RAG、Agentic RAG，涵盖分块策略、Embedding选型、向量数据库、重排序等全流程优化。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/rag-architecture-implementation-guide/-
+aliases:
+  - /posts/rag-architecture-implementation-guide/-
 ---
 
 {</* resource-info */>}

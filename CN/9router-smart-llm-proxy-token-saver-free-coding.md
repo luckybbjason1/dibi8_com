@@ -23,7 +23,8 @@ maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/9router-smart-llm-proxy-token-saver-free-coding/
+aliases:
+  - /posts/9router-smart-llm-proxy-token-saver-free-coding/
 faqs: - q: 'What is 9Router and how does it work?'
     a: '9Router is an open-source, self-hosted smart proxy that sits between your AI coding tool and model providers, running on localhost:20128 by default. Instead of calling Claude or OpenAI directly, your tool sends requests to 9Router, which routes them across 40+ providers using intelligent fallback logic and token compression.'
   - q: 'Does 9Router cost money to use?'

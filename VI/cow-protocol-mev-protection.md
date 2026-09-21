@@ -1,6 +1,6 @@
 ---
 title: 'CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết k...
-description: 'Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh solver để giúp tiết kiệm $100M+ phí trượt giá. Bao gồm tích hợp SDK, thiết lập bot giao dịch.'
+description: "Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh solver để giúp tiết kiệm $100M+ phí trượt giá. Bao gồm tích hợp SDK, thiết lập bot giao dịch."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/cowprotocol/contracts'
+github_repo: "https://github.com/cowprotocol/contracts"
 stars: 700
 maintainer: cowprotocol
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['ai-trading']
-tags: ['cow protocol', 'mev protection', 'dex aggregator', 'batch auction', 'sandwich attack', 'coincidence of wants', solver, 'defi trading', 'gasless orders', 'anti-mev']
-aliases: - /vi/posts/cow-protocol-mev-protection/
+categories: ["ai-trading"]
+tags: ["cow protocol", "mev protection", "dex aggregator", "batch auction", "sandwich attack", "coincidence of wants", "solver", "defi trading", "gasless orders", "anti-mev"]
+aliases:
+  - /vi/posts/cow-protocol-mev-protection/
 ---
 
 {{</* resource-info */>}}

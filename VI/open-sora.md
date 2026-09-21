@@ -1,6 +1,6 @@
 ---
 title: 'Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
-description: 'Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp ComfyUI, triển khai production, so sánh hiệu suất với HunyuanVideo, CogVideo, và Wan.'
+description: "Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp ComfyUI, triển khai production, so sánh hiệu suất với HunyuanVideo, CogVideo, và Wan."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/hpcaitech/Open-Sora'
+github_repo: "https://github.com/hpcaitech/Open-Sora"
 stars: 29000
 maintainer: hpcaitech
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: ['open-sora', 'tạo-video', 'diffusion-transformer', 'ai-video', 'mã-nguồn-mở', docker, cuda, comfyui]
-aliases: - /vi/posts/open-sora/
+categories: ["ai-tools"]
+tags: ["open-sora", "tạo-video", "diffusion-transformer", "ai-video", "mã-nguồn-mở", "docker", "cuda", "comfyui"]
+aliases:
+  - /vi/posts/open-sora/
 ---
 
 {{</* resource-info */>}}

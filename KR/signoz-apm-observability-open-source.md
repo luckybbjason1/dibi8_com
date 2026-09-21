@@ -1,6 +1,6 @@
 ---
-title: 'SigNoz: Datadog 비용의 10%로 대체하는 오픈소스 APM — 분산 추적 설정 가이드 2026'
-description: '5분 만에 SigNoz를 배포하세요. OpenTelemetry 기반 오픈소스 APM으로 분산 추적, 메트릭, 로그 관리를 제공하며 Datadog 비용의 10%만으로 운영 가능합니다.'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "SigNoz: Datadog 비용의 10%로 대체하는 오픈소스 APM — 분산 추적 설정 가이드 2026"
+description: "5분 만에 SigNoz를 배포하세요. OpenTelemetry 기반 오픈소스 APM으로 분산 추적, 메트릭, 로그 관리를 제공하며 Datadog 비용의 10%만으로 운영 가능합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'SigNoz/signoz'
+github_repo: "SigNoz/signoz"
 stars: 22000
 maintainer: SigNoz
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [signoz, apm, 가시성, '분산 추적', opentelemetry, 'datadog 대안', 셀프호스팅, docker, kubernetes, 메트릭, 로그, 모니터링]
-aliases: - /kr/posts/signoz-apm-observability-open-source/
+categories: ["dev-utils"]
+tags: ["signoz", "apm", "가시성", "분산 추적", "opentelemetry", "datadog 대안", "셀프호스팅", "docker", "kubernetes", "메트릭", "로그", "모니터링"]
+aliases:
+  - /kr/posts/signoz-apm-observability-open-source/
 ---
 
 {{</* resource-info */>}}

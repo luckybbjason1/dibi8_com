@@ -18,7 +18,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /posts/discover-tikchain-your-gateway-to-social-media-blockchain/
+aliases:
+  - /posts/discover-tikchain-your-gateway-to-social-media-blockchain/
 faqs: - q: 'How do you earn tokens on TikChain?'
     a: 'You earn TikChain''s native utility token through content creation and social media engagement such as likes and shares, plus community participation and referral programs. Tokens can also be staked to lock them for additional benefits.'
   - q: 'Which social media platforms does TikChain support?'

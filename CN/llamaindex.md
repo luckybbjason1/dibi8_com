@@ -1,6 +1,6 @@
 ---
 title: 'LlamaIndex: 49K+ Stars — Production RAG Deployment Guide...
-description: 'LlamaIndex is a data framework for building production RAG systems with LLMs. Supports OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Covers Docker deployment, query engines, agents, and benchmarks vs LangChain/Haystack/RAGFlow.'
+description: "LlamaIndex is a data framework for building production RAG systems with LLMs. Supports OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Covers Docker deployment, query engines, agents, and benchmarks vs LangChain/Haystack/RAGFlow."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/run-llama/llama_index'
+github_repo: "https://github.com/run-llama/llama_index"
 stars: 49517
 maintainer: 'run-llama'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [llamaindex, rag, llm, 'vector-database', 'retrieval-augmented-generation', openai, ollama, qdrant, python, docker]
-aliases: - /posts/llamaindex/-
+categories: ["llm-frameworks"]
+tags: ["llamaindex", "rag", "llm", "vector-database", "retrieval-augmented-generation", "openai", "ollama", "qdrant", "python", "docker"]
+aliases:
+  - /posts/llamaindex/-
 ---
 {{</* resource-info */>}}
 

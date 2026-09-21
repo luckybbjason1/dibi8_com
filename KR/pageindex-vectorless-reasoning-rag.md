@@ -19,7 +19,8 @@ maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/pageindex-vectorless-reasoning-rag/
+aliases:
+  - /kr/posts/pageindex-vectorless-reasoning-rag/
 faqs: - q: 'PageIndex란 무엇이며 기존 RAG와 어떻게 다른가요?'
     a: 'PageIndex는 VectifyAI에서 만든 오픈소스 RAG 시스템으로, 벡터 데이터베이스 없이 정보를 검색합니다. 문서를 임베딩하거나 청킹하는 대신, 각 문서를 계층적 트리 구조로 구축하고 LLM 추론을 사용해 이를 탐색합니다. 이는 인간 전문가가 목차를 보고 관련 섹션을 찾는 방식을 모방한 것입니다.'
   - q: 'PageIndex는 벡터 데이터베이스나 문서 청킹이 필요한가요?'

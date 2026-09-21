@@ -1,10 +1,10 @@
 ---
-title: 'Claude Code vs Cline in 2026: Autonomy or Control?'
-description: 'Side-by-side breakdown of Claude Code and Cline — terminal autonomy vs VS Code step-by-step approval, model support, pricing, and when to pick each. The control-vs-autonomy decision for agentic coding. Updated 2026.'
+title: "Claude Code vs Cline in 2026: Autonomy or Control?"
+description: "Side-by-side breakdown of Claude Code and Cline — terminal autonomy vs VS Code step-by-step approval, model support, pricing, and when to pick each. The control-vs-autonomy decision for agentic coding. Updated 2026."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
-tags: [claude-code, cline, ai-coding, agentic, comparison, dev-tools]
-categories: [vs]
+tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
+categories: ["vs"]
 faqs: - q: 'What is the core difference between Claude Code and Cline?'
     a: 'Philosophy. Claude Code is Anthropic''s terminal-native agent, tuned for Claude models and built to run autonomously — plan, edit, run tests, retry, all in one loop. Cline is an open-source VS Code extension that works with any model and asks you to approve every diff, command, and web fetch before it runs. Claude Code optimizes for autonomy and per-token quality; Cline optimizes for control and model freedom. It''s the autonomy-vs-control trade-off in two tools.'
   - q: 'Is Cline cheaper than Claude Code?'

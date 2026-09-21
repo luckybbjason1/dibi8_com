@@ -1,10 +1,10 @@
 ---
 title: 'Ollama vs vLLM in 2026: Local Dev Simplicity vs Producti...
-description: 'Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production inference engine) — ease of use, throughput, hardware, concurrency, cost at scale. Updated 2026.'
+description: "Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production inference engine) — ease of use, throughput, hardware, concurrency, cost at scale. Updated 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [ollama, vllm, local-llm, inference, llm-serving, comparison, dev-tools, self-hosted]
-categories: [vs]
+tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]
+categories: ["vs"]
 faqs: - q: 'Should I use Ollama or vLLM for serving an LLM?'
     a: 'Use Ollama if you are serving one or a few users locally — on a laptop, Mac, or a single dev box — and you value a one-command setup. Use vLLM if you are serving many concurrent users in production and need high throughput on GPUs. The rule of thumb: Ollama for local development and prototyping, vLLM for production serving at scale. Many teams use Ollama in development and switch to vLLM for the production deployment.'
   - q: 'Why is vLLM faster than Ollama under load?'

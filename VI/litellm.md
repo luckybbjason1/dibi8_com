@@ -1,6 +1,6 @@
 ---
 title: 'LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM,...
-description: 'LiteLLM (litellm) là cổng AI mã nguồn mở cung cấp API thống nhất cho 100+ LLM. Tương thích với OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Bao gồm triển khai Docker, khóa ảo, cân bằng tải, bộ nhớ đệm và cứng hóa production.'
+description: "LiteLLM (litellm) là cổng AI mã nguồn mở cung cấp API thống nhất cho 100+ LLM. Tương thích với OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Bao gồm triển khai Docker, khóa ảo, cân bằng tải, bộ nhớ đệm và cứng hóa production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/BerriAI/litellm'
+github_repo: "https://github.com/BerriAI/litellm"
 stars: 22500
 maintainer: BerriAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [litellm, 'llm-gateway', 'mã-nguồn-mở', docker, production, 'hạ-tầng-ai', 'proxy-server', 'đa-mô-hình']
-aliases: - /vi/posts/litellm/
+categories: ["llm-frameworks"]
+tags: ["litellm", "llm-gateway", "mã-nguồn-mở", "docker", "production", "hạ-tầng-ai", "proxy-server", "đa-mô-hình"]
+aliases:
+  - /vi/posts/litellm/
 - /vi/resources/llm-frameworks/litellm-unified-api-tutorial/
 ---
 

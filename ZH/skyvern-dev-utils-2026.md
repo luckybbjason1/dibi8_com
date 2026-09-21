@@ -1,6 +1,6 @@
 ---
-title: 'Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实用指南'
-description: 'Skyvern 用大语言模型和计算机视觉自动化浏览器工作流（21,803 GitHub 星，AGPL-3.0）。涵盖安装、真实的 Python API、可运行的代码示例，以及与 Selenium、Playwright 的诚实对比。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实用指南"
+description: "Skyvern 用大语言模型和计算机视觉自动化浏览器工作流（21,803 GitHub 星，AGPL-3.0）。涵盖安装、真实的 Python API、可运行的代码示例，以及与 Selenium、Playwright 的诚实对比。"
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
 tech_stack: []
@@ -12,17 +12,18 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'Skyvern-AI/skyvern'
+github_repo: "Skyvern-AI/skyvern"
 stars: 21803
 maintainer: 'Skyvern-AI'
-last_maintained: '2026-06-02'
+last_maintained: "2026-06-02"
 featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png'
 draft: false
-categories: ['dev-utils']
-tags: []
-aliases: - /posts/skyvern-dev-utils-2026/
+categories: ["dev-utils"]
+tags: ["]
+aliases:
+  - /posts/skyvern-dev-utils-2026/
 faqs: - q: '我该如何安装 Skyvern-AI/skyvern？'
-    a: '用 pip 安装并运行 quickstart： ```bash pip install "skyvern[all]" skyvern quickstart ``` quickstart 会帮你配置 LLM 提供方，并启动本地服务器和 UI。'
+    a: '用 pip 安装并运行 quickstart： ```bash pip install "skyvern[all"]" skyvern quickstart ``` quickstart 会帮你配置 LLM 提供方，并启动本地服务器和 UI。'
   - q: '运行 Skyvern-AI/skyvern 的系统要求是什么？'
     a: 'Skyvern 需要 Python 3.11+ 以及至少一个 LLM API key（OpenAI、Anthropic、Gemini、Bedrock，或通过 Ollama 接入的本地模型）。一台有几 GB 内存的现代机器就足以本地使用；生产环境的定时任务最好跑在常开的服务器上。'
   - q: '我可以把 Skyvern-AI/skyvern 用于商业项目吗？'

@@ -1,6 +1,6 @@
 ---
-title: 'Git工作流与团队协作工具：开发者完整指南'
-description: '完整对比GitFlow、GitHub Flow、Trunk-Based Development三大工作流，涵盖代码审查、Git平台选型、Commit规范、冲突解决等团队协作最佳实践。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "Git工作流与团队协作工具：开发者完整指南"
+description: "完整对比GitFlow、GitHub Flow、Trunk-Based Development三大工作流，涵盖代码审查、Git平台选型、Commit规范、冲突解决等团队协作最佳实践。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/git-workflow-team-collaboration-tools/-
+aliases:
+  - /posts/git-workflow-team-collaboration-tools/-
 ---
 # Git工作流与团队协作工具：开发者完整指南
 

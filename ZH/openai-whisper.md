@@ -1,6 +1,6 @@
 ---
 title: 'OpenAI Whisper: 99.8K+ Stars — 完整ASR配置教程 vs WhisperX、fas...
-description: 'OpenAI Whisper (ASR) 基于大规模弱监督的鲁棒语音识别。兼容 WhisperX、faster-whisper、LibreTranslate。涵盖 whisper 教程、whisper vs whisperx、语音识别配置、whisper python、whisper docker。'
+description: "OpenAI Whisper (ASR) 基于大规模弱监督的鲁棒语音识别。兼容 WhisperX、faster-whisper、LibreTranslate。涵盖 whisper 教程、whisper vs whisperx、语音识别配置、whisper python、whisper docker。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/openai/whisper'
+github_repo: "https://github.com/openai/whisper"
 stars: 99800
 maintainer: openai
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [whisper, 语音识别, asr, openai, 'faster-whisper', whisperx, python, docker, 机器学习]
-aliases: - /zh/posts/openai-whisper/-
+categories: ["ai-tools"]
+tags: ["whisper", "语音识别", "asr", "openai", "faster-whisper", "whisperx", "python", "docker", "机器学习"]
+aliases:
+  - /zh/posts/openai-whisper/-
 ---
 
 {{</* resource-info */>}}

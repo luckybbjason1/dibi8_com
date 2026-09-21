@@ -1,6 +1,6 @@
 ---
-title: 'BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测'
-description: '完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测"
+description: "完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'BookStackApp/BookStack'
+github_repo: "BookStackApp/BookStack"
 stars: 18700
 maintainer: BookStackApp
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [bookstack, 文档, wiki, 自托管, php, laravel, 知识库, markdown, docker, 开源]
-aliases: - /zh/posts/bookstack-documentation-wiki/-
+categories: ["dev-utils"]
+tags: ["bookstack", "文档", "wiki", "自托管", "php", "laravel", "知识库", "markdown", "docker", "开源"]
+aliases:
+  - /zh/posts/bookstack-documentation-wiki/-
 ---
 
 {{</* resource-info */>}}

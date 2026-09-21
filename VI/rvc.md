@@ -1,6 +1,6 @@
 ---
 title: 'RVC: Triển khai AI Chuyển đổi Giọng nói với 35K+ Stars —...
-description: 'RVC (Retrieval-based Voice Conversion) là khung chuyển đổi giọng nói dựa trên VITS, tương thích với GPT-SoVITS, Coqui TTS và demucs. Hướng dẫn này bao gồm triển khai Docker, pipeline huấn luyện, tích hợp API và củng cố production.'
+description: "RVC (Retrieval-based Voice Conversion) là khung chuyển đổi giọng nói dựa trên VITS, tương thích với GPT-SoVITS, Coqui TTS và demucs. Hướng dẫn này bao gồm triển khai Docker, pipeline huấn luyện, tích hợp API và củng cố production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI'
+github_repo: "https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI"
 stars: 35700
 maintainer: 'RVC-Project'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['ai-tools']
-tags: [rvc, 'chuyen-doi-giong-noi', 'ai-voice-clone', vits, ' tong-hop-giong-noi', docker, 'huong-dan', 'retrieval-vc']
-aliases: - /vi/posts/rvc/
+categories: ["ai-tools"]
+tags: ["rvc", "chuyen-doi-giong-noi", "ai-voice-clone", "vits", " tong-hop-giong-noi", "docker", "huong-dan", "retrieval-vc"]
+aliases:
+  - /vi/posts/rvc/
 ---
 
 {{</* resource-info */>}}

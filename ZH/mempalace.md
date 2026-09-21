@@ -19,7 +19,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /zh/posts/mempalace/
+aliases:
+  - /zh/posts/mempalace/
 faqs: - q: 'MemPalace 是什么？它如何赋予 AI 记忆能力？'
     a: 'MemPalace 是一款免费、开源、本地优先的 AI 记忆系统，它将你的对话和项目历史以原文形式存储，并通过语义搜索进行检索。它在模型之外建立了一个结构化的记忆层，让你的 AI 助手能够回忆起精确的历史上下文，而不必每次对话都从零开始。'
   - q: '如何安装 MemPalace？'

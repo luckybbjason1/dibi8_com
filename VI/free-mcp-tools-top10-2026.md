@@ -1,10 +1,10 @@
 ---
 title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
-description: '10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí.'
+description: "10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
-tags: [mcp, model-context-protocol, công-cụ-mcp-miễn-phí, mcp-server, claude-mcp, ai-mã-nguồn-mở, công-cụ-ai]
-categories: [tools]
+tags: ["mcp", "model-context-protocol", "công-cụ-mcp-miễn-phí", "mcp-server", "claude-mcp", "ai-mã-nguồn-mở", "công-cụ-ai"]
+categories: ["tools"]
 faqs: - q: 'MCP là gì và tại sao quan trọng?'
     a: 'MCP (Model Context Protocol) là tiêu chuẩn mở của Anthropic giúp các AI model như Claude kết nối với công cụ bên ngoài, database và dịch vụ theo cách chuẩn hóa. Thay vì mỗi ứng dụng AI tự xây tích hợp riêng, MCP cung cấp một connector phổ quát. MCP server công khai các khả năng (đọc file, tìm kiếm web, truy vấn DB) mà bất kỳ AI client tương thích MCP nào cũng có thể dùng.'
   - q: 'Những công cụ MCP này có thực sự miễn phí không?'

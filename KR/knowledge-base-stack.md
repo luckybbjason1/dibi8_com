@@ -1,6 +1,6 @@
 ---
 title: '지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구...
-description: '개인 또는 팀용 5컴포넌트 셀프호스트 지식 베이스 스택. AnythingLLM(UI + RAG) + RAGFlow(심층 문서 파싱) + mem0(에이전트 메모리) + AgentMemory MCP(MCP 노출) + 벡터 DB 픽. $50-200/월 SaaS(Notion AI + Mem + Glean)를 $10-25/월 셀프호스트로 대체.'
+description: "개인 또는 팀용 5컴포넌트 셀프호스트 지식 베이스 스택. AnythingLLM(UI + RAG) + RAGFlow(심층 문서 파싱) + mem0(에이전트 메모리) + AgentMemory MCP(MCP 노출) + 벡터 DB 픽. $50-200/월 SaaS(Notion AI + Mem + Glean)를 $10-25/월 셀프호스트로 대체."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Docker
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['지식 베이스', rag, '두 번째 뇌', 스택, 컬렉션]
-aliases: - /posts/knowledge-base-stack/
+categories: ["collections"]
+tags: ["지식 베이스", "rag", "두 번째 뇌", "스택", "컬렉션"]
+aliases:
+  - /posts/knowledge-base-stack/
 ---
 
 PDF 500개, 노트 2,000개, 이메일 10년치가 있는데 에디터의 AI는 그 어떤 것도 존재함을 모릅니다. Notion AI는 시트당 $10/월이고 로컬 파일을 못 봅니다. Glean은 연 최소 $30k. Mem.ai는 좋지만 SaaS — 당신의 "두 번째 뇌"가 남의 하드웨어에 살아요.

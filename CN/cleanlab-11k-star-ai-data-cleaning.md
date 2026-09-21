@@ -1,12 +1,12 @@
 ---
 title: 'Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotat...
-description: 'Cleanlab is an open-source AI toolkit with 11K+ GitHub stars that finds and fixes data quality issues in ML datasets. Automatic label error detection, missing value imputation, and data cleansing for classification, regression, and clustering tasks. Includes setup guide, benchmarks, and production deployment.'
+description: "Cleanlab is an open-source AI toolkit with 11K+ GitHub stars that finds and fixes data quality issues in ML datasets. Automatic label error detection, missing value imputation, and data cleansing for classification, regression, and clustering tasks. Includes setup guide, benchmarks, and production deployment."
 tags: ["ai", "data-cleaning", "ml", "open-source", "self-hosted"]
 date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'cleanlab-11k-star-ai-data-cleaning'
 category: data-science
-github_repo: 'https://github.com/cleanlab/cleanlab'
+github_repo: "https://github.com/cleanlab/cleanlab"
 license: MIT
 featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png---
 # Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python
@@ -111,7 +111,7 @@ print(issues_df.describe())
 from cleanlab.quality import model_performance
 
 perf = model_performance(labels, predictions)
-print(f"Dataset quality: {perf['accuracy']:.2%} accurate labels")
+print(f"Dataset quality: {perf[accuracy]:.2%} accurate labels")
 ```
 
 ---
@@ -215,7 +215,7 @@ print(f"High confidence: {len(high_conf)}")
     import cleanlab
     labels = ...  # load your labels
     issues = cleanlab.dataset.estimate_latent(labels)
-    assert issues['label_issues'].sum() < 1000, 'Too many label errors!'
+    assert issues[label_issues].sum() < 1000, 'Too many label errors!'
     "
 ```
 

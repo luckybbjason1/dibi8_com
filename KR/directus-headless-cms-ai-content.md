@@ -1,6 +1,6 @@
 ---
 title: 'Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치...
-description: 'Directus 11.x 완벽 가이드 — 동적 API 생성, 콘텐츠 버전 관리, AI 콘텐츠 워크플로우, 셀프호스팅 Docker 배포를 갖춘 오픈소스 Headless CMS. REST 및 GraphQL API 벤치마크.'
+description: "Directus 11.x 완벽 가이드 — 동적 API 생성, 콘텐츠 버전 관리, AI 콘텐츠 워크플로우, 셀프호스팅 Docker 배포를 갖춘 오픈소스 Headless CMS. REST 및 GraphQL API 벤치마크."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'directus/directus'
+github_repo: "directus/directus"
 stars: 29100
 maintainer: directus
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [directus, 'headless cms', '콘텐츠 관리', api, docker, 오픈소스, ai, graphql, rest, 셀프호스팅]
-aliases: - /kr/posts/directus-headless-cms-ai-content/
+categories: ["dev-utils"]
+tags: ["directus", "headless cms", "콘텐츠 관리", "api", "docker", "오픈소스", "ai", "graphql", "rest", "셀프호스팅"]
+aliases:
+  - /kr/posts/directus-headless-cms-ai-content/
 ---
 
 {{</* resource-info */>}}

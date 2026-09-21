@@ -1,6 +1,6 @@
 ---
 title: 'Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
-description: '5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi.'
+description: "5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/anthropics/claude-code'
+github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
-last_maintained: '2026-05-28'
+last_maintained: "2026-05-28"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['claude-code', subagents, 'multi-agent', 'ai-coding-agents', 'llm-frameworks', 'developer-tools', 'agent-sdk']
-aliases: - /posts/claude-code-subagent-patterns/
+categories: ["llm-frameworks"]
+tags: ["claude-code", "subagents", "multi-agent", "ai-coding-agents", "llm-frameworks", "developer-tools", "agent-sdk"]
+aliases:
+  - /posts/claude-code-subagent-patterns/
 faq: - q: "Subagent trong Claude Code chính xác là gì, và khác gì với việc chạy thêm một phiên CLI khác?"
     a: "Subagent là một cuộc trò chuyện Claude được sandbox-hóa, được khởi tạo từ bên trong một phiên Claude đang hoạt động thông qua công cụ Agent (Task). Phiên cha chỉ thấy báo cáo cuối cùng của subagent — không thấy các lời gọi công cụ trung gian, file reads hay quá trình suy nghĩ. Đây là khác biệt then chốt so với việc khởi chạy CLI thứ hai: cửa sổ context của phiên cha được bảo vệ khỏi tiếng ồn khám phá của subagent. Subagent được tạo ra cho nghiên cứu song song, khám phá sâu mã nguồn và thử nghiệm cô lập — những nơi bạn không muốn bộ nhớ làm việc của cha bị nhiễm bẩn."
   - q: "Khi nào KHÔNG nên dùng subagent và cứ làm việc trong phiên cha?"

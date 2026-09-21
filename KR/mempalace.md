@@ -20,7 +20,8 @@ maintainer: ""
 last_maintained: "2026-05-15"
 featureImage: ""
 draft: false
-aliases: - /kr/posts/mempalace/
+aliases:
+  - /kr/posts/mempalace/
 faqs: - q: 'MemPalace란 무엇이며, AI에게 어떻게 기억 기능을 부여하나요?'
     a: 'MemPalace는 무료 오픈소스 로컬 우선 AI 메모리 시스템으로, 대화와 프로젝트 이력을 원문 그대로 저장하고 시맨틱 검색으로 불러옵니다. 모델 외부에 구조화된 메모리 레이어를 만들어, AI 어시스턴트가 매번 새 대화를 처음부터 시작하는 대신 과거의 정확한 맥락을 기억할 수 있게 합니다.'
   - q: 'MemPalace는 어떻게 설치하나요?'

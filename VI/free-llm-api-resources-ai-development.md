@@ -21,7 +21,8 @@ maintainer: "cheahjs"
 last_maintained: "2026-05-16"
 featureImage: ''
 draft: false
-aliases: - /vi/posts/free-llm-api-resources-ai-development/
+aliases:
+  - /vi/posts/free-llm-api-resources-ai-development/
 faqs: - q: 'Nhà cung cấp suy luận LLM miễn phí nhanh nhất là gì?'
     a: 'Groq cung cấp khả năng suy luận miễn phí nhanh nhất với hơn 800 tokens mỗi giây. Gói miễn phí của nó hoàn toàn miễn phí nhưng bị giới hạn tốc độ ở mức khoảng 20 requests mỗi phút và 6,000 tokens mỗi phút.'
   - q: 'Làm thế nào để chạy LLM cục bộ miễn phí với quyền riêng tư hoàn toàn?'

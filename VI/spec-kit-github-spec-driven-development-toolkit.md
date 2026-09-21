@@ -4,7 +4,6 @@ description: "Hướng dẫn đầy đủ về Spec Kit của GitHub - bộ côn
 date: 2026-06-20
 lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
-lang: vi
 slug: spec-kit-github-spec-driven-development-toolkit
 featureImage: /images/articles/spec-kit-github-spec-driven-development-toolkit-80967985.png
 ---

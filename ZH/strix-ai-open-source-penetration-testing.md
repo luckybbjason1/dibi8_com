@@ -1,12 +1,12 @@
 ---
-description: 'Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI.'
+description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
-title: 'Strix AI：31K+明星开源渗透测试框架'
+title: "Strix AI：31K+明星开源渗透测试框架"
 category: dev-utils
-tags: ['security', 'penetration-testing', 'ai-agents', 'vulnerability-scanning', 'open-source']
-github_repo: 'https://github.com/usestrix/strix'
+tags: ["security", "penetration-testing", "ai-agents", "vulnerability-scanning", "open-source"]
+github_repo: "https://github.com/usestrix/strix"
 license: 'GPL-3.0'
 tech_stack: - Python
   - TypeScript

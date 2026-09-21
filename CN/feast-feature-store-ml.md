@@ -1,6 +1,6 @@
 ---
 title: 'Feast: The Open-Source Feature Store Serving ML Features...
-description: 'Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/offline stores, sub-second serving, Redis/BigQuery backends, batch & real-time features, and production deployment.'
+description: "Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/offline stores, sub-second serving, Redis/BigQuery backends, batch & real-time features, and production deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/feast-dev/feast'
+github_repo: "https://github.com/feast-dev/feast"
 stars: 7000
 maintainer: 'feast-dev'
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: [feast, 'feature store', mlops, 'ml pipeline', redis, bigquery, 'online store', 'offline store', 'real-time ml', 'feature engineering']
-aliases: - /posts/feast-feature-store-ml/-
+categories: ["data-science"]
+tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "online store", "offline store", "real-time ml", "feature engineering"]
+aliases:
+  - /posts/feast-feature-store-ml/-
 ---
 {{</* resource-info */>}}
 

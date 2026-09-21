@@ -1,12 +1,12 @@
 ---
 title: 'Headroom: Compress LLM Inputs by 60-95% — A Token-Saving...
-description: 'Headroom (19,745 GitHub stars) compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, and MCP server. Includes setup tutorial, architecture breakdown, and real benchmarks.'
+description: "Headroom (19,745 GitHub stars) compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, and MCP server. Includes setup tutorial, architecture breakdown, and real benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
-tags: ['token compression', 'LLM token optimization', 'MCP server', 'RAG compression', 'Headroom', 'context optimization', 'token cost reduction', 'AI proxy']
-github_repo: 'https://github.com/chopratejas/headroom'
+tags: ["token compression", "LLM token optimization", "MCP server", "RAG compression", "Headroom", "context optimization", "token cost reduction", "AI proxy"]
+github_repo: "https://github.com/chopratejas/headroom"
 stars: 19745
 maintainer: 'chopratejas'
 license: MIT

@@ -1,6 +1,6 @@
 ---
-title: 'ds4 리뷰 2026: 개발자들이 전환하는 오픈소스 DeepSeek'
-description: 'ds4는 2026년 가장 빠르게 성장하는 오픈소스 DeepSeek 호환 LLM 런타임. Apache-2.0 라이선스, OpenAI API 호환, vLLM 대비 40% 낮은 지연으로 DeepSeek V3 / V3.1 / V4 weights 실행. 완전한 셋업 가이드, vLLM/Ollama/TGI 벤치마크 비교, 프로덕션 강화, 도구 통합(Claude Code, Cursor, LangChain, Continue.dev) 포함.'
+title: "ds4 리뷰 2026: 개발자들이 전환하는 오픈소스 DeepSeek"
+description: "ds4는 2026년 가장 빠르게 성장하는 오픈소스 DeepSeek 호환 LLM 런타임. Apache-2.0 라이선스, OpenAI API 호환, vLLM 대비 40% 낮은 지연으로 DeepSeek V3 / V3.1 / V4 weights 실행. 완전한 셋업 가이드, vLLM/Ollama/TGI 벤치마크 비교, 프로덕션 강화, 도구 통합(Claude Code, Cursor, LangChain, Continue.dev) 포함."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: Various
-last_maintained: '2026-05-20'
+last_maintained: "2026-05-20"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['ai-agents', 'open-source', 'developer-tools', 'llm-infrastructure']
-aliases: - /kr/posts/ds4-open-source-deepseek-alternative-2026/
+categories: ["llm-frameworks"]
+tags: ["ai-agents", "open-source", "developer-tools", "llm-infrastructure"]
+aliases:
+  - /kr/posts/ds4-open-source-deepseek-alternative-2026/
 - /kr/resources/dev-utils/ds4-open-source-deepseek-alternative-2026/
 faqs: - q: 'ds4란 무엇이며 vLLM이나 Ollama와 어떻게 다른가요?'
     a: 'ds4는 DeepSeek 모델 아키텍처(V3, V3.1, V4)에 특화 최적화된 오픈소스 LLM 런타임. 범용 런타임(vLLM, Ollama, TGI)과 달리 ds4는 DeepSeek 전용 최적화 구현: MoE routing batching, attention sink 처리, prefill/decode 분리. 결과: DeepSeek 워크로드에서 지연 40% 감소, 처리량 2배. Apache-2.0 라이선스, OpenAI API 호환.'

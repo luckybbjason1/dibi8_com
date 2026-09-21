@@ -1,6 +1,6 @@
 ---
 title: 'Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt N...
-description: 'So sánh chi tiết Postman, Insomnia và Bruno — 3 công cụ kiểm thử API hàng đầu 2025. Tìm hiểu tính năng, giá cả, và công cụ phù hợp với workflow của bạn.'
+description: "So sánh chi tiết Postman, Insomnia và Bruno — 3 công cụ kiểm thử API hàng đầu 2025. Tìm hiểu tính năng, giá cả, và công cụ phù hợp với workflow của bạn."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,10 +15,11 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: 'dibi8'
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-aliases: - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
+aliases:
+  - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
 ---
 
 {</* resource-info */>}

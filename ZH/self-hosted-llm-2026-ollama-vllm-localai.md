@@ -1,22 +1,23 @@
 ---
-title: '2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI — 吞吐量、成本与部署全对比'
-description: '在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI — 吞吐量、成本与部署全对比"
+description: "在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。"
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM 框架
-source_version: 'Ollama 0.4 / vLLM 0.7 / LocalAI 2.20'
+source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"
 licensing_model: 开源
 license_type: 'MIT / Apache-2.0'
-github_repo: 'https://github.com/ollama/ollama'
+github_repo: "https://github.com/ollama/ollama"
 stars: 95000
 maintainer: 'Ollama (jmorganca) / vLLM (vllm-project) / LocalAI (mudler)'
-last_maintained: '2026-05-25'
+last_maintained: "2026-05-25"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: ['self-hosted', llm, ollama, vllm, localai, inference, 2026]
-aliases: - /zh/posts/self-hosted-llm-2026-ollama-vllm-localai/
+categories: ["llm-frameworks"]
+tags: ["self-hosted", "llm", "ollama", "vllm", "localai", "inference", "2026"]
+aliases:
+  - /zh/posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq: - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
     a: "取决于工作负载。业余/开发用 Ollama（部署最简单、单用户）。生产环境用 vLLM（吞吐量最高、支持多用户）。需要 OpenAI API 兼容替代品用 LocalAI（支持的模型最广，可作为现有 OpenAI 客户端代码的替换目标）。"
   - q: "实际需要什么样的硬件？"

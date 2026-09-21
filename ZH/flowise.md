@@ -1,6 +1,6 @@
 ---
-title: 'Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南'
-description: 'Flowise 是一个开源可视化 LLM 工作流与 AI Agent 构建工具。支持 LangChain、Ollama、OpenAI、Qdrant、Weaviate、Chroma 等 200+ 集成。本文涵盖 Docker 安装、生产环境加固、API 部署及客观局限性分析。'
+title: "Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南"
+description: "Flowise 是一个开源可视化 LLM 工作流与 AI Agent 构建工具。支持 LangChain、Ollama、OpenAI、Qdrant、Weaviate、Chroma 等 200+ 集成。本文涵盖 Docker 安装、生产环境加固、API 部署及客观局限性分析。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'https://github.com/FlowiseAI/Flowise'
+github_repo: "https://github.com/FlowiseAI/Flowise"
 stars: 52948
 maintainer: FlowiseAI
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['llm-frameworks']
-tags: [flowise, langchain, 'ai agent', rag, docker, 大语言模型, 开源, 无代码]
-aliases: - /zh/posts/flowise/
+categories: ["llm-frameworks"]
+tags: ["flowise", "langchain", "ai agent", "rag", "docker", "大语言模型", "开源", "无代码"]
+aliases:
+  - /zh/posts/flowise/
 - /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
 

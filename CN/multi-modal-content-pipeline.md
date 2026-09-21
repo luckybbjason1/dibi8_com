@@ -1,6 +1,6 @@
 ---
 title: 'Multi-Modal Content Pipeline 2026: The 5-Component Stack...
-description: 'Self-hosted multi-modal content stack: faster-whisper (STT) + ChatTTS (dialogue TTS) + Stable Diffusion WebUI (images) + ComfyUI (workflow engine + video) + FFmpeg (assembly). Produce podcasts, short videos, AI-illustrated articles for $30-80/mo vs $200-500/mo of SaaS.'
+description: "Self-hosted multi-modal content stack: faster-whisper (STT) + ChatTTS (dialogue TTS) + Stable Diffusion WebUI (images) + ComfyUI (workflow engine + video) + FFmpeg (assembly). Produce podcasts, short videos, AI-illustrated articles for $30-80/mo vs $200-500/mo of SaaS."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
 tech_stack: - Python
@@ -18,12 +18,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-21'
+last_maintained: "2026-05-21"
 featureImage: ''
 draft: false
-categories: [collections]
-tags: ['multi-modal', 'content pipeline', podcast, video, tts, stack, collection]
-aliases: - /posts/multi-modal-content-pipeline/-
+categories: ["collections"]
+tags: ["multi-modal", "content pipeline", "podcast", "video", "tts", "stack", "collection"]
+aliases:
+  - /posts/multi-modal-content-pipeline/-
 ---
 The 2026 creator economy runs on multi-modal content — podcasts with AI co-hosts, short-form video with AI narration over generated visuals, blog posts with AI-illustrated header images, audiobooks read by stable AI voices. The SaaS-stack way costs $200-500/month (ElevenLabs + Midjourney + Descript + Pictory + a dozen others). This collection assembles the **self-hosted 5-component alternative for $30-80/month** — using the same models the SaaS providers use, on a GPU you rent by the hour.
 

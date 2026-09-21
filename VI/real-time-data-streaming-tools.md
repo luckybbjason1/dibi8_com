@@ -1,6 +1,6 @@
 ---
 title: 'Các Công Cụ Xử Lý Dữ Liệu Truyền Phát ThờI Gian Thực Tốt...
-description: 'So sánh chi tiết các công cụ xử lý dữ liệu truyền phát thờI gian thực hàng đầu năm 2025. Tìm hiểu Apache Kafka, Flink, Spark Streaming, Redpanda, Pulsar và ksqlDB để xây dựng pipeline xử lý luồng hiệu quả.'
+description: "So sánh chi tiết các công cụ xử lý dữ liệu truyền phát thờI gian thực hàng đầu năm 2025. Tìm hiểu Apache Kafka, Flink, Spark Streaming, Redpanda, Pulsar và ksqlDB để xây dựng pipeline xử lý luồng hiệu quả."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
 tech_stack: []
@@ -15,12 +15,13 @@ backup_url: ''
 github_repo: ''
 stars: 0
 maintainer: dibi8
-last_maintained: '2026-05-18'
+last_maintained: "2026-05-18"
 featureImage: ''
 draft: false
-categories: ['data-science']
-tags: ['data streaming', 'apache kafka', flink, 'spark streaming', redpanda, 'real-time analytics', 'big data']
-aliases: - /vi/posts/real-time-data-streaming-tools/
+categories: ["data-science"]
+tags: ["data streaming", "apache kafka", "flink", "spark streaming", "redpanda", "real-time analytics", "big data"]
+aliases:
+  - /vi/posts/real-time-data-streaming-tools/
 ---
 
 # Các Công Cụ Xử Lý Dữ Liệu Truyền Phát ThờI Gian Thực Tốt Nhất 2025: So Sánh Apache Kafka, Flink, Spark Streaming, Redpanda

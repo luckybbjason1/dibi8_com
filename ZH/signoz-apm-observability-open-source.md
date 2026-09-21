@@ -1,6 +1,6 @@
 ---
-title: 'SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指南2026'
-description: '5分钟内部署SigNoz。基于OpenTelemetry构建的开源APM，提供分布式追踪、指标和日志管理——成本仅为Datadog的10%。'. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指南2026"
+description: "5分钟内部署SigNoz。基于OpenTelemetry构建的开源APM，提供分布式追踪、指标和日志管理——成本仅为Datadog的10%。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
 tech_stack: []
@@ -12,15 +12,16 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: 'SigNoz/signoz'
+github_repo: "SigNoz/signoz"
 stars: 22000
 maintainer: SigNoz
-last_maintained: '2026-05-19'
+last_maintained: "2026-05-19"
 featureImage: ''
 draft: false
-categories: ['dev-utils']
-tags: [signoz, apm, 可观测性, 分布式追踪, opentelemetry, datadog替代品, 自托管, docker, kubernetes, 指标, 日志, 监控]
-aliases: - /zh/posts/signoz-apm-observability-open-source/-
+categories: ["dev-utils"]
+tags: ["signoz", "apm", "可观测性", "分布式追踪", "opentelemetry", "datadog替代品", "自托管", "docker", "kubernetes", "指标", "日志", "监控"]
+aliases:
+  - /zh/posts/signoz-apm-observability-open-source/-
 ---
 
 {{</* resource-info */>}}
