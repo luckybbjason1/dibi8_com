@@ -1,8 +1,8 @@
 ---
 title: "markitdown: Chuyển file và tài liệu Office sang Markdown...
 description: "markitdown là công cụ Python của Microsoft dùng để chuyển các loại file và tài liệu Office sang Mark..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

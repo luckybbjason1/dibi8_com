@@ -1,8 +1,8 @@
 ---
 title: "CodeGraph 评测：让 Claude Code / Cursor / Codex 省 35% Token ...
 description: "CodeGraph（GitHub 20.2K+ stars）是一个为 Claude Code、Cursor、Codex CLI、OpenCode、Hermes Agent 预索引代码知识图谱的开源工具..."
-date: 2026-05-23 00:00:00+08:00
-lastmod: 2026-05-23 00:00:00+08:00
+date: 2026-05-23T00:00:00+08:00
+lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: "v0.9.3"

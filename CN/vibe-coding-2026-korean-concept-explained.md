@@ -1,8 +1,8 @@
 ---
 title: "Vibe Coding 2026: The Korean Developer Concept Explained...
 description: "Vibe coding (바이브 코딩) is the Korean developer term for natural-language-first programming where AI ha..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'AI-driven development', 'Natural language programming']
 application_domain: Dev Utils
 source_version: "2026 Q2"

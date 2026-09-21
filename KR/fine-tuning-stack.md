@@ -1,8 +1,8 @@
 ---
 title: "Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인"
 description: "완전한 LLM 파인튜닝 스택: Unsloth (빠른 단일 GPU 실험) + Axolotl (프로덕션 멀티 GPU) + HuggingFace datasets/Hub + Weights..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
 application_domain: Collections
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "ZenML 2026: 将 20+ 工具连接成生产级流水线的 MLOps 框架 —— 完整配置指南"
 description: "关于 ZenML 的全面指南——这款开源 MLOps 框架将 20+ 工具连接成统一、可复现的 ML 流水线。包含自托管部署、真实基准测试和生产环境部署。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

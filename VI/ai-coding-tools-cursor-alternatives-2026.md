@@ -1,8 +1,8 @@
 ---
 title: "Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa ...
 description: "Cursor chuyển sang định giá credit năm 2025 làm mất lòng tin. So sánh 7 lựa chọn thay thế mạnh nhất ..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
 description: "Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastr..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

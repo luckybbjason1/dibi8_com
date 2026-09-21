@@ -1,8 +1,8 @@
 ---
 title: "ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
 description: "ChatTTS is the open-source TTS purpose-built for dialogue (not narration). 39.3k GitHub stars, 4 GB ..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

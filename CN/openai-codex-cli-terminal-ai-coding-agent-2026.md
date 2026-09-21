@@ -1,8 +1,8 @@
 ---
 title: "OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-...
 description: "Master OpenAI Codex CLI—the fastest-growing open-source AI coding agent of 2026. This complete guide..."
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
+date: 2026-05-17T00:00:00+08:00
+lastmod: 2026-05-17T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

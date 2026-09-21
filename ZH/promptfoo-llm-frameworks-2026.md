@@ -1,8 +1,8 @@
 ---
 title: "Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指南"
 description: "Promptfoo 是一款开源的 CLI 与代码库，用于评估和红队 LLM 应用。用简单的声明式配置即可对比 GPT、Claude、Gemini、DeepSeek，并无缝接入命令行与 CI/CD。本 ..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

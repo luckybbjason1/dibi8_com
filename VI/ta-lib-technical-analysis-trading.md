@@ -1,8 +1,8 @@
 ---
 title: "TA-Lib: Thư Viện Phân Tích Kỹ Thuật Chuẩn Ngành với 200+...
 description: "Hướng dẫn đầy đủ về TA-Lib Python wrapper với 200+ chỉ báo kỹ thuật. Cài đặt, benchmark, và triển kh..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

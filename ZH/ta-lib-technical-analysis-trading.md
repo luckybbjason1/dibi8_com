@@ -1,8 +1,8 @@
 ---
 title: "TA-Lib: 拥有200+技术指标的行业标准技术分析库 —— 2026年Python量化交易完整配置指南"
 description: "TA-Lib Python封装完整指南，涵盖200+技术指标。安装教程、基准测试、SMA/EMA/RSI/MACD/布林带等实战代码，助力2026年算法交易部署。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

@@ -11,8 +11,8 @@ tags: - ai-ide
 - agentic-ai
 category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
-date: 2026-07-16 00:00:00+00:00
-lastmod: 2026-07-16 00:00:00+00:00slug: windsurf-ai-ide---
+date: 2026-07-16T00:00:00+00:00
+lastmod: 2026-07-16T00:00:00+00:00slug: windsurf-ai-ide---
 
 
 ## TL;DR

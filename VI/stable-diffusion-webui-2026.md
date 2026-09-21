@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đ...
 description: "AUTOMATIC1111 stable-diffusion-webui là UI self-host tiêu chuẩn de-facto 163k sao cho sinh ảnh SD/SD..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, Gradio, CUDA]
 application_domain: Ai Tools
 source_version: ''

@@ -2,8 +2,8 @@
 title: "Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trư...
 description: Polymarket Agents là một khung phát triển mã nguồn mở để xây dựng các. Comprehensive guide covering features, pricing, and best practices for 2026.
   tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Python
 - TypeScript

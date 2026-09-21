@@ -1,8 +1,8 @@
 ---
 title: "Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30...
 description: "Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chi..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

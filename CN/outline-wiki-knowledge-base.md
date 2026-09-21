@@ -1,8 +1,8 @@
 ---
 title: "Outline: The Open-Source Wiki & Knowledge Base Built for...
 description: "Deploy Outline with Docker in 10 minutes. Build a real-time collaborative wiki for your engineering ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

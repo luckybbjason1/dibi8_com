@@ -1,8 +1,8 @@
 ---
 title: "OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
 description: "OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Dock..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

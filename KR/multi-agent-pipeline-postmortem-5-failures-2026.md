@@ -1,8 +1,8 @@
 ---
 title: "멀티 에이전트 파이프라인 포스트모템: 서브에이전트 오케스트레이션이 망가지는 5가지 방식 (2026)"
 description: "Claude Code 멀티 에이전트 파이프라인의 실제 실패 유형 다섯 가지 — 검증되지 않은 보고를 신뢰하기, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 절단, 방치된 워크트리 — ..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
 application_domain: LLM Frameworks
 source_version: ''

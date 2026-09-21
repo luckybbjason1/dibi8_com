@@ -1,8 +1,8 @@
 ---
 title: "Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교"
 description: "Demucs는 Meta AI가 개발한 하이브리드 스펙트로그램 및 파형 소스 분리 모델입니다. Ultimate Vocal Remover, RVC, GPT-SoVITS와 호환됩니다. ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

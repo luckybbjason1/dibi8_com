@@ -2,8 +2,8 @@
 title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
 description: AiWind는 GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney 등 주요 모델을. Comprehensive guide covering features, pricing, and best practices for 2026.
   위한 1000+ 전문 AI 그림 프롬프트를 무료로 제공하는 AI 프롬프트 라이브러리입니다.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 application_domain: Ai Tools
 source_version: ''

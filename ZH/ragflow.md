@@ -1,8 +1,8 @@
 ---
 title: "RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与...
 description: "RAGFlow 是具备深度文档理解和内置 Agent 能力的开源检索增强生成（RAG）引擎。兼容 Ollama、OpenAI、Qdrant、Elasticsearch、Redis。涵盖 Docker ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

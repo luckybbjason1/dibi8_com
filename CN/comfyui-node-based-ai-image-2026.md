@@ -1,8 +1,8 @@
 ---
 title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...
 description: "ComfyUI is the 114k-star node-based visual workflow engine for SD/SDXL/Flux/Wan/Hunyuan and more. Su..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

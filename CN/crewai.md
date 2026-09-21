@@ -1,8 +1,8 @@
 ---
 title: "CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
 description: "CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop'
 description: 'Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.'
-date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00
+date: 2026-06-06T00:00:00+08:00
+lastmod: 2026-06-06T00:00:00+08:00
 tech_stack: ['Python', 'Conky', 'Linux']
 application_domain: Dev Utils
 source_version: '1.0.0'

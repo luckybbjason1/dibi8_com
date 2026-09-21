@@ -1,8 +1,8 @@
 ---
 title: "Arize AI Phoenix: The Open-Source LLM Observability Tool...
 description: "Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

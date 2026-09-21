@@ -1,8 +1,8 @@
 ---
 title: "OpenAI Whisper: 99.8K+ Stars — 完整ASR配置教程 vs WhisperX、fas...
 description: "OpenAI Whisper (ASR) 基于大规模弱监督的鲁棒语音识别。兼容 WhisperX、faster-whisper、LibreTranslate。涵盖 whisper 教程、whisper..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

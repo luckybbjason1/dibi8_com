@@ -1,8 +1,8 @@
 ---
 title: "Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실...
 description: "Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub st..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

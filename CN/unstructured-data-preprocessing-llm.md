@@ -1,8 +1,8 @@
 ---
 title: "Unstructured.io: The Data Preprocessing Pipeline Convert...
 description: "A practical 2026 guide to Unstructured.io — the open-source document preprocessing library that conv..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

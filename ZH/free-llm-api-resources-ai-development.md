@@ -1,8 +1,8 @@
 ---
 title: 免费 LLM API 资源：无需破产即可访问 AI 模型
 description: 精选的免费 LLM 推理 API 资源列表。使用这些社区维护的免费套餐构建 AI 应用程序，无需 API 费用。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Llm Frameworks
 source_version: ''

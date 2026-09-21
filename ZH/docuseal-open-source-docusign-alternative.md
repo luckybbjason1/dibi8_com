@@ -1,8 +1,8 @@
 ---
 title: DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%
 description: DocuSeal是一个拥有15.7k星的开源平台，可用自托管数字文档签署、PDF表单构建和白标电子签名工作流替代DocuSign。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Go
 - JavaScript

@@ -1,8 +1,8 @@
 ---
 title: "GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가이드"
 description: "생성형 엔진 최적화(GEO)는 새로운 SEO입니다. Google AI Overviews, ChatGPT Search, Perplexity 인용을 위한 최적화 방법. dibi8.co..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: 개발자 도구
 source_version: "2026 Q2"

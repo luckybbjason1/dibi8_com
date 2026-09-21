@@ -1,8 +1,8 @@
 ---
 title: "Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕...
 description: "Traefik은 자동 서비스 검색을 지원하는 클라우드 네이티브 애플리케이션 프록시 및 엣지 라우터입니다. Docker, Kubernetes, Consul, Docker Compos..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: Python 上下文管理器：你真正需要的三个场景
 description: Python 上下文管理器：你真正需要的三个场景。掌握 with 语句、contextlib 和自定义上下文管理器，实现更好的资源管理。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Ai Tools

@@ -1,8 +1,8 @@
 ---
 title: "InvokeAI: 27.2K+ Stars — Complete Setup Guide for 2026"
 description: "InvokeAI (Invoke) is the leading creative engine for Stable Diffusion models with an industry-leadin..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

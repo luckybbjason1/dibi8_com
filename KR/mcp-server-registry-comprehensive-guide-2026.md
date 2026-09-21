@@ -1,8 +1,8 @@
 ---
 title: "MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞...
 description: "2026년 MCP server 발견 완전 가이드. Anthropic 7개 reference 서버, 87.3k star awesome list, Smithery vs mcp.so 레..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript
   - Python
   - Docker

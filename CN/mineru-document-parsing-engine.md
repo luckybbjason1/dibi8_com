@@ -2,8 +2,8 @@
 title: "MinerU: 70.6K Stars — Convert Any Document to LLM-Ready ..."
 description: "MinerU (70,600+ GitHub stars) transforms PDF, DOCX, PPTX, XLSX, images and web pages into structured..."
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
-date: 2026-06-27 00:00:00+08:00
-lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
+date: 2026-06-27T00:00:00+08:00
+lastmod: 2026-06-27T00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
 github_repo: "https://github.com/opendatalab/MinerU"
 license: MinerU Open Source License (Apache 2.0-based)

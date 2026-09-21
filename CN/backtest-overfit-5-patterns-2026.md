@@ -1,8 +1,8 @@
 ---
 title: "Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe...
 description: "After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: "pandas 2.2+ / vectorbt 0.27+"

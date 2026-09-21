@@ -1,8 +1,8 @@
 ---
 title: "Scrapling Reviewed: A Faster, Stealthier Take on Python ...
 description: "Scrapling review: Python stealthy web scraping library. Bypass anti-bot. Comprehensive guide coverin..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Java
 - JavaScript

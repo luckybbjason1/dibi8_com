@@ -1,8 +1,8 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Docker Deployment Guid...
 description: "Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Dock..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

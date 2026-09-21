@@ -1,8 +1,8 @@
 ---
 title: "Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối ...
 description: "Hướng dẫn toàn diện về Hyperliquid, sàn Perpetual DEX hoàn toàn on-chain xử lý khối lượng $2B+ hàng ..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "aiohttp 2026: Build High-Performance Async Web Scrapers ...
 description: "Master aiohttp 3.11 for high-performance async web scraping in Python. Build scrapers handling 10K+ ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

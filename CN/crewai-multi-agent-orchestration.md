@@ -1,8 +1,8 @@
 ---
 title: "CrewAI: Build Multi-Agent AI Teams That Collaborate Auto...
 description: "A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

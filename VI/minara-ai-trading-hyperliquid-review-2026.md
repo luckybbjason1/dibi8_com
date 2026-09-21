@@ -1,8 +1,8 @@
 ---
 title: "Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperli...
 description: "Minara là nền tảng giao dịch AI-native được xây dựng trên Hyperliquid, cho phép bạn đặt câu hỏi, nhậ..."
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
+date: 2026-05-17T00:00:00+08:00
+lastmod: 2026-05-17T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

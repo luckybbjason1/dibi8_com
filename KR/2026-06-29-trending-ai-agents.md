@@ -3,9 +3,8 @@ title: "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장�
 description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집..."
 showAuthor: true
 showSummary: true
-sources: - name: "GitHub Trending"
-    url: "https://github.com/trending"
-    type: "data"
+sources: ["GitHub Trending"]
+source_url: "https://github.com/trending"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png

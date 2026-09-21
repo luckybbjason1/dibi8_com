@@ -1,8 +1,8 @@
 ---
 title: "LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가...
 description: "LazyDocker (LD)는 Docker 컨테이너, 이미지, 볼륨 및 로그를 관리하기 위한 터미널 UI입니다. Docker, Docker Compose, Go 및 Terminal..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

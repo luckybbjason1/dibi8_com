@@ -1,8 +1,8 @@
 ---
 title: "OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding ...
 description: "Làm chủ OpenAI Codex CLI—agent coding AI mã nguồn mở tăng trưởng nhanh nhất 2026. Hướng dẫn toàn diệ..."
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
+date: 2026-05-17T00:00:00+08:00
+lastmod: 2026-05-17T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

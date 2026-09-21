@@ -1,8 +1,8 @@
 ---
 title: Hermes Agent：一个会自我进化的 AI 代理，越用越懂你
 description: Hermes Agent 是 Nous Research 打造的Open Source AI 代理，拥有自我学习循环——从经验中创建技能、持续改进、记住你的偏好，越用越懂你。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 - TypeScript

@@ -1,8 +1,8 @@
 ---
 title: "Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemor...
 description: "AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu ..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
 application_domain: Llm Frameworks
 source_version: ''

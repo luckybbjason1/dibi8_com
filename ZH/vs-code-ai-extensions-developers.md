@@ -1,8 +1,8 @@
 ---
 title: "2025年开发者最佳VS Code AI插件推荐：提升编程效率"
 description: "2025年最全VS Code AI编程助手对比评测，涵盖GitHub Copilot、Codeium、Tabnine、Cody、Continue等7款主流工具，含定价对比与选型指南。"
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

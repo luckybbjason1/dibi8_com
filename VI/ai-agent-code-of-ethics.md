@@ -1,8 +1,8 @@
 ---
 title: "Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị T...
 description: "Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu..."
-date: 2026-06-04 00:00:00+08:00
-lastmod: 2026-06-04 00:00:00+08:00
+date: 2026-06-04T00:00:00+08:00
+lastmod: 2026-06-04T00:00:00+08:00
 tech_stack: - AI Agents
   - LLM
   - Governance

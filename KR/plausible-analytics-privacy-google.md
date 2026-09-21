@@ -1,8 +1,8 @@
 ---
 title: "Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
 description: "Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

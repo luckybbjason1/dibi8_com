@@ -1,8 +1,8 @@
 ---
 title: "AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교"
 description: "영속 메모리가 없는 Agent는 세션마다 처음부터 다시 시작합니다. 동일한 멀티 세션 워크로드에서 Letta, Mem0, A-MEM을 실측 — 누가 진짜로 컨텍스트를 유지하는지, ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
 source_version: "Letta 0.8 / Mem0 0.2 / A-MEM 1.3"

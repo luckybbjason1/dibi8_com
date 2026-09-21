@@ -1,8 +1,8 @@
 ---
 title: "Infrastructure as Code Tools 2025: Terraform vs Pulumi v...
 description: "Compare the top IaC tools of 2025. In-depth analysis of Terraform, Pulumi, AWS CDK, Crossplane, Pupp..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

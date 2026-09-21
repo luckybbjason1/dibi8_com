@@ -1,8 +1,8 @@
 ---
 title: "OpenClaw 完全指南：2026 年最强开源 AI 助手自托管部署教程｜零订阅费打造私人智能助理"
 description: "GitHub 362K+ Star 的 OpenClaw 如何从零到现象级？本文详解 OpenClaw 开源 AI 助手的架构原理、自托管部署全流程、多平台接入实战，以及如何用零订阅费方案构建隐私优先..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

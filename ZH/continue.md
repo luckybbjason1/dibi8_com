@@ -1,8 +1,8 @@
 ---
 title: "Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2...
 description: "Continue.dev（开源 AI 编程助手）VS Code/JetBrains 插件。支持任意 LLM：Ollama、OpenAI、Anthropic、Gemini。对比 GitHub Copil..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

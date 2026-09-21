@@ -1,8 +1,8 @@
 ---
 title: "Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
 description: "Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/off..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "멀티모달 콘텐츠 파이프라인 2026: AI 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-...
 description: "셀프호스트 멀티모달 콘텐츠 스택: faster-whisper (STT) + ChatTTS (대화 TTS) + Stable Diffusion WebUI (이미지) + ComfyUI ..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
 application_domain: Collections
 source_version: ''

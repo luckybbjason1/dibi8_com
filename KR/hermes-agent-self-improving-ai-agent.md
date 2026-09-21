@@ -2,8 +2,8 @@
 title: Hermes Agent：자기 진화하는 AI 에이전트, 사용할수록 당신을 더 잘 이해합니다
 description: Hermes Agent는 Nous Research가 만든 오픈소스 AI 에이전트로, 자체 학습 루프를 통해 경험에서 스킬을. Comprehensive guide covering features, pricing, and best practices for 2026.
   생성하고, 지속적으로 개선하며, 당신의 선호도를 기억합니다.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 - TypeScript
 application_domain: Llm Frameworks

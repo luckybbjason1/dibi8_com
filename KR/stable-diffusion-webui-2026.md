@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k 별 셀프호스...
 description: "AUTOMATIC1111 stable-diffusion-webui는 163k 별의 SD/SDXL 이미지 생성용 사실상 표준 셀프호스트 UI. 2026 완전 설치 + 프로덕션 가이드..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, Gradio, CUDA]
 application_domain: Ai Tools
 source_version: ''

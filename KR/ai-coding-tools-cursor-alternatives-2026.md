@@ -1,8 +1,8 @@
 ---
 title: "2026 AI 코딩 도구 대전: Cursor 독주 종료 — 7가지 최고 대안 완벽 비교"
 description: "Cursor의 2025년 credit 가격 전환으로 신뢰가 무너졌다. 2026년 7가지 최강 대안 비교: Claude Code (80.8% SWE-bench), Cline (5M+..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
 application_domain: Llm Frameworks
 source_version: ''

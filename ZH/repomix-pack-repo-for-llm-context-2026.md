@@ -1,8 +1,8 @@
 ---
 title: "repomix 2026：一条命令把整个代码库打包成 LLM 可用的单文件"
 description: "repomix（前身 repopack）将 Git 仓库整体打包为结构化纯文本，适配 Claude、ChatGPT、Gemini 的上下文窗口。14k+ Star，零配置，npx 秒跑。"
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: "v0.3"

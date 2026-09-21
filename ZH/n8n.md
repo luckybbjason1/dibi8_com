@@ -1,8 +1,8 @@
 ---
 title: "n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%"
 description: "n8n（fair-code）是具有原生 AI 能力的可视化工作流自动化平台，支持 400+ 集成。兼容 Claude Code、OpenAI、Anthropic、Slack、Discord、Teleg..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

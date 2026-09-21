@@ -1,8 +1,8 @@
 ---
 title: "AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent"
 description: "完整生产级 AI agent stack：LangGraph 状态机编排 + MCP servers 工具 + mem0 记忆 + OpenClaw 多 agent 协调 + Hermes Agent..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - Docker

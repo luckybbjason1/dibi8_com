@@ -1,9 +1,9 @@
 ---
 title: "Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested"
 description: "Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricin..."
-date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00
-  draft: false
+date: 2026-06-06T00:00:00+08:00
+lastmod: 2026-06-06T00:00:00+08:00
+draft: false
 tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "llm-review", "ai-coding", "reasoning"]
 categories: ["review"]
 faqs: - q: 'Is Claude Opus 4 worth the cost over Sonnet 4?'

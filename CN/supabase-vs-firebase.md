@@ -1,9 +1,9 @@
 ---
 title: "Supabase vs Firebase in 2026: Which BaaS Wins?"
 description: "Postgres open-source Supabase vs Google NoSQL Firebase — database, auth, storage, realtime, edge fun..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
-  draft: false
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
+draft: false
 tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
 categories: ["vs"]
 faqs: - q: 'Is Supabase or Firebase cheaper?'

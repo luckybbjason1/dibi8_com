@@ -1,8 +1,8 @@
 ---
 title: "무료 LLM API 리소스: 비용 부담 없이 AI 모델 접근"
 description: API 비용 없이 AI 애플리케이션을 구축할 수 있는 무료 LLM 추론 API 리소스의 선별된 목록을 확인하세요.. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: ...
 description: "Khám phá các framework và công cụ quản lý prompt hàng đầu năm 2025. So sánh chi tiết LangSmith, Prom..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Các Công Cụ API Gateway Cho Lập Trình Viên Tốt Nhất 2025...
 description: "So sánh chi tiết các công cụ API Gateway hàng đầu năm 2025. Tìm hiểu Kong, NGINX Plus, Traefik, Goog..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

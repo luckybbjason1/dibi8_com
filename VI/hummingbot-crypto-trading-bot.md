@@ -1,8 +1,8 @@
 ---
 title: "Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở V...
 description: "Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao d..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

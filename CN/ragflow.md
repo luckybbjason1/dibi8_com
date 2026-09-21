@@ -1,8 +1,8 @@
 ---
 title: "RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ ...
 description: "RAGFlow is an open-source retrieval-augmented generation (RAG) engine with deep document understandi..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

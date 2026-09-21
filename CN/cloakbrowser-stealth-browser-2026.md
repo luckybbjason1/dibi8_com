@@ -1,8 +1,8 @@
 ---
 title: "CloakBrowser Review 2026: The Open-Source Stealth Browse...
 description: "CloakBrowser is the fastest-growing GitHub repo of May 2026: 49 C++ source-level patches, reCAPTCHA ..."
-date: 2026-05-14 00:00:00+08:00
-lastmod: 2026-05-14 00:00:00+08:00
+date: 2026-05-14T00:00:00+08:00
+lastmod: 2026-05-14T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

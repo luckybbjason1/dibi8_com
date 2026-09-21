@@ -2,8 +2,8 @@
 title: "Trợ Lý Lập Trình AI Tốt Nhất 2026"
 description: "Những trợ lý lập trình AI tốt nhất cho nhà phát triển năm 2026 — từ Claude Code và Cursor đến GitHub..."
 layout: simple
-date: 2026-06-28 00:00:00+08:00
-lastmod: 2026-06-28 00:00:00+08:00
+date: 2026-06-28T00:00:00+08:00
+lastmod: 2026-06-28T00:00:00+08:00
 ---
 
 # Trợ Lý Lập Trình AI Tốt Nhất 2026

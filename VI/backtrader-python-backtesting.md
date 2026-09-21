@@ -1,8 +1,8 @@
 ---
 title: "Backtrader 2026: Công Cụ Backtesting Python Xác Thực Chi...
 description: "Hướng dẫn đầy đủ về Backtrader event-driven backtesting engine. Xây dựng, kiểm thử, và tối ưu hóa ch..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

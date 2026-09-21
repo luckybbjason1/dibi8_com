@@ -1,8 +1,8 @@
 ---
 title: "向量数据库对比2025：Pinecone vs Weaviate vs Chroma vs Milvus选型指南"
 description: "2025年主流向量数据库全面对比：Pinecone、Weaviate、Chroma、Milvus的功能、性能、价格及适用场景分析，助你选出最适合RAG的向量数据库。"
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
 description: "Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friend..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
 description: "Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
 application_domain: LLM Frameworks
 source_version: ''

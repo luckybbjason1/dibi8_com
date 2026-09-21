@@ -1,8 +1,8 @@
 ---
 title: "GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft ...
 description: "GraphRAG là hệ thống RAG mô-đun, dựa trên đồ thị tri thức của Microsoft (33.403 sao GitHub, giấy phé..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

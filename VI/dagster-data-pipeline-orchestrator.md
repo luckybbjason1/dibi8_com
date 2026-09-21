@@ -1,8 +1,8 @@
 ---
 title: "Dagster: Trình Điều Phối Pipeline Dữ Liệu Dựa Trên Asset...
 description: "Hướng dẫn production đầy đủ cho Dagster 1.13: điều phối dựa trên asset, lập lịch nhận thức dữ liệu, ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

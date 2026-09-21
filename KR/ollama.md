@@ -1,8 +1,8 @@
 ---
 title: "Ollama: 137K+ Stars — 한 줄 명령으로 로컬에서 LLM 실행, 2026 완벽 설정 가이드"
 description: "Ollama는 Llama, DeepSeek, Mistral 등의 LLM을 로컬에서 실행하는 가장 간단한 방법입니다. LangChain, OpenWebUI, Continue.dev,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

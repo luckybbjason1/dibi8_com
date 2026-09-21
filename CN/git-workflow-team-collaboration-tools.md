@@ -1,8 +1,8 @@
 ---
 title: "Git Workflow & Team Collaboration Tools: A Developer'"
 description: "Master Git workflow best practices for teams. Compare GitHub Flow, GitFlow, and trunk-based developm..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

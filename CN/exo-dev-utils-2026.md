@@ -1,8 +1,8 @@
 ---
 title: "exo: Run Frontier AI Across Your Own Devices (45K Stars)...
 description: "exo turns your Macs, PCs and phones into a single cluster that runs frontier AI models locally. 45,0..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

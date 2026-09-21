@@ -1,8 +1,8 @@
 ---
 title: "Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
 description: "Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

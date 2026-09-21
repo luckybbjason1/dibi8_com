@@ -1,8 +1,8 @@
 ---
 title: "Quy Trình Git và Công Cụ Hợp Tác Nhóm: Hướng Dẫn Đầy Đủ ...
 description: "Tìm hiểu các chiến lược branching Git (GitFlow, GitHub Flow, Trunk-Based), công cụ hợp tác nhóm, và ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

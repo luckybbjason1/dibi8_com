@@ -1,8 +1,8 @@
 ---
 title: "Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
 description: "Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 serve..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 / Claude Code 1.0"

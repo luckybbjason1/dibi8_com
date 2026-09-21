@@ -1,8 +1,8 @@
 ---
 title: "LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）"
 description: "LangGraph 是长跑、有状态 AI agent 的底层编排框架。GitHub 32.6k stars，v1.2.1。真实部署指南覆盖图设计、持久化执行、human-in-loop 检查点、Lan..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - PostgreSQL

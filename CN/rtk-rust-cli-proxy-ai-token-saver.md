@@ -1,8 +1,8 @@
 ---
 title: "RTK: The Open-Source Rust CLI Proxy That Slashes AI Codi...
 description: "RTK (Rust Token Killer) is an open-source CLI proxy written in Rust that reduces LLM token consumpti..."
-date: 2026-05-14 00:00:00+08:00
-lastmod: 2026-05-14 00:00:00+08:00
+date: 2026-05-14T00:00:00+08:00
+lastmod: 2026-05-14T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

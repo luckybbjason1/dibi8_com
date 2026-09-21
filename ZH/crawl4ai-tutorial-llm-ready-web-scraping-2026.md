@@ -1,8 +1,8 @@
 ---
 title: "Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭建 LLM 数据采集与 RAG...
 description: "Crawl4AI 是 2026 年 GitHub 排名第一的开源网页爬虫，63k+ Stars，专为 LLM、AI Agent 和 RAG 管道设计。本文提供完整中文教程，涵盖安装、LLM 结构化提取..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

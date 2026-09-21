@@ -1,8 +1,8 @@
 ---
 title: "SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
 description: "Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metr..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

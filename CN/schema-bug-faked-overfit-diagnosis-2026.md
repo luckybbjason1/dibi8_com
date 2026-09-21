@@ -1,8 +1,8 @@
 ---
 title: "Schema Bug Faked My Overfit Diagnosis: The Backtest Post...
 description: "Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then disco..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: "moss-trade-bot-skills v1.0.26"

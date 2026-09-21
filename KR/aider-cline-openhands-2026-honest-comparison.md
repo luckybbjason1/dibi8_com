@@ -1,8 +1,8 @@
 ---
 title: "Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교"
 description: "동일한 5K LOC TypeScript 코드베이스에서 세 가지 오픈소스 AI 코딩 에이전트를 모두 테스트했습니다. 구체적인 벤치마크 수치, 각자가 빛나는 지점, 각자의 한계, 그리..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
 source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"

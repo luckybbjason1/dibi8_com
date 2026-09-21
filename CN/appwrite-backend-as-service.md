@@ -1,8 +1,8 @@
 ---
 title: "Appwrite 2026: The Open-Source Firebase Alternative with...
 description: "Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, stor..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

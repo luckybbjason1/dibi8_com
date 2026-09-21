@@ -2,8 +2,8 @@
 title: DocuSeal 리뷰：이 오픈소스 DocuSign 대안으로 문서 서명 비용 90% 절감
 description: DocuSeal은 15.7k star를 보유한 오픈소스 플랫폼으로, DocuSign을 대체하여 셀프 호스팅 디지털 문서 서명,. Comprehensive guide covering features, pricing, and best practices for 2026.
   PDF 폼 빌딩 및 화이트라벨 전자서명 워크플로우를 제공합니다.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Go
 - JavaScript

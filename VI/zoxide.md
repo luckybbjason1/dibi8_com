@@ -1,8 +1,8 @@
 ---
 title: "Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
 description: "Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerSh..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

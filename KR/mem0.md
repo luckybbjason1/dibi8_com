@@ -1,8 +1,8 @@
 ---
 title: "Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026"
 description: "Mem0 (mem0ai)은 AI 에이전트를 위한 범용 메모리 레이어입니다. Claude Code, OpenAI, LangChain, CrewAI, Cursor와 호환됩니다. mem..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

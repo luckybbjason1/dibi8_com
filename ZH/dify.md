@@ -1,8 +1,8 @@
 ---
 title: "Dify: 5 分钟可视化构建生产级 AI Agent — 141K+ Stars 安装配置指南 2026"
 description: "Dify 是开源 LLM 应用开发平台，提供可视化工作流构建器、RAG 管道和 Agent 编排功能。兼容 OpenAI、Anthropic、Ollama、Qdrant 和 Weaviate。涵盖 D..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

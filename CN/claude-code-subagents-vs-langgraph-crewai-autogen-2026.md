@@ -1,8 +1,8 @@
 ---
 title: "Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
 description: "You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or Aut..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''

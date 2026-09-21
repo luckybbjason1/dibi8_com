@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI: 159K+ Stars — The Complete Setup...
 description: "Stable Diffusion WebUI (AUTOMATIC1111) is the most popular web interface for local AI image generati..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

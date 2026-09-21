@@ -1,8 +1,8 @@
 ---
 title: "Bộ nhớ bền vững cho AI Agent 2026: So sánh thực chiến Le...
 description: "Agent không có bộ nhớ bền vững sẽ khởi động lại từ con số không mỗi phiên. Đã kiểm thử Letta, Mem0, ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
 application_domain: LLM Frameworks
 source_version: "Letta 0.8 / Mem0 0.2 / A-MEM 1.3"

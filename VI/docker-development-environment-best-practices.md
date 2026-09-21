@@ -1,8 +1,8 @@
 ---
 title: "Các Thực Tiễn Tốt Nhất cho Môi Trường Phát Triển Docker:...
 description: "Khám phá các thực tiễn tốt nhất để thiết lập môi trường phát triển Docker hiệu quả: từ Docker Compos..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn M...
 description: "OpenCode đạt 160K+ stars trên GitHub năm 2026, hỗ trợ 75+ nhà cung cấp LLM, miễn phí 100%. Hướng dẫn..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好"
 description: "Unsloth 微调 LLM 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。GitHub 64.9k 星，双 Apache 2.0 + AGPL-3.0 license。..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]
 application_domain: Llm Frameworks
 source_version: ''

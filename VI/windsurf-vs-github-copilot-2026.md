@@ -1,9 +1,9 @@
 ---
 title: "Windsurf vs GitHub Copilot 2026: So Sánh Chuyên Sâu, Chọ...
 description: "Windsurf Cascade vs GitHub Copilot Agent Mode — giá cả, chỉnh sửa đa file, bảo mật doanh nghiệp, và ..."
-date: 2026-06-07 00:00:00+08:00
-lastmod: 2026-06-07 00:00:00+08:00
-  draft: false
+date: 2026-06-07T00:00:00+08:00
+lastmod: 2026-06-07T00:00:00+08:00
+draft: false
 tags: ["windsurf", "github-copilot", "ai-công-cụ-lập-trình", "cascade-ai", "copilot-agent-mode", "ai-ide", "codeium"]
 categories: ["vs"]
 faqs: - q: 'Windsurf có tốt hơn GitHub Copilot năm 2026 không?'

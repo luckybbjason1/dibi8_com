@@ -1,8 +1,8 @@
 ---
 title: "The AI Agent Code of Ethics (2026): A Practical Governan...
 description: "A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable r..."
-date: 2026-06-04 00:00:00+08:00
-lastmod: 2026-06-04 00:00:00+08:00
+date: 2026-06-04T00:00:00+08:00
+lastmod: 2026-06-04T00:00:00+08:00
 tech_stack: - AI Agents
   - LLM
   - Governance

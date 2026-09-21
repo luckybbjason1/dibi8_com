@@ -1,8 +1,8 @@
 ---
 title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
 description: "n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations...."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

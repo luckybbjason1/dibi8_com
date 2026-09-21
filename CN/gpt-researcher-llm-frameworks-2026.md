@@ -1,8 +1,8 @@
 ---
 title: "GPT Researcher: Autonomous Agent for Deep Research Repor...
 description: "GPT Researcher is an open deep-research agent that runs web and local research on any task and write..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

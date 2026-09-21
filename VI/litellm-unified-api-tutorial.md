@@ -1,8 +1,8 @@
 ---
 title: "Hướng Dẫn LiteLLM 2025: Một API Để Truy Cập 100+ LLM"
 description: "Hướng dẫn chi tiết LiteLLM 2025 — cách dùng một API thống nhất để kết nối 100+ mô hình LLM từ OpenAI..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

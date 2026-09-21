@@ -1,8 +1,8 @@
 ---
 title: "Công Cụ Giám Sát Log & Khả Năng Quan Sát cho Nhà Phát Tr...
 description: "Tổng quan công cụ giám sát log và observability năm 2025: Grafana Loki, ELK Stack, Datadog, New Reli..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

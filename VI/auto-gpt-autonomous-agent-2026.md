@@ -1,8 +1,8 @@
 ---
 title: "Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm t...
 description: "Hướng dẫn đầy đủ năm 2026 về tác nhân tự chủ Auto-GPT. Cài đặt mới, giao thức tác nhân, duyệt web, đ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

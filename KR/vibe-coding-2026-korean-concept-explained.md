@@ -1,8 +1,8 @@
 ---
 title: "바이브 코딩 2026: 한국 개발자 개념을 모두에게 풀어 설명한다"
 description: "바이브 코딩(vibe coding)은 자연어 우선 프로그래밍을 가리키는 한국 개발자 용어로, 문법은 AI가 처리한다. Toss와 Kakao 엔지니어들이 매일 사용한다. 무슨 뜻인지..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'AI 주도 개발', '자연어 프로그래밍']
 application_domain: 개발자 도구
 source_version: "2026 Q2"

@@ -2,8 +2,8 @@
 title: "Best AI Image Generators 2026"
 description: "The best open-source and freemium AI image generators in 2026 — from Stable Diffusion to Flux, Comfy..."
 layout: simple
-date: 2026-06-28 00:00:00+08:00
-lastmod: 2026-06-28 00:00:00+08:00
+date: 2026-06-28T00:00:00+08:00
+lastmod: 2026-06-28T00:00:00+08:00
 ---
 {
   "@context": "https://schema.org",

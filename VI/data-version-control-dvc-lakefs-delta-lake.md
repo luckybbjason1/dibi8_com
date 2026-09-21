@@ -1,8 +1,8 @@
 ---
 title: "DVC vs LakeFS vs Delta Lake: Hướng Dẫn Chọn Công Cụ Quản...
 description: "So sánh chi tiết DVC, LakeFS và Delta Lake - 3 công cụ quản lý phiên bản dữ liệu hàng đầu cho ML. Tì..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

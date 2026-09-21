@@ -1,8 +1,8 @@
 ---
 title: "TensorTrade: 커스텀 Gym 환경을 갖춘 강화학습 트레이딩 프레임워크 — 2026 가이드"
 description: "TensorTrade로 강화학습 기반 알고리즘 트레이딩을 마스터하세요. 커스텀 Gym 환경을 구축하고, Stable Baselines3을 통합하며, 실제 벤치마크와 함께 프로덕션 ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

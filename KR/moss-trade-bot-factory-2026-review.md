@@ -1,8 +1,8 @@
 ---
 title: "Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백...
 description: "moss-trade-bot-skills v1.0.26 핸즈온 리뷰: Hyperliquid 퍼페추얼용 자연어 퀀트 agent 빌더. Decimal 정밀도 + 20단계 호가창 모델링 ..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
 source_version: "v1.0.26"

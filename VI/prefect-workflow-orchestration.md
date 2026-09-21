@@ -1,8 +1,8 @@
 ---
 title: "Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
 description: "Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, re..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

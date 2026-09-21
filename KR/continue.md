@@ -1,8 +1,8 @@
 ---
 title: "Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cur...
 description: "Continue.dev(오픈소스 AI 코딩 어시스턴트) VS Code/JetBrains 플러그인. Ollama, OpenAI, Anthropic, Gemini 등 모든 LLM 지원..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

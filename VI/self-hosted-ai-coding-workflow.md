@@ -1,8 +1,8 @@
 ---
 title: "Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng ...
 description: "Stack AI coding self-host 7 thành phần thay thế $290/tháng đăng ký SaaS (Cursor + Claude Code Pro + ..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - TypeScript

@@ -1,8 +1,8 @@
 ---
 title: "Data Cleaning Tools & Best Practices: OpenRefine, Python...
 description: "Master data cleaning with OpenRefine, Pandas, Great Expectations & automated tools. Learn best pract..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

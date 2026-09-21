@@ -1,8 +1,8 @@
 ---
 title: "Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVide...
 description: "Wan 2.1은 Alibaba의 오픈소스 비디오 기반 모델로 SOTA 성능 제공. ComfyUI, Diffusers, Gradio 지원. T2V, I2V, 비디오 편집, 텍스트 생..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

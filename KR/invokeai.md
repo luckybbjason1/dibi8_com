@@ -1,8 +1,8 @@
 ---
 title: "InvokeAI: 27.2K+ Stars — 2026 완벽 설치 가이드"
 description: "InvokeAI(Invoke)는 업계 최고의 WebUI를 갖춘 Stable Diffusion 모델용 크리에이티브 엔진이다. SD 1.5, SDXL, FLUX 및 ControlNet..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

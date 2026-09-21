@@ -1,8 +1,8 @@
 ---
 title: "Best AI Meeting Assistant Tools 2025: Otter.ai, Fireflie...
 description: "Compare the best AI meeting assistant tools of 2025. In-depth reviews of Otter.ai, Fireflies.ai, Fat..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

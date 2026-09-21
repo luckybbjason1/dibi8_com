@@ -1,8 +1,8 @@
 ---
 title: "The Cheap LLM Stack 2026: How to Run Production AI on $0...
 description: "5-component stack to run real AI workloads on $0-15/month: Ollama local + DeepSeek API + Gemini free..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - Docker
   - Go

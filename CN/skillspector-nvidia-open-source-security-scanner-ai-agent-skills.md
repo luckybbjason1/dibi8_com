@@ -3,7 +3,7 @@ title: "SkillSpector: NVIDIA's Open-Source Security Scanner for ..."
   description: "A security scanner for AI agent skills that detects vulnerabilities, malicious patterns, and securit..."
   date: 2026-06-25
   lastmod: 2026-06-25
-  draft: false
+draft: false
   lang: en
   github_repo: https://github.com/NVIDIA/SkillSpector
   category: dev-utils

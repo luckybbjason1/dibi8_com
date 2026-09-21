@@ -1,8 +1,8 @@
 ---
 title: "markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전...
 description: "markitdown은 각종 파일과 오피스 문서를 마크다운으로 변환해 주는 마이크로소프트의 파이썬 도구입니다. GitHub 스타 141,153개, MIT 라이선스. 설치, 핵심 CL..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "MLflow 2026: The Open-Source ML Lifecycle Platform Track...
 description: "Complete guide to MLflow for ML experiment tracking, model registry, and model serving. Covers setup..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

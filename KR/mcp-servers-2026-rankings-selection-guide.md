@@ -1,8 +1,8 @@
 ---
 title: "MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리"
 description: "Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파했습니다. 카테고리별 상위 30개 랭킹, stdio / HTTP-SSE / OAuth-..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"

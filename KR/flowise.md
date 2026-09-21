@@ -1,8 +1,8 @@
 ---
 title: "Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완...
 description: "Flowise는 오픈소스 시각적 LLM 워크플로우 및 AI Agent 빌더입니다. LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma 등 ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Dify: 5분 만에 시각적으로 프로덕션급 AI 에이전트 구축 — 141K+ Stars 설치 가이드 ...
 description: "Dify는 시각적 워크플로 빌더, RAG 파이프라인, 에이전트 오케스트레이션을 제공하는 오픈소스 LLM 애플리케이션 개발 플랫폼입니다. OpenAI, Anthropic, Ollam..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -2,8 +2,8 @@
 title: "TabPFN: 표 형식 데이터 기반 모델 — 구조화된 데이터의 AI 혁신"
 description: TabPFN을 발견하세요 — 표 형식 데이터의 기반 모델로, 기존 ML 방법을 능가합니다. 하이퍼파라미터 튜닝이 필요 없고,. Comprehensive guide covering features, pricing, and best practices for 2026.
   몇 초 만에 작동합니다.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''

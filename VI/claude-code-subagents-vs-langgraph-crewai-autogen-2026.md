@@ -1,8 +1,8 @@
 ---
 title: "Claude Code Subagent so với LangGraph, CrewAI và AutoGen...
 description: "Bạn đã điều phối subagent ngay trong Claude Code. Liệu bạn có thực sự cần LangGraph, CrewAI hay Auto..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so vớ...
 description: "Wan 2.1 là bộ mô hình video nền mở của Alibaba với hiệu suất SOTA. Hỗ trợ ComfyUI, Diffusers và Grad..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

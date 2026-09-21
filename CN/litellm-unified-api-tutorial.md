@@ -1,8 +1,8 @@
 ---
 title: "LiteLLM Tutorial 2025: One API to Access 100+ LLMs"
 description: "Complete LiteLLM tutorial 2025. Learn how to use one unified API to access 100+ LLM providers includ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

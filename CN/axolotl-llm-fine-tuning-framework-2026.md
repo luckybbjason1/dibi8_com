@@ -1,8 +1,8 @@
 ---
 title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...
 description: "Axolotl is the open-source LLM fine-tuning framework with single-YAML config across full / LoRA / QL..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

@@ -1,8 +1,8 @@
 ---
 title: "Moralis 2026: The Web3 Data API Powering 100K+ DApps wit...
 description: "Complete guide to Moralis Web3 Data API in 2026. Learn how to fetch real-time blockchain data, NFT m..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

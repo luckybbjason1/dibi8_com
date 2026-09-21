@@ -1,8 +1,8 @@
 ---
 title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St...
 description: "A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + C..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - TypeScript

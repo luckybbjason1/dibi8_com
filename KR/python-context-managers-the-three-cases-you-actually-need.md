@@ -1,8 +1,8 @@
 ---
 title: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우"
 description: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여. Comprehensive guide coverin..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Ai Tools

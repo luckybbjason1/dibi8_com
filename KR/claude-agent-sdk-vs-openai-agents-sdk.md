@@ -1,9 +1,9 @@
 ---
 title: "2026년 Claude Agent SDK vs OpenAI Agents SDK: 무엇으로 개발할 것인가?"
 description: "두 대표 에이전트 SDK의 1:1 비교 — 아키텍처(hooks+subagents vs handoffs+guardrails), 내장 도구, OS 접근, 음성, 종속성, 그리고 각각을..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
-  draft: false
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
+draft: false
 tags: ["claude-agent-sdk", "openai-agents-sdk", "ai-agents", "comparison", "agent-sdk"]
 categories: ["vs"]
 faqs: - q: 'Claude Agent SDK와 OpenAI Agents SDK의 핵심 아키텍처 차이는 무엇인가요?'

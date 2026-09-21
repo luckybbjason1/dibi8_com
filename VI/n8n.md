@@ -1,8 +1,8 @@
 ---
 title: "n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — T...
 description: "n8n (fair-code) là nền tảng tự động hóa quy trình với khả năng AI tích hợp và 400+ tích hợp. Tương t..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

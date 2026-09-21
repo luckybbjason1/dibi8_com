@@ -4,8 +4,8 @@ title: "Anthropic Financial Services: How Financial Teams Can Au...
 description: Discover how Anthropic Financial Services helps investment banks, equity. Comprehensive guide covering features, pricing, and best practices for 2026.
   research, and wealth management teams automate pitch decks, DCF models, and KYC
   screening with Claude AI agents.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Llm Frameworks

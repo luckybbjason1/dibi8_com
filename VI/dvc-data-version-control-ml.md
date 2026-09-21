@@ -1,8 +1,8 @@
 ---
 title: "DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipelin...
 description: "Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với w..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

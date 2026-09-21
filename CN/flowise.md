@@ -1,8 +1,8 @@
 ---
 title: "Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
 description: "Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
 description: "Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang r..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

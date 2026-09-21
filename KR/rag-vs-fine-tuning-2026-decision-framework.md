@@ -1,8 +1,8 @@
 ---
 title: "RAG vs 파인튜닝 2026: 실제 비용 수치로 보는 데이터 기반 의사결정 프레임워크"
 description: "언제 RAG를, 언제 파인튜닝을, 언제 둘 다 사용할 것인가. 2026년 현재 모델 가격을 반영한 현실: 작업당 비용, 지연시간, 데이터 신선도, 그리고 데이터 양·쿼리 지연 예산..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
 source_version: "2026 Q2 pricing"

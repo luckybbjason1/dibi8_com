@@ -1,8 +1,8 @@
 ---
 title: "DVC: The Git for Data Versioning ML Pipelines — Reproduc...
 description: "Complete guide to DVC (Data Version Control) — version datasets, models, and ML pipelines with Git-l..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

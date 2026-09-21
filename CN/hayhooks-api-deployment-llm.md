@@ -1,8 +1,8 @@
 ---
 title: "Hayhooks: Deploy Haystack Pipelines as REST APIs with On...
 description: "A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

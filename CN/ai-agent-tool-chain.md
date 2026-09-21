@@ -1,8 +1,8 @@
 ---
 title: "AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
 description: "Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + m..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - Docker

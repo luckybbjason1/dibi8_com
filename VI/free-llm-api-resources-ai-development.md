@@ -4,8 +4,8 @@ title: "Tài nguyên API LLM Miễn phí: Truy cập Mô hình AI mà khôn...
 description: Danh sách được chọn lọc các tài nguyên API suy luận LLM miễn phí. Xây. Comprehensive guide covering features, pricing, and best practices for 2026.
   dựng ứng dụng AI mà không tốn phí API bằng các gói miễn phí được cộng đồng duy trì
   này.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Llm Frameworks
 source_version: ''

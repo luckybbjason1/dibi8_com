@@ -1,8 +1,8 @@
 ---
 title: "Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1...
 description: "H\u01b0\u1edbng d\u1eabn tri\u1ec3n khai th\u1ef1c t\u1ebf Freqtrade v\u1edbi FreqAI, bot giao d\u1e..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Vectara 2026: The RAG-as-a-Service Platform with 90%+ An...
 description: "A hands-on guide to Vectara, the managed RAG platform with 90%+ answer accuracy. Covers Boomerang re..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

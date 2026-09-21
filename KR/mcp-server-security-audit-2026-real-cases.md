@@ -1,8 +1,8 @@
 ---
 title: "MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 + 함정 패턴"
 description: "프로덕션에서 인기 커뮤니티 MCP 서버 5종을 감사했다: GitHub, Slack, Postgres, Brave Search, Fetch. 구체적 취약점, 익스플로잇 시연, 서버당..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"

@@ -1,8 +1,8 @@
 ---
 title: "2025년 최고의 프롬프트 엔지니어링 프레임워크 및 도구 비교: PromptLayer, LangSmi...
 description: "2025년 최신 프롬프트 엔지니어링 프레임워크와 도구를 버전 관리, A/B 테스트, 협업 기능 중심으로 비교합니다. LangSmith, PromptLayer, W&B Prompts..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

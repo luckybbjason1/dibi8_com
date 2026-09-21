@@ -4,8 +4,8 @@ title: Anthropic Financial Services：Các đội ngũ tài chính tự độn..
 description: Khám phá cách Anthropic Financial Services giúp các đội ngũ ngân hàng. Comprehensive guide covering features, pricing, and best practices for 2026.
   đầu tư, nghiên cứu chứng khoán và quản lý tài sản tự động hóa pitch deck, mô hình
   DCF và sàng lọc KYC bằng tác nhân AI Claude.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Llm Frameworks

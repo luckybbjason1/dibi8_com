@@ -1,8 +1,8 @@
 ---
 title: "Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
 description: "Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Olla..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

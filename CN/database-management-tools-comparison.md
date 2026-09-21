@@ -1,8 +1,8 @@
 ---
 title: "Best Database Management Tools Compared: GUI Clients for...
 description: "Compare TablePlus, DBeaver, DataGrip, Beekeeper Studio, and more. Find the best database GUI client ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

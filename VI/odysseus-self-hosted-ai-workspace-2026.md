@@ -1,8 +1,8 @@
 ---
 title: "Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
 description: "Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấ..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
 source_version: "1.0"

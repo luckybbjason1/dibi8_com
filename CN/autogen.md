@@ -1,8 +1,8 @@
 ---
 title: "AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs...
 description: "AutoGen (Microsoft) is an event-driven programming framework for building multi-agent AI systems. Co..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

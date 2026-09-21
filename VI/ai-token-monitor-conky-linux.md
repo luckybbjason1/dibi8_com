@@ -1,8 +1,8 @@
 ---
 title: "AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
 description: "Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trì..."
-date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00
+date: 2026-06-06T00:00:00+08:00
+lastmod: 2026-06-06T00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
 application_domain: Dev Utils
 source_version: "1.0.0"

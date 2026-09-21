@@ -1,8 +1,8 @@
 ---
 title: "RAG Architecture Implementation Guide 2025: Build Produc...
 description: "Complete RAG architecture implementation guide. Learn to build production-ready Retrieval-Augmented ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

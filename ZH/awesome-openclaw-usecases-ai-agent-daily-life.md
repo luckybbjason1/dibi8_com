@@ -1,8 +1,8 @@
 ---
 title: OpenClaw 42 个真实用例：人们如何在日常生活中使用 AI 代理
 description: 探索 OpenClaw AI 代理的 42 个真实用例 — 从社交媒体自动化到游戏开发、播客制作和自主交易。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - TypeScript
 application_domain: Llm Frameworks

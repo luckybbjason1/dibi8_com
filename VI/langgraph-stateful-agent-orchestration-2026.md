@@ -1,8 +1,8 @@
 ---
 title: "LangGraph 1.2 Trong Production: Orchestration Agent Có T...
 description: "LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - PostgreSQL

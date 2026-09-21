@@ -1,8 +1,8 @@
 ---
 title: "Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập ...
 description: "Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiế..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

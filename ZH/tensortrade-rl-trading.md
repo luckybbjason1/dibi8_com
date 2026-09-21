@@ -1,8 +1,8 @@
 ---
 title: "TensorTrade: 强化学习交易框架与自定义 Gym 环境 — 2026 完整指南"
 description: "掌握 TensorTrade 进行基于强化学习的算法交易。构建自定义 Gym 环境，集成 Stable Baselines3，部署生产级投资组合管理策略并获取真实基准测试数据。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

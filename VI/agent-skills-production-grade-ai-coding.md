@@ -3,8 +3,8 @@ title: Agent Skills：Các đội phát triển giao mã cấp sản xuất nhan
   nào
 description: Agent Skills của Addy Osmani cung cấp 20 kỹ năng kỹ thuật cấp sản xuất. Comprehensive guide covering features, pricing, and best practices for 2026.
   và 7 lệnh gạch chéo biến tác nhân mã hóa AI thành kỹ sư phần mềm cấp cao.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - JavaScript
 - TypeScript

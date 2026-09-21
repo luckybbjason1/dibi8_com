@@ -1,8 +1,8 @@
 ---
 title: "Các Công Cụ Phát Hiện Nội Dung AI Tốt Nhất 2025: So Sánh...
 description: "Khám phá các công cụ phát hiện nội dung AI hàng đầu năm 2025. So sánh chi tiết GPTZero, Turnitin AI,..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

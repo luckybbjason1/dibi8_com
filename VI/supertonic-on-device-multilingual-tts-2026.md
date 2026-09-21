@@ -1,8 +1,8 @@
 ---
 title: "Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M ...
 description: "Supertonic (9.9K+ stars trên GitHub) của Supertone Inc. là model text-to-speech đa ngôn ngữ siêu nha..."
-date: 2026-05-23 00:00:00+08:00
-lastmod: 2026-05-23 00:00:00+08:00
+date: 2026-05-23T00:00:00+08:00
+lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
 source_version: "v2.0.0"

@@ -1,8 +1,8 @@
 ---
 title: "2025년 개발자를 위한 최고의 VS Code AI 확장 프로그램: 생산성 향상"
 description: "2025년 VS Code에서 사용할 수 있는 최고의 AI 코딩 확장 프로그램을 비교합니다. GitHub Copilot, Codeium, Tabnine, Cody, Continue ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

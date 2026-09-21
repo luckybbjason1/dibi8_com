@@ -1,8 +1,8 @@
 ---
 title: "多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）"
 description: "自托管多模态内容 stack：faster-whisper（STT）+ ChatTTS（对话式 TTS）+ Stable Diffusion WebUI（图像）+ ComfyUI（工作流引擎 + 视频..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
 application_domain: Collections
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026"
 description: "Mem0 (mem0ai) 是面向 AI 智能体的通用记忆层。兼容 Claude Code、OpenAI、LangChain、CrewAI、Cursor。涵盖 mem0 教程、持久化记忆设置、向量存储..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

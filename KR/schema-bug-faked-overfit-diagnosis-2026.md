@@ -1,8 +1,8 @@
 ---
 title: "스키마 버그가 가짜로 만든 Overfit 진단: 아무도 말하지 않는 백테스트 사후 분석"
 description: "7번의 퀀트 실험을 돌려 「교과서적 overfit」을 발견했습니다 (Train PF 2.08 → OOS 0.94, ratio 2.21). 그런데 진단 자체가 틀렸다는 사실이 밝혀졌..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: "moss-trade-bot-skills v1.0.26"

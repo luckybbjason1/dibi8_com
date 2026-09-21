@@ -1,8 +1,8 @@
 ---
 title: "Phân Tích Chuỗi ThờI Gian Trong Python: Bộ Công Cụ Đầy Đ...
 description: "Hướng dẫn sử dụng Prophet, sktime, statsmodels ARIMA và Darts để phân tích chuỗI thờI gian trong Pyt..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

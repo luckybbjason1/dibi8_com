@@ -1,8 +1,8 @@
 ---
 title: "Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2...
 description: "Unsloth fine-tune LLM nhanh hơn 2× với ít hơn 70% VRAM so với baseline HuggingFace TRL. 64.9k GitHub..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]
 application_domain: Llm Frameworks
 source_version: ''

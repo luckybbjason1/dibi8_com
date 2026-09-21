@@ -1,8 +1,8 @@
 ---
 title: "Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nha...
 description: "Triển khai Meilisearch 1.12 cho tìm kiếm chịu lỗi với độ trễ dưới 50ms. Hướng dẫn Docker, tích hợp S..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

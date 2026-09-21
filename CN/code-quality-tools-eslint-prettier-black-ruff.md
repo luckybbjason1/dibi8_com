@@ -1,8 +1,8 @@
 ---
 title: "Code Quality Tools Guide: ESLint, Prettier, Black, Ruff ...
 description: "Set up code quality tools for any language: ESLint, Prettier, Black, Ruff, golangci-lint, and rustfm..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

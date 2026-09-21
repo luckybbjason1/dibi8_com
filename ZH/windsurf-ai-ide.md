@@ -6,7 +6,7 @@ category: dev-utils
 featureImage: /images/articles/windsurf-ai-ide.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00
-  draft: false
+draft: false
 slug: windsurf-ai-ide
 -CN---
 

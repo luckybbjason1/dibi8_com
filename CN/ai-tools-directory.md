@@ -3,8 +3,8 @@ title: "AI Tools Directory 2024: Complete Guide to Best AI Tools...
 description: Discover the best AI tools of 2024. Complete directory of 200+ AI tools. Comprehensive guide covering features, pricing, and best practices for 2026.
   for writing, image generation, coding, marketing, and more. Free and paid options
   with detailed reviews.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - JavaScript
 application_domain: Dev Utils

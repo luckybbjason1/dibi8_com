@@ -2,8 +2,8 @@
 title: "Free LLM API Resources: Access AI Models Without Breakin...
 description: A curated list of free LLM inference resources accessible via API. Build. Comprehensive guide covering features, pricing, and best practices for 2026.
   AI applications without API costs using these community-maintained free tiers.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Llm Frameworks
 source_version: ''

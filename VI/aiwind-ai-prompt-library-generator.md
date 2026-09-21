@@ -3,8 +3,8 @@ title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 
 description: AiWind là thư viện prompt AI miễn phí với 1000+ prompt chuyên nghiệp. Comprehensive guide covering features, pricing, and best practices for 2026.
   cho GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney và các mô hình chính khác,
   bao phủ nhiều phong cách từ chân dung chân thực đến cyberpunk và 3D render.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 application_domain: Ai Tools
 source_version: ''

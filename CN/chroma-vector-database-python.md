@@ -1,8 +1,8 @@
 ---
 title: "Chroma DB 2026: The Developer-Friendly Vector Database f...
 description: "A practical guide to Chroma vector database with Python. Learn installation, RAG integration, embedd..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

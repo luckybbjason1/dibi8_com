@@ -1,8 +1,8 @@
 ---
 title: "Hugging Face Transformers: The Complete Developer'"
 description: "Master Hugging Face Transformers in 2025. Learn pipeline API, model fine-tuning, tokenization, optim..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

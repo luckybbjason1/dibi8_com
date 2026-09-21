@@ -1,8 +1,8 @@
 ---
 title: Polymarket Agents：构建预测市场 AI 自动交易机器人的开源框架
 description: Polymarket Agents 是一个开源开发者框架，用于构建在 Polymarket 预测市场上进行 AI 自主交易的智能代理。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Python
 - TypeScript

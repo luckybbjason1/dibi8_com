@@ -1,8 +1,8 @@
 ---
 title: "repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정"
 description: "repomix(구 repopack)는 Git 저장소 전체를 Claude, ChatGPT, Gemini의 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 변환합니다. 14k+ 스타..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: "v0.3"

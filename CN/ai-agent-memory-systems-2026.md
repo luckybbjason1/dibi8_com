@@ -1,8 +1,8 @@
 ---
 title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin...
 description: "Stateless AI agents forget everything between sessions — fatal for production use. Compare the 4 lea..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
 application_domain: Llm Frameworks
 source_version: ''

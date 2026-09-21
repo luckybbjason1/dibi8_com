@@ -1,8 +1,8 @@
 ---
 title: "AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트...
 description: "2026년 AAVE v4 DeFi 대출 프로토콜 통합 완벽 가이드. 30개 이상의 암호화폐 자산을 공급하고 차입하며, 플래시 론을 사용하고, 격리 모드를 구현하며, DApp에서 G..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

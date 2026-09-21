@@ -1,8 +1,8 @@
 ---
 title: "Open-Sora: 29K+ Stars — Open-Source Video Generation Set...
 description: "Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

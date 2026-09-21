@@ -1,8 +1,8 @@
 ---
 title: "2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI — 처리량·비용·구...
 description: "동일한 RTX 4090에서 Llama 3.3 70B로 Ollama, vLLM, LocalAI를 테스트했습니다. 실제 토큰/초, 메모리 사용량, 구축 시간, 그리고 취미용과 프로덕션..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM 프레임워크
 source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"

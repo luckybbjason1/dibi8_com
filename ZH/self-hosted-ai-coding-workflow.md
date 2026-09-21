@@ -1,8 +1,8 @@
 ---
 title: "自托管 AI 编程工作流：2026 年 $6/月 完整 stack"
 description: "7 个组件的自托管 AI 编程 stack，用 $6/月 的基础设施替换掉 $290/月 的 SaaS 订阅（Cursor + Claude Code Pro + Copilot + Replit）。..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - TypeScript

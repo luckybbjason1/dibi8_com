@@ -2,8 +2,8 @@
 title: Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%
 description: 了解Anthropic Financial Services如何帮助投资银行、股票研究和财富管理团队利用Claude AI智能体自动化 pitch. Comprehensive guide covering features, pricing, and best practices for 2026.
   deck、DCF模型和KYC筛查。
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Llm Frameworks

@@ -1,8 +1,8 @@
 ---
 title: "nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,00...
 description: "Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']
 application_domain: LLM Frameworks
 source_version: ''

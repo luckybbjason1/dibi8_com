@@ -1,8 +1,8 @@
 ---
 title: "MCP Server Security Audit 2026: 5 Real Community Server ...
 description: "Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch...."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"

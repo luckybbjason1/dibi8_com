@@ -1,8 +1,8 @@
 ---
 title: "1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test"
 description: "Both claim 1M token context. We loaded a 950K-token codebase into each and measured retrieval quality, latency, cost, and which one actually delivers on the 1M promise vs collapsing in the long tail."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, Long-context LLM]
 application_domain: LLM Frameworks
 source_version: "2026 Q2"

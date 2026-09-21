@@ -1,8 +1,8 @@
 ---
 title: "exo: 내 기기들을 묶어 프런티어 AI를 로컬에서 (45K Stars) — 2026 실전 가이드"
 description: "exo는 여러분의 Mac, PC, 심지어 휴대폰까지 하나의 클러스터로 묶어 프런티어 AI 모델을 로컬에서 실행합니다. GitHub 스타 45,088개, Apache-2.0 라이선스..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드"
 description: "Feast 완벽 가이드 — 가장 널리 사용되는 오픈소스 피처 스토어. 피처 레지스트리, 온라인/오프라인 스토어, 서브세컨드 서빙, Redis/BigQuery 백엔드, 배치 및 실시..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

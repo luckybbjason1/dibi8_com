@@ -1,8 +1,8 @@
 ---
 title: "ds4：2026年开发者正在切换的开源工具 — 完整配置指南"
 description: "ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Curs..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: ["Unknown"]
 application_domain: Dev Utils
 source_version: ''

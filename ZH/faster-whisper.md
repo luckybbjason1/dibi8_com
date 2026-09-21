@@ -1,8 +1,8 @@
 ---
 title: "faster-whisper: 4 倍速语音转文本，23K+ Stars — 2026 年对比 WhisperX...
 description: "faster-whisper（SYSTRAN）通过 CTranslate2 重新实现 OpenAI Whisper，提速 4 倍。涵盖 faster whisper 教程、基准数据、Docker 部署..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

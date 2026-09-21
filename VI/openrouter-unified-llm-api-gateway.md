@@ -1,8 +1,8 @@
 ---
 title: "OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình...
 description: "Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

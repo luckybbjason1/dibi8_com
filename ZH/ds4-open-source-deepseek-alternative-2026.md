@@ -1,8 +1,8 @@
 ---
 title: "ds4 实测 2026：开源 DeepSeek 运行时新选择"
 description: "ds4 是 2026 年最快增长的开源 DeepSeek 兼容 LLM runtime。Apache-2.0 协议、OpenAI API 兼容、跑 DeepSeek V3 / V3.1 / V4 权重..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

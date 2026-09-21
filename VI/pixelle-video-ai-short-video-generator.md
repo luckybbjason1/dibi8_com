@@ -4,8 +4,8 @@ title: "Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động B.
 description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã. Comprehensive guide covering features, pricing, and best practices for 2026.
   nguồn mở. Nhập chủ đề để tự động tạo kịch bản, hình ảnh AI, lời thuyết minh và nhạc
   nền.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''

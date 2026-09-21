@@ -1,8 +1,8 @@
 ---
 title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack...
 description: "Self-hosted multi-modal content stack: faster-whisper (STT) + ChatTTS (dialogue TTS) + Stable Diffus..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

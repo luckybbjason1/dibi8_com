@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI: 159K+ Stars — 2026 완전 설치 가이드"
 description: "Stable Diffusion WebUI (AUTOMATIC1111)는 가장 인기 있는 로컬 AI 이미지 생성 웹 인터페이스입니다. ControlNet, LoRA, ComfyUI ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

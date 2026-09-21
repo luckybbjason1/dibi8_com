@@ -1,8 +1,8 @@
 ---
 title: "Minara Review 2026: The AI Trading Platform on Hyperliqu...
 description: "Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-..."
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
+date: 2026-05-17T00:00:00+08:00
+lastmod: 2026-05-17T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

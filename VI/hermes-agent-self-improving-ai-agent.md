@@ -3,8 +3,8 @@ title: Hermes Agent：AI Agent tự tiến hóa, càng dùng càng hiểu bạn
 description: Hermes Agent là tác nhân AI mã nguồn mở của Nous Research, có vòng lặp. Comprehensive guide covering features, pricing, and best practices for 2026.
   học tập tích hợp — tạo kỹ năng từ kinh nghiệm, cải thiện liên tục, ghi nhớ sở thích
   của bạn.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Python
 - TypeScript

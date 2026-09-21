@@ -1,8 +1,8 @@
 ---
 title: "2025년 최고의 실시간 데이터 스트리밍 도구 비교: Apache Kafka, Flink, Spark...
 description: "실시간 데이터 스트리밍 도구를 비교합니다. Apache Kafka, Flink, Spark Streaming, Redpanda, Pulsar의 특징과 성능을 알아보고 데이터 파이프..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

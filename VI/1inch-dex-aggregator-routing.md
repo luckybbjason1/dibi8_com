@@ -1,8 +1,8 @@
 ---
 title: "1inch-dex-aggregator-routing"
 description: "1inch DEX聚合器2026完全指南：Pathfinder路由、Fusion+无Gas兑换、限价单与SDK实现"
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

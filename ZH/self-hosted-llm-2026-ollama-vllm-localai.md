@@ -1,8 +1,8 @@
 ---
 title: "2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI — 吞吐量、成本与部署全对比"
 description: "在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。"
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: LLM 框架
 source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"

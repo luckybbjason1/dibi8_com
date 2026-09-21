@@ -1,8 +1,8 @@
 ---
 title: "LangChain: 3 Ways to Deploy Production-Ready AI Agents w...
 description: "LangChain (LC) is a Python/JS framework for building LLM-powered applications with 700+ integrations..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

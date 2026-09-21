@@ -1,8 +1,8 @@
 ---
 title: "Dify: Xây dựng AI Agent cấp sản xuất bằng giao diện trực...
 description: "Dify là nền tảng phát triển ứng dụng LLM mã nguồn mở với trình xây dựng workflow trực quan, pipeline..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

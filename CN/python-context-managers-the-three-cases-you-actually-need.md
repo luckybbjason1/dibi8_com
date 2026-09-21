@@ -1,8 +1,8 @@
 ---
 title: "Python Context Managers: The Three Cases You Actually Need"
 description: "Python context managers: the three cases you actually need. Master with. Comprehensive guide coverin..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Ai Tools

@@ -1,8 +1,8 @@
 ---
 title: "Matplotlib vs Seaborn vs Plotly vs Observable: Hướng Dẫn...
 description: "So sánh chi tiết Matplotlib, Seaborn, Plotly và Observable. Bảng tính năng, ví dụ code, hướng dẫn ch..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

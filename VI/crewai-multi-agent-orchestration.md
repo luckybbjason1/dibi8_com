@@ -1,8 +1,8 @@
 ---
 title: "CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự C...
 description: "Hướng dẫn thực hành 2026 về CrewAI — framework Python để xây dựng hệ thống AI đa tác tự với các tác ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "OpenRouter: The Unified LLM API Gateway Connecting 300+ ...
 description: "Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

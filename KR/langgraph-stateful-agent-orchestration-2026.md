@@ -1,8 +1,8 @@
 ---
 title: "LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전...
 description: "LangGraph는 장기 실행, 상태 유지 AI 에이전트용 저수준 오케스트레이션 프레임워크. GitHub 32.6k stars, v1.2.1. 그래프 디자인, 영구 실행, huma..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - PostgreSQL

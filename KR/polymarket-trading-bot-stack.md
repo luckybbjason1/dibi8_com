@@ -1,8 +1,8 @@
 ---
 title: "Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기"
 description: "Polymarket 예측 시장 차익거래 봇의 완전한 기술 스택 심층 분석: 28개 도구, 6개 레이어, 그리고 지연 차익거래로. Comprehensive guide covering..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 - Rust
 - TypeScript

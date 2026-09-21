@@ -1,8 +1,8 @@
 ---
 title: "RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token ...
 description: "RTK (Rust Token Killer) là proxy CLI mã nguồn mở viết bằng Rust, giúp giảm 60-90% lượng token LLM ti..."
-date: 2026-05-14 00:00:00+08:00
-lastmod: 2026-05-14 00:00:00+08:00
+date: 2026-05-14T00:00:00+08:00
+lastmod: 2026-05-14T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

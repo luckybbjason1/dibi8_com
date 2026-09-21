@@ -1,8 +1,8 @@
 ---
 title: "OpenClaw 완벽 가이드: 2026년 최고의 오픈소스 AI 어시스턴트 자체 호스팅 설치 방법｜무료...
 description: "GitHub 362K+ Star을 기록한 OpenClaw의 폭발적 성장 비결을 파헤친다. 오픈소스 AI 어시스턴트 OpenClaw의 아키텍처, 자체 호스팅 배포 전 과정, 다중 플..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

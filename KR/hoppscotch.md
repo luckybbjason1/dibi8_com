@@ -1,8 +1,8 @@
 ---
 title: "Hoppscotch: 79,200 GitHub Stars — Postman, Insomnia, Bru...
 description: "Hoppscotch (HOPP)는 오픈소스 API 개발 생태계입니다. Docker, GitHub Actions, Node.js, Vue.js와 호환됩니다. hoppscotch 튜토..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

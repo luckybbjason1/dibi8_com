@@ -1,8 +1,8 @@
 ---
 title: "nanochat 2026: Andrej Karpathy''s Open-Source "ChatGPT f...
 description: "nanochat by Andrej Karpathy is a single-file, full-stack LLM training pipeline — tokenizer, pretrain..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: [Python, PyTorch, Rust, 'LLM Training']
 application_domain: LLM Frameworks
 source_version: ''

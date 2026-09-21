@@ -1,8 +1,8 @@
 ---
 title: "Các Công Cụ Tạo Video AI Tốt Nhất 2025: So Sánh Sora, Ru...
 description: "Đánh giá chi tiết 6 công cụ tạo video AI hàng đầu 2025: OpenAI Sora, Runway Gen-3 Alpha, Pika 2.0, K..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

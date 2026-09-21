@@ -1,8 +1,8 @@
 ---
 title: "Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南"
 description: "Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

@@ -4,8 +4,8 @@ description: Complete guide to LMSYS FastChat, the open-source platform for trai
 category: llm-frameworks
 tags: ["fastchat", "llm-chatbot", "openai-alternative", "vicuna", "alpaca", "llm-evaluation"]
 slug: fastchat-open-source-llm-chatbot-platform
-date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg
+date: 2026-07-17T00:00:00+00:00
+lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/fastchat-llm-chatbot-platform.jpg
 ---
 
 ## TL;DR

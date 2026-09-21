@@ -1,8 +1,8 @@
 ---
 title: "Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试"
 description: "部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "WhisperX: 22K+ Stars — 生产级ASR部署指南 2026"
 description: "WhisperX 是一个开源ASR工具包，支持词级时间戳和说话人分割。兼容faster-whisper、pyannote.audio和OpenAI Whisper模型。涵盖Docker部署、Pytho..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

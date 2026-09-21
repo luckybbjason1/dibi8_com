@@ -1,8 +1,8 @@
 ---
 title: "Skyvern: Automate Browser Workflows with AI Agents (21K ...
 description: "Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

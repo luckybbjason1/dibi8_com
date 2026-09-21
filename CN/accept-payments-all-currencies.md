@@ -2,8 +2,8 @@
 title: Accept Payments in All Currencies with NowPayments
 description: Accept payments in all currencies with NowPayments. Support 100+ cryptocurrencies. Comprehensive guide covering features, pricing, and best practices for 2026.
   and fiat currencies with low fees and instant settlements.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 application_domain: Data Science
 source_version: ''

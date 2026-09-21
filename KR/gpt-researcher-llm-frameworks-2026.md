@@ -1,8 +1,8 @@
 ---
 title: "GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드"
 description: "GPT Researcher는 어떤 작업이든 웹·로컬 리서치를 수행해 인용이 포함된 보고서를 작성하는 오픈소스 심층 리서치 에이전트입니다. GitHub 스타 27,473개, Apac..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

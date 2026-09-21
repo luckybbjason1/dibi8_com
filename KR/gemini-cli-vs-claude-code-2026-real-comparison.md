@@ -1,8 +1,8 @@
 ---
 title: "Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교"
 description: "Google이 Claude Code와 경쟁할 Gemini CLI를 출시했습니다. 동일한 5가지 워크플로우로 두 도구를 테스트했습니다. Gemini가 이기는 지점(무료 티어, 1M ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
 application_domain: 개발 도구
 source_version: "Gemini CLI 1.0 / Claude Code 1.0"

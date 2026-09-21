@@ -2,8 +2,8 @@
 title: "Pixelle-Video Review: AI Auto Short Video Generator — On...
 description: Pixelle-Video is an AI-powered automatic short video engine. Input a. Comprehensive guide covering features, pricing, and best practices for 2026.
   topic and get a complete video with script, AI images, voiceover, and BGM.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Ai Tools

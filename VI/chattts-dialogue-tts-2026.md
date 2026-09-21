@@ -1,8 +1,8 @@
 ---
 title: "ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cư...
 description: "ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, ..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

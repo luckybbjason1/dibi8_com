@@ -1,8 +1,8 @@
 ---
 title: "2025년 최고의 API 문서 자동 생성 도구 비교: Swagger, Postman Docs, Rea...
 description: "API 문서 자동 생성 도구를 비교합니다. Swagger, Postman Docs, ReadMe, Mintlify, Stoplight, Redocly의 특징, 장단점, 가격을 알아..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

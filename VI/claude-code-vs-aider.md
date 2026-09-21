@@ -1,9 +1,9 @@
 ---
 title: "Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại v...
 description: "So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) ..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
-  draft: false
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
+draft: false
 tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
 categories: ["vs"]
 faqs: - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'

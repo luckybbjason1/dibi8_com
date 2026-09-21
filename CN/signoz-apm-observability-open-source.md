@@ -1,8 +1,8 @@
 ---
 title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...
 description: "Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that rep..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

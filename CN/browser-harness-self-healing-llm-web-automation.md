@@ -2,8 +2,8 @@
 title: Browser Harness：让 LLM 自主操控浏览器的自愈型神器
 description: Browser Harness 是一个自愈合型浏览器控制框架，让 LLM 能够自主完成任何网页任务。11K+ Stars，Python 编写，支持. Comprehensive guide covering features, pricing, and best practices for 2026.
   Playwright 和 Selenium。
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Llm Frameworks

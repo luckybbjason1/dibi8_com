@@ -1,8 +1,8 @@
 ---
 title: "Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh...
 description: "Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthr..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

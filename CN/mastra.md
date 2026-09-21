@@ -1,8 +1,8 @@
 ---
 title: "Mastra: 24K+ Stars — TypeScript AI Framework That Cuts T...
 description: "Mastra is a TypeScript-native AI framework for building AI-powered applications and agents from the ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

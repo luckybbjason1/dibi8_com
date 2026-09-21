@@ -1,9 +1,9 @@
 ---
 title: "Supabase vs Firebase 2026: BaaS nào tốt hơn?"
 description: "So sánh Supabase mã nguồn mở dựa trên Postgres và Firebase NoSQL của Google — database, auth, storag..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
-  draft: false
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
+draft: false
 tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
 categories: ["vs"]
 faqs: - q: 'Supabase hay Firebase rẻ hơn?'

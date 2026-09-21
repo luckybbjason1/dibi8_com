@@ -1,8 +1,8 @@
 ---
 title: "Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn...
 description: "Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

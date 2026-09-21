@@ -1,8 +1,8 @@
 ---
 title: "AutoML Tools Compared: AutoGluon, H2O, TPOT, Auto-sklear...
 description: "Compare top AutoML tools including AutoGluon, H2O AutoML, TPOT, Auto-sklearn, and Google AutoML. Fin..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

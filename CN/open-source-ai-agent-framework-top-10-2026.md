@@ -1,8 +1,8 @@
 ---
 title: "Open Source AI Agent Framework Top 10 (2026): Ranked by ...
 description: "Ten OSS AI agent frameworks ranked by 2026 production adoption: LangGraph, CrewAI, AutoGen, Mastra, ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: LLM Frameworks
 source_version: "2026 Q2"

@@ -1,8 +1,8 @@
 ---
 title: "So Sánh Công Cụ AutoML: Hướng Dẫn AutoGluon, H2O, TPOT, ...
 description: "Đánh giá chi tiết 5 công cụ AutoML hàng đầu: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML. So s..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

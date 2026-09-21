@@ -1,8 +1,8 @@
 ---
 title: "MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn D...
 description: "Xây dựng MCP server từ con số không với hướng dẫn chi tiết. Nắm vững Model Context Protocol của Anth..."
-date: 2026-05-15 00:00:00+08:00
-lastmod: 2026-05-15 00:00:00+08:00
+date: 2026-05-15T00:00:00+08:00
+lastmod: 2026-05-15T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

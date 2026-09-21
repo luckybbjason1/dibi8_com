@@ -1,8 +1,8 @@
 ---
 title: "repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
 description: "repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: "v0.3"

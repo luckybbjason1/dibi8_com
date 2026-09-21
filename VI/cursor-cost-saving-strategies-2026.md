@@ -1,8 +1,8 @@
 ---
 title: "Chiến lược tiết kiệm chi phí Cursor 2026: Sau khi đổi sa...
 description: "Cursor đã đổi giá năm 2025 — người dùng Pro mất khoảng 55% mức sử dụng hiệu dụng với cùng mức giá. Đ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: "Cursor 2026.05 / Sau khi đổi sang credit"

@@ -1,8 +1,8 @@
 ---
 title: "AI Search Tools Compared: Perplexity vs Google Gemini vs...
 description: "Compare the top AI search engines of 2025 — Perplexity, Google Gemini, ChatGPT Search, Copilot, and ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

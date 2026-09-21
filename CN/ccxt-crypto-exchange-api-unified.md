@@ -1,8 +1,8 @@
 ---
 title: "CCXT 2026: The Universal Crypto Exchange API Unifying 10...
 description: "Master CCXT, the #1 open-source crypto trading library. Connect to 100+ exchanges with one unified A..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

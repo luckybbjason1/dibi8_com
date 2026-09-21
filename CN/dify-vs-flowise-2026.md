@@ -1,9 +1,9 @@
 ---
 title: "Dify vs Flowise in 2026: Full-Stack AI App Platform vs L...
 description: "Side-by-side comparison of Dify (enterprise RAG, multi-model, prompt management, self-hostable) and ..."
-date: 2026-06-07 00:00:00+08:00
-lastmod: 2026-06-07 00:00:00+08:00
-  draft: false
+date: 2026-06-07T00:00:00+08:00
+lastmod: 2026-06-07T00:00:00+08:00
+draft: false
 tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]
 categories: ["vs"]
 faqs: - q: 'What is the difference between Dify and Flowise?'

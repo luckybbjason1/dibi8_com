@@ -1,8 +1,8 @@
 ---
 title: "Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO...
 description: "Bộ công cụ miễn phí hoàn chỉnh cho SEO trong kỷ nguyên AI: trình tạo llms.txt + robots.txt cho AI-cr..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - HTML
   - JavaScript
   - JSON-LD

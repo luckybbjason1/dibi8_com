@@ -1,8 +1,8 @@
 ---
 title: "Puppeteer: 94,300 GitHub Stars — Production Browser Auto...
 description: "Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub A..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

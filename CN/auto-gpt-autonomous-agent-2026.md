@@ -1,8 +1,8 @@
 ---
 title: "Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame...
 description: "A complete 2026 guide to Auto-GPT autonomous agents. Fresh setup, agent protocols, web browsing, mul..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

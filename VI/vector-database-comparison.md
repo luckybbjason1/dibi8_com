@@ -1,8 +1,8 @@
 ---
 title: "So Sánh Vector Database 2025: Pinecone vs Weaviate vs Ch...
 description: "So sánh chi tiết 4 vector database hàng đầu 2025: Pinecone, Weaviate, Chroma, Milvus. Bảng benchmark..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

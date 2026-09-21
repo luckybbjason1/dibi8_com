@@ -1,8 +1,8 @@
 ---
 title: "AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Tradit...
 description: "The complete free toolkit for SEO in the AI era: llms.txt generator + AI-crawler robots.txt + meta t..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - HTML
   - JavaScript
   - JSON-LD

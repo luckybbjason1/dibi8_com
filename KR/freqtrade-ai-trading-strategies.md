@@ -1,8 +1,8 @@
 ---
 title: "Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
 description: "FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

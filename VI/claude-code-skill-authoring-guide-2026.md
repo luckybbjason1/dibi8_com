@@ -1,8 +1,8 @@
 ---
 title: "Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà C...
 description: "Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khi..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''

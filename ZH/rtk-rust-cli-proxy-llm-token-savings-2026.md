@@ -1,8 +1,8 @@
 ---
 title: "rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (...
 description: "rtk 是 Rust 单二进制 CLI 代理，自动过滤压缩命令输出，降低 60-90% LLM token 消耗。支持 Claude Code / Cursor / GitHub Copilot / ..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
 source_version: "0.28.2"

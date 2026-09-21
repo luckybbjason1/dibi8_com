@@ -1,8 +1,8 @@
 ---
 title: "Promptfoo: LLM 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드"
 description: "Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 오픈소스 CLI이자 라이브러리입니다. 간단한 선언형 설정만으로 GPT, Claude, Gemini, DeepSeek를 비교..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

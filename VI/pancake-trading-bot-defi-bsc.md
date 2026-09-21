@@ -1,8 +1,8 @@
 ---
 title: "PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
 description: "Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiế..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

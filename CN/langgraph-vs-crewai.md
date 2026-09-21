@@ -1,9 +1,9 @@
 ---
 title: "LangGraph vs CrewAI in 2026: Control-First State Graphs ...
 description: "Side-by-side breakdown of LangGraph (low-level stateful agent graphs) and CrewAI (high-level role-ba..."
-date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00
-  draft: false
+date: 2026-06-06T00:00:00+08:00
+lastmod: 2026-06-06T00:00:00+08:00
+draft: false
 tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]
 categories: ["vs"]
 faqs: - q: 'Should I use LangGraph or CrewAI?'

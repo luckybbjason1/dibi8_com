@@ -1,8 +1,8 @@
 ---
 title: "MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南"
 description: "MLflow 在 ML 实验追踪、模型注册表和模型服务方面的完整指南。涵盖设置、Python SDK、生产部署和 10,000+ 实验的基准测试。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Đánh giá CodeGraph: Đồ thị mã được pre-index giúp Claude...
 description: "CodeGraph (20.2K+ stars trên GitHub) là công cụ open-source pre-index đồ thị tri thức mã nguồn cho C..."
-date: 2026-05-23 00:00:00+08:00
-lastmod: 2026-05-23 00:00:00+08:00
+date: 2026-05-23T00:00:00+08:00
+lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: "v0.9.3"

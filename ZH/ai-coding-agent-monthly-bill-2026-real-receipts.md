@@ -1,8 +1,8 @@
 ---
 title: "AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro...
 description: "实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: "May 2026 30-day window"

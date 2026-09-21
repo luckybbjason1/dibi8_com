@@ -1,8 +1,8 @@
 ---
 title: Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元
 description: 深度解析Polymarket预测市场套利机器人的完整技术栈：28个工具、6个层级，以及如何利用延迟套利赚取第一桶金。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 - Rust
 - TypeScript

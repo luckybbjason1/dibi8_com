@@ -2,8 +2,8 @@
 title: "Đánh giá Scrapling: Một cách tiếp cận nhanh hơn, lén lút...
   web Python'
 description: "Đánh giá Scrapling: thư viện quét web ẩn Python. Vượt qua biện pháp. Comprehensive guide covering fe..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Java
 - JavaScript
 - Python

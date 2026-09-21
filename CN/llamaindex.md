@@ -1,8 +1,8 @@
 ---
 title: "LlamaIndex: 49K+ Stars — Production RAG Deployment Guide...
 description: "LlamaIndex is a data framework for building production RAG systems with LLMs. Supports OpenAI, Anthr..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
 description: "Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro,..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
 application_domain: Dev Utils
 source_version: "Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0"

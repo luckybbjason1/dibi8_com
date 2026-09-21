@@ -1,8 +1,8 @@
 ---
 title: "Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd...
 description: "Hướng dẫn đầy đủ về công cụ tìm kiếm và thay thế code: so sánh grep, ack, ag, ripgrep, fzf, sd. Bảng..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

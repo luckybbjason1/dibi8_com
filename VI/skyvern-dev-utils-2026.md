@@ -1,8 +1,8 @@
 ---
 title: "Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
 description: "Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (2..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

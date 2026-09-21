@@ -1,8 +1,8 @@
 ---
 title: "RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
 description: "Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
 source_version: "2026 Q2 pricing"

@@ -1,8 +1,8 @@
 ---
 title: "rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
 description: "rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claud..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
 application_domain: Llm Frameworks
 source_version: "0.28.2"

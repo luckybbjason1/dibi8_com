@@ -1,8 +1,8 @@
 ---
 title: "CC Switch Review: The Missing Control Center for AI Codi...
 description: "CC Switch is an open-source cross-platform desktop app that unifies Claude Code, Codex, Gemini CLI, ..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

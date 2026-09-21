@@ -1,8 +1,8 @@
 ---
 title: "act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hư...
 description: "act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thíc..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

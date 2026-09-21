@@ -1,8 +1,8 @@
 ---
 title: "Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu v...
 description: "Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenA..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

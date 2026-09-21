@@ -1,8 +1,8 @@
 ---
 title: "ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制"
 description: "ChatTTS 是专为对话（不是朗读）打造的开源 TTS。GitHub 39.3k 星，最低 4 GB VRAM，RTX 4090 上 RTF 0.3，含笑声 / 停顿的精细 prosody 控制。2..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

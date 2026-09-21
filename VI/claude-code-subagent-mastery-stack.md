@@ -1,8 +1,8 @@
 ---
 title: "Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
 description: "Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + ..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - Claude Code
   - Agent SDK
   - MCP

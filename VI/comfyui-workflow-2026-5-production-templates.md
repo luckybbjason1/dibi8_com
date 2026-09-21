@@ -1,8 +1,8 @@
 ---
 title: "ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
 description: "ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, g..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: Công cụ AI
 source_version: "ComfyUI 2026.05"

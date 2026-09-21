@@ -1,8 +1,8 @@
 ---
 title: "Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南"
 description: "Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

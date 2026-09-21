@@ -1,8 +1,8 @@
 ---
 title: "CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướn...
 description: "CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tươ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

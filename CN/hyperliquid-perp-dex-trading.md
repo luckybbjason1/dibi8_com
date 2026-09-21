@@ -1,8 +1,8 @@
 ---
 title: "Hyperliquid 2026: The On-Chain Perpetual DEX Processing ...
 description: "Comprehensive guide to Hyperliquid, the fully on-chain perpetual DEX processing $2B+ daily volume wi..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

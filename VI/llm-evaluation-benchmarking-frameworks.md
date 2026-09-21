@@ -1,8 +1,8 @@
 ---
 title: "Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh Eleuth...
 description: "Khám phá các framework đánh giá và chuẩn hóa LLM hàng đầu 2025. So sánh EleutherAI LM Eval Harness, ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

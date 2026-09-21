@@ -2,8 +2,8 @@
 title: "Polymarket Agents: Polymarket 예측 시장용 AI 자동 거래 봇 구축"
 description: Polymarket Agents는 Polymarket 예측 시장에서 AI가 자율적으로 거래하는 에이전트를 구축하기 위한 오픈소스. Comprehensive guide covering features, pricing, and best practices for 2026.
   개발자 프레임워크입니다.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Python
 - TypeScript

@@ -1,8 +1,8 @@
 ---
 title: "AI-SEO & GEO 툴킷 스택 2026: 전통 SEO + 생성형 엔진 최적화를 위한 무료 도구 6선"
 description: "AI 시대 SEO를 위한 완벽한 무료 툴킷: llms.txt 생성기 + AI 크롤러용 robots.txt + 메타 태그 + Schema.org JSON-LD + hreflang +..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - HTML
   - JavaScript
   - JSON-LD

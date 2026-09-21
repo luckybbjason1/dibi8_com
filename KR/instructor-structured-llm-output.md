@@ -1,8 +1,8 @@
 ---
 title: "Instructor: LLM이 100% 유효한 JSON을 출력하도록 강제하는 Python 라이브러리 ...
 description: "일관성 없는 LLM 출력과의 투쟁을 멈추세요. Instructor가 Pydantic 모델을 사용하여 유효하고 타입 안전한 JSON 응답을 보장하기 위해 OpenAI 클라이언트를 패..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

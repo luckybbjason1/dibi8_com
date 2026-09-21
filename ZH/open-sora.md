@@ -1,8 +1,8 @@
 ---
 title: "Open-Sora: 29K+ Stars — 开源视频生成完整安装指南 2026"
 description: "Open-Sora 是拥有 29K+ GitHub stars 的开源视频生成框架。涵盖 Docker 安装、ComfyUI 集成、Stable Diffusion 兼容、生产部署、与 Hunyuan..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

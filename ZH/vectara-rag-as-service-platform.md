@@ -1,8 +1,8 @@
 ---
 title: "Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试"
 description: "Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

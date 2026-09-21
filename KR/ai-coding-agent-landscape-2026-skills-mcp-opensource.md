@@ -1,8 +1,8 @@
 ---
 title: "2026년 AI 코딩 에이전트 혁명: 클로드 코드 스킬 생태계 폭발, MCP 표준화, 그리고 오픈소스...
 description: "2026년 AI 코딩 보조 도구 시장이 중대 기로에 섰다. 클로드 코드 스킬이 3,000개를 돌파하고 MCP 프로토콜이 표준이 되는 가운데, 오픈소스 대안 OpenCode와 헤르메..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

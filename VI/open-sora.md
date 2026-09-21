@@ -1,8 +1,8 @@
 ---
 title: "Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
 description: "Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

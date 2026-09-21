@@ -1,8 +1,8 @@
 ---
 title: "Hướng Dẫn Toàn Diện Ollama 2025: Chạy LLM Local Trên Mọi...
 description: "Hướng dẫn chi tiết Ollama 2025: cài đặt trên macOS/Windows/Linux/Docker, chạy Llama 3 và Mistral loc..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

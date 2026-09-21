@@ -1,8 +1,8 @@
 ---
 title: "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
 description: "Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - Docker

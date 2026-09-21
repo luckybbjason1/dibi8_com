@@ -1,8 +1,8 @@
 ---
 title: "Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
 description: "Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent,..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
 application_domain: LLM Frameworks
 source_version: "2026 Q2"

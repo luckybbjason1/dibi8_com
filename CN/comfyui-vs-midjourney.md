@@ -1,8 +1,8 @@
 ---
 title: "Midjourney Alternative (2026): Why ComfyUI is the Free, ...
 description: "Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source. Comprehensive guide covering fe..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''

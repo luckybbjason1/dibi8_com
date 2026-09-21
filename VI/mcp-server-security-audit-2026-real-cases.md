@@ -1,8 +1,8 @@
 ---
 title: "Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộn...
 description: "Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, B..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"

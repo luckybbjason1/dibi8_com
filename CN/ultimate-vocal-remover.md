@@ -1,8 +1,8 @@
 ---
 title: "Ultimate Vocal Remover: 24.7K+ Stars — Complete Setup Gu...
 description: "Ultimate Vocal Remover (UVR) is a GUI application for vocal removal using deep neural networks. Comp..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Aider: 45K+ Stars — Terminal AI Pair Programming vs Clau...
 description: "Aider is AI pair programming in your terminal that edits code in your local git repository. Supports..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

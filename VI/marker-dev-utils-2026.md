@@ -1,8 +1,8 @@
 ---
 title: "Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
 description: "Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML ..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

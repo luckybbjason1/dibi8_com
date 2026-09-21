@@ -1,8 +1,8 @@
 ---
 title: "Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệ...
 description: "Năm 2026, các doanh nghiệp phân hóa thành ba phe: AI-cho phép / AI-hạn chế / AI-cấm. Hướng dẫn thực ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Chính sách', 'Tuân thủ', 'Claude Code', Cursor]
 application_domain: Công cụ phát triển
 source_version: "2026 Q2"

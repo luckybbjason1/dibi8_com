@@ -1,8 +1,8 @@
 ---
 title: "Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau V...
 description: "Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

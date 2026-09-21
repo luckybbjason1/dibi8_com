@@ -1,8 +1,8 @@
 ---
 title: "Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
 description: "Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
 application_domain: LLM Frameworks
 source_version: ''

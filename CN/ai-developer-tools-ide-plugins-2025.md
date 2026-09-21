@@ -1,8 +1,8 @@
 ---
 title: "Best AI Developer Tools & IDE Plugins 2025: Beyond Code ...
 description: "Discover the best AI developer tools and IDE plugins of 2025 — GitHub Copilot, Cursor, Sourcegraph C..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "OpenHands: 74K+ Stars — 코드를 작성하고 실행하는 AI 소프트웨어 엔지니어 (202...
 description: "OpenHands는 소프트웨어 엔지니어링 에이전트로 작동하는 AI 기반 개발 플랫폼입니다. VS Code, Docker, GitHub, GitLab, Claude, OpenAI와 ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

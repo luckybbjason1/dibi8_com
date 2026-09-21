@@ -1,8 +1,8 @@
 ---
 title: "The Knowledge Base Stack 2026: Build Your "Second Brain"...
 description: "A 5-component self-hosted knowledge base stack for personal or team use. AnythingLLM (UI + RAG) + RA..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - PostgreSQL

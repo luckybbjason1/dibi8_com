@@ -1,8 +1,8 @@
 ---
 title: "Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc,...
 description: "Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự ..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Phát triển dựa trên AI', 'Lập trình bằng ngôn ngữ tự nhiên']
 application_domain: Công cụ lập trình
 source_version: "2026 Q2"

@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成...
 description: "AUTOMATIC1111 stable-diffusion-webui 是 163k 星的自托管 SD/SDXL 图像生成事实标准 UI。2026 完整安装+生产指南：txt2img / img2i..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, Gradio, CUDA]
 application_domain: Ai Tools
 source_version: ''

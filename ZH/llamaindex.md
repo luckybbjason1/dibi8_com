@@ -1,8 +1,8 @@
 ---
 title: "LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026"
 description: "LlamaIndex 是构建生产级 RAG 系统的数据框架，支持 OpenAI、Anthropic、Ollama、Qdrant、Weaviate、Chroma。涵盖 Docker 部署、查询引擎、Ag..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

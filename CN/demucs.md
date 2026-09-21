@@ -1,8 +1,8 @@
 ---
 title: "Demucs: Music Source Separation with 10K+ Stars — Compar...
 description: "Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ulti..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

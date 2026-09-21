@@ -1,8 +1,8 @@
 ---
 title: "Unsloth 2026: 64.9k-Star Fast LLM Fine-Tuning — 2× Speed...
 description: "Unsloth fine-tunes LLMs 2× faster with 70% less VRAM than HuggingFace TRL baselines. 64.9k GitHub st..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

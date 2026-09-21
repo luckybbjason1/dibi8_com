@@ -1,8 +1,8 @@
 ---
 title: "Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
 description: "Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Promethe..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

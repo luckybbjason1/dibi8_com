@@ -1,8 +1,8 @@
 ---
 title: "Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南"
 description: "Flowise 是一个开源可视化 LLM 工作流与 AI Agent 构建工具。支持 LangChain、Ollama、OpenAI、Qdrant、Weaviate、Chroma 等 200+ 集成。..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

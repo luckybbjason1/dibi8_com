@@ -1,8 +1,8 @@
 ---
 title: "CopilotKit: 31K+ Stars — React 또는 Angular 앱에 AI Copilot ...
 description: "CopilotKit은 인앱 AI Copilot과 생성형 UI를 위한 오픈소스 프론트엔드 스택입니다. 사전 제작 컴포넌트, useCopilotAction Hooks, 프로덕션 배포로..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

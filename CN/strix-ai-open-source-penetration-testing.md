@@ -1,8 +1,8 @@
 ---
 title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
 description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerabilit..."
-date: 2026-07-03 09:00:00+09:00
-lastmod: 2026-07-03 09:00:00+09:00
+date: 2026-07-03T09:00:00+09:00
+lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
 category: dev-utils
 tags: ["security", "penetration-testing", "ai-agents", "vulnerability-scanning", "open-source"]

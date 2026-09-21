@@ -1,8 +1,8 @@
 ---
 title: "Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...
 description: "Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

@@ -2,8 +2,8 @@
 title: "Ladybird: Truly Independent Web Browser — A New Era of B...
 description: Discover Ladybird, the truly independent web browser built from scratch.. Comprehensive guide covering features, pricing, and best practices for 2026.
   No Chrome dependencies, no corporate influence, pure open source.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
 - Docker
 - Go

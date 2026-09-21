@@ -1,8 +1,8 @@
 ---
 title: "Qdrant: The Rust-Powered Vector Database Handling 1M+ Ve...
 description: "Deploy Qdrant vector database for production similarity search. Complete guide to HNSW indexing, pay..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

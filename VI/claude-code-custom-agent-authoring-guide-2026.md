@@ -1,8 +1,8 @@
 ---
 title: "Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
 description: "Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế sys..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
 application_domain: LLM Frameworks
 source_version: ''

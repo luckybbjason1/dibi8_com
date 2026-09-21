@@ -1,8 +1,8 @@
 ---
 title: "ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종"
 description: "2026년 ComfyUI는 GitHub 스타 10.6만 개를 돌파했습니다. 초보자 친화적 셋업 가이드, 2026년 모델 추천, 그리고 곧바로 실무에 투입 가능한 워크플로 템플릿 5..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
 application_domain: AI 도구
 source_version: "ComfyUI 2026.05"

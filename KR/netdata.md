@@ -1,8 +1,8 @@
 ---
 title: "Netdata: 78K+ Star 실시간 모니터링 — 2026 성능 튜닝 가이드"
 description: "Netdata (ND)는 초당 메트릭과 시각화를 제공하는 고성능 실시간 모니터링 에이전트입니다. Docker, Kubernetes, Prometheus, Grafana와 호환됩니다..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

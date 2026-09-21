@@ -1,8 +1,8 @@
 ---
 title: "ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại ...
 description: "ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

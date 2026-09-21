@@ -1,8 +1,8 @@
 ---
 title: "Dify: Build Production-Grade AI Agents Visually in 5 Min...
 description: "Dify is an open-source LLM application development platform with visual workflow builder, RAG pipeli..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

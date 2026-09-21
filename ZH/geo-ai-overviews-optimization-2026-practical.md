@@ -1,8 +1,8 @@
 ---
 title: "GEO / AI Overviews 优化 2026：来自真实站点数据的实战指南"
 description: "生成式引擎优化（GEO）就是新的 SEO。如何针对 Google AI Overviews、ChatGPT Search 和 Perplexity 引用进行优化。来自 dibi8.com 实战优化的真..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: 开发工具
 source_version: "2026 Q2"

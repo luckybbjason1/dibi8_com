@@ -1,8 +1,8 @@
 ---
 title: "n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약"
 description: "n8n(fair-code)은 네이티브 AI 기능과 400+ 통합을 갖춘 워크플로 자동화 플랫폼이다. Claude Code, OpenAI, Anthropic, Slack, Disco..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

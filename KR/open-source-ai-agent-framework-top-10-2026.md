@@ -1,8 +1,8 @@
 ---
 title: "오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹"
 description: "2026년 프로덕션 채택률 기준 10대 오픈소스 AI 에이전트 프레임워크: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, Open..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: LLM 프레임워크
 source_version: "2026 Q2"

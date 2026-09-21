@@ -1,8 +1,8 @@
 ---
 title: "WhisperX: 22K+ Stars — Production ASR Setup Guide 2026"
 description: "WhisperX is an open-source ASR toolkit with word-level timestamps and speaker diarization. Compatibl..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

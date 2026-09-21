@@ -1,8 +1,8 @@
 ---
 title: "Subagent vs MCP Server vs Skill: When to Build Each Clau...
 description: "Claude Code has three extension points — skills, subagents, and MCP servers — and they solve differe..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
 application_domain: LLM Frameworks
 source_version: ''

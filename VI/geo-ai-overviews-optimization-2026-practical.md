@@ -1,8 +1,8 @@
 ---
 title: "Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ ...
 description: "Tối ưu hóa Engine Sinh (GEO) chính là SEO mới. Cách tối ưu cho Google AI Overviews, ChatGPT Search v..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
 application_domain: Công cụ dev
 source_version: "2026 Q2"

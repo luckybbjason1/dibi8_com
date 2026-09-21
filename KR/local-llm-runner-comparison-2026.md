@@ -1,8 +1,8 @@
 ---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: 정직한 로컬 LL...
 description: "2026년 중요한 4가지 로컬 LLM 러너 직접 비교. 실제 수치: Ollama (137k 별) 가장 쉬움, LM Studio 가장 예쁜 UI, llama.cpp (112k) 밑의..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, C++, CUDA, Metal]
 application_domain: Llm Frameworks
 source_version: ''

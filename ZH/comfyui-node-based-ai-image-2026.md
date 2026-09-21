@@ -1,8 +1,8 @@
 ---
 title: "ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南"
 description: "ComfyUI 是 114k 星节点式可视化工作流引擎，支持 SD/SDXL/Flux/Wan/Hunyuan 等。支持图像、视频、音频、3D 生成。2026 完整安装指南：节点基础、workflow..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
 application_domain: Ai Tools
 source_version: ''

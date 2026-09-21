@@ -1,8 +1,8 @@
 ---
 title: "Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南"
 description: "Apache Superset 2026 完整指南 — 5分钟内通过Docker安装，连接30多个数据源，构建50多种图表类型，并部署具有基于角色的访问控制的生产级仪表板。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

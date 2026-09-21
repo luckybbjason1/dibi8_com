@@ -1,8 +1,8 @@
 ---
 title: "Marker: PDF, DOCX, EPUB를 Markdown/JSON으로 빠르게 변환 — 2026 실...
 description: "Marker(datalab-to/marker)는 PDF, DOCX, EPUB 등 문서를 Markdown, JSON, HTML, chunks로 빠르고 정확하게 변환합니다. GitHu..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

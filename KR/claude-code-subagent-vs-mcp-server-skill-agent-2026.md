@@ -1,8 +1,8 @@
 ---
 title: "서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
 description: "Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
 application_domain: LLM Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pi...
 description: "Hướng dẫn toàn diện về ZenML — framework MLOps mã nguồn mở kết nối 20+ công cụ thành pipeline ML thố..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

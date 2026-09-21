@@ -11,8 +11,8 @@ tags: - comfyui
 - visual-programming
 category: ai-tools
 featureImage: /images/articles/comfyui-workflows.jpg
-date: 2026-07-16 00:00:00+00:00
-lastmod: 2026-07-16 00:00:00+00:00slug: comfyui-workflows-complete-guide---
+date: 2026-07-16T00:00:00+00:00
+lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide---
 
 
 ## TL;DR

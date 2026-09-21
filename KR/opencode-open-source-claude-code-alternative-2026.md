@@ -1,8 +1,8 @@
 ---
 title: "OpenCode 완벽 가이드: 2026년 개발자 필수 AI 코딩 에이전트, Claude Code 대체...
 description: "GitHub 16만 스타를 돌파한 OpenCode는 75개 이상 LLM 제공업체를 지원하는 무료 오픈소스 AI 코딩 에이전트입니다. 터미널 기반 설치부터 멀티 모델 전략, 기업용 ..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

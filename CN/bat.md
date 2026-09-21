@@ -1,8 +1,8 @@
 ---
 title: "bat: Syntax-Highlighting cat Clone with 58K+ Stars — Com...
 description: "bat is a cat(1) clone with syntax highlighting and Git integration. Compatible with Rust, Git, Homeb..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

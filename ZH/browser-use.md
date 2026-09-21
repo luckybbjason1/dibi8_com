@@ -1,8 +1,8 @@
 ---
 title: "Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战"
 description: "Browser Use 是一款开源 Python 框架，通过 Playwright 连接 LLM 与真实浏览器。支持 OpenAI、Anthropic、Gemini 及本地模型。涵盖安装配置、WebV..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

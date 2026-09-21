@@ -1,8 +1,8 @@
 ---
 title: "ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh...
 description: "ComfyUI là engine workflow trực quan dựa node 114k sao cho SD/SDXL/Flux/Wan/Hunyuan và hơn nữa. Hỗ t..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
 application_domain: Ai Tools
 source_version: ''

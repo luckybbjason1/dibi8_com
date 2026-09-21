@@ -1,8 +1,8 @@
 ---
 title: "Bảng Xếp Hạng LLM Mã Nguồn Mở 2025: Llama, Mistral, Qwen...
 description: "Bảng xếp hạng và hướng dẫn chọn LLM mã nguồn mở tốt nhất 2025. So sánh Llama 3, Mistral, Qwen, DeepS..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

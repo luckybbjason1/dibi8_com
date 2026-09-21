@@ -1,8 +1,8 @@
 ---
 title: "Flowise: The Low-Code AI Workflow Builder Deploying Lang...
 description: "Complete 2026 guide to Flowise — the open-source low-code AI workflow builder with 100+ integrations..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

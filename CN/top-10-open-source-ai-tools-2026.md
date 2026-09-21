@@ -1,8 +1,8 @@
 ---
 title: Top 10 Open-Source AI Tools for Developers in 2026 (Free ...
 description: Top 10 Open-Source AI Tools for Developers in 2026 (Free Alternatives). Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Go
 - JavaScript

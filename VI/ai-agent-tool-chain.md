@@ -1,8 +1,8 @@
 ---
 title: "AI Agent Tool Chain 2026: Stack 6 Thành Phần Để Xây Agen...
 description: "Stack AI agent production hoàn chỉnh: LangGraph cho orchestration có trạng thái + MCP servers cho to..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - Docker

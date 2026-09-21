@@ -3,8 +3,8 @@ title: "Open Codesign: The Open-Source Claude Design Alternative...
 description: Discover Open Codesign, the MIT-licensed open-source alternative to Claude. Comprehensive guide covering features, pricing, and best practices for 2026.
   Design. Multi-model AI design tool with BYOK, local-first architecture, and instant
   prototype generation from natural language prompts.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - JavaScript
 - Rust

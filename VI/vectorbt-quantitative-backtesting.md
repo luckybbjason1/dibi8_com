@@ -1,8 +1,8 @@
 ---
 title: "VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh X...
 description: "Làm chủ VectorBT để backtest quantitative bằng Python. Xây dựng, kiểm thử và tối ưu chiến lược giao ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

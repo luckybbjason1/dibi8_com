@@ -1,8 +1,8 @@
 ---
 title: "Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Li...
 description: "Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

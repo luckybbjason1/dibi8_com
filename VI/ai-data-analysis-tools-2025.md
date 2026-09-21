@@ -1,8 +1,8 @@
 ---
 title: "Các Công Cụ Phân Tích Dữ Liệu AI Tốt Nhất 2025: ChatGPT,...
 description: "Khám phá 6 công cụ phân tích dữ liệu AI hàng đầu 2025: ChatGPT Advanced Data Analysis, Julius AI, Ta..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

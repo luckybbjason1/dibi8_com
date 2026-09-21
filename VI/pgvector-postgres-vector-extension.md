@@ -1,8 +1,8 @@
 ---
 title: "pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vecto...
 description: "Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu n..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

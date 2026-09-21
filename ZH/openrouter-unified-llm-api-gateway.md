@@ -1,8 +1,8 @@
 ---
 title: "OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南"
 description: "OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

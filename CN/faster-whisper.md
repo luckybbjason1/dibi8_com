@@ -1,8 +1,8 @@
 ---
 title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
 description: "faster-whisper (SYSTRAN) reimplements OpenAI Whisper via CTranslate2 for 4x speedup. Covers faster w..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

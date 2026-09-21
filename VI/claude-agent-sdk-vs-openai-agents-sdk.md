@@ -1,9 +1,9 @@
 ---
 title: "Claude Agent SDK vs OpenAI Agents SDK năm 2026: Nên xây ...
 description: "Phân tích song song hai SDK agent hàng đầu — kiến trúc (hooks+subagents vs handoffs+guardrails), côn..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
-  draft: false
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
+draft: false
 tags: ["claude-agent-sdk", "openai-agents-sdk", "ai-agents", "comparison", "agent-sdk"]
 categories: ["vs"]
 faqs: - q: 'Sự khác biệt cốt lõi về kiến trúc giữa Claude Agent SDK và OpenAI Agents SDK là gì?'

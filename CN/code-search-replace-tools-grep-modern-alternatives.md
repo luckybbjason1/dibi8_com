@@ -1,8 +1,8 @@
 ---
 title: "Code Search & Replace Tools: From grep to ripgrep, sd, a...
 description: "Explore modern code search tools from grep to ripgrep, fzf, sd, and Sourcegraph. Benchmarks, workflo..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：...
 description: "你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
 application_domain: LLM Frameworks
 source_version: ''

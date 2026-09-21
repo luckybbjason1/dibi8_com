@@ -1,8 +1,8 @@
 ---
 title: "2024년 최고의 Jupyter Notebook 대안 비교: JupyterLab vs Google C...
 description: "Jupyter Notebook 대안 도구들을 상세 비교합니다. JupyterLab, Google Colab, Deepnote, Hex의 특징, 가격, 협업 기능을 분석하고 사용 목..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

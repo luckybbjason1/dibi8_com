@@ -1,8 +1,8 @@
 ---
 title: "AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor ...
 description: "Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: "May 2026 30-day window"

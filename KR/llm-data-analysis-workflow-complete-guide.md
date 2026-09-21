@@ -1,8 +1,8 @@
 ---
 title: "LLM을 활용한 데이터 분석 완벽 워크플로우: PandasAI, Code Interpreter 및 O...
 description: "LLM 기반 데이터 분석 도구 PandasAI, ChatGPT Code Interpreter, OpenAI API의 실전 활용법을 알아봅니다. 자연어로 데이터를 분석하고 시각화하는..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

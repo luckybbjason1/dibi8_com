@@ -1,8 +1,8 @@
 ---
 title: "RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor...
 description: "When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-ta..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
 application_domain: LLM Frameworks
 source_version: "2026 Q2 pricing"

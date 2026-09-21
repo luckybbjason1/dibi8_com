@@ -1,8 +1,8 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026"
 description: "Prometheus(Prom)는 오픈소스 모니터링 시스템 및 시계열 데이터베이스입니다. Docker, Kubernetes, Grafana, Alertmanager와 호환됩니다. 설..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Ollama: 137K+ Stars — Run LLMs Locally with One Command,...
 description: "Ollama is the simplest way to run Llama, DeepSeek, Mistral, and other LLMs locally. Compatible with ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

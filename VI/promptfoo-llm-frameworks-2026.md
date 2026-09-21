@@ -1,8 +1,8 @@
 ---
 title: "Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của ...
 description: "Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu h..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

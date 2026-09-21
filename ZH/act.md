@@ -1,8 +1,8 @@
 ---
 title: "act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 ...
 description: "act (nektos/act) 是一个使用 Docker 容器在本地运行 GitHub Actions 工作流的 CLI 工具。兼容 Docker、GitHub Actions、Go 和 VS Co..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

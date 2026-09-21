@@ -1,8 +1,8 @@
 ---
 title: "Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
 description: "Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, Cr..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
 application_domain: Framework LLM
 source_version: "2026 Q2"

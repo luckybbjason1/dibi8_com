@@ -1,8 +1,8 @@
 ---
 title: "Các Công Cụ Và Framework Xây Dựng Đồ Thị Tri Thức Tốt Nh...
 description: "So sánh chi tiết các công cụ và framework xây dựng đồ thị tri thức hàng đầu năm 2025. Tìm hiểu Neo4j..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

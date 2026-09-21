@@ -1,8 +1,8 @@
 ---
 title: "Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao...
 description: "Axolotl là framework fine-tuning LLM mã nguồn mở với config YAML đơn cho full / LoRA / QLoRA / DPO /..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "MLflow vs Weights & Biases vs Neptune: MLOps Experiment ...
 description: "Compare MLflow, Weights & Biases, and Neptune for MLOps experiment tracking. Pricing, features, depl..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

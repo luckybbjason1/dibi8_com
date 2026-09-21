@@ -1,8 +1,8 @@
 ---
 title: "Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter"
 description: "Demucs 是 Meta AI 开发的混合频谱图和波形域源分离模型。兼容 Ultimate Vocal Remover、RVC、GPT-SoVITS。涵盖 demucs 教程、demucs vs u..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

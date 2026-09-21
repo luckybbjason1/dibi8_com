@@ -1,8 +1,8 @@
 ---
 title: "Docmost 2026: Phương án thay thế Notion mã nguồn mở cho ...
 description: "Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian th..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

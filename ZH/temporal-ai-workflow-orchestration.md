@@ -6,7 +6,7 @@ category: dev-utils
 featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
-  draft: false
+draft: false
 slug: temporal-ai-workflow-orchestration
 -CN---
 

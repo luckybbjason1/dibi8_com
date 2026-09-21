@@ -1,8 +1,8 @@
 ---
 title: "MLflow vs Weights & Biases vs Neptune: Hướng Dẫn Chọn Nề...
 description: "So sánh chi tiết MLflow, Weights & Biases và Neptune - 3 nền tảng theo dõi thử nghiệm MLOps hàng đầu..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

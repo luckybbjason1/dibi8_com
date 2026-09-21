@@ -1,8 +1,8 @@
 ---
 title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
 description: "Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clea..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

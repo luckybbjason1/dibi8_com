@@ -1,8 +1,8 @@
 ---
 title: "Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
 description: "Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimat..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

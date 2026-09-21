@@ -1,8 +1,8 @@
 ---
 title: "저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법"
 description: "실제 AI 워크로드를 $0-15/월로 돌리는 5컴포넌트 스택: Ollama 로컬 + DeepSeek API + Gemini 무료층 + RTK 압축 + 9Router 오케스트레이션...."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - Docker
   - Go

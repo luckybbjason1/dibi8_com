@@ -1,8 +1,8 @@
 ---
 title: "ShellCheck: 39,456 GitHub Stars — Complete Setup Guide f...
 description: "ShellCheck (SC) is a static analysis tool for bash/sh shell scripts. Integrates with Docker, GitHub ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

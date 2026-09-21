@@ -1,8 +1,8 @@
 ---
 title: "Browser Use: 94K+ Stars — Benchmarking AI Browser Automa...
 description: "Browser Use is an open-source Python framework that connects LLMs to real browsers via Playwright. S..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

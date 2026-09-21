@@ -3,8 +3,8 @@ title: "Ladybird: Trình duyệt Web Độc lập Thực sự — Kỷ nguyên m
   duyệt'
 description: Khám phá Ladybird, trình duyệt web độc lập thực sự được xây dựng từ đầu.. Comprehensive guide covering features, pricing, and best practices for 2026.
   Không phụ thuộc Chrome, không ảnh hưởng doanh nghiệp, mã nguồn mở thuần túy.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
 - Docker
 - Java

@@ -1,8 +1,8 @@
 ---
 title: "Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
 description: "Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PD..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C...
 description: "A 7-component AI stack purpose-built for cross-border operations — automate multilingual content, sc..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - TypeScript

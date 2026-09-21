@@ -1,8 +1,8 @@
 ---
 title: "Typesense 2026: 开源即时搜索 API 日处理 100 万次查询 — 自托管部署指南"
 description: "使用 Typesense 27.1 搭建容错型即时搜索，响应时间低于 50 毫秒。包含 Docker 部署、SDK 集成和生产环境基准测试的完整步骤指南。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

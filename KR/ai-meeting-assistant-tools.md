@@ -1,8 +1,8 @@
 ---
 title: "2025년 최고의 AI 회의 어시스턴트 도구 비교: Otter.ai, Fireflies, Fathom 등"
 description: "2025년 최신 AI 회의 어시스턴트 도구를 전사 정확도, 통합 기능, 가격 중심으로 비교합니다. Otter.ai, Fireflies, Fathom, Notion AI 등 주요 도..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

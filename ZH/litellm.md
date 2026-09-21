@@ -1,8 +1,8 @@
 ---
 title: "LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
 description: "LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "ComfyUI: 87K+ Stars — 节点式 Stable Diffusion 部署指南 2026"
 description: "ComfyUI (COMFY) 是最强大的节点式 Stable Diffusion 图形界面。支持 SD 1.5、SDXL、Flux、Wan、LTXV。Docker 生产级部署、自定义节点、API 集..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

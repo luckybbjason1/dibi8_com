@@ -1,8 +1,8 @@
 ---
 title: "Claude Code Subagent Mastery Stack 2026: From One Conver...
 description: "The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent pa..."
-date: 2026-05-29 00:00:00+08:00
-lastmod: 2026-05-30 00:00:00+08:00
+date: 2026-05-29T00:00:00+08:00
+lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - Claude Code
   - Agent SDK
   - MCP

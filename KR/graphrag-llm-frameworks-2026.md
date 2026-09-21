@@ -1,8 +1,8 @@
 ---
 title: "GraphRAG: 마이크로소프트의 지식 그래프 기반 RAG로 더 나은 LLM 답변 (33K Stars...
 description: "GraphRAG는 마이크로소프트의 모듈형 지식 그래프 기반 RAG 시스템입니다(GitHub 33,403 스타, MIT 라이선스). 이 가이드는 설치, init/index/query..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

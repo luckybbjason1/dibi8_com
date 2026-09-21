@@ -2,8 +2,8 @@
 title: Agent Reach：让你的 AI Agent 一键连接互联网
 description: Agent Reach 是一个开源脚手架工具，只需一条命令就能让 AI Agent 访问 YouTube、Twitter、Reddit、小红书、B站等. Comprehensive guide covering features, pricing, and best practices for 2026.
   15+ 平台。
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Go
 - JavaScript

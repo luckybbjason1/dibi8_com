@@ -1,8 +1,8 @@
 ---
 title: "Activepieces: Giải pháp thay thế Zapier mã nguồn mở với ...
 description: "Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứn..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

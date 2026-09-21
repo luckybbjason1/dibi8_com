@@ -3,7 +3,7 @@ title: "Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
   description: "An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and autom..."
   date: 2026-06-25
   lastmod: 2026-06-25
-  draft: false
+draft: false
   lang: en
   github_repo: https://github.com/dailystockai/daily-stock
   category: ai-trading

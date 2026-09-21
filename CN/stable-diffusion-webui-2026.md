@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S...
 description: "AUTOMATIC1111 stable-diffusion-webui is the 163k-star de-facto standard self-hosted UI for SD/SDXL i..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - Gradio

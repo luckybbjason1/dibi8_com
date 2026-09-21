@@ -1,8 +1,8 @@
 ---
 title: 2026 年度霸榜：开发者必看的 10 大免费开源 AI 神器
 description: 2026 年度霸榜：开发者必看的 10 大免费开源 AI 神器. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - JavaScript
 application_domain: Llm Frameworks

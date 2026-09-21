@@ -1,8 +1,8 @@
 ---
 title: "Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
 description: "Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars...."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

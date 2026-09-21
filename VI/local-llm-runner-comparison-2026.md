@@ -1,8 +1,8 @@
 ---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: Hướng Dẫn...
 description: "So sánh trực tiếp 4 local LLM runner quan trọng năm 2026. Số liệu thực: Ollama (137k sao) dễ nhất, L..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, C++, CUDA, Metal]
 application_domain: Llm Frameworks
 source_version: ''

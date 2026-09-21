@@ -1,8 +1,8 @@
 ---
 title: "Zoxide: 36,752 GitHub Stars — Complete Setup Guide 2026"
 description: "Zoxide is a smarter cd command that learns your directory habits. Supports Bash, Zsh, Fish, Nushell,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

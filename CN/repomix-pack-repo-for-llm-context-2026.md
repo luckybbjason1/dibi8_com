@@ -1,8 +1,8 @@
 ---
 title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
 description: "repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optim..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]
 application_domain: Dev Utils
 source_version: "v0.3"

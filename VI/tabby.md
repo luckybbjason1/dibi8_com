@@ -1,8 +1,8 @@
 ---
 title: "Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng...
 description: "Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. C..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

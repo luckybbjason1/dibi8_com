@@ -1,8 +1,8 @@
 ---
 title: "MCP 服务器 2026: 100+ 生态地图 + 选型决策树"
 description: "Model Context Protocol 生态在 2026 年中突破 1000+ 公开服务器。本指南按类目排名前 30 个，解释 stdio、HTTP/SSE 和 OAuth-bridged 服务..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"

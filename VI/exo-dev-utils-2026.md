@@ -1,8 +1,8 @@
 ---
 title: "exo: Chạy AI tiên phong trên chính các thiết bị của bạn ...
 description: "exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -4,8 +4,8 @@ title: "TabPFN: Mô Hình Nền Tảng cho Dữ Liệu Dạng Bảng — Đột 
 description: Khám phá TabPFN, mô hình nền tảng cho dữ liệu dạng bảng vượt trội hơn. Comprehensive guide covering features, pricing, and best practices for 2026.
   các phương pháp ML truyền thống. Không cần điều chỉnh siêu tham số, hoạt động trong
   vài giây.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''

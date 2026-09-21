@@ -1,8 +1,8 @@
 ---
 title: "HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs ...
 description: "HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions...."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

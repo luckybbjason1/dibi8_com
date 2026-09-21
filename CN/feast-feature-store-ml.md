@@ -1,8 +1,8 @@
 ---
 title: "Feast: The Open-Source Feature Store Serving ML Features...
 description: "Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/off..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

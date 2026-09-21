@@ -1,8 +1,8 @@
 ---
 title: "LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực...
 description: "Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức s..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
 application_domain: Framework LLM
 source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"

@@ -1,8 +1,8 @@
 ---
 title: "知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$1...
 description: "5 组件自托管知识库 stack，给个人或团队用。AnythingLLM（UI + RAG）+ RAGFlow（深度文档解析）+ mem0（agent 记忆）+ AgentMemory MCP（暴露给..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - PostgreSQL

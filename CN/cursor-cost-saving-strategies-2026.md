@@ -1,8 +1,8 @@
 ---
 title: "Cursor Cost-Saving Strategies 2026: After the Credit Pri...
 description: "Cursor changed its pricing in 2025 — Pro users lost ~55% effective usage at the same price. Here are..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: "Cursor 2026.05 / Post credit pricing"

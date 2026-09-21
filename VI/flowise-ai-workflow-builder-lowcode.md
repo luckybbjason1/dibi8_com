@@ -1,8 +1,8 @@
 ---
 title: "Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
 description: "Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp...."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

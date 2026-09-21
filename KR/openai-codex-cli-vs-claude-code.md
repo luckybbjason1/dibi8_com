@@ -1,9 +1,9 @@
 ---
 title: "OpenAI Codex CLI vs Claude Code 2026: 어떤 에이전트가 더 좋은가?"
 description: "OpenAI Codex CLI(gpt-5-codex)와 Anthropic Claude Code(Sonnet 4.6, 1M 컨텍스트)의 정면 비교 — 가격, 샌드박스, 엔터프라이즈,..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
-  draft: false
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
+draft: false
 tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
 categories: ["vs"]
 faqs: - q: 'OpenAI Codex CLI는 무료인가요?'

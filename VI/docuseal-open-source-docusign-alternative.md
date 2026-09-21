@@ -3,8 +3,8 @@ title: Đánh giá DocuSeal：Giảm 90% chi phí ký tài liệu với lựa ch
   mã nguồn mở
 description: DocuSeal là nền tảng mã nguồn mở 15.7k star thay thế DocuSign bằng ký. Comprehensive guide covering features, pricing, and best practices for 2026.
   tài liệu kỹ thuật số tự lưu trữ, xây dựng biểu mẫu PDF và quy trình eSignature white-label.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
 - Go
 - JavaScript

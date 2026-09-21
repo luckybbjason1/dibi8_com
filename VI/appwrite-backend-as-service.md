@@ -1,8 +1,8 @@
 ---
 title: "Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở v...
 description: "Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, clou..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

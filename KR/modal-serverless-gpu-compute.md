@@ -6,7 +6,7 @@ category: llm-frameworks
 featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
-  draft: false
+draft: false
 slug: modal-serverless-gpu-compute
 ---
 

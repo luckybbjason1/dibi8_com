@@ -1,8 +1,8 @@
 ---
 title: "OpenClaw Hướng Dẫn Chi Tiết: Cách Tự Lưu Trữ Trợ Lý AI M...
 description: "GitHub 362K+ Star — OpenClaw là dự án AI mã nguồn mở tăng trưởng nhanh nhất lịch sử. Hướng dẫn chi t..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

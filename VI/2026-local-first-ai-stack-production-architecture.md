@@ -1,8 +1,8 @@
 ---
 title: "Local-First AI Stack 2026: Kiến trúc tham chiếu cho prod...
 description: "Kiến trúc tham chiếu hoàn chỉnh để build ứng dụng AI cấp production trong năm 2026 mà không bị khóa ..."
-date: 2026-05-23 00:00:00+08:00
-lastmod: 2026-05-23 00:00:00+08:00
+date: 2026-05-23T00:00:00+08:00
+lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []
 application_domain: LLM Frameworks
 source_version: ''

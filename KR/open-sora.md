@@ -1,8 +1,8 @@
 ---
 title: "Open-Sora: 29K+ Stars — 오픈소스 비디오 생성 완벽 설치 가이드 2026"
 description: "Open-Sora는 29K+ GitHub stars를 보유한 오픈소스 비디오 생성 프레임워크입니다. Docker 설치, ComfyUI 통합, Stable Diffusion 호환, ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

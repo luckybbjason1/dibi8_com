@@ -1,8 +1,8 @@
 ---
 title: "AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Ng...
 description: "Stack AI trading self-host: ta-lib (tín hiệu) + vectorbt (backtest) + freqtrade (thực thi) + AI Trad..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
 application_domain: Collections
 source_version: ''

@@ -2,16 +2,15 @@
 title: "Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo Gi...
 description: "Tổng hợp hàng tuần được chỉnh sửa thủ công về các dự án AI agent, LLM và MCP mã nguồn mở đang thịnh ..."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
-date: 2026-06-29 00:00:00+09:00
-lastmod: 2026-06-29 00:00:00+09:00
+date: 2026-06-29T00:00:00+09:00
+lastmod: 2026-06-29T00:00:00+09:00
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w26
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources: - name: "GitHub Trending"
-    url: "https://github.com/trending"
-    type: "data"
+sources: ["GitHub Trending"]
+source_url: "https://github.com/trending"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png

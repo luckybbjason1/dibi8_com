@@ -1,8 +1,8 @@
 ---
 title: "Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d...
 description: "2026\ub144 Haystack \uc644\ubcbd \uac00\uc774\ub4dc: \ud504\ub85c\ub355\uc158 RAG \ud30c\uc774\ud504..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

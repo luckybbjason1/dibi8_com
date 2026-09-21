@@ -1,8 +1,8 @@
 ---
 title: "Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa B...
 description: "Puppeteer là thư viện Node.js tự động hóa Chrome và Firefox headless. Hỗ trợ Docker, GitHub Actions,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

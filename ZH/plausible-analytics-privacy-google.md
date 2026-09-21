@@ -1,8 +1,8 @@
 ---
 title: "Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
 description: "Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。"
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "GPT-SoVITS: 57.5K+ Stars — AI 음성 클로닝 프로덕션 배포 가이드 2026"
 description: "GPT-SoVITS (GSV)는 제로샷 기능을 갖춘 퓨샷 음성 클로닝 및 TTS 도구. ComfyUI, RVC, MeloTTS와 통합 가능. Docker 배포, 음성 학습, API..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

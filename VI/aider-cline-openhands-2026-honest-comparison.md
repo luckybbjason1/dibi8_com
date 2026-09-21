@@ -1,8 +1,8 @@
 ---
 title: "Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
 description: "Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu b..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
 source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"

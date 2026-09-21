@@ -1,8 +1,8 @@
 ---
 title: "Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
 description: "Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid ..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
 application_domain: Ai Trading
 source_version: "v1.0.26"

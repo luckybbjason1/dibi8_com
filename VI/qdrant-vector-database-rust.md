@@ -1,8 +1,8 @@
 ---
 title: "Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector v...
 description: "Triển khai Qdrant vector database cho tìm kiếm tương đồng production. Hướng dẫn đầy đủ về HNSW index..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

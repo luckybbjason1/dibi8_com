@@ -1,8 +1,8 @@
 ---
 title: "Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sh...
 description: "Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân k..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: "pandas 2.2+ / vectorbt 0.27+"

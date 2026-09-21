@@ -1,8 +1,8 @@
 ---
 title: "Ladybird: 真正独立的浏览器 — 浏览器独立的新时代"
 description: 探索 Ladybird，一个从头开始构建的真正独立的 Web 浏览器。不依赖 Chrome，不受企业影响，纯开源。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
 - Docker
 - Java

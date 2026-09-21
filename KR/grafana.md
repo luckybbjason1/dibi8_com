@@ -1,8 +1,8 @@
 ---
 title: "Grafana: 73,876 GitHub Stars — Docker 배포 가이드 2026"
 description: "Grafana는 모니터링과 관측 가능성을 위한 오픈소스 시각화 및 분석 플랫폼이다. Prometheus, Loki, InfluxDB, Elasticsearch 통합 포함. Dock..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

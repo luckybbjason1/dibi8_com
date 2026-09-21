@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南"
 description: "Stable Diffusion WebUI (AUTOMATIC1111) 是最流行的本地 AI 图像生成 Web 界面。兼容 ControlNet、LoRA、ComfyUI 工作流。涵盖 Wind..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

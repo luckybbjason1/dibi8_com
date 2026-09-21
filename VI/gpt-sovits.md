@@ -1,8 +1,8 @@
 ---
 title: "GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
 description: "GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với Comfy..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
 description: "Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GP..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - PyTorch
   - CUDA

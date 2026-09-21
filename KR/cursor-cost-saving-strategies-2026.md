@@ -1,8 +1,8 @@
 ---
 title: "Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후"
 description: "Cursor가 2025년 가격 정책을 바꿨다 — Pro 사용자는 같은 가격에 실효 사용량이 약 55% 줄었다. 2026년 실제로 효과가 있는 7가지 절감 전략: 모델 선택, 컨텍스..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: "Cursor 2026.05 / 크레딧 과금 이후"

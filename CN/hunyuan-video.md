@@ -1,8 +1,8 @@
 ---
 title: "HunyuanVideo: 12.1K+ Stars — Production Deployment Guide...
 description: "HunyuanVideo (HYV) is an open-source video generation framework by Tencent with 13B parameters. Supp..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

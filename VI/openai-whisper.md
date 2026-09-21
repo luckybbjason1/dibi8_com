@@ -1,8 +1,8 @@
 ---
 title: "OpenAI Whisper: 99.8K+ Stars — Hướng Dẫn Cài Đặt ASR Đầy...
 description: "OpenAI Whisper (ASR) nhận dạng giọng nói mạnh mẽ qua giám sát yếu quy mô lớn. Tương thích với Whispe..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

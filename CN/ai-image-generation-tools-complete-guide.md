@@ -1,8 +1,8 @@
 ---
 title: "AI Image Generation Tools: Complete Guide to Midjourney,...
 description: "Complete guide to AI image generation tools in 2025. Compare Midjourney v7, DALL-E 3, Stable Diffusi..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

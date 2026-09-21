@@ -1,8 +1,8 @@
 ---
 title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compare...
 description: "Cursor switched to credit pricing and lost user trust. Compare the 7 strongest alternatives in 2026 ..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
 application_domain: Llm Frameworks
 source_version: ''

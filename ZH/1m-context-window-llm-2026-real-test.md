@@ -1,8 +1,8 @@
 ---
 title: "1M 上下文窗口 LLM 2026：Gemini 2.5 Pro vs Claude Sonnet 4.6 实测对比"
 description: "两家都号称 1M token 上下文。我们把 950K token 的代码库分别灌进去，实测检索质量、延迟、成本，以及谁真正兑现了 1M 承诺，谁在长尾段崩塌。"
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, Long-context LLM]
 application_domain: LLM Frameworks
 source_version: "2026 Q2"
@@ -29,8 +29,8 @@ faq:
     a: "用于摄入 + 总结：两家都不错。跨文件查找特定 bug：Gemini 的「大海捞针」表现更稳定。跨文件做多步推理：Claude 即使有效上下文较短也更胜一筹。"
 ---
 
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, 'Long-context LLM']
 application_domain: LLM Frameworks
 source_version: "2026 Q2"

@@ -1,8 +1,8 @@
 ---
 title: "Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
 description: "Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch h..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

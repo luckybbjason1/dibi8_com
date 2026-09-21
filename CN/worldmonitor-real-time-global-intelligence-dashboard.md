@@ -3,7 +3,7 @@ title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo...
   description: "A real-time AI-powered global intelligence dashboard aggregating news, geopolitical events, and infr..."
   date: 2026-06-25
   lastmod: 2026-06-25
-  draft: false
+draft: false
   lang: en
   github_repo: https://github.com/WorldMonitorHQ/worldmonitor
   category: ai-tools

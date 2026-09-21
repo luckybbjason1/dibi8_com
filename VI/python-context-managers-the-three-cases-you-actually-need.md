@@ -1,8 +1,8 @@
 ---
 title: "Python Context Managers: 3 Trường Hợp Bạn Thực Sự Cần"
 description: "Python context managers: 3 trường hợp bạn thực sự cần. Làm chủ câu lệnh. Comprehensive guide coverin..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Ai Tools

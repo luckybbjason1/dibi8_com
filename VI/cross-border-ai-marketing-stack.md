@@ -1,8 +1,8 @@
 ---
 title: "Stack Marketing AI Xuyên Biên Giới 2026: Setup 7 Công Cụ...
 description: "Stack AI 7 thành phần thiết kế riêng cho hoạt động xuyên biên giới — tự động hóa nội dung đa ngôn ng..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
   - Python
   - TypeScript

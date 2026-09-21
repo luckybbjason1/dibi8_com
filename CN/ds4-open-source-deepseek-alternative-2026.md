@@ -1,8 +1,8 @@
 ---
 title: "ds4 Review 2026: The Open-Source DeepSeek Developers Are...
 description: "ds4 is the fastest-growing open-source DeepSeek-compatible LLM runtime in 2026. Apache-2.0 licensed,..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

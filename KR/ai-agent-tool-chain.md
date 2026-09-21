@@ -1,8 +1,8 @@
 ---
 title: "AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택"
 description: "완전한 프로덕션 AI 에이전트 스택: 상태 유지 오케스트레이션 LangGraph + 도구용 MCP servers + 메모리 mem0 + 멀티 에이전트 조정 OpenClaw + 자가..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
   - TypeScript
   - Docker

@@ -1,8 +1,8 @@
 ---
 title: "CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video ...
 description: "CogVideo (CogVideoX) là mô hình tạo video từ văn bản và hình ảnh của Zhipu AI. Hỗ trợ ComfyUI, Diffu..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

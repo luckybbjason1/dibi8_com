@@ -1,8 +1,8 @@
 ---
 title: "LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오...
 description: "LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, G..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

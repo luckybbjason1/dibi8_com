@@ -1,8 +1,8 @@
 ---
 title: "Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 3...
 description: "Theo dõi 30 ngày sử dụng và hóa đơn thực tế của Claude Max ($200), ChatGPT Plus + Codex CLI API ($16..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
 application_domain: Dev Utils
 source_version: "May 2026 30-day window"

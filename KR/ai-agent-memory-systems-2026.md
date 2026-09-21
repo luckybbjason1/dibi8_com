@@ -1,8 +1,8 @@
 ---
 title: "2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsig...
 description: "세션마다 모든 것을 잊는 AI 에이전트는 2026 프로덕션에선 치명적 결함. 4대 오픈소스 메모리 레이어 심층 비교: Mem0 (48K+ stars, 21개 프레임워크 통합), a..."
-date: 2026-05-22 00:00:00+08:00
-lastmod: 2026-05-22 00:00:00+08:00
+date: 2026-05-22T00:00:00+08:00
+lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
 application_domain: Llm Frameworks
 source_version: ''

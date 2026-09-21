@@ -1,8 +1,8 @@
 ---
 title: "schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘"
 description: "跑了 7 个量化实验，发现「教科书级 overfit」（Train PF 2.08 → OOS 0.94，比值 2.21）。然后才发现诊断本身就是错的 —— schema 字段静默错配导致 optim..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: "moss-trade-bot-skills v1.0.26"

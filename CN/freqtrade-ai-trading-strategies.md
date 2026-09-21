@@ -1,8 +1,8 @@
 ---
 title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi...
 description: "A hands-on guide to deploying Freqtrade with FreqAI, the open-source Python crypto trading bot with ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

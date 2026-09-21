@@ -1,8 +1,8 @@
 ---
 title: "Continue.dev: 33K+ Stars — Open-Source AI Code Assistant...
 description: "Continue.dev (open-source AI code assistant) VS Code/JetBrains plugin. Supports any LLM: Ollama, Ope..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

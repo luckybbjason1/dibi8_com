@@ -1,8 +1,8 @@
 ---
 title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
 description: "Scrapy는 Python 기반의 빠른 고수준 웹 크롤링 및 스크래핑 프레임워크이다. Python, Docker, Redis, PostgreSQL과 호환된다. 벤치마크, 아키텍처,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

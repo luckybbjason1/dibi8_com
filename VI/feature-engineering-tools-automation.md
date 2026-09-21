@@ -1,8 +1,8 @@
 ---
 title: "Công Cụ Kỹ Thuật Đặc Trưng Tự Động: Hướng Dẫn Featuretoo...
 description: "Hướng dẫn sử dụng Featuretools, AutoFeat và tsfresh cho kỹ thuật đặc trưng tự động. So sánh tính năn..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

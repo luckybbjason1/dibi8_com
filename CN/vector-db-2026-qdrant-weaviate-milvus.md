@@ -1,8 +1,8 @@
 ---
 title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
 description: "Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup p..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
 application_domain: LLM Frameworks
 source_version: "Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5"

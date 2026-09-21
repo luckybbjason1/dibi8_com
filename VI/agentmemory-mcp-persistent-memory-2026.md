@@ -1,8 +1,8 @@
 ---
 title: "Bộ Nhớ Liên Tục cho AI Coding Agent 2026: Hướng Dẫn Toàn...
 description: "Dừng việc dạy lại Claude Code quy ước dự án. Tìm hiểu cách agentmemory và Giao thức Ngữ cảnh Mô hình..."
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
+date: 2026-05-17T00:00:00+08:00
+lastmod: 2026-05-17T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

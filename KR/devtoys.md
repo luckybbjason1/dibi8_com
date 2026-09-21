@@ -1,8 +1,8 @@
 ---
 title: "DevToys: 31,533 GitHub Stars — 개발자 유틸리티 제품군 2026 완벽 설치 가이드"
 description: "DevToys는 물론이고 오프라인 개발자용 스위스 아미 나이프입니다. JSON, Base64, JWT, 정규식 등 30개 이상의 도구를 Windows, macOS, Linux에서 ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

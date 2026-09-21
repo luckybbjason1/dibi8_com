@@ -1,8 +1,8 @@
 ---
 title: "Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI ...
 description: "Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

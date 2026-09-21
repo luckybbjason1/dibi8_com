@@ -1,8 +1,8 @@
 ---
 title: "Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cá...
 description: "Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star,..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript
   - Python
   - Docker

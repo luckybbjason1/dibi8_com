@@ -4,8 +4,8 @@ description: Complete guide to Lightning AI, the PyTorch lightweight toolkit for
 category: data-science
 tags: ["lightning", "pytorch-lightning", "production-ml", "model-training", "inference", "deployment"]
 slug: lightning-ai-pytorch-lightning-complete-guide
-date: 2026-07-17 00:00:00+00:00
-lastmod: 2026-07-17 00:00:00+00:00featureImage: /images/articles/lightning-ai-pytorch.jpg
+date: 2026-07-17T00:00:00+00:00
+lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/lightning-ai-pytorch.jpg
 ---
 
 ## TL;DR

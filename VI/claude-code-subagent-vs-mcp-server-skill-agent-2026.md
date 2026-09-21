@@ -1,8 +1,8 @@
 ---
 title: "Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
 description: "Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán ..."
-date: 2026-05-28 00:00:00+08:00
-lastmod: 2026-05-29 00:00:00+08:00
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
 application_domain: LLM Frameworks
 source_version: ''

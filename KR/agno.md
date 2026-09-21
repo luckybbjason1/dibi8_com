@@ -1,8 +1,8 @@
 ---
 title: "Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, Aut...
 description: "Agno는 AI 에이전트 플랫폼을 구축하기 위한 오픈소스 Python SDK로, GitHub에서 40K+ Star를 보유하고 있습니다. OpenAI, Anthropic, Ollam..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

@@ -1,8 +1,8 @@
 ---
 title: "ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
 description: "ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Acti..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

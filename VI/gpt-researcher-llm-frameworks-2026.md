@@ -1,8 +1,8 @@
 ---
 title: "GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu ...
 description: "GPT Researcher là một tác nhân nghiên cứu chuyên sâu mã nguồn mở, thực hiện nghiên cứu trên web và c..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

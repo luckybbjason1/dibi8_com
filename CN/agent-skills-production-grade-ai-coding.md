@@ -2,8 +2,8 @@
 title: "Agent Skills: How Development Teams Can Ship Production-...
 description: Agent Skills by Addy Osmani delivers 20 production-grade engineering. Comprehensive guide covering features, pricing, and best practices for 2026.
   skills and 7 slash commands that turn AI coding agents into senior software engineers.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - JavaScript
 - TypeScript

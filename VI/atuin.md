@@ -1,8 +1,8 @@
 ---
 title: "Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ S...
 description: "Atuin thay thế lịch sử shell bằng SQLite, ghi ngữ cảnh lệnh (mã thoát, thư mục, thờ gian), đồng bộ h..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

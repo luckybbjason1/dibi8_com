@@ -1,8 +1,8 @@
 ---
 title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...
 description: "Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docke..."
-date: 2026-06-09 00:00:00+08:00
-lastmod: 2026-06-09 00:00:00+08:00
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []
 application_domain: AI Tools
 source_version: "1.0"

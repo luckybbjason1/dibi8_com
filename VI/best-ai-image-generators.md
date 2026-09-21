@@ -2,8 +2,8 @@
 title: "Trình Tạo Ảnh AI Tốt Nhất 2026"
 description: "Những trình tạo ảnh AI mã nguồn mở và miễn phí tốt nhất năm 2026 — từ Stable Diffusion đến Flux, Com..."
 layout: simple
-date: 2026-06-28 00:00:00+08:00
-lastmod: 2026-06-28 00:00:00+08:00
+date: 2026-06-28T00:00:00+08:00
+lastmod: 2026-06-28T00:00:00+08:00
 ---
 {
   "@context": "https://schema.org",

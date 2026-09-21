@@ -1,8 +1,8 @@
 ---
 title: "DevToys: 31,533 GitHub Stars — Complete Setup Guide for ...
 description: "DevToys is a free, open-source, offline Swiss Army knife for developers. Cross-platform utilities fo..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

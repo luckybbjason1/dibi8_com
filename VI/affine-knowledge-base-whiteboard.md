@@ -1,8 +1,8 @@
 ---
 title: "AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản...
 description: "Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ,..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

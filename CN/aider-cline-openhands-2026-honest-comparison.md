@@ -1,8 +1,8 @@
 ---
 title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
 description: "Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete bench..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
 application_domain: Dev Utils
 source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"

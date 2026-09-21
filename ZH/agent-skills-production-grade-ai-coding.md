@@ -1,8 +1,8 @@
 ---
 title: Agent Skills：开发团队如何以5倍速度交付生产级代码
 description: Addy Osmani的Agent Skills提供20个生产级工程技能和7个斜杠命令，将AI编码智能体转变为高级软件工程师。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - JavaScript
 - TypeScript

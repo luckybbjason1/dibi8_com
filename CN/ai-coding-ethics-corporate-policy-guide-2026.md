@@ -1,8 +1,8 @@
 ---
 title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
 description: "Companies in 2026 split into AI-allow / AI-restrict / AI-forbid camps. Practical guide for what each..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Policy, Compliance, 'Claude Code', Cursor]
 application_domain: Dev Utils
 source_version: "2026 Q2"

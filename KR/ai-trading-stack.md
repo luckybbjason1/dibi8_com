@@ -1,8 +1,8 @@
 ---
 title: "AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우"
 description: "셀프호스트 AI 트레이딩 스택: ta-lib (신호) + vectorbt (백테스트) + freqtrade (실행) + AI Trader (AI 전략 레이어) + Hyperliqu..."
-date: 2026-05-21 00:00:00+08:00
-lastmod: 2026-05-21 00:00:00+08:00
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
 application_domain: Collections
 source_version: ''

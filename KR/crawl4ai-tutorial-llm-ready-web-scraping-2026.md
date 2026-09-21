@@ -1,8 +1,8 @@
 ---
 title: "Crawl4AI 완벽 가이드 2026: GitHub 63k+ Stars 오픈소스 웹 크롤러로 LLM ...
 description: "2026년 GitHub 트렌딩 1위 오픈소스 웹 크롤러 Crawl4AI를 소개합니다. LLM·RAG·AI 에이전트에 최적화된 Markdown 출력, LLM 기반 구조화 추출, 딥 ..."
-date: 2026-05-20 00:00:00+08:00
-lastmod: 2026-05-20 00:00:00+08:00
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

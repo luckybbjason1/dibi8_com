@@ -1,8 +1,8 @@
 ---
 title: "Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
 description: "Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

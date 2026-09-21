@@ -1,8 +1,8 @@
 ---
 title: "OpenClaw Self-Hosted AI Assistant: The Complete 2026 Set...
 description: "With 362K+ GitHub stars, OpenClaw is the fastest-growing open-source AI assistant ever built. Learn ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

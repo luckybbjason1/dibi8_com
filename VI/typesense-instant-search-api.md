@@ -1,8 +1,8 @@
 ---
 title: "Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1...
 description: "Thiết lập Typesense 27.1 cho tìm kiếm tức thì với khả năng chịu lỗi chính tả, thởi gian phản hồi dướ..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

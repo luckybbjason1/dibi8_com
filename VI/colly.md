@@ -1,8 +1,8 @@
 ---
 title: "Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc ...
 description: "Colly là framework web scraping nhanh và thanh lịch cho Go với thông lượng 1,000+ req/sec. Bao gồm h..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

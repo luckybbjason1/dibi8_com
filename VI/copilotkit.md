@@ -1,8 +1,8 @@
 ---
 title: "CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụn...
 description: "CopilotKit là frontend stack mã nguồn mở cho AI copilot và generative UI trong ứng dụng. Xây dựng Re..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

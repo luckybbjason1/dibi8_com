@@ -1,8 +1,8 @@
 ---
 title: "TA-Lib: The Industry Standard Technical Analysis Library...
 description: "Complete guide to TA-Lib Python wrapper with 200+ technical indicators. Install, benchmark, and depl..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

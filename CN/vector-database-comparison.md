@@ -1,8 +1,8 @@
 ---
 title: "Vector Database Comparison 2025: Pinecone vs Weaviate vs...
 description: "Compare the top vector databases of 2025: Pinecone, Weaviate, Chroma, and Milvus. Find the best vect..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

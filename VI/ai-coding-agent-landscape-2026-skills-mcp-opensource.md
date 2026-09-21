@@ -1,8 +1,8 @@
 ---
 title: "Bức Tranh AI Coding Agent 2026: Kỷ Nguyên Skills, MCP và...
 description: "Thị trường trợ lý lập trình AI năm 2026 đang ở ngã ba đường. Hệ sinh thái Claude Code Skills vượt 3...."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

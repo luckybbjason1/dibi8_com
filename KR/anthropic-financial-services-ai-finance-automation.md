@@ -2,8 +2,8 @@
 title: Anthropic Financial Services：금융팀이 AI로 분석을 자동화하고 ROI를 300%...
 description: Anthropic Financial Services가 투자은행, 주식 리서치, 자산관리팀이 Claude AI 에이전트로 피치덱,. Comprehensive guide covering features, pricing, and best practices for 2026.
   DCF 모델, KYC 스크리닝을 자동화하는 방법을 알아보세요.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
 - Python
 application_domain: Llm Frameworks

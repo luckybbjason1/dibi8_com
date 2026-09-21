@@ -1,8 +1,8 @@
 ---
 title: "Kubeflow 2026: Run Complete ML Pipelines on Kubernetes —...
 description: "A complete guide to deploying Kubeflow on Kubernetes for ML pipelines. Covers installation, componen..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

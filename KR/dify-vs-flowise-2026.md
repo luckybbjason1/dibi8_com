@@ -1,9 +1,9 @@
 ---
 title: "Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스"
 description: "Dify(엔터프라이즈 RAG, 멀티 모델, 프롬프트 관리, 셀프호스팅)와 Flowise(시각적 LangChain 빌더, 경량, 오픈소스)를 항목별 비교 — 기능, 셀프호스팅, AI..."
-date: 2026-06-07 00:00:00+08:00
-lastmod: 2026-06-07 00:00:00+08:00
-  draft: false
+date: 2026-06-07T00:00:00+08:00
+lastmod: 2026-06-07T00:00:00+08:00
+draft: false
 tags: ["dify", "flowise", "langchain", "llm-apps", "no-code-ai", "rag", "ai-builder", "comparison", "self-hosted"]
 categories: ["vs"]
 faqs: - q: 'Dify와 Flowise의 차이점은 무엇인가요?'

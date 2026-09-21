@@ -1,8 +1,8 @@
 ---
 title: "Top 5 Công Cụ Thay Thế Jupyter Notebook Tốt Nhất 2024: S...
 description: "Đánh giá chi tiết 5 công cụ thay thế Jupyter Notebook hàng đầu năm 2024. So sánh JupyterLab, Google ..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

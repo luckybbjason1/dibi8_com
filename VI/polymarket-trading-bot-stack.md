@@ -1,8 +1,8 @@
 ---
 title: "Polymarket Bot Giao Dịch: 28 Công Cụ Kiếm 1 Triệu Đô La"
 description: "Phân tích sâu về stack công nghệ bot chênh lệch giá Polymarket: 28 công. Comprehensive guide coverin..."
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 - Rust
 - TypeScript

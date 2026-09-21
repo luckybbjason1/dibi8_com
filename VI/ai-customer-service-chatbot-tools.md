@@ -1,8 +1,8 @@
 ---
 title: "Các Công Cụ Chatbot Chăm Sóc Khách Hàng AI Tốt Nhất 2025...
 description: "So sánh 6 nền tảng chatbot AI hàng đầu 2025: Intercom Fin, Zendesk AI, Freshworks Freddy, ChatGPT En..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

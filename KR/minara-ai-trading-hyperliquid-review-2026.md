@@ -1,8 +1,8 @@
 ---
 title: "Minara 리뷰 2026: Hyperliquid 위에서 동작하는 AI 트레이딩 플랫폼이 블룸버그 터...
 description: "Minara는 Hyperliquid 위에 구축된 AI-네이티브 트레이딩 플랫폼입니다. 하나의 채팅 인터페이스에서 시장 질문, 실시간 분석, 암호화폐/주식/원자재 거래까지 모두 처리..."
-date: 2026-05-17 00:00:00+08:00
-lastmod: 2026-05-17 00:00:00+08:00
+date: 2026-05-17T00:00:00+08:00
+lastmod: 2026-05-17T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Trading
 source_version: ''

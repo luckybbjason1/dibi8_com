@@ -1,8 +1,8 @@
 ---
 title: "Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cá...
 description: "Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đ..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
 application_domain: AI Trading
 source_version: "moss-trade-bot-skills v1.0.26"

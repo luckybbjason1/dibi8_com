@@ -1,8 +1,8 @@
 ---
 title: "LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
 description: "LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Do..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Dev Utils
 source_version: ''

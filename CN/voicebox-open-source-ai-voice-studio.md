@@ -3,7 +3,7 @@ title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D...
   description: "A full-stack open-source AI voice studio that lets you clone any voice, generate speech, and dictate..."
   date: 2026-06-25
   lastmod: 2026-06-25
-  draft: false
+draft: false
   lang: en
   github_repo: https://github.com/voicebox-ai/voicebox
   category: ai-tools

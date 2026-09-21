@@ -1,8 +1,8 @@
 ---
 title: "백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)"
 description: "옵티마이저 산출 전략 50+ 건의 실거래 결과를 바탕으로 5가지 뚜렷한 과적합 패턴을 정리했다: walk-forward 괴리, 레짐 플립, 파라미터 절벽, 인디케이터 스태킹, 생존..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
 application_domain: AI Trading
 source_version: "pandas 2.2+ / vectorbt 0.27+"

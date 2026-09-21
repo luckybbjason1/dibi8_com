@@ -1,8 +1,8 @@
 ---
 title: "Claude Code MCP Advanced 2026: The 10-Server Production ...
 description: "After running Claude Code with various MCP server combinations, settled on a 10-server production st..."
-date: 2026-05-25 00:00:00+08:00
-lastmod: 2026-05-25 00:00:00+08:00
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 / Claude Code 1.0"

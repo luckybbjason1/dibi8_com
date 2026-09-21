@@ -1,8 +1,8 @@
 ---
 title: "Best AI Voice Tools 2025: Text-to-Speech & Speech-to-Tex...
 description: "Compare the best AI voice tools of 2025 for text-to-speech and transcription. ElevenLabs, Murf.ai, W..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

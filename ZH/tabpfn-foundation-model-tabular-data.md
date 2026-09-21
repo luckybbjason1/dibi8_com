@@ -1,8 +1,8 @@
 ---
 title: "TabPFN: 表格数据基础模型 — 结构化数据的 AI 突破"
 description: 探索 TabPFN，表格数据的基础模型，超越传统机器学习方法。无需超参数调优，秒级运行。. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: Ai Tools
 source_version: ''

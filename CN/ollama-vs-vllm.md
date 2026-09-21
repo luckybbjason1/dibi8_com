@@ -1,9 +1,9 @@
 ---
 title: "Ollama vs vLLM in 2026: Local Dev Simplicity vs Producti...
 description: "Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production infere..."
-date: 2026-06-06 00:00:00+08:00
-lastmod: 2026-06-06 00:00:00+08:00
-  draft: false
+date: 2026-06-06T00:00:00+08:00
+lastmod: 2026-06-06T00:00:00+08:00
+draft: false
 tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]
 categories: ["vs"]
 faqs: - q: 'Should I use Ollama or vLLM for serving an LLM?'

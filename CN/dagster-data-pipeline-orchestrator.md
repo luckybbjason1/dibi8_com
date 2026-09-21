@@ -1,8 +1,8 @@
 ---
 title: "Dagster: The Data Pipeline Orchestrator with Asset-Based...
 description: "Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partiti..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

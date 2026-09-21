@@ -1,8 +1,8 @@
 ---
 title: "AutoGen Tutorial 2025: Building Multi-Agent AI Systems M...
 description: "Learn Microsoft AutoGen in 2025. Build multi-agent AI systems, create conversational agents, and dep..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

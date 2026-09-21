@@ -1,8 +1,8 @@
 ---
 title: "DVC vs LakeFS vs Delta Lake: ML을 위한 데이터 버전 관리 도구 선택 완벽 가이드"
 description: "DVC, LakeFS, Delta Lake을 비교하여 ML 데이터 버전 관리 도구를 선택하는 방법을 설명합니다. Git 기반 워크플로우부터 데이터 레이크 ACID 트랜잭션까지, 각..."
-date: 2026-05-18 00:00:00+08:00
-lastmod: 2026-05-18 00:00:00+08:00
+date: 2026-05-18T00:00:00+08:00
+lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []
 application_domain: Data Science
 source_version: ''

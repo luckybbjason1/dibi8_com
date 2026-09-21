@@ -1,9 +1,9 @@
 ---
 title: "n8n vs Make.com 2026: Kiểm Soát Mã Nguồn Mở vs Sự Đơn Gi...
 description: "So sánh chi tiết n8n (tự host, thân thiện với lập trình viên) và Make.com (xây dựng kịch bản trực qu..."
-date: 2026-06-07 00:00:00+08:00
-lastmod: 2026-06-07 00:00:00+08:00
-  draft: false
+date: 2026-06-07T00:00:00+08:00
+lastmod: 2026-06-07T00:00:00+08:00
+draft: false
 tags: ["n8n", "make.com", "integromat", "workflow-automation", "zapier-alternative", "no-code", "comparison", "ai-automation"]
 categories: ["vs"]
 faqs: - q: 'Nên dùng n8n hay Make.com cho tự động hóa workflow?'

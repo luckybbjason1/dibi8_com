@@ -1,8 +1,8 @@
 ---
 title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
 description: "The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the ..."
-date: 2026-05-26 00:00:00+08:00
-lastmod: 2026-05-26 00:00:00+08:00
+date: 2026-05-26T00:00:00+08:00
+lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"

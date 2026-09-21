@@ -1,8 +1,8 @@
 ---
 title: "2026년 로컬 우선 AI 스택: 14개 오픈소스 도구로 짜는 프로덕션 아키텍처 레퍼런스"
 description: "클라우드 lock-in 없이 2026년 프로덕션급 AI 애플리케이션을 만드는 완전한 참조 아키텍처 — 7개 레이어, 14개 오픈소스 도구, 실제 성능 수치. 로컬 LLM 런타임, ..."
-date: 2026-05-23 00:00:00+08:00
-lastmod: 2026-05-23 00:00:00+08:00
+date: 2026-05-23T00:00:00+08:00
+lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []
 application_domain: LLM Frameworks
 source_version: ''

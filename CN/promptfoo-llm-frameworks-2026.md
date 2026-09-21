@@ -1,8 +1,8 @@
 ---
 title: "Promptfoo: Test, Evaluate & Red-Team Your LLM Prompts — ...
 description: "Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Cl..."
-date: 2026-06-02 00:00:00+08:00
-lastmod: 2026-06-02 00:00:00+08:00
+date: 2026-06-02T00:00:00+08:00
+lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
 application_domain: Llm Frameworks
 source_version: ''

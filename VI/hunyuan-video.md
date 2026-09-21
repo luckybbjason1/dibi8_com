@@ -1,8 +1,8 @@
 ---
 title: "HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
 description: "HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI..."
-date: 2026-05-19 00:00:00+08:00
-lastmod: 2026-05-19 00:00:00+08:00
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
 application_domain: Ai Tools
 source_version: ''

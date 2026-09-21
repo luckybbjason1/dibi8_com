@@ -2,8 +2,8 @@
 title: "Ladybird: 진정한 독립 웹 브라우저 — 브라우저 독립의 새로운 시대"
 description: Ladybird를 발견하세요 — 처음부터 구축된 진정한 독립 웹 브라우저. Chrome 의존성 없음, 기업 영향 없음, 순수. Comprehensive guide covering features, pricing, and best practices for 2026.
   오픈소스.
-date: 2026-05-15 04:20:25+09:00
-lastmod: 2026-05-15 04:20:25+09:00
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
 - Docker
 - Java
