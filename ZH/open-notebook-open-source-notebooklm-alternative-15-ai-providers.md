@@ -1,11 +1,10 @@
 ---
-title: "open-notebook: 支持 15+ AI 提供商的开源 Notebook LM 替代方案 — 自托管，2...
-description: "open-notebook（28,200 GitHub 星标）是 Google NotebookLM 的开源替代方案，支持 15+ AI 提供商。自托管 RAG 知识库，支持多模态音频剧集。包含设置指..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
-category: 'data-science'
-tags: ["open notebook", "notebook lm 替代方案", "自托管 RAG", "AI 知识库", "多模态 RAG", "开源笔记本", "AI 播客生成器", "自托管 LLM"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

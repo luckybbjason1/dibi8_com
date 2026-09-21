@@ -1,11 +1,10 @@
 ---
-title: 'Codebase-Memory-MCP: Trí tuệ mã nguồn hiệu suất cao cho ...
-description: "Khám phá codebase-memory-mcp — máy chủ MCP thông minh về mã nhanh nhất, có khả năng lập chỉ mục toàn..."
-date: 2026-06-19
-lastmod: 2026-06-19
-(tags: []
-category: "dev-utils"
-slug: codebase-memory-mcp-high-performance-code-intelligence
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "codebase-memory-mcp-high-performance-code-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

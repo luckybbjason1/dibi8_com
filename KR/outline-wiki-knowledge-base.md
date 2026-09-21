@@ -1,16 +1,14 @@
 ---
-title: "Outline 완벽 가이드: 엔지니어링 팀을 위한 오픈소스 Wiki 및 지식 베이스 — 2026 셀프...
-description: "Docker로 10분 만에 Outline 배포. Markdown 편집기, Slack 통합, 전문 검색, 세분화된 권한 제어로 팀을 위한 실시간 협업 Wiki를 구축하세요.". Co..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["outline", "wiki", "지식베이스", "팀문서", "오픈소스", "셀프호스팅", "docker", "협업", "markdown"]
-aliases:
-  - /kr/posts/outline-wiki-knowledge-base/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "outline-wiki-knowledge-base"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 문서가 죽어가는 곳
 
@@ -198,7 +196,7 @@ features: bot_user: display_name: Outline
     always_online: true
   slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
-      description: 지식 베이스 검색
+      description: "Technical guide and comparison."
       usage_hint: "[검색어]"
       should_escape: false
 oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
@@ -261,7 +259,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           DOCS=$(cat docs/api-reference.md)
           curl -X POST "https://wiki.yourcompany.com/api/documents.update" \
-            -H "Authorization: Bearer ${{ secrets.OUTLINE_API_TOKEN }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d "{
               \"id\": \"DOC_ID_HERE\",

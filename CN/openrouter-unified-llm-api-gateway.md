@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openrouter-unified-llm-api-gateway"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "OpenRouter: The Unified LLM API Gateway Connecting 300+ ...
-description: "Complete guide to OpenRouter: the unified LLM API gateway for 300+ models from 60+ providers. Learn ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/openrouter-unified-llm-api-gateway/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The API Key Nightmare That Every Developer Faces
 

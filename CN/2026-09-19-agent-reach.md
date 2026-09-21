@@ -1,10 +1,10 @@
 ---
-title: "Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
-date: 2026-09-19
-slug: 'agent-reach-internet-access-for-ai-agents-2026'
-category: 'llm-frameworks'
-tags: ["agent-reach", "ai-agent", "scraping", "automation", "python", "no-api-cost"]
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-19-agent-reach"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

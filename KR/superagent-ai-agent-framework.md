@@ -1,16 +1,14 @@
 ---
-title: "Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설...
-description: "Superagent로 AI 에이전트를 배포하는 실전 가이드. 하나의 CLI 명령, 다중 LLM 지원, RAG 워크플로우, 벡터 DB 통합, REST API 배포. 실제 벤치마크 데..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["superagent", "ai 에이전트", "llm", "rag", "벡터 데이터베이스", "openai", "langchain", "python", "typescript"]
-aliases:
-  - /kr/posts/superagent-ai-agent-framework/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superagent-ai-agent-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction: 아묾도 이야기하지 않는 배포의 격차
 
@@ -387,17 +385,17 @@ workflow = client.workflow.create(
     steps=[
         {
             "agent": "research-agent",
-            "input": "Research the topic: {{topic}}",
+            "input": "Research the topic: ",
             "output_key": "research_notes"
         },
         {
             "agent": "writer-agent",
-            "input": "Write a blog post based on: {{research_notes}}",
+            "input": "Write a blog post based on: ",
             "output_key": "draft"
         },
         {
             "agent": "editor-agent",
-            "input": "Review and improve: {{draft}}",
+            "input": "Review and improve: ",
             "output_key": "final_post"
         }
     ]

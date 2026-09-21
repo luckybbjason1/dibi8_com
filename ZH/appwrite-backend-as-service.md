@@ -1,16 +1,14 @@
 ---
-title: "Appwrite 2026：开源 Firebase 替代方案 — 认证、数据库与存储自托管后端完整指南"
-description: "Appwrite 1.6 完整指南 — 自托管开源后端，包含认证、数据库、存储、云函数和实时订阅功能。Docker 部署、SDK 集成、基准测试和生产环境加固。". Comprehensive gui..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["appwrite", "后端即服务", "firebase 替代", "docker", "开源", "认证", "数据库", "云函数", "自托管"]
-aliases:
-  - /zh/posts/appwrite-backend-as-service/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "appwrite-backend-as-service"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：Firebase 制造的 85 亿美元难题
 
@@ -257,8 +255,8 @@ cd ~/.n8n/custom && npm install n8n-nodes-appwrite
       "databaseId": "prod-db",
       "collectionId": "events",
       "data": {
-        "event_type": "={{ $json.type }}",
-        "payload": "={{ JSON.stringify($json) }}"
+        "event_type": "=",
+        "payload": "="
       }
     },
     "name": "Appwrite Log",

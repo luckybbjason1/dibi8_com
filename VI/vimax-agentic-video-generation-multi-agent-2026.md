@@ -1,6 +1,13 @@
 ---
-title: "Đánh giá ViMax: Sinh video đa cảnh theo kiểu agentic từ ...
-description: "ViMax (7.1K+ stars trên GitHub) của Hong Kong University Data Science Lab là framework agentic video..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vimax-agentic-video-generation-multi-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

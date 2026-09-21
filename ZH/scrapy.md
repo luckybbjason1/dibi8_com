@@ -1,6 +1,13 @@
 ---
-title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: "Scrapy 是一个基于 Python 的快速高级网络爬虫和抓取框架。兼容 Python、Docker、Redis、PostgreSQL。涵盖基准测试、架构、生产部署以及与 BeautifulSoup..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scrapy"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 当一个 Python 框架支撑了全球约 **34% 的生产级爬虫项目**，并在 GitHub 上保持 61,700 颗 star 时，它值得深入研究。Scrapy 自 2008 年以来一直是网络爬虫的主力军，但在 2026 年，市场上有 Playwright 这样的现代浏览器自动化工具和 BeautifulSoup 等久经考验的库。问题不再是 "Scrapy 能爬吗？"——而是 "针对你的具体工作负载，你是否应该仍然选择 Scrapy 而非替代品？"
 

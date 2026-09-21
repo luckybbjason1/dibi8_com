@@ -1,6 +1,13 @@
 ---
-title: "CCXT 2026: 100개 이상의 암호화폐 거래소를 통합하는 범용 API —— 트레이딩 봇 통합 가이드"
-description: "최고의 오픈소스 암호화폐 트레이딩 라이브러리 CCXT를 마스터하세요. 통합 API로 100개 이상의 거래소에 연결하고, 실시간 WebSocket 데이터, 내장 속도 제한 및 백테스..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ccxt-crypto-exchange-api-unified"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 *최종 업데이트: 2026년 5월 19일*
 

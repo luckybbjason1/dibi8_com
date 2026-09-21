@@ -1,6 +1,13 @@
 ---
-title: "LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM,...
-description: "LiteLLM (litellm) là cổng AI mã nguồn mở cung cấp API thống nhất cho 100+ LLM. Tương thích với OpenA..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "litellm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
 

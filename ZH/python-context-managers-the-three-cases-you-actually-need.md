@@ -1,6 +1,13 @@
 ---
-title: Python 上下文管理器：你真正需要的三个场景
-description: Python 上下文管理器：你真正需要的三个场景。掌握 with 语句、contextlib 和自定义上下文管理器，实现更好的资源管理。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "python-context-managers-the-three-cases-you-actually-need"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -22,11 +29,11 @@ faqs: - q: '什么时候应该自己编写自定义上下文管理器，而不�
   - q: '如何创建一个能临时设置环境变量、退出后自动还原的上下文管理器？'
     a: '用 @contextlib.contextmanager，先用 os.environ.get() 保存每个变量的原值，再应用覆盖值，在 try 里 yield，最后在 finally 里还原。关键细节：如果某个变量之前不存在（保存值为 None），还原时要用 os.environ.pop() 而不是赋值，否则会把字面字符串 "None" 写进去。'
   - q: 'contextlib.suppress 是做什么的？为什么比 try/except: pass 更好？'
-    a: 'contextlib.suppress(ExceptionClass) 会吞掉指定的异常并继续执行，例如 `with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")`。它比 try/except: pass 更清晰，因为有限的作用域强制你明确写出异常类，不会不小心吞掉所有异常，也不会误吞清理代码下方的代码抛出的异常。'
+    a: 'contextlib.suppress(ExceptionClass) 会吞掉指定的异常并继续执行，例如 ``with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")``。它比 try/except: pass 更清晰，因为有限的作用域强制你明确写出异常类，不会不小心吞掉所有异常，也不会误吞清理代码下方的代码抛出的异常。'
   - q: '在 Python 中如何编写异步上下文管理器？'
-    a: '用 @contextlib.asynccontextmanager 装饰一个异步生成器，然后用 `async with` 来使用它。结构与同步版本完全相同，区别只是函数体内可以 await，非常适合「从连接池获取连接、执行查询、在 finally 块里释放连接」这类模式。'
+    a: '用 @contextlib.asynccontextmanager 装饰一个异步生成器，然后用 ``async with`` 来使用它。结构与同步版本完全相同，区别只是函数体内可以 await，非常适合「从连接池获取连接、执行查询、在 finally 块里释放连接」这类模式。'
   - q: '什么情况下不应该在 Python 中使用上下文管理器？'
-    a: '以下情况应避免：获取操作不需要配对的释放操作（直接调用函数即可）；清理是尽力而为的，且内联的 try/finally 更易读；被管理的资源已经由其他机制负责生命周期管理，例如框架自带生命周期管理的 Session。每个 `with` 都会引入额外开销，嵌套过多会迅速损害可读性。'---
+    a: '以下情况应避免：获取操作不需要配对的释放操作（直接调用函数即可）；清理是尽力而为的，且内联的 try/finally 更易读；被管理的资源已经由其他机制负责生命周期管理，例如框架自带生命周期管理的 Session。每个 ``with`` 都会引入额外开销，嵌套过多会迅速损害可读性。'---
 
 
 {</* resource-info */>}
@@ -134,8 +141,8 @@ async def borrowed(pool): conn = await pool.acquire()
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

@@ -1,6 +1,13 @@
 ---
-title: "CopilotKit: 31K+ Stars — 为任何 React 或 Angular 应用添加 AI Cop...
-description: "CopilotKit 是用于应用内 AI Copilot 和生成式 UI 的开源前端框架。使用预构建组件、useCopilotAction Hooks 和生产级部署构建 React Angular A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "copilotkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 CopilotKit 是一个开源前端框架，可以将任何 React 或 Angular 应用转变为 AI 原生产品。拥有 **31,536 个 GitHub Stars**、3,300+ Forks，以及 2026 年 5 月完成的 2700 万美元 A 轮融资，它已成为团队交付应用内 AI 助手的默认选择——这些助手可以读取应用状态、触发前端操作，并在聊天界面内渲染生成式 UI 组件。
 
@@ -147,7 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <CopilotSidebar
         defaultOpen={false}
         labels={{
-          title: "AI 助手",
+title: "AI Tool Guide"
           initial: "你好！有什么可以帮你的？",
           placeholder: "输入消息...",
         }}
@@ -312,25 +319,25 @@ export function TaskManager() {
 
   // 向 LLM 暴露任务状态
   useCopilotReadable({
-    description: "用户当前的任务列表，包括完成状态和优先级"
+description: "Technical guide and comparison."
     value: tasks,
   });
 
   // 操作：添加新任务
   useCopilotAction({
     name: "addTask",
-    description: "向任务列表添加新任务"
+description: "Technical guide and comparison."
     parameters: [
       {
         name: "title",
         type: "string",
-        description: "要添加的任务标题"
+description: "Technical guide and comparison."
         required: true,
       },
       {
         name: "priority",
         type: "string",
-        description: "优先级：low、medium 或 high"
+description: "Technical guide and comparison."
         required: false,
       },
     ],
@@ -349,12 +356,12 @@ export function TaskManager() {
   // 操作：将任务标记为完成
   useCopilotAction({
     name: "completeTask",
-    description: "按标题或 ID 将任务标记为已完成"
+description: "Technical guide and comparison."
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "要标记为完成的任务 ID"
+description: "Technical guide and comparison."
         required: true,
       },
     ],
@@ -369,12 +376,12 @@ export function TaskManager() {
   // 操作：删除任务
   useCopilotAction({
     name: "deleteTask",
-    description: "从列表中删除任务"
+description: "Technical guide and comparison."
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "要删除的任务 ID"
+description: "Technical guide and comparison."
         required: true,
       },
     ],
@@ -406,9 +413,9 @@ export function TaskManager() {
 // 在 Copilot 聊天中渲染任务卡片
 useCopilotAction({
   name: "showTaskDetails",
-  description: "在聊天中显示详细的任务卡片"
+description: "Technical guide and comparison."
   parameters: [
-    { name: "taskId", type: "string", description: "要显示的任务 ID"
+    { name: "taskId", type: "string", description: "Technical guide and comparison."
 , required: true },
   ],
   render: ({ taskId }) => {

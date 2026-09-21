@@ -1,11 +1,10 @@
 ---
-title: Deepset Haystack — Build Production-Ready RAG Application...
-description: Complete guide to Deepset Haystack, the open-source Python framework for building Retrieval-Augmented Generation (RAG) applications. Document indexing, retrieval pipelines, and LLM integration at scale.
-category: llm-frameworks
-tags: ["haystack", "rag", "retrieval-augmented-generation", "deepset", "document-processing", "llm-pipeline"]
-slug: deepset-haystack-rag-framework-complete-guide
-date: 2026-07-17T00:00:00+00:00
-lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/deepset-haystack-rag.jpg
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepset-haystack-rag-framework-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -150,10 +149,10 @@ retriever = WeaviateEmbeddingRetriever(document_store=document_store)
 
 prompt_builder = PromptBuilder(template="""
     Context: {% for doc in documents %}
-    {{ doc.content }}
+    
     {% endfor %}
     
-    Question: {{ question }}
+    Question: 
     
     Answer based on the context above: """)
 
@@ -232,7 +231,7 @@ multi_query_prompt = PromptBuilder(template="""
     Given the following question, generate 3 different search queries
     that could help find the answer.
     
-    Question: {{ question }}
+    Question: 
     
     Generate exactly 3 queries, one per line: """)
 

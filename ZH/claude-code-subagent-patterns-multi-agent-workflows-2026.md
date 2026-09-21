@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）"
-description: "5 个生产环境实测过的 Claude Code subagent 模式 —— 并行调研、worktree 隔离、专家委派、上下文保护、流水线编排，含真实 prompt 和取舍说明。". Compreh..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 last_maintained: "2026-05-28"
 draft: false
 categories: ["llm-frameworks"]
@@ -57,7 +64,7 @@ faq: - q: "Claude Code 的 subagent 到底是什么？跟另开一个 CLI 进程
 
 `````
 Agent({
-  description: "尝试 controller 级别重构"
+description: "Technical guide and comparison."
   isolation: "worktree",
   prompt: "重构 controllers/orders.rb 提取校验逻辑..."
 })
@@ -75,7 +82,7 @@ Agent({
 
 `````
 Agent({
-  description: "独立代码审查"
+description: "Technical guide and comparison."
   subagent_type: "code-reviewer",
   prompt: "审查 feat/payment-gateway 分支上的改动。我想要个对重试逻辑的
    第二意见 —— 我已经检查过幂等性但想要独立验证。报告：并发失败
@@ -127,9 +134,9 @@ Agent({
 
 要在规模化跑多 agent 工作流，你需要 3 块基础设施：
 
-1. **长会话的可靠主机。** 如果你在 CI 里跑 Claude Code 或对服务端代码库操作，你需要不会掉 SSH 或被限流的 VPS。**{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS，从中国大陆访问低延迟，BGP 路由稳。这就是 dibi8.com 自己跑的同一个 IDC，我们在它上面跑自己的多 agent 流水线。$5-12/月的扎实档位。
+1. **长会话的可靠主机。** 如果你在 CI 里跑 Claude Code 或对服务端代码库操作，你需要不会掉 SSH 或被限流的 VPS。**** —— 香港 VPS，从中国大陆访问低延迟，BGP 路由稳。这就是 dibi8.com 自己跑的同一个 IDC，我们在它上面跑自己的多 agent 流水线。$5-12/月的扎实档位。
 
-2. **并行实验的云端 playground。** 你扇出 6+ 个 subagent 每个都要自己 worktree 时，你需要富余 CPU。**{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— 60 天 $200 免费额度，14+ 全球区域。独立开发者用它把 Claude Code 编排器和主应用放一起跑不会资源争抢。
+2. **并行实验的云端 playground。** 你扇出 6+ 个 subagent 每个都要自己 worktree 时，你需要富余 CPU。**** —— 60 天 $200 免费额度，14+ 全球区域。独立开发者用它把 Claude Code 编排器和主应用放一起跑不会资源争抢。
 
 3. **Skills 套装。** 如果你刚接触 Claude Code subagent，曲线最陡的部分是写不翻车的自定义 agent 定义。我们把 5 个实战 skill 打包成 $19 的 Gumroad 套装 —— 看右下角的浮动 CTA —— 里面有上面模式所用的 orchestrator prompt 模板。
 

@@ -1,6 +1,13 @@
 ---
-title: "1M 컨텍스트 윈도우 LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 실전 테스트"
-description: "두 모델 모두 1M 토큰 컨텍스트를 표방한다. 950K 토큰 코드베이스를 각각 로드해 측정했다: 검색 품질, 지연 시간, 비용, 그리고 1M 약속을 실제로 지키는 쪽과 롱테일 구간에서 무너지는 쪽."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "1m-context-window-llm-2026-real-test"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Gemini, Claude, Long-context LLM]
@@ -49,7 +56,7 @@ faq: - q: "Gemini 2.5 Pro와 Claude Sonnet 4.6 모두 정말로 1M 토큰을 처
     a: "수집 + 요약용: 둘 다 잘 작동합니다. 파일들 사이에서 특정 버그를 찾는 데는: Gemini의 '건초더미 속 바늘' 성능이 더 일관적입니다. 파일들에 걸친 다단계 추론에는: 유효 컨텍스트가 더 짧음에도 불구하고 Claude가 이깁니다."
 * * *
 
-{{</* resource-info */>}}
+
 
 # 1M 컨텍스트 윈도우 LLM 2026: 950K 토큰 코드베이스 실전 테스트
 

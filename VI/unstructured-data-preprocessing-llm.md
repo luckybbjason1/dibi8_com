@@ -1,6 +1,13 @@
 ---
-title: "Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
-description: "Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PD..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "unstructured-data-preprocessing-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Bí Mật Tồi Tệ Đằng Sau Mọi Pipeline RAG
 

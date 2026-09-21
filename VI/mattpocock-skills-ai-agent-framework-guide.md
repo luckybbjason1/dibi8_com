@@ -1,11 +1,10 @@
 ---
-title: "Matt Pocock's Skills: Framework CLI mang đến Siêu năng l...
-description: "Tìm hiểu cách sử dụng framework Skills của Matt Pocock để trang bị cho các AI coding agents như Clau..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "mattpocock-skills-ai-agent-framework-guide"
-category: dev-utils
-tags: ["matt-pocock", "skills", "AI agents", "CLI framework", "AI coding tools", "agent capabilities", "developer tools", "open-source"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

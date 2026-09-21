@@ -1,11 +1,10 @@
 ---
-title: "TurboVec: Rust 기반 벡터 인덱스가 FAISS 보다 10 배 빠름 — AI 검색 가이드 2...
-description: "TurboVec (RyanCodrai/turbovec)은 TurboQuant 위에 구축된 벡터 인덱스이며, Python 바인딩과 함께 Rust 로 작성되었습니다. LangChain..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'turbovec-rust-vector-index-2026'
-category: 'ai-tools'
-tags: ["vector-search", "rust", "quantization", "langchain", "llamaindex", "RAG", "embeddings", "turboquant"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "turbovec-rust-vector-index-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

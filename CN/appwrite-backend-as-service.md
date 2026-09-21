@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "appwrite-backend-as-service"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Appwrite 2026: The Open-Source Firebase Alternative with...
-description: "Complete guide to Appwrite 1.6 — self-hosted open-source backend with authentication, database, stor..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/appwrite-backend-as-service/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The $8.5B Problem Firebase Created
 
@@ -252,8 +259,8 @@ In your workflow, use the Appwrite node to: 1. **Trigger**: Watch a collection f
       "databaseId": "prod-db",
       "collectionId": "events",
       "data": {
-        "event_type": "={{ $json.type }}",
-        "payload": "={{ JSON.stringify($json) }}"
+        "event_type": "=",
+        "payload": "="
       }
     },
     "name": "Appwrite Log",

@@ -1,6 +1,13 @@
 ---
-title: "n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — T...
-description: "n8n (fair-code) là nền tảng tự động hóa quy trình với khả năng AI tích hợp và 400+ tích hợp. Tương t..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 *Nền tảng tự động hóa workflow fair-code n8n — 188K+ sao GitHub, 400+ tích hợp.*
@@ -380,7 +387,7 @@ Thêm credential trong UI n8n: `````bash
           "message": [
             {
               "role": "user",
-              "content": "=Summarize this data: {{ $json.body }}"
+              "content": "=Summarize this data: "
             }
           ]
         }
@@ -393,7 +400,7 @@ Thêm credential trong UI n8n: `````bash
     {
       "parameters": {
         "channel": "#alerts",
-        "text": "=AI Summary: {{ $json.output }}"
+        "text": "=AI Summary: "
       },
       "name": "Slack Message",
       "type": "n8n-nodes-base.slack",
@@ -441,8 +448,8 @@ Thêm credential trong UI n8n: `````bash
     },
     {
       "parameters": {
-        "chatId": "={{ $json.message.chat.id }}",
-        "text": "={{ $json.message.text }}",
+        "chatId": "=",
+        "text": "=",
         "additionalOptions": {}
       },
       "name": "Telegram Response",

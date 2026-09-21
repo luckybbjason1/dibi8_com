@@ -1,11 +1,10 @@
 ---
-title: "개인 AI 인프라: Daniel Miessler의 에이전트 AI 설정 — 2026 완성판 가이드"
-description: "Daniel Miessler의 개인 AI 인프라(PAI)는 45개의 스킬, 171개의 워크플로우, 파스 데몬, 알고리즘 v6.3.0을 갖춘 라이프 오퍼레이팅 시스템입니다. 원라인 ..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'personal-ai-infrastructure-daniel-miessler'
-category: data-science
-tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "personal-ai-infrastructure-daniel-miessler"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

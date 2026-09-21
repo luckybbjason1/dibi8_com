@@ -1,16 +1,14 @@
 ---
-title: "Jesse: 内置30+技术指标的高级Python加密货币交易框架 —— 2026年完整部署指南"
-description: "Jesse AI交易框架的生产级指南 —— 安装、使用30+技术指标进行回测、构建自定义策略，并用Python部署实时加密货币交易机器人。". Comprehensive guide covering..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["jesse", "加密货币交易", "python", "回测", "技术指标", "算法交易", "ai交易", "量化交易"]
-aliases:
-  - /zh/posts/jesse-ai-trading-framework/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "jesse-ai-trading-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么大多数交易机器人在生产环境中失败
 
@@ -194,13 +192,13 @@ jesse backtest 2025-01-01 2025-12-31
 `````
 Loading candles...
 Executing backtest...
-=====================================
+
 Total Trades: 142
 Win Rate: 58.45%
 Net Profit: 23.7%
 Max Drawdown: -8.2%
 Sharpe Ratio: 1.34
-=====================================
+
 `````
 
 ## 主流工具集成

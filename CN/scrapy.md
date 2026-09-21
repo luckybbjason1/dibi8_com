@@ -1,6 +1,13 @@
 ---
-title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: "Scrapy is a fast high-level web crawling and scraping framework for Python. Compatible with Python, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scrapy"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/scrapy/-
 ---
 
-{{</* resource-info */>}}
+
 
 When a single Python framework powers an estimated **34% of production scraping projects** worldwide and maintains a 61,700-star GitHub repository, it warrants a closer look. Scrapy has been the workhorse of web crawling since 2008, but in 2026 the landscape includes modern browser automation tools like Playwright and proven libraries like BeautifulSoup. The question is no longer "Can Scrapy crawl?" — it is "Should you still pick Scrapy over the alternatives for your specific workload?"
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vectorbt-quantitative-backtesting"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "VectorBT: The Lightning-Fast Python Backtesting Library ...
-description: "Master VectorBT for quantitative backtesting in Python. Build, test, and optimize trading strategies..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/vectorbt-quantitative-backtesting/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your Backtesting Is Too Slow
 

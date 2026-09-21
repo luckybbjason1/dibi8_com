@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scanners-box-cybersecurity-tools-collection"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Scanners-Box: 200+ Cybersecurity Tools Collection for Se...
-description: Discover Scanners-Box - a comprehensive collection of 200+ open-source. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   cybersecurity tools for penetration testing, vulnerability scanning, and security
   research.
 date: 2026-05-15T04:20:25+09:00
@@ -256,8 +263,8 @@ Exfiltration: DNS tunneling, HTTPS C2
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "htstack" "category-footer" "HTStack" >}}** — Hong Kong VPS, same IDC that hosts dibi8.com. Self-host security scanners on dedicated VPS for low-latency Asia coverage and no shared-tenant noise.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Hong Kong VPS, same IDC that hosts dibi8.com. Self-host security scanners on dedicated VPS for low-latency Asia coverage and no shared-tenant noise.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

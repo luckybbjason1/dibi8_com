@@ -1,6 +1,13 @@
 ---
-title: "InvokeAI: 27.2K+ Stars — 2026 完整安装配置指南"
-description: "InvokeAI（Invoke）是 Stable Diffusion 模型的领先创意引擎，拥有业界领先的 WebUI。兼容 SD 1.5、SDXL、FLUX 和 ControlNet。涵盖 Docke..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "invokeai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
 

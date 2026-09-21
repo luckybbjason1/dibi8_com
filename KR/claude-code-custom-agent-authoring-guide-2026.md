@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 커스텀 에이전트 작성 가이드: 팀 표준을 강제하는 재사용 가능한 서브에이전트 만...
-description: "Claude Code 커스텀 서브에이전트를 작성하는 완벽 가이드 — frontmatter 필드, 시스템 프롬프트 설계, 도구 화이트리스트, 그리고 바로 투입 가능한 두 가지 예제(..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-custom-agent-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -52,7 +59,7 @@ faq: - q: "커스텀 에이전트 정의 파일은 어디에 두며, 어떤 형�
 구조는 무척 단순합니다: `````markdown
 * * *
 name: migration-reviewer
-description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -73,8 +80,8 @@ migrations before they reach production...
 
 ### ````description```` (필수 — 그리고 사람들이 가장 과소평가하는 것)
 
-이것이 **라우팅 신호**입니다. 부모 에이전트가 위임할지 결정할 때 읽는 것은 시스템 프롬프트가 아니라 description입니다. 그래서 description은 구체적인 트리거 조건으로 *언제* 이 에이전트를 찾아야 하는지를 담아야 합니다: > ❌ ````description: A code reviewer.````
-> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
+이것이 **라우팅 신호**입니다. 부모 에이전트가 위임할지 결정할 때 읽는 것은 시스템 프롬프트가 아니라 description입니다. 그래서 description은 구체적인 트리거 조건으로 *언제* 이 에이전트를 찾아야 하는지를 담아야 합니다: > ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 "proactively"(능동적으로)라는 단어가 하중을 떠받칩니다 — 명시적 요청 없이도 부모가 알아서 호출하도록 부추기죠. 에이전트가 도무지 트리거되지 않는 것 같다면, 거의 항상 description이 원인입니다.
 
@@ -118,7 +125,7 @@ End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
 `````markdown
 * * *
 name: migration-reviewer
-description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -145,7 +152,7 @@ End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
 `````markdown
 * * *
 name: security-gate
-description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: opus
 * * *
@@ -188,9 +195,9 @@ cheap, a missed auth hole is not.
 
 ## 프로덕션 수준의 Claude Code 구성하기
 
-커스텀 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 1. **장시간 세션과 CI 세션을 위한 믿을 만한 호스트.** 커스텀 에이전트는 모든 PR을 지키는 CI에서 가장 빛납니다. 작업을 떨어뜨리지 않는 머신이 필요합니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에서 저지연으로 접속되고 BGP 라우팅이 안정적인 홍콩 VPS입니다. dibi8.com을 호스팅하는 바로 그 IDC라서, 우리 자신의 에이전트 파이프라인도 그 위에서 돌립니다. 가성비 등급은 월 $5-12입니다.
+커스텀 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 1. **장시간 세션과 CI 세션을 위한 믿을 만한 호스트.** 커스텀 에이전트는 모든 PR을 지키는 CI에서 가장 빛납니다. 작업을 떨어뜨리지 않는 머신이 필요합니다. **** — 중국 본토에서 저지연으로 접속되고 BGP 라우팅이 안정적인 홍콩 VPS입니다. dibi8.com을 호스팅하는 바로 그 IDC라서, 우리 자신의 에이전트 파이프라인도 그 위에서 돌립니다. 가성비 등급은 월 $5-12입니다.
 
-2. **병렬 게이트를 위한 클라우드 여유.** 오케스트레이터가 migration-reviewer + security-gate + perf-checker로 한꺼번에 팬아웃할 때는 여분의 CPU가 필요합니다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 14개 이상 리전에 걸쳐 60일간 $200 무료 크레딧, 앱 옆에 CI 러너를 두기에 좋습니다.
+2. **병렬 게이트를 위한 클라우드 여유.** 오케스트레이터가 migration-reviewer + security-gate + perf-checker로 한꺼번에 팬아웃할 때는 여분의 CPU가 필요합니다. **** — 14개 이상 리전에 걸쳐 60일간 $200 무료 크레딧, 앱 옆에 CI 러너를 두기에 좋습니다.
 
 3. **스킬 번들.** 가장 가파른 구간은 무너지지 않는 에이전트 정의를 쓰는 일입니다. 우리는 실전 검증된 다섯 가지 스킬을 Gumroad에서 $19 번들로 묶었습니다 — 모서리의 떠 있는 CTA를 보세요 — 오케스트레이터 프롬프트와 바로 출시 가능한 에이전트 정의 셋이 더 들어 있습니다.
 

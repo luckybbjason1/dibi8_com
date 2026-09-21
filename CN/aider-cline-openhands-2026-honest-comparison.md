@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider-cline-openhands-2026-honest-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
-description: "Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete bench..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
@@ -28,7 +35,7 @@ faq: - q: "Which OSS coding agent is best in 2026?"
     a: "Aider: 15 minutes to productive (it's a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings + model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling."
 ---
 
-{{</* resource-info */>}}
+
 
 # Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison
 
@@ -215,8 +222,8 @@ OpenHands defaults to Docker sandbox — safest. Aider asks per-command — safe
 
 ## Recommended Infrastructure
 
-For self-hosted OpenHands or running fine-tuned models locally: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets available
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency
+For self-hosted OpenHands or running fine-tuned models locally: - **** — $200 credit, GPU droplets available
+- **** — Hong Kong VPS, low-latency
 
 *Affiliate links — same price, supports dibi8.com.*
 

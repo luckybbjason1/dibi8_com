@@ -1,11 +1,10 @@
 ---
-title: "언더스탠드-에니씽: 코드베이스를 위한 상호작용 지식 그래프 — 60K+ 스타 2026"
-description: "Understand-Anything은 모든 코드베이스를 탐색하고 검색하며 쿼리할 수 있는 인터랙티브 지식 그래프로 바꿉니다. Claude Code, Codex, Cursor, Co..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: understand-anything-interactive-knowledge-graphs-codebases
-category: ai-tools
-tags: ["understand-anything", "knowledge-graph", "codebase-analysis", "claude-code", "codex", "cursor", "AI-agents", "code-visualization", "semantic-search"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "understand-anything-interactive-knowledge-graphs-codebases"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

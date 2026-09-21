@@ -1,21 +1,10 @@
 ---
-title: "Data Cleaning Tools & Best Practices: OpenRefine, Python...
-description: "Master data cleaning with OpenRefine, Pandas, Great Expectations & automated tools. Learn best pract..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/data-cleaning-tools-best-practices/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "data-cleaning-tools-best-practices"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Data Cleaning Tools & Best Practices: OpenRefine, Python Libraries & Automated Solutions

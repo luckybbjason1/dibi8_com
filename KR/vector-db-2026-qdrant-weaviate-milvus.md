@@ -1,6 +1,13 @@
 ---
-title: "2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드...
-description: "동일한 500만 벡터 워크로드로 Qdrant, Weaviate, Milvus를 실측했습니다. 레이턴시, 처리량, 메모리, 설치 난이도. 프로토타입과 프로덕션 각각 어디에 적합한지,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vector-db-2026-qdrant-weaviate-milvus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
@@ -25,7 +32,7 @@ faq: - q: "2026년에 가장 좋은 벡터 DB는?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus
 
@@ -115,8 +122,8 @@ conn.execute("CREATE VIRTUAL TABLE docs USING fts5(title, content)")
 
 ## 추천 인프라
 
-벡터 DB 호스팅 추천: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, NVMe 드롭릿
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 아시아 저지연 쿼리를 위한 홍콩 VPS
+벡터 DB 호스팅 추천: - **** — $200 크레딧, NVMe 드롭릿
+- **** — 아시아 저지연 쿼리를 위한 홍콩 VPS
 
 *Affiliate 링크 — 동일한 가격, dibi8.com을 후원합니다.*
 

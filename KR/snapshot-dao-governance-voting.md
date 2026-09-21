@@ -1,16 +1,14 @@
 ---
-title: "snapshot-dao-governance-voting"
-description: "{"en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ vo..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["snapshot", "dao", "governance", "voting", "off-chain", "eip-712", "ipfs", "delegation", "defi", "web3"]
-aliases:
-  - /kr/posts/snapshot-dao-governance-voting/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "snapshot-dao-governance-voting"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **날짜:** 2026-05-19  
 **카테고리:** AI 트레이딩  
@@ -484,7 +482,7 @@ async function createProposal(
   const proposal = {
     space: "mydao.eth",
     type: "single-choice",        // "single-choice" | "approval" | "quadratic" | "ranked-choice" | "weighted"
-    title: "2026년 2분기 재무 할당 제안",
+    title: "AI Tool Guide"
     body: ````## 요약
 
 본 제안은 2026년 2분기 운영을 위한 재무 자금 할당을 합니다.
@@ -728,9 +726,9 @@ function notifyDiscord(proposal: any) {
   // Discord Webhook으로 알림 전송
   const message = {
     embeds: [{
-      title: ````📋 새 제안: ${proposal.title}````,
+      title: "AI Tool Guide"
       url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
-      description: proposal.body.substring(0, 200) + '...',
+      description: "Technical guide and comparison."
       fields: [
         { name: 스페이스, value: proposal.space.name, inline: true },
         { name: 작성자, value: proposal.author, inline: true },

@@ -1,11 +1,10 @@
 ---
-title: "AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã...
-description: "AgentMemory (22.038 sao GitHub) cung cấp bộ nhớ bền vững cho đại lý mã hóa AI dựa trên các đánh giá ..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'agentmemory-persistent-memory-ai-coding-agents'
-category: 'data-science'
-tags: ["agent memory", "persistent memory", "AI coding agents", "context continuity", "AgentMemory", "session memory", "agent framework", "AI benchmark"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agentmemory-persistent-memory-ai-coding-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

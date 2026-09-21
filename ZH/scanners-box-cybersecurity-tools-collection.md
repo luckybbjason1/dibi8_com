@@ -1,6 +1,13 @@
 ---
-title: Scanners-Box：200+ 网络安全工具合集 — 安全从业人员必备
-description: 探索 Scanners-Box — 200+ 开源网络安全工具合集，涵盖渗透测试、漏洞扫描、安全研究等领域。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scanners-box-cybersecurity-tools-collection"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -254,8 +261,8 @@ nmap -A target.com
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "htstack" "category-footer" "HTStack" >}}** — 香港 VPS, dibi8.com 自己跑在这个 IDC。自托管 security scanner 独立 VPS, 亚洲低延迟覆盖, 无共享租户噪音。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 香港 VPS, dibi8.com 自己跑在这个 IDC。自托管 security scanner 独立 VPS, 亚洲低延迟覆盖, 无共享租户噪音。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

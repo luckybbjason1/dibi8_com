@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
-description: "Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist..."
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -67,7 +74,7 @@ Single message → 3 Agent tool calls: - Agent("Find auth handlers", subagent_ty
 
 `````
 Agent({
-  description: "Try the controller-level refactor"
+  description: "Technical guide and comparison."
   isolation: "worktree",
   prompt: "Refactor controllers/orders.rb to extract the validation logic..."
 })
@@ -85,7 +92,7 @@ Agent({
 
 `````
 Agent({
-  description: "Independent code review"
+  description: "Technical guide and comparison."
   subagent_type: "code-reviewer",
   prompt: "Review the changes on branch feat/payment-gateway. I want a second
    opinion on the retry logic — I've checked idempotency but want
@@ -135,9 +142,9 @@ This is the opposite of the "one super-agent does everything" instinct that domi
 
 ## Setting Up Production-Ready Claude Code
 
-To run multi-agent workflows at scale you need three pieces of infrastructure: 1. **A reliable host for long-running sessions.** If you're running Claude Code in CI or against a server-side codebase, you need a VPS that won't drop your SSH session or get throttled. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. Same IDC that hosts dibi8.com, so we run our own multi-agent pipelines on it. Solid value tier for $5-12/month.
+To run multi-agent workflows at scale you need three pieces of infrastructure: 1. **A reliable host for long-running sessions.** If you're running Claude Code in CI or against a server-side codebase, you need a VPS that won't drop your SSH session or get throttled. **** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. Same IDC that hosts dibi8.com, so we run our own multi-agent pipelines on it. Solid value tier for $5-12/month.
 
-2. **A cloud playground for parallel experiments.** When you're fanning out 6+ subagents that each need their own worktree, you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. Indie devs use this to host Claude Code orchestrators alongside their main app without resource contention.
+2. **A cloud playground for parallel experiments.** When you're fanning out 6+ subagents that each need their own worktree, you want spare CPU. **** — $200 free credit for 60 days across 14+ global regions. Indie devs use this to host Claude Code orchestrators alongside their main app without resource contention.
 
 3. **A skills bundle.** If you're new to Claude Code subagents, the steepest part of the curve is writing custom agent definitions that don't fall over. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — including the orchestrator prompts that ship the patterns above.
 

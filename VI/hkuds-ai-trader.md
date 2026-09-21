@@ -1,11 +1,10 @@
 ---
-title: "AI-Trader: Nền tảng giao dịch Agent-Native từ HKUDS"
-description: "AI-Trader là một nền tảng giao dịch agent-native từ HKUDS cho phép các tác nhân lập trình AI như Cla..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: hkuds-ai-trader
-category: ai-trading
-tags: ["ai-trader", "HKUDS", "ai-trading", "agent-native", "giao dịch tự động", "quản lý danh mục", "tác nhân AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hkuds-ai-trader"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

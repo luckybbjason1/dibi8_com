@@ -1,26 +1,14 @@
 ---
-title: "本地优先 AI 技术栈 2026：完全离线的 AI 开发环境"
-description: "2026 年搭建完全离线的 AI 编码环境：Ollama 跑 LLM、Aider 做编码代理、ChromaDB 做 RAG，全部本地化。包含安装指南、硬件实情，以及离线方案的真正适用场景（隐私、合规、..."
-licensing_model: Open Source
-license_type: 'MIT / Apache-2.0'
-last_maintained: "2026-05-25"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["local-first", "offline", "ollama", "ai-coding", "privacy", "2026"]
-aliases:
-  - /zh/posts/local-first-ai-stack-offline-development-2026/
-faq: - q: "2026 年为什么要做完全离线？"
-    a: "三个真实原因：(1) 隐私/合规——金融、医疗、政府等受监管行业不能把代码发给 OpenAI/Anthropic。(2) 物理隔离环境——涉及安全审查的工作。(3) 可靠性——跨国出差网络差、或者 API 宕机时仍然能工作。"
-  - q: "到底需要什么硬件？"
-    a: "实用配置：M3 Max MacBook（或 RTX 4090 台式机）+ 32GB 以上统一内存。能跑的模型：Llama 3.3 70B Q4 量化版、Mistral Large、DeepSeek Coder。低于 16GB 内存只能跑更小的模型（8B-13B 级别）——能用，但相对于商用 API 的质量差距会明显拉大。"
-  - q: "走本地会牺牲多少质量？"
-    a: "在代码生成基准测试上，相比 Claude Sonnet 4.6 或 GPT-5 大约差 10-20%。对于日常工作（CRUD、重构、写文档）几乎察觉不到。但在复杂推理、新颖算法、架构决策上——差距明显。本质上是用质量换取隐私/可靠性。"
-  - q: "本地和云端工作流能联动吗？"
-    a: "可以。常用模式：本地 Ollama 作为主力，遇到难任务再回退到商用 API。Aider 支持会话中途切换模型。大多数开发者采用混合模式——本地为默认，云端处理那 10-20% 真正需要的部分。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-first-ai-stack-offline-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 本地优先 AI 技术栈 2026：离线开发环境
 
@@ -140,8 +128,8 @@ model = SentenceTransformer("BAAI/bge-m3")
 ## 推荐基础设施
 
 如果你需要 GPU 主机做本地模型微调：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}**——200 美元额度，GPU 主机
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}**——香港 VPS
+- ****——200 美元额度，GPU 主机
+- ****——香港 VPS
 
 *联盟链接——价格相同，支持 dibi8.com。*
 

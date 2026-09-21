@@ -1,0 +1,416 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/roboflow-supervision/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/roboflow-supervision/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/roboflow-supervision/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/roboflow-supervision/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/roboflow-supervision/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/roboflow-supervision/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/roboflow-supervision/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"소개 컴퓨터 비전은 자율 주행 자동차, 품질 검사 시스템부터 의료 이미징 및 리테일 분석에 이르기까지 모든 것을 가능하게 하는 머신러닝의 가장 영향력 있는 응용 분야 중 하나가 되었습니다. 하지만 프로덕션 등급 CV 시스템을 구축하는 데에는 모델 학습만으로는 부족합니다. 데이터 주석, 평가, 시각화 및 디버깅을 위한 강력한 도구가 필요합니다.\nSupervision은 Roboflow에서 제공하는 이 필요에 대한 답입니다. 42,819개의 GitHub star를 달성한 이 도구는 재사용 가능한 잘 설계된 Python 도구가 필요한 컴퓨터 비전 실무자에게 가장 선호되는 도구 모음이 되었습니다. 그들의 슬로건이 모든 것을 말해줍니다. “우리는 당신의 재사용 가능한 컴퓨터 비전 도구를 작성합니다.”\n면책: 이 artikel에는 제휴 링크가 포함될 수 있습니다. 이를 통해 가입하면 추가 비용 없이 소정의 수수료를 받을 수 있습니다. 면책 정책\nDigitalOcean - CV 배포를 위한 신뢰할 수 있는 클라우드 인프라. HTStack - 고성능 서버 호스팅. WebShare - AI 데이터 파이프라인을 위한 프리미엄 프록시 서비스.\nSupervision이란? Supervision은 컴퓨터 비전 작업을 위한 포괄적인 도구 세트를 제공하는 Python 라이브러리입니다. 훈련 데이터 주석 작성과 모델 출력 평가부터 탐지 결과 시각화 및 비디오 스트림 처리에 이르기까지 전체 CV 파이프라인을 다룹니다.\n이 라이브러리는 단순한 철학을 바탕으로 구축되었습니다: 가장 일반적인 CV 작업을 매우 쉽게 만들면서도 사용자 정의 워크플로우를 위한 문은 열어둡니다. 객체 감지를 위해 이미지를 주석 작성하든, 분할 모델 출력을 평가하든, 비디오에서 추적 결과를 시각화하든, Supervision이 모든 것을 커버합니다.\n표지 이미지:\n핵심 기능 Supervision은 전체 컴퓨터 비전 수명 주기 전반에 걸쳐 도구를 제공합니다: ### 데이터 주석\nSupervision은 주석 형식을 생성, 조작 및 변환하기 위한 유틸리티를 제공합니다. COCO, YOLO, Pascal VOC 및 사용자 정의 형식을 지원하여 다양한 ML 프레임워크 및 파이프라인과 쉽게 작업할 수 있습니다.\n# supervision import from supervision import * # 기존 주석 로드 annotations = load_annotations(\"annotations/coco_format.json\") # 주석 형식 간 변환 coco_to_yolo( input_path=\"annotations/coco_format.json\", output_path=\"annotations/yolo_format.txt\", class_map={\"person\": 0, \"car\": 1, \"dog\": 2} ) # 주석 통계 검토 stats = get_annotation_stats(annotations) print(f\"Total objects: {stats.total_objects}\") print(f\"Classes: {stats.classes}\") print(f\"Images: {stats.total_images}\") 탐지 처리 Supervision은 신뢰도 필터링, 비최대값 억제 및 결과 시각화를 포함한 탐지 모델 출력을 처리하기 위한 강력한 도구를 제공합니다.\nimport supervision as sv import cv2 # 탐지 모델 로드 (YOLO, Detectron 등 작동) detections = sv.Detections.from_yolo_output( prediction, # 모델 출력 텐서 original_image_size, # 이미지 크기 confidence_threshold=0.5, class_id=0 # 클래스별 필터링 ) # 비최대값 억제 적용 detections = sv.NMS(detections, iou_threshold=0.45) # 신뢰도로 필터링 detections = detections[detections.confidence \u003e 0.6] 시각화 및 주석 그리기 Supervision의 강점 중 하나는 시각화 도구 모음입니다. 이미지 및 비디오 프레임에 bounding box, segmentation mask, keypoint 및 tracking ID를 그리는 것은 간단합니다: `````python\n그리기용 annotation context 생성 annotation_context = sv.BoxAnnotator( thickness=2, color_lookup=sv.ColorLookup.INDEX )\n이미지 로드 image = cv2.imread(“scene.jpg”)\nbounding box 그리기 annotated_image = annotation_context.annotate( scene=image, detections=detections )\nsegmentation mask 그리기 mask_annotator = sv.MaskAnnotator( opacity=0.5, color_lookup=sv.ColorLookup.INDEX ) annotated_image = mask_annotator.annotate( scene=annotated_image, detections=detections )\n신뢰도 있는 class label 그리기 label_annotator = sv.LabelAnnotator( text_scale=0.5, text_thickness=1, color_lookup=sv.ColorLookup.INDEX ) annotated_image = label_annotator.annotate( scene=annotated_image, detections=detections )\n결과 저장 cv2.imwrite(“annotated_scene.jpg”, annotated_image)\n### 추적 지원 Supervision은 인기 있는 추적 알고리즘에 대한 내장 통합을 갖춘 object tracking에 대한 first-class 지원을 제공합니다: `````python # tracker 초기화 tracker = sv.Tracker( tracker_type=\"ocsort\", # 또는 \"bytetrack\" max_age=30, min_hits=3, iou_threshold=0.3 ) # 비디오 프레임 전체에서 object 추적 video_path = \"traffic_camera.mp4\" for frame_number, frame in enumerate( sv.VideoInfo.from_video_path(video_path).iter_frames() ): detections = detect_objects(frame) # 사용자의 탐지 모델 detections = tracker.update_with_detections(detections) # tracking ID가 있는 주석이 달린 프레임 annotated_frame = draw_tracking_ids(frame, detections) 메트릭 계산 Supervision은 일반적인 CV 평가 메트릭을 계산하기 위한 도구를 제공합니다: `````python\nconfusion matrix 계산 confusion_matrix = sv.ConfusionMatrix( num_classes=10, task=“multiclass” ) confusion_matrix.compute( predictions=predicted_labels, targets=ground_truth_labels )\nconfusion matrix 표시 confusion_matrix.plot(title=“Model Performance”)\n클래스별 precision, recall 및 F1 가져오기 for class_name, metrics in confusion_matrix.class_metrics().items(): print(f\"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}\")\n## 동작 방식 Supervision은 몇 가지 핵심 디자인 패턴을 따르는 깔끔하고 일관된 API를 통해 동작합니다: ### Detections을 데이터 구조로 Supervision의 핵심은 ````Detections```` 클래스로, 모든 유형의 객체 탐지 출력에 대한 통합 표현을 제공합니다 — bounding box, segmentation mask, keypoint 및 방향 각도. `````python from supervision import Detections # 처음부터 detection 생성 detections = Detections( xyxy=np.array([ # bounding box [x1, y1, x2, y2] [100, 50, 300, 250], [400, 100, 600, 300] ]), confidence=np.array([0.95, 0.87]), class_id=np.array([0, 2]), mask=np.array([mask_1, mask_2]), # 선택적 segmentation mask keypoints=np.array([keypoints_1, keypoints_2]) # 선택적 keypoint ) # detection 필터링 person_detections = detections[detections.class_id == 0] high_confidence = detections[detections.confidence \u003e 0.8] # 두 detection set 간 IoU 계산 ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5) 파이프라인 구성 Supervision은 작업을 파이프라인으로 composition하도록 권장합니다. 각 단계는 Detections 객체를 가져오고 새 객체를 생성합니다: `````python\n탐지 파이프라인 빌드 pipeline = [ {“operation”: “filter_confidence”, “threshold”: 0.5}, {“operation”: “non_max_suppression”, “iou_threshold”: 0.45}, {“operation”: “filter_class”, “class_ids”: [0, 1, 2]}, {“operation”: “compute_metrics”, “metric”: “ap50”} ]\n파이프라인 실행 results = apply_pipeline(original_detections, pipeline)\n## 설치 Supervision 설치는 간단합니다: `````bash # pip로 설치 pip install supervision # 설치 검증 python -c \"import supervision as sv; print(sv.__version__)\" # 최대 호환성을 위해 모든 선택적 의존성과 함께 설치 pip install supervision[all] PyTorch와 함께 설치 딥러닝 워크플로우를 위해 PyTorch와 함께 설치하세요: `````bash\nPyTorch로 설치 (CPU) pip install supervision torch torchvision\nPyTorch로 설치 (CUDA 12.x) pip install supervision torch torchvision –index-url https://download.pytorch.org/whl/cu121\n### Colab 데모 Roboflow는 Supervision의 기능을 탐색하기 위한 대화형 Colab 노트북을 제공합니다: `````bash # 대화형 Colab 데모 열기 # https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb # 또는 로컬에서 실행: # 데모 노트북에 접근하기 위해 repository clone git clone https://github.com/roboflow/supervision.git cd supervision jupyter notebook demo.ipynb 통합 패턴 YOLO 통합 Supervision은 YOLO 모델과 first-class 통합을 제공합니다: `````python\nYOLOv8 (Ultralytics) 통합 from ultralytics import YOLO import supervision as sv\nYOLOv8 모델 로드 model = YOLO(“yolov8n.pt”)\n추론 실행 results = model.predict(“image.jpg”, conf=0.25)\nYOLO 결과를 Supervision detection으로 변환 detections = sv.Detections.from_ultralytics(results[0])\n시각화 annotator = sv.BoxAnnotator() annotated_frame = annotator.annotate( scene=results[0].plot(), detections=detections )\n### MediaPipe 통합 _pose estimation 및 landmark detection을 위해:_ `````python import supervision as sv from mediapipe import solutions # MediaPipe pose 모델 로드 pose = solutions.pose.Pose(static_image_mode=True) # pose detection 실행 results = pose.process(image) # Supervision keypoint 형식으로 변환 if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks) ONNX Runtime 통합 최적화된 추론을 위해: `````python import supervision as sv from onnxruntime import InferenceSession\nONNX 모델 로드 session = InferenceSession(“model.onnx”)\n추론 실행 및 Supervision 형식으로 변환 outputs = session.run(None, {session.get_inputs()[0].name: input_tensor}) detections = sv.Detections.from_onnx(outputs)\n![Supervision 파이프라인 아키텍처](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png) ## 벤치마크 및 성능 ### 평가 속도 Supervision의 평가 함수는 속도에 최적화되어 있습니다: | 작업 | 데이터셋 크기 | 시간 | 성능 | |------|-------------|------|------| | Confusion Matrix (10 classes) | 10,000 samples | 0.3초 | 33,333 samples/sec | | IoU 계산 | 100 box vs 100 box | 0.02초 | 5,000 pairings/sec | | NMS | 500 detections | 0.01초 | 50,000 detections/sec | | Mask 렌더링 | 100 mask (1000x1000) | 0.5초 | 200 mask/sec | | 비디오 프레임 처리 | 30 FPS video | 12ms/frame | 83 FPS 실시간 가능 | ### 모델 평가 처리량 Supervision은 대규모로 모델을 평가하는 데 사용됩니다: `````python # 배치 평가 스크립트 import supervision as sv from tqdm import tqdm def evaluate_model(model, dataset): all_predictions = [] all_targets = [] for images, labels in tqdm(dataset, desc=\"Evaluating\"): preds = model.predict(images) all_predictions.extend(preds) all_targets.extend(labels) # Supervision으로 메트릭 계산 confusion = sv.ConfusionMatrix( num_classes=len(dataset.classes), task=\"multiclass\" ) confusion.compute( predictions=all_predictions, targets=all_targets ) metrics = confusion.metrics() print(f\"mAP@0.5: {metrics.map_50:.4f}\") print(f\"mAP@0.5:0.95: {metrics.map_50_95:.4f}\") return metrics 고급 사용 사용자 정의 Annotator 전문화된 시각화 필요에 대해 사용자 정의 annotator를 생성할 수 있습니다: `````python import supervision as sv import cv2 import numpy as np\nclass ArrowAnnotator(sv.Annotator): “““방향 화살표 그리기 위한 사용자 정의 annotator.”””\ndef __init__(self, color=None, thickness=2): super().__init__() self.color = color or sv.Color.WHITE self.thickness = thickness def annotate(self, scene, detections, direction=\"right\"): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2) center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2) if direction == \"right\": end_x = center_x + 50 end_y = center_y elif direction == \"left\": end_x = center_x - 50 end_y = center_y elif direction == \"up\": end_x = center_x end_y = center_y - 50 else: end_x = center_x end_y = center_y + 50 cv2.arrowedLine( scene, (center_x, center_y), (end_x, end_y), (self.color.r, self.color.g, self.color.b), self.thickness ) return scene 사용자 정의 annotator 사용 arrow_annotator = ArrowAnnotator( color=sv.Color.GREEN, thickness=3 )\n### 비디오 분석 파이프라인 실시간 비디오 분석을 위해: `````python import supervision as sv class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path self.model = model self.counter = sv.ObjectCounter() self.line_annotator = sv.LineAnnotator() self.label_annotator = sv.LabelAnnotator() # 카운팅 zone 정의 self.counting_line = sv.Line( start=(100, 400), end=(1200, 400) ) def process_frame(self, frame): # 탐지 실행 detections = self.model.predict(frame) # line crossing로 counter 업데이트 self.counter.trigger(detections, self.counting_line) # 주석 달기 annotated = self.line_annotator.annotate(scene=frame.copy()) annotated = self.label_annotator.annotate( scene=annotated, detections=detections ) # counter label 그리기 cv2.putText( annotated, f\"Entry: {self.counter.entries}\", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2 ) return annotated # 파이프라인 실행 pipeline = VideoAnalyticsPipeline(\"camera_feed.mp4\", model) pipeline.run() 메트릭 시각화 Supervision은 평가 메트릭에 대한 내장 시각화를 제공합니다: `````python import supervision as sv\nROC curve roc = sv.ROCCurve( num_classes=5, labels=[“cat”, “dog”, “car”, “person”, “bird”] ) roc.compute(predictions, targets) roc.plot(save_path=“roc_curve.png”)\nPrecision-Recall curve pr = sv.PrecisionRecallCurve( num_classes=5 ) pr.compute(predictions, targets) pr.plot(save_path=“pr_curve.png”)\n## 대안과의 비교 Supervision은 다른 컴퓨터 비전 도구 모음과 어떻게 비교됩니까? | 기능 | Supervision | Albumentations | Torchvision | MMDetection | |------|-------------|---------------|-------------|-------------| | 주요 초점 | CV 도구/주석 | 이미지 증강 | PyTorch 모델 | 탐지 프레임워크 | | 주석 지원 | 우수 | 제한적 | 없음 | 내장 | | 시각화 | 풍부 | 없음 | 기본 | 제한적 | | 모델 평가 | 내장 | 없음 | 기본 | 내장 | | 추적 지원 | 예 | N/A | N/A | 제한적 | | 학습 곡선 | 쉬움 | 보통 | 보통 | 가파름 | | 문서 | 우수 | 좋음 | 좋음 | 보통 | | GitHub Star | 42,819 | 20,000+ | N/A (PyTorch) | 25,000+ | | License | MIT | Apache-2.0 | BSD-3 | Apache-2.0 | | 최적 용도 | CV 워크플로우, 주석 | 데이터 증강 | 엔드투엔드 DL | 탐지 학습 | Supervision은 독특한 niche을 채웁니다. Albumentations는 데이터 증강에, Torchvision은 모델 빌드 블록을, MMDetection은 전체 학습 프레임워크에 중점을 둡니다. Supervision은 중간에 위치하여 — 특정 학습 파이프라인을 규정하지 않고 주석, 평가 및 시각화에 필요한 도구를 제공합니다. ## 제한 사항 Supervision은 강력한 도구 모음이지만 몇 가지 제한 사항이 있습니다: **학습 프레임워크가 아님.** Supervision은 모델 학습을 위해 설계되지 않았습니다. 학습 프레임워크(YOLO, Detectron, 사용자 정의 모델)의 출력과 함께 작동하지만 학습 루프 또는 loss function을 포함하지 않습니다. **Python 전용.** 라이브러리는 Python 전용이므로 다른 언어를 직접 지원하지 않습니다. Java 또는 C++ CV 파이프라인과 통합해야 하는 경우 브릿지를 통해 Python 라이브러리를 호출해야 합니다. **제한된 내장 모델.** 일부 경쟁사와 달리 Supervision은 사전 학습된 모델을 포함하지 않습니다. 자신의 모델을 가져와서 다른 모든 것에 Supervision을 사용합니다. ## 자주 묻는 질문 ### 1. Supervision은 어떻게 설치하나요? ````pip install supervision````을 실행하기만 하면 됩니다. 모든 기능과의 전체 호환성을 위해 ````pip install supervision[all]````을 사용하세요. ### 2. Supervision은 YOLO 모델과 작동하나요? 예, ````Detections.from_ultralytics()```` 메서드를 통해 YOLOv5, YOLOv8 및 YOLO-NAS와 first-class 통합을 제공합니다. ### 3. 실시간 비디오 처리에 Supervision을 사용할 수 있나요? 예. 라이브러리는 성능에 최적화되어 있으며, 표준 하드웨어에서 프레임 처리 시간이 약 12ms로 실시간 30+ FPS 처리가 가능합니다. ### 4. Supervision은 어떤 주석 형식을 지원하나요? Supervision은 COCO, YOLO, Pascal VOC 및 사용자 정의 JSON 형식을 지원합니다. 형식 간 변환이 내장되어 있습니다. ### 5. 사용자 정의 annotator를 생성할 수 있나요? 물론입니다. annotator 시스템은 확장 가능하도록 설계되었습니다. ````sv.Annotator````를 subclass하여 특정 사용 사례에 대한 사용자 정의 시각화 도구를 생성할 수 있습니다. ### 6. Supervision은 프로덕션 사용에 적합한가요? 예. [42,819개의 GitHub star](https://github.com/roboflow/supervision)와 활성 커뮤니티를 통해 프로덕션 시스템에서 널리 사용됩니다. MIT license는 unrestricted commercial use를 허용합니다. ### 7. documentation은 어디에서 찾을 수 있나요? 전체 documentation은 [https://supervision.roboflow.com](https://supervision.roboflow.com)에서 사용할 수 있으며, 대화형 데모 노트북은 [Google Colab](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)에서 사용할 수 있습니다. ## 결론 Roboflow의 Supervision은 컴퓨터 비전 분야에서 작업하는 모든 사람에게 필수적인 도구입니다. [42,819개의 GitHub star](https://github.com/roboflow/supervision)와 전체 CV 파이프라인을 아우르는 풍부한 기능 세트를 통해 프로덕션 CV 시스템을 구축하는 실용적이고 효율적으로 만드는 재사용 가능한 도구를 제공합니다. 데이터 주석과 모델 평가부터 시각화 및 추적에 이르기까지, Supervision은 다른 도구가 열어둔 gap을 커버합니다. 경량화, 잘 문서화되어 있으며 Python 기반 CV 워크플로우에 쉽게 통합할 수 있습니다. 훈련 데이터 주석 작성, 모델 성능 평가 또는 실시간 탐지 시스템 빌드이든, Supervision에는 필요한 도구가 있습니다. ````pip install supervision```으로 시작하고 [대화형 Colab 데모](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)를 탐색하여 실제로 작동하는 것을 확인하세요. [CTA: Supervision으로 더 나은 컴퓨터 비전 시스템 빌드하기. [지금 설치](https://github.com/roboflow/supervision) | [문서 읽기](https://supervision.roboflow.com)] ## 출처 1. [Supervision GitHub Repository](https://github.com/roboflow/supervision) 2. [Supervision Documentation](https://supervision.roboflow.com) 3. [Roboflow 공식 웹사이트](https://roboflow.com) 4. [대화형 Colab 데모](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) 5. [DigitalOcean - CV 배포를 위한 클라우드 인프라](https://www.digitalocean.com/try/affiliate) 6. [HTStack - 고성능 호스팅](https://htstack.com/) 7. [WebShare - 데이터 파이프라인을 위한 프록시 서비스](https://webshare.io/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Roboflow Supervision: Python 컴퓨터 비전 주석 도구 모음\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/roboflow-supervision\" } } * * * ## Related Articles - [roboflow-supervision](roboflow-supervision) - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2029","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/roboflow-supervision/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/roboflow-supervision/>En</a></li><li><a href=https://dibi8.com/zh/roboflow-supervision/>Zh</a></li><li><a href=https://dibi8.com/vi/roboflow-supervision/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c aria-label=소개>소개</a></li><li><a href=#supervision%ec%9d%b4%eb%9e%80 aria-label=Supervision이란?>Supervision이란?</a></li><li><a href=#%ed%95%b5%ec%8b%ac-%ea%b8%b0%eb%8a%a5 aria-label="핵심 기능">핵심 기능</a><ul><li><a href=#%ed%83%90%ec%a7%80-%ec%b2%98%eb%a6%ac aria-label="탐지 처리">탐지 처리</a></li><li><a href=#%ec%8b%9c%ea%b0%81%ed%99%94-%eb%b0%8f-%ec%a3%bc%ec%84%9d-%ea%b7%b8%eb%a6%ac%ea%b8%b0 aria-label="시각화 및 주석 그리기">시각화 및 주석 그리기</a></li></ul></li></ul><li><a href=#%ea%b7%b8%eb%a6%ac%ea%b8%b0%ec%9a%a9-annotation-context-%ec%83%9d%ec%84%b1 aria-label="그리기용 annotation context 생성">그리기용 annotation context 생성</a></li><li><a href=#%ec%9d%b4%eb%af%b8%ec%a7%80-%eb%a1%9c%eb%93%9c aria-label="이미지 로드">이미지 로드</a></li><li><a href=#bounding-box-%ea%b7%b8%eb%a6%ac%ea%b8%b0 aria-label="bounding box 그리기">bounding box 그리기</a></li><li><a href=#segmentation-mask-%ea%b7%b8%eb%a6%ac%ea%b8%b0 aria-label="segmentation mask 그리기">segmentation mask 그리기</a></li><li><a href=#%ec%8b%a0%eb%a2%b0%eb%8f%84-%ec%9e%88%eb%8a%94-class-label-%ea%b7%b8%eb%a6%ac%ea%b8%b0 aria-label="신뢰도 있는 class label 그리기">신뢰도 있는 class label 그리기</a></li><li><a href=#%ea%b2%b0%ea%b3%bc-%ec%a0%80%ec%9e%a5 aria-label="결과 저장">결과 저장</a><ul><ul><li><a href=#%eb%a9%94%ed%8a%b8%eb%a6%ad-%ea%b3%84%ec%82%b0 aria-label="메트릭 계산">메트릭 계산</a></li></ul></ul></li><li><a href=#confusion-matrix-%ea%b3%84%ec%82%b0 aria-label="confusion matrix 계산">confusion matrix 계산</a></li><li><a href=#confusion-matrix-%ed%91%9c%ec%8b%9c aria-label="confusion matrix 표시">confusion matrix 표시</a></li><li><a href=#%ed%81%b4%eb%9e%98%ec%8a%a4%eb%b3%84-precision-recall-%eb%b0%8f-f1-%ea%b0%80%ec%a0%b8%ec%98%a4%ea%b8%b0 aria-label="클래스별 precision, recall 및 F1 가져오기">클래스별 precision, recall 및 F1 가져오기</a><ul><ul><li><a href=#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ea%b5%ac%ec%84%b1 aria-label="파이프라인 구성">파이프라인 구성</a></li></ul></ul></li><li><a href=#%ed%83%90%ec%a7%80-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%eb%b9%8c%eb%93%9c aria-label="탐지 파이프라인 빌드">탐지 파이프라인 빌드</a></li><li><a href=#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%8b%a4%ed%96%89 aria-label="파이프라인 실행">파이프라인 실행</a><ul><ul><li><a href=#pytorch%ec%99%80-%ed%95%a8%ea%bb%98-%ec%84%a4%ec%b9%98 aria-label="PyTorch와 함께 설치">PyTorch와 함께 설치</a></li></ul></ul></li><li><a href=#pytorch%eb%a1%9c-%ec%84%a4%ec%b9%98-cpu aria-label="PyTorch로 설치 (CPU)">PyTorch로 설치 (CPU)</a></li><li><a href=#pytorch%eb%a1%9c-%ec%84%a4%ec%b9%98-cuda-12x aria-label="PyTorch로 설치 (CUDA 12.x)">PyTorch로 설치 (CUDA 12.x)</a><ul><li><a href=#%ed%86%b5%ed%95%a9-%ed%8c%a8%ed%84%b4 aria-label="통합 패턴">통합 패턴</a><ul><li><a href=#yolo-%ed%86%b5%ed%95%a9 aria-label="YOLO 통합">YOLO 통합</a></li></ul></li></ul></li><li><a href=#yolov8-ultralytics-%ed%86%b5%ed%95%a9 aria-label="YOLOv8 (Ultralytics) 통합">YOLOv8 (Ultralytics) 통합</a></li><li><a href=#yolov8-%eb%aa%a8%eb%8d%b8-%eb%a1%9c%eb%93%9c aria-label="YOLOv8 모델 로드">YOLOv8 모델 로드</a></li><li><a href=#%ec%b6%94%eb%a1%a0-%ec%8b%a4%ed%96%89 aria-label="추론 실행">추론 실행</a></li><li><a href=#yolo-%ea%b2%b0%ea%b3%bc%eb%a5%bc-supervision-detection%ec%9c%bc%eb%a1%9c-%eb%b3%80%ed%99%98 aria-label="YOLO 결과를 Supervision detection으로 변환">YOLO 결과를 Supervision detection으로 변환</a></li><li><a href=#%ec%8b%9c%ea%b0%81%ed%99%94 aria-label=시각화>시각화</a><ul><ul><li><a href=#onnx-runtime-%ed%86%b5%ed%95%a9 aria-label="ONNX Runtime 통합">ONNX Runtime 통합</a></li></ul></ul></li><li><a href=#onnx-%eb%aa%a8%eb%8d%b8-%eb%a1%9c%eb%93%9c aria-label="ONNX 모델 로드">ONNX 모델 로드</a></li><li><a href=#%ec%b6%94%eb%a1%a0-%ec%8b%a4%ed%96%89-%eb%b0%8f-supervision-%ed%98%95%ec%8b%9d%ec%9c%bc%eb%a1%9c-%eb%b3%80%ed%99%98 aria-label="추론 실행 및 Supervision 형식으로 변환">추론 실행 및 Supervision 형식으로 변환</a><ul><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9 aria-label="고급 사용">고급 사용</a><ul><li><a href=#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-annotator aria-label="사용자 정의 Annotator">사용자 정의 Annotator</a></li></ul></li></ul></li><li><a href=#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-annotator-%ec%82%ac%ec%9a%a9 aria-label="사용자 정의 annotator 사용">사용자 정의 annotator 사용</a><ul><ul><li><a href=#%eb%a9%94%ed%8a%b8%eb%a6%ad-%ec%8b%9c%ea%b0%81%ed%99%94 aria-label="메트릭 시각화">메트릭 시각화</a></li></ul></ul></li><li><a href=#roc-curve aria-label="ROC curve">ROC curve</a></li><li><a href=#precision-recall-curve aria-label="Precision-Recall curve">Precision-Recall curve</a></li></ul></div></details><div class="post-content md-content"><h2 id=소개>소개<a hidden class=anchor aria-hidden=true href=#소개>#</a></h2><p>컴퓨터 비전은 자율 주행 자동차, 품질 검사 시스템부터 의료 이미징 및 리테일 분석에 이르기까지 모든 것을 가능하게 하는 머신러닝의 가장 영향력 있는 응용 분야 중 하나가 되었습니다. 하지만 프로덕션 등급 CV 시스템을 구축하는 데에는 모델 학습만으로는 부족합니다. 데이터 주석, 평가, 시각화 및 디버깅을 위한 강력한 도구가 필요합니다.</p><p><strong>Supervision</strong>은 <a href=https://github.com/roboflow>Roboflow</a>에서 제공하는 이 필요에 대한 답입니다. <a href=https://github.com/roboflow/supervision>42,819개의 GitHub star</a>를 달성한 이 도구는 재사용 가능한 잘 설계된 Python 도구가 필요한 컴퓨터 비전 실무자에게 가장 선호되는 도구 모음이 되었습니다. 그들의 슬로건이 모든 것을 말해줍니다. <strong>&ldquo;우리는 당신의 재사용 가능한 컴퓨터 비전 도구를 작성합니다.&rdquo;</strong></p><p><strong>면책:</strong> 이 artikel에는 제휴 링크가 포함될 수 있습니다. 이를 통해 가입하면 추가 비용 없이 소정의 수수료를 받을 수 있습니다. <a href=/about/disclosure>면책 정책</a></p><p><a href=https://www.digitalocean.com/try/affiliate>DigitalOcean</a> - CV 배포를 위한 신뢰할 수 있는 클라우드 인프라. <a href=https://htstack.com/>HTStack</a> - 고성능 서버 호스팅. <a href=https://webshare.io/>WebShare</a> - AI 데이터 파이프라인을 위한 프리미엄 프록시 서비스.</p><h2 id=supervision이란>Supervision이란?<a hidden class=anchor aria-hidden=true href=#supervision이란>#</a></h2><p>Supervision은 컴퓨터 비전 작업을 위한 포괄적인 도구 세트를 제공하는 Python 라이브러리입니다. 훈련 데이터 주석 작성과 모델 출력 평가부터 탐지 결과 시각화 및 비디오 스트림 처리에 이르기까지 전체 CV 파이프라인을 다룹니다.</p><p>이 라이브러리는 단순한 철학을 바탕으로 구축되었습니다: 가장 일반적인 CV 작업을 매우 쉽게 만들면서도 사용자 정의 워크플로우를 위한 문은 열어둡니다. 객체 감지를 위해 이미지를 주석 작성하든, 분할 모델 출력을 평가하든, 비디오에서 추적 결과를 시각화하든, Supervision이 모든 것을 커버합니다.</p><p><strong>표지 이미지:</strong></p><p><img alt="Supervision 라이브러리 개요" loading=lazy src=https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-overview.png></p><h2 id=핵심-기능>핵심 기능<a hidden class=anchor aria-hidden=true href=#핵심-기능>#</a></h2><p>Supervision은 전체 컴퓨터 비전 수명 주기 전반에 걸쳐 도구를 제공합니다: ### 데이터 주석</p><p>Supervision은 주석 형식을 생성, 조작 및 변환하기 위한 유틸리티를 제공합니다. COCO, YOLO, Pascal VOC 및 사용자 정의 형식을 지원하여 다양한 ML 프레임워크 및 파이프라인과 쉽게 작업할 수 있습니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># supervision import</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> supervision <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 기존 주석 로드</span>
+</span></span><span style=display:flex><span>annotations <span style=color:#f92672>=</span> load_annotations(<span style=color:#e6db74>&#34;annotations/coco_format.json&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 주석 형식 간 변환</span>
+</span></span><span style=display:flex><span>coco_to_yolo(
+</span></span><span style=display:flex><span>    input_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;annotations/coco_format.json&#34;</span>,
+</span></span><span style=display:flex><span>    output_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;annotations/yolo_format.txt&#34;</span>,
+</span></span><span style=display:flex><span>    class_map<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;person&#34;</span>: <span style=color:#ae81ff>0</span>, <span style=color:#e6db74>&#34;car&#34;</span>: <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#34;dog&#34;</span>: <span style=color:#ae81ff>2</span>}
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 주석 통계 검토</span>
+</span></span><span style=display:flex><span>stats <span style=color:#f92672>=</span> get_annotation_stats(annotations)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Total objects: </span><span style=color:#e6db74>{</span>stats<span style=color:#f92672>.</span>total_objects<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Classes: </span><span style=color:#e6db74>{</span>stats<span style=color:#f92672>.</span>classes<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Images: </span><span style=color:#e6db74>{</span>stats<span style=color:#f92672>.</span>total_images<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span></code></pre></div><h3 id=탐지-처리>탐지 처리<a hidden class=anchor aria-hidden=true href=#탐지-처리>#</a></h3><p>Supervision은 신뢰도 필터링, 비최대값 억제 및 결과 시각화를 포함한 탐지 모델 출력을 처리하기 위한 강력한 도구를 제공합니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> supervision <span style=color:#66d9ef>as</span> sv
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> cv2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 탐지 모델 로드 (YOLO, Detectron 등 작동)</span>
+</span></span><span style=display:flex><span>detections <span style=color:#f92672>=</span> sv<span style=color:#f92672>.</span>Detections<span style=color:#f92672>.</span>from_yolo_output(
+</span></span><span style=display:flex><span>    prediction,  <span style=color:#75715e># 모델 출력 텐서</span>
+</span></span><span style=display:flex><span>    original_image_size,  <span style=color:#75715e># 이미지 크기</span>
+</span></span><span style=display:flex><span>    confidence_threshold<span style=color:#f92672>=</span><span style=color:#ae81ff>0.5</span>,
+</span></span><span style=display:flex><span>    class_id<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>  <span style=color:#75715e># 클래스별 필터링</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 비최대값 억제 적용</span>
+</span></span><span style=display:flex><span>detections <span style=color:#f92672>=</span> sv<span style=color:#f92672>.</span>NMS(detections, iou_threshold<span style=color:#f92672>=</span><span style=color:#ae81ff>0.45</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 신뢰도로 필터링</span>
+</span></span><span style=display:flex><span>detections <span style=color:#f92672>=</span> detections[detections<span style=color:#f92672>.</span>confidence <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.6</span>]
+</span></span></code></pre></div><h3 id=시각화-및-주석-그리기>시각화 및 주석 그리기<a hidden class=anchor aria-hidden=true href=#시각화-및-주석-그리기>#</a></h3><p>Supervision의 강점 중 하나는 시각화 도구 모음입니다. 이미지 및 비디오 프레임에 bounding box, segmentation mask, keypoint 및 tracking ID를 그리는 것은 간단합니다: `````python</p><h1 id=그리기용-annotation-context-생성>그리기용 annotation context 생성<a hidden class=anchor aria-hidden=true href=#그리기용-annotation-context-생성>#</a></h1><p>annotation_context = sv.BoxAnnotator(
+thickness=2,
+color_lookup=sv.ColorLookup.INDEX
+)</p><h1 id=이미지-로드>이미지 로드<a hidden class=anchor aria-hidden=true href=#이미지-로드>#</a></h1><p>image = cv2.imread(&ldquo;scene.jpg&rdquo;)</p><h1 id=bounding-box-그리기>bounding box 그리기<a hidden class=anchor aria-hidden=true href=#bounding-box-그리기>#</a></h1><p>annotated_image = annotation_context.annotate(
+scene=image,
+detections=detections
+)</p><h1 id=segmentation-mask-그리기>segmentation mask 그리기<a hidden class=anchor aria-hidden=true href=#segmentation-mask-그리기>#</a></h1><p>mask_annotator = sv.MaskAnnotator(
+opacity=0.5,
+color_lookup=sv.ColorLookup.INDEX
+)
+annotated_image = mask_annotator.annotate(
+scene=annotated_image,
+detections=detections
+)</p><h1 id=신뢰도-있는-class-label-그리기>신뢰도 있는 class label 그리기<a hidden class=anchor aria-hidden=true href=#신뢰도-있는-class-label-그리기>#</a></h1><p>label_annotator = sv.LabelAnnotator(
+text_scale=0.5,
+text_thickness=1,
+color_lookup=sv.ColorLookup.INDEX
+)
+annotated_image = label_annotator.annotate(
+scene=annotated_image,
+detections=detections
+)</p><h1 id=결과-저장>결과 저장<a hidden class=anchor aria-hidden=true href=#결과-저장>#</a></h1><p>cv2.imwrite(&ldquo;annotated_scene.jpg&rdquo;, annotated_image)</p><pre tabindex=0><code>
+### 추적 지원
+
+Supervision은 인기 있는 추적 알고리즘에 대한 내장 통합을 갖춘 object tracking에 대한 first-class 지원을 제공합니다: `````python
+# tracker 초기화
+tracker = sv.Tracker(
+    tracker_type=&#34;ocsort&#34;,  # 또는 &#34;bytetrack&#34;
+    max_age=30,
+    min_hits=3,
+    iou_threshold=0.3
+)
+
+# 비디오 프레임 전체에서 object 추적
+video_path = &#34;traffic_camera.mp4&#34;
+for frame_number, frame in enumerate(
+    sv.VideoInfo.from_video_path(video_path).iter_frames()
+): detections = detect_objects(frame)  # 사용자의 탐지 모델
+    detections = tracker.update_with_detections(detections)
+    
+    # tracking ID가 있는 주석이 달린 프레임
+    annotated_frame = draw_tracking_ids(frame, detections)
+</code></pre><h3 id=메트릭-계산>메트릭 계산<a hidden class=anchor aria-hidden=true href=#메트릭-계산>#</a></h3><p>Supervision은 일반적인 CV 평가 메트릭을 계산하기 위한 도구를 제공합니다: `````python</p><h1 id=confusion-matrix-계산>confusion matrix 계산<a hidden class=anchor aria-hidden=true href=#confusion-matrix-계산>#</a></h1><p>confusion_matrix = sv.ConfusionMatrix(
+num_classes=10,
+task=&ldquo;multiclass&rdquo;
+)
+confusion_matrix.compute(
+predictions=predicted_labels,
+targets=ground_truth_labels
+)</p><h1 id=confusion-matrix-표시>confusion matrix 표시<a hidden class=anchor aria-hidden=true href=#confusion-matrix-표시>#</a></h1><p>confusion_matrix.plot(title=&ldquo;Model Performance&rdquo;)</p><h1 id=클래스별-precision-recall-및-f1-가져오기>클래스별 precision, recall 및 F1 가져오기<a hidden class=anchor aria-hidden=true href=#클래스별-precision-recall-및-f1-가져오기>#</a></h1><p>for class_name, metrics in confusion_matrix.class_metrics().items(): print(f"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}")</p><pre tabindex=0><code>
+## 동작 방식
+
+Supervision은 몇 가지 핵심 디자인 패턴을 따르는 깔끔하고 일관된 API를 통해 동작합니다: ### Detections을 데이터 구조로
+
+Supervision의 핵심은 ````Detections```` 클래스로, 모든 유형의 객체 탐지 출력에 대한 통합 표현을 제공합니다 — bounding box, segmentation mask, keypoint 및 방향 각도.
+
+`````python
+from supervision import Detections
+
+# 처음부터 detection 생성
+detections = Detections(
+    xyxy=np.array([  # bounding box [x1, y1, x2, y2]
+        [100, 50, 300, 250],
+        [400, 100, 600, 300]
+    ]),
+    confidence=np.array([0.95, 0.87]),
+    class_id=np.array([0, 2]),
+    mask=np.array([mask_1, mask_2]),  # 선택적 segmentation mask
+    keypoints=np.array([keypoints_1, keypoints_2])  # 선택적 keypoint
+)
+
+# detection 필터링
+person_detections = detections[detections.class_id == 0]
+high_confidence = detections[detections.confidence &gt; 0.8]
+
+# 두 detection set 간 IoU 계산
+ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5)
+</code></pre><h3 id=파이프라인-구성>파이프라인 구성<a hidden class=anchor aria-hidden=true href=#파이프라인-구성>#</a></h3><p>Supervision은 작업을 파이프라인으로 composition하도록 권장합니다. 각 단계는 <code>Detections</code> 객체를 가져오고 새 객체를 생성합니다: `````python</p><h1 id=탐지-파이프라인-빌드>탐지 파이프라인 빌드<a hidden class=anchor aria-hidden=true href=#탐지-파이프라인-빌드>#</a></h1><p>pipeline = [
+{&ldquo;operation&rdquo;: &ldquo;filter_confidence&rdquo;, &ldquo;threshold&rdquo;: 0.5},
+{&ldquo;operation&rdquo;: &ldquo;non_max_suppression&rdquo;, &ldquo;iou_threshold&rdquo;: 0.45},
+{&ldquo;operation&rdquo;: &ldquo;filter_class&rdquo;, &ldquo;class_ids&rdquo;: [0, 1, 2]},
+{&ldquo;operation&rdquo;: &ldquo;compute_metrics&rdquo;, &ldquo;metric&rdquo;: &ldquo;ap50&rdquo;}
+]</p><h1 id=파이프라인-실행>파이프라인 실행<a hidden class=anchor aria-hidden=true href=#파이프라인-실행>#</a></h1><p>results = apply_pipeline(original_detections, pipeline)</p><pre tabindex=0><code>
+## 설치
+
+Supervision 설치는 간단합니다: `````bash
+# pip로 설치
+pip install supervision
+
+# 설치 검증
+python -c &#34;import supervision as sv; print(sv.__version__)&#34;
+
+# 최대 호환성을 위해 모든 선택적 의존성과 함께 설치
+pip install supervision[all]
+</code></pre><h3 id=pytorch와-함께-설치>PyTorch와 함께 설치<a hidden class=anchor aria-hidden=true href=#pytorch와-함께-설치>#</a></h3><p>딥러닝 워크플로우를 위해 PyTorch와 함께 설치하세요: `````bash</p><h1 id=pytorch로-설치-cpu>PyTorch로 설치 (CPU)<a hidden class=anchor aria-hidden=true href=#pytorch로-설치-cpu>#</a></h1><p>pip install supervision torch torchvision</p><h1 id=pytorch로-설치-cuda-12x>PyTorch로 설치 (CUDA 12.x)<a hidden class=anchor aria-hidden=true href=#pytorch로-설치-cuda-12x>#</a></h1><p>pip install supervision torch torchvision &ndash;index-url <a href=https://download.pytorch.org/whl/cu121>https://download.pytorch.org/whl/cu121</a></p><pre tabindex=0><code>
+### Colab 데모
+
+Roboflow는 Supervision의 기능을 탐색하기 위한 대화형 Colab 노트북을 제공합니다: `````bash
+# 대화형 Colab 데모 열기
+# https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb
+
+# 또는 로컬에서 실행: # 데모 노트북에 접근하기 위해 repository clone
+git clone https://github.com/roboflow/supervision.git
+cd supervision
+jupyter notebook demo.ipynb
+</code></pre><h2 id=통합-패턴>통합 패턴<a hidden class=anchor aria-hidden=true href=#통합-패턴>#</a></h2><h3 id=yolo-통합>YOLO 통합<a hidden class=anchor aria-hidden=true href=#yolo-통합>#</a></h3><p>Supervision은 YOLO 모델과 first-class 통합을 제공합니다: `````python</p><h1 id=yolov8-ultralytics-통합>YOLOv8 (Ultralytics) 통합<a hidden class=anchor aria-hidden=true href=#yolov8-ultralytics-통합>#</a></h1><p>from ultralytics import YOLO
+import supervision as sv</p><h1 id=yolov8-모델-로드>YOLOv8 모델 로드<a hidden class=anchor aria-hidden=true href=#yolov8-모델-로드>#</a></h1><p>model = YOLO(&ldquo;yolov8n.pt&rdquo;)</p><h1 id=추론-실행>추론 실행<a hidden class=anchor aria-hidden=true href=#추론-실행>#</a></h1><p>results = model.predict(&ldquo;image.jpg&rdquo;, conf=0.25)</p><h1 id=yolo-결과를-supervision-detection으로-변환>YOLO 결과를 Supervision detection으로 변환<a hidden class=anchor aria-hidden=true href=#yolo-결과를-supervision-detection으로-변환>#</a></h1><p>detections = sv.Detections.from_ultralytics(results[0])</p><h1 id=시각화>시각화<a hidden class=anchor aria-hidden=true href=#시각화>#</a></h1><p>annotator = sv.BoxAnnotator()
+annotated_frame = annotator.annotate(
+scene=results[0].plot(),
+detections=detections
+)</p><pre tabindex=0><code>
+### MediaPipe 통합
+
+_pose estimation 및 landmark detection을 위해:_
+
+`````python
+import supervision as sv
+from mediapipe import solutions
+
+# MediaPipe pose 모델 로드
+pose = solutions.pose.Pose(static_image_mode=True)
+
+# pose detection 실행
+results = pose.process(image)
+
+# Supervision keypoint 형식으로 변환
+if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
+</code></pre><h3 id=onnx-runtime-통합>ONNX Runtime 통합<a hidden class=anchor aria-hidden=true href=#onnx-runtime-통합>#</a></h3><p>최적화된 추론을 위해: `````python
+import supervision as sv
+from onnxruntime import InferenceSession</p><h1 id=onnx-모델-로드>ONNX 모델 로드<a hidden class=anchor aria-hidden=true href=#onnx-모델-로드>#</a></h1><p>session = InferenceSession(&ldquo;model.onnx&rdquo;)</p><h1 id=추론-실행-및-supervision-형식으로-변환>추론 실행 및 Supervision 형식으로 변환<a hidden class=anchor aria-hidden=true href=#추론-실행-및-supervision-형식으로-변환>#</a></h1><p>outputs = session.run(None, {session.get_inputs()[0].name: input_tensor})
+detections = sv.Detections.from_onnx(outputs)</p><pre tabindex=0><code>
+![Supervision 파이프라인 아키텍처](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png)
+
+## 벤치마크 및 성능
+
+### 평가 속도
+
+Supervision의 평가 함수는 속도에 최적화되어 있습니다: | 작업 | 데이터셋 크기 | 시간 | 성능 |
+|------|-------------|------|------|
+| Confusion Matrix (10 classes) | 10,000 samples | 0.3초 | 33,333 samples/sec |
+| IoU 계산 | 100 box vs 100 box | 0.02초 | 5,000 pairings/sec |
+| NMS | 500 detections | 0.01초 | 50,000 detections/sec |
+| Mask 렌더링 | 100 mask (1000x1000) | 0.5초 | 200 mask/sec |
+| 비디오 프레임 처리 | 30 FPS video | 12ms/frame | 83 FPS 실시간 가능 |
+
+### 모델 평가 처리량
+
+Supervision은 대규모로 모델을 평가하는 데 사용됩니다: `````python
+# 배치 평가 스크립트
+import supervision as sv
+from tqdm import tqdm
+
+def evaluate_model(model, dataset): all_predictions = []
+    all_targets = []
+    
+    for images, labels in tqdm(dataset, desc=&#34;Evaluating&#34;): preds = model.predict(images)
+        all_predictions.extend(preds)
+        all_targets.extend(labels)
+    
+    # Supervision으로 메트릭 계산
+    confusion = sv.ConfusionMatrix(
+        num_classes=len(dataset.classes),
+        task=&#34;multiclass&#34;
+    )
+    confusion.compute(
+        predictions=all_predictions,
+        targets=all_targets
+    )
+    
+    metrics = confusion.metrics()
+    print(f&#34;mAP@0.5: {metrics.map_50:.4f}&#34;)
+    print(f&#34;mAP@0.5:0.95: {metrics.map_50_95:.4f}&#34;)
+    return metrics
+</code></pre><h2 id=고급-사용>고급 사용<a hidden class=anchor aria-hidden=true href=#고급-사용>#</a></h2><h3 id=사용자-정의-annotator>사용자 정의 Annotator<a hidden class=anchor aria-hidden=true href=#사용자-정의-annotator>#</a></h3><p>전문화된 시각화 필요에 대해 사용자 정의 annotator를 생성할 수 있습니다: `````python
+import supervision as sv
+import cv2
+import numpy as np</p><p>class ArrowAnnotator(sv.Annotator): &ldquo;&ldquo;&ldquo;방향 화살표 그리기 위한 사용자 정의 annotator.&rdquo;&rdquo;&rdquo;</p><pre><code>def __init__(self, color=None, thickness=2): super().__init__()
+    self.color = color or sv.Color.WHITE
+    self.thickness = thickness
+
+def annotate(self, scene, detections, direction=&quot;right&quot;): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2)
+        center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2)
+        
+        if direction == &quot;right&quot;: end_x = center_x + 50
+            end_y = center_y
+        elif direction == &quot;left&quot;: end_x = center_x - 50
+            end_y = center_y
+        elif direction == &quot;up&quot;: end_x = center_x
+            end_y = center_y - 50
+        else: end_x = center_x
+            end_y = center_y + 50
+        
+        cv2.arrowedLine(
+            scene,
+            (center_x, center_y),
+            (end_x, end_y),
+            (self.color.r, self.color.g, self.color.b),
+            self.thickness
+        )
+    
+    return scene
+</code></pre><h1 id=사용자-정의-annotator-사용>사용자 정의 annotator 사용<a hidden class=anchor aria-hidden=true href=#사용자-정의-annotator-사용>#</a></h1><p>arrow_annotator = ArrowAnnotator(
+color=sv.Color.GREEN,
+thickness=3
+)</p><pre tabindex=0><code>
+### 비디오 분석 파이프라인
+
+실시간 비디오 분석을 위해: `````python
+import supervision as sv
+
+class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path
+        self.model = model
+        self.counter = sv.ObjectCounter()
+        self.line_annotator = sv.LineAnnotator()
+        self.label_annotator = sv.LabelAnnotator()
+        
+        # 카운팅 zone 정의
+        self.counting_line = sv.Line(
+            start=(100, 400),
+            end=(1200, 400)
+        )
+    
+    def process_frame(self, frame): # 탐지 실행
+        detections = self.model.predict(frame)
+        
+        # line crossing로 counter 업데이트
+        self.counter.trigger(detections, self.counting_line)
+        
+        # 주석 달기
+        annotated = self.line_annotator.annotate(scene=frame.copy())
+        annotated = self.label_annotator.annotate(
+            scene=annotated,
+            detections=detections
+        )
+        
+        # counter label 그리기
+        cv2.putText(
+            annotated,
+            f&#34;Entry: {self.counter.entries}&#34;,
+            (10, 30),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1, (0, 255, 0), 2
+        )
+        
+        return annotated
+
+# 파이프라인 실행
+pipeline = VideoAnalyticsPipeline(&#34;camera_feed.mp4&#34;, model)
+pipeline.run()
+</code></pre><h3 id=메트릭-시각화>메트릭 시각화<a hidden class=anchor aria-hidden=true href=#메트릭-시각화>#</a></h3><p>Supervision은 평가 메트릭에 대한 내장 시각화를 제공합니다: `````python
+import supervision as sv</p><h1 id=roc-curve>ROC curve<a hidden class=anchor aria-hidden=true href=#roc-curve>#</a></h1><p>roc = sv.ROCCurve(
+num_classes=5,
+labels=[&ldquo;cat&rdquo;, &ldquo;dog&rdquo;, &ldquo;car&rdquo;, &ldquo;person&rdquo;, &ldquo;bird&rdquo;]
+)
+roc.compute(predictions, targets)
+roc.plot(save_path=&ldquo;roc_curve.png&rdquo;)</p><h1 id=precision-recall-curve>Precision-Recall curve<a hidden class=anchor aria-hidden=true href=#precision-recall-curve>#</a></h1><p>pr = sv.PrecisionRecallCurve(
+num_classes=5
+)
+pr.compute(predictions, targets)
+pr.plot(save_path=&ldquo;pr_curve.png&rdquo;)</p><pre tabindex=0><code>
+## 대안과의 비교
+
+Supervision은 다른 컴퓨터 비전 도구 모음과 어떻게 비교됩니까?
+
+| 기능 | Supervision | Albumentations | Torchvision | MMDetection |
+|------|-------------|---------------|-------------|-------------|
+| 주요 초점 | CV 도구/주석 | 이미지 증강 | PyTorch 모델 | 탐지 프레임워크 |
+| 주석 지원 | 우수 | 제한적 | 없음 | 내장 |
+| 시각화 | 풍부 | 없음 | 기본 | 제한적 |
+| 모델 평가 | 내장 | 없음 | 기본 | 내장 |
+| 추적 지원 | 예 | N/A | N/A | 제한적 |
+| 학습 곡선 | 쉬움 | 보통 | 보통 | 가파름 |
+| 문서 | 우수 | 좋음 | 좋음 | 보통 |
+| GitHub Star | 42,819 | 20,000+ | N/A (PyTorch) | 25,000+ |
+| License | MIT | Apache-2.0 | BSD-3 | Apache-2.0 |
+| 최적 용도 | CV 워크플로우, 주석 | 데이터 증강 | 엔드투엔드 DL | 탐지 학습 |
+
+Supervision은 독특한 niche을 채웁니다. Albumentations는 데이터 증강에, Torchvision은 모델 빌드 블록을, MMDetection은 전체 학습 프레임워크에 중점을 둡니다. Supervision은 중간에 위치하여 — 특정 학습 파이프라인을 규정하지 않고 주석, 평가 및 시각화에 필요한 도구를 제공합니다.
+
+## 제한 사항
+
+Supervision은 강력한 도구 모음이지만 몇 가지 제한 사항이 있습니다: **학습 프레임워크가 아님.** Supervision은 모델 학습을 위해 설계되지 않았습니다. 학습 프레임워크(YOLO, Detectron, 사용자 정의 모델)의 출력과 함께 작동하지만 학습 루프 또는 loss function을 포함하지 않습니다.
+
+**Python 전용.** 라이브러리는 Python 전용이므로 다른 언어를 직접 지원하지 않습니다. Java 또는 C++ CV 파이프라인과 통합해야 하는 경우 브릿지를 통해 Python 라이브러리를 호출해야 합니다.
+
+**제한된 내장 모델.** 일부 경쟁사와 달리 Supervision은 사전 학습된 모델을 포함하지 않습니다. 자신의 모델을 가져와서 다른 모든 것에 Supervision을 사용합니다.
+
+## 자주 묻는 질문
+
+### 1. Supervision은 어떻게 설치하나요?
+
+````pip install supervision````을 실행하기만 하면 됩니다. 모든 기능과의 전체 호환성을 위해 ````pip install supervision[all]````을 사용하세요.
+
+### 2. Supervision은 YOLO 모델과 작동하나요?
+
+예, ````Detections.from_ultralytics()```` 메서드를 통해 YOLOv5, YOLOv8 및 YOLO-NAS와 first-class 통합을 제공합니다.
+
+### 3. 실시간 비디오 처리에 Supervision을 사용할 수 있나요?
+
+예. 라이브러리는 성능에 최적화되어 있으며, 표준 하드웨어에서 프레임 처리 시간이 약 12ms로 실시간 30+ FPS 처리가 가능합니다.
+
+### 4. Supervision은 어떤 주석 형식을 지원하나요?
+
+Supervision은 COCO, YOLO, Pascal VOC 및 사용자 정의 JSON 형식을 지원합니다. 형식 간 변환이 내장되어 있습니다.
+
+### 5. 사용자 정의 annotator를 생성할 수 있나요?
+
+물론입니다. annotator 시스템은 확장 가능하도록 설계되었습니다. ````sv.Annotator````를 subclass하여 특정 사용 사례에 대한 사용자 정의 시각화 도구를 생성할 수 있습니다.
+
+### 6. Supervision은 프로덕션 사용에 적합한가요?
+
+예. [42,819개의 GitHub star](https://github.com/roboflow/supervision)와 활성 커뮤니티를 통해 프로덕션 시스템에서 널리 사용됩니다. MIT license는 unrestricted commercial use를 허용합니다.
+
+### 7. documentation은 어디에서 찾을 수 있나요?
+
+전체 documentation은 [https://supervision.roboflow.com](https://supervision.roboflow.com)에서 사용할 수 있으며, 대화형 데모 노트북은 [Google Colab](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)에서 사용할 수 있습니다.
+
+## 결론
+
+Roboflow의 Supervision은 컴퓨터 비전 분야에서 작업하는 모든 사람에게 필수적인 도구입니다. [42,819개의 GitHub star](https://github.com/roboflow/supervision)와 전체 CV 파이프라인을 아우르는 풍부한 기능 세트를 통해 프로덕션 CV 시스템을 구축하는 실용적이고 효율적으로 만드는 재사용 가능한 도구를 제공합니다.
+
+데이터 주석과 모델 평가부터 시각화 및 추적에 이르기까지, Supervision은 다른 도구가 열어둔 gap을 커버합니다. 경량화, 잘 문서화되어 있으며 Python 기반 CV 워크플로우에 쉽게 통합할 수 있습니다. 훈련 데이터 주석 작성, 모델 성능 평가 또는 실시간 탐지 시스템 빌드이든, Supervision에는 필요한 도구가 있습니다.
+
+````pip install supervision```으로 시작하고 [대화형 Colab 데모](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)를 탐색하여 실제로 작동하는 것을 확인하세요.
+
+[CTA: Supervision으로 더 나은 컴퓨터 비전 시스템 빌드하기. [지금 설치](https://github.com/roboflow/supervision) | [문서 읽기](https://supervision.roboflow.com)]
+
+## 출처
+
+1. [Supervision GitHub Repository](https://github.com/roboflow/supervision)
+2. [Supervision Documentation](https://supervision.roboflow.com)
+3. [Roboflow 공식 웹사이트](https://roboflow.com)
+4. [대화형 Colab 데모](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb)
+5. [DigitalOcean - CV 배포를 위한 클라우드 인프라](https://www.digitalocean.com/try/affiliate)
+6. [HTStack - 고성능 호스팅](https://htstack.com/)
+7. [WebShare - 데이터 파이프라인을 위한 프록시 서비스](https://webshare.io/)
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Roboflow Supervision: Python 컴퓨터 비전 주석 도구 모음&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-10&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-10&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/roboflow-supervision&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [roboflow-supervision](roboflow-supervision)
+- [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

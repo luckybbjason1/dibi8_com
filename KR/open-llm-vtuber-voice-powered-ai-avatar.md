@@ -1,11 +1,10 @@
 ---
-title: "Open-LLM-VTuber: 실시간 음성 대화와 Live2D 캐릭터 — 스타 1만 개 넘은 오픈소스...
-description: "Open-LLM-VTuber는 음성 상호작용, Live2D 캐릭터, 핸즈프리 음성 interruptions를 갖춘 오픈소스 AI 아바타 플랫폼입니다. 모든 LLM과 연동 — 로컬 ..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'open-llm-vtuber-voice-powered-ai-avatar'
-category: ai-tools
-tags: ["open-llm-vtuber", "live2d", "voice-ai", "ai-avatar", "local-llm", "openai-api", "anthropic", "self-hosted"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-llm-vtuber-voice-powered-ai-avatar"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

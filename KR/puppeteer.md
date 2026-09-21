@@ -1,6 +1,13 @@
 ---
-title: "Puppeteer: 94,300 GitHub Stars — 프로덕션 브라우저 자동화 Docker 가이...
-description: "Puppeteer는 Chrome 및 Firefox용 헤드리스 브라우저 자동화 Node.js 라이브러리입니다. Docker, GitHub Actions, Jest, Mocha, Ty..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "puppeteer"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

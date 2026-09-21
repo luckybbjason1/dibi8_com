@@ -1,6 +1,13 @@
 ---
-title: "Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà C...
-description: "Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khi..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-skill-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -69,7 +76,7 @@ Phép thử: *chỉ dẫn này có áp dụng cho một prompt ngẫu nhiên v�
 `````markdown
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
+description: "Technical guide and comparison."
 * * *
 
 You are helping cut a release. Follow these steps in order...
@@ -81,8 +88,8 @@ Kebab-case, mang tính mô tả. Đây là danh tính của skill.
 
 ### ````description```` — tín hiệu kích hoạt quyết định tất cả
 
-Claude đọc các description của skill để định tuyến: nó quét chúng, quyết định skill nào hợp với nhiệm vụ hiện tại, rồi nạp phần thân của skill đó. Vậy nên description không phải là một cái nhãn — nó là một **điều kiện khi-nào-kích-hoạt**. Hãy nhồi vào đó những trigger cụ thể: > ❌ ````description: Release helper.````
-> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
+Claude đọc các description của skill để định tuyến: nó quét chúng, quyết định skill nào hợp với nhiệm vụ hiện tại, rồi nạp phần thân của skill đó. Vậy nên description không phải là một cái nhãn — nó là một **điều kiện khi-nào-kích-hoạt**. Hãy nhồi vào đó những trigger cụ thể: > ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 Cái đầu tiên không bao giờ kích hoạt vì chẳng có gì trong một nhiệm vụ thực tế khớp với "release helper." Cái thứ hai kích hoạt ngay khoảnh khắc người dùng nói "let"s ship 2.4.0." Nếu skill của bạn tồn tại nhưng không bao giờ kích hoạt, thủ phạm chính là description — lần nào cũng vậy.
 
@@ -112,7 +119,7 @@ Claude chỉ đọc ````references/versioning.md```` khi nó thực sự cần c
 `````markdown
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
+description: "Technical guide and comparison."
 * * *
 
 You are cutting a release. Do NOT skip the precondition check.
@@ -135,7 +142,7 @@ Report which step you stopped at if anything blocks.
 `````markdown
 * * *
 name: debug-flaky-test
-description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
+description: "Technical guide and comparison."
 * * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
@@ -163,9 +170,9 @@ Một skill là **chuyên môn đúng lúc (just-in-time)**. CLAUDE.md là nhữ
 
 ## Thiết Lập Một Môi Trường Claude Code Sẵn Sàng Cho Sản Xuất
 
-Skill tỏa sáng nhất trong một môi trường ổn định, được chia sẻ: 1. **Một host đáng tin cậy cho các luồng công việc chia sẻ trong nhóm, được gọi từ CI.** Skill được quản lý phiên bản và cũng chạy trong CI. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, truy cập độ trễ thấp vào đại lục Trung Quốc, BGP ổn định. Cùng IDC đang host dibi8.com. 5-12 USD/tháng.
+Skill tỏa sáng nhất trong một môi trường ổn định, được chia sẻ: 1. **Một host đáng tin cậy cho các luồng công việc chia sẻ trong nhóm, được gọi từ CI.** Skill được quản lý phiên bản và cũng chạy trong CI. **** — VPS Hồng Kông, truy cập độ trễ thấp vào đại lục Trung Quốc, BGP ổn định. Cùng IDC đang host dibi8.com. 5-12 USD/tháng.
 
-2. **Dư địa đám mây cho các lượt chạy song song.** **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD tín dụng miễn phí trong 60 ngày, hơn 14 khu vực.
+2. **Dư địa đám mây cho các lượt chạy song song.** **** — 200 USD tín dụng miễn phí trong 60 ngày, hơn 14 khu vực.
 
 3. **Một bộ skill (skills bundle).** Cách nhanh nhất để viết skill hay là đọc những skill hay. Chúng tôi đã đóng gói năm skill đã được kiểm chứng thực chiến thành một bundle 19 USD trên Gumroad — xem nút CTA nổi ở góc màn hình — với phần description, cấu trúc tiết lộ tăng dần, và các script đi kèm đã được làm chuẩn xác.
 

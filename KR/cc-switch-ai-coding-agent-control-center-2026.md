@@ -1,13 +1,10 @@
 ---
-
-## 들어가며: AI CLI 도구 홍수 시대의 설정 관리 문제
-
-2026년, 개발자들은 달콤한 고통을 겪고 있습니다. AI 코딩 도구가 너무 많아진 것입니다.
-
-Claude Code는 200만 토큰 컨텍스트 윈도우로 아키텍처 리팩토링의 강자이고, OpenAI Codex는 Rust로 재작성되어 빠른 실행 속도를 자랑합니다. Google의 Gemini CLI는 하루 1,000회 무료라는 파격적인 조건으로 주목받고 있으며, OpenClaw는 서브 에이전트 오케스트레이션으로 기술 매니아들의 사랑을 받고 있습니다. 각 도구는 고유한 모델 생태계와 워크플로우를 가지고 있지만, 도구 간 전환 비용이 점점 생산성을 잠식하고 있습니다.
-
-``.env``, ``.json``, ``.toml`` 파일을 수동으로 수정하고, 각 도구의 MCP 서버 주소를 기억하며, 터미널과 IDE 사이를 반복해서 이동하는 것 — 이런 잡무가 AI가 절약해줘야 할 시간을 오히려 소모하고 있습니다. **CC Switch**는 바로 이 "AI 도구 관리" 패러다임에 혁명을 일으키는 도구입니다.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-ai-coding-agent-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

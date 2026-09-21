@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chattts-dialogue-tts-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
-description: "ChatTTS is the open-source TTS purpose-built for dialogue (not narration). 39.3k GitHub stars, 4 GB ..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -61,7 +68,7 @@ For dialogue use cases (voice agents, AI podcasts, NPC dialogue in games), this 
 | 24 GB GPU (RTX 4090 / A5000) | ~3 sec | Production, high concurrent |
 | CPU-only | ~3-5 min | Not practical for interactive use |
 
-For self-hosted production, the entry point is a $0.30-0.50/hr GPU cloud (Vast.ai, RunPod, or a {{< aff "digitalocean" "chattts-gpu" "DigitalOcean GPU droplet" >}}) — much cheaper than ElevenLabs at any meaningful volume.
+For self-hosted production, the entry point is a $0.30-0.50/hr GPU cloud (Vast.ai, RunPod, or a ) — much cheaper than ElevenLabs at any meaningful volume.
 
 ## 3. Quick Install (10 minutes on a GPU machine)
 
@@ -155,7 +162,7 @@ For agent voice / podcast pipeline: `````
    Optional post-processing (loudness normalize, denoise)
 `````
 
-Stand it up on a GPU-equipped {{< aff "htstack" "chattts-vps-hk" "HTStack Hong Kong VPS with GPU" >}} or a Vast.ai instance, expose via FastAPI, and your stack has voice for ~$0.001 per minute generated (vs ElevenLabs at ~$0.30/min).
+Stand it up on a GPU-equipped  or a Vast.ai instance, expose via FastAPI, and your stack has voice for ~$0.001 per minute generated (vs ElevenLabs at ~$0.30/min).
 
 ## 8. When to Use ChatTTS vs Alternatives
 

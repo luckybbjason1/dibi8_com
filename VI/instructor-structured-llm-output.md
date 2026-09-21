@@ -1,12 +1,10 @@
 ---
-# Instructor: Thư Viện Python Đảm Bảo LLM Xuất JSON Hợp Lệ 100% — Hướng Dẫn 2026
-
-*Cập nhật lần cuối: 19 tháng 5, 2026*
-
-Nếu bạn từng thử nghiệm để làm cho một Mô hình Ngôn ngữ lớn luôn luôn xuất ra JSON hợp lệ, bạn sẽ biết sự khó chịu. Một phản hồi hoàn hảo. Phản hồi tiếp theo thiếu dấu ngoặc đóng. Phản hồi thứ ba bao gồm văn bản giải thích trước JSON. Phản hồi thứ tư trả về JSON hợp lệ nhưng với schema sai. Sự không nhất quán này làm cho LLM trở nên không đáng tin cậy cho các ứng dụng sản xuất cần dữ liệu có cấu trúc — cho đến khi **Instructor** xuất hiện.
-
-Instructor là một thư viện Python sửa đổi khách hàng OpenAI (và hơn 10 nhà cung cấp LLM khác) để đảm bảo kết quả có cấu trúc, an toàn về kiểu dữ liệu và đã được kiểm tra sử dụng **Pydantic models**. Nó chuyển đổi sự hoang dã của quá trình tạo văn bản từ các Mô hình Ngôn ngữ lớn thành một quy trình dự đoán, kỹ thuật phần mềm. Với hơn 11.000 ngôi sao trên GitHub, giấy phép MIT và cộng đồng sôi động, Instructor đã trở thành chuẩn mực thực tế cho đầu ra có cấu trúc của LLM trong Python. Hướng dẫn này bao gồm mọi thứ từ cài đặt cơ bản đến các mẫu đa nhà cung cấp nâng cao vào năm 2026.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "instructor-structured-llm-output"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -46,7 +44,7 @@ class UserProfile(BaseModel): name: str
     interests: list[str]
 
 # Trích xuất dữ liệu có cấu trúc từ ngôn ngữ tự nhiên
-def extract_profile(user_description: str) -> UserProfile:. Comprehensive guide covering features, pricing, and best practices for 2026.
+def extract_profile(user_description: "Technical guide and comparison."
     return client.chat.completions.create(
         model="gpt-4o",
         response_model=UserProfile,
@@ -101,7 +99,7 @@ class ValidatedProduct(BaseModel): name: str = Field(description="Tên sản ph�
         return round(v, 2)
 
 # Instructor tự động thử lại khi có lỗi kiểm tra
-def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
+def parse_product(description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # Thử lại tối đa 3 lần với phản hồi
@@ -187,7 +185,7 @@ class Event(BaseModel): name: str
     start_time: datetime
     end_time: Optional[datetime] = None
     location: Optional[str] = None
-    description: Optional[str] = ""
+    description: "Technical guide and comparison."
 
 event = client.chat.completions.create(
     model="gpt-4o-mini",

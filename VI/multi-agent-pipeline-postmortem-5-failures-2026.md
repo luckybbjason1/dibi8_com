@@ -1,6 +1,13 @@
 ---
-title: "Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
-description: "Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-agent-pipeline-postmortem-5-failures-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -88,9 +95,9 @@ Mỗi lỗi trong số này đều chung một gốc rễ: **coi lời tuyên b�
 
 ## Thiết lập Claude Code sẵn sàng cho production
 
-Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng nó: 1. **Một máy chủ ổn định cho pipeline dài và cổng CI.** Một phiên SSH bị rớt giữa lúc điều phối là một kiểu lỗi của riêng nó. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, truy cập Trung Quốc đại lục độ trễ thấp, BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các pipeline này. 5-12 USD/tháng.
+Pipeline đáng tin cậy cần hạ tầng không tự thêm lỗi của riêng nó: 1. **Một máy chủ ổn định cho pipeline dài và cổng CI.** Một phiên SSH bị rớt giữa lúc điều phối là một kiểu lỗi của riêng nó. **** — VPS Hồng Kông, truy cập Trung Quốc đại lục độ trễ thấp, BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các pipeline này. 5-12 USD/tháng.
 
-2. **Dư địa đám mây cho fan-out song song.** Khi bạn (có chủ đích, có ngân sách) fan-out các worker, CPU dư giúp chúng không tranh chấp. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD tín dụng miễn phí trong 60 ngày, hơn 14 khu vực.
+2. **Dư địa đám mây cho fan-out song song.** Khi bạn (có chủ đích, có ngân sách) fan-out các worker, CPU dư giúp chúng không tranh chấp. **** — 200 USD tín dụng miễn phí trong 60 ngày, hơn 14 khu vực.
 
 3. **Một bộ skills.** Tránh được năm lỗi này phần lớn là chuyện kỷ luật prompt — các bước kiểm chứng, điều kiện dừng, tài nguyên có phạm vi. Chúng tôi đã đóng gói năm skill đã qua thực chiến thành một bộ giá 19 USD trên Gumroad — xem CTA nổi ở góc màn hình — bao gồm cả các prompt orchestrator đã cài sẵn những mối nối kiểm chứng.
 

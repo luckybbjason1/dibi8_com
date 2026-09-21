@@ -1,16 +1,14 @@
 ---
-title: "Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026...
-description: "Jesse AI 트레이딩 프레임워크의 프로덕션 가이드 — 설치, 30개 이상 지표로 백테스팅, 커스텀 전략 구축, Python으로 라이브 암호화폐 트레이딩 봇 배포.". Compr..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["jesse", "암호화폐 트레이딩", "python", "백테스팅", "기술 지표", "알고리즘 트레이딩", "ai 트레이딩", "퀀트 트레이딩"]
-aliases:
-  - /kr/posts/jesse-ai-trading-framework/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "jesse-ai-trading-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 대부분의 트레이딩 봇이 프로덕션에서 실패하는 이유
 
@@ -178,13 +176,13 @@ jesse backtest 2025-01-01 2025-12-31
 다음과 같은 출력이 표시된다: `````
 Loading candles...
 Executing backtest...
-=====================================
+
 Total Trades: 142
 Win Rate: 58.45%
 Net Profit: 23.7%
 Max Drawdown: -8.2%
 Sharpe Ratio: 1.34
-=====================================
+
 `````
 
 ## 메인스트림 도구 통합

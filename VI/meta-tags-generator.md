@@ -1,10 +1,10 @@
 ---
-title: "Trình Tạo Meta Tags — SEO Title, Description, Open Graph...
-description: "Tạo các thẻ meta HTML head sẵn sàng copy-paste — SEO title, description, canonical, Open Graph và Tw..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-meta-tags-generator"
-tool_id: "meta-tags-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meta-tags-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

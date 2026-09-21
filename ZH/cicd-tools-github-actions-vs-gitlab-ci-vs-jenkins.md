@@ -1,9 +1,10 @@
 ---
-title: "CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测"
-description: "GitHub Actions、GitLab CI与Jenkins全方位对比，覆盖定价、性能、安全性与扩展性，帮你选出最适合团队的CI/CD平台。". Comprehensive guide cover..."
-draft: false
-aliases:
-  - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # CI/CD工具对比：GitHub Actions vs GitLab CI vs Jenkins 2025年全面评测

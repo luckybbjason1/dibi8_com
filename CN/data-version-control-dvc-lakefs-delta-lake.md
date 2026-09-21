@@ -1,21 +1,10 @@
 ---
-title: "DVC vs LakeFS vs Delta Lake: Choosing the Right Data Ver...
-description: "Compare DVC, LakeFS, and Delta Lake for ML data versioning. Learn which data version control tool fi..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/data-version-control-dvc-lakefs-delta-lake/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "data-version-control-dvc-lakefs-delta-lake"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # DVC vs LakeFS vs Delta Lake: Choosing the Right Data Version Control Tool for ML

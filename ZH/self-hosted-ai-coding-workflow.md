@@ -1,6 +1,13 @@
 ---
-title: "自托管 AI 编程工作流：2026 年 $6/月 完整 stack"
-description: "7 个组件的自托管 AI 编程 stack，用 $6/月 的基础设施替换掉 $290/月 的 SaaS 订阅（Cursor + Claude Code Pro + Copilot + Replit）。..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-ai-coding-workflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -134,7 +141,7 @@ LiteLLM 自动认 Ollama 当 provider。
 
 **为什么选它**：47.8k stars，LLM 网关里星数最多。1k RPS 下 P95 8ms。自托管免费。详细对比看 [Portkey vs LiteLLM vs OpenRouter 2026 指南](/zh/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/)。
 
-**在 4GB VPS 上快速部署**（中国大陆用户推荐 {{< aff "htstack" "stack-vps" "HTStack 的香港 VPS" >}} 拿 <30ms 延迟；其他地方推荐 {{< aff "digitalocean" "stack-droplet" "DigitalOcean $6 droplet" >}}）：
+**在 4GB VPS 上快速部署**（中国大陆用户推荐  拿 <30ms 延迟；其他地方推荐 ）：
 
 `````bash
 docker run -d --name litellm -p 4000:4000 \
@@ -226,7 +233,7 @@ Tavily 免费层每月 1000 次搜索，足够撑住 $6 预算。
 
 从零开始按这个顺序做：
 
-1. **开服务器**（15 分）—— 订一个 {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}}，装 Docker，开端口 4000（LiteLLM）+ 9999（9Router）+ 11434（Ollama）
+1. **开服务器**（15 分）—— 订一个 ，装 Docker，开端口 4000（LiteLLM）+ 9999（9Router）+ 11434（Ollama）
 2. **先 Ollama**（10 分）—— 装 + 拉 ````qwen3-coder:14b````（~9 GB）。确认 ````curl localhost:11434/api/tags```` 能用
 3. **再 LiteLLM**（15 分）—— 用第 5 节的环境变量 docker run。确认 ````curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"```` 列出 Ollama 模型
 4. **第三 9Router**（10 分）—— 可选但推荐。加到 LiteLLM 的 premium provider config
@@ -263,7 +270,7 @@ Tavily 免费层每月 1000 次搜索，足够撑住 $6 预算。
 
 stack 超过 $6 tier 时（不止 1 个 dev / 不止 1 个项目 / 持久化 state 重要）：
 
-- **加 Postgres** 给 LiteLLM 做账单跟踪 + 项目级虚拟 key（{{< aff "digitalocean" "upgrade-postgres" "DigitalOcean 托管 Postgres" >}} $15/月）
+- **加 Postgres** 给 LiteLLM 做账单跟踪 + 项目级虚拟 key（ $15/月）
 - **加 Redis** 给 LiteLLM 缓存（1 GB 托管 Redis $10/月）
 - **LiteLLM 上 LB + 3 副本** —— 见 [Portkey vs LiteLLM 2026 指南](/zh/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 第 4 节的 Kubernetes 模式
 - **加 Grafana + Loki** 做完整可观测性 —— 记每个 prompt、每次 fallback、每次成本尖峰
@@ -283,7 +290,7 @@ stack 超过 $6 tier 时（不止 1 个 dev / 不止 1 个项目 / 持久化 sta
 
 总计：$6/月。总计：90 分钟组装。总计：零 vendor 锁定。
 
-你每月 AI 编程 SaaS 烧 $200+，这个 stack 第一周就回本。开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}}，跟第 10 节做，下周回来报数。
+你每月 AI 编程 SaaS 烧 $200+，这个 stack 第一周就回本。开一个 ，跟第 10 节做，下周回来报数。
 
 
 * * *

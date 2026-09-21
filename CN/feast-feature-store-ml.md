@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "feast-feature-store-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Feast: The Open-Source Feature Store Serving ML Features...
-description: "Complete guide to Feast — the leading open-source feature store. Covers feature registry, online/off..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/feast-feature-store-ml/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The 200ms Feature Engineering Crisis
 
@@ -449,7 +456,7 @@ with DAG(
         task_id="materialize_features",
         bash_command="""
             cd /opt/feast/fraud_detection_feature_store && \
-            feast materialize-incremental {{ ds }}T{{ ts_nodash_with_tz }}
+            feast materialize-incremental T
         """,
     )
     

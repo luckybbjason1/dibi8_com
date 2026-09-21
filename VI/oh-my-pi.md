@@ -1,20 +1,10 @@
 ---
-title: "Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Th...
-description: "Oh My Pi (12.554 sao) biến thiết bị Raspberry Pi thành hub nhà thông minh, trung tâm media và workst..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: oh-my-pi
-category: dev-utils
-tags: ["raspberry pi", "nhà thông minh", "iot", "edge computing", "home automation", "linux", "automation"]
-images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
-    alt: "Oh My Pi GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
-    alt: "Luồng Thiết lập Pi"
-    role: example
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
-    alt: "Sơ đồ Nhà thông minh"
-    role: diagram
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "oh-my-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -170,7 +160,7 @@ Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My
 # my-service.yaml — định nghĩa dịch vụ tùy chỉnh
 service: name: my-custom-app
   version: "1.0"
-  description: "Triển khai ứng dụng tùy chỉnh"
+  description: "Technical guide and comparison."
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

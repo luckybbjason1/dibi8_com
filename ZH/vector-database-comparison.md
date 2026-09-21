@@ -1,21 +1,10 @@
 ---
-title: "向量数据库对比2025：Pinecone vs Weaviate vs Chroma vs Milvus选型指南"
-description: "2025年主流向量数据库全面对比：Pinecone、Weaviate、Chroma、Milvus的功能、性能、价格及适用场景分析，助你选出最适合RAG的向量数据库。"
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/vector-database-comparison/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vector-database-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

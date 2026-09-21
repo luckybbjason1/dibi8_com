@@ -1,6 +1,11 @@
 ---
-# Archify: Generate Production-Ready Architecture Diagrams in 2026
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-20-archify-diagrams-zh"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 Archify by tt-a1i has emerged as one of the most popular architecture visualization tools in 2026, gaining **59,700 stars** and **3,900 forks** in a single month. This self-contained HTML tool generates beautiful, interactive diagrams from code analysis without requiring external dependencies.
 
 This guide explores how Archify works, its integration with AI coding agents, and practical workflows for development teams.

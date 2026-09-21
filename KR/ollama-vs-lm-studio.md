@@ -1,6 +1,13 @@
 ---
-title: "Ollama vs LM Studio 2026: 어떤 로컬 LLM 러너가 더 좋은가?"
-description: "Ollama와 LM Studio 정면 비교 — CLI vs GUI, 모델 라이브러리, GPU 지원, OpenAI 호환 API, 양자화, 셀프 호스팅. 2026년 업데이트.". Co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-vs-lm-studio"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

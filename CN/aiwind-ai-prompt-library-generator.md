@@ -1,6 +1,13 @@
 ---
-title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
-description: AiWind 是一个免费 AI 提示词库，收录 1000+ 针对 GPT-Image 2、Nanobanana、Stable Diffusion、Midjourney. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aiwind-ai-prompt-library-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   等主流模型的专业提示词，覆盖写实肖像、赛博朋克、3D 渲染等多种风格。
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -305,8 +312,8 @@ AiWind 是**中文用户最好的 AI 绘画提示词库**。
 * * *
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

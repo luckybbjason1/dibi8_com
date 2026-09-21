@@ -1,11 +1,10 @@
 ---
-title: "Semgrep：15K+ Stars 的 SAST 工具，30 秒内在你的代码库中发现 500+ 漏洞"
-description: "Semgrep 是一个拥有 15K+ GitHub Stars 的开源静态分析工具，可在 Python、JavaScript、TypeScript、Go、Java 等语言中发现 500+ 漏洞模式。快..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'semgrep-15k-star-sast-security-scanner'
-category: dev-utils
-tags: ["semgrep", "sast", "security-scanner", "code-analysis", "vulnerability", "open-source", "ci-cd", "static-analysis"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "semgrep-15k-star-sast-security-scanner"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Semgrep：这款拥有 1.5 万星的 SAST 工具能在不到 30 秒的时间内发现你代码库中的 500 多个漏洞——快速、轻量、适合生产环境

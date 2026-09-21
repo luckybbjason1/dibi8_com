@@ -1,9 +1,10 @@
 ---
-title: "Model Context Protocol (MCP) Deep Dive: The Definitive 2...
-description: "Build your first MCP server from scratch. Learn Anthropic"'s Model Context Protocol with hands-on Py..."
-draft: false
-aliases:
-  - /posts/mcp-deep-dive-definitive-2026-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-deep-dive-definitive-2026-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers

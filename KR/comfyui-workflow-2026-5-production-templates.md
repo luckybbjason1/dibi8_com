@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI 워크플로 2026: 초보자 셋업 + 프로덕션 템플릿 5종"
-description: "2026년 ComfyUI는 GitHub 스타 10.6만 개를 돌파했습니다. 초보자 친화적 셋업 가이드, 2026년 모델 추천, 그리고 곧바로 실무에 투입 가능한 워크플로 템플릿 5..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-workflow-2026-5-production-templates"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
@@ -25,7 +32,7 @@ faq: - q: "2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # ComfyUI 워크플로 2026: 셋업 + 프로덕션 템플릿 5종
 
@@ -114,8 +121,8 @@ python main.py
 
 ## 추천 인프라
 
-본격적인 ComfyUI 작업을 위해: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU droplet(H100/L40S/A100)
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 아시아 저지연 생성용 홍콩 VPS
+본격적인 ComfyUI 작업을 위해: - **** — $200 크레딧, GPU droplet(H100/L40S/A100)
+- **** — 아시아 저지연 생성용 홍콩 VPS
 
 *제휴 링크 — 동일 가격, dibi8.com을 지원합니다.*
 

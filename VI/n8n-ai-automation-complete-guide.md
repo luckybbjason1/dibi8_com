@@ -1,12 +1,10 @@
 ---
-title: n8n AI Automation — Xây dựng Workflows thông minh không c...
-description: Hướng dẫn toàn diện về workflow automation AI của n8n. Kết nối 400+ apps với AI nodes, xây dựng autonomous agents và tự động hóa quy trình kinh doanh phức tạp. Giá cả, templates và examples thực tế.
-tags: ["n8n", "workflow-automation", "ai-automation", "no-code", "agent-automation", "business-process"]
-category: dev-utils
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: n8n-ai-automation-complete-guide
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-automation-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -135,7 +133,7 @@ The core AI node cho text generation, classification và extraction: `````python
   "nodeType": "aiLLM",
   "parameters": {
     "model": "claude-sonnet-4-202603",
-    "prompt": "Phân loại customer message này:\n{{ $json.message }}\n\nCategories: support, sales, complaint, inquiry",
+    "prompt": "Phân loại customer message này:\n\n\nCategories: support, sales, complaint, inquiry",
     "outputKey": "classification"
   }
 }
@@ -154,7 +152,7 @@ Convert text to vector representations cho semantic search: `````python
   "nodeType": "aiEmbedding",
   "parameters": {
     "model": "text-embedding-3-large",
-    "input": "{{ $json.document_text }}"
+    "input": ""
   }
 }
 `````
@@ -175,7 +173,7 @@ Generate images từ text prompts: `````python
   "nodeType": "aiImageGen",
   "parameters": {
     "provider": "dall-e-3",
-    "prompt": "{{ $json.description }}",
+    "prompt": "",
     "size": "1024x1024",
     "quality": "hd"
   }
@@ -303,7 +301,7 @@ workflow_config = {
     "onError": {
         "strategy": "continue",  # hoặc "stop", "send_alert"
         "alertChannel": "slack",
-        "alertMessage": "Workflow failed: {{ $json.error }}"
+        "alertMessage": "Workflow failed: "
     }
 }
 `````
@@ -343,10 +341,10 @@ n8n's Switch node handles complex branching visually.
   "parameters": {
     "method": "POST",
     "url": "https://api.example.com/v1/data",
-    "headers": {"Authorization": "Bearer {{ $env.API_KEY }}"},
+    "headers": {"Authorization": "Bearer "},
     "body": {
-      "input": "{{ $json.user_input }}",
-      "context": "{{ $json.context }}"
+      "input": "",
+      "context": ""
     }
   }
 }

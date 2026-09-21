@@ -1,6 +1,13 @@
 ---
-title: "LangGraph 1.2 Trong Production: Orchestration Agent Có T...
-description: "LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-stateful-agent-orchestration-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -129,7 +136,7 @@ Pattern 4 thành phần mà hầu hết team định cư: `````
 └──────────────────────────┘
 `````
 
-Deploy production tiêu chuẩn: container hóa app LangGraph, trỏ vào managed Postgres cho checkpoint, cấu hình LangSmith cho trace. Tier stateless dùng {{< aff "digitalocean" "langgraph-vps" "DigitalOcean App Platform" >}}; workload nghiêm túc lấy {{< aff "htstack" "langgraph-vps-hk" "HTStack VPS Hong Kong" >}} (tối thiểu 8 GB) + DO Managed Postgres cho ghi state độ trễ thấp.
+Deploy production tiêu chuẩn: container hóa app LangGraph, trỏ vào managed Postgres cho checkpoint, cấu hình LangSmith cho trace. Tier stateless dùng ; workload nghiêm túc lấy  (tối thiểu 8 GB) + DO Managed Postgres cho ghi state độ trễ thấp.
 
 ## 6. LangGraph vs LangChain vs CrewAI vs AutoGen (Khi Chọn Gì)
 
@@ -183,7 +190,7 @@ Phần thưởng: thực thi bền vững + human-in-loop + replay debug, hầu 
 
 LangGraph = **runtime agent có trạng thái dựa graph** cho workload production cần sống sót crash, hỗ trợ checkpoint người, chạy hàng giờ. 32.6k stars, v1.2.1, MIT. Pair tự nhiên với LangChain (có lẽ bạn đã dùng). Pick nó hơn CrewAI khi cần control, hơn LangChain một mình khi cần durability, hơn AutoGen cho bất cứ gì ngoài hội thoại multi-agent.
 
-Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} với Postgres, chạy ví dụ ở mục 3, và bạn sẽ thấy vì sao team chạy agent thực ở production hấp dẫn đây.
+Bật  với Postgres, chạy ví dụ ở mục 3, và bạn sẽ thấy vì sao team chạy agent thực ở production hấp dẫn đây.
 
 * * *
 

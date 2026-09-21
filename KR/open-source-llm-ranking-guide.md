@@ -1,9 +1,10 @@
 ---
-title: "오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSee...
-description: "2025년 최신 오픈소스 LLM 순위와 성능 비교. Llama 3, Mistral, Qwen, DeepSeek, Gemma, Phi의 벤치마크 점수와 사용 사례별 추천 모델을 상세..."
-draft: false
-aliases:
-  - /posts/open-source-llm-ranking-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-source-llm-ranking-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

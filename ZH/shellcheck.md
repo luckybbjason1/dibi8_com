@@ -1,16 +1,14 @@
 ---
-title: "ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 C...
-description: "ShellCheck (SC) 是一款针对 bash/sh 的静态分析工具。支持 Docker、GitHub Actions、VS Code 集成，涵盖安装配置、CI/CD 流水线集成和生产环境加固。..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["shellcheck", "bash", "静态分析", "代码检查", "shell脚本", "devops", "ci-cd", "docker"]
-aliases:
-  - /zh/posts/shellcheck/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "shellcheck"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ShellCheck 是捕获 shell 脚本中 bug 的事实标准工具，在生产环境部署前就能发现问题。凭借 39,456+ GitHub stars 和活跃的开源社区，它是 bash、sh、dash 和 ksh 脚本中应用最广泛的静态分析工具。本指南涵盖 ShellCheck 安装、编辑器集成、CI/CD 流水线配置以及生产环境加固。
 

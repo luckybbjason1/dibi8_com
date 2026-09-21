@@ -1,6 +1,13 @@
 ---
-title: "AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro...
-description: "实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agent-monthly-bill-2026-real-receipts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
@@ -29,7 +36,7 @@ faq: - q: "Claude Max（$200）相比 API 按量付费值不值？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI 编码 Agent 月度账单 2026：30 天真实账单
 
@@ -161,8 +168,8 @@ Effective cost per hour: $0.98
 ## 推荐基础设施
 
 跑长周期 agent 循环、MCP 服务器或本地 LLM 运行时的 VPS：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 额度覆盖初期搭建
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，与 dibi8.com 同机房
+- **** — $200 额度覆盖初期搭建
+- **** — 香港 VPS，与 dibi8.com 同机房
 
 *推广链接——你的价格不变，支持 dibi8.com 持续输出。*
 

@@ -1,16 +1,14 @@
 ---
-title: "Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI...
-description: "Flowise 2026 완벽 가이드 — 100개 이상의 통합을 갖춘 오픈소스 로우코드 AI 워크플로우 빌더. 시각적 LangChain 에이전트 생성, Docker 배포, API 엔..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-tools"]
-tags: ["flowise", "langchain", "로우코드", "ai워크플로우", "docker", "셀프호스팅", "에이전트빌더", "노코드", "오픈소스", "챗봇"]
-aliases:
-  - /kr/posts/flowise-ai-workflow-builder-lowcode/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise-ai-workflow-builder-lowcode"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: AI 에이전트 구축이 여전히 2006년 같이 느껴지는 이유
 

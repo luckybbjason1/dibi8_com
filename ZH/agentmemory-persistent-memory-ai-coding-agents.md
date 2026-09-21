@@ -1,11 +1,10 @@
 ---
-title: "AgentMemory: 为 AI 编程代理提供持久记忆的首要选择 — 基于真实基准测试的 22,000 星开源...
-description: "AgentMemory（22,038 GitHub 星标）基于真实基准测试为 AI 编程代理提供持久记忆。记住过去的会话，跨天保持上下文，从前次交互中学习。支持 Claude Code、Codex C..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'agentmemory-persistent-memory-ai-coding-agents'
-category: 'data-science'
-tags: ["agent memory", "persistent memory", "AI coding agents", "context continuity", "AgentMemory", "session memory", "agent framework", "AI benchmark"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agentmemory-persistent-memory-ai-coding-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

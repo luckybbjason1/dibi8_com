@@ -1,6 +1,13 @@
 ---
-title: Hermes Agent：一个会自我进化的 AI 代理，越用越懂你
-description: Hermes Agent 是 Nous Research 打造的Open Source AI 代理，拥有自我学习循环——从经验中创建技能、持续改进、记住你的偏好，越用越懂你。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hermes-agent-self-improving-ai-agent"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -26,9 +33,9 @@ faqs: - q: 'Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工�
   - q: 'Hermes Agent 会在会话之间保留哪些类型的记忆？'
     a: 'Hermes 维护两类记忆：用户画像记忆（编码风格、项目、偏好的工具、沟通偏好以及常犯的错误）和会话记忆（当前项目上下文、最近的命令与输出，以及编辑过的文件）。即使在重启电脑之后，用户画像记忆依然会保留。'
   - q: 'Hermes Agent 可以在哪些消息平台上运行？'
-    a: 'Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 `hermes gateway setup` 命令进行配置。同一套命令和技能在每个平台上都能通用。'
+    a: 'Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 ``hermes gateway setup`` 命令进行配置。同一套命令和技能在每个平台上都能通用。'
   - q: '如何安装 Hermes Agent 并配置 LLM 提供商？'
-    a: '在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 `./setup-hermes.sh`。随后你可以用类似 `hermes config set provider openai` 和 `hermes config set model gpt-4o` 的命令来设置提供商，或通过 `hermes config set provider ollama` 使用本地模型。'---
+    a: '在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 ``./setup-hermes.sh``。随后你可以用类似 ``hermes config set provider openai`` 和 ``hermes config set model gpt-4o`` 的命令来设置提供商，或通过 ``hermes config set provider ollama`` 使用本地模型。'---
 
 {</* resource-info */>}
 
@@ -350,8 +357,8 @@ Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不�
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

@@ -1,11 +1,10 @@
 ---
-title: "RuView：智能建筑的 WiFi 空间智能——Python CLI、实时位置追踪和网状网络"
-description: "了解如何使用 RuView，这款基于 Python 的 WiFi 空间智能平台，实现实时位置追踪、建筑布局映射和 WiFi 网状网络优化。包含逐步 pip 安装指南、实时追踪和网状网络配置。"
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
-category: ai-tools
-tags: ["ruvnet", "ruview", "WiFi", "空间智能", "位置追踪", "网状网络", "智能建筑", "Python", "开源"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

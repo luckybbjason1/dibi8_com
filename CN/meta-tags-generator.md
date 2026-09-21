@@ -1,10 +1,10 @@
 ---
-title: "Meta Tags Generator — SEO Title, Description, Open Graph..."
-description: "Generate copy-paste-ready HTML head meta tags — SEO title, description, canonical, Open Graph, and T..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-meta-tags-generator"
-tool_id: "meta-tags-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meta-tags-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

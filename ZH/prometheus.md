@@ -1,6 +1,13 @@
 ---
-title: "Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026"
-description: "Prometheus（Prom）是一个开源监控系统和时间序列数据库。兼容 Docker、Kubernetes、Grafana 和 Alertmanager。涵盖安装教程、PromQL 查询、生产加固和..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prometheus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -23,7 +30,7 @@ aliases:
 # Prometheus: 64,094 GitHub Stars — Docker 部署指南 2026
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 
@@ -247,32 +254,32 @@ groups: - name: node-alerts
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} 内存使用率过高"
-          description: "内存使用率超过 85%（当前值：{{ $value }}%）"
+        annotations: summary: " 内存使用率过高"
+description: "Technical guide and comparison."
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
-        annotations: summary: "{{ $labels.instance }} CPU 使用率过高"
-          description: "CPU 使用率超过 80%（当前值：{{ $value }}%）"
+        annotations: summary: " CPU 使用率过高"
+description: "Technical guide and comparison."
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} 磁盘空间不足"
-          description: "磁盘空间低于 10%（挂载点：{{ $labels.mountpoint }}）"
+        annotations: summary: " 磁盘空间不足"
+description: "Technical guide and comparison."
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
-        annotations: summary: "实例 {{ $labels.instance }} 宕机"
-          description: "目标已无法访问超过 3 分钟"
+        annotations: summary: "实例  宕机"
+description: "Technical guide and comparison."
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} 请求延迟过高"
-          description: "95 分位延迟为 {{ $value }} 秒"
+        annotations: summary: " 请求延迟过高"
+description: "Technical guide and comparison."
 ### Alertmanager Slack 通知配置
 
 创建 ````alertmanager.yml````：
@@ -288,8 +295,8 @@ route: receiver: 'slack-notifications'
 receivers: - name: 'slack-notifications'
     slack_configs: - channel: '#alerts'
         send_resolved: true
-        title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
-        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+        title: ''
+        text: ''
 `````
 
 ### Kubernetes 服务发现

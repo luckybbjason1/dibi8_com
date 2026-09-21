@@ -1,10 +1,10 @@
 ---
-title: "Prompt 优化器 — 五段重构、删冗余、省 Token（GPT / Claude / Gemini / De..."
-description: "免费在线 Prompt 优化工具。识别冗余词、按五段框架（角色 / 任务 / 背景 / 约束 / 示例 / 输出）重构 prompt、并对比 GPT-4o / Claude Sonnet / Gemi..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-prompt-optimizer"
-tool_id: "prompt-optimizer"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompt-optimizer"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Prompt 优化器 — 五段重构、删冗余、省 Token（GPT / Claude / Gemini / DeepSeek）

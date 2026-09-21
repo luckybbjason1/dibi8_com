@@ -1,6 +1,13 @@
 ---
-title: "Cursor 비용 절감 전략 2026: 크레딧 과금 개편 이후"
-description: "Cursor가 2025년 가격 정책을 바꿨다 — Pro 사용자는 같은 가격에 실효 사용량이 약 55% 줄었다. 2026년 실제로 효과가 있는 7가지 절감 전략: 모델 선택, 컨텍스..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-cost-saving-strategies-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
@@ -25,7 +32,7 @@ faq: - q: "2025년 Cursor 가격 정책에서 무엇이 바뀌었나요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Cursor 비용 절감 전략 2026
 
@@ -95,8 +102,8 @@ Cursor는 월 최대 API 초과 지출을 설정할 수 있습니다. 설정하�
 
 ## 추천 인프라
 
-Cursor + Claude Code 페어 셋업용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS
+Cursor + Claude Code 페어 셋업용: - **** — $200 크레딧
+- **** — 홍콩 VPS
 
 *제휴 링크 — 가격 동일, dibi8.com을 응원합니다.*
 

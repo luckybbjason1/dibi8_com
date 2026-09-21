@@ -1,6 +1,13 @@
 ---
-title: "VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GP...
-description: "VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "voicecraft"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/voicecraft/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

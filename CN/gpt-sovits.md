@@ -1,6 +1,13 @@
 ---
-title: "GPT-SoVITS: 57.5K+ Stars — Deploy AI Voice Cloning Produ...
-description: "GPT-SoVITS (GSV) is a few-shot voice cloning and TTS tool with zero-shot capabilities. Supports Comf..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gpt-sovits"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/gpt-sovits/-
 ---
 
-{{</* resource-info */>}}
+
 
 > Clone any voice with 5 seconds of audio. Fine-tune with 1 minute. Deploy in production under 20 minutes. This guide walks you through the full setup.
 

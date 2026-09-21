@@ -1,11 +1,10 @@
 ---
-title: "Langflow: 148k Stars for Visual LLM Workflows -- Technic...
-description: "Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging ..."
-date: 2026-05-23
-lastmod: 2026-05-23
-slug: 'langflow'
-category: 'llm-frameworks'
-tags: ["langflow", "llm workflows", "visual programming", "AI agents", "LangChain", "flow-based programming", "prompt engineering", "deployment", "low-code AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langflow-visual-llm-workflow-builder-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026
@@ -228,7 +227,7 @@ from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
 class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
-    description: str = "A tool to scrape content from a URL."
+    description: "Technical guide and comparison."
 
     def build_config(self) -> Dict[str, Any]: return {
             "url": {"display_name": "URL", "field_type": "str", "required": True},

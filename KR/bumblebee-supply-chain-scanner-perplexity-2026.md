@@ -1,6 +1,13 @@
 ---
-title: "Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·...
-description: "Bumblebee는 Perplexity AI의 오픈소스 읽기 전용 공급망 스캐너입니다. npm, PyPI, Go 모듈, MCP 설정, 에디터 확장, 브라우저 확장에서 알려진 침해 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bumblebee-supply-chain-scanner-perplexity-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: [Go, Security, CLI]

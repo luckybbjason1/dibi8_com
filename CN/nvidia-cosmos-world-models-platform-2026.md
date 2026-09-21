@@ -1,11 +1,10 @@
 ---
-title: "NVIDIA Cosmos: Open-Source World Models for Physical AI ...
-description: "NVIDIA Cosmos is an open platform of world models, datasets, and tools for building Physical AI — ro..."
-tags: ["open-source", "self-hosted"]
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'nvidia-cosmos-world-models-platform-2026'
-category: ai-tools
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "nvidia-cosmos-world-models-platform-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![NVIDIA Cosmos platform](https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png)

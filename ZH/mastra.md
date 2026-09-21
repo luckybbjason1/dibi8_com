@@ -1,6 +1,13 @@
 ---
-title: "Mastra: 24K+ Stars — 节省 Token 成本 4-10 倍的 TypeScript AI 框...
-description: "Mastra 是 Gatsby 团队打造的 TypeScript 原生 AI 框架，用于构建 AI 驱动的应用和智能体。涵盖 Mastra vs LangChain、安装教程、工作流、RAG、记忆系统..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mastra"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 绝大多数 AI 框架都是为 Python 构建的。如果你的技术栈运行在 TypeScript 和 Node.js 上，你只能在跨语言桥接和次优开发体验之间做出选择。这种情况在 Gatsby 团队推出 Mastra 后发生了改变 —— 一个用于构建 AI 智能体的 TypeScript 原生框架，截至 2026 年 5 月已获得 **24,050 个 GitHub Star**，目前被 Replit、PayPal 和 Sanity 等公司用于生产环境。本文涵盖安装 Mastra、构建第一个智能体所需的一切，以及其 Observational Memory 如何比传统 RAG 方法减少 4-10 倍 Token 成本。
 
@@ -159,7 +166,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: 搜索内部文档,
+description: "Technical guide and comparison."
   inputSchema: z.object({
     query: z.string().describe(搜索查询),
   }),

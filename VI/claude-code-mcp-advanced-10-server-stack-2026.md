@@ -1,6 +1,13 @@
 ---
-title: "Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
-description: "Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 serve..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-mcp-advanced-10-server-stack-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
@@ -25,7 +32,7 @@ faq: - q: "Bao nhiêu MCP server là quá nhiều?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Production
 
@@ -157,8 +164,8 @@ Mẹo: - Ưu tiên stdio (local) thay vì HTTP khi cả hai cùng tồn tại
 
 ## Hạ Tầng Đề Xuất
 
-Cho MCP server self-host (dùng chung trong team): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit 200 USD
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp tại châu Á
+Cho MCP server self-host (dùng chung trong team): - **** — credit 200 USD
+- **** — VPS Hong Kong, độ trễ thấp tại châu Á
 
 *Liên kết tiếp thị — giá không đổi, ủng hộ dibi8.com.*
 

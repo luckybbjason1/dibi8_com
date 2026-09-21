@@ -1,16 +1,14 @@
 ---
-title: "Caddy: 72K+ Stars 的生产级 Web 服务器 — 2026 自动 HTTPS 部署指南"
-description: "Caddy (Caddyserver) 是一个快速、可扩展的多平台 HTTP/1-2-3 Web 服务器，支持自动 HTTPS。兼容 Docker、Let"'''s Encrypt、Prometheu..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["caddy", "web服务器", "反向代理", "自动https", "docker", "运维", "ssl", "http3"]
-aliases:
-  - /zh/posts/caddy/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "caddy"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 Caddy 是唯一一个将 HTTPS 视为默认设置而非事后补救的主流 Web 服务器。当 Nginx 需要手动配置证书、Apache 需要折腾 mod_ssl 时，Caddy 已经自动从 Let's Encrypt 和 ZeroSSL 获取并续期 TLS 证书 —— 无需 cron 任务、无需 certbot、无需配置。拥有 **72,595 个 GitHub Stars**，代码基于 Go 语言编写，Caddy 已在生产环境中服务了数万亿请求，管理着数百万张 TLS 证书，部署规模从单台 VPS 到管理数十万个站点的大型集群不等。
 

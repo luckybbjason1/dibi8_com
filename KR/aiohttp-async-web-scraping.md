@@ -1,16 +1,14 @@
 ---
-title: "aiohttp 2026: 초당 10K+ 요청을 처리하는 고성능 비동기 웹 스크래퍼 구축 — Pytho...
-description: "aiohttp 3.11을 마스터하여 Python으로 고성능 비동기 웹 스크래퍼를 구축하세요. 연결 풀링, 세션 관리, 속도 제한, 프로덕션 배포까지 지원합니다.". Comprehe..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["aiohttp", "비동기", "웹 스크래핑", "python", "http 클라이언트", "asyncio"]
-aliases:
-  - /kr/posts/aiohttp-async-web-scraping/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aiohttp-async-web-scraping"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 동기 스크래핑의 병목 현상
 

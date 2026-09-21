@@ -1,12 +1,10 @@
 ---
-title: "OpenHuman이란 무엇인가?"
-description: "content/ko/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practic..."
-description: "OpenHuman은 메모리 트리, 옵시디언 금고, 118개 이상의 통합, 내장 모델 라우팅을 갖춘 오픈소스 로컬 AI 에이전트입니다. Homebrew 또는 apt를 통해 설치하세요..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'openhuman-local-ai-agent-rust-2026'
-category: 'ai-tools'
-tags: ["openhuman", "로컬-ai", "ai-에이전트", "ai-어시스턴트", "메모리-트리", "옵시디언", "에이전틱", "오픈-소스", "llm", "데스크탑-앱"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhuman"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

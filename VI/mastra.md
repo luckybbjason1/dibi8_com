@@ -1,6 +1,13 @@
 ---
-title: "Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
-description: "Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastr..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mastra"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Hau het cac framework AI deu duoc xay dung cho Python. Neu stack cua ban chay tren TypeScript va Node.js, ban phai chon cau noi giua cac ngon ngu hoac chap nhan trai nghiem phat trien kem hon. Dieu nay da thay doi khi Gatsby team ra mat Mastra — mot framework TypeScript native de xay dung agent AI, dat **24.050 sao GitHub** vao thang 5/2026 va dang duoc su dung trong moi truong production tai Replit, PayPal, va Sanity. Bai viet nay bao gom moi thu ban can de cai dat Mastra, xay dung agent dau tien, va hieu cach Observational Memory cua no giam chi phi token 4-10 lan so voi cach tiep can RAG truyen thong.
 
@@ -154,7 +161,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: "Tim kiem tai lieu noi bo",
+  description: "Technical guide and comparison."
   inputSchema: z.object({
     query: z.string().describe('Truy van tim ki..."
 services: mastra: build: .

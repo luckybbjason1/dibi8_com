@@ -1,6 +1,13 @@
 ---
-title: "bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So...
-description: "bat là bản sao cat(1) với syntax highlighting và tích hợp Git. Tương thích với Rust, Git, Homebrew, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bat"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Lệnh ```cat```` đã là công cụ xem file mặc định trên các hệ thống Unix-like từ năm 1971. Nó xuất byte thô ra stdout —— không màu, không số dòng, không nhận thức Git. Khi bạn đọc file Python 200 dòng lúc 2 giờ sáng, việc nhìn chằm chằm vào văn bản không định dạng tạo thêm gánh nặng nhận thức không cần thiết. ````bat```` thay thế workflow 40 năm tuổi này bằng syntax highlighting, tích hợp Git và phân trang tự động —— mà không phá vỡ muscle memory mà mọi ngườ dùng terminal đã quen thuộc.
 

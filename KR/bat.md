@@ -1,16 +1,14 @@
 ---
-title: "bat: 58K+ Stars 구문 강조 cat 클론 — 2026년 cat, less, ccat 비교"
-description: "bat은 구문 강조와 Git 통합을 갖춘 cat(1) 클론. Rust, Git, Homebrew, Cargo와 호환. 설치 튜토리얼, 성능 벤치마크, 설정 파일 및 cat, les..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["bat", "cat 대체", "구문 강조", "cli 도구", "rust", "터미널", "파일 뷰어", "명령줄"]
-aliases:
-  - /kr/posts/bat/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bat"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ```cat```` 명령어는 1971년부터 Unix 계열 시스템의 기본 파일 뷰어로 사용되어 왔다. 원시 바이트를 stdout으로 출력할 뿐, 색상도 없고 줄 번호도 없으며 Git 인식 기능도 없다. 새벽 2시에 200줄짜리 Python 파일을 읽을 때 형식이 지정되지 않은 텍스트를 응시하는 것은 불필요한 인지 부담을 증가시킨다. ````bat````은 구문 강조, Git 통합, 자동 페이지 매기기로 이 40년 된 워크플로우를 대체하며 —— 터미널 사용자가 이미 익숙한 근육 기억을 해치지 않는다.
 

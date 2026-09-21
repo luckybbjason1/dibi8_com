@@ -1,20 +1,10 @@
 ---
-title: "Academic Research Skills: Automate Literature Reviews wi..."
-description: "Academic Research Skills (31,628 stars) automates the research pipeline: search papers, extract insi..."
-tags: ["ai-agent", "deep-research", "dev-tools", "engine", "open-source", "research", "search"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: academic-research-skills
-category: dev-utils
-images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
-    alt: "Academic Research Skills GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
-    alt: "Research Pipeline Diagram"
-    role: diagram
-  - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
-    alt: "Skill Architecture"
-    role: architecture
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "academic-research-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)

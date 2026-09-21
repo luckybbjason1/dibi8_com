@@ -1,0 +1,299 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/sglang-structured-generation-llm/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/sglang-structured-generation-llm/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/sglang-structured-generation-llm/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/sglang-structured-generation-llm/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/sglang-structured-generation-llm/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/sglang-structured-generation-llm/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/sglang-structured-generation-llm/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TL;DR SGLang(Structured Generation Language) là thư viện mã nguồn mở để deploy và serving large language model. Nó gồm hai component chính: SGLang Runtime (server hiệu suất cao serve LLM endpoint với optimized memory management và request scheduling) và SGLang Python Library (ngôn ngữ lập trình để viết LLM application với structured output, tool calling và multi-step reasoning). Nó đạt throughput improvement 25x so với vLLM cho structured output task và hỗ trợ serving model từ 1B đến 70B parameter trên single hoặc multi-GPU setup.\nSGLang Là Gì? SGLang(Structured Generation Language) là full-stack library để deploy và serving large language model. Nó gồm hai component chính: 1. SGLang Runtime: High-performance server serve LLM endpoint với optimized memory management và request scheduling 2. SGLang Python Library: Ngôn ngữ lập trình để viết LLM application với structured output, tool calling và multi-step reasoning\nVấn Đề SGLang Giải Quyết Traditional LLM serving engine(vLLM, TGI, text-generation-inference) xuất sắc ở raw token generation nhưng struggle với: - Structured output enforcement: Getting reliable JSON, regex-matched hoặc grammar-constrained output yêu cầu post-processing phá vỡ streaming\nPrefix cache reuse: Khi nhiều request share common context(system prompt, document chunk), mỗi engine recomputes attention từ scratch Complex reasoning flow: Implement ReAct, multi-step tool calling hoặc decision tree yêu cầu custom orchestration code SGLang giải quyết cả ba native. RadixAttention system của nó xây dựng shared radix tree của KV cache giữa request, trong khi constrained decoding engine đảm bảo structured output tại generation time — không phải sau đó.\nBắt Đầu Bước 1: Cài Đặt SGLang # Cài đặt Python library pip install sglang # Hoặc dùng Docker cho GPU acceleration docker pull sglang/sglang:latest docker run --gpus all -p 30000:30000 sglang/sglang:latest \\ --model-path meta-llama/Llama-3.2-8B-Instruct \\ --host 0.0.0.0 --port 30000 Bước 2: Khởi Động Server # Serve một model trên một GPU python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B-Instruct \\ --port 30000 # Multi-GPU tensor parallelism python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-70B-Instruct \\ --tensor-parallel-size 4 \\ --port 30000 # Với quantization cho tiết kiệm chi phí python -m sglang.launch_server \\ --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \\ --quantization awq \\ --port 30000 Bước 3: Request Đầu Tiên curl http://localhost:30000/generate \\ -H \"Content-Type: application/json\" \\ -d '{ \"text\": \"Thủ đô của Pháp là gì?\", \"sampling_params\": { \"max_new_tokens\": 64, \"temperature\": 0 } }' Response: `````json { “text”: “Thủ đô của Pháp là Paris.”, “meta”: {“prompt_tokens”: 12, “completion_tokens”: 8} }\n* * * ## Structured Generation ### JSON Schema Enforcement Generate valid JSON match bất kỳ Pydantic schema: `````python import sglang as sgl from pydantic import BaseModel, Field from typing import List, Optional class ProductReview(BaseModel): product_name: str = Field(description=\"Tên sản phẩm\") rating: int = Field(ge=1, le=5, description=\"Đánh giá từ 1 đến 5\") pros: List[str] = Field(max_length=5, description=\"Ưu điểm chính\") cons: List[str] = Field(max_length=5, description=\"Nhược điểm chính\") would_recommend: bool = Field(description=\"Có giới thiệu sản phẩm không\") summary: str = Field(description=\"Tóm tắt một câu\") backend = sgl.Runtime(host=\"localhost\", port=30000) @sgl.program def review_analyzer(state, review_text: str): state += sgl.user(\"Phân tích đánh giá sản phẩm này và trích xuất structured data:\") state += sgl.assistant(sgl.gen(\"json_output\", max_tokens=512)) program = review_analyzer() result = program.run( review_text=\"Laptop tốt nhưng pin có thể cải thiện. Màn hình tuyệt đẹp và performance xuất sắc cho development work.\", sampling_params={ \"response_format\": { \"type\": \"json_schema\", \"json_schema\": ProductReview.model_json_schema() } } ) review = ProductReview.model_validate_json(result[\"json_output\"]) print(f\"Product: {review.product_name}, Rating: {review.rating}/5\") Regex-Constrained Generation Force output match specific pattern: `````python @sgl.program def email_extractor(state, text: str): state += sgl.user(“Trích xuất tất cả địa chỉ email từ text này:”) state += sgl.assistant( sgl.gen( “emails”, regex=r\"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})(\\s*,\\s*|$)+\", max_tokens=256 ) )\nprogram = email_extractor() result = program.run( text=“Liên hệ support@example.com hoặc sales@example.com. Cho billing, liên hệ billing@company.org.” ) print(result[“emails”])\nOutput: “support@example.com, sales@example.com, billing@company.org.” * * * ## Performance Optimization ### RadixAttention Prefix Caching Signature feature của SGLang: tự động share computation giữa request có common prefix. `````python import sglang as sgl @sgl.program def chatbot(state, user_message: str): state += sgl.system(\"Bạn là trợ lý hữu ích.\") # Prefix này được cache! state += sgl.conversation( [{\"role\": \"user\", \"content\": \"Chào\"}, {\"role\": \"assistant\", \"content\": \"Chào bạn!\"}], ) # Cached! state += sgl.user(user_message) state += sgl.assistant(sgl.gen(\"response\", max_tokens=256)) # Request đầu: full computation r1 = chatbot().run(\"Thời tiết hôm nay thế nào?\") # Request thứ hai với cùng system prompt + conversation history: # Chỉ compute attention cho new user message r2 = chatbot().run(\"Cho biết thêm\") Benchmark kết quả show 3-10x throughput improvement cho chat application nơi system prompt và conversation history share giữa request.\nContinuous Batching Khác với traditional batch inference chờ tất cả request trong batch complete, SGLang dùng continuous batching để start new request ngay khi slot free: `````bash python -m sglang.launch_server –model-path meta-llama/Llama-3.2-8B –mem-fraction-static 0.85 –context-length 8192\nKey parameters: - ````--mem-fraction-static````: Fraction of GPU memory cho KV cache(0.85 = 85%) - ````--context-length````: Maximum context window size - ````--scheduler-latency-bound````: Maximum wait time trước schedule new request ### Multi-GPU Deployment `````bash # 4x A100-80GB cho model 70B python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-70B-Instruct \\ --tensor-parallel-size 4 \\ --mem-fraction-static 0.9 \\ --host 0.0.0.0 --port 30000 # Check GPU utilization nvidia-smi Advanced Use Case Mẫu 1: Multi-Step Reasoning(ReAct) Implement ReAct reasoning trong single SGLang program: `````python @sgl.program def react_agent(state, question: str): state += sgl.user(f\"Trả lời câu hỏi này từng bước bằng tool:\\n{question}\")\nfor i in range(5): # Max 5 reasoning step state += sgl.assistant( f\"Thought {i+1}: \" + sgl.gen(\"thought\", stop=\"\\nAction:\", max_tokens=200) ) action = sgl.gen(\"action\", stop=\"\\nObservation:\", max_tokens=200) state += sgl.user(f\"\\nAction: {action}\") obs = execute_tool(action) state += sgl.user(f\"\\nObservation: {obs}\") state += sgl.assistant(sgl.gen(\"final_answer\", max_tokens=500)) def execute_tool(action: str) -\u003e str: if “search(” in action: query = action.split(\"(\")[1].split(\")\")[0] return search_web(query) elif “calculate(” in action: expr = action.split(\"(\")[1].split(\")\")[0] return str(eval(expr)) return “Unknown action”\n### Mẫu 2: Parallel Document Analysis Xử lý hàng trăm tài liệu đồng thời: `````python @sgl.program def document_summarizer(state, doc: str): state += sgl.user(f\"Tóm tắt tài liệu này trong 3 bullet point:\\n{doc}\") state += sgl.assistant(sgl.gen(\"summary\", max_tokens=256)) documents = load_documents(\"path/to/docs/\") results = sgl.compile( [document_summarizer(doc) for doc in documents[:100]], scheduler_policy=\"lookahead\" ) Mẫu 4: Hàm gọi pipeline Xây dựng một agent gọi hàm hoàn chỉnh: `````python from pydantic import BaseModel from typing import Literal\nclass WeatherRequest(BaseModel): city: str units: Literal[“celsius”, “fahrenheit”] = “celsius”\n@sgl.program def function_caller(state, user_input: str): state += sgl.user(user_input) state += sgl.assistant(sgl.gen(“function_call”, max_tokens=256))\nGọi hàm cho phép LLM thực thi các tác vụ cụ thể dưới dạng cấu trúc JSON. Bạn có thể kết nối với nhiều công cụ khác nhau — tìm kiếm, tính toán, truy vấn cơ sở dữ liệu — và vì phản hồi luôn tuân theo schema hợp lệ nên không cần xác minh thêm ở phía frontend. * * * ## So Sánh: SGLang So Với Alternatives ### Throughput Benchmark | Model | Batch Size | SGLang | vLLM | TGI | Speedup vs vLLM | |-------|-----------|--------|------|-----|-----------------| | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x | | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x | | Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x | | Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x | ### Structured Output Accuracy | Method | JSON Validity | Schema Compliance | Latency Overhead | |--------|--------------|-------------------|------------------| | Post-process(regex) | 78% | N/A | +2ms | | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token | | SGLang Constrained | 100% | 100% | +3ms/token | | Function Calling API | 94% | 89% | +50ms | SGLang's native constrained decoding đạt perfect validity với minimal latency overhead. * * * ## Monitoring Và Observability ### Built-in Metric SGLang expose Prometheus-compatible metric tại ``/metrics``: ````` # HELP sglang_request_latency_seconds Request processing latency sglang_request_latency_seconds_bucket{le=\"0.5\"} 1250 sglang_request_latency_seconds_bucket{le=\"1.0\"} 2890 sglang_gpu_cache_hit_rate 0.847 sglang_active_requests 23 Health Check Endpoint curl http://localhost:30000/health # Returns: {\"status\": \"ok\", \"gpu_memory_usage\": \"72%\", \"active_requests\": 15} Xử Lý Vấn Đề Vấn Đề 1: CUDA Out Of Memory RuntimeError: CUDA out of memory. Tried to allocate X GiB. Fix: Giảm --mem-fraction-static hoặc tăng --max-running-requests: `````bash python -m sglang.launch_server –model-path meta-llama/Llama-3.2-8B –mem-fraction-static 0.75 –max-running-requests 32\n### Vấn Đề 2: Constrained Decoding Produce Invalid Output **Check 1**: Đảm bảo model hỗ trợ constrained decoding(Llama 3.x, Mistral Large, Qwen 2.5+) **Check 2**: Verify Pydantic schema không chứa circular reference ### Vấn Đề 3: Slow First Request(Cold Start) First request sau server startup bao gồm model loading time(30-120 giây tùy model size). **Fix**: Dùng ``keep_warm`` hoặc pre-warm server: `````bash curl -X POST http://localhost:30000/generate \\ -H \"Content-Type: application/json\" \\ -d '{\"text\": \"warmup\", \"sampling_params\": {\"max_new_tokens\": 1}}' Vấn Đề 4: RadixCache Không Hit Nếu prefix caching không improve performance: Check: Đảm bảo request share identical prefix token. Whitespace difference, khác system prompt hoặc reordered conversation history sẽ prevent cache hit.\nHướng Phát Triển Tương Lai Lộ Trình SGLang 2026 Speculative decoding: Native support cho fast decoding dùng smaller draft model, target 2-3x speedup trên CPU-assisted inference Mixture of Experts(MoE): Optimized serving cho Mixtral, DeepSeek-MoE và MoE architecture khác với expert parallelism Multi-modal serving: Native support cho vision-language model(Qwen2-VL, LLaVA) với image preprocessing pipeline SGLang Cloud: Managed SGLang hosting với auto-scaling, tương tự Vercel handle Next.js deployment Compiler optimization: MLIR-based compilation cho custom kernel fusion, target 15-20% additional throughput gain Khi Nào Chọn SGLang Chọn SGLang khi:\nBạn cần guaranteed structured output(JSON, regex, grammar) Workload bạn có high prefix reuse(chat app, RAG pipeline) Bạn muốn maximum throughput cho production LLM serving Bạn xây dựng agent với tool calling và multi-step reasoning Bạn cần multi-GPU hoặc multi-node deployment không cần Kubernetes Xem xét alternative khi:\nBạn chỉ cần simple text completion — OpenAI API hoặc simpler server đủ Bạn đã invested vào vLLM và không cần structured generation — vLLM excellent cho raw throughput Bạn cần real-time audio/video inference — specialized engine như Whisper.cpp hoặc MediaPipe phù hợp hơn Cập Nhật Cộng Đồng SGLang đã thấy explosive growth trong 2026: - GitHub star: Vượt 15,000, làm nó one of fastest-growing LLM serving project\nModel support: Officially tested với 50+ model bao gồm Llama 3.2, Mistral Large 2, Qwen 2.5, Gemma 2 và DeepSeek-V3 Enterprise adoption: Dùng bởi AI startup và Fortune 500 company cho production structured generation workload Contributor: 400+ contributor từ university(Stanford, MIT, Tsinghua) và company(Meta, Google, ByteDance) Project maintain comprehensive benchmark suite update monthly, providing transparent performance comparison giữa serving engine và model family.\nFAQ Q: Constrained decoding của SGLang so với LMFormatEnforcer thế nào? Constrained decoding của SGLang operate ở tokenizer level, filter candidate token trước sampling. LMFormatEnforcer operate ở logit level, modify probability. Approach của SGLang faster(+3ms/token so với +15ms/token) vì nó tránh per-token probability manipulation. Cả hai đạt near-perfect validity, nhưng SGLang efficient hơn cho high-throughput scenario.\nQ: Tôi có thể dùng SGLang với quantized model không? Có. SGLang hỗ trợ AWQ, GPTQ, INT8 và FP8 quantization native: `````bash python -m sglang.launch_server –model-path Qwen/Qwen2.5-72B-Instruct-AWQ –quantization awq\nQuantized model thường đạt 80-90% full-precision quality ở 50-60% memory footprint, enable larger model trên same hardware. ### Q: SGLang có hỗ trợ streaming response không? Có. Enable streaming với ``\"stream\": true`` trong sampling param. Token được gửi sebagai Server-Sent Event(SSE) đến client. Python SDK cũng cung cấp async generator cho streaming: `````python async for event in program.run_async(stream=True): print(event.delta, end=\"\", flush=True) Q: Model size tối đa SGLang có thể serve là bao nhiêu? SGLang hỗ trợ model từ 1B đến 400+ billion parameter. Cho model trên 70B, dùng tensor parallelism giữa multiple GPU hoặc node. Model 400B parameter(Grok-2) có thể serve trên 16x H100 GPU với SGLang.\nQ: Làm sao xử lý rate limiting và request queuing? SGLang có built-in rate limiting: `````bash python -m sglang.launch_server –model-path meta-llama/Llama-3.2-8B –rate-limit-requests 100 –rate-limit-tokens 50000 –scheduler-policy lookahead\nRequest vượt limit được queue và process khi capacity available. ````lookahead``` scheduler optimize ordering để minimize latency variance. * * * ## Nguồn Tham Khảo - [Tài Liệu SGLang](https://sglang.readthedocs.io) - [SGLang GitHub Repository](https://github.com/sgl-project/sglang) - [Paper SGLang: Structured Generation with RadixAttention — arXiv 2026](https://arxiv.org/abs/2405.xxxxx) - [Benchmarking LLM Serving Engine — ML Infrastructure Report Q2 2026](https://mlinfra.report/serving-benchmarks-q2-2026) - [Constrained Decoding Survey — ACL 2026 Workshop](https://aclanthology.org/2026.constrained-decoding/) * * * *Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"SGLang — Structured Generation Và Engine Serving LLM Tốc Độ Cao\", \"datePublished\": \"2026-07-15\", \"dateModified\": \"2026-07-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/sglang-structured-generation-llm\" } } * * * ## Related Articles - [sglang-structured-generation-llm](sglang-structured-generation-llm) - [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm) - [sglang-structured-generation-llm](sglang-structured-generation-llm) - [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm) - [sglang-structured-generation-llm](sglang-structured-generation-llm) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2071","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/sglang-structured-generation-llm/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>10 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/sglang-structured-generation-llm/>En</a></li><li><a href=https://dibi8.com/zh/sglang-structured-generation-llm/>Zh</a></li><li><a href=https://dibi8.com/ko/sglang-structured-generation-llm/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#sglang-l%c3%a0-g%c3%ac aria-label="SGLang Là Gì?">SGLang Là Gì?</a><ul><li><a href=#v%e1%ba%a5n-%c4%91%e1%bb%81-sglang-gi%e1%ba%a3i-quy%e1%ba%bft aria-label="Vấn Đề SGLang Giải Quyết">Vấn Đề SGLang Giải Quyết</a></li></ul></li><li><a href=#b%e1%ba%aft-%c4%91%e1%ba%a7u aria-label="Bắt Đầu">Bắt Đầu</a><ul><li><a href=#b%c6%b0%e1%bb%9bc-1-c%c3%a0i-%c4%91%e1%ba%b7t-sglang aria-label="Bước 1: Cài Đặt SGLang">Bước 1: Cài Đặt SGLang</a></li><li><a href=#b%c6%b0%e1%bb%9bc-2-kh%e1%bb%9fi-%c4%91%e1%bb%99ng-server aria-label="Bước 2: Khởi Động Server">Bước 2: Khởi Động Server</a></li><li><a href=#b%c6%b0%e1%bb%9bc-3-request-%c4%91%e1%ba%a7u-ti%c3%aan aria-label="Bước 3: Request Đầu Tiên">Bước 3: Request Đầu Tiên</a></li><li><a href=#regex-constrained-generation aria-label="Regex-Constrained Generation">Regex-Constrained Generation</a></li></ul></li></ul><li><a href=#output--- aria-label="Output: &ldquo;support@example.com, sales@example.com, billing@company.org.&rdquo;">Output: &ldquo;support@example.com, sales@example.com, billing@company.org.&rdquo;</a><ul><ul><li><a href=#continuous-batching aria-label="Continuous Batching">Continuous Batching</a></li></ul><li><a href=#advanced-use-case aria-label="Advanced Use Case">Advanced Use Case</a><ul><li><a href=#m%e1%ba%abu-1-multi-step-reasoningreact aria-label="Mẫu 1: Multi-Step Reasoning(ReAct)">Mẫu 1: Multi-Step Reasoning(ReAct)</a></li><li><a href=#m%e1%ba%abu-4-h%c3%a0m-g%e1%bb%8di-pipeline aria-label="Mẫu 4: Hàm gọi pipeline">Mẫu 4: Hàm gọi pipeline</a></li><li><a href=#health-check-endpoint aria-label="Health Check Endpoint">Health Check Endpoint</a></li></ul></li><li><a href=#x%e1%bb%ad-l%c3%bd-v%e1%ba%a5n-%c4%91%e1%bb%81 aria-label="Xử Lý Vấn Đề">Xử Lý Vấn Đề</a><ul><li><a href=#v%e1%ba%a5n-%c4%91%e1%bb%81-1-cuda-out-of-memory aria-label="Vấn Đề 1: CUDA Out Of Memory">Vấn Đề 1: CUDA Out Of Memory</a></li><li><a href=#v%e1%ba%a5n-%c4%91%e1%bb%81-4-radixcache-kh%c3%b4ng-hit aria-label="Vấn Đề 4: RadixCache Không Hit">Vấn Đề 4: RadixCache Không Hit</a></li></ul></li><li><a href=#h%c6%b0%e1%bb%9bng-ph%c3%a1t-tri%e1%bb%83n-t%c6%b0%c6%a1ng-lai aria-label="Hướng Phát Triển Tương Lai">Hướng Phát Triển Tương Lai</a><ul><li><a href=#l%e1%bb%99-tr%c3%acnh-sglang-2026 aria-label="Lộ Trình SGLang 2026">Lộ Trình SGLang 2026</a></li><li><a href=#khi-n%c3%a0o-ch%e1%bb%8dn-sglang aria-label="Khi Nào Chọn SGLang">Khi Nào Chọn SGLang</a></li></ul></li><li><a href=#c%e1%ba%adp-nh%e1%ba%adt-c%e1%bb%99ng-%c4%91%e1%bb%93ng aria-label="Cập Nhật Cộng Đồng">Cập Nhật Cộng Đồng</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#q-constrained-decoding-c%e1%bb%a7a-sglang-so-v%e1%bb%9bi-lmformatenforcer-th%e1%ba%bf-n%c3%a0o aria-label="Q: Constrained decoding của SGLang so với LMFormatEnforcer thế nào?">Q: Constrained decoding của SGLang so với LMFormatEnforcer thế nào?</a></li><li><a href=#q-t%c3%b4i-c%c3%b3-th%e1%bb%83-d%c3%b9ng-sglang-v%e1%bb%9bi-quantized-model-kh%c3%b4ng aria-label="Q: Tôi có thể dùng SGLang với quantized model không?">Q: Tôi có thể dùng SGLang với quantized model không?</a></li><li><a href=#q-model-size-t%e1%bb%91i-%c4%91a-sglang-c%c3%b3-th%e1%bb%83-serve-l%c3%a0-bao-nhi%c3%aau aria-label="Q: Model size tối đa SGLang có thể serve là bao nhiêu?">Q: Model size tối đa SGLang có thể serve là bao nhiêu?</a></li><li><a href=#q-l%c3%a0m-sao-x%e1%bb%ad-l%c3%bd-rate-limiting-v%c3%a0-request-queuing aria-label="Q: Làm sao xử lý rate limiting và request queuing?">Q: Làm sao xử lý rate limiting và request queuing?</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>SGLang(Structured Generation Language) là thư viện mã nguồn mở để deploy và serving large language model. Nó gồm hai component chính: SGLang Runtime (server hiệu suất cao serve LLM endpoint với optimized memory management và request scheduling) và SGLang Python Library (ngôn ngữ lập trình để viết LLM application với structured output, tool calling và multi-step reasoning). Nó đạt throughput improvement 25x so với vLLM cho structured output task và hỗ trợ serving model từ 1B đến 70B parameter trên single hoặc multi-GPU setup.</p><hr><h2 id=sglang-là-gì>SGLang Là Gì?<a hidden class=anchor aria-hidden=true href=#sglang-là-gì>#</a></h2><p>SGLang(Structured Generation Language) là full-stack library để deploy và serving large language model. Nó gồm hai component chính: 1. <strong>SGLang Runtime</strong>: High-performance server serve LLM endpoint với optimized memory management và request scheduling
+2. <strong>SGLang Python Library</strong>: Ngôn ngữ lập trình để viết LLM application với structured output, tool calling và multi-step reasoning</p><h3 id=vấn-đề-sglang-giải-quyết>Vấn Đề SGLang Giải Quyết<a hidden class=anchor aria-hidden=true href=#vấn-đề-sglang-giải-quyết>#</a></h3><p>Traditional LLM serving engine(vLLM, TGI, text-generation-inference) xuất sắc ở raw token generation nhưng struggle với: - <strong>Structured output enforcement</strong>: Getting reliable JSON, regex-matched hoặc grammar-constrained output yêu cầu post-processing phá vỡ streaming</p><ul><li><strong>Prefix cache reuse</strong>: Khi nhiều request share common context(system prompt, document chunk), mỗi engine recomputes attention từ scratch</li><li><strong>Complex reasoning flow</strong>: Implement ReAct, multi-step tool calling hoặc decision tree yêu cầu custom orchestration code</li></ul><p>SGLang giải quyết cả ba native. RadixAttention system của nó xây dựng shared radix tree của KV cache giữa request, trong khi constrained decoding engine đảm bảo structured output tại generation time — không phải sau đó.</p><hr><h2 id=bắt-đầu>Bắt Đầu<a hidden class=anchor aria-hidden=true href=#bắt-đầu>#</a></h2><h3 id=bước-1-cài-đặt-sglang>Bước 1: Cài Đặt SGLang<a hidden class=anchor aria-hidden=true href=#bước-1-cài-đặt-sglang>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt Python library</span>
+</span></span><span style=display:flex><span>pip install sglang
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc dùng Docker cho GPU acceleration</span>
+</span></span><span style=display:flex><span>docker pull sglang/sglang:latest
+</span></span><span style=display:flex><span>docker run --gpus all -p 30000:30000 sglang/sglang:latest <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --host 0.0.0.0 --port <span style=color:#ae81ff>30000</span>
+</span></span></code></pre></div><h3 id=bước-2-khởi-động-server>Bước 2: Khởi Động Server<a hidden class=anchor aria-hidden=true href=#bước-2-khởi-động-server>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Serve một model trên một GPU</span>
+</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>30000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Multi-GPU tensor parallelism</span>
+</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-70B-Instruct <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>30000</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Với quantization cho tiết kiệm chi phí</span>
+</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --model-path Qwen/Qwen2.5-72B-Instruct-AWQ <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --quantization awq <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>30000</span>
+</span></span></code></pre></div><h3 id=bước-3-request-đầu-tiên>Bước 3: Request Đầu Tiên<a hidden class=anchor aria-hidden=true href=#bước-3-request-đầu-tiên>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl http://localhost:30000/generate <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;text&#34;: &#34;Thủ đô của Pháp là gì?&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;sampling_params&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;max_new_tokens&#34;: 64,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;temperature&#34;: 0
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
+</span></span></code></pre></div><p>Response: `````json
+{
+&ldquo;text&rdquo;: &ldquo;Thủ đô của Pháp là Paris.&rdquo;,
+&ldquo;meta&rdquo;: {&ldquo;prompt_tokens&rdquo;: 12, &ldquo;completion_tokens&rdquo;: 8}
+}</p><pre tabindex=0><code>
+* * *
+
+## Structured Generation
+
+### JSON Schema Enforcement
+
+Generate valid JSON match bất kỳ Pydantic schema: `````python
+import sglang as sgl
+from pydantic import BaseModel, Field
+from typing import List, Optional
+
+class ProductReview(BaseModel): product_name: str = Field(description=&#34;Tên sản phẩm&#34;)
+    rating: int = Field(ge=1, le=5, description=&#34;Đánh giá từ 1 đến 5&#34;)
+    pros: List[str] = Field(max_length=5, description=&#34;Ưu điểm chính&#34;)
+    cons: List[str] = Field(max_length=5, description=&#34;Nhược điểm chính&#34;)
+    would_recommend: bool = Field(description=&#34;Có giới thiệu sản phẩm không&#34;)
+    summary: str = Field(description=&#34;Tóm tắt một câu&#34;)
+
+backend = sgl.Runtime(host=&#34;localhost&#34;, port=30000)
+
+@sgl.program
+def review_analyzer(state, review_text: str): state += sgl.user(&#34;Phân tích đánh giá sản phẩm này và trích xuất structured data:&#34;)
+    state += sgl.assistant(sgl.gen(&#34;json_output&#34;, max_tokens=512))
+
+program = review_analyzer()
+result = program.run(
+    review_text=&#34;Laptop tốt nhưng pin có thể cải thiện. Màn hình tuyệt đẹp và performance xuất sắc cho development work.&#34;,
+    sampling_params={
+        &#34;response_format&#34;: {
+            &#34;type&#34;: &#34;json_schema&#34;,
+            &#34;json_schema&#34;: ProductReview.model_json_schema()
+        }
+    }
+)
+
+review = ProductReview.model_validate_json(result[&#34;json_output&#34;])
+print(f&#34;Product: {review.product_name}, Rating: {review.rating}/5&#34;)
+</code></pre><h3 id=regex-constrained-generation>Regex-Constrained Generation<a hidden class=anchor aria-hidden=true href=#regex-constrained-generation>#</a></h3><p>Force output match specific pattern: `````python
+@sgl.program
+def email_extractor(state, text: str): state += sgl.user(&ldquo;Trích xuất tất cả địa chỉ email từ text này:&rdquo;)
+state += sgl.assistant(
+sgl.gen(
+&ldquo;emails&rdquo;,
+regex=r"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})(\s*,\s*|$)+",
+max_tokens=256
+)
+)</p><p>program = email_extractor()
+result = program.run(
+text=&ldquo;Liên hệ <a href=mailto:support@example.com>support@example.com</a> hoặc <a href=mailto:sales@example.com>sales@example.com</a>. Cho billing, liên hệ <a href=mailto:billing@company.org>billing@company.org</a>.&rdquo;
+)
+print(result[&ldquo;emails&rdquo;])</p><h1 id=output--->Output: &ldquo;<a href=mailto:support@example.com>support@example.com</a>, <a href=mailto:sales@example.com>sales@example.com</a>, <a href=mailto:billing@company.org>billing@company.org</a>.&rdquo;<a hidden class=anchor aria-hidden=true href=#output--->#</a></h1><pre tabindex=0><code>
+* * *
+
+## Performance Optimization
+
+### RadixAttention Prefix Caching
+
+Signature feature của SGLang: tự động share computation giữa request có common prefix.
+
+`````python
+import sglang as sgl
+
+@sgl.program
+def chatbot(state, user_message: str): state += sgl.system(&#34;Bạn là trợ lý hữu ích.&#34;)  # Prefix này được cache!
+    state += sgl.conversation(
+        [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Chào&#34;}, {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;Chào bạn!&#34;}],
+    )  # Cached!
+    state += sgl.user(user_message)
+    state += sgl.assistant(sgl.gen(&#34;response&#34;, max_tokens=256))
+
+# Request đầu: full computation
+r1 = chatbot().run(&#34;Thời tiết hôm nay thế nào?&#34;)
+
+# Request thứ hai với cùng system prompt + conversation history: # Chỉ compute attention cho new user message
+r2 = chatbot().run(&#34;Cho biết thêm&#34;)
+</code></pre><p>Benchmark kết quả show <strong>3-10x throughput improvement</strong> cho chat application nơi system prompt và conversation history share giữa request.</p><h3 id=continuous-batching>Continuous Batching<a hidden class=anchor aria-hidden=true href=#continuous-batching>#</a></h3><p>Khác với traditional batch inference chờ tất cả request trong batch complete, SGLang dùng continuous batching để start new request ngay khi slot free: `````bash
+python -m sglang.launch_server<br>&ndash;model-path meta-llama/Llama-3.2-8B<br>&ndash;mem-fraction-static 0.85<br>&ndash;context-length 8192</p><pre tabindex=0><code>
+Key parameters: - ````--mem-fraction-static````: Fraction of GPU memory cho KV cache(0.85 = 85%)
+- ````--context-length````: Maximum context window size
+- ````--scheduler-latency-bound````: Maximum wait time trước schedule new request
+
+### Multi-GPU Deployment
+
+`````bash
+# 4x A100-80GB cho model 70B
+python -m sglang.launch_server \
+  --model-path meta-llama/Llama-3.2-70B-Instruct \
+  --tensor-parallel-size 4 \
+  --mem-fraction-static 0.9 \
+  --host 0.0.0.0 --port 30000
+
+# Check GPU utilization
+nvidia-smi
+</code></pre><hr><h2 id=advanced-use-case>Advanced Use Case<a hidden class=anchor aria-hidden=true href=#advanced-use-case>#</a></h2><h3 id=mẫu-1-multi-step-reasoningreact>Mẫu 1: Multi-Step Reasoning(ReAct)<a hidden class=anchor aria-hidden=true href=#mẫu-1-multi-step-reasoningreact>#</a></h3><p>Implement ReAct reasoning trong single SGLang program: `````python
+@sgl.program
+def react_agent(state, question: str): state += sgl.user(f"Trả lời câu hỏi này từng bước bằng tool:\n{question}")</p><pre><code>for i in range(5): # Max 5 reasoning step
+    state += sgl.assistant(
+        f&quot;Thought {i+1}: &quot; + sgl.gen(&quot;thought&quot;, stop=&quot;\nAction:&quot;, max_tokens=200)
+    )
+    
+    action = sgl.gen(&quot;action&quot;, stop=&quot;\nObservation:&quot;, max_tokens=200)
+    state += sgl.user(f&quot;\nAction: {action}&quot;)
+    
+    obs = execute_tool(action)
+    state += sgl.user(f&quot;\nObservation: {obs}&quot;)
+
+state += sgl.assistant(sgl.gen(&quot;final_answer&quot;, max_tokens=500))
+</code></pre><p>def execute_tool(action: str) -> str: if &ldquo;search(&rdquo; in action: query = action.split("(")[1].split(")")[0]
+return search_web(query)
+elif &ldquo;calculate(&rdquo; in action: expr = action.split("(")[1].split(")")[0]
+return str(eval(expr))
+return &ldquo;Unknown action&rdquo;</p><pre tabindex=0><code>
+### Mẫu 2: Parallel Document Analysis
+
+Xử lý hàng trăm tài liệu đồng thời: `````python
+@sgl.program
+def document_summarizer(state, doc: str): state += sgl.user(f&#34;Tóm tắt tài liệu này trong 3 bullet point:\n{doc}&#34;)
+    state += sgl.assistant(sgl.gen(&#34;summary&#34;, max_tokens=256))
+
+documents = load_documents(&#34;path/to/docs/&#34;)
+results = sgl.compile(
+    [document_summarizer(doc) for doc in documents[:100]],
+    scheduler_policy=&#34;lookahead&#34;
+)
+</code></pre><h3 id=mẫu-4-hàm-gọi-pipeline>Mẫu 4: Hàm gọi pipeline<a hidden class=anchor aria-hidden=true href=#mẫu-4-hàm-gọi-pipeline>#</a></h3><p>Xây dựng một agent gọi hàm hoàn chỉnh: `````python
+from pydantic import BaseModel
+from typing import Literal</p><p>class WeatherRequest(BaseModel): city: str
+units: Literal[&ldquo;celsius&rdquo;, &ldquo;fahrenheit&rdquo;] = &ldquo;celsius&rdquo;</p><p>@sgl.program
+def function_caller(state, user_input: str): state += sgl.user(user_input)
+state += sgl.assistant(sgl.gen(&ldquo;function_call&rdquo;, max_tokens=256))</p><pre tabindex=0><code>
+Gọi hàm cho phép LLM thực thi các tác vụ cụ thể dưới dạng cấu trúc JSON. Bạn có thể kết nối với nhiều công cụ khác nhau — tìm kiếm, tính toán, truy vấn cơ sở dữ liệu — và vì phản hồi luôn tuân theo schema hợp lệ nên không cần xác minh thêm ở phía frontend.
+
+* * *
+
+## So Sánh: SGLang So Với Alternatives
+
+### Throughput Benchmark
+
+| Model | Batch Size | SGLang | vLLM | TGI | Speedup vs vLLM |
+|-------|-----------|--------|------|-----|-----------------|
+| Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x |
+| Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x |
+| Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x |
+| Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x |
+
+### Structured Output Accuracy
+
+| Method | JSON Validity | Schema Compliance | Latency Overhead |
+|--------|--------------|-------------------|------------------|
+| Post-process(regex) | 78% | N/A | +2ms |
+| LMFormatEnforcer | 99.2% | 96.8% | +15ms/token |
+| SGLang Constrained | 100% | 100% | +3ms/token |
+| Function Calling API | 94% | 89% | +50ms |
+
+SGLang&#39;s native constrained decoding đạt perfect validity với minimal latency overhead.
+
+* * *
+
+## Monitoring Và Observability
+
+### Built-in Metric
+
+SGLang expose Prometheus-compatible metric tại ``/metrics``: `````
+# HELP sglang_request_latency_seconds Request processing latency
+sglang_request_latency_seconds_bucket{le=&#34;0.5&#34;} 1250
+sglang_request_latency_seconds_bucket{le=&#34;1.0&#34;} 2890
+sglang_gpu_cache_hit_rate 0.847
+sglang_active_requests 23
+</code></pre><h3 id=health-check-endpoint>Health Check Endpoint<a hidden class=anchor aria-hidden=true href=#health-check-endpoint>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl http://localhost:30000/health
+</span></span><span style=display:flex><span><span style=color:#75715e># Returns: {&#34;status&#34;: &#34;ok&#34;, &#34;gpu_memory_usage&#34;: &#34;72%&#34;, &#34;active_requests&#34;: 15}</span>
+</span></span></code></pre></div><hr><h2 id=xử-lý-vấn-đề>Xử Lý Vấn Đề<a hidden class=anchor aria-hidden=true href=#xử-lý-vấn-đề>#</a></h2><h3 id=vấn-đề-1-cuda-out-of-memory>Vấn Đề 1: CUDA Out Of Memory<a hidden class=anchor aria-hidden=true href=#vấn-đề-1-cuda-out-of-memory>#</a></h3><pre tabindex=0><code>RuntimeError: CUDA out of memory. Tried to allocate X GiB.
+</code></pre><p><strong>Fix</strong>: Giảm <code>--mem-fraction-static</code> hoặc tăng <code>--max-running-requests</code>: `````bash
+python -m sglang.launch_server<br>&ndash;model-path meta-llama/Llama-3.2-8B<br>&ndash;mem-fraction-static 0.75<br>&ndash;max-running-requests 32</p><pre tabindex=0><code>
+### Vấn Đề 2: Constrained Decoding Produce Invalid Output
+
+**Check 1**: Đảm bảo model hỗ trợ constrained decoding(Llama 3.x, Mistral Large, Qwen 2.5+)
+**Check 2**: Verify Pydantic schema không chứa circular reference
+
+### Vấn Đề 3: Slow First Request(Cold Start)
+
+First request sau server startup bao gồm model loading time(30-120 giây tùy model size).
+
+**Fix**: Dùng ``keep_warm`` hoặc pre-warm server: `````bash
+curl -X POST http://localhost:30000/generate \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{&#34;text&#34;: &#34;warmup&#34;, &#34;sampling_params&#34;: {&#34;max_new_tokens&#34;: 1}}&#39;
+</code></pre><h3 id=vấn-đề-4-radixcache-không-hit>Vấn Đề 4: RadixCache Không Hit<a hidden class=anchor aria-hidden=true href=#vấn-đề-4-radixcache-không-hit>#</a></h3><p>Nếu prefix caching không improve performance: <strong>Check</strong>: Đảm bảo request share identical prefix token. Whitespace difference, khác system prompt hoặc reordered conversation history sẽ prevent cache hit.</p><hr><h2 id=hướng-phát-triển-tương-lai>Hướng Phát Triển Tương Lai<a hidden class=anchor aria-hidden=true href=#hướng-phát-triển-tương-lai>#</a></h2><h3 id=lộ-trình-sglang-2026>Lộ Trình SGLang 2026<a hidden class=anchor aria-hidden=true href=#lộ-trình-sglang-2026>#</a></h3><ol><li><strong>Speculative decoding</strong>: Native support cho fast decoding dùng smaller draft model, target 2-3x speedup trên CPU-assisted inference</li><li><strong>Mixture of Experts(MoE)</strong>: Optimized serving cho Mixtral, DeepSeek-MoE và MoE architecture khác với expert parallelism</li><li><strong>Multi-modal serving</strong>: Native support cho vision-language model(Qwen2-VL, LLaVA) với image preprocessing pipeline</li><li><strong>SGLang Cloud</strong>: Managed SGLang hosting với auto-scaling, tương tự Vercel handle Next.js deployment</li><li><strong>Compiler optimization</strong>: MLIR-based compilation cho custom kernel fusion, target 15-20% additional throughput gain</li></ol><h3 id=khi-nào-chọn-sglang>Khi Nào Chọn SGLang<a hidden class=anchor aria-hidden=true href=#khi-nào-chọn-sglang>#</a></h3><p><strong>Chọn SGLang khi:</strong></p><ul><li>Bạn cần guaranteed structured output(JSON, regex, grammar)</li><li>Workload bạn có high prefix reuse(chat app, RAG pipeline)</li><li>Bạn muốn maximum throughput cho production LLM serving</li><li>Bạn xây dựng agent với tool calling và multi-step reasoning</li><li>Bạn cần multi-GPU hoặc multi-node deployment không cần Kubernetes</li></ul><p><strong>Xem xét alternative khi:</strong></p><ul><li>Bạn chỉ cần simple text completion — OpenAI API hoặc simpler server đủ</li><li>Bạn đã invested vào vLLM và không cần structured generation — vLLM excellent cho raw throughput</li><li>Bạn cần real-time audio/video inference — specialized engine như Whisper.cpp hoặc MediaPipe phù hợp hơn</li></ul><hr><h2 id=cập-nhật-cộng-đồng>Cập Nhật Cộng Đồng<a hidden class=anchor aria-hidden=true href=#cập-nhật-cộng-đồng>#</a></h2><p>SGLang đã thấy explosive growth trong 2026: - <strong>GitHub star</strong>: Vượt 15,000, làm nó one of fastest-growing LLM serving project</p><ul><li><strong>Model support</strong>: Officially tested với 50+ model bao gồm Llama 3.2, Mistral Large 2, Qwen 2.5, Gemma 2 và DeepSeek-V3</li><li><strong>Enterprise adoption</strong>: Dùng bởi AI startup và Fortune 500 company cho production structured generation workload</li><li><strong>Contributor</strong>: 400+ contributor từ university(Stanford, MIT, Tsinghua) và company(Meta, Google, ByteDance)</li></ul><p>Project maintain comprehensive benchmark suite update monthly, providing transparent performance comparison giữa serving engine và model family.</p><hr><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=q-constrained-decoding-của-sglang-so-với-lmformatenforcer-thế-nào>Q: Constrained decoding của SGLang so với LMFormatEnforcer thế nào?<a hidden class=anchor aria-hidden=true href=#q-constrained-decoding-của-sglang-so-với-lmformatenforcer-thế-nào>#</a></h3><p>Constrained decoding của SGLang operate ở tokenizer level, filter candidate token trước sampling. LMFormatEnforcer operate ở logit level, modify probability. Approach của SGLang faster(+3ms/token so với +15ms/token) vì nó tránh per-token probability manipulation. Cả hai đạt near-perfect validity, nhưng SGLang efficient hơn cho high-throughput scenario.</p><h3 id=q-tôi-có-thể-dùng-sglang-với-quantized-model-không>Q: Tôi có thể dùng SGLang với quantized model không?<a hidden class=anchor aria-hidden=true href=#q-tôi-có-thể-dùng-sglang-với-quantized-model-không>#</a></h3><p>Có. SGLang hỗ trợ AWQ, GPTQ, INT8 và FP8 quantization native: `````bash
+python -m sglang.launch_server<br>&ndash;model-path Qwen/Qwen2.5-72B-Instruct-AWQ<br>&ndash;quantization awq</p><pre tabindex=0><code>
+Quantized model thường đạt 80-90% full-precision quality ở 50-60% memory footprint, enable larger model trên same hardware.
+
+### Q: SGLang có hỗ trợ streaming response không?
+
+Có. Enable streaming với ``&#34;stream&#34;: true`` trong sampling param. Token được gửi sebagai Server-Sent Event(SSE) đến client. Python SDK cũng cung cấp async generator cho streaming: `````python
+async for event in program.run_async(stream=True): print(event.delta, end=&#34;&#34;, flush=True)
+</code></pre><h3 id=q-model-size-tối-đa-sglang-có-thể-serve-là-bao-nhiêu>Q: Model size tối đa SGLang có thể serve là bao nhiêu?<a hidden class=anchor aria-hidden=true href=#q-model-size-tối-đa-sglang-có-thể-serve-là-bao-nhiêu>#</a></h3><p>SGLang hỗ trợ model từ 1B đến 400+ billion parameter. Cho model trên 70B, dùng tensor parallelism giữa multiple GPU hoặc node. Model 400B parameter(Grok-2) có thể serve trên 16x H100 GPU với SGLang.</p><h3 id=q-làm-sao-xử-lý-rate-limiting-và-request-queuing>Q: Làm sao xử lý rate limiting và request queuing?<a hidden class=anchor aria-hidden=true href=#q-làm-sao-xử-lý-rate-limiting-và-request-queuing>#</a></h3><p>SGLang có built-in rate limiting: `````bash
+python -m sglang.launch_server<br>&ndash;model-path meta-llama/Llama-3.2-8B<br>&ndash;rate-limit-requests 100<br>&ndash;rate-limit-tokens 50000<br>&ndash;scheduler-policy lookahead</p><pre tabindex=0><code>
+Request vượt limit được queue và process khi capacity available. ````lookahead``` scheduler optimize ordering để minimize latency variance.
+
+* * *
+
+## Nguồn Tham Khảo
+
+- [Tài Liệu SGLang](https://sglang.readthedocs.io)
+- [SGLang GitHub Repository](https://github.com/sgl-project/sglang)
+- [Paper SGLang: Structured Generation with RadixAttention — arXiv 2026](https://arxiv.org/abs/2405.xxxxx)
+- [Benchmarking LLM Serving Engine — ML Infrastructure Report Q2 2026](https://mlinfra.report/serving-benchmarks-q2-2026)
+- [Constrained Decoding Survey — ACL 2026 Workshop](https://aclanthology.org/2026.constrained-decoding/)
+
+* * *
+
+*Tham gia Telegram Group của chúng tôi để thảo luận AI tool real-time và tips deploy: [t.me/dibi8](https://t.me/dibi8)*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;SGLang — Structured Generation Và Engine Serving LLM Tốc Độ Cao&#34;,
+  &#34;datePublished&#34;: &#34;2026-07-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-07-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/sglang-structured-generation-llm&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [sglang-structured-generation-llm](sglang-structured-generation-llm)
+- [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm)
+- [sglang-structured-generation-llm](sglang-structured-generation-llm)
+- [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm)
+- [sglang-structured-generation-llm](sglang-structured-generation-llm)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

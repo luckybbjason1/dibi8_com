@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusi...
-description: "ComfyUI (COMFY) là GUI Stable Diffusion dạng node mạnh nhất. Hỗ trợ SD 1.5, SDXL, Flux, Wan, LTXV. T..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

@@ -1,16 +1,14 @@
 ---
-title: "LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026"
-description: "LazyDocker (LD) 是一个用于管理 Docker 容器、镜像、卷和日志的终端 UI。兼容 Docker、Docker Compose、Go 和 Terminal。涵盖安装、快捷键、配置和生..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["lazydocker", "docker", "终端界面", "devops", "容器", "命令行工具", "docker-compose", "tui"]
-aliases:
-  - /zh/posts/lazydocker/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lazydocker"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 从命令行管理 Docker 意味着需要记住几十个参数、通过 ```grep```` 过滤输出，并且不断在 ````docker ps````、````docker logs```` 和 ````docker exec```` 之间切换。对于在终端中花费数小时的开发者来说，这种摩擦会累积。LazyDocker 通过一个二进制文件解决了这个问题，它将你的 Docker 工作流包装到一个键盘驱动的终端界面中 —— 无需浏览器、无需守护进程、无需设置开销。凭借超过 51,000 个 GitHub stars 和蓬勃发展的生态系统，它已成为 2026 年 Docker 管理的首选 TUI 工具。
 
@@ -285,14 +283,14 @@ logs: timestamps: true
 `````yaml
 customCommands: containers: - name: bash
       attach: true
-      command: "docker exec -it {{ .Container.ID }} bash"
+      command: "docker exec -it  bash"
       serviceNames: []
     - name: debug-network
       attach: false
-      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}'"
+      command: "docker inspect  --format=': \n'"
 `````
 
-可用的模板变量：````{{ .Container.ID }}````、````{{ .Container.Name }}````、````{{ .Service.Name }}````、````{{ .DockerCompose }}````。
+可用的模板变量：````````、````````、````````、````````。
 
 ### Podman 支持
 
@@ -301,7 +299,7 @@ customCommands: containers: - name: bash
 `````yaml
 commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
-  containerInspect: "podman inspect {{ .Container.ID }}"
+  containerInspect: "podman inspect "
 `````
 
 ## 与流行工具集成
@@ -415,7 +413,7 @@ jobs: debug: runs-on: ubuntu-latest
         run: |
           lazydocker --version
           # 导出容器列表用于日志
-          docker ps --format "table {{.Names}}\t{{.Status}}"
+          docker ps --format "table \t"
 
       - name: Capture container logs on failure
         if: failure()
@@ -566,7 +564,7 @@ docker system df
 # 每 60 秒的 cron 任务
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name="{{.Name}}"} {{.CPUPerc}}\ncontainer_memory_usage{name="{{.Name}}"} {{.MemUsage}}" \
+    "container_cpu_usage{name=""} \ncontainer_memory_usage{name=""} " \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

@@ -1,6 +1,13 @@
 ---
-title: "Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드"
-description: "Axolotl은 단일 YAML 구성으로 full / LoRA / QLoRA / DPO / GRPO 커버하는 오픈소스 LLM 파인튜닝 프레임워크. 12k GitHub 별, Apach..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "axolotl-llm-fine-tuning-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -54,7 +61,7 @@ Axolotl은 "클라우드 플랫폼" UX (한 config 파일, 한 명령) 주면서
 | 2× 80 GB (2× H100) | Llama 3.3 70B LoRA, Mixtral full fine-tune |
 | 8× H100 클러스터 | 프런티어급 full fine-tune |
 
-클라우드 임대 옵션: Vast.ai에 H100 $1.50-2/시간, 또는 지속 워크로드용 {{< aff "digitalocean" "axolotl-gpu" "DigitalOcean GPU droplet" >}}. 데이터 준비 + 모니터링 측은 {{< aff "htstack" "axolotl-vps-hk" "HTStack 홍콩" >}}이 중국 친화 레이턴시 작동 (실제 훈련은 임대 GPU에 머무름).
+클라우드 임대 옵션: Vast.ai에 H100 $1.50-2/시간, 또는 지속 워크로드용 . 데이터 준비 + 모니터링 측은 이 중국 친화 레이턴시 작동 (실제 훈련은 임대 GPU에 머무름).
 
 ## 3. 빠른 설치 (15분)
 

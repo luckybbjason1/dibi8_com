@@ -1,11 +1,10 @@
 ---
-title: "Understand-Anything：代码库的交互式知识图谱 — 60K+ 星 2026"
-description: "Understand-Anything 将任何代码库转变为一个可交互的知识图谱，您可以在其中探索、搜索和查询。支持 Claude Code、Codex、Cursor、Copilot、Gemini CL..."
-date: 2026-06-17
-lastmod: 2026-06-17
-slug: understand-anything-interactive-knowledge-graphs-codebases
-category: ai-tools
-tags: ["understand-anything", "knowledge-graph", "codebase-analysis", "claude-code", "codex", "cursor", "AI-agents", "code-visualization", "semantic-search"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "understand-anything-interactive-knowledge-graphs-codebases"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

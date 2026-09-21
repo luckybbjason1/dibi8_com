@@ -1,16 +1,14 @@
 ---
-title: "Trino 2026: PB급 데이터 분석 분산 SQL 쿼리 엔진 — 셀프 호스팅 클러스터 구축 가이드"
-description: "Trino 464+를 배포하여 PB급 분산 SQL 분석을 구현하세요. 단계별 클러스터 배포, 40+ 커넥터 구성, 성능 튜닝 및 실제 벤치마크를 포함합니다.". Comprehens..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["trino", "presto", "분산sql", "빅데이터", "데이터분석", "데이터레이크", "hive", "iceberg", "쿼리엔진", "셀프호스팅"]
-aliases:
-  - /kr/posts/trino-distributed-sql-query/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trino-distributed-sql-query"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 데이터 웨어하우스가 페타바이트에 질식할 때
 
@@ -238,7 +236,7 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
             INSERT INTO analytics.daily_metrics
             SELECT DATE(event_time), COUNT(*), SUM(amount)
             FROM iceberg.raw.events
-            WHERE DATE(event_time) = '{{ ds }}'
+            WHERE DATE(event_time) = ''
             GROUP BY 1
         """,
         trino_conn_id="trino_default",

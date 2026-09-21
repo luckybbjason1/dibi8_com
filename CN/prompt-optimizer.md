@@ -1,12 +1,10 @@
 ---
-title: "Prompt Optimizer — Restructure, Trim Fillers, Save Token..."
-description: "Free online Prompt Optimizer for AI coding agents and LLM workflows. Detects filler words, restructu..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-prompt-optimizer"
-tool_id: "prompt-optimizer"
-aliases:
-  - /posts/prompt-optimizer/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompt-optimizer"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)

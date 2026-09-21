@@ -1,22 +1,15 @@
 ---
-title: "30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá...
-description: "Tìm kiếm Reddit, X, YouTube, TikTok, Polymarket, GitHub và nhiều nền tảng khác cùng lúc. Đánh giá kế..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "research", "social media", "agent skill", "open source"]
-categories: ["ai-tools"]
-slug: last30days-skill-ai-agent-research-engine-social-media
-aliases: ['/last30days-skill']
-sources: - name: GitHub
-    url: 'https://github.com/mvanhorn/last30days-skill'
-  - name: 'Agent Skills'
-    url: 'https://agentskills.io'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "last30days-skill-ai-agent-research-engine-social-media"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

@@ -1,6 +1,13 @@
 ---
-title: "Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
-description: "Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagger"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 
@@ -473,7 +480,7 @@ jobs: ci: runs-on: ubuntu-latest
           verb: call
           module: .
           args: run --source=.
-        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: $
 `````
 
 ### Tích hợp CI — GitLab CI

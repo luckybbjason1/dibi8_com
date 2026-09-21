@@ -1,21 +1,10 @@
 ---
-title: "Claude Code vs Aider in 2026: Commercial vs Open Source ...
-description: "Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — ..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
-categories: ["vs"]
-faqs: - q: 'Is Claude Code or Aider cheaper for daily use?'
-    a: 'It depends on your usage. Claude Code is $20/month flat (Pro) or $200/month (Max), with predictable cost. Aider charges nothing for the tool but routes through your own API key — at moderate use ($5-$15/month in Anthropic API spend), Aider is cheaper; at heavy use (>$30/month in API), Claude Code Pro is cheaper because the subscription absorbs runaway costs. For under 20 sessions/week, Aider wins on cost; above that, Claude Code Pro wins.'
-  - q: 'Which has better agentic autonomy?'
-    a: 'Claude Code wins on raw agent loop quality — it can plan, edit, run tests, iterate on failures, and self-correct across dozens of files without supervision. Aider runs a tighter, more deterministic edit-commit loop: it shows you a diff, asks for approval, then commits. Claude Code is more autonomous; Aider is more auditable.'
-  - q: 'Can I use Claude Code and Aider together?'
-    a: 'Yes, and many devs do. Use Aider for surgical edits where you want git-diff-level transparency, and Claude Code for heavy multi-file refactors and long planning loops. They share the filesystem cleanly because both are CLI-first and respect your git history.'
-  - q: 'Which handles 200K+ LOC monorepos better?'
-    a: 'Claude Code — it ships with a 1M context window on the Sonnet/Opus tier and an internal subagent system that can summarize codebases on the fly. Aider relies on a repo map (filename + signatures) plus on-demand file loading; it works on huge codebases but you have to feed it the right files. For pure "let the AI figure out where to look," Claude Code wins.'
-  - q: 'Is Aider open source enough for enterprise use?'
-    a: 'Yes — Aider is Apache 2.0 licensed and runs entirely on your machine. The only external call is to whichever model API you configure (OpenAI, Anthropic, local Ollama, etc.). For air-gapped or compliance-sensitive environments, pair Aider with a local model and you have a fully self-hosted AI coding setup. Claude Code requires Anthropic''s cloud.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown
@@ -156,7 +145,7 @@ For unlimited heavy use: **Claude Code Max $200/month** beats $300+ raw API burn
 - Expect longer single turns (10-60 seconds) but fewer total turns per task
 
 ### Self-Hosting Note
-Want to run Aider with a local model and get the open-source benefits without renting GPU time? A {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean GPU droplet with $200 free credit" >}} gives you enough runway to test Llama 3.3 70B or DeepSeek V3 on a real codebase for 2-3 months before deciding. Cheaper than 2 months of Claude Code Max, and you keep the infrastructure for inference workloads.
+Want to run Aider with a local model and get the open-source benefits without renting GPU time? A  gives you enough runway to test Llama 3.3 70B or DeepSeek V3 on a real codebase for 2-3 months before deciding. Cheaper than 2 months of Claude Code Max, and you keep the infrastructure for inference workloads.
 
 * * *
 
@@ -230,7 +219,7 @@ For a small team shipping fast with no time for diff review? **Claude Code Max 5
 
 **Need stable Claude or OpenAI API access?** Most users picking between these tools end up needing the underlying API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

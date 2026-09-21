@@ -1,11 +1,10 @@
 ---
-title: "Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotat...
-description: "Cleanlab is an open-source AI toolkit with 11K+ GitHub stars that finds and fixes data quality issue..."
-tags: ["ai", "data-cleaning", "ml", "open-source", "self-hosted"]
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'cleanlab-11k-star-ai-data-cleaning'
-category: data-science
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cleanlab-11k-star-ai-data-cleaning"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python

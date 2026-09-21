@@ -1,21 +1,10 @@
 ---
-title: "LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên ...
-description: "So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]
-categories: ["vs"]
-faqs: - q: 'Tôi nên dùng LangGraph hay CrewAI?'
-    a: 'Dùng LangGraph nếu bạn cần kiểm soát chi tiết một workflow agent — phân nhánh tường minh, vòng lặp, trạng thái chia sẻ và checkpoint bền vững — và bạn đang đưa một hệ thống phức tạp lên production. Dùng CrewAI nếu bạn muốn dựng nhanh một nhóm agent đóng vai trò và coi trọng tốc độ prototype hơn là kiểm soát ở mức thấp. Quy tắc chung: LangGraph cho các workflow có trạng thái, kiểm soát được mà bạn phải suy luận chính xác; CrewAI để chạy nhanh một hệ đa agent với mô hình tư duy "nhóm chuyên gia".'
-  - q: 'LangGraph có khó học hơn CrewAI không?'
-    a: 'Có. LangGraph yêu cầu bạn tư duy theo máy trạng thái (state machine) — node, cạnh, chuyển tiếp có điều kiện và một đối tượng trạng thái chia sẻ — tốn công ban đầu hơn nhưng cho bạn kiểm soát chính xác hành vi của agent. CrewAI ở cấp cao hơn và áp đặt cách làm: bạn mô tả agent theo vai trò, mục tiêu, bối cảnh, gom chúng thành một nhóm rồi giao việc, nên demo đa agent đầu tiên chạy được nhanh hơn. Hãy tính trước thời gian học cho LangGraph và khởi đầu nhanh với CrewAI.'
-  - q: 'LangGraph và CrewAI có dùng chung công cụ và mô hình không?'
-    a: 'Phần lớn là có. Cả hai đều không phụ thuộc mô hình và có thể gọi các nhà cung cấp LLM lớn, đồng thời dùng được các công cụ xây bằng hoặc tương thích với hệ sinh thái LangChain. CrewAI có thể tích hợp công cụ LangChain, còn LangGraph do chính nhóm LangChain xây nên tích hợp sẵn. Với cả hai framework, bạn thường không bị khóa vào một mô hình hay nhà cung cấp công cụ nào — khác biệt nằm ở cách bạn điều phối (orchestrate) các agent, chứ không phải chúng gọi mô hình nào.'
-  - q: 'Cái nào tốt hơn cho hệ đa agent?'
-    a: 'CrewAI được thiết kế quanh ẩn dụ đa agent — nhiều agent với vai trò riêng cùng cộng tác làm việc theo quy trình tuần tự hoặc phân cấp — nên đây là con đường nhanh hơn để có một "nhóm chuyên gia" cổ điển. LangGraph cũng hoàn toàn dựng được hệ đa agent, nhưng nó mô hình hóa chúng thành các node trong một đồ thị tường minh, nghĩa là nhiều việc hơn và nhiều kiểm soát hơn. Chọn CrewAI cho cộng tác theo vai trò nhanh gọn, chọn LangGraph khi chính logic điều phối phức tạp và phải chính xác.'
-  - q: 'CrewAI có được xây trên LangChain hay LangGraph không?'
-    a: 'CrewAI là một framework độc lập, không phải một lớp nằm trên LangGraph, dù nó có thể tương tác với công cụ LangChain. Ngược lại, LangGraph là một phần chính thức của hệ sinh thái LangChain và do nhóm LangChain duy trì như lớp điều phối cấp thấp. Vậy nên chúng có nguồn gốc khác nhau: LangGraph mở rộng LangChain xuống thành các đồ thị kiểm soát được, còn CrewAI là một cách diễn giải độc lập, ở cấp cao hơn, về "nhóm agent"."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-vs-crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

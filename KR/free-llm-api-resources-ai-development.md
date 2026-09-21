@@ -1,6 +1,13 @@
 ---
-title: "무료 LLM API 리소스: 비용 부담 없이 AI 모델 접근"
-description: API 비용 없이 AI 애플리케이션을 구축할 수 있는 무료 LLM 추론 API 리소스의 선별된 목록을 확인하세요.. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-llm-api-resources-ai-development"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
@@ -267,8 +274,8 @@ API 접근 필요?
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

@@ -1,6 +1,13 @@
 ---
-title: "9Router: Smart LLM Proxy with Token Saver — Cut AI Costs..."
-description: "Discover 9Router — an open-source smart proxy that saves 20-40% tokens via RTK compression, auto-fal..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "9router-smart-llm-proxy-token-saver-free-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -317,8 +324,8 @@ It's free, open-source, and takes minutes to self-host. Given the current trajec
 * * *
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models or when direct API access is rate-limited in your region.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models or when direct API access is rate-limited in your region.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

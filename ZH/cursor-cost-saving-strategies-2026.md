@@ -1,26 +1,14 @@
 ---
-title: "Cursor 省钱策略 2026：信用点计费改版后的应对方案"
-description: "Cursor 在 2025 年改了定价 —— Pro 用户同样的价格实际可用量缩水约 55%。这里整理了 7 条 2026 年真正有效的省钱策略：模型选择、上下文纪律、混合工具栈，以及何时该撤退。"...."
-licensing_model: Commercial
-license_type: Proprietary
-last_maintained: "2026-05-25"
-draft: false
-categories: ["dev-utils"]
-tags: ["cursor", "cost-optimization", "ai-coding", "2026"]
-aliases:
-  - /zh/posts/cursor-cost-saving-strategies-2026/
-faq: - q: "Cursor 在 2025 年的定价到底变了什么？"
-    a: "2025 年中 Cursor 从『无限制 fast requests』切换到了按信用点计费。$20/月 的 Pro 用户实际从约 500 次请求降到约 225 次有效请求。同样的价格，等于打了约 55% 的折扣。这次改动沟通不到位，引发了大量用户反弹。"
-  - q: "2026 年 Cursor 还值不值 $20/月？"
-    a: "如果你看重 IDE 原生体验和 tab 补全（依然很出色），值。如果你主要靠 agent 模式干活，就没那么值（API 超额扣费很扎心）。最佳定位：$20/月 订阅用于 tab + 廉价 agent 调用，再搭配 Claude Code 处理重度 agent 工作。"
-  - q: "Cursor 最大的成本陷阱是什么？"
-    a: "默认模型的 agent 模式。每一次 agent 循环迭代都在烧信用点。解法：把 agent 模型切到 Sonnet 4.6（比 Opus 4.7 便宜）处理日常任务，Opus 留给硬骨头。仅这一项改动就能省下约 40% 的 agent 模式开销。"
-  - q: "我是直接切到 Claude Code，还是继续用 Cursor？"
-    a: "两个都用。Cursor 负责 IDE 编辑 + tab 补全。Claude Code 负责 agent 循环 + 调试。合计约 $220/月。大多数专业开发者跑的就是这套组合 —— 这不是『二选一』。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-cost-saving-strategies-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Cursor 省钱策略 2026
 
@@ -94,8 +82,8 @@ Cursor 允许你设每月最高 API 超额开销。设上（比如 $50）。撞�
 ## 推荐基础设施
 
 适合 Cursor + Claude Code 组合使用：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— $200 赠金
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS
+- **** —— $200 赠金
+- **** —— 香港 VPS
 
 *联盟链接 —— 价格一致，支持 dibi8.com。*
 

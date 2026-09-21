@@ -1,6 +1,13 @@
 ---
-title: "n8n vs Make.com 2026 비교: 오픈소스 제어권 vs 시각적 간편함"
-description: "n8n(셀프호스팅·개발자 친화적 워크플로 자동화)과 Make.com(클라우드 전용 시각적 시나리오 빌더)를 항목별 비교 — 가격, 통합 수, AI 기능, 셀프호스팅, 2026년 추..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-vs-make-com-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

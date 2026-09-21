@@ -1,6 +1,13 @@
 ---
-title: "Goose AI Agent：44K⭐Open Source神器，让 AI 替你写代码、做研究、自动化一切"
-description: "Goose 是 Linux 基金会支持的Open Source AI Agent，44K+ Stars，支持 15+ LLM 提供商和 70+ MCP 扩展。桌面应用 + CLI + API 三位一体..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "goose-ai-agent-open-source-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -276,8 +283,8 @@ Goose 是 2026 年最值得关注的Open Source AI Agent：
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

@@ -1,6 +1,13 @@
 ---
-title: "CrewAI: 51K+ Star로 멀티 에이전트 AI 팀 구축 — 2026 완전 설정 가이드"
-description: "CrewAI(crewAIInc/crewAI)는 역할 기반의 자율 AI 에이전트를 오케스트레이션하는 Python 프레임워크입니다. OpenAI, Anthropic, Ollama, L..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 > 30분 내에 CrewAI를 설치하고, 에이전트 역할을 구성하고, 태스크를 연결하며, 프로덕션 준비 멀티 에이전트 시스템을 배포하는 방법.
 
@@ -195,7 +202,7 @@ editor: role: >
 ``src/research_crew/config/tasks.yaml`` 편집: `````yaml
 # src/research_crew/config/tasks.yaml
 
-research_task: description: >
+research_task: description: "Technical guide and comparison."
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -204,7 +211,7 @@ research_task: description: >
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task: description: >
+writing_task: description: "Technical guide and comparison."
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -214,7 +221,7 @@ writing_task: description: >
   agent: writer
   context: [research_task]
 
-editing_task: description: >
+editing_task: description: "Technical guide and comparison."
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -317,7 +324,7 @@ python -m research_crew.main
 ...
 [2026-05-20 10:25:18] Working Agent: Senior Content Editor
 ...
-========== FINAL OUTPUT ==========
+
 [완성된 편집된 기사가 여기에 표시됨]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 `````

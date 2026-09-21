@@ -1,6 +1,13 @@
 ---
-title: "Stable Diffusion WebUI: 159K+ Stars — The Complete Setup...
-description: "Stable Diffusion WebUI (AUTOMATIC1111) is the most popular web interface for local AI image generati..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "stable-diffusion-webui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/stable-diffusion-webui/-
 ---
 
-{{</* resource-info */>}}
+
 
 Stable Diffusion WebUI by AUTOMATIC1111 remains the most widely adopted open-source interface for local AI image generation. With **159,000+ GitHub stars**, it has accumulated a larger community than any competing interface — ComfyUI, InvokeAI, and Fooocus combined. If you are building a local AI image pipeline, understanding how to install, configure, and extend this tool is a practical necessity, not an option.
 

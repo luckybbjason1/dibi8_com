@@ -1,20 +1,10 @@
 ---
-title: "Oh My Pi: Turn Any Raspberry Pi Into a Smart Device — 12..."
-description: "Oh My Pi (12,554 stars) transforms Raspberry Pi devices into smart home hubs, media centers, and dev..."
-tags: ["open-source"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: oh-my-pi
-category: dev-utils
-images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
-    alt: "Oh My Pi GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
-    alt: "Pi Setup Flow"
-    role: example
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
-    alt: "Smart Home Diagram"
-    role: diagram
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "oh-my-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## TL;DR
@@ -187,7 +177,7 @@ Deploy custom services with Oh My Pi's extension system: ### Writing a Custom Se
 # my-service.yaml — custom service definition
 service: name: my-custom-app
   version: "1.0"
-  description: "Custom application deployment"
+  description: "Technical guide and comparison."
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

@@ -1,25 +1,14 @@
 ---
-title: "Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperli...
-description: "Minara là nền tảng giao dịch AI-native được xây dựng trên Hyperliquid, cho phép bạn đặt câu hỏi, nhậ..."
-date: 2026-05-17T00:00:00+08:00
-lastmod: 2026-05-17T00:00:00+08:00
-tech_stack: []
-application_domain: Ai Trading
-source_version: ''
-licensing_model: Commercial
-license_type: Proprietary
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-17"
-draft: false
-aliases:
-  - /posts/minara-ai-trading-hyperliquid-review-2026/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "minara-ai-trading-hyperliquid-review-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperliquid Nén Cả Bloomberg Terminal Vào Một Cửa Sổ Chat
 

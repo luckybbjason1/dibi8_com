@@ -1,11 +1,10 @@
 ---
-title: "RuView: WiFi Spatial Intelligence for Smart Buildings — ..."
-description: "Learn how to use RuView, the Python-based WiFi spatial intelligence platform that tracks real-time p..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
-category: ai-tools
-tags: ["ruvnet", "ruview", "wifi", "spatial-intelligence", "position-tracking", "mesh-network", "smart-buildings", "python", "open-source"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

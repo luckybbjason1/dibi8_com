@@ -1,21 +1,10 @@
 ---
-title: "OpenAI Codex CLI vs Claude Code 2026: 어떤 에이전트가 더 좋은가?"
-description: "OpenAI Codex CLI(gpt-5-codex)와 Anthropic Claude Code(Sonnet 4.6, 1M 컨텍스트)의 정면 비교 — 가격, 샌드박스, 엔터프라이즈,..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
-categories: ["vs"]
-faqs: - q: 'OpenAI Codex CLI는 무료인가요?'
-    a: 'CLI 자체는 오픈소스(Apache 2.0, 2025년 11월 출시)로 무료 설치입니다. 모델 API 호출에만 비용을 지불합니다 — gpt-5-codex 사용은 OpenAI API 키를 통해 청구됩니다(2026년 기준 입력 약 $1.50/1M, 출력 약 $10/1M). Claude Code도 설치는 무료지만 Pro/Max 구독($20-$200/월) 또는 Sonnet 4.6을 통한 종량제 결제가 필요합니다.'
-  - q: '컨텍스트 윈도우는 어느 쪽이 더 큰가요?'
-    a: 'Claude Code(Sonnet 4.6)가 압도적입니다 — 1M 토큰 컨텍스트 윈도우, gpt-5-codex는 400K입니다. 200K+ LOC 모노레포, 전체 코드베이스 추론, 긴 마이그레이션 작업에서는 Claude Code가 전체 저장소를 머리에 담을 수 있습니다. Codex CLI의 400K도 중형 프로젝트(8만 LOC 이하)에는 충분하지만, 대형 저장소에서는 파일 로딩을 더 선별적으로 해야 합니다.'
-  - q: '무인 실행에 더 적합한 샌드박스는?'
-    a: 'OpenAI Codex CLI가 이깁니다 — macOS/Linux에 Seatbelt/Landlock 샌드박스가 기본 내장되어 파일 쓰기, 네트워크 액세스, 명령 실행을 기본으로 제한합니다. Claude Code는 승인 프롬프트 모델을 사용합니다: 명령어를 미리 화이트리스트하고, 프로젝트 외부 파일 쓰기는 차단되지만 샌드박스 격리는 아닙니다. 야간 무인 에이전트 실행에는 Codex CLI가 더 안전합니다.'
-  - q: '같은 프로젝트에서 둘 다 쓸 수 있나요?'
-    a: '네, 많은 개발자가 그렇게 합니다. 흔한 조합: 1M 컨텍스트가 필요한 헤비 리팩토링에는 Claude Code, 지켜보지 않을 실험적 실행에는 샌드박스 Codex CLI. 디스크에서 충돌하지 않습니다 — 둘 다 같은 저장소를 읽고 쓰지만, 같은 파일에 동시 실행만 피하세요.'
-  - q: '엔터프라이즈에는 어느 쪽이 더 좋나요?'
-    a: '2026년에는 Claude Code의 엔터프라이즈 스토리가 더 성숙합니다 — Anthropic은 SOC 2 Type II, API 레이어 HIPAA, Claude Enterprise 프라이빗 VPC 배포를 제공합니다. OpenAI Codex CLI는 더 새롭고(2025년 11월 오픈소스화), 표준 OpenAI 엔터프라이즈 플랜에 통합되지만 CLI 자체에는 전용 엔터프라이즈 티어가 아직 없습니다. 규제 산업에서는 오늘 Claude Code가 이깁니다. OpenAI가 빠르게 따라잡고 있습니다.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-codex-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -147,7 +136,7 @@ $20 이하 일일 헤비 사용: **월 $20 정액 Claude Pro**가 이기기 어�
 - 컨텍스트 윈도우가 더 작음을 예상하세요 — 작업당 어떤 파일을 로드할지 더 규율 있게
 
 ### 셀프 호스팅 노트
-두 CLI를 실제 코드베이스에서 결정하려고 실행 중인가요? {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet에서 $200 무료 크레딧" >}}으로 spinning up하세요 — $12/월짜리 일반 droplet이 두 CLI를 편안히 돌리고, 무인 에이전트 실행을 위한 격리된 staging 환경을 유지할 수 있습니다. 무료 평가 2개월, 그 후 $12/월. 두 개의 병렬 로컬 환경을 유지하는 것보다 저렴하며, 결정 후 인프라를 그대로 보유할 수 있습니다.
+두 CLI를 실제 코드베이스에서 결정하려고 실행 중인가요? 으로 spinning up하세요 — $12/월짜리 일반 droplet이 두 CLI를 편안히 돌리고, 무인 에이전트 실행을 위한 격리된 staging 환경을 유지할 수 있습니다. 무료 평가 2개월, 그 후 $12/월. 두 개의 병렬 로컬 환경을 유지하는 것보다 저렴하며, 결정 후 인프라를 그대로 보유할 수 있습니다.
 
 * * *
 
@@ -192,7 +181,7 @@ Codex CLI도 Claude Code도 맞지 않다면: - **[Cursor vs Claude Code](https:
 
 **안정적인 Claude / OpenAI API 액세스가 필요하신가요?** 이 도구들 중 선택하는 대부분의 사용자는 결국 기본 API 키가 필요합니다.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

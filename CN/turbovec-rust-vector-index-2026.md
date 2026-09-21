@@ -1,11 +1,10 @@
 ---
-title: "TurboVec: Rust-Powered Vector Index 10x Faster Than FAIS...
-description: "TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bi..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'turbovec-rust-vector-index-2026'
-category: 'ai-tools'
-tags: ["vector-search", "rust", "quantization", "langchain", "llamaindex", "RAG", "embeddings", "turboquant"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "turbovec-rust-vector-index-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)

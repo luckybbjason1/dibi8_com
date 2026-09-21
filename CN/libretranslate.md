@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "libretranslate"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
-description: "LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Suppo..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/libretranslate/-
 ---
 
-{{</* resource-info */>}}
+
 
 LibreTranslate is a free, open-source machine translation API that you host yourself. No API keys from Google. No per-character billing from DeepL. No data leaving your infrastructure. With 14,400+ GitHub stars and an active release cycle (v1.9.5 as of May 2026), it has become the default choice for developers who need private, offline-capable translation at zero marginal cost. This LibreTranslate tutorial covers everything from libretranslate setup to libretranslate docker production deployment, with benchmarks and integration guides. We also include a detailed libretranslate vs deepl comparison to help you decide if self-hosted translation fits your use case.
 

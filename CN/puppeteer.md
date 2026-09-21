@@ -1,6 +1,13 @@
 ---
-title: "Puppeteer: 94,300 GitHub Stars — Production Browser Auto...
-description: "Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "puppeteer"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/puppeteer/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

@@ -1,11 +1,10 @@
 ---
-title: "PaddleOCR: Công cụ OCR mã nguồn 81K sao vượt trội so với...
-description: "PaddleOCR là bộ công cụ OCR mã nguồn đa ngôn ngữ với độ chính xác hơn 96.3% cho phát hiện và nhận dạ..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'paddleocr-81k-star-ocr-engine'
-category: ai-tools
-tags: ["paddleocr", "ocr", "text-recognition", "document-ai", "table-ocr", "layout-analysis", "multi-language", "open-source"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "paddleocr-81k-star-ocr-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

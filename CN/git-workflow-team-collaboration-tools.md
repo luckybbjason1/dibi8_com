@@ -1,21 +1,10 @@
 ---
-title: "Git Workflow & Team Collaboration Tools: A Developer'"
-description: "Master Git workflow best practices for teams. Compare GitHub Flow, GitFlow, and trunk-based developm..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/git-workflow-team-collaboration-tools/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "git-workflow-team-collaboration-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Git Workflow & Team Collaboration Tools: A Developer''s Complete Guide

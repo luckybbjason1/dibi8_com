@@ -1,6 +1,13 @@
 ---
-title: "Metabase 2026: 以零许可证成本取代 Tableau 的开源商业智能工具 —— 部署指南"
-description: "Metabase v60.2 完整指南：开源BI工具，可视化查询构建器、仪表板、SQL编辑器、告警、嵌入式分析和Docker自托管。41,000+ GitHub星标。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "metabase-business-intelligence-open"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：$50,000 Tableau续费账单的困境
 
@@ -101,7 +108,7 @@ WHERE period <= 12
 ORDER BY 1, 2;
 `````
 
-SQL问题支持通过````{{variable}}````语法进行变量注入，使它们可以在具有不同筛选器值的仪表板中复用。
+SQL问题支持通过````````语法进行变量注入，使它们可以在具有不同筛选器值的仪表板中复用。
 
 ### 仪表板组合
 
@@ -373,12 +380,12 @@ SELECT
     DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
-WHERE created_at >= {{start_date}}  -- 仪表板筛选器
+WHERE created_at >=   -- 仪表板筛选器
 GROUP BY 1
 ORDER BY 1;
 `````
 
-````{{start_date}}````变量在仪表板中渲染为日期选择器。当用户更改筛选值时，所有关联问题自动刷新。
+````````变量在仪表板中渲染为日期选择器。当用户更改筛选值时，所有关联问题自动刷新。
 
 ## 基准测试与实际用例
 

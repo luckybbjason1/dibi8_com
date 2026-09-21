@@ -1,6 +1,13 @@
 ---
-title: "Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실...
-description: "Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub st..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "firecrawl-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,9 +30,9 @@ faqs: - q: 'Firecrawl은 어떻게 설치하나요?'
   - q: 'TypeScript 외의 언어로도 Firecrawl을 쓸 수 있나요?'
     a: '네. Firecrawl은 HTTP API이므로 어떤 언어든 호출할 수 있습니다. Node.js와 Python용 공식 SDK가 있으며, 그 외 언어에서는 임의의 HTTP 클라이언트로 REST 엔드포인트를 직접 호출할 수 있습니다.'
   - q: '반드시 호스팅형 API를 써야 하나요, 아니면 셀프 호스팅할 수 있나요?'
-    a: '둘 다 지원합니다. `api.firecrawl.dev`의 호스팅형 API가 가장 빠른 시작 방법이지만, 프로젝트 자체가 오픈소스이고 Docker Compose 설정을 함께 제공하므로 전체를 자체 서버에서 돌릴 수 있습니다.'
+    a: '둘 다 지원합니다. ``api.firecrawl.dev``의 호스팅형 API가 가장 빠른 시작 방법이지만, 프로젝트 자체가 오픈소스이고 Docker Compose 설정을 함께 제공하므로 전체를 자체 서버에서 돌릴 수 있습니다.'
   - q: 'scrape, crawl, map의 차이는 무엇인가요?'
-    a: '`scrape`는 단일 URL을 처리합니다. `crawl`은 링크를 따라가 사이트 전체를 비동기로 스크래핑합니다. `map`은 콘텐츠를 스크래핑하지 않고 사이트의 URL 목록만 반환합니다 — 크롤링 계획에 유용합니다.'
+    a: '``scrape``는 단일 URL을 처리합니다. ``crawl``은 링크를 따라가 사이트 전체를 비동기로 스크래핑합니다. ``map``은 콘텐츠를 스크래핑하지 않고 사이트의 URL 목록만 반환합니다 — 크롤링 계획에 유용합니다.'
   - q: 'Firecrawl은 무료인가요? 라이선스는 무엇인가요?'
     a: '소스 코드는 AGPL-3.0로 무료이며 오픈소스이고, 공식 SDK와 UI 컴포넌트는 MIT입니다. 호스팅형 클라우드 API는 무료 티어와 더 높은 사용량을 위한 유료 요금제를 제공합니다. 셀프 호스팅하는 경우 실행에 드는 인프라 비용은 직접 부담합니다.'
 ---
@@ -34,7 +41,7 @@ faqs: - q: 'Firecrawl은 어떻게 설치하나요?'
 # Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드
 
 
-{{< resource-info >}}
+
 
 ## 들어가며
 
@@ -172,7 +179,7 @@ const doc = await app.scrape('https://example.com', {
       type: object,
       properties: {
         title: { type: string },
-        description: { type: string },
+        description: "Technical guide and comparison."
       },
     },
   }],
@@ -219,7 +226,7 @@ jobs: scrape: runs-on: ubuntu-latest
         run: npm install firecrawl
 
       - name: Run scraper
-        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: $
         run: node scrape.js > output.json
 `````
 

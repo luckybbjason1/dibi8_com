@@ -1,6 +1,13 @@
 ---
-title: "Prefect 2026: 面向数据与 AI 流水线的现代工作流编排引擎 —— 自托管设置指南"
-description: "关于 Prefect 3.x 的实战指南——这款 Python 原生工作流编排器支持异步执行、内置重试和自托管服务器。在 5 分钟内部署你的数据流水线。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prefect-workflow-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：你的 Cron 作业是一颗定时炸弹
 
@@ -622,8 +629,8 @@ jobs: deploy: runs-on: ubuntu-latest
       
       - name: Authenticate with Prefect Cloud
         run: |
-          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
-          prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
+          prefect config set PREFECT_API_URL=$
+          prefect config set PREFECT_API_KEY=$
       
       - name: Deploy flows
         run: |
@@ -643,13 +650,13 @@ prefect-version: 3.3.0
 
 build: - prefect_docker.deployments.steps.build_docker_image: requires: prefect-docker
       image_name: my-pipeline
-      tag: "{{ sha }}"
+      tag: ""
       dockerfile: Dockerfile
 
 push: - prefect_docker.deployments.steps.push_docker_image: requires: prefect-docker
       image_name: my-pipeline
-      tag: "{{ sha }}"
-      credentials: "{{ prefect.blocks.docker-registry-credentials.prod-registry }}"
+      tag: ""
+      credentials: ""
 
 pull: - prefect.deployments.steps.set_working_directory: directory: /opt/prefect
 

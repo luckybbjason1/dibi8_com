@@ -1,6 +1,13 @@
 ---
-title: "지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구...
-description: "개인 또는 팀용 5컴포넌트 셀프호스트 지식 베이스 스택. AnythingLLM(UI + RAG) + RAGFlow(심층 문서 파싱) + mem0(에이전트 메모리) + AgentMe..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-base-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -172,7 +179,7 @@ npm install -g @mem0/mem0-mcp
 
 ## 8. Day 1 셋업 순서 (90분)
 
-1. **VPS 띄우기** (10분) — {{< aff "digitalocean" "kb-vps" "DigitalOcean $12/월 droplet" >}}(8 GB tier; 4 GB는 파싱 + 임베딩 + LLM에 빠듯) 주문, Docker 설치
+1. **VPS 띄우기** (10분) — (8 GB tier; 4 GB는 파싱 + 임베딩 + LLM에 빠듯) 주문, Docker 설치
 2. **AnythingLLM 먼저** (15분) — 단일 docker run, :3001 브라우즈, 관리자 계정 + 첫 워크스페이스 생성
 3. **테스트 문서 10개 업로드** (10분) — PDF, .md 노트, .docx 혼합 — AnythingLLM 내장 파서가 처리하는 거 확인
 4. **RAGFlow 두 번째** (20분) — docker compose, :80 브라우즈, AnythingLLM이 비틀거린 2-3개 문서 재처리
@@ -203,7 +210,7 @@ SaaS 등가물 비교: - 솔로: Notion AI ($10) + Mem.ai ($15) = $25/월, 로�
 ## 10. 업그레이드 경로
 
 이 스택 벗어날 때: - **코퍼스 > 1 TB 또는 > 1000만 doc** — Qdrant를 전용 32 GB 박스로, 샤딩 추가
-- **다지역 팀** — AnythingLLM 다지역 read 레플리카, 중국 친화 레이턴시 위해 {{< aff "htstack" "upgrade-hk-vps" "HTStack HK" >}}에 단일 write master
+- **다지역 팀** — AnythingLLM 다지역 read 레플리카, 중국 친화 레이턴시 위해 에 단일 write master
 - **풀텍스트 + 벡터 하이브리드 필요** — 벡터 DB Chroma에서 Weaviate로 마이그레이션
 - **감사 / SOC2 컴플라이언스** — LLM 콜 가시성용 Portkey와 페어 ([LLM Gateway 비교 2026](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 참조)
 - **멀티테넌트 SaaS** — 고객별 가상 키용 LiteLLM 추가 ([LiteLLM 가이드](/kr/resources/llm-frameworks/litellm/))
@@ -218,7 +225,7 @@ SaaS 등가물 비교: - 솔로: Notion AI ($10) + Mem.ai ($15) = $25/월, 로�
 
 $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트로 대체. 90분 셋업, MCP 네이티브이므로 모든 코딩 에이전트 혜택.
 
-엔트리 tier로 {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/월 droplet" >}} 띄우고 8절 따라가면 내일까지 Claude Desktop / Cursor / OpenCode에서 지식 베이스 쿼리 가능.
+엔트리 tier로  띄우고 8절 따라가면 내일까지 Claude Desktop / Cursor / OpenCode에서 지식 베이스 쿼리 가능.
 
 * * *
 

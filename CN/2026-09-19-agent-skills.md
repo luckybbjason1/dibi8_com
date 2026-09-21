@@ -1,10 +1,10 @@
 ---
-title: "Addy Osmani"
-date: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
-category: 'llm-frameworks'
-tags: ["agent-skills", "addy-osmani", "claude-code", "cursor", "ai-editors", "skills"]
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-19-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

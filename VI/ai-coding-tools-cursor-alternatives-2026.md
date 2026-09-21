@@ -1,6 +1,13 @@
 ---
-title: "Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa ...
-description: "Cursor chuyển sang định giá credit năm 2025 làm mất lòng tin. So sánh 7 lựa chọn thay thế mạnh nhất ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-tools-cursor-alternatives-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: ['VS Code', JetBrains, 'Terminal CLI', 'Native editors']
@@ -35,7 +42,7 @@ faqs: - q: 'Tại sao developer rời Cursor vào năm 2026?'
 # Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa Chọn Thay Thế Hàng Đầu
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

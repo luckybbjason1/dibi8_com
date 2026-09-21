@@ -1,6 +1,13 @@
 ---
-title: "Jesse: Framework Giao Dịch Crypto Python Nâng Cao Với 30...
-description: "Hướng dẫn sản xuất về framework giao dịch AI Jesse — cài đặt, backtest với 30+ chỉ báo, xây dựng chi..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "jesse-ai-trading-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại Sao Hầu Hết Bot Giao Dịch Thất Bại Trong Môi Trường Production
 
@@ -189,13 +196,13 @@ jesse backtest 2025-01-01 2025-12-31
 Bạn sẽ thấy kết quả như sau: `````
 Loading candles...
 Executing backtest...
-=====================================
+
 Total Trades: 142
 Win Rate: 58.45%
 Net Profit: 23.7%
 Max Drawdown: -8.2%
 Sharpe Ratio: 1.34
-=====================================
+
 `````
 
 ## Tích hợp với các công cụ phổ biến

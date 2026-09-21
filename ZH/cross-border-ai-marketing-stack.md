@@ -1,11 +1,10 @@
 ---
-title: "跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案"
-description: "专为跨境业务设计的 7 组件 AI stack —— 多语言内容自动化、海外市场情报抓取、GDPR 合规分析、绕开付费摩擦、整套跑在香港 VPS 上。月成本 $35-80，全开源或 aff 友好。"...."
-draft: false
-categories: ["collections"]
-tags: ["跨境", "出海", "ai 营销", "stack", "合集"]
-aliases:
-  - /posts/cross-border-ai-marketing-stack/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cross-border-ai-marketing-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案
@@ -178,7 +177,7 @@ opencode --provider deepseek --api-key $DEEPSEEK_KEY
 - **HK 司法管辖** = 中国和全球数据双中立
 - **VISA/Mastercard 充值** RMB 或 USD 卡直接通
 
-dibi8.com 自己就跑在 {{< aff "htstack" "stack-vps" "HTStack 的香港 VPS" >}} 上，正是出于这些原因。4 GB 一档约 $10/月，能跑 n8n + LangChain agent + Plausible + nginx 服务 4 语言内容。生产团队负载升 16 GB（$30/月）。
+dibi8.com 自己就跑在  上，正是出于这些原因。4 GB 一档约 $10/月，能跑 n8n + LangChain agent + Plausible + nginx 服务 4 语言内容。生产团队负载升 16 GB（$30/月）。
 
 ## 9. 组件 7 —— OpenRouter（跨境 LLM 付费）
 
@@ -255,7 +254,7 @@ OpenRouter 完整指南 + 什么时候直连胜出：[OpenRouter 统一 LLM API 
 6. **HTStack HK VPS** —— 桥
 7. **OpenRouter** —— premium LLM 加密支付
 
-跨境专属胜利：无支付摩擦、无 GDPR / 中国数据法违规、不用 $80/座 USD Cursor、GA 不被挡、Cloudflare-vs-中国问题不存在。开一个 {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}}，第 1 周先搭组件 1-4，第 2 周加 5-7。
+跨境专属胜利：无支付摩擦、无 GDPR / 中国数据法违规、不用 $80/座 USD Cursor、GA 不被挡、Cloudflare-vs-中国问题不存在。开一个 ，第 1 周先搭组件 1-4，第 2 周加 5-7。
 
 
 * * *

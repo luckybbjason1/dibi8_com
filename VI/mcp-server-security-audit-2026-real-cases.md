@@ -1,6 +1,13 @@
 ---
-title: "Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộn...
-description: "Đã kiểm toán 5 MCP server cộng đồng phổ biến trong môi trường production: GitHub, Slack, Postgres, B..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-security-audit-2026-real-cases"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
@@ -17,7 +24,7 @@ aliases:
 faq: - q: "MCP server do Anthropic bảo trì có an toàn hơn server cộng đồng không?"
     a: "Có, đáng kể. Các server tham chiếu của Anthropic (filesystem, git, github, fetch, sequentialthinking) đều được review nội bộ, có release đã ký, và có security model rõ ràng. Server cộng đồng thì khác nhau rất nhiều — một số được kiểm toán, đa số thì không. Ưu tiên Anthropic khi có phiên bản tương ứng; coi các lựa chọn cộng đồng là mã nguồn không tin cậy với quyền local đầy đủ cho đến khi bạn chứng minh được điều ngược lại."
   - q: "Mẫu tấn công MCP thực tế lớn nhất năm 2026 là gì?"
-    a: "Ba mẫu đồng hạng nhất: (1) Typosquatting — package giả như `github-mcp-server-v2` đánh cắp token. (2) Chuyển giao maintainer + telemetry — một server cộng đồng phổ biến đổi chủ, thêm analytics rò rỉ đường dẫn file hoặc biến môi trường. (3) Prompt injection qua nội dung được fetch — server `fetch` kéo về markdown thù địch, agent sau đó rò rỉ `~/.ssh/id_rsa` vì prompt đã đánh lừa nó."
+    a: "Ba mẫu đồng hạng nhất: (1) Typosquatting — package giả như ``github-mcp-server-v2`` đánh cắp token. (2) Chuyển giao maintainer + telemetry — một server cộng đồng phổ biến đổi chủ, thêm analytics rò rỉ đường dẫn file hoặc biến môi trường. (3) Prompt injection qua nội dung được fetch — server ``fetch`` kéo về markdown thù địch, agent sau đó rò rỉ ``~/.ssh/id_rsa`` vì prompt đã đánh lừa nó."
   - q: "Một lần kiểm toán trước cài đặt đúng chuẩn mất bao lâu?"
     a: "Năm phút nếu bạn biết phải tìm gì. Checklist 8 điểm trong bài này bao quát độ tươi của maintainer, cây dependency, các lệnh gọi mạng, phạm vi file system, cách xử lý secret, dấu vết chuỗi cung ứng, lịch sử lỗ hổng, và tương thích sandbox. Hầu hết server cộng đồng đều rớt ít nhất 2 trên 8."
   - q: "Có nên dùng fine-grained GitHub PAT với MCP server không?"
@@ -29,7 +36,7 @@ faq: - q: "MCP server do Anthropic bảo trì có an toàn hơn server cộng đ
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộng Đồng Thực Tế + Mẫu Bẫy
 
@@ -127,8 +134,8 @@ Với mỗi MCP server cộng đồng, trước khi cài: ### 1. **Độ tươi 
 
 ## Hạ Tầng Khuyến Nghị
 
-Nếu bạn đang chạy MCP server chia sẻ team (HTTP/SSE), một VPS đã được làm cứng giúp sandbox hoá khả thi: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit miễn phí, quy tắc tường lửa dễ trên mỗi droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, cùng IDC với dibi8.com
+Nếu bạn đang chạy MCP server chia sẻ team (HTTP/SSE), một VPS đã được làm cứng giúp sandbox hoá khả thi: - **** — $200 credit miễn phí, quy tắc tường lửa dễ trên mỗi droplet
+- **** — VPS Hồng Kông, cùng IDC với dibi8.com
 
 *Link affiliate — cùng giá, hỗ trợ dibi8.com.*
 

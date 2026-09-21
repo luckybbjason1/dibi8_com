@@ -1,22 +1,21 @@
 ---
-title: "JuiceFS (14K⭐): The Distributed POSIX File System That T...
-description: "JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distribut..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
-category: dev-utils
-tags: ["juicefs", "distributed-file-system", "cloud-storage", "s3", "redis", "posix", "ai-training", "big-data", "go", "cloud-native"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 # JuiceFS (14K⭐): The Distributed POSIX File System That Turns Cloud Storage Into Local Storage
 
-title: 'JuiceFS (14K⭐): Hệ Thống File Hệ Thống POSIX Phân Tán Biến Lưu Trữ Đám Mây Thành Local Storage'
-description: "JuiceFS (13.900+ sao) biến bất kỳ object storage tương thích S3 nào thành distributed file system ch..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-15
 lastmod: 2026-06-15
-slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
-category: 'dev-utils'
+slug: "juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
+category: "dev-utils"
 tags: ["juicefs", "distributed-file-system", "cloud-storage", "s3", "redis", "posix", "ai-training", "big-data", "go", "cloud-native"]
 
 

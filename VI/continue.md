@@ -1,6 +1,13 @@
 ---
-title: "Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh...
-description: "Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthr..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "continue"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Continue.dev Banner](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
 
@@ -99,7 +106,7 @@ schema: v1
 models: - name: Claude Sonnet
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -107,7 +114,7 @@ models: - name: Claude Sonnet
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 EOF
 
@@ -201,7 +208,7 @@ models: # Chính: Claude cho tác vụ phức tạp
   - name: Claude Sonnet 4.6
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -210,7 +217,7 @@ models: # Chính: Claude cho tác vụ phức tạp
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat]
 
   # Tự động hoàn thành: Model local không độ trễ
@@ -258,7 +265,7 @@ Với cấu hình Ollama ở trên, mọi xử lý code đều diễn ra trên m
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
@@ -272,13 +279,13 @@ Model Claude hỗ trợ sử dụng công cụ MCP native — cho phép chế đ
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 
   - name: GPT-4o-mini
     provider: openai
     model: gpt-4o-mini
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
 `````
@@ -308,7 +315,7 @@ mcpServers: - name: filesystem
   - name: github
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-    env: GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env: GITHUB_PERSONAL_ACCESS_TOKEN: $
 
   - name: postgres
     command: npx
@@ -344,7 +351,7 @@ Lập trình viên chạy kết hợp model local và cloud: `````yaml
 models: - name: Claude Haiku
     provider: anthropic
     model: claude-haiku-4-5
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat]  # $0.25/1M tokens
 
   - name: Qwen 7B Local
@@ -364,7 +371,7 @@ Chế độ Agent 2026 của Continue.dev có thể tự động lập kế ho�
 models: - name: Claude Sonnet Agent
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
@@ -412,9 +419,9 @@ Ví dụ trong chat: `````
 # Không bao giờ hardcode API key. Sử dụng biến môi trường: models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}  # Từ biến môi trường
+    apiKey: $  # Từ biến môi trường
 
-# Trong CI/CD, sử dụng secret store của runner: # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
+# Trong CI/CD, sử dụng secret store của runner: # GitHub Actions: $
 # GitLab CI: $ANTHROPIC_API_KEY (biến CI/CD)
 `````
 

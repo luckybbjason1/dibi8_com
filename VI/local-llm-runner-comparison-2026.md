@@ -1,6 +1,13 @@
 ---
-title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: Hướng Dẫn...
-description: "So sánh trực tiếp 4 local LLM runner quan trọng năm 2026. Số liệu thực: Ollama (137k sao) dễ nhất, L..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-llm-runner-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, C++, CUDA, Metal]
@@ -148,7 +155,7 @@ vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000
 
 **Kịch bản A — Founder solo code với AI**: Ollama trên laptop bạn. Xong. Kết nối tới OpenCode / Continue / Cursor qua API tương thích OpenAI. Xem [Workflow AI Coding Self-Host](/vi/collections/self-hosted-ai-coding-workflow/) cho stack đầy đủ.
 
-**Kịch bản B — Chatbot công ty nội bộ cho 50 nhân viên**: vLLM trên GPU chuyên dụng 24 GB (RTX 4090 hoặc A5000) trên {{< aff "htstack" "vllm-vps-hk" "HTStack VPS Hong Kong" >}} hoặc {{< aff "digitalocean" "vllm-droplet" "DigitalOcean GPU droplet" >}}. Fronted bởi [LiteLLM gateway](/vi/resources/llm-frameworks/litellm/) cho auth + theo dõi chi tiêu per-user.
+**Kịch bản B — Chatbot công ty nội bộ cho 50 nhân viên**: vLLM trên GPU chuyên dụng 24 GB (RTX 4090 hoặc A5000) trên  hoặc . Fronted bởi [LiteLLM gateway](/vi/resources/llm-frameworks/litellm/) cho auth + theo dõi chi tiêu per-user.
 
 **Kịch bản C — VP Marketing muốn chat với tài liệu**: LM Studio. Họ drag and drop PDF vào giao diện RAG. Cần training 0. Tiết kiệm thời gian engineering cho use case thực sự cần engineering.
 

@@ -1,16 +1,14 @@
 ---
-title: "Kubeflow 2026: Kubernetes에서 완전한 ML 파이프라인 실행 — 훈련부터 프로덕션 ...
-description: "Kubernetes에 Kubeflow를 배포하여 ML 파이프라인을 구축하는 완전한 가이드. 설치, 컴포넌트, 벤치마크, 프로덕션 강화 및 실제 배포 패턴을 다룹니다.". Compr..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["kubeflow", "kubernetes", "머신러닝", "ml 파이프라인", "mlops", "kubeflow pipelines", "kserve", "katib", "데이터과학"]
-aliases:
-  - /kr/posts/kubeflow-ml-pipeline-kubernetes/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "kubeflow-ml-pipeline-kubernetes"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 왜 Kubernetes 네이티브 ML이 중요한가
 

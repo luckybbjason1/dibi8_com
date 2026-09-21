@@ -1,11 +1,10 @@
 ---
-title: "Roboflow Supervision: Bộ công cụ chú thích thị giác máy ...
-description: "Supervision của Roboflow là một bộ công cụ thị giác máy tính toàn diện giúp đơn giản hóa chú thích C..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: roboflow-supervision
-category: data-science
-tags: ["supervision", "roboflow", "computer vision", "annotation", "object detection", "CV toolkit", "data-science"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "roboflow-supervision"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

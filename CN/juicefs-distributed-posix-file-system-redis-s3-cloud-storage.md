@@ -1,11 +1,10 @@
 ---
-title: "JuiceFS (14K⭐): The Distributed POSIX File System That T...
-description: "JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distribut..."
-tags: ["architecture", "distributed", "filesystem", "knowledge-base", "llm", "local", "offline", "open-source", "privacy", "rag", "retrieval", "storage", "system"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "juicefs-distributed-posix-file-system-redis-s3-cloud-storage"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # JuiceFS: Cloud Storage, Local Speed

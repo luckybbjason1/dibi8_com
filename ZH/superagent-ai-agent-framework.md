@@ -1,16 +1,14 @@
 ---
-title: "Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南"
-description: "使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。". Comprehens..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["superagent", "ai agent", "llm", "rag", "向量数据库", "openai", "langchain", "python", "typescript"]
-aliases:
-  - /zh/posts/superagent-ai-agent-framework/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superagent-ai-agent-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction：没人谈论的部署鸿沟
 
@@ -429,17 +427,17 @@ workflow = client.workflow.create(
     steps=[
         {
             "agent": "research-agent",
-            "input": "Research the topic: {{topic}}",
+            "input": "Research the topic: ",
             "output_key": "research_notes"
         },
         {
             "agent": "writer-agent",
-            "input": "Write a blog post based on: {{research_notes}}",
+            "input": "Write a blog post based on: ",
             "output_key": "draft"
         },
         {
             "agent": "editor-agent",
-            "input": "Review and improve: {{draft}}",
+            "input": "Review and improve: ",
             "output_key": "final_post"
         }
     ]

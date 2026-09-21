@@ -1,6 +1,13 @@
 ---
-title: "Hướng Dẫn MCP Server Registry 2026: 19,700+ Server, 7 Cá...
-description: "Hướng dẫn toàn diện khám phá MCP server 2026. 7 server reference Anthropic, awesome list 87.3k star,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-registry-comprehensive-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript
@@ -149,7 +156,7 @@ Phần lớn MCP server dựa stdio — chạy trên máy bạn. Nhưng công vi
 - **Latency** — server gần data (postgres cùng VPC)
 - **Chi phí** — loại bỏ phí SaaS per-call ở scale
 
-VPS 4GB thoải mái chạy 10+ MCP server stdio-bridged hoặc HTTP song song. Chúng tôi host cluster MCP nội bộ dibi8 trên {{< aff "htstack" "self-host-vps" "VPS Hong Kong của HTStack" >}} (sub-30ms latency tới Trung Quốc đại lục). Cho triển khai phân tán toàn cầu hoặc fleet lớn, {{< aff "digitalocean" "self-host-k8s" "Kubernetes quản lý của DigitalOcean" >}} với 3 replica là pattern production tiêu chuẩn.
+VPS 4GB thoải mái chạy 10+ MCP server stdio-bridged hoặc HTTP song song. Chúng tôi host cluster MCP nội bộ dibi8 trên  (sub-30ms latency tới Trung Quốc đại lục). Cho triển khai phân tán toàn cầu hoặc fleet lớn,  với 3 replica là pattern production tiêu chuẩn.
 
 ### Khi nào cloud-host (Smithery / e2b / vendor-hosted)
 
@@ -180,7 +187,7 @@ Phần khó không còn là tìm server. Mà là **chọn đúng cái** — dùn
 
 * * *
 
-*Muốn self-host 5+ MCP server (postgres + filesystem + git + memory + tavily-search) mà không đốt bill cloud? Bật một {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} $6/tháng, chạy chúng dưới một supervisor duy nhất (systemd hoặc PM2), và trỏ ````claude_desktop_config.json``` của Claude Desktop vào host. Xong trong một buổi chiều.*
+*Muốn self-host 5+ MCP server (postgres + filesystem + git + memory + tavily-search) mà không đốt bill cloud? Bật một  $6/tháng, chạy chúng dưới một supervisor duy nhất (systemd hoặc PM2), và trỏ ````claude_desktop_config.json``` của Claude Desktop vào host. Xong trong một buổi chiều.*
 
 
 {

@@ -1,11 +1,10 @@
 ---
-title: "Impeccable：让 AI 生成的 UI 真正好看的编程语言 — 2026 评测"
-description: "Impeccable（3.7 万星标）是为 AI 编码代理设计的编程语言，包含 23 个命令、41 个检测规则和实时浏览器迭代。通过确定性的设计质量检查修复 AI 生成的 UI 粗糙问题。兼容 Cla..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
-category: ai-tools
-tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "impeccable-ai-design-language-harness-quality-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

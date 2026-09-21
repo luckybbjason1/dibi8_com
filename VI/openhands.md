@@ -1,6 +1,13 @@
 ---
-title: "OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
-description: "OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Dock..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhands"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 
@@ -262,7 +269,7 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v $(pwd):/workspace \
-            -e LLM_API_KEY=${{ secrets.ANTHROPIC_API_KEY }} \
+            -e LLM_API_KEY=$ \
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl

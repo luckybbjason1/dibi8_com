@@ -1,6 +1,13 @@
 ---
-title: "TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi ...
-description: "Làm chủ TensorTrade để giao dịch thuật toán dựa trên RL. Xây dựng môi trường Gym tùy chỉnh, tích hợp..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tensortrade-rl-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Tại Sao Hầu Hết Bot Giao Dịch Thất Bại (Và RL Thay Đổi Cuộc Chơi Như Thế Nào)
 

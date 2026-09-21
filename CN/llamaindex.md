@@ -1,6 +1,13 @@
 ---
-title: "LlamaIndex: 49K+ Stars — Production RAG Deployment Guide...
-description: "LlamaIndex is a data framework for building production RAG systems with LLMs. Supports OpenAI, Anthr..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamaindex"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/llamaindex/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)
 

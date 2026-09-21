@@ -1,6 +1,13 @@
 ---
-title: "Windsurf vs GitHub Copilot 2026深度对比：哪个AI编程工具更值得用？"
-description: "Windsurf Cascade与GitHub Copilot Agent Mode全面对比——定价、多文件编辑、企业合规、2026年6月计费风波。真实数据，不废话。". Comprehensive ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "windsurf-vs-github-copilot-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

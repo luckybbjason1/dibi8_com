@@ -1,11 +1,10 @@
 ---
-title: "12-Factor Agents：构建可靠 LLM 应用程序的原则性框架"
-description: "12-Factor Agents 框架将经过实战检验的 12-Factor App 方法论适配到 LLM 驱动的应用程序，提供了一种构建可靠、可伸缩、可观测的 AI 代理的原则性方法。"
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 12-factor-agents
-category: llm-frameworks
-tags: ["12-factor-agents", "LLM", "AI agents", "observability", "reliability", "human-layer", "framework"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "12-factor-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

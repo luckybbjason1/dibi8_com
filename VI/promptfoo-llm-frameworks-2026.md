@@ -1,6 +1,13 @@
 ---
-title: "Promptfoo: Kiểm thử, Đánh giá & Red-Team Prompt LLM của ...
-description: "Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Chỉ với cấu h..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "promptfoo-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,19 +26,19 @@ tags: ["]
 aliases:
   - /posts/promptfoo-llm-frameworks-2026/
 faqs: - q: 'Làm sao cài và chạy promptfoo cục bộ?'
-    a: 'Con đường nhanh nhất là không cần cài: ```bash npx promptfoo@latest init --example getting-started ``` Để cài toàn cục", "dùng `npm install -g promptfoo` (hoặc `brew install promptfoo`", "hoặc `pip install promptfoo`). Sau đó chạy `promptfoo eval` để đánh giá và `promptfoo view` để mở trình xem cục bộ.'
+    a: 'Con đường nhanh nhất là không cần cài: ```bash npx promptfoo@latest init --example getting-started ``` Để cài toàn cục", "dùng ``npm install -g promptfoo`` (hoặc ``brew install promptfoo``", "hoặc ``pip install promptfoo``). Sau đó chạy ``promptfoo eval`` để đánh giá và ``promptfoo view`` để mở trình xem cục bộ.'
   - q: 'Tôi có thể dùng promptfoo với mô hình của riêng mình không?'
-    a: 'Có. Promptfoo hỗ trợ nhiều provider — OpenAI", "Anthropic", "Google", "DeepSeek", "các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách `providers` của `promptfooconfig.yaml` và cung cấp khóa API tương ứng qua biến môi trường.'
+    a: 'Có. Promptfoo hỗ trợ nhiều provider — OpenAI", "Anthropic", "Google", "DeepSeek", "các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách ``providers`` của ``promptfooconfig.yaml`` và cung cấp khóa API tương ứng qua biến môi trường.'
   - q: 'Promptfoo so sánh hiệu năng giữa các mô hình khác nhau như thế nào?'
-    a: 'Bạn liệt kê nhiều mục dưới `providers`", "và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó `promptfoo view` hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion", "để bạn so sánh trực tiếp trên đầu vào của chính mình.'
+    a: 'Bạn liệt kê nhiều mục dưới ``providers``", "và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó ``promptfoo view`` hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion", "để bạn so sánh trực tiếp trên đầu vào của chính mình.'
   - q: 'Có cách nào tích hợp promptfoo vào pipeline CI/CD không?'
-    a: 'Có. Vì promptfoo là một CLI", "bạn có thể chạy `npx promptfoo@latest eval` trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.'
+    a: 'Có. Vì promptfoo là một CLI", "bạn có thể chạy ``npx promptfoo@latest eval`` trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.'
   - q: 'Làm sao đóng góp cho dự án promptfoo?'
     a: 'Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại [hướng dẫn đóng góp"](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)."
 ---
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 
@@ -58,8 +65,8 @@ Quy trình ưu tiên cấu hình: 1. **Cấu hình khai báo** — một tệp `
 
 Dưới đây là một ``promptfooconfig.yaml`` tối giản: `````yaml
 # promptfooconfig.yaml
-description: "GPT vs Claude on a couple of prompts"
-prompts: - "What is the capital of {{country}}?"
+description: "Technical guide and comparison."
+prompts: - "What is the capital of ?"
   - "Explain quantum mechanics in one sentence."
 
 providers: - openai:gpt-4o-mini
@@ -70,7 +77,7 @@ tests: - vars: country: France
         value: Paris
 `````
 
-Cấu hình này chạy cả hai prompt trên cả hai provider. Với prompt đầu tiên, nó thay thế ````{{country}}```` và khẳng định rằng đầu ra có chứa "Paris". Khóa API được đọc từ biến môi trường (ví dụ ````OPENAI_API_KEY```` và ````ANTHROPIC_API_KEY````), không lưu trong tệp cấu hình.
+Cấu hình này chạy cả hai prompt trên cả hai provider. Với prompt đầu tiên, nó thay thế ```````` và khẳng định rằng đầu ra có chứa "Paris". Khóa API được đọc từ biến môi trường (ví dụ ````OPENAI_API_KEY```` và ````ANTHROPIC_API_KEY````), không lưu trong tệp cấu hình.
 
 ![](https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png)
 - Source Code: [promptfoo GitHub](https://github.com/promptfoo/promptfoo)
@@ -129,8 +136,8 @@ promptfoo view
 
 Tạo cấu hình kiểm tra một chuỗi con kỳ vọng: `````yaml
 # promptfooconfig.yaml
-description: "Basic prompt test"
-prompts: - "What is the capital of {{country}}?"
+description: "Technical guide and comparison."
+prompts: - "What is the capital of ?"
 
 providers: - openai:gpt-4o-mini
 
@@ -149,8 +156,8 @@ Promptfoo thực thi test case và báo cáo assertion có vượt qua hay khôn
 
 Bạn có thể liệt kê nhiều provider và phối hợp nhiều loại assertion — chính xác, ngữ nghĩa và chấm bằng LLM: `````yaml
 # promptfooconfig.yaml
-description: "GPT vs Claude comparison"
-prompts: - "Answer concisely: {{question}}"
+description: "Technical guide and comparison."
+prompts: - "Answer concisely: "
 
 providers: - openai:gpt-4o
   - anthropic:messages:claude-3-5-sonnet-20241022
@@ -186,7 +193,7 @@ jobs: eval: runs-on: ubuntu-latest
         with: node-version: 22
 
       - name: Run promptfoo eval
-        env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        env: OPENAI_API_KEY: $
         run: npx promptfoo@latest eval
 `````
 

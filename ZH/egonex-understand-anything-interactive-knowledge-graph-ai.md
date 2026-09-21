@@ -1,11 +1,10 @@
 ---
-title: "Egonex Understand-Anything：任何主题的交互式知识图谱——AI 驱动、开源、零配置"
-description: "了解如何使用 Egonex 的 Understand-Anything 通过 AI 从任何主题生成交互式知识图谱。包含逐步安装、多源综合、实时搜索和与替代方案的比较。"
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
-category: llm-frameworks
-tags: ["egonex", "understand-anything", "知识图谱", "AI", "交互式", "开源", "研究", "可视化", "llm"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

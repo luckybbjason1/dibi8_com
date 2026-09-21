@@ -1,6 +1,13 @@
 ---
-title: "知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$1...
-description: "5 组件自托管知识库 stack，给个人或团队用。AnythingLLM（UI + RAG）+ RAGFlow（深度文档解析）+ mem0（agent 记忆）+ AgentMemory MCP（暴露给..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-base-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -190,7 +197,7 @@ npm install -g @mem0/mem0-mcp
 
 ## 8. Day 1 安装顺序（90 分钟）
 
-1. **开 VPS**（10 分）—— 订一个 {{< aff "digitalocean" "kb-vps" "DigitalOcean $12/月 droplet" >}}（8 GB 档；4 GB 不够跑解析 + embedding + LLM），装 Docker
+1. **开 VPS**（10 分）—— 订一个 （8 GB 档；4 GB 不够跑解析 + embedding + LLM），装 Docker
 2. **先 AnythingLLM**（15 分）—— 单 docker run，浏览到 :3001，建管理员账号 + 第一个 workspace
 3. **上传 10 个测试文档**（10 分）—— PDF / .md 笔记 / .docx 混杂 —— 看 AnythingLLM 内置解析器搞得定哪些
 4. **第二 RAGFlow**（20 分）—— docker compose，浏览到 :80，重处理 2-3 个 AnythingLLM 搞不定的文档
@@ -232,7 +239,7 @@ npm install -g @mem0/mem0-mcp
 超过这个 stack 时：
 
 - **语料 > 1 TB 或 > 1000 万文档** —— Qdrant 上独立 32 GB 机器，加分片
-- **多地区团队** —— AnythingLLM 多地区只读副本，单写 master 上 {{< aff "htstack" "upgrade-hk-vps" "HTStack HK" >}} 给中国友好延迟
+- **多地区团队** —— AnythingLLM 多地区只读副本，单写 master 上  给中国友好延迟
 - **要全文 + 向量混合** —— 向量库从 Chroma 迁到 Weaviate
 - **审计 / SOC2 合规** —— 配 Portkey 做 LLM 调用可观测性（看 [LLM Gateway 对比 2026](/zh/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/)）
 - **多租户 SaaS** —— 加 LiteLLM 配客户级虚拟 key（[LiteLLM 指南](/zh/resources/llm-frameworks/litellm/)）
@@ -248,7 +255,7 @@ npm install -g @mem0/mem0-mcp
 
 替代 $50-200/月 SaaS（Notion AI + Mem + Glean Lite），自托管你拥有。90 分钟搭好，MCP 原生所以每个编程 agent 都受益。
 
-开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/月 droplet" >}} 起入门档，跟第 8 节做，明天你的知识库就能从 Claude Desktop / Cursor / OpenCode 查询。
+开一个  起入门档，跟第 8 节做，明天你的知识库就能从 Claude Desktop / Cursor / OpenCode 查询。
 
 
 * * *

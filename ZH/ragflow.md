@@ -1,6 +1,13 @@
 ---
-title: "RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与...
-description: "RAGFlow 是具备深度文档理解和内置 Agent 能力的开源检索增强生成（RAG）引擎。兼容 Ollama、OpenAI、Qdrant、Elasticsearch、Redis。涵盖 Docker ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ragflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
 

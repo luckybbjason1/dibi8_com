@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "goose-ai-agent-open-source-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Goose AI Agent: Open-Source Automation by Linux Foundati...
-description: Goose is a general-purpose open-source AI Agent developed by the Linux. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   Foundation Agentic AI Foundation (AAIF). Automate coding, research, and daily tasks.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -226,8 +233,8 @@ If you want an AI assistant that can actually **do things** — not just chat �
 * * *
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 

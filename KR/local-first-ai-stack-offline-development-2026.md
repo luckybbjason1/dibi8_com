@@ -1,6 +1,13 @@
 ---
-title: "로컬 우선 AI 스택 2026: 완전 오프라인 AI 개발 환경"
-description: "2026년 완전 오프라인 AI 코딩 환경 구축하기: LLM은 Ollama, 코딩 에이전트는 Aider, RAG는 ChromaDB — 전부 로컬. 설치 가이드, 하드웨어 실상, 오프..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-first-ai-stack-offline-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
@@ -25,7 +32,7 @@ faq: - q: "2026년에 왜 완전 오프라인으로 가야 하나?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 로컬 우선 AI 스택 2026: 오프라인 개발 환경
 
@@ -135,8 +142,8 @@ model = SentenceTransformer("BAAI/bge-m3")
 
 ## 추천 인프라
 
-로컬 모델 파인튜닝용 GPU 드롭릿이 필요하다면: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧, GPU 드롭릿
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS
+로컬 모델 파인튜닝용 GPU 드롭릿이 필요하다면: - **** — 200달러 크레딧, GPU 드롭릿
+- **** — 홍콩 VPS
 
 *제휴 링크 — 가격은 동일, dibi8.com을 후원합니다.*
 

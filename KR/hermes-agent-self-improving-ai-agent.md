@@ -1,6 +1,13 @@
 ---
-title: Hermes Agent：자기 진화하는 AI 에이전트, 사용할수록 당신을 더 잘 이해합니다
-description: Hermes Agent는 Nous Research가 만든 오픈소스 AI 에이전트로, 자체 학습 루프를 통해 경험에서 스킬을. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hermes-agent-self-improving-ai-agent"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   생성하고, 지속적으로 개선하며, 당신의 선호도를 기억합니다.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -26,9 +33,9 @@ faqs: - q: 'Hermes Agent는 Claude Code, Cursor, GitHub Copilot 같은 도구와
   - q: 'Hermes Agent는 세션 간에 어떤 종류의 메모리를 유지하나요?'
     a: 'Hermes는 두 가지 유형의 메모리를 유지합니다. 사용자 프로필 메모리(코딩 스타일, 프로젝트, 선호하는 도구, 커뮤니케이션 선호도, 자주 하는 실수)와 세션 메모리(현재 프로젝트 컨텍스트, 최근 명령어와 출력, 편집한 파일)입니다. 프로필 메모리는 컴퓨터를 재시작한 후에도 유지됩니다.'
   - q: 'Hermes Agent는 어떤 메시징 플랫폼에서 실행할 수 있나요?'
-    a: 'Hermes Agent는 Telegram, Discord, Slack, WhatsApp, Signal, Email에서 멀티 플랫폼 메시징 봇으로 동작하며, 모두 `hermes gateway setup` 명령으로 구성됩니다. 동일한 명령어와 스킬이 모든 플랫폼에서 그대로 작동합니다.'
+    a: 'Hermes Agent는 Telegram, Discord, Slack, WhatsApp, Signal, Email에서 멀티 플랫폼 메시징 봇으로 동작하며, 모두 ``hermes gateway setup`` 명령으로 구성됩니다. 동일한 명령어와 스킬이 모든 플랫폼에서 그대로 작동합니다.'
   - q: 'Hermes Agent는 어떻게 설치하고 LLM 제공자를 구성하나요?'
-    a: 'Linux, macOS 또는 WSL2에서는 한 줄짜리 curl 스크립트를 bash로 파이프하여 설치하거나, 저장소를 클론한 뒤 `./setup-hermes.sh`를 실행할 수 있습니다. 그런 다음 `hermes config set provider openai`와 `hermes config set model gpt-4o` 같은 명령으로 제공자를 설정하거나, `hermes config set provider ollama`를 통해 로컬 모델을 사용할 수 있습니다.'
+    a: 'Linux, macOS 또는 WSL2에서는 한 줄짜리 curl 스크립트를 bash로 파이프하여 설치하거나, 저장소를 클론한 뒤 ``./setup-hermes.sh``를 실행할 수 있습니다. 그런 다음 ``hermes config set provider openai``와 ``hermes config set model gpt-4o`` 같은 명령으로 제공자를 설정하거나, ``hermes config set provider ollama``를 통해 로컬 모델을 사용할 수 있습니다.'
 ---
 
 
@@ -292,8 +299,8 @@ Hermes Agent를 사용해 보셨나요? 자기 개선하는 AI 에이전트에 �
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

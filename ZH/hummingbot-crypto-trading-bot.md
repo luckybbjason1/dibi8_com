@@ -1,16 +1,14 @@
 ---
-title: "Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南"
-description: "Hummingbot v2实战部署指南，开源加密货币交易机器人，支持50+交易所连接器。涵盖Docker安装、自定义策略、回测、DEX网关和生产环境加固。". Comprehensive guide ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /zh/posts/hummingbot-crypto-trading-bot/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hummingbot-crypto-trading-bot"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么大多数交易机器人会失败
 
@@ -414,7 +412,7 @@ python scripts/backtest.py \
 
 `````
 回测结果（2026-01-01 至 2026-03-31）
-========================================
+
 总交易次数：           12,450
 总收益：               +5.23%
 夏普比率：             2.14

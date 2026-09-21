@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "typesense-instant-search-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Typesense 2026: The Open-Source Instant Search API Handl...
-description: "Set up Typesense 27.1 for typo-tolerant instant search with sub-50ms response times. Step-by-step Do..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/typesense-instant-search-api/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results
 

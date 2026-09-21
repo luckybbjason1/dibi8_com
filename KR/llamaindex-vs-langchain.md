@@ -1,9 +1,10 @@
 ---
-title: "LlamaIndex vs LangChain 2025: 당신에게 맞는 LLM 프레임워크는?"
-description: "2025년 기준 LangChain과 LlamaIndex의 상세 비교. 아키텍처, RAG 성능, 에이전트 지원, 학습 곡선, 통합성을 표와 코드 예제로 분석한다.". Comprehe..."
-draft: false
-aliases:
-  - /posts/llamaindex-vs-langchain/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamaindex-vs-langchain"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

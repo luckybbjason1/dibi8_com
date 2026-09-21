@@ -1,6 +1,13 @@
 ---
-title: "LiteLLM: 22,500 Stars — 100개 이상의 LLM을 하나의 API로 배포, 내장 폴오...
-description: "LiteLLM (litellm)은 100개 이상의 LLM을 단일 API로 호출하는 오픈소스 AI 게이트웨이입니다. OpenAI, Anthropic, Ollama, Cohere, G..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "litellm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
 

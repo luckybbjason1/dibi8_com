@@ -1,11 +1,10 @@
 ---
-title: "TimesFM 2.5: Google Revolutionary Time Series Foundation...
-description: "Complete guide to TimesFM 2.5 - Google Research decoder-only foundation model for time series foreca..."
-tags: ["open-source"]
-date: 2026-06-19
-lastmod: 2026-06-19layout: article
-category: data-science
-slug: timesfm-google-time-series-foundation-model
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "timesfm-google-time-series-foundation-model"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting

@@ -1,16 +1,14 @@
 ---
-title: "Appwrite 2026: Auth, DB, Storage를 갖춘 오픈소스 Firebase 대안 — ...
-description: "Appwrite 1.6 완벽 가이드 — 인증, 데이터베이스, 스토리지, 클라우드 함수, 실시간 구독 기능을 갖춘 셀프호스팅 오픈소스 백엔드. Docker 설치, SDK 통합, 벤치..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["appwrite", "backend-as-a-service", "firebase 대안", "docker", "오픈소스", "인증", "데이터베이스", "클우드 함수", "셀프호스팅"]
-aliases:
-  - /kr/posts/appwrite-backend-as-service/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "appwrite-backend-as-service"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: Firebase가 만든 85억 달러의 문제
 
@@ -242,8 +240,8 @@ cd ~/.n8n/custom && npm install n8n-nodes-appwrite
       "databaseId": "prod-db",
       "collectionId": "events",
       "data": {
-        "event_type": "={{ $json.type }}",
-        "payload": "={{ JSON.stringify($json) }}"
+        "event_type": "=",
+        "payload": "="
       }
     },
     "name": "Appwrite Log",

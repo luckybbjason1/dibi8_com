@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "preset-superset-data-exploration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Apache Superset 2026: The Open-Source Data Exploration P...
-description: "Complete guide to Apache Superset 2026 — install via Docker in 5 minutes, connect 30+ data sources, ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/preset-superset-data-exploration/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your BI Stack Costs Too Much
 
@@ -226,7 +233,7 @@ Superset supports row-level security policies that filter data based on user att
 ROW_LEVEL_SECURITY_FILTERING = True
 
 # Define a filter in the UI: # Table: orders
-# Filter clause: region = '{{ current_username() }}'
+# Filter clause: region = ''
 # Group: Sales Team
 `````
 

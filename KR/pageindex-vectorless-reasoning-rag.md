@@ -1,6 +1,13 @@
 ---
-title: "PageIndex：29K⭐벡터 없는 RAG 시스템, 문서 검색의 혁명"
-description: "PageIndex는 VectifyAI가 개발한 오픈소스 벡터 없는 RAG 시스템입니다. 29K+ Stars, 문서 트리 구조를 통해 인간과 같은 검색을 구현하며 FinanceBen..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pageindex-vectorless-reasoning-rag"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -24,7 +31,7 @@ faqs: - q: 'PageIndex란 무엇이며 기존 RAG와 어떻게 다른가요?'
   - q: 'PageIndex는 FinanceBench 벤치마크에서 얼마나 정확한가요?'
     a: 'PageIndex를 GPT-4와 결합하면 FinanceBench에서 98.7%의 정확도를 달성하며, 이는 state-of-the-art 수준의 결과입니다. PageIndex와 Claude-3을 결합하면 97.2%에 도달하는 반면, 기존 벡터 RAG는 같은 벤치마크에서 약 79-82%의 점수를 기록합니다.'
   - q: 'PageIndex를 설치하고 기본 쿼리를 실행하려면 어떻게 하나요?'
-    a: '`pip install pageindex`로 설치합니다. 그런 다음 `pi = PageIndex()`로 초기화하고, `pi.load_pdf("file.pdf")`로 문서를 불러온 뒤, `result = pi.query("your question")`으로 쿼리합니다. 결과에는 답변과 함께 페이지 번호, 챕터 등의 인용 출처가 포함됩니다.'
+    a: '``pip install pageindex``로 설치합니다. 그런 다음 ``pi = PageIndex()``로 초기화하고, ``pi.load_pdf("file.pdf")``로 문서를 불러온 뒤, ``result = pi.query("your question")``으로 쿼리합니다. 결과에는 답변과 함께 페이지 번호, 챕터 등의 인용 출처가 포함됩니다.'
   - q: 'PageIndex는 어떤 종류의 문서에 가장 적합한가요?'
     a: 'PageIndex는 구조가 중요하고 설명 가능한 인용이 필요한 길고 전문적인 문서를 위해 설계되었습니다. 예를 들어 재무 보고서와 사업설명서, 법률 계약서와 판례법, 의학 문헌과 임상시험 보고서, 그리고 API 레퍼런스나 운영 매뉴얼 같은 기술 문서 등이 있습니다.'
 ---
@@ -323,8 +330,8 @@ PageIndex는 RAG 기술의 차세대 진화입니다: ✅ **29K+ Stars** — 커
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

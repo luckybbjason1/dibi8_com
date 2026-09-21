@@ -1,6 +1,13 @@
 ---
-title: "InvokeAI: 27.2K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026"
-description: "InvokeAI (Invoke) là công cụ sáng tạo hàng đầu cho mô hình Stable Diffusion với WebUI dẫn đầu ngành...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "invokeai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
 

@@ -1,6 +1,13 @@
 ---
-title: "Dagger: Programmable CI/CD with 15K+ Stars — Comparison ...
-description: "Dagger is a programmable CI/CD engine that runs pipelines in containers. Compatible with Docker, Go,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagger"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/dagger/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 
@@ -492,7 +499,7 @@ jobs: ci: runs-on: ubuntu-latest
           verb: call
           module: .
           args: run --source=.
-        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: $
 `````
 
 ### CI Integration — GitLab CI

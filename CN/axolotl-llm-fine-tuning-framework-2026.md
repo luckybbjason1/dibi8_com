@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "axolotl-llm-fine-tuning-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...
-description: "Axolotl is the open-source LLM fine-tuning framework with single-YAML config across full / LoRA / QL..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -60,7 +67,7 @@ Axolotl gives you the "cloud platform" UX (one config file, one command) while k
 | 2× 80 GB (2× H100) | Llama 3.3 70B LoRA, Mixtral full fine-tune |
 | 8× H100 cluster | Frontier-class full fine-tunes |
 
-Cloud rental option: H100 on Vast.ai $1.50-2/hr, or for sustained workloads grab a {{< aff "digitalocean" "axolotl-gpu" "DigitalOcean GPU droplet" >}}. For shorter China-friendly latency, {{< aff "htstack" "axolotl-vps-hk" "HTStack Hong Kong" >}} works for the data prep + monitoring side (the actual training stays on rented GPUs).
+Cloud rental option: H100 on Vast.ai $1.50-2/hr, or for sustained workloads grab a . For shorter China-friendly latency,  works for the data prep + monitoring side (the actual training stays on rented GPUs).
 
 ## 3. Quick Install (15 min)
 

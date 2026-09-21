@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-base-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "The Knowledge Base Stack 2026: Build Your "Second Brain"...
-description: "A 5-component self-hosted knowledge base stack for personal or team use. AnythingLLM (UI + RAG) + RA..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -181,7 +188,7 @@ npm install -g @mem0/mem0-mcp
 
 ## 8. Day 1 Setup Order (90 minutes)
 
-1. **Spin up VPS** (10 min) — Order a {{< aff "digitalocean" "kb-vps" "DigitalOcean $12/mo droplet" >}} (8 GB tier; 4 GB is too tight for parsing + embedding + LLM), install Docker
+1. **Spin up VPS** (10 min) — Order a  (8 GB tier; 4 GB is too tight for parsing + embedding + LLM), install Docker
 2. **AnythingLLM first** (15 min) — Single docker run, browse to :3001, create admin account + first workspace
 3. **Upload 10 test documents** (10 min) — Mix of PDFs, .md notes, .docx — see what AnythingLLM's built-in parser handles
 4. **RAGFlow second** (20 min) — docker compose, browse to :80, re-process the 2-3 documents AnythingLLM stumbled on
@@ -220,7 +227,7 @@ Compare against SaaS equivalents: - Solo: Notion AI ($10) + Mem.ai ($15) = $25/m
 ## 10. Upgrade Path
 
 When you outgrow this stack: - **Corpus > 1 TB or > 10M docs** — Move Qdrant to dedicated 32 GB box, add sharding
-- **Multi-region team** — Replicate AnythingLLM read replicas in multiple regions, single write master in {{< aff "htstack" "upgrade-hk-vps" "HTStack HK" >}} for China-friendly latency
+- **Multi-region team** — Replicate AnythingLLM read replicas in multiple regions, single write master in  for China-friendly latency
 - **Need full text + vector hybrid** — Migrate vector DB from Chroma to Weaviate
 - **Audit / SOC2 compliance** — Pair with Portkey for LLM call observability (see [LLM Gateway comparison 2026](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
 - **Multi-tenant SaaS** — Add LiteLLM for virtual-key-per-customer ([LiteLLM guide](/resources/llm-frameworks/litellm/))
@@ -235,7 +242,7 @@ When you outgrow this stack: - **Corpus > 1 TB or > 10M docs** — Move Qdrant t
 
 Replaces $50-200/mo of SaaS (Notion AI + Mem + Glean Lite) with self-hosted you own. 90-minute setup, MCP-native so every coding agent benefits.
 
-Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/mo droplet" >}} for the entry tier, follow section 8, and your knowledge base is queryable from Claude Desktop / Cursor / OpenCode by tomorrow.
+Spin up a  for the entry tier, follow section 8, and your knowledge base is queryable from Claude Desktop / Cursor / OpenCode by tomorrow.
 
 
 * * *

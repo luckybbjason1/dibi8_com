@@ -1,10 +1,10 @@
 ---
-title: "Schema.org JSON-LD Generator — Article / Organization / ..."
-description: "Generate copy-paste-ready Schema.org JSON-LD structured data for Article, Organization, FAQPage, Pro..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-schema-generator"
-tool_id: "schema-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "schema-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

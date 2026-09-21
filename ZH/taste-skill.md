@@ -1,23 +1,19 @@
 ---
-title: "品味技能：让 AI 告别平庸输出——Agent 技能框架 2026"
-description: "Taste Skill 是一个可移植的 Agent 技能框架，通过更强的布局、排版、动效和间距设计，全面提升 AI 生成的前端界面。兼容 Codex、Cursor、Claude Code 和 Chat..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "taste-skill"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: taste-skill
 category: dev-utils
 tags: ["ai 设计", "agent 技能", "反平庸", "前端", "codex", "cursor", "claude code", "提示词工程"]
-images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
-    alt: "Taste Skill 横幅"
-    role: hero
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/taste-skill-logo.webp"
-    alt: "Taste Skill 标志"
-    role: logo
-  - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
-    alt: "Taste Skill GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
-    alt: "Taste Skill banner"
-    role: hero
+  image: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
 ---
 
 

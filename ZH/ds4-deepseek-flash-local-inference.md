@@ -1,6 +1,13 @@
 ---
-title: "DS4 vs Ollama vs llama.cpp：128GB Mac 极限测评 DeepSeek V4 Fl..."
-description: "了解 antirez（Redis 创始人）打造的 DS4 推理引擎。本文详述 DeepSeek V4 Flash 本地部署、macOS/Linux 安装教程、与 Ollama/llama.cpp 的性..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-deepseek-flash-local-inference"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
@@ -415,8 +422,8 @@ DS4 代表了对本地 LLM 推理未来的一次大胆押注：**把一件事做
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

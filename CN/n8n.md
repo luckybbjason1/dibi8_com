@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
-description: "n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations...."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/dev-utils/n8n-ai-workflow-automation-self-hosted-2026/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 *The n8n fair-code workflow automation platform — 188K+ GitHub stars, 400+ integrations.*
@@ -385,7 +392,7 @@ Add the credential in n8n UI: `````bash
           "message": [
             {
               "role": "user",
-              "content": "=Summarize this data: {{ $json.body }}"
+              "content": "=Summarize this data: "
             }
           ]
         }
@@ -398,7 +405,7 @@ Add the credential in n8n UI: `````bash
     {
       "parameters": {
         "channel": "#alerts",
-        "text": "=AI Summary: {{ $json.output }}"
+        "text": "=AI Summary: "
       },
       "name": "Slack Message",
       "type": "n8n-nodes-base.slack",
@@ -446,8 +453,8 @@ Add the credential in n8n UI: `````bash
     },
     {
       "parameters": {
-        "chatId": "={{ $json.message.chat.id }}",
-        "text": "={{ $json.message.text }}",
+        "chatId": "=",
+        "text": "=",
         "additionalOptions": {}
       },
       "name": "Telegram Response",

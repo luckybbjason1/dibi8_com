@@ -1,6 +1,13 @@
 ---
-title: "Terax AI: 당신을 이해하는 경량 AI 터미널 에뮬레이터"
-description: "Terax AI를 알아보세요. Tauri 2 + Rust로 구축된 7 MB AI 네이티브 터미널 에뮬레이터입니다. 자연어를 Shell 명령으로 변환하고, 인라인 AI 지원, 스마트..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "terax-ai-lightweight-ai-terminal"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -252,8 +259,8 @@ Terax 프로젝트는 GitHub에서 확인할 수 있는 투명한 로드맵과 �
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

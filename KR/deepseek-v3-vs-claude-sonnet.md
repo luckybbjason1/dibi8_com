@@ -1,6 +1,13 @@
 ---
-title: "DeepSeek V3.5 vs Claude Sonnet 4.6 2026: 오픈 웨이트 vs 1M 컨텍스트"
-description: "DeepSeek V3.5(685B MoE, 오픈 웨이트)와 Claude Sonnet 4.6 비교 — MTok당 가격, 컨텍스트 윈도우, SWE-bench, 다국어, API 가용성...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepseek-v3-vs-claude-sonnet"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

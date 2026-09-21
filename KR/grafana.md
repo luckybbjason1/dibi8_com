@@ -1,6 +1,13 @@
 ---
-title: "Grafana: 73,876 GitHub Stars — Docker 배포 가이드 2026"
-description: "Grafana는 모니터링과 관측 가능성을 위한 오픈소스 시각화 및 분석 플랫폼이다. Prometheus, Loki, InfluxDB, Elasticsearch 통합 포함. Dock..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "grafana"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 모든 프로덕션 사고는 하나의 질문으로 시작된다: "무엇이 바뀌었나?" 메트릭, 로그, 추적 데이터를 중앙 집중화된 뷰 없이는 그 질문에 답하는 데 몇 분 — 때로는 몇 시간 — 이 걸린다. GitHub 73,876 스타를 보유한 오픈소스 시각화 플랫폼인 Grafana는 그 질문을 한눈에 보이는 대시보드로 바꾼다. 이 가이드에서는 프로덕션급 Docker 배포, 데이터 소스 통합, 그리고 개념 검증과 프로덕션 준비 모니터링 스택을 구분하는 강화 결정을 다룬다.
 
@@ -253,7 +260,7 @@ Loki는 동일한 대시보드에서 로그 라인을 메트릭과 나란히 표
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # 특정 오류 패턴 검색
-{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
+{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format ""
 `````
 
 ### InfluxDB — 시계열 데이터
@@ -353,7 +360,7 @@ groups: - orgId: 1
     folder: Infrastructure
     interval: 60s
     rules: - uid: high-cpu-usage
-        title: CPU 사용률 80% 초과
+        title: "AI Tool Guide"
         condition: B
         data: - refId: A
             relativeTimeRange: from: 300
@@ -363,7 +370,7 @@ groups: - orgId: 1
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations: summary: "{{ $labels.instance }}에서 CPU 사용률이 높습니다"
+        annotations: summary: "에서 CPU 사용률이 높습니다"
 `````
 
 ### Git에서 대시보드 프로비저닝

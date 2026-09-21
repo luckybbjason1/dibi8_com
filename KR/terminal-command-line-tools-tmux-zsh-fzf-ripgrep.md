@@ -1,9 +1,10 @@
 ---
-title: "터미널 및 CLI 생산성 도구: tmux, zsh, fzf, ripgrep 완벽 가이드"
-description: "개발자의 터미널 생산성을 극대화하는 tmux, zsh, fzf, ripgrep 등 필수 CLI 도구의 설치부터 설정, 활용법까지 상세히 다룹니다.". Comprehensive gu..."
-draft: false
-aliases:
-  - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

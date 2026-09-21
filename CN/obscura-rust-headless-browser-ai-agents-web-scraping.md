@@ -1,11 +1,10 @@
 ---
-title: "Obscura: Rust Headless Browser for AI Agents — 14,000 St...
-description: "Obscura (14,788 GitHub stars) is a Rust headless browser engine for AI agents and web scraping. 30MB..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
-category: 'dev-utils'
-tags: ["obscura", "headless browser", "Rust browser", "web scraping", "AI agent tools", "Puppeteer alternative", "Playwright alternative", "anti-detection", "stealth browsing"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "obscura-rust-headless-browser-ai-agents-web-scraping"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026

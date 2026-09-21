@@ -1,6 +1,13 @@
 ---
-title: "Các Công Cụ Xử Lý Dữ Liệu Truyền Phát ThờI Gian Thực Tốt...
-description: "So sánh chi tiết các công cụ xử lý dữ liệu truyền phát thờI gian thực hàng đầu năm 2025. Tìm hiểu Ap..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "real-time-data-streaming-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

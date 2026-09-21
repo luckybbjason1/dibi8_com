@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "baetyl-edge-ai-computing-platform"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Baetyl: The Cloud-Native Edge AI Computing Platform Depl...
-description: "Deploy Baetyl v2.4 to bring Kubernetes-native edge computing to IoT devices. AI model inference, MQT..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/baetyl-edge-ai-computing-platform/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The $12 Trillion Edge AI Gap
 

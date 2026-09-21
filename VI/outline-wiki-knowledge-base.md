@@ -1,6 +1,13 @@
 ---
-title: "Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
-description: "Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Mar..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "outline-wiki-knowledge-base"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Tài Liệu Đi Đâu Mất Rồi
 
@@ -209,7 +216,7 @@ features: bot_user: display_name: Outline
     always_online: true
   slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
-      description: Tìm kiếm knowledge base
+      description: "Technical guide and comparison."
       usage_hint: "[từ khóa tìm kiếm]"
       should_escape: false
 oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
@@ -272,7 +279,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           DOCS=$(cat docs/api-reference.md)
           curl -X POST "https://wiki.yourcompany.com/api/documents.update" \
-            -H "Authorization: Bearer ${{ secrets.OUTLINE_API_TOKEN }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d "{
               \"id\": \"DOC_ID_HERE\",

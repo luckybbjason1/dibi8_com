@@ -1,16 +1,14 @@
 ---
-title: "Dagger: 可编程 CI/CD 15K+ Stars — 对比 GitHub Actions、GitLab ...
-description: "Dagger 是一个可编程 CI/CD 引擎，在容器中运行流水线。兼容 Docker、Go、Python、TypeScript。涵盖 Dagger 安装配置、教程、与 GitHub Actions 对..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["cicd", "devops", "容器", "流水线即代码", "docker", "github-actions", "gitlab-ci", "构建自动化"]
-aliases:
-  - /zh/posts/dagger/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagger"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 
@@ -494,7 +492,7 @@ jobs: ci: runs-on: ubuntu-latest
           verb: call
           module: .
           args: run --source=.
-        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: $
 `````
 
 ### CI 集成 — GitLab CI

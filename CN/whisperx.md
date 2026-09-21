@@ -1,6 +1,13 @@
 ---
-title: "WhisperX: 22K+ Stars — Production ASR Setup Guide 2026"
-description: "WhisperX is an open-source ASR toolkit with word-level timestamps and speaker diarization. Compatibl..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "whisperx"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/whisperx/-
 ---
 
-{{</* resource-info */>}}
+
 
 Transcribing audio is easy. Getting **word-level timestamps accurate to sub-100ms** and knowing **exactly who spoke each word** is hard. OpenAI Whisper gives you segment-level timestamps that drift by seconds. For podcast editing, video subtitling, meeting transcripts, and legal depositions, that level of precision is unusable.
 

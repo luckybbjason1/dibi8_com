@@ -1,6 +1,13 @@
 ---
-title: Windsurf AI IDE — The Agentic Code Editor That Thinks Wit...
-description: Complete guide to Windsurf, the agentic AI IDE from Codeium that writes. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "windsurf-ai-ide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   code, debugs, and ships features autonomously. Pricing, benchmarks, and real-world
   workflows.
 tags: - ai-ide
@@ -143,7 +150,7 @@ Windsurf offers the best value for teams wanting true agentic coding capabilitie
 
 ### Workflow 1: Feature Development
 
-Start with a natural language description: `````
+Start with a natural language description: "Technical guide and comparison."
 "Add dark mode toggle to settings page. Persist preference in localStorage.
 Update all components to respect the theme. Add CSS variables for colors."
 `````

@@ -1,6 +1,13 @@
 ---
-title: "Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026"
-description: "Prometheus(Prom)는 오픈소스 모니터링 시스템 및 시계열 데이터베이스입니다. Docker, Kubernetes, Grafana, Alertmanager와 호환됩니다. 설..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prometheus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -24,7 +31,7 @@ aliases:
 # Prometheus: 64,094 GitHub Stars — Docker 배포 가이드 2026
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 
@@ -229,32 +236,32 @@ groups: - name: node-alerts
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} 메모리 사용률 과다"
-          description: "메모리 사용률이 85%를 초과함 (현재값: {{ $value }}%)"
+        annotations: summary: " 메모리 사용률 과다"
+          description: "Technical guide and comparison."
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
-        annotations: summary: "{{ $labels.instance }} CPU 사용률 과다"
-          description: "CPU 사용률이 80%를 초과함 (현재값: {{ $value }}%)"
+        annotations: summary: " CPU 사용률 과다"
+          description: "Technical guide and comparison."
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} 디스크 공간 부족"
-          description: "디스크 공간이 10% 미만 (마운트 포인트: {{ $labels.mountpoint }})"
+        annotations: summary: " 디스크 공간 부족"
+          description: "Technical guide and comparison."
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
-        annotations: summary: "인스턴스 {{ $labels.instance }} 다운"
-          description: "대상에 3분 이상 접근 불가"
+        annotations: summary: "인스턴스  다운"
+          description: "Technical guide and comparison."
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} 요청 지연 과다"
-          description: "95번째 백분위 지연이 {{ $value }}초"
+        annotations: summary: " 요청 지연 과다"
+          description: "Technical guide and comparison."
 `````
 
 ### Alertmanager Slack 설정
@@ -271,8 +278,8 @@ route: receiver: 'slack-notifications'
 receivers: - name: 'slack-notifications'
     slack_configs: - channel: '#alerts'
         send_resolved: true
-        title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
-        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+        title: ''
+        text: ''
 `````
 
 ### Kubernetes 서비스 디스커버리

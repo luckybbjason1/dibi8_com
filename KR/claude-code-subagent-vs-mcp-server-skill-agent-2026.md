@@ -1,6 +1,13 @@
 ---
-title: "서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
-description: "Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-vs-mcp-server-skill-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -116,9 +123,9 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 
 ## 프로덕션 준비된 Claude Code 구축하기
 
-세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. **MCP 서버와 CI를 위한 신뢰할 수 있는 호스트.** MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.
+세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. **MCP 서버와 CI를 위한 신뢰할 수 있는 호스트.** MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.
 
-2. **병렬 계층을 위한 클라우드 여유 공간.** 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.
+2. **병렬 계층을 위한 클라우드 여유 공간.** 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.
 
 3. **스킬 번들.** 스킬/서브에이전트/서버 구분을 가장 빠르게 체득하는 방법은 동작하는 예제를 연구하는 것이다. 우리는 실전 검증된 스킬 다섯 개를 Gumroad에서 $19 번들로 패키지했다 — 화면 구석의 떠 있는 CTA를 보라 — 커스텀 에이전트 정의와 세 계층을 모두 조합하는 오케스트레이터 프롬프트가 포함된다.
 

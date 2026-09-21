@@ -1,6 +1,13 @@
 ---
-title: "回测过拟合：5 种典型模式与真实 PF/Sharpe 数据 (2026)"
-description: "基于 50+ 笔优化器输出的实盘交易，我们梳理出 5 种典型的过拟合模式：walk-forward 背离、市场状态翻转、参数悬崖、指标堆叠和幸存者偏差。每种模式均附可复现的合成示例与检测信号。". C..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "backtest-overfit-5-patterns-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 licensing_model: Open Source
 license_type: MIT
 last_maintained: "2026-05-25"
@@ -22,7 +29,7 @@ faq: - q: "为什么回测中的过拟合检测如此困难？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 回测过拟合：5 种典型模式与真实 PF/Sharpe 数据
 
@@ -150,8 +157,8 @@ lookback=16: PF 0.87
 ## 推荐基础设施
 
 跑长回测 + walk-forward 扫描可以用：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— $200 信用额度，提供 GPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS，到亚洲交易所低延迟
+- **** —— $200 信用额度，提供 GPU droplet
+- **** —— 香港 VPS，到亚洲交易所低延迟
 
 *以上为联盟链接——价格一致，支持 dibi8.com。*
 

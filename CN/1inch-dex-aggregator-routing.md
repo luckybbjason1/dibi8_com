@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "1inch-dex-aggregator-routing"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "1inch-dex-aggregator-routing"
-description: "1inch DEX聚合器2026完全指南：Pathfinder路由、Fusion+无Gas兑换、限价单与SDK实现"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -24,7 +31,7 @@ aliases:
 
 
 
-{{</* resource-info */>}}
+
 
 Decentralized finance has matured far beyond its experimental roots. In 2026, traders demand not just access to liquidity, but intelligent routing that maximizes every basis point of their trades. **1inch** stands at the forefront of this evolution, operating as the most sophisticated DEX aggregator in the ecosystem. With its proprietary **Pathfinder algorithm**, 1inch routes transactions across more than **300 liquidity sources** spanning 10+ blockchain networks, ensuring optimal execution prices while minimizing slippage and gas costs.
 

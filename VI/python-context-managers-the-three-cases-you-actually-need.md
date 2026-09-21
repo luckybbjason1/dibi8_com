@@ -1,6 +1,13 @@
 ---
-title: "Python Context Managers: 3 Trường Hợp Bạn Thực Sự Cần"
-description: "Python context managers: 3 trường hợp bạn thực sự cần. Làm chủ câu lệnh. Comprehensive guide coverin..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "python-context-managers-the-three-cases-you-actually-need"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -22,11 +29,11 @@ faqs: - q: 'Khi nào nên tự viết context manager thay vì dùng try/finally
   - q: 'Làm thế nào để tạo một context manager tạm thời đặt biến môi trường rồi khôi phục lại sau đó?'
     a: 'Dùng @contextlib.contextmanager để lưu giá trị cũ của từng biến bằng os.environ.get(), áp dụng các giá trị ghi đè, yield bên trong try, rồi khôi phục trong finally. Điểm quan trọng: nếu một biến ban đầu không tồn tại (giá trị đã lưu là None), hãy khôi phục bằng os.environ.pop() thay vì gán giá trị, nếu không bạn sẽ ghi chuỗi ký tự "None" vào biến môi trường.'
   - q: 'contextlib.suppress làm gì và tại sao tốt hơn try/except: pass?'
-    a: 'contextlib.suppress(ExceptionClass) nuốt một exception cụ thể và tiếp tục thực thi, ví dụ: `with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")`. Nó rõ ràng hơn try/except: pass vì phạm vi giới hạn buộc bạn phải đặt tên class exception, nên bạn không thể vô tình bắt mọi exception hay ảnh hưởng đến code phía sau phần dọn dẹp.'
+    a: 'contextlib.suppress(ExceptionClass) nuốt một exception cụ thể và tiếp tục thực thi, ví dụ: ``with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")``. Nó rõ ràng hơn try/except: pass vì phạm vi giới hạn buộc bạn phải đặt tên class exception, nên bạn không thể vô tình bắt mọi exception hay ảnh hưởng đến code phía sau phần dọn dẹp.'
   - q: 'Cách viết async context manager trong Python như thế nào?'
-    a: 'Dùng @contextlib.asynccontextmanager để trang trí một async generator rồi sử dụng với `async with`. Cấu trúc hoàn toàn giống phiên bản đồng bộ, điểm khác biệt duy nhất là bạn có thể await bên trong thân hàm, rất phù hợp với các pattern như ''lấy kết nối từ pool, chạy query, rồi giải phóng trong khối finally''.'
+    a: 'Dùng @contextlib.asynccontextmanager để trang trí một async generator rồi sử dụng với ``async with``. Cấu trúc hoàn toàn giống phiên bản đồng bộ, điểm khác biệt duy nhất là bạn có thể await bên trong thân hàm, rất phù hợp với các pattern như ''lấy kết nối từ pool, chạy query, rồi giải phóng trong khối finally''.'
   - q: 'Khi nào KHÔNG nên dùng context manager trong Python?'
-    a: 'Tránh dùng khi phần ''acquire'' không cần ''release'' tương ứng (chỉ cần gọi hàm thẳng), khi việc dọn dẹp là nỗ lực tốt nhất và try/finally inline dễ đọc hơn, hoặc khi tài nguyên đã được quản lý vòng đời bởi thứ khác như Session của framework. Mỗi `with` đều thêm overhead và xếp chồng nhiều lớp sẽ nhanh chóng làm giảm khả năng đọc hiểu code.'
+    a: 'Tránh dùng khi phần ''acquire'' không cần ''release'' tương ứng (chỉ cần gọi hàm thẳng), khi việc dọn dẹp là nỗ lực tốt nhất và try/finally inline dễ đọc hơn, hoặc khi tài nguyên đã được quản lý vòng đời bởi thứ khác như Session của framework. Mỗi ``with`` đều thêm overhead và xếp chồng nhiều lớp sẽ nhanh chóng làm giảm khả năng đọc hiểu code.'
 ---
 
 
@@ -128,9 +135,9 @@ Chỉ vậy thôi. Ba mẫu này bao phủ khoảng 90% các context managers t�
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

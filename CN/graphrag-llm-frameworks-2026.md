@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "graphrag-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "GraphRAG: Microsoft'"
-description: "GraphRAG is Microsoft"'''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT licen..."
+description: "Technical guide and comparison."
 last_maintained: "2026-06-02"
 draft: false
 categories: ["llm-frameworks"]
@@ -18,7 +25,7 @@ faqs: - q: 'How do I install graphrag?'
   - q: 'How is GraphRAG different from regular vector RAG?'
     a: 'Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).'---
 
-{{< resource-info >}}
+
 
 ## Introduction
 

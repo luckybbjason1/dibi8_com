@@ -1,6 +1,10 @@
 ---
-title: "Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析"
-description: "Langflow (LF) 简化了 AI 代理和工作流的构建。它集成了 LangChain、OpenAI、Hugging Face 和 Anthropic。本文涵盖了其设置、集成、基准测试和生产环境强..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langflow-visual-llm-workflow-builder-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -246,7 +250,7 @@ from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
 class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
-    description: str = "A tool to scrape content from a URL."
+    description: "Technical guide and comparison."
 
     def build_config(self) -> Dict[str, Any]: return {
             "url": {"display_name": "URL", "field_type": "str", "required": True},

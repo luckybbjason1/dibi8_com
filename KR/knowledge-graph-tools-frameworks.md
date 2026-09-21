@@ -1,6 +1,13 @@
 ---
-title: "2025년 최고의 지식 그래프 도구 및 프레임워크 비교: Neo4j, RDFlib, Amazon Ne...
-description: "지식 그래프 도구와 프레임워크를 비교합니다. Neo4j, RDFlib, Amazon Neptune, Stardog, TigerGraph, Dgraph의 특징과 쿼리 언어를 알아보고..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-graph-tools-frameworks"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

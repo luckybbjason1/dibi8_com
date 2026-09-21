@@ -1,16 +1,14 @@
 ---
-title: "VectorBT: 每秒处理 100 万+笔交易的极速 Python 量化回测库 — 2026 量化交易指南"
-description: "掌握 VectorBT Python 量化回测。使用向量化 Numba 加速模拟构建、测试和优化交易策略。2026 完整指南含代码示例。". Comprehensive guide covering ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /zh/posts/vectorbt-quantitative-backtesting/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vectorbt-quantitative-backtesting"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么你的回测太慢了
 

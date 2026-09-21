@@ -1,6 +1,13 @@
 ---
-title: "셀프호스트 AI 코딩 워크플로우: 2026년 $6/월 완전 스택"
-description: "7개 컴포넌트 셀프호스트 AI 코딩 스택 — $290/월 SaaS 구독(Cursor + Claude Code Pro + Copilot + Replit)을 $6/월 인프라로 대체. ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-ai-coding-workflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -120,7 +127,7 @@ LiteLLM이 Ollama를 provider로 자동 인식.
 
 **왜 이거**: 47.8k star, LLM 게이트웨이 중 star 1위. 1k RPS에서 P95 8ms. 셀프호스트 무료. 상세 비교는 [Portkey vs LiteLLM vs OpenRouter 2026 가이드](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 참조.
 
-**4GB VPS에 빠른 배포** (중국 본토 sub-30ms는 {{< aff "htstack" "stack-vps" "HTStack 홍콩 VPS" >}}, 그 외엔 {{< aff "digitalocean" "stack-droplet" "DigitalOcean $6 droplet" >}}): `````bash
+**4GB VPS에 빠른 배포** (중국 본토 sub-30ms는 , 그 외엔 ): `````bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
@@ -204,7 +211,7 @@ Tavily는 월 1,000 검색 무료 tier로 $6 예산 안에 충분.
 
 ## 10. 조립 순서 — Day 1 셋업 (90분)
 
-처음부터 시작한다면 이 순서로: 1. **인프라 띄우기** (15분) — {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}} 주문, Docker 설치, 포트 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama) 열기
+처음부터 시작한다면 이 순서로: 1. **인프라 띄우기** (15분) —  주문, Docker 설치, 포트 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama) 열기
 2. **Ollama 먼저** (10분) — 설치 + ````qwen3-coder:14b```` 풀 (~9 GB). ````curl localhost:11434/api/tags```` 동작 확인
 3. **LiteLLM 두 번째** (15분) — 5절 env vars로 docker run. ````curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"````로 Ollama 모델 나열 확인
 4. **9Router 세 번째** (10분) — 옵션이지만 추천. LiteLLM premium provider config에 추가
@@ -233,7 +240,7 @@ Cursor + Claude Code Pro + Copilot + Replit + OpenAI 충전 $289/월과 비교.
 
 ## 12. 업그레이드 경로
 
-$6 tier를 벗어날 때 (1명 이상 dev / 1개 이상 프로젝트 / 영구 상태 중요): - **Postgres 추가** LiteLLM 지출 추적 + 프로젝트별 가상 키 ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/월)
+$6 tier를 벗어날 때 (1명 이상 dev / 1개 이상 프로젝트 / 영구 상태 중요): - **Postgres 추가** LiteLLM 지출 추적 + 프로젝트별 가상 키 ( $15/월)
 - **Redis 추가** LiteLLM 캐싱용 (1 GB managed Redis $10/월)
 - **LiteLLM을 LB + 3 레플리카 뒤로** — [Portkey vs LiteLLM 2026 가이드](/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) 4절의 Kubernetes 패턴 참조
 - **Grafana + Loki 추가** 완전 가시성 — 모든 prompt, 모든 페일오버, 모든 비용 스파이크 로그
@@ -253,7 +260,7 @@ $6 tier를 벗어날 때 (1명 이상 dev / 1개 이상 프로젝트 / 영구 �
 
 총: $6/월. 총: 90분 조립. 총: 벤더 락인 0.
 
-AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전. {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}} 띄우고 10절 따라가서 다음 주에 결과 보고.
+AI 코딩 SaaS에 $200+/월 쓰고 있다면 이 스택은 1주차에 본전.  띄우고 10절 따라가서 다음 주에 결과 보고.
 
 * * *
 

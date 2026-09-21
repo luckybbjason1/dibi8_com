@@ -1,10 +1,10 @@
 ---
-title: "LLM Model Recommender 2026 — Chọn LLM Phù Hợp Theo Use C...
-description: "Engine quyết định miễn phí để chọn LLM phù hợp năm 2026. Trả lời 5 câu hỏi (use case / ngân sách / c..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-llm-recommender"
-tool_id: "llm-recommender"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-recommender"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

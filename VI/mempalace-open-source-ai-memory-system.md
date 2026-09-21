@@ -1,11 +1,10 @@
 ---
-title: "MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark...
-description: "MemPalace là hệ thống bộ nhớ AI ưu tiên cục bộ, lưu trữ lịch sử cuộc trò chuyện dưới dạng văn bản ng..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'mempalace-open-source-ai-memory-system'
-category: 'llm-frameworks'
-tags: ["ai-memory", "local-first", "mempalace", "semantic-search", "chromadb", "long-term-memory", "mcp-agent", "verbatim-storage"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mempalace-open-source-ai-memory-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

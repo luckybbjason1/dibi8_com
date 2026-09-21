@@ -1,6 +1,13 @@
 ---
-title: "Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã ...
-description: "Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn ti..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crawl4ai-tutorial-llm-ready-web-scraping-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

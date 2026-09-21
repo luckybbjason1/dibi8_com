@@ -1,16 +1,14 @@
 ---
-title: "CoW Protocol 2026：MEV保护型DEX聚合器为交易者节省超1亿美元滑点 — 设置指南"
-description: "CoW Protocol综合指南：使用批量拍卖和求解器竞争来保护交易者免受MEV攻击的DEX聚合器，节省超1亿美元滑点。包含SDK集成、交易机器人设置和最佳实践。". Comprehensive gu..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["cow protocol", "mev protection", "dex aggregator", "batch auction", "sandwich attack", "coincidence of wants", "solver", "defi trading", "gasless orders", "anti-mev"]
-aliases:
-  - /zh/posts/cow-protocol-mev-protection/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cow-protocol-mev-protection"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **日期：** 2026-05-19  
 **类别：** AI交易  

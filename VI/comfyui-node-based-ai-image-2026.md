@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh...
-description: "ComfyUI là engine workflow trực quan dựa node 114k sao cho SD/SDXL/Flux/Wan/Hunyuan và hơn nữa. Hỗ t..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-node-based-ai-image-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
@@ -56,7 +63,7 @@ Quản lý bộ nhớ thông minh của ComfyUI tốt hơn nhiều A1111. Cùng 
 | 24 GB (RTX 4090) | ~2s | ~5s | ~45s |
 | 48 GB+ (A6000/H100) | ~1s | ~2s | ~15s |
 
-Tùy chọn cloud: bật H100 trên Vast.ai $1.50/giờ hoặc GPU 24 GB trên {{< aff "digitalocean" "comfyui-gpu" "DigitalOcean GPU droplets" >}}; trả chỉ thời gian sinh.
+Tùy chọn cloud: bật H100 trên Vast.ai $1.50/giờ hoặc GPU 24 GB trên ; trả chỉ thời gian sinh.
 
 ## 3. Cài Nhanh (10 phút)
 
@@ -122,8 +129,7 @@ Pipeline "text → ảnh → video → narration audio" cần 4 tool riêng ở 
 
 Cho triển khai "API sinh media AI": `````
    Instance GPU (24 GB VRAM khuyến nghị)
-            │  trên Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}
-            ▼
+            │  trên Vast.ai / RunPod /             ▼
    ComfyUI với --listen 0.0.0.0 (HTTP API expose)
             │
             ▼

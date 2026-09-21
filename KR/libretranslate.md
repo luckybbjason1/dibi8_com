@@ -1,6 +1,13 @@
 ---
-title: "LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배...
-description: "LibreTranslate (LT)는 Argos Translate 기반의 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Docker, CUDA GPU, 30개 이상 언어 및 오프라인 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "libretranslate"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 LibreTranslate는 스스로 호스팅하는 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Google의 API 키는 필요 없습니다. DeepL의 문자당 과금도 없습니다. 데이터가 인프라를 떠나지 않습니다. 14,400개 이상의 GitHub Stars와活발한 릴리스 주기(2026년 5월 기준 v1.9.5)를 자랑하며, 비공개적이고 오프라인 가능한 제로 마진 비용 번역이 필요한 개발자들의 기본 선택이 되었습니다. 이 가이드는 LibreTranslate tutorial 및 libretranslate setup부터 libretranslate docker 프로덕션 배포까지 self-hosted translation 전 과정을 다루며, DeepL 및 Google Translate와의 상세 비교(libretranslate vs deepl)도 포함합니다. 이 가이드에서는 프로덕션 배포, 벤치마크 및 통합에 대해 설명합니다.
 

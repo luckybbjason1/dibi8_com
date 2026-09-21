@@ -1,6 +1,13 @@
 ---
-title: "Grafana: 73,876 GitHub Stars — Docker Deployment Guide 2...
-description: "Grafana is the open-source visualization and analytics platform for monitoring. Covers Prometheus, L..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "grafana"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/grafana/-
 ---
 
-{{</* resource-info */>}}
+
 
 Every production incident starts with a question: "What changed?" Without a centralized view of your metrics, logs, and traces, that question takes minutes — sometimes hours — to answer. Grafana, the open-source visualization platform with 73,876 GitHub stars, turns that question into a glanceable dashboard. This guide walks through production-grade Docker deployment, data source integration, and the hardening decisions that separate a proof-of-concept from a production-ready monitoring stack.
 
@@ -252,7 +259,7 @@ Loki integrates log lines alongside metrics in the same dashboard. A LogQL query
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # Search for specific error patterns
-{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
+{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format ""
 `````
 
 ### InfluxDB — Time-Series Data
@@ -368,7 +375,7 @@ groups: - orgId: 1
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations: summary: "High CPU usage on {{ $labels.instance }}"
+        annotations: summary: "High CPU usage on "
 `````
 
 ### Dashboard Provisioning from Git

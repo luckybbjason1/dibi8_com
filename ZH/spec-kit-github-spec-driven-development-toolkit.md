@@ -1,11 +1,10 @@
 ---
-title: "规格套件：GitHub"
-description: "GitHub 的 Spec Kit 完整指南——通过规范驱动开发改变开发者构建软件方式的开源工具包。安装、工作流程和实际案例。"
-date: 2026-06-20
-lastmod: 2026-06-20
-(tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
-category: "dev-utils"
-slug: spec-kit-github-spec-driven-development-toolkit
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "spec-kit-github-spec-driven-development-toolkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

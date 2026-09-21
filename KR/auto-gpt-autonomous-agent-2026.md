@@ -1,16 +1,14 @@
 ---
-title: "Auto-GPT 2026 부활: OG 자율 에이전트 프레임워크가 설정 시간을 80% 줄인 방법 — 신...
-description: "2026년 Auto-GPT 자율 에이전트 완벽 가이드. 새로운 설치, 에이전트 프로토콜, 웹 브라우징, 멀티 에이전트 오케스트레이션, Docker 배포, 신규 에이전트 대비 벤치마..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["]
-aliases:
-  - /kr/posts/auto-gpt-autonomous-agent-2026/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "auto-gpt-autonomous-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 모든 것을 시작한 에이전트 — 그리고 왜 돌아왔는가
 

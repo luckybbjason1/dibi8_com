@@ -1,21 +1,14 @@
 ---
-title: "Last30Days-Skill: AI Agent Search Engine That Scores Soc...
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
-tags: ["ai-agent", "automation", "dev-tools", "engine", "open-source", "search"]
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-categories: ["ai-tools"]
-slug: last30days-skill-ai-agent-research-engine-social-media
-aliases: [/last30days-skill]
-sources: - name: GitHub
-    url: 'https://github.com/mvanhorn/last30days-skill'
-  - name: 'Agent Skills'
-    url: 'https://agentskills.io'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "last30days-skill-ai-agent-research-engine-social-media"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc...
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

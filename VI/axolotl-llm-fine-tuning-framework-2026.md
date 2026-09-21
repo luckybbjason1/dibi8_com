@@ -1,6 +1,13 @@
 ---
-title: "Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao...
-description: "Axolotl là framework fine-tuning LLM mã nguồn mở với config YAML đơn cho full / LoRA / QLoRA / DPO /..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "axolotl-llm-fine-tuning-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -54,7 +61,7 @@ Axolotl cho bạn UX "nền tảng cloud" (một file config, một lệnh) tron
 | 2× 80 GB (2× H100) | Llama 3.3 70B LoRA, Mixtral full fine-tune |
 | Cluster 8× H100 | Full fine-tune cấp frontier |
 
-Tùy chọn thuê cloud: H100 trên Vast.ai $1.50-2/giờ, hoặc cho workload bền vững dùng {{< aff "digitalocean" "axolotl-gpu" "DigitalOcean GPU droplet" >}}. Cho latency thân thiện Trung Quốc ngắn hơn, {{< aff "htstack" "axolotl-vps-hk" "HTStack Hong Kong" >}} hoạt động cho phía chuẩn bị data + monitoring (training thực ở lại GPU thuê).
+Tùy chọn thuê cloud: H100 trên Vast.ai $1.50-2/giờ, hoặc cho workload bền vững dùng . Cho latency thân thiện Trung Quốc ngắn hơn,  hoạt động cho phía chuẩn bị data + monitoring (training thực ở lại GPU thuê).
 
 ## 3. Cài Nhanh (15 phút)
 

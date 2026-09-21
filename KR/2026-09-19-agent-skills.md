@@ -1,11 +1,10 @@
 ---
-title: "Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 프레임워크'
-description: 'Addy Osmani가 Claude Code, Cursor 및 기타 AI 에디터를 강력하고 구성된 작업 공간으로 변환하는 스킬 시스템을 어떻게 구축했는지 배우세요. 완전한 구현, 배포 및 고급 패턴 가이드.'
-date: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
-category: 'llm-frameworks'
-tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
-lang: ko
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-19-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -90,7 +89,7 @@ skills/
 `````markdown
 * * *
 name: my-skill
-description: "이 스킬이 하는 일에 대한 한 줄 설명"
+description: "Technical guide and comparison."
 version: 1.0.0
 author: your-name
 * * *

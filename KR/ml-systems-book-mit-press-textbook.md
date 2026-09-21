@@ -1,6 +1,13 @@
 ---
-title: "ML Systems Book：MIT 무료 머신러닝 시스템 교과서"
-description: "Machine Learning Systems는 MIT Press에서 출판한 무료 오픈소스 교재로, 데이터 엔지니어링, 모델 최적화, 하드웨어 인식 훈련, 추론 가속 등 ML 시스템..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ml-systems-book-mit-press-textbook"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
@@ -248,8 +255,8 @@ ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

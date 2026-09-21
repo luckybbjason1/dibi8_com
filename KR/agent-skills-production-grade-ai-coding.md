@@ -1,6 +1,13 @@
 ---
-title: Agent Skills：개발팀이 프로덕션급 코드를 5배 빠르게 출시하는 방법
-description: Addy Osmani의 Agent Skills는 20개의 프로덕션급 엔지니어링 스킬과 7개의 슬래시 명령을 제공하여 AI 코딩. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agent-skills-production-grade-ai-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   에이전트를 시니어 소프트웨어 엔지니어로 변환합니다.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -27,7 +34,7 @@ faqs: - q: 'Addy Osmani가 만든 Agent Skills란 무엇인가요?'
   - q: 'Agent Skills의 7개 슬래시 명령은 무엇인가요?'
     a: '7개 명령은 /spec(무엇을 만들지 정의), /plan(작업을 작고 원자적인 단위로 분해), /build(점진적으로 구축), /test(테스트로 동작을 증명), /review(머지 전 검토), /code-simplify(영리함보다 명료함), /ship(프로덕션 배포)입니다. 각 명령은 편집 중인 내용에 따라 관련 스킬을 자동으로 활성화합니다.'
   - q: 'Claude Code에 Agent Skills를 어떻게 설치하나요?'
-    a: 'Claude Code의 경우 `gh repo clone addyosmani/agent-skills .claude/skills` 명령으로 저장소를 프로젝트에 클론하거나, `claude plugin install addyosmani/agent-skills` 명령으로 플러그인으로 설치할 수 있습니다.'
+    a: 'Claude Code의 경우 ``gh repo clone addyosmani/agent-skills .claude/skills`` 명령으로 저장소를 프로젝트에 클론하거나, ``claude plugin install addyosmani/agent-skills`` 명령으로 플러그인으로 설치할 수 있습니다.'
   - q: 'Agent Skills의 안티-합리화 표(anti-rationalization table)란 무엇인가요?'
     a: '안티-합리화 표는 각 스킬에 내장된 기능으로, 개발자와 AI 에이전트가 대충 넘어가려 할 때 흔히 쓰는 변명(예: "테스트는 나중에 추가하지")을 미리 짚어내고 그에 대한 반박 근거를 제공합니다. 이 표들은 Google 규모 조직의 실제 사후 분석(post-mortem)과 코드 리뷰 피드백에서 도출되었습니다.'
 ---
@@ -313,8 +320,8 @@ Agent Skills는 "AI가 코드를 작성할 수 있다"와 "AI가 프로덕션 �
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

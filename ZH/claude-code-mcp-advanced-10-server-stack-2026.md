@@ -1,26 +1,14 @@
 ---
-title: "Claude Code MCP 进阶 2026：10 服务器生产级技术栈"
-description: "在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何..."
-licensing_model: 混合
-license_type: 多种
-last_maintained: "2026-05-25"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["claude-code", "mcp", "configuration", "production", "2026"]
-aliases:
-  - /zh/posts/claude-code-mcp-advanced-10-server-stack-2026/
-faq: - q: "多少个 MCP 服务器算太多？"
-    a: "超过 10 个就会带来明显的启动延迟。每个服务器会给 Claude Code 初始化增加 100-300ms。下文这套 10 服务器技术栈是甜蜜点——能覆盖 90% 的工作流，又不会让启动变得迟钝。"
-  - q: "应该使用全局还是按项目的 MCP 配置？"
-    a: "针对项目专属的服务器（本应用专用的 postgres、限定到本仓库的 GitHub PAT）使用按项目配置（.claude/mcp.json 或 .cursor/mcp.json）。针对个人通用工具（限定到 home 目录的 filesystem、sequentialthinking）使用全局配置（~/.claude/mcp.json）。"
-  - q: "哪些 MCP 服务器适合团队，哪些适合个人？"
-    a: "团队：github（PR 评审）、linear（项目跟踪）、slack（通知）、共享的 postgres 或 supabase（协同数据）。个人：相同清单减去共享基础设施。两者皆需：filesystem、git、fetch、memory、sequentialthinking。"
-  - q: "使用 HTTP/SSE 服务器 vs stdio 的取舍是什么？"
-    a: "HTTP：持久化状态、集中式凭证管理、依赖服务器可用性。stdio：零延迟、不暴露凭证、随会话结束而终止。默认使用 stdio。仅在 (a) 需要跨会话持久化状态，或 (b) 集成无本地对应方案的 SaaS 时才使用 HTTP。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-mcp-advanced-10-server-stack-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Claude Code MCP 进阶 2026：10 服务器生产级技术栈
 
@@ -158,8 +146,8 @@ faq: - q: "多少个 MCP 服务器算太多？"
 ## 推荐基础设施
 
 自托管 MCP 服务器（团队共享）：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 美元额度
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，亚洲低延迟
+- **** — 200 美元额度
+- **** — 香港 VPS，亚洲低延迟
 
 *Affiliate 链接——价格不变，支持 dibi8.com。*
 

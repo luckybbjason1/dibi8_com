@@ -1,21 +1,10 @@
 ---
-title: "Hướng Dẫn Sử Dụng Hugging Face Transformers 2025: Dành C...
-description: "Hướng dẫn chi tiết thư viện Hugging Face Transformers 2025: Pipeline API, fine-tuning BERT/GPT, toke..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/huggingface-transformers-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "huggingface-transformers-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

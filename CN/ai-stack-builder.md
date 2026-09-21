@@ -1,10 +1,10 @@
 ---
-title: "AI Stack Builder — Find Your Perfect LLM + Vector DB + F..."
-description: "Answer 5 questions about your project, get a tailored AI stack recommendation. LLM choice (GPT-4o / ..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-ai-stack-builder"
-tool_id: "ai-stack-builder"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-stack-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # AI Stack Builder — Find Your Perfect LLM + Vector DB + Framework Combo

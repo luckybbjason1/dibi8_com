@@ -1,6 +1,13 @@
 ---
-title: "HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs ...
-description: "HTTPie is a modern command-line HTTP client for the API era with JSON support, colors, and sessions...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "httpie"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/httpie/-
 ---
 
-{{</* resource-info */>}}
+
 
 **HTTPie** (pronounced "aitch-tee-tee-pie") is a command-line HTTP client designed for the API era. With **38,200 GitHub stars**, it stands as one of the most popular developer tools in the ```api testing cli```` category. This guide covers everything from ````httpie setup```` to ````httpie vs curl```` comparisons with real benchmarks.
 
@@ -263,8 +270,8 @@ jobs: test: runs-on: ubuntu-latest
         run: pip install httpie
       - name: Test API endpoints
         run: |
-          http --check-status --timeout=10 GET ${{ secrets.API_URL }}/health
-          http --check-status POST ${{ secrets.API_URL }}/users name=Test email=test@example.com
+          http --check-status --timeout=10 GET $/health
+          http --check-status POST $/users name=Test email=test@example.com
 `````
 
 ### Integration with VS Code

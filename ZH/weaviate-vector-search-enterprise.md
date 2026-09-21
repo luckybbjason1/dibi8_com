@@ -1,6 +1,13 @@
 ---
-title: "Weaviate 2026: AI 原生向量搜索引擎处理 100 亿+ 对象 — 企业部署指南"
-description: "Weaviate 向量搜索企业级扩展部署指南。涵盖 Kubernetes 部署、混合搜索、多模态支持、RBAC、监控以及 100 亿+ 对象集合的基准测试。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "weaviate-vector-search-enterprise"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：当向量数据库在 1 亿对象时崩溃
 

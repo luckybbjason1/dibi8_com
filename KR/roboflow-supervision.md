@@ -1,11 +1,10 @@
 ---
-title: "Roboflow Supervision: Python 컴퓨터 비전 주석 도구 모음"
-description: "Roboflow의 Supervision은 CV 주석, 데이터 처리 및 모델 평가를 간소화하는 포괄적인 컴퓨터 비전 도구 모음입니다. pip install supervision을 사..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: roboflow-supervision
-category: data-science
-tags: ["supervision", "roboflow", "computer vision", "annotation", "object detection", "CV toolkit", "data-science"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "roboflow-supervision"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

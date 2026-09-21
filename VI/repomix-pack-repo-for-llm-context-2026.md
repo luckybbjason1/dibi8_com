@@ -1,6 +1,13 @@
 ---
-title: "repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
-description: "repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "repomix-pack-repo-for-llm-context-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: ['Node.js', TypeScript, CLI]

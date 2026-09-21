@@ -1,8 +1,15 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openmontage-agentic-video-production-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: openmontage-agentic-video-production-system
-title: "Đánh giá OpenMontage: Hệ thống Sản xuất Video Tự chủ Mã ...
-description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. ..."
-date: "2026-06-22 00:00:00+08:00"
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.10+
   - FFmpeg
@@ -29,7 +36,7 @@ faqs: - q: 'OpenMontage là gì?'
   - q: 'OpenMontage khác Sora, Runway và Pika như thế nào?'
     a: 'Sora, Runway và Pika là các trình tạo video từ một lệnh đơn, tạo ra các clip ngắn (5-30 giây) không có cấu trúc câu chuyện, không có kịch bản và không có âm thanh. OpenMontage là một hệ thống điều phối sản xuất: nó thực hiện nghiên cứu trực tuyến trực tiếp, viết kịch bản, tạo hoặc tìm kiếm tài sản (hình ảnh, video, nhạc, lồng tiếng), biên tập mọi thứ thành một dòng thời gian mạch lạc, thêm phụ đề từng từ, và thực hiện kiểm tra chất lượng nhiều điểm. Nó sản xuất các video hoàn chỉnh với bất kỳ độ dài nào, không chỉ các clip riêng lẻ.'
   - q: 'Tôi có cần khóa API trả phí để sử dụng OpenMontage không?'
-    a: 'Không. Ngay khi cài đặt xong, `make setup` cung cấp cho bạn Piper TTS (chuyển văn bản thành giọng nói miễn phí ngoại tuyến), tư liệu từ Archive.org/NASA/Wikimedia Commons, thành phần Remotion, hậu kỳ FFmpeg và phụ đề tự động tạo. Bạn có thể sản xuất các video có lồng tiếng thực sự mà không tốn chi phí. Các khóa API trả phí (FLUX, Kling, Google Veo, ElevenLabs, Suno) mở khóa các tài nguyên chất lượng cao hơn nhưng hoàn toàn tùy chọn. Hệ thống đánh giá từng nhà cung cấp theo 7 khía cạnh và chọn nhà cung cấp phù hợp nhất với ngân sách của bạn.'
+    a: 'Không. Ngay khi cài đặt xong, ``make setup`` cung cấp cho bạn Piper TTS (chuyển văn bản thành giọng nói miễn phí ngoại tuyến), tư liệu từ Archive.org/NASA/Wikimedia Commons, thành phần Remotion, hậu kỳ FFmpeg và phụ đề tự động tạo. Bạn có thể sản xuất các video có lồng tiếng thực sự mà không tốn chi phí. Các khóa API trả phí (FLUX, Kling, Google Veo, ElevenLabs, Suno) mở khóa các tài nguyên chất lượng cao hơn nhưng hoàn toàn tùy chọn. Hệ thống đánh giá từng nhà cung cấp theo 7 khía cạnh và chọn nhà cung cấp phù hợp nhất với ngân sách của bạn.'
   - q: '12 quy trình sản xuất là gì?'
     a: '12 quy trình là: Giải thích Hoạt hình, Hoạt hình, Người phát ngôn Avatar, Điện ảnh, Nhà máy Clip, Phim Tài liệu, Hỗn hợp, Bản địa hóa & Lồng tiếng, Tái sử dụng Podcast, Trình diễn Màn hình, Đầu nói chuyện, và Hoạt hình Nhân vật. Mỗi quy trình đều theo cùng một luồng cấu trúc: nghiên cứu → đề xuất → kịch bản → kế hoạch cảnh → tài sản → chỉnh sửa → biên soạn. Mỗi giai đoạn đều có một kỹ năng đạo diễn riêng (tệp hướng dẫn Markdown) dạy cho tác nhân chính xác cách thực hiện.'
   - q: 'OpenMontage có thể làm video từ cảnh quay thực, chứ không chỉ từ hình ảnh AI không?'

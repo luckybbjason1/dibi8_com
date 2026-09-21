@@ -1,6 +1,13 @@
 ---
-title: "Coqui TTS: 45.3K+ Stars — ChatTTS, MeloTTS, Bark 성능 비교 벤...
-description: "Coqui TTS는 오픈소스 딥러닝 텍스트 음성 변환 툴킷입니다. 1100개 이상 언어 지원, XTTS v2 음성 복제, VITS 엔드투엔드 합성. ChatTTS, MeloTTS,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "coqui-tts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

@@ -1,6 +1,13 @@
 ---
-title: "Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sh...
-description: "Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân k..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "backtest-overfit-5-patterns-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
@@ -29,7 +36,7 @@ faq: - q: "Tại sao việc phát hiện overfit trong backtest lại khó đế
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sharpe Thực Tế
 
@@ -148,8 +155,8 @@ Thành thật: vì nó phiền và câu trả lời thường là tin xấu. Ph�
 
 ## Hạ Tầng Khuyên Dùng
 
-Để chạy backtest dài + quét walk-forward: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có sẵn GPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp đến sàn châu Á
+Để chạy backtest dài + quét walk-forward: - **** — $200 credit, có sẵn GPU droplet
+- **** — VPS Hong Kong, độ trễ thấp đến sàn châu Á
 
 *Liên kết tiếp thị — cùng giá, ủng hộ dibi8.com.*
 

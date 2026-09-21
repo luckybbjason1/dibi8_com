@@ -1,6 +1,13 @@
 ---
-title: "Activepieces: Giải pháp thay thế Zapier mã nguồn mở với ...
-description: "Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứn..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "activepieces-workflow-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Vấn đề $2,340/năm với tự động hóa workflow
 
@@ -67,7 +74,7 @@ interface FlowRun {
 // và lưu trữ đầu ra để các bước downstream tham chiếu
 `````
 
-Các bước có thể tham chiếu đầu ra từ các bước trước đó qua cú pháp templating ````{{step_name.property}}````, tương tự Handlebars. Engine hỗ trợ branching (````if/else````), loops (````for each````), và sub-flows.
+Các bước có thể tham chiếu đầu ra từ các bước trước đó qua cú pháp templating ````````, tương tự Handlebars. Engine hỗ trợ branching (````if/else````), loops (````for each````), và sub-flows.
 
 ### Pieces: Hệ thống Plugin
 
@@ -208,8 +215,8 @@ Trigger: Webhook ("Lead form mới được submit")
   → Bước 1: Trích xuất dữ liệu form (tên, email, công ty, tin nhắn)
   → Bước 2: OpenAI "Ask AI" action
        Prompt: "Đánh giá lead này. Chỉ trả về hot, warm, hoặc cold.
-               Lead: {{step_1.name}}, Công ty: {{step_1.company}},
-               Tin nhắn: {{step_1.message}}"
+               Lead: , Công ty: ,
+               Tin nhắn: "
        Model: gpt-4.1-mini
   → Bước 3: Branch dựa trên phản hồi AI
        Nếu "hot" → Tạo task ưu tiên cao trong HubSpot
@@ -347,7 +354,7 @@ export const myApiPiece = createPiece({
   auth: PieceAuth.SecretText({
     displayName: "API Key",
     required: true,
-    description: "Your internal API authentication key"
+    description: "Technical guide and comparison."
   }),
   minimumSupportedRelease: '0.46.0",
   actions: [sendNotification],

@@ -1,6 +1,13 @@
 ---
-title: "Zed vs Cursor 2026 비교: 네이티브 속도 vs AI 깊이 — 솔직한 비교"
-description: "Zed(Rust 네이티브·GPU 가속·오픈소스)와 Cursor(VS Code 포크·AI 우선)를 항목별 비교 — 속도, AI 기능, 가격, 생태계, 플랫폼. 2026 업데이트."...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zed-vs-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

@@ -1,15 +1,10 @@
 ---
-title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝...
-description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다.". Comprehensive guid..."
-images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
-    alt: "Oh My Pi GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
-    alt: "Pi 설정 흐름"
-    role: example
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
-    alt: "스마트 홈 다이어그램"
-    role: diagram
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "oh-my-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -165,7 +160,7 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 # my-service.yaml — 사용자 지정 서비스 정의
 service: name: my-custom-app
   version: "1.0"
-  description: "사용자 지정 애플리케이션 배포"
+  description: "Technical guide and comparison."
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

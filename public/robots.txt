@@ -1,20 +1,3 @@
 User-agent: *
-Allow: /
-
-# Prevent tracking parameter crawling
-Disallow: *?_gl=
-Disallow: *?_ga=
-Disallow: *?_up=
-Disallow: *?_gid=
-
-# Primary sitemap (index)
-Sitemap: https://dibi8.com/sitemap_index.xml
-
-# Language-specific sitemaps
-Sitemap: https://dibi8.com/en/sitemap.xml
-Sitemap: https://dibi8.com/zh/sitemap.xml
-Sitemap: https://dibi8.com/kr/sitemap.xml
-Sitemap: https://dibi8.com/vi/sitemap.xml
-
-# Crawl-delay for polite bots
-Crawl-delay: 1
+Disallow:
+Sitemap: https://dibi8.com/sitemap.xml

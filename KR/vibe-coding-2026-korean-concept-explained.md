@@ -1,6 +1,13 @@
 ---
-title: "바이브 코딩 2026: 한국 개발자 개념을 모두에게 풀어 설명한다"
-description: "바이브 코딩(vibe coding)은 자연어 우선 프로그래밍을 가리키는 한국 개발자 용어로, 문법은 AI가 처리한다. Toss와 Kakao 엔지니어들이 매일 사용한다. 무슨 뜻인지..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vibe-coding-2026-korean-concept-explained"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'AI 주도 개발', '자연어 프로그래밍']
@@ -25,7 +32,7 @@ faq: - q: "'바이브 코딩'이란 무엇인가?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 바이브 코딩 2026: 한국 개념을 모두에게 풀어 설명한다
 
@@ -118,8 +125,8 @@ AI Claude Code: [미들웨어 생성, 라우트 업데이트, 테스트 추가]
 
 ## 권장 인프라
 
-바이브 코딩 워크플로를 구축한다면: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 개발 환경에서 AI 생성 코드를 테스트할 수 있는 200달러 크레딧
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아에서 AI API 접근에 저지연
+바이브 코딩 워크플로를 구축한다면: - **** — 개발 환경에서 AI 생성 코드를 테스트할 수 있는 200달러 크레딧
+- **** — 홍콩 VPS, 아시아에서 AI API 접근에 저지연
 
 *어필리에이트 링크 — 가격은 동일하며, dibi8.com을 응원해 준다.*
 

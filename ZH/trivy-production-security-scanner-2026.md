@@ -1,11 +1,10 @@
 ---
-title: "Trivy：停止向生产环境投放存在漏洞的容器镜像——2026 安全扫描指南"
-description: "Trivy（aquasecurity/trivy）是一款用于容器、基础设施即代码（IaC）和代码的开源安全扫描工具。可与 Kubernetes、Docker、GitHub Actions 和 CI 流..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
-category: 'dev-utils'
-tags: ["security", "containers", "vulnerability-scanning", "devops", "kubernetes", "sast", "iac", "supply-chain"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trivy-production-security-scanner-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

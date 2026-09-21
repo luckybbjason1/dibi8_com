@@ -1,10 +1,10 @@
 ---
-title: "AI Stack Builder — Tìm Tổ Hợp LLM + Vector DB + Framewor...
-description: "Trả lời 5 câu hỏi về dự án của bạn, nhận đề xuất stack AI cá nhân hóa. LLM (GPT-4o / Claude / Gemini..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-ai-stack-builder"
-tool_id: "ai-stack-builder"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-stack-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

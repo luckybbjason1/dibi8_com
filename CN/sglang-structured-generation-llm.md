@@ -1,17 +1,10 @@
 ---
-title: SGLang — Structured Generation and Fast LLM Serving Engine
-description: Complete guide to SGLang (Structured Generation Language). High-performance LLM serving with constrained decoding, JSON schema enforcement, parallel execution, and 25x speedup over vLLM for structured outputs.
-tags: ["llm-serving", "structured-generation", "constrained-decoding", "inference", "performance"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-slug: sglang-structured-generation-llm---
-
-## TL;DR
-
-SGLang is an open-source LLM inference engine that introduces a novel RadixAttention system for prefix caching across requests, structured generation via grammar-constrained decoding, and native support for complex reasoning patterns like ReAct and tool calling. It achieves 25x throughput improvement over vLLM for structured output tasks and supports serving models from 1B to 70B parameters on single or multi-GPU setups.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "sglang-structured-generation-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## What Is SGLang?
 

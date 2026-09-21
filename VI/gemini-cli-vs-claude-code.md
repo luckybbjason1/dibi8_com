@@ -1,21 +1,10 @@
 ---
-title: "Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt ...
-description: "So sánh trực tiếp Google Gemini CLI và Anthropic Claude Code — gói miễn phí, cửa sổ context, phong c..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["gemini-cli", "claude-code", "google", "anthropic", "ai-coding", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'Gemini CLI có thực sự miễn phí không?'
-    a: 'Có — Gemini CLI đi kèm gói miễn phí hào phóng nhất trong các agent AI coding hiện nay: 60 request mỗi phút và 1.000 request mỗi ngày dùng gemini-2.0-flash-thinking, không cần thẻ tín dụng, chỉ cần tài khoản Google. Claude Code không có gói miễn phí — phải trả theo token qua Anthropic API hoặc qua gói Claude Pro $20/tháng với dung lượng Claude Code hạn chế.'
-  - q: 'Cái nào có cửa sổ context lớn hơn?'
-    a: 'Gemini CLI dùng gemini-2.0-flash-thinking với tối đa 1M token context ở gói miễn phí, mở rộng tới 2M trên Vertex AI trả phí. Claude Code dùng claude-opus-4.7 với 200K chuẩn hoặc 1M context (1M ở dạng beta, trả theo dùng). Về context thuần ở gói miễn phí Gemini CLI thắng; về chất lượng suy luận long-context ở 1M hai bên ngang.'
-  - q: 'Cái nào tốt hơn cho công việc agent đa file?'
-    a: 'Claude Code chín muồi hơn với tư cách agent — đi kèm vòng tool-use tinh chỉnh (Read/Edit/Bash/Glob/Grep), checkpoint-và-resume, và system prompt đã được tinh chỉnh cho kỹ thuật phần mềm. Gemini CLI bắt kịp nhanh trong 2026 với tool use kiểu ReAct và tích hợp shell, nhưng Claude Code vẫn thắng ở refactor đa file và vòng agent dài.'
-  - q: 'Tôi có thể chạy cả Gemini CLI và Claude Code trên cùng dự án không?'
-    a: 'Có — chúng không xung đột. Nhiều developer dùng Gemini CLI cho công việc khám phá miễn phí (đọc codebase, tạo docs, prompt nháp) và Claude Code cho việc nặng có trả phí (refactor đa file, code production, vòng agent). Combo cho bạn trinh sát gần miễn phí + thực thi cao cấp với tổng chi phí thấp hơn so với chỉ dùng Claude Code.'
-  - q: 'Hỗ trợ đa phương thức bên nào tốt hơn?'
-    a: 'Gemini CLI thắng đa phương thức trong terminal — nhận hình ảnh, PDF, khung video gốc thông qua flag (ví dụ `--image screenshot.png`). Claude Code hỗ trợ ảnh qua hội thoại nhưng thiên về text trước. Với luồng kiểu "nhìn screenshot UI này và viết component React", Gemini CLI nhanh hơn ngay khi mở hộp."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -147,7 +136,7 @@ Full-time builder: **Claude Max 5x $100 + Gemini CLI miễn phí** — Claude l�
 - Ngân sách thực tế: user Claude Code nặng thường rơi vào $100/tháng (Max 5x) khi cảm giác lạ với gói miễn phí trôi đi
 
 ### Mẹo Self-Hosting
-Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.
+Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật  — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.
 
 * * *
 
@@ -189,7 +178,7 @@ Với indie dev đang ship SaaS một mình trên **ngân sách cuối cùng**? 
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

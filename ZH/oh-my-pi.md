@@ -1,20 +1,10 @@
 ---
-title: "Oh My Pi：将任何树莓派变成智能设备——12K 星项目 2026"
-description: "Oh My Pi（12,554 颗星）通过一键式设置和自动化配置，将树莓派设备转变为智能家居中心、媒体中心和开发工作站。"
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: oh-my-pi
-category: dev-utils
-tags: ["树莓派", "智能家居", "物联网", "边缘计算", "家庭自动化", "linux", "自动化"]
-images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
-    alt: "Oh My Pi GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/pi-setup.png"
-    alt: "Pi 设置流程"
-    role: example
-  - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
-    alt: "智能家居架构图"
-    role: diagram
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "oh-my-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -202,7 +192,7 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 # my-service.yaml — 自定义服务定义
 service: name: my-custom-app
   version: "1.0"
-  description: "自定义应用程序部署"
+description: "Technical guide and comparison."
   docker: image: "myapp:latest"
     ports: - "8080:8080"
     volumes: - myapp-data:/data

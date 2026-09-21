@@ -1,11 +1,10 @@
 ---
-title: "ByteDance UI-TARS Desktop: Đại Diện AI Ngôn Ngữ-Thị Giác...
-description: "Tìm hiểu cách triển khai UI-TARS Desktop của ByteDance, một đại diện AI ngôn ngữ-thị giác có thể xem..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
-category: ai-tools
-tags: ["bytedance", "ui-tars", "vision-language-model", "AI-agent", "desktop-automation", "GUI-agent", "open-source", "multimodal-ai"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

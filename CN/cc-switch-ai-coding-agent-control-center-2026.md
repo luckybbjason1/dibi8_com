@@ -1,22 +1,10 @@
 ---
-# CC Switch Review: The Missing Control Center for AI Coding Agents (2026)
-
-**Meta Description**: CC Switch is an open-source cross-platform desktop app that unifies Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode & Hermes Agent management. 74K+ GitHub stars, Rust+Tauri stack, 50+ provider presets, unified MCP server sync. Full feature breakdown, setup guide, and workflow tips.---
-
-## The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State
-
-If you're a developer in 2026, you've felt it. The moment when you're five minutes into a deep debugging session, realize you need to switch from Claude Code to Gemini CLI to burn through some free quota, and then spend the next ten minutes hunting through ``.env`` files, API key docs, and config directories.
-
-The AI coding agent space has exploded. Each tool is genuinely excellent at what it does: - **Claude Code** — 2M token context window, unmatched reasoning for architecture refactoring
-- **OpenAI Codex** — Rust-rewritten for speed, three autonomy modes from suggest to full-auto
-- **Gemini CLI** — 1,000 free requests/day, Google's pricing experiment
-- **OpenClaw** — Sub-agent orchestration for complex multi-step workflows
-- **OpenCode** — Community-driven, 162K stars, multi-model flexibility
-- **Hermes Agent** — Enterprise-grade deployment and governance
-
-But managing them? That's still stuck in 2010. JSON files, environment variables, scattered MCP configs. **CC Switch** (GitHub: ``farion1231/cc-switch``, 74,754 stars) is the first serious attempt to build a unified control layer — and it might be the most underrated productivity tool in the AI dev stack right now.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-ai-coding-agent-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## What Is CC Switch? A Technical Overview
 

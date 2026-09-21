@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-servers-2026-rankings-selection-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
-description: "The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the ..."
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
@@ -32,7 +39,7 @@ faq: - q: "What is MCP and why does it matter in 2026?"
     a: "Unlikely in 2026-2027. MCP has cross-vendor adoption (Anthropic, OpenAI's reference implementations, Google's Gemini), an open spec, and >1000 public servers. The next layer above MCP — agent-to-agent protocols, capability discovery — is still emerging. MCP is the integration layer; expect it to remain stable for at least 18-24 months."
 ---
 
-{{</* resource-info */>}}
+
 
 # MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones
 
@@ -255,8 +262,8 @@ Use registries for discovery but always verify against the original GitHub repo 
 
 ## Recommended Infrastructure for Self-Hosted MCP Servers
 
-If you run team-shared MCP servers (HTTP/SSE), a stable VPS matters more than local stdio servers ever needed: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit. Good for prototyping HTTP MCP servers before committing to fixed infra.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, same IDC that hosts dibi8.com.
+If you run team-shared MCP servers (HTTP/SSE), a stable VPS matters more than local stdio servers ever needed: - **** — $200 free credit. Good for prototyping HTTP MCP servers before committing to fixed infra.
+- **** — Hong Kong VPS, same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and help keep dibi8.com running.*
 

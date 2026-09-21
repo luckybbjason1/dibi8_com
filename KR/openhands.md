@@ -1,6 +1,13 @@
 ---
-title: "OpenHands: 74K+ Stars — 코드를 작성하고 실행하는 AI 소프트웨어 엔지니어 (202...
-description: "OpenHands는 소프트웨어 엔지니어링 에이전트로 작동하는 AI 기반 개발 플랫폼입니다. VS Code, Docker, GitHub, GitLab, Claude, OpenAI와 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhands"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 
@@ -262,7 +269,7 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v $(pwd):/workspace \
-            -e LLM_API_KEY=${{ secrets.ANTHROPIC_API_KEY }} \
+            -e LLM_API_KEY=$ \
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl

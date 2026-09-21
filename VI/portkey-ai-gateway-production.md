@@ -1,17 +1,14 @@
 ---
-title: "Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình v...
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["portkey ai gateway"]
-aliases:
-  - /vi/posts/portkey-ai-gateway-production/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "portkey-ai-gateway-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 Quản lý nhiều nhà cung cấp Mô hình Ngôn ngữ Lớn (LLM) trong môi trường production là một cơn ác mộng. Mỗi nhà cung cấp có định dạng API, lược đồ xác thực, giới hạn tốc độ và chế độ lỗi riêng. Mã ứng dụng của bạn trở nên lộn xộn với logic điều kiện cho OpenAI, Anthropic, Google, Azure và hàng chục nhà cung cấp mới xuất hiện mỗi tháng. Hãy đến với **Portkey AI Gateway** — cổng LLM mã nguồn mở thống nhất 200+ mô hình phía sau một API duy nhất, với khả năng cân bằng tải, định tuyến dự phòng, theo dõi chi tiêu, lưu đệm yêu cầu và khả năng quan sát cấp doanh nghiệp.
 
@@ -429,7 +426,7 @@ prompt = portkey.prompts.deploy(
     version="1.2.0",
     prompt=[
         {"role": "system", "content": "Bạn là bộ phân loại phiếu hỗ trợ. Phân loại phiếu vào: Thanh toán, Kỹ thuật, Yêu cầu Tính năng, hoặc Khiếu nại."},
-        {"role": "user", "content": "Phiếu: {{ticket_content}}"}
+        {"role": "user", "content": "Phiếu: "}
     ],
     model="gpt-4o-mini",
     parameters={

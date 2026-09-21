@@ -1,22 +1,15 @@
 ---
-title: "FreeLLMAPI: 하나의 OpenAI 호환 엔드포인트 뒤에 있는 16개의 무료 LLM 계층"
-description: "Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter 등 더 많은 무료 티어를 하나의 프록시로 통합합니다. ~월 17억 토큰. Docker ..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "llm proxy", "free tier", "openai compatible", "self-hosted", "docker"]
-categories: ["ai-tools"]
-slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
-aliases: ['/freellmapi']
-sources: - name: GitHub
-    url: 'https://github.com/tashfeenahmed/freellmapi'
-  - name: 'Official Site'
-    url: 'https://freellmapi.co'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freellmapi-openai-compatible-proxy-free-llm-tiers-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint'
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

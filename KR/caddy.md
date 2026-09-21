@@ -1,16 +1,14 @@
 ---
-title: "Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드"
-description: "Caddy(Caddyserver)는 자동 HTTPS를 갖춘 빠르고 확장 가능한 다중 플랫폼 HTTP/1-2-3 웹 서버다. Docker, Let"'''s Encrypt, Prome..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]
-aliases:
-  - /kr/posts/caddy/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "caddy"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 Caddy는 HTTPS를 사후 조치가 아닌 기본값으로 취급하는 유일한 주류 웹 서버다. Nginx가 수동 인증서 설정을 필요로 하고 Apache는 mod_ssl 설정에 애를 먹을 때, Caddy는 Let's Encrypt와 ZeroSSL에서 TLS 인증서를 자동으로 발급하고 갱신한다 — cron 작업, certbot, 설정 파일 전부 필요 없다. **72,595개의 GitHub Stars**와 Go 기반 코드베이스를 보유한 Caddy는 단일 VPS 배포부터 수십만 개 사이트를 처리하는 클러스터에 이르기까지 다양한 프로덕션 환경에서 수조 개의 요청을 처리하고 수백만 개의 TLS 인증서를 관리해왔다.
 

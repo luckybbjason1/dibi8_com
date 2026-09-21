@@ -1,6 +1,13 @@
 ---
-title: "Scanners-Box: 200+ 사이버보안 도구 모음 — 보안 전문가 필수"
-description: Scanners-Box를 탐색하세요 — 침투 테스트, 취약점 스캐닝, 보안 연구를 포함한 200개 이상의 오픈소스 사이버보안. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scanners-box-cybersecurity-tools-collection"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   도구 모음.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -243,8 +250,8 @@ nmap -A target.com
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "htstack" "category-footer" "HTStack" >}}** — 홍콩 VPS, dibi8.com 호스팅하는 동일 IDC. 보안 스캐너 자체 호스팅 전용 VPS, 아시아 저지연 커버리지, 공유 테넌트 노이즈 없음.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — 홍콩 VPS, dibi8.com 호스팅하는 동일 IDC. 보안 스캐너 자체 호스팅 전용 VPS, 아시아 저지연 커버리지, 공유 테넌트 노이즈 없음.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

@@ -1,0 +1,353 @@
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/polymarket-agents-ai-trading-bot-framework/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/polymarket-agents-ai-trading-bot-framework/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/polymarket-agents-ai-trading-bot-framework/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/polymarket-agents-ai-trading-bot-framework/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/polymarket-agents-ai-trading-bot-framework/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Polymarket Agents: Build AI Trading Bots for Prediction … description: “Technical guide and comparison.” AI agents that trade autonomously on Polymarket prediction markets. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo Python TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: “107 KB” file_md5: ’' download_url: https://github.com/Polymarket/agents backup_url: ’' last_maintained: “2024-11-05” draft: false aliases: /en/posts/polymarket-agents-ai-trading-bot-framework/ /posts/ai-trader-fully-automated-trading-agent/ /posts/polymarket-agents-ai-trading-bot-framework/ faqs: - q: ‘What is Polymarket Agents?’ a: ‘Polymarket Agents is an open-source, MIT-licensed developer framework for building AI agents that trade autonomously on Polymarket prediction markets. It provides utilities to analyze markets, integrate with the Polymarket API for real-time data, and execute trades automatically.’ q: ‘What do I need to set up before running Polymarket Agents?’ a: ‘You need a Polygon wallet private key and an OpenAI API key set in a .env file, plus a Python 3.9 virtual environment with dependencies installed from requirements.txt. You must also fund your Polygon wallet with USDC, since trades on Polymarket are settled in USDC.’ q: ‘How does Polymarket Agents use RAG for trading decisions?’ a: ‘It uses a Chroma vector database to store news articles and market data, converts text into embeddings for semantic search, retrieves relevant information based on the current market context, and lets the LLM synthesize that retrieved data into a trading decision.’ q: ‘What trading strategies does Polymarket Agents support?’ a: ‘The framework supports news-based trading (LLM sentiment analysis of events), arbitrage detection across related markets, trend following based on volume and price movements, and fundamental analysis using RAG to query historical data.’ q: ‘How do I execute a trade with the Polymarket Agents CLI?’ a: ‘Run the CLI command ‘‘python scripts/python/cli.py trade –market-id –side buy –size ‘’. You can also list markets with ‘‘get-all-markets –sort-by volume’’ or inspect a single market with ‘‘get-market –market-id ‘’.’ {\u003c/* resource-info */\u003e}\nPolymarket Agents CLI — official screenshot from github.com/Polymarket/agents\nWhat is Polymarket Agents? Polymarket Agents is an open-source developer framework and set of utilities for building AI agents that trade autonomously on Polymarket — the world’s largest prediction market platform.\nThis framework enables developers to: - 🤖 Build AI agents that analyze markets and execute trades automatically\n📊 Integrate with Polymarket API for real-time market data 🔍 Use RAG (Retrieval-Augmented Generation) for informed trading decisions 📰 Source data from betting services, news providers, and web search 🧠 Leverage comprehensive LLM tools for prompt engineering and market analysis 🔗 GitHub: https://github.com/Polymarket/agents\nWhat is Polymarket? Polymarket is a decentralized prediction market platform where users trade on the outcomes of real-world events: - Politics — Election results, policy decisions\nCrypto — Bitcoin price predictions, ETF approvals Sports — Game outcomes, championship winners Science — Research breakthroughs, space missions Entertainment — Award winners, box office results Traders buy “Yes” or “No” shares based on their predictions, with prices reflecting the market’s consensus probability.\nKey Features | Feature | Description | |\n|\n| | Polymarket API Integration | Full access to market data, order book, and trade execution | | AI Agent Utilities | Tools for building autonomous trading agents | | Local \u0026 Remote RAG | Vector database support for news and market data retrieval | | Multi-Source Data | Betting services, news APIs, web search integration | | LLM Prompt Engineering | Comprehensive tools for context-aware reasoning | | CLI Interface | Command-line tool for market analysis and trading | | Docker Support | Containerized deployment for easy setup | | MIT License | Free and open-source |\nArchitecture Polymarket Agents features modular components that can be maintained and extended by the community: ### Core APIs\n| Component | Purpose | |\n|\n| | Chroma.py | Vector database for news sources and API data | | Gamma.py | Polymarket Gamma API client for market metadata | | Polymarket.py | Main API class for market data and trade execution | | Objects.py | Pydantic data models for trades, markets, events |\nCLI Commands The primary user interface for interacting with Polymarket: ````bash\nGet all markets sorted by volume python scripts/python/cli.py get-all-markets –limit 10 –sort-by volume\nGet specific market details python scripts/python/cli.py get-market –market-id Execute a trade python scripts/python/cli.py trade –market-id –side buy –size * * * ## Quick Start ### 1. Clone Repository `````bash git clone https://github.com/polymarket/agents.git cd agents 2. Set Up Environment # Create virtual environment virtualenv --python=python3.9 .venv source .venv/bin/activate # Install dependencies pip install -r requirements.txt 3. Configure API Keys Create .env file: `````env POLYGON_WALLET_PRIVATE_KEY=“your-wallet-private-key” OPENAI_API_KEY=“your-openai-api-key”\n### 4. Load Wallet with USDC Transfer USDC to your Polygon wallet for trading. ### 5. Run CLI `````bash # Set Python path export PYTHONPATH=\".\" # Run CLI python scripts/python/cli.py Or execute trades directly: `````bash python agents/application/trade.py\n### 6. Docker Alternative `````bash ./scripts/bash/build-docker.sh ./scripts/bash/run-docker-dev.sh ```` * * * ## Trading Strategies Polymarket Agents supports various AI-driven trading strategies: ### 1. News-Based Trading - Monitor news sources for event developments - Use LLM to analyze sentiment and impact - Execute trades based on predicted outcomes ### 2. Arbitrage Detection - Compare prices across related markets - Identify mispriced probabilities - Execute risk-free arbitrage trades ### 3. Trend Following - Analyze market volume and price movements - Identify momentum in specific markets - Ride trends for profit ### 4. Fundamental Analysis - Research event background and factors - Use RAG to query historical data - Make informed predictions * * * ## Data Sources The framework integrates multiple data sources: | Source | Type | Use Case | | * * * | * * * | * * * | | **News APIs** | Real-time news | Event tracking | | **Web Search** | General information | Background research | | **Betting Services** | Odds comparison | Price discovery | | **Social Media** | Sentiment analysis | Trend detection | | **On-Chain Data** | Transaction data | Market intelligence | * * * ## RAG Implementation Retrieval-Augmented Generation for informed trading: 1. **Vector Database** — Chroma DB stores news articles and market data 2. **Embedding** — Convert text to vectors for semantic search 3. **Retrieval** — Query relevant information based on market context 4. **Generation** — LLM synthesizes retrieved data into trading decisions * * * ## Risk Management Important considerations for automated trading: | Risk | Mitigation | | * * * | * * * | | **Market Risk** | Position sizing, stop-losses | | **Liquidity Risk** | Trade in high-volume markets | | **Model Risk** | Backtest strategies before live trading | | **Operational Risk** | Monitor bot performance regularly | | **Regulatory Risk** | Comply with local regulations | * * * ## Comparison with Other Tools | Feature | Polymarket Agents | Custom Bot | Manual Trading | | * * * | * * * | * * * | * * * | | **Open Source** | ✅ | Varies | N/A | | **AI Integration** | ✅ | Optional | ❌ | | **RAG Support** | ✅ | Rare | ❌ | | **Multi-Source Data** | ✅ | Optional | ❌ | | **CLI Interface** | ✅ | Varies | N/A | | **Community** | ✅ | Varies | ❌ | | **Speed** | Fast | Fast | Slow | | **Emotion-Free** | ✅ | ✅ | ❌ | * * * ## Use Cases ### 1. Political Event Trading - Election outcomes - Policy decisions - Legislative votes ### 2. Crypto Market Predictions - Bitcoin price movements - ETF approvals - Regulatory decisions ### 3. Sports Betting - Game outcomes - Championship winners - Player performance ### 4. Entertainment Markets - Award winners - Box office predictions - Reality show outcomes * * * ## Related Repositories | Repository | Purpose | | * * * | * * * | | [py-clob-client](https://github.com/Polymarket/py-clob-client) | Python client for Polymarket CLOB | | [python-order-utils](https://github.com/Polymarket/python-order-utils) | Order generation and signing | | [clob-client](https://github.com/Polymarket/clob-client) | TypeScript client for CLOB | | [Langchain](https://github.com/langchain-ai/langchain) | Context-aware reasoning | | [Chroma](https://docs.trychroma.com) | Vector database | * * * ## Reading Resources - [Prediction Markets: Bottlenecks and Next Unlocks](https://mirror.xyz/1kx.eth/jnQhA56Kx9p3RODKiGzqzHGGEODpbskivUUNdd7hwh0) - [Crypto + AI Applications](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) by Vitalik Buterin - [Superforecasting](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment) * * * ## Related Articles - [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/resources/dev-utils/polymarket-trading-bot-stack/) — Complete trading bot architecture - [Free Claude Code: Use Claude Code CLI for Free](/resources/ai-tools/free-claude-code-open-source-proxy/) — AI coding assistant * * * ## Conclusion **Polymarket Agents** provides a solid foundation for building AI-powered trading bots on prediction markets. The modular architecture, comprehensive API integration, and RAG capabilities make it suitable for both beginners and experienced developers. **Best for**: Developers interested in algorithmic trading, prediction markets, and AI-driven decision making **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents) * * * - * * * ## Recommended Infrastructure for Self-Hosting If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don't cost you extra and they help keep dibi8.com running.* *Last updated: 2026-05-06* ## References \u0026 Sources - [Polymarket Agents](https://github.com/Polymarket/agents) - [py-clob-client](https://github.com/Polymarket/py-clob-client) - [python-order-utils](https://github.com/Polymarket/python-order-utils) - [clob-client](https://github.com/Polymarket/clob-client) - [LangChain](https://github.com/langchain-ai/langchain) - [Chroma](https://docs.trychroma.com) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Polymarket Agents: Build AI Trading Bots for Prediction Markets\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/polymarket-agents-ai-trading-bot-framework\" } } ## Why This Matters Understanding polymarket agents: build ai trading bots for prediction markets is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Polymarket Agents: Build AI Trading Bots for Prediction Markets represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1800","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/polymarket-agents-ai-trading-bot-framework/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/polymarket-agents-ai-trading-bot-framework/>Zh</a></li><li><a href=https://dibi8.com/ko/polymarket-agents-ai-trading-bot-framework/>Ko</a></li><li><a href=https://dibi8.com/vi/polymarket-agents-ai-trading-bot-framework/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#what-is-polymarket-agents aria-label="What is Polymarket Agents?">What is Polymarket Agents?</a></li><li><a href=#what-is-polymarket aria-label="What is Polymarket?">What is Polymarket?</a></li><li><a href=#key-features aria-label="Key Features">Key Features</a></li><li><a href=#architecture aria-label=Architecture>Architecture</a><ul><li><a href=#cli-commands aria-label="CLI Commands">CLI Commands</a></li></ul></li></ul><li><a href=#get-all-markets-sorted-by-volume aria-label="Get all markets sorted by volume">Get all markets sorted by volume</a></li><li><a href=#get-specific-market-details aria-label="Get specific market details">Get specific market details</a></li><li><a href=#execute-a-trade aria-label="Execute a trade">Execute a trade</a><ul><ul><li><a href=#2-set-up-environment aria-label="2. Set Up Environment">2. Set Up Environment</a></li><li><a href=#3-configure-api-keys aria-label="3. Configure API Keys">3. Configure API Keys</a></li></ul></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Polymarket Agents: Build AI Trading Bots for Prediction &mldr;
+description: &ldquo;Technical guide and comparison.&rdquo;
+AI agents that trade autonomously on Polymarket prediction markets.
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - Docker</p><ul><li>Go</li><li>Python</li><li>TypeScript
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &ldquo;107 KB&rdquo;
+file_md5: &rsquo;'
+download_url: <a href=https://github.com/Polymarket/agents>https://github.com/Polymarket/agents</a>
+backup_url: &rsquo;'
+last_maintained: &ldquo;2024-11-05&rdquo;
+draft: false
+aliases:<ul><li>/en/posts/polymarket-agents-ai-trading-bot-framework/</li></ul></li><li>/posts/ai-trader-fully-automated-trading-agent/</li><li>/posts/polymarket-agents-ai-trading-bot-framework/
+faqs: - q: &lsquo;What is Polymarket Agents?&rsquo;
+a: &lsquo;Polymarket Agents is an open-source, MIT-licensed developer framework for building AI agents that trade autonomously on Polymarket prediction markets. It provides utilities to analyze markets, integrate with the Polymarket API for real-time data, and execute trades automatically.&rsquo;<ul><li>q: &lsquo;What do I need to set up before running Polymarket Agents?&rsquo;
+a: &lsquo;You need a Polygon wallet private key and an OpenAI API key set in a .env file, plus a Python 3.9 virtual environment with dependencies installed from requirements.txt. You must also fund your Polygon wallet with USDC, since trades on Polymarket are settled in USDC.&rsquo;</li><li>q: &lsquo;How does Polymarket Agents use RAG for trading decisions?&rsquo;
+a: &lsquo;It uses a Chroma vector database to store news articles and market data, converts text into embeddings for semantic search, retrieves relevant information based on the current market context, and lets the LLM synthesize that retrieved data into a trading decision.&rsquo;</li><li>q: &lsquo;What trading strategies does Polymarket Agents support?&rsquo;
+a: &lsquo;The framework supports news-based trading (LLM sentiment analysis of events), arbitrage detection across related markets, trend following based on volume and price movements, and fundamental analysis using RAG to query historical data.&rsquo;</li><li>q: &lsquo;How do I execute a trade with the Polymarket Agents CLI?&rsquo;
+a: &lsquo;Run the CLI command &lsquo;&lsquo;python scripts/python/cli.py trade &ndash;market-id &ndash;side buy &ndash;size &lsquo;&rsquo;. You can also list markets with &lsquo;&lsquo;get-all-markets &ndash;sort-by volume&rsquo;&rsquo; or inspect a single market with &lsquo;&lsquo;get-market &ndash;market-id &lsquo;&rsquo;.&rsquo;</li></ul></li></ul><hr><p>{&lt;/* resource-info */>}</p><p><img alt="Polymarket Agents CLI showing available commands" loading=lazy src=/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png>
+<em>Polymarket Agents CLI — official screenshot from <a href=https://github.com/Polymarket/agents>github.com/Polymarket/agents</a></em></p><h2 id=what-is-polymarket-agents>What is Polymarket Agents?<a hidden class=anchor aria-hidden=true href=#what-is-polymarket-agents>#</a></h2><p><strong>Polymarket Agents</strong> is an open-source developer framework and set of utilities for building AI agents that trade autonomously on <strong>Polymarket</strong> — the world&rsquo;s largest prediction market platform.</p><p>This framework enables developers to: - 🤖 Build AI agents that analyze markets and execute trades automatically</p><ul><li>📊 Integrate with Polymarket API for real-time market data</li><li>🔍 Use RAG (Retrieval-Augmented Generation) for informed trading decisions</li><li>📰 Source data from betting services, news providers, and web search</li><li>🧠 Leverage comprehensive LLM tools for prompt engineering and market analysis</li></ul><p>🔗 <strong>GitHub</strong>: <a href=https://github.com/Polymarket/agents>https://github.com/Polymarket/agents</a></p><hr><h2 id=what-is-polymarket>What is Polymarket?<a hidden class=anchor aria-hidden=true href=#what-is-polymarket>#</a></h2><p><strong>Polymarket</strong> is a decentralized prediction market platform where users trade on the outcomes of real-world events: - <strong>Politics</strong> — Election results, policy decisions</p><ul><li><strong>Crypto</strong> — Bitcoin price predictions, ETF approvals</li><li><strong>Sports</strong> — Game outcomes, championship winners</li><li><strong>Science</strong> — Research breakthroughs, space missions</li><li><strong>Entertainment</strong> — Award winners, box office results</li></ul><p>Traders buy &ldquo;Yes&rdquo; or &ldquo;No&rdquo; shares based on their predictions, with prices reflecting the market&rsquo;s consensus probability.</p><hr><h2 id=key-features>Key Features<a hidden class=anchor aria-hidden=true href=#key-features>#</a></h2><p>| Feature | Description |
+|</p><hr><p>|</p><hr><p>|
+| <strong>Polymarket API Integration</strong> | Full access to market data, order book, and trade execution |
+| <strong>AI Agent Utilities</strong> | Tools for building autonomous trading agents |
+| <strong>Local & Remote RAG</strong> | Vector database support for news and market data retrieval |
+| <strong>Multi-Source Data</strong> | Betting services, news APIs, web search integration |
+| <strong>LLM Prompt Engineering</strong> | Comprehensive tools for context-aware reasoning |
+| <strong>CLI Interface</strong> | Command-line tool for market analysis and trading |
+| <strong>Docker Support</strong> | Containerized deployment for easy setup |
+| <strong>MIT License</strong> | Free and open-source |</p><hr><h2 id=architecture>Architecture<a hidden class=anchor aria-hidden=true href=#architecture>#</a></h2><p>Polymarket Agents features modular components that can be maintained and extended by the community: ### Core APIs</p><p>| Component | Purpose |
+|</p><hr><p>|</p><hr><p>|
+| <strong>Chroma.py</strong> | Vector database for news sources and API data |
+| <strong>Gamma.py</strong> | Polymarket Gamma API client for market metadata |
+| <strong>Polymarket.py</strong> | Main API class for market data and trade execution |
+| <strong>Objects.py</strong> | Pydantic data models for trades, markets, events |</p><h3 id=cli-commands>CLI Commands<a hidden class=anchor aria-hidden=true href=#cli-commands>#</a></h3><p>The primary user interface for interacting with Polymarket: ````bash</p><h1 id=get-all-markets-sorted-by-volume>Get all markets sorted by volume<a hidden class=anchor aria-hidden=true href=#get-all-markets-sorted-by-volume>#</a></h1><p>python scripts/python/cli.py get-all-markets &ndash;limit 10 &ndash;sort-by volume</p><h1 id=get-specific-market-details>Get specific market details<a hidden class=anchor aria-hidden=true href=#get-specific-market-details>#</a></h1><p>python scripts/python/cli.py get-market &ndash;market-id &lt;MARKET_ID></p><h1 id=execute-a-trade>Execute a trade<a hidden class=anchor aria-hidden=true href=#execute-a-trade>#</a></h1><p>python scripts/python/cli.py trade &ndash;market-id &lt;MARKET_ID> &ndash;side buy &ndash;size <size></p><pre tabindex=0><code>
+* * *
+
+## Quick Start
+
+### 1. Clone Repository
+
+`````bash
+git clone https://github.com/polymarket/agents.git
+cd agents
+</code></pre><h3 id=2-set-up-environment>2. Set Up Environment<a hidden class=anchor aria-hidden=true href=#2-set-up-environment>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create virtual environment</span>
+</span></span><span style=display:flex><span>virtualenv --python<span style=color:#f92672>=</span>python3.9 .venv
+</span></span><span style=display:flex><span>source .venv/bin/activate
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Install dependencies</span>
+</span></span><span style=display:flex><span>pip install -r requirements.txt
+</span></span></code></pre></div><h3 id=3-configure-api-keys>3. Configure API Keys<a hidden class=anchor aria-hidden=true href=#3-configure-api-keys>#</a></h3><p>Create <code>.env</code> file: `````env
+POLYGON_WALLET_PRIVATE_KEY=&ldquo;your-wallet-private-key&rdquo;
+OPENAI_API_KEY=&ldquo;your-openai-api-key&rdquo;</p><pre tabindex=0><code>
+### 4. Load Wallet with USDC
+
+Transfer USDC to your Polygon wallet for trading.
+
+### 5. Run CLI
+
+`````bash
+# Set Python path
+export PYTHONPATH=&#34;.&#34;
+
+# Run CLI
+python scripts/python/cli.py
+</code></pre><p>Or execute trades directly: `````bash
+python agents/application/trade.py</p><pre tabindex=0><code>
+### 6. Docker Alternative
+
+`````bash
+./scripts/bash/build-docker.sh
+./scripts/bash/run-docker-dev.sh
+````
+
+* * *
+
+## Trading Strategies
+
+Polymarket Agents supports various AI-driven trading strategies: ### 1. News-Based Trading
+- Monitor news sources for event developments
+- Use LLM to analyze sentiment and impact
+- Execute trades based on predicted outcomes
+
+### 2. Arbitrage Detection
+- Compare prices across related markets
+- Identify mispriced probabilities
+- Execute risk-free arbitrage trades
+
+### 3. Trend Following
+- Analyze market volume and price movements
+- Identify momentum in specific markets
+- Ride trends for profit
+
+### 4. Fundamental Analysis
+- Research event background and factors
+- Use RAG to query historical data
+- Make informed predictions
+
+* * *
+
+## Data Sources
+
+The framework integrates multiple data sources: | Source | Type | Use Case |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **News APIs** | Real-time news | Event tracking |
+| **Web Search** | General information | Background research |
+| **Betting Services** | Odds comparison | Price discovery |
+| **Social Media** | Sentiment analysis | Trend detection |
+| **On-Chain Data** | Transaction data | Market intelligence |
+
+* * *
+
+## RAG Implementation
+
+Retrieval-Augmented Generation for informed trading: 1. **Vector Database** — Chroma DB stores news articles and market data
+2. **Embedding** — Convert text to vectors for semantic search
+3. **Retrieval** — Query relevant information based on market context
+4. **Generation** — LLM synthesizes retrieved data into trading decisions
+
+* * *
+
+## Risk Management
+
+Important considerations for automated trading: | Risk | Mitigation |
+|
+* * *
+|
+* * *
+|
+| **Market Risk** | Position sizing, stop-losses |
+| **Liquidity Risk** | Trade in high-volume markets |
+| **Model Risk** | Backtest strategies before live trading |
+| **Operational Risk** | Monitor bot performance regularly |
+| **Regulatory Risk** | Comply with local regulations |
+
+* * *
+
+## Comparison with Other Tools
+
+| Feature | Polymarket Agents | Custom Bot | Manual Trading |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Open Source** | ✅ | Varies | N/A |
+| **AI Integration** | ✅ | Optional | ❌ |
+| **RAG Support** | ✅ | Rare | ❌ |
+| **Multi-Source Data** | ✅ | Optional | ❌ |
+| **CLI Interface** | ✅ | Varies | N/A |
+| **Community** | ✅ | Varies | ❌ |
+| **Speed** | Fast | Fast | Slow |
+| **Emotion-Free** | ✅ | ✅ | ❌ |
+
+* * *
+
+## Use Cases
+
+### 1. Political Event Trading
+- Election outcomes
+- Policy decisions
+- Legislative votes
+
+### 2. Crypto Market Predictions
+- Bitcoin price movements
+- ETF approvals
+- Regulatory decisions
+
+### 3. Sports Betting
+- Game outcomes
+- Championship winners
+- Player performance
+
+### 4. Entertainment Markets
+- Award winners
+- Box office predictions
+- Reality show outcomes
+
+* * *
+
+## Related Repositories
+
+| Repository | Purpose |
+|
+* * *
+|
+* * *
+|
+| [py-clob-client](https://github.com/Polymarket/py-clob-client) | Python client for Polymarket CLOB |
+| [python-order-utils](https://github.com/Polymarket/python-order-utils) | Order generation and signing |
+| [clob-client](https://github.com/Polymarket/clob-client) | TypeScript client for CLOB |
+| [Langchain](https://github.com/langchain-ai/langchain) | Context-aware reasoning |
+| [Chroma](https://docs.trychroma.com) | Vector database |
+
+* * *
+
+## Reading Resources
+
+- [Prediction Markets: Bottlenecks and Next Unlocks](https://mirror.xyz/1kx.eth/jnQhA56Kx9p3RODKiGzqzHGGEODpbskivUUNdd7hwh0)
+- [Crypto + AI Applications](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) by Vitalik Buterin
+- [Superforecasting](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment)
+
+* * *
+
+## Related Articles
+
+- [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/resources/dev-utils/polymarket-trading-bot-stack/) — Complete trading bot architecture
+- [Free Claude Code: Use Claude Code CLI for Free](/resources/ai-tools/free-claude-code-open-source-proxy/) — AI coding assistant
+
+* * *
+
+## Conclusion
+
+**Polymarket Agents** provides a solid foundation for building AI-powered trading bots on prediction markets. The modular architecture, comprehensive API integration, and RAG capabilities make it suitable for both beginners and experienced developers.
+
+**Best for**: Developers interested in algorithmic trading, prediction markets, and AI-driven decision making
+
+**GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents)
+
+* * *
+
+
+-
+* * *
+
+## Recommended Infrastructure for Self-Hosting
+
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+
+*Affiliate links — they don&#39;t cost you extra and they help keep dibi8.com running.*
+
+*Last updated: 2026-05-06*
+
+## References &amp; Sources
+
+- [Polymarket Agents](https://github.com/Polymarket/agents)
+- [py-clob-client](https://github.com/Polymarket/py-clob-client)
+- [python-order-utils](https://github.com/Polymarket/python-order-utils)
+- [clob-client](https://github.com/Polymarket/clob-client)
+- [LangChain](https://github.com/langchain-ai/langchain)
+- [Chroma](https://docs.trychroma.com)
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Polymarket Agents: Build AI Trading Bots for Prediction Markets&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/polymarket-agents-ai-trading-bot-framework&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding polymarket agents: build ai trading bots for prediction markets is crucial for modern AI development. Here&#34;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+Polymarket Agents: Build AI Trading Bots for Prediction Markets represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+* * *
+
+*Last updated: 2026-09-20*
+*Read time: ~6 minutes*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

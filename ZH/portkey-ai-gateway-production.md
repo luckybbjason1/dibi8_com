@@ -1,6 +1,13 @@
 ---
-title: "Portkey AI Gateway 2026: 管理200+模型的LLM网关与可观测性 — 生产环境部署"
-description: ''. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "portkey-ai-gateway-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 在生产环境中管理多个大语言模型（LLM）提供商是一场噩梦。每个提供商都有自己的API格式、认证方案、速率限制和故障模式。你的应用代码中充斥着针对OpenAI、Anthropic、Google、Azure以及每月涌现的数十个新提供商的条件逻辑。**Portkey AI Gateway** 应运而生 —— 这款开源LLM网关将200+模型统一在单一API之后，提供负载均衡、故障转移路由、消费追踪、请求缓存和企业级可观测性。
 
@@ -449,7 +456,7 @@ prompt = portkey.prompts.deploy(
     version="1.2.0",
     prompt=[
         {"role": "system", "content": "你是一个支持工单分类器。将工单分类为：计费、技术、功能请求或投诉。"},
-        {"role": "user", "content": "工单: {{ticket_content}}"}
+        {"role": "user", "content": "工单: "}
     ],
     model="gpt-4o-mini",
     parameters={

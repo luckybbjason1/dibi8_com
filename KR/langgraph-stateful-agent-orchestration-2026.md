@@ -1,6 +1,13 @@
 ---
-title: "LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전...
-description: "LangGraph는 장기 실행, 상태 유지 AI 에이전트용 저수준 오케스트레이션 프레임워크. GitHub 32.6k stars, v1.2.1. 그래프 디자인, 영구 실행, huma..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-stateful-agent-orchestration-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -129,7 +136,7 @@ def approval_gate(state): user_decision = interrupt({"proposed_action": state["p
 └──────────────────────────┘
 `````
 
-표준 프로덕션 배포: LangGraph 앱 컨테이너화, 체크포인트용 매니지드 Postgres 가리킴, 트레이스용 LangSmith 설정. 무상태 tier는 {{< aff "digitalocean" "langgraph-vps" "DigitalOcean App Platform" >}}; 진지한 워크로드는 {{< aff "htstack" "langgraph-vps-hk" "HTStack 홍콩 VPS" >}}(8 GB 최소) + DO Managed Postgres로 저레이턴시 상태 쓰기.
+표준 프로덕션 배포: LangGraph 앱 컨테이너화, 체크포인트용 매니지드 Postgres 가리킴, 트레이스용 LangSmith 설정. 무상태 tier는 ; 진지한 워크로드는 (8 GB 최소) + DO Managed Postgres로 저레이턴시 상태 쓰기.
 
 ## 6. LangGraph vs LangChain vs CrewAI vs AutoGen (언제 무엇을 선택)
 
@@ -183,7 +190,7 @@ def approval_gate(state): user_decision = interrupt({"proposed_action": state["p
 
 LangGraph = **그래프 기반 상태 유지 에이전트 런타임**. 크래시 견디고, 사람 체크포인트 지원하고, 몇 시간 실행되는 프로덕션 워크로드용. 32.6k stars, v1.2.1, MIT. LangChain과 자연스럽게 페어링(이미 쓰고 있을 가능성). 제어 필요할 때 CrewAI 보다, 영속성 필요할 때 LangChain 단독 보다, 멀티 에이전트 대화 외 모든 곳에서 AutoGen 보다 선택.
 
-Postgres 있는 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 띄우고 3절 예시 실행하면, 왜 프로덕션에서 실제 에이전트 실행하는 팀이 여기로 모이는지 알 수 있음.
+Postgres 있는  띄우고 3절 예시 실행하면, 왜 프로덕션에서 실제 에이전트 실행하는 팀이 여기로 모이는지 알 수 있음.
 
 * * *
 

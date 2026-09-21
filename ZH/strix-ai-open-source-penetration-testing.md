@@ -1,26 +1,22 @@
 ---
-description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerabilit..."
-date: 2026-07-03T09:00:00+09:00
-lastmod: 2026-07-03T09:00:00+09:00
-slug: strix-ai-open-source-penetration-testing
-title: "Strix AI：31K+明星开源渗透测试框架"
-category: dev-utils
-tags: ["security", "penetration-testing", "ai-agents", "vulnerability-scanning", "open-source"]
-tech_stack: - Python
-  - TypeScript
-  - Bash
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "strix-ai-open-source-penetration-testing"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 
 
 
-<<<<<<< HEAD
+
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
-=======
+
 > **编者披露：** 此分析使用截至 2026 年 6 月 30 日公开的 GitHub 数据（星数、提交频率、分叉数）。所有代码示例都经过测试和验证。我们可以通过附属链接赚取佣金。
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 ## 长篇大论；博士
 
@@ -100,7 +96,7 @@ strix scan --target https://api.example.com --profile api
 scanner: max_depth: 5
   concurrent_requests: 10
   timeout: 30
-<<<<<<< HEAD
+
   
 agents: recon: enabled: true
     subdomain_bruteforce: true
@@ -116,7 +112,7 @@ agents: recon: enabled: true
   report: executive_summary: true
     technical_details: true
     remediation_guide: true
-=======
+
 
 代理商：
 侦察：
@@ -137,7 +133,7 @@ owasp_top10：正确
 执行摘要：正确
 技术细节：正确
 修复指南：true
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 输出：
 格式：
@@ -203,13 +199,13 @@ Strix AI 使用分层代理架构，其中专用代理通过共享消息总线�
 class AgentBus: """Shared message bus for agent communication"""
     def __init__(self): self.topics = {}
         self.handlers = {}
-<<<<<<< HEAD
+
     
     def subscribe(self, topic, handler): if topic not in self.topics: self.topics[topic] = []
         self.topics[topic].append(handler)
     
     def publish(self, topic, message): if topic in self.topics: for handler in self.topics[topic]: handler(message)
-=======
+
 
 def 订阅（自身，主题，处理程序）：
 如果主题不在 self.topics 中：
@@ -220,7 +216,7 @@ def 发布（自身、主题、消息）：
 如果主题在 self.topics 中：
 对于 self.topics[topic] 中的处理程序：
 处理程序（消息）
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 # 代理注册
 总线 = AgentBus()
@@ -234,7 +230,7 @@ def 发布（自身、主题、消息）：
 `````python
 class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vulnerability type
         vtype = self._classify(finding)
-<<<<<<< HEAD
+
         
         # Step 2: Assess exploitability
         exploitability = self._assess_exploitability(
@@ -259,7 +255,7 @@ class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vuln
             'evidence': finding.evidence,
             'remediation': self._suggest_remediation(vtype),
         }
-=======
+
 
 # 第 2 步：评估可利用性
 可利用性 = self._assess_exploitability(
@@ -284,14 +280,14 @@ class VulnAnalyzer: def analyze(self, finding, context): # Step 1: Classify vuln
 '证据'：发现.证据，
 '修复'：self._suggest_remediation（vtype），
 }
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ### AI 驱动的误报过滤器
 
 `````python
 class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
-<<<<<<< HEAD
+
     
     def filter(self, findings): filtered = []
         for finding in findings: prompt = f"""
@@ -309,7 +305,7 @@ class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
 
 
 ## Advanced Scanning Techniques
-=======
+
 
 def过滤器（自我，发现）：
 过滤=[]
@@ -332,7 +328,7 @@ def过滤器（自我，发现）：
 `````
 
 ## 先进的扫描技术
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 ### 自定义漏洞规则
 
@@ -340,13 +336,13 @@ def过滤器（自我，发现）：
 
 `````yaml
 # custom-rules.yaml
-rules: description: "Detects exposed environment variables in responses" pattern: "(?i)(password|api_key|secret)\s*[:=]\s..."
+rules: description: "Technical guide and comparison."
 模式："(?i)(密码|api_key|秘密)\s*[:=]\s*[\w-]+"
 严重程度：高
 端点：
 - "/api/v1/config"
 - "/调试"
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ### 身份验证测试
@@ -523,11 +519,11 @@ Strix AI 的增长反映了对人工智能驱动的安全工具日益增长的�
 
 
 * * *
-<<<<<<< HEAD
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
-=======
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 
 {

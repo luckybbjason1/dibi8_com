@@ -1,16 +1,14 @@
 ---
-title: "OpenRouter: 300개 이상 모델을 연결하는 통합 LLM API 게이트웨이, 40% 비용 절감...
-description: "OpenRouter 완벽 가이드: 60개 이상 제공업체의 300개 이상 AI 모델에 단일 OpenAI 호환 엔드포인트로 액세스합니다. 5분 안에 설정, 통합, 벤치마크, 프로덕션 ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["openrouter", "llm", "api 게이트웨이", "인공지능", "openai", "claude", "머신러닝", "비용 최적화"]
-aliases:
-  - /kr/posts/openrouter-unified-llm-api-gateway/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openrouter-unified-llm-api-gateway"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 모든 개발자가 직면하는 API 키 악몽
 

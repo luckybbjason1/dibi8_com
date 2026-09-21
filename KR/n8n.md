@@ -1,6 +1,13 @@
 ---
-title: "n8n AI 워크플로 자동화: 18.8만 Star 자체 호스팅 설정 — Zapier 대비 70% 절약"
-description: "n8n(fair-code)은 네이티브 AI 기능과 400+ 통합을 갖춘 워크플로 자동화 플랫폼이다. Claude Code, OpenAI, Anthropic, Slack, Disco..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 *n8n fair-code 워크플로 자동화 플랫폼 — 188K+ GitHub 스타, 400+ 통합.*
@@ -380,7 +387,7 @@ c8n UI에서 자격 증명 추가: `````bash
           "message": [
             {
               "role": "user",
-              "content": "=Summarize this data: {{ $json.body }}"
+              "content": "=Summarize this data: "
             }
           ]
         }
@@ -393,7 +400,7 @@ c8n UI에서 자격 증명 추가: `````bash
     {
       "parameters": {
         "channel": "#alerts",
-        "text": "=AI Summary: {{ $json.output }}"
+        "text": "=AI Summary: "
       },
       "name": "Slack Message",
       "type": "n8n-nodes-base.slack",
@@ -441,8 +448,8 @@ c8n UI에서 자격 증명 추가: `````bash
     },
     {
       "parameters": {
-        "chatId": "={{ $json.message.chat.id }}",
-        "text": "={{ $json.message.text }}",
+        "chatId": "=",
+        "text": "=",
         "additionalOptions": {}
       },
       "name": "Telegram Response",

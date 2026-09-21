@@ -1,11 +1,10 @@
 ---
-title: "Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luậ...
-description: "Khám phá Superpowers, framework kỹ năng tác nhân với hơn 200k stars. Thiết lập trong vài phút, có be..."
-date: 2026-05-23
-lastmod: 2026-05-23
-slug: 'superpowers'
-category: 'llm-frameworks'
-tags: ["agentic-ai", "llm-frameworks", "shell-scripting", "software-development", "ai-agents", "developer-tools"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superpowers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

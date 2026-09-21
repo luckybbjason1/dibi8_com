@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-ethics-corporate-policy-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
-description: "Companies in 2026 split into AI-allow / AI-restrict / AI-forbid camps. Practical guide for what each..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Policy, Compliance, 'Claude Code', Cursor]
@@ -24,7 +31,7 @@ faq: - q: "What are the main corporate AI coding policy stances in 2026?"
     a: "Context-dependent. For pure web SaaS work: allow with light audit is almost always right. For healthcare/financial regulated work: enterprise tier with DPA + restricted use is the bar. For defense/classified: forbid cloud AI, allow only local. Mismatched policy creates either compliance risk or productivity loss."
 ---
 
-{{</* resource-info */>}}
+
 
 # AI Coding Ethics 2026: Corporate Policy Guide
 
@@ -130,8 +137,8 @@ For Restrict to Enterprise: 1. Procurement involvement before any tool adoption
 
 ## Recommended Infrastructure
 
-For self-hosted AI (camp 3): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS
+For self-hosted AI (camp 3): - **** — $200 credit, GPU droplets
+- **** — Hong Kong VPS
 
 *Affiliate links — same price, supports dibi8.com.*
 

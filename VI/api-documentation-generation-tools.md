@@ -1,6 +1,13 @@
 ---
-title: "Các Công Cụ Tạo Tài Liệu API Tốt Nhất 2025: So Sánh Swag...
-description: "Khám phá các công cụ tạo tài liệu API hàng đầu năm 2025. So sánh chi tiết Swagger, Postman Docs, Rea..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "api-documentation-generation-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

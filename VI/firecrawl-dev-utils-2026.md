@@ -1,6 +1,13 @@
 ---
-title: "Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
-description: "Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch h..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "firecrawl-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,9 +30,9 @@ faqs: - q: 'Tôi cài Firecrawl như thế nào?'
   - q: 'Tôi có thể dùng Firecrawl với các ngôn ngữ khác ngoài TypeScript không?'
     a: 'Có. Firecrawl là một HTTP API, nên bất kỳ ngôn ngữ nào cũng có thể gọi nó. Có SDK chính thức cho Node.js và Python, và với các ngôn ngữ khác bạn có thể gọi trực tiếp các endpoint REST bằng một HTTP client bất kỳ.'
   - q: 'Tôi bắt buộc phải dùng API được lưu trữ, hay có thể self-host?'
-    a: 'Cả hai đều được hỗ trợ. API được lưu trữ tại `api.firecrawl.dev` là cách bắt đầu nhanh nhất, nhưng bản thân dự án là mã nguồn mở và đi kèm cấu hình Docker Compose, nên bạn có thể chạy toàn bộ trên máy chủ của riêng mình.'
+    a: 'Cả hai đều được hỗ trợ. API được lưu trữ tại ``api.firecrawl.dev`` là cách bắt đầu nhanh nhất, nhưng bản thân dự án là mã nguồn mở và đi kèm cấu hình Docker Compose, nên bạn có thể chạy toàn bộ trên máy chủ của riêng mình.'
   - q: 'Sự khác biệt giữa scrape, crawl và map là gì?'
-    a: '`scrape` xử lý một URL. `crawl` đi theo các liên kết để scrape toàn bộ một website một cách bất đồng bộ. `map` chỉ trả về danh sách URL trên một site mà không scrape nội dung của chúng — hữu ích để lập kế hoạch crawl.'
+    a: '``scrape`` xử lý một URL. ``crawl`` đi theo các liên kết để scrape toàn bộ một website một cách bất đồng bộ. ``map`` chỉ trả về danh sách URL trên một site mà không scrape nội dung của chúng — hữu ích để lập kế hoạch crawl.'
   - q: 'Firecrawl có miễn phí không, và giấy phép của nó là gì?'
     a: 'Mã nguồn miễn phí và mở theo AGPL-3.0, còn các SDK chính thức và thành phần UI theo MIT. API đám mây được lưu trữ có một bậc miễn phí cùng các gói trả phí cho mức dùng cao hơn. Nếu self-host, bạn tự chịu chi phí hạ tầng để vận hành.'
 ---
@@ -34,7 +41,7 @@ faqs: - q: 'Tôi cài Firecrawl như thế nào?'
 # Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 
@@ -172,7 +179,7 @@ const doc = await app.scrape('https://example.com", {
       type: object,
       properties: {
         title: { type: string },
-        description: { type: string },
+        description: "Technical guide and comparison."
       },
     },
   }],
@@ -219,7 +226,7 @@ jobs: scrape: runs-on: ubuntu-latest
         run: npm install firecrawl
 
       - name: Run scraper
-        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: $
         run: node scrape.js > output.json
 `````
 

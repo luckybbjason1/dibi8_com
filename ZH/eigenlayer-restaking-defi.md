@@ -1,17 +1,14 @@
 ---
-title: "eigenlayer-restaking-defi"
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["eigenlayer"]
-aliases:
-  - /zh/posts/eigenlayer-restaking-defi/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "eigenlayer-restaking-defi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 > **联盟营销披露**：本文包含 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 和 [Minara](https://minara.ai/r/OSXG4X) 的联盟链接。您通过这些链接注册时，我们可能会赚取佣金 —— 对您不产生额外费用。
 

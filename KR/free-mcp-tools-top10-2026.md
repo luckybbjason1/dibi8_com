@@ -1,6 +1,13 @@
 ---
-title: "2026 무료 MCP 툴 Top 10: 최고의 Model Context Protocol 서버 추천"
-description: "Claude, Cursor, 모든 MCP 호환 AI 클라이언트를 위한 최고의 무료 MCP 서버 10선 — 파일시스템, 웹 검색, 메모리, GitHub, 데이터베이스 등. 전부 오픈..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-mcp-tools-top10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

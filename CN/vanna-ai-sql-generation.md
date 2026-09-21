@@ -1,14 +1,13 @@
 ---
-title: "vanna-ai-sql-generation"
-description: "{"en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to gen..."
-draft: false
-categories: ["llm-frameworks"]
-tags: ["vanna ai"]
-aliases:
-  - /posts/vanna-ai-sql-generation/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vanna-ai-sql-generation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
-{{</* resource-info */>}}
+
 
 The ability to interact with databases using natural language has long been the holy grail of data analytics. Every day, countless hours are lost translating business questions into SQL queries — a process that requires deep knowledge of database schemas, table relationships, and SQL syntax. In 2026, this bottleneck is rapidly dissolving thanks to **Vanna AI**, an open-source Python library that trains on your database schema and generates production-ready SQL from plain English with over 90% accuracy.
 

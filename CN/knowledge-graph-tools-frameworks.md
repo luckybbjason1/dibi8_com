@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-graph-tools-frameworks"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Best Knowledge Graph Tools & Frameworks 2025: Neo4j, RDF...
-description: "Compare the top knowledge graph tools and frameworks of 2025. In-depth analysis of Neo4j, RDFlib, Am..."
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

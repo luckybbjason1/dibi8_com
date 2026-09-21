@@ -1,6 +1,13 @@
 ---
-title: "AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Code...
-description: "2026년 중반 4대 주요 AI 코딩 에이전트 횡단 평가: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. 동..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
@@ -29,7 +36,7 @@ faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI 코딩 2026 Q2 결정전: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI
 
@@ -177,8 +184,8 @@ faq: - q: "2026 Q2에 가장 좋은 AI 코딩 에이전트는?"
 
 ## 추천 인프라
 
-AI 코딩 에이전트 전용 VPS 운영(팀 공유 MCP 서버, 코드 실행 sandbox, long-running agent loops): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 무료 크레딧.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, dibi8.com 호스팅 동일 IDC.
+AI 코딩 에이전트 전용 VPS 운영(팀 공유 MCP 서버, 코드 실행 sandbox, long-running agent loops): - **** — $200 무료 크레딧.
+- **** — 홍콩 VPS, dibi8.com 호스팅 동일 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움.*
 

@@ -1,7 +1,14 @@
 ---
-title: "2026 最佳 AI 编程助手"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-coding-assistants"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
 -cn
-description: "2026 年开发者最好的 AI 编程助手 — 从 Claude Code 和 Cursor 到 GitHub Copilot 和 Devin。比较功能、价格和性能。". Comprehensive g..."
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

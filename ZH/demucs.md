@@ -1,6 +1,13 @@
 ---
-title: "Demucs: 10K+ Stars 的音乐源分离工具 — 2026年对比 UVR、Spleeter"
-description: "Demucs 是 Meta AI 开发的混合频谱图和波形域源分离模型。兼容 Ultimate Vocal Remover、RVC、GPT-SoVITS。涵盖 demucs 教程、demucs vs u..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "demucs"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 将一首混音完成的歌曲分离成独立的人声、鼓、贝斯和其他乐器音轨 —— 过去这需要原始的多轨工程文件。深度学习模型改变了这一切，它们学会了"反混音"成品音频。如今，音乐人、制作人和开发者使用这些工具来制作卡拉OK伴奏、提取采样素材、准备混音工程，以及搭建声音转换流水线。在开源方案中，有一个模型主导了整个领域：**Demucs**，Meta 的混合 Transformer 架构，GitHub 上超过 10,000 星标，在 MUSDB18-HQ 基准测试上达到了业界领先的分离质量。
 

@@ -1,6 +1,13 @@
 ---
-title: "Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc ...
-description: "Colly là framework web scraping nhanh và thanh lịch cho Go với thông lượng 1,000+ req/sec. Bao gồm h..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "colly"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu
 

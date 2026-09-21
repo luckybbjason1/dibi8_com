@@ -1,12 +1,10 @@
 ---
-title: "WorldMonitor: 지리적 감시를 위한 실시간 글로벌 인텔리전스 대시보드"
-description: 뉴스, 지정학적 사건, 인프라 추적을 집계하는 실시간 AI 기반 글로벌 인텔리전스 대시보드. 59K 스타. 팔란티어 고담의 오픈소스 대안.. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: ai-tools
-tags: ["ai", "대시보드", "지정학", "모니터링", "뉴스", "오픈소스", "osint", "palantir", "상황인식"]
-slug: worldmonitor-real-time-global-intelligence-dashboard
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "worldmonitor-real-time-global-intelligence-dashboard"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

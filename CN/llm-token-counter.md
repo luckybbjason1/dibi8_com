@@ -1,10 +1,10 @@
 ---
-title: "LLM Token Counter — GPT-4, Claude, Gemini Tokenization C..."
-description: "Free online LLM token counter. Compare how OpenAI GPT-4 / GPT-4o, Anthropic Claude, and Google Gemin..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-llm-token-counter"
-tool_id: "llm-token-counter"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-token-counter"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

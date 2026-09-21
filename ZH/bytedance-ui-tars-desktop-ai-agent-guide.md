@@ -1,11 +1,10 @@
 ---
-title: "字节跳动 UI-TARS Desktop：看得见并控制你电脑的视觉语言 AI Agent——完整设置指南"
-description: "学习如何部署字节跳动的 UI-TARS Desktop，这是一款视觉语言 AI Agent，可以观看你的屏幕并通过自然语言控制应用程序。包含逐步安装、实际基准测试和与替代方案的比较。"
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
-category: ai-tools
-tags: ["字节跳动", "ui-tars", "视觉语言模型", "AI Agent", "桌面自动化", "GUI Agent", "开源", "多模态 AI"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

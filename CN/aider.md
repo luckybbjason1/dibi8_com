@@ -1,6 +1,13 @@
 ---
-title: "Aider: 45K+ Stars — Terminal AI Pair Programming vs Clau...
-description: "Aider is AI pair programming in your terminal that edits code in your local git repository. Supports..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/aider/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

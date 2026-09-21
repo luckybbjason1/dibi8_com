@@ -1,11 +1,10 @@
 ---
-title: "MinerU: 별 70.6K개 — 모든 문서를 LLM 지원 마크다운으로 변환"
-description: "MinerU(70,600개 이상의 GitHub 스타)는 LLM, RAG 및 에이전트 워크플로를 위해 PDF, DOCX, PPTX, XLSX, 이미지 및 웹 페이지를 구조화된 Mar..."
-tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
-date: 2026-06-27T00:00:00+08:00
-lastmod: 2026-06-27T00:00:00+08:00slug: 'mineru-document-parsing-engine'
-category: ai-tools
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mineru-document-parsing-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

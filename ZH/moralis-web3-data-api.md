@@ -1,6 +1,13 @@
 ---
-title: "Moralis 2026: 为100K+ DApp提供实时链上数据的Web3数据API — 设置指南"
-description: "2026年Moralis Web3数据API完整指南。学习如何使用JavaScript、Python和Unity SDK跨10多条链获取实时区块链数据、NFT元数据、代币价格和钱包余额。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moralis-web3-data-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 区块链数据是每个去中心化应用的生命线。无论您是在构建DeFi仪表板、NFT市场、钱包追踪器还是交易机器人，您的应用都需要快速、可靠地访问链上数据。在2026年，Moralis仍然是最广泛采用的Web3数据API，为超过100,000个去中心化应用提供跨10多条EVM兼容链的实时区块链数据。
 
@@ -301,7 +308,7 @@ const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
   chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-description: "Track USDC transfers"
+description: "Technical guide and comparison."
   tag: usdc_transfers,
   includeNativeTxs: false,
   webhookUrl: 'https://your-app.com/webhooks/moralis',

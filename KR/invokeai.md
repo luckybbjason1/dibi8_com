@@ -1,6 +1,13 @@
 ---
-title: "InvokeAI: 27.2K+ Stars — 2026 완벽 설치 가이드"
-description: "InvokeAI(Invoke)는 업계 최고의 WebUI를 갖춘 Stable Diffusion 모델용 크리에이티브 엔진이다. SD 1.5, SDXL, FLUX 및 ControlNet..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "invokeai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![InvokeAI Logo](https://raw.githubusercontent.com/invoke-ai/InvokeAI/main/invokeai/assets/invokeai-logo.png)
 

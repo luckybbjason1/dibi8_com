@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-workflow-2026-5-production-templates"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...
-description: "ComfyUI hit 106K GitHub stars in 2026. Beginner-friendly setup guide, model recommendations for 2026..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
@@ -24,7 +31,7 @@ faq: - q: "Is ComfyUI better than Stable Diffusion WebUI in 2026?"
     a: "Loading a workflow + generating: 30 minutes. Building your own workflow: 1-2 days. Mastering nodes for production: 2-3 weeks. The learning curve is steep first but pays off — workflows are reusable, sharable, and reproducible."
 ---
 
-{{</* resource-info */>}}
+
 
 # ComfyUI Workflow 2026: Setup + 5 Production Templates
 
@@ -113,8 +120,8 @@ Bring 2-3 community workflows in and customize for your style. That's how most p
 
 ## Recommended Infrastructure
 
-For serious ComfyUI work: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets (H100/L40S/A100)
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS for low-latency Asia generation
+For serious ComfyUI work: - **** — $200 credit, GPU droplets (H100/L40S/A100)
+- **** — Hong Kong VPS for low-latency Asia generation
 
 *Affiliate links — same price, supports dibi8.com.*
 

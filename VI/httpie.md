@@ -1,6 +1,13 @@
 ---
-title: "HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại S...
-description: "HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tư..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "httpie"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 **HTTPie** (phát âm "aitch-tee-tee-pie") là một CLI HTTP client được thiết kế cho kỷ nguyên API. Với **38,200 GitHub stars**, nó là một trong những công cụ phát triển phổ biến nhất trong lĩnh vực ```api testing cli````. Hướng dẫn này bao gồm mọi thứ từ ````httpie setup```` đến so sánh ````httpie vs curl```` với benchmark thực tế.
 
@@ -260,8 +267,8 @@ jobs: test: runs-on: ubuntu-latest
         run: pip install httpie
       - name: Kiểm tra API endpoints
         run: |
-          http --check-status --timeout=10 GET ${{ secrets.API_URL }}/health
-          http --check-status POST ${{ secrets.API_URL }}/users name=Test email=test@example.com
+          http --check-status --timeout=10 GET $/health
+          http --check-status POST $/users name=Test email=test@example.com
 `````
 
 ### Tích hợp với VS Code

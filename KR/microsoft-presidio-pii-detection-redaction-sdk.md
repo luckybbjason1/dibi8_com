@@ -1,8 +1,15 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "microsoft-presidio-pii-detection-redaction-sdk"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: microsoft-presidio-pii-detection-redaction-sdk
-title: "프레시디오 리뷰: 마이크로소프트의 오픈 소스 PII 감지 및 데이터 삭제 프레임워크 (9.4K 스타)"
-description: "Microsoft의 Presidio(9.4K+ GitHub 스타)는 텍스트, 이미지 및 구조화된 데이터 전반에서 민감한 데이터(PII)를 탐지, 삭제, 마스킹 및 익명화하기 위한 ..."
-date: "2026-06-22 00:00:00+08:00"
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.8+
   - spaCy

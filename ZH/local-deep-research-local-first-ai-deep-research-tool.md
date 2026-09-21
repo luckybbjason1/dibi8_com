@@ -1,6 +1,13 @@
 ---
-title: "Local Deep Research：终极本地优先 AI 深度研究工具"
-description: "掌握 Local Deep Research (LDR) —— 本地优先的 AI 研究助手。了解如何结合 Ollama 和 SearXNG 进行深度迭代研究，同时保持 100% 的隐私。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-deep-research-local-first-ai-deep-research-tool"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -24,7 +31,7 @@ faqs: - q: '什么是 Local Deep Research (LDR)？'
   - q: '运行 Local Deep Research 推荐使用什么技术栈？'
     a: '推荐的本地优先技术栈使用 Ollama 作为 LLM 引擎（运行 Llama 3 或 Mistral），SearXNG 作为尊重隐私的元搜索引擎，以及 Docker 以便于部署。SearXNG 负责网络搜索，而 Ollama 让模型保持在本地。'
   - q: '如何用 Docker 部署 Local Deep Research？'
-    a: '先用 `docker run -d -p 8080:8080 --name searxng searxng/searxng` 运行 SearXNG，然后用 `docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research` 运行 LDR。这样就同时启动了元搜索引擎和研究智能体。'
+    a: '先用 ``docker run -d -p 8080:8080 --name searxng searxng/searxng`` 运行 SearXNG，然后用 ``docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research`` 运行 LDR。这样就同时启动了元搜索引擎和研究智能体。'
   - q: 'Local Deep Research 如何避免 AI 幻觉并确保可信度？'
     a: 'LDR 提供高保真的引用，为它做出的每一个论断都附上参考文献来源，让你可以即时核实原始资料。它还会执行迭代式综合，识别信息空白并运行后续搜索，而不是依赖单一的表层答案。'---
 
@@ -96,8 +103,8 @@ Local Deep Research 不仅仅是一个工具，它是 AI 时代我们与信息�
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

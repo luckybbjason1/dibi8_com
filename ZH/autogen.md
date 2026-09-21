@@ -1,17 +1,14 @@
 ---
-title: "AutoGen: 58K+ Stars — 多智能体框架深度对比 CrewAI、LangGraph 2026"
-description: "AutoGen（微软）是一个用于构建多智能体 AI 系统的事件驱动编程框架。兼容 OpenAI、Azure、Ollama、Docker 和 VS Code。涵盖安装、群聊设置、生产加固及与替代方案的诚..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["autogen", "多智能体", "微软", "llm框架", "智能体ai", "python", "crewai替代品", "langgraph替代品"]
-aliases:
-  - /zh/posts/autogen/
-- /zh/resources/llm-frameworks/autogen-multi-agent-framework/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "autogen"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 

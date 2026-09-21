@@ -1,15 +1,10 @@
 ---
-
-## Mở Đầu: Khi Quá Nhiều Công Cụ AI Trở Thành Gánh Nặng
-
-Năm 2026, lập trình viên đang đối mặt với một vấn đề "sang chảnh" — quá nhiều công cụ AI coding.
-
-Claude Code với cửa sổ ngữ cảnh 2 triệu token là vua của việc tái cấu trúc codebase. OpenAI Codex được viết lại bằng Rust để khởi động nhanh như chớp. Gemini CLI của Google tung chiêu 1,000 lượt miễn phí mỗi ngày. OpenClaw gây sốt cộng đồng tech với khả năng orchestrate nhiều sub-agent. OpenCode với 162K stars chứng minh sức mạnh cộng đồng.
-
-Mỗi công cụ đều tuyệt vời. Nhưng việc chuyển đổi giữa chúng? Đó là cơn ác mộng. Sửa file ``.env``, nhớ địa chỉ MCP server, nhảy qua lại giữa terminal và IDE — những việc vặt này đang ăn mòn thời gian mà AI lẽ ra phải tiết kiệm cho bạn.
-
-**CC Switch** sinh ra để giải quyết đúng vấn đề này.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-ai-coding-agent-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

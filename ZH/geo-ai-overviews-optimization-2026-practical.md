@@ -1,6 +1,13 @@
 ---
-title: "GEO / AI Overviews 优化 2026：来自真实站点数据的实战指南"
-description: "生成式引擎优化（GEO）就是新的 SEO。如何针对 Google AI Overviews、ChatGPT Search 和 Perplexity 引用进行优化。来自 dibi8.com 实战优化的真..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "geo-ai-overviews-optimization-2026-practical"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
@@ -25,7 +32,7 @@ faq: - q: "什么是 GEO？它和 SEO 有什么区别？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # GEO / AI Overviews 优化 2026：实战指南
 
@@ -120,8 +127,8 @@ Hugo 模板会生成带有 FAQPage schema 的 ````<script type="application/ld+j
 ## 推荐的基础设施
 
 用于 schema 验证 + GEO 工具：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 美元额度
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — dibi8 托管所用的香港 VPS
+- **** — 200 美元额度
+- **** — dibi8 托管所用的香港 VPS
 
 *推广链接——价格相同，支持 dibi8.com。*
 

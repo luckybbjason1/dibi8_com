@@ -1,6 +1,13 @@
 ---
-title: "Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở V...
-description: "Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao d..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hummingbot-crypto-trading-bot"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Tại Sao Hầu Hết Bot Giao Dịch Đều Thất Bại
 
@@ -388,7 +395,7 @@ python scripts/backtest.py \
 
 `````
 Kết Quả Backtest (2026-01-01 đến 2026-03-31)
-========================================
+
 Tổng giao dịch: 12,450
 Tổng lợi nhuận: +5.23%
 Sharpe ratio: 2.14

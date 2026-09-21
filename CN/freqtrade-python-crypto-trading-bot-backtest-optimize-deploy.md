@@ -1,11 +1,10 @@
 ---
-title: "Freqtrade: 51,300 Stars for Python Crypto Trading Bot — ...
-description: "Freqtrade (51,300 GitHub stars) is the open-source crypto trading bot written in Python. Backtest st..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
-category: 'ai-trading'
-tags: ["freqtrade", "crypto trading bot", "Python trading", "backtest strategy", "hyperopt optimization", "crypto API", "self hosted trading", "quant trading"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freqtrade-python-crypto-trading-bot-backtest-optimize-deploy"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026

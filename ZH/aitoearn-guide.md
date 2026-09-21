@@ -1,6 +1,13 @@
 ---
-title: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测"
-description: "2026 最强开源 Buffer 平替：AiToEarn 自动化多平台分发工具评测"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aitoearn-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -66,8 +73,8 @@ A: 非常稳。AiToEarn 提供了开箱即用的 Docker-compose 配置，底层�
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

@@ -1,11 +1,10 @@
 ---
-title: "Semgrep: 15K+ 스타의 SAST 도구, 30초 이내에 코드베이스에서 500개 이상의 취약점 탐색"
-description: "Semgrep은 15K+ GitHub 스타를 가진 오픈소스 정적 분석 도구로, Python, JavaScript, TypeScript, Go, Java 등에서 500개 이상의 취약..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'semgrep-15k-star-sast-security-scanner'
-category: dev-utils
-tags: ["semgrep", "sast", "security-scanner", "code-analysis", "vulnerability", "open-source", "ci-cd", "static-analysis"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "semgrep-15k-star-sast-security-scanner"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "PageIndex：29K⭐Vectorless RAG System — Document Retrieval..."
-description: "PageIndex is a vectorless, reasoning-driven RAG system open-sourced by VectifyAI. 29K+ Stars, achiev..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pageindex-vectorless-reasoning-rag"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
@@ -23,7 +30,7 @@ faqs: - q: 'What is PageIndex and how is it different from traditional RAG?'
   - q: 'How accurate is PageIndex on the FinanceBench benchmark?'
     a: 'PageIndex paired with GPT-4 reaches 98.7% accuracy on FinanceBench, a state-of-the-art result. PageIndex with Claude-3 reaches 97.2%, while traditional vector RAG scores around 79-82% on the same benchmark.'
   - q: 'How do I install and run a basic query with PageIndex?'
-    a: 'Install it with `pip install pageindex`. Then initialize with `pi = PageIndex()`, load a document via `pi.load_pdf("file.pdf")`, and query with `result = pi.query("your question")`. The result includes both an answer and citation sources such as page numbers and chapters.'
+    a: 'Install it with ``pip install pageindex``. Then initialize with ``pi = PageIndex()``, load a document via ``pi.load_pdf("file.pdf")``, and query with ``result = pi.query("your question")``. The result includes both an answer and citation sources such as page numbers and chapters.'
   - q: 'What kinds of documents is PageIndex best suited for?'
     a: 'PageIndex is designed for long, professional documents where structure matters and explainable citations are needed, such as financial reports and prospectuses, legal contracts and case law, medical literature and clinical trial reports, and technical documentation like API references and operation manuals.'
 ---
@@ -302,8 +309,8 @@ For scenarios requiring processing large volumes of professional documents (fina
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 

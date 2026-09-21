@@ -1,6 +1,13 @@
 ---
-title: "WhisperX: 22K+ Stars — Hướng Dẫn Triển Khai ASR Producti...
-description: "WhisperX là bộ công cụ ASR mã nguồn mở với timestamp cấp từ và phân tách ngưới nói. Tương thích với ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "whisperx"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Chuyển văn bản từ âm thanh thì dễ. Nhưng để có **timestamp cấp từ chính xác đến dưới 80ms** và biết **chính xác ai đã nói từng từ** thì khó. OpenAI Whisper chỉ cung cấp timestamp cấp đoạn, sai lệch đến vài giây. Đối với chỉnh sửa podcast, phụ đề video, bản ghi cuộc họp và hồ sơ pháp lý, mức độ chính xác đó là không thể sử dụng được.
 

@@ -1,6 +1,13 @@
 ---
-title: "Zed vs Cursor 2026 对比：原生速度 vs AI 深度 — 诚实横评"
-description: "Zed（Rust 原生、GPU 加速、开源）与 Cursor（VS Code 分支、AI 优先）逐项对比 — 速度、AI 功能、定价、生态、平台。2026 更新。". Comprehensive gu..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zed-vs-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

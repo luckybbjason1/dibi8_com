@@ -1,11 +1,10 @@
 ---
-title: "cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất ...
-description: "cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'cc-switch-unified-ai-cli-control-center'
-category: 'dev-utils'
-tags: ["quản lý AI CLI", "thay thế Claude Code", "công cụ AI mã hóa", "năng suất nhà phát triển", "CLI đa agent", "cc-switch", "agent AI mã hóa", "proxy CLI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-unified-ai-cli-control-center"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

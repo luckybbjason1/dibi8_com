@@ -1,6 +1,13 @@
 ---
-title: "Claude Code vs Aider 2026：商业版 vs 开源版 CLI 对决"
-description: "Claude Code（Anthropic 商业 CLI）和 Aider（开源、自带 API key）横向对比 — 价格、上下文、agent 风格、成本效率。2026 年更新。". Comprehen..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

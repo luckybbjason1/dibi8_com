@@ -1,6 +1,13 @@
 ---
-title: "Fine-Tuning Stack 2026: Pipeline 5 Thành Phần Từ Dataset...
-description: "Stack fine-tuning LLM đầy đủ: Unsloth (experiment single-GPU nhanh) + Axolotl (production multi-GPU)..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "fine-tuning-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -166,12 +173,12 @@ Sau [LiteLLM gateway](/vi/resources/llm-frameworks/litellm/) cho auth + rate lim
 ## 8. Setup Pipeline Day 1 (3-4 giờ)
 
 1. **Datasets ở format JSONL** (varies) — chuẩn bị ````train.jsonl```` và ````eval.jsonl````, push tới HF Hub private
-2. **Thuê GPU RTX 4090** (10 phút) — Vast.ai hoặc {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}} cho giai đoạn experiment
+2. **Thuê GPU RTX 4090** (10 phút) — Vast.ai hoặc  cho giai đoạn experiment
 3. **Cài Unsloth + W&B** (10 phút) — ````pip install unsloth wandb```
 4. **Chạy QLoRA đầu** (60 phút) — Mục 3 của hướng dẫn Unsloth, fine-tune Llama 3.2 8B 1 epoch, verify W&B log xuất hiện
 5. **Iterate 5-10 experiment ngắn** (~nửa ngày) — vary learning rate, LoRA rank, slice dataset. Tìm công thức điểm eval tốt nhất
 6. **Dịch công thức sang YAML Axolotl** (30 phút) — cùng hyperparameter format YAML, git commit
-7. **Thuê cluster 8× H100** cho chạy production (Vast.ai ~$15-20/giờ × 6-12 giờ = $90-240) trên {{< aff "htstack" "ftstack-prod-vps" "HTStack VPS Hong Kong" >}} cho phía data + monitoring
+7. **Thuê cluster 8× H100** cho chạy production (Vast.ai ~$15-20/giờ × 6-12 giờ = $90-240) trên  cho phía data + monitoring
 8. **Chạy training production Axolotl** — push trọng số cuối tới HF Hub
 9. **Deploy qua vLLM** — serve mô hình fine-tuned trên GPU chuyên dụng 24 GB + LiteLLM gateway
 10. **Eval đối với mô hình base** — fine-tune của bạn có thực sự đánh bại base trên eval set? Không? iterate
@@ -208,7 +215,7 @@ Khi vượt stack này: - **Cần fine-tune mô hình > 70B thường xuyên** �
 4. **Weights & Biases** — theo dõi eval
 5. **vLLM** — serving production
 
-Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} cho experiment, scale tới Vast.ai 8× H100 cho chạy production, deploy mô hình cuối trên GPU chuyên dụng 24 GB. End-to-end self-host, trọng số bạn sở hữu, chi phí scale với mức độ nghiêm túc.
+Thuê  cho experiment, scale tới Vast.ai 8× H100 cho chạy production, deploy mô hình cuối trên GPU chuyên dụng 24 GB. End-to-end self-host, trọng số bạn sở hữu, chi phí scale với mức độ nghiêm túc.
 
 * * *
 

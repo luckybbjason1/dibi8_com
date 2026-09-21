@@ -1,21 +1,10 @@
 ---
-title: "OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?"
-description: "Side-by-side breakdown of OpenAI Codex CLI (gpt-5-codex) and Anthropic Claude Code (Sonnet 4.6, 1M c..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
-categories: ["vs"]
-faqs: - q: 'Is OpenAI Codex CLI free?'
-    a: 'The CLI itself is open-source (Apache 2.0, released November 2025) and free to install. You pay only for model API calls — gpt-5-codex usage is billed via your OpenAI API key (around $1.50/1M input, $10/1M output as of 2026). Claude Code is also free to install but requires either a Pro/Max subscription ($20-$200/mo) or pay-as-you-go API credits through Sonnet 4.6.'
-  - q: 'Which has the bigger context window?'
-    a: 'Claude Code (Sonnet 4.6) wins decisively — 1M token context window vs gpt-5-codex''s 400K. For 200K+ LOC monorepos, full-codebase reasoning, or long migration tasks, Claude Code holds the whole repo in head. Codex CLI''s 400K is still strong for medium projects (under 80K LOC) but forces more selective file loading on large repos.'
-  - q: 'Which has better sandboxing for autonomous runs?'
-    a: 'OpenAI Codex CLI wins — it ships with a built-in Seatbelt/Landlock sandbox on macOS/Linux that confines file writes, network access, and command execution by default. Claude Code uses an approval-prompt model: you whitelist commands ahead of time, but file writes outside the project are blocked, not sandbox-isolated. For unsupervised overnight agent runs, Codex CLI is safer out of the box.'
-  - q: 'Can I use both in the same project?'
-    a: 'Yes, and many devs do. Common combo: Claude Code for heavy refactors needing 1M context and Codex CLI for sandboxed experimental runs you don''t want to babysit. They don''t conflict on disk — both read/write the same repo, just don''t run them concurrently on the same files.'
-  - q: 'Which is better for enterprise?'
-    a: 'Claude Code has the more mature enterprise story in 2026 — Anthropic offers SOC 2 Type II, HIPAA via API, and Claude Enterprise plans with private VPC deployment. OpenAI Codex CLI is newer (open-sourced Nov 2025) and ties into the standard OpenAI enterprise plans, but the CLI itself doesn''t yet have a dedicated enterprise tier. For regulated industries today, Claude Code wins; OpenAI is closing the gap fast.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-codex-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?
@@ -158,7 +147,7 @@ For unlimited heavy use: **Claude Max 20x at $200/mo** outpaces equivalent PAYG 
 - Expect smaller context window — be more disciplined about which files load per task
 
 ### Self-Hosting Note
-Running both CLIs against a real codebase to decide? Spin up a {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet with $200 free credit" >}} — a $12/mo regular droplet runs both CLIs comfortably and lets you keep an isolated staging environment for unattended agent runs. Two months of free evaluation, then $12/mo. Cheaper than maintaining two parallel local environments, and you keep the infrastructure when you decide.
+Running both CLIs against a real codebase to decide? Spin up a  — a $12/mo regular droplet runs both CLIs comfortably and lets you keep an isolated staging environment for unattended agent runs. Two months of free evaluation, then $12/mo. Cheaper than maintaining two parallel local environments, and you keep the infrastructure when you decide.
 
 * * *
 
@@ -203,7 +192,7 @@ The honest answer for most devs in 2026: try both for a week, keep the one whose
 
 **Need stable Claude or OpenAI API access?** Most users picking between these tools end up needing the underlying API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

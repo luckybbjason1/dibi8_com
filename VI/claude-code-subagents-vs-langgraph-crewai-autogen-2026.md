@@ -1,6 +1,13 @@
 ---
-title: "Claude Code Subagent so với LangGraph, CrewAI và AutoGen...
-description: "Bạn đã điều phối subagent ngay trong Claude Code. Liệu bạn có thực sự cần LangGraph, CrewAI hay Auto..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagents-vs-langgraph-crewai-autogen-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -103,9 +110,9 @@ Ranh giới rất rõ ràng: **subagent là để hoàn thành công việc bên
 
 ## Thiết lập hạ tầng agent sẵn sàng cho production
 
-Dù bạn ở lại với subagent Claude Code hay tốt nghiệp lên một framework, công việc multi-agent đều muốn có hạ tầng ổn định bên dưới: 1. **Một máy chủ đáng tin cậy cho các tiến trình agent chạy lâu và CI.** Framework được triển khai như dịch vụ; ngay cả các pipeline subagent cũng muốn một máy luôn bật để chạy không cần giám sát. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong với độ trễ thấp khi truy cập đại lục Trung Quốc và BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các pipeline agent của mình. Gói giá trị 5-12 USD/tháng.
+Dù bạn ở lại với subagent Claude Code hay tốt nghiệp lên một framework, công việc multi-agent đều muốn có hạ tầng ổn định bên dưới: 1. **Một máy chủ đáng tin cậy cho các tiến trình agent chạy lâu và CI.** Framework được triển khai như dịch vụ; ngay cả các pipeline subagent cũng muốn một máy luôn bật để chạy không cần giám sát. **** — VPS Hong Kong với độ trễ thấp khi truy cập đại lục Trung Quốc và BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các pipeline agent của mình. Gói giá trị 5-12 USD/tháng.
 
-2. **Dư địa đám mây cho fan-out song song.** Khi các agent triển khai rộng — hoặc một ứng dụng LangGraph chạy song song với bộ observability của nó — bạn muốn có CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD tín dụng miễn phí trong 60 ngày trên hơn 14 khu vực.
+2. **Dư địa đám mây cho fan-out song song.** Khi các agent triển khai rộng — hoặc một ứng dụng LangGraph chạy song song với bộ observability của nó — bạn muốn có CPU dự phòng. **** — 200 USD tín dụng miễn phí trong 60 ngày trên hơn 14 khu vực.
 
 3. **Cẩm nang điều phối.** Cách nhanh nhất để thấm nhuần khi nào nên ủy thác và khi nào nên tốt nghiệp là nghiên cứu các ví dụ thực tế. Chúng tôi đã đóng gói năm kỹ năng đã được thử lửa thành một gói 19 USD trên Gumroad — xem CTA nổi ở góc màn hình — bao gồm cả các prompt điều phối và các định nghĩa agent tùy chỉnh đứng sau chính pipeline của dibi8.
 

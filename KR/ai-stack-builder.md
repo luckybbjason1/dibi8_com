@@ -1,10 +1,10 @@
 ---
-title: "AI 스택 빌더 — 당신에게 딱 맞는 LLM + 벡터 DB + 프레임워크 조합 찾기"
-description: "프로젝트에 대한 5가지 질문에 답하면 맞춤형 AI 스택을 추천. LLM(GPT-4o / Claude / Gemini / Llama), 벡터 DB(Pinecone / Chroma /..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-ai-stack-builder"
-tool_id: "ai-stack-builder"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-stack-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

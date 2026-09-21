@@ -1,11 +1,10 @@
 ---
-title: "MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零A...
-description: "MemPalace是一个本地优先的AI记忆系统，以逐字形式存储对话历史，并通过语义搜索进行检索。与Claude Code、Cursor、Windsurf及任何MCP兼容的智能体集成。基于ChromaD..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'mempalace-open-source-ai-memory-system'
-category: 'llm-frameworks'
-tags: ["ai-memory", "local-first", "mempalace", "semantic-search", "chromadb", "long-term-memory", "mcp-agent", "verbatim-storage"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mempalace-open-source-ai-memory-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,26 +1,14 @@
 ---
-title: "氛围编程 2026：韩国开发者概念，写给我们所有人"
-description: "氛围编程（바이브 코딩 / vibe coding）是韩国开发者的术语，指以自然语言为先、由 AI 处理语法的编程方式。Toss 与 Kakao 的工程师每天都在用。本文讲清它的含义、工作流，以及为什..."
-licensing_model: 混合
-license_type: '不适用（工作流）'
-last_maintained: "2026-05-25"
-draft: false
-categories: ["dev-utils"]
-tags: ["vibe-coding", "ai-coding", "korea", "workflow", "2026"]
-aliases:
-  - /zh/posts/vibe-coding-2026-korean-concept-explained/
-faq: - q: "什么是「氛围编程」（vibe coding）？"
-    a: "这是韩国开发者用语（바이브 코딩），指 AI 优先的编程工作流：你用自然语言描述你想要什么，由 AI 生成实现。约在 2025 年由韩国金融科技圈（Toss、Kakao）创造。如今正以 Andrej Karpathy 在 2025 年初描述的那套思路为基础在全球扩散。"
-  - q: "它和「只是用 AI 编码工具」有什么区别？"
-    a: "工具相同，心态不同。氛围编程强调先用自然语言进行设计（规格／意图），让 AI 来处理语法／实现。传统的 AI 编码仍把 AI 当成打字加速器。氛围编程则把 AI 当成实现者，人类则是架构师。"
-  - q: "氛围编程到底是真有产出还是炒作？"
-    a: "在某些任务类型上确实有产出：原型、脚本、胶水代码、配置。对以下场景产出较低：新颖算法、性能关键代码、复杂架构决策。韩国金融科技的采纳是真实但有选择性的——他们用氛围编程做内部工具，但不会用来写核心支付基础设施。"
-  - q: "我需要学韩语才能氛围编程吗？"
-    a: "不需要。该工作流与具体语言无关——你用你所说的任何自然语言来描述意图即可。术语起源于韩国，但实践全球通用。讲英语的开发者从 Cursor 和 Claude Code 问世以来就一直在这么做，只是当时还没有这个名字。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vibe-coding-2026-korean-concept-explained"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 氛围编程 2026：韩国概念，写给我们所有人
 
@@ -127,8 +115,8 @@ AI Claude Code：[生成中间件，更新路由，加上测试]
 ## 推荐基础设施
 
 如果你要搭建氛围编程工作流：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}**——200 美元额度，可在开发环境测试 AI 生成的代码
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}**——香港 VPS，亚洲访问 AI API 低延迟
+- ****——200 美元额度，可在开发环境测试 AI 生成的代码
+- ****——香港 VPS，亚洲访问 AI API 低延迟
 
 *联盟链接——价格相同，支持 dibi8.com。*
 

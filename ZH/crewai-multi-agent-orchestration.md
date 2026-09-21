@@ -1,16 +1,14 @@
 ---
-title: "CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026"
-description: "CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。". Comprehensive guide coverin..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["crewai", "多智能体", "ai-agent", "编排", "自主智能体", "llm", "python", "开源"]
-aliases:
-  - /zh/posts/crewai-multi-agent-orchestration/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crewai-multi-agent-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：单次 LLM 调用已经不够了
 

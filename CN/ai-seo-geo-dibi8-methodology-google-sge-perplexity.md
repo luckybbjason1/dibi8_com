@@ -1,11 +1,10 @@
 ---
-title: "AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks —...
-description: "We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, ..."
-tags: ["open-source"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-seo-geo-dibi8-methodology-google-sge-perplexity"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 geo

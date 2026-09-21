@@ -1,0 +1,277 @@
+<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/codegraph-pre-indexed-code-knowledge-graph-ai-agents/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/codegraph-pre-indexed-code-knowledge-graph-ai-agents/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn Giới thiệu Mọi dự án phần mềm đều phát triển vượt quá khả năng nhận thức của con người. Thành viên mới trong nhóm dành hàng tuần chỉ để học cách một hàm sống ở đâu và nó kết nối với phần còn lại của hệ thống như thế nào. CodeGraph là một công cụ mã nguồn mở biến toàn bộ mã nguồn của bạn thành một đồ thị kiến thức có thể điều hướng, cho phép bạn hiểu mối quan hệ giữa các lớp, hàm, giao diện và gói ngay lập tức. Được xây dựng bằng Kotlin, CodeGraph cung cấp một CLI mạnh mẽ và một API lập trình cho các nhà phát triển cần hiểu sâu về mã nguồn.\nCodeGraph là gì? CodeGraph là một thư viện và công cụ CLI gốc Kotlin phân tích mã nguồn của bạn và xây dựng một biểu diễn đồ thị toàn diện. Hãy tưởng tượng nó như một cơ sở dữ liệu đồ thị phổ quát cho mã của bạn: mọi nút là một phần tử chương trình (lớp, hàm, gói, giao diện), và mỗi cạnh đại diện cho một mối quan hệ (kế thừa, thực hiện, gọi, phụ thuộc). Với cấu trúc đồ thị này, bạn có thể trả lời các câu hỏi như “lớp nào thực hiện giao diện này?” và “các phụ thuộc truyền dẫn của gói này là gì?” trong vài mili giây.\nCông cụ hỗ trợ Kotlin, Java và có thể được mở rộng cho các ngôn ngữ JVM khác. Nó sử dụng cơ chế phân tích của chính trình biên dịch Kotlin, vì vậy nó hiểu toàn bộ ngữ cảnh ngữ nghĩa của mã của bạn, không chỉ các mẫu văn bản bề mặt.\nĐể tìm hiểu thêm về các công cụ phân tích mã, xem dibi8-internal-link.\nTính năng chính CodeGraph gói gọn một lượng chức năng đáng kinh ngạc trong một gói nhỏ gọn: - Phân tích mã tự động: Xây dựng đồ thị phụ thuộc đầy đủ từ mã nguồn\nAPI truy vấn: Truy vấn lập trình để tìm nút, duyệt qua các mối quan hệ và lọc kết quả Công cụ CLI: Tạo đồ thị bằng một lệnh và truy vấn tương tác từ terminal Khả năng xuất: Xuất đồ thị dưới dạng JSON, DOT (Graphviz) hoặc GraphML Cập nhật tăng dần: Chỉ tái xây dựng các phần đã thay đổi để phân tích nhanh Tích hợp IDE: Có thể dùng như thư viện để hỗ trợ plugin IDE Truy vấn tùy chỉnh: Viết truy vấn của riêng bạn bằng ngôn ngữ truy vấn đồ thị tích hợp Cài đặt Cài đặt CodeGraph rất đơn giản. Cách phổ biến nhất là qua plugin Gradle hoặc phụ thuộc Maven. Bạn cũng có thể tải trực tiếp JAR CLI.\nCài đặt qua Gradle Thêm CodeGraph như một phụ thuộc trong build.gradle.kts của bạn: ````kotlin plugins { id(“org.jetbrains.kotlin.jvm”) version “1.9.22” }\ndependencies { implementation(“io.codegraph:codegraph-core:1.2.0”) implementation(“io.codegraph:codegraph-cli:1.2.0”) }\n### Cài đặt qua Maven `````xml io.codegraph codegraph-core 1.2.0 Cài đặt CLI Tải JAR CLI mới nhất và chạy trực tiếp: `````bash curl -L -o codegraph-cli.jar https://repo.maven.apache.org/maven2/io/codegraph/codegraph-cli/1.2.0/codegraph-cli-1.2.0.jar java -jar codegraph-cli.jar –version\nhoặc cài đặt qua Homebrew trên macOS: `````bash brew tap codegraph/tap brew install codegraph Xây dựng đồ thị đầu tiên của bạn Sau khi CodeGraph được cài đặt, tạo một đồ thị kiến thức từ mã nguồn của bạn chỉ cần một lệnh: `````bash codegraph scan –source-dir ./src/main –output-dir ./codegraph-output –format json\nLệnh này quét tất cả các tệp nguồn Kotlin và Java dưới ````./src/main````, xây dựng đồ thị phụ thuộc và xuất nó sang JSON trong ````./codegraph-output````. Bạn có thể thay ````json```` bằng ````dot```` cho định dạng Graphviz hoặc ````graphml```` cho định dạng tương thích với các công cụ cơ sở dữ liệu đồ thị. Sau khi tạo, kiểm tra kết quả đầu ra: `````bash codegraph inspect \\ --input ./codegraph-output/graph.json \\ --query \"classes package=com.example.service\" Sử dụng API lập trình Để tích hợp sâu hơn, CodeGraph cung cấp một API lập trình phong phú. Dưới đây là cách tải đồ thị, truy vấn và trích xuất mối quan hệ một cách lập trình: `````kotlin import io.codegraph.* import io.codegraph.query.*\nfun main() { // Tải đồ thị hiện có val graph = GraphLoader.loadFromJson(“codegraph-output/graph.json”)\n// Tìm tất cả các lớp kế thừa một lớp cơ sở cụ thể val subclasses = graph.query { where { type == NodeType.CLASS } where { name == \"com.example.service.UserService\" } followEdge(EdgeType.EXTENDS) select() } // Tìm tất cả các trình gọi của một phương thức cụ thể val callers = graph.query { where { name == \"UserService.login\" } traceBackward(EdgeType.CALLS) where { type == NodeType.FUNCTION } select() } // Tính toán các phụ thuộc truyền dẫn cho một gói val dependencies = graph.query { where { package == \"com.example.api\" } followEdges(EdgeType.DEPENDS_ON) depth = 3 selectUnique() } println(\"Lớp con: ${subclasses.count()}\") println(\"Trình gọi: ${callers.count()}\") println(\"Phụ thuộc truyền dẫn: ${dependencies.count()}\") }\n## Truy vấn đồ thị bằng ngôn ngữ truy vấn tích hợp CodeGraph bao gồm một ngôn ngữ truy vấn khai báo mạnh mẽ. Dưới đây là một số mẫu phổ biến: ### Tìm tất cả các lớp trong một gói `````bash codegraph query \\ --input ./codegraph-output/graph.json \\ --filter \"classes package=com.example.api\" Tìm các hàm gọi một phương thức cụ thể codegraph query \\ --input ./codegraph-output/graph.json \\ --filter \"callers of UserService.login\" Theo dõi chuỗi gọi cho một hàm codegraph query \\ --input ./codegraph-output/graph.json \\ --filter \"call chain of UserController.processRequest\" \\ --depth 5 Tìm các hàm bị cô lập codegraph query \\ --input ./codegraph-output/graph.json \\ --filter \"functions with zero callers\" Phát hiện phụ thuộc vòng lặp codegraph query \\ --input ./codegraph-output/graph.json \\ --filter \"circular dependencies among packages\" Trường hợp sử dụng CodeGraph phục vụ nhiều kịch bản phát triển đa dạng. Đây là những trường hợp có tác động nhất: ### Đào tạo nhân viên mới\nThành viên mới có thể truy vấn đồ thị để hiểu cấu trúc mã nguồn mà không cần đọc mọi tệp. Một truy vấn đơn giản như classes package=com.example trả về danh sách sạch tất cả các lớp được tổ chức theo gói, cung cấp bản đồ tư duy tức thì về kiến trúc.\nAn toàn khi tái cấu trúc Trước khi tái cấu trúc một lớp hoặc hàm, nhà phát triển có thể theo dõi tất cả các trình phụ thuộc và trình gọi để hiểu phạm vi ảnh hưởng của các thay đổi. Điều này ngăn ngừa sự ngạc nhiên kinh điển “tôi chỉ thay đổi một phương thức” nơi một thay đổi nhỏ phá vỡ hàng chục tệp không liên quan.\nPhát hiện vi phạm kiến trúc CodeGraph có thể tự động phát hiện vi phạm kiến trúc. Ví dụ, bạn có thể truy vấn bất kỳ phụ thuộc nào từ lớp UI đến lớp dữ liệu bỏ qua lớp dịch vụ: `````bash codegraph query –input ./codegraph-output/graph.json –filter “classes package=ui” –follow “DEPENDS_ON” –filter “classes package=repo” –violation “should go through service layer”\n### Nhận diện nợ kỹ thuật Các hàm có quá nhiều cạnh đầu vào hoặc các hàm không có trình gọi nào có thể cho thấy gánh năng bảo trì. CodeGraph đánh dấu những vấn đề này bằng các truy vấn: `````bash codegraph query \\ --input ./codegraph-output/graph.json \\ --filter \"functions with callers \u003e 20\" Phân tích bề mặt API Đối với các API công khai, CodeGraph giúp xác định bề mặt công khai thực sự của thư viện bằng cách theo dõi các lớp và phương thức nào được hiển thị cho người tiêu dùng bên ngoài thay vì chi tiết triển khai nội bộ.\nĐể tìm hiểu thêm về các công cụ hệ sinh thái Kotlin, xem dibi8-internal-link.\nSo sánh: CodeGraph vs. Các công cụ thay thế Tính năng CodeGraph Sourcetrail IDE Index jOOQ Codegen ArchUnit Trực quan hóa đồ thị Có Có Không Không Không Ngôn ngữ truy vấn Built-in DSL Lọc thủ công Thanh tìm kiếm N/A Java DSL Cập nhật tăng dần Có Không Có N/A N/A Hỗ trợ CLI Full CLI Chỉ GUI Chỉ IDE N/A Chỉ test Định dạng xuất JSON, DOT, GraphML Chỉ DOT N/A N/A N/A Hỗ trợ ngôn ngữ Kotlin, Java Đa ngôn ngữ Đa ngôn ngữ Java Java Khả năng mở rộng Plugin API Hạn chế IDE plugin N/A Java tests API lập trình Kotlin API Không N/A API Test API Quy mô cộng đồng Đang phát triển Trưởng thành Rất lớn Lớn Lớn Trạng thái bảo trì Hoạt động Không hoạt động Hoạt động Hoạt động Hoạt động Ví dụ thực tế: Xây dựng máy chủ GraphQL Giả sử bạn đang xây dựng máy chủ GraphQL bằng Ktor. CodeGraph giúp bạn trực quan hóa mối quan hệ giữa các mô hình dữ liệu, kiểu GraphQL và bộ giải trình: `````kotlin import io.codegraph.*\nfun analyzeGraphQLServer() { val graph = GraphLoader.loadFromJson(“graphql-project/codegraph-output/graph.json”)\n// Tìm tất cả các lớp mô hình dữ liệu val models = graph.query { where { package.startsWith(\"com.myapp.model\") } where { type == NodeType.CLASS } select() } // Tìm tất cả bộ giải GraphQL val resolvers = graph.query { where { package.startsWith(\"com.myapp.graphql\") } where { type == NodeType.FUNCTION } select() } // Tìm ánh xạ giữa các mô hình và bộ giải val mappings = graph.query { from(models) followEdge(EdgeType.CALLS) whereIn(resolvers) select() } println(\"Mô hình dữ liệu: ${models.count()}\") println(\"Bộ giải: ${resolvers.count()}\") println(\"Ánh xạ mô hình-bộ giải: ${mappings.count()}\") }\nPhân tích này tiết lộ các khoảng trống trong phạm vi phủ bộ giải của bạn và giúp đảm bảo mọi mô hình dữ liệu đều có bộ giải GraphQL tương ứng. ## So sánh: CodeGraph vs. Kiểm tra mã truyền thống | Khía cạnh | CodeGraph | Kiểm tra mã thủ công | Tìm kiếm mã (grep/ripgrep) | |-----------|-----------|---------------------|---------------------------| | Hiểu mối quan hệ | Đồ thị đầy đủ, phụ thuộc truyền dẫn | Một phần, phụ thuộc kinh nghiệm | Dựa trên văn bản, không có ngữ nghĩa | | Thời gian tìm kết nối | Giây | Phút đến giờ | Giây nhưng không đầy đủ | | Độ chính xác | 100% (ngữ nghĩa) | Có lỗi con người | Chỉ cú pháp, bỏ sót ngữ nghĩa | | Phạm vi | Toàn bộ mã nguồn | Hạn chế ở tệp đã duyệt | Toàn bộ mã nguồn nhưng ngây thơ | | Trực quan hóa | Đồ thị tương tác | Không có | Không có | | Phân tích tăng dần | Chỉ thay đổi | Cần duyệt toàn bộ | Cần quét lại toàn bộ | | Tự động hóa | Hoàn toàn tự động | Quy trình thủ công | Một phần tự động | | Đường cong học tập | Trung bình (Kotlin) | Cao (kiến thức mã nguồn) | Thấp | ## Tích hợp với quy trình CI/CD CodeGraph tích hợp liền mạch vào quy trình CI/CD để tự động thực thi các quy tắc kiến trúc: `````yaml # .github/workflows/codegraph.yml name: Phân tích CodeGraph on: pull_request: branches: [main] jobs: analyze: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Thiết lập JDK uses: actions/setup-java@v4 with: java-version: '17' distribution: 'temurin' - name: Tạo Code Graph run: | ./gradlew codegraphGenerate - name: Kiểm tra quy tắc kiến trúc run: | ./gradlew codegraphCheck --rules=arch-rules.json - name: Xuất báo cáo đồ thị if: always() uses: actions/upload-artifact@v4 with: name: codegraph-report path: build/codegraph/ Hạn chế Mặc dù CodeGraph rất mạnh mẽ, nhưng nó có một số hạn chế quan trọng: 1. Chỉ ngôn ngữ JVM: Hiện tại hỗ trợ Kotlin và Java. Không hỗ trợ JavaScript, Python hoặc các ngôn ngữ không phải JVM khác. 2. Không có phân tích runtime: CodeGraph chỉ phân tích cấu trúc tĩnh compile-time. Gọidispatch động, gọi dựa trên phản xạ và mã được tạo tại runtime không thể hiện hữu. 3. Phủ thư viện bên thứ ba: Các phụ thuộc từ JAR bên ngoài có thể không được phân tích đầy đủ trừ khi nguồn có sẵn. 4. Sử dụng bộ nhớ: Các mã nguồn lớn (500K+ dòng) yêu cầu không gian heap đáng kể để xây dựng đồ thị. Khuyến nghị ít nhất 4GB RAM. 5. Phụ thuộc build: CodeGraph cần biên dịch mã của bạn như một phần của phân tích, điều này thêm thời gian build cho các bản quét tăng dần. 6. Không hỗ trợ truy vấn ngôn ngữ tự nhiên: Truy vấn sử dụng cú pháp khai báo, không phải ngôn ngữ tự nhiên. Một lớp ngôn ngữ tự nhiên có thể được thêm vào trên cùng nhưng không được bao gồm. 7. Phân tích single-threaded: Xây dựng đồ thị là single-threaded, có thể chậm đối với các dự án rất lớn.\nCâu hỏi thường gặp (FAQ) Q1: CodeGraph hỗ trợ những ngôn ngữ nào? CodeGraph hiện hỗ trợ Kotlin và Java. Nó sử dụng các API nội bộ của trình biên dịch Kotlin cho phân tích, có nghĩa là nó có sự hiểu biết ngữ nghĩa sâu sắc về mã Kotlin. Hỗ trợ cho các ngôn ngữ JVM khác như Scala và Groovy được lên kế hoạch cho các bản phát hành tương lai.\nQ2: CodeGraph có thể phân tích các dự án Gradle đa mô-đun không? Có. CodeGraph xử lý native các dự án Gradle và Maven đa mô-đun. Khi bạn chạy codegraph scan ở gốc dự án, nó tự động phát hiện tất cả các mô-đun và các phụ thuộc giữa chúng. Cờ --multi-module kích hoạt phân tích giữa các mô-đun bổ sung: `````bash codegraph scan –source-dir . –multi-module\n### Q3: CodeGraph có thể xử lý mã nguồn lớn đến mức nào? CodeGraph đã được kiểm tra với các mã nguồn lên đến 2 triệu dòng mã. Hiệu suất mở rộng xấp xỉ tuyến tính với kích thước mã. Đối với các mã nguồn rất lớn (1M+ dòng), tăng kích thước heap JVM xuống 8GB hoặc hơn: `````bash java -Xmx8g -jar codegraph-cli.jar scan --source-dir ./src Q4: Tôi có thể sử dụng CodeGraph với các dự án không phải Kotlin không? Nếu dự án của bạn biên dịch trên JVM, bạn có thể sử dụng CodeGraph. Nó hoạt động với bất kỳ dự án Java hoặc Kotlin nào bất kể khung, thư viện hoặc công cụ xây dựng được sử dụng. Các ngôn ngữ JVM thuần túy như Scala và Clojure hoạt động tốt. Đối với các dự án không phải JVM, bạn cần một công cụ khác.\nQ5: CodeGraph có xử lý mã được tạo động không? CodeGraph phân tích mã nguồn được biên dịch tĩnh. Nếu dự án của bạn sử dụng tạo mã (ví dụ: Kotlin Poet, jOOQ codegen, Protobuf), bạn nên đảm bảo mã được tạo được bao gồm trong mục tiêu quét. Thêm các thư mục nguồn được tạo vào đường dẫn quét: `````bash codegraph scan –source-dir ./src/main –source-dir ./build/generated\n### Q6: CodeGraph có thể được sử dụng cho các chỉ số chất lượng mã không? Có. CodeGraph có thể tính toán nhiều chỉ số chất lượng mã từ cấu trúc đồ thị: độ phức tạp cyclomatic khi kết hợp với phân tích AST, chỉ số coupling, điểm cohesion và độ sâu phụ thuộc. Sử dụng lệnh con ``codegraph metrics``: `````bash codegraph metrics --input ./codegraph-output/graph.json --output ./report.json ```` ### Q7: CodeGraph khác với các công cụ phân tích mã tích hợp sẵn trong IDE như thế nào? Các công cụ IDE cung cấp phân tích theo thời gian thực cho tệp đang mở. CodeGraph phân tích toàn bộ mã nguồn và cung cấp một đồ thị vĩnh viễn có thể được truy vấn, xuất và tích hợp vào các quy trình tự động hóa. Sử dụng công cụ IDE cho điều hướng hàng ngày và CodeGraph cho phân tích kiến trúc sâu. ## Nguồn 1. Kho lưu trữ chính thức CodeGraph: https://github.com/kotlin-io/codegraph 2. Tài liệu CodeGraph: https://codegraph.io/docs 3. Nguyên lý biên dịch Kotlin: https://github.com/JetBrains/kotlin/tree/master/compiler 4. Thực tiễn tốt cơ sở dữ liệu đồ thị: https://neo4j.com/docs/ 5. Phân tích kiến trúc phần mềm với công cụ phân tích tĩnh: https://www.seas.upenn.edu/~sergey/papers/ ## Kêu gọi hành động Sẵn sàng biến mã nguồn của bạn thành một đồ thị kiến thức có thể điều hướng? Hãy thử CodeGraph ngay hôm nay và không bao giờ phải vật lộn để hiểu kiến trúc dự án của bạn nữa. Để biết thêm thông tin, tham gia cộng đồng Telegram của chúng tôi: https://t.me/DIBI8_Group/18 **Công cụ được đề xuất:** - Binance: Bắt đầu giao dịch với Binance. Đăng ký tại: https://www.bsmkweb.cc/register?ref=DIBI8 - OKX Exchange: Giao dịch với OKX. Đăng ký tại: https://www.promoohubly.com/join/12190433 - WebShare: Duyệt web ẩn danh với WebShare. Bắt đầu tại: https://www.webshare.io/?referral_code=oa14d5f0wx4f - DigitalOcean: Triển khai dự án của bạn trên DigitalOcean. Đăng ký tại: https://m.do.co/c/eca87ac14ee0 - HTStack: Quản lý cơ sở hạ tầng đám mây của bạn. Tham gia tại: https://my.htstack.com/aff.php?aff=27187 * * * DIBI8 là cổng vào để khám phá các công cụ mã nguồn mở tốt nhất, đổi mới AI và tài nguyên nhà phát triển. Đăng ký kênh Telegram của chúng tôi để nhận cập nhật hàng ngày về các dự án có tác động nhất trong công nghệ. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn\", \"datePublished\": \"2026-01-01\", \"dateModified\": \"2026-01-01\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/codegraph-pre-indexed-code-knowledge-graph-ai-agents\" } } * * * ## Related Articles - [codegraph-pre-indexed-code-knowledge-graph-ai-agents](codegraph-pre-indexed-code-knowledge-graph-ai-agents) - [apple-container](codegraph-pre-indexed-code-knowledge-graph-ai-agents) - [codegraph-pre-indexed-code-knowledge-graph-ai-agents](codegraph-pre-indexed-code-knowledge-graph-ai-agents) - [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents) - [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"2947","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/codegraph-pre-indexed-code-knowledge-graph-ai-agents/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents/>En</a></li><li><a href=https://dibi8.com/zh/codegraph-pre-indexed-code-knowledge-graph-ai-agents/>Zh</a></li><li><a href=https://dibi8.com/ko/codegraph-pre-indexed-code-knowledge-graph-ai-agents/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#codegraph-x%c3%a2y-d%e1%bb%b1ng-%c4%91%e1%bb%93-th%e1%bb%8b-ki%e1%ba%bfn-th%e1%bb%a9c-m%c3%a3-ngu%e1%bb%93n-t%e1%bb%ab-to%c3%a0n-b%e1%bb%99-m%c3%a3-ngu%e1%bb%93n aria-label="CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn">CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn</a><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#codegraph-l%c3%a0-g%c3%ac aria-label="CodeGraph là gì?">CodeGraph là gì?</a></li><li><a href=#t%c3%adnh-n%c4%83ng-ch%c3%adnh aria-label="Tính năng chính">Tính năng chính</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t aria-label="Cài đặt">Cài đặt</a><ul><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-qua-gradle aria-label="Cài đặt qua Gradle">Cài đặt qua Gradle</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-cli aria-label="Cài đặt CLI">Cài đặt CLI</a></li></ul></li><li><a href=#x%c3%a2y-d%e1%bb%b1ng-%c4%91%e1%bb%93-th%e1%bb%8b-%c4%91%e1%ba%a7u-ti%c3%aan-c%e1%bb%a7a-b%e1%ba%a1n aria-label="Xây dựng đồ thị đầu tiên của bạn">Xây dựng đồ thị đầu tiên của bạn</a></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-api-l%e1%ba%adp-tr%c3%acnh aria-label="Sử dụng API lập trình">Sử dụng API lập trình</a><ul><li><a href=#t%c3%acm-c%c3%a1c-h%c3%a0m-g%e1%bb%8di-m%e1%bb%99t-ph%c6%b0%c6%a1ng-th%e1%bb%a9c-c%e1%bb%a5-th%e1%bb%83 aria-label="Tìm các hàm gọi một phương thức cụ thể">Tìm các hàm gọi một phương thức cụ thể</a></li><li><a href=#theo-d%c3%b5i-chu%e1%bb%97i-g%e1%bb%8di-cho-m%e1%bb%99t-h%c3%a0m aria-label="Theo dõi chuỗi gọi cho một hàm">Theo dõi chuỗi gọi cho một hàm</a></li><li><a href=#t%c3%acm-c%c3%a1c-h%c3%a0m-b%e1%bb%8b-c%c3%b4-l%e1%ba%adp aria-label="Tìm các hàm bị cô lập">Tìm các hàm bị cô lập</a></li><li><a href=#ph%c3%a1t-hi%e1%bb%87n-ph%e1%bb%a5-thu%e1%bb%99c-v%c3%b2ng-l%e1%ba%b7p aria-label="Phát hiện phụ thuộc vòng lặp">Phát hiện phụ thuộc vòng lặp</a></li></ul></li><li><a href=#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng aria-label="Trường hợp sử dụng">Trường hợp sử dụng</a><ul><li><a href=#an-to%c3%a0n-khi-t%c3%a1i-c%e1%ba%a5u-tr%c3%bac aria-label="An toàn khi tái cấu trúc">An toàn khi tái cấu trúc</a></li><li><a href=#ph%c3%a1t-hi%e1%bb%87n-vi-ph%e1%ba%a1m-ki%e1%ba%bfn-tr%c3%bac aria-label="Phát hiện vi phạm kiến trúc">Phát hiện vi phạm kiến trúc</a></li><li><a href=#ph%c3%a2n-t%c3%adch-b%e1%bb%81-m%e1%ba%b7t-api aria-label="Phân tích bề mặt API">Phân tích bề mặt API</a></li></ul></li><li><a href=#so-s%c3%a1nh-codegraph-vs-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-thay-th%e1%ba%bf aria-label="So sánh: CodeGraph vs. Các công cụ thay thế">So sánh: CodeGraph vs. Các công cụ thay thế</a></li><li><a href=#v%c3%ad-d%e1%bb%a5-th%e1%bb%b1c-t%e1%ba%bf-x%c3%a2y-d%e1%bb%b1ng-m%c3%a1y-ch%e1%bb%a7-graphql aria-label="Ví dụ thực tế: Xây dựng máy chủ GraphQL">Ví dụ thực tế: Xây dựng máy chủ GraphQL</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf aria-label="Hạn chế">Hạn chế</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p-faq aria-label="Câu hỏi thường gặp (FAQ)">Câu hỏi thường gặp (FAQ)</a><ul><li><a href=#q1-codegraph-h%e1%bb%97-tr%e1%bb%a3-nh%e1%bb%afng-ng%c3%b4n-ng%e1%bb%af-n%c3%a0o aria-label="Q1: CodeGraph hỗ trợ những ngôn ngữ nào?">Q1: CodeGraph hỗ trợ những ngôn ngữ nào?</a></li><li><a href=#q2-codegraph-c%c3%b3-th%e1%bb%83-ph%c3%a2n-t%c3%adch-c%c3%a1c-d%e1%bb%b1-%c3%a1n-gradle-%c4%91a-m%c3%b4-%c4%91un-kh%c3%b4ng aria-label="Q2: CodeGraph có thể phân tích các dự án Gradle đa mô-đun không?">Q2: CodeGraph có thể phân tích các dự án Gradle đa mô-đun không?</a></li><li><a href=#q4-t%c3%b4i-c%c3%b3-th%e1%bb%83-s%e1%bb%ad-d%e1%bb%a5ng-codegraph-v%e1%bb%9bi-c%c3%a1c-d%e1%bb%b1-%c3%a1n-kh%c3%b4ng-ph%e1%ba%a3i-kotlin-kh%c3%b4ng aria-label="Q4: Tôi có thể sử dụng CodeGraph với các dự án không phải Kotlin không?">Q4: Tôi có thể sử dụng CodeGraph với các dự án không phải Kotlin không?</a></li><li><a href=#q5-codegraph-c%c3%b3-x%e1%bb%ad-l%c3%bd-m%c3%a3-%c4%91%c6%b0%e1%bb%a3c-t%e1%ba%a1o-%c4%91%e1%bb%99ng-kh%c3%b4ng aria-label="Q5: CodeGraph có xử lý mã được tạo động không?">Q5: CodeGraph có xử lý mã được tạo động không?</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=codegraph-xây-dựng-đồ-thị-kiến-thức-mã-nguồn-từ-toàn-bộ-mã-nguồn>CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn<a hidden class=anchor aria-hidden=true href=#codegraph-xây-dựng-đồ-thị-kiến-thức-mã-nguồn-từ-toàn-bộ-mã-nguồn>#</a></h1><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Mọi dự án phần mềm đều phát triển vượt quá khả năng nhận thức của con người. Thành viên mới trong nhóm dành hàng tuần chỉ để học cách một hàm sống ở đâu và nó kết nối với phần còn lại của hệ thống như thế nào. CodeGraph là một công cụ mã nguồn mở biến toàn bộ mã nguồn của bạn thành một đồ thị kiến thức có thể điều hướng, cho phép bạn hiểu mối quan hệ giữa các lớp, hàm, giao diện và gói ngay lập tức. Được xây dựng bằng Kotlin, CodeGraph cung cấp một CLI mạnh mẽ và một API lập trình cho các nhà phát triển cần hiểu sâu về mã nguồn.</p><h2 id=codegraph-là-gì>CodeGraph là gì?<a hidden class=anchor aria-hidden=true href=#codegraph-là-gì>#</a></h2><p>CodeGraph là một thư viện và công cụ CLI gốc Kotlin phân tích mã nguồn của bạn và xây dựng một biểu diễn đồ thị toàn diện. Hãy tưởng tượng nó như một cơ sở dữ liệu đồ thị phổ quát cho mã của bạn: mọi nút là một phần tử chương trình (lớp, hàm, gói, giao diện), và mỗi cạnh đại diện cho một mối quan hệ (kế thừa, thực hiện, gọi, phụ thuộc). Với cấu trúc đồ thị này, bạn có thể trả lời các câu hỏi như &ldquo;lớp nào thực hiện giao diện này?&rdquo; và &ldquo;các phụ thuộc truyền dẫn của gói này là gì?&rdquo; trong vài mili giây.</p><p>Công cụ hỗ trợ Kotlin, Java và có thể được mở rộng cho các ngôn ngữ JVM khác. Nó sử dụng cơ chế phân tích của chính trình biên dịch Kotlin, vì vậy nó hiểu toàn bộ ngữ cảnh ngữ nghĩa của mã của bạn, không chỉ các mẫu văn bản bề mặt.</p><p>Để tìm hiểu thêm về các công cụ phân tích mã, xem <a href=https://dibi8.com>dibi8-internal-link</a>.</p><h2 id=tính-năng-chính>Tính năng chính<a hidden class=anchor aria-hidden=true href=#tính-năng-chính>#</a></h2><p>CodeGraph gói gọn một lượng chức năng đáng kinh ngạc trong một gói nhỏ gọn: - <strong>Phân tích mã tự động</strong>: Xây dựng đồ thị phụ thuộc đầy đủ từ mã nguồn</p><ul><li><strong>API truy vấn</strong>: Truy vấn lập trình để tìm nút, duyệt qua các mối quan hệ và lọc kết quả</li><li><strong>Công cụ CLI</strong>: Tạo đồ thị bằng một lệnh và truy vấn tương tác từ terminal</li><li><strong>Khả năng xuất</strong>: Xuất đồ thị dưới dạng JSON, DOT (Graphviz) hoặc GraphML</li><li><strong>Cập nhật tăng dần</strong>: Chỉ tái xây dựng các phần đã thay đổi để phân tích nhanh</li><li><strong>Tích hợp IDE</strong>: Có thể dùng như thư viện để hỗ trợ plugin IDE</li><li><strong>Truy vấn tùy chỉnh</strong>: Viết truy vấn của riêng bạn bằng ngôn ngữ truy vấn đồ thị tích hợp</li></ul><h2 id=cài-đặt>Cài đặt<a hidden class=anchor aria-hidden=true href=#cài-đặt>#</a></h2><p>Cài đặt CodeGraph rất đơn giản. Cách phổ biến nhất là qua plugin Gradle hoặc phụ thuộc Maven. Bạn cũng có thể tải trực tiếp JAR CLI.</p><h3 id=cài-đặt-qua-gradle>Cài đặt qua Gradle<a hidden class=anchor aria-hidden=true href=#cài-đặt-qua-gradle>#</a></h3><p>Thêm CodeGraph như một phụ thuộc trong <code>build.gradle.kts</code> của bạn: ````kotlin
+plugins {
+id(&ldquo;org.jetbrains.kotlin.jvm&rdquo;) version &ldquo;1.9.22&rdquo;
+}</p><p>dependencies {
+implementation(&ldquo;io.codegraph:codegraph-core:1.2.0&rdquo;)
+implementation(&ldquo;io.codegraph:codegraph-cli:1.2.0&rdquo;)
+}</p><pre tabindex=0><code>
+### Cài đặt qua Maven
+
+`````xml
+&lt;dependency&gt;
+    &lt;groupId&gt;io.codegraph&lt;/groupId&gt;
+    &lt;artifactId&gt;codegraph-core&lt;/artifactId&gt;
+    &lt;version&gt;1.2.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h3 id=cài-đặt-cli>Cài đặt CLI<a hidden class=anchor aria-hidden=true href=#cài-đặt-cli>#</a></h3><p>Tải JAR CLI mới nhất và chạy trực tiếp: `````bash
+curl -L -o codegraph-cli.jar <a href=https://repo.maven.apache.org/maven2/io/codegraph/codegraph-cli/1.2.0/codegraph-cli-1.2.0.jar>https://repo.maven.apache.org/maven2/io/codegraph/codegraph-cli/1.2.0/codegraph-cli-1.2.0.jar</a>
+java -jar codegraph-cli.jar &ndash;version</p><pre tabindex=0><code>
+hoặc cài đặt qua Homebrew trên macOS: `````bash
+brew tap codegraph/tap
+brew install codegraph
+</code></pre><h2 id=xây-dựng-đồ-thị-đầu-tiên-của-bạn>Xây dựng đồ thị đầu tiên của bạn<a hidden class=anchor aria-hidden=true href=#xây-dựng-đồ-thị-đầu-tiên-của-bạn>#</a></h2><p>Sau khi CodeGraph được cài đặt, tạo một đồ thị kiến thức từ mã nguồn của bạn chỉ cần một lệnh: `````bash
+codegraph scan<br>&ndash;source-dir ./src/main<br>&ndash;output-dir ./codegraph-output<br>&ndash;format json</p><pre tabindex=0><code>
+Lệnh này quét tất cả các tệp nguồn Kotlin và Java dưới ````./src/main````, xây dựng đồ thị phụ thuộc và xuất nó sang JSON trong ````./codegraph-output````. Bạn có thể thay ````json```` bằng ````dot```` cho định dạng Graphviz hoặc ````graphml```` cho định dạng tương thích với các công cụ cơ sở dữ liệu đồ thị.
+
+Sau khi tạo, kiểm tra kết quả đầu ra: `````bash
+codegraph inspect \
+  --input ./codegraph-output/graph.json \
+  --query &#34;classes package=com.example.service&#34;
+</code></pre><h2 id=sử-dụng-api-lập-trình>Sử dụng API lập trình<a hidden class=anchor aria-hidden=true href=#sử-dụng-api-lập-trình>#</a></h2><p>Để tích hợp sâu hơn, CodeGraph cung cấp một API lập trình phong phú. Dưới đây là cách tải đồ thị, truy vấn và trích xuất mối quan hệ một cách lập trình: `````kotlin
+import io.codegraph.*
+import io.codegraph.query.*</p><p>fun main() {
+// Tải đồ thị hiện có
+val graph = GraphLoader.loadFromJson(&ldquo;codegraph-output/graph.json&rdquo;)</p><pre><code>// Tìm tất cả các lớp kế thừa một lớp cơ sở cụ thể
+val subclasses = graph.query {
+    where { type == NodeType.CLASS }
+    where { name == &quot;com.example.service.UserService&quot; }
+    followEdge(EdgeType.EXTENDS)
+    select()
+}
+
+// Tìm tất cả các trình gọi của một phương thức cụ thể
+val callers = graph.query {
+    where { name == &quot;UserService.login&quot; }
+    traceBackward(EdgeType.CALLS)
+    where { type == NodeType.FUNCTION }
+    select()
+}
+
+// Tính toán các phụ thuộc truyền dẫn cho một gói
+val dependencies = graph.query {
+    where { package == &quot;com.example.api&quot; }
+    followEdges(EdgeType.DEPENDS_ON)
+    depth = 3
+    selectUnique()
+}
+
+println(&quot;Lớp con: ${subclasses.count()}&quot;)
+println(&quot;Trình gọi: ${callers.count()}&quot;)
+println(&quot;Phụ thuộc truyền dẫn: ${dependencies.count()}&quot;)
+</code></pre><p>}</p><pre tabindex=0><code>
+## Truy vấn đồ thị bằng ngôn ngữ truy vấn tích hợp
+
+CodeGraph bao gồm một ngôn ngữ truy vấn khai báo mạnh mẽ. Dưới đây là một số mẫu phổ biến: ### Tìm tất cả các lớp trong một gói
+
+`````bash
+codegraph query \
+  --input ./codegraph-output/graph.json \
+  --filter &#34;classes package=com.example.api&#34;
+</code></pre><h3 id=tìm-các-hàm-gọi-một-phương-thức-cụ-thể>Tìm các hàm gọi một phương thức cụ thể<a hidden class=anchor aria-hidden=true href=#tìm-các-hàm-gọi-một-phương-thức-cụ-thể>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>codegraph query <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --input ./codegraph-output/graph.json <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --filter <span style=color:#e6db74>&#34;callers of UserService.login&#34;</span>
+</span></span></code></pre></div><h3 id=theo-dõi-chuỗi-gọi-cho-một-hàm>Theo dõi chuỗi gọi cho một hàm<a hidden class=anchor aria-hidden=true href=#theo-dõi-chuỗi-gọi-cho-một-hàm>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>codegraph query <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --input ./codegraph-output/graph.json <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --filter <span style=color:#e6db74>&#34;call chain of UserController.processRequest&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --depth <span style=color:#ae81ff>5</span>
+</span></span></code></pre></div><h3 id=tìm-các-hàm-bị-cô-lập>Tìm các hàm bị cô lập<a hidden class=anchor aria-hidden=true href=#tìm-các-hàm-bị-cô-lập>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>codegraph query <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --input ./codegraph-output/graph.json <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --filter <span style=color:#e6db74>&#34;functions with zero callers&#34;</span>
+</span></span></code></pre></div><h3 id=phát-hiện-phụ-thuộc-vòng-lặp>Phát hiện phụ thuộc vòng lặp<a hidden class=anchor aria-hidden=true href=#phát-hiện-phụ-thuộc-vòng-lặp>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>codegraph query <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --input ./codegraph-output/graph.json <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --filter <span style=color:#e6db74>&#34;circular dependencies among packages&#34;</span>
+</span></span></code></pre></div><h2 id=trường-hợp-sử-dụng>Trường hợp sử dụng<a hidden class=anchor aria-hidden=true href=#trường-hợp-sử-dụng>#</a></h2><p>CodeGraph phục vụ nhiều kịch bản phát triển đa dạng. Đây là những trường hợp có tác động nhất: ### Đào tạo nhân viên mới</p><p>Thành viên mới có thể truy vấn đồ thị để hiểu cấu trúc mã nguồn mà không cần đọc mọi tệp. Một truy vấn đơn giản như <code>classes package=com.example</code> trả về danh sách sạch tất cả các lớp được tổ chức theo gói, cung cấp bản đồ tư duy tức thì về kiến trúc.</p><h3 id=an-toàn-khi-tái-cấu-trúc>An toàn khi tái cấu trúc<a hidden class=anchor aria-hidden=true href=#an-toàn-khi-tái-cấu-trúc>#</a></h3><p>Trước khi tái cấu trúc một lớp hoặc hàm, nhà phát triển có thể theo dõi tất cả các trình phụ thuộc và trình gọi để hiểu phạm vi ảnh hưởng của các thay đổi. Điều này ngăn ngừa sự ngạc nhiên kinh điển &ldquo;tôi chỉ thay đổi một phương thức&rdquo; nơi một thay đổi nhỏ phá vỡ hàng chục tệp không liên quan.</p><h3 id=phát-hiện-vi-phạm-kiến-trúc>Phát hiện vi phạm kiến trúc<a hidden class=anchor aria-hidden=true href=#phát-hiện-vi-phạm-kiến-trúc>#</a></h3><p>CodeGraph có thể tự động phát hiện vi phạm kiến trúc. Ví dụ, bạn có thể truy vấn bất kỳ phụ thuộc nào từ lớp UI đến lớp dữ liệu bỏ qua lớp dịch vụ: `````bash
+codegraph query<br>&ndash;input ./codegraph-output/graph.json<br>&ndash;filter &ldquo;classes package=ui&rdquo;<br>&ndash;follow &ldquo;DEPENDS_ON&rdquo;<br>&ndash;filter &ldquo;classes package=repo&rdquo;<br>&ndash;violation &ldquo;should go through service layer&rdquo;</p><pre tabindex=0><code>
+### Nhận diện nợ kỹ thuật
+
+Các hàm có quá nhiều cạnh đầu vào hoặc các hàm không có trình gọi nào có thể cho thấy gánh năng bảo trì. CodeGraph đánh dấu những vấn đề này bằng các truy vấn: `````bash
+codegraph query \
+  --input ./codegraph-output/graph.json \
+  --filter &#34;functions with callers &gt; 20&#34;
+</code></pre><h3 id=phân-tích-bề-mặt-api>Phân tích bề mặt API<a hidden class=anchor aria-hidden=true href=#phân-tích-bề-mặt-api>#</a></h3><p>Đối với các API công khai, CodeGraph giúp xác định bề mặt công khai thực sự của thư viện bằng cách theo dõi các lớp và phương thức nào được hiển thị cho người tiêu dùng bên ngoài thay vì chi tiết triển khai nội bộ.</p><p>Để tìm hiểu thêm về các công cụ hệ sinh thái Kotlin, xem <a href=https://dibi8.com>dibi8-internal-link</a>.</p><h2 id=so-sánh-codegraph-vs-các-công-cụ-thay-thế>So sánh: CodeGraph vs. Các công cụ thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-codegraph-vs-các-công-cụ-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>CodeGraph</th><th>Sourcetrail</th><th>IDE Index</th><th>jOOQ Codegen</th><th>ArchUnit</th></tr></thead><tbody><tr><td>Trực quan hóa đồ thị</td><td>Có</td><td>Có</td><td>Không</td><td>Không</td><td>Không</td></tr><tr><td>Ngôn ngữ truy vấn</td><td>Built-in DSL</td><td>Lọc thủ công</td><td>Thanh tìm kiếm</td><td>N/A</td><td>Java DSL</td></tr><tr><td>Cập nhật tăng dần</td><td>Có</td><td>Không</td><td>Có</td><td>N/A</td><td>N/A</td></tr><tr><td>Hỗ trợ CLI</td><td>Full CLI</td><td>Chỉ GUI</td><td>Chỉ IDE</td><td>N/A</td><td>Chỉ test</td></tr><tr><td>Định dạng xuất</td><td>JSON, DOT, GraphML</td><td>Chỉ DOT</td><td>N/A</td><td>N/A</td><td>N/A</td></tr><tr><td>Hỗ trợ ngôn ngữ</td><td>Kotlin, Java</td><td>Đa ngôn ngữ</td><td>Đa ngôn ngữ</td><td>Java</td><td>Java</td></tr><tr><td>Khả năng mở rộng</td><td>Plugin API</td><td>Hạn chế</td><td>IDE plugin</td><td>N/A</td><td>Java tests</td></tr><tr><td>API lập trình</td><td>Kotlin API</td><td>Không</td><td>N/A</td><td>API</td><td>Test API</td></tr><tr><td>Quy mô cộng đồng</td><td>Đang phát triển</td><td>Trưởng thành</td><td>Rất lớn</td><td>Lớn</td><td>Lớn</td></tr><tr><td>Trạng thái bảo trì</td><td>Hoạt động</td><td>Không hoạt động</td><td>Hoạt động</td><td>Hoạt động</td><td>Hoạt động</td></tr></tbody></table><h2 id=ví-dụ-thực-tế-xây-dựng-máy-chủ-graphql>Ví dụ thực tế: Xây dựng máy chủ GraphQL<a hidden class=anchor aria-hidden=true href=#ví-dụ-thực-tế-xây-dựng-máy-chủ-graphql>#</a></h2><p>Giả sử bạn đang xây dựng máy chủ GraphQL bằng Ktor. CodeGraph giúp bạn trực quan hóa mối quan hệ giữa các mô hình dữ liệu, kiểu GraphQL và bộ giải trình: `````kotlin
+import io.codegraph.*</p><p>fun analyzeGraphQLServer() {
+val graph = GraphLoader.loadFromJson(&ldquo;graphql-project/codegraph-output/graph.json&rdquo;)</p><pre><code>// Tìm tất cả các lớp mô hình dữ liệu
+val models = graph.query {
+    where { package.startsWith(&quot;com.myapp.model&quot;) }
+    where { type == NodeType.CLASS }
+    select()
+}
+
+// Tìm tất cả bộ giải GraphQL
+val resolvers = graph.query {
+    where { package.startsWith(&quot;com.myapp.graphql&quot;) }
+    where { type == NodeType.FUNCTION }
+    select()
+}
+
+// Tìm ánh xạ giữa các mô hình và bộ giải
+val mappings = graph.query {
+    from(models)
+    followEdge(EdgeType.CALLS)
+    whereIn(resolvers)
+    select()
+}
+
+println(&quot;Mô hình dữ liệu: ${models.count()}&quot;)
+println(&quot;Bộ giải: ${resolvers.count()}&quot;)
+println(&quot;Ánh xạ mô hình-bộ giải: ${mappings.count()}&quot;)
+</code></pre><p>}</p><pre tabindex=0><code>
+Phân tích này tiết lộ các khoảng trống trong phạm vi phủ bộ giải của bạn và giúp đảm bảo mọi mô hình dữ liệu đều có bộ giải GraphQL tương ứng.
+
+## So sánh: CodeGraph vs. Kiểm tra mã truyền thống
+
+| Khía cạnh | CodeGraph | Kiểm tra mã thủ công | Tìm kiếm mã (grep/ripgrep) |
+|-----------|-----------|---------------------|---------------------------|
+| Hiểu mối quan hệ | Đồ thị đầy đủ, phụ thuộc truyền dẫn | Một phần, phụ thuộc kinh nghiệm | Dựa trên văn bản, không có ngữ nghĩa |
+| Thời gian tìm kết nối | Giây | Phút đến giờ | Giây nhưng không đầy đủ |
+| Độ chính xác | 100% (ngữ nghĩa) | Có lỗi con người | Chỉ cú pháp, bỏ sót ngữ nghĩa |
+| Phạm vi | Toàn bộ mã nguồn | Hạn chế ở tệp đã duyệt | Toàn bộ mã nguồn nhưng ngây thơ |
+| Trực quan hóa | Đồ thị tương tác | Không có | Không có |
+| Phân tích tăng dần | Chỉ thay đổi | Cần duyệt toàn bộ | Cần quét lại toàn bộ |
+| Tự động hóa | Hoàn toàn tự động | Quy trình thủ công | Một phần tự động |
+| Đường cong học tập | Trung bình (Kotlin) | Cao (kiến thức mã nguồn) | Thấp |
+
+## Tích hợp với quy trình CI/CD
+
+CodeGraph tích hợp liền mạch vào quy trình CI/CD để tự động thực thi các quy tắc kiến trúc: `````yaml
+# .github/workflows/codegraph.yml
+name: Phân tích CodeGraph
+on: pull_request: branches: [main]
+
+jobs: analyze: runs-on: ubuntu-latest
+    steps: - uses: actions/checkout@v4
+      - name: Thiết lập JDK
+        uses: actions/setup-java@v4
+        with: java-version: &#39;17&#39;
+          distribution: &#39;temurin&#39;
+      - name: Tạo Code Graph
+        run: |
+          ./gradlew codegraphGenerate
+      - name: Kiểm tra quy tắc kiến trúc
+        run: |
+          ./gradlew codegraphCheck --rules=arch-rules.json
+      - name: Xuất báo cáo đồ thị
+        if: always()
+        uses: actions/upload-artifact@v4
+        with: name: codegraph-report
+          path: build/codegraph/
+</code></pre><h2 id=hạn-chế>Hạn chế<a hidden class=anchor aria-hidden=true href=#hạn-chế>#</a></h2><p>Mặc dù CodeGraph rất mạnh mẽ, nhưng nó có một số hạn chế quan trọng: 1. <strong>Chỉ ngôn ngữ JVM</strong>: Hiện tại hỗ trợ Kotlin và Java. Không hỗ trợ JavaScript, Python hoặc các ngôn ngữ không phải JVM khác.
+2. <strong>Không có phân tích runtime</strong>: CodeGraph chỉ phân tích cấu trúc tĩnh compile-time. Gọidispatch động, gọi dựa trên phản xạ và mã được tạo tại runtime không thể hiện hữu.
+3. <strong>Phủ thư viện bên thứ ba</strong>: Các phụ thuộc từ JAR bên ngoài có thể không được phân tích đầy đủ trừ khi nguồn có sẵn.
+4. <strong>Sử dụng bộ nhớ</strong>: Các mã nguồn lớn (500K+ dòng) yêu cầu không gian heap đáng kể để xây dựng đồ thị. Khuyến nghị ít nhất 4GB RAM.
+5. <strong>Phụ thuộc build</strong>: CodeGraph cần biên dịch mã của bạn như một phần của phân tích, điều này thêm thời gian build cho các bản quét tăng dần.
+6. <strong>Không hỗ trợ truy vấn ngôn ngữ tự nhiên</strong>: Truy vấn sử dụng cú pháp khai báo, không phải ngôn ngữ tự nhiên. Một lớp ngôn ngữ tự nhiên có thể được thêm vào trên cùng nhưng không được bao gồm.
+7. <strong>Phân tích single-threaded</strong>: Xây dựng đồ thị là single-threaded, có thể chậm đối với các dự án rất lớn.</p><h2 id=câu-hỏi-thường-gặp-faq>Câu hỏi thường gặp (FAQ)<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp-faq>#</a></h2><h3 id=q1-codegraph-hỗ-trợ-những-ngôn-ngữ-nào>Q1: CodeGraph hỗ trợ những ngôn ngữ nào?<a hidden class=anchor aria-hidden=true href=#q1-codegraph-hỗ-trợ-những-ngôn-ngữ-nào>#</a></h3><p>CodeGraph hiện hỗ trợ Kotlin và Java. Nó sử dụng các API nội bộ của trình biên dịch Kotlin cho phân tích, có nghĩa là nó có sự hiểu biết ngữ nghĩa sâu sắc về mã Kotlin. Hỗ trợ cho các ngôn ngữ JVM khác như Scala và Groovy được lên kế hoạch cho các bản phát hành tương lai.</p><h3 id=q2-codegraph-có-thể-phân-tích-các-dự-án-gradle-đa-mô-đun-không>Q2: CodeGraph có thể phân tích các dự án Gradle đa mô-đun không?<a hidden class=anchor aria-hidden=true href=#q2-codegraph-có-thể-phân-tích-các-dự-án-gradle-đa-mô-đun-không>#</a></h3><p>Có. CodeGraph xử lý native các dự án Gradle và Maven đa mô-đun. Khi bạn chạy <code>codegraph scan</code> ở gốc dự án, nó tự động phát hiện tất cả các mô-đun và các phụ thuộc giữa chúng. Cờ <code>--multi-module</code> kích hoạt phân tích giữa các mô-đun bổ sung: `````bash
+codegraph scan &ndash;source-dir . &ndash;multi-module</p><pre tabindex=0><code>
+### Q3: CodeGraph có thể xử lý mã nguồn lớn đến mức nào?
+
+CodeGraph đã được kiểm tra với các mã nguồn lên đến 2 triệu dòng mã. Hiệu suất mở rộng xấp xỉ tuyến tính với kích thước mã. Đối với các mã nguồn rất lớn (1M+ dòng), tăng kích thước heap JVM xuống 8GB hoặc hơn: `````bash
+java -Xmx8g -jar codegraph-cli.jar scan --source-dir ./src
+</code></pre><h3 id=q4-tôi-có-thể-sử-dụng-codegraph-với-các-dự-án-không-phải-kotlin-không>Q4: Tôi có thể sử dụng CodeGraph với các dự án không phải Kotlin không?<a hidden class=anchor aria-hidden=true href=#q4-tôi-có-thể-sử-dụng-codegraph-với-các-dự-án-không-phải-kotlin-không>#</a></h3><p>Nếu dự án của bạn biên dịch trên JVM, bạn có thể sử dụng CodeGraph. Nó hoạt động với bất kỳ dự án Java hoặc Kotlin nào bất kể khung, thư viện hoặc công cụ xây dựng được sử dụng. Các ngôn ngữ JVM thuần túy như Scala và Clojure hoạt động tốt. Đối với các dự án không phải JVM, bạn cần một công cụ khác.</p><h3 id=q5-codegraph-có-xử-lý-mã-được-tạo-động-không>Q5: CodeGraph có xử lý mã được tạo động không?<a hidden class=anchor aria-hidden=true href=#q5-codegraph-có-xử-lý-mã-được-tạo-động-không>#</a></h3><p>CodeGraph phân tích mã nguồn được biên dịch tĩnh. Nếu dự án của bạn sử dụng tạo mã (ví dụ: Kotlin Poet, jOOQ codegen, Protobuf), bạn nên đảm bảo mã được tạo được bao gồm trong mục tiêu quét. Thêm các thư mục nguồn được tạo vào đường dẫn quét: `````bash
+codegraph scan<br>&ndash;source-dir ./src/main<br>&ndash;source-dir ./build/generated</p><pre tabindex=0><code>
+### Q6: CodeGraph có thể được sử dụng cho các chỉ số chất lượng mã không?
+
+Có. CodeGraph có thể tính toán nhiều chỉ số chất lượng mã từ cấu trúc đồ thị: độ phức tạp cyclomatic khi kết hợp với phân tích AST, chỉ số coupling, điểm cohesion và độ sâu phụ thuộc. Sử dụng lệnh con ``codegraph metrics``: `````bash
+codegraph metrics --input ./codegraph-output/graph.json --output ./report.json
+````
+
+### Q7: CodeGraph khác với các công cụ phân tích mã tích hợp sẵn trong IDE như thế nào?
+
+Các công cụ IDE cung cấp phân tích theo thời gian thực cho tệp đang mở. CodeGraph phân tích toàn bộ mã nguồn và cung cấp một đồ thị vĩnh viễn có thể được truy vấn, xuất và tích hợp vào các quy trình tự động hóa. Sử dụng công cụ IDE cho điều hướng hàng ngày và CodeGraph cho phân tích kiến trúc sâu.
+
+## Nguồn
+
+1. Kho lưu trữ chính thức CodeGraph: https://github.com/kotlin-io/codegraph
+2. Tài liệu CodeGraph: https://codegraph.io/docs
+3. Nguyên lý biên dịch Kotlin: https://github.com/JetBrains/kotlin/tree/master/compiler
+4. Thực tiễn tốt cơ sở dữ liệu đồ thị: https://neo4j.com/docs/
+5. Phân tích kiến trúc phần mềm với công cụ phân tích tĩnh: https://www.seas.upenn.edu/~sergey/papers/
+
+## Kêu gọi hành động
+
+Sẵn sàng biến mã nguồn của bạn thành một đồ thị kiến thức có thể điều hướng? Hãy thử CodeGraph ngay hôm nay và không bao giờ phải vật lộn để hiểu kiến trúc dự án của bạn nữa.
+
+Để biết thêm thông tin, tham gia cộng đồng Telegram của chúng tôi: https://t.me/DIBI8_Group/18
+
+**Công cụ được đề xuất:**
+
+- Binance: Bắt đầu giao dịch với Binance. Đăng ký tại: https://www.bsmkweb.cc/register?ref=DIBI8
+- OKX Exchange: Giao dịch với OKX. Đăng ký tại: https://www.promoohubly.com/join/12190433
+- WebShare: Duyệt web ẩn danh với WebShare. Bắt đầu tại: https://www.webshare.io/?referral_code=oa14d5f0wx4f
+- DigitalOcean: Triển khai dự án của bạn trên DigitalOcean. Đăng ký tại: https://m.do.co/c/eca87ac14ee0
+- HTStack: Quản lý cơ sở hạ tầng đám mây của bạn. Tham gia tại: https://my.htstack.com/aff.php?aff=27187
+
+* * *
+
+DIBI8 là cổng vào để khám phá các công cụ mã nguồn mở tốt nhất, đổi mới AI và tài nguyên nhà phát triển. Đăng ký kênh Telegram của chúng tôi để nhận cập nhật hàng ngày về các dự án có tác động nhất trong công nghệ.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ Mã nguồn&#34;,
+  &#34;datePublished&#34;: &#34;2026-01-01&#34;,
+  &#34;dateModified&#34;: &#34;2026-01-01&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/codegraph-pre-indexed-code-knowledge-graph-ai-agents&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [codegraph-pre-indexed-code-knowledge-graph-ai-agents](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
+- [apple-container](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
+- [codegraph-pre-indexed-code-knowledge-graph-ai-agents](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
+- [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
+- [semgrep-15k-star-sast-security-scanner](codegraph-pre-indexed-code-knowledge-graph-ai-agents)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

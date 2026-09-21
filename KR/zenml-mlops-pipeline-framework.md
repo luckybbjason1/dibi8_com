@@ -1,16 +1,14 @@
 ---
-title: "ZenML 2026: 20개 이상의 도구를 프로덕션 파이프라인으로 연결하는 MLOps 프레임워크 — ...
-description: "20개 이상의 도구를 통합된 재현 가능한 ML 파이프라인으로 연결하는 오픈소스 MLOps 프레임워크인 ZenML에 대한 종합 가이드. 셀프 호스팅, 실제 벤치마크, 프로덕션 배포...."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["]
-aliases:
-  - /kr/posts/zenml-mlops-pipeline-framework/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zenml-mlops-pipeline-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 당신의 ML 파이프라인은 망가졌다
 

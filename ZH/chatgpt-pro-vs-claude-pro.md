@@ -1,6 +1,13 @@
 ---
-title: "ChatGPT Pro vs Claude Pro 2026：$20（或 $200）AI 订阅哪个更值？"
-description: "ChatGPT Plus/Pro 与 Claude Pro/Max 完整对比 — 模型阵容、上下文窗口、Projects、Artifacts、图像生成、语音模式、价格。2026 年更新。". Comp..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chatgpt-pro-vs-claude-pro"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

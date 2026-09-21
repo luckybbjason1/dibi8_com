@@ -1,6 +1,13 @@
 ---
-title: "Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인"
-description: "완전한 LLM 파인튜닝 스택: Unsloth (빠른 단일 GPU 실험) + Axolotl (프로덕션 멀티 GPU) + HuggingFace datasets/Hub + Weights..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "fine-tuning-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -166,13 +173,11 @@ vllm serve yourname/my-finetuned-llama \
 ## 8. Day 1 파이프라인 셋업 (3-4시간)
 
 1. **JSONL 포맷 데이터셋** (다양함) — ````train.jsonl````과 ````eval.jsonl```` 준비, HF Hub 프라이빗에 push
-2. **RTX 4090 GPU 임대** (10분) — 실험 단계용 Vast.ai 또는 {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}}
-3. **Unsloth + W&B 설치** (10분) — ````pip install unsloth wandb```
+2. **RTX 4090 GPU 임대** (10분) — 실험 단계용 Vast.ai 또는 3. **Unsloth + W&B 설치** (10분) — ````pip install unsloth wandb```
 4. **첫 QLoRA 실행** (60분) — Unsloth 가이드 3절, Llama 3.2 8B 1 epoch 파인튜닝, W&B 로그 나타남 확인
 5. **5-10 짧은 실험 반복** (~반나절) — 학습률, LoRA rank, 데이터셋 슬라이스 변경. 최고 eval 점수 레시피 찾기
 6. **레시피를 Axolotl YAML로 번역** (30분) — 같은 하이퍼파라미터 YAML 포맷, git commit
-7. **8× H100 클러스터 임대** 프로덕션 실행용 (Vast.ai ~$15-20/시간 × 6-12시간 = $90-240), 데이터 + 모니터링 측은 {{< aff "htstack" "ftstack-prod-vps" "HTStack 홍콩 VPS" >}}
-8. **Axolotl 프로덕션 훈련 실행** — 최종 가중치 HF Hub에 push
+7. **8× H100 클러스터 임대** 프로덕션 실행용 (Vast.ai ~$15-20/시간 × 6-12시간 = $90-240), 데이터 + 모니터링 측은 8. **Axolotl 프로덕션 훈련 실행** — 최종 가중치 HF Hub에 push
 9. **vLLM 통해 배포** — 전용 24 GB GPU + LiteLLM 게이트웨이에서 파인튜닝 모델 서빙
 10. **베이스 모델 대비 eval** — 파인튜닝이 실제로 eval 셋에서 베이스 이김? 아니면 반복
 
@@ -208,7 +213,7 @@ vllm serve yourname/my-finetuned-llama \
 4. **Weights & Biases** — eval 추적
 5. **vLLM** — 프로덕션 서빙
 
-실험용 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} 임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.
+실험용  임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.
 
 * * *
 

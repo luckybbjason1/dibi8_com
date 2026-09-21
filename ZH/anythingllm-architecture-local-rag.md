@@ -1,6 +1,13 @@
 ---
-title: "企业为什么害怕 ChatGPT？"
-description: "企业为什么害怕 ChatGPT？"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "anythingllm-architecture-local-rag"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -138,7 +145,7 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
    - **解决方案**：在 Docker 内部，``localhost`` 指的是容器自己，而不是宿主机！你必须将 AnythingLLM 的大模型配置地址指向 ``http://host.docker.internal:11434``，并且在启动 Ollama 时配置环境变量 ``OLLAMA_HOST=0.0.0.0`` 以允许跨网卡访问。
 
 2. **坑点二：LanceDB 的磁盘 IO 锁死 (File Locking)**
-   - **症状**：多个用户同时向同一个 Workspace 上传大型 PDF 时，数据库报错 ``SQLITE_BUSY` 或写锁死。
+   - **症状**：多个用户同时向同一个 Workspace 上传大型 PDF 时，数据库报错 ``SQLITE_BUSY`` 或写锁死。
    - **解决方案**：默认的嵌入式向量库 LanceDB/Chroma 在高频并发写入时存在文件锁问题。如果在拥有几十号员工的真实企业环境中，切记在系统配置中将 Vector DB 切换为独立部署的 Qdrant 或 Milvus 实例。
 
 ## 商业闭环：向 B 端企业兜售“绝对安全”的暴利法则
@@ -160,8 +167,8 @@ app.post('/api/workspace/:slug/chat', async (request, response) => {
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

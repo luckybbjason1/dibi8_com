@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-design-local-first-ai-design-tool"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Open Design: The Ultimate Local-First AI Design Tool Rep..."
-description: "Discover Open Design, the open-source local-first alternative to Claude Design with 19 AI skills, 71..."
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -298,8 +305,8 @@ For more insights on AI-powered development tools, check out our related article
 * * *
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 

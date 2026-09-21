@@ -1,6 +1,13 @@
 ---
-title: "오픈소스 AI 에이전트 프레임워크 Top 10 (2026): 프로덕션 채택률 기준 랭킹"
-description: "2026년 프로덕션 채택률 기준 10대 오픈소스 AI 에이전트 프레임워크: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, Open..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-source-ai-agent-framework-top-10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
@@ -25,7 +32,7 @@ faq: - q: "2026년에는 어떤 AI 에이전트 프레임워크를 선택해야 
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 오픈소스 AI 에이전트 프레임워크 Top 10 (2026)
 
@@ -114,8 +121,8 @@ AI 에이전트 프레임워크 지형은 2026년에 통합되었습니다. 2년
 
 ## 권장 인프라
 
-에이전트 프레임워크 배포용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 자체 호스팅 플랫폼용 droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 에이전트 워크로드 호스팅
+에이전트 프레임워크 배포용: - **** — $200 크레딧, 자체 호스팅 플랫폼용 droplet
+- **** — 홍콩 VPS, 에이전트 워크로드 호스팅
 
 *제휴 링크 — 동일한 가격, dibi8.com을 후원합니다.*
 

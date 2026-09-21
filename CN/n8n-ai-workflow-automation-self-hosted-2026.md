@@ -1,19 +1,10 @@
 ---
-title: "n8n AI Workflow Automation 2026: Build Production-Grade ..."
-description: "The definitive n8n tutorial 2026. Learn to self-host n8n, build AI-powered workflow automations with..."
-keywords: n8n, n8n tutorial, AI workflow automation, open source automation, self-hosted n8n, n8n vs Zapier, n8n LangChain, AI agent builder, no-code automation platform, n8n docker setup, workflow orchestration, n8n SEO automation
-author: Home Hermes
-date: 2026-05-20
-lastmod: 2026-05-20---
-
-
-# n8n AI Workflow Automation 2026: Build Production-Grade AI Agents, Self-Hosted n8n Setup Guide, and Save 70% vs Zapier
-
-In Q1 2025, one open-source project quietly added **18,420 GitHub stars** — more than the next three fastest-growing low-code platforms combined. That project was **n8n**. By March 2026, it had closed a **$60M Series B funding round**, cementing its position as the infrastructure layer for AI-native automation.
-
-This is not another "Zapier alternative" review. This is a technical field guide for developers, operators, and technical founders who need to build **AI-orchestrated workflows** that run on their own infrastructure, cost near-zero, and integrate with LLMs natively.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-workflow-automation-self-hosted-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Why n8n Is Exploding in 2026
 
@@ -176,8 +167,8 @@ This is exactly the kind of multi-step, multi-system workflow where n8n excels �
 
 #### Node 1: Google Search Console
 
-The native GSC node in n8n handles OAuth2 authentication. Configure it with your Search Console property. Use these parameters: - **Start Date**: ````{{ $now.minus(7, 'days').format('YYYY-MM-DD') }}````
-- **End Date**: ````{{ $now.minus(1, 'days').format('YYYY-MM-DD') }}````
+The native GSC node in n8n handles OAuth2 authentication. Configure it with your Search Console property. Use these parameters: - **Start Date**: ````````
+- **End Date**: ````````
 - **Dimensions**: ````query````, ````page````
 - **Aggregation Type**: ````auto````
 
@@ -228,9 +219,9 @@ return alerts.map(a => ({ json: a }));
 For each dropped keyword, fetch the top 3 ranking URLs via Serper API or ScraperAPI, then pass them to an OpenAI node: `````
 System: You are an SEO content strategist. Analyze why the competitor outranks us and give 3 specific, actionable content improvements.
 
-User: Keyword: {{ $json.query }}
-Our page: {{ $json.page }}
-Competitor pages: {{ $json.competitorUrls.join(', ') }}
+User: Keyword: 
+Our page: 
+Competitor pages: 
 
 Format your response as: 1. [Category] Specific recommendation
 2. [Category] Specific recommendation  
@@ -244,21 +235,21 @@ Categories: Content Depth, Semantic Coverage, User Intent Match, Internal Linkin
 Use n8n's **Split In Batches** → **Merge** pattern or simply connect multiple nodes to the same output. Each branch executes independently: **Slack Branch**: `````
 🚨 *SEO Guardian Alert: Ranking Drops Detected*
 
-*Keyword:* {{ $json.query }}
-*Page:* {{ $json.page }}
-*Position:* {{ $json.previousPosition }} → {{ $json.currentPosition }} (↓{{ $json.positionDrop }})
+*Keyword:* 
+*Page:* 
+*Position:*  →  (↓)
 
 *AI Analysis:*
-{{ $json.aiRecommendations }}
+
 
 *Action:* Notion task created. Review by EOD.
 `````
 
-**Notion Branch**: Use the Notion node to create a database entry with: - Name: "Optimize: {{ $json.query }}"
+**Notion Branch**: Use the Notion node to create a database entry with: - Name: "Optimize: "
 - Status: "To Do"
 - Priority: "High"
-- URL: {{ $json.page }}
-- AI Recommendations: {{ $json.aiRecommendations }}
+- URL: 
+- AI Recommendations: 
 
 ### The Outcome
 

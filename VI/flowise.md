@@ -1,6 +1,13 @@
 ---
-title: "Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
-description: "Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Olla..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 
@@ -336,7 +343,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
         size: medium
       },
       chatWindow: {
-        title: 'Trợ lý hỗ trợ',
+        title: "AI Tool Guide"
         welcomeMessage: 'Xin chào! Tôi có thể giúp gì cho bạn?',
         backgroundColor: '#ffffff',
         height: 700,

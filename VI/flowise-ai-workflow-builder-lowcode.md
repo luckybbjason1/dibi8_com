@@ -1,6 +1,13 @@
 ---
-title: "Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
-description: "Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise-ai-workflow-builder-lowcode"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao Xây dựng AI Agent Vẫn Giống như 2006
 

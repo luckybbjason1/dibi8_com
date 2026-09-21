@@ -1,6 +1,13 @@
 ---
-title: "Goose AI Agent：44K⭐Công cụ AI mã nguồn mở, tự động hóa m...
-description: "Goose là AI Agent mã nguồn mở được Linux Foundation hỗ trợ, 44K+ Stars, hỗ trợ 15+ nhà cung cấp LLM ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "goose-ai-agent-open-source-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -216,9 +223,9 @@ Goose là AI Agent mã nguồn mở đáng chú ý nhất năm 2026: ✅ **44K+ 
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

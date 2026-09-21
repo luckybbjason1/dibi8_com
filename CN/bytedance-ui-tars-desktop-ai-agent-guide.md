@@ -1,11 +1,10 @@
 ---
-title: "ByteDance UI-TARS Desktop: The Vision-Language AI Agent ..."
-description: "Learn how to deploy ByteDance's UI-TARS Desktop, a vision-language AI agent that sees your screen an..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
-category: ai-tools
-tags: ["bytedance", "ui-tars", "vision-language-model", "AI-agent", "desktop-automation", "GUI-agent", "open-source", "multimodal-ai"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

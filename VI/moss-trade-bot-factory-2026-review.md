@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moss-trade-bot-factory-2026-review"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
-description: "Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid ..."
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
@@ -33,7 +40,7 @@ faq: - q: "moss-trade-bot-factory có an toàn để cài đặt không?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Moss Trade Bot Factory 2026 Review: AI Agent Workbench Quant — Tại Sao Backtest Đẹp Lại Lừa Bạn
 
@@ -210,8 +217,8 @@ Sau hai ngày intensive testing: - **Sharpe annualization bug** (covered above).
 
 ## Recommended Infrastructure cho Self-Hosting
 
-Nếu bạn muốn chạy own quant backtest pipeline 24/7 với dedicated VPS: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit cho 60 ngày. Entry point tốt cho indie quants prototyping backtest pipelines.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS với low-latency access từ mainland China. Same IDC hosts dibi8.com.
+Nếu bạn muốn chạy own quant backtest pipeline 24/7 với dedicated VPS: - **** — $200 free credit cho 60 ngày. Entry point tốt cho indie quants prototyping backtest pipelines.
+- **** — Hong Kong VPS với low-latency access từ mainland China. Same IDC hosts dibi8.com.
 
 *Affiliate links — không cost bạn extra và help keep dibi8.com running.*
 

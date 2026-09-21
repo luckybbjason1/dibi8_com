@@ -1,6 +1,13 @@
 ---
-title: "AiToEarn: 开源 AI 内容变现工具 — 把你的 GPT 对话变成被动收入"
-description: "AiToEarn 是一款开源 AI 内容变现平台，帮助创作者将 AI 生成的内容转化为可盈利的产品。支持多平台分发、订阅付费和广告变现。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aitoearn-ai-monetization"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - JavaScript
@@ -207,7 +214,7 @@ AiToEarn 代表了**AI 时代创作者经济**的新范式：不再是"人写内
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
@@ -215,7 +222,7 @@ AiToEarn 代表了**AI 时代创作者经济**的新范式：不再是"人写内
 
 **需要稳定的 Claude / OpenAI API 访问？** 这个领域的项目最终都会撞 Anthropic / OpenAI 限流或价格墙。
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 

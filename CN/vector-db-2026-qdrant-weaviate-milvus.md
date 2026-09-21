@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vector-db-2026-qdrant-weaviate-milvus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
-description: "Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup p..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
@@ -24,7 +31,7 @@ faq: - q: "Which vector DB is best in 2026?"
     a: "1M vectors @ 768 dimensions: ~3GB memory. 10M vectors: ~30GB. Most production workloads run comfortably on a single 32GB VM. Above 100M vectors, plan for sharded deployment."
 ---
 
-{{</* resource-info */>}}
+
 
 # Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus
 
@@ -146,8 +153,8 @@ Already have Postgres → pgvector (up to ~1M vectors)
 
 ## Recommended Infrastructure
 
-For vector DB hosting: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplets with NVMe
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS for low-latency Asia queries
+For vector DB hosting: - **** — $200 credit, droplets with NVMe
+- **** — Hong Kong VPS for low-latency Asia queries
 
 *Affiliate links — same price, supports dibi8.com.*
 

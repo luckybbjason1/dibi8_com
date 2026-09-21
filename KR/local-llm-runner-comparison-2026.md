@@ -1,6 +1,13 @@
 ---
-title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: 정직한 로컬 LL...
-description: "2026년 중요한 4가지 로컬 LLM 러너 직접 비교. 실제 수치: Ollama (137k 별) 가장 쉬움, LM Studio 가장 예쁜 UI, llama.cpp (112k) 밑의..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-llm-runner-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, C++, CUDA, Metal]
@@ -148,7 +155,7 @@ vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000
 
 **시나리오 A — AI로 코딩하는 솔로 파운더**: 노트북에 Ollama. 끝. OpenAI 호환 API 통해 OpenCode / Continue / Cursor와 연결. 전체 스택은 [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 참조.
 
-**시나리오 B — 50 직원 회사 내부 챗봇**: vLLM을 전용 24 GB GPU (RTX 4090 또는 A5000)에, {{< aff "htstack" "vllm-vps-hk" "HTStack 홍콩 VPS" >}} 또는 {{< aff "digitalocean" "vllm-droplet" "DigitalOcean GPU droplet" >}}. auth + 사용자별 지출 추적 위해 [LiteLLM 게이트웨이](/kr/resources/llm-frameworks/litellm/)로 fronted.
+**시나리오 B — 50 직원 회사 내부 챗봇**: vLLM을 전용 24 GB GPU (RTX 4090 또는 A5000)에,  또는 . auth + 사용자별 지출 추적 위해 [LiteLLM 게이트웨이](/kr/resources/llm-frameworks/litellm/)로 fronted.
 
 **시나리오 C — 마케팅 VP가 문서와 chat 원함**: LM Studio. RAG 인터페이스에 PDF 드래그 앤 드롭. 훈련 0 필요. 실제로 엔지니어링 필요한 사용 사례 위해 엔지니어링 시간 저장.
 

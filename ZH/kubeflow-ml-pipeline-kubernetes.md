@@ -1,16 +1,14 @@
 ---
-title: "Kubeflow 2026: 在 Kubernetes 上运行完整 ML 流水线 — 从训练到生产部署指南"
-description: "在 Kubernetes 上部署 Kubeflow 构建 ML 流水线的完整指南。涵盖安装、组件、基准测试、生产加固和真实部署模式。". Comprehensive guide covering fe..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["kubeflow", "kubernetes", "机器学习", "ml流水线", "mlops", "kubeflow pipelines", "kserve", "katib", "数据科学"]
-aliases:
-  - /zh/posts/kubeflow-ml-pipeline-kubernetes/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "kubeflow-ml-pipeline-kubernetes"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言: 为什么 Kubernetes 原生的 ML 很重要
 

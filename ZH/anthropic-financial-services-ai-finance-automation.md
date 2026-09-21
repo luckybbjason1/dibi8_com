@@ -1,6 +1,13 @@
 ---
-title: Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%
-description: 了解Anthropic Financial Services如何帮助投资银行、股票研究和财富管理团队利用Claude AI智能体自动化 pitch. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "anthropic-financial-services-ai-finance-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   deck、DCF模型和KYC筛查。
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -282,7 +289,7 @@ Pitch Agent 不是一个简单的模板填充器。它使用多步推理管道�
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
@@ -290,7 +297,7 @@ Pitch Agent 不是一个简单的模板填充器。它使用多步推理管道�
 
 **需要稳定的 Claude / OpenAI API 访问？** 这个领域的项目最终都会撞 Anthropic / OpenAI 限流或价格墙。
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 

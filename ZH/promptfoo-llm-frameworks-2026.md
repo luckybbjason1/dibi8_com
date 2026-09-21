@@ -1,6 +1,13 @@
 ---
-title: "Promptfoo：测试、评估并红队你的 LLM 提示词 —— 2026 实战指南"
-description: "Promptfoo 是一款开源的 CLI 与代码库，用于评估和红队 LLM 应用。用简单的声明式配置即可对比 GPT、Claude、Gemini、DeepSeek，并无缝接入命令行与 CI/CD。本 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "promptfoo-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,18 +26,18 @@ tags: ["]
 aliases:
   - /posts/promptfoo-llm-frameworks-2026/
 faqs: - q: '如何在本地安装并运行 promptfoo？'
-    a: '最快的路径完全不用安装： ```bash npx promptfoo@latest init --example getting-started ``` 要全局安装，用 `npm install -g promptfoo`（或 `brew install promptfoo`，或 `pip install promptfoo`）。然后用 `promptfoo eval` 做评估，用 `promptfoo view` 打开本地查看器。'
+    a: '最快的路径完全不用安装： ```bash npx promptfoo@latest init --example getting-started ``` 要全局安装，用 ``npm install -g promptfoo``（或 ``brew install promptfoo``，或 ``pip install promptfoo``）。然后用 ``promptfoo eval`` 做评估，用 ``promptfoo view`` 打开本地查看器。'
   - q: '能用 promptfoo 测试我自己的模型吗？'
-    a: '可以。Promptfoo 支持众多 provider —— OpenAI、Anthropic、Google、DeepSeek、本地模型等等。你在 `promptfooconfig.yaml` 的 `providers` 列表中声明每一个，并通过环境变量提供对应的 API 密钥即可。'
+    a: '可以。Promptfoo 支持众多 provider —— OpenAI、Anthropic、Google、DeepSeek、本地模型等等。你在 ``promptfooconfig.yaml`` 的 ``providers`` 列表中声明每一个，并通过环境变量提供对应的 API 密钥即可。'
   - q: 'promptfoo 如何对比不同模型的表现？'
-    a: '你在 `providers` 下列出多个条目，promptfoo 会让每条提示词和每个测试用例对它们逐一运行。`promptfoo view` 随后会并排展示各模型的输出，并逐条断言标出通过/失败，让你直接在自己的输入上做对比。'
+    a: '你在 ``providers`` 下列出多个条目，promptfoo 会让每条提示词和每个测试用例对它们逐一运行。``promptfoo view`` 随后会并排展示各模型的输出，并逐条断言标出通过/失败，让你直接在自己的输入上做对比。'
   - q: '有办法把 promptfoo 接入 CI/CD 流水线吗？'
-    a: '有。因为 promptfoo 是 CLI，你可以在任何流水线里跑 `npx promptfoo@latest eval`。它常被接入 GitHub Actions，让每次 push 或 pull request 都运行你的评估套件。'
+    a: '有。因为 promptfoo 是 CLI，你可以在任何流水线里跑 ``npx promptfoo@latest eval``。它常被接入 GitHub Actions，让每次 push 或 pull request 都运行你的评估套件。'
   - q: '如何为 promptfoo 项目做贡献？'
     a: '欢迎贡献。你可以在 GitHub 上提 issue 或提交 pull request。详情见[贡献指南"](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)。'---
 
 
-{{< resource-info >}}
+
 
 ## 引言
 
@@ -63,8 +70,8 @@ Promptfoo 是一款用于评估和红队 LLM 应用的 CLI 与代码库。你只
 
 ````yaml
 # promptfooconfig.yaml
-description: "GPT vs Claude on a couple of prompts"
-prompts: - "What is the capital of {{country}}?"
+description: "Technical guide and comparison."
+prompts: - "What is the capital of ?"
   - "Explain quantum mechanics in one sentence."
 
 providers: - openai:gpt-4o-mini
@@ -75,7 +82,7 @@ tests: - vars: country: France
         value: Paris
 `````
 
-这份配置会让两条提示词分别对两个 provider 运行。对第一条提示词，它会替换 ``{{country}}`` 并断言输出中包含 “Paris”。API 密钥从环境变量读取（例如 ``OPENAI_API_KEY`` 和 ``ANTHROPIC_API_KEY``），不会写在配置文件里。
+这份配置会让两条提示词分别对两个 provider 运行。对第一条提示词，它会替换 ```` 并断言输出中包含 “Paris”。API 密钥从环境变量读取（例如 ``OPENAI_API_KEY`` 和 ``ANTHROPIC_API_KEY``），不会写在配置文件里。
 
 ![](https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png)
 - Source Code: [promptfoo GitHub](https://github.com/promptfoo/promptfoo)
@@ -146,8 +153,8 @@ promptfoo view
 
 `````yaml
 # promptfooconfig.yaml
-description: "Basic prompt test"
-prompts: - "What is the capital of {{country}}?"
+description: "Technical guide and comparison."
+prompts: - "What is the capital of ?"
 
 providers: - openai:gpt-4o-mini
 
@@ -170,8 +177,8 @@ Promptfoo 会执行该测试用例，并报告断言是否通过。
 
 `````yaml
 # promptfooconfig.yaml
-description: "GPT vs Claude comparison"
-prompts: - "Answer concisely: {{question}}"
+description: "Technical guide and comparison."
+prompts: - "Answer concisely: "
 
 providers: - openai:gpt-4o
   - anthropic:messages:claude-3-5-sonnet-20241022
@@ -211,7 +218,7 @@ jobs: eval: runs-on: ubuntu-latest
         with: node-version: 22
 
       - name: Run promptfoo eval
-        env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        env: OPENAI_API_KEY: $
         run: npx promptfoo@latest eval
 `````
 

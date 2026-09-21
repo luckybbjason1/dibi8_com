@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "alpaca-trading-api-stock-broker"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Alpaca Trading API 2026: The Commission-Free Stock Broke...
-description: "Complete guide to the Alpaca Trading API for commission-free algorithmic trading. Learn setup, order..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/alpaca-trading-api-stock-broker/-
 ---
 
-{{</* resource-info */>}}
+
 
 > 📌 **Affiliate Disclosure**: This article contains affiliate links. We may earn a commission if you sign up through our link — at no extra cost to you. Our reviews are independent and based on thorough research.
 > 

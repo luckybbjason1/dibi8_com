@@ -1,6 +1,13 @@
 ---
-title: "HunyuanVideo: 12.1K+ Stars — Production Deployment Guide...
-description: "HunyuanVideo (HYV) is an open-source video generation framework by Tencent with 13B parameters. Supp..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hunyuan-video"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/hunyuan-video/-
 ---
 
-{{</* resource-info */>}}
+
 
 A video generation model that needs 60GB of VRAM for a 5-second clip at 720p is not a toy — it is infrastructure. Tencent's HunyuanVideo, a 13-billion-parameter diffusion transformer for video generation, has accumulated over 12,100 GitHub stars and become a go-to choice for teams that need cinematic-quality video synthesis on self-hosted hardware. This hunyuanvideo tutorial walks through the complete production setup: from a hunyuanvideo Docker deployment to FP8 quantization, multi-GPU parallel inference, ComfyUI integration, and the monitoring you need when serving video generation production workloads at scale.
 

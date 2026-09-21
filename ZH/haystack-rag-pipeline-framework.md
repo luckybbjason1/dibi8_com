@@ -1,16 +1,14 @@
 ---
-title: "Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南"
-description: "2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。". Comprehensive guide co..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["haystack", "nlp", "rag", "python", "llm", "文档存储", "检索器", "agent", "openai", "docker", "流水线"]
-aliases:
-  - /zh/posts/haystack-rag-pipeline-framework/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "haystack-rag-pipeline-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么还需要另一个 RAG 框架？
 
@@ -166,8 +164,8 @@ rag.add_component("retriever", InMemoryEmbeddingRetriever(
 rag.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 rag.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -224,8 +222,8 @@ pipeline.add_component("ranker", TransformersSimilarityRanker(
 pipeline.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -256,21 +254,21 @@ pipeline = Pipeline()
 
 # 路由器根据查询类型决定路径
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ technical in query.lower() }}",
-    "output": "{{ query }}",
+    "condition": "",
+    "output": "",
     "output_type": str,
 }))
 
 # 技术分支，提供详细上下文
 tech_prompt = """You are a technical assistant. Provide detailed, accurate answers.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("tech_builder", PromptBuilder(template=tech_prompt))
 pipeline.add_component("tech_generator", OpenAIGenerator(model="gpt-4o"))
 
 # 简单分支，用于一般查询
 general_prompt = """Provide a concise answer.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("general_builder", PromptBuilder(template=general_prompt))
 pipeline.add_component("general_generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -386,8 +384,8 @@ pipeline.add_component("search", web_search)
 pipeline.add_component("builder", PromptBuilder(
     template="""Use search results to answer.
 Results: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -457,7 +455,7 @@ from haystack.components.builders import PromptBuilder
 
 async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
-        template="Answer concisely: {{ query }}"
+        template="Answer concisely: "
     ))
     pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
     pipeline.connect("builder", "generator")

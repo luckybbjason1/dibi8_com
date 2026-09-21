@@ -1,18 +1,10 @@
 ---
-title: "MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtit..."
-tags: ["ai-tools", "automation", "generator", "open-source", "video-generation"]
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-categories: ["ai-tools"]
-slug: moneyprinterturbo-one-click-ai-video-generator
-aliases: [/moneyprinterturbo]
-sources: - name: GitHub
-    url: 'https://github.com/harry0703/MoneyPrinterTurbo'
-  - name: 'Demo Videos'
-    url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moneyprinterturbo-one-click-ai-video-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {
@@ -48,7 +40,7 @@ sources: - name: GitHub
 
 * * *
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
-description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtit..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

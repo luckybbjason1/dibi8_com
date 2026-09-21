@@ -1,9 +1,10 @@
 ---
-title: "代码搜索替换工具：从grep到ripgrep、sd及现代替代方案完整指南"
-description: "grep太慢？探索ripgrep、fzf、sd等现代代码搜索替换工具，附性能基准测试和实用工作流，全面提升命令行搜索效率。". Comprehensive guide covering feature..."
-draft: false
-aliases:
-  - /posts/code-search-replace-tools-grep-modern-alternatives/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "code-search-replace-tools-grep-modern-alternatives"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

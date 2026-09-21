@@ -1,9 +1,10 @@
 ---
-title: "DVC vs LakeFS vs Delta Lake：机器学习数据版本控制工具终极对比与选型指南"
-description: "深度对比DVC、LakeFS与Delta Lake三大数据版本控制工具，覆盖架构设计、分支策略、MLOps集成与选型决策树，助你构建可复现的ML流水线。". Comprehensive guide c..."
-draft: false
-aliases:
-  - /posts/data-version-control-dvc-lakefs-delta-lake/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "data-version-control-dvc-lakefs-delta-lake"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # DVC vs LakeFS vs Delta Lake：机器学习数据版本控制工具终极对比与选型指南

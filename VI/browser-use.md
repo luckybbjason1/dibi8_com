@@ -1,6 +1,13 @@
 ---
-title: "Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser ...
-description: "Browser Use là framework Python mã nguồn mở kết nối LLM với trình duyệt thực qua Playwright. Hỗ trợ ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "browser-use"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 

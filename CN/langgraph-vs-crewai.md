@@ -1,21 +1,10 @@
 ---
-title: "LangGraph vs CrewAI in 2026: Control-First State Graphs ...
-description: "Side-by-side breakdown of LangGraph (low-level stateful agent graphs) and CrewAI (high-level role-ba..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["langgraph", "crewai", "ai-agents", "multi-agent", "agent-framework", "orchestration", "llm", "comparison"]
-categories: ["vs"]
-faqs: - q: 'Should I use LangGraph or CrewAI?'
-    a: 'Use LangGraph if you need fine-grained control over an agent workflow — explicit branching, loops, shared state, and durable checkpoints — and you are shipping something complex to production. Use CrewAI if you want to assemble a team of role-playing agents quickly and value speed of prototyping over low-level control. The rule of thumb: LangGraph for controllable, stateful workflows you must reason about precisely; CrewAI for getting a multi-agent collaboration running fast with a "team of specialists" mental model.'
-  - q: 'Is LangGraph harder to learn than CrewAI?'
-    a: 'Yes. LangGraph asks you to think in terms of a state machine — nodes, edges, conditional transitions, and a shared state object — which is more upfront work but gives you precise control over how the agent behaves. CrewAI is higher-level and opinionated: you describe agents by role, goal, and backstory, group them into a crew, and assign tasks, so a first working multi-agent demo comes together faster. Budget a learning ramp for LangGraph and a quick start for CrewAI.'
-  - q: 'Can LangGraph and CrewAI use the same tools and models?'
-    a: 'Largely yes. Both are model-agnostic and can call the major LLM providers, and both can use tools built with or compatible with the LangChain ecosystem. CrewAI can incorporate LangChain tools, and LangGraph is built by the LangChain team so it integrates natively. You generally are not locked to one model or tool vendor with either framework — the difference is in how you orchestrate the agents, not which models they call.'
-  - q: 'Which is better for multi-agent systems?'
-    a: 'CrewAI is purpose-built around the multi-agent metaphor — multiple agents with distinct roles collaborating on tasks in a sequential or hierarchical process — so it is the faster path to a classic "crew of specialists." LangGraph can absolutely build multi-agent systems too, but it models them as nodes in an explicit graph, which is more work and more control. Choose CrewAI for fast role-based collaboration, LangGraph when the coordination logic itself is complex and must be exact.'
-  - q: 'Is CrewAI built on LangChain or LangGraph?'
-    a: 'CrewAI is its own standalone framework, not a layer on top of LangGraph, although it can interoperate with LangChain tools. LangGraph, by contrast, is an official part of the LangChain ecosystem and is maintained by the LangChain team as its low-level orchestration layer. So they come from different lineages: LangGraph extends LangChain downward into controllable graphs, while CrewAI is an independent, higher-level take on agent teams.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-vs-crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # LangGraph vs CrewAI in 2026: Control-First State Graphs vs Role-Based Agent Crews

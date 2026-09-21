@@ -1,22 +1,15 @@
 ---
-title: "Kỹ Năng PM: 68 Kỹ Năng Quản Lý Sản Phẩm và 42 Quy Trình ...
-description: "Hệ điều hành AI cho các quyết định sản phẩm tốt hơn. 9 plugin bao gồm khám phá, chiến lược, triển kh..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "product management", "claude code", "agent skills", "open source"]
-categories: ["ai-tools"]
-slug: pm-skills-68-product-management-skills-ai-agents
-aliases: ['/pm-skills']
-sources: - name: GitHub
-    url: 'https://github.com/phuryn/pm-skills'
-  - name: 'The Product Compass'
-    url: 'https://www.productcompass.pm'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pm-skills-68-product-management-skills-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
-description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execut..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

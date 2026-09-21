@@ -1,6 +1,13 @@
 ---
-title: "Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 3...
-description: "Theo dõi 30 ngày sử dụng và hóa đơn thực tế của Claude Max ($200), ChatGPT Plus + Codex CLI API ($16..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agent-monthly-bill-2026-real-receipts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
@@ -29,7 +36,7 @@ faq: - q: "Claude Max ($200) có đáng so với API trả theo dùng không?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Hóa đơn hàng tháng AI Coding Agent 2026: Biên lai thực 30 ngày
 
@@ -146,8 +153,8 @@ Nếu hóa đơn của bạn cao hơn các con số trên: 1. **Kiểm tra API t
 
 ## Hạ tầng đề xuất
 
-VPS cho vòng lặp agent chạy dài, máy chủ MCP, hoặc runtime LLM cục bộ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng đủ cho thiết lập ban đầu
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, cùng IDC với hosting của dibi8.com
+VPS cho vòng lặp agent chạy dài, máy chủ MCP, hoặc runtime LLM cục bộ: - **** — $200 tín dụng đủ cho thiết lập ban đầu
+- **** — VPS Hong Kong, cùng IDC với hosting của dibi8.com
 
 *Liên kết affiliate — giá với bạn không đổi, hỗ trợ dibi8.com.*
 

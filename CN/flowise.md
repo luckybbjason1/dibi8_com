@@ -1,6 +1,13 @@
 ---
-title: "Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
-description: "Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/ai-tools/flowise-ai-workflow-builder-lowcode/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

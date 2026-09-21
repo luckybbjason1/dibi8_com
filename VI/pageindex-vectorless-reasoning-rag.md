@@ -1,6 +1,13 @@
 ---
-title: "PageIndex：29K⭐Hệ thống RAG cách mạng, tìm kiếm tài liệu ...
-description: "PageIndex là hệ thống RAG mã nguồn mở không dùng vector của VectifyAI. 29K+ Stars, xây dựng cấu trúc..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pageindex-vectorless-reasoning-rag"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -24,7 +31,7 @@ faqs: - q: 'PageIndex là gì và nó khác với RAG truyền thống như th�
   - q: 'PageIndex chính xác đến mức nào trên benchmark FinanceBench?'
     a: 'PageIndex kết hợp với GPT-4 đạt độ chính xác 98.7% trên FinanceBench, một kết quả state-of-the-art. PageIndex với Claude-3 đạt 97.2%, trong khi RAG vector truyền thống chỉ đạt khoảng 79-82% trên cùng benchmark này.'
   - q: 'Làm thế nào để cài đặt và chạy một truy vấn cơ bản với PageIndex?'
-    a: 'Cài đặt bằng `pip install pageindex`. Sau đó khởi tạo với `pi = PageIndex()`, nạp tài liệu qua `pi.load_pdf("file.pdf")`, và truy vấn bằng `result = pi.query("your question")`. Kết quả bao gồm cả câu trả lời lẫn các nguồn trích dẫn như số trang và chương.'
+    a: 'Cài đặt bằng ``pip install pageindex``. Sau đó khởi tạo với ``pi = PageIndex()``, nạp tài liệu qua ``pi.load_pdf("file.pdf")``, và truy vấn bằng ``result = pi.query("your question")``. Kết quả bao gồm cả câu trả lời lẫn các nguồn trích dẫn như số trang và chương.'
   - q: 'PageIndex phù hợp nhất với loại tài liệu nào?'
     a: 'PageIndex được thiết kế cho các tài liệu chuyên môn dài, nơi cấu trúc đóng vai trò quan trọng và cần có trích dẫn có thể giải thích được, chẳng hạn như báo cáo tài chính và bản cáo bạch, hợp đồng pháp lý và án lệ, tài liệu y khoa và báo cáo thử nghiệm lâm sàng, cùng các tài liệu kỹ thuật như tài liệu tham khảo API và sổ tay vận hành.'
 ---
@@ -329,9 +336,9 @@ PageIndex là sự tiến hóa thế hệ tiếp theo của công nghệ RAG: �
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

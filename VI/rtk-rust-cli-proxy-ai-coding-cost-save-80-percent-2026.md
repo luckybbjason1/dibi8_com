@@ -1,10 +1,10 @@
 ---
-title: "Giảm 80% Chi Phí AI Coding Với rtk: Công Cụ CLI Bằng Rus...
-description: "Lập trình viên Việt Nam đang đối mặt với hóa đơn AI tăng vọt. rtk là công cụ proxy CLI viết bằng Rus..."
-keywords: ["rtk", "tiết kiệm token LLM", "giảm chi phí AI coding", "Claude Code tiết kiệm", "công cụ CLI Rust", "tối ưu hóa token", "lập trình AI giá rẻ", "công cụ phát triển 2026"]
-author: "Home Hermes"
-date: "2026-05-20"
-lastmod: "2026-05-20"lang: "vi"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

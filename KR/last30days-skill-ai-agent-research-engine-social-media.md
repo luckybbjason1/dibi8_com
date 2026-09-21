@@ -1,22 +1,15 @@
 ---
-title: "지난 30일간-기술: 실제 참여를 기준으로 소셜 미디어를 평가하는 AI 에이전트 검색 엔진"
-description: "Reddit, X, YouTube, TikTok, Polymarket, GitHub 등에서 병렬로 검색합니다. 결과를 편집자가 아닌 추천 수, 좋아요, 실제 금액으로 평가합니다. ..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "research", "social media", "agent skill", "open source"]
-categories: ["ai-tools"]
-slug: last30days-skill-ai-agent-research-engine-social-media
-aliases: [/last30days-skill]
-sources: - name: GitHub
-    url: 'https://github.com/mvanhorn/last30days-skill'
-  - name: 'Agent Skills'
-    url: 'https://agentskills.io'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "last30days-skill-ai-agent-research-engine-social-media"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 title: "Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement'
-description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvote..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

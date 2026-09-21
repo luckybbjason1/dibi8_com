@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "haystack-rag-pipeline-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Haystack 2026: The End-to-End NLP Framework for Producti...
-description: "Complete 2026 guide to Haystack: open-source NLP framework for production RAG pipelines, document st..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/haystack-rag-pipeline-framework/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Another RAG Framework?
 
@@ -172,8 +179,8 @@ rag.add_component("retriever", InMemoryEmbeddingRetriever(
 rag.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 rag.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -228,8 +235,8 @@ pipeline.add_component("ranker", TransformersSimilarityRanker(
 pipeline.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -260,21 +267,21 @@ pipeline = Pipeline()
 
 # Router decides path based on query type
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ technical in query.lower() }}",
-    "output": "{{ query }}",
+    "condition": "",
+    "output": "",
     "output_type": str,
 }))
 
 # Technical branch with detailed context
 tech_prompt = """You are a technical assistant. Provide detailed, accurate answers.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("tech_builder", PromptBuilder(template=tech_prompt))
 pipeline.add_component("tech_generator", OpenAIGenerator(model="gpt-4o"))
 
 # Simple branch for general queries
 general_prompt = """Provide a concise answer.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("general_builder", PromptBuilder(template=general_prompt))
 pipeline.add_component("general_generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -390,8 +397,8 @@ pipeline.add_component("search", web_search)
 pipeline.add_component("builder", PromptBuilder(
     template="""Use search results to answer.
 Results: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -455,7 +462,7 @@ from haystack.components.builders import PromptBuilder
 
 async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
-        template="Answer concisely: {{ query }}"
+        template="Answer concisely: "
     ))
     pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
     pipeline.connect("builder", "generator")

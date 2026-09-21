@@ -1,6 +1,13 @@
 ---
-title: "Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, Aut...
-description: "Agno는 AI 에이전트 플랫폼을 구축하기 위한 오픈소스 Python SDK로, GitHub에서 40K+ Star를 보유하고 있습니다. OpenAI, Anthropic, Ollam..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agno"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 "에이전트 개발을 단순화"하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. **40,233개의 GitHub Star**, **452명의 기여자**, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 **agno tutorial** —는 **agno setup**, 아키텍처, 실제 코드 예제, **agno vs crewai** 벤치마크 비교, 그리고 이 **lightweight ai framework**의 부족한 부분에 대한 진실한 분석을 다룹니다.
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rag-vs-fine-tuning-2026-decision-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor...
-description: "When to RAG, when to fine-tune, when to do both. 2026 reality with current model prices: cost-per-ta..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
@@ -28,7 +35,7 @@ faq: - q: "When does RAG win over fine-tuning in 2026?"
     a: "Under 10K chunks: full-text search (FTS5, MeiliSearch) is often enough and 10x simpler. Above 50K chunks: vector DB justifies its complexity. The 10K-50K gray zone — try FTS first, switch to vectors only when retrieval quality drops below 80% precision@5."
 ---
 
-{{</* resource-info */>}}
+
 
 # RAG vs Fine-Tuning 2026: Data-Driven Decision Framework
 
@@ -187,8 +194,8 @@ Fix: experiment with chunk size (256-1024 tokens), overlap (10-20%), and rerank 
 
 ## Recommended Infrastructure
 
-For RAG / fine-tuning hosting: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets for fine-tuning
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency vector DB hosting
+For RAG / fine-tuning hosting: - **** — $200 credit, GPU droplets for fine-tuning
+- **** — Hong Kong VPS, low-latency vector DB hosting
 
 *Affiliate links — same price, supports dibi8.com.*
 

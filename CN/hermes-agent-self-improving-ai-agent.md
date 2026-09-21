@@ -1,6 +1,13 @@
 ---
-title: Hermes Agent：Self-Improving AI Agent That Evolves With You
-description: Hermes Agent is an open-source AI agent from Nous Research with a self-learning. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hermes-agent-self-improving-ai-agent"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   loop — creates skills from experience, continuously improves, remembers your preferences,
   and gets better the more you use it.
 date: 2026-05-15T04:20:25+09:00
@@ -31,9 +38,9 @@ faqs: - q: 'What makes Hermes Agent different from tools like Claude Code, Curso
   - q: 'What kind of memory does Hermes Agent keep between sessions?'
     a: 'Hermes maintains two types of memory: User Profile Memory (coding style, projects, preferred tools, communication preferences, and common mistakes) and Session Memory (current project context, recent commands and outputs, and edited files). The profile memory persists even after restarting your computer.'
   - q: 'What messaging platforms can Hermes Agent run on?'
-    a: 'Hermes Agent works as a multi-platform messaging bot on Telegram, Discord, Slack, WhatsApp, Signal, and Email, all configured via the `hermes gateway setup` command. The same commands and skills work across every platform.'
+    a: 'Hermes Agent works as a multi-platform messaging bot on Telegram, Discord, Slack, WhatsApp, Signal, and Email, all configured via the ``hermes gateway setup`` command. The same commands and skills work across every platform.'
   - q: 'How do you install Hermes Agent and configure an LLM provider?'
-    a: 'On Linux, macOS, or WSL2 you can install with a one-line curl script piped to bash, or clone the repo and run `./setup-hermes.sh`. You then set a provider with commands like `hermes config set provider openai` and `hermes config set model gpt-4o`, or use a local model via `hermes config set provider ollama`.'
+    a: 'On Linux, macOS, or WSL2 you can install with a one-line curl script piped to bash, or clone the repo and run ``./setup-hermes.sh``. You then set a provider with commands like ``hermes config set provider openai`` and ``hermes config set model gpt-4o``, or use a local model via ``hermes config set provider ollama``.'
 ---
 
 {</* resource-info */>}
@@ -340,8 +347,8 @@ Have you tried Hermes Agent? What's your experience with self-improving AI agent
 * * *
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 

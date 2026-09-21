@@ -1,6 +1,13 @@
 ---
-title: "Stable Diffusion WebUI: 159K+ Stars — 2026 完整安装配置指南"
-description: "Stable Diffusion WebUI (AUTOMATIC1111) 是最流行的本地 AI 图像生成 Web 界面。兼容 ControlNet、LoRA、ComfyUI 工作流。涵盖 Wind..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "stable-diffusion-webui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 AUTOMATIC1111 开发的 Stable Diffusion WebUI 依然是本地 AI 图像生成领域使用最广泛的开源界面。凭借 **159,000+ GitHub stars**，它的社区规模超过了所有竞争对手的总和。如果你正在搭建本地 AI 图像管线，掌握这个工具的安装、配置和扩展方法是一项实际的必需技能。
 

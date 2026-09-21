@@ -1,24 +1,15 @@
 ---
-title: "DeepSeek-Reasonix: Động cơ Đại lý Lập trình AI Terminal ...
-description: "Một tác nhân lập trình AI gốc của DeepSeek với độ ổn định bộ nhớ đệm tiền tố được thiết kế — tỷ lệ t..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "coding agent", "deepseek", "terminal", "self-hosted", "open source"]
-categories: ["ai-tools"]
-slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
-aliases: ['/deepseek-reasonix']
-sources: - name: GitHub
-    url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: Website
-    url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: Discord
-    url: 'https://discord.gg/XF78rEME2D'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepseek-reasonix-terminal-ai-coding-agent-prefix-cache"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

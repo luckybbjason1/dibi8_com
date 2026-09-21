@@ -1,16 +1,14 @@
 ---
-title: "Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产...
-description: "完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。". Comp..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["hayhooks", "haystack", "nlp", "rest api", "大语言模型", "pipeline 部署", "docker", "python", "openapi"]
-aliases:
-  - /zh/posts/hayhooks-api-deployment-llm/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hayhooks-api-deployment-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 你花了三天时间搭建了一个精美的 Haystack pipeline。它能对文档做分块、生成 embedding、运行稠密检索器，再把上下文传给本地 LLM。在 Jupyter notebook 里运行完美。然后产品经理问："前端团队什么时候能调这个接口？" 你心里一沉。你知道那种痛苦：用 Flask 包一层 pipeline、写请求校验、生成 OpenAPI schema、构建 Docker 镜像、搭建 CI/CD。本该 30 分钟搞定的事，变成了持续一周的 engineering sprint。
 
@@ -77,9 +75,9 @@ template = """
 根据以下文档回答问题。
 文档：
 {% for doc in documents %}
-  {{ doc.content }}
+  
 {% endfor %}
-问题：{{ question }}
+问题：
 答案：
 """
 

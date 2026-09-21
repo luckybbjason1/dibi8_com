@@ -1,16 +1,14 @@
 ---
-title: "Typesense 2026: 하루 100만 건 처리하는 오픈소스 인스턴트 검색 API — 셀프 호스팅...
-description: "Typesense 27.1로 50ms 미만의 오타 허용 인스턴트 검색을 구축하세요. Docker 배포, SDK 통합, 프로덕션 벤치마크 단계별 가이드.". Comprehensive..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["]
-aliases:
-  - /kr/posts/typesense-instant-search-api/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "typesense-instant-search-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 왜 사용자는 검색 결과를 2초 기다리는 것을 싫어하는가
 

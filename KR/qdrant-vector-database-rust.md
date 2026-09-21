@@ -1,6 +1,13 @@
 ---
-title: "Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026...
-description: "프로덕션 유사도 검색을 위한 Qdrant 벡터 데이터베이스를 배포하세요. HNSW 인덱싱, 페이로드 필터링, 멀티 테넌시, Docker 배포, Python/Go/JS 클라이언트 및..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "qdrant-vector-database-rust"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 모든 AI 팀이 마주하는 벡터 데이터베이스 병목 현상
 

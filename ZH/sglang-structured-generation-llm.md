@@ -1,20 +1,10 @@
 ---
-title: SGLang — 结构化生成和高速 LLM 推理引擎
-description: SGLang（结构化生成语言）完全指南。高性能 LLM 推理引擎，支持约束解码、JSON 模式强制、并行执行，结构化输出比 vLLM 快 25 倍。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["llm-serving", "structured-generation", "constrained-decoding", "inference", "performance"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: sglang-structured-generation-llm
--CN---
-
-
-## TL;DR
-
-SGLang（结构化生成语言）是一个用于部署和服务大型语言模型的开源全栈库。它引入了 RadixAttention 系统以实现请求间的前缀缓存、通过语法约束解码实现结构化生成，以及对 ReAct 和工具调用等复杂推理模式的原生支持。它在结构化输出任务上比 vLLM 提供 25 倍吞吐提升，并支持在单卡或多 GPU 设置上服务 1B 到 700 亿参数的模型。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "sglang-structured-generation-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## SGLang 是什么？
 

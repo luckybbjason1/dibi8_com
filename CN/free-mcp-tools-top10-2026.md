@@ -1,21 +1,10 @@
 ---
-title: "Top 10 Free MCP Tools in 2026: Best Model Context Protoc...
-description: "The 10 best free MCP servers for Claude, Cursor, and any MCP-compatible AI client — filesystem, web ..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["mcp", "model-context-protocol", "free-mcp-tools", "mcp-servers", "claude-mcp", "open-source-ai", "ai-tools"]
-categories: ["tools"]
-faqs: - q: 'What is MCP and why does it matter?'
-    a: 'MCP (Model Context Protocol) is an open standard by Anthropic that lets AI models like Claude connect to external tools, databases, and services in a standardized way. Instead of each AI app building custom integrations, MCP provides one universal connector. An MCP server exposes capabilities (file reads, web searches, database queries) that any MCP-compatible AI client can use.'
-  - q: 'Are these MCP tools really free?'
-    a: 'Yes — all 10 tools listed here are open-source with no licensing cost. Some require free API keys (GitHub token, Brave Search free tier) and most require your own compute to run the server process. The only potential cost is the underlying service (e.g., a hosted database you already pay for). There is no per-request fee for the MCP server itself.'
-  - q: 'Which MCP server should I install first?'
-    a: 'Start with the official filesystem MCP server. It has no external dependencies, runs instantly, and immediately gives your AI assistant read/write access to local files — the most universally useful capability. From there, add the fetch server for web access and memory server for persistent context. Most developers run 3-5 MCP servers as their daily stack.'
-  - q: 'Do these MCP servers work with Cursor and VS Code, not just Claude?'
-    a: 'Yes. MCP is an open protocol — any client that implements MCP can use these servers. Claude Desktop, Cursor, VS Code with the Claude extension, Continue.dev, and many other AI coding tools already support MCP. Check your specific client docs for the exact configuration format.'
-  - q: 'What is the difference between an MCP server and a plugin or extension?'
-    a: 'Plugins and extensions are built for one specific application (e.g., a ChatGPT plugin only works in ChatGPT). An MCP server is client-agnostic — the same filesystem server works in Claude, Cursor, and any other MCP client without modification. This is the key advantage of the open standard over proprietary plugin systems.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-mcp-tools-top10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Top 10 Free MCP Tools in 2026: Best Model Context Protocol Servers

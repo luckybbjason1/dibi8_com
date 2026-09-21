@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "voicebox-open-source-ai-voice-studio"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D...
-  description: "A full-stack open-source AI voice studio that lets you clone any voice, generate speech, and dictate..."
+  description: "Technical guide and comparison."
   date: 2026-06-25
   lastmod: 2026-06-25
 draft: false

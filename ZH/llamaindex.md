@@ -1,6 +1,13 @@
 ---
-title: "LlamaIndex: 49K+ Stars — 生产级 RAG 部署指南 2026"
-description: "LlamaIndex 是构建生产级 RAG 系统的数据框架，支持 OpenAI、Anthropic、Ollama、Qdrant、Weaviate、Chroma。涵盖 Docker 部署、查询引擎、Ag..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamaindex"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)
 

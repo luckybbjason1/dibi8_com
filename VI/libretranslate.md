@@ -1,6 +1,13 @@
 ---
-title: "LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hư...
-description: "LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CU..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "libretranslate"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 LibreTranslate là một API dịch máy miễn phí, mã nguồn mở mà bạn tự host. Không cần API key của Google. Không tính phí theo ký tự như DeepL. Dữ liệu không rồi khỏi hạ tầng của bạn. Với 14,400+ sao GitHub và chu kỳ phát hành tích cực (phiên bản v1.9.5 tính đến tháng 5/2026), nó đã trở thành lựa chọn mặc định cho các developer cần dịch thuật riêng tư, có khả năng offline với chi phí biên bằng không. Hướng dẫn này là một LibreTranslate tutorial đầy đủ, bao gồm từ libretranslate setup đến libretranslate docker triển khai production, cùng với so sánh chi tiết với DeepL và Google Translate (libretranslate vs deepl) và các best practice về self-hosted translation. Hướng dẫn này đi qua triển khai production, benchmark và tích hợp.
 

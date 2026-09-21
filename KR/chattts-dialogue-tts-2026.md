@@ -1,6 +1,13 @@
 ---
-title: "ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 pro...
-description: "ChatTTS는 대화(내레이션 아님) 전용 오픈소스 TTS. GitHub 39.3k 별, 4 GB VRAM 최소, RTX 4090에서 RTF 0.3, 웃음과 일시정지 포함 정밀 p..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chattts-dialogue-tts-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -56,7 +63,7 @@ ChatTTS는 새로운 4번째 카테고리: **명시적 prosody 제어 토큰을 
 | 24 GB GPU (RTX 4090 / A5000) | ~3초 | 프로덕션, 높은 동시 |
 | CPU 전용 | ~3-5분 | 인터랙티브에 비실용적 |
 
-셀프호스트 프로덕션 진입점: $0.30-0.50/시간 GPU 클라우드 (Vast.ai, RunPod, 또는 {{< aff "digitalocean" "chattts-gpu" "DigitalOcean GPU droplet" >}}) — 의미 있는 볼륨에서 ElevenLabs보다 훨씬 저렴.
+셀프호스트 프로덕션 진입점: $0.30-0.50/시간 GPU 클라우드 (Vast.ai, RunPod, 또는 ) — 의미 있는 볼륨에서 ElevenLabs보다 훨씬 저렴.
 
 ## 3. 빠른 설치 (GPU 머신 10분)
 
@@ -146,7 +153,7 @@ wavs = chat.infer(texts, params_infer_code=params_infer_code)
    선택적 후처리 (음량 정규화, 노이즈 제거)
 `````
 
-GPU 장착 {{< aff "htstack" "chattts-vps-hk" "HTStack 홍콩 GPU VPS" >}} 또는 Vast.ai 인스턴스에서 띄우고, FastAPI로 노출, 스택이 분당 생성 ~$0.001 (vs ElevenLabs ~$0.30/분).
+GPU 장착  또는 Vast.ai 인스턴스에서 띄우고, FastAPI로 노출, 스택이 분당 생성 ~$0.001 (vs ElevenLabs ~$0.30/분).
 
 ## 8. ChatTTS vs 대안 사용 시기
 

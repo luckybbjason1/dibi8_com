@@ -1,16 +1,14 @@
 ---
-title: "Lobe Chat: 20+ LLM 제공업체와 플러그인 시스템을 갖춘 오픈소스 ChatGPT UI 대안...
-description: "Lobe Chat을 자체 호스팅 ChatGPT 대안으로 배포하세요. 20+ LLM 제공업체, 플러그인 시스템, PWA, 다국어 UI 지원. 벤치마크와 비교가 포함된 완전한 Dock..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-tools"]
-tags: ["lobe chat", "chatgpt", "openai 대안", "llm", "셀프 호스팅", "docker", "pwa", "플러그인 시스템", "ai", "챗 ui"]
-aliases:
-  - /kr/posts/lobe-chat-openai-alternative-ui/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lobe-chat-openai-alternative-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: ChatGPT만으로는 이제 부족합니다
 

@@ -1,11 +1,10 @@
 ---
-title: "CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크...
-description: "CloakBrowser (25,077 GitHub stars)는 모든 봇 검사를 통과하는 스텔스 Chromium입니다. 소스 레벨 지문 패치가 있는 드롭인 Playwright 교체..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
-category: 'ai-trading'
-tags: ["stealth browser", "CloakBrowser", "bot detection", "web scraping", "fingerprint spoofing", "Playwright replacement", "anti-detection", "scraping tool"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cloakbrowser-stealth-chromium-bot-detection-scraping"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,12 +1,10 @@
 ---
-title: Windsurf AI IDE — Trình soạn code thông minh suy nghĩ cùn...
-description: Hướng dẫn toàn diện về Windsurf, AI IDE dạng agent từ Codeium — tự động viết code, debug và triển khai tính năng. Giá cả, benchmark và quy trình thực tế.
-tags: ["ai-ide", "coding-agent", "windsurf", "codeium", "cursor-alternative", "agentic-ai"]
-category: dev-utils
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: windsurf-ai-ide
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "windsurf-ai-ide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

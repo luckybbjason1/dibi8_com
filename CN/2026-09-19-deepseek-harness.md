@@ -1,10 +1,10 @@
 ---
-title: "DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
-date: 2026-09-19
-slug: 'deepseek-harness-plugin-ecosystem-2026'
-category: 'llm-frameworks'
-tags: ["deepseek", "harness", "plugin", "ai-agent", "dsh", "automation"]
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-19-deepseek-harness"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

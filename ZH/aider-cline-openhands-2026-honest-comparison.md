@@ -1,6 +1,13 @@
 ---
-title: "Aider vs Cline vs OpenHands 2026：开源编程 Agent 三方诚实对比"
-description: "在同一个 5K 行 TypeScript 代码库上实测三款开源 AI 编程 Agent。给出具体基准数据、各自胜出场景、各自短板，以及自带 API Key 模式的真实成本与商业方案的对比。". Com..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider-cline-openhands-2026-honest-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
 last_maintained: "2026-05-25"
@@ -24,7 +31,7 @@ faq: - q: "2026 年最好的开源编程 Agent 是哪个？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Aider vs Cline vs OpenHands 2026：开源三方诚实对比
 
@@ -224,8 +231,8 @@ OpenHands 默认 Docker 沙箱 — 最安全。Aider 每条命令询问 — 交�
 ## 推荐的基础设施
 
 自托管 OpenHands 或本地运行微调模型：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 美元抵扣金，提供 GPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，低延迟
+- **** — 200 美元抵扣金，提供 GPU droplet
+- **** — 香港 VPS，低延迟
 
 *联盟链接 — 价格相同，支持 dibi8.com。*
 

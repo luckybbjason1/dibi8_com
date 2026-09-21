@@ -1,13 +1,18 @@
 ---
-好的，这是为您翻译的英文技术文章，遵循了您提供的所有规则：
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superpowers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
-description: '探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。'
+description: "Technical guide and comparison."
 date: 2026-05-23
 lastmod: 2026-05-23
-slug: 'superpowers'
-category: 'llm-frameworks'
+slug: "superpowers"
+category: "llm-frameworks"
 tags: ["agentic-ai", "llm-frameworks", "shell-scripting", "software-development", "ai-agents", "developer-tools"]
 
 * * *

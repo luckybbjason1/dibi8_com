@@ -1,7 +1,10 @@
 ---
-title: "OG 카드 미리보기 — Facebook / Twitter / LinkedIn 공유 시뮬레이터"
-description: "Facebook, Twitter, LinkedIn, Slack에서 링크가 어떻게 보일지 실시간으로 미리보기. URL을 붙여넣으면 자동으로 OG 메타 추출. 발행 전에 모든 플랫폼의..."
-tool_id: "og-card-preview"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "og-card-preview"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

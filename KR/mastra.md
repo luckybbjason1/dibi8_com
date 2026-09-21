@@ -1,6 +1,13 @@
 ---
-title: "Mastra: 24K+ Stars — Token 비용을 4-10배 절감하는 TypeScript AI ...
-description: "Mastra는 Gatsby 팀이 만든 TypeScript 네이티브 AI 프레임워크로 AI 기반 애플리케이션과 에이전트를 구축합니다. Mastra vs LangChain, 설치 튜토..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mastra"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 대부분의 AI 프레임워크는 Python용으로 만들어졌습니다. 기술 스택이 TypeScript와 Node.js를 기반으로 한다면 두 가지 선택지밖에 없었습니다: 언어 간 브리징을 하거나, 떨어지는 개발자 경험을 감수하는 것입니다. Gatsby 팀이 Mastra를 출시하면서 상황이 바뀌었습니다 — TypeScript 네이티브 AI 에이전트 구축 프레임워크로, 2026년 5월 기준 **24,050개의 GitHub Star**를 달성했으며 현재 Replit, PayPal, Sanity 등에서 프로덕션 환경에 사용되고 있습니다. 이 글에서는 Mastra 설치부터 첫 에이전트 구축, 그리고 Observational Memory가 기존 RAG 접근법 대비 Token 비용을 4-10배 어떻게 절감하는지에 대한 모든 것을 다룹니다.
 
@@ -154,7 +161,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: "낮부 문서 검색",
+  description: "Technical guide and comparison."
   inputSchema: z.object({
     query: z.string().describe('검색 쿼리'),
   }),

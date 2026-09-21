@@ -1,6 +1,13 @@
 ---
-title: "9Router：智能AI代理网关——节省60%令牌开销，告别API限流"
-description: "发现9Router——开源智能AI代理网关，利用RTK无损压缩引擎节省20-40%输入令牌，通过三层智能回退系统无缝连接40+语言模型提供商，让每位开发者都能以零成本获取世界一流的AI编程体验与效率提..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "9router-smart-llm-proxy-token-saver-free-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -341,8 +348,8 @@ RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

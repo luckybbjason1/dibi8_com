@@ -1,6 +1,13 @@
 ---
-title: "Agno: 40K+ Stars — 轻量级 AI Agent 框架深度解析 vs CrewAI, AutoGe...
-description: "Agno 是开源 Python SDK，用于构建 AI Agent 平台，GitHub 40K+ Star。支持 OpenAI、Anthropic、Ollama、Docker、AWS。涵盖安装、多 A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agno"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 在 2026 年选择一个 AI Agent 框架就像在雷区中导航。过去 18 个月里，数十个库涌现出来，承诺"简化"Agent 开发，但大多数引入了比价值更多的抽象层。团队报告说，他们花了数周时间学习基于图的编排语义，最后却发现他们的用例所需要的不过是一个轻量级的工具调用循环。Agno（前身为 Phidata）以其运行时优先的理念打破了这一噪音：快速构建 Agent，将它们作为服务运行，并完全掌控你的整个技术栈。凭借 **40,233 个 GitHub Star**、**452 名贡献者**以及全新的 Apache-2.0 许可证，Agno 已成为 Python 团队交付生产级 Agent 系统的首选框架。本指南 —— 一份实用的 2026 年 **agno tutorial** —— 将介绍 **agno setup**、架构、真实代码示例、**agno vs crewai** 的性能基准对比，以及这个 **lightweight ai framework** 不足之处的事实分析。
 

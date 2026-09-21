@@ -1,6 +1,13 @@
 ---
-title: "Toprank: Tăng Trưởng Doanh Thu 300% với Claude Code + SE...
-description: "Khám phá Toprank - nền tảng tăng trưởng doanh thu tự động kết hợp Claude Code AI, SEO thông minh và ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "toprank"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI
@@ -119,9 +126,9 @@ Toprank không chỉ là một công cụ marketing - đó là đối tác tăng
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

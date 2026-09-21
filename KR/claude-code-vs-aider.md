@@ -1,22 +1,10 @@
 ---
-title: "Claude Code vs Aider 2026: 상용 vs 오픈소스 CLI 대결"
-description: "Claude Code(Anthropic 상용 CLI)와 Aider(오픈소스, BYO API 키) 정면 비교 — 가격, 컨텍스트, 에이전트 스타일, 비용 효율. 2026 업데이트."..."
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/kr/resources/claude-code-vs-aider"
-  }
-}
-</script>
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

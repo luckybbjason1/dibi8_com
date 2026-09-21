@@ -1,6 +1,13 @@
 ---
-title: "GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드"
-description: "GPT Researcher는 어떤 작업이든 웹·로컬 리서치를 수행해 인용이 포함된 보고서를 작성하는 오픈소스 심층 리서치 에이전트입니다. GitHub 스타 27,473개, Apac..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gpt-researcher-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,18 +30,18 @@ faqs: - q: 'gpt-researcher는 어떻게 설치하나요?'
   - q: '어떤 LLM 제공자와 검색 엔진을 쓸 수 있나요?'
     a: '기본 LLM은 OpenAI", "기본 리트리버는 Tavily이지만", "둘 다 환경 변수와 설정 파일로 교체할 수 있으며", "에이전트는 MCP 기반 출처를 포함한 추가 리트리버도 지원합니다.'
   - q: '실행하려면 API 키가 필요한가요?'
-    a: '네. 최소한 프로젝트 루트의 `.env` 파일에 `OPENAI_API_KEY`와 `TAVILY_API_KEY`를 설정해야 합니다. OpenAI 호환 엔드포인트를 쓴다면 `OPENAI_BASE_URL`도 추가하세요.'
+    a: '네. 최소한 프로젝트 루트의 ``.env`` 파일에 ``OPENAI_API_KEY``와 ``TAVILY_API_KEY``를 설정해야 합니다. OpenAI 호환 엔드포인트를 쓴다면 ``OPENAI_BASE_URL``도 추가하세요.'
   - q: '웹 UI가 포함된 전체 앱은 어떻게 실행하나요?'
-    a: '저장소를 클론하고 `docker-compose up --build`를 실행하세요. FastAPI 서버는 `localhost:8000`에서", "프런트엔드는 `localhost:3000`에서 시작됩니다. 서버만 띄우려면 `python -m uvicorn main:app --reload`를 쓰면 됩니다.'
+    a: '저장소를 클론하고 ``docker-compose up --build``를 실행하세요. FastAPI 서버는 ``localhost:8000``에서", "프런트엔드는 ``localhost:3000``에서 시작됩니다. 서버만 띄우려면 ``python -m uvicorn main:app --reload``를 쓰면 됩니다.'
   - q: 'conduct_research()와 write_report()는 동기 방식인가요?'
-    a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 `await`로 호출하고", "그 함수를 `asyncio.run()`으로 실행하세요.'
+    a: '아니요. 둘 다 비동기 메서드입니다. async 함수 안에서 ``await``로 호출하고", "그 함수를 ``asyncio.run()``으로 실행하세요.'
 ---
 
 
 # GPT Researcher: 심층 리서치 보고서를 만드는 자율 에이전트 — 2026 실전 가이드
 
 
-{{< resource-info >}}
+
 
 ## 들어가며
 

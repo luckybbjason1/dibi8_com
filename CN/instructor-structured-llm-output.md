@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "instructor-structured-llm-output"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Instructor: The Python Library That Forces LLMs to Outpu...
-description: "Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guar..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/instructor-structured-llm-output/-
 ---
 
-{{</* resource-info */>}}
+
 
 *Last updated: May 19, 2026*
 
@@ -65,13 +72,13 @@ class UserProfile(BaseModel): name: str
     interests: list[str]
 
 # Extract structured data from natural language
-def extract_profile(user_description: str) -> UserProfile: return client.chat.completions.create(
+def extract_profile(user_description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
             {
                 "role": "user",
-                "content": f"Extract a user profile from this description: {user_description}"
+                "content": f"Extract a user profile from this description: "Technical guide and comparison."
             }
         ]
     )
@@ -119,7 +126,7 @@ class ValidatedProduct(BaseModel): name: str = Field(description="Product name, 
         return round(v, 2)
 
 # Instructor automatically retries on validation failure
-def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
+def parse_product(description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # Retry up to 3 times with feedback
@@ -206,7 +213,7 @@ class Event(BaseModel): name: str
     start_time: datetime
     end_time: Optional[datetime] = None
     location: Optional[str] = None
-    description: Optional[str] = ""
+    description: "Technical guide and comparison."
 event = client.chat.completions.create(
     model="gpt-4o-mini",
     response_model=Event,

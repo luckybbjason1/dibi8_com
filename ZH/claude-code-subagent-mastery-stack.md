@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 子智能体精通栈 2026：从单次对话到协调的智能体议会"
-description: "掌握 Claude Code 多智能体工作流的完整学习 + 工具栈：5 种子智能体模式 + 自定义智能体编写 + 技能/子智能体/MCP 决策框架 + 编排失败模式 + 技能编写。从单线程编码到可靠智..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-mastery-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 draft: false
 categories: ["collections"]
 tags: ["claude code", "subagents", "multi-agent", "agent sdk", "mcp", "stack", "collection"]

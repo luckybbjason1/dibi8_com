@@ -1,8 +1,10 @@
 ---
-title: "Công Cụ Lập Trình AI 2026: Thời Đại Độc Quyền của Cursor...
-description: "Năm 2026, thị trường công cụ lập trình AI đã thay đổi mạnh mẽ. Cursor không còn là lựa chọn duy nhất..."
-date: "2026-05-20"
-lastmod: "2026-05-20"keywords: ["công cụ lập trình AI", "thay thế Cursor", "Claude Code", "AI code editor", "công cụ lập trình AI tốt nhất 2026", "công cụ lập trình AI miễn phí", "tăng năng suất lập trình"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-alternatives-2026-best-ai-coding-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

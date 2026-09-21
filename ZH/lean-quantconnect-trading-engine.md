@@ -1,16 +1,14 @@
 ---
-title: "Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南"
-description: "2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。". Comprehensive guide c..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /zh/posts/lean-quantconnect-trading-engine/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lean-quantconnect-trading-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么大多数交易引擎在规模化时失败
 

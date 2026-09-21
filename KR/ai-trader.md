@@ -1,6 +1,13 @@
 ---
-title: "AI-Trader: 14K⭐ 완전 자동화 AI 트레이딩 에이전트, AI가 24시간 매매 대행"
-description: "AI-Trader는 HKUDS가 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템으로, 14K+ Stars를 보유하고 있으며 주식, 암호화폐, 외환 다중 시장 자동 거래를..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trader"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"
@@ -176,7 +183,7 @@ python trade.py --mode paper --config config.yaml
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
@@ -186,7 +193,7 @@ python trade.py --mode paper --config config.yaml
 
 **AI 에이전트로 트레이딩? 포트폴리오 관리는 여전히 별도 도구가 필요.**
 
-- **{{< aff "minara" "llm-footer" "Minara AI" >}}** — AI 기반 암호화폐 지갑, DCA·리밸런싱·온체인 알림 자동화. 커스텀 AI 트레이더와 페어링하면 액티브 전략 세션 사이 핸즈오프 포트폴리오 관리.
+- **** — AI 기반 암호화폐 지갑, DCA·리밸런싱·온체인 알림 자동화. 커스텀 AI 트레이더와 페어링하면 액티브 전략 세션 사이 핸즈오프 포트폴리오 관리.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "haystack-rag-pipeline-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d...
-description: "2026\ub144 Haystack \uc644\ubcbd \uac00\uc774\ub4dc: \ud504\ub85c\ub355\uc158 RAG \ud30c\uc774\ud504..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## \uc18c\uac1c: \ub610 \ub2e4\ub978 RAG \ud504\ub808\uc784\uc6cc\ud06c\uac00 \ud544\uc694\ud55c \uc774\uc720\ub294 \ubb34\uc5c7\uc778\uac00?
 
@@ -167,8 +174,8 @@ rag.add_component("retriever", InMemoryEmbeddingRetriever(
 rag.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 rag.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -223,8 +230,8 @@ pipeline.add_component("ranker", TransformersSimilarityRanker(
 pipeline.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -255,21 +262,21 @@ pipeline = Pipeline()
 
 # \ub77c\uc6b0\ud130\uac00 \ucffc\ub9ac \uc720\ud615\uc5d0 \ub530\ub77c \uacbd\ub85c \uacb0\uc815
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ technical in query.lower() }}",
-    "output": "{{ query }}",
+    "condition": "",
+    "output": "",
     "output_type": str,
 }))
 
 # \uae30\uc220\uc801\uc778 \uc138\ubd80 \ubb38\ub9e5\uc774 \ud544\uc694\ud55c \uacbd\ub85c
 tech_prompt = """You are a technical assistant. Provide detailed, accurate answers.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("tech_builder", PromptBuilder(template=tech_prompt))
 pipeline.add_component("tech_generator", OpenAIGenerator(model="gpt-4o"))
 
 # \uc77c\ubc18 \ucffc\ub9ac\uc6a9 \uac04\ub2e8\ud55c \uacbd\ub85c
 general_prompt = """Provide a concise answer.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("general_builder", PromptBuilder(template=general_prompt))
 pipeline.add_component("general_generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -384,8 +391,8 @@ pipeline.add_component("search", web_search)
 pipeline.add_component("builder", PromptBuilder(
     template="""Use search results to answer.
 Results: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -432,7 +439,7 @@ from haystack.components.builders import PromptBuilder
 
 async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
-        template="Answer concisely: {{ query }}"
+        template="Answer concisely: "
     ))
     pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
     pipeline.connect("builder", "generator")

@@ -1,11 +1,10 @@
 ---
-title: "Matt Pocock's Skills: The CLI Framework That Gives AI Ag..."
-description: "Learn how to use Matt Pocock's Skills framework to give AI coding agents like Claude Code, Cursor, a..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "mattpocock-skills-ai-agent-framework-guide"
-category: dev-utils
-tags: ["matt-pocock", "skills", "AI agents", "CLI framework", "AI coding tools", "agent capabilities", "developer tools", "open-source"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction
@@ -339,7 +338,7 @@ import { defineSkill } from "@mattpocock/skills";
 
 export const myCustomSkill = defineSkill({
   name: "my-custom-skill",
-  description: "Performs custom operations"
+  description: "Technical guide and comparison."
   version: "1.0.0",
   execute: async (args) => {
     // Your custom logic here

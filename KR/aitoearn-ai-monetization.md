@@ -1,6 +1,13 @@
 ---
-title: "AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환"
-description: "AiToEarn은 AI 생성 콘텐츠를 수익성 있는 제품으로 전환하는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. 다중 플랫폼 배포, 구독 결제 및 광고 수익화를 지원합니다.". Co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aitoearn-ai-monetization"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"
@@ -175,7 +182,7 @@ AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임�
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
@@ -183,7 +190,7 @@ AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임�
 
 **안정적인 Claude / OpenAI API 액세스가 필요?** 이 분야 프로젝트는 결국 Anthropic / OpenAI 레이트 리밋이나 가격 벽에 부딪힙니다.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

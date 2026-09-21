@@ -1,16 +1,14 @@
 ---
-title: "HunyuanVideo: 12.1K+ Stars — 2026年生产环境部署指南"
-description: "HunyuanVideo (HYV) 是腾讯开源的视频生成框架，拥有130亿参数。支持 ComfyUI、Diffusers、Gradio API。涵盖 Docker 部署、FP8 量化、多 GPU 推..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-tools"]
-tags: ["视频生成", "扩散transformer", "腾讯", "hunyuanvideo", "comfyui", "docker", "fp8", "多模态"]
-aliases:
-  - /zh/posts/hunyuan-video/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hunyuan-video"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 一个需要 60GB 显存才能在 720p 下生成 5 秒视频的模型，不是玩具——它是基础设施。腾讯的 HunyuanVideo 是一个拥有 130 亿参数的扩散 Transformer 视频生成模型，在 GitHub 上已获得超过 12,100 颗星，成为需要在自托管硬件上获得电影级视频质量团队的首选。本指南涵盖完整的生产环境搭建：从可用的 Docker 部署到 FP8 量化、多 GPU 并行推理、ComfyUI 集成，以及大规模服务时需要的监控方案。
 

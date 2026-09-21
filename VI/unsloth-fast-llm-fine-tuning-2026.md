@@ -1,6 +1,13 @@
 ---
-title: "Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2...
-description: "Unsloth fine-tune LLM nhanh hơn 2× với ít hơn 70% VRAM so với baseline HuggingFace TRL. 64.9k GitHub..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "unsloth-fast-llm-fine-tuning-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]
@@ -55,7 +62,7 @@ Hiệu ứng kết hợp: Fine-tuning Llama 3 8B QLoRA trên RTX 3090 — HF TRL
 
 Đây là câu chuyện "fine-tune trên phần cứng consumer". Llama 70B QLoRA trên RTX 4090 $1500 không thể với HF TRL — Unsloth làm thành thường lệ.
 
-Cho thuê cloud: H100 trên Vast.ai (~$1.50/giờ) xử mọi thứ; cho experiment rẻ hơn, instance RTX 4090 $0.40-0.60/giờ hoạt động tốt trên {{< aff "digitalocean" "unsloth-gpu" "DigitalOcean GPU droplet" >}}.
+Cho thuê cloud: H100 trên Vast.ai (~$1.50/giờ) xử mọi thứ; cho experiment rẻ hơn, instance RTX 4090 $0.40-0.60/giờ hoạt động tốt trên .
 
 ## 3. Cài Nhanh (5 phút)
 
@@ -179,7 +186,7 @@ Pattern hybrid chỉ trả tiền cluster khi có ứng viên đáng scale.
 
 Unsloth = **vua tốc độ fine-tuning LLM single-GPU**. 64.9k sao, nhanh hơn 2× + ít hơn 70% VRAM vs HuggingFace TRL, dual Apache/AGPL license. Llama 70B QLoRA trên single RTX 4090 giờ là thường lệ.
 
-Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) cho giai đoạn production multi-GPU. Thuê {{< aff "digitalocean" "footer-cta" "instance GPU" >}} hoặc dùng Vast.ai khi cần train.
+Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) cho giai đoạn production multi-GPU. Thuê  hoặc dùng Vast.ai khi cần train.
 
 * * *
 

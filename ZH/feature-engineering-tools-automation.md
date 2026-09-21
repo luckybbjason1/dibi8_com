@@ -1,9 +1,10 @@
 ---
-title: "自动化特征工程工具实战指南：Featuretools、AutoFeat与tsfresh全面教程（2026版）"
-description: "详解Featuretools深度特征合成、AutoFeat符号数学特征生成、tsfresh时间序列特征提取三大自动化工具，附代码示例和选型策略。". Comprehensive guide cover..."
-draft: false
-aliases:
-  - /posts/feature-engineering-tools-automation/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "feature-engineering-tools-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

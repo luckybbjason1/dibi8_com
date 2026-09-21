@@ -1,11 +1,10 @@
 ---
-title: "Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token...
-description: "Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơ..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'headroom-token-compression-proxy-library-mcp-server'
-category: 'llm-frameworks'
-tags: ["nén token", "tối ưu token LLM", "máy chủ MCP", "nén RAG", "Headroom", "tối ưu ngữ cảnh", "giảm chi phí token", "AI agent"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "headroom-token-compression-proxy-library-mcp-server"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

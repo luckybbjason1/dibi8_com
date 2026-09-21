@@ -1,6 +1,13 @@
 ---
-title: "ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
-description: "ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Acti..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "shellcheck"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ShellCheck là tiêu chuẩn thực tế để phát hiện bug trong shell script trước khi triển khai production. Với 39,456+ sao GitHub và cộng đồng open-source tích cực, đây là công cụ phân tích tĩnh được áp dụng rộng rãi nhất cho các script bash, sh, dash và ksh. Hướng dẫn này đi qua cài đặt ShellCheck, tích hợp với editor và CI/CD pipeline, cũng như các phương pháp tăng cường production.
 

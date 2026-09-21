@@ -1,6 +1,13 @@
 ---
-title: "Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 ...
-description: "2026년 3대 LLM 게이트웨이 직접 비교. 실제 수치: Portkey <1ms 지연, LiteLLM 8ms P95, OpenRouter 100-150ms. 시나리오별 30초 결..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-gateway-portkey-litellm-openrouter-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - Python

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "auto-gpt-autonomous-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Auto-GPT 2026 Revival: How the OG Autonomous Agent Frame...
-description: "A complete 2026 guide to Auto-GPT autonomous agents. Fresh setup, agent protocols, web browsing, mul..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/auto-gpt-autonomous-agent-2026/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Agent That Started It All — And Why It Is Back
 

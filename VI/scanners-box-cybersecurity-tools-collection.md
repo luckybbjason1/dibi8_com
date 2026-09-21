@@ -1,7 +1,14 @@
 ---
-title: "Scanners-Box: Bộ Sưu Tập 200+ Công Cụ An Ninh Mạng — Dàn...
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scanners-box-cybersecurity-tools-collection"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
   Mật'
-description: Khám phá Scanners-Box — bộ sưu tập 200+ công cụ an ninh mạng mã nguồn. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   mở, bao gồm kiểm thử xâm nhập, quét lỗ hổng và nghiên cứu bảo mật.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -244,9 +251,9 @@ Rò rỉ dữ liệu: Đường hầm DNS, HTTPS C2
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "htstack" "category-footer" "HTStack" >}}** — Hong Kong VPS, cùng IDC host dibi8.com. Self-host security scanner trên VPS riêng, low-latency Asia coverage, không shared-tenant noise.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Hong Kong VPS, cùng IDC host dibi8.com. Self-host security scanner trên VPS riêng, low-latency Asia coverage, không shared-tenant noise.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

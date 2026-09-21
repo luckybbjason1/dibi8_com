@@ -1,6 +1,13 @@
 ---
-title: "OpenHands: 74K+ Stars — AI Software Engineer That Writes...
-description: "OpenHands is an AI-driven development platform that acts as a software engineering agent. Compatible..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhands"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/llm-frameworks/openhands-architecture-ai-programmer-agent/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 
@@ -261,7 +268,7 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v $(pwd):/workspace \
-            -e LLM_API_KEY=${{ secrets.ANTHROPIC_API_KEY }} \
+            -e LLM_API_KEY=$ \
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl

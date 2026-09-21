@@ -1,11 +1,10 @@
 ---
-title: "Impeccable: The Design Language That Makes AI-Generated ...
-description: "Impeccable (37K stars) is a design language for AI coding agents with 23 commands, 41 detector rules..."
-tags: ["ai-tools", "automation", "design-language", "generation", "open-source", "quality"]
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
-category: ai-tools
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "impeccable-ai-design-language-harness-quality-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review

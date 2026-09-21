@@ -1,11 +1,10 @@
 ---
-title: "Ruv Pi: 확장 가능한 개발 에이전트 CLI 를 위한 다중 제공자 대형 언어 모델 API"
-description: "Ruv Pi 는 Earendil Works 에서 개발한 확장 가능한 코드 에이전트 CLI 로, Claude, OpenAI, Gemini 등 다양한 공급자의 지능형 LLM API 를..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: ruv-pi
-category: llm-frameworks
-tags: ["ruv-pi", "pi-agent", "coding agent", "LLM", "multi-provider", "AI coding", "self-extensible"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ruv-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

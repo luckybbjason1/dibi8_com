@@ -1,10 +1,10 @@
 ---
-title: "LLM 모델 추천기 2026 — 사용 사례·예산·컨텍스트·프라이버시로 GPT/Claude/Gemini...
-description: "2026년 적합한 LLM 선택을 위한 무료 의사결정 엔진. 5가지 질문(사용 사례 / 예산 / 컨텍스트 / 프라이버시 / 우선순위)에 답하면 GPT-5, Claude Sonnet ..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-llm-recommender"
-tool_id: "llm-recommender"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-recommender"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

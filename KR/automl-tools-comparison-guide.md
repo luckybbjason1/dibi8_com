@@ -1,21 +1,10 @@
 ---
-title: "AutoML 도구 비교: AutoGluon, H2O, TPOT, Auto-sklearn, Google...
-description: "AutoGluon, H2O AutoML, TPOT, Auto-sklearn, Google AutoML 등 주요 AutoML 도구를 기능, 성능, 사용성 관점에서 비교하고, 각 도구..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/automl-tools-comparison-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "automl-tools-comparison-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

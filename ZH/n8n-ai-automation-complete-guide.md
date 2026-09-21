@@ -1,20 +1,10 @@
 ---
-title: n8n AI 自动化 — 无需代码构建智能工作流
-description: n8n AI 驱动的工作流自动化完全指南。通过 AI 节点连接 400+ 应用、构建自主代理并自动化复杂业务流程。定价、模板和实际示例。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["n8n", "workflow-automation", "ai-automation", "no-code", "agent-automation", "business-process"]
-category: dev-utils
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: n8n-ai-automation-complete-guide
--CN---
-
-
-## TL;DR
-
-n8n 是一个强大的工作流自动化工具，让你通过直观的可视化界面连接 400+ 应用和服务。在 2026 年，n8n 已演变为 AI 自动化 powerhouse，具有原生 LLM 集成、自主代理支持和企业级可靠性。本指南涵盖设置、AI 节点配置、实际工作流、定价以及构建智能自动化的高级模式。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-automation-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## n8n 是什么？
 
@@ -150,7 +140,7 @@ n8n start
   "nodeType": "aiLLM",
   "parameters": {
     "model": "claude-sonnet-4-202603",
-    "prompt": "将此客户消息分类：\n{{ $json.message }}\n\n类别：支持、销售、投诉、咨询",
+    "prompt": "将此客户消息分类：\n\n\n类别：支持、销售、投诉、咨询",
     "outputKey": "classification"
   }
 }
@@ -172,7 +162,7 @@ n8n start
   "nodeType": "aiEmbedding",
   "parameters": {
     "model": "text-embedding-3-large",
-    "input": "{{ $json.document_text }}"
+    "input": ""
   }
 }
 `````
@@ -203,7 +193,7 @@ n8n start
   "nodeType": "aiImageGen",
   "parameters": {
     "provider": "dall-e-3",
-    "prompt": "{{ $json.description }}",
+    "prompt": "",
     "size": "1024x1024",
     "quality": "hd"
   }
@@ -335,7 +325,7 @@ workflow_config = {
     "onError": {
         "strategy": "continue",  # 或 "stop", "send_alert"
         "alertChannel": "slack",
-        "alertMessage": "工作流失败：{{ $json.error }}"
+        "alertMessage": "工作流失败："
     }
 }
 `````
@@ -379,10 +369,10 @@ n8n 的 Switch 节点以可视化方式处理复杂的分支。
   "parameters": {
     "method": "POST",
     "url": "https://api.example.com/v1/data",
-    "headers": {"Authorization": "Bearer {{ $env.API_KEY }}"},
+    "headers": {"Authorization": "Bearer "},
     "body": {
-      "input": "{{ $json.user_input }}",
-      "context": "{{ $json.context }}"
+      "input": "",
+      "context": ""
     }
   }
 }

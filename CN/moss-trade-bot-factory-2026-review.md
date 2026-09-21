@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moss-trade-bot-factory-2026-review"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...
-description: "Hands-on review of moss-trade-bot-skills v1.0.26: a natural-language quant agent builder for Hyperli..."
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
@@ -32,7 +39,7 @@ faq: - q: "Is moss-trade-bot-factory safe to install?"
     a: "Limited to v1.0.26 BTC 304-day data: mean-revert dominated grids on 2-3x leverage produced the only positive return (+4.36%). Trend-following with 5-10x leverage lost -8% to -20% over the same window. This is regime-specific — BTC 2025-07 to 2026-04 was choppy. The same grid logic would likely lose in a strong trending market."
 ---
 
-{{</* resource-info */>}}
+
 
 # Moss Trade Bot Factory Review 2026: AI Agent Quant Workbench — Why Pretty Backtests Lie
 
@@ -235,8 +242,8 @@ After two days of intensive testing: - **Sharpe annualization bug** (covered abo
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run your own quant backtest pipeline 24/7 with a dedicated VPS: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days. Good entry point for indie quants prototyping backtest pipelines.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. Same IDC that hosts dibi8.com.
+If you want to run your own quant backtest pipeline 24/7 with a dedicated VPS: - **** — $200 free credit for 60 days. Good entry point for indie quants prototyping backtest pipelines.
+- **** — Hong Kong VPS with low-latency access from mainland China. Same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and help keep dibi8.com running.*
 

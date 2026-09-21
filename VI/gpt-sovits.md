@@ -1,6 +1,13 @@
 ---
-title: "GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
-description: "GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với Comfy..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gpt-sovits"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 > Nhân bản bất kỳ giọng nói nào với 5 giây audio. Tinh chỉnh với 1 phút dữ liệu. Triển khai production trong vòng 20 phút. Hướng dẫn này đi qua toàn bộ quy trình cấu hình.
 

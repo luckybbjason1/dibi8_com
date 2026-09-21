@@ -1,20 +1,10 @@
 ---
-title: Temporal AI 工作流编排 — 可靠的多步骤 AI 流水线
-description: Temporal 编排 AI/ML 工作流的完全指南。构建可靠的 LLM 流水线、多 Agent 系统和 ML 训练任务，内置持久性、重试和可观测性。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["workflow", "orchestration", "temporal", "machine-learning", "llm", "reliability"]
-category: dev-utils
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: temporal-ai-workflow-orchestration
--CN---
-
-
-## TL;DR
-
-Temporal 是一个持久化执行平台，让构建可靠的 AI 工作流变得极其简单。无需与 Kubernetes CronJob、死信队列和手动重试逻辑搏斗，你只需将 Python 函数装饰为 Temporal 的 workflow 和 activity。Temporal 保证恰好一次执行、自动指数退避重试和开箱即用的完整可观测性。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "temporal-ai-workflow-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Temporal 是什么？
 

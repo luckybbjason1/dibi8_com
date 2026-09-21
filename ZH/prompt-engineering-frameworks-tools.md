@@ -1,6 +1,13 @@
 ---
-title: "2025年最佳提示词工程框架与工具对比：LangSmith、PromptLayer、W&B Prompts全面评测"
-description: "深入对比LangSmith、PromptLayer、Weights & Biases Prompts、Pezzo、Prompt Flow等主流提示词工程框架，涵盖版本控制、A/B测试、协作功能和定价策..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompt-engineering-frameworks-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

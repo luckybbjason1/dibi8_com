@@ -1,6 +1,13 @@
 ---
-title: "VS Code Copilot vs Cursor 2026：哪款 AI 编码工具更值得选？"
-description: "GitHub Copilot in VS Code（微软）和 Cursor 横向对比 — 价格 $10 vs $20/月、自动补全 vs agent、企业集成。2026 年更新。". Comprehe..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vscode-copilot-vs-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

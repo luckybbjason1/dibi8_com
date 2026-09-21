@@ -1,6 +1,13 @@
 ---
-title: "Skyvern: AI 에이전트로 브라우저 워크플로 자동화 (21K 스타) — 2026 실전 가이드"
-description: "Skyvern은 대규모 언어 모델과 컴퓨터 비전으로 브라우저 기반 워크플로를 자동화합니다 (GitHub 스타 21,803개, AGPL-3.0). 설치, 실제 Python API, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skyvern-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -31,7 +38,7 @@ faqs: - q: 'Skyvern-AI/skyvern은 어떻게 설치하나요?'
 ---
 
 
-{{< resource-info >}}
+
 
 ## 들어가며
 

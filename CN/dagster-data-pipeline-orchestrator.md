@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagster-data-pipeline-orchestrator"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Dagster: The Data Pipeline Orchestrator with Asset-Based...
-description: "Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partiti..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/dagster-data-pipeline-orchestrator/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Nightmare of Blind Pipeline Failures
 

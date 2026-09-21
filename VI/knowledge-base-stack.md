@@ -1,6 +1,13 @@
 ---
-title: "Stack Knowledge Base 2026: Xây "Bộ Não Thứ Hai" Với Anyt...
-description: "Stack knowledge base self-host 5 thành phần cho cá nhân hoặc team. AnythingLLM (UI + RAG) + RAGFlow ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-base-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -172,7 +179,7 @@ npm install -g @mem0/mem0-mcp
 
 ## 8. Thứ Tự Setup Day 1 (90 phút)
 
-1. **Khởi động VPS** (10 phút) — Đặt {{< aff "digitalocean" "kb-vps" "DigitalOcean $12/tháng droplet" >}} (tier 8 GB; 4 GB quá chật cho parse + embed + LLM), cài Docker
+1. **Khởi động VPS** (10 phút) — Đặt  (tier 8 GB; 4 GB quá chật cho parse + embed + LLM), cài Docker
 2. **AnythingLLM trước** (15 phút) — Docker run đơn, browse tới :3001, tạo tài khoản admin + workspace đầu
 3. **Upload 10 doc test** (10 phút) — PDF, .md note, .docx hỗn hợp — xem parser tích hợp AnythingLLM xử cái nào
 4. **RAGFlow thứ hai** (20 phút) — docker compose, browse tới :80, xử lại 2-3 doc AnythingLLM vấp
@@ -203,7 +210,7 @@ So với SaaS tương đương: - Solo: Notion AI ($10) + Mem.ai ($15) = $25/th�
 ## 10. Đường Nâng Cấp
 
 Khi vượt stack này: - **Corpus > 1 TB hoặc > 10M doc** — Di chuyển Qdrant sang box 32 GB chuyên dụng, thêm sharding
-- **Team đa khu vực** — Replicate AnythingLLM read replica ở nhiều khu vực, single write master trên {{< aff "htstack" "upgrade-hk-vps" "HTStack HK" >}} cho latency thân thiện Trung Quốc
+- **Team đa khu vực** — Replicate AnythingLLM read replica ở nhiều khu vực, single write master trên  cho latency thân thiện Trung Quốc
 - **Cần fulltext + vector hybrid** — Migrate vector DB từ Chroma sang Weaviate
 - **Tuân thủ audit / SOC2** — Pair với Portkey cho gisibility cuộc gọi LLM (xem [So sánh LLM Gateway 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
 - **SaaS multi-tenant** — Thêm LiteLLM cho virtual-key-per-customer ([hướng dẫn LiteLLM](/vi/resources/llm-frameworks/litellm/))
@@ -218,7 +225,7 @@ Khi vượt stack này: - **Corpus > 1 TB hoặc > 10M doc** — Di chuyển Qdr
 
 Thay $50-200/tháng SaaS (Notion AI + Mem + Glean Lite) bằng self-host bạn sở hữu. Setup 90 phút, native MCP nên mọi coding agent hưởng lợi.
 
-Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/tháng droplet" >}} cho tier khởi đầu, theo mục 8, và knowledge base của bạn có thể query từ Claude Desktop / Cursor / OpenCode vào ngày mai.
+Bật  cho tier khởi đầu, theo mục 8, và knowledge base của bạn có thể query từ Claude Desktop / Cursor / OpenCode vào ngày mai.
 
 * * *
 

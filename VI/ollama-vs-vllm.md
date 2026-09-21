@@ -1,21 +1,10 @@
 ---
-title: "Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughpu...
-description: "So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughp..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]
-categories: ["vs"]
-faqs: - q: 'Nên dùng Ollama hay vLLM để phục vụ một LLM?'
-    a: 'Dùng Ollama nếu bạn phục vụ một vài người dùng tại local — trên laptop, Mac hoặc một máy dev đơn lẻ — và coi trọng việc cài đặt bằng một lệnh. Dùng vLLM nếu bạn phục vụ nhiều người dùng đồng thời trong production và cần throughput cao trên GPU. Quy tắc chung: Ollama cho phát triển và prototype local, vLLM cho phục vụ production ở quy mô. Nhiều đội dùng Ollama khi phát triển và chuyển sang vLLM khi triển khai production.'
-  - q: 'Vì sao vLLM nhanh hơn Ollama khi tải nặng?'
-    a: 'vLLM dùng hai kỹ thuật sinh ra cho throughput: PagedAttention quản lý KV cache của attention như bộ nhớ ảo để tránh lãng phí, và continuous batching gói nhiều yêu cầu đang xử lý vào GPU một cách hiệu quả thay vì xử lý từng cái một. Kết hợp lại, vLLM phục vụ nhiều token mỗi giây hơn hẳn cho nhiều người dùng đồng thời. Ollama được tối ưu cho trường hợp local một người dùng đơn giản, không phải để batch hàng chục yêu cầu cùng lúc, nên tụt lại khi tải đồng thời cao.'
-  - q: 'Ollama hay vLLM có cần GPU không?'
-    a: 'Ollama chạy không cần GPU riêng — nó hoạt động trên CPU và dùng Apple Metal hoặc GPU phổ thông khi có, đó là lý do nó chạy thoải mái trên MacBook. vLLM ưu tiên GPU và thực tế cần GPU NVIDIA hỗ trợ CUDA (và hưởng lợi từ nhiều GPU qua tensor parallelism). Nếu bạn không có hạ tầng GPU, Ollama là lựa chọn thực tế; nếu có GPU và cần throughput, vLLM khai thác chúng triệt để.'
-  - q: 'Tôi có thể dùng cùng mô hình trên Ollama và vLLM không?'
-    a: 'Thường là có, nhưng ở định dạng khác nhau. Ollama kéo mô hình GGUF lượng tử hóa từ registry bằng một lệnh, tối ưu cho bộ nhớ hạn chế. vLLM thường tải mô hình đầy đủ độ chính xác hoặc lượng tử hóa định dạng safetensors từ Hugging Face, tinh chỉnh cho phục vụ GPU. Cùng một mô hình nền (ví dụ một bản Llama hay Qwen) thường có cho cả hai, nhưng bạn trỏ mỗi công cụ tới định dạng nó mong đợi thay vì chia sẻ một tệp.'
-  - q: 'vLLM có khó cài hơn Ollama không?'
-    a: 'Có. Ollama nổi tiếng đơn giản — cài binary và chạy một lệnh như ollama run để kéo và trò chuyện với mô hình. vLLM cần môi trường GPU, phụ thuộc Python và cấu hình mô hình, song song, cài đặt server, nhưng sau đó nó phơi ra một API tương thích OpenAI dễ gọi. Hãy dành vài phút cho Ollama và một buổi chiều (cộng chuẩn bị GPU) cho lần triển khai vLLM production đầu tiên.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-vs-vllm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

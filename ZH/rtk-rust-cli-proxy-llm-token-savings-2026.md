@@ -1,6 +1,13 @@
 ---
-title: "rtk 实测：Rust 写的 CLI 代理，让 Claude Code 账单从 1200 元砍到 240 元 (...
-description: "rtk 是 Rust 单二进制 CLI 代理，自动过滤压缩命令输出，降低 60-90% LLM token 消耗。支持 Claude Code / Cursor / GitHub Copilot / ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-llm-token-savings-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
@@ -31,7 +38,7 @@ faqs: - q: 'rtk 是什么？能省多少 AI 编程账单？'
     a: '在 agent workflow 里安全。不要用在 set -e 严格依赖具体命令输出的 pipeline 里 — 但 AI agent 读输出做决策的 loop 里，rtk 的压缩版正是 agent 真正需要的。'---
 
 
-{{< resource-info >}}
+
 
 ## Quick Answer
 

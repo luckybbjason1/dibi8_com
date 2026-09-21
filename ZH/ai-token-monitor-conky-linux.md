@@ -1,6 +1,13 @@
 ---
-title: "AI Token Monitor：在Linux桌面实时监控Claude、Gemini、Grok、Kimi配额"
-description: "开源Linux桌面小工具，在Conky中以血条进度条实时显示AI Token使用量。支持Claude、Gemini、Grok、Kimi真实API轮询，显示剩余配额和重置倒计时。". Comprehen..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-token-monitor-conky-linux"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
@@ -25,7 +32,7 @@ faqs: - q: 'AI Token Monitor 支持 macOS 或 Windows 吗？'
     a: 'Grok 检测调用 GET /v1/models，认证有效且有余额时返回 200，余额耗尽时返回 403。xAI 的 403 特指账户余额为零。如果有余额却显示 403，请确认 ~/.config/.ai_monitor_keys 中的 API key 是否正确。'---
 
 
-{{< resource-info >}}
+
 
 ## 痛点：同时管理六个 AI 服务，永远不知道哪个已经耗尽
 

@@ -1,6 +1,13 @@
 ---
-title: "发现 TikChain - 您的社交媒体区块链网关"
-description: "发现TikChain：通往社交媒体区块链的门户。通过创建内容和参与去中心化社交网络赚取奖励。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "discover-tikchain-your-gateway-to-social-media-blockchain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI
@@ -182,8 +189,8 @@ TikChain 支持与 TikTok、Instagram、Twitter、YouTube 等集成。
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "binance" "category-footer" "Binance" >}}** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

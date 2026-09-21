@@ -1,21 +1,10 @@
 ---
-title: "Sử Dụng LLM Để Phân Tích Dữ Liệu: Hướng Dẫn Toàn Diện Vớ...
-description: "Khám phá cách sử dụng LLM để phân tích dữ liệu hiệu quả với PandasAI, ChatGPT Code Interpreter và Op..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/llm-data-analysis-workflow-complete-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-data-analysis-workflow-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

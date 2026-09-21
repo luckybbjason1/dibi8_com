@@ -1,21 +1,10 @@
 ---
-title: "Bức Tranh AI Coding Agent 2026: Kỷ Nguyên Skills, MCP và...
-description: "Thị trường trợ lý lập trình AI năm 2026 đang ở ngã ba đường. Hệ sinh thái Claude Code Skills vượt 3...."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agent-landscape-2026-skills-mcp-opensource"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

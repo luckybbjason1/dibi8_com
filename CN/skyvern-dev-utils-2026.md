@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skyvern-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Skyvern: Automate Browser Workflows with AI Agents (21K ...
-description: "Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-..."
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -29,7 +36,7 @@ faqs: - q: 'How do I install Skyvern-AI/skyvern?'
   - q: 'Where can I find more information about using Skyvern-AI/skyvern?'
     a: 'See the official site at  and the GitHub README, which both cover installation, the API, and example workflows in depth.'---
 
-{{< resource-info >}}
+
 
 ## Introduction
 

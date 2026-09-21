@@ -1,11 +1,10 @@
 ---
-title: "TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南"
-description: "TradingAgents 是开源的 LLM 多智能体框架（82,254 GitHub stars，Apache-2.0），模拟一家交易公司：分析师、研究员、交易员、风控智能体辩论出 BUY/SELL..."
-date: 2026-06-02
-lastmod: 2026-06-02
-slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
-category: 'ai-trading'
-tags: ["TradingAgents", "LLM 智能体", "算法交易", "LangGraph", "多智能体", "AI 交易", "量化", "金融 AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tradingagents-llm-multi-agent-trading-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南

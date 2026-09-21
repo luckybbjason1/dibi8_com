@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-postgres-vector-ai-apps"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Supabase 2026: The Open-Source Firebase Alternative Powe...
-description: "Complete guide to Supabase: the open-source Firebase alternative with Postgres + pgvector for AI app..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/supabase-postgres-vector-ai-apps/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why AI App Builders Are Switching from Firebase to Supabase
 

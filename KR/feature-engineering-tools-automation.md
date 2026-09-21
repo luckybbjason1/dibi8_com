@@ -1,9 +1,10 @@
 ---
-title: "자동화 특성 엔지니어링 도구 가이드: Featuretools, AutoFeat, tsfresh 완벽 ...
-description: "Featuretools, AutoFeat, tsfresh의 특징과 사용법을 비교합니다. 자동화 특성 엔지니어링 도구 선택과 ML 파이프라인 통합 전략을 상세히 설명합니다.". Co..."
-draft: false
-aliases:
-  - /posts/feature-engineering-tools-automation/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "feature-engineering-tools-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

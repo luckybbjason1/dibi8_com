@@ -1,6 +1,13 @@
 ---
-title: "Aider vs Cline vs OpenHands 2026: 정직한 3자 오픈소스 코딩 에이전트 비교"
-description: "동일한 5K LOC TypeScript 코드베이스에서 세 가지 오픈소스 AI 코딩 에이전트를 모두 테스트했습니다. 구체적인 벤치마크 수치, 각자가 빛나는 지점, 각자의 한계, 그리..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider-cline-openhands-2026-honest-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
@@ -29,7 +36,7 @@ faq: - q: "2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Aider vs Cline vs OpenHands 2026: 정직한 3자 OSS 비교
 
@@ -178,8 +185,8 @@ OpenHands는 기본값이 Docker 샌드박스 — 가장 안전. Aider는 명령
 
 ## 권장 인프라
 
-자체 호스팅 OpenHands나 로컬에서 파인튜닝 모델 실행: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU 드롭릿 가능
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연
+자체 호스팅 OpenHands나 로컬에서 파인튜닝 모델 실행: - **** — $200 크레딧, GPU 드롭릿 가능
+- **** — 홍콩 VPS, 저지연
 
 *제휴 링크 — 동일 가격, dibi8.com 지원.*
 

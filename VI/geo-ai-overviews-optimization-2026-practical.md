@@ -1,6 +1,13 @@
 ---
-title: "Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ ...
-description: "Tối ưu hóa Engine Sinh (GEO) chính là SEO mới. Cách tối ưu cho Google AI Overviews, ChatGPT Search v..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "geo-ai-overviews-optimization-2026-practical"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
@@ -25,7 +32,7 @@ faq: - q: "GEO là gì và khác SEO ở đâu?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến
 
@@ -111,8 +118,8 @@ Ba chỉ số cần theo dõi: 1. **Sự xuất hiện trong trích dẫn AI** (
 
 ## Hạ tầng được khuyến nghị
 
-Cho việc xác thực schema + công cụ GEO: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit 200 USD
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông cho hosting dibi8
+Cho việc xác thực schema + công cụ GEO: - **** — credit 200 USD
+- **** — VPS Hồng Kông cho hosting dibi8
 
 *Liên kết tiếp thị — cùng giá, hỗ trợ dibi8.com.*
 

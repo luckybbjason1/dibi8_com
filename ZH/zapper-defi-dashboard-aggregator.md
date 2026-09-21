@@ -1,16 +1,14 @@
 ---
-title: "zapper-defi-dashboard-aggregator"
-description: "{"en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["zapper", "defi", "dashboard", "portfolio", "yield-farming", "nft", "api", "zap-in", "zap-out", "aggregator"]
-aliases:
-  - /zh/posts/zapper-defi-dashboard-aggregator/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zapper-defi-dashboard-aggregator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **日期：** 2026-05-19  
 **分类：** AI交易  

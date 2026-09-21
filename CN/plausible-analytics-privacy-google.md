@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "plausible-analytics-privacy-google"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Plausible Analytics: The Privacy-First Google Analytics ...
-description: "Complete self-hosted setup guide for Plausible Analytics. Privacy-first, GDPR-compliant, <1KB tracki..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/plausible-analytics-privacy-google/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Analytics Privacy Problem Nobody Talks About
 
@@ -303,9 +310,9 @@ export default defineNuxtPlugin(() => {
 ### Static Site Generators (Hugo, Jekyll, Astro)
 
 `````html
-{{ if not hugo.IsServer }}
+
 </script>
-{{ end }}
+
 `````
 
 `````javascript

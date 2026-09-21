@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "opensea-nft-marketplace-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "opensea-nft-marketplace-api"
-description: "{'en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integr..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 自2021年爆发式增长以来，非同质化代币（NFT）生态系统已经显著成熟。从一个数字艺术品的小众市场，它已发展成为涵盖游戏、房地产、身份认证和去中心化金融的数十亿美元基础设施层。在这一转型的中心是[OpenSea](https://opensea.io/)——全球最大的NFT市场，以及其强大的[OpenSea API](https://docs.opensea.io/reference/api-overview)，使开发者能够构建程序化交易系统、分析仪表板和自动化的藏品管理工具。
 

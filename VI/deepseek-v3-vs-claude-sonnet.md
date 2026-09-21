@@ -1,21 +1,10 @@
 ---
-title: "DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weight...
-description: "So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ ..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["deepseek", "claude-sonnet", "anthropic", "llm", "comparison", "open-source", "ai-coding"]
-categories: ["vs"]
-faqs: - q: 'DeepSeek V3.5 có thực sự rẻ hơn Claude Sonnet 4.6 gấp 10 lần không?'
-    a: 'Theo giá token thô thì đúng. DeepSeek V3.5 tính khoảng $0.27/triệu token input và $1.10/triệu token output, trong khi Claude Sonnet 4.6 là $3 input / $15 output. Tức rẻ hơn ~11x input và ~13x output. Tuy nhiên Sonnet dùng ít token hơn cho mỗi tác vụ (nén lập luận tốt hơn) và hỗ trợ 1M context (DeepSeek 128K) — nên khoảng cách chi phí thực tế gần 5-7x hơn.'
-  - q: 'Cái nào tốt hơn cho coding, DeepSeek V3.5 hay Claude Sonnet 4.6?'
-    a: 'Trên SWE-bench Verified, Claude Sonnet 4.6 đạt khoảng 77% còn DeepSeek V3.5 khoảng 55-60%. Sonnet thắng ở refactor đa file, spec mơ hồ, debug long-context. DeepSeek thắng ở "chi phí cho mỗi lần fix đúng" với các tác vụ coding đơn file rõ phạm vi — là lựa chọn ngân sách cho agentic loop lưu lượng cao.'
-  - q: 'Có thể self-host DeepSeek V3.5 để tránh chi phí API không?'
-    a: 'Được — DeepSeek V3.5 phát hành theo giấy phép open weights kiểu MIT. Bạn có thể chạy trên cluster GPU riêng (cần ~8x H100 cho FP8, hoặc 2x H100 với lượng tử hóa 4-bit). Claude Sonnet 4.6 là closed-weight và chỉ khả dụng qua Anthropic API / AWS Bedrock / Google Vertex. Về chủ quyền dữ liệu, DeepSeek là lựa chọn frontier-class duy nhất khả thi trong so sánh này.'
-  - q: 'DeepSeek xử lý tiếng Việt so với Claude Sonnet thế nào?'
-    a: 'Claude Sonnet 4.6 có chất lượng tiếng Việt mượt mà hơn — ngữ pháp, dấu thanh, phong cách viết tự nhiên hơn cho người Việt. DeepSeek V3.5 hiểu tiếng Việt nhưng văn phong đôi khi cứng vì corpus huấn luyện thiên về tiếng Trung. Cho sản phẩm tiếng Việt, Sonnet có lợi thế rõ rệt; cho sản phẩm tiếng Trung thì ngược lại.'
-  - q: 'Cửa sổ context nào lớn hơn?'
-    a: 'Claude Sonnet 4.6 hỗ trợ tới 1M token (1.000.000) context ở biến thể [1M] — đủ chứa cả codebase trung bình hoặc 750K từ tài liệu. DeepSeek V3.5 giới hạn 128K token (khoảng 100K từ). Cho monorepo lớn, tài liệu pháp lý dài, Q&A trọn cuốn sách, Sonnet 1M ở đẳng cấp khác hẳn."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepseek-v3-vs-claude-sonnet"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -143,7 +132,7 @@ Theo "chi phí cho mỗi lần trả lời đúng": **gần hơn con số tiêu 
 - Dùng Batch API cho mọi workload không realtime — giảm 50% tức thì
 
 ### Sandbox self-hosting
-Muốn dựng server inference DeepSeek riêng để test với Sonnet API trên workload thật? {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với GPU + $200 credit miễn phí" >}} cho bạn ~2 tháng cơ sở hạ tầng đánh giá song song. Chạy DeepSeek 7B distilled cục bộ trước để validate chiến lược prompt, rồi scale lên V3.5 full trên H100 thuê chỉ khi kinh tế ổn. Rẻ hơn đốt credit Sonnet trong giai đoạn lặp prompt.
+Muốn dựng server inference DeepSeek riêng để test với Sonnet API trên workload thật?  cho bạn ~2 tháng cơ sở hạ tầng đánh giá song song. Chạy DeepSeek 7B distilled cục bộ trước để validate chiến lược prompt, rồi scale lên V3.5 full trên H100 thuê chỉ khi kinh tế ổn. Rẻ hơn đốt credit Sonnet trong giai đoạn lặp prompt.
 
 * * *
 
@@ -187,7 +176,7 @@ Cho hầu hết indie dev năm 2026, nước đi khôn là **pattern router**: m
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

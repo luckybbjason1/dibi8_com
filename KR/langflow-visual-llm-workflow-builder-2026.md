@@ -1,11 +1,10 @@
 ---
-title: "Langflow: 시각적 LLM 워크플로우를 위한 148k 스타 – 2026년 기술 심층 분석"
-description: "Langflow (LF)는 AI 에이전트 및 워크플로우 구축을 간소화합니다. LangChain, OpenAI, Hugging Face, Anthropic과 통합됩니다. 설정, 통합..."
-date: 2026-05-23
-lastmod: 2026-05-23
-slug: 'langflow'
-category: 'llm-frameworks'
-tags: ["Langflow", "LLM 워크플로우", "시각적 프로그래밍", "AI 에이전트", "LangChain", "흐름 기반 프로그래밍", "프롬프트 엔지니어링", "배포", "로우코드 AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langflow-visual-llm-workflow-builder-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -233,7 +232,7 @@ from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
 class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
-    description: str = "A tool to scrape content from a URL."
+    description: "Technical guide and comparison."
     icon = "Spider" # Optional icon for the UI
 
     def build_config(self) -> Dict[str, Any]: return {

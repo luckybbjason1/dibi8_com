@@ -1,6 +1,13 @@
 ---
-title: "Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 ...
-description: "Claude Code 스킬 작성 완전 가이드 — SKILL.md 구조, 로딩을 제어하는 트리거 description, 점진적 공개(progressive disclosure), 그리..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-skill-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -69,7 +76,7 @@ faq: - q: "스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 �
 `````markdown
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
+description: "Technical guide and comparison."
 * * *
 
 You are helping cut a release. Follow these steps in order...
@@ -81,8 +88,8 @@ You are helping cut a release. Follow these steps in order...
 
 ### ````description```` — 모든 것을 결정하는 트리거 신호
 
-Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 **언제 발동할지에 대한 조건**입니다. 구체적인 트리거로 꽉 채우세요: > ❌ ````description: Release helper.````
-> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
+Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 **언제 발동할지에 대한 조건**입니다. 구체적인 트리거로 꽉 채우세요: > ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 첫 번째는 절대 발동하지 않습니다 — 실제 작업에서 "release helper"에 매칭되는 것이 아무것도 없으니까요. 두 번째는 사용자가 "2.4.0 배포하자"라고 말하는 순간 발동합니다. 스킬이 존재하는데도 결코 활성화되지 않는다면, 범인은 — 매번 — description입니다.
 
@@ -112,7 +119,7 @@ Claude는 매번 로딩할 때가 아니라, 실제로 규칙이 필요할 때�
 `````markdown
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
+description: "Technical guide and comparison."
 * * *
 
 You are cutting a release. Do NOT skip the precondition check.
@@ -135,7 +142,7 @@ Report which step you stopped at if anything blocks.
 `````markdown
 * * *
 name: debug-flaky-test
-description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
+description: "Technical guide and comparison."
 * * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
@@ -163,9 +170,9 @@ You are diagnosing a flaky test. Flakiness is almost always one of: shared state
 
 ## 프로덕션급 Claude Code 세팅하기
 
-스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. **팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트.** 스킬은 버전 관리되며 CI에서도 실행됩니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.
+스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. **팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트.** 스킬은 버전 관리되며 CI에서도 실행됩니다. **** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.
 
-2. **병렬 실행을 위한 클라우드 여유 공간.** **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60일간 $200 무료 크레딧, 14개 이상의 리전.
+2. **병렬 실행을 위한 클라우드 여유 공간.** **** — 60일간 $200 무료 크레딧, 14개 이상의 리전.
 
 3. **스킬 번들.** 훌륭한 스킬을 쓰는 가장 빠른 길은 훌륭한 스킬을 읽어 보는 것입니다. 우리는 실전에서 검증된 다섯 개의 스킬을 Gumroad에 $19 번들로 묶었습니다 — 화면 모서리의 떠 있는 CTA를 참고하세요 — description, 점진적 공개 구조, 번들 스크립트가 이미 제대로 갖춰진 형태로요.
 

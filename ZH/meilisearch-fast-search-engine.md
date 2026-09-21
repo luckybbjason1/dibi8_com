@@ -1,6 +1,13 @@
 ---
-title: "Meilisearch: 快如闪电的开源容错搜索引擎 — 2026 年部署与基准测试"
-description: "部署 Meilisearch 1.12，实现 50 毫秒以内的容错快速搜索。包含 Docker 设置、SDK 集成、生产环境基准测试和与替代方案的诚实对比。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meilisearch-fast-search-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：数据库的 ```LIKE```` 查询正在扼杀你的用户体验
 
@@ -300,8 +307,8 @@ function App() {
     <InstantSearch searchClient={searchClient} indexName="products">
       <SearchBox />
       <Stats />
-      <div style={{ display: flex, gap: 20px }}>
-        <aside style={{ width: 200px }}>
+      <div style=>
+        <aside style=>
           <RefinementList attribute="category" />
           <RefinementList attribute="in_stock" />
         </aside>
@@ -315,8 +322,8 @@ function App() {
 
 function ProductHit({ hit }) {
   return (
-    <div style={{ padding: 10px, borderBottom: '1px solid #eee' }}>
-      <h4 dangerouslySetInnerHTML={{ __html: hit._highlightResult.name.value }} />
+    <div style=>
+      <h4 dangerouslySetInnerHTML= />
       <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? 有货 : 缺货}</p>
     </div>
   );

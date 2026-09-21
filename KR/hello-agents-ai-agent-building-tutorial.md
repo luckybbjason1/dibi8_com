@@ -1,6 +1,13 @@
 ---
-title: "Hello-Agents: Datawhale의 오픈소스 AI 에이전트 튜토리얼이 제로에서 프로덕션급 에...
-description: "Datawhale Hello-Agents는 GitHub에서 가장 인기 있는 AI 에이전트 오픈소스 튜토리얼로, ReAct, AutoGen, LangGraph, MCP, Agenti..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hello-agents-ai-agent-building-tutorial"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - JavaScript
@@ -192,8 +199,8 @@ Hello-Agents는 오늘날 가장 포괄적이고 이해하기 쉬우며 커뮤�
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

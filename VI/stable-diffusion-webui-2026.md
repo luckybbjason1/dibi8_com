@@ -1,6 +1,13 @@
 ---
-title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đ...
-description: "AUTOMATIC1111 stable-diffusion-webui là UI self-host tiêu chuẩn de-facto 163k sao cho sinh ảnh SD/SD..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "stable-diffusion-webui-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, Gradio, CUDA]
@@ -55,7 +62,7 @@ Nếu mới làm sinh ảnh local: bắt đầu ở đây. Chuyển sang ComfyUI
 | 12 GB (RTX 3060 12GB / 4070) | ~3s | ~6s | ~15s |
 | 16-24 GB (RTX 4080 / 4090) | ~1.5s | ~3s | ~6s |
 
-Sử dụng cloud: instance GPU $0.30-0.50/giờ trên Vast.ai hoặc {{< aff "digitalocean" "sd-gpu" "DigitalOcean GPU droplets" >}} rẻ hơn Midjourney ở bất kỳ volume có ý nghĩa.
+Sử dụng cloud: instance GPU $0.30-0.50/giờ trên Vast.ai hoặc  rẻ hơn Midjourney ở bất kỳ volume có ý nghĩa.
 
 ## 3. Cài Nhanh (15 phút)
 
@@ -111,7 +118,7 @@ Setup 2026 dùng SDXL hàng ngày: mainline A1111 hoạt động. Pipeline sáng
 ## 8. Pattern Self-Host Production
 
 Triển khai "API ảnh cá nhân": `````
-   {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}} (RTX 6000 Ada $0.50/giờ hoặc thuê trên Vast.ai)
+    (RTX 6000 Ada $0.50/giờ hoặc thuê trên Vast.ai)
             │
             ▼
    A1111 với cờ --api bật

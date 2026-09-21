@@ -1,6 +1,13 @@
 ---
-title: "Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
-description: "Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "marker-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,19 +26,19 @@ tags: ["]
 aliases:
   - /posts/marker-dev-utils-2026/
 faqs: - q: 'Cài marker như thế nào?'
-    a: 'Cài từ PyPI bằng `pip install marker-pdf`. Với các định dạng không phải PDF (DOCX", "PPTX", "XLSX", "EPUB", "HTML", "hình ảnh)", "dùng `pip install marker-pdf[full"]`.'
+    a: 'Cài từ PyPI bằng ``pip install marker-pdf``. Với các định dạng không phải PDF (DOCX", "PPTX", "XLSX", "EPUB", "HTML", "hình ảnh)", "dùng ``pip install marker-pdf[full"]``.'
   - q: 'Tôi có thể dùng công cụ này cho dự án thương mại không?'
     a: 'Mã nguồn theo giấy phép GPL-3.0, nhưng trọng số mô hình dùng giấy phép AI Pubs Open Rail-M đã sửa đổi. Giấy phép đó miễn phí cho nghiên cứu, sử dụng cá nhân và các công ty có vốn/doanh thu dưới khoảng 2 triệu USD; người dùng thương mại lớn hơn cần giấy phép thương mại từ Datalab. Hãy kiểm tra điều khoản hiện hành trước khi triển khai.'
   - q: 'marker xử lý được những loại tài liệu nào?'
     a: 'Marker hỗ trợ PDF, hình ảnh, PPTX, DOCX, XLSX, HTML và EPUB. Đầu ra có thể là Markdown, JSON, HTML hoặc chunks sẵn sàng cho RAG.'
   - q: 'Có cách nào tùy chỉnh định dạng đầu ra không?'
-    a: 'Có. Dùng cờ CLI `--output_format [markdown|json|html|chunks]`, hoặc truyền `{"output_format": "..."}` qua `ConfigParser` trong Python API. Marker cũng có thể mở rộng với processor và renderer tùy chỉnh.'
+    a: 'Có. Dùng cờ CLI ``--output_format [markdown|json|html|chunks]``, hoặc truyền ``{"output_format": "..."}`` qua ``ConfigParser`` trong Python API. Marker cũng có thể mở rộng với processor và renderer tùy chỉnh.'
   - q: 'Tôi báo lỗi hoặc đề xuất tính năng bằng cách nào?'
     a: 'Truy cập kho mã GitHub tại <https://github.com/datalab-to/marker> và mở một issue mới trong tab Issues với thông tin chi tiết về vấn đề hoặc đề xuất của bạn.'
 ---
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 

@@ -1,6 +1,13 @@
 ---
-title: "2026년 LangGraph vs CrewAI: 제어 우선 상태 그래프 vs 역할 기반 에이전트 팀"
-description: "LangGraph(저수준 상태 기반 에이전트 그래프)와 CrewAI(고수준 역할 기반 멀티 에이전트 팀) 정면 비교 — 제어, 학습 곡선, 상태, 멀티 에이전트 설계, 프로덕션 안..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-vs-crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

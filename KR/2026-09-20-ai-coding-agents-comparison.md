@@ -1,7 +1,10 @@
 ---
-title: "AI Coding Agents 2026: Claude Code vs Cursor vs Codex - ...
-description: "2026년 상위 3개 AI 코딩 에이전트 심층 비교. 터미널 기반 Claude Code, IDE 내장 Cursor, 클라우드 자동화 Codex 중 어느 것이 당신의 워크플로우에 적..."
-github: "anthropic/claude-code, anysphere/cursor, openai/codex"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-20-ai-coding-agents-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

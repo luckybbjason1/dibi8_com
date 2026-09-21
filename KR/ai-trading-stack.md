@@ -1,6 +1,13 @@
 ---
-title: "AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우"
-description: "셀프호스트 AI 트레이딩 스택: ta-lib (신호) + vectorbt (백테스트) + freqtrade (실행) + AI Trader (AI 전략 레이어) + Hyperliqu..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trading-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
@@ -131,7 +138,7 @@ pip install vectorbt
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
 `````
 
-낮은 레이턴시 VPS 배포 — 내부 freqtrade 인스턴스를 아시아 거래소 sub-50ms 레이턴시 위해 {{< aff "htstack" "trading-vps-hk" "HTStack 홍콩 VPS" >}}, 또는 미국 편향 venue 위해 NYC에 {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplet" >}}.
+낮은 레이턴시 VPS 배포 — 내부 freqtrade 인스턴스를 아시아 거래소 sub-50ms 레이턴시 위해 , 또는 미국 편향 venue 위해 NYC에 .
 
 전체 셋업 AI 전략 패턴 포함: [freqtrade AI 트레이딩 전략](/kr/resources/llm-frameworks/freqtrade-ai-trading-strategies/).
 
@@ -173,19 +180,19 @@ pip install hyperliquid-python-sdk
 
 **왜 이 스택에 맞나**: 하드코어 퀀트도 빠른 시장 체크인, 임시 질문, 수동 헤지용 "두 번째 모니터" 도구 필요. Minara가 AI 네이티브 답변 (vs TradingView 전통 차팅). 순수 비코더 사용자가 AI 주도 트레이딩 원함: Minara가 독립 진입점.
 
-**시작**: {{< aff "minara" "minara-trading-platform" "Minara에 가입" >}} — Hyperliquid 기반이라 기본 실행이 위 기술 스택과 같은 DEX 레일. 대화 레이어로 사용; 시스템 전략용으로 기술 스택 (컴포넌트 1-6) 사용.
+**시작**:  — Hyperliquid 기반이라 기본 실행이 위 기술 스택과 같은 DEX 레일. 대화 레이어로 사용; 시스템 전략용으로 기술 스택 (컴포넌트 1-6) 사용.
 
 전체 리뷰: [Minara Hyperliquid AI 트레이딩 2026 리뷰](/kr/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/).
 
 ## 10. Day 1 셋업 순서 (4-5시간, 실제 자본 전)
 
-1. **VPS + Python 환경** (15분) — {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB, Python 3.11 + Docker 설치
+1. **VPS + Python 환경** (15분) —  4 GB, Python 3.11 + Docker 설치
 2. **ta-lib + vectorbt** (15분) — ````pip install```, 1년 BTC 데이터에 샘플 백테스트 실행
 3. **freqtrade dry-run** (30분) — Docker compose, 읽기 전용 Binance API 키로 구성, 실시간 가기 전 2주 페이퍼에 기본 Bollinger 전략 배포
 4. **Hyperliquid 테스트넷** (30분) — 테스트넷 USDC 받기, SDK 설치, 테스트넷에 테스트 주문, 실행 확인
 5. **AI Trader 통합** (45분) — DeepSeek (저렴) 또는 Claude (premium) API 키로 구성, freqtrade dry-run 로그 가리킴
 6. **Polymarket Agents** (30분) — 지갑 셋업, 테스트용 $50 USDC 펀딩, "뉴스 주도 예측" 에이전트 배포
-7. **Minara 계정** (10분) — {{< aff "minara" "minara-day1-signup" "가입" >}} 대화 UI 위해; 시스템 가도 임시 시장 체크에 유용
+7. **Minara 계정** (10분) —  대화 UI 위해; 시스템 가도 임시 시장 체크에 유용
 8. **최소 2주 페이퍼 트레이딩** (실시간) — 실제 자본 배포 전, 모든 실시간 실행을 2주 dry-run / 테스트넷, 명백한 거 안 깨뜨렸음 증명
 
 5시간 셋업 + 2주 페이퍼 트레이딩 후, 본인 소유 인프라에 진짜 프로덕션급 퀀트 스택 보유.
@@ -230,9 +237,9 @@ pip install hyperliquid-python-sdk
 4. **AI Trader** — AI 전략 조정 루프
 5. **Hyperliquid** — 온체인 perp DEX venue
 6. **Polymarket Agents** — 예측 시장 alpha
-7. **Minara** — 비코더용 AI+crypto 대화 hub ({{< aff "minara" "footer-minara" "여기서 가입" >}})
+7. **Minara** — 비코더용 AI+crypto 대화 hub ()
 
-저레이턴시 실행 위해 {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} 띄우고, 실시간 가기 전 2-4주 페이퍼 트레이드, 잃을 수 있는 자본으로 시작, 실시간 성과가 백테스트 기대 일치 후만 스케일.
+저레이턴시 실행 위해  띄우고, 실시간 가기 전 2-4주 페이퍼 트레이드, 잃을 수 있는 자본으로 시작, 실시간 성과가 백테스트 기대 일치 후만 스케일.
 
 * * *
 

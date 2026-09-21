@@ -1,20 +1,10 @@
 ---
-title: "Kỹ Năng Nghiên Cứu Học Thuật: Tự Động Hóa Tổng Quan Tài ...
-description: "Academic Research Skills (31.628 sao) tự động hóa quy trình nghiên cứu: tìm kiếm bài báo, trích xuất..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: academic-research-skills
-category: dev-utils
-tags: ["nghiên cứu học thuật", "tổng quan tài liệu", "nghiên cứu AI", "phân tích bài báo", "tổng hợp", "claude code", "tự động hóa nghiên cứu"]
-images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
-    alt: "Academic Research Skills GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
-    alt: "Sơ đồ Quy trình Nghiên cứu"
-    role: diagram
-  - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
-    alt: "Kiến trúc Kỹ năng"
-    role: architecture
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "academic-research-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

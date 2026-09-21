@@ -1,11 +1,10 @@
 ---
-title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development..."
-description: "Complete guide to Spec Kit by GitHub - the open-source toolkit that transforms how developers build ..."
-date: 2026-06-20
-lastmod: 2026-06-20
-(tags: [ai, copilot, development, engineering, prd, spec, spec-driven]
-category: "dev-utils"
-slug: spec-kit-github-spec-driven-development-toolkit
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "spec-kit-github-spec-driven-development-toolkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit

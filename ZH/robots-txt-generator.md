@@ -1,10 +1,10 @@
 ---
-title: "robots.txt 生成器 — 含 AI 爬虫控制（GPTBot、ClaudeBot、PerplexityBot）"
-description: "一键生成干净的 robots.txt：设置 sitemap、禁止路径，并屏蔽 GPTBot、ChatGPT-User、ClaudeBot、PerplexityBot、CCBot、Google-Exte..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-robots-txt-generator"
-tool_id: "robots-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "robots-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

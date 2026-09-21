@@ -1,14 +1,13 @@
 ---
-title: "ibis-dataframe-python-sql"
-description: "{"en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backen..."
-draft: false
-categories: ["data-science"]
-tags: ["ibis"]
-aliases:
-  - /posts/ibis-dataframe-python-sql/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ibis-dataframe-python-sql"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
-{{</* resource-info */>}}
+
 
 In the ever-evolving landscape of data analytics, Python developers have long faced a frustrating dilemma: should you use **pandas** for its intuitive DataFrame API, or write raw **SQL** for its superior performance on large datasets? In 2026, this trade-off is no longer necessary. Enter **Ibis** — a portable, open-source Python library that offers a familiar DataFrame API while compiling your expressions to high-performance SQL for execution across 20+ backends. With over 12,000 GitHub stars and an Apache-2.0 license, Ibis is transforming how data engineers and scientists interact with databases.
 

@@ -1,6 +1,13 @@
 ---
-title: "2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / M...
-description: "AI Agent 每次新会话就失忆是 2026 年生产环境的硬伤。4 大开源记忆层深度对比：Mem0（48K+ stars，21 框架集成，LoCoMo 92.5%）、agentmemory（MCP ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-systems-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
@@ -33,7 +40,7 @@ faqs: - q: 'Mem0、agentmemory、Hindsight、MemPalace 有什么区别？'
 # 2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / MemPalace 实战选型
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

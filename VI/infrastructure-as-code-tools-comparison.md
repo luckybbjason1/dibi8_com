@@ -1,6 +1,13 @@
 ---
-title: "Công Cụ Infrastructure as Code 2025: So Sánh Terraform, ...
-description: "So sánh chi tiết các công cụ Infrastructure as Code hàng đầu năm 2025. Tìm hiểu Terraform, Pulumi, A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "infrastructure-as-code-tools-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

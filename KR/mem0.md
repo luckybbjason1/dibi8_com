@@ -1,6 +1,13 @@
 ---
-title: "Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026"
-description: "Mem0 (mem0ai)은 AI 에이전트를 위한 범용 메모리 레이어입니다. Claude Code, OpenAI, LangChain, CrewAI, Cursor와 호환됩니다. mem..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mem0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 
@@ -351,7 +358,7 @@ researcher = Agent(
 
 # 메모리를 사용하는 작업
 task = Task(
-    description="""Research travel options for user {{user_id}}.
+    description="""Research travel options for user .
     First retrieve their preferences, then provide personalized recommendations.
     Query: travel preferences""",
     expected_output="Personalized travel recommendations",

@@ -1,6 +1,13 @@
 ---
-title: "MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리"
-description: "Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파했습니다. 카테고리별 상위 30개 랭킹, stdio / HTTP-SSE / OAuth-..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-servers-2026-rankings-selection-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
@@ -27,7 +34,7 @@ faq: - q: "MCP는 무엇이고 2026년에 왜 중요한가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리
 
@@ -135,8 +142,8 @@ Anthropic 참조 서버: [github.com/modelcontextprotocol/servers](https://githu
 
 ## 자체 호스팅 추천 인프라
 
-팀 공유 MCP 서버(HTTP/SSE) 운영 시 안정 VPS 중요: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 신규 60일 $200 크레딧.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, dibi8.com 동일 IDC.
+팀 공유 MCP 서버(HTTP/SSE) 운영 시 안정 VPS 중요: - **** — 신규 60일 $200 크레딧.
+- **** — 홍콩 VPS, dibi8.com 동일 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움.*
 

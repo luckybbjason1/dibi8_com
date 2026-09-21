@@ -1,16 +1,14 @@
 ---
-title: "Claude Code: 125K+ Stars — 终端 AI 编程代理完整对比 2026"
-description: "Claude Code 是 Anthropic 的终端编程代理工具，支持 VS Code、Cursor、GitHub、GitLab。涵盖安装教程、基准测试，以及与 Aider、OpenHands 和 ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["claude-code", "ai-coding-agent", "终端编程", "anthropic", "claude教程", "claude-code-vs-aider", "claude-code安装"]
-aliases:
-  - /zh/posts/claude-code/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 

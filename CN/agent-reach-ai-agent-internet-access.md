@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agent-reach-ai-agent-internet-access"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Agent Reach: Give Your AI Agent Internet Superpowers"
-description: Agent Reach is an open-source scaffolding tool that gives AI agents instant. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   access to YouTube, Twitter, Reddit, Xiaohongshu, Bilibili and 15+ platforms with
   one command.
 date: 2026-05-15T04:20:25+09:00
@@ -170,8 +177,8 @@ The project is actively maintained, completely free, and designed to evolve as p
 * * *
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 

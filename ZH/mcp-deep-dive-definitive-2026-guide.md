@@ -1,9 +1,10 @@
 ---
-title: "MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具...
-description: "从零构建 MCP 服务器的完整教程。掌握 Anthropic 推出的 Model Context Protocol，让你的 AI Agent 一键连接数据库、GitHub、Slack 等千种工具，告别..."
-draft: false
-aliases:
-  - /zh/posts/mcp-deep-dive-definitive-2026-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-deep-dive-definitive-2026-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

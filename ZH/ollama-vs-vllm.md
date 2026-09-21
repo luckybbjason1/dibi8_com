@@ -1,6 +1,13 @@
 ---
-title: "Ollama vs vLLM 2026 对比：本地开发的简单 vs 生产级吞吐"
-description: "Ollama（简单的本地 LLM 运行器）与 vLLM（高吞吐生产推理引擎）逐项对比 — 易用性、吞吐、硬件、并发、规模化成本。2026 更新。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-vs-vllm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-06T00:00:00+08:00
 lastmod: 2026-06-06T00:00:00+08:00
 draft: false

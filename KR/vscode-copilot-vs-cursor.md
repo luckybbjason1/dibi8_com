@@ -1,22 +1,10 @@
 ---
-title: "VS Code Copilot vs Cursor 2026: 어느 AI 코딩 도구가 이길까?"
-description: "GitHub Copilot in VS Code(Microsoft)와 Cursor 비교 — 가격 $10 vs $20/월, 자동완성 vs 에이전트, 엔터프라이즈 통합. 2026 업데이..."
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/kr/resources/vscode-copilot-vs-cursor"
-  }
-}
-</script>
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vscode-copilot-vs-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,9 +1,10 @@
 ---
-title: "终端命令行效率工具：tmux、zsh、fzf、ripgrep等生产力提升指南"
-description: "从zsh到tmux，从fzf到ripgrep，打造现代化终端工作流。2025年开发者必备的CLI效率工具完整配置指南。". Comprehensive guide covering features,..."
-draft: false
-aliases:
-  - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -311,7 +312,7 @@ alias grep='rg'
 # Docker
 alias d='docker'
 alias dc='docker compose'
-alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dps='docker ps --format "table \t\t"'
 `````
 
 ## FAQ

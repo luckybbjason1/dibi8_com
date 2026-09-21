@@ -1,9 +1,10 @@
 ---
-title: "Best AI Coding Assistants 2026"
-description: "The best AI coding assistants for developers in 2026 — from Claude Code and Cursor to GitHub Copilot..."
-layout: simple
-date: 2026-06-28T00:00:00+08:00
-lastmod: 2026-06-28T00:00:00+08:00
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-coding-assistants"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Best AI Coding Assistants 2026

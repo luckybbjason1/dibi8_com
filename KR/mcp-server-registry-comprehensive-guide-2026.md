@@ -1,6 +1,13 @@
 ---
-title: "MCP Server 레지스트리 가이드 2026: 19,700+ 서버, 7개 공식 픽, 60초 안에 맞...
-description: "2026년 MCP server 발견 완전 가이드. Anthropic 7개 reference 서버, 87.3k star awesome list, Smithery vs mcp.so 레..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-registry-comprehensive-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript
@@ -149,7 +156,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 - **레이턴시** — server가 데이터 근처 (같은 VPC의 postgres)
 - **비용** — 규모에서 per-call SaaS 비용 제거
 
-4GB VPS면 stdio-브릿지 또는 HTTP MCP server 10+ 개 병렬로 편하게 돌립니다. 우리는 dibi8 내부 MCP 클러스터를 {{< aff "htstack" "self-host-vps" "HTStack 홍콩 VPS" >}}에서 운영 (중국 본토 sub-30ms 레이턴시). 글로벌 분산 배포 또는 큰 플릿은 {{< aff "digitalocean" "self-host-k8s" "DigitalOcean 매니지드 Kubernetes" >}} 3 레플리카가 프로덕션 표준 패턴.
+4GB VPS면 stdio-브릿지 또는 HTTP MCP server 10+ 개 병렬로 편하게 돌립니다. 우리는 dibi8 내부 MCP 클러스터를 에서 운영 (중국 본토 sub-30ms 레이턴시). 글로벌 분산 배포 또는 큰 플릿은  3 레플리카가 프로덕션 표준 패턴.
 
 ### 클라우드 호스트할 때 (Smithery / e2b / 벤더 호스팅)
 
@@ -180,7 +187,7 @@ awesome-list가 2026년 1월 500개 server를 넘기자, "JSON config 복사 붙
 
 * * *
 
-*5+ MCP server (postgres + filesystem + git + memory + tavily-search)를 클라우드 청구서 안 태우고 셀프호스트하고 싶으신가요? $6/월 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 하나 띄우고, 슈퍼바이저(systemd 또는 PM2) 아래 돌리고, Claude Desktop ````claude_desktop_config.json```을 호스트로 가리키세요. 오후에 완료.*
+*5+ MCP server (postgres + filesystem + git + memory + tavily-search)를 클라우드 청구서 안 태우고 셀프호스트하고 싶으신가요? $6/월  하나 띄우고, 슈퍼바이저(systemd 또는 PM2) 아래 돌리고, Claude Desktop ````claude_desktop_config.json```을 호스트로 가리키세요. 오후에 완료.*
 
 
 {

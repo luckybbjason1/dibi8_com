@@ -1,9 +1,10 @@
 ---
-title: "数据清洗工具与最佳实践：OpenRefine、Python库与自动化解决方案完全指南"
-description: "系统梳理数据清洗工具栈，深度对比OpenRefine、Pandas、Great Expectations与Cleanlab，附可复用的数据清洗流水线搭建指南与最佳实践清单。". Comprehensi..."
-draft: false
-aliases:
-  - /posts/data-cleaning-tools-best-practices/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "data-cleaning-tools-best-practices"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

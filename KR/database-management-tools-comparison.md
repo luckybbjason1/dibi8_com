@@ -1,9 +1,10 @@
 ---
-title: "데이터베이스 관리 도구 비교: 2025년 개발자를 위한 최고의 GUI 클라이언트"
-description: "TablePlus, DBeaver, DataGrip, Beekeeper Studio 등 2025년 최고의 데이터베이스 GUI 도구를 기능, 가격, 지원 DB 관점에서 비교하고 상황..."
-draft: false
-aliases:
-  - /posts/database-management-tools-comparison/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "database-management-tools-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

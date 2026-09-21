@@ -1,6 +1,13 @@
 ---
-title: "Colly: 25,302 GitHub Stars — Benchmark Go Web Scraping F...
-description: "Colly is a fast, elegant scraping framework for Go with 1k+ req/sec throughput. Covers colly tutoria..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "colly"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/colly/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

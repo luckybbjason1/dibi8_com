@@ -1,6 +1,13 @@
 ---
-title: "Mastra: 24K+ Stars — TypeScript AI Framework That Cuts T...
-description: "Mastra is a TypeScript-native AI framework for building AI-powered applications and agents from the ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mastra"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/mastra/-
 ---
 
-{{</* resource-info */>}}
+
 
 Most AI frameworks are built for Python. If your stack runs on TypeScript and Node.js, you either bridge languages or accept a sub-par developer experience. That changed when the Gatsby team launched Mastra — a TypeScript-native framework for building AI agents that reached **24,050 GitHub stars** by May 2026 and is now used in production at Replit, PayPal, and Sanity. This article covers everything you need to install Mastra, build your first agent, and understand how its Observational Memory reduces token costs by 4-10x compared to traditional RAG approaches.
 
@@ -153,7 +160,7 @@ import { z } from zod;
 
 const searchTool = createTool({
   id: 'search-docs',
-  description: "Search internal documentation",
+  description: "Technical guide and comparison."
   inputSchema: z.object({
     query: z.string().describe('The search..."
     environment: - OPENAI_API_KEY=${OPENAI_API_KEY}

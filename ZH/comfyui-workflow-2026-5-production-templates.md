@@ -1,26 +1,14 @@
 ---
-title: "ComfyUI 工作流 2026：新手搭建指南 + 5 套生产级模板"
-description: "ComfyUI 在 2026 年突破 10.6 万 GitHub stars。新手友好的搭建指南、2026 年模型推荐，以及 5 套可直接投产的工作流模板（文生图、局部重绘、放大、视频、角色一致性）。..."
-licensing_model: 开源
-license_type: 'GPL-3.0'
-last_maintained: "2026-05-25"
-draft: false
-categories: ["ai-tools"]
-tags: ["comfyui", "stable-diffusion", "image-generation", "workflows", "2026"]
-aliases:
-  - /zh/posts/comfyui-workflow-2026-5-production-templates/
-faq: - q: "2026 年 ComfyUI 比 Stable Diffusion WebUI 更好用吗？"
-    a: "在工作流自动化和生产场景下：是的，毫无悬念。ComfyUI 基于节点图，让复杂的多步流水线（放大 → 局部重绘 → ControlNet → 再次渲染）变得轻而易举。SD WebUI 更适合一次性出图。大多数职业 AI 艺术家两个都用。"
-  - q: "需要什么样的硬件？"
-    a: "最低配置：8GB 显存（RTX 3060、RTX 4060），可跑中等画质的 SDXL。舒适配置：16GB+ 显存（RTX 4080、4090），可跑 SDXL + Flux 模型 + LoRA 叠加。生产配置：H100 / 多卡，适合批量工作流。"
-  - q: "2026 年应该先下载哪些模型？"
-    a: "三大优先级：(1) SDXL base + refiner（依然是主力），(2) Flux.1 Schnell（速度更快，适合原型迭代），(3) Stable Diffusion 3.5 Large（最强写实）。再加 2-3 个符合你风格的 LoRA。在没有明确需求前，先别去碰 Civitai 上那几十个角色 LoRA。"
-  - q: "从零学 ComfyUI 需要多久？"
-    a: "加载一个工作流并出图：30 分钟。自己搭建工作流：1-2 天。精通节点用于生产：2-3 周。学习曲线一开始很陡，但回报丰厚——工作流可复用、可分享、可复现。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-workflow-2026-5-production-templates"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # ComfyUI 工作流 2026：搭建指南 + 5 套生产模板
 
@@ -113,8 +101,8 @@ python main.py
 ## 推荐基础设施
 
 如果你打算认真做 ComfyUI：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 美元额度，GPU droplet（H100/L40S/A100）
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，亚洲低延迟出图首选
+- **** — 200 美元额度，GPU droplet（H100/L40S/A100）
+- **** — 香港 VPS，亚洲低延迟出图首选
 
 *推广链接 — 同价不加价，支持 dibi8.com。*
 

@@ -1,17 +1,10 @@
 ---
-title: Vercel AI SDK — Build Streaming AI Apps with Edge-First A...
-description: Complete guide to Vercel AI SDK for building production AI applications. Stream LLM responses, integrate multiple providers, and deploy to edge with zero config. Supports React, Next.js, and any framework.
-tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-slug: vercel-ai-sdk-edge-compute---
-
-## TL;DR
-
-Vercel AI SDK is a unified library for building AI-powered user interfaces with streaming support across all major frameworks. It provides type-safe APIs for integrating LLM providers (OpenAI, Anthropic, Google, AWS), automatic response streaming, built-in UI components for React, and seamless deployment to edge runtimes. The key advantage: one SDK works everywhere — Next.js App Router, Remix, SvelteKit, Nuxt, or any framework that supports fetch.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vercel-ai-sdk-edge-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## What Is Vercel AI SDK?
 
@@ -308,7 +301,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "Search the web for current information"
+      description: "Technical guide and comparison."
       parameters: z.object({
         query: z.string().describe("Search query"),
         maxResults: z.number().default(5),
@@ -321,7 +314,7 @@ const result = streamText({
       },
     }),
     calculate: tool({
-      description: "Perform mathematical calculations"
+      description: "Technical guide and comparison."
       parameters: z.object({
         expression: z.string().describe("Mathematical expression"),
       }),
@@ -334,7 +327,7 @@ const result = streamText({
       },
     }),
     getWeather: tool({
-      description: "Get current weather for a location"
+      description: "Technical guide and comparison."
       parameters: z.object({
         city: z.string().describe("City name"),
         country: z.string().describe("Country code"),

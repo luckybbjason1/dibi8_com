@@ -1,6 +1,13 @@
 ---
-title: "AutoGen: 58K+ Stars — Khám Phá Sâu Framework Multi-Agent...
-description: "AutoGen (Microsoft) là framework lập trình hướng sự kiện để xây dựng hệ thống AI multi-agent. Tương ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "autogen"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu
 

@@ -1,11 +1,10 @@
 ---
-title: "Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰"
-description: "Impeccable(스타 37,000개 이상)는 AI 코딩 에이전트를 위한 디자인 언어로, 23개 명령어, 41개 감지기 규칙, 실시간 브라우저 반복 기능을 갖추고 있습니다. AI..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
-category: ai-tools
-tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "impeccable-ai-design-language-harness-quality-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

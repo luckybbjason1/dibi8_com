@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vibe-coding-2026-korean-concept-explained"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Vibe Coding 2026: The Korean Developer Concept Explained...
-description: "Vibe coding (바이브 코딩) is the Korean developer term for natural-language-first programming where AI ha..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'AI-driven development', 'Natural language programming']
@@ -24,7 +31,7 @@ faq: - q: "What is 'vibe coding'?"
     a: "No. The workflow is language-agnostic — you describe intent in whatever natural language you speak. The term originated in Korea but the practice works globally. English-speaking developers have been doing this since Cursor and Claude Code came out, just without a name."
 ---
 
-{{</* resource-info */>}}
+
 
 # Vibe Coding 2026: The Korean Concept Explained for the Rest of Us
 
@@ -117,8 +124,8 @@ These concerns are valid. The Korean fintech adoption pattern (selective use, ha
 
 ## Recommended Infrastructure
 
-If you're setting up a vibe-coding workflow: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit for testing AI-generated code in dev envs
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency for AI API access in Asia
+If you're setting up a vibe-coding workflow: - **** — $200 credit for testing AI-generated code in dev envs
+- **** — Hong Kong VPS, low-latency for AI API access in Asia
 
 *Affiliate links — same price, supports dibi8.com.*
 

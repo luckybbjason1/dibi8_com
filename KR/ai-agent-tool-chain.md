@@ -1,6 +1,13 @@
 ---
-title: "AI 에이전트 도구 체인 2026: 프로덕션급 자율 에이전트 구축용 6-컴포넌트 스택"
-description: "완전한 프로덕션 AI 에이전트 스택: 상태 유지 오케스트레이션 LangGraph + 도구용 MCP servers + 메모리 mem0 + 멀티 에이전트 조정 OpenClaw + 자가..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-tool-chain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -182,7 +189,7 @@ pip install hermes-agent
 
 ## 9. Day 1 조립 순서 (3시간)
 
-1. **VPS + Postgres 띄우기** (20분) — {{< aff "digitalocean" "agent-vps" "DigitalOcean $24/월 droplet (8 GB)" >}} + Managed Postgres ($15/월)
+1. **VPS + Postgres 띄우기** (20분) —  + Managed Postgres ($15/월)
 2. **LangGraph + checkpointer 설치** (15분) — ````pip install````, 30줄 hello-world 상태 유지 에이전트 작성, ````kill -9``` 견디고 재개 확인
 3. **MCP servers 추가** (30분) — filesystem + git + tavily + e2b-sandbox를 LangGraph 노드의 MCP config에
 4. **mem0 + AgentMemory MCP 추가** (20분) — Docker run mem0, agentmemory를 MCP toolset에
@@ -227,7 +234,7 @@ pip install hermes-agent
 5. **Hermes Agent** — 자가 개선 루프
 6. **e2b 샌드박스** — 안전 코드 실행
 
-{{< aff "digitalocean" "footer-cta" "DigitalOcean $24/월 droplet" >}} 띄우고 9절 따라가면 재시작 견디고, 컨텍스트 기억하고, 코드 안전하게 실행하고, 시간 경과로 자가 개선하는 에이전트 보유 — 본인 소유 인프라에서 Cursor 단일 시트보다 저렴.
+ 띄우고 9절 따라가면 재시작 견디고, 컨텍스트 기억하고, 코드 안전하게 실행하고, 시간 경과로 자가 개선하는 에이전트 보유 — 본인 소유 인프라에서 Cursor 단일 시트보다 저렴.
 
 * * *
 

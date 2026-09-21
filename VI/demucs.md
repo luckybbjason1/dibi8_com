@@ -1,6 +1,13 @@
 ---
-title: "Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
-description: "Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimat..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "demucs"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Việc tách một bản phối hoàn chỉnh thành các track nhạc cụ riêng lẻ — vocal, trống, bass, và các nhạc cụ khác — từng đòi hỏi file đa track gốc từ phòng thu. Điều đó đã thay đổi khi các mô hình học sâu học được cách "unmix" audio đã hoàn thiện. Ngày nay, nhạc sĩ, producer và developer sử dụng các công cụ này để tạo track karaoke, tách sample, chuẩn bị remix, và xây dựng pipeline chuyển đổi giọng nói. Trong các lựa chọn mã nguồn mở, một mô hình thống trị cuộc trò chuyện: **Demucs**, kiến trúc hybrid transformer của Meta với hơn 10,000 sao trên GitHub và benchmark hàng đầu trên tập dữ liệu MUSDB18-HQ.
 

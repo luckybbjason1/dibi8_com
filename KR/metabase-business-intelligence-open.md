@@ -1,16 +1,14 @@
 ---
-title: "Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축...
-description: "Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.". Compre..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["metabase", "bi", "business-intelligence", "open-source", "tableau", "dashboards", "sql", "docker", "self-hosted", "analytics", "data-visualization", "apache-superset", "비즈니스인텔리전스", "데이터분석", "오픈소스"]
-aliases:
-  - /kr/posts/metabase-business-intelligence-open/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "metabase-business-intelligence-open"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: $50,000 Tableau 갱신 청구서의 문제
 
@@ -84,7 +82,7 @@ WHERE period <= 12
 ORDER BY 1, 2;
 `````
 
-SQL 질문은 ````{{variable}}```` 구문을 통한 변수 주입을 지원하여, 다른 필터 값을 가진 대시보드에서 재사용할 수 있게 한다.
+SQL 질문은 ```````` 구문을 통한 변수 주입을 지원하여, 다른 필터 값을 가진 대시보드에서 재사용할 수 있게 한다.
 
 ### 대시보드 구성
 
@@ -339,12 +337,12 @@ SELECT
     DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
-WHERE created_at >= {{start_date}}  -- 대시보드 필터
+WHERE created_at >=   -- 대시보드 필터
 GROUP BY 1
 ORDER BY 1;
 `````
 
-````{{start_date}}```` 변수는 대시보드에서 날짜 선택기로 렌더링된다. 사용자가 필터 값을 변경하면 연결된 모든 질문이 자동으로 새로 고쳐진다.
+```````` 변수는 대시보드에서 날짜 선택기로 렌더링된다. 사용자가 필터 값을 변경하면 연결된 모든 질문이 자동으로 새로 고쳐진다.
 
 ## 벤치마크와 실제 사용 사례
 

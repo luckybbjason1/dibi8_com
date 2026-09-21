@@ -1,6 +1,13 @@
 ---
-title: "AI-SEO 与 GEO 工具栈 2026：6 款免费工具搞定传统 SEO + 生成式引擎优化"
-description: "AI 时代 SEO 的完整免费工具包：llms.txt 生成器 + AI 爬虫 robots.txt + meta 标签 + Schema.org JSON-LD + hreflang + OG 卡片..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-seo-geo-toolkit-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - HTML

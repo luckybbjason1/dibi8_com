@@ -1,6 +1,13 @@
 ---
-title: "Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)"
-description: "Supertone Inc.가 만든 Supertonic(GitHub 9.9K+ stars)은 ONNX Runtime을 통해 CPU에서 로컬로 돌아가는 초고속 다국어 TTS 모델이다 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supertonic-on-device-multilingual-tts-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

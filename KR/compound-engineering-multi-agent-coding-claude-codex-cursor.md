@@ -1,11 +1,10 @@
 ---
-title: "Compound Engineering: Claude Code, Codex, Cursor를 함께 오케스...
-description: "Compound Engineering(스타 2만 개)는 Claude Code, Codex, Cursor를 위한 멀티 에이전트 오케스트레이션 플러그인입니다. 아이디어 탐색, 계획, ..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
-category: llm-frameworks
-tags: ["compound-engineering", "multi-agent", "claude-code", "codex", "cursor", "planning", "review"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "compound-engineering-multi-agent-coding-claude-codex-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

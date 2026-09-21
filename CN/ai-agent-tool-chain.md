@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-tool-chain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
-description: "Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + m..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -191,7 +198,7 @@ The pattern: Hermes watches LangGraph trace logs (via LangSmith export), correla
 
 ## 9. Day 1 Assembly Order (3 hours)
 
-1. **Spin up VPS + Postgres** (20 min) — {{< aff "digitalocean" "agent-vps" "DigitalOcean $24/mo droplet (8 GB)" >}} + Managed Postgres ($15/mo)
+1. **Spin up VPS + Postgres** (20 min) —  + Managed Postgres ($15/mo)
 2. **Install LangGraph + checkpointer** (15 min) — ````pip install````, write a 30-line hello-world stateful agent, verify it survives a ````kill -9``` and resume
 3. **Add MCP servers** (30 min) — filesystem + git + tavily + e2b-sandbox in your LangGraph node's MCP config
 4. **Add mem0 + AgentMemory MCP** (20 min) — Docker run mem0, add agentmemory to the MCP toolset
@@ -244,7 +251,7 @@ When you outgrow this stack: - **More than 10 concurrent agents** — Move LangG
 5. **Hermes Agent** — self-improvement loop
 6. **e2b sandbox** — safe code execution
 
-Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/mo droplet" >}}, follow section 9, and you have agents that survive restarts, remember context, run code safely, and improve themselves over time — on infrastructure you own for less than the cost of a single Cursor seat.
+Spin up a , follow section 9, and you have agents that survive restarts, remember context, run code safely, and improve themselves over time — on infrastructure you own for less than the cost of a single Cursor seat.
 
 
 * * *

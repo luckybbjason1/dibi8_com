@@ -1,16 +1,14 @@
 ---
-title: "Meilisearch: 번개처럼 빠른 오픈소스 오타 허용 검색 엔진 — 2026 설정 및 벤치마크"
-description: "Meilisearch 1.12를 배포하여 50ms 미만의 오타 허용 고속 검색을 구현하세요. Docker 설정, SDK 통합, 프로덕션 벤치마크 및 대안과의 정직한 비교를 포함합니..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["]
-aliases:
-  - /kr/posts/meilisearch-fast-search-engine/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meilisearch-fast-search-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 데이터베이스의 ```LIKE```` 쿼리가 UX를 죽이고 있다
 
@@ -269,8 +267,8 @@ function App() {
     <InstantSearch searchClient={searchClient} indexName="products">
       <SearchBox />
       <Stats />
-      <div style={{ display: flex, gap: 20px }}>
-        <aside style={{ width: 200px }}>
+      <div style=>
+        <aside style=>
           <RefinementList attribute="category" />
           <RefinementList attribute="in_stock" />
         </aside>
@@ -284,8 +282,8 @@ function App() {
 
 function ProductHit({ hit }) {
   return (
-    <div style={{ padding: 10px, borderBottom: '1px solid #eee' }}>
-      <h4 dangerouslySetInnerHTML={{ __html: hit._highlightResult.name.value }} />
+    <div style=>
+      <h4 dangerouslySetInnerHTML= />
       <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? '재고 있음' : 품절}</p>
     </div>
   );

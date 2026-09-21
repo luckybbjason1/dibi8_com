@@ -1,6 +1,13 @@
 ---
-title: "Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị T...
-description: "Một bộ quy tắc đạo đức thực tiễn cho các AI agent tự hành dành cho kỹ sư — không phải khẩu hiệu trừu..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-code-of-ethics"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-04T00:00:00+08:00
 lastmod: 2026-06-04T00:00:00+08:00
 tech_stack: - AI Agents

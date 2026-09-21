@@ -1,6 +1,13 @@
 ---
-title: 免费 LLM API 资源：无需破产即可访问 AI 模型
-description: 精选的免费 LLM 推理 API 资源列表。使用这些社区维护的免费套餐构建 AI 应用程序，无需 API 费用。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-llm-api-resources-ai-development"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
@@ -304,8 +311,8 @@ response = client.chat.completions.create(
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

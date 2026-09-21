@@ -1,11 +1,10 @@
 ---
-title: "RuView: Trí tuệ không gian WiFi cho Smart Buildings — Py...
-description: "Tìm hiểu cách sử dụng RuView, nền tảng trí tuệ không gian WiFi dựa trên Python theo dõi vị trí thời ..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
-category: ai-tools
-tags: ["ruvnet", "ruview", "wifi", "spatial-intelligence", "position-tracking", "mesh-network", "smart-buildings", "python", "open-source"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,7 +1,10 @@
 ---
-title: "Hreflang 태그 생성기 — 다국어 및 국제 SEO"
-description: "다국어 및 국제 SEO를 위한 복사-붙여넣기 가능한 hreflang 링크 태그를 생성. 각 언어를 해당 URL에 매핑하고 x-default를 추가해 HTML head용 깔끔한 al..."
-tool_id: "hreflang-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hreflang-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

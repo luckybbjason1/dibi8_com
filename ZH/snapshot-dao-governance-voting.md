@@ -1,16 +1,14 @@
 ---
-title: "snapshot-dao-governance-voting"
-description: "{"en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ vo..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["snapshot", "dao", "governance", "voting", "off-chain", "eip-712", "ipfs", "delegation", "defi", "web3"]
-aliases:
-  - /zh/posts/snapshot-dao-governance-voting/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "snapshot-dao-governance-voting"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **日期：** 2026-05-19  
 **分类：** AI交易  
@@ -504,7 +502,7 @@ async function createProposal(
   const proposal = {
     space: "mydao.eth",
     type: "single-choice",        // "single-choice" | "approval" | "quadratic" | "ranked-choice" | "weighted"
-    title: "2026年第二季度国库分配提案",
+title: "AI Tool Guide"
     body: ````## 摘要
 
 本提案为2026年第二季度的运营分配国库资金。
@@ -750,9 +748,9 @@ function notifyDiscord(proposal: any) {
   // 发送通知到Discord Webhook
   const message = {
     embeds: [{
-      title: ````📋 新提案: ${proposal.title}````,
+title: "AI Tool Guide"
       url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
-      description: proposal.body.substring(0, 200) + '...',
+      description: "Technical guide and comparison."
       fields: [
         { name: 空间, value: proposal.space.name, inline: true },
         { name: 作者, value: proposal.author, inline: true },

@@ -1,6 +1,13 @@
 ---
-title: "Open-Sora: 29K+ Stars — Open-Source Video Generation Set...
-description: "Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-sora"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/open-sora/-
 ---
 
-{{</* resource-info */>}}
+
 
 Most developers experimenting with AI video generation hit the same wall: commercial APIs charge $0.10-$0.50 per second of output, self-hosted alternatives require esoteric CUDA knowledge, and the few open-source projects that exist either lack documentation or demand enterprise-grade GPUs. In March 2024, HPC-AI Tech released Open-Sora to change that equation. Fifteen months and 29,000 GitHub stars later, the project has evolved from a research prototype into a production-capable framework capable of generating 5-second 768p videos with quality that rivals commercial alternatives — all on hardware you can rent by the hour.
 

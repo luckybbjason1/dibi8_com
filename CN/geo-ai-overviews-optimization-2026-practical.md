@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "geo-ai-overviews-optimization-2026-practical"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "GEO / AI Overviews Optimization 2026: A Practical Guide ...
-description: "Generative Engine Optimization (GEO) is the new SEO. How to optimize for Google AI Overviews, ChatGP..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
@@ -24,7 +31,7 @@ faq: - q: "What is GEO and how does it differ from SEO?"
     a: "Faster than SEO. AI Overviews crawl + index in days vs months. FAQ schema additions typically appear in AI citations within 1-2 weeks. Full content rewrites for citability take 2-4 weeks to show in answers."
 ---
 
-{{</* resource-info */>}}
+
 
 # GEO / AI Overviews Optimization 2026: Practical Guide
 
@@ -110,8 +117,8 @@ Three metrics to track: 1. **AI citation appearance** (use Google Search Console
 
 ## Recommended Infrastructure
 
-For schema validation + GEO tools: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS for dibi8 hosting
+For schema validation + GEO tools: - **** — $200 credit
+- **** — Hong Kong VPS for dibi8 hosting
 
 *Affiliate links — same price, supports dibi8.com.*
 

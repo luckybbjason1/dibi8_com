@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-security-audit-2026-real-cases"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "MCP Server Security Audit 2026: 5 Real Community Server ...
-description: "Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch...."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [MCP, Security, 'Claude Code', TypeScript, Python]
@@ -17,7 +24,7 @@ aliases:
 faq: - q: "Are Anthropic-maintained MCP servers safer than community ones?"
     a: "Yes, materially. Anthropic reference servers (filesystem, git, github, fetch, sequentialthinking) get internal review, signed releases, and a defined security model. Community servers vary widely — some are audited, most are not. Default to Anthropic when an Anthropic version exists; treat community alternatives as untrusted code with full local permissions until you prove otherwise."
   - q: "What's the biggest real-world MCP attack pattern in 2026?"
-    a: "Three tied for first: (1) Typosquatting — fake packages like `github-mcp-server-v2` that exfiltrate tokens. (2) Maintainer transfer + telemetry — popular community server changes hands, adds analytics that leaks file paths or env vars. (3) Prompt injection via fetched content — `fetch` server pulls hostile markdown, the agent then exfiltrates `~/.ssh/id_rsa` because the prompt tricked it."
+    a: "Three tied for first: (1) Typosquatting — fake packages like ``github-mcp-server-v2`` that exfiltrate tokens. (2) Maintainer transfer + telemetry — popular community server changes hands, adds analytics that leaks file paths or env vars. (3) Prompt injection via fetched content — ``fetch`` server pulls hostile markdown, the agent then exfiltrates ``~/.ssh/id_rsa`` because the prompt tricked it."
   - q: "How long does a proper pre-install audit take?"
     a: "Five minutes if you know what to look for. The 8-point checklist in this article covers maintainer freshness, dependency tree, network calls, file system scope, secret handling, supply chain trail, vulnerability history, and sandbox compatibility. Most community servers fail at least 2 of 8."
   - q: "Should I use fine-grained GitHub PATs with MCP servers?"
@@ -28,7 +35,7 @@ faq: - q: "Are Anthropic-maintained MCP servers safer than community ones?"
     a: "Unexplained network calls in dependency analysis. A filesystem or git MCP server should make zero HTTP calls. A fetch or github server has well-defined endpoints. Anything calling out to a domain you don't recognize (especially via random subdomains or IP literals) is a red flag — and the most common way community servers exfiltrate data."
 ---
 
-{{</* resource-info */>}}
+
 
 # MCP Server Security Audit 2026: 5 Real Community Server Reviews + Trap Patterns
 
@@ -132,8 +139,8 @@ For every community MCP server, before install: ### 1. **Maintainer freshness** 
 
 ## Recommended Infrastructure
 
-If you're running team-shared MCP servers (HTTP/SSE), a hardened VPS makes the sandboxing tractable: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit, easy firewall rules per droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, same IDC as dibi8.com
+If you're running team-shared MCP servers (HTTP/SSE), a hardened VPS makes the sandboxing tractable: - **** — $200 free credit, easy firewall rules per droplet
+- **** — Hong Kong VPS, same IDC as dibi8.com
 
 *Affiliate links — same price, supports dibi8.com.*
 

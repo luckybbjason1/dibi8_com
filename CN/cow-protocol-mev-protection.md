@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cow-protocol-mev-protection"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi...
-description: "Comprehensive guide to CoW Protocol, the MEV-protected DEX aggregator using batch auctions and solve..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/cow-protocol-mev-protection/-
 ---
 
-{{</* resource-info */>}}
+
 
 **Date:** 2026-05-19  
 **Category:** AI Trading  

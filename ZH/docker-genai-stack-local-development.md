@@ -1,16 +1,14 @@
 ---
-title: "Docker GenAI Stack: 一键 Docker Compose 启动 LangChain、向量数据库...
-description: "使用 Docker GenAI Stack 搭建完整的本地 GenAI 开发环境。包含 LangChain、Neo4j、Ollama 和向量数据库的单一 docker-compose 配置。2026 ..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["dev-utils"]
-tags: ["docker genai stack"]
-aliases:
-  - /zh/posts/docker-genai-stack-local-development/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docker-genai-stack-local-development"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：GenAI 开发环境的噩梦
 

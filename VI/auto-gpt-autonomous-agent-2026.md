@@ -1,6 +1,13 @@
 ---
-title: "Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm t...
-description: "Hướng dẫn đầy đủ năm 2026 về tác nhân tự chủ Auto-GPT. Cài đặt mới, giao thức tác nhân, duyệt web, đ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "auto-gpt-autonomous-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Agent đã mở đầu tất cả — Và tại sao nó quay lại
 

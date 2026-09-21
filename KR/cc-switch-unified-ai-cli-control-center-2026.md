@@ -1,6 +1,13 @@
 ---
-title: "CC Switch 완벽 가이드: AI 코딩 에이전트 통합 관리의 새로운 표준 | 2026 최신 오픈소...
-description: "CC Switch는 Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode, Hermes Agent를 하나의 데스크톱 앱에서 관리하는 오픈소스 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-unified-ai-cli-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

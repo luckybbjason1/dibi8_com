@@ -1,6 +1,13 @@
 ---
-title: "개발자 월 20만원 AI 비용을 4만원으로: rtk 완벽 가이드 | LLM 토큰 최적화 2026"
-description: "rtk는 Rust로 작성된 단일 바이너리 CLI 프록시. Claude Code·Cursor·Copilot·Codex 등 13개 AI 코딩 도구의 토큰 소비를 60-90% 절감. 1..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-llm-token-savings-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
@@ -32,7 +39,7 @@ faqs: - q: 'rtk란 무엇이며 AI 코딩 비용을 얼마나 절감할 수 있�
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

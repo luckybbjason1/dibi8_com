@@ -1,16 +1,14 @@
 ---
-title: "BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰"
-description: "BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["bookstack", "문서화", "wiki", "셀프 호스팅", "php", "laravel", "지식 베이스", "markdown", "docker", "오픈소스"]
-aliases:
-  - /kr/posts/bookstack-documentation-wiki/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bookstack-documentation-wiki"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 모든 팀이 겪는 문서 난장판
 
@@ -262,7 +260,7 @@ jobs: publish: runs-on: ubuntu-latest
       - name: Upload to BookStack via API
         run: |
           curl -X PUT \
-            -H "Authorization: Token ${{ secrets.BOOKSTACK_API_TOKEN }}" \
+            -H "Authorization: Token $" \
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'$(cat docs/api.html | base64 -w 0)'"}' \
             "https://docs.yourdomain.com/api/pages/42"
@@ -358,7 +356,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, ! Check out the onboarding docs.
 </div>
 `````
 

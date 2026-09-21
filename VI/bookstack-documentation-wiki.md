@@ -1,6 +1,13 @@
 ---
-title: "BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, ...
-description: "Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Ma..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bookstack-documentation-wiki"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt
 
@@ -273,7 +280,7 @@ jobs: publish: runs-on: ubuntu-latest
       - name: Upload to BookStack via API
         run: |
           curl -X PUT \
-            -H "Authorization: Token ${{ secrets.BOOKSTACK_API_TOKEN }}" \
+            -H "Authorization: Token $" \
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'"$(cat docs/api.html | base64 -w 0)"'"}' \
             "https://docs.yourdomain.com/api/pages/42"
@@ -369,7 +376,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, ! Check out the onboarding docs.
 </div>
 `````
 

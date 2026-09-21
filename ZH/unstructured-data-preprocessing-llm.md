@@ -1,16 +1,14 @@
 ---
-title: "Unstructured.io: 将任何文档转换为LLM就绪数据块的预处理流水线 — 2026指南"
-description: "Unstructured.io 实用2026指南 — 这款开源文档预处理库可将PDF、DOCX、PPTX和图像转换为干净、结构化的文本块，为LLM和RAG流水线做好准备。". Comprehensiv..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["unstructured", "文档解析", "大语言模型", "rag", "数据预处理", "pdf", "分块", "开源"]
-aliases:
-  - /zh/posts/unstructured-data-preprocessing-llm/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "unstructured-data-preprocessing-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：每个RAG流水线背后不为人知的痛点
 

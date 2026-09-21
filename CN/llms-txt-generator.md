@@ -1,10 +1,10 @@
 ---
-title: "llms.txt Generator — Help AI Crawlers (ChatGPT, Claude, ..."
-description: "Generate a valid llms.txt file for your website in seconds. Help AI crawlers like ChatGPT, Claude, a..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-llms-txt-generator"
-tool_id: "llms-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llms-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

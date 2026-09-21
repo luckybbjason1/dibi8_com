@@ -1,6 +1,13 @@
 ---
-title: "MeloTTS: 7.4K+ Stars — 다국어 TTS 벤치마크 Coqui TTS, ChatTTS, ...
-description: "MeloTTS는 7.4K+ Stars를 보유한 고품질 다국어 텍스트 음성 변환 라이브러리입니다. Coqui TTS, ChatTTS, Bark와의 벤치마크 비교. Python 설치,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "melotts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 대부분의 오픈소스 TTS 라이브러리는 품질과 속도 사이에서 선택을 강요합니다: 고품질을 위해서는 GPU가 필요하고, CPU 친화적인 옵션은 로봇처럼 들립니다. MIT와 MyShell.ai 연구원들이 개발한 MeloTTS는 이 트레이드오프를 깨뜨립니다. 7,400개 이상의 GitHub Stars와 MIT 라이선스를 보유한 이 라이브러리는 CPU에서 6개 언어와 여러 영어 억양으로 실시간 다국어 음성 합성을 제공합니다. 이 가이드에서는 MeloTTS의 완전한 설치 설정, Coqui TTS, ChatTTS, Bark와의 벤치마크 비교, 그리고 프로덕션 배포 구성을 다룹니다.
 

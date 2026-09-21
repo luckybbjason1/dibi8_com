@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crawl4ai-tutorial-llm-ready-web-scraping-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
-description: "Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friend..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

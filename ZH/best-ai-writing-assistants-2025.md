@@ -1,9 +1,10 @@
 ---
-title: "2025年最佳AI写作助手对比：Jasper、Copy.ai、Writesonic与ChatGPT全面评测"
-description: "2025年AI写作助手全面对比评测，深入分析Jasper、Copy.ai、Writesonic、ChatGPT、Claude、Notion AI等工具的功能、定价与最佳使用场景。". Comprehe..."
-draft: false
-aliases:
-  - /posts/best-ai-writing-assistants-2025/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-writing-assistants-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳AI写作助手对比：Jasper、Copy.ai、Writesonic与ChatGPT全面评测

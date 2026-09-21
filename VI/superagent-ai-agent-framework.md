@@ -1,6 +1,13 @@
 ---
-title: "Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1...
-description: "Hướng dẫn thực hành triển khai AI Agent với Superagent. Một lệnh CLI, hỗ trợ nhiều LLM, workflow RAG..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superagent-ai-agent-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Khoảng Cách Triển Khai Không Ai Nói Đến
 
@@ -398,17 +405,17 @@ workflow = client.workflow.create(
     steps=[
         {
             "agent": "research-agent",
-            "input": "Research the topic: {{topic}}",
+            "input": "Research the topic: ",
             "output_key": "research_notes"
         },
         {
             "agent": "writer-agent",
-            "input": "Write a blog post based on: {{research_notes}}",
+            "input": "Write a blog post based on: ",
             "output_key": "draft"
         },
         {
             "agent": "editor-agent",
-            "input": "Review and improve: {{draft}}",
+            "input": "Review and improve: ",
             "output_key": "final_post"
         }
     ]

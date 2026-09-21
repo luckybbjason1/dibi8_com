@@ -1,26 +1,14 @@
 ---
-title: "AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM 实测对比"
-description: "没有持久化记忆的 Agent 每次会话都从零开始。在同一个多会话负载下实测 Letta、Mem0、A-MEM：到底谁能真正留住上下文、谁更省钱、什么时候应该自研。". Comprehensive gu..."
-licensing_model: 开源
-license_type: 'Apache-2.0 / MIT'
-last_maintained: "2026-05-25"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["ai-agent", "memory", "persistence", "letta", "mem0", "2026"]
-aliases:
-  - /zh/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/
-faq: - q: "为什么 AI Agent 需要持久化记忆？"
-    a: "没有持久化，每次会话都得从零开始 —— Agent 记不住昨天的偏好、决策或上下文。对于持续协作的场景（编程搭档、研究助理、面向客户的聊天机器人），持久化记忆就是「工具」和「伙伴」的分水岭。"
-  - q: "这三者的路线有何不同？"
-    a: "Letta 采用类似操作系统的记忆分层（core / archival / recall）。Mem0 主打开发者体验，提供简洁的 add/search API。A-MEM 偏研究向，带主动遗忘和衰减机制。三者解决同一个问题，但切入点不同。"
-  - q: "我能不能直接用 MCP memory server 代替？"
-    a: "单人或轻量场景：可以。官方 MCP memory server 更简单，但缺少检索打分、衰减和跨会话推理能力。对于复杂的多轮 Agent，Letta 或 Mem0 这类专用记忆框架更胜一筹。"
-  - q: "Agent 记忆值得这份复杂度吗？"
-    a: "对于面向真实用户的生产级 Agent：值得，差异显著。「记得你」和「从零开始」之间的体验差距很大。对于一次性任务或简单工作流：不值得。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM
 
@@ -163,8 +151,8 @@ Letta 集成更重，但能拿到更完整的分层能力。
 ## 推荐基础设施
 
 记忆框架 + 向量数据库托管推荐：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— $200 抵扣
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS
+- **** —— $200 抵扣
+- **** —— 香港 VPS
 
 *联盟链接 —— 价格一致，支持 dibi8.com。*
 

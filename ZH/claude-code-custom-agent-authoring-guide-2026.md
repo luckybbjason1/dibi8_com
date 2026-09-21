@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）"
-description: "完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。". Compre..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-custom-agent-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 last_maintained: "2026-05-28"
 draft: false
 categories: ["llm-frameworks"]
@@ -46,7 +53,7 @@ faq: - q: "自定义 agent 的定义文件放在哪里？是什么格式？"
 
 * * *
 name: migration-reviewer
-description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 
@@ -71,8 +78,8 @@ agent 的身份——这是父 agent 作为 ````subagent_type```` 传入的字�
 
 这是**路由信号**。父 agent 决定是否委派时，读的是 description，不是系统提示词。所以 description 必须用具体的触发条件编码出『何时』该找这个 agent：
 
-> ❌ ````description: A code reviewer.````
-> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
+> ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 "proactively"（主动地）这个词是承重的——它推动父 agent 不必被明确要求就主动调用。如果你的 agent 似乎从不触发，几乎总是 description 的问题。
 
@@ -122,7 +129,7 @@ End with a one-line VERDICT: SAFE TO MERGE or NEEDS CHANGES.
 `````markdown
 * * *
 name: migration-reviewer
-description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -149,7 +156,7 @@ End with VERDICT: SAFE TO MERGE or NEEDS CHANGES.
 `````markdown
 * * *
 name: security-gate
-description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: opus
 * * *
@@ -196,9 +203,9 @@ cheap, a missed auth hole is not.
 
 要大规模运行自定义 agent 流水线，你需要稳定的基础设施：
 
-1. **一台跑长会话和 CI 的可靠主机。**自定义 agent 在 CI 里最闪光，它在那儿为每个 PR 把关。你需要一台不会掉任务的机器。**{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS，从中国大陆低延迟接入、BGP 路由稳定。它就是托管 dibi8.com 的同一个 IDC，我们自己的 agent 流水线就跑在上面。性价比档位 $5-12/月。
+1. **一台跑长会话和 CI 的可靠主机。**自定义 agent 在 CI 里最闪光，它在那儿为每个 PR 把关。你需要一台不会掉任务的机器。**** —— 香港 VPS，从中国大陆低延迟接入、BGP 路由稳定。它就是托管 dibi8.com 的同一个 IDC，我们自己的 agent 流水线就跑在上面。性价比档位 $5-12/月。
 
-2. **跑并行闸门的云端余量。**当编排者同时扇出 migration-reviewer + security-gate + perf-checker 时，你想要富余的 CPU。**{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— 60 天 $200 免费额度、覆盖 14+ 区域，很适合把 CI runner 放在你的应用旁边。
+2. **跑并行闸门的云端余量。**当编排者同时扇出 migration-reviewer + security-gate + perf-checker 时，你想要富余的 CPU。**** —— 60 天 $200 免费额度、覆盖 14+ 区域，很适合把 CI runner 放在你的应用旁边。
 
 3. **一个技能包。**最陡的那段曲线，是写出不会翻车的 agent 定义。我们把五个实测过的技能打包成 Gumroad 上的 $19 bundle——见角落的浮动 CTA——里面含编排者提示词，外加另外三个可直接上线的 agent 定义。
 

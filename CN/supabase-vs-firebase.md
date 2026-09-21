@@ -1,21 +1,10 @@
 ---
-title: "Supabase vs Firebase in 2026: Which BaaS Wins?"
-description: "Postgres open-source Supabase vs Google NoSQL Firebase — database, auth, storage, realtime, edge fun..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
-categories: ["vs"]
-faqs: - q: 'Is Supabase or Firebase cheaper?'
-    a: 'For small projects both have generous free tiers, but Supabase is structurally cheaper at scale because Postgres reads are not metered per-row. Firebase Firestore bills per document read — a single dashboard query that pulls 10K docs costs real money on Firebase but is free on Supabase if it stays inside the included compute. For analytics-heavy workloads, Supabase wins by 5-10x on monthly bills.'
-  - q: 'Which is better for relational data?'
-    a: 'Supabase wins by a wide margin — it is literally Postgres under the hood, so you get joins, foreign keys, transactions, views, and CTEs out of the box. Firebase Firestore is NoSQL/document-based and forces you to denormalize or do client-side joins. If your data has any relationships (users, orders, products), pick Supabase.'
-  - q: 'Can I self-host Supabase or Firebase?'
-    a: 'Supabase yes, Firebase no. Supabase is fully open source (Apache 2.0 / PostgreSQL license) and you can run the entire stack on your own server with Docker Compose. Firebase is a closed Google service — there is no self-host option, and your only escape is a full migration.'
-  - q: 'Which has better realtime?'
-    a: 'Firebase realtime is more mature — it has been the flagship feature since 2012 and handles millions of concurrent connections with no tuning. Supabase realtime (Postgres logical replication + Phoenix Channels) is newer but catching up fast and works well under 10K concurrent clients. For chat/presence apps under 10K users, both are fine; above that, Firebase has the edge.'
-  - q: 'Which is better for AI/vector search?'
-    a: 'Supabase wins decisively — it ships pgvector built in, so you can store embeddings and run cosine-similarity searches in the same database as your app data. Firebase has no native vector support and requires bolting on Vertex AI or a separate vector DB. For RAG/AI apps in 2026, Supabase is the obvious pick.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-vs-firebase"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Supabase vs Firebase in 2026: Which BaaS Wins?
@@ -160,7 +149,7 @@ For analytics-heavy or AI/RAG apps: **Supabase wins 5-10x** on monthly bills.
 - Budget for surprise bills the first month — set up GCP budget alerts day one
 
 ### Self-Hosting Note
-Want to run Supabase on your own server to escape cloud bills entirely or to keep data on-prem for compliance? Spin up a {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet with $200 free credit" >}} — a $24/mo 4 GB droplet handles a self-hosted Supabase stack (Postgres + GoTrue + Storage + Realtime + Studio) for a small-to-medium SaaS comfortably. Cheaper than Supabase Pro after month 4, and your data never leaves your infrastructure. Firebase has no equivalent — there's no way to self-host out of Google's cloud.
+Want to run Supabase on your own server to escape cloud bills entirely or to keep data on-prem for compliance? Spin up a  — a $24/mo 4 GB droplet handles a self-hosted Supabase stack (Postgres + GoTrue + Storage + Realtime + Studio) for a small-to-medium SaaS comfortably. Cheaper than Supabase Pro after month 4, and your data never leaves your infrastructure. Firebase has no equivalent — there's no way to self-host out of Google's cloud.
 
 * * *
 
@@ -203,7 +192,7 @@ For an indie dev shipping a SaaS in 2026? **Supabase Pro $25/mo** is the best ra
 
 **Self-hosting Supabase in Asia?** A Hong Kong VPS gives you the lowest-latency Supabase stack for users in China and SEA.
 
-- **{{< aff "htstack" "vs-footer" "HTStack" >}}** — Hong Kong VPS, same IDC that hosts dibi8.com. Complements DigitalOcean if you have multi-region users — HTStack for Asia, DigitalOcean for US/EU. Self-host Supabase (Postgres + GoTrue + Storage + Realtime) without Google/Cloud lock-in.
+- **** — Hong Kong VPS, same IDC that hosts dibi8.com. Complements DigitalOcean if you have multi-region users — HTStack for Asia, DigitalOcean for US/EU. Self-host Supabase (Postgres + GoTrue + Storage + Realtime) without Google/Cloud lock-in.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meilisearch-fast-search-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Meilisearch: The Lightning-Fast Open-Source Search Engin...
-description: "Deploy Meilisearch 1.12 for lightning-fast typo-tolerant search with sub-50ms latency. Docker setup,..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/meilisearch-fast-search-engine/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Your Database's ```LIKE```` Query Is Killing Your UX
 
@@ -283,8 +290,8 @@ function App() {
     <InstantSearch searchClient={searchClient} indexName="products">
       <SearchBox />
       <Stats />
-      <div style={{ display: flex, gap: 20px }}>
-        <aside style={{ width: 200px }}>
+      <div style=>
+        <aside style=>
           <RefinementList attribute="category" />
           <RefinementList attribute="in_stock" />
         </aside>
@@ -298,8 +305,8 @@ function App() {
 
 function ProductHit({ hit }) {
   return (
-    <div style={{ padding: 10px, borderBottom: '1px solid #eee' }}>
-      <h4 dangerouslySetInnerHTML={{ __html: hit._highlightResult.name.value }} />
+    <div style=>
+      <h4 dangerouslySetInnerHTML= />
       <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? 'In Stock' : 'Out of Stock'}</p>
     </div>
   );

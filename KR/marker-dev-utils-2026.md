@@ -1,6 +1,13 @@
 ---
-title: "Marker: PDF, DOCX, EPUB를 Markdown/JSON으로 빠르게 변환 — 2026 실...
-description: "Marker(datalab-to/marker)는 PDF, DOCX, EPUB 등 문서를 Markdown, JSON, HTML, chunks로 빠르고 정확하게 변환합니다. GitHu..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "marker-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,19 +26,19 @@ tags: ["]
 aliases:
   - /posts/marker-dev-utils-2026/
 faqs: - q: 'marker는 어떻게 설치하나요?'
-    a: 'PyPI에서 `pip install marker-pdf`로 설치합니다. PDF가 아닌 형식(DOCX", "PPTX", "XLSX", "EPUB", "HTML", "이미지)에는 `pip install marker-pdf[full"]`을 사용하세요.'
+    a: 'PyPI에서 ``pip install marker-pdf``로 설치합니다. PDF가 아닌 형식(DOCX", "PPTX", "XLSX", "EPUB", "HTML", "이미지)에는 ``pip install marker-pdf[full"]``을 사용하세요.'
   - q: '상업 프로젝트에 사용할 수 있나요?'
     a: '코드는 GPL-3.0 라이선스이지만, 모델 가중치는 수정된 AI Pubs Open Rail-M 라이선스를 사용합니다. 이 라이선스는 연구·개인 사용과 자금/매출이 대략 200만 달러 미만인 기업에는 무료이며, 더 큰 상업 사용자는 Datalab의 상업용 라이선스가 필요합니다. 배포 전에 최신 조항을 확인하세요.'
   - q: 'marker는 어떤 종류의 문서를 처리할 수 있나요?'
     a: 'Marker는 PDF, 이미지, PPTX, DOCX, XLSX, HTML, EPUB를 지원합니다. 출력은 Markdown, JSON, HTML, 또는 RAG에 적합한 chunks로 가능합니다.'
   - q: '출력 형식을 커스터마이즈할 방법이 있나요?'
-    a: '있습니다. CLI 플래그 `--output_format [markdown|json|html|chunks]`를 사용하거나, Python API에서 `ConfigParser`를 통해 `{"output_format": "..."}`를 전달하세요. Marker는 커스텀 processor와 renderer로도 확장할 수 있습니다.'
+    a: '있습니다. CLI 플래그 ``--output_format [markdown|json|html|chunks]``를 사용하거나, Python API에서 ``ConfigParser``를 통해 ``{"output_format": "..."}``를 전달하세요. Marker는 커스텀 processor와 renderer로도 확장할 수 있습니다.'
   - q: '문제를 보고하거나 기능을 요청하려면 어떻게 하나요?'
     a: 'GitHub 저장소 <https://github.com/datalab-to/marker>를 방문해 Issues 탭에서 문제나 제안을 상세히 적어 새 이슈를 등록하세요.'
 ---
 
 
-{{< resource-info >}}
+
 
 ## 들어가며
 

@@ -1,6 +1,13 @@
 ---
-title: "Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南"
-description: "Apache Superset 2026 完整指南 — 5分钟内通过Docker安装，连接30多个数据源，构建50多种图表类型，并部署具有基于角色的访问控制的生产级仪表板。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "preset-superset-data-exploration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：你的BI工具栈为什么成本过高
 
@@ -244,7 +251,7 @@ ROW_LEVEL_SECURITY_FILTERING = True
 
 # 在界面中定义过滤器：
 # 表：orders
-# 过滤条件：region = '{{ current_username() }}'
+# 过滤条件：region = ''
 # 组：销售团队
 `````
 

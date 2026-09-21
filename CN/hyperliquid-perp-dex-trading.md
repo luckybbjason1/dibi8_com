@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hyperliquid-perp-dex-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Hyperliquid 2026: The On-Chain Perpetual DEX Processing ...
-description: "Comprehensive guide to Hyperliquid, the fully on-chain perpetual DEX processing $2B+ daily volume wi..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/hyperliquid-perp-dex-trading/-
 ---
 
-{{</* resource-info */>}}
+
 
 **Date:** 2026-05-19  
 **Category:** AI Trading  

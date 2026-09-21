@@ -1,6 +1,13 @@
 ---
-title: "Browser Use: 94K+ Stars — 2026年 AI 浏览器自动化基准测试与实战"
-description: "Browser Use 是一款开源 Python 框架，通过 Playwright 连接 LLM 与真实浏览器。支持 OpenAI、Anthropic、Gemini 及本地模型。涵盖安装配置、WebV..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "browser-use"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 

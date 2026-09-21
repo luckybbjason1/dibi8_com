@@ -1,11 +1,10 @@
 ---
-title: "ECC: Optimize Claude Code, Codex, and Cursor Performance...
-description: "ECC (Agent Harness Performance Optimization) reduces context window usage and speeds up AI coding ag..."
-tags: ["ai-agent", "ai-editor", "anthropic", "automation", "claude", "coding-agent", "cursor", "guide", "open-source", "reference", "tutorial"]
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'ecc-agent-harness-performance-optimization'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ecc-agent-harness-performance-optimization"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # ECC: Agent Harness Performance Optimization — 2026 Guide

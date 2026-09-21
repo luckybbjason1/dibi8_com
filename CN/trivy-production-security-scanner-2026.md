@@ -1,11 +1,10 @@
 ---
-title: "Trivy: Stop Shipping Vulnerable Containers to Production...
-description: "Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works w..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
-category: 'dev-utils'
-tags: ["security", "containers", "vulnerability-scanning", "devops", "kubernetes", "sast", "iac", "supply-chain"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trivy-production-security-scanner-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)

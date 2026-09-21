@@ -1,11 +1,10 @@
 ---
-title: "AI-Trader：来自 HKUDS 的原生 AI 交易平台"
-description: "AI-Trader 是 HKUDS 推出的原生 AI 交易平台，使 Claude Code、Codex、Cursor 和 OpenClaw 等 AI 编程代理能够自主执行交易、管理投资组合和优化策略。"
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: hkuds-ai-trader
-category: ai-trading
-tags: ["ai-trader", "HKUDS", "ai-trading", "原生代理", "自主交易", "投资组合管理", "AI 代理"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hkuds-ai-trader"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

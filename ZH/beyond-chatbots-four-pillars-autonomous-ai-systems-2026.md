@@ -1,6 +1,13 @@
 ---
-title: "超越聊天机器人：2026年自主AI系统的四大支柱"
-description: "Local Deep Research、InsForge、Agent Skills 和 Karpathy 原则如何构成真正的自主AI代理的完整技术栈——从深度研究到生产部署。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "beyond-chatbots-four-pillars-autonomous-ai-systems-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -181,7 +188,7 @@ The future of software development isn't humans replacing AI or AI replacing hum
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
@@ -189,7 +196,7 @@ The future of software development isn't humans replacing AI or AI replacing hum
 
 **需要稳定的 Claude / OpenAI API 访问？** 这个领域的项目最终都会撞 Anthropic / OpenAI 限流或价格墙。
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 

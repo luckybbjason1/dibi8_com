@@ -1,6 +1,13 @@
 ---
-title: "PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
-description: "Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiế..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pancake-trading-bot-defi-bsc"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Bài Học 4,2 Tỷ USD Trong Tự Động Hóa DeFi
 

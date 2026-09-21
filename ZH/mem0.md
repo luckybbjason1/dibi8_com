@@ -1,6 +1,13 @@
 ---
-title: "Mem0: 56K+ Stars — AI智能体内存性能调优指南 2026"
-description: "Mem0 (mem0ai) 是面向 AI 智能体的通用记忆层。兼容 Claude Code、OpenAI、LangChain、CrewAI、Cursor。涵盖 mem0 教程、持久化记忆设置、向量存储..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mem0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言
 
@@ -370,7 +377,7 @@ researcher = Agent(
 
 # 使用记忆的任务
 task = Task(
-    description="""Research travel options for user {{user_id}}.
+    description="""Research travel options for user .
     First retrieve their preferences, then provide personalized recommendations.
     Query: travel preferences""",
     expected_output="Personalized travel recommendations",

@@ -1,6 +1,13 @@
 ---
-title: "OpenRouter：连接300+模型的统一LLM API网关，节省40%成本 —— 2026年设置指南"
-description: "OpenRouter完整指南：通过统一OpenAI兼容端点访问60+提供商的300+AI模型。学习5分钟内的设置、集成、基准测试和生产部署。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openrouter-unified-llm-api-gateway"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：每个开发者都面临的API密钥噩梦
 

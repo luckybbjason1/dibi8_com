@@ -1,6 +1,13 @@
 ---
-title: "Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng c...
-description: "Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dun..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "directus-headless-cms-ai-content"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao CMS của bạn vẫn là điểm nghẽn trong năm 2026
 
@@ -286,7 +293,7 @@ console.log(````Tìm thấy ${articles.length} articles````);
 // Tạo article
 const newArticle = await client.request(
   createItem(articles, {
-    title: 'Chiến lược nội dung AI',
+    title: "AI Tool Guide"
     content: 'Tạo bằng GPT-4...',
     status: draft,
     ai_generated: true,

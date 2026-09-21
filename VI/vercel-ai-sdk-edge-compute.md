@@ -1,12 +1,10 @@
 ---
-title: Vercel AI SDK — Xây Dựng Ứng Dụng AI Streaming Với Kiến T...
-description: Hướng dẫn toàn diện về Vercel AI SDK để xây dựng ứng dụng AI production. Stream response LLM, tích hợp nhiều provider và deploy đến edge với zero config. Hỗ trợ React, Next.js và mọi framework.
-tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: vercel-ai-sdk-edge-compute
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vercel-ai-sdk-edge-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -205,7 +203,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const ArticleSchema = z.object({
-  title: z.string().describe("Tiêu đề bài viết"),
+  title: "AI Tool Guide"
   summary: z.string().describe("Tóm tắt một đoạn"),
   tags: z.array(z.string()).describe("Tag liên quan"),
   readingTime: z.number().describe("Thời gian đọc ước tính phút"),
@@ -306,7 +304,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "Tìm kiếm web cho thông tin hiện tại",
+      description: "Technical guide and comparison."
       parameters: z.object({
         query: z.string().describ..."
   },

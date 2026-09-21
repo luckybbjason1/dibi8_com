@@ -1,6 +1,13 @@
 ---
-title: "Marker：快速将 PDF、DOCX 与 EPUB 转为 Markdown/JSON —— 2026 实用指南"
-description: "Marker（datalab-to/marker）能快速、准确地把 PDF、DOCX、EPUB 等文档转成 Markdown、JSON、HTML 和 chunks。35,694 个 GitHub st..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "marker-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,18 +26,18 @@ tags: ["]
 aliases:
   - /posts/marker-dev-utils-2026/
 faqs: - q: '怎么安装 marker？'
-    a: '从 PyPI 安装：`pip install marker-pdf`。如果要处理非 PDF 格式（DOCX、PPTX、XLSX、EPUB、HTML、图片），用 `pip install marker-pdf[full"]`。'
+    a: '从 PyPI 安装：``pip install marker-pdf``。如果要处理非 PDF 格式（DOCX、PPTX、XLSX、EPUB、HTML、图片），用 ``pip install marker-pdf[full"]``。'
   - q: '这个工具能用于商业项目吗？'
     a: '代码采用 GPL-3.0 许可，但模型权重用的是经过修改的 AI Pubs Open Rail-M 许可。该许可对研究、个人使用以及资金/营收大致低于 200 万美元的公司免费；更大的商业用户需要向 Datalab 申请商业许可。部署前请先核对当前条款。'
   - q: 'marker 能处理哪些类型的文档？'
     a: 'Marker 支持 PDF、图片、PPTX、DOCX、XLSX、HTML 和 EPUB。输出可以是 Markdown、JSON、HTML，或适合 RAG 的 chunks。'
   - q: '有办法自定义输出格式吗？'
-    a: '可以。使用 CLI 参数 `--output_format [markdown|json|html|chunks]`，或在 Python API 里通过 `ConfigParser` 传入 `{"output_format": "..."}`。Marker 还支持用自定义的 processor 和 renderer 进行扩展。'
+    a: '可以。使用 CLI 参数 ``--output_format [markdown|json|html|chunks]``，或在 Python API 里通过 ``ConfigParser`` 传入 ``{"output_format": "..."}``。Marker 还支持用自定义的 processor 和 renderer 进行扩展。'
   - q: '怎么报告问题或提需求？'
     a: '访问 GitHub 仓库 ，在 Issues 标签页里新建一个 issue，并详细描述你的问题或建议。'---
 
 
-{{< resource-info >}}
+
 
 ## 引言
 

@@ -1,6 +1,13 @@
 ---
-title: "Aider: 45K+ Stars — 터미널 AI 페어 프로그래밍 vs Claude Code, Curs...
-description: "Aider는 로컬 git 저장소에서 코드를 편집하는 터미널 AI 페어 프로그래밍 도구입니다. OpenAI, Claude, DeepSeek, Gemini을 지원합니다. Aider 설..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

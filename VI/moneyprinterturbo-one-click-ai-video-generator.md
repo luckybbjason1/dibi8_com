@@ -1,17 +1,10 @@
 ---
-title: "MoneyPrinterTurbo: Trình Tạo Video AI Chỉ Với Một Nhấp C...
-description: "Đưa cho MoneyPrinterTurbo một chủ đề video hoặc từ khóa và nó tự động tạo kịch bản, video có sẵn, ph..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "video generation", "short videos", "automation", "self-hosted", "docker"]
-categories: ["ai-tools"]
-slug: moneyprinterturbo-one-click-ai-video-generator
-aliases: ['/moneyprinterturbo']
-sources: - name: GitHub
-    url: 'https://github.com/harry0703/MoneyPrinterTurbo'
-  - name: 'Demo Videos'
-    url: 'https://github.com/harry0703/MoneyPrinterTurbo#video-demo'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moneyprinterturbo-one-click-ai-video-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {
@@ -46,7 +39,7 @@ sources: - name: GitHub
 
 
 title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars'
-description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtit..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

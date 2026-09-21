@@ -1,6 +1,13 @@
 ---
-title: "Stack LLM Giá Rẻ 2026: Chạy AI Production $0-15/Tháng Bằ...
-description: "Stack 5 thành phần chạy workload AI thực tế $0-15/tháng: Ollama local + DeepSeek API + Gemini free t..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cheap-llm-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -206,7 +213,7 @@ Stack $0-15 hoạt động đến khi đụng bất kỳ điều nào: - **Yêu 
 4. **Proxy RTK** — tiết kiệm 20-40% token trên API có phí
 5. **9Router** — orchestrator routing thông minh
 
-Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất kỳ. Chạy trên laptop được (LLM rẻ không cần VPS cụ thể — nhưng {{< aff "digitalocean" "footer-cta" "droplet DigitalOcean $6/tháng" >}} giúp nếu muốn always-on cho team).
+Stack tự hoàn vốn nếu bạn hiện tiêu $30+/tháng cho AI SaaS bất kỳ. Chạy trên laptop được (LLM rẻ không cần VPS cụ thể — nhưng  giúp nếu muốn always-on cho team).
 
 * * *
 

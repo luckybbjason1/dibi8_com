@@ -1,6 +1,13 @@
 ---
-title: "act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 ...
-description: "act (nektos/act) 是一个使用 Docker 容器在本地运行 GitHub Actions 工作流的 CLI 工具。兼容 Docker、GitHub Actions、Go 和 VS Co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "act"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![act logo](https://raw.githubusercontent.com/nektos/act/master/img/act-logo.png)
 
@@ -423,16 +430,16 @@ EOF
 
 `````yaml
 # 在你的工作流文件中
-jobs: deploy: if: ${{ !github.event.act }}  # 本地运行时跳过部署作业
+jobs: deploy: if: $  # 本地运行时跳过部署作业
     runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
 
   notify: runs-on: ubuntu-latest
     steps: - name: 本地运行时跳过 Slack 通知
-        if: ${{ !env.ACT }}
+        if: $
         run: |
           curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
+            --data '{"text":"Deployment complete"}' $
 `````
 
 通过事件传递 act 标志：

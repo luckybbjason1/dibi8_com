@@ -1,6 +1,13 @@
 ---
-title: "Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Li...
-description: "Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trino-distributed-sql-query"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Khi Data Warehouse Củng Củng Trước Dữ Liệu Petabyte
 
@@ -249,7 +256,7 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
             INSERT INTO analytics.daily_metrics
             SELECT DATE(event_time), COUNT(*), SUM(amount)
             FROM iceberg.raw.events
-            WHERE DATE(event_time) = '{{ ds }}'
+            WHERE DATE(event_time) = ''
             GROUP BY 1
         """,
         trino_conn_id="trino_default",

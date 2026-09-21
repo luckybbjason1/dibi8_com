@@ -1,6 +1,13 @@
 ---
-title: "CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
-description: "CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/llm-frameworks/crewai-multi-agent-orchestration/-
 ---
 
-{{</* resource-info */>}}
+
 
 > How to install CrewAI, configure agent roles, wire tasks, and ship production-ready multi-agent systems in under 30 minutes.
 
@@ -206,7 +213,7 @@ Key configuration options per agent: | Parameter | Description | Example |
 Edit ``src/research_crew/config/tasks.yaml``: `````yaml
 # src/research_crew/config/tasks.yaml
 
-research_task: description: >
+research_task: description: "Technical guide and comparison."
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -215,7 +222,7 @@ research_task: description: >
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task: description: >
+writing_task: description: "Technical guide and comparison."
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -225,7 +232,7 @@ writing_task: description: >
   agent: writer
   context: [research_task]
 
-editing_task: description: >
+editing_task: description: "Technical guide and comparison."
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -328,7 +335,7 @@ Expected output: `````
 ...
 [2026-05-20 10:25:18] Working Agent: Senior Content Editor
 ...
-========== FINAL OUTPUT ==========
+
 [The complete edited article appears here]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 `````

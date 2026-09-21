@@ -1,10 +1,10 @@
 ---
-title: "Schema.org JSON-LD 结构化数据生成器"
-description: "一键生成 Article、Organization、FAQPage、Product、BreadcrumbList 的 Schema.org JSON-LD 结构化数据。Google / Bing / ..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-schema-generator"
-tool_id: "schema-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "schema-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

@@ -1,16 +1,14 @@
 ---
-title: "Docmost 2026: 실시간 팀 협업을 위한 오픈소스 Notion 대안 — 셀프 호스팅 가이드"
-description: "Docmost 완벽 셀프 호스팅 가이드. 실시간 편집, Notion 스타일 블록 편집기, 중첩 페이지, PostgreSQL 백엔드를 갖춘 오픈소스 협업 Wiki. 5분 안에 배포...."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["docmost", "notion 대안", "wiki", "실시간 협업", "셀프 호스팅", "문서", "postgresql", "docker", "오픈소스", "팀 문서"]
-aliases:
-  - /kr/posts/docmost-team-docs-collaboration/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docmost-team-docs-collaboration"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 팀이 셀프 호스팅 Notion 대안이 필요한 이유
 
@@ -271,7 +269,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           curl -X POST \
             "https://docs.yourdomain.com/api/pages" \
-            -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d @payload.json
 `````

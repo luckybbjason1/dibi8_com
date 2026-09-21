@@ -1,6 +1,13 @@
 ---
-title: "为什么经典的 Roop 最终走向了死亡？"
-description: "为什么经典的 Roop 最终走向了死亡？"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "facefusion-architecture-onnx-video-face-swap"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
@@ -126,7 +133,7 @@ def apply_execution_provider_options(execution_providers): """
 
 2. **坑点二：多并发导致的模型重复加载耗尽内存**
    - **症状**：在后端开启 3 个并发任务同时处理 3 个短视频时，系统 RAM 瞬间被占满（32GB 都不够用），系统卡死。
-   - **解决方案**：FaceFusion 默认在每个进程中独立加载庞大的检测模型（如 ``yoloface``）和增强模型（如 ``gfpgan`）。在服务器部署时，切忌使用多进程（Multiprocessing）并发调用 API，必须使用基于队列的单进程单例模式，将所有的请求丢入一个全局队列串行处理，让模型常驻显存。
+   - **解决方案**：FaceFusion 默认在每个进程中独立加载庞大的检测模型（如 ``yoloface``）和增强模型（如 ``gfpgan``）。在服务器部署时，切忌使用多进程（Multiprocessing）并发调用 API，必须使用基于队列的单进程单例模式，将所有的请求丢入一个全局队列串行处理，让模型常驻显存。
 
 ## 商业闭环：收割视觉红利的流量密码
 
@@ -148,8 +155,8 @@ def apply_execution_provider_options(execution_providers): """
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

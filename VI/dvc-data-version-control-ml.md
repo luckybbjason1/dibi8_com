@@ -1,6 +1,13 @@
 ---
-title: "DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipelin...
-description: "Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với w..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dvc-data-version-control-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Dataset Đã Phá Vỡ Git Repository
 
@@ -319,8 +326,8 @@ jobs: train: runs-on: ubuntu-latest
           pip install -r requirements.txt
 
       - name: Configure DVC remote
-        env: AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        env: AWS_ACCESS_KEY_ID: $
+          AWS_SECRET_ACCESS_KEY: $
         run: |
           dvc remote add -d myremote s3://my-bucket/dvc-storage
 

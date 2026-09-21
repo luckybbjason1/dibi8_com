@@ -1,11 +1,10 @@
 ---
-title: "Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel...
-description: "Cơ sở hạ tầng AI Cá nhân (PAI) của Daniel Miessler là Hệ điều hành Cuộc sống với 45 kỹ năng, 171 quy..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'personal-ai-infrastructure-daniel-miessler'
-category: data-science
-tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "personal-ai-infrastructure-daniel-miessler"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

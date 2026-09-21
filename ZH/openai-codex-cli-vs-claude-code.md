@@ -1,6 +1,13 @@
 ---
-title: "OpenAI Codex CLI vs Claude Code 2026：哪款 Agent 更值得用？"
-description: "OpenAI Codex CLI（gpt-5-codex）与 Anthropic Claude Code（Sonnet 4.6，1M 上下文）横向对比 — 价格、沙箱、企业版、工具集成。2026 年更..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-codex-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 draft: false
@@ -159,7 +166,7 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 - 上下文窗口更小 — 每个任务要更纪律性地选加载哪些文件
 
 ### 自建沙箱
-想拿两个 CLI 在真实代码库上做决定？开个 {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet 拿 $200 免费额度" >}} — $12/月的常规 droplet 跑两个 CLI 都不吃力，还能保留一个隔离的 staging 环境跑无人值守 agent。两个月免费评估期，之后 $12/月。比维持两套本地环境便宜，决定后基础设施还能留着。
+想拿两个 CLI 在真实代码库上做决定？开个  — $12/月的常规 droplet 跑两个 CLI 都不吃力，还能保留一个隔离的 staging 环境跑无人值守 agent。两个月免费评估期，之后 $12/月。比维持两套本地环境便宜，决定后基础设施还能留着。
 
 * * *
 
@@ -206,7 +213,7 @@ Claude Enterprise 提供 SOC 2 Type II、HIPAA 合规部署、私有 VPC 驻留�
 
 **需要稳定的 Claude / OpenAI API 访问？** 大多数在这些工具间做选择的用户最终都需要底层 API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 

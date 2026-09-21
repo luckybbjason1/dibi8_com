@@ -1,6 +1,13 @@
 ---
-title: "AI-Trader：14K⭐全自动AI交易代理，让AI帮你24小时盯盘赚钱"
-description: "AI-Trader是香港大学数据科学实验室Open Source的全自动AI交易代理系统，14K+ Stars，支持股票、加密货币、外汇多市场自动交易，基于强化学习和多智能体协作。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trader"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
@@ -264,7 +271,7 @@ risk: daily_loss_limit: 2000  # 美元
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
@@ -272,7 +279,7 @@ risk: daily_loss_limit: 2000  # 美元
 
 **用 AI agent 交易？仓位管理还是需要个专门工具。**
 
-- **{{< aff "minara" "llm-footer" "Minara AI" >}}** — AI 驱动的加密钱包, 自动化 DCA、再平衡和链上告警。跟自定义 AI trader 配合, 主动策略间隙的 hands-off 仓位管理。
+- **** — AI 驱动的加密钱包, 自动化 DCA、再平衡和链上告警。跟自定义 AI trader 配合, 主动策略间隙的 hands-off 仓位管理。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 

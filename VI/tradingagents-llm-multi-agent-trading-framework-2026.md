@@ -1,11 +1,10 @@
 ---
-title: "TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 ...
-description: "TradingAgents là framework đa tác tử LLM mã nguồn mở (82,254 GitHub stars, Apache-2.0) mô phỏng một ..."
-date: 2026-06-02
-lastmod: 2026-06-02
-slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
-category: 'ai-trading'
-tags: ["TradingAgents", "tác tử LLM", "giao dịch thuật toán", "LangGraph", "đa tác tử", "AI trading", "quant", "AI tài chính"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tradingagents-llm-multi-agent-trading-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,17 +1,14 @@
 ---
-title: "pendle-yield-tokenization-defi"
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["pendle"]
-aliases:
-  - /vi/posts/pendle-yield-tokenization-defi/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pendle-yield-tokenization-defi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 > **Tuyên bố tiếp thị liên kết**: Bài viết này chứa các liên kết tiếp thị đến [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) và [OKX](https://www.promoohubly.com/join/12190433). Chúng tôi có thể nhận được hoa hồng khi bạn đăng ký qua các liên kết này — không phát sinh chi phí thêm cho bạn.
 

@@ -1,11 +1,10 @@
 ---
-title: "Addy Osmani Agent Skills: 96K-Star Framework For Product...
-description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editor..."
-date: 2026-09-19
-lastmod: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
-category: 'llm-frameworks'
-tags: ["agent-skills", "addy-osmani", "claude-code", "cursor", "ai-editors", "skills"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agent-skills-production-workflows"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -86,7 +85,7 @@ skills/
 `````markdown
 * * *
 name: my-skill
-description: "Mô tả một dòng về skill này làm gì"
+description: "Technical guide and comparison."
 version: 1.0.0
 author: ten-cua-ban
 * * *

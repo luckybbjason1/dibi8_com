@@ -1,21 +1,20 @@
 ---
-title: "prompts.chat：16.3万+ 提示——开源提示库指南 2026"
-description: "Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for priv..."
-date: 2026-06-12
-lastmod: 2026-06-12
-slug: 'prompts-chat'
-category: llm-frameworks
-tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompts-chat"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # prompts.chat：16.3万+ 提示——开源提示库指南 2026
 
-title: "prompts.chat：16.3万+ 提示词——2026年开源提示词库指南"
-description: "5分钟部署 prompts.chat。163,640 星。兼容 ChatGPT、Claude、Gemini。支持隐私保护的自托管。零成本开源提示词库。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-12
 lastmod: 2026-06-12
-slug: 'prompts-chat'
-category: 'llm-frameworks'
+slug: "prompts-chat"
+category: "llm-frameworks"
 tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
 
 

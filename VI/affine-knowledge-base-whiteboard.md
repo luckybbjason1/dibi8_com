@@ -1,6 +1,13 @@
 ---
-title: "AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản...
-description: "Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "affine-knowledge-base-whiteboard"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Sự hỗn loạn quản lý tri thức năm 2026
 

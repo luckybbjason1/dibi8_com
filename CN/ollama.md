@@ -1,6 +1,13 @@
 ---
-title: "Ollama: 137K+ Stars — Run LLMs Locally with One Command,...
-description: "Ollama is the simplest way to run Llama, DeepSeek, Mistral, and other LLMs locally. Compatible with ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/llm-frameworks/ollama-local-llm-guide/-
 ---
 
-{{</* resource-info */>}}
+
 
 Running large language models used to mean wrestling with Python environments, CUDA drivers, and gigabytes of dependencies. In 2026, that friction is gone. [Ollama](https://ollama.com) lets you pull, configure, and serve production-grade LLMs with a single command — no PyTorch installation, no manual GPU tuning, no Docker mandatory. With 137,000+ GitHub stars and a thriving ecosystem of integrations, Ollama has become the default runtime for developers who want local inference without operational headaches.
 
@@ -316,13 +323,13 @@ PARAMETER repeat_penalty 1.1
 PARAMETER stop "<|eot_id|>"
 
 # Custom template (optional — inherits from base if omitted)
-TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+TEMPLATE """<|start_header_id|>system<|end_header_id|>
 
-{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+<|eot_id|><|start_header_id|>user<|end_header_id|>
 
-{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
-{{ .Response }}<|eot_id|>"""
+<|eot_id|>"""
 `````
 
 Build and run: `````bash

@@ -1,6 +1,13 @@
 ---
-title: "Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa B...
-description: "Puppeteer là thư viện Node.js tự động hóa Chrome và Firefox headless. Hỗ trợ Docker, GitHub Actions,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "puppeteer"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 

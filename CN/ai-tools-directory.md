@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-tools-directory"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Tools Directory 2024: Complete Guide to Best AI Tools...
-description: Discover the best AI tools of 2024. Complete directory of 200+ AI tools. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   for writing, image generation, coding, marketing, and more. Free and paid options
   with detailed reviews.
 date: 2026-05-15T04:20:25+09:00
@@ -562,8 +569,8 @@ Have a favorite AI tool that"s not on our list? Let us know in the comments!
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "shiyunapi" "category-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API proxy. Most AI tools in directories like this need an LLM key — this proxy delivers stable access at ~30% of official pricing.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Claude / OpenAI / DeepSeek API proxy. Most AI tools in directories like this need an LLM key — this proxy delivers stable access at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

@@ -1,6 +1,13 @@
 ---
-title: "LangGraph 与 CrewAI 2026 对比：以控制为中心的状态图 vs 基于角色的代理团队"
-description: "LangGraph（低层级有状态代理图）与 CrewAI（高层级基于角色的多代理团队）逐项对比——控制力、学习曲线、状态、多代理设计与生产可靠性。2026 更新。". Comprehensive gu..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-vs-crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

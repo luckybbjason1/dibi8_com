@@ -1,6 +1,13 @@
 ---
-title: "Open-Sora: 29K+ Stars — 开源视频生成完整安装指南 2026"
-description: "Open-Sora 是拥有 29K+ GitHub stars 的开源视频生成框架。涵盖 Docker 安装、ComfyUI 集成、Stable Diffusion 兼容、生产部署、与 Hunyuan..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-sora"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 大多数开发者在尝试 AI 视频生成时都会遇到同样的难题：商业 API 每秒收费 0.10-0.50 美元，自托管方案需要深奥的 CUDA 知识，而现有的开源项目要么缺乏文档，要么需要企业级 GPU。2024 年 3 月，HPC-AI Tech 发布了 Open-Sora 来改变这一局面。15 个月过去，29,000 个 GitHub stars 之后，该项目已从研究原型发展为能够生成 5 秒 768p 视频的生产级框架，质量可与商业替代品媲美 —— 全部运行在你可以按小时租用的硬件上。
 

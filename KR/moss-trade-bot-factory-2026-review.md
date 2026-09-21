@@ -1,6 +1,13 @@
 ---
-title: "Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백...
-description: "moss-trade-bot-skills v1.0.26 핸즈온 리뷰: Hyperliquid 퍼페추얼용 자연어 퀀트 agent 빌더. Decimal 정밀도 + 20단계 호가창 모델링 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moss-trade-bot-factory-2026-review"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
@@ -33,7 +40,7 @@ faq: - q: "moss-trade-bot-factory는 설치해도 안전한가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Moss Trade Bot Factory 2026 리뷰: AI 에이전트 퀀트 워크벤치 — 왜 예쁜 백테스트는 거짓말을 하는가
 
@@ -210,8 +217,8 @@ org는 명확한 펀넬 모드에서 운영(6 repos, star 있는 1개 외 지원
 
 ## 자체 호스팅 추천 인프라
 
-자체 퀀트 백테스트 파이프라인을 24/7 안정적으로 운영하려면 안정된 VPS가 중요: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧. 백테스트 파이프라인 프로토타이핑하는 인디 퀀트의 좋은 진입점.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 중국 본토에서 저지연 접근. dibi8.com을 호스팅하는 동일 IDC.
+자체 퀀트 백테스트 파이프라인을 24/7 안정적으로 운영하려면 안정된 VPS가 중요: - **** — 신규 가입 시 60일 $200 크레딧. 백테스트 파이프라인 프로토타이핑하는 인디 퀀트의 좋은 진입점.
+- **** — 홍콩 VPS, 중국 본토에서 저지연 접근. dibi8.com을 호스팅하는 동일 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

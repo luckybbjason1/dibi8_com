@@ -1,9 +1,10 @@
 ---
-title: "AutoGen多智能体框架教程2025：轻松构建多Agent AI系统"
-description: "Microsoft AutoGen 2025完整教程：从安装配置到多Agent系统构建，涵盖代码执行、本地LLM集成与生产最佳实践。". Comprehensive guide covering fe..."
-draft: false
-aliases:
-  - /posts/autogen-multi-agent-framework/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "autogen-multi-agent-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

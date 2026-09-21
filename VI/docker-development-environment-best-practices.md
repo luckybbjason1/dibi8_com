@@ -1,21 +1,10 @@
 ---
-title: "Các Thực Tiễn Tốt Nhất cho Môi Trường Phát Triển Docker:...
-description: "Khám phá các thực tiễn tốt nhất để thiết lập môi trường phát triển Docker hiệu quả: từ Docker Compos..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/docker-development-environment-best-practices/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docker-development-environment-best-practices"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

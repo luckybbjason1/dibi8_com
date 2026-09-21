@@ -1,9 +1,10 @@
 ---
-title: "코드 검색 및 교체 도구: grep에서 ripgrep, sd까지 현대적 대안 완벽 가이드"
-description: "grep, ack, ag, ripgrep, fzf, sd 등 코드 검색 도구의 진화와 성능을 비교합니다. 2025년 개발자를 위한 최적의 검색 워크플로우를 제시합니다.". Comp..."
-draft: false
-aliases:
-  - /posts/code-search-replace-tools-grep-modern-alternatives/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "code-search-replace-tools-grep-modern-alternatives"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,21 +1,10 @@
 ---
-title: "ds4: Công Cụ Mã Nguồn Mở Mà Lập Trình Viên Đang Chuyển S...
-description: "ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Curs..."
-date: 2026-05-20T00:00:00+08:00
-lastmod: 2026-05-20T00:00:00+08:00
-tech_stack: ["Unknown"]
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-20"
-draft: false
-aliases:
-  - /posts/ds4/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-deepseek-4-flash-local-inference-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

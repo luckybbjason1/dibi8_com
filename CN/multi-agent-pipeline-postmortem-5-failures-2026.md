@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-agent-pipeline-postmortem-5-failures-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
-description: "Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context ..."
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Git, CLI]
@@ -87,9 +94,9 @@ Every one of these failures shares a root: **treating an agent's claim as if it 
 
 ## Setting Up Production-Ready Claude Code
 
-Reliable pipelines want infrastructure that won't add failures of its own: 1. **A stable host for long pipelines and CI gates.** A dropped SSH session mid-orchestration is its own failure mode. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com, where we run these pipelines. $5-12/month.
+Reliable pipelines want infrastructure that won't add failures of its own: 1. **A stable host for long pipelines and CI gates.** A dropped SSH session mid-orchestration is its own failure mode. **** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com, where we run these pipelines. $5-12/month.
 
-2. **Cloud headroom for parallel fan-out.** When you (deliberately, with a budget) fan out workers, spare CPU keeps them from contending. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days, 14+ regions.
+2. **Cloud headroom for parallel fan-out.** When you (deliberately, with a budget) fan out workers, spare CPU keeps them from contending. **** — $200 free credit for 60 days, 14+ regions.
 
 3. **A skills bundle.** Avoiding these five failures is mostly about prompt discipline — verification steps, stop conditions, scoped resources. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — including orchestrator prompts with the verification seams already built in.
 

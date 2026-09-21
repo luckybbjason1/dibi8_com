@@ -1,6 +1,13 @@
 ---
-title: "Thư Mục Công Cụ AI 2024: Hướng Dẫn Hoàn Chỉnh Về Các Côn...
-description: "Khám phá các công cụ AI tốt nhất năm 2024. Thư mục hoàn chỉnh với hơn 200 công cụ AI cho viết, tạo h..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-tools-directory"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -413,9 +420,9 @@ Có công cụ AI yêu thích không có trong danh sách? Cho chúng tôi biế
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "shiyunapi" "category-footer" "Shiyunapi Claude API" >}}** — Proxy Claude / OpenAI / DeepSeek API. Hầu hết AI tool trong directory như này cần LLM key — proxy này cho access ổn định với ~30% giá chính thức.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Hầu hết AI tool trong directory như này cần LLM key — proxy này cho access ổn định với ~30% giá chính thức.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

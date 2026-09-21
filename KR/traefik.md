@@ -1,6 +1,13 @@
 ---
-title: "Traefik: 63,229 GitHub Stars — 클라우드 네이티브 엣지 라우터 2026 프로덕...
-description: "Traefik은 자동 서비스 검색을 지원하는 클라우드 네이티브 애플리케이션 프록시 및 엣지 라우터입니다. Docker, Kubernetes, Consul, Docker Compos..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "traefik"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 컨테이너화된 환경에서 인그레스 트래픽을 관리하는 것은 지속적인 골칫거리입니다. 새로운 마이크로서비스가 시작될 때마다 누군가는 리버스 프록시 구성을 업데이트하고, 서비스를 다시 로드하고, 아무 문제 없기를 기도해야 합니다. 하루에 수십 번 배포가 이루어지는 세상에서 이 수동 접근 방식은 자체 무게에 짓눌려 물러납니다. [Traefik](https://github.com/traefik/traefik)은 클라우드 네이티브 인프라를 위해 구축된 오픈소스 엣지 라우터로, 컨테이너 오케스트레이터를 감시하고 라우트를 자동으로 업데이트하여 이 문제를 해결합니다 — 구성 리로드 없이, 다운타임 없이, 인간 개입 없이.
 

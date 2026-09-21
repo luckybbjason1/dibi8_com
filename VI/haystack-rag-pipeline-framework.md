@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "haystack-rag-pipeline-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Haystack 2026: Framework NLP End-to-End cho Pipeline RAG...
-description: "Hướng dẫn đầy đủ Haystack 2026: framework NLP mã nguồn mở cho pipeline RAG sản xuất, document store,..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại Sao Cần Một Framework RAG Khác?
 
@@ -167,8 +174,8 @@ rag.add_component("retriever", InMemoryEmbeddingRetriever(
 rag.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 rag.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -223,8 +230,8 @@ pipeline.add_component("ranker", TransformersSimilarityRanker(
 pipeline.add_component("prompt_builder", PromptBuilder(
     template="""Answer based on context.
 Context: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -255,21 +262,21 @@ pipeline = Pipeline()
 
 # Router quyết định đường dẫn dựa trên loại truy vấn
 pipeline.add_component("router", ConditionalRouter(routes={
-    "condition": "{{ technical in query.lower() }}",
-    "output": "{{ query }}",
+    "condition": "",
+    "output": "",
     "output_type": str,
 }))
 
 # Nhánh kỹ thuật với ngữ cảnh chi tiết
 tech_prompt = """You are a technical assistant. Provide detailed, accurate answers.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("tech_builder", PromptBuilder(template=tech_prompt))
 pipeline.add_component("tech_generator", OpenAIGenerator(model="gpt-4o"))
 
 # Nhánh đơn giản cho truy vấn chung
 general_prompt = """Provide a concise answer.
-Question: {{ query }}
+Question: 
 Answer:"""
 pipeline.add_component("general_builder", PromptBuilder(template=general_prompt))
 pipeline.add_component("general_generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -384,8 +391,8 @@ pipeline.add_component("search", web_search)
 pipeline.add_component("builder", PromptBuilder(
     template="""Use search results to answer.
 Results: {% for doc in documents %}
-- {{ doc.content }}{% endfor %}
-Question: {{ query }}
+- {% endfor %}
+Question: 
 Answer:"""
 ))
 pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
@@ -441,7 +448,7 @@ from haystack.components.builders import PromptBuilder
 
 async def run_queries(queries: list): pipeline = Pipeline()
     pipeline.add_component("builder", PromptBuilder(
-        template="Answer concisely: {{ query }}"
+        template="Answer concisely: "
     ))
     pipeline.add_component("generator", OpenAIGenerator(model="gpt-4o-mini"))
     pipeline.connect("builder", "generator")

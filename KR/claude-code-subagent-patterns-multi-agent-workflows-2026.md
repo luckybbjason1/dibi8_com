@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
-description: "프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 last_maintained: "2026-05-28"
 draft: false
 categories: ["llm-frameworks"]
@@ -57,7 +64,7 @@ faq: - q: "Claude Code의 subagent란 정확히 무엇이며, CLI를 한 번 더
 
 `````
 Agent({
-  description: "컨트롤러 레벨 리팩토링 시도",
+  description: "Technical guide and comparison."
   isolation: "worktree",
   prompt: "controllers/orders.rb를 리팩토링해 검증 로직을 추출..."
 })
@@ -75,7 +82,7 @@ Agent({
 
 `````
 Agent({
-  description: "독립 코드 리뷰",
+  description: "Technical guide and comparison."
   subagent_type: "code-reviewer",
   prompt: "feat/payment-gateway 브랜치의 변경 사항 리뷰. 재시도 로직에
 ..."
@@ -124,9 +131,9 @@ Agent({
 
 ## 프로덕션 준비된 Claude Code 구축하기
 
-스케일로 멀티에이전트 워크플로를 실행하려면 세 가지 인프라 조각이 필요합니다: 1. **장기 세션을 위한 신뢰할 수 있는 호스트.** CI에서 또는 서버 측 코드베이스에 대해 Claude Code를 실행한다면, SSH 세션이 끊기거나 스로틀링되지 않는 VPS가 필요합니다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에서 저지연 액세스가 가능한 홍콩 VPS, 안정적인 BGP 라우팅. dibi8.com을 호스트하는 동일한 IDC이므로, 우리는 자체 멀티에이전트 파이프라인을 그 위에서 실행합니다. 견고한 가치 등급 $5-12/월.
+스케일로 멀티에이전트 워크플로를 실행하려면 세 가지 인프라 조각이 필요합니다: 1. **장기 세션을 위한 신뢰할 수 있는 호스트.** CI에서 또는 서버 측 코드베이스에 대해 Claude Code를 실행한다면, SSH 세션이 끊기거나 스로틀링되지 않는 VPS가 필요합니다. **** — 중국 본토에서 저지연 액세스가 가능한 홍콩 VPS, 안정적인 BGP 라우팅. dibi8.com을 호스트하는 동일한 IDC이므로, 우리는 자체 멀티에이전트 파이프라인을 그 위에서 실행합니다. 견고한 가치 등급 $5-12/월.
 
-2. **병렬 실험을 위한 클라우드 플레이그라운드.** 각자 자체 worktree가 필요한 6+ subagent를 fan out 할 때, 여분의 CPU가 필요합니다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60일 동안 $200 무료 크레딧, 14+ 글로벌 리전. 인디 개발자들은 이것을 사용해 메인 앱과 함께 Claude Code 오케스트레이터를 호스트하고 리소스 경합 없이 실행합니다.
+2. **병렬 실험을 위한 클라우드 플레이그라운드.** 각자 자체 worktree가 필요한 6+ subagent를 fan out 할 때, 여분의 CPU가 필요합니다. **** — 60일 동안 $200 무료 크레딧, 14+ 글로벌 리전. 인디 개발자들은 이것을 사용해 메인 앱과 함께 Claude Code 오케스트레이터를 호스트하고 리소스 경합 없이 실행합니다.
 
 3. **Skills 번들.** Claude Code subagent를 처음 접한다면, 곡선의 가장 가파른 부분은 무너지지 않는 사용자 정의 agent 정의를 작성하는 것입니다. 우리는 다섯 가지 검증된 skill을 $19 번들로 Gumroad에 패키징했습니다 — 모서리의 떠 있는 CTA를 보세요 — 위 패턴을 출시하는 오케스트레이터 프롬프트가 포함되어 있습니다.
 

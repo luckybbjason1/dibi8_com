@@ -1,7 +1,14 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-deepseek-flash-local-inference"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe...
   128GB Mac'
-description: Discover DS4 by antirez (Redis creator) — a native inference engine for. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   DeepSeek V4 Flash. Learn installation, benchmarks vs Ollama/llama.cpp, code examples,
   and how to run a 1M-context LLM locally on macOS and Linux.
 date: 2026-05-15T04:20:25+09:00
@@ -412,8 +419,8 @@ As the project matures from alpha to stable, DS4 could become the definitive way
 
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 

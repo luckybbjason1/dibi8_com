@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-mcp-advanced-10-server-stack-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code MCP Advanced 2026: The 10-Server Production ...
-description: "After running Claude Code with various MCP server combinations, settled on a 10-server production st..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
@@ -24,7 +31,7 @@ faq: - q: "How many MCP servers is too many?"
     a: "HTTP: persistent state, centralized credentials, depends on server uptime. stdio: zero latency, no credential exposure, dies with session. Default to stdio. Use HTTP only when (a) needing persistent state across sessions, or (b) integrating with a SaaS that has no local equivalent."
 ---
 
-{{</* resource-info */>}}
+
 
 # Claude Code MCP Advanced 2026: The 10-Server Production Stack
 
@@ -156,8 +163,8 @@ Tips: - Use stdio (local) over HTTP whenever both exist
 
 ## Recommended Infrastructure
 
-For self-hosted MCP servers (team-shared): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency Asia
+For self-hosted MCP servers (team-shared): - **** — $200 credit
+- **** — Hong Kong VPS, low-latency Asia
 
 *Affiliate links — same price, supports dibi8.com.*
 

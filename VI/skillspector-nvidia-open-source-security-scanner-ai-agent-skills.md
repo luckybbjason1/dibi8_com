@@ -1,12 +1,10 @@
 ---
-title: "SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ nă...
-description: "Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro b..."
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: dev-utils
-tags: ["security", "ai-agents", "scanner", "vulnerability-detection", "claude-code", "codex", "mcp", "agent-skills", "nvidia"]
-slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skillspector-nvidia-open-source-security-scanner-ai-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

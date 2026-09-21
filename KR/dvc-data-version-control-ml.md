@@ -1,6 +1,13 @@
 ---
-title: "DVC: 데이터를 위한 Git — ML 파이프라인 데이터 버전 관리와 재현 가능한 실험 2026 완벽...
-description: "DVC (Data Version Control) 완벽 가이드 — Git 방식 워크플로우로 데이터셋, 모델, ML 파이프라인을 버전 관리합니다. 설치, S3/GCS/Azure 백엔드..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dvc-data-version-control-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: Git 저장소를 파괴한 데이터셋
 
@@ -319,8 +326,8 @@ jobs: train: runs-on: ubuntu-latest
           pip install -r requirements.txt
 
       - name: Configure DVC remote
-        env: AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        env: AWS_ACCESS_KEY_ID: $
+          AWS_SECRET_ACCESS_KEY: $
         run: |
           dvc remote add -d myremote s3://my-bucket/dvc-storage
 

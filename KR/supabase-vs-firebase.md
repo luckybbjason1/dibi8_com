@@ -1,22 +1,10 @@
 ---
-title: "Supabase vs Firebase 2026: 어떤 BaaS가 더 좋은가?"
-description: "Postgres 기반 오픈소스 Supabase와 Google NoSQL Firebase 비교 — 데이터베이스, 인증, 스토리지, 실시간, 엣지 함수, 가격, 종속성, 자체 호스팅...."
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/kr/resources/supabase-vs-firebase"
-  }
-}
-</script>
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-vs-firebase"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

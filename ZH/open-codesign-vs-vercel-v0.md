@@ -1,6 +1,13 @@
 ---
-title: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI"
-description: "Vercel v0 的最强开源平替：使用 Open Codesign 在本地免费生成 UI"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-codesign-vs-vercel-v0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - JavaScript
@@ -65,7 +72,7 @@ A: 绝对是 Open Codesign。它拥有和 v0 几乎一模一样的操作体验�
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
@@ -73,7 +80,7 @@ A: 绝对是 Open Codesign。它拥有和 v0 几乎一模一样的操作体验�
 
 **需要稳定的 Claude / OpenAI API 访问？** 这个领域的项目最终都会撞 Anthropic / OpenAI 限流或价格墙。
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 

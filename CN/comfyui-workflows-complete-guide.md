@@ -1,6 +1,13 @@
 ---
-title: ComfyUI Workflows — The Visual Programming Language for A...
-description: Complete guide to ComfyUI workflows for professional AI image generation.. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-workflows-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   Build complex pipelines with nodes, manage dependencies, and create shareable workflow
   templates.
 tags: - comfyui

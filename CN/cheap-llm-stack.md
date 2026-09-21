@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cheap-llm-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "The Cheap LLM Stack 2026: How to Run Production AI on $0...
-description: "5-component stack to run real AI workloads on $0-15/month: Ollama local + DeepSeek API + Gemini free..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -221,7 +228,7 @@ The point: this stack is *not* the ceiling. It"s the floor that lets you scale s
 4. **RTK proxy** — 20-40% token savings on billable APIs
 5. **9Router** — smart routing orchestrator
 
-Stack pays for itself if you currently spend $30+/mo on any AI SaaS. Spin it up on your laptop (no VPS needed for cheap-LLM specifically — though a {{< aff "digitalocean" "footer-cta" "$6/mo DigitalOcean droplet" >}} helps if you want it always-on for a team).
+Stack pays for itself if you currently spend $30+/mo on any AI SaaS. Spin it up on your laptop (no VPS needed for cheap-LLM specifically — though a  helps if you want it always-on for a team).
 
 
 * * *

@@ -1,6 +1,13 @@
 ---
-title: "CC Switch：多AI CLI工具统一管理的终极解决方案 | 2026开源工具推荐"
-description: "CC Switch是一款开源跨平台桌面应用，支持统一管理Claude Code、Codex、OpenCode、OpenClaw、Gemini CLI等AI编程工具。74K+ GitHub Stars，..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-unified-ai-cli-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

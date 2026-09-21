@@ -1,11 +1,10 @@
 ---
-title: "TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전...
-description: "TradingAgents는 오픈소스 LLM 멀티 에이전트 프레임워크입니다(82,254 GitHub stars, Apache-2.0). 트레이딩 회사를 시뮬레이션해 분석가·리서처·트..."
-date: 2026-06-02
-lastmod: 2026-06-02
-slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
-category: 'ai-trading'
-tags: ["TradingAgents", "LLM 에이전트", "알고리즘 트레이딩", "LangGraph", "멀티 에이전트", "AI 트레이딩", "퀀트", "금융 AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tradingagents-llm-multi-agent-trading-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: 每日股票分析：LLM驱动的多市场股票情报系统
-description: 一个由LLM驱动的多市场分析系统，具备实时新闻、决策仪表盘和自动化通知。48K stars。支持零成本定时运行。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "daily-stock-analysis-llm-powered-multi-market-stock-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
@@ -336,13 +343,13 @@ python dashboard.py --host 0.0.0.0 --port 8080
 dashboard: refresh_interval: 300  # 5分钟
   default_market: "a_shares"
   charts: - type: "heatmap"
-      title: "市场热力图"
+title: "AI Tool Guide"
       data_source: "sector_performance"
     - type: "line"
-      title: "股价历史"
+title: "AI Tool Guide"
       data_source: "historical_prices"
     - type: "sentiment"
-      title: "新闻情绪"
+title: "AI Tool Guide"
       data_source: "llm_sentiment"
   alerts: - threshold: 0.8
       action: "notification"

@@ -1,6 +1,13 @@
 ---
-title: "Coqui TTS: 45.3K+ Stars — Deep Learning TTS Toolkit Benc...
-description: "Coqui TTS is an open-source deep learning toolkit for Text-to-Speech. Supports 1100+ languages, XTTS..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "coqui-tts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/coqui-tts/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

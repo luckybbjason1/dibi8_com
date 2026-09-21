@@ -1,16 +1,14 @@
 ---
-title: "Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI...
-description: "Supabase 完整指南：带有 Postgres + pgvector 的开源 Firebase 替代方案。认证、存储、实时、Edge 函数、RAG 流水线集成、自托管 Docker 部署、行级安全..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["supabase", "postgres", "向量搜索", "firebase 替代品", "pgvector", "ai 应用", "rag", "开源", "docker", "edge 函数"]
-aliases:
-  - /zh/posts/supabase-postgres-vector-ai-apps/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-postgres-vector-ai-apps"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么 AI 应用开发者正从 Firebase 转向 Supabase
 

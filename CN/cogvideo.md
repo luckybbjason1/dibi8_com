@@ -1,6 +1,13 @@
 ---
-title: "CogVideo: 12.7K Stars — Complete Text-to-Video Setup Gui...
-description: "CogVideo (CogVideoX) is a text and image-to-video generation model from Zhipu AI. Supports ComfyUI, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cogvideo"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/cogvideo/-
 ---
 
-{{</* resource-info */>}}
+
 
 > Turn text and images into cinematic video with Zhipu AI's open-source diffusion transformer. From zero to production in under 30 minutes.
 

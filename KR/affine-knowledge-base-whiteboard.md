@@ -1,16 +1,14 @@
 ---
-title: "AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치...
-description: "Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["affine", "지식-베이스", "화이트보드", "자체-호스팅", "docker", "notion-대체", "miro-대체", "crdt", "로컬-우선", "ai-글쓰기"]
-aliases:
-  - /kr/posts/affine-knowledge-base-whiteboard/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "affine-knowledge-base-whiteboard"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 2026년 지식 관리의 혼란
 

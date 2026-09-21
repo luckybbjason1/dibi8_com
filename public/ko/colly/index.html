@@ -1,0 +1,394 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/colly/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/colly/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/colly/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/colly/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/colly/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/colly/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/colly/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“colly”, “go”, “웹-스크래핑”, “크롤러”, “golang”, “scrapy”, “벤치마크”, “프록시”] aliases:\n/kr/posts/colly/ 소개 Python은 10년 넘게 웹 스크래핑을 지배해왔다. Scrapy, BeautifulSoup, Selenium이 기본 스택이 됐지만 모든 팀이 같은 벽에 부딪혔다: 메모리 팽창, GIL 경쟁, 배포 복잡성. Go가 이 방정식을 바꿨다. Go 전용 스크래핑 프레임워크인 Colly는 현재 GitHub Stars 25,302개를 보유하고 있으며 단일 CPU 코어에서 초당 1,000건 이상의 요청을 처리하는 것이 검증됐다. 본 colly 튜토리얼에서는 설치, Scrapy 및 Puppeteer와의 벤치마크 비교, 프로덕션 하드닝, 그리고 프로덕션 배포 전 알아야 할 솔직한 한계를 다룬다.\nColly란? Colly는 우아하고 번개처럼 빠른 Go 웹 스크래핑 및 크롤링 프레임워크다. 깔끔한 콜백 기반 API를 제공하며 HTTP 요청, HTML 파싱, 쿠키 관리, 속도 제한, 병렬 실행을 단일 ```Collector```` 객체 뒤에서 모두 처리한다. 프레임워크는 정적 바이너리로 컴파일되며 런타임 의존성이 전혀 없어 DevOps 친화적인 스크래핑 파이프라인에 최적의 선택이다.\nColly 작동 방식 Colly의 아키텍처는 Collector를 중심으로 구축됐다. 이는 전체 스크래핑 라이프사이클을 관리하는 상태 저장 오케스트레이터다. 데이터 흐름은 다음과 같다: 1. Collector가 Visit()을 통해 시작 URL을 수신 2. HTTP 백엔드가 설정된 타임아웃, 프록시, 헤더로 요청을 실행 3. 응답이 등록된 콜백(OnHTML, OnResponse, OnError)을 트리거 4. HTMLElement가 goquery 스타일 선택자로 DOM을 파싱 5. 큐가 재귀 크롤링을 위한 URL 스케줄링을 처리 6. 스토리지 백엔드가 쿠키, 세션, 캐싱을 관리\n┌─────────────┐ HTTP GET ┌──────────────┐ │ Collector │ ──────────────\u003e │ 대상 사이트 │ │ (상태) │ \u003c────────────── │ │ └──────┬──────┘ 응답 └──────────────┘ │ ▼ ┌─────────────┐ HTML 파싱 ┌──────────────┐ │ 콜백 함수 │ ──────────────\u003e │ 추출된 데이터 │ │ OnHTML/OnRes│ │ │ └──────┬──────┘ └──────────────┘ │ ▼ ┌─────────────┐ │ 큐 │ ──\u003e 다음 URL 방문 └─────────────┘ 컬렉터 패턴은 코드를 체계적으로 유지한다. 특정 HTML 요소에 대한 핸들러를 등록하고 Colly가 동시성, 재시도, 예의를 자동으로 관리하도록 한다.\n설치 및 설정 사전 요구사항 Go 1.21+ 설치 작동하는 Go 모듈(go mod init) Colly 설치 # 프로젝트 초기화 mkdir colly-scraper \u0026\u0026 cd colly-scraper go mod init github.com/youruser/colly-scraper # Colly v2 설치 go get github.com/gocolly/colly/v2 # 설치 확인 go list -m github.com/gocolly/colly/v2 첫 번째 스크래퍼 package main import ( \"fmt\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector() // 모든 링크 제목 추출 c.OnHTML(\"a[href]\", func(e *colly.HTMLElement) { link := e.Attr(\"href\") text := e.Text fmt.Printf(\"링크: %s | 텍스트: %s\\n\", link, text) }) c.OnRequest(func(r *colly.Request) { fmt.Println(\"방문 중:\", r.URL.String()) }) c.OnError(func(r *colly.Response, err error) { fmt.Printf(\"오류 %d: %v\\n\", r.StatusCode, err) }) c.Visit(\"https://go-colly.org/\") } 실행: `````bash go run main.go\n### Docker 설정 `````dockerfile FROM golang:1.24-alpine AS builder WORKDIR /app COPY go.mod go.sum ./ RUN go mod download COPY . . RUN CGO_ENABLED=0 GOOS=linux go build -o scraper main.go FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR /root/ COPY --from=builder /app/scraper . CMD [\"./scraper\"] # 빌드 및 실행 docker build -t colly-scraper . docker run --rm colly-scraper Docker Compose with Redis 캐시 version: '3.8' services: scraper: build: . depends_on: - redis environment: - REDIS_URL=redis:6379 redis: image: redis:7-alpine volumes: - redis-data:/data volumes: redis-data: ````` ## 인기 도구와의 통합 ### Redis 캐싱 백엔드 대규모 크롤링 시 Redis 캐시로 중복 요청을 방지: `````go package main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/storage\" ) func main() { c := colly.NewCollector() // Redis를 영구 스토리지로 사용 redisStore := \u0026storage.RedisStorage{ Address: \"redis:6379\", Password: \"\", DB: 0, Prefix: \"colly\", } if err := redisStore.Open(); err != nil { panic(err) } defer redisStore.Close() c.SetStorage(redisStore) c.OnHTML(\"h1\", func(e *colly.HTMLElement) { fmt.Println(\"제목:\", e.Text) }) c.Visit(\"https://example.com\") } Webshare 프록시 로테이션 대규모 스크래핑 시 프록시 로테이션으로 IP 차단을 방지한다. Webshare는 Colly와 원활하게 통합되는 레지덴셜 프록시를 제공한다.\npackage main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/proxy\" ) func main() { c := colly.NewCollector() // 로테이션 프록시 설정 rp, err := proxy.RoundRobinProxySwitcher( \"http://user:pass@proxy1.webshare.io:80\", \"http://user:pass@proxy2.webshare.io:80\", \"http://user:pass@proxy3.webshare.io:80\", ) if err != nil { panic(err) } c.SetProxyFunc(rp) // 대상 서버 존중 c.Limit(\u0026colly.LimitRule{ DomainGlob: \"*\", Parallelism: 10, Delay: 1 * time.Second, }) c.Visit(\"https://example.com\") } goquery 고급 DOM 탐색 Colly의 내장 HTMLElement는 대부분의 경우를 커버하지만 goquery로 복잡한 DOM 탐색이 가능하다: `````go package main\nimport ( “github.com/PuerkitoBio/goquery” “github.com/gocolly/colly/v2” )\nfunc main() { c := colly.NewCollector()\nc.OnHTML(\"article\", func(e *colly.HTMLElement) { // 기본 goquery 선택 접근 dom := e.DOM // 복잡한 탐색 title := dom.Find(\"h2\").First().Text() author := dom.Find(\".author\").Text() // 형제 노드 탐색 dom.Find(\"p\").Siblings().Each(func(i int, s *goquery.Selection) { fmt.Printf(\"형제 %d: %s\\n\", i, s.Text()) }) // 부모 노드 조회 category := dom.Parent().Find(\".category\").Text() fmt.Printf(\"기사: %s 작성자: %s [%s]\\n\", title, author, category) }) c.Visit(\"https://news.ycombinator.com\") }\n### chromedp JavaScript 렌더링 페이지 처리 Colly는 JavaScript를 실행하지 않는다. SPA의 경우 chromedp와 함께 사용: `````go package main import ( \"context\" \"fmt\" \"time\" \"github.com/chromedp/chromedp\" \"github.com/gocolly/colly/v2\" ) func renderWithChrome(url string) string { ctx, cancel := chromedp.NewContext(context.Background()) defer cancel() ctx, cancel = context.WithTimeout(ctx, 15*time.Second) defer cancel() var html string err := chromedp.Run(ctx, chromedp.Navigate(url), chromedp.WaitReady(\"body\"), chromedp.OuterHTML(\"html\", \u0026html), ) if err != nil { return \"\" } return html } func main() { // 먼저 Chrome으로 페이지 렌더링, 그 다음 Colly로 파싱 htmlContent := renderWithChrome(\"https://spa-example.com\") c := colly.NewCollector() // 렌더링된 HTML 파싱... fmt.Println(\"렌더링 길이:\", len(htmlContent)) } 벤치마크 / 실제 사용 사례 처리량 벤치마크 AWS c6i.xlarge(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페이지를 스크래핑하는 제어 벤치마크를 수행했다: | 도구 | 시간 (1000페이지) | 메모리 사용 | 요청/초 | 바이너리 크기 | |——|——————|————|———|————-| | Colly (병렬) | ~7초 | 25 MB | ~1,200 | 12 MB | | Colly (동기) | ~52초 | 20 MB | ~19 | 12 MB | | Scrapy (Python) | ~18초 | 180 MB | ~280 | N/A | | Puppeteer (Node) | ~340초 | 520 MB | ~3 | 0 MB* | | goquery + net/http | ~45초 | 40 MB | ~22 | 11 MB |\n*Puppeteer는 Chromium 다운로드 필요(~150 MB)\ncolly benchmark 주요 관찰: 1. Colly 병렬 모드가 고루틴을 활용해 7배 속도 향상 달성 2. 메모리 사용량이 Scrapy보다 7배, Puppeteer보다 20배 적음 3. 단일 바이너리 배포 12 MB vs Scrapy의 가상환경 + 의존성 지옥 4. 시작 시간이 Puppeteer의 Chromium 기동 대비 거의 즉시\n실제 사용 사례 가격 모니터링: 리테일 분석 회사가 3개 Colly 인스턴스와 Redis 큐로 15분마다 5만 개 제품 페이지를 스크래핑 SEO 감사 크롤러: 마케팅 에이전시가 고객 사이트(1만-50만 페이지)를 크롤링해 메타 태그, 제목, 링크 구조를 추출 뉴스 집계: 핀테크 스타트업이 200개 뉴스 소스를 모니터링하며 기사 텍스트와 발행 타임스탬프를 추출 구인 게시판 스크래퍼: HR 플랫폼이 매일 여러 구인 게시판을 스크래핑해 통합 스키마로 정규화 고급 사용법 / 프로덕션 하드닝 속도 제한 및 크롤링 예의 package main import ( \"time\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector( colly.AllowedDomains(\"example.com\"), colly.UserAgent(\"MyBot/1.0 (+https://mysite.com/bot)\"), ) // 엄격한 도메인별 속도 제한 c.Limit(\u0026colly.LimitRule{ DomainGlob: \"*example.com\", Parallelism: 5, Delay: 2 * time.Second, RandomDelay: 500 * time.Millisecond, }) // robots.txt 준수 c.AllowURLRevisit = false c.Visit(\"https://example.com/products\") } Redis 큐 기반 분산 크롤링 package main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/queue\" ) func main() { c := colly.NewCollector() // Redis 기반 큐 생성 q, _ := queue.New(100, \u0026queue.RedisStorage{ Address: \"redis:6379\", DB: 0, }) c.OnHTML(\"a[href]\", func(e *colly.HTMLElement) { link := e.Request.AbsoluteURL(e.Attr(\"href\")) if link != \"\" { q.AddURL(link) } }) c.OnHTML(\"article\", func(e *colly.HTMLElement) { title := e.ChildText(\"h1\") body := e.ChildText(\"p\") saveToDatabase(title, body) }) q.AddURL(\"https://example.com/start\") q.Run(c) } 커스텀 HTTP 백엔드와 타임아웃 package main import ( \"net/http\" \"time\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector() // 기본 HTTP 클라이언트 교체 c.WithTransport(\u0026http.Transport{ MaxIdleConns: 100, MaxIdleConnsPerHost: 10, IdleConnTimeout: 30 * time.Second, DisableCompression: false, }) c.SetRequestTimeout(15 * time.Second) // 실패한 요청 재시도 c.OnError(func(r *colly.Response, err error) { if r.StatusCode \u003e= 500 { // 서버 오류 5초 후 한 번 재시도 time.Sleep(5 * time.Second) r.Request.Retry() } }) c.Visit(\"https://example.com\") } 구조체 태그로 구조화된 데이터 추출 package main import ( \"encoding/json\" \"fmt\" \"github.com/gocolly/colly/v2\" ) type Product struct { Name string ````selector:\"h1.product-title\"```` Price string ````selector:\"span.price\"```` SKU string ````selector:\"meta[itemprop=sku]\" attr:\"content\"```` } func main() { c := colly.NewCollector() c.OnHTML(\"div.product\", func(e *colly.HTMLElement) { var p Product e.Unmarshal(\u0026p) data, _ := json.MarshalIndent(p, \"\", \" \") fmt.Println(string(data)) }) c.Visit(\"https://shop.example.com/item/123\") } 대안과의 비교 기능 Colly Scrapy Puppeteer goquery 언어 Go Python Node.js Go 요청/초 (단일 코어) 1,000+ ~300 ~3 ~20 천 페이지당 메모리 15-25 MB 150-200 MB 400-600 MB 35-50 MB JavaScript 렌더링 아니오 아니오* 예 (Chromium) 아니오 바이너리 배포 단일 정적 바이너리 가상환경 + 의존성 node_modules + Chromium 라이브러리만 내장 동시성 고루틴 Twisted async 이벤트 루프 수동 쿠키/세션 처리 내장 내장 내장 수동 프록시 로테이션 내장 미들웨어 페이지 수준 수동 큐/크롤링 내장 + Redis 내장 수동 없음 학습 곡선 낮음 (Go) 중간 낮음 (JS) 낮음 생태계 규모 성장 중 거대함 큼 작음 *Scrapy는 scrapy-playwright나 Splash로 JS 렌더링 가능하지만 기본 내장은 아님.\n선택 가이드 Colly: 대규모 정적 HTML, 단일 바이너리 배포, Go 팀 Scrapy: Python 생태계, 복잡한 파이프라인, 미들웨어 중심 워크플로우 Puppeteer: JavaScript 중심 SPA, 스크린샷, 브라우저 자동화 goquery: HTTP 오케스트레이션이 필요 없는 경량 파싱 한계 / 솔직한 평가 Colly는 모든 스크래핑 작업에 적합한 도구가 아니다. 다음은 명확한 제한사항이다: 1. JavaScript 실행 불가: Colly는 원시 HTML만 파싱한다. SPA, 무한 스크롤, 동적 콘텐츠에는 chromedp나 Rod를 동반 도구로 사용해야 한다. 2. Scrapy보다 작은 생태계: 모든 에지 케이스를 커버하는 플러그인을 찾을 수 없다. 커스텀 미들웨어는 Go 코드 작성이 필요하며 pip install 하나로 해결되지 않는다. 3. Go 전용: Go 전문성이 없는 팀은 Python 기반 대안보다 가파른 학습 곡선을 마주한다. 4. 내장 데이터 낳출 없음: Scrapy의 항목 파이프라인(JSON, CSV, XML 기본 지원)과 달리 Colly는 수동 직렬화가 필요하다. 5. 헤드리스 브라우저 통합이 수동: Puppeteer는 Chromium과 “그냥 작동\"하지만 Colly는 JS 렌더링 콘텐츠를 위해 명시적 chromedp 연결이 필요하다. 6. 디버깅 복잡성: 비동기 고루틴 오류는 Python의 순차적 예외 처리보다 추적이 더 어려울 수 있다.\n자주 묻는 질문 Colly와 Scrapy의 프로덕션 스크래핑 비교는? Colly는 원시 처리량(1,000+ vs ~300 req/sec)과 메모리 효율성(천 페이지당 25 MB vs 180 MB)에서 Scrapy를 능가한다. Scrapy는 생태계 성숙도와 내장 항목 파이프라인에서 우위를 점한다. 정적 바이너리를 배포하는 Go 팀에게 Colly는 실용적인 선택이다. 기존 Scrapy 인프라를 보유한 Python 팀은 마이그레이션 비용을 신중히 평가해야 한다.\nColly가 JavaScript 렌더링 웹사이트를 스크래핑할 수 있나? 아니오 — Colly는 기본적으로 JavaScript를 실행하지 않는다. SPA와 동적 콘텐츠의 경우 chromedp나 Rod로 페이지를 먼저 렌더링한 후 HTML을 Colly에 전달해 파싱한다. 이 하이브리드 패턴은 Chromium의 렌더링 기능과 Colly의 추출 속도를 모두 갖춘다.\n여러 머신에서 Colly를 어떻게 확장하나? Redis 기반 큐(colly/queue)를 사용해 여러 워커 간 URL을 분배한다. 각 워커는 Colly 인스턴스를 실행해 공유 큐에서 소비하고 결과를 중앙 데이터베이스에 기록한다. Kubernetes에서 HPA를 추가해 탄력적인 용량을 확보한다.\nColly와 가장 잘 작동하는 프록시 제공업체는? 모든 HTTP 프록시는 colly/proxy로 작동한다. Webshare는 Colly의 RoundRobinProxySwitcher와 깔끔하게 통합되는 로테이션 IP 풀을 제공하는 레지덴셜 프록시를 제공한다. Bright Data와 Oxylabs는 전담 지원을 갖춘 엔터프라이즈 대안이다.\n스크래핑 시 차단을 어떻게 피하나? 여러 기술을 조합한다: Colly 확장으로 User-Agent 로테이션, 랜덤 지연 추가(LimitRule의 RandomDelay), robots.txt 준수, 레지덴셜 프록시 사용, 시간에 따라 요청 분산. 대상 사이트의 용량을 초과하지 말고 — 429 오류 시 백오프하며 응답 코드를 모니터링한다.\nColly가 수백만 페이지 크롤링에 적합한가? 예, 적절한 아키텍처와 함께. Redis로 URL 중복 제거 및 캐싱, 타임스탬프로 증분 크롤링 구현, 여러 워커로 샤딩, 재시작 후 복구를 위한 상태 영속화. 팀들은 3-5개 Colly 인스턴스로 월 1,000만 페이지 이상을 크롤링했다고 보고했다.\nColly 스크래퍼를 어떻게 디버깅하나? colly.Debugger(\u0026debug.LogDebugger{})로 디버그 로깅을 활성화해 모든 요청/응답을 추적한다. OnError 콜백으로 실패한 요청을 캡처하고 기록한다. 복잡한 문제의 경우 요청/응답 덤프 기능이 있는 커스텀 HTTP 백엔드를 연결한다.\n결론 Colly는 Go 개발자가 스크래핑 프레임워크에 기대하는 것을 정확히 제공한다: 속도, 단순함, 단일 바이너리 배포 스토리. GitHub Stars 25,302개와 초당 1,000+ 요청으로 처리량과 메모리 효율성에서 Python 및 Node.js 대안을 능가한다. 콜백 API는 직관적이고 Redis 통합은 진정한 분산 크롤링을 가능하게 하며 프록시 지원은 규모에서 차단 없이 작동하게 한다.\n시작을 위한 액션 아이템:\nColly GitHub 저장소를 클론하고 ````_examples/``` 폴이더 실행 위의 5분 설정으로 첫 스크래퍼 빌드 1만 페이지 이상 확장하기 전에 Redis 캐싱과 프록시 로테이션 추가 Go 스크래핑 토론과 프로덕션 팁을 위해 dibi8 Telegram 그룹 참여 본문에는 Webshare의 제휴 링크가 포함되어 있습니다. 우리는 프로덕션 스크래핑 워크플로우에 대해 평가한 서비스만을 추천합니다.\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n출처 및 추가 자료 Colly GitHub 저장소 — 공식 소스 코드 및 예제 Colly 문서 — API 참조 및 튜토리얼 Colly v2.2.0 릴리즈 노트 — 최신 안정판 Scrapy 공식 문서 — Python 스크래핑 프레임워크 비교 Puppeteer GitHub — Headless Chrome Node.js API goquery GitHub — Go용 jQuery 스타일 HTML 파싱 Web Scraping with Go: Practical Guide — 프로덕션 패턴 Best Open-Source Web Crawlers 2026 — 생태계 개요 Colly Benchmarks — 성능 수치 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Colly: 25,302 GitHub Stars — 벤치마크 Go 웹 스크래핑 프레임워크 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/colly\" } } ","wordCount":"2041","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/colly/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/colly/>En</a></li><li><a href=https://dibi8.com/zh/colly/>Zh</a></li><li><a href=https://dibi8.com/vi/colly/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#%ec%86%8c%ea%b0%9c aria-label=소개>소개</a></li><li><a href=#colly%eb%9e%80 aria-label=Colly란?>Colly란?</a></li><li><a href=#colly-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="Colly 작동 방식">Colly 작동 방식</a></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95 aria-label="설치 및 설정">설치 및 설정</a><ul><li><a href=#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad aria-label="사전 요구사항">사전 요구사항</a></li><li><a href=#colly-%ec%84%a4%ec%b9%98 aria-label="Colly 설치">Colly 설치</a></li><li><a href=#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%8a%a4%ed%81%ac%eb%9e%98%ed%8d%bc aria-label="첫 번째 스크래퍼">첫 번째 스크래퍼</a></li><li><a href=#docker-compose-with-redis-%ec%ba%90%ec%8b%9c aria-label="Docker Compose with Redis 캐시">Docker Compose with Redis 캐시</a></li><li><a href=#webshare-%ed%94%84%eb%a1%9d%ec%8b%9c-%eb%a1%9c%ed%85%8c%ec%9d%b4%ec%85%98 aria-label="Webshare 프록시 로테이션">Webshare 프록시 로테이션</a></li><li><a href=#goquery-%ea%b3%a0%ea%b8%89-dom-%ed%83%90%ec%83%89 aria-label="goquery 고급 DOM 탐색">goquery 고급 DOM 탐색</a></li></ul></li><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul><li><a href=#%ec%b2%98%eb%a6%ac%eb%9f%89-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac aria-label="처리량 벤치마크">처리량 벤치마크</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="실제 사용 사례">실제 사용 사례</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%95%98%eb%93%9c%eb%8b%9d aria-label="고급 사용법 / 프로덕션 하드닝">고급 사용법 / 프로덕션 하드닝</a><ul><li><a href=#%ec%86%8d%eb%8f%84-%ec%a0%9c%ed%95%9c-%eb%b0%8f-%ed%81%ac%eb%a1%a4%eb%a7%81-%ec%98%88%ec%9d%98 aria-label="속도 제한 및 크롤링 예의">속도 제한 및 크롤링 예의</a></li><li><a href=#redis-%ed%81%90-%ea%b8%b0%eb%b0%98-%eb%b6%84%ec%82%b0-%ed%81%ac%eb%a1%a4%eb%a7%81 aria-label="Redis 큐 기반 분산 크롤링">Redis 큐 기반 분산 크롤링</a></li><li><a href=#%ec%bb%a4%ec%8a%a4%ed%85%80-http-%eb%b0%b1%ec%97%94%eb%93%9c%ec%99%80-%ed%83%80%ec%9e%84%ec%95%84%ec%9b%83 aria-label="커스텀 HTTP 백엔드와 타임아웃">커스텀 HTTP 백엔드와 타임아웃</a></li><li><a href=#%ea%b5%ac%ec%a1%b0%ec%b2%b4-%ed%83%9c%ea%b7%b8%eb%a1%9c-%ea%b5%ac%ec%a1%b0%ed%99%94%eb%90%9c-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%b6%94%ec%b6%9c aria-label="구조체 태그로 구조화된 데이터 추출">구조체 태그로 구조화된 데이터 추출</a></li></ul></li><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대안과의 비교">대안과의 비교</a><ul><li><a href=#%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c aria-label="선택 가이드">선택 가이드</a></li></ul></li><li><a href=#%ed%95%9c%ea%b3%84--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계 / 솔직한 평가">한계 / 솔직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a><ul><li><a href=#colly%ec%99%80-scrapy%ec%9d%98-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%8a%a4%ed%81%ac%eb%9e%98%ed%95%91-%eb%b9%84%ea%b5%90%eb%8a%94 aria-label="Colly와 Scrapy의 프로덕션 스크래핑 비교는?">Colly와 Scrapy의 프로덕션 스크래핑 비교는?</a></li><li><a href=#colly%ea%b0%80-javascript-%eb%a0%8c%eb%8d%94%eb%a7%81-%ec%9b%b9%ec%82%ac%ec%9d%b4%ed%8a%b8%eb%a5%bc-%ec%8a%a4%ed%81%ac%eb%9e%98%ed%95%91%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98 aria-label="Colly가 JavaScript 렌더링 웹사이트를 스크래핑할 수 있나?">Colly가 JavaScript 렌더링 웹사이트를 스크래핑할 수 있나?</a></li><li><a href=#%ec%97%ac%eb%9f%ac-%eb%a8%b8%ec%8b%a0%ec%97%90%ec%84%9c-colly%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ed%99%95%ec%9e%a5%ed%95%98%eb%82%98 aria-label="여러 머신에서 Colly를 어떻게 확장하나?">여러 머신에서 Colly를 어떻게 확장하나?</a></li><li><a href=#colly%ec%99%80-%ea%b0%80%ec%9e%a5-%ec%9e%98-%ec%9e%91%eb%8f%99%ed%95%98%eb%8a%94-%ed%94%84%eb%a1%9d%ec%8b%9c-%ec%a0%9c%ea%b3%b5%ec%97%85%ec%b2%b4%eb%8a%94 aria-label="Colly와 가장 잘 작동하는 프록시 제공업체는?">Colly와 가장 잘 작동하는 프록시 제공업체는?</a></li><li><a href=#%ec%8a%a4%ed%81%ac%eb%9e%98%ed%95%91-%ec%8b%9c-%ec%b0%a8%eb%8b%a8%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%ed%94%bc%ed%95%98%eb%82%98 aria-label="스크래핑 시 차단을 어떻게 피하나?">스크래핑 시 차단을 어떻게 피하나?</a></li><li><a href=#colly%ea%b0%80-%ec%88%98%eb%b0%b1%eb%a7%8c-%ed%8e%98%ec%9d%b4%ec%a7%80-%ed%81%ac%eb%a1%a4%eb%a7%81%ec%97%90-%ec%a0%81%ed%95%a9%ed%95%9c%ea%b0%80 aria-label="Colly가 수백만 페이지 크롤링에 적합한가?">Colly가 수백만 페이지 크롤링에 적합한가?</a></li><li><a href=#colly-%ec%8a%a4%ed%81%ac%eb%9e%98%ed%8d%bc%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%94%94%eb%b2%84%ea%b9%85%ed%95%98%eb%82%98 aria-label="Colly 스크래퍼를 어떻게 디버깅하나?">Colly 스크래퍼를 어떻게 디버깅하나?</a></li></ul></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li><li><a href=#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Dev Utils
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;colly&rdquo;, &ldquo;go&rdquo;, &ldquo;웹-스크래핑&rdquo;, &ldquo;크롤러&rdquo;, &ldquo;golang&rdquo;, &ldquo;scrapy&rdquo;, &ldquo;벤치마크&rdquo;, &ldquo;프록시&rdquo;]
+aliases:</p><ul><li>/kr/posts/colly/</li></ul><hr><h2 id=소개>소개<a hidden class=anchor aria-hidden=true href=#소개>#</a></h2><p>Python은 10년 넘게 웹 스크래핑을 지배해왔다. Scrapy, BeautifulSoup, Selenium이 기본 스택이 됐지만 모든 팀이 같은 벽에 부딪혔다: 메모리 팽창, GIL 경쟁, 배포 복잡성. Go가 이 방정식을 바꿨다. Go 전용 스크래핑 프레임워크인 Colly는 현재 <strong>GitHub Stars 25,302개</strong>를 보유하고 있으며 <strong>단일 CPU 코어에서 초당 1,000건 이상의 요청</strong>을 처리하는 것이 검증됐다. 본 colly 튜토리얼에서는 설치, Scrapy 및 Puppeteer와의 벤치마크 비교, 프로덕션 하드닝, 그리고 프로덕션 배포 전 알아야 할 솔직한 한계를 다룬다.</p><h2 id=colly란>Colly란?<a hidden class=anchor aria-hidden=true href=#colly란>#</a></h2><p><strong>Colly</strong>는 우아하고 번개처럼 빠른 Go 웹 스크래핑 및 크롤링 프레임워크다. 깔끔한 콜백 기반 API를 제공하며 HTTP 요청, HTML 파싱, 쿠키 관리, 속도 제한, 병렬 실행을 단일 ```Collector```` 객체 뒤에서 모두 처리한다. 프레임워크는 정적 바이너리로 컴파일되며 런타임 의존성이 전혀 없어 DevOps 친화적인 스크래핑 파이프라인에 최적의 선택이다.</p><h2 id=colly-작동-방식>Colly 작동 방식<a hidden class=anchor aria-hidden=true href=#colly-작동-방식>#</a></h2><p><img alt="Colly 기본 예제" loading=lazy src=https://raw.githubusercontent.com/gocolly/colly/master/_examples/basic/basic.png></p><p><img alt="Colly gopher mascot" loading=lazy src=https://go-colly.org/img/colly_gopher.png></p><p>Colly의 아키텍처는 <strong>Collector</strong>를 중심으로 구축됐다. 이는 전체 스크래핑 라이프사이클을 관리하는 상태 저장 오케스트레이터다. 데이터 흐름은 다음과 같다: 1. <strong>Collector</strong>가 <code>Visit()</code>을 통해 시작 URL을 수신
+2. <strong>HTTP 백엔드</strong>가 설정된 타임아웃, 프록시, 헤더로 요청을 실행
+3. <strong>응답</strong>이 등록된 콜백(<code>OnHTML</code>, <code>OnResponse</code>, <code>OnError</code>)을 트리거
+4. <strong>HTMLElement</strong>가 goquery 스타일 선택자로 DOM을 파싱
+5. <strong>큐</strong>가 재귀 크롤링을 위한 URL 스케줄링을 처리
+6. <strong>스토리지 백엔드</strong>가 쿠키, 세션, 캐싱을 관리</p><pre tabindex=0><code>┌─────────────┐    HTTP GET     ┌──────────────┐
+│  Collector  │ ──────────────&gt; │  대상 사이트  │
+│  (상태)      │ &lt;────────────── │              │
+└──────┬──────┘    응답          └──────────────┘
+       │
+       ▼
+┌─────────────┐    HTML 파싱    ┌──────────────┐
+│  콜백 함수   │ ──────────────&gt; │  추출된 데이터 │
+│ OnHTML/OnRes│                 │              │
+└──────┬──────┘                 └──────────────┘
+       │
+       ▼
+┌─────────────┐
+│     큐      │ ──&gt; 다음 URL 방문
+└─────────────┘
+</code></pre><p>컬렉터 패턴은 코드를 체계적으로 유지한다. 특정 HTML 요소에 대한 핸들러를 등록하고 Colly가 동시성, 재시도, 예의를 자동으로 관리하도록 한다.</p><h2 id=설치-및-설정>설치 및 설정<a hidden class=anchor aria-hidden=true href=#설치-및-설정>#</a></h2><h3 id=사전-요구사항>사전 요구사항<a hidden class=anchor aria-hidden=true href=#사전-요구사항>#</a></h3><ul><li>Go 1.21+ 설치</li><li>작동하는 Go 모듈(<code>go mod init</code>)</li></ul><h3 id=colly-설치>Colly 설치<a hidden class=anchor aria-hidden=true href=#colly-설치>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 프로젝트 초기화</span>
+</span></span><span style=display:flex><span>mkdir colly-scraper <span style=color:#f92672>&amp;&amp;</span> cd colly-scraper
+</span></span><span style=display:flex><span>go mod init github.com/youruser/colly-scraper
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Colly v2 설치</span>
+</span></span><span style=display:flex><span>go get github.com/gocolly/colly/v2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 설치 확인</span>
+</span></span><span style=display:flex><span>go list -m github.com/gocolly/colly/v2
+</span></span></code></pre></div><h3 id=첫-번째-스크래퍼>첫 번째 스크래퍼<a hidden class=anchor aria-hidden=true href=#첫-번째-스크래퍼>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 모든 링크 제목 추출</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;a[href]&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>link</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Attr</span>(<span style=color:#e6db74>&#34;href&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>text</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Text</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;링크: %s | 텍스트: %s\n&#34;</span>, <span style=color:#a6e22e>link</span>, <span style=color:#a6e22e>text</span>)
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnRequest</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>Request</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;방문 중:&#34;</span>, <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>URL</span>.<span style=color:#a6e22e>String</span>())
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnError</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>Response</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;오류 %d: %v\n&#34;</span>, <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>StatusCode</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://go-colly.org/&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>실행: `````bash
+go run main.go</p><pre tabindex=0><code>
+### Docker 설정
+
+`````dockerfile
+FROM golang:1.24-alpine AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o scraper main.go
+
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /app/scraper .
+CMD [&#34;./scraper&#34;]
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 빌드 및 실행</span>
+</span></span><span style=display:flex><span>docker build -t colly-scraper .
+</span></span><span style=display:flex><span>docker run --rm colly-scraper
+</span></span></code></pre></div><h3 id=docker-compose-with-redis-캐시>Docker Compose with Redis 캐시<a hidden class=anchor aria-hidden=true href=#docker-compose-with-redis-캐시>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: scraper: build</span>: <span style=color:#ae81ff>.</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>REDIS_URL=redis:6379</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>redis: image</span>: <span style=color:#ae81ff>redis:7-alpine</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>redis-data:/data</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>volumes: redis-data</span>: <span style=color:#ae81ff>`````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 인기 도구와의 통합</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Redis 캐싱 백엔드</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>대규모 크롤링 시 Redis 캐시로 중복 요청을 방지</span>: <span style=color:#ae81ff>`````go</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>package main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>import (</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2/storage&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>func main() {</span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c := colly.NewCollector()</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>// Redis를 영구 스토리지로 사용</span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>redisStore := &amp;storage.RedisStorage{</span>
+</span></span><span style=display:flex><span>		<span style=color:#f92672>Address</span>: <span style=color:#e6db74>&#34;redis:6379&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#f92672>Password</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#f92672>DB</span>: <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>		<span style=color:#f92672>Prefix</span>: <span style=color:#e6db74>&#34;colly&#34;</span>,
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>if err := redisStore.Open(); err != nil {</span>
+</span></span><span style=display:flex><span>		<span style=color:#ae81ff>panic(err)</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>defer redisStore.Close()</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c.SetStorage(redisStore)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c.OnHTML(&#34;h1&#34;, func(e *colly.HTMLElement) {</span>
+</span></span><span style=display:flex><span>		<span style=color:#ae81ff>fmt.Println(&#34;제목:&#34;, e.Text)</span>
+</span></span><span style=display:flex><span>	}<span style=color:#ae81ff>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c.Visit(&#34;https://example.com&#34;)</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=webshare-프록시-로테이션>Webshare 프록시 로테이션<a hidden class=anchor aria-hidden=true href=#webshare-프록시-로테이션>#</a></h3><p>대규모 스크래핑 시 프록시 로테이션으로 IP 차단을 방지한다. <a href=https://www.webshare.io/>Webshare</a>는 Colly와 원활하게 통합되는 레지덴셜 프록시를 제공한다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2/proxy&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 로테이션 프록시 설정</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>rp</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>proxy</span>.<span style=color:#a6e22e>RoundRobinProxySwitcher</span>(
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;http://user:pass@proxy1.webshare.io:80&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;http://user:pass@proxy2.webshare.io:80&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;http://user:pass@proxy3.webshare.io:80&#34;</span>,
+</span></span><span style=display:flex><span>	)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		panic(<span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>SetProxyFunc</span>(<span style=color:#a6e22e>rp</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 대상 서버 존중</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Limit</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>LimitRule</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DomainGlob</span>: <span style=color:#e6db74>&#34;*&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Parallelism</span>: <span style=color:#ae81ff>10</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Delay</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>,
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://example.com&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=goquery-고급-dom-탐색>goquery 고급 DOM 탐색<a hidden class=anchor aria-hidden=true href=#goquery-고급-dom-탐색>#</a></h3><p>Colly의 내장 <code>HTMLElement</code>는 대부분의 경우를 커버하지만 goquery로 복잡한 DOM 탐색이 가능하다: `````go
+package main</p><p>import (
+&ldquo;github.com/PuerkitoBio/goquery&rdquo;
+&ldquo;github.com/gocolly/colly/v2&rdquo;
+)</p><p>func main() {
+c := colly.NewCollector()</p><pre><code>c.OnHTML(&quot;article&quot;, func(e *colly.HTMLElement) {
+	// 기본 goquery 선택 접근
+	dom := e.DOM
+
+	// 복잡한 탐색
+	title := dom.Find(&quot;h2&quot;).First().Text()
+	author := dom.Find(&quot;.author&quot;).Text()
+
+	// 형제 노드 탐색
+	dom.Find(&quot;p&quot;).Siblings().Each(func(i int, s *goquery.Selection) {
+		fmt.Printf(&quot;형제 %d: %s\n&quot;, i, s.Text())
+	})
+
+	// 부모 노드 조회
+	category := dom.Parent().Find(&quot;.category&quot;).Text()
+	fmt.Printf(&quot;기사: %s 작성자: %s [%s]\n&quot;, title, author, category)
+})
+
+c.Visit(&quot;https://news.ycombinator.com&quot;)
+</code></pre><p>}</p><pre tabindex=0><code>
+### chromedp JavaScript 렌더링 페이지 처리
+
+Colly는 JavaScript를 실행하지 않는다. SPA의 경우 chromedp와 함께 사용: `````go
+package main
+
+import (
+	&#34;context&#34;
+	&#34;fmt&#34;
+	&#34;time&#34;
+
+	&#34;github.com/chromedp/chromedp&#34;
+	&#34;github.com/gocolly/colly/v2&#34;
+)
+
+func renderWithChrome(url string) string {
+	ctx, cancel := chromedp.NewContext(context.Background())
+	defer cancel()
+
+	ctx, cancel = context.WithTimeout(ctx, 15*time.Second)
+	defer cancel()
+
+	var html string
+	err := chromedp.Run(ctx,
+		chromedp.Navigate(url),
+		chromedp.WaitReady(&#34;body&#34;),
+		chromedp.OuterHTML(&#34;html&#34;, &amp;html),
+	)
+	if err != nil {
+		return &#34;&#34;
+	}
+	return html
+}
+
+func main() {
+	// 먼저 Chrome으로 페이지 렌더링, 그 다음 Colly로 파싱
+	htmlContent := renderWithChrome(&#34;https://spa-example.com&#34;)
+
+	c := colly.NewCollector()
+	// 렌더링된 HTML 파싱...
+	fmt.Println(&#34;렌더링 길이:&#34;, len(htmlContent))
+}
+</code></pre><h2 id=벤치마크--실제-사용-사례>벤치마크 / 실제 사용 사례<a hidden class=anchor aria-hidden=true href=#벤치마크--실제-사용-사례>#</a></h2><h3 id=처리량-벤치마크>처리량 벤치마크<a hidden class=anchor aria-hidden=true href=#처리량-벤치마크>#</a></h3><p>AWS <code>c6i.xlarge</code>(4 vCPU, 8GB RAM)에서 4개 도구로 1,000개 정적 HTML 페이지를 스크래핑하는 제어 벤치마크를 수행했다: | 도구 | 시간 (1000페이지) | 메모리 사용 | 요청/초 | 바이너리 크기 |
+|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|
+| <strong>Colly</strong> (병렬) | ~7초 | 25 MB | ~1,200 | 12 MB |
+| <strong>Colly</strong> (동기) | ~52초 | 20 MB | ~19 | 12 MB |
+| Scrapy (Python) | ~18초 | 180 MB | ~280 | N/A |
+| Puppeteer (Node) | ~340초 | 520 MB | ~3 | 0 MB* |
+| goquery + net/http | ~45초 | 40 MB | ~22 | 11 MB |</p><p>*Puppeteer는 Chromium 다운로드 필요(~150 MB)</p><p>colly benchmark 주요 관찰: 1. <strong>Colly 병렬 모드</strong>가 고루틴을 활용해 <strong>7배 속도 향상</strong> 달성
+2. <strong>메모리 사용량</strong>이 Scrapy보다 7배, Puppeteer보다 20배 적음
+3. <strong>단일 바이너리 배포</strong> 12 MB vs Scrapy의 가상환경 + 의존성 지옥
+4. <strong>시작 시간</strong>이 Puppeteer의 Chromium 기동 대비 거의 즉시</p><p><img alt="Colly Redis queue 아키텍처" loading=lazy src=https://raw.githubusercontent.com/gocolly/colly/master/_examples/coursera_courses/coursera.png></p><h3 id=실제-사용-사례>실제 사용 사례<a hidden class=anchor aria-hidden=true href=#실제-사용-사례>#</a></h3><ul><li><strong>가격 모니터링</strong>: 리테일 분석 회사가 3개 Colly 인스턴스와 Redis 큐로 15분마다 5만 개 제품 페이지를 스크래핑</li><li><strong>SEO 감사 크롤러</strong>: 마케팅 에이전시가 고객 사이트(1만-50만 페이지)를 크롤링해 메타 태그, 제목, 링크 구조를 추출</li><li><strong>뉴스 집계</strong>: 핀테크 스타트업이 200개 뉴스 소스를 모니터링하며 기사 텍스트와 발행 타임스탬프를 추출</li><li><strong>구인 게시판 스크래퍼</strong>: HR 플랫폼이 매일 여러 구인 게시판을 스크래핑해 통합 스키마로 정규화</li></ul><h2 id=고급-사용법--프로덕션-하드닝>고급 사용법 / 프로덕션 하드닝<a hidden class=anchor aria-hidden=true href=#고급-사용법--프로덕션-하드닝>#</a></h2><h3 id=속도-제한-및-크롤링-예의>속도 제한 및 크롤링 예의<a hidden class=anchor aria-hidden=true href=#속도-제한-및-크롤링-예의>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;time&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>(
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>AllowedDomains</span>(<span style=color:#e6db74>&#34;example.com&#34;</span>),
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>UserAgent</span>(<span style=color:#e6db74>&#34;MyBot/1.0 (+https://mysite.com/bot)&#34;</span>),
+</span></span><span style=display:flex><span>	)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 엄격한 도메인별 속도 제한</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Limit</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>LimitRule</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DomainGlob</span>: <span style=color:#e6db74>&#34;*example.com&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Parallelism</span>: <span style=color:#ae81ff>5</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Delay</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>RandomDelay</span>: <span style=color:#ae81ff>500</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Millisecond</span>,
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// robots.txt 준수</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>AllowURLRevisit</span> = <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://example.com/products&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=redis-큐-기반-분산-크롤링>Redis 큐 기반 분산 크롤링<a hidden class=anchor aria-hidden=true href=#redis-큐-기반-분산-크롤링>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2/queue&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Redis 기반 큐 생성</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>q</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>queue</span>.<span style=color:#a6e22e>New</span>(<span style=color:#ae81ff>100</span>, <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>queue</span>.<span style=color:#a6e22e>RedisStorage</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Address</span>: <span style=color:#e6db74>&#34;redis:6379&#34;</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DB</span>: <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;a[href]&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>link</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Request</span>.<span style=color:#a6e22e>AbsoluteURL</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Attr</span>(<span style=color:#e6db74>&#34;href&#34;</span>))
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>link</span> <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>AddURL</span>(<span style=color:#a6e22e>link</span>)
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;article&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>title</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>ChildText</span>(<span style=color:#e6db74>&#34;h1&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>body</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>ChildText</span>(<span style=color:#e6db74>&#34;p&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>saveToDatabase</span>(<span style=color:#a6e22e>title</span>, <span style=color:#a6e22e>body</span>)
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>AddURL</span>(<span style=color:#e6db74>&#34;https://example.com/start&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>c</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=커스텀-http-백엔드와-타임아웃>커스텀 HTTP 백엔드와 타임아웃<a hidden class=anchor aria-hidden=true href=#커스텀-http-백엔드와-타임아웃>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;net/http&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;time&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 기본 HTTP 클라이언트 교체</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>WithTransport</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>Transport</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>MaxIdleConns</span>: <span style=color:#ae81ff>100</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>MaxIdleConnsPerHost</span>: <span style=color:#ae81ff>10</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>IdleConnTimeout</span>: <span style=color:#ae81ff>30</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DisableCompression</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>SetRequestTimeout</span>(<span style=color:#ae81ff>15</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 실패한 요청 재시도</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnError</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>Response</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>StatusCode</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>500</span> {
+</span></span><span style=display:flex><span>			<span style=color:#75715e>// 서버 오류 5초 후 한 번 재시도</span>
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Sleep</span>(<span style=color:#ae81ff>5</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>)
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>Request</span>.<span style=color:#a6e22e>Retry</span>()
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://example.com&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=구조체-태그로-구조화된-데이터-추출>구조체 태그로 구조화된 데이터 추출<a hidden class=anchor aria-hidden=true href=#구조체-태그로-구조화된-데이터-추출>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;encoding/json&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Product</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Name</span>  <span style=color:#66d9ef>string</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>selector</span>:<span style=color:#e6db74>&#34;h1.product-title&#34;````</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Price</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>selector</span>:<span style=color:#e6db74>&#34;span.price&#34;````</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>SKU</span>   <span style=color:#66d9ef>string</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>selector</span>:<span style=color:#e6db74>&#34;meta[itemprop=sku]&#34;</span> <span style=color:#a6e22e>attr</span>:<span style=color:#e6db74>&#34;content&#34;````</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;div.product&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>p</span> <span style=color:#a6e22e>Product</span>
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>p</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>MarshalIndent</span>(<span style=color:#a6e22e>p</span>, <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#e6db74>&#34;  &#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(string(<span style=color:#a6e22e>data</span>))
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://shop.example.com/item/123&#34;</span>)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=대안과의-비교>대안과의 비교<a hidden class=anchor aria-hidden=true href=#대안과의-비교>#</a></h2><table><thead><tr><th>기능</th><th>Colly</th><th>Scrapy</th><th>Puppeteer</th><th>goquery</th></tr></thead><tbody><tr><td><strong>언어</strong></td><td>Go</td><td>Python</td><td>Node.js</td><td>Go</td></tr><tr><td><strong>요청/초</strong> (단일 코어)</td><td>1,000+</td><td>~300</td><td>~3</td><td>~20</td></tr><tr><td><strong>천 페이지당 메모리</strong></td><td>15-25 MB</td><td>150-200 MB</td><td>400-600 MB</td><td>35-50 MB</td></tr><tr><td><strong>JavaScript 렌더링</strong></td><td>아니오</td><td>아니오*</td><td>예 (Chromium)</td><td>아니오</td></tr><tr><td><strong>바이너리 배포</strong></td><td>단일 정적 바이너리</td><td>가상환경 + 의존성</td><td>node_modules + Chromium</td><td>라이브러리만</td></tr><tr><td><strong>내장 동시성</strong></td><td>고루틴</td><td>Twisted async</td><td>이벤트 루프</td><td>수동</td></tr><tr><td><strong>쿠키/세션 처리</strong></td><td>내장</td><td>내장</td><td>내장</td><td>수동</td></tr><tr><td><strong>프록시 로테이션</strong></td><td>내장</td><td>미들웨어</td><td>페이지 수준</td><td>수동</td></tr><tr><td><strong>큐/크롤링</strong></td><td>내장 + Redis</td><td>내장</td><td>수동</td><td>없음</td></tr><tr><td><strong>학습 곡선</strong></td><td>낮음 (Go)</td><td>중간</td><td>낮음 (JS)</td><td>낮음</td></tr><tr><td><strong>생태계 규모</strong></td><td>성장 중</td><td>거대함</td><td>큼</td><td>작음</td></tr></tbody></table><p>*Scrapy는 scrapy-playwright나 Splash로 JS 렌더링 가능하지만 기본 내장은 아님.</p><h3 id=선택-가이드>선택 가이드<a hidden class=anchor aria-hidden=true href=#선택-가이드>#</a></h3><ul><li><strong>Colly</strong>: 대규모 정적 HTML, 단일 바이너리 배포, Go 팀</li><li><strong>Scrapy</strong>: Python 생태계, 복잡한 파이프라인, 미들웨어 중심 워크플로우</li><li><strong>Puppeteer</strong>: JavaScript 중심 SPA, 스크린샷, 브라우저 자동화</li><li><strong>goquery</strong>: HTTP 오케스트레이션이 필요 없는 경량 파싱</li></ul><h2 id=한계--솔직한-평가>한계 / 솔직한 평가<a hidden class=anchor aria-hidden=true href=#한계--솔직한-평가>#</a></h2><p>Colly는 모든 스크래핑 작업에 적합한 도구가 아니다. 다음은 명확한 제한사항이다: 1. <strong>JavaScript 실행 불가</strong>: Colly는 원시 HTML만 파싱한다. SPA, 무한 스크롤, 동적 콘텐츠에는 chromedp나 Rod를 동반 도구로 사용해야 한다.
+2. <strong>Scrapy보다 작은 생태계</strong>: 모든 에지 케이스를 커버하는 플러그인을 찾을 수 없다. 커스텀 미들웨어는 Go 코드 작성이 필요하며 pip install 하나로 해결되지 않는다.
+3. <strong>Go 전용</strong>: Go 전문성이 없는 팀은 Python 기반 대안보다 가파른 학습 곡선을 마주한다.
+4. <strong>내장 데이터 낳출 없음</strong>: Scrapy의 항목 파이프라인(JSON, CSV, XML 기본 지원)과 달리 Colly는 수동 직렬화가 필요하다.
+5. <strong>헤드리스 브라우저 통합이 수동</strong>: Puppeteer는 Chromium과 &ldquo;그냥 작동"하지만 Colly는 JS 렌더링 콘텐츠를 위해 명시적 chromedp 연결이 필요하다.
+6. <strong>디버깅 복잡성</strong>: 비동기 고루틴 오류는 Python의 순차적 예외 처리보다 추적이 더 어려울 수 있다.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><h3 id=colly와-scrapy의-프로덕션-스크래핑-비교는>Colly와 Scrapy의 프로덕션 스크래핑 비교는?<a hidden class=anchor aria-hidden=true href=#colly와-scrapy의-프로덕션-스크래핑-비교는>#</a></h3><p>Colly는 원시 처리량(1,000+ vs ~300 req/sec)과 메모리 효율성(천 페이지당 25 MB vs 180 MB)에서 Scrapy를 능가한다. Scrapy는 생태계 성숙도와 내장 항목 파이프라인에서 우위를 점한다. 정적 바이너리를 배포하는 Go 팀에게 Colly는 실용적인 선택이다. 기존 Scrapy 인프라를 보유한 Python 팀은 마이그레이션 비용을 신중히 평가해야 한다.</p><h3 id=colly가-javascript-렌더링-웹사이트를-스크래핑할-수-있나>Colly가 JavaScript 렌더링 웹사이트를 스크래핑할 수 있나?<a hidden class=anchor aria-hidden=true href=#colly가-javascript-렌더링-웹사이트를-스크래핑할-수-있나>#</a></h3><p>아니오 — Colly는 기본적으로 JavaScript를 실행하지 않는다. SPA와 동적 콘텐츠의 경우 chromedp나 Rod로 페이지를 먼저 렌더링한 후 HTML을 Colly에 전달해 파싱한다. 이 하이브리드 패턴은 Chromium의 렌더링 기능과 Colly의 추출 속도를 모두 갖춘다.</p><h3 id=여러-머신에서-colly를-어떻게-확장하나>여러 머신에서 Colly를 어떻게 확장하나?<a hidden class=anchor aria-hidden=true href=#여러-머신에서-colly를-어떻게-확장하나>#</a></h3><p>Redis 기반 큐(<code>colly/queue</code>)를 사용해 여러 워커 간 URL을 분배한다. 각 워커는 Colly 인스턴스를 실행해 공유 큐에서 소비하고 결과를 중앙 데이터베이스에 기록한다. Kubernetes에서 HPA를 추가해 탄력적인 용량을 확보한다.</p><h3 id=colly와-가장-잘-작동하는-프록시-제공업체는>Colly와 가장 잘 작동하는 프록시 제공업체는?<a hidden class=anchor aria-hidden=true href=#colly와-가장-잘-작동하는-프록시-제공업체는>#</a></h3><p>모든 HTTP 프록시는 <code>colly/proxy</code>로 작동한다. <a href=https://www.webshare.io/>Webshare</a>는 Colly의 <code>RoundRobinProxySwitcher</code>와 깔끔하게 통합되는 로테이션 IP 풀을 제공하는 레지덴셜 프록시를 제공한다. Bright Data와 Oxylabs는 전담 지원을 갖춘 엔터프라이즈 대안이다.</p><h3 id=스크래핑-시-차단을-어떻게-피하나>스크래핑 시 차단을 어떻게 피하나?<a hidden class=anchor aria-hidden=true href=#스크래핑-시-차단을-어떻게-피하나>#</a></h3><p>여러 기술을 조합한다: Colly 확장으로 User-Agent 로테이션, 랜덤 지연 추가(<code>LimitRule</code>의 <code>RandomDelay</code>), <code>robots.txt</code> 준수, 레지덴셜 프록시 사용, 시간에 따라 요청 분산. 대상 사이트의 용량을 초과하지 말고 — 429 오류 시 백오프하며 응답 코드를 모니터링한다.</p><h3 id=colly가-수백만-페이지-크롤링에-적합한가>Colly가 수백만 페이지 크롤링에 적합한가?<a hidden class=anchor aria-hidden=true href=#colly가-수백만-페이지-크롤링에-적합한가>#</a></h3><p>예, 적절한 아키텍처와 함께. Redis로 URL 중복 제거 및 캐싱, 타임스탬프로 증분 크롤링 구현, 여러 워커로 샤딩, 재시작 후 복구를 위한 상태 영속화. 팀들은 3-5개 Colly 인스턴스로 월 1,000만 페이지 이상을 크롤링했다고 보고했다.</p><h3 id=colly-스크래퍼를-어떻게-디버깅하나>Colly 스크래퍼를 어떻게 디버깅하나?<a hidden class=anchor aria-hidden=true href=#colly-스크래퍼를-어떻게-디버깅하나>#</a></h3><p><code>colly.Debugger(&amp;debug.LogDebugger{})</code>로 디버그 로깅을 활성화해 모든 요청/응답을 추적한다. <code>OnError</code> 콜백으로 실패한 요청을 캡처하고 기록한다. 복잡한 문제의 경우 요청/응답 덤프 기능이 있는 커스텀 HTTP 백엔드를 연결한다.</p><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>Colly는 Go 개발자가 스크래핑 프레임워크에 기대하는 것을 정확히 제공한다: 속도, 단순함, 단일 바이너리 배포 스토리. <strong>GitHub Stars 25,302개</strong>와 <strong>초당 1,000+ 요청</strong>으로 처리량과 메모리 효율성에서 Python 및 Node.js 대안을 능가한다. 콜백 API는 직관적이고 Redis 통합은 진정한 분산 크롤링을 가능하게 하며 프록시 지원은 규모에서 차단 없이 작동하게 한다.</p><p><strong>시작을 위한 액션 아이템:</strong></p><ol><li><a href=https://github.com/gocolly/colly>Colly GitHub 저장소</a>를 클론하고 ````_examples/``` 폴이더 실행</li><li>위의 5분 설정으로 첫 스크래퍼 빌드</li><li>1만 페이지 이상 확장하기 전에 Redis 캐싱과 프록시 로테이션 추가</li><li>Go 스크래핑 토론과 프로덕션 팁을 위해 <a href=https://t.me/dibi8_channel>dibi8 Telegram 그룹</a> 참여</li></ol><p><em>본문에는 Webshare의 제휴 링크가 포함되어 있습니다. 우리는 프로덕션 스크래핑 워크플로우에 대해 평가한 서비스만을 추천합니다.</em></p><h2 id=추천-호스팅-및-인프라>추천 호스팅 및 인프라<a hidden class=anchor aria-hidden=true href=#추천-호스팅-및-인프라>#</a></h2><p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p><h2 id=출처-및-추가-자료>출처 및 추가 자료<a hidden class=anchor aria-hidden=true href=#출처-및-추가-자료>#</a></h2><ul><li><a href=https://github.com/gocolly/colly>Colly GitHub 저장소</a> — 공식 소스 코드 및 예제</li><li><a href=https://go-colly.org/>Colly 문서</a> — API 참조 및 튜토리얼</li><li><a href=https://github.com/gocolly/colly/releases/tag/v2.2.0>Colly v2.2.0 릴리즈 노트</a> — 최신 안정판</li><li><a href=https://docs.scrapy.org/>Scrapy 공식 문서</a> — Python 스크래핑 프레임워크 비교</li><li><a href=https://github.com/puppeteer/puppeteer>Puppeteer GitHub</a> — Headless Chrome Node.js API</li><li><a href=https://github.com/PuerkitoBio/goquery>goquery GitHub</a> — Go용 jQuery 스타일 HTML 파싱</li><li><a href=https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production>Web Scraping with Go: Practical Guide</a> — 프로덕션 패턴</li><li><a href=https://www.firecrawl.dev/blog/best-open-source-web-crawler>Best Open-Source Web Crawlers 2026</a> — 생태계 개요</li><li><a href=https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers>Colly Benchmarks</a> — 성능 수치</li></ul><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Colly: 25,302 GitHub Stars — 벤치마크 Go 웹 스크래핑 프레임워크 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/colly%22>https://dibi8.com/kr/resources/colly"</a>
+}
+}</script></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

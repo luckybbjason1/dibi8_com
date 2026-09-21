@@ -1,9 +1,10 @@
 ---
-title: "Ollama本地运行LLM完整指南2025：在任何硬件上本地部署大模型"
-description: "Ollama 2025完整指南：涵盖macOS/Windows/Linux/Docker安装、热门模型推荐、硬件要求与优化、LangChain集成和常见问题排查。". Comprehensive gu..."
-draft: false
-aliases:
-  - /posts/ollama-local-llm-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-local-llm-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

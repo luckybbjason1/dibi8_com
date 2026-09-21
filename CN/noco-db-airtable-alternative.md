@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "noco-db-airtable-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "NocoDB 2026: The Open-Source Airtable Alternative Turnin...
-description: "Deploy NocoDB in 5 minutes with Docker. Turn MySQL, PostgreSQL, or SQLite into a collaborative sprea..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/noco-db-airtable-alternative/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: When Spreadsheets Hit the Wall
 
@@ -175,7 +182,7 @@ Trigger external workflows on data changes: 1. Go to **Base** → **Automation**
       "Content-Type": "application/json"
     },
     "body": {
-      "text": "New order #{{Id}} from {{CustomerEmail}} — Amount: ${{Total}}"
+      "text": "New order # from  — Amount: $"
     }
   }
 }

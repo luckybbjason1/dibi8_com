@@ -1,6 +1,13 @@
 ---
-title: "Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở v...
-description: "Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứn..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-postgres-vector-ai-apps"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao các nhà xây dựng ứng dụng AI đang chuyển từ Firebase sang Supabase
 

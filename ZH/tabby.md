@@ -1,16 +1,14 @@
 ---
-title: "Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南"
-description: "Tabby 是自托管 AI 编程助手。支持 VS Code、JetBrains、Vim、Neovim、Ollama、DeepSeek。Docker 安装、IDE 集成、基准测试和生产环境加固。". C..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["tabby", "ai编程助手", "自托管", "github copilot替代品", "代码补全", "docker", "开源"]
-aliases:
-  - /zh/posts/tabby/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tabby"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 GitHub Copilot 将你的专有代码发送到微软云端。对于处理敏感知识产权的团队——金融科技、医疗保健、国防、企业 SaaS——这是无法接受的。Tabby 是开源解决方案：一个完全在你自己硬件上运行的自托管 AI 编程助手，零外部数据泄露。凭借 33,530+ GitHub Stars 和活跃的发版节奏（v0.32.0 于 2026 年 1 月发布），Tabby 已从实验性项目成长为生产级的 Copilot 替代品。本指南涵盖完整的 Tabby 设置，从 Docker 部署到 IDE 集成和生产环境加固。
 

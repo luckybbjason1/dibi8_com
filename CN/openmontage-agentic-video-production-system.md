@@ -1,9 +1,16 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openmontage-agentic-video-production-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: openmontage-agentic-video-production-system
 title: "OpenMontage Review: The World's First Open-Source Agenti..."
-description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. ..."
+description: "Technical guide and comparison."
 tags: ["ai-agent", "ai-tools", "architecture", "automation", "llm", "open-source", "self-hosted", "system", "video-generation"]
-date: "2026-06-22 00:00:00+08:00"
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.10+
   - FFmpeg
@@ -29,7 +36,7 @@ faqs: - q: 'What is OpenMontage?'
   - q: 'How does OpenMontage differ from Sora, Runway, and Pika?'
     a: 'Sora, Runway, and Pika are single-prompt-to-video generators that produce short clips (5-30 seconds) with no narrative structure, no script, and no audio. OpenMontage is a production orchestration system: it conducts live web research, writes scripts, generates or sources assets (images, video, music, narration), edits everything into a coherent timeline, adds word-level subtitles, and runs multi-point quality validation. It produces finished videos of any length, not just isolated clips.'
   - q: 'Do I need paid API keys to use OpenMontage?'
-    a: 'No. Out of the box, `make setup` gives you Piper TTS (free offline text-to-speech), Archive.org/NASA/Wikimedia Commons footage, Remotion composition, FFmpeg post-production, and auto-generated subtitles. You can produce real narrated videos at zero cost. Paid API keys (FLUX, Kling, Google Veo, ElevenLabs, Suno) unlock higher-quality assets but are entirely optional. The system scores every provider across 7 dimensions and picks the best match for your budget.'
+    a: 'No. Out of the box, ``make setup`` gives you Piper TTS (free offline text-to-speech), Archive.org/NASA/Wikimedia Commons footage, Remotion composition, FFmpeg post-production, and auto-generated subtitles. You can produce real narrated videos at zero cost. Paid API keys (FLUX, Kling, Google Veo, ElevenLabs, Suno) unlock higher-quality assets but are entirely optional. The system scores every provider across 7 dimensions and picks the best match for your budget.'
   - q: 'What are the 12 production pipelines?'
     a: 'The 12 pipelines are: Animated Explainer, Animation, Avatar Spokesperson, Cinematic, Clip Factory, Documentary Montage, Hybrid, Localization & Dub, Podcast Repurpose, Screen Demo, Talking Head, and Character Animation. Each follows the same structured flow: research → proposal → script → scene_plan → assets → edit → compose. Every stage has a dedicated director skill (Markdown instruction file) that teaches the agent exactly how to execute it.'
   - q: 'Can OpenMontage make videos from real footage, not just AI images?'

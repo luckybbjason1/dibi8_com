@@ -1,12 +1,10 @@
 ---
-title: "일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템"
-description: 실시간 뉴스, 의사결정 대시보드 및 자동화된 알림을 갖춘 LLM 기반 다시장 주식 분석 시스템. 48K 스타. 무료 예약 실행 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: ai-trading
-tags: ["주식분석", "llm", "퀀트트레이딩", "ai에이전트", "다시장", "a주식", "감정분석", "자동거래"]
-slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "daily-stock-analysis-llm-powered-multi-market-stock-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -315,13 +313,13 @@ python dashboard.py --host 0.0.0.0 --port 8080
 dashboard: refresh_interval: 300  # 5분
   default_market: "a_shares"
   charts: - type: "heatmap"
-      title: "시장 히트맵"
+      title: "AI Tool Guide"
       data_source: "sector_performance"
     - type: "line"
-      title: "주가 역사"
+      title: "AI Tool Guide"
       data_source: "historical_prices"
     - type: "sentiment"
-      title: "뉴스 감정"
+      title: "AI Tool Guide"
       data_source: "llm_sentiment"
   alerts: - threshold: 0.8
       action: "notification"

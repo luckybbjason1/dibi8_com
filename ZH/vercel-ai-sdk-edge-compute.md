@@ -1,20 +1,10 @@
 ---
-title: Vercel AI SDK — 用 Edge-First 架构构建流式 AI 应用
-description: Vercel AI SDK 完全指南，用于构建生产级 AI 应用。流式传输 LLM 响应、集成多个提供商、部署到边缘且零配置。支持 React、Next.js 和任何框架。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: vercel-ai-sdk-edge-compute
--CN---
-
-
-## TL;DR
-
-Vercel AI SDK 是一个为构建带流式支持的 AI 用户界面而设计的开源库，适用于所有主流框架。它为集成 LLM 提供商（OpenAI、Anthropic、Google）提供类型安全的 API、自动响应流式传输、React 内置 UI 组件，以及无缝部署到边缘运行时。核心优势：一个 SDK 处处可用——Next.js App Router、Remix、SvelteKit、Nuxt 或任何支持 fetch 的框架。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vercel-ai-sdk-edge-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## 什么是 Vercel AI SDK？
 
@@ -213,7 +203,7 @@ import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
 const ArticleSchema = z.object({
-  title: z.string().describe("文章标题"),
+title: "AI Tool Guide"
   summary: z.string().describe("一段摘要"),
   tags: z.array(z.string()).describe("相关标签"),
   readingTime: z.number().describe("预计阅读时间（分钟）"),
@@ -308,7 +298,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "搜索网络获取当前信息"
+description: "Technical guide and comparison."
       parameters: z.object({
         query: z.string().describe("搜索查询"),
         maxResults: z.number().default(5),
@@ -321,7 +311,7 @@ const result = streamText({
       },
     }),
     calculate: tool({
-      description: "执行数学计算"
+description: "Technical guide and comparison."
       parameters: z.object({ expression: z.string().describe("数学表达式") }),
       execute: async ({ expression }) => {
         try { return { result: Function(````return ${expression}````)() }; }

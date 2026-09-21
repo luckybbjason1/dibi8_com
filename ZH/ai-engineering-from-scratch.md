@@ -1,20 +1,10 @@
 ---
-title: "从零开始构建 AI 工程：打造生产级 LLM 系统——2026 完整指南"
-description: "AI Engineering From Scratch（32,771 颗星）是一套全面的课程体系，涵盖 LLM 微调、RAG、Agent 框架和生产部署。学习构建、交付和扩展 AI 系统。"
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: ai-engineering-from-scratch
-category: llm-frameworks
-tags: ["ai 工程", "llm", "微调", "rag", "agent 框架", "生产部署", "机器学习"]
-images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
-    alt: "AI Engineering From Scratch GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/rohitg00/ai-engineering-from-scratch/main/README.md"
-    alt: "仓库 README"
-    role: reference
-  - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
-    alt: "星标历史"
-    role: reference
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-engineering-from-scratch"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

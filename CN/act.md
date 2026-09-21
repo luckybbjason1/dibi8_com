@@ -1,6 +1,13 @@
 ---
-title: "act: 70,410 GitHub Stars — Run GitHub Actions Locally, P...
-description: "act (nektos/act) is a CLI tool that runs GitHub Actions locally using Docker containers. Compatible ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "act"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 image: "https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png"
 ---
 
-{{</* resource-info */>}}
+
 
 ![act logo](https://raw.githubusercontent.com/nektos/act/master/img/act-logo.png)
 
@@ -385,16 +392,16 @@ Configuration precedence (highest to lowest): 1. CLI arguments
 
 Mark steps that should not run locally: `````yaml
 # In your workflow file
-jobs: deploy: if: ${{ !github.event.act }}  # Skip deploy job locally
+jobs: deploy: if: $  # Skip deploy job locally
     runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
 
   notify: runs-on: ubuntu-latest
     steps: - name: Skip Slack notification locally
-        if: ${{ !env.ACT }}
+        if: $
         run: |
           curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
+            --data '{"text":"Deployment complete"}' $
 `````
 
 Pass the act flag via event: `````bash

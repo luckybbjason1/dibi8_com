@@ -1,21 +1,10 @@
 ---
-title: "Postman vs Insomnia vs Bruno: Best API Testing Tool in 2...
-description: "Compare Postman vs Insomnia vs Bruno in 2025. Find the best API testing tool with pricing, protocol ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "api-testing-tools-postman-vs-insomnia-vs-bruno"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025
@@ -119,7 +108,7 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/users/{{userId}}
+  url: /users/
   body: none
   auth: bearer
 }
@@ -296,7 +285,7 @@ The importer handles requests, headers, environment variables, and basic test sc
 
 ### Converting Collections and Environments
 
-Environment variables export from Postman as JSON and can be converted to Bruno's environment format using the CLI or manual editing. The variable substitution syntax (````{{variableName}}````) is identical between both tools, so no changes are needed in request definitions.
+Environment variables export from Postman as JSON and can be converted to Bruno's environment format using the CLI or manual editing. The variable substitution syntax (````````) is identical between both tools, so no changes are needed in request definitions.
 
 ### Maintaining Test Scripts During Migration
 

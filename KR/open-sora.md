@@ -1,6 +1,13 @@
 ---
-title: "Open-Sora: 29K+ Stars — 오픈소스 비디오 생성 완벽 설치 가이드 2026"
-description: "Open-Sora는 29K+ GitHub stars를 보유한 오픈소스 비디오 생성 프레임워크입니다. Docker 설치, ComfyUI 통합, Stable Diffusion 호환, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-sora"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 대부분의 개발자가 AI 비디오 생성을 실험하면서 동일한 벽에 부딪힙니다. 상업용 API는 초당 $0.10-$0.50을 청구하고, 자체 호스팅 대안은 심층적인 CUDA 지식을 요구하며, 존재하는 소수의 오픈소스 프로젝트는 문서가 부족하거나 엔터프라이즈급 GPU를 필요로 합니다. 2024년 3월, HPC-AI Tech는 이 상황을 바꾸기 위해 Open-Sora를 출시했습니다. 15개월과 29,000개의 GitHub stars 이후, 이 프로젝트는 연구 프로토타입에서 시간당 임대 가능한 하드웨어에서 상업용 대안과 품질이 맞먹는 5초 768p 비디오를 생성할 수 있는 프로덕션급 프레임워크로 발전했습니다.
 

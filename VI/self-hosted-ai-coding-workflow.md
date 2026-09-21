@@ -1,6 +1,13 @@
 ---
-title: "Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng ...
-description: "Stack AI coding self-host 7 thành phần thay thế $290/tháng đăng ký SaaS (Cursor + Claude Code Pro + ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-ai-coding-workflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -120,7 +127,7 @@ LiteLLM tự pick Ollama làm provider.
 
 **Vì sao chọn**: 47.8k star, gateway LLM nhiều star nhất. Latency P95 8ms ở 1k RPS. Miễn phí nếu self-host. So sánh chi tiết trong [hướng dẫn Portkey vs LiteLLM vs OpenRouter 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
-**Triển khai nhanh trên VPS 4GB** (đề xuất {{< aff "htstack" "stack-vps" "VPS Hong Kong của HTStack" >}} cho sub-30ms latency tới user Trung Quốc đại lục, hoặc {{< aff "digitalocean" "stack-droplet" "droplet DigitalOcean $6" >}} cho nơi khác): `````bash
+**Triển khai nhanh trên VPS 4GB** (đề xuất  cho sub-30ms latency tới user Trung Quốc đại lục, hoặc  cho nơi khác): `````bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
@@ -204,7 +211,7 @@ Tavily có tier miễn phí hào phóng (1,000 lượt tìm/tháng) đủ trong 
 
 ## 10. Thứ Tự Lắp Ráp — Setup Day 1 (90 phút)
 
-Nếu bắt đầu từ đầu, làm theo thứ tự này: 1. **Khởi động hạ tầng** (15 phút) — Đặt {{< aff "digitalocean" "assembly-vps" "droplet DigitalOcean $6" >}}, cài Docker, mở port 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
+Nếu bắt đầu từ đầu, làm theo thứ tự này: 1. **Khởi động hạ tầng** (15 phút) — Đặt , cài Docker, mở port 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
 2. **Ollama trước** (10 phút) — Cài + pull ````qwen3-coder:14b```` (~9 GB). Xác nhận ````curl localhost:11434/api/tags```` hoạt động
 3. **LiteLLM thứ hai** (15 phút) — Docker run với env vars từ sec. 5. Xác nhận ````curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"```` liệt kê model Ollama
 4. **9Router thứ ba** (10 phút) — Tùy chọn nhưng khuyến nghị. Thêm vào config premium provider của LiteLLM
@@ -233,7 +240,7 @@ So với $289/tháng cho Cursor + Claude Code Pro + Copilot + Replit + OpenAI to
 
 ## 12. Đường Nâng Cấp
 
-Khi stack vượt tier $6 (hơn 1 dev, hơn 1 project, state bền vững quan trọng): - **Thêm Postgres** cho LiteLLM theo dõi chi tiêu + virtual key per project ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/tháng)
+Khi stack vượt tier $6 (hơn 1 dev, hơn 1 project, state bền vững quan trọng): - **Thêm Postgres** cho LiteLLM theo dõi chi tiêu + virtual key per project ( $15/tháng)
 - **Thêm Redis** cho LiteLLM caching (1 GB managed Redis $10/tháng)
 - **Di chuyển LiteLLM sau load balancer** với 3 replica — xem [hướng dẫn Portkey vs LiteLLM 2026](/vi/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) sec. 4 cho pattern Kubernetes
 - **Thêm Grafana + Loki** cho observability đầy đủ — log mọi prompt, mọi fallback, mọi cost spike
@@ -253,7 +260,7 @@ Khi stack vượt tier $6 (hơn 1 dev, hơn 1 project, state bền vững quan t
 
 Tổng: $6/tháng. Tổng: 90 phút lắp ráp. Tổng: vendor lock-in 0.
 
-Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn trong tuần 1. Khởi động {{< aff "digitalocean" "footer-cta" "droplet DigitalOcean $6" >}}, làm theo sec. 10, báo lại tuần sau.
+Nếu bạn tiêu $200+/tháng cho AI coding SaaS, stack này lấy lại vốn trong tuần 1. Khởi động , làm theo sec. 10, báo lại tuần sau.
 
 * * *
 

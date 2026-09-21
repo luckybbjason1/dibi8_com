@@ -1,17 +1,14 @@
 ---
-title: "Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성...
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["portkey ai gateway"]
-aliases:
-  - /kr/posts/portkey-ai-gateway-production/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "portkey-ai-gateway-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 프로덕션 환경에서 여러 대규모 언어 모델(LLM) 제공업체를 관리하는 것은 악몽과 같습니다. 각 제공업체는 고유한 API 형식, 인증 체계, 속도 제한 및 장애 모드를 가지고 있습니다. 애플리케이션 코드에는 OpenAI, Anthropic, Google, Azure 및 매달 등장하는 수십 개의 새로운 제공업체에 대한 조걸 로직이 가득합니다. **Portkey AI Gateway**를 소개합니다 — 단일 API 뒤에 200개 이상의 모델을 통합하고, 부하 분산, 폴 백 라우팅, 지출 추적, 요청 캐싱 및 엔터프라이즈급 관찰 가능성을 갖춘 오픈소스 LLM 게이트웨이입니다.
 
@@ -429,7 +426,7 @@ prompt = portkey.prompts.deploy(
     version="1.2.0",
     prompt=[
         {"role": "system", "content": "당신은 지원 티켓 분류기입니다. 티켓을 다음으로 분류하세요: 결제, 기술, 기능 요청 또는 불만."},
-        {"role": "user", "content": "티켓: {{ticket_content}}"}
+        {"role": "user", "content": "티켓: "}
     ],
     model="gpt-4o-mini",
     parameters={

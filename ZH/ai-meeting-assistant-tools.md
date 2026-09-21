@@ -1,11 +1,10 @@
 ---
-title: "2025年最佳AI会议助手工具对比：Otter.ai、Fireflies、Fathom等全面评测"
-description: "深度对比Otter.ai、Fireflies.ai、Fathom、Notion AI、Microsoft Copilot等主流AI会议助手，从转录准确率、摘要质量、集成功能到定价策略，帮你找到最适合的..."
-draft: false
-categories: ["ai-tools"]
-tags: ["ai会议助手", "otter.ai", "fireflies", "fathom", "会议转录"]
-aliases:
-  - /zh/posts/ai-meeting-assistant-tools/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-meeting-assistant-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳AI会议助手工具对比：Otter.ai、Fireflies、Fathom等全面评测

@@ -1,24 +1,20 @@
 ---
-description: "Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases int..."
-date: 2026-07-03T09:00:00+09:00
-lastmod: 2026-07-03T09:00:00+09:00
-slug: codebase-memory-mcp-deep-code-intelligence
-title: "代码库内存MCP：24K+星型AI代码智能服务器"
-category: llm-frameworks
-tags: ["mcp", "code-intelligence", "ai-agents", "vector-search", "open-source"]
-tech_stack: - C
-  - Rust
-  - Python
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "codebase-memory-mcp-deep-code-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 
-<<<<<<< HEAD
+
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
-=======
+
 > **编者披露：** 此分析使用截至 2026 年 6 月 30 日公开的 GitHub 数据（星数、提交频率、分叉数）。所有代码示例都经过测试和验证。我们可以通过附属链接赚取佣金。
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 ## 长篇大论；博士
 
@@ -181,7 +177,7 @@ pub struct IncrementalIndexer {
     vector_store: ChromaStore,
 }
 
-<<<<<<< HEAD
+
 impl IncrementalIndexer {
     pub fn index_changed(&mut self, codebase_path: &Path) -> IndexResult {
         let mut changed_files = Vec: :new();
@@ -212,7 +208,7 @@ impl IncrementalIndexer {
             duration_ms: elapsed.as_millis() as u64,
         })
     }
-=======
+
 实现增量索引器 {
 pub fn index_changed(&mut self, codebase_path: &Path) -> IndexResult {
 让 mutchanged_files = Vec: :new();
@@ -243,7 +239,7 @@ self.vector_store.update(路径)?;
 period_ms: elapsed.as_millis() as u64,
 })
 }
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 }
 `````
 
@@ -252,7 +248,7 @@ period_ms: elapsed.as_millis() as u64,
 `````python
 class SearchPipeline: def __init__(self, vector_store, reranker=None): self.store = vector_store
         self.reranker = reranker
-<<<<<<< HEAD
+
     
     def search(self, query: str, top_k: int = 10) -> List[Document]: # Step 1: Embed the query
         query_embedding = self._embed(query)
@@ -279,7 +275,7 @@ class SearchPipeline: def __init__(self, vector_store, reranker=None): self.stor
 
 
 ## Advanced Usage: Custom Indexing Rules
-=======
+
 
 def search(self, query: str, top_k: int = 10) -> 列表[文档]: # 第 1 步：嵌入查询
 query_embedding = self._embed(查询)
@@ -307,7 +303,7 @@ query_embedding = self._embed(查询)
 `````
 
 ## 高级用法：自定义索引规则
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 对于专门的代码库，您可以定义自定义索引规则以提高相关性和准确性。
 
@@ -517,11 +513,11 @@ docs = indexer.generate_documentation(
 
 
 * * *
-<<<<<<< HEAD
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
-=======
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 
 {

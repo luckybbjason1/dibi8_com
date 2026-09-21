@@ -1,6 +1,13 @@
 ---
-title: "DS4 vs Ollama vs llama.cpp: 128GB Mac에서 딥시크 V4 Flash 로컬 ...
-description: "Redis 창시자 antirez가 개발한 DS4 추론 엔진을 알아보세요. DeepSeek V4 Flash 로컬 배포, macOS/Linux 설치 튜토리얼, Ollama/llama...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-deepseek-flash-local-inference"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - C++
@@ -406,8 +413,8 @@ A: 창을 닫으면 문맥을 다 까먹는 Ollama와 달리, DS4는 방대한 K
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

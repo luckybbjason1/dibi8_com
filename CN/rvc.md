@@ -1,6 +1,13 @@
 ---
-title: "RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Min...
-description: "RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GP..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rvc"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/rvc/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
 

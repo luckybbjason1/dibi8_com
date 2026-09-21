@@ -1,6 +1,13 @@
 ---
-title: AiWind：1000+ AI 绘画提示词宝库，让 GPT-Image 2 和 Nanobanana 产出惊艳作品
-description: AiWind là thư viện prompt AI miễn phí với 1000+ prompt chuyên nghiệp. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aiwind-ai-prompt-library-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   cho GPT-Image 2, Nanobanana, Stable Diffusion, Midjourney và các mô hình chính khác,
   bao phủ nhiều phong cách từ chân dung chân thực đến cyberpunk và 3D render.
 date: 2026-05-15T04:20:25+09:00
@@ -279,9 +286,9 @@ Nếu bạn luôn cảm thấy "thiếu gì đó" khi tạo hình ảnh bằng A
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

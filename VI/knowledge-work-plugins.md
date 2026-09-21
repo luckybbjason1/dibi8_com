@@ -1,21 +1,10 @@
 ---
-title: "Plugin Làm việc Tri thức: Hệ sinh thái Plugin của Anthro...
-description: "Knowledge Work Plugins (20.728 sao) của Anthropic mở rộng Claude với các công cụ mạnh mẽ cho chỉnh s..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: knowledge-work-plugins
-category: dev-utils
-tags: ["anthropic", "claude", "plugin", "năng suất", "chỉnh sửa tài liệu", "phân tích mã", "duyệt web", "sử dụng công cụ"]
-images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
-    alt: "Knowledge Work Plugins GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/plugin-diagram.png"
-    alt: "Kiến trúc Plugin"
-    role: architecture
-  - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/tool-use-example.png"
-    alt: "Ví dụ Sử dụng Công cụ"
-    role: example
-th--.png
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-work-plugins"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## TL;DR

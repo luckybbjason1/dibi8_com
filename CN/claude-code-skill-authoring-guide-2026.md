@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-skill-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code Skill Authoring: How to Package Procedures C...
-description: "A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that ..."
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', Markdown, YAML]
@@ -69,7 +76,7 @@ The test: *would this instruction apply to a random prompt about anything?* If y
 
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
+description: "Technical guide and comparison."
 
 * * *
 You are helping cut a release. Follow these steps in order...
@@ -81,8 +88,8 @@ Kebab-case, descriptive. This is the skill's identity.
 
 ### ````description```` — the trigger signal that decides everything
 
-Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ ````description: Release helper.````
-> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
+Claude reads skill descriptions to route: it scans them, decides which skill fits the current task, and loads that skill's body. So the description is not a label — it's a **when-to-fire condition**. Pack it with concrete triggers: > ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 The first never fires because nothing in a real task matches "release helper." The second fires the moment the user says "let's ship 2.4.0." If your skill exists but never activates, the description is the culprit — every time.
 
@@ -113,7 +120,7 @@ Claude reads ````references/versioning.md```` only when it actually needs the ru
 
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
+description: "Technical guide and comparison."
 * * *
 
 You are cutting a release. Do NOT skip the precondition check.
@@ -136,7 +143,7 @@ The precondition and the "report where you stopped" line are what make it produc
 `````markdown
 * * *
 name: debug-flaky-test
-description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
+description: "Technical guide and comparison."
 * * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
@@ -164,9 +171,9 @@ A skill is **just-in-time expertise**. CLAUDE.md is what's true always; a skill 
 
 ## Setting Up Production-Ready Claude Code
 
-Skills shine most in a stable, shared environment: 1. **A reliable host for team-shared, CI-invoked workflows.** Skills are version-controlled and run in CI too. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com. $5-12/month.
+Skills shine most in a stable, shared environment: 1. **A reliable host for team-shared, CI-invoked workflows.** Skills are version-controlled and run in CI too. **** — Hong Kong VPS, low-latency mainland-China access, stable BGP. Same IDC that hosts dibi8.com. $5-12/month.
 
-2. **Cloud headroom for parallel runs.** **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days, 14+ regions.
+2. **Cloud headroom for parallel runs.** **** — $200 free credit for 60 days, 14+ regions.
 
 3. **A skills bundle.** The fastest way to write great skills is to read great ones. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — with the descriptions, progressive-disclosure structure, and bundled scripts already done right.
 

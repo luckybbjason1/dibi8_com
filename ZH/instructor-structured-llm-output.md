@@ -1,16 +1,14 @@
 ---
-title: "Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南"
-description: "停止与不稳定的LLM输出作斗争。了解Instructor如何修补OpenAI客户端，使用Pydantic模型保证有效、类型安全的JSON响应。具有重试逻辑、多提供商支持和流式传输功能。". Compr..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["instructor"]
-aliases:
-  - /zh/posts/instructor-structured-llm-output/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "instructor-structured-llm-output"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 *最后更新：2026年5月19日*
 
@@ -55,7 +53,7 @@ class UserProfile(BaseModel): name: str
     interests: list[str]
 
 # 从自然语言中提取结构化数据
-def extract_profile(user_description: str) -> UserProfile: return client.chat.completions.create(
+def extract_profile(user_description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
@@ -109,7 +107,7 @@ class ValidatedProduct(BaseModel): name: str = Field(description="产品名称�
         return round(v, 2)
 
 # 验证失败时Instructor自动重试
-def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
+def parse_product(description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # 最多重试3次并附带反馈

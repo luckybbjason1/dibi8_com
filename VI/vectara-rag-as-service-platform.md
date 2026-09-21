@@ -1,6 +1,13 @@
 ---
-title: "Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
-description: "Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang r..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vectara-rag-as-service-platform"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Tại Sao Hầu Hết Hệ Thống RAG Thất Bại trong Production
 

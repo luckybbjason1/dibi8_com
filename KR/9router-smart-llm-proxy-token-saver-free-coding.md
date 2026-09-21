@@ -1,6 +1,13 @@
 ---
-title: "9Router: 스마트 LLM 프록시 — 토큰 60% 절약, API 제한 다시는 겪지 않기"
-description: "9Router 발견하기 — RTK 무손실 압축 엔진으로 토큰을 20-40% 절약하고, 3단계 스마트 폴백 시스템으로 40개 이상의 AI 모델 공급자를 자동 라우팅하며, 무료로 wo..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "9router-smart-llm-proxy-token-saver-free-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -299,8 +306,8 @@ RTK 토큰 압축(~20-40% 절약), 케뱅 모드 출력 감소(~65% 절약), 스
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

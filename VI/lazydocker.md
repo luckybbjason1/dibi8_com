@@ -1,6 +1,13 @@
 ---
-title: "LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
-description: "LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Do..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lazydocker"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Quản lý Docker từ dòng lệnh đồng nghĩa với việc ghi nhớ hàng chục flag, pipe output qua ```grep````, và liên tục chuyển đổi giữa ````docker ps````, ````docker logs````, và ````docker exec````. Đối với developer dành hàng giờ trong terminal, ma sát này tích lũy theo thờ gian. LazyDocker giải quyết vấn đề này bằng một binary duy nhất, gói workflow Docker của bạn vào một giao diện terminal điều khiển bằng bàn phím — không cần browser, không cần daemon, không có overhead thiết lập. Với hơn 51,000 GitHub stars và hệ sinh thái phát triển mạnh, nó đã trở thành công cụ TUI mặc định cho việc quản lý Docker trong năm 2026.
 
@@ -266,21 +273,21 @@ logs: timestamps: true
 Thêm lệnh của riêng bạn có thể truy cập qua phím ``c``: `````yaml
 customCommands: containers: - name: bash
       attach: true
-      command: "docker exec -it {{ .Container.ID }} bash"
+      command: "docker exec -it  bash"
       serviceNames: []
     - name: debug-network
       attach: false
-      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}""
+      command: "docker inspect  --format=': \n""
 `````
 
-Các biến template khả dụng: ````{{ .Container.ID }}````, ````{{ .Container.Name }}````, ````{{ .Service.Name }}````, ````{{ .DockerCompose }}````.
+Các biến template khả dụng: ````````, ````````, ````````, ````````.
 
 ### Hỗ Trợ Podman
 
 LazyDocker hoạt động với Podman bằng cách thay đổi command template: `````yaml
 commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
-  containerInspect: "podman inspect {{ .Container.ID }}"
+  containerInspect: "podman inspect "
 `````
 
 ## Tích Hợp Với Các Công Cụ Phổ Biến
@@ -375,7 +382,7 @@ jobs: debug: runs-on: ubuntu-latest
         run: |
           lazydocker --version
           # Xuất danh sách container cho log
-          docker ps --format "table {{.Names}}\t{{.Status}}"
+          docker ps --format "table \t"
 `````
 
 ## Benchmark & Các Trường Hợp Sử Dụng Thực Tế
@@ -476,7 +483,7 @@ Xuất stats LazyDocker ra monitoring bên ngoài bằng cách pipe ``docker sta
 # cron job mỗi 60 giây
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name="{{.Name}}"} {{.CPUPerc}}\ncontainer_memory_usage{name="{{.Name}}"} {{.MemUsage}}" \
+    "container_cpu_usage{name=""} \ncontainer_memory_usage{name=""} " \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

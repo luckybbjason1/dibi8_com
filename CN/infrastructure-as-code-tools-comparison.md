@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "infrastructure-as-code-tools-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Infrastructure as Code Tools 2025: Terraform vs Pulumi v...
-description: "Compare the top IaC tools of 2025. In-depth analysis of Terraform, Pulumi, AWS CDK, Crossplane, Pupp..."
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

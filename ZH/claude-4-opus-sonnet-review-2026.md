@@ -1,6 +1,13 @@
 ---
-title: "Claude 4 实战评测 2026：Opus 4、Sonnet 4、Haiku 4 深度测试"
-description: "Claude 4 全系横评：Opus 4、Sonnet 4、Haiku 4 — 编程、推理、上下文、定价，以及与 GPT-4o、Gemini 1.5 Pro 的对比。2026 年 6 月更新。". C..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-4-opus-sonnet-review-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

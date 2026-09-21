@@ -1,28 +1,16 @@
 ---
-title: "markitdown: Convert Files & Office Docs to Markdown (141...
-description: "markitdown is Microsoft"'''s Python tool for converting files and office documents to Markdown. 141,..."
-last_maintained: "2026-06-02"
-draft: false
-categories: ["dev-utils"]
-tags: ["]
-aliases:
-  - /posts/markitdown-dev-utils-2026/
-faqs: - q: 'How do I install markitdown?'
-    a: 'Install it with pip. The common choice is to pull in all format extras: ```bash pip install ''markitdown[all"]'' ```'
-  - q: 'Can markitdown convert all types of office documents?'
-    a: 'It supports a wide range of formats — Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, HTML, images, and audio — but not every feature of every format is preserved. Check the documentation for the current list of supported types and required extras.'
-  - q: 'What license is markitdown released under?'
-    a: '`markitdown` is released under the MIT License, making it freely usable and modifiable for any purpose.'
-  - q: 'How do I contribute to the project?'
-    a: 'You can report issues or submit pull requests. Check the [GitHub repository](https://github.com/microsoft/markitdown) for contribution guidelines.'
-  - q: 'Are there any known limitations with markitdown?'
-    a: 'Yes — advanced features and complex document structures may not be fully preserved. The project is actively maintained, but it prioritizes text fidelity over visual reproduction.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide
 
 
-{{< resource-info >}}
+
 
 ## Introduction
 

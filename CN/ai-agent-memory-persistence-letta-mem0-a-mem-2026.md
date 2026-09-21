@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM...
-description: "Agents without persistent memory restart from zero every session. Tested Letta, Mem0, A-MEM on the s..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
@@ -24,7 +31,7 @@ faq: - q: "Why do AI agents need persistent memory?"
     a: "For most production agents serving real users: yes, materially. The quality difference between 'remembers you' and 'starts from scratch' is large. For one-shot tasks or simple workflows: not worth the complexity."
 ---
 
-{{</* resource-info */>}}
+
 
 # AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM
 
@@ -159,8 +166,8 @@ For agents serving paying users: trivial vs revenue. For free/hobby agents: noti
 
 ## Recommended Infrastructure
 
-For memory framework + vector DB hosting: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS
+For memory framework + vector DB hosting: - **** — $200 credit
+- **** — Hong Kong VPS
 
 *Affiliate links — same price, supports dibi8.com.*
 

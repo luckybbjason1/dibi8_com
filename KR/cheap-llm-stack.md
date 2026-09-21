@@ -1,6 +1,13 @@
 ---
-title: "저렴한 LLM 스택 2026: 무료 티어 + 토큰 압축으로 프로덕션 AI를 $0-15/월에 돌리는 법"
-description: "실제 AI 워크로드를 $0-15/월로 돌리는 5컴포넌트 스택: Ollama 로컬 + DeepSeek API + Gemini 무료층 + RTK 압축 + 9Router 오케스트레이션...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cheap-llm-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -206,7 +213,7 @@ $0-15 스택은 다음 중 하나 부딪힐 때까지: - **레이턴시 요구 <
 4. **RTK 프록시** — 청구 API 토큰 20-40% 절감
 5. **9Router** — 스마트 라우팅 오케스트레이터
 
-현재 AI SaaS에 $30+/월 쓰고 있으면 이 스택이 즉시 본전. 노트북에서 돌리면 됨 (저렴 LLM은 VPS 필수 아님 — 단, 팀 항상 켜기 원하면 {{< aff "digitalocean" "footer-cta" "$6/월 DigitalOcean droplet" >}} 도움).
+현재 AI SaaS에 $30+/월 쓰고 있으면 이 스택이 즉시 본전. 노트북에서 돌리면 됨 (저렴 LLM은 VPS 필수 아님 — 단, 팀 항상 켜기 원하면  도움).
 
 * * *
 

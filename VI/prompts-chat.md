@@ -1,22 +1,21 @@
 ---
-title: "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
-description: "Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for priv..."
-date: 2026-06-12
-lastmod: 2026-06-12
-slug: 'prompts-chat'
-category: llm-frameworks
-tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompts-chat"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026
 
-title: 'prompts.chat: Thư viện Prompt mã nguồn mở với hơn 163k sao -- Hướng dẫn 2026'
-description: "Triển khai prompts.chat trong 5 phút. 163.640 sao trên GitHub. Tương thích với ChatGPT, Claude, Gemi..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-12
 lastmod: 2026-06-12
-slug: 'prompts-chat'
-category: 'llm-frameworks'
+slug: "prompts-chat"
+category: "llm-frameworks"
 tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
 
 

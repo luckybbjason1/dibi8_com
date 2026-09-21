@@ -1,6 +1,13 @@
 ---
-title: "Các Công Cụ Và Framework Xây Dựng Đồ Thị Tri Thức Tốt Nh...
-description: "So sánh chi tiết các công cụ và framework xây dựng đồ thị tri thức hàng đầu năm 2025. Tìm hiểu Neo4j..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-graph-tools-frameworks"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

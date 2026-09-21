@@ -1,6 +1,13 @@
 ---
-title: "Tabby: 33K+ Stars 자체 호스팅 AI 코딩 어시스턴트 — 2026년 프라이버시 우선 설치...
-description: "Tabby는 자체 호스팅 AI 코딩 어시스턴트입니다. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek 지원. Docker 설치, IDE 통..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tabby"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 GitHub Copilot은 사용자의 독점 코드를 Microsoft 클라우드로 전송합니다. 핀테크, 헬스케어, 국방, 엔터프라이즈 SaaS 등 민감한 IP를 다루는 팀에게 이는 용납할 수 없습니다. Tabby는 오픈소스 솔루션입니다: 외부 데이터 유출 없이 완전히 자신의 하드웨어에서 실행되는 자체 호스팅 AI 코딩 어시스턴트입니다. 33,530개 이상의 GitHub Stars와 활발한 릴리스 주기(v0.32.0은 2026년 1월 출시)를 바탕으로, Tabby는 실험적 프로젝트에서 프로덕션급 Copilot 대안으로 성숙했습니다. 이 가이드는 Docker 배포부터 IDE 통합, 프로덕션 하드닝까지 완전한 Tabby 설정을 다룹니다.
 

@@ -1,21 +1,10 @@
 ---
-title: "Bộ Nhớ Liên Tục cho AI Coding Agent 2026: Hướng Dẫn Toàn...
-description: "Dừng việc dạy lại Claude Code quy ước dự án. Tìm hiểu cách agentmemory và Giao thức Ngữ cảnh Mô hình..."
-date: 2026-05-17T00:00:00+08:00
-lastmod: 2026-05-17T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-17"
-draft: false
-aliases:
-  - /posts/agentmemory-mcp-persistent-memory-2026/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agentmemory-mcp-persistent-memory-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

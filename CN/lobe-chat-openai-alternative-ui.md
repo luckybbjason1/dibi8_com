@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lobe-chat-openai-alternative-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Lobe Chat: The Open-Source ChatGPT UI Alternative with 2...
-description: "Deploy Lobe Chat as your self-hosted ChatGPT alternative. Supports 20+ LLM providers, plugin system,..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/lobe-chat-openai-alternative-ui/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: ChatGPT Won't Cut It Anymore
 

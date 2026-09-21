@@ -1,9 +1,10 @@
 ---
-title: "LangChain完整入门指南2025：从零构建生产级AI应用"
-description: "LangChain 2025完整指南：深入解析核心组件、LangGraph与LangSmith生态，含代码示例与生产部署最佳实践。". Comprehensive guide covering fea..."
-draft: false
-aliases:
-  - /posts/langchain-complete-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langchain-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "Fine-Tuning Stack 2026：从数据集到生产部署 LLM 的 5 组件管线"
-description: "完整 LLM 微调 stack：Unsloth（单 GPU 快速实验）+ Axolotl（生产多 GPU）+ HuggingFace datasets/Hub + Weights & Biases（e..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "fine-tuning-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -185,13 +192,12 @@ vllm serve yourname/my-finetuned-llama \
 ## 8. Day 1 管线设置（3-4 小时）
 
 1. **JSONL 格式数据集**（看情况）—— 准备 ````train.jsonl```` 和 ````eval.jsonl````，推 HF Hub 私有
-2. **租 RTX 4090 GPU**（10 分）—— Vast.ai 或 {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}} 给实验阶段
+2. **租 RTX 4090 GPU**（10 分）—— Vast.ai 或  给实验阶段
 3. **装 Unsloth + W&B**（10 分）—— ````pip install unsloth wandb```
 4. **第一次 QLoRA 跑**（60 分）—— Unsloth 指南第 3 节，微调 Llama 3.2 8B 1 epoch，验 W&B log 出现
 5. **迭代 5-10 短实验**（~半天）—— 变学习率、LoRA rank、数据集切片。找到最佳 eval 分配方
 6. **配方翻译成 Axolotl YAML**（30 分）—— 同超参 YAML 格式，git commit
-7. **租 8× H100 集群**做生产跑（Vast.ai ~$15-20/小时 × 6-12 小时 = $90-240），数据 + 监控侧在 {{< aff "htstack" "ftstack-prod-vps" "HTStack 香港 VPS" >}}
-8. **跑 Axolotl 生产训练** —— 最终权重推 HF Hub
+7. **租 8× H100 集群**做生产跑（Vast.ai ~$15-20/小时 × 6-12 小时 = $90-240），数据 + 监控侧在 8. **跑 Axolotl 生产训练** —— 最终权重推 HF Hub
 9. **vLLM 部署** —— 微调模型服务在独立 24 GB GPU + LiteLLM 网关
 10. **对比基础模型 eval** —— 你的微调真的在 eval 集上打败基础？没？迭代
 
@@ -238,7 +244,7 @@ vllm serve yourname/my-finetuned-llama \
 4. **Weights & Biases** —— eval 跟踪
 5. **vLLM** —— 生产服务
 
-实验租 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}}，生产跑扩到 Vast.ai 8× H100，最终模型部署在独立 24 GB GPU。端到端自托管，权重你拥有，成本随严肃程度扩展。
+实验租 ，生产跑扩到 Vast.ai 8× H100，最终模型部署在独立 24 GB GPU。端到端自托管，权重你拥有，成本随严肃程度扩展。
 
 
 * * *

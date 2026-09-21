@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-vs-mcp-server-skill-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Subagent vs MCP Server vs Skill: When to Build Each Clau...
-description: "Claude Code has three extension points — skills, subagents, and MCP servers — and they solve differe..."
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -115,9 +122,9 @@ The three extension points map to three resources: **knowledge** (skills), **con
 
 ## Setting Up Production-Ready Claude Code
 
-Running all three layers — especially MCP servers — at scale wants stable infrastructure: 1. **A reliable host for MCP servers and CI.** MCP servers are long-running processes; you need a box that stays up. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own MCP servers and agent pipelines. $5-12/month value tier.
+Running all three layers — especially MCP servers — at scale wants stable infrastructure: 1. **A reliable host for MCP servers and CI.** MCP servers are long-running processes; you need a box that stays up. **** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own MCP servers and agent pipelines. $5-12/month value tier.
 
-2. **Cloud headroom for parallel layers.** When subagents fan out and MCP servers run alongside, you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ regions.
+2. **Cloud headroom for parallel layers.** When subagents fan out and MCP servers run alongside, you want spare CPU. **** — $200 free credit for 60 days across 14+ regions.
 
 3. **A skills bundle.** The fastest way to internalize the skill/subagent/server split is to study working examples. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — including custom agent definitions and the orchestrator prompts that compose all three layers.
 

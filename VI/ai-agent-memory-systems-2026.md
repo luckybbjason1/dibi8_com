@@ -1,6 +1,13 @@
 ---
-title: "Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemor...
-description: "AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-systems-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
@@ -35,7 +42,7 @@ faqs: - q: 'Sự khác biệt giữa Mem0, agentmemory, Hindsight, MemPalace?'
 # Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemory / Hindsight / MemPalace
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

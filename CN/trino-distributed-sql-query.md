@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trino-distributed-sql-query"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Trino 2026: The Distributed SQL Query Engine Analyzing P...
-description: "Set up Trino 464+ for petabyte-scale distributed SQL analytics. Step-by-step cluster deployment, 40+..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/trino-distributed-sql-query/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: When Your Data Warehouse Chokes on Petabytes
 
@@ -248,7 +255,7 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
             INSERT INTO analytics.daily_metrics
             SELECT DATE(event_time), COUNT(*), SUM(amount)
             FROM iceberg.raw.events
-            WHERE DATE(event_time) = '{{ ds }}'
+            WHERE DATE(event_time) = ''
             GROUP BY 1
         """,
         trino_conn_id="trino_default",  # configured in Airflow UI

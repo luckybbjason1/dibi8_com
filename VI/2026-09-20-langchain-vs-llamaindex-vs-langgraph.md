@@ -1,13 +1,10 @@
 ---
-title: "LangChain vs LlamaIndex vs LangGraph 2026: Guia de Compa...
-description: "Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, es..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
 date: 2026-09-20
-lastmod: 2026-09-20
-tags: ["langchain", "llamaindex", "langgraph", "rag", "frameworks-ia", "2026"]
-categories: ["llm-frameworks"]
-license_type: Open Source
-source: "LangChain, LlamaIndex"
-github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
+slug: "2026-09-20-langchain-vs-llamaindex-vs-langgraph"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

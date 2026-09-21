@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cross-border-ai-marketing-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for C...
-description: "A 7-component AI stack purpose-built for cross-border operations — automate multilingual content, sc..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -183,7 +190,7 @@ Full setup including how to share MCP servers across the team: [OpenCode open-so
 - **HK jurisdiction** = neutral for both China and global data
 - **VISA/Mastercard top-ups work** directly from RMB or USD cards
 
-We run dibi8.com itself on {{< aff "htstack" "stack-vps" "HTStack's Hong Kong VPS" >}} for exactly these reasons. A 4 GB box at ~$10/mo handles n8n + LangChain agents + Plausible + nginx serving 4-language content. Scale to 16 GB ($30/mo) for production team workloads.
+We run dibi8.com itself on  for exactly these reasons. A 4 GB box at ~$10/mo handles n8n + LangChain agents + Plausible + nginx serving 4-language content. Scale to 16 GB ($30/mo) for production team workloads.
 
 ## 9. Component 7 — OpenRouter (Cross-Border LLM Payments)
 
@@ -256,7 +263,7 @@ You"ll outgrow the $35-80/mo tier when: - **Team > 10 people** — Add LiteLLM w
 6. **HTStack HK VPS** — the bridge
 7. **OpenRouter** — crypto payment for premium LLMs
 
-The cross-border-specific wins: no payment friction, no GDPR/Chinese data law violations, no Cursor $80/seat in USD, no GA blocking, no Cloudflare-vs-China issues. Spin up an {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}} and start with components 1-4 first week, add 5-7 in week 2.
+The cross-border-specific wins: no payment friction, no GDPR/Chinese data law violations, no Cursor $80/seat in USD, no GA blocking, no Cloudflare-vs-China issues. Spin up an  and start with components 1-4 first week, add 5-7 in week 2.
 
 
 * * *

@@ -1,6 +1,13 @@
 ---
-title: "faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp...
-description: "faster-whisper (SYSTRAN) tái triển khai OpenAI Whisper qua CTranslate2 để đạt tốc độ nhanh gấp 4x. H..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "faster-whisper"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 OpenAI Whisper đã thay đổi lĩnh vực chuyển giọng nói thành văn bản (speech-to-text) vào năm 2022, nhưng bản triển khai Python gốc không tận dụng được hiệu năng phần cứng. Với file audio 13 phút, ```openai/whisper```` cùng mô hình large-v2 cần hơn 4 phút trên GPU Tesla V100 — không thể chấp nhận được cho các pipeline production xử lý hàng trăm giờ mỗi ngày. **faster-whisper** của SYSTRAN tái triển khai Whisper inference bằng CTranslate2, đạt tốc độ nhanh gấp 4x với độ chính xác tương đương trong khi giảm VRAM gần 70%. Với hơn 23,000 stars trên GitHub, nó đã trở thành runtime mặc định cho speech-to-text production trong môi trường Python.
 

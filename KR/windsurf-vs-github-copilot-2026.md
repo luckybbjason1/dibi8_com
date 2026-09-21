@@ -1,22 +1,10 @@
 ---
-title: "Windsurf vs GitHub Copilot 2026 심층 비교: 어떤 AI 코딩 툴이 더 나을까?"
-description: "Windsurf Cascade vs GitHub Copilot Agent Mode — 가격, 멀티파일 편집, 엔터프라이즈 보안, 2026년 6월 과금 논란까지. 실제 데이터, 군더..."
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/logo.png"
-    }
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/kr/resources/windsurf-vs-github-copilot-2026"
-  }
-}
-</script>
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "windsurf-vs-github-copilot-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

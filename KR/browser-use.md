@@ -1,6 +1,13 @@
 ---
-title: "Browser Use: 94K+ Stars — 2026년 AI 브라우저 자동화 벤치마크 및 실전 가이드"
-description: "Browser Use는 Playwright를 통해 LLM을 실제 브라우저에 연결하는 오픈소스 Python 프레임워크입니다. OpenAI, Anthropic, Gemini 및 로컬 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "browser-use"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 

@@ -1,11 +1,10 @@
 ---
-title: "Microsoft MarkItDown: The Complete Guide to Converting A..."
-description: "Learn how to use Microsoft's MarkItDown to convert PDFs, Word docs, images, HTML, PPTX, and more int..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
-category: dev-utils
-tags: ["microsoft", "markitdown", "markdown", "python", "cli", "pdf-converter", "document-processing", "AI", "open-source"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

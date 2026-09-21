@@ -1,6 +1,13 @@
 ---
-title: "Baetyl: Nền tảng điện toán AI biên cloud-native triển kh...
-description: "Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "baetyl-edge-ai-computing-platform"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Khoảng cách Edge AI 12 nghìn tỷ USD
 

@@ -1,16 +1,14 @@
 ---
-title: "TA-Lib: 200개 이상의 지표를 가진 업계 표준 기술 분석 라이브러리 — Python 트레이딩 ...
-description: "TA-Lib Python 래퍼 완벽 가이드. 200개 이상의 기술적 지표 설치, 벤치마크, SMA/EMA/RSI/MACD/볼린저 밴드 알고리즘 트레이딩 배포 방법을 2026년 기준..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /kr/posts/ta-lib-technical-analysis-trading/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ta-lib-technical-analysis-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 2026년에도 87%의 퀀트 트레이더가 여전히 TA-Lib을 선택하는 이유
 

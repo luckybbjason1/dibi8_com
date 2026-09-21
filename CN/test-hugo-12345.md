@@ -1,7 +1,14 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "test-hugo-12345"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: test-hugo-12345
 title: "Test Hugo Article 12345"
-description: "Testing Hugo build.". Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
 t..."
   },
   "publisher": {

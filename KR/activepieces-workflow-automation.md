@@ -1,16 +1,14 @@
 ---
-title: "Activepieces: 200+ 앱과 AI 액션을 갖춘 오픈소스 Zapier 대안 — 2026년 셀...
-description: "5분 만에 Activepieces를 배포하세요. 200+ 앱 통합, AI 액션, 비주얼 빌더를 갖춘 오픈소스 워크플로우 자동화 플랫폼으로 Zapier 비용의 일부만으로 운영할 수 ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["activepieces", "워크플로우 자동화", "zapier 대안", "셀프호스팅", "docker", "노코드", "오픈소스", "typescript", "ai 액션", "웹훅"]
-aliases:
-  - /kr/posts/activepieces-workflow-automation/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "activepieces-workflow-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 워크플로우 자동화의 연간 $2,340 문제
 
@@ -56,7 +54,7 @@ interface FlowRun {
 // 출력을 다운스트림 단계가 참조할 수 있도록 저장합니다
 `````
 
-단계는 ````{{step_name.property}}```` 템플릿 구문을 통해 이전 단계의 출력을 참조할 수 있으며, Handlebars와 유사합니다. 엔진은 분기(````if/else````), 루프(````for each````), 서브플로우를 지원합니다.
+단계는 ```````` 템플릿 구문을 통해 이전 단계의 출력을 참조할 수 있으며, Handlebars와 유사합니다. 엔진은 분기(````if/else````), 루프(````for each````), 서브플로우를 지원합니다.
 
 ### Pieces: 플러그인 시스템
 
@@ -197,8 +195,8 @@ Activepieces v0.46.0은 GPT-4o, GPT-4.1, GPT-4.1-mini를 지원하는 네이티�
   → 단계 1: 폼 데이터 추출(이름, 이메일, 회사, 메시지)
   → 단계 2: OpenAI "AI에게 질문" 액션
        프롬프트: "이 리드를 평가하세요. hot, warm, cold만 반환하세요.
-               리드: {{step_1.name}}, 회사: {{step_1.company}},
-               메시지: {{step_1.message}}"
+               리드: , 회사: ,
+               메시지: "
        모델: gpt-4.1-mini
   → 단계 3: AI 응답에 따른 분기
        "hot"이면 → HubSpot에서 고우선순위 작업 생성
@@ -336,7 +334,7 @@ export const myApiPiece = createPiece({
   auth: PieceAuth.SecretText({
     displayName: "API Key",
     required: true,
-    description: "Your internal API authentication key"
+    description: "Technical guide and comparison."
   }),
   minimumSupportedRelease: '0.46.0",
   actions: [sendNotification],

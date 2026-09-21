@@ -1,6 +1,13 @@
 ---
-title: "Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu v...
-description: "Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenA..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agno"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Chọn một framework AI Agent vào năm 2026 giống như đi qua một bãi mìn. Trong 18 tháng qua, hàng chục thư viện đã xuất hiện hứa hẹn "đơn giản hóa" việc phát triển agent, nhưng hầu hết lại tạo thêm nhiều lớp trừu tượng hơn giá trị thực tế. Các nhóm phát triển báo cáo rằng họ đã dành hàng tuần để học ngữ nghĩa điều phối dựa trên đồ thị, chỉ để phát hiện rằng use case của họ chỉ cần một vòng lặp gọi công cụ nhẹ nhàng. Agno (trước đây là Phidata) phá vỡ sự ồn ào này bằng triết lý ưu tiên runtime: xây dựng agent nhanh, chạy chúng như các dịch vụ, và kiểm soát toàn bộ stack của bạn. Với **40.233 GitHub Star**, **452 ngườI đóng góp**, và giấy phép Apache-2.0 mới, Agno đã trở thành framework hàng đầu cho các nhóm Python triển khai hệ thống agent production. Hướng dẫn **agno tutorial** này đi qua **agno setup**, kiến trúc, ví dụ code thực tế, benchmark **agno vs crewai**, và những sự thật về nơi **lightweight ai framework** này còn thiếu sót.
 

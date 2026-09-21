@@ -1,11 +1,10 @@
 ---
-title: "Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá R...
-description: "Hướng dẫn tối ưu chi phí inference LLM. So sánh Ollama, vLLM, quantization llama.cpp. Giảm 90%+ chi ..."
-date: 2026-06-16
-lastmod: 2026-06-16
-slug: 'llm-inference-cost-optimization-guide-2026'
-category: dev-utils
-tags: ["tối ưu chi phí LLM", "inference LLM giá rẻ", "quantization", "Ollama", "vLLM", "llama.cpp", "giảm chi phí API", "LLM cục bộ"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-inference-cost-optimization-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

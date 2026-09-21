@@ -1,7 +1,14 @@
 ---
-title: Agent Skills：Các đội phát triển giao mã cấp sản xuất nhan...
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agent-skills-production-grade-ai-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
   nào
-description: Agent Skills của Addy Osmani cung cấp 20 kỹ năng kỹ thuật cấp sản xuất. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   và 7 lệnh gạch chéo biến tác nhân mã hóa AI thành kỹ sư phần mềm cấp cao.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -28,7 +35,7 @@ faqs: - q: 'Agent Skills của Addy Osmani là gì?'
   - q: '7 lệnh slash trong Agent Skills là gì?'
     a: '7 lệnh đó là /spec (xác định cần xây dựng gì), /plan (chia công việc thành các tác vụ nhỏ, nguyên tử), /build (xây dựng từng bước), /test (chứng minh nó hoạt động bằng các bài kiểm thử), /review (rà soát trước khi merge), /code-simplify (rõ ràng hơn là khôn khéo) và /ship (triển khai lên production). Mỗi lệnh tự động kích hoạt các kỹ năng liên quan dựa trên những gì bạn đang chỉnh sửa.'
   - q: 'Làm thế nào để cài đặt Agent Skills cho Claude Code?'
-    a: 'Đối với Claude Code, bạn có thể clone repo vào dự án của mình bằng `gh repo clone addyosmani/agent-skills .claude/skills`, hoặc cài đặt nó như một plugin bằng `claude plugin install addyosmani/agent-skills`.'
+    a: 'Đối với Claude Code, bạn có thể clone repo vào dự án của mình bằng ``gh repo clone addyosmani/agent-skills .claude/skills``, hoặc cài đặt nó như một plugin bằng ``claude plugin install addyosmani/agent-skills``.'
   - q: 'Bảng chống biện minh (anti-rationalization table) trong Agent Skills là gì?'
     a: 'Bảng chống biện minh là một tính năng được nhúng trong mỗi kỹ năng, chủ động chỉ ra những lý do bao biện phổ biến mà lập trình viên và agent AI dùng để làm tắt, làm ẩu (chẳng hạn "Để sau tôi sẽ thêm test") và đưa ra lập luận phản bác. Các bảng này được rút ra từ những phân tích hậu sự cố (post-mortem) thực tế và phản hồi rà soát mã tại các tổ chức quy mô Google.'
 ---
@@ -314,9 +321,9 @@ Agent Skills là mắt xích còn thiếu giữa "AI có thể viết mã" và "
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

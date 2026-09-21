@@ -1,6 +1,13 @@
 ---
-title: "Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
-description: "Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-vs-mcp-server-skill-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', MCP, CLI]
@@ -116,9 +123,9 @@ Ba điểm mở rộng ánh xạ tới ba tài nguyên: **kiến thức** (skill
 
 ## Thiết lập Claude Code sẵn sàng cho môi trường production
 
-Chạy cả ba lớp — đặc biệt là MCP server — ở quy mô lớn đòi hỏi hạ tầng ổn định: 1. **Một host đáng tin cậy cho MCP server và CI.** MCP server là các tiến trình chạy lâu dài; bạn cần một máy luôn hoạt động. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông với truy cập độ trễ thấp tới Trung Quốc đại lục và BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các MCP server và pipeline agent của mình. Gói giá trị $5-12/tháng.
+Chạy cả ba lớp — đặc biệt là MCP server — ở quy mô lớn đòi hỏi hạ tầng ổn định: 1. **Một host đáng tin cậy cho MCP server và CI.** MCP server là các tiến trình chạy lâu dài; bạn cần một máy luôn hoạt động. **** — VPS Hồng Kông với truy cập độ trễ thấp tới Trung Quốc đại lục và BGP ổn định. Cùng IDC đang host dibi8.com, nơi chúng tôi chạy chính các MCP server và pipeline agent của mình. Gói giá trị $5-12/tháng.
 
-2. **Dư địa cloud cho các lớp song song.** Khi subagent tỏa ra và MCP server chạy song hành, bạn cần CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng miễn phí trong 60 ngày trên 14+ khu vực.
+2. **Dư địa cloud cho các lớp song song.** Khi subagent tỏa ra và MCP server chạy song hành, bạn cần CPU dự phòng. **** — $200 tín dụng miễn phí trong 60 ngày trên 14+ khu vực.
 
 3. **Một bộ skill.** Cách nhanh nhất để thấm nhuần sự phân tách skill/subagent/server là nghiên cứu các ví dụ thực chiến. Chúng tôi đã đóng gói năm skill đã được kiểm chứng thành một bộ $19 trên Gumroad — xem nút CTA nổi ở góc — bao gồm các định nghĩa custom agent và các orchestrator prompt kết hợp cả ba lớp.
 

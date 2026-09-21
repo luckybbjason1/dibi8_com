@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agent-skills-production-grade-ai-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Agent Skills: How Development Teams Can Ship Production-...
-description: Agent Skills by Addy Osmani delivers 20 production-grade engineering. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   skills and 7 slash commands that turn AI coding agents into senior software engineers.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -29,7 +36,7 @@ faqs: - q: 'What is Agent Skills by Addy Osmani?'
   - q: 'What are the 7 slash commands in Agent Skills?'
     a: 'The 7 commands are /spec (define what to build), /plan (break work into small atomic tasks), /build (build incrementally), /test (prove it works with tests), /review (review before merge), /code-simplify (clarity over cleverness), and /ship (deploy to production). Each command automatically activates the relevant skills based on what you are editing.'
   - q: 'How do I install Agent Skills for Claude Code?'
-    a: 'For Claude Code you can clone the repo into your project with `gh repo clone addyosmani/agent-skills .claude/skills`, or install it as a plugin with `claude plugin install addyosmani/agent-skills`.'
+    a: 'For Claude Code you can clone the repo into your project with ``gh repo clone addyosmani/agent-skills .claude/skills``, or install it as a plugin with ``claude plugin install addyosmani/agent-skills``.'
   - q: 'What is an anti-rationalization table in Agent Skills?'
     a: 'An anti-rationalization table is a feature embedded in each skill that pre-emptively flags common excuses developers and AI agents use to cut corners (such as "I''ll add tests later") and provides a counter-argument. The tables are derived from real post-mortems and code-review feedback at Google-scale organizations.'---
 
@@ -353,8 +360,8 @@ Agent Skills is the missing link between "AI can code" and "AI can ship producti
 * * *
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 

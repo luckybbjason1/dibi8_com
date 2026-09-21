@@ -1,21 +1,10 @@
 ---
-title: "RTK: AI 코딩 에이전트 토큰 비용을 60-90% 절감하는 오픈소스 Rust CLI 프록시 — 설...
-description: "RTK(Rust Token Killer)는 Claude Code, Cursor, Copilot, Codex, Gemini CLI 등 AI 코딩 에이전트의 LLM 토큰 소비를 60-..."
-date: 2026-05-14T00:00:00+08:00
-lastmod: 2026-05-14T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-14"
-draft: false
-aliases:
-  - /posts/rtk-rust-cli-proxy-ai-token-saver/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-ai-token-saver"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

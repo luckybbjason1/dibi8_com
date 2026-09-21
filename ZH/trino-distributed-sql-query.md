@@ -1,16 +1,14 @@
 ---
-title: "Trino 2026: PB级分布式 SQL 查询引擎 — 自托管集群搭建完全指南"
-description: "部署 Trino 464+ 实现 PB 级分布式 SQL 分析。包含分步集群部署、40+ 连接器配置、性能调优及真实基准测试。". Comprehensive guide covering featu..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["trino", "presto", "分布式sql", "大数据", "数据分析", "数据湖", "hive", "iceberg", "查询引擎", "自托管"]
-aliases:
-  - /zh/posts/trino-distributed-sql-query/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trino-distributed-sql-query"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：当你的数据仓库在 PB 级数据面前崩溃时
 
@@ -268,7 +266,7 @@ with DAG("trino_analytics", start_date=datetime(2026, 1, 1), schedule="@daily") 
             INSERT INTO analytics.daily_metrics
             SELECT DATE(event_time), COUNT(*), SUM(amount)
             FROM iceberg.raw.events
-            WHERE DATE(event_time) = '{{ ds }}'
+            WHERE DATE(event_time) = ''
             GROUP BY 1
         """,
         trino_conn_id="trino_default",

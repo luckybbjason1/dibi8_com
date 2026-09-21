@@ -1,11 +1,10 @@
 ---
-title: Lightning AI — The PyTorch Lightweight Toolkit for Produc...
-description: Complete guide to Lightning AI, the PyTorch lightweight toolkit for scaling training, inference, and deployment. Build production-ready ML pipelines with PyTorch Lightning.
-category: data-science
-tags: ["lightning", "pytorch-lightning", "production-ml", "model-training", "inference", "deployment"]
-slug: lightning-ai-pytorch-lightning-complete-guide
-date: 2026-07-17T00:00:00+00:00
-lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/lightning-ai-pytorch.jpg
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lightning-ai-lightning-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

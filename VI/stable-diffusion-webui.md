@@ -1,6 +1,13 @@
 ---
-title: "Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt ...
-description: "Stable Diffusion WebUI (AUTOMATIC1111) là giao diện web tạo ảnh AI cục bộ phổ biến nhất. Tương thích..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "stable-diffusion-webui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Stable Diffusion WebUI do AUTOMATIC1111 phát triển vẫn là giao diện mã nguồn mở được sử dụng rộng rãi nhất cho việc tạo ảnh AI cục bộ. Với **159,000+ GitHub stars**, nó tích lũy được cộng đồng lớn hơn bất kỳ giao diện cạnh tranh nào. Nếu bạn đang xây dựng pipeline tạo ảnh AI cục bộ, việc hiểu cách cài đặt, cấu hình và mở rộng công cụ này là kỹ năng thiết yếu.
 

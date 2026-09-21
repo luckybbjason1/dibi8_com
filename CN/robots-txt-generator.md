@@ -1,10 +1,10 @@
 ---
-title: "robots.txt Generator — With AI Crawler Controls (GPTBot,..."
-description: "Generate a clean robots.txt with one click — set sitemap, disallow paths, and block AI crawlers like..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-robots-txt-generator"
-tool_id: "robots-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "robots-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

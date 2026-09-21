@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docmost-team-docs-collaboration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Docmost 2026: The Open-Source Notion Alternative for Rea...
-description: "Complete self-hosting guide for Docmost, the open-source collaborative wiki with real-time editing, ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/docmost-team-docs-collaboration/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your Team Needs a Self-Hosted Notion Alternative
 
@@ -289,7 +296,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           curl -X POST \
             "https://docs.yourdomain.com/api/pages" \
-            -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d @payload.json
 `````

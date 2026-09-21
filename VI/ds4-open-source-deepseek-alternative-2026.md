@@ -1,6 +1,13 @@
 ---
-title: "Đánh Giá ds4 2026: DeepSeek Mã Nguồn Mở Mà Developer Đan...
-description: "ds4 là runtime LLM mã nguồn mở tương thích DeepSeek phát triển nhanh nhất năm 2026. Giấy phép Apache..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-open-source-deepseek-alternative-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []
@@ -32,7 +39,7 @@ faqs: - q: 'ds4 là gì và khác vLLM hay Ollama như thế nào?'
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

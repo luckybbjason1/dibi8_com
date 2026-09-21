@@ -1,11 +1,10 @@
 ---
-title: "Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo r...
-description: "Impeccable (37K sao) là một ngôn ngữ thiết kế dành cho các tác nhân mã hóa AI với 23 lệnh, 41 quy tắ..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'impeccable-ai-design-language-harness-quality-ui'
-category: ai-tools
-tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "impeccable-ai-design-language-harness-quality-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

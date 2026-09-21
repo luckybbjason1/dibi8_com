@@ -1,11 +1,10 @@
 ---
-title: "AgentMemory: The #1 Persistent Memory System for AI Codi...
-description: "AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-worl..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'agentmemory-persistent-memory-ai-coding-agents'
-category: 'data-science'
-tags: ["agent memory", "persistent memory", "AI coding agents", "context continuity", "AgentMemory", "session memory", "agent framework", "AI benchmark"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agentmemory-persistent-memory-ai-coding-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026

@@ -1,11 +1,10 @@
 ---
-title: "便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15"
-description: "5 组件 stack 跑真实 AI 负载月成本 $0-15：Ollama 本地 + DeepSeek API + Gemini 免费层 + RTK 压缩 + 9Router 编排。真实成本数学、按任务..."
-draft: false
-categories: ["collections"]
-tags: ["便宜大模型", "免费层", "成本优化", "stack", "合集"]
-aliases:
-  - /posts/cheap-llm-stack/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cheap-llm-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 便宜跑大模型 Stack 2026：用免费层 + Token 压缩把生产 AI 月成本压到 $0-15
@@ -221,7 +220,7 @@ $0-15 stack 撑到你撞上以下任一情况：
 4. **RTK 代理** —— 计费 API 上 20-40% token 节省
 5. **9Router** —— 智能路由编排
 
-你当前 AI SaaS 月支出 $30+ 的话这 stack 立刻回本。在笔记本上跑就行（便宜 LLM 不必非要 VPS —— 但 {{< aff "digitalocean" "footer-cta" "$6/月 DigitalOcean droplet" >}} 适合团队常驻）。
+你当前 AI SaaS 月支出 $30+ 的话这 stack 立刻回本。在笔记本上跑就行（便宜 LLM 不必非要 VPS —— 但  适合团队常驻）。
 
 
 * * *

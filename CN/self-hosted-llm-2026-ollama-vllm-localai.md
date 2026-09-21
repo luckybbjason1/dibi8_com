@@ -1,6 +1,13 @@
 ---
-title: "Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested...
-description: "Tested Ollama, vLLM, and LocalAI on the same RTX 4090 with Llama 3.3 70B. Real tokens/sec, memory us..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-llm-2026-ollama-vllm-localai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
@@ -28,7 +35,7 @@ faq: - q: "Which self-hosted LLM stack is best in 2026?"
     a: "LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI's URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support."
 ---
 
-{{</* resource-info */>}}
+
 
 # Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI
 
@@ -180,8 +187,8 @@ Cost-optimized + high traffic → vLLM with H100
 
 ## Recommended Infrastructure
 
-For self-hosted LLM deployment: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, H100/L40S GPU droplets available
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, GPU options for inference
+For self-hosted LLM deployment: - **** — $200 credit, H100/L40S GPU droplets available
+- **** — Hong Kong VPS, GPU options for inference
 
 *Affiliate links — same price, supports dibi8.com.*
 

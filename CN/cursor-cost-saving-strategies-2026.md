@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-cost-saving-strategies-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Cursor Cost-Saving Strategies 2026: After the Credit Pri...
-description: "Cursor changed its pricing in 2025 — Pro users lost ~55% effective usage at the same price. Here are..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
@@ -24,7 +31,7 @@ faq: - q: "What changed with Cursor's pricing in 2025?"
     a: "Pair them. Cursor for IDE editing + tab completion. Claude Code for agent loops + debugging. Total ~$220/month. Most professional developers run this stack — it's not 'either or'."
 ---
 
-{{</* resource-info */>}}
+
 
 # Cursor Cost-Saving Strategies 2026
 
@@ -94,8 +101,8 @@ Long sessions burn credits inefficiently. Habit: close Cursor between work block
 
 ## Recommended Infrastructure
 
-For paired Cursor + Claude Code setups: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS
+For paired Cursor + Claude Code setups: - **** — $200 credit
+- **** — Hong Kong VPS
 
 *Affiliate links — same price, supports dibi8.com.*
 

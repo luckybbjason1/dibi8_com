@@ -1,16 +1,14 @@
 ---
-title: "HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wge...
-description: "HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["httpie", "命令行", "http客户端", "api测试", "curl替代", "json", "终端", "开发工具"]
-aliases:
-  - /zh/posts/httpie/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "httpie"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **HTTPie**（发音为 "aitch-tee-tee-pie"）是一款专为 API 时代设计的命令行 HTTP 客户端。凭借 **38,200 个 GitHub Stars**，它是 ```api testing cli```` 领域最受欢迎的开发者工具之一。本指南涵盖从 ````httpie setup```` 到 ````httpie vs curl```` 的完整对比与实战命令。
 
@@ -269,8 +267,8 @@ jobs: test: runs-on: ubuntu-latest
         run: pip install httpie
       - name: 测试 API 端点
         run: |
-          http --check-status --timeout=10 GET ${{ secrets.API_URL }}/health
-          http --check-status POST ${{ secrets.API_URL }}/users name=Test email=test@example.com
+          http --check-status --timeout=10 GET $/health
+          http --check-status POST $/users name=Test email=test@example.com
 `````
 
 ### 与 VS Code 集成

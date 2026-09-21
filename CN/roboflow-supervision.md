@@ -1,11 +1,10 @@
 ---
-title: "Roboflow Supervision: The Python Computer Vision Annotat..."
-description: "Supervision by Roboflow is a comprehensive computer vision toolkit that simplifies CV annotation, da..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: roboflow-supervision
-category: data-science
-tags: ["supervision", "roboflow", "computer vision", "annotation", "object detection", "CV toolkit", "data-science"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "roboflow-supervision"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

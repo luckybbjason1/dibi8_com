@@ -1,20 +1,10 @@
 ---
-title: "Kỹ Năng Taste: Ngăn AI Tạo Ra Nội Dung Đại Chúng — Khung...
-description: "Taste Skill là một khung kỹ năng tác nhân di động, nâng cấp giao diện do AI xây dựng với bố cục mạnh..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: taste-skill
-category: dev-utils
-tags: ["thiết kế ai", "kỹ năng tác nhân", "chống-slop", "frontend", "codex", "cursor", "claude code", "kỹ thuật prompt"]
-images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
-    alt: "Biểu ngữ Taste Skill"
-    role: hero
-  - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/taste-skill-logo.webp"
-    alt: "Logo Taste Skill"
-    role: logo
-  - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
-    alt: "Taste Skill GitHub OG"
-    role: reference
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "taste-skill"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

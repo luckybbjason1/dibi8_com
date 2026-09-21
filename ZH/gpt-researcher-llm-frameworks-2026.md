@@ -1,6 +1,13 @@
 ---
-title: "GPT Researcher：自主深度研究报告智能体——2026 实战指南"
-description: "GPT Researcher 是一个开源深度研究智能体，能针对任意任务执行联网与本地研究并生成带引用的报告。27,473 GitHub 星标，Apache-2.0 许可。涵盖安装、异步 Python ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gpt-researcher-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,16 +30,16 @@ faqs: - q: '如何安装 gpt-researcher？'
   - q: '可以用哪些 LLM 提供商和搜索引擎？'
     a: '默认 LLM 是 OpenAI，默认检索器是 Tavily，但两者都可通过环境变量和配置文件更换，智能体还支持包括基于 MCP 的来源在内的其他检索器。'
   - q: '运行它需要 API 密钥吗？'
-    a: '需要。至少要在项目根目录的 `.env` 文件中设置 `OPENAI_API_KEY` 和 `TAVILY_API_KEY`。若使用兼容 OpenAI 的端点，再加上 `OPENAI_BASE_URL`。'
+    a: '需要。至少要在项目根目录的 ``.env`` 文件中设置 ``OPENAI_API_KEY`` 和 ``TAVILY_API_KEY``。若使用兼容 OpenAI 的端点，再加上 ``OPENAI_BASE_URL``。'
   - q: '如何运行带 Web 界面的完整应用？'
-    a: '克隆仓库并运行 `docker-compose up --build`。这会在 `localhost:8000` 启动 FastAPI 服务端，在 `localhost:3000` 启动前端。你也可以只启动服务端：`python -m uvicorn main:app --reload`。'
+    a: '克隆仓库并运行 ``docker-compose up --build``。这会在 ``localhost:8000`` 启动 FastAPI 服务端，在 ``localhost:3000`` 启动前端。你也可以只启动服务端：``python -m uvicorn main:app --reload``。'
   - q: 'conduct_research() 和 write_report() 是同步的吗？'
-    a: '不是。两者都是异步方法。要在 async 函数内用 `await` 调用，并用 `asyncio.run()` 运行该函数。'---
+    a: '不是。两者都是异步方法。要在 async 函数内用 ``await`` 调用，并用 ``asyncio.run()`` 运行该函数。'---
 
 # GPT Researcher：自主深度研究报告智能体——2026 实战指南
 
 
-{{< resource-info >}}
+
 
 ## 引言
 

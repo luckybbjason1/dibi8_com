@@ -1,11 +1,10 @@
 ---
-title: "Open-LLM-VTuber: Trò chuyện LLM bằng giọng nói với nhân ...
-description: "Open-LLM-VTuber là nền tảng avatar AI mã nguồn mở với tương tác giọng nói, nhân vật Live2D và ngắt g..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'open-llm-vtuber-voice-powered-ai-avatar'
-category: ai-tools
-tags: ["open-llm-vtuber", "live2d", "voice-ai", "ai-avatar", "local-llm", "openai-api", "anthropic", "self-hosted"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-llm-vtuber-voice-powered-ai-avatar"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

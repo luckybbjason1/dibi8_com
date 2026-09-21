@@ -1,6 +1,13 @@
 ---
-title: "RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
-description: "Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rag-vs-fine-tuning-2026-decision-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
@@ -29,7 +36,7 @@ faq: - q: "Khi nào RAG thắng fine-tuning trong năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Liệu
 
@@ -172,8 +179,8 @@ Khắc phục: thử nghiệm kích thước chunk (256-1024 token), overlap (10
 
 ## Hạ Tầng Đề Xuất
 
-Cho hosting RAG / fine-tuning: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets cho fine-tuning
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, hosting vector DB độ trễ thấp
+Cho hosting RAG / fine-tuning: - **** — $200 credit, GPU droplets cho fine-tuning
+- **** — VPS Hong Kong, hosting vector DB độ trễ thấp
 
 *Liên kết affiliate — cùng giá, hỗ trợ dibi8.com.*
 

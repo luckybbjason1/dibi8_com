@@ -1,6 +1,13 @@
 ---
-title: "Colly: 25,302 GitHub Stars — Benchmark Go 网页抓取框架 2026"
-description: "Colly 是一款快速、优雅的 Go 网页抓取框架，吞吐量达 1,000+ req/sec。涵盖 colly 教程、colly vs scrapy 基准测试、Docker 部署、Redis 缓存、代理..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "colly"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 

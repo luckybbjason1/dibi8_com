@@ -1,16 +1,14 @@
 ---
-title: "Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — ...
-description: "Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["]
-aliases:
-  - /kr/posts/prefect-workflow-orchestration/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prefect-workflow-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 당신의 Cron 작업은 시한폭탄이다
 
@@ -553,8 +551,8 @@ jobs: deploy: runs-on: ubuntu-latest
       
       - name: Authenticate with Prefect Cloud
         run: |
-          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
-          prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
+          prefect config set PREFECT_API_URL=$
+          prefect config set PREFECT_API_KEY=$
       
       - name: Deploy flows
         run: |
@@ -574,13 +572,13 @@ prefect-version: 3.3.0
 
 build: - prefect_docker.deployments.steps.build_docker_image: requires: prefect-docker
       image_name: my-pipeline
-      tag: "{{ sha }}"
+      tag: ""
       dockerfile: Dockerfile
 
 push: - prefect_docker.deployments.steps.push_docker_image: requires: prefect-docker
       image_name: my-pipeline
-      tag: "{{ sha }}"
-      credentials: "{{ prefect.blocks.docker-registry-credentials.prod-registry }}"
+      tag: ""
+      credentials: ""
 
 pull: - prefect.deployments.steps.set_working_directory: directory: /opt/prefect
 

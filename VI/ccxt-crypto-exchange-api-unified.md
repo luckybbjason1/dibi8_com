@@ -1,10 +1,10 @@
 ---
-# CCXT 2026: API Giao Dịch Tiền Điện Tử Thống Nhất Hơn 100 Sàn — Hướng Dẫn 2026
-
-*Cuối cùng được cập nhật: 19 tháng 5, 2026*
-
-Xây dựng một bot giao dịch cryptocurrency kết nối với nhiều sàn giao dịch là một trong những trải nghiệm khó chịu nhất trong phát triển fintech. Mỗi sàn giao dịch đều có cấu trúc API riêng, phương pháp xác thực khác nhau, giới hạn tốc độ và cách xử lý lỗi. Nếu bạn muốn giao dịch trên Binance, Coinbase, Kraken, và OKX đồng thời, bạn sẽ phải học bốn API hoàn toàn khác biệt — cho đến nay. **CCXT** (CryptoCurrency eXchange Trading Library) loại bỏ sự phức tạp này bằng cách cung cấp một API thống nhất kết nối với hơn 100 sàn giao dịch cryptocurrency. Với hơn 35,000 ngôi sao trên GitHub và giấy phép MIT, CCXT là tiêu chuẩn không thể tranh cãi cho giao dịch crypto lập trình viên. Bài hướng dẫn này khám phá mọi thứ bạn cần biết để xây dựng bot giao dịch sản xuất với CCXT vào năm 2026.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ccxt-crypto-exchange-api-unified"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ---

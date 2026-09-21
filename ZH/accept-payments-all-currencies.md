@@ -1,6 +1,13 @@
 ---
-title: "所有货币可以支付 - NowPayments"
-description: "u4f7fu7528NowPaymentsu63a5u53d7u6240u6709u8d27u5e01u652fu4ed8u3002u652fu6301100u591au79cdu52a0u5bc6u..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "accept-payments-all-currencies"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI
@@ -102,8 +109,8 @@ NowPayments优先考虑安全性，包括：
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "binance" "category-footer" "Binance" >}}** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

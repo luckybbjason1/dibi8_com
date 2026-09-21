@@ -1,6 +1,13 @@
 ---
-title: "Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
-description: "Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-mastery-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - Claude Code

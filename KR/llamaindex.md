@@ -1,6 +1,13 @@
 ---
-title: "LlamaIndex: 49K+ Stars — 프로덕션 RAG 배포 가이드 2026"
-description: "LlamaIndex는 LLM을 이용한 프로덕션 RAG 시스템 구축을 위한 데이터 프레임워크이다. OpenAI, Anthropic, Ollama, Qdrant, Weaviate, C..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamaindex"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LlamaIndex Logo](https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/_static/assets/LlamaSquareBlack.svg)
 

@@ -1,11 +1,10 @@
 ---
-title: "Langflow: 148k sao cho các quy trình làm việc LLM trực q...
-description: "Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, ..."
-date: 2026-05-23
-lastmod: 2026-05-23
-slug: 'langflow'
-category: 'llm-frameworks'
-tags: ["langflow", "quy trình làm việc LLM", "lập trình trực quan", "tác nhân AI", "LangChain", "lập trình dựa trên luồng", "kỹ thuật prompt", "triển khai", "AI mã thấp"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langflow-visual-llm-workflow-builder-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -229,7 +228,7 @@ from langflow.field_typing import Tool, Prompt
 from typing import Dict, Any
 
 class WebScraperTool(CustomCustomComponent): display_name: str = "Web Scraper Tool"
-    description: str = "A tool to scrape content from a URL."
+    description: "Technical guide and comparison."
     icon = "Spider" # Optional icon for the UI
 
     def build_config(self) -> Dict[str, Any]: return {

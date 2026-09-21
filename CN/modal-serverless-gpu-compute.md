@@ -1,17 +1,10 @@
 ---
-title: Modal Serverless GPU Compute — Run ML Pipelines Without I...
-description: Complete guide to Modal serverless GPU infrastructure. Deploy LLM inference, fine-tuning pipelines, and batch ML workloads with zero cluster management. Compare pricing, benchmarks, and real-world patterns.
-tags: ["serverless", "gpu", "machine-learning", "inference", "llm", "cloud-compute"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-slug: modal-serverless-gpu-compute---
-
-## TL;DR
-
-Modal is a Python-native serverless compute platform that lets you run GPU-accelerated workloads without managing any infrastructure. You write standard Python functions, decorate them with ``@modal.enter()`` and ``@modal.function()``, and Modal handles container provisioning, GPU allocation, networking, and scaling. Perfect for LLM inference endpoints, fine-tuning jobs, and batch ML pipelines.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "modal-serverless-gpu-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## What Is Modal?
 

@@ -1,6 +1,13 @@
 ---
-title: "Instructor: LLM이 100% 유효한 JSON을 출력하도록 강제하는 Python 라이브러리 ...
-description: "일관성 없는 LLM 출력과의 투쟁을 멈추세요. Instructor가 Pydantic 모델을 사용하여 유효하고 타입 안전한 JSON 응답을 보장하기 위해 OpenAI 클라이언트를 패..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "instructor-structured-llm-output"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 *최종 업데이트: 2026년 5월 19일*
 
@@ -66,7 +73,7 @@ class UserProfile(BaseModel): name: str
     interests: list[str]
 
 # 자연어에서 구조화된 데이터 추출
-def extract_profile(user_description: str) -> UserProfile: return client.chat.completions.create(
+def extract_profile(user_description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=UserProfile,
         messages=[
@@ -120,7 +127,7 @@ class ValidatedProduct(BaseModel): name: str = Field(description="제품 이름,
         return round(v, 2)
 
 # 검증 실패 시 Instructor가 자동 재시도
-def parse_product(description: str) -> ValidatedProduct: return client.chat.completions.create(
+def parse_product(description: "Technical guide and comparison."
         model="gpt-4o",
         response_model=ValidatedProduct,
         max_retries=3,  # 피드백과 함께 최대 3회 재시도

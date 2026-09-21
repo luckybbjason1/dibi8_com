@@ -1,9 +1,16 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "microsoft-presidio-pii-detection-redaction-sdk"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: microsoft-presidio-pii-detection-redaction-sdk
 title: "Presidio Review: Microsoft's Open-Source PII Detection a..."
-description: "Presidio (9.4K+ GitHub stars) from Microsoft is an open-source framework for detecting, redacting, m..."
+description: "Technical guide and comparison."
 tags: ["open-source", "self-hosted"]
-date: "2026-06-22 00:00:00+08:00"
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.8+
   - spaCy

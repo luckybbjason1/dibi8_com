@@ -1,6 +1,13 @@
 ---
-title: "开源 AI 智能体框架 Top 10（2026）：按生产采用率排名"
-description: "按 2026 年生产采用率排名的十大开源 AI 智能体框架：LangGraph、CrewAI、AutoGen、Mastra、Agno、Superagent、OpenHands、Smol Agents、..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-source-ai-agent-framework-top-10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
@@ -25,7 +32,7 @@ faq: - q: "2026 年应该选哪个 AI 智能体框架？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 开源 AI 智能体框架 Top 10（2026）
 
@@ -119,8 +126,8 @@ AI 智能体框架格局在 2026 年完成了整合。从两年前的 50+ 个框
 ## 推荐基础设施
 
 智能体框架部署推荐：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— $200 额度，适合自托管平台的 droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS，承载智能体工作负载
+- **** —— $200 额度，适合自托管平台的 droplet
+- **** —— 香港 VPS，承载智能体工作负载
 
 *推广链接 —— 价格相同，支持 dibi8.com。*
 

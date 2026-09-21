@@ -1,6 +1,13 @@
 ---
-title: "ChatTTS 2026：39.3k 星开源对话式 TTS，带笑声、停顿和 token 级 prosody 控制"
-description: "ChatTTS 是专为对话（不是朗读）打造的开源 TTS。GitHub 39.3k 星，最低 4 GB VRAM，RTX 4090 上 RTF 0.3，含笑声 / 停顿的精细 prosody 控制。2..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chattts-dialogue-tts-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -63,7 +70,7 @@ ChatTTS 处于第 4 类新坑：**带显式 prosody 控制 token 的自回归生
 | 24 GB GPU（RTX 4090 / A5000）| ~3 秒 | 生产，高并发 |
 | 纯 CPU | ~3-5 分 | 交互用不实用 |
 
-自托管生产入门：$0.30-0.50/小时 GPU 云（Vast.ai / RunPod，或 {{< aff "digitalocean" "chattts-gpu" "DigitalOcean GPU droplet" >}}）—— 任何有意义的量上比 ElevenLabs 便宜很多。
+自托管生产入门：$0.30-0.50/小时 GPU 云（Vast.ai / RunPod，或 ）—— 任何有意义的量上比 ElevenLabs 便宜很多。
 
 ## 3. 快装（GPU 机器 10 分钟）
 
@@ -166,7 +173,7 @@ agent 语音 / 播客管线：
    可选后处理（响度归一 / 降噪）
 `````
 
-跑在带 GPU 的 {{< aff "htstack" "chattts-vps-hk" "HTStack 香港 GPU VPS" >}} 或 Vast.ai 实例上，FastAPI 暴露，你的 stack 每分钟生成成本 ~$0.001（vs ElevenLabs ~$0.30/分）。
+跑在带 GPU 的  或 Vast.ai 实例上，FastAPI 暴露，你的 stack 每分钟生成成本 ~$0.001（vs ElevenLabs ~$0.30/分）。
 
 ## 8. 何时用 ChatTTS vs 替代品
 

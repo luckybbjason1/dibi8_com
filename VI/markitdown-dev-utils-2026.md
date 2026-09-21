@@ -1,6 +1,13 @@
 ---
-title: "markitdown: Chuyển file và tài liệu Office sang Markdown...
-description: "markitdown là công cụ Python của Microsoft dùng để chuyển các loại file và tài liệu Office sang Mark..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,7 +30,7 @@ faqs: - q: 'Cài markitdown thế nào?'
   - q: 'markitdown có chuyển được mọi loại tài liệu Office không?'
     a: 'Nó hỗ trợ rất nhiều định dạng — Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, HTML, ảnh và âm thanh — nhưng không phải tính năng nào của mọi định dạng cũng được giữ lại. Hãy xem tài liệu để biết danh sách các loại được hỗ trợ và extras cần thiết.'
   - q: 'markitdown phát hành theo giấy phép nào?'
-    a: '`markitdown` được phát hành theo giấy phép MIT, nên có thể sử dụng và chỉnh sửa tự do cho mọi mục đích.'
+    a: '``markitdown`` được phát hành theo giấy phép MIT, nên có thể sử dụng và chỉnh sửa tự do cho mọi mục đích.'
   - q: 'Đóng góp cho dự án thế nào?'
     a: 'Bạn có thể báo lỗi (issue) hoặc gửi pull request. Xem hướng dẫn đóng góp tại [repository GitHub](https://github.com/microsoft/markitdown).'
   - q: 'markitdown có hạn chế nào đã biết không?'
@@ -34,7 +41,7 @@ faqs: - q: 'Cài markitdown thế nào?'
 # markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 

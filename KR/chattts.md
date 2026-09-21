@@ -1,17 +1,14 @@
 ---
-title: "ChatTTS: 39.3K+ Stars — Coqui, MeloTTS와의 대화형 TTS 벤치마크 비교...
-description: "ChatTTS (AGPL-3.0)는 대화 시나리오를 위한 생성형 음성 모델입니다. Coqui TTS, MeloTTS, GPT-SoVITS와 호환. 설치, 벤치마크, 프로덕션 배포 ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-tools"]
-tags: ["chattts", "텍스트-투-스피치", "tts", "대화형-ai", "llm-어시스턴트", "음성-합성", "오픈소스", "벤치마크"]
-aliases:
-  - /kr/posts/chattts/
-- /kr/resources/llm-frameworks/chattts-architecture-autoregressive-voice/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chattts"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

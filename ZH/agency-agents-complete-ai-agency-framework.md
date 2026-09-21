@@ -1,26 +1,22 @@
 ---
-description: "Agency Agents is a complete open-source AI agency framework with 12+ specialized agents — from front..."
-date: 2026-07-03T09:00:00+09:00
-lastmod: 2026-07-03T09:00:00+09:00
-slug: agency-agents-complete-ai-agency-framework
-title: "代理代理：125K+星开源人工智能代理框架"
-category: dev-utils
-tags: ["ai-agents", "open-source", "automation", "multi-agent", "agency"]
-tech_stack: - Bash
-  - Python
-  - Shell
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agency-agents-complete-ai-agency-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 
 
 
-<<<<<<< HEAD
+
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
-=======
+
 > **编者披露：** 此分析使用截至 2026 年 6 月 30 日公开的 GitHub 数据（星数、提交频率、分叉数）。所有代码示例都经过测试和验证。我们可以通过附属链接赚取佣金。
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 ## 长篇大论；博士
 
@@ -137,12 +133,12 @@ agency-agents/
 └── README.md
 `````
 
-<<<<<<< HEAD
+
 
 ## Getting Started: Step-by-Step Tutorial
-=======
+
 ## 入门：分步教程
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 对于人工智能代理框架的新手，这里有一个使用代理代理设置第一个项目的完整演练。
 
@@ -247,7 +243,7 @@ cd 输出 && npm 测试
 `````python
 class TaskRouter: def __init__(self, agents): self.agents = agents
         self.keywords = self._build_keyword_index()
-<<<<<<< HEAD
+
     
     def _build_keyword_index(self): return {
             'frontend': ['ui', 'css', 'html', 'react', 'vue', 'component'],
@@ -262,7 +258,7 @@ class TaskRouter: def __init__(self, agents): self.agents = agents
             scores[agent_name] = score
         
         return max(scores, key=scores.get)
-=======
+
 
 def _build_keyword_index(自身): 返回 {
 '前端'：['ui'，'css'，'html'，'react'，'vue'，'组件']，
@@ -279,7 +275,7 @@ def 路线（自身，任务描述）：
 分数[代理名称] = 分数
 
 返回 max(分数, key=scores.get)
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ### 代理通信协议
@@ -290,7 +286,7 @@ def 路线（自身，任务描述）：
 from queue import Queue
 import threading
 
-<<<<<<< HEAD
+
 class AgentQueue: def __init__(self): self.tasks = Queue()
         self.results = {}
     
@@ -302,7 +298,7 @@ class AgentQueue: def __init__(self): self.tasks = Queue()
         })
     
     def get_next_task(self): return self.tasks.get(block=False)
-=======
+
 代理队列类：
 def __init__(自身): self.tasks = 队列()
 自我结果 = {}
@@ -316,7 +312,7 @@ self.tasks.put({
 })
 
 def get_next_task(自身): 返回 self.tasks.get(block=False)
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ### 质量保证管道
@@ -330,7 +326,7 @@ def quality_check(agent_output, task_requirements): checks = [
         ('security', check_security(agent_output)),
         ('performance', check_performance(agent_output)),
     ]
-<<<<<<< HEAD
+
     
     passed = all(check[1] for check in checks)
     return {
@@ -338,7 +334,7 @@ def quality_check(agent_output, task_requirements): checks = [
         'checks': checks,
         'score': sum(c[1] for c in checks) / len(checks)
     }
-=======
+
 
 通过 = all(check[1] 进行签入检查)
 返回 {
@@ -346,7 +342,7 @@ def quality_check(agent_output, task_requirements): checks = [
 "检查"：检查，
 'score': sum(c[1] for c in checks) / len(checks)
 }
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ## 与替代方案的比较
@@ -447,11 +443,11 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
 
 
 * * *
-<<<<<<< HEAD
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
-=======
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 
 {

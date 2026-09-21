@@ -1,6 +1,13 @@
 ---
-title: "Feast: 오픈소스 피처 스토어 서브세컨드 특성 서빙 — 2026 설치 가이드"
-description: "Feast 완벽 가이드 — 가장 널리 사용되는 오픈소스 피처 스토어. 피처 레지스트리, 온라인/오프라인 스토어, 서브세컨드 서빙, Redis/BigQuery 백엔드, 배치 및 실시..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "feast-feature-store-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 200ms 피처 엔지니어링 위기
 
@@ -451,7 +458,7 @@ with DAG(
         task_id="materialize_features",
         bash_command="""
             cd /opt/feast/fraud_detection_feature_store && \
-            feast materialize-incremental {{ ds }}T{{ ts_nodash_with_tz }}
+            feast materialize-incremental T
         """,
     )
     

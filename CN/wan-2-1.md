@@ -1,6 +1,13 @@
 ---
-title: "Wan 2.1: 16.1K+ Stars — Open Video Generation Deep Dive ...
-description: "Wan 2.1 is an open suite of video foundation models by Alibaba with SOTA performance. Supports Comfy..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "wan-2-1"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/wan-2-1/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![Wan 2.1 Feature Image](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
 

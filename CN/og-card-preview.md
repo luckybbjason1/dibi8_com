@@ -1,10 +1,10 @@
 ---
-title: "OG Card Preview — Facebook / Twitter / LinkedIn Social S..."
-description: "Live preview how your link looks when shared on Facebook, Twitter, LinkedIn, and Slack. Paste a URL ..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-og-card-preview"
-tool_id: "og-card-preview"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "og-card-preview"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # OG Card Preview — Facebook / Twitter / LinkedIn Social Share Tester

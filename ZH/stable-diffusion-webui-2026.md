@@ -1,6 +1,13 @@
 ---
-title: "Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成...
-description: "AUTOMATIC1111 stable-diffusion-webui 是 163k 星的自托管 SD/SDXL 图像生成事实标准 UI。2026 完整安装+生产指南：txt2img / img2i..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "stable-diffusion-webui-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, Gradio, CUDA]
@@ -64,7 +71,7 @@ Flux（2024 年 9 月）和 SD 3.5 后图像生成生态严重碎片化。ComfyU
 | 12 GB（RTX 3060 12GB / 4070）| ~3 秒 | ~6 秒 | ~15 秒 |
 | 16-24 GB（RTX 4080 / 4090）| ~1.5 秒 | ~3 秒 | ~6 秒 |
 
-云端用：Vast.ai 或 {{< aff "digitalocean" "sd-gpu" "DigitalOcean GPU droplet" >}} $0.30-0.50/小时 GPU 实例，任何有意义量上比 Midjourney 便宜。
+云端用：Vast.ai 或  $0.30-0.50/小时 GPU 实例，任何有意义量上比 Midjourney 便宜。
 
 ## 3. 快装（15 分钟）
 
@@ -131,7 +138,7 @@ Civitai 是社区 LoRA 和 checkpoint 的事实 hub。Civitai Helper 扩展自�
 "个人图像 API" 部署：
 
 `````
-   {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}}（RTX 6000 Ada $0.50/小时 或 Vast.ai）
+   （RTX 6000 Ada $0.50/小时 或 Vast.ai）
             │
             ▼
    A1111 开 --api flag

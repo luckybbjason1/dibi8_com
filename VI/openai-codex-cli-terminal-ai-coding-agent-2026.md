@@ -1,21 +1,10 @@
 ---
-title: "OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding ...
-description: "Làm chủ OpenAI Codex CLI—agent coding AI mã nguồn mở tăng trưởng nhanh nhất 2026. Hướng dẫn toàn diệ..."
-date: 2026-05-17T00:00:00+08:00
-lastmod: 2026-05-17T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-17"
-draft: false
-aliases:
-  - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-codex-cli-terminal-ai-coding-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

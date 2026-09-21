@@ -1,6 +1,13 @@
 ---
-title: "TensorTrade: 커스텀 Gym 환경을 갖춘 강화학습 트레이딩 프레임워크 — 2026 가이드"
-description: "TensorTrade로 강화학습 기반 알고리즘 트레이딩을 마스터하세요. 커스텀 Gym 환경을 구축하고, Stable Baselines3을 통합하며, 실제 벤치마크와 함께 프로덕션 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tensortrade-rl-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 대부분의 트레이딩 봇이 실패하는 이유 (그리고 RL이 어떻게 게임을 바꾸는가)
 

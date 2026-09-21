@@ -1,16 +1,14 @@
 ---
-title: "perplexity-api-rag-search"
-description: "{"en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar ..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["perplexity api"]
-aliases:
-  - /vi/posts/perplexity-api-rag-search/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "perplexity-api-rag-search"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 Cuộc đua xây dựng các ứng dụng thông minh, nhận thức được sự kiện đã đạt đến cột mốc then chốt với Perplexity API — một dịch vụ tìm kiếm RAG (Retrieval-Augmented Generation) được xây dựng chuyên biệt kết hợp các mô hình ngôn ngữ lớn với lập chỉ mục web trực tiếp. Không giống như các API LLM truyền thống chỉ dựa vào dữ liệu huấn luyện tĩnh, các mô hình Sonar của Perplexity truy vấn internet theo thờigian thực, truy xuất các nguồn có thẩm quyền và trả về câu trả lờ có cấu trúc kèm theo trích dẫn nội tuyến. Đối với các nhà phát triển xây dựng chatbot, công cụ nghiên cứu, trợ lý kiến thức và đường ống xác minh nội dung, điều này đại diện cho một sự chuyển đổi paradigma: các ứng dụng không chỉ tạo ra văn bản, mà còn căn cứ mọi khẳng định vào thực tế có thể xác minh được.
 

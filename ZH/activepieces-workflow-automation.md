@@ -1,16 +1,14 @@
 ---
-title: "Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 2026年自托管指南"
-description: "5分钟内部署 Activepieces。这款开源工作流自动化平台拥有200+应用集成、AI操作和可视化构建器，成本仅为Zapier的一小部分。". Comprehensive guide coveri..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["activepieces", "工作流自动化", "zapier替代品", "自托管", "docker", "无代码", "开源", "typescript", "ai操作", "webhook"]
-aliases:
-  - /zh/posts/activepieces-workflow-automation/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "activepieces-workflow-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：工作流自动化每年$2,340的痛苦
 
@@ -61,7 +59,7 @@ interface FlowRun {
 // 并将输出存储供下游步骤引用
 `````
 
-步骤可以通过````{{step_name.property}}````模板语法引用前面步骤的输出，类似于Handlebars。引擎支持分支（````if/else````）、循环（````for each````）和子流程。
+步骤可以通过````````模板语法引用前面步骤的输出，类似于Handlebars。引擎支持分支（````if/else````）、循环（````for each````）和子流程。
 
 ### Pieces：插件系统
 
@@ -217,8 +215,8 @@ Activepieces v0.46.0包含原生OpenAI Piece，支持GPT-4o、GPT-4.1和GPT-4.1-
   → 步骤1：提取表单数据（姓名、邮箱、公司、留言）
   → 步骤2：OpenAI"询问AI"操作
        提示词："评估此潜在客户。仅返回hot、warm或cold。
-               潜在客户：{{step_1.name}}，公司：{{step_1.company}}，
-               留言：{{step_1.message}}"
+               潜在客户：，公司：，
+               留言："
        模型：gpt-4.1-mini
   → 步骤3：根据AI响应分支
        如果 "hot" → 在HubSpot中创建高优先级任务
@@ -374,7 +372,7 @@ export const myApiPiece = createPiece({
   auth: PieceAuth.SecretText({
     displayName: "API Key",
     required: true,
-    description: "Your internal API authentication key"
+    description: "Technical guide and comparison."
   minimumSupportedRelease: '0.46.0',
   actions: [sendNotification],
   triggers: [],

@@ -1,6 +1,13 @@
 ---
-title: "ShellCheck: 39,456 GitHub Stars — 셸 스크립트 분석을 위한 완전 설치 및 ...
-description: "ShellCheck (SC)는 bash/sh 셸 스크립트용 정적 분석 도구입니다. Docker, GitHub Actions, VS Code 통합을 지원하며 설치 구성, CI/CD ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "shellcheck"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ShellCheck는 셸 스크립트의 버그를 프로덕션 배포 전에 잡아내는 사실상의 표준 도구입니다. 39,456개 이상의 GitHub 스타와 활발한 오픈소스 커뮤니티를 보유한 ShellCheck는 bash, sh, dash, ksh 스크립트에서 가장 널리 채택된 정적 분석 도구입니다. 본 가이드에서는 ShellCheck 설치, 에디터 통합, CI/CD 파이프라인 구성, 프로덕션 환경 강화 방법을 다룹니다.
 

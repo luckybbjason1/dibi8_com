@@ -1,11 +1,10 @@
 ---
-title: "ECC: Tối ưu hiệu suất Claude Code, Codex và Cursor bằng ...
-description: "ECC (Tối ưu hiệu suất Agent Harness) giảm sử dụng context window và tăng tốc phản hồi của AI coding ..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'ecc-agent-harness-performance-optimization'
-category: dev-utils
-tags: ["ECC", "agent-optimization", "claude-code", "codex", "cursor", "performance", "mcp"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ecc-agent-harness-performance-optimization"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

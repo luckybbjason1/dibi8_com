@@ -1,6 +1,13 @@
 ---
-title: "Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
-description: "Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/off..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "feast-feature-store-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Khủng hoảng Feature Engineering 200ms
 
@@ -375,7 +382,7 @@ with DAG("feast_materialize", default_args=default_args,
          schedule_interval="@hourly", start_date=datetime(2026, 1, 1),
          catchup=False) as dag: materialize = BashOperator(
         task_id="materialize_features",
-        bash_command="cd /opt/feast/fraud_detection_feature_store && feast materialize-incremental {{ ds }}T{{ ts_nodash_with_tz }}",
+        bash_command="cd /opt/feast/fraud_detection_feature_store && feast materialize-incremental T",
     )
     
     validate = BashOperator(

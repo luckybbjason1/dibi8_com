@@ -1,6 +1,13 @@
 ---
-title: "Unsloth 2026: 64.9k 별 빠른 LLM 파인튜닝 — 2× 속도, 70% 적은 VRAM, ...
-description: "Unsloth는 HuggingFace TRL 베이스라인보다 2× 빠르고 70% 적은 VRAM으로 LLM 파인튜닝. 64.9k GitHub 별, 듀얼 Apache 2.0 + AGPL..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "unsloth-fast-llm-fine-tuning-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]
@@ -55,7 +62,7 @@ ML에서 대부분 "속도 향상" 주장은 술수 (벤치마크 체리피킹 �
 
 이게 "소비자 하드웨어에서 파인튜닝" 스토리. Llama 70B QLoRA $1500 RTX 4090에서 HF TRL로 불가능 — Unsloth가 일상으로 만듦.
 
-클라우드 임대: Vast.ai에 H100 (~$1.50/시간)이 무엇이든 처리; 더 저렴한 실험엔 {{< aff "digitalocean" "unsloth-gpu" "DigitalOcean GPU droplet" >}}의 RTX 4090 인스턴스 $0.40-0.60/시간이 잘 작동.
+클라우드 임대: Vast.ai에 H100 (~$1.50/시간)이 무엇이든 처리; 더 저렴한 실험엔 의 RTX 4090 인스턴스 $0.40-0.60/시간이 잘 작동.
 
 ## 3. 빠른 설치 (5분)
 
@@ -179,7 +186,7 @@ HF Hub에 push → LiteLLM 게이트웨이 뒤 vLLM 통해 서빙
 
 Unsloth = **단일 GPU LLM 파인튜닝 속도 왕**. 64.9k 별, HuggingFace TRL vs 2× 빠름 + 70% 적은 VRAM, 듀얼 Apache/AGPL 라이선스. 단일 RTX 4090에서 Llama 70B QLoRA가 이제 일상.
 
-프로덕션 멀티 GPU 단계용 [Axolotl](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/)과 페어. 훈련 필요할 때 {{< aff "digitalocean" "footer-cta" "GPU 인스턴스" >}} 임대 또는 Vast.ai 사용.
+프로덕션 멀티 GPU 단계용 [Axolotl](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/)과 페어. 훈련 필요할 때  임대 또는 Vast.ai 사용.
 
 * * *
 

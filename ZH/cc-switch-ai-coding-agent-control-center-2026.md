@@ -1,17 +1,10 @@
 ---
-# CC Switch：多AI CLI工具统一管理的终极解决方案 | 2026开源工具推荐
-
-**Meta Description**: CC Switch是一款开源跨平台桌面应用，支持统一管理Claude Code、Codex、OpenCode、OpenClaw、Gemini CLI等AI编程工具。74K+ GitHub Stars，Rust+Tauri构建，内置50+供应商预设、MCP统一管理、系统托盘快捷切换。本文深度评测功能特性、安装配置与实战技巧。---
-
-## 引言：AI CLI工具爆炸式增长带来的管理困境
-
-2026年的开发者正面临一个甜蜜的烦恼——AI编程工具太多了。
-
-Claude Code凭借200万Token上下文窗口成为架构重构神器；OpenAI Codex以Rust重写实现极速启动；Google Gemini CLI打出免费1000次/天的王炸；OpenClaw以开源可定制的sub-agent编排吸引技术极客；OpenCode的162K Stars彰显社区力量。每一款都有独特的模型生态和工作流，但切换成本正成为隐性生产力杀手。
-
-手动编辑``.env``、``.json``、``.toml``配置文件，记忆每套工具的MCP服务器地址，在终端和IDE之间反复横跳——这些琐事正在吞噬AI本应节省的时间。**CC Switch**的出现，本质上是一场"AI工具管理"的范式革命。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-ai-coding-agent-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## 一、项目概览：74K Stars背后的技术选型
 

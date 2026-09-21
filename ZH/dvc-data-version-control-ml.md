@@ -1,16 +1,14 @@
 ---
-title: "DVC: 面向数据的 Git — ML 流水线数据版本控制与可复现实验 2026 完整指南"
-description: "DVC (Data Version Control) 完整指南 — 使用类 Git 工作流对数据集、模型和 ML 流水线进行版本管理。涵盖安装、S3/GCS/Azure 后端、CI/CD 集成、基准测..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["dvc", "data version control", "mlops", "git", "机器学习", "可复现性", "s3", "gcs", "azure", "流水线", "数据版本控制", "数据科学"]
-aliases:
-  - /zh/posts/dvc-data-version-control-ml/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dvc-data-version-control-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：那个撑爆 Git 仓库的数据集
 
@@ -346,8 +344,8 @@ jobs: train: runs-on: ubuntu-latest
           pip install -r requirements.txt
 
       - name: Configure DVC remote
-        env: AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        env: AWS_ACCESS_KEY_ID: $
+          AWS_SECRET_ACCESS_KEY: $
         run: |
           dvc remote add -d myremote s3://my-bucket/dvc-storage
 

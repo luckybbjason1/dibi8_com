@@ -1,9 +1,10 @@
 ---
-title: "LlamaIndex vs LangChain对比2025：哪个LLM框架更适合你？"
-description: "2025年最详细的LlamaIndex与LangChain对比分析，涵盖架构、RAG能力、性能基准和选型建议，帮你做出正确选择。". Comprehensive guide covering feat..."
-draft: false
-aliases:
-  - /posts/llamaindex-vs-langchain/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamaindex-vs-langchain"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

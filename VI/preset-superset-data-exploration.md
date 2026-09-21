@@ -1,6 +1,13 @@
 ---
-title: "Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn...
-description: "Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "preset-superset-data-exploration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao stack BI của bạn tốn quá nhiều chi phí
 
@@ -213,7 +220,7 @@ Superset hỗ trợ chính sách row-level security lọc dữ liệu dựa trê
 ROW_LEVEL_SECURITY_FILTERING = True
 
 # Định nghĩa filter trong UI: # Table: orders
-# Filter clause: region = '{{ current_username() }}"
+# Filter clause: region = '"
 # Group: Sales Team
 `````
 

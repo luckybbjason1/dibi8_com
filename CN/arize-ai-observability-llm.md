@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "arize-ai-observability-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Arize AI Phoenix: The Open-Source LLM Observability Tool...
-description: "Complete 2026 guide to Arize Phoenix: open-source LLM observability, RAG tracing, prompt versioning,..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/arize-ai-observability-llm/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: You Can't Fix What You Can't See
 

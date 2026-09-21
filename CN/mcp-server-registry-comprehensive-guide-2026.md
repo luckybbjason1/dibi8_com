@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-registry-comprehensive-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O...
-description: "Complete guide to discovering MCP servers in 2026. The 7 Anthropic reference servers, the 87.3k-star..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript
@@ -158,7 +165,7 @@ Most MCP servers are stdio-based — they run on your machine. But 2026's transp
 - **Latency** — server lives near your data (postgres on the same VPC)
 - **Cost** — eliminating per-call SaaS fees at scale
 
-A 4GB VPS will comfortably run 10+ stdio-bridged or HTTP MCP servers in parallel. We host dibi8's internal MCP cluster on {{< aff "htstack" "self-host-vps" "HTStack's Hong Kong VPS" >}} (sub-30ms latency to mainland China). For globally distributed deployments or larger fleets, {{< aff "digitalocean" "self-host-k8s" "DigitalOcean's managed Kubernetes" >}} with 3 replicas is the standard production pattern.
+A 4GB VPS will comfortably run 10+ stdio-bridged or HTTP MCP servers in parallel. We host dibi8's internal MCP cluster on  (sub-30ms latency to mainland China). For globally distributed deployments or larger fleets,  with 3 replicas is the standard production pattern.
 
 ### When to cloud-host (Smithery / e2b / vendor-hosted)
 
@@ -189,7 +196,7 @@ The hard part is no longer finding a server. It's **picking the right one** — 
 
 
 * * *
-*Want to self-host 5+ MCP servers (postgres + filesystem + git + memory + tavily-search) without touching cloud bills? Spin up a $6/month {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}, run them under a single supervisor (systemd or PM2), and point Claude Desktop"s ````claude_desktop_config.json``` at the host. Done in an afternoon.*
+*Want to self-host 5+ MCP servers (postgres + filesystem + git + memory + tavily-search) without touching cloud bills? Spin up a $6/month , run them under a single supervisor (systemd or PM2), and point Claude Desktop"s ````claude_desktop_config.json``` at the host. Done in an afternoon.*
 
 
 {

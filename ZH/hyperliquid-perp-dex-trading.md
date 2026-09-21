@@ -1,16 +1,14 @@
 ---
-title: "Hyperliquid 2026：日交易量超20亿美元的链上永续合约DEX — 交易机器人集成指南"
-description: "Hyperliquid综合指南：完全链上永续合约DEX，日交易量超20亿美元，100多个交易对，最高50倍杠杆，HyperEVM智能合约及Python SDK机器人集成。". Comprehensiv..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["hyperliquid", "perpetual dex", "on-chain trading", "leverage trading", "trading bot", "hyperevm", "python sdk", "websocket api", "clob", "defi trading", "algorithmic trading"]
-aliases:
-  - /zh/posts/hyperliquid-perp-dex-trading/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hyperliquid-perp-dex-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **日期：** 2026-05-19  
 **类别：** AI交易  

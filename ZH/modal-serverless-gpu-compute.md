@@ -1,20 +1,10 @@
 ---
-title: Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线
-description: Modal 无服务器 GPU 基础设施完全指南。零集群管理部署 LLM 推理、微调流水线和批量 ML 工作负载。对比定价、基准测试和真实场景模式。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["serverless", "gpu", "machine-learning", "inference", "llm", "cloud-compute"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: modal-serverless-gpu-compute
--CN---
-
-
-## TL;DR
-
-Modal 是一个 Python 原生的无服务器计算平台，无需管理任何基础设施即可运行 GPU 加速工作负载。你编写标准 Python 函数，用 ``@modal.enter()`` 和 ``@modal.function()`` 装饰它们，Modal 自动处理容器配置、GPU 分配、网络管理和弹性伸缩。非常适合 LLM 推理端点、微调任务和批量 ML 流水线。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "modal-serverless-gpu-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Modal 是什么？
 

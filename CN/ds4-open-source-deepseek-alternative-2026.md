@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-open-source-deepseek-alternative-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "ds4 Review 2026: The Open-Source DeepSeek Developers Are...
-description: "ds4 is the fastest-growing open-source DeepSeek-compatible LLM runtime in 2026. Apache-2.0 licensed,..."
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []
@@ -30,7 +37,7 @@ faqs: - q: 'What is ds4 and why is it different from vLLM or Ollama?'
   - q: 'Is ds4 production-ready in May 2026?'
     a: 'Yes. Several teams (Marsh McLennan, Replit infra) report multi-month production stability. Active maintenance with weekly releases since Q1 2026. The main consideration is operational complexity — like all LLM runtimes, ds4 requires SRE capability for production deployment.'---
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

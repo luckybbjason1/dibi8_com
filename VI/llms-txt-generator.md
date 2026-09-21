@@ -1,10 +1,10 @@
 ---
-title: "Trình Tạo llms.txt — Giúp AI Crawler (ChatGPT, Claude, P...
-description: "Tạo tệp llms.txt hợp lệ cho website chỉ trong vài giây. Giúp các AI crawler như ChatGPT, Claude, Per..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-llms-txt-generator"
-tool_id: "llms-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llms-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

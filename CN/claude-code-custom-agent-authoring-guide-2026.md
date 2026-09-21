@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-custom-agent-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code Custom Agent Authoring: Build Reusable Subag...
-description: "A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt desig..."
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -53,7 +60,7 @@ The structure is dead simple: `````markdown
 
 * * *
 name: migration-reviewer
-description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 
@@ -76,8 +83,8 @@ The agent's identity — this is the string the parent passes as ````subagent_ty
 
 ### ````description```` (required — and the one people underweight)
 
-This is **the routing signal**. When the parent agent is deciding whether to delegate, it reads descriptions, not system prompts. So a description must encode *when* to reach for this agent, with concrete triggers: > ❌ ````description: A code reviewer.````
-> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
+This is **the routing signal**. When the parent agent is deciding whether to delegate, it reads descriptions, not system prompts. So a description must encode *when* to reach for this agent, with concrete triggers: > ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 The word "proactively" is load-bearing — it nudges the parent to invoke without being explicitly asked. If your agent never seems to fire, the description is almost always why.
 
@@ -122,7 +129,7 @@ A read-only reviewer literally *cannot* go rogue. That predictability is what le
 
 * * *
 name: migration-reviewer
-description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -149,7 +156,7 @@ Invoke it from the parent with a natural request — "review the migration on th
 `````markdown
 * * *
 name: security-gate
-description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: opus
 * * *
@@ -192,9 +199,9 @@ A custom agent is **executable institutional knowledge**. The review standard th
 
 ## Setting Up Production-Ready Claude Code
 
-To run custom-agent pipelines at scale you want stable infrastructure: 1. **A reliable host for long-running and CI sessions.** Custom agents shine in CI, where they gate every PR. You need a box that won't drop the job. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. It's the same IDC that hosts dibi8.com, so we run our own agent pipelines on it. Value tier runs $5-12/month.
+To run custom-agent pipelines at scale you want stable infrastructure: 1. **A reliable host for long-running and CI sessions.** Custom agents shine in CI, where they gate every PR. You need a box that won't drop the job. **** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. It's the same IDC that hosts dibi8.com, so we run our own agent pipelines on it. Value tier runs $5-12/month.
 
-2. **Cloud headroom for parallel gates.** When an orchestrator fans out to migration-reviewer + security-gate + perf-checker at once, you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ regions, great for hosting CI runners next to your app.
+2. **Cloud headroom for parallel gates.** When an orchestrator fans out to migration-reviewer + security-gate + perf-checker at once, you want spare CPU. **** — $200 free credit for 60 days across 14+ regions, great for hosting CI runners next to your app.
 
 3. **A skills bundle.** The steepest part of the curve is writing agent definitions that don't fall over. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — including the orchestrator prompts and three more ready-to-ship agent definitions.
 

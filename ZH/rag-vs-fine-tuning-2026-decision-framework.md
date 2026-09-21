@@ -1,6 +1,13 @@
 ---
-title: "RAG 还是微调 2026：基于真实成本数据的决策框架"
-description: "何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。". Comprehensive ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rag-vs-fine-tuning-2026-decision-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
 last_maintained: "2026-05-25"
@@ -24,7 +31,7 @@ faq: - q: "2026 年 RAG 何时胜过微调？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # RAG 还是微调 2026：基于数据的决策框架
 
@@ -196,8 +203,8 @@ LoRA 微调（Llama 3.3 70B）：
 ## 推荐基础设施
 
 RAG / 微调托管：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 抵扣额，GPU droplets 用于微调
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，低延迟向量数据库托管
+- **** — $200 抵扣额，GPU droplets 用于微调
+- **** — 香港 VPS，低延迟向量数据库托管
 
 *联盟链接——同样价格，支持 dibi8.com。*
 

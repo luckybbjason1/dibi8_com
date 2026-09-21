@@ -1,6 +1,13 @@
 ---
-title: "AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
-description: "Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trì..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-token-monitor-conky-linux"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-06T00:00:00+08:00
 lastmod: 2026-06-06T00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
@@ -31,7 +38,7 @@ faqs: - q: 'AI Token Monitor có hoạt động trên macOS hoặc Windows khôn
 ---
 
 
-{{< resource-info >}}
+
 
 ## Vấn đề: Quản lý sáu dịch vụ AI cùng lúc mà không biết cái nào đã hết hạn ngạch
 

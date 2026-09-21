@@ -1,6 +1,13 @@
 ---
-title: "Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
-description: "5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Bash]
@@ -68,7 +75,7 @@ Một thông điệp → 3 lời gọi Agent: - Agent("Tìm handler auth", subag
 
 `````
 Agent({
-  description: "Thử refactor cấp controller",
+  description: "Technical guide and comparison."
   isolation: "worktree",
   prompt: "Refactor controllers/orders.rb để ..."
 })
@@ -86,7 +93,7 @@ Agent({
 
 `````
 Agent({
-  description: "Code review độc lập",
+  description: "Technical guide and comparison."
   subagent_type: "code-reviewer",
   prompt: "Review thay đổi trên branch feat/..."
 })
@@ -134,9 +141,9 @@ Cả năm mẫu chia sẻ một trực giác thiết kế: **cuộc trò chuyệ
 
 ## Thiết Lập Claude Code Sẵn Sàng Production
 
-Để chạy quy trình multi-agent ở quy mô, bạn cần ba phần hạ tầng: 1. **Host đáng tin cậy cho phiên dài.** Nếu chạy Claude Code trong CI hoặc với codebase phía server, bạn cần VPS không drop SSH session hoặc bị throttle. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông với truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Cùng IDC host dibi8.com, vậy chúng tôi chạy pipeline multi-agent riêng trên nó. Mức giá vững $5-12/tháng.
+Để chạy quy trình multi-agent ở quy mô, bạn cần ba phần hạ tầng: 1. **Host đáng tin cậy cho phiên dài.** Nếu chạy Claude Code trong CI hoặc với codebase phía server, bạn cần VPS không drop SSH session hoặc bị throttle. **** — VPS Hồng Kông với truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Cùng IDC host dibi8.com, vậy chúng tôi chạy pipeline multi-agent riêng trên nó. Mức giá vững $5-12/tháng.
 
-2. **Sân chơi cloud cho thử nghiệm song song.** Khi fan out 6+ subagent mỗi cái cần worktree riêng, bạn cần CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày qua 14+ region toàn cầu. Developer indie dùng cái này để host Claude Code orchestrator cùng app chính mà không tranh chấp tài nguyên.
+2. **Sân chơi cloud cho thử nghiệm song song.** Khi fan out 6+ subagent mỗi cái cần worktree riêng, bạn cần CPU dự phòng. **** — $200 tín dụng miễn phí 60 ngày qua 14+ region toàn cầu. Developer indie dùng cái này để host Claude Code orchestrator cùng app chính mà không tranh chấp tài nguyên.
 
 3. **Skills bundle.** Nếu mới với Claude Code subagent, phần dốc nhất của đường cong là viết định nghĩa agent tùy chỉnh không đổ. Chúng tôi đóng gói năm skill đã được kiểm chứng thành bundle $19 trên Gumroad — xem CTA nổi ở góc — bao gồm các orchestrator prompt ship các mẫu trên.
 

@@ -1,10 +1,10 @@
 ---
-title: "메타 태그 생성기 — SEO 제목, 설명, Open Graph & Twitter Card"
-description: "간단한 폼 하나로 복사·붙여넣기 가능한 HTML head 메타 태그를 생성하세요: SEO 제목, 설명, canonical, Open Graph, Twitter Card. Googl..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-meta-tags-generator"
-tool_id: "meta-tags-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meta-tags-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

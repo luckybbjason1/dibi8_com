@@ -1,21 +1,10 @@
 ---
-title: "RTK：让 AI 编码助手 token 消耗直降 60-90% 的开源神器，45k+ Stars 的 Rust ...
-description: "RTK（Rust Token Killer）是一款开源 Rust CLI 代理，可将 Claude Code、Cursor、Copilot 等 AI 编码助手的 LLM token 消耗降低 60-9..."
-date: 2026-05-14T00:00:00+08:00
-lastmod: 2026-05-14T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-14"
-draft: false
-aliases:
-  - /posts/rtk-rust-cli-proxy-ai-token-saver/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-ai-token-saver"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

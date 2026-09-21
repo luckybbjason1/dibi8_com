@@ -1,6 +1,13 @@
 ---
-title: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà...
-description: "Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign". Comprehensive guide co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-codesign-vs-vercel-v0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"
@@ -57,8 +64,8 @@ A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat,
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
@@ -66,7 +73,7 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - 
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết project trong space này cuối cùng đều hit rate limit hoặc giá wall của Anthropic / OpenAI.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

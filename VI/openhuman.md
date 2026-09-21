@@ -1,6 +1,13 @@
 ---
-title: "OpenHuman là gì?"
-description: "content/vi/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practic..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhuman"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 # → OpenHuman đọc cấu trúc repo từ cache cục bộ
 #   và đưa ra câu trả lời chính xác, không cần tìm kiếm web
 ```

@@ -1,6 +1,13 @@
 ---
-title: "Promptfoo: LLM 프롬프트를 테스트·평가·레드팀하기 — 2026 실전 가이드"
-description: "Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 오픈소스 CLI이자 라이브러리입니다. 간단한 선언형 설정만으로 GPT, Claude, Gemini, DeepSeek를 비교..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "promptfoo-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,19 +26,19 @@ tags: ["]
 aliases:
   - /posts/promptfoo-llm-frameworks-2026/
 faqs: - q: 'promptfoo를 로컬에 설치하고 실행하려면?'
-    a: '가장 빠른 길은 설치 없이 시작하는 것입니다. ```bash npx promptfoo@latest init --example getting-started ``` 전역 설치는 `npm install -g promptfoo`(또는 `brew install promptfoo`", "`pip install promptfoo`)를 사용하세요. 이후 `promptfoo eval`로 평가하고 `promptfoo view`로 로컬 뷰어를 엽니다.'
+    a: '가장 빠른 길은 설치 없이 시작하는 것입니다. ```bash npx promptfoo@latest init --example getting-started ``` 전역 설치는 ``npm install -g promptfoo``(또는 ``brew install promptfoo``", "``pip install promptfoo``)를 사용하세요. 이후 ``promptfoo eval``로 평가하고 ``promptfoo view``로 로컬 뷰어를 엽니다.'
   - q: '내 모델로 promptfoo를 쓸 수 있나요?'
-    a: '네. Promptfoo는 OpenAI", "Anthropic", "Google", "DeepSeek", "로컬 모델 등 다수의 provider를 지원합니다. `promptfooconfig.yaml`의 `providers` 목록에 각각을 선언하고", "해당하는 API 키를 환경 변수로 제공하면 됩니다.'
+    a: '네. Promptfoo는 OpenAI", "Anthropic", "Google", "DeepSeek", "로컬 모델 등 다수의 provider를 지원합니다. ``promptfooconfig.yaml``의 ``providers`` 목록에 각각을 선언하고", "해당하는 API 키를 환경 변수로 제공하면 됩니다.'
   - q: 'promptfoo는 서로 다른 모델의 성능을 어떻게 비교하나요?'
-    a: '`providers` 아래에 여러 항목을 나열하면 promptfoo가 모든 프롬프트와 테스트 케이스를 각 항목에 대해 실행합니다. 그런 다음 `promptfoo view`가 어서션별 통과/실패와 함께 출력을 나란히 보여 주므로", "여러분 자신의 입력으로 직접 비교할 수 있습니다.'
+    a: '``providers`` 아래에 여러 항목을 나열하면 promptfoo가 모든 프롬프트와 테스트 케이스를 각 항목에 대해 실행합니다. 그런 다음 ``promptfoo view``가 어서션별 통과/실패와 함께 출력을 나란히 보여 주므로", "여러분 자신의 입력으로 직접 비교할 수 있습니다.'
   - q: 'promptfoo를 CI/CD 파이프라인에 연동할 수 있나요?'
-    a: '네. promptfoo는 CLI이므로 어떤 파이프라인에서든 `npx promptfoo@latest eval`을 실행할 수 있습니다. 흔히 GitHub Actions에 연결해 push나 pull request마다 평가 스위트를 실행합니다.'
+    a: '네. promptfoo는 CLI이므로 어떤 파이프라인에서든 ``npx promptfoo@latest eval``을 실행할 수 있습니다. 흔히 GitHub Actions에 연결해 push나 pull request마다 평가 스위트를 실행합니다.'
   - q: 'promptfoo 프로젝트에 기여하려면?'
     a: '기여를 환영합니다. GitHub에서 이슈를 남기거나 pull request를 제출하면 됩니다. 자세한 내용은 [기여 가이드라인"](https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md)을 참고하세요.'
 ---
 
 
-{{< resource-info >}}
+
 
 ## 들어가며
 
@@ -64,8 +71,8 @@ Promptfoo는 LLM 앱을 평가하고 레드팀하기 위한 CLI이자 라이브�
 
 `````yaml
 # promptfooconfig.yaml
-description: "GPT vs Claude on a couple of prompts"
-prompts: - "What is the capital of {{country}}?"
+description: "Technical guide and comparison."
+prompts: - "What is the capital of ?"
   - "Explain quantum mechanics in one sentence."
 
 providers: - openai:gpt-4o-mini
@@ -76,7 +83,7 @@ tests: - vars: country: France
         value: Paris
 `````
 
-이 설정은 두 프롬프트를 각각 두 provider에서 실행합니다. 첫 프롬프트에서는 ````{{country}}````를 치환하고, 출력에 "Paris"가 포함되어 있는지 어서션으로 확인합니다. API 키는 설정 파일이 아니라 환경 변수(예: ````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY````)에서 읽어 옵니다.
+이 설정은 두 프롬프트를 각각 두 provider에서 실행합니다. 첫 프롬프트에서는 ````````를 치환하고, 출력에 "Paris"가 포함되어 있는지 어서션으로 확인합니다. API 키는 설정 파일이 아니라 환경 변수(예: ````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY````)에서 읽어 옵니다.
 
 ![](https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png)
 - Source Code: [promptfoo GitHub](https://github.com/promptfoo/promptfoo)
@@ -145,8 +152,8 @@ promptfoo view
 
 `````yaml
 # promptfooconfig.yaml
-description: "Basic prompt test"
-prompts: - "What is the capital of {{country}}?"
+description: "Technical guide and comparison."
+prompts: - "What is the capital of ?"
 
 providers: - openai:gpt-4o-mini
 
@@ -167,8 +174,8 @@ Promptfoo가 해당 테스트 케이스를 실행하고 어서션 통과 여부�
 
 `````yaml
 # promptfooconfig.yaml
-description: "GPT vs Claude comparison"
-prompts: - "Answer concisely: {{question}}"
+description: "Technical guide and comparison."
+prompts: - "Answer concisely: "
 
 providers: - openai:gpt-4o
   - anthropic:messages:claude-3-5-sonnet-20241022
@@ -208,7 +215,7 @@ jobs: eval: runs-on: ubuntu-latest
         with: node-version: 22
 
       - name: Run promptfoo eval
-        env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        env: OPENAI_API_KEY: $
         run: npx promptfoo@latest eval
 `````
 

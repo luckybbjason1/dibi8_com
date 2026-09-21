@@ -1,6 +1,13 @@
 ---
-title: "국경 간 AI 마케팅 스택 2026: 글로벌 출시하는 중국 팀을 위한 7-도구 셋업"
-description: "국경 간 운영을 위해 특별 제작된 7컴포넌트 AI 스택 — 다국어 콘텐츠 자동화, 글로벌 시장 정보 스크래핑, GDPR 호환 분석, 결제 마찰 우회, 전체를 홍콩 VPS에서 실행...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cross-border-ai-marketing-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -174,7 +181,7 @@ opencode --provider deepseek --api-key $DEEPSEEK_KEY
 - **HK 관할** = 중국과 글로벌 데이터 모두 중립
 - **VISA/Mastercard 충전** RMB 또는 USD 카드에서 직접 작동
 
-dibi8.com 자체를 정확히 이 이유로 {{< aff "htstack" "stack-vps" "HTStack의 홍콩 VPS" >}}에서 운영. 4 GB 박스 ~$10/월이 n8n + LangChain 에이전트 + Plausible + nginx 4언어 콘텐츠 서빙 처리. 프로덕션 팀 워크로드는 16 GB ($30/월)로 확장.
+dibi8.com 자체를 정확히 이 이유로 에서 운영. 4 GB 박스 ~$10/월이 n8n + LangChain 에이전트 + Plausible + nginx 4언어 콘텐츠 서빙 처리. 프로덕션 팀 워크로드는 16 GB ($30/월)로 확장.
 
 ## 9. 컴포넌트 7 — OpenRouter (국경 간 LLM 결제)
 
@@ -239,7 +246,7 @@ SaaS 등가물과 비교: Cursor + Notion + Slack + Mailchimp + GA 360 + DeepL P
 6. **HTStack HK VPS** — 브리지
 7. **OpenRouter** — premium LLM 암호화폐 결제
 
-국경 간 특화 승리: 결제 마찰 없음, GDPR/중국 데이터법 위반 없음, USD Cursor $80/시트 없음, GA 차단 없음, Cloudflare-vs-중국 문제 없음. {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}} 띄우고 1주차에 컴포넌트 1-4 먼저, 2주차에 5-7 추가.
+국경 간 특화 승리: 결제 마찰 없음, GDPR/중국 데이터법 위반 없음, USD Cursor $80/시트 없음, GA 차단 없음, Cloudflare-vs-중국 문제 없음.  띄우고 1주차에 컴포넌트 1-4 먼저, 2주차에 5-7 추가.
 
 * * *
 

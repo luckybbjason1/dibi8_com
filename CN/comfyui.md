@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI: 87K+ Stars — Node-Based Stable Diffusion Setup ...
-description: "ComfyUI tutorial and setup guide for node-based image generation. ComfyUI Docker deployment, custom ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/ai-tools/comfyui-architecture-node-based-ai-image/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

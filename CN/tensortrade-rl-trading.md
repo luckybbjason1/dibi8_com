@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tensortrade-rl-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "TensorTrade: The Reinforcement Learning Trading Framewor...
-description: "Master TensorTrade for RL-based algorithmic trading. Build custom Gym environments, integrate Stable..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/tensortrade-rl-trading/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Most Trading Bots Fail (And How RL Changes the Game)
 

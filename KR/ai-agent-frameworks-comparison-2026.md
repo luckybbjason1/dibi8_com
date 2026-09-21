@@ -1,10 +1,10 @@
 ---
-## 요약
-
-## 왜 AI 에이전트 프레임워크를 비교하는가
-
-> **Editorial Disclosure**: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-frameworks-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {
@@ -362,7 +362,7 @@ user_proxy.initiate_chat(
 CrewAI supports both sequential and hierarchical task execution: Extend CrewAI agents with custom tools: class WebSearchInput(BaseModel): query: str = Field(description="The search query")
 
 class WebSearchTool(BaseTool): name: str = "Web Search"
-    description: str = "Search the web for information"
+    description: "Technical guide and comparison."
     args_schema: type[BaseModel] = WebSearchInput
 
 def _run(self, query: str) -> str: # Implement your search logic

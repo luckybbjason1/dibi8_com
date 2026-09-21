@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "directus-headless-cms-ai-content"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Directus: The Open-Source Headless CMS Powering AI Conte...
-description: "Complete guide to Directus 11.x — the open-source headless CMS with dynamic API generation, content ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/directus-headless-cms-ai-content/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your CMS Is Still a Bottleneck in 2026
 

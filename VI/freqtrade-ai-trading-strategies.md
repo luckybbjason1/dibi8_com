@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freqtrade-ai-trading-strategies"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1...
-description: "H\u01b0\u1edbng d\u1eabn tri\u1ec3n khai th\u1ef1c t\u1ebf Freqtrade v\u1edbi FreqAI, bot giao d\u1e..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Tại Sao 90% Bot Giao Dịch Tự Làm Mất Tiền
 

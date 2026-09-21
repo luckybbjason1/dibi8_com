@@ -1,15 +1,18 @@
 ---
-Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026
-
-Meta description: Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superpowers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
-description: "Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and pro..."
+description: "Technical guide and comparison."
 date: 2026-05-23
 lastmod: 2026-05-23
-slug: 'superpowers'
-category: 'llm-frameworks'
+slug: "superpowers"
+category: "llm-frameworks"
 tags: ["agentic-ai", "llm-frameworks", "shell-scripting", "software-development", "ai-agents", "developer-tools"]
 
 * * *

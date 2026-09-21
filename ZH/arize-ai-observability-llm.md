@@ -1,16 +1,14 @@
 ---
-title: "Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水线 —— 2026...
-description: "2026 年 Arize Phoenix 完整指南：开源 LLM 可观测性、RAG 追踪、Prompt 版本管理、Token 用量追踪，以及与 LangChain 和 LlamaIndex 的生产级部..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["llm", "可观测性", "arize phoenix", "rag", "langchain", "llamaindex", "opentelemetry", "python", "docker", "ai 基础设施"]
-aliases:
-  - /zh/posts/arize-ai-observability-llm/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "arize-ai-observability-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：你无法修复你看不见的问题
 

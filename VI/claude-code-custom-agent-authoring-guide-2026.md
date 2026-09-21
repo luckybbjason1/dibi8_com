@@ -1,6 +1,13 @@
 ---
-title: "Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
-description: "Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế sys..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-custom-agent-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', CLI, Markdown, YAML]
@@ -52,7 +59,7 @@ Một custom agent chỉ là một tệp Markdown duy nhất có YAML frontmatte
 Cấu trúc cực kỳ đơn giản: `````markdown
 * * *
 name: migration-reviewer
-description: Reviews database migrations for safety. Use when a PR touches db/migrate/, schema files, or any SQL DDL.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -73,8 +80,8 @@ Danh tính của agent — đây là chuỗi mà agent cha truyền vào dưới
 
 ### ````description```` (bắt buộc — và là trường người ta đánh giá thấp)
 
-Đây là **tín hiệu định tuyến**. Khi agent cha quyết định có giao việc hay không, nó đọc các description, chứ không phải system prompt. Vậy nên một description phải mã hóa *khi nào* nên tìm đến agent này, với các điều kiện kích hoạt cụ thể: > ❌ ````description: A code reviewer.````
-> ✅ ````description: Reviews code changes for correctness and security. Use proactively after writing a non-trivial diff, before committing, especially for auth, payments, or concurrency-sensitive code.````
+Đây là **tín hiệu định tuyến**. Khi agent cha quyết định có giao việc hay không, nó đọc các description, chứ không phải system prompt. Vậy nên một description phải mã hóa *khi nào* nên tìm đến agent này, với các điều kiện kích hoạt cụ thể: > ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 Từ "proactively" (chủ động) là chịu lực — nó thúc agent cha gọi mà không cần được yêu cầu rõ ràng. Nếu agent của bạn dường như chẳng bao giờ khởi động, gần như luôn là vì description.
 
@@ -118,7 +125,7 @@ Một reviewer chỉ-đọc theo đúng nghĩa đen *không thể* nổi loạn.
 `````markdown
 * * *
 name: migration-reviewer
-description: Reviews database migrations for production safety. Use proactively when a change touches db/migrate/, schema.rb, or any SQL DDL file.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: sonnet
 * * *
@@ -145,7 +152,7 @@ Hãy gọi nó từ agent cha bằng một yêu cầu tự nhiên — "rà soát
 `````markdown
 * * *
 name: security-gate
-description: Threat-models diffs that touch authentication, authorization, secrets, or user input. Use proactively before merging any auth or payments change.
+description: "Technical guide and comparison."
 tools: Read, Grep, Glob
 model: opus
 * * *
@@ -188,9 +195,9 @@ Một custom agent chính là **tri thức tổ chức có thể thực thi đư
 
 ## Thiết Lập Claude Code Cấp Sản Xuất
 
-Để chạy các pipeline custom agent ở quy mô lớn, bạn cần hạ tầng ổn định: 1. **Một máy chủ đáng tin cậy cho các phiên chạy lâu dài và CI.** Custom agent tỏa sáng trong CI, nơi chúng làm cổng kiểm cho mọi PR. Bạn cần một cỗ máy không làm rớt tác vụ. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Đó cũng chính là IDC đang lưu trữ dibi8.com, nên chúng tôi chạy các pipeline agent của mình ngay trên nó. Bậc giá hời chạy từ $5-12/tháng.
+Để chạy các pipeline custom agent ở quy mô lớn, bạn cần hạ tầng ổn định: 1. **Một máy chủ đáng tin cậy cho các phiên chạy lâu dài và CI.** Custom agent tỏa sáng trong CI, nơi chúng làm cổng kiểm cho mọi PR. Bạn cần một cỗ máy không làm rớt tác vụ. **** — VPS Hong Kong, truy cập độ trễ thấp từ Trung Quốc đại lục và định tuyến BGP ổn định. Đó cũng chính là IDC đang lưu trữ dibi8.com, nên chúng tôi chạy các pipeline agent của mình ngay trên nó. Bậc giá hời chạy từ $5-12/tháng.
 
-2. **Dư địa đám mây cho các cổng kiểm song song.** Khi một bộ điều phối phân nhánh ra migration-reviewer + security-gate + perf-checker cùng lúc, bạn muốn có CPU dự phòng. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 tín dụng miễn phí trong 60 ngày trải khắp 14+ khu vực, rất hợp để đặt các CI runner ngay cạnh ứng dụng của bạn.
+2. **Dư địa đám mây cho các cổng kiểm song song.** Khi một bộ điều phối phân nhánh ra migration-reviewer + security-gate + perf-checker cùng lúc, bạn muốn có CPU dự phòng. **** — $200 tín dụng miễn phí trong 60 ngày trải khắp 14+ khu vực, rất hợp để đặt các CI runner ngay cạnh ứng dụng của bạn.
 
 3. **Một bộ kỹ năng (skills bundle).** Đoạn dốc nhất của đường cong là viết ra những định nghĩa agent không bị đổ vỡ. Chúng tôi đã đóng gói năm kỹ năng đã được thử lửa thành một bundle $19 trên Gumroad — xem nút CTA nổi ở góc màn hình — bao gồm các prompt cho bộ điều phối, cộng thêm ba định nghĩa agent nữa sẵn sàng đưa lên.
 

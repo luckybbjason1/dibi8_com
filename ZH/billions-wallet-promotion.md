@@ -1,6 +1,13 @@
 ---
-title: "发现 Billions 钱包 - 您的终极加密货币伴侣"
-description: "Billions钱包推广：安全可靠的加密货币钱包，支持比特币、以太坊等100多种数字资产管理。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "billions-wallet-promotion"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI
@@ -173,8 +180,8 @@ Billions 钱包代表下一代加密货币管理工具。以其全面的功能�
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "minara" "category-footer" "Minara AI" >}}** — AI 驱动的加密钱包, 自动化 DCA、再平衡、链上告警。跟上面的 wallet 推广互补, 主动仓位管理。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — AI 驱动的加密钱包, 自动化 DCA、再平衡、链上告警。跟上面的 wallet 推广互补, 主动仓位管理。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

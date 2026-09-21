@@ -1,11 +1,10 @@
 ---
-title: "Understand-Anything: Interactive Knowledge Graphs for Co..."
-description: "Understand-Anything turns any codebase into an interactive knowledge graph you can explore, search, ..."
-tags: ["open-source"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: understand-anything-interactive-knowledge-graphs-codebases
-category: ai-tools
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "understand-anything-interactive-knowledge-graphs-codebases"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

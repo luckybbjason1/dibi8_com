@@ -1,6 +1,13 @@
 ---
-title: "Cursor vs Claude Code 2026: 어떤 AI 코딩 도구가 더 좋은가?"
-description: "Cursor와 Claude Code의 정면 비교 — 가격, 성능, 사용 사례, 마이그레이션 팁. 2026년 업데이트.". Comprehensive guide covering fea..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

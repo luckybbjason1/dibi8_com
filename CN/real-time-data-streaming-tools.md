@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "real-time-data-streaming-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Best Real-Time Data Streaming Tools 2025: Apache Kafka, ...
-description: "Compare the top real-time data streaming tools of 2025. In-depth analysis of Apache Kafka, Flink, Sp..."
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

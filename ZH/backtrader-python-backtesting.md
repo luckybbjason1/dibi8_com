@@ -1,16 +1,14 @@
 ---
-title: "Backtrader 2026: Python回测引擎以100倍速度验证交易策略 —— 完整指南"
-description: "Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。". Comprehensive guide covering fea..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /zh/posts/backtrader-python-backtesting/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "backtrader-python-backtesting"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言: 没有经过回测的策略注定失败
 

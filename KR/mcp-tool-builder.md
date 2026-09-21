@@ -1,10 +1,10 @@
 ---
-title: "MCP Tool Builder — Python / TypeScript 함수에서 Model Contex...
-description: "무료 온라인 MCP Tool 정의 생성기. Python 또는 TypeScript 함수 시그니처를 붙여넣으면 MCP 표준 tool JSON, 완전한 Python (FastMCP) 및..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-mcp-tool-builder"
-tool_id: "mcp-tool-builder"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-tool-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교"
-description: "Demucs는 Meta AI가 개발한 하이브리드 스펙트로그램 및 파형 소스 분리 모델입니다. Ultimate Vocal Remover, RVC, GPT-SoVITS와 호환됩니다. ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "demucs"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 믹스된 곡을 보컬, 드럼, 베이스, 기타 등 개별 악기 트랙으로 분리하는 것은 원래 원본 멀티트랙 스튜디오 파일이 필요했다. 딥러닝 모델이 완성된 오디오를 "언믹스(unmix)"하는 방법을 학습하면서 이 상황은 바뀌었다. 오늘날 음악가, 프로듀서, 개발자들은 노래방 트랙 제작, 샘플 추출, 리믹스 준비, 보이스 컨버전 파이프라인을 위해 이러한 도구를 사용한다. 오픈 소스 옵션 중 하나가 대화를 지배하는 모델이 있다: **Demucs** — Meta의 하이브리드 트랜스포머 아키텍처로 GitHub에서 10,000개 이상의 스타를 보유하고 MUSDB18-HQ 데이터셋에서 최고 수준의 벤치마크를 달성한 모델.
 

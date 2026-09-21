@@ -1,12 +1,10 @@
 ---
-title: Modal Tính Toán GPU Không Máy Chủ — Chạy Luồng ML Không C...
-description: Hướng dẫn toàn diện về cơ sở hạ tầng GPU không máy chủ của Modal. Triển khai suy luận LLM, quy trình tinh chỉnh và khối lượng công việc ML hàng loạt mà không cần quản lý cụm. So sánh giá, benchmark và mẫu thực tế.
-tags: ["serverless", "gpu", "machine-learning", "inference", "llm", "cloud-compute"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: modal-serverless-gpu-compute
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "modal-serverless-gpu-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

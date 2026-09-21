@@ -1,6 +1,13 @@
 ---
-title: "Open Codesign: Giải Pháp Thay Thế Claude Design Mã Nguồn...
-description: "Khám phá Open Codesign, giải pháp thay thế Claude Design được cấp phép MIT. Công cụ thiết kế AI đa m..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-codesign-claude-design-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -333,9 +340,9 @@ Nếu bạn chưa khám phá Open Codesign, việc thiết lập mất dưới 9
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

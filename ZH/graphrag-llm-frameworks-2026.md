@@ -1,6 +1,13 @@
 ---
-title: "GraphRAG：微软基于知识图谱的 RAG，让大模型答得更准（33K Stars）——2026 实战指南"
-description: "GraphRAG 是微软推出的模块化、基于知识图谱的 RAG 系统（33,403 个 GitHub star，MIT 协议）。本指南讲解安装、init/index/query 工作流、真实 CLI 示..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "graphrag-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -30,7 +37,7 @@ faqs: - q: '怎么安装 graphrag？'
     a: '普通 RAG 取回几个相似文本块再据此作答。GraphRAG 在此之外，还会从你的文档中构建知识图谱和社区摘要，因此它既能回答宽泛的、语料库级的问题（全局搜索），也能回答聚焦实体的问题（局部搜索）。'---
 
 
-{{< resource-info >}}
+
 
 ## 引言
 

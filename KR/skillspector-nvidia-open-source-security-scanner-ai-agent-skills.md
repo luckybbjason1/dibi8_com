@@ -1,12 +1,10 @@
 ---
-title: "SkillSpector: AI 에이전트 스킬을 위한 NVIDIA의 오픈소스 보안 스캐너"
-description: 에이전트 스킬 설치 전 취약점, 악성 패턴 및 보안 위험을 감지하는 AI 에이전트 스킬 전용 보안 스캐너. NVIDIA에서 10K 스타 획득. Claude Code, Codex CLI 및 기타 에이전트 프레임워크를 보호하세요.
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: dev-utils
-tags: ["security", "ai-agents", "scanner", "vulnerability-detection", "claude-code", "codex", "mcp", "agent-skills", "nvidia"]
-slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skillspector-nvidia-open-source-security-scanner-ai-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "Gemini CLI vs Claude Code 2026：哪款 AI 编码 agent 更值得选？"
-description: "Google Gemini CLI 和 Anthropic Claude Code 横向对比 — 免费档、上下文窗口、agent 风格、多模态、工具调用、迁移建议。2026 年更新。". Compre..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

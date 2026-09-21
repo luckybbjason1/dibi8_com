@@ -1,6 +1,13 @@
 ---
-title: "2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）"
-description: "2026 年构建生产级 AI 应用、避开云锁定的完整参考架构——7 层结构、14 个开源工具、真实性能数字。覆盖本地 LLM 运行时、符号级代码智能（CodeGraph）、统一 CLI 控制中心（CC..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-local-first-ai-stack-production-architecture"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

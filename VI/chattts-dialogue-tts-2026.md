@@ -1,6 +1,13 @@
 ---
-title: "ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cư...
-description: "ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chattts-dialogue-tts-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -56,7 +63,7 @@ Cho các trường hợp sử dụng hội thoại (agent giọng nói, podcast 
 | GPU 24 GB (RTX 4090 / A5000) | ~3 giây | Production, đồng thời cao |
 | Chỉ CPU | ~3-5 phút | Không thực tế cho sử dụng tương tác |
 
-Điểm vào production self-host: GPU cloud $0.30-0.50/giờ (Vast.ai, RunPod, hoặc {{< aff "digitalocean" "chattts-gpu" "DigitalOcean GPU droplet" >}}) — rẻ hơn nhiều ElevenLabs ở bất kỳ volume có ý nghĩa.
+Điểm vào production self-host: GPU cloud $0.30-0.50/giờ (Vast.ai, RunPod, hoặc ) — rẻ hơn nhiều ElevenLabs ở bất kỳ volume có ý nghĩa.
 
 ## 3. Cài Nhanh (10 phút trên máy GPU)
 
@@ -146,7 +153,7 @@ Cho pipeline agent giọng nói / podcast: `````
    Hậu xử lý tùy chọn (chuẩn hóa loudness, khử nhiễu)
 `````
 
-Đứng nó trên {{< aff "htstack" "chattts-vps-hk" "VPS GPU HTStack Hong Kong" >}} hoặc instance Vast.ai có GPU, expose qua FastAPI, và stack của bạn có giọng nói ~$0.001 mỗi phút tạo (vs ElevenLabs ~$0.30/phút).
+Đứng nó trên  hoặc instance Vast.ai có GPU, expose qua FastAPI, và stack của bạn có giọng nói ~$0.001 mỗi phút tạo (vs ElevenLabs ~$0.30/phút).
 
 ## 8. Khi Dùng ChatTTS vs Lựa Chọn Khác
 

@@ -1,12 +1,10 @@
 ---
-title: "Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị...
-description: "Hệ thống phân tích cổ phiếu đa thị trường do LLM điều khiển với tin tức thời gian thực, bảng điều kh..."
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: ai-trading
-tags: ["phân-tích-cổ-phếu", "llm", "giao-dịch-định-lượng", "ai-agent", "đa-thị-trường", "cổ-phếu-a", "phân-tích-cảm-xúc", "giao-dịch-tự-động"]
-slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "daily-stock-analysis-llm-powered-multi-market-stock-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -315,13 +313,13 @@ Bảng điều khiển cung cấp: - Tổng quan thị trường thời gian th�
 dashboard: refresh_interval: 300  # 5 phút
   default_market: "a_shares"
   charts: - type: "heatmap"
-      title: "Bản Đồ Nhiệt Thị Trường"
+      title: "AI Tool Guide"
       data_source: "sector_performance"
     - type: "line"
-      title: "Lịch Sử Giá Cổ Phiếu"
+      title: "AI Tool Guide"
       data_source: "historical_prices"
     - type: "sentiment"
-      title: "Cảm Xúc Tin Tức"
+      title: "AI Tool Guide"
       data_source: "llm_sentiment"
   alerts: - threshold: 0.8
       action: "notification"

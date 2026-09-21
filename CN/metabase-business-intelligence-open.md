@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "metabase-business-intelligence-open"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Metabase 2026: The Open-Source Business Intelligence Too...
-description: "Complete guide to Metabase v60.2: open-source BI with visual query builder, dashboards, SQL editor, ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/metabase-business-intelligence-open/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The $50,000 Tableau Invoice Problem
 
@@ -94,7 +101,7 @@ WHERE period <= 12
 ORDER BY 1, 2;
 `````
 
-SQL questions support variable injection via ````{{variable}}```` syntax, making them reusable across dashboards with different filter values.
+SQL questions support variable injection via ```````` syntax, making them reusable across dashboards with different filter values.
 
 ### Dashboard Composition
 
@@ -355,12 +362,12 @@ SELECT
     DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
-WHERE created_at >= {{start_date}}  -- Dashboard filter
+WHERE created_at >=   -- Dashboard filter
 GROUP BY 1
 ORDER BY 1;
 `````
 
-The ````{{start_date}}```` variable renders as a date picker in the dashboard. When the user changes the filter value, all linked questions refresh automatically.
+The ```````` variable renders as a date picker in the dashboard. When the user changes the filter value, all linked questions refresh automatically.
 
 ## Benchmarks and Real-World Use Cases
 

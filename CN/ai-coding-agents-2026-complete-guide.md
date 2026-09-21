@@ -1,10 +1,10 @@
 ---
-title: "AI Coding Agents 2026 - Complete Guide"
-date: "2026-09-20"
-description: "Comprehensive guide to AI coding agents in 2026. Compare Claude Code, Cursor, Codex CLI, OpenCode an..."
-tags: ["ai-coding", "claude-code", "cursor", "codex", "opencode", "comparison", "agents"]
-categories: ["ai-tools", "dev-utils"]
-image: "https://picsum.photos/seed/ai-coding-agents/1200x630"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agents-2026-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {
@@ -44,7 +44,7 @@ Welcome to the ultimate guide to AI coding agents in 2026. This page aggregates 
 
 ## Featured Articles
 
-{{< related_articles tag="ai-coding" limit="10" >}}
+
 
 ## Tool Comparison
 

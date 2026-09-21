@@ -1,21 +1,10 @@
 ---
-title: "Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black...
-description: "Hướng dẫn cấu hình chi tiết ESLint, Prettier, Black, Ruff cho JavaScript, TypeScript và Python. Tìm ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/code-quality-tools-eslint-prettier-black-ruff/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "code-quality-tools-eslint-prettier-black-ruff"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

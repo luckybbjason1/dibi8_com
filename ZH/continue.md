@@ -1,6 +1,13 @@
 ---
-title: "Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2...
-description: "Continue.dev（开源 AI 编程助手）VS Code/JetBrains 插件。支持任意 LLM：Ollama、OpenAI、Anthropic、Gemini。对比 GitHub Copil..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "continue"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Continue.dev 横幅](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
 
@@ -111,7 +118,7 @@ schema: v1
 models: - name: Claude Sonnet
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -119,7 +126,7 @@ models: - name: Claude Sonnet
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 EOF
 
@@ -217,7 +224,7 @@ models: # 主力：Claude 处理复杂任务
   - name: Claude Sonnet 4.6
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -226,7 +233,7 @@ models: # 主力：Claude 处理复杂任务
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat]
 
   # 自动补全：本地模型零延迟
@@ -274,7 +281,7 @@ curl http://localhost:11434/api/tags
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
@@ -288,13 +295,13 @@ Claude 模型原生支持 MCP 工具调用 —— 使 Continue 的 Agent 模式�
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 
   - name: GPT-4o-mini
     provider: openai
     model: gpt-4o-mini
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
 `````
@@ -329,7 +336,7 @@ mcpServers: - name: filesystem
   - name: github
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-    env: GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env: GITHUB_PERSONAL_ACCESS_TOKEN: $
 
   - name: postgres
     command: npx
@@ -379,7 +386,7 @@ mcpServers: - name: filesystem
 models: - name: Claude Haiku
     provider: anthropic
     model: claude-haiku-4-5
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat]  # $0.25/百万 tokens
 
   - name: Qwen 7B 本地
@@ -401,7 +408,7 @@ Continue.dev 的 2026 年 Agent 模式可自主规划和执行多步骤任务：
 models: - name: Claude Sonnet Agent
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
@@ -454,10 +461,10 @@ Continue 的 ````@```` 命令为 AI 提供精准上下文：
 models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}  # 来自环境变量
+    apiKey: $  # 来自环境变量
 
 # CI/CD 中使用运行器的密钥存储：
-# GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
+# GitHub Actions: $
 # GitLab CI: $ANTHROPIC_API_KEY (CI/CD 变量)
 `````
 

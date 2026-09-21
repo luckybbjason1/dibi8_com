@@ -1,21 +1,10 @@
 ---
-title: "开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比"
-description: "2025年开源大模型排行：Llama 3.3、Mistral、Qwen2.5、DeepSeek V3、Gemma、Phi-4全面对比，含 benchmark 数据、许可证分析与硬件需求指南。"
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/open-source-llm-ranking-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-source-llm-ranking-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 开源LLM排行榜及选型指南2025：Llama、Mistral、Qwen、DeepSeek全面对比

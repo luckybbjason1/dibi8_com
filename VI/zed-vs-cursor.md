@@ -1,21 +1,10 @@
 ---
-title: "Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So S...
-description: "So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) —..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["zed", "cursor", "ai-editor", "code-editor", "ai-coding", "comparison", "dev-tools", "rust"]
-categories: ["vs"]
-faqs: - q: 'Zed hay Cursor nhanh hơn?'
-    a: 'Zed nhanh hơn. Nó được viết bằng Rust với kết xuất tăng tốc GPU và không có lớp Electron, nên độ trễ gõ phím, mở tệp và cuộn tệp lớn gần như tức thì ngay cả trên kho mã lớn. Cursor là fork của VS Code nên kế thừa runtime nặng của Electron, do đó tốn RAM hơn và phản hồi chậm hơn một chút trên tệp rất lớn. Nếu tốc độ thuần của trình soạn thảo là ưu tiên hàng đầu, Zed thắng; nếu chiều sâu tính năng AI quan trọng hơn vài mili-giây, chi phí của Cursor thường chấp nhận được.'
-  - q: 'Zed hay Cursor có tính năng lập trình AI tiên tiến hơn?'
-    a: 'Năm 2026, bộ tính năng AI của Cursor sâu hơn. Tab autocomplete dự đoán chỉnh sửa nhiều dòng trên toàn tệp, chế độ Agent/Composer thực hiện thay đổi nhiều tệp với lập chỉ mục toàn kho mã, và tích hợp chat, chỉnh sửa nội tuyến cùng agent nền. Zed AI cung cấp trợ lý nội tuyến và bảng agent với chỉnh sửa agentic, hỗ trợ nhiều nhà cung cấp mô hình, nhưng bề mặt AI còn trẻ và nhẹ hơn Cursor. Muốn quy trình AI trưởng thành nhất thì chọn Cursor; muốn trình soạn thảo native nhanh với AI vững và đang lớn nhanh thì chọn Zed.'
-  - q: 'Zed có mã nguồn mở không, còn Cursor?'
-    a: 'Phần lõi của Zed là mã nguồn mở (giấy phép GPL), được phát triển công khai và chạy native không phụ thuộc nhiều vào telemetry. Cursor là sản phẩm thương mại mã nguồn đóng xây trên nền VS Code (Code - OSS) mã nguồn mở; vỏ trình soạn thảo kế thừa lõi mở của VS Code, nhưng lớp AI và bản thân sản phẩm Cursor là độc quyền. Nếu giá trị mã nguồn mở và công cụ tự lưu trữ quan trọng, Zed là lựa chọn rõ ràng.'
-  - q: 'Zed có chạy trên Windows như Cursor không?'
-    a: 'Cursor hiện chạy trên Windows, macOS và Linux. Zed ra mắt trên macOS trước, thêm Linux, còn hỗ trợ Windows là khoảng trống được yêu cầu nhiều nhất — hãy kiểm tra zed.dev để biết tình trạng Windows hiện tại trước khi quyết định cho đội chỉ dùng Windows. Nếu bạn cần hỗ trợ Windows chắc chắn ngay bây giờ, Cursor là mặc định an toàn hơn.'
-  - q: 'Tôi có thể dùng mô hình AI của riêng mình với Zed và Cursor không?'
-    a: 'Cả hai đều cho phép kết nối mô hình riêng, nhưng trọng tâm khác nhau. Zed cho phép cấu hình nhiều nhà cung cấp (Anthropic, OpenAI, và mô hình cục bộ qua Ollama), thân thiện với thiết lập ưu tiên cục bộ. Cursor hỗ trợ vài mô hình tiên tiến và một số khóa API riêng, nhưng các tính năng tốt nhất (Tab, Agent) được tinh chỉnh quanh pipeline mô hình lưu trữ của họ. Muốn trình soạn thảo hoàn toàn cục bộ, ưu tiên quyền riêng tư thì Zed dễ uốn theo stack của bạn hơn.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zed-vs-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

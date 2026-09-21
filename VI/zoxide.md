@@ -1,6 +1,13 @@
 ---
-title: "Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
-description: "Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerSh..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zoxide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Lập trình viên trung bình thay đổi thư mục hơn 200 lần mỗi ngày. Nếu mỗi lệnh ```cd```` tốn 3-5 giây để gõ đường dẫn đầy đủ, đó là 10-15 phút bị mất mỗi ngày chỉ cho việc điều hướng. Zoxide loại bỏ ma sát này hoàn toàn: nó học nơi bạn đến và cho phép bạn nhảy đến đó chỉ với hai lần nhấn phím. Với 36,752 sao GitHub và lõi được cung cấp bởi Rust, Zoxide đã trở thành công cụ thay thế ````cd```` truyền thống trên toàn cộng đồng lập trình viên.
 

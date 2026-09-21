@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freqtrade-ai-trading-strategies"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Freqtrade 2026: Build AI-Powered Crypto Trading Strategi...
-description: "A hands-on guide to deploying Freqtrade with FreqAI, the open-source Python crypto trading bot with ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/freqtrade-ai-trading-strategies/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why 90% of DIY Trading Bots Lose Money
 
@@ -470,7 +477,7 @@ docker compose run --rm freqtrade backtesting \
 
 `````
 Result for strategy SampleStrategy
-===========================================================
+
 BACKTESTING REPORT
 * * *
 | Pair        |  Entries |  Avg Profit % |  Cum Profit % |

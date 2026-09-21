@@ -1,16 +1,14 @@
 ---
-title: "CoW Protocol 2026: 트레이더에게 $100M+ 슬리피지 절약하는 MEV 보호 DEX 애그...
-description: "배치 옥션과 솔버 경쟁을 사용하여 트레이더가 $100M+ 슬리피지를 절약할 수 있게 하는 MEV 보호 DEX 애그리게이터 CoW Protocol에 대한 종합 가이드. SDK 통합,..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["cow protocol", "mev protection", "dex aggregator", "batch auction", "sandwich attack", "coincidence of wants", "solver", "defi trading", "gasless orders", "anti-mev"]
-aliases:
-  - /kr/posts/cow-protocol-mev-protection/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cow-protocol-mev-protection"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **날짜:** 2026-05-19  
 **카테고리:** AI 트레이딩  

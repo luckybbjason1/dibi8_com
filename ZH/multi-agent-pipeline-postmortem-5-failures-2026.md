@@ -1,6 +1,13 @@
 ---
-title: "多智能体流水线复盘：子智能体编排出错的 5 种方式（2026）"
-description: "Claude Code 多智能体流水线的五种真实失败模式——轻信未经核验的报告、上下文串台、失控的扇出、静默截断、孤儿 worktree——每一种都附带症状、根因和修复方案。". Comprehens..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-agent-pipeline-postmortem-5-failures-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 last_maintained: "2026-05-28"
 draft: false
 categories: ["llm-frameworks"]
@@ -78,9 +85,9 @@ faq: - q: "最常见的单个多智能体失败是什么？"
 
 可靠的流水线需要一套不会自己制造失败的基础设施：
 
-1. **撑得起长流水线和 CI 关卡的稳定主机。** 编排进行到一半时掉了 SSH 会话，本身就是一种失败模式。**{{< aff "htstack" "footer-cta" "HTStack" >}}**——香港 VPS，对中国大陆低延迟接入，稳定的 BGP。和托管 dibi8.com 的是同一个 IDC，我们就在那里跑这些流水线。每月 $5-12。
+1. **撑得起长流水线和 CI 关卡的稳定主机。** 编排进行到一半时掉了 SSH 会话，本身就是一种失败模式。****——香港 VPS，对中国大陆低延迟接入，稳定的 BGP。和托管 dibi8.com 的是同一个 IDC，我们就在那里跑这些流水线。每月 $5-12。
 
-2. **供并行扇出用的云端余量。** 当你（刻意地、带着预算地）扇出工作者时，多余的 CPU 能让它们不互相争抢。**{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}**——$200 免费额度，有效期 60 天，14+ 个区域。
+2. **供并行扇出用的云端余量。** 当你（刻意地、带着预算地）扇出工作者时，多余的 CPU 能让它们不互相争抢。****——$200 免费额度，有效期 60 天，14+ 个区域。
 
 3. **一套技能包。** 避开这五种失败，主要是靠提示词纪律——核验步骤、停止条件、有作用域的资源。我们把五个经过实战检验的技能打包成了一个 $19 的 Gumroad 套件——见角落里的浮动 CTA——其中包含已经把核验接缝内建好的编排器提示词。
 

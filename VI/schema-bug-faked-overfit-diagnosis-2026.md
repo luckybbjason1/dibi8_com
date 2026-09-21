@@ -1,6 +1,13 @@
 ---
-title: "Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi: Báo cá...
-description: "Chạy 7 thí nghiệm quant, phát hiện «overfit kinh điển» (Train PF 2.08 → OOS 0.94, tỷ lệ 2.21). Sau đ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "schema-bug-faked-overfit-diagnosis-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
@@ -19,7 +26,7 @@ faq: - q: "Schema drift là gì và tại sao nó lại ngụy tạo kết quả
   - q: "Tại sao chẩn đoán overfit ban đầu trông thuyết phục đến vậy?"
     a: "Dấu hiệu kinh điển: Train PF 2.08, OOS PF 0.94, tỷ lệ 2.21. Bất kỳ quant trader nào cũng đã thấy mô hình này trong tài liệu — optimizer khớp với nhiễu không lặp lại. Kết luận «overfit» khớp hoàn hảo với hình dạng dữ liệu. Leverage 10x ẩn chỉ đơn giản là khuếch đại mọi thứ, khiến cả hai con số trở nên cực đoan. Với leverage 2x đúng, cùng tham số đó cho Train 1.494 / OOS 1.478 tỷ lệ 1.01 — ổn định một cách buồn tẻ."
   - q: "Bài học meta cho việc kiểm chứng backtest là gì?"
-    a: "Trước khi tin bất kỳ kết quả backtest nào, hãy kiểm chứng rằng từ điển tham số của bạn thực sự đã nạp đúng các giá trị bạn đã viết. `print(vars(params))` sau `from_dict()`. Nếu một trường bị âm thầm loại bỏ, bạn đang chạy một chiến lược khác với cái bạn nghĩ. Kiểm tra 5 giây này đáng lẽ đã tiết kiệm 7 thí nghiệm tiếp theo."
+    a: "Trước khi tin bất kỳ kết quả backtest nào, hãy kiểm chứng rằng từ điển tham số của bạn thực sự đã nạp đúng các giá trị bạn đã viết. ``print(vars(params))`` sau ``from_dict()``. Nếu một trường bị âm thầm loại bỏ, bạn đang chạy một chiến lược khác với cái bạn nghĩ. Kiểm tra 5 giây này đáng lẽ đã tiết kiệm 7 thí nghiệm tiếp theo."
   - q: "Vậy có phải overfit không tồn tại trong chiến lược này không?"
     a: "Không hẳn. Phiên bản đã sửa trên BTC 304 ngày là ổn định (tỷ lệ 1.01). Nhưng kiểm tra liên tài sản trên 8 cặp cho thấy chủ yếu là nhiễu (ratio_stdev > mean). Một tài sản (DOT) trông tuyệt vời cho đến khi phân rã walk-forward tiết lộ tỷ lệ IS/OOS 6.47 — overfit kinh điển thực sự ẩn sau câu chuyện «thành công liên tài sản». Chiến lược chỉ hòa vốn, vì lý do khác với chẩn đoán ban đầu."
   - q: "Làm sao để phòng vệ chống schema drift trong production?"
@@ -29,7 +36,7 @@ faq: - q: "Schema drift là gì và tại sao nó lại ngụy tạo kết quả
 ---
 
 
-{{< resource-info >}}
+
 
 # Lỗi schema đã ngụy tạo chẩn đoán overfit của tôi
 
@@ -179,8 +186,8 @@ Nếu bạn chỉ lấy một thói quen từ bài postmortem này: hãy in tham
 
 ## Hạ tầng được đề xuất
 
-Cho khung thí nghiệm walk-forward + đa tài sản: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — Tín dụng $200, droplet GPU/CPU dễ dùng
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp đến các API sàn châu Á
+Cho khung thí nghiệm walk-forward + đa tài sản: - **** — Tín dụng $200, droplet GPU/CPU dễ dùng
+- **** — VPS Hong Kong, độ trễ thấp đến các API sàn châu Á
 
 *Liên kết tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
 

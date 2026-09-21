@@ -1,21 +1,10 @@
 ---
-title: "Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
-description: "10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tì..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["mcp", "model-context-protocol", "công-cụ-mcp-miễn-phí", "mcp-server", "claude-mcp", "ai-mã-nguồn-mở", "công-cụ-ai"]
-categories: ["tools"]
-faqs: - q: 'MCP là gì và tại sao quan trọng?'
-    a: 'MCP (Model Context Protocol) là tiêu chuẩn mở của Anthropic giúp các AI model như Claude kết nối với công cụ bên ngoài, database và dịch vụ theo cách chuẩn hóa. Thay vì mỗi ứng dụng AI tự xây tích hợp riêng, MCP cung cấp một connector phổ quát. MCP server công khai các khả năng (đọc file, tìm kiếm web, truy vấn DB) mà bất kỳ AI client tương thích MCP nào cũng có thể dùng.'
-  - q: 'Những công cụ MCP này có thực sự miễn phí không?'
-    a: 'Có. Tất cả 10 công cụ trong danh sách này đều là mã nguồn mở, không có phí bản quyền. Một số yêu cầu API key miễn phí (GitHub token, Brave Search free tier) và hầu hết cần máy tính của bạn để chạy tiến trình server. Bản thân MCP server không tính phí theo từng request.'
-  - q: 'Nên cài MCP server nào đầu tiên?'
-    a: 'Bắt đầu với filesystem MCP server chính thức. Không phụ thuộc bên ngoài, chạy ngay lập tức, và ngay lập tức cho AI của bạn quyền đọc/ghi file cục bộ — khả năng hữu ích nhất mọi lúc. Sau đó thêm fetch server cho truy cập web và memory server cho ngữ cảnh liên tục. Hầu hết developer chạy 3-5 MCP server như stack hàng ngày.'
-  - q: 'Các MCP server này có hoạt động với Cursor và VS Code, không chỉ Claude?'
-    a: 'Có. MCP là giao thức mở — bất kỳ client nào triển khai MCP đều có thể dùng các server này. Claude Desktop, Cursor, VS Code với extension Claude, Continue.dev và nhiều công cụ AI coding khác đã hỗ trợ MCP. Kiểm tra tài liệu client cụ thể của bạn để biết định dạng cấu hình chính xác.'
-  - q: 'MCP server khác plugin/extension như thế nào?'
-    a: 'Plugin và extension được xây cho một ứng dụng cụ thể (ví dụ: plugin ChatGPT chỉ hoạt động trong ChatGPT). MCP server không phụ thuộc client — cùng một filesystem server hoạt động trong Claude, Cursor và bất kỳ MCP client nào khác mà không cần chỉnh sửa. Đây là ưu điểm then chốt của tiêu chuẩn mở so với hệ thống plugin độc quyền.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-mcp-tools-top10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

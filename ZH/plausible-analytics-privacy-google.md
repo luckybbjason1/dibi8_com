@@ -1,6 +1,13 @@
 ---
-title: "Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
-description: "Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "plausible-analytics-privacy-google"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：没人谈论的分析工具隐私问题
 
@@ -307,9 +314,9 @@ export default defineNuxtPlugin(() => {
 ### 静态网站生成器（Hugo、Jekyll、Astro）
 
 `````html
-{{ if not hugo.IsServer }}
+
 </script>
-{{ end }}
+
 `````
 
 `````javascript

@@ -1,24 +1,15 @@
 ---
-title: "DeepSeek-Reasonix: DeepSeek 접두사 캐시 안정성을 위해 설계된 터미널 AI 코딩...
-description: "DeepSeek 네이티브 AI 코딩 에이전트로 설계된 프리픽스-캐시 안정성 — 캐시 적중률 99.82%, 캐시 사용 시 하루 약 $12, 캐시 미사용 시 약 $61. MIT 라이선..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "coding agent", "deepseek", "terminal", "self-hosted", "open source"]
-categories: ["ai-tools"]
-slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
-aliases: [/deepseek-reasonix]
-sources: - name: GitHub
-    url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: Website
-    url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: Discord
-    url: 'https://discord.gg/XF78rEME2D'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepseek-reasonix-terminal-ai-coding-agent-prefix-cache"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

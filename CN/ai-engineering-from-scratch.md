@@ -1,20 +1,10 @@
 ---
-title: "AI Engineering From Scratch: Build Production LLM System..."
-description: "AI Engineering From Scratch (32,771 stars) is a comprehensive curriculum covering LLM fine-tuning, R..."
-tags: ["architecture", "guide", "llm", "open-source", "reference", "system", "tutorial"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: ai-engineering-from-scratch
-category: llm-frameworks
-images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
-    alt: "AI Engineering From Scratch GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/rohitg00/ai-engineering-from-scratch/main/README.md"
-    alt: "Repository README"
-    role: reference
-  - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
-    alt: "Star History"
-    role: reference
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-engineering-from-scratch"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## TL;DR

@@ -1,6 +1,13 @@
 ---
-title: "RVC: 35K+ Stars 部署 AI 语音转换 — 2026 年 10 分钟训练指南"
-description: "RVC (Retrieval-based Voice Conversion) 是基于 VITS 的语音转换框架，兼容 GPT-SoVITS、Coqui TTS 和 demucs。本教程涵盖 Docke..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rvc"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
 

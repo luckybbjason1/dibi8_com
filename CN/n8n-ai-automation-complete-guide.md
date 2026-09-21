@@ -1,6 +1,13 @@
 ---
-title: n8n AI Automation — Build Intelligent Workflows Without Code
-description: Complete guide to n8n's AI-powered workflow automation. Connect 400+. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-automation-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   apps with AI nodes, build autonomous agents, and automate complex business processes.
   Pricing, templates, and real-world examples.
 tags: - n8n
@@ -146,7 +153,7 @@ The core AI node for text generation, classification, and extraction: `````pytho
   "nodeType": "aiLLM",
   "parameters": {
     "model": "claude-sonnet-4-202603",
-    "prompt": "Classify this customer message:\n{{ $json.message }}\n\nCategories: support, sales, complaint, inquiry",
+    "prompt": "Classify this customer message:\n\n\nCategories: support, sales, complaint, inquiry",
     "outputKey": "classification"
   }
 }
@@ -165,7 +172,7 @@ Convert text to vector representations for semantic search: `````python
   "nodeType": "aiEmbedding",
   "parameters": {
     "model": "text-embedding-3-large",
-    "input": "{{ $json.document_text }}"
+    "input": ""
   }
 }
 `````
@@ -192,7 +199,7 @@ Generate images from text prompts: `````python
   "nodeType": "aiImageGen",
   "parameters": {
     "provider": "dall-e-3",
-    "prompt": "{{ $json.description }}",
+    "prompt": "",
     "size": "1024x1024",
     "quality": "hd"
   }
@@ -342,7 +349,7 @@ workflow_config = {
     "onError": {
         "strategy": "continue",  # or "stop", "send_alert"
         "alertChannel": "slack",
-        "alertMessage": "Workflow failed: {{ $json.error }}"
+        "alertMessage": "Workflow failed: "
     }
 }
 `````
@@ -386,10 +393,10 @@ n8n's Switch node handles complex branching visually.
   "parameters": {
     "method": "POST",
     "url": "https://api.example.com/v1/data",
-    "headers": {"Authorization": "Bearer {{ $env.API_KEY }}"},
+    "headers": {"Authorization": "Bearer "},
     "body": {
-      "input": "{{ $json.user_input }}",
-      "context": "{{ $json.context }}"
+      "input": "",
+      "context": ""
     }
   }
 }

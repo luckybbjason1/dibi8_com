@@ -1,6 +1,13 @@
 ---
-title: "Dify: 5분 만에 시각적으로 프로덕션급 AI 에이전트 구축 — 141K+ Stars 설치 가이드 ...
-description: "Dify는 시각적 워크플로 빌더, RAG 파이프라인, 에이전트 오케스트레이션을 제공하는 오픈소스 LLM 애플리케이션 개발 플랫폼입니다. OpenAI, Anthropic, Ollam..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dify"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 대부분의 팀은 어려운 방식으로 AI 챗봇을 배포합니다. Flask 라우트를 OpenAI API에 연결하고, JSON 파일에서 프롬프트 템플릿을 수작업으로 작성하며, 임베딩 모델, 벡터 저장소, 청킹 로직으로부터 처음부터 RAG 파이프라인을 구축합니다. 세 달 후 프로토타입은 유지보수가 불가능해지고, 개발자 없이는 제품 관리자가 프롬프트를 업데이트할 수 없으며, 지식베이스 동기화는 조용히 실패하는 크론 작업이 됩니다.
 

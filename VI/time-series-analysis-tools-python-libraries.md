@@ -1,21 +1,10 @@
 ---
-title: "Phân Tích Chuỗi ThờI Gian Trong Python: Bộ Công Cụ Đầy Đ...
-description: "Hướng dẫn sử dụng Prophet, sktime, statsmodels ARIMA và Darts để phân tích chuỗI thờI gian trong Pyt..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/time-series-analysis-tools-python-libraries/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "time-series-analysis-tools-python-libraries"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

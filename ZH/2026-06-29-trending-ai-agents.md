@@ -1,18 +1,10 @@
 ---
-title: "本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 29 日当周）"
-description: "人工编辑的每周精选，汇总 GitHub 上最热门的开源 AI 代理、LLM 和 MCP 项目--数据由 Dibi8 部落情报自动收集，分析由 Dibi8 编辑团队完成。"
-tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
-date: 2026-06-29T00:00:00+08:00
-lastmod: 2026-06-29T00:00:00+08:00
-categories: ["llm-frameworks"]
-slug: this-week-ai-agents-2026-w26
-author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
-showAuthor: true
-showSummary: true
-sources: ["GitHub Trending"]
-source_url: "https://github.com/trending"
-methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
-review_status: "AWAITING_EDITOR_REVIEW"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-06-29-trending-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 29 日当周）

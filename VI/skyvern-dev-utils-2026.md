@@ -1,6 +1,13 @@
 ---
-title: "Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
-description: "Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (2..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skyvern-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -31,7 +38,7 @@ faqs: - q: 'Tôi cài Skyvern-AI/skyvern như thế nào?'
 ---
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 

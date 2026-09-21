@@ -1,16 +1,14 @@
 ---
-title: "Wan 2.1: 16.1K+ Stars — 开源视频生成深度解析 vs HunyuanVideo、CogVi...
-description: "Wan 2.1 是阿里巴巴开源的视频基础模型套件，具备 SOTA 性能。支持 ComfyUI、Diffusers 和 Gradio。涵盖 T2V、I2V、视频编辑和文本生成，提供 1.3B 和 14B..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-tools"]
-tags: ["wan-2-1", "视频生成", "扩散transformer", "ai视频", "开源", "阿里巴巴", "comfyui", "diffusers"]
-aliases:
-  - /zh/posts/wan-2-1/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "wan-2-1"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Wan 2.1 封面图](https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg)
 

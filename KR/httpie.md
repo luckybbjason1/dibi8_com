@@ -1,6 +1,13 @@
 ---
-title: "HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wg...
-description: "HTTPie는 JSON 지원, 구문 강조 및 세션 관리를 갖춘 API 시대의 현대적인 CLI HTTP 클라이언트다. Python, pip, Homebrew, Docker와 호환. ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "httpie"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 **HTTPie**(발음: "에이치-티-티-파이")는 API 시대를 위해 설계된 CLI HTTP 클라이언트다. **38,200개 GitHub Stars**를 보유한 이 도구는 ```api testing cli```` 분야에서 가장 인기 있는 개발자 도구 중 하나다. 이 가이드는 ````httpie setup````부터 ````httpie vs curl```` 벤치마크 비교 및 실전 명령어까지 전부 다룬다.
 
@@ -260,8 +267,8 @@ jobs: test: runs-on: ubuntu-latest
         run: pip install httpie
       - name: API 엔드포인트 테스트
         run: |
-          http --check-status --timeout=10 GET ${{ secrets.API_URL }}/health
-          http --check-status POST ${{ secrets.API_URL }}/users name=Test email=test@example.com
+          http --check-status --timeout=10 GET $/health
+          http --check-status POST $/users name=Test email=test@example.com
 `````
 
 ### VS Code와의 통합

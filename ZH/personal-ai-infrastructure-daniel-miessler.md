@@ -1,11 +1,10 @@
 ---
-title: "Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agenti...
-description: "Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'personal-ai-infrastructure-daniel-miessler'
-category: data-science
-tags: ["pai", "personal-ai", "daniel-miessler", "life-os", "algorithm", "skills", "automation"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "personal-ai-infrastructure-daniel-miessler"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

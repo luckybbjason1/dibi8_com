@@ -1,6 +1,13 @@
 ---
-title: "MLflow 2026: 追踪 10,000+ 实验的开源 ML 全生命周期平台 — 部署指南"
-description: "MLflow 在 ML 实验追踪、模型注册表和模型服务方面的完整指南。涵盖设置、Python SDK、生产部署和 10,000+ 实验的基准测试。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mlflow-experiment-tracking-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言: 未追踪实验的混乱
 
@@ -632,7 +639,7 @@ jobs: train: runs-on: ubuntu-latest
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: $
         run: |
           python train.py --register-model --stage Staging
 

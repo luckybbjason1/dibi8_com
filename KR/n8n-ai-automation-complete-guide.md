@@ -1,12 +1,10 @@
 ---
-title: n8n AI 자동화 — 코드 없이 지능형 워크플로우 구축
-description: n8n의 AI 기반 워크플로우 자동화 완전 가이드. AI 노드로 400개 이상 앱 연결, 자율 에이전트 구축, 복잡한 비즈니스 프로세스 자동화. 가격, 템플릿 및 실제 예제 포함.. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["n8n", "workflow-automation", "ai-automation", "no-code", "agent-automation", "business-process"]
-category: dev-utils
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: n8n-ai-automation-complete-guide
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-automation-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -135,7 +133,7 @@ n8n start
   "nodeType": "aiLLM",
   "parameters": {
     "model": "claude-sonnet-4-202603",
-    "prompt": "이 고객 메시지를 분류하세요:\n{{ $json.message }}\n\n카테고리: 지원, 영업, 불만, 문의",
+    "prompt": "이 고객 메시지를 분류하세요:\n\n\n카테고리: 지원, 영업, 불만, 문의",
     "outputKey": "classification"
   }
 }
@@ -154,7 +152,7 @@ n8n start
   "nodeType": "aiEmbedding",
   "parameters": {
     "model": "text-embedding-3-large",
-    "input": "{{ $json.document_text }}"
+    "input": ""
   }
 }
 `````
@@ -175,7 +173,7 @@ n8n start
   "nodeType": "aiImageGen",
   "parameters": {
     "provider": "dall-e-3",
-    "prompt": "{{ $json.description }}",
+    "prompt": "",
     "size": "1024x1024",
     "quality": "hd"
   }
@@ -303,7 +301,7 @@ workflow_config = {
     "onError": {
         "strategy": "continue",  # 또는 "stop", "send_alert"
         "alertChannel": "slack",
-        "alertMessage": "워크플로우 실패: {{ $json.error }}"
+        "alertMessage": "워크플로우 실패: "
     }
 }
 `````
@@ -343,10 +341,10 @@ n8n의 Switch 노드는 복잡한 분기를 시각적으로 처리합니다.
   "parameters": {
     "method": "POST",
     "url": "https://api.example.com/v1/data",
-    "headers": {"Authorization": "Bearer {{ $env.API_KEY }}"},
+    "headers": {"Authorization": "Bearer "},
     "body": {
-      "input": "{{ $json.user_input }}",
-      "context": "{{ $json.context }}"
+      "input": "",
+      "context": ""
     }
   }
 }

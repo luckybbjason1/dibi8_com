@@ -1,9 +1,10 @@
 ---
-title: "MLflow vs Weights & Biases vs Neptune：MLOps实验追踪平台全面对比（20...
-description: "深度对比MLflow、W&B、Neptune三大MLOps实验追踪平台，从定价、部署、协作、LLM支持等维度帮你选出最适合的ML实验管理方案。". Comprehensive guide coveri..."
-draft: false
-aliases:
-  - /posts/mlops-platform-comparison-mlflow-wandb-neptune/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mlops-platform-comparison-mlflow-wandb-neptune"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

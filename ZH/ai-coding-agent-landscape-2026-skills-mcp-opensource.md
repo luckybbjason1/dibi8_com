@@ -1,21 +1,10 @@
 ---
-title: "2026年AI编程助手格局剧变：Claude Code Skills生态爆发、MCP协议成标准，开发者如何避免被...
-description: "2026年AI编程助手市场迎来分水岭。Claude Code skills数量破3000，MCP协议统一工具接口，开源替代方案OpenCode与Hermes Agent快速崛起。本文深度解析生态演变、..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agent-landscape-2026-skills-mcp-opensource"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

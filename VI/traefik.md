@@ -1,6 +1,13 @@
 ---
-title: "Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
-description: "Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "traefik"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Quản lý traffic ingress trong môi trường container hóa luôn là một vấn đề nhức nhối. Mỗi khi một microservice mới khởi động, ai đó phải cập nhật cấu hình reverse proxy, reload service, và cầu nguyện không có gì bị hỏng. Trong thế giới deployments diễn ra hàng chục lần mỗi ngày, cách tiếp cận thủ công này sụp đỗ dưới chính sức nặng của nó. [Traefik](https://github.com/traefik/traefik), edge router mã nguồn mở được xây dựng cho hạ tầng cloud-native, giải quyết vấn đề này bằng cách theo dõi orchestrator container và tự động cập nhật routes — không cần reload cấu hình, không downtime, không cần can thiệp của con ngườ.
 

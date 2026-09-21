@@ -1,6 +1,13 @@
 ---
-title: "ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·...
-description: "홍콩과학기술대 데이터사이언스랩이 만든 ViMax(GitHub 7.1K+ stars)는 본격적으로 채택되기 시작한 첫 오픈소스 에이전트 기반 영상 생성 프레임워크다. Sora나 Ru..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vimax-agentic-video-generation-multi-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

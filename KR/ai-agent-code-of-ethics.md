@@ -1,6 +1,13 @@
 ---
-title: "AI 에이전트 윤리 강령 (2026): 자율 에이전트를 위한 실전 거버넌스 프레임워크"
-description: "자율 AI 에이전트를 위한 엔지니어용 윤리 강령 — 추상적인 구호가 아니라, 각 항목마다 구체적인 엔지니어링 통제가 따라붙는 일곱 개의 강제 가능한 규칙: 최소 권한 인가, 완전한..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-code-of-ethics"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-04T00:00:00+08:00
 lastmod: 2026-06-04T00:00:00+08:00
 tech_stack: - AI Agents

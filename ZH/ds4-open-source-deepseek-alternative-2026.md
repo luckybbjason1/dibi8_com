@@ -1,6 +1,13 @@
 ---
-title: "ds4 实测 2026：开源 DeepSeek 运行时新选择"
-description: "ds4 是 2026 年最快增长的开源 DeepSeek 兼容 LLM runtime。Apache-2.0 协议、OpenAI API 兼容、跑 DeepSeek V3 / V3.1 / V4 权重..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-open-source-deepseek-alternative-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []
@@ -31,7 +38,7 @@ faqs: - q: 'ds4 是什么？跟 vLLM 或 Ollama 有什么不同？'
     a: '能。几个团队（Marsh McLennan / Replit infra）报告多月生产稳定。自 2026 Q1 起每周发版、积极维护。主要顾虑是运维复杂度 — 跟所有 LLM runtime 一样，ds4 生产部署需要 SRE 能力。'---
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

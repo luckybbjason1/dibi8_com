@@ -1,6 +1,13 @@
 ---
-title: "Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）"
-description: "一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-skill-authoring-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 last_maintained: "2026-05-28"
 draft: false
 categories: ["llm-frameworks"]
@@ -60,7 +67,7 @@ skill 是三者中最被低估的，因为它看起来太简单了——"不就�
 
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a new version, tagging a build, or preparing release notes. Walks through version bump, changelog, tag, and publish steps.
+description: "Technical guide and comparison."
 
 * * *
 You are helping cut a release. Follow these steps in order...
@@ -74,8 +81,8 @@ kebab-case，要有描述性。这是 skill 的身份标识。
 
 Claude 读取各个 skill 的 description 来做路由：它扫描这些 description，判断哪个 skill 匹配当前任务，然后加载那个 skill 的正文。所以 description 不是一个标签——它是一个**何时触发的条件**。把它塞满具体的触发词：
 
-> ❌ ````description: Release helper.````
-> ✅ ````description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.````
+> ❌ ````description: "Technical guide and comparison."
+> ✅ ````description: "Technical guide and comparison."
 
 第一个永远不会触发，因为真实任务里没有任何东西匹配 "release helper"。第二个则在用户一说出 "let's ship 2.4.0" 的瞬间就触发。如果你的 skill 存在却从不激活，元凶必定是 description——每一次都是。
 
@@ -108,7 +115,7 @@ Claude 只在真正需要这些规则时才读取 ````references/versioning.md``
 
 * * *
 name: cut-release
-description: Use when cutting a release, publishing a version, or tagging a build. Covers version bump, changelog, tag, publish, and the green-CI precondition.
+description: "Technical guide and comparison."
 * * *
 
 You are cutting a release. Do NOT skip the precondition check.
@@ -131,7 +138,7 @@ Report which step you stopped at if anything blocks.
 `````markdown
 * * *
 name: debug-flaky-test
-description: Use when a test passes sometimes and fails other times, or when investigating CI flakiness, intermittent failures, or race conditions in the suite.
+description: "Technical guide and comparison."
 * * *
 
 You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
@@ -161,9 +168,9 @@ skill 是**即时调用的专业知识**。CLAUDE.md 是永远成立的东西；
 
 skill 在一个稳定、共享的环境里最能发光：
 
-1. **一台可靠的主机，承载团队共享、CI 调用的工作流。** skill 是版本化的，也会在 CI 里运行。**{{< aff "htstack" "footer-cta" "HTStack" >}}**——香港 VPS，中国大陆低延迟访问，稳定 BGP。与托管 dibi8.com 的是同一个 IDC。每月 5-12 美元。
+1. **一台可靠的主机，承载团队共享、CI 调用的工作流。** skill 是版本化的，也会在 CI 里运行。****——香港 VPS，中国大陆低延迟访问，稳定 BGP。与托管 dibi8.com 的是同一个 IDC。每月 5-12 美元。
 
-2. **应对并行运行的云端余量。** **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}**——200 美元免费额度，有效期 60 天，14+ 个区域。
+2. **应对并行运行的云端余量。** ****——200 美元免费额度，有效期 60 天，14+ 个区域。
 
 3. **一份 skill 合集。** 写出好 skill 最快的办法，是去读好的 skill。我们把五个经过实战检验的 skill 打包成了 Gumroad 上 19 美元的合集——见角落里的浮动 CTA——其中的 description、渐进式披露结构、捆绑脚本都已经做对了。
 

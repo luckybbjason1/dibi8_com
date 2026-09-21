@@ -1,17 +1,14 @@
 ---
-title: "zerion-wallet-portfolio-tracker"
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["zerion"]
-aliases:
-  - /kr/posts/zerion-wallet-portfolio-tracker/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zerion-wallet-portfolio-tracker"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 **날짜:** 2026-05-19  
 **카테고리:** AI 트레이딩  

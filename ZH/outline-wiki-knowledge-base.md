@@ -1,16 +1,14 @@
 ---
-title: "Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署"
-description: "使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。". Comprehensive..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["outline", "wiki", "知识库", "团队文档", "开源", "自托管", "docker", "协作", "markdown"]
-aliases:
-  - /zh/posts/outline-wiki-knowledge-base/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "outline-wiki-knowledge-base"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：文档去哪了
 
@@ -220,7 +218,7 @@ features: bot_user: display_name: Outline
     always_online: true
   slash_commands: - command: /outline
       url: https://wiki.yourcompany.com/api/hooks.slack
-      description: 搜索你的知识库
+description: "Technical guide and comparison."
       usage_hint: "[search query]"
       should_escape: false
 oauth_config: redirect_urls: - https://wiki.yourcompany.com/auth/slack.callback
@@ -287,7 +285,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           DOCS=$(cat docs/api-reference.md)
           curl -X POST "https://wiki.yourcompany.com/api/documents.update" \
-            -H "Authorization: Bearer ${{ secrets.OUTLINE_API_TOKEN }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d "{
               "id": "DOC_ID_HERE",

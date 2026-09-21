@@ -1,16 +1,14 @@
 ---
-title: "Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
-description: "Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương t..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]
-aliases:
-  - /vi/posts/caddy/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "caddy"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 Caddy nổi bật như web server duy nhất trong dòng chính coi HTTPS là mặc định, không phải hệ quả sau này. Trong khi Nginx đòi hỏi cấu hình chứng chỉ thủ công và Apache cần vật lộn với mod_ssl, Caddy tự động cấp phát và gia hạn chứng chỉ TLS từ Let's Encrypt và ZeroSSL — không cần cron job, không cần certbot, không cần cấu hình. Với **72.595 GitHub Stars** và codebase được viết bằng Go, Caddy đã phục vụ hàng nghìn tỷ request và quản lý hàng triệu chứng chỉ TLS trong môi trường production, từ triển khai VPS đơn lẻ đến cluster xử lý hàng trăm nghìn site.
 

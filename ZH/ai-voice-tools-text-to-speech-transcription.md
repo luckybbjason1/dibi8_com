@@ -1,9 +1,10 @@
 ---
-title: "2025年最佳AI语音工具对比：文本转语音与语音转文字"
-description: "2025年AI语音工具全面评测，对比ElevenLabs、Murf.ai、Play.ht、OpenAI TTS、Whisper、Otter.ai等文本转语音与语音转文字工具。". Comprehens..."
-draft: false
-aliases:
-  - /posts/ai-voice-tools-text-to-speech-transcription/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-voice-tools-text-to-speech-transcription"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳AI语音工具对比：文本转语音与语音转文字

@@ -1,6 +1,13 @@
 ---
-title: "2025년 최고의 개발자 API 게이트웨이 도구 비교: Kong, NGINX Plus, Traefik...
-description: "API 게이트웨이 도구를 비교합니다. Kong, NGINX Plus, Traefik, Google Apigee, AWS API Gateway, Tyk의 특징과 성능을 알아보고 아키..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "developer-api-gateway-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

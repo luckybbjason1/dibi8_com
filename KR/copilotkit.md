@@ -1,6 +1,13 @@
 ---
-title: "CopilotKit: 31K+ Stars — React 또는 Angular 앱에 AI Copilot ...
-description: "CopilotKit은 인앱 AI Copilot과 생성형 UI를 위한 오픈소스 프론트엔드 스택입니다. 사전 제작 컴포넌트, useCopilotAction Hooks, 프로덕션 배포로..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "copilotkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 CopilotKit은 모든 React 또는 Angular 애플리케이션을 AI 네이티브 제품으로 전환하는 오픈소스 프론트엔드 스택입니다. **31,536개의 GitHub Stars**, 3,300개 이상의 Fork, 그리고 2026년 5월 완료된 2,700만 달러 Series A 투자를 보유한 CopilotKit은 애플리케이션 상태를 읽고 프론트엔드 작업을 트리거하며 채팅 인터페이스 내에서 생성형 UI 컴포넌트를 렌더링하는 인앱 AI 어시스턴트를 제공하는 팀의 기본 선택이 되었습니다.
 
@@ -135,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <CopilotSidebar
         defaultOpen={false}
         labels={{
-          title: "AI 어시스턴트",
+          title: "AI Tool Guide"
           initial: "안녕하세요! 무엇을 도와드릴까요?",
           placeholder: "메시지를 입력하세요...",
         }}
@@ -292,7 +299,7 @@ export function TaskManager() {
 
   // LLM에 작업 상태 노출
   useCopilotReadable({
-    description: "사용자의 현재 작업 목록, 완료 상태 및 우선순위 포함",
+    description: "Technical guide and comparison."
     value: tasks,
   });
 

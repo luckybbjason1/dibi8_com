@@ -1,6 +1,13 @@
 ---
-title: "Marker: Convert PDF, DOCX & EPUB to Markdown/JSON Fast —...
-description: "Marker (datalab-to/marker) converts PDF, DOCX, EPUB and more to Markdown, JSON, HTML and chunks quic..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "marker-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,17 +26,17 @@ tags: ["]
 aliases:
   - /posts/marker-dev-utils-2026/
 faqs: - q: 'How do I install marker?'
-    a: 'Install it from PyPI with `pip install marker-pdf`. For non-PDF formats (DOCX", "PPTX", "XLSX", "EPUB", "HTML", "images)", "use `pip install marker-pdf[full"]`.'
+    a: 'Install it from PyPI with ``pip install marker-pdf``. For non-PDF formats (DOCX", "PPTX", "XLSX", "EPUB", "HTML", "images)", "use ``pip install marker-pdf[full"]``.'
   - q: 'Can I use this tool for commercial projects?'
     a: 'The code is licensed under GPL-3.0, but the model weights use a modified AI Pubs Open Rail-M license. That license is free for research, personal use and companies under roughly $2M in funding/revenue; larger commercial users need a commercial license from Datalab. Check the current terms before deploying.'
   - q: 'What types of documents can marker handle?'
     a: 'Marker supports PDF, images, PPTX, DOCX, XLSX, HTML and EPUB. Output can be Markdown, JSON, HTML or RAG-ready chunks.'
   - q: 'Is there a way to customize the output format?'
-    a: 'Yes. Use the `--output_format [markdown|json|html|chunks]` CLI flag, or pass `{"output_format": "..."}` through `ConfigParser` in the Python API. Marker is also extensible with custom processors and renderers.'
+    a: 'Yes. Use the ``--output_format [markdown|json|html|chunks]`` CLI flag, or pass ``{"output_format": "..."}`` through ``ConfigParser`` in the Python API. Marker is also extensible with custom processors and renderers.'
   - q: 'How do I report an issue or request a feature?'
     a: 'Visit the GitHub repository at  and open a new issue in the Issues tab with detailed information about your problem or suggestion.'---
 
-{{< resource-info >}}
+
 
 ## Introduction
 

@@ -1,6 +1,13 @@
 ---
-title: "Skyvern：用 AI 智能体自动化浏览器工作流（21K 星）——2026 实用指南"
-description: "Skyvern 用大语言模型和计算机视觉自动化浏览器工作流（21,803 GitHub 星，AGPL-3.0）。涵盖安装、真实的 Python API、可运行的代码示例，以及与 Selenium、Pl..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skyvern-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -30,7 +37,7 @@ faqs: - q: '我该如何安装 Skyvern-AI/skyvern？'
     a: '可查阅官网  和 GitHub README，二者都深入介绍了安装、API 和示例工作流。'---
 
 
-{{< resource-info >}}
+
 
 ## 引言
 

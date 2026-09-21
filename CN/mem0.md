@@ -1,6 +1,13 @@
 ---
-title: "Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Gu...
-description: "Mem0 (mem0ai) is a universal memory layer for AI agents. Compatible with Claude Code, OpenAI, LangCh..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mem0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/mem0/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 
@@ -360,7 +367,7 @@ researcher = Agent(
 
 # Task that uses memory
 task = Task(
-    description="""Research travel options for user {{user_id}}.
+    description="""Research travel options for user .
     First retrieve their preferences, then provide personalized recommendations.
     Query: travel preferences""",
     expected_output="Personalized travel recommendations",

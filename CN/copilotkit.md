@@ -1,6 +1,13 @@
 ---
-title: "CopilotKit: 31K+ Stars — Add AI Copilots to Any React or...
-description: "CopilotKit is the open-source frontend stack for in-app AI copilots and generative UI. Build React A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "copilotkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/copilotkit/-
 ---
 
-{{</* resource-info */>}}
+
 
 CopilotKit is the open-source frontend stack that turns any React or Angular application into an AI-native product. With **31,536 GitHub stars**, 3,300+ forks, and a fresh $27M Series A (May 2026), it has become the default choice for teams shipping in-app AI assistants that read application state, trigger frontend actions, and render generative UI components inside chat interfaces.
 
@@ -297,25 +304,25 @@ export function TaskManager() {
 
   // Expose task state to the LLM
   useCopilotReadable({
-    description: "The user's current task list with completion status and priorities"
+    description: "Technical guide and comparison."
     value: tasks,
   });
 
   // Action: Add a new task
   useCopilotAction({
     name: "addTask",
-    description: "Add a new task to the task list"
+    description: "Technical guide and comparison."
     parameters: [
       {
         name: "title",
         type: "string",
-        description: "The title of the task to add"
+        description: "Technical guide and comparison."
         required: true,
       },
       {
         name: "priority",
         type: "string",
-        description: "Priority level: low, medium, or high"
+        description: "Technical guide and comparison."
         required: false,
       },
     ],
@@ -334,12 +341,12 @@ export function TaskManager() {
   // Action: Mark task as complete
   useCopilotAction({
     name: "completeTask",
-    description: "Mark a task as completed by its title or ID"
+    description: "Technical guide and comparison."
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "The ID of the task to mark complete"
+        description: "Technical guide and comparison."
         required: true,
       },
     ],
@@ -354,12 +361,12 @@ export function TaskManager() {
   // Action: Delete a task
   useCopilotAction({
     name: "deleteTask",
-    description: "Remove a task from the list"
+    description: "Technical guide and comparison."
     parameters: [
       {
         name: "taskId",
         type: "string",
-        description: "The ID of the task to delete"
+        description: "Technical guide and comparison."
         required: true,
       },
     ],
@@ -391,9 +398,9 @@ export function TaskManager() {
 // Render a task card inside the copilot chat
 useCopilotAction({
   name: "showTaskDetails",
-  description: "Display a detailed task card in the chat"
+  description: "Technical guide and comparison."
   parameters: [
-    { name: "taskId", type: "string", description: "Task ID to display"
+    { name: "taskId", type: "string", description: "Technical guide and comparison."
 , required: true },
   ],
   render: ({ taskId }) => {

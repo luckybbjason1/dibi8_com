@@ -1,11 +1,10 @@
 ---
-title: "Qiaomu Anything to NotebookLM：Chuyển đổi bất kỳ nguồn nộ...
-description: "Qiaomu Anything to NotebookLM là một kỹ năng Claude Code và bộ công cụ Python chuyển đổi hơn 15 nguồ..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
-category: data-science
-tags: ["qiaomu-notebooklm", "notebooklm", "chuyển đổi nội dung", "Claude Code", "quản lý kiến thức", "công cụ AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "qiaomu-anything-to-notebooklm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

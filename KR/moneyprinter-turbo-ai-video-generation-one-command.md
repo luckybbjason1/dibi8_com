@@ -1,10 +1,10 @@
 ---
-title: "MoneyPrinterTurbo: AI로 동영상 자동 생성"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "moneyprinter-turbo-ai-video-generation-one-command"
 category: "ai-tools"
-publish_date: "2026-06-10"
-lastmod: "2026-06-10"author: "DIBI8"
-tags: ["ai", "video-generation", "automation", "content-creation", "llm"]
+tags: ["ai", "tools"]
 ---
 
 

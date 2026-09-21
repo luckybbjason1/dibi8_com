@@ -1,16 +1,14 @@
 ---
-title: "pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 ...
-description: "pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.". Comp..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["pgvector", "postgresql", "벡터-데이터베이스", "hnsw", "ann", "rag", "유사도-검색", "전문-검색"]
-aliases:
-  - /kr/posts/pgvector-postgres-vector-extension/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pgvector-postgres-vector-extension"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 데모를 죽인 47초 쿼리
 

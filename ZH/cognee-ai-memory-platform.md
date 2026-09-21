@@ -1,24 +1,20 @@
 ---
-description: "Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intellige..."
-date: 2026-07-03T09:00:00+09:00
-lastmod: 2026-07-03T09:00:00+09:00
-slug: cognee-ai-memory-platform
-title: "Cognee：26K+ Star 开源人工智能内存平台"
-category: llm-frameworks
-tags: ["ai-memory", "rag", "knowledge-graph", "ai-agents", "open-source"]
-tech_stack: - Python
-  - TypeScript
-  - Docker
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cognee-ai-memory-platform"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
 
-<<<<<<< HEAD
+
 
 > **Editor's Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
-=======
+
 > **编者披露：** 此分析使用截至 2026 年 6 月 30 日公开的 GitHub 数据（星数、提交频率、分叉数）。所有代码示例都经过测试和验证。我们可以通过附属链接赚取佣金。
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 ## 长篇大论；博士
 
@@ -123,7 +119,7 @@ from langchain_community.chat_models import ChatAnthropic
 from langchain.prompts import ChatPromptTemplate
 import cognee
 
-<<<<<<< HEAD
+
 # Initialize the chatbot with memory
 prompt_template = ChatPromptTemplate.from_messages([
     ("system", """You are a helpful assistant with persistent memory.
@@ -131,7 +127,7 @@ prompt_template = ChatPromptTemplate.from_messages([
     
     Answer based on both the conversation and your memory."""),
     ("human", "{input}"),
-=======
+
 # 使用内存初始化聊天机器人
 提示模板 = ChatPromptTemplate.from_messages([
 ("系统",“”"你是一个有持久记忆的得力助手。
@@ -140,7 +136,7 @@ prompt_template = ChatPromptTemplate.from_messages([
 
 根据对话内容和你的记忆来回答。"""),
 （“人类"，"{输入}"），
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 ])
 
 链=提示模板| ChatAnthropic（模型="claude-sonnet-4-20250514"）
@@ -152,7 +148,7 @@ prompt_template = ChatPromptTemplate.from_messages([
 )
 return "\n".join([m["text"] 表示内存中的 m])
 
-<<<<<<< HEAD
+
 # Chat function with memory
 async def chat_with_memory(user_id, message): memory = await get_memory_context(user_id)
     response = chain.invoke({
@@ -167,7 +163,7 @@ async def chat_with_memory(user_id, message): memory = await get_memory_context(
     ])
     
     return response.content
-=======
+
 # 带记忆的聊天功能
 异步 def chat_with_memory(user_id, message): 内存 = 等待 get_memory_context(user_id)
 响应 = chain.invoke({
@@ -182,7 +178,7 @@ f"助理回复：{response.content}"
 ])
 
 返回响应内容
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ### 高级：多源知识摄取
@@ -270,7 +266,7 @@ Cognee 实现了受认知科学启发的三层内存架构：
 `````python
 class KnowledgeExtractor: def extract(self, text: str) -> KnowledgeGraph: # Step 1: Entity recognition
         entities = self._recognize_entities(text)
-<<<<<<< HEAD
+
         
         # Step 2: Relationship extraction
         relationships = self._extract_relationships(entities, text)
@@ -282,7 +278,7 @@ class KnowledgeExtractor: def extract(self, text: str) -> KnowledgeGraph: # Step
         
         # Step 4: Merge with existing graph
         return self._merge_with_graph(entities, relationships)
-=======
+
 
 # 步骤2：关系提取
 关系= self._extract_relationships（实体，文本）
@@ -296,14 +292,14 @@ rel.confidence = self._score_relationship_confidence(rel)
 
 # 第 4 步：与现有图合并
 返回 self._merge_with_graph(实体，关系)
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 `````
 
 ### 临时内存管理
 
 `````python
 class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_days
-<<<<<<< HEAD
+
     
     def manage(self, memories): # Mark memories for expiration
         for memory in memories: age = datetime.now() - memory.created_at
@@ -319,7 +315,7 @@ class TemporalMemoryManager: def __init__(self, ttl_days=365): self.ttl = ttl_da
 
 
 ## Advanced Memory Management
-=======
+
 
 def 管理（自我，记忆）：
 # 将内存标记为过期
@@ -337,7 +333,7 @@ elif 年龄.天数 > self.ttl * 0.8: 内存状态="老化"
 `````
 
 ## 高级内存管理
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 ### 记忆巩固
 
@@ -575,11 +571,11 @@ Cognee 的增长反映了向持久、具有推理能力的人工智能系统的�
 
 
 * * *
-<<<<<<< HEAD
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
-=======
+
 *本文由Dibi8编辑团队独立研究撰写。我们可能会从附属链接中赚取佣金，但这并不影响我们的编辑独立性。*
->>>>>>> 0f428019e6f21508f05fc402fc21585e618ed533
+
 
 
 {

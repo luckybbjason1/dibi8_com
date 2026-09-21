@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-first-ai-stack-offline-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Local-First AI Stack 2026: Fully Offline AI Development ...
-description: "Building a fully offline AI coding environment in 2026: Ollama for LLM, Aider for coding agent, Chro..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
@@ -24,7 +31,7 @@ faq: - q: "Why go fully offline in 2026?"
     a: "Yes. Pattern: local Ollama as primary, fall back to commercial API for hard tasks. Aider supports model switching mid-session. Most developers run hybrid — local default, cloud for the 10-20% that needs it."
 ---
 
-{{</* resource-info */>}}
+
 
 # Local-First AI Stack 2026: Offline Development Environment
 
@@ -140,8 +147,8 @@ Productivity: ~85% of cloud equivalent, fully compliant.
 
 ## Recommended Infrastructure
 
-If you need GPU droplets for local model fine-tuning: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS
+If you need GPU droplets for local model fine-tuning: - **** — $200 credit, GPU droplets
+- **** — Hong Kong VPS
 
 *Affiliate links — same price, supports dibi8.com.*
 

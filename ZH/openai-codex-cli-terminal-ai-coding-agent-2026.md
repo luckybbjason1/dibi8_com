@@ -1,21 +1,10 @@
 ---
-title: "OpenAI Codex CLI 完全指南：2026年最值得入手的终端 AI 编程助手（安装配置 + 多智能体工...
-description: "深入解析 OpenAI Codex CLI——2026年 GitHub 上增长最快的开源 AI 编程工具之一。本文涵盖从零安装配置、AGENTS.md 高级用法、多智能体并行开发到与 Claude C..."
-date: 2026-05-17T00:00:00+08:00
-lastmod: 2026-05-17T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-17"
-draft: false
-aliases:
-  - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-codex-cli-terminal-ai-coding-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

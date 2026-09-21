@@ -1,6 +1,13 @@
 ---
-title: "LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
-description: "LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "litellm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/llm-frameworks/litellm-unified-api-tutorial/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
 

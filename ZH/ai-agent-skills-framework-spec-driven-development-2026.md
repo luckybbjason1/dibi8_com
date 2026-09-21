@@ -1,21 +1,10 @@
 ---
-# AI Agent Skills 模式爆发：2026年开发者必须掌握的 Claude Code 技能框架与规范驱动开发实战指南
-
-**发布时间：** 2026年5月20日  
-**阅读时间：** 15 分钟  
-**目标读者：** 全栈开发者、技术负责人、AI 工具爱好者---
-
-## 写在前面：为什么你的 Claude Code 还不够聪明
-
-2026 年 5 月的 GitHub Trending 榜单出现了一个前所未有的现象：前 20 个增长最快的仓库中，**超过 5 个名字里带着 "skills"**。 Matt Pocock 的个人 ``.claude`` 目录开源后一周内斩获 +1,618 stars，NousResearch 的 Hermes Agent 紧随其后拿到 +1,332 stars，就连 Andrej Karpathy 的工作流都被打包成了可复用的 agent skills。
-
-这不是巧合。社区正在经历一场静默的范式转移：从把 AI 当成**黑箱代码生成器**，转向为 AI 编码**可复用的行为模式、约束条件和工作流**——这就是 **AI Agent Skills 模式**。
-
-与此同时，GitHub 官方推出的 **Spec-Kit** 标志着另一股力量的崛起：**Spec-Driven Development（规范驱动开发，SDD）**。它用 ``SPECIFICATION → PLAN → TASKS → IMPLEMENTATION`` 的四步 workflow，把 "vibe coding" 的随性变成了可工程化的纪律。
-
-如果你还在用 "帮我写个登录页" 这样的提示词驱动 AI，你已经落后了。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-skills-framework-spec-driven-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## 什么是 AI Agent Skills？从黑箱到可组合的行为乐高
 

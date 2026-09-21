@@ -1,21 +1,10 @@
 ---
-title: "Best AI Video Generation Tools 2025: Sora, Runway, Pika ...
-description: "Compare the best AI video generation tools of 2025: OpenAI Sora, Runway Gen-3, Pika 2.0, Kling AI, H..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/best-ai-video-generation-tools-2025/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-video-generation-tools-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Best AI Video Generation Tools 2025: Sora, Runway, Pika & More Compared

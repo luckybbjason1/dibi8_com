@@ -1,6 +1,13 @@
 ---
-title: "VideoReTalking: 7.2K+ Stars — Hướng Dẫn Cài Đặt Chỉnh Sử...
-description: "VideoReTalking (VRT) là hệ thống đồng bộ môi dựa trên âm thanh để chỉnh sửa video talking head. Tươn..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "video-retalking"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 

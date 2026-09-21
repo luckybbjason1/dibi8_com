@@ -1,6 +1,13 @@
 ---
-title: "Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
-description: "Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-first-ai-stack-offline-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, Aider, ChromaDB, 'Llama 3.3', 'Local-first AI']
@@ -25,7 +32,7 @@ faq: - q: "Tại sao phải đi hoàn toàn offline trong năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Stack AI Local-First 2026: Môi Trường Phát Triển Offline
 
@@ -135,8 +142,8 @@ Năng suất: ~85% so với cloud, tuân thủ đầy đủ.
 
 ## Hạ Tầng Khuyến Nghị
 
-Nếu bạn cần GPU droplet để fine-tune mô hình local: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 USD credit, GPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong
+Nếu bạn cần GPU droplet để fine-tune mô hình local: - **** — 200 USD credit, GPU droplet
+- **** — VPS Hong Kong
 
 *Liên kết affiliate — giá như nhau, ủng hộ dibi8.com.*
 

@@ -1,6 +1,13 @@
 ---
-title: "Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc,...
-description: "Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vibe-coding-2026-korean-concept-explained"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Phát triển dựa trên AI', 'Lập trình bằng ngôn ngữ tự nhiên']
@@ -25,7 +32,7 @@ faq: - q: "'Vibe coding' là gì?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Vibe Coding 2026: Khái niệm Hàn Quốc, giải thích cho phần còn lại
 
@@ -118,8 +125,8 @@ Các lo ngại này hợp lý. Mô hình áp dụng của fintech Hàn Quốc (s
 
 ## Hạ tầng được khuyến nghị
 
-Nếu bạn đang thiết lập một quy trình vibe coding: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — tín dụng 200 USD để thử nghiệm code do AI sinh trong môi trường dev
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, độ trễ thấp khi truy cập API AI ở châu Á
+Nếu bạn đang thiết lập một quy trình vibe coding: - **** — tín dụng 200 USD để thử nghiệm code do AI sinh trong môi trường dev
+- **** — VPS Hồng Kông, độ trễ thấp khi truy cập API AI ở châu Á
 
 *Liên kết tiếp thị — cùng giá, ủng hộ dibi8.com.*
 

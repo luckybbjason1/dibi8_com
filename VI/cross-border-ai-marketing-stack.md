@@ -1,6 +1,13 @@
 ---
-title: "Stack Marketing AI Xuyên Biên Giới 2026: Setup 7 Công Cụ...
-description: "Stack AI 7 thành phần thiết kế riêng cho hoạt động xuyên biên giới — tự động hóa nội dung đa ngôn ng..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cross-border-ai-marketing-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -174,7 +181,7 @@ Setup đầy đủ bao gồm cách chia sẻ MCP server qua team: [Hướng dẫ
 - **Quản lý HK** = trung lập cho cả dữ liệu Trung Quốc và toàn cầu
 - **Nạp VISA/Mastercard hoạt động** trực tiếp từ card RMB hoặc USD
 
-Chúng tôi chạy dibi8.com chính nó trên {{< aff "htstack" "stack-vps" "VPS Hong Kong của HTStack" >}} đúng vì những lý do này. Box 4 GB ~$10/tháng xử lý n8n + agent LangChain + Plausible + nginx serving nội dung 4 ngôn ngữ. Scale lên 16 GB ($30/tháng) cho workload team production.
+Chúng tôi chạy dibi8.com chính nó trên  đúng vì những lý do này. Box 4 GB ~$10/tháng xử lý n8n + agent LangChain + Plausible + nginx serving nội dung 4 ngôn ngữ. Scale lên 16 GB ($30/tháng) cho workload team production.
 
 ## 9. Thành Phần 7 — OpenRouter (Thanh Toán LLM Xuyên Biên Giới)
 
@@ -239,7 +246,7 @@ Bạn sẽ vượt tier $35-80/tháng khi: - **Team > 10 người** — Thêm Li
 6. **HTStack HK VPS** — cầu nối
 7. **OpenRouter** — thanh toán crypto cho LLM premium
 
-Thắng đặc thù xuyên biên giới: không ma sát thanh toán, không vi phạm GDPR/luật dữ liệu Trung Quốc, không Cursor $80/seat USD, không GA bị chặn, không vấn đề Cloudflare-vs-Trung Quốc. Khởi động {{< aff "htstack" "footer-cta" "HTStack HK VPS" >}} và bắt đầu với thành phần 1-4 tuần đầu tiên, thêm 5-7 tuần thứ hai.
+Thắng đặc thù xuyên biên giới: không ma sát thanh toán, không vi phạm GDPR/luật dữ liệu Trung Quốc, không Cursor $80/seat USD, không GA bị chặn, không vấn đề Cloudflare-vs-Trung Quốc. Khởi động  và bắt đầu với thành phần 1-4 tuần đầu tiên, thêm 5-7 tuần thứ hai.
 
 * * *
 

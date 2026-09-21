@@ -1,9 +1,10 @@
 ---
-title: "벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Mil...
-description: "Pinecone, Weaviate, Chroma, Milvus 벡터 데이터베이스를 기능, 성능, 가격 측면에서 상세 비교합니다. RAG 프로젝트에 최적의 벡터 DB 선택 가이드."..."
-draft: false
-aliases:
-  - /posts/vector-database-comparison/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vector-database-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

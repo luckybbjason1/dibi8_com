@@ -1,6 +1,13 @@
 ---
-title: "Metabase 2026: Công Cụ BI Mã Nguồn Mở Thay Thế Tableau V...
-description: "Hướng dẫn đầy đủ cho Metabase v60.2: BI mã nguồn mở với trình xây dựng truy vấn trực quan, dashboard..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "metabase-business-intelligence-open"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Vấn Đề Hóa Đơn Tableau $50,000
 
@@ -95,7 +102,7 @@ WHERE period <= 12
 ORDER BY 1, 2;
 `````
 
-SQL questions hỗ trợ variable injection qua syntax ````{{variable}}````, làm cho chúng reusable across dashboards với filter values khác nhau.
+SQL questions hỗ trợ variable injection qua syntax ````````, làm cho chúng reusable across dashboards với filter values khác nhau.
 
 ### Dashboard Composition
 
@@ -350,12 +357,12 @@ SELECT
     DATE_TRUNC(month, created_at) AS cohort_month,
     COUNT(*) AS new_users
 FROM users
-WHERE created_at >= {{start_date}}  -- Dashboard filter
+WHERE created_at >=   -- Dashboard filter
 GROUP BY 1
 ORDER BY 1;
 `````
 
-````{{start_date}}```` variable render như date picker trong dashboard. Khi user thay đổi filter value, all linked questions refresh automatically.
+```````` variable render như date picker trong dashboard. Khi user thay đổi filter value, all linked questions refresh automatically.
 
 ## Benchmarks và Use Cases Thực Tế
 

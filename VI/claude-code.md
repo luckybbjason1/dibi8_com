@@ -1,6 +1,13 @@
 ---
-title: "Claude Code: 125K+ Stars — Tác Nhân Lập Trình AI Trong T...
-description: "Claude Code là công cụ tác nhân lập trình trong terminal của Anthropic, hỗ trợ VS Code, Cursor, GitH..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu
 

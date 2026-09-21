@@ -1,6 +1,13 @@
 ---
-title: "Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10...
-description: "Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "weaviate-vector-search-enterprise"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Khi Vector Database của Bạn Chết Tại 100M Đối Tượng
 

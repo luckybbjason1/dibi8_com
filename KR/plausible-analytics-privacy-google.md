@@ -1,6 +1,13 @@
 ---
-title: "Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
-description: "Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "plausible-analytics-privacy-google"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 아묵도 이야기하지 않는 분석 프라이버시 문제
 
@@ -290,9 +297,9 @@ export default defineNuxtPlugin(() => {
 ### 정적 사이트 생성기 (Hugo, Jekyll, Astro)
 
 `````html
-{{ if not hugo.IsServer }}
+
 </script>
-{{ end }}
+
 `````
 
 `````javascript

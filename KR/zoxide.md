@@ -1,6 +1,13 @@
 ---
-title: "Zoxide: 36,752 GitHub Stars — 2026 완벽 설치 가이드"
-description: "Zoxide는 디렉토리 사용 패턴을 학습하는 더 똑똑한 cd 명령어입니다. Bash, Zsh, Fish, Nushell, PowerShell을 지원합니다. 설치, 셸 통합, fzf..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zoxide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 일반적인 개발자는 하루에 200번 이상 디렉토리를 변경합니다. 각 ```cd```` 명령어에 전체 경로를 입력하는 데 3-5초가 소요된다면, 하루에 낤비게이션만으로 10-15분을 낭비하는 셈입니다. Zoxide는 이 마찰을 완전히 제거합니다: 사용자가 가는 곳을 학습하고 두 번의 키 입력으로 그곳으로 이동할 수 있게 합니다. 36,752개의 GitHub Stars와 Rust 기반 코어를 바탕으로 Zoxide는 개발자 커뮤니티에서 기존 ````cd```` 명령어의 사실상 대체제가 되었습니다.
 

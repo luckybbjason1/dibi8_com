@@ -1,6 +1,13 @@
 ---
-title: "Pipeline Nội Dung Đa Phương Thức 2026: Stack 5 Thành Phầ...
-description: "Stack nội dung đa phương thức self-host: faster-whisper (STT) + ChatTTS (TTS hội thoại) + Stable Dif..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-modal-content-pipeline"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
@@ -33,7 +40,7 @@ Nền kinh tế creator năm 2026 chạy trên nội dung đa phương thức �
 | 4 | **ComfyUI** | Text/Image → Image/Video/Audio | Engine workflow cho pipeline đa phương thức phức tạp | [ComfyUI 2026](/vi/resources/ai-tools/comfyui-node-based-ai-image-2026/) |
 | 5 | **FFmpeg** | Ráp video/audio | Compose deliverable video / podcast cuối | (tiêu chuẩn ngành, không cần deep dive) |
 
-**Tổng chi phí tháng** (GPU thuê, 4 giờ/ngày sử dụng): **~$30-50/tháng** (Vast.ai hoặc {{< aff "digitalocean" "mm-gpu" "DigitalOcean GPU droplet" >}}) • **GPU chuyên dụng always-on**: **~$80-150/tháng**
+**Tổng chi phí tháng** (GPU thuê, 4 giờ/ngày sử dụng): **~$30-50/tháng** (Vast.ai hoặc ) • **GPU chuyên dụng always-on**: **~$80-150/tháng**
 
 So với SaaS tương đương: ElevenLabs ($22) + Midjourney ($30) + Descript ($24) + Pictory ($59) + Adobe Creative Cloud ($55) = $190/tháng trước bất kỳ phụ phí volume.
 
@@ -152,7 +159,7 @@ Không cần deep dive — FFmpeg có hàng triệu hướng dẫn online. Học
 
 ## 8. Thứ Tự Setup Day 1 (3-4 giờ)
 
-1. **Instance GPU** (15 phút) — Thuê GPU 24 GB trên Vast.ai ($0.50-1/giờ) hoặc đặt {{< aff "digitalocean" "mm-vps" "DigitalOcean GPU droplet" >}}. 24 GB cần cho video; 12 GB đủ nếu bỏ qua video hiện tại
+1. **Instance GPU** (15 phút) — Thuê GPU 24 GB trên Vast.ai ($0.50-1/giờ) hoặc đặt . 24 GB cần cho video; 12 GB đủ nếu bỏ qua video hiện tại
 2. **Cài Docker + cơ bản Python venv** (15 phút)
 3. **ComfyUI + ComfyUI Manager** (30 phút) — Cừu công cho mọi công việc trực quan
 4. **ChatTTS** (15 phút) — Pre-tạo 3-5 speaker ổn định, lưu embedding
@@ -192,7 +199,7 @@ Khi vượt qua: - **>1 giờ TTS/ngày** — Chuyển ChatTTS hosting từ Vast
 4. **ComfyUI** — engine workflow đa phương thức (ảnh / video / audio một chỗ)
 5. **FFmpeg** — ráp chán nhưng thiết yếu
 
-Thuê {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} khi sản xuất, tắt khi không. Toán đánh bại SaaS ngay khi bạn vượt qua ~2 giờ/ngày sản xuất nội dung tích cực.
+Thuê  khi sản xuất, tắt khi không. Toán đánh bại SaaS ngay khi bạn vượt qua ~2 giờ/ngày sản xuất nội dung tích cực.
 
 * * *
 

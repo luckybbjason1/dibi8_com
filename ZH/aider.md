@@ -1,6 +1,13 @@
 ---
-title: "Aider: 45K+ Stars — 终端AI结对编程 vs Claude Code、Cursor 2026完...
-description: "Aider 是终端中的 AI 结对编程工具，在本地 git 仓库中编辑代码。支持 OpenAI、Claude、DeepSeek、Gemini。学习 Aider 安装、使用教程、Git 集成、基准测试，..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言
 

@@ -1,6 +1,13 @@
 ---
-title: "什么是 OpenHuman？"
-description: "content/zh/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practic..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhuman"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

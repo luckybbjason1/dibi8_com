@@ -1,6 +1,13 @@
 ---
-title: Hermes Agent：AI Agent tự tiến hóa, càng dùng càng hiểu bạn
-description: Hermes Agent là tác nhân AI mã nguồn mở của Nous Research, có vòng lặp. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hermes-agent-self-improving-ai-agent"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   học tập tích hợp — tạo kỹ năng từ kinh nghiệm, cải thiện liên tục, ghi nhớ sở thích
   của bạn.
 date: 2026-05-15T04:20:25+09:00
@@ -28,9 +35,9 @@ faqs: - q: 'Hermes Agent khác gì so với các công cụ như Claude Code, Cu
   - q: 'Hermes Agent lưu giữ loại bộ nhớ nào giữa các phiên làm việc?'
     a: 'Hermes duy trì hai loại bộ nhớ: Bộ nhớ Hồ sơ Người dùng (phong cách lập trình, các dự án, công cụ ưa thích, sở thích giao tiếp và các lỗi thường gặp) và Bộ nhớ Phiên (ngữ cảnh dự án hiện tại, các lệnh và kết quả gần đây, cùng các tệp đã chỉnh sửa). Bộ nhớ hồ sơ vẫn được giữ lại ngay cả sau khi bạn khởi động lại máy tính.'
   - q: 'Hermes Agent có thể chạy trên những nền tảng nhắn tin nào?'
-    a: 'Hermes Agent hoạt động như một bot nhắn tin đa nền tảng trên Telegram, Discord, Slack, WhatsApp, Signal và Email, tất cả đều được cấu hình thông qua lệnh `hermes gateway setup`. Cùng một bộ lệnh và kỹ năng đều hoạt động trên mọi nền tảng.'
+    a: 'Hermes Agent hoạt động như một bot nhắn tin đa nền tảng trên Telegram, Discord, Slack, WhatsApp, Signal và Email, tất cả đều được cấu hình thông qua lệnh ``hermes gateway setup``. Cùng một bộ lệnh và kỹ năng đều hoạt động trên mọi nền tảng.'
   - q: 'Làm thế nào để cài đặt Hermes Agent và cấu hình nhà cung cấp LLM?'
-    a: 'Trên Linux, macOS hoặc WSL2, bạn có thể cài đặt bằng một script curl một dòng đưa qua bash, hoặc clone repo rồi chạy `./setup-hermes.sh`. Sau đó bạn thiết lập nhà cung cấp bằng các lệnh như `hermes config set provider openai` và `hermes config set model gpt-4o`, hoặc dùng một mô hình cục bộ qua `hermes config set provider ollama`.'
+    a: 'Trên Linux, macOS hoặc WSL2, bạn có thể cài đặt bằng một script curl một dòng đưa qua bash, hoặc clone repo rồi chạy ``./setup-hermes.sh``. Sau đó bạn thiết lập nhà cung cấp bằng các lệnh như ``hermes config set provider openai`` và ``hermes config set model gpt-4o``, hoặc dùng một mô hình cục bộ qua ``hermes config set provider ollama``.'
 ---
 
 
@@ -294,9 +301,9 @@ Bạn đã thử Hermes Agent chưa? Bạn có kinh nghiệm gì với các tác
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

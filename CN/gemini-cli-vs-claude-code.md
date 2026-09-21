@@ -1,21 +1,10 @@
 ---
-title: "Gemini CLI vs Claude Code in 2026: Which AI Coding Agent...
-description: "Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, a..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["gemini-cli", "claude-code", "google", "anthropic", "ai-coding", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'Is Gemini CLI really free?'
-    a: 'Yes — Gemini CLI ships with the most generous free tier in any AI coding agent today: 60 model requests per minute and 1,000 requests per day using gemini-2.0-flash-thinking, no credit card required, just a Google account. Claude Code has no free tier — you pay per token via the Anthropic API or via the $20/month Claude Pro plan with limited Claude Code usage.'
-  - q: 'Which has a larger context window?'
-    a: 'Gemini CLI uses gemini-2.0-flash-thinking with up to 1M tokens of context in free tier, scaling to 2M on paid Vertex AI. Claude Code uses claude-opus-4.7 with 200K standard or 1M context (1M is in beta, pay-as-you-go). For raw context size on the free tier Gemini CLI wins; for quality of long-context reasoning the two are close at 1M.'
-  - q: 'Which is better for agentic multi-file work?'
-    a: 'Claude Code is more mature as an agent — it ships with a refined tool-use loop (Read/Edit/Bash/Glob/Grep), checkpoint-and-resume, and a battle-tested system prompt tuned for software engineering. Gemini CLI catches up fast in 2026 with ReAct-style tool use and shell integration, but Claude Code still wins on multi-file refactors and long-running agent loops.'
-  - q: 'Can I run Gemini CLI and Claude Code on the same project?'
-    a: 'Yes — they don''t conflict. Many developers use Gemini CLI for free exploratory work (read codebase, generate docs, scratch prompts) and Claude Code for paid heavy lifting (multi-file refactor, production code, agent loops). The combo gives you near-free reconnaissance + premium execution at lower total cost than Claude Code alone.'
-  - q: 'Which has better multi-modal support?'
-    a: 'Gemini CLI wins on multi-modal in the terminal — it natively accepts images, PDFs, and video frames as input via flags (e.g. `--image screenshot.png`). Claude Code supports images via the conversation but is more text-first. For workflows like "look at this UI screenshot and write the React component," Gemini CLI is faster out of the box.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?
@@ -158,7 +147,7 @@ For full-time builders: **Claude Max 5x $100 + Gemini CLI free** — Claude as p
 - Budget realistically: a heavy Claude Code user typically lands at $100/month (Max 5x) once free tier nostalgia wears off
 
 ### Self-Hosting Note
-Want a cloud sandbox to run both agents against a real codebase without burning local resources? Spin up a {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet with $200 free credit" >}} — enough for 2 months of daily AI-agent workflows on a $12/month droplet. Cheaper than risking your local dev machine to overly aggressive agent runs, and you can SSH in from anywhere.
+Want a cloud sandbox to run both agents against a real codebase without burning local resources? Spin up a  — enough for 2 months of daily AI-agent workflows on a $12/month droplet. Cheaper than risking your local dev machine to overly aggressive agent runs, and you can SSH in from anywhere.
 
 * * *
 
@@ -200,7 +189,7 @@ For an indie dev shipping a SaaS solo on the **last-bet budget**? **Gemini CLI f
 
 **Need stable Claude or OpenAI API access?** Most users picking between these tools end up needing the underlying API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-codesign-vs-vercel-v0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Vercel v0 Open Source Alternative: Build UIs Locally wit...
-description: "Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign". Comprehensive guide coveri..."
+description: "Technical guide and comparison."
 draft: false
 aliases:
   - /posts/open-codesign-vs-vercel-v0/
@@ -49,7 +56,7 @@ A: Open Codesign provides the closest UX to v0 (prompt-to-preview interface) but
 ---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
@@ -57,7 +64,7 @@ For developers building or deploying open-source AI tools, we recommend: - **{{<
 
 **Need stable Claude or OpenAI API access?** Most projects in this space eventually hit the Anthropic/OpenAI rate limit or pricing wall.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

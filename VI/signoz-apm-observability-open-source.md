@@ -1,6 +1,13 @@
 ---
-title: "SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
-description: "Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metr..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "signoz-apm-observability-open-source"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Hóa đơn Observability $65,000/năm mà không ai nói đến
 
@@ -207,7 +214,7 @@ Triển khai với ````docker compose -f docker-compose.production.yml up -d````
 
 `````bash
 # Kiểm tra tất cả containers đang chạy
-docker ps --format "table {{.Names}}\t{{.Status}}"
+docker ps --format "table \t"
 
 # Output mong đợi: # NAMES                        STATUS
 # docker-clickhouse-1          Up 2 minutes (healthy)
@@ -427,19 +434,19 @@ groups: - name: payment_service_alerts
         for: 2m
         labels: severity: critical
         annotations: summary: "Payment service error rate > 5%"
-          description: "Error rate is {{ $value }}"
+          description: "Technical guide and comparison."
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
         labels: severity: warning
         annotations: summary: "Payment service P95 latency > 500ms"
-          description: "P95 latency is {{ $value }}ns"
+          description: "Technical guide and comparison."
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
         labels: severity: warning
         annotations: summary: "Log error spike detected"
-          description: "{{ $value }} errors/minute"
+          description: "Technical guide and comparison."
 `````
 
 Cấu hình kênh alert (Slack, PagerDuty, email) trong SigNoz UI dưới Settings → Alert Channels.

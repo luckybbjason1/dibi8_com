@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mlflow-experiment-tracking-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "MLflow 2026: The Open-Source ML Lifecycle Platform Track...
-description: "Complete guide to MLflow for ML experiment tracking, model registry, and model serving. Covers setup..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/mlflow-experiment-tracking-production/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Chaos of Untracked Experiments
 
@@ -625,7 +632,7 @@ jobs: train: runs-on: ubuntu-latest
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: $
         run: |
           python train.py --register-model --stage Staging
 

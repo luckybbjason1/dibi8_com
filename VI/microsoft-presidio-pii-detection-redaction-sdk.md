@@ -1,8 +1,15 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "microsoft-presidio-pii-detection-redaction-sdk"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: microsoft-presidio-pii-detection-redaction-sdk
-title: "Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử...
-description: "Presidio (hơn 9.4K sao trên GitHub) từ Microsoft là một khuôn khổ mã nguồn mở để phát hiện, chỉnh sử..."
-date: "2026-06-22 00:00:00+08:00"
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.8+
   - spaCy

@@ -1,6 +1,13 @@
 ---
-title: "exo: Chạy AI tiên phong trên chính các thiết bị của bạn ...
-description: "exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "exo-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -19,7 +26,7 @@ tags: ["]
 aliases:
   - /posts/exo-dev-utils-2026/
 faqs: - q: 'Làm sao để cài exo?'
-    a: 'Trên Mac", "cách dễ nhất là dùng ứng dụng dựng sẵn: ```bash brew install --cask exo ``` Để chạy mã nguồn mới nhất trên macOS hoặc Linux", "clone kho và khởi động bằng `uv`: ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
+    a: 'Trên Mac", "cách dễ nhất là dùng ứng dụng dựng sẵn: ```bash brew install --cask exo ``` Để chạy mã nguồn mới nhất trên macOS hoặc Linux", "clone kho và khởi động bằng ``uv``: ```bash git clone https://github.com/exo-explore/exo cd exo/dashboard && npm install && npm run build && cd .. uv run exo ```'
   - q: 'exo chạy trên phần cứng nào?'
     a: 'exo chạy trên macOS và Linux. Tăng tốc GPU hiện nhắm tới Apple Silicon (ví dụ M3 Ultra và các máy Mac M4); Linux tạm thời chỉ dùng CPU", "hỗ trợ GPU đang được phát triển. Bạn gộp nhiều thiết bị thành một cụm để gom bộ nhớ và sức tính toán của chúng.'
   - q: 'Làm sao để khởi động một cụm với exo?'
@@ -27,11 +34,11 @@ faqs: - q: 'Làm sao để cài exo?'
   - q: 'Làm sao để gửi yêu cầu tới exo?'
     a: 'exo phục vụ một API tương thích OpenAI/Claude/Ollama ở cổng 52415. Ví dụ: ```bash curl -X POST http://localhost:52415/v1/chat/completions \ -H ''Content-Type: application/json'' \ -d ''{"model": "model-id", "messages": [{"role": "user", "content": "Hello"}"]}'' ```'
   - q: 'Xem trạng thái cụm ở đâu?'
-    a: 'Mở bảng điều khiển trong trình duyệt tại `http://localhost:52415`. Nó hiển thị mọi thiết bị được phát hiện, cách mô hình được chia trên chúng, cùng thông lượng và mức dùng bộ nhớ theo thời gian thực.'
+    a: 'Mở bảng điều khiển trong trình duyệt tại ``http://localhost:52415``. Nó hiển thị mọi thiết bị được phát hiện, cách mô hình được chia trên chúng, cùng thông lượng và mức dùng bộ nhớ theo thời gian thực.'
 ---
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 

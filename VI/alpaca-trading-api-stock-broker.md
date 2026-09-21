@@ -1,10 +1,10 @@
 ---
-# API Giao Dịch Chứng Khoán Alpaca 2026: API Hoạch Định Mô Hình Giao Dịch Tự Động Không Phí Hoa Hồng — Hướng Dẫn Cài Đặt
-
-> 📌 **Bình luận về chương trình giới thiệu**: Bài viết này chứa các liên kết giới thiệu. Chúng tôi có thể nhận được hoa hồng nếu bạn đăng ký thông qua liên kết của chúng tôi - không có chi phí bổ sung cho bạn. Các đánh giá của chúng tôi độc lập và dựa trên nghiên cứu kỹ lưỡng.
-> 
-> 🚀 **Thử nghiệm Minara với Giao Dịch Trí Tuệ Tự Nhiên**: [Đăng ký với Minara](https://minara.ai/r/OSXG4X) — nền tảng giao dịch trí tuệ tự nhiên giúp bạn xây dựng, kiểm thử và triển khai các chiến lược tự động mà không cần lập trình.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "alpaca-trading-api-stock-broker"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

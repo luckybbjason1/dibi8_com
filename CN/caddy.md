@@ -1,15 +1,13 @@
 ---
-title: "Caddy: Production Web Server with 72K+ Stars — Auto HTTP...
-description: "Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS...."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]
-aliases:
-  - /posts/caddy/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "caddy"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
-{{</* resource-info */>}}
+
 
 Caddy stands out as the only mainstream web server that treats HTTPS as the default, not an afterthought. While Nginx requires manual certificate configuration and Apache needs mod_ssl wrangling, Caddy provisions and renews TLS certificates from Let's Encrypt and ZeroSSL automatically — no cron jobs, no certbot, no configuration. With **72,595 GitHub stars** and a codebase written in Go, Caddy has served trillions of requests and manages millions of TLS certificates in production environments ranging from single VPS deployments to clusters handling hundreds of thousands of sites.
 

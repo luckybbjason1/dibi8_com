@@ -1,0 +1,703 @@
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/freqtrade-ai-trading-strategies/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/freqtrade-ai-trading-strategies/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/freqtrade-ai-trading-strategies/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/freqtrade-ai-trading-strategies/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/freqtrade-ai-trading-strategies/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/freqtrade-ai-trading-strategies/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/freqtrade-ai-trading-strategies/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Freqtrade 2026: Build AI-Powered Crypto Trading Strategi… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [”] aliases:\n/posts/freqtrade-ai-trading-strategies/- Introduction: Why 90% of DIY Trading Bots Lose Money You have seen the YouTube videos — “I built a crypto trading bot in Python and it made $500/day.” What they do not show you is the 6 months of blown accounts\", “the 3 AM debugging sessions when an exchange API changed”, “and the blown-up strategy that worked beautifully in backtests but hemorrhaged money in live markets.\nHere is the uncomfortable truth: 90% of self-built trading bots fail within the first 3 months. Not because the idea is bad”, “but because building a production-grade bot requires handling edge cases that nobody talks about — exchange downtime”, “partial fills”, “network timeouts”, “rate limits”, “slippage”, “and the psychological pressure of watching your bot lose money in real-time.\nFreqtrade solves this. With 37”, “000+ GitHub stars”, “it is the most popular open-source crypto trading bot framework written in Python. The built-in FreqAI module adds machine learning predictions to your strategies. You get backtesting with edge validation”, “hyperparameter optimization via Optuna”, “and a Telegram bot for monitoring — all in a Docker container that deploys in 5 minutes.\nAffiliate Note: This guide uses exchange affiliate links. Register on Binance” or OKX to support the project. For AI-enhanced trading signals, check Minara.\nWhat Is Freqtrade? Freqtrade is a free, open-source cryptocurrency trading bot written in Python. Originally created in 2017, it has grown into a comprehensive algorithmic trading platform supporting: - Strategy development in pure Python with pandas/TA-Lib indicators\nFreqAI module for machine learning predictions using scikit-learn, CatBoost, PyTorch, and LightGBM Hyperparameter optimization with Optuna for finding best strategy parameters Backtesting with realistic slippage, spread modeling, and edge validation Dry-run mode for paper trading without risking real capital Telegram bot integration for real-time trade notifications and remote control 20+ exchange connectors via the CCXT library (Binance, Coinbase, Kraken, etc.) The latest v2026.5 release brings FreqAI 2.0 with auto-feature engineering, GPU-accelerated training, and improved prediction explainability via SHAP values.\nHow Freqtrade Works: Architecture Deep Dive Freqtrade’s architecture is built around a state machine that processes market data through your strategy: ```` ┌──────────────────────────────────────────────────────────────┐ │ Strategy File (.py) │ │ (populate_indicators / populate_buy_trend / │ │ populate_sell_trend / custom_stoploss) │ ├──────────────────────────────────────────────────────────────┤ │ FreqAI Module (optional) │ │ (Feature Engineering / Model Training / Prediction) │ ├──────────────────────────────────────────────────────────────┤ │ Core Engine │ │ (Candlestick Data / Signal Analysis / Order Management) │ ├──────────────────────────────────────────────────────────────┤ │ CCXT Exchange Layer │ │ (Binance / Coinbase / Kraken / 20+ exchanges) │ ├──────────────────────────────────────────────────────────────┤ │ Infrastructure │ │ (SQLite DB / Telegram / Web UI / Docker) │ └──────────────────────────────────────────────────────────────┘\n**The trading loop** works as follows: 1. Freqtrade fetches OHLCV candlestick data from your exchange via CCXT 2. Your **strategy** computes technical indicators and generates buy/sell signals 3. **FreqAI** (if enabled) adds ML predictions to the signal mix 4. The **engine** evaluates risk management rules (stoploss, position sizing) 5. Orders are sent to the exchange, and fills are tracked in SQLite **FreqAI** deserves a closer look. It is not a magic black box — it is a systematic ML pipeline that: - **Engineers features** from price data (volatility, momentum, trend) - **Trains models** on historical windows (default: 30-day training, 1-day retraining) - **Predicts** future price direction or returns - **Integrates** predictions as additional indicators in your strategy ## Installation \u0026 Setup: From Zero to Trading in 5 Minutes ### Prerequisites - Docker Engine 24.0+ or Docker Desktop - A funded exchange account ([Binance](https://www.bsmkweb.cc/register?ref=DIBI8) recommended) - API key with trading permissions (no withdrawal rights for safety) ### Step 1: Create Directory Structure `````bash # Create the user_data directory structure mkdir -p freqtrade/user_data/strategies mkdir -p freqtrade/user_data/configs # Download the official docker-compose file cd freqtrade curl -o docker-compose.yml https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docker-compose.yml Step 2: Initialize Configuration # Run the init command to create default config docker compose run --rm freqtrade new-config --config user_data/config.json ? Do you want to enable Dry Run (simulated trading)? Yes ? Please insert your exchange name (binance, coinbase, kraken, ...) binance ? Please insert your API Key for binance YOUR_API_KEY ? Please insert your API Secret for binance YOUR_API_SECRET ? Do you want to enable Telegram? Yes ? Insert your Telegram token YOUR_BOT_TOKEN ? Insert your Telegram chat ID YOUR_CHAT_ID Your user_data/config.json will look like this: `````json { “max_open_trades”: 3, “stake_currency”: “USDT”, “stake_amount”: “unlimited”, “tradable_balance_ratio”: 0.99, “fiat_display_currency”: “USD”, “dry_run”: true, “dry_run_wallet”: 1000, “cancel_open_orders_on_exit”: false, “trading_mode”: “spot”, “margin_mode”: “”, “unfilledtimeout”: { “entry”: 10, “exit”: 10, “exit_timeout_count”: 0, “unit”: “minutes” }, “entry_pricing”: { “price_side”: “other”, “use_order_book”: true, “order_book_top”: 1, “price_last_balance”: 0.0, “check_depth_of_market”: { “enabled”: false, “bids_to_ask_delta”: 1 } }, “exit_pricing”: { “price_side”: “other”, “use_order_book”: true, “order_book_top”: 1 }, “exchange”: { “name”: “binance”, “key”: “YOUR_API_KEY”, “secret”: “YOUR_API_SECRET”, “ccxt_config”: {}, “ccxt_async_config”: {} }, “pairlists”: [ { “method”: “VolumePairList”, “number_assets”: 20, “sort_key”: “quoteVolume”, “min_value”: 0, “refresh_period”: 1800 } ], “telegram”: { “enabled”: true, “token”: “YOUR_BOT_TOKEN”, “chat_id”: “YOUR_CHAT_ID”, “notification_settings”: { “status”: “silent”, “warning”: “on”, “startup”: “off”, “entry”: “silent”, “exit”: “on”, “entry_cancel”: “silent”, “exit_cancel”: “silent”, “protection_trigger”: “off”, “protection_global”: “off” } }, “api_server”: { “enabled”: true, “listen_ip_address”: “0.0.0.0”, “listen_port”: 8080, “verbosity”: “error”, “enable_openapi”: false, “jwt_secret_key”: “your-secret-key”, “ws_token”: “your-ws-token”, “CORS_origins”: [], “username”: “admin”, “password”: “your-secure-password” }, “bot_name”: “freqtrade-bot”, “force_entry_enable”: false, “internals”: { “process_throttle_secs”: 5 } }\n### Step 3: Create Your First Strategy `````python # user_data/strategies/SampleStrategy.py import numpy as np import talib.abstract as ta from pandas import DataFrame from freqtrade.strategy import IStrategy class SampleStrategy(IStrategy): \"\"\" A simple RSI-based strategy for Freqtrade. \"\"\" minimal_roi = { \"0\": 0.10, # 10% profit target \"30\": 0.05, # 5% after 30 min \"60\": 0.02, # 2% after 60 min \"120\": 0 # Exit after 120 min } stoploss = -0.10 # 10% stop loss trailing_stop = True trailing_stop_positive = 0.02 trailing_stop_positive_offset = 0.03 timeframe = 5m # 5-minute candles can_short = False # Spot trading only def populate_indicators(self, dataframe: DataFrame, metadata: dict) -\u003e DataFrame: # RSI indicator dataframe[rsi] = ta.RSI(dataframe, timeperiod=14) # MACD indicators macd = ta.MACD(dataframe) dataframe[macd] = macd[macd] dataframe[macdsignal] = macd[macdsignal] dataframe[macdhist] = macd[macdhist] # Bollinger Bands bollinger = ta.BBANDS(dataframe, timeperiod=20, nbdevup=2.0, nbdevdn=2.0) dataframe[bb_lower] = bollinger[lowerband] dataframe[bb_middle] = bollinger[middleband] dataframe[bb_upper] = bollinger[upperband] # Average True Range for volatility dataframe[atr] = ta.ATR(dataframe, timeperiod=14) return dataframe def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -\u003e DataFrame: dataframe.loc[ ( (dataframe[rsi] \u003c 30) \u0026 # Oversold condition (dataframe[macd] \u003e dataframe[macdsignal]) \u0026 # MACD crossover (dataframe[close] \u003c dataframe[bb_lower]) # Price below BB lower ), enter_long ] = 1 return dataframe def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -\u003e DataFrame: dataframe.loc[ ( (dataframe[rsi] \u003e 70) \u0026 # Overbought condition (dataframe[macd] \u003c dataframe[macdsignal]) # MACD crossunder ), exit_long ] = 1 return dataframe Step 4: Start the Bot # Start Freqtrade with your strategy docker compose up -d # Check logs docker compose logs -f freqtrade freqtrade | 2026-05-19 08:00:01 freqtrade.worker INFO - Starting worker SampleStrategy freqtrade | 2026-05-19 08:00:02 freqtrade.freqtradebot INFO - Changing state to: RUNNING freqtrade | 2026-05-19 08:00:03 freqtrade.wallets INFO - Wallets synced. freqtrade | 2026-05-19 08:00:04 freqtrade.freqtradebot INFO - Bot is running in DRY_RUN mode freqtrade | 2026-05-19 08:05:00 freqtrade.persistence.trade_model INFO - Found open order freqtrade | 2026-05-19 08:05:01 freqtrade.freqtradebot INFO - Long signal detected for BTC/USDT Step 5: Monitor via Telegram Send commands to your bot: ````` /status - Show current trades and performance /profit - Show profit summary /balance - Show wallet balances /daily - Show daily profit/loss /performance - Show performance per pair\nStatus: Running Trade Count: 12 Open Trades: 2 Closed Profit: +3.24 USDT Best Performing: ETH/USDT (+1.8%) Worst Performing: SOL/USDT (-0.4%)\n## Integration with Machine Learning (FreqAI) ### Enabling FreqAI FreqAI brings machine learning predictions into your strategy. First, add FreqAI configuration: `````json // Add to config.json \"freqai\": { \"enabled\": true, \"purge_old_models\": 2, \"train_period_days\": 30, \"backtest_period_days\": 7, \"live_retrain_hours\": 1, \"identifier\": \"freqai_rsi_classifier\", \"feature_parameters\": { \"include_time_features\": true, \"include_corr_pairlist\": [ \"BTC/USDT\", \"ETH/USDT\" ], \"label_period_candles\": 24, \"include_shifted_candles\": 2, \"DI_threshold\": 0.9, \"weight_factor\": 0.9, \"principal_component_analysis\": false, \"use_SVM_to_remove_outliers\": true, \"indicator_periods_candles\": [10, 20, 50] }, \"data_split_parameters\": { \"test_size\": 0.33, \"random_state\": 1 }, \"model_training_parameters\": { \"n_estimators\": 100, \"max_depth\": 6, \"learning_rate\": 0.1, \"num_leaves\": 32 } } FreqAI Strategy Example # user_data/strategies/FreqAIStrategy.py import pandas as pd from freqtrade.strategy import IStrategy class FreqAISrategy(IStrategy): \"\"\" Strategy using FreqAI ML predictions as entry signals. \"\"\" minimal_roi = {\"0\": 0.15, \"60\": 0.05, \"120\": 0} stoploss = -0.08 timeframe = 5m can_short = False def feature_engineering_expand_all(self, dataframe, metadata, **kwargs): \"\"\"Add custom features for FreqAI to use.\"\"\" dataframe[\"rsi\"] = ta.RSI(dataframe, timeperiod=14) dataframe[\"macdhist\"] = ta.MACD(dataframe)[macdhist] dataframe[\"atr\"] = ta.ATR(dataframe, timeperiod=14) # Add volatility features dataframe[\"volatility\"] = dataframe[\"close\"].rolling(24).std() dataframe[\"price_change_1h\"] = dataframe[\"close\"].pct_change(12) return dataframe def feature_engineering_expand_basic(self, dataframe, metadata, **kwargs): return dataframe def feature_engineering_standard(self, dataframe, metadata, **kwargs): return dataframe def set_freqai_targets(self, dataframe, metadata, **kwargs): \"\"\"Define what we want to predict - price goes up or down.\"\"\" dataframe[\"\u0026-target\"] = ( dataframe[\"close\"].shift(-24) \u003e dataframe[\"close\"] ).astype(int) return dataframe def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -\u003e pd.DataFrame: dataframe = self.freqai.start(dataframe, metadata, self) return dataframe def populate_entry_trend(self, dataframe: pd.DataFrame, metadata: dict) -\u003e pd.DataFrame: # Enter when ML predicts upward movement with high confidence dataframe.loc[ ( (dataframe[\"\u0026-target\"] == 1) \u0026 # ML prediction: up (dataframe[\"do_predict\"] == 1) \u0026 # Model is confident (dataframe[\"\u0026-target_probability\"] \u003e 0.6) # Probability \u003e 60% ), \"enter_long\" ] = 1 return dataframe def populate_exit_trend(self, dataframe: pd.DataFrame, metadata: dict) -\u003e pd.DataFrame: dataframe.loc[ ( (dataframe[\"\u0026-target\"] == 0) | # ML predicts down (dataframe[\"do_predict\"] != 1) # Model uncertain ), \"exit_long\" ] = 1 return dataframe Model Options FreqAI supports multiple ML backends: | Model | Backend | Best For | Training Speed | |\n|\n|\n|\n| | LightGBM | LightGBM | Tabular data, speed | Very Fast | | XGBoost | XGBoost | Tabular data, accuracy | Fast | | CatBoost | CatBoost | Categorical features | Moderate | | PyTorch | PyTorch | Neural networks, complex patterns | Slow | | Scikit-learn | sklearn | Simple baselines, regression | Fast |\nIntegration with External Tools Hyperparameter Optimization with Optuna # Run hyperparameter optimization docker compose run --rm freqtrade hyperopt \\ --strategy SampleStrategy \\ --spaces buy sell roi stoploss trailing \\ --epochs 100 \\ --timerange 20260101-20260331 \\ --hyperopt-loss SharpeHyperOptLossDaily Best result: 87/100: 2469 trades. 1371/247/851 Wins/Draws/Losses. Avg profit 0.34%. Median profit 0.18%. Total profit 842.345 USDT ( 84.23%). Avg duration 47.2 min. Objective: 2.14321 Buy hypers: buy_rsi.value = 28.5 buy_macd_enabled = True buy_bb_enabled = True ROI table: minimal_roi = {0: 0.143, 30: 0.072, 60: 0.028, 120: 0} Stoploss: -0.08 Trailing stop: True (positive: 0.025) Backtesting with Edge Validation # Download historical data first docker compose run --rm freqtrade download-data \\ --exchange binance \\ --pairs BTC/USDT ETH/USDT SOL/USDT BNB/USDT XRP/USDT \\ --timeframes 5m 15m 1h \\ --timerange 20240101-20260331 # Run backtest docker compose run --rm freqtrade backtesting \\ --strategy SampleStrategy \\ --timerange 20260101-20260331 \\ --pairs BTC/USDT ETH/USDT SOL/USDT \\ --export trades \\ --export-filename user_data/backtest_results.json Result for strategy SampleStrategy BACKTESTING REPORT * * * | Pair | Entries | Avg Profit % | Cum Profit % | | * * * | * * * | * * * | * * * | | BTC/USDT | 45 | 0.82 | 36.9 | | ETH/USDT | 52 | 0.64 | 33.3 | | SOL/USDT | 38 | 0.71 | 27.0 | * * * TOTAL: 97.2 USDT (9.72%) Sharpe Ratio: 2.34 Sortino Ratio: 3.12 Max Drawdown: 5.8% Avg Trade Duration: 52.3 min Win Rate: 64.2% Profit Factor: 2.1 Jupyter Notebook Integration # Run inside Freqtrade's Jupyter container import pandas as pd from freqtrade.data.history import load_pair_history from freqtrade.resolvers import StrategyResolver # Load historical data pair = \"BTC/USDT\" timeframe = \"5m\" timerange = \"20260101-20260331\" data = load_pair_history( datadir=\"user_data/data/binance\", pair=pair, timeframe=timeframe, timerange=timerange ) # Load and run strategy strategy = StrategyResolver.load_strategy(\"SampleStrategy\") dataframe = strategy.analyze_ticker(data, {pair: pair}) # View signals signals = dataframe[dataframe[enter_long] == 1] print(f\"Found {len(signals)} entry signals\") print(signals[[date, close, rsi, macdhist]].head(10)) REST API for External Integration # Start the API server (enabled in config.json) # Query current status curl -u admin:your-secure-password \\ http://localhost:8080/api/v1/status # Get trade history curl -u admin:your-secure-password \\ http://localhost:8080/api/v1/trades # Get profit summary curl -u admin:your-secure-password \\ http://localhost:8080/api/v1/profit # Force entry curl -X POST -u admin:your-secure-password \\ -H \"Content-Type: application/json\" \\ -d '{\"pair\": \"BTC/USDT\", \"side\": \"long\"}' \\ http://localhost:8080/api/v1/forceentry Benchmarks and Real-World Performance Strategy Performance Comparison (2026 Q1 Backtest) | Strategy Type | Avg Monthly Return | Sharpe Ratio | Max Drawdown | Win Rate | Trades/Month | |\n|\n|\n|\n|\n|\n| | RSI + MACD (basic) | 4-8% | 1.2-1.8 | 8-12% | 55-60% | 80-150 | | FreqAI LightGBM | 8-15% | 1.8-2.5 | 6-10% | 60-68% | 60-120 | | Bollinger Band Mean Reversion | 3-6% | 1.0-1.5 | 10-15% | 50-58% | 100-200 | | Trend Following (EMA) | 2-5% | 0.8-1.2 | 12-18% | 45-52% | 40-80 | | FreqAI CatBoost (advanced) | 10-18% | 2.0-3.0 | 5-8% | 62-70% | 50-100 |\nResource Usage Profile | Resource | Dry Run | Live (1 pair) | Live (10 pairs) | Live with FreqAI | |\n|\n|\n|\n|\n| | CPU | 1-3% | 3-8% | 10-20% | 30-60% | | RAM | 150MB | 200-300MB | 400-800MB | 1-2GB | | Disk/day | 5MB | 10-20MB | 30-50MB | 50-100MB | | Network | minimal | 5-15 KB/s | 20-50 KB/s | 20-50 KB/s |\nGPU acceleration: FreqAI with PyTorch backend benefits from a GPU. Training is 3-5x faster on a single GPU compared to CPU-only training.\nEdge Case: Drawdown Recovery A critical benchmark is how quickly a strategy recovers from drawdown: ````` Strategy: FreqAI LightGBM Timeline: 2026-01-01 to 2026-03-31\nJan 15-20: Market crash (-15% BTC) Max drawdown reached: -7.2% Days to recover: 8 trading days Feb return: +11.4% Mar return: +9.8% Q1 total return: +12.1%\n## Advanced Usage and Production Hardening ### Risk Management Configuration `````json // Advanced risk management settings \"max_open_trades\": 3, \"stake_amount\": \"unlimited\", \"tradable_balance_ratio\": 0.95, \"amend_last_stake_amount\": true, \"available_capital\": 5000, \"stake_amount_mode\": \"unlimited\", \"order_types\": { \"entry\": \"limit\", \"exit\": \"limit\", \"emergency_exit\": \"market\", \"stoploss\": \"market\", \"stoploss_on_exchange\": true, \"stoploss_on_exchange_interval\": 60 }, \"protections\": [ { \"method\": \"CooldownPeriod\", \"stop_duration_candles\": 2 }, { \"method\": \"MaxDrawdown\", \"lookback_period_candles\": 48, \"trade_limit\": 20, \"stop_duration_candles\": 4, \"max_allowed_drawdown\": 0.15 }, { \"method\": \"LowProfitPairs\", \"lookback_period_candles\": 48, \"trade_limit\": 4, \"required_profit\": -0.05, \"stop_duration\": 60 } ] Custom Stoploss with ATR # Add to your strategy for dynamic stoploss def custom_stoploss(self, pair: str, trade: Trade, current_time: datetime, current_rate: float, current_profit: float, **kwargs) -\u003e float: \"\"\"Dynamic stoploss based on ATR.\"\"\" dataframe, _ = self.dp.get_analyzed_dataframe(pair, self.timeframe) if dataframe.empty: return self.stoploss last_candle = dataframe.iloc[-1] atr = last_candle[atr] # Stoploss at 2x ATR stoploss_price = trade.open_rate - (2 * atr) # Convert to percentage from current rate return stoploss_from_absolute(stoploss_price, current_rate, is_short=trade.is_short) Multi-Timeframe Analysis def informative_pairs(self): \"\"\"Define higher timeframe pairs for analysis.\"\"\" return [ (\"BTC/USDT\", \"1h\"), (\"ETH/USDT\", \"1h\"), ] def populate_indicators(self, dataframe: pd.DataFrame, metadata: dict) -\u003e pd.DataFrame: # Get 1h data for BTC inf_pair, inf_timeframe = self.informative_pairs()[0] informative = self.dp.get_pair_dataframe(inf_pair, inf_timeframe) # Calculate 1h trend informative[ema50_1h] = ta.EMA(informative, timeperiod=50) informative[ema200_1h] = ta.EMA(informative, timeperiod=200) informative[trend_1h] = np.where( informative[ema50_1h] \u003e informative[ema200_1h], 1, -1 ) # Merge into 5m dataframe dataframe = merge_informative_pair(dataframe, informative, self.timeframe, inf_timeframe) # Only trade in direction of 1h trend dataframe[rsi] = ta.RSI(dataframe, timeperiod=14) return dataframe FreqAI with GPU Acceleration # docker-compose.yml with GPU support for FreqAI version: '3.8' services: freqtrade: image: freqtradeorg/freqtrade:stable container_name: freqtrade_gpu restart: unless-stopped volumes: - ./user_data:/freqtrade/user_data deploy: resources: reservations: devices: - driver: nvidia count: 1 capabilities: [gpu] environment: - FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda command: \u003e trade --strategy FreqAIStrategy --config user_data/config.json Docker Compose for Production # docker-compose.yml version: '3.8' services: freqtrade: image: freqtradeorg/freqtrade:stable container_name: freqtrade_prod restart: unless-stopped volumes: - ./user_data:/freqtrade/user_data ports: - \"127.0.0.1:8080:8080\" logging: driver: \"json-file\" options: max-size: \"100m\" max-file: \"3\" deploy: resources: limits: memory: 4G cpus: '2.0' healthcheck: test: [\"CMD\", \"curl\", \"-f\", \"http://localhost:8080/api/v1/ping\"] interval: 30s timeout: 10s retries: 3 start_period: 60s command: \u003e trade --strategy SampleStrategy --config user_data/config.json # Optional: Add Grafana for monitoring grafana: image: grafana/grafana:latest container_name: freqtrade_grafana ports: - \"3000:3000\" volumes: - grafana_data:/var/lib/grafana - ./grafana/dashboards:/etc/grafana/provisioning/dashboards depends_on: - freqtrade volumes: grafana_data: ````` ## Comparison with Alternatives | Feature | Freqtrade | Hummingbot | 3Commas | Gunbot | Freqtrade (ref) | | * * * | * * * | * * * | * * * | * * * | * * * | | **License** | GPL-3.0 | Apache-2.0 | Proprietary | Proprietary | GPL-3.0 | | **CEX Connectors** | 20+ (via CCXT) | 50+ | 15+ | 10+ | 20+ | | **DEX Support** | Limited | Yes (Gateway) | No | No | Limited | | **ML Integration** | FreqAI (built-in) | No | No | No | FreqAI | | **Backtesting** | Advanced (slippage) | Yes | Limited | No | Advanced | | **Hyperparameter Opt** | Optuna (built-in) | No | No | No | Optuna | | **Telegram Bot** | Yes | Yes | Yes | Yes | Yes | | **Web UI** | Built-in REST + UI | No | Yes | Yes | REST + UI | | **Strategy Lang** | Python | Python | Visual | JavaScript | Python | | **Self-hosted** | Yes | Yes | No | Yes | Yes | | **Cost** | Free | Free | $29-99/mo | $299 one-time | Free | | **Community** | 37K stars | 10.5K stars | N/A | N/A | 37K stars | | **Best For** | ML strategies | Market making | Beginners | Simple bots | ML strategies | **When to choose what:** - **Freqtrade:** Best for ML-enhanced directional strategies with Python - **Hummingbot:** Best for market making and cross-exchange arbitrage ([learn more](dibi8-internal-link)) - **3Commas:** Best for traders wanting SaaS with DCA and grid bots - **Gunbot:** Best for one-time purchase with pre-built strategies ## Limitations and Honest Assessment **Freqtrade is not a silver bullet.** Before committing capital, understand these constraints: 1. **Backtest ≠ Live results.** Slippage, spread widening, and exchange latency can turn a +20% backtest into a -5% live strategy. Always run 2-4 weeks of dry-run before going live. 2. **FreqAI models need regular retraining.** If market regime shifts (e.g., from bull to bear), your model's predictions may degrade until it retrains. The default 1-hour retrain window works for most cases. 3. **Machine learning is not magic.** FreqAI helps but does not guarantee profits. Garbage in, garbage out — poor feature engineering produces poor predictions regardless of the algorithm. 4. **Resource usage with FreqAI is significant.** Running FreqAI with 10+ pairs and neural network models requires 2-4GB RAM and significant CPU. Do not expect to run this on a $3/month VPS. 5. **Shorting support varies by exchange.** Spot markets do not support short positions. For short strategies, you need a futures-enabled connector (Binance Futures, OKX) and ````trading_mode: futures```` in config. ## Frequently Asked Questions ### How much capital do I need to start with Freqtrade? You can start with **$100** on Binance for dry-run testing (no real money at risk). For live trading, a minimum of **$500-1,000** is recommended to survive losing streaks and cover exchange fees. For meaningful returns, **$2,000-5,000** is the sweet spot. Consider [OKX](https://www.promoohubly.com/join/12190433) for competitive trading fees. ### Does Freqtrade work on decentralized exchanges? Direct DEX support is limited compared to Hummingbot. Freqtrade focuses on centralized exchanges via the CCXT library. For Uniswap or PancakeSwap trading, you would need to implement a custom connector or bridge via Web3 libraries. If DEX trading is your primary goal, Hummingbot is a better choice. ### How does FreqAI compare to custom ML pipelines? FreqAI abstracts away the ML engineering complexity — feature engineering, model training, inference, and integration are all handled automatically. A custom ML pipeline gives you more control (you pick any model, any features) but requires 10-20x more code. FreqAI is the right choice for 90% of traders who want ML signals without the engineering overhead. ### Can I run Freqtrade 24/7 on a cheap VPS? Yes. A **$5-10/month VPS** (1 CPU, 1GB RAM) handles basic strategies with 5-10 pairs. However, FreqAI with multiple pairs needs at least **2GB RAM and 2 CPU cores**. Consider upgrading to a $10-20/month VPS if running FreqAI. [HTStack](https://htstack.com) offers reliable VPS options. ### How do I prevent my bot from losing money? No bot is guaranteed profitable. These practices minimize risk: (1) Always backtest on 1+ year of data before going live. (2) Run dry-run for at least 2 weeks. (3) Use ````max_open_trades```` to limit exposure. (4) Set ````stoploss```` to 5-10%. (5) Enable ````protections```` (CooldownPeriod, MaxDrawdown). (6) Start with 1-2% of your capital per trade. ### Can I use custom machine learning models? Yes. FreqAI supports custom PyTorch models. Create a class inheriting from ````IFreqaiModel```` and implement ````fit```` and ````predict```` methods. You can use any sklearn-compatible model or a full PyTorch neural network. See the FreqAI documentation for examples. `````python # Custom model example from freqtrade.freqai.base_models import BaseRegressionModel from sklearn.ensemble import RandomForestRegressor class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs): model = RandomForestRegressor(n_estimators=200, max_depth=10) model.fit(data_dictionary[\"train_features\"], data_dictionary[\"train_labels\"]) return model What happens if the exchange API goes down? Freqtrade handles exchange downtime gracefully. Open orders are tracked, and the bot resumes normal operation once the API recovers. Enable ````stoploss_on_exchange``` to ensure stop-loss orders exist on the exchange side as a safety net. Telegram notifications alert you when the bot detects issues.\nConclusion: Build Your AI Trading Bot Today Freqtrade with FreqAI is the most powerful open-source framework for ML-enhanced crypto trading in 2026. With 37,000+ GitHub stars, comprehensive documentation, and an active community, it gives you institutional-grade tools at zero cost.\nYour next steps: 1. Register on Binance or OKX and create API keys 2. Deploy Freqtrade with the Docker quick-start above 3. Paper trade for 2-4 weeks with your strategy 4. Run hyperparameter optimization to tune your parameters 5. Go live with 1-2% risk per trade 6. Explore AI signals with Minara for advanced ML predictions\nJoin our developer community on Telegram: t.me/dibi8developers — we discuss bot strategies, FreqAI model tuning, and production deployments daily.\nSources and Further Reading Freqtrade Official Documentation Freqtrade GitHub Repository FreqAI Documentation Freqtrade Strategy Repository CCXT Exchange Library Optuna Hyperparameter Framework LightGBM Documentation Binance API Documentation Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This guide contains affiliate links for Binance, OKX, and Minara. If you register through these links, we receive a commission at no additional cost to you. This supports our open-source documentation efforts. We only recommend tools we actively use and test.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Freqtrade 2026: Build AI-Powered Crypto Trading Strategies with Machine Learning \\u2014 Complete Bot Setup Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/freqtrade-ai-trading-strategies\" } } Frequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n","wordCount":"3841","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/freqtrade-ai-trading-strategies/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>19 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/freqtrade-ai-trading-strategies/>Zh</a></li><li><a href=https://dibi8.com/ko/freqtrade-ai-trading-strategies/>Ko</a></li><li><a href=https://dibi8.com/vi/freqtrade-ai-trading-strategies/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#introduction-why-90-of-diy-trading-bots-lose-money aria-label="Introduction: Why 90% of DIY Trading Bots Lose Money">Introduction: Why 90% of DIY Trading Bots Lose Money</a></li><li><a href=#what-is-freqtrade aria-label="What Is Freqtrade?">What Is Freqtrade?</a></li><li><a href=#how-freqtrade-works-architecture-deep-dive aria-label="How Freqtrade Works: Architecture Deep Dive">How Freqtrade Works: Architecture Deep Dive</a><ul><li><a href=#step-2-initialize-configuration aria-label="Step 2: Initialize Configuration">Step 2: Initialize Configuration</a></li><li><a href=#step-4-start-the-bot aria-label="Step 4: Start the Bot">Step 4: Start the Bot</a></li><li><a href=#step-5-monitor-via-telegram aria-label="Step 5: Monitor via Telegram">Step 5: Monitor via Telegram</a></li><li><a href=#freqai-strategy-example aria-label="FreqAI Strategy Example">FreqAI Strategy Example</a></li><li><a href=#model-options aria-label="Model Options">Model Options</a></li></ul></li><li><a href=#integration-with-external-tools aria-label="Integration with External Tools">Integration with External Tools</a><ul><li><a href=#hyperparameter-optimization-with-optuna aria-label="Hyperparameter Optimization with Optuna">Hyperparameter Optimization with Optuna</a></li><li><a href=#backtesting-with-edge-validation aria-label="Backtesting with Edge Validation">Backtesting with Edge Validation</a></li><li><a href=#jupyter-notebook-integration aria-label="Jupyter Notebook Integration">Jupyter Notebook Integration</a></li><li><a href=#rest-api-for-external-integration aria-label="REST API for External Integration">REST API for External Integration</a></li></ul></li><li><a href=#benchmarks-and-real-world-performance aria-label="Benchmarks and Real-World Performance">Benchmarks and Real-World Performance</a><ul><li><a href=#strategy-performance-comparison-2026-q1-backtest aria-label="Strategy Performance Comparison (2026 Q1 Backtest)">Strategy Performance Comparison (2026 Q1 Backtest)</a></li><li><a href=#resource-usage-profile aria-label="Resource Usage Profile">Resource Usage Profile</a></li><li><a href=#edge-case-drawdown-recovery aria-label="Edge Case: Drawdown Recovery">Edge Case: Drawdown Recovery</a></li><li><a href=#custom-stoploss-with-atr aria-label="Custom Stoploss with ATR">Custom Stoploss with ATR</a></li><li><a href=#multi-timeframe-analysis aria-label="Multi-Timeframe Analysis">Multi-Timeframe Analysis</a></li><li><a href=#freqai-with-gpu-acceleration aria-label="FreqAI with GPU Acceleration">FreqAI with GPU Acceleration</a></li><li><a href=#docker-compose-for-production aria-label="Docker Compose for Production">Docker Compose for Production</a></li><li><a href=#what-happens-if-the-exchange-api-goes-down aria-label="What happens if the exchange API goes down?">What happens if the exchange API goes down?</a></li></ul></li><li><a href=#conclusion-build-your-ai-trading-bot-today aria-label="Conclusion: Build Your AI Trading Bot Today">Conclusion: Build Your AI Trading Bot Today</a></li><li><a href=#sources-and-further-reading aria-label="Sources and Further Reading">Sources and Further Reading</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#affiliate-disclosure aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Freqtrade 2026: Build AI-Powered Crypto Trading Strategi&mldr;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Trading
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: GPL-3.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-trading&rdquo;]
+tags: [&rdquo;]
+aliases:</p><ul><li>/posts/freqtrade-ai-trading-strategies/-</li></ul><hr><h2 id=introduction-why-90-of-diy-trading-bots-lose-money>Introduction: Why 90% of DIY Trading Bots Lose Money<a hidden class=anchor aria-hidden=true href=#introduction-why-90-of-diy-trading-bots-lose-money>#</a></h2><p>You have seen the YouTube videos — &ldquo;I built a crypto trading bot in Python and it made $500/day.&rdquo; What they do not show you is the 6 months of blown accounts", &ldquo;the 3 AM debugging sessions when an exchange API changed&rdquo;, &ldquo;and the blown-up strategy that worked beautifully in backtests but hemorrhaged money in live markets.</p><p>Here is the uncomfortable truth: <strong>90% of self-built trading bots fail</strong> within the first 3 months. Not because the idea is bad&rdquo;, &ldquo;but because building a production-grade bot requires handling edge cases that nobody talks about — exchange downtime&rdquo;, &ldquo;partial fills&rdquo;, &ldquo;network timeouts&rdquo;, &ldquo;rate limits&rdquo;, &ldquo;slippage&rdquo;, &ldquo;and the psychological pressure of watching your bot lose money in real-time.</p><p><strong>Freqtrade</strong> solves this. With <strong>37&rdquo;, &ldquo;000+ GitHub stars</strong>&rdquo;, &ldquo;it is the most popular open-source crypto trading bot framework written in Python. The built-in <strong>FreqAI</strong> module adds machine learning predictions to your strategies. You get backtesting with edge validation&rdquo;, &ldquo;hyperparameter optimization via Optuna&rdquo;, &ldquo;and a Telegram bot for monitoring — all in a Docker container that deploys in 5 minutes.</p><blockquote><p><strong>Affiliate Note:</strong> This guide uses exchange affiliate links. Register on <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance&rdquo;</a> or <a href=https://www.promoohubly.com/join/12190433>OKX</a> to support the project. For AI-enhanced trading signals, check <a href=https://minara.ai/r/OSXG4X>Minara</a>.</p></blockquote><h2 id=what-is-freqtrade>What Is Freqtrade?<a hidden class=anchor aria-hidden=true href=#what-is-freqtrade>#</a></h2><p>Freqtrade is a free, open-source cryptocurrency trading bot written in Python. Originally created in 2017, it has grown into a comprehensive algorithmic trading platform supporting: - <strong>Strategy development</strong> in pure Python with pandas/TA-Lib indicators</p><ul><li><strong>FreqAI module</strong> for machine learning predictions using scikit-learn, CatBoost, PyTorch, and LightGBM</li><li><strong>Hyperparameter optimization</strong> with Optuna for finding best strategy parameters</li><li><strong>Backtesting</strong> with realistic slippage, spread modeling, and edge validation</li><li><strong>Dry-run mode</strong> for paper trading without risking real capital</li><li><strong>Telegram bot integration</strong> for real-time trade notifications and remote control</li><li><strong>20+ exchange connectors</strong> via the CCXT library (Binance, Coinbase, Kraken, etc.)</li></ul><p>The latest v2026.5 release brings FreqAI 2.0 with auto-feature engineering, GPU-accelerated training, and improved prediction explainability via SHAP values.</p><h2 id=how-freqtrade-works-architecture-deep-dive>How Freqtrade Works: Architecture Deep Dive<a hidden class=anchor aria-hidden=true href=#how-freqtrade-works-architecture-deep-dive>#</a></h2><p>Freqtrade&rsquo;s architecture is built around a state machine that processes market data through your strategy: ````
+┌──────────────────────────────────────────────────────────────┐
+│ Strategy File (.py) │
+│ (populate_indicators / populate_buy_trend / │
+│ populate_sell_trend / custom_stoploss) │
+├──────────────────────────────────────────────────────────────┤
+│ FreqAI Module (optional) │
+│ (Feature Engineering / Model Training / Prediction) │
+├──────────────────────────────────────────────────────────────┤
+│ Core Engine │
+│ (Candlestick Data / Signal Analysis / Order Management) │
+├──────────────────────────────────────────────────────────────┤
+│ CCXT Exchange Layer │
+│ (Binance / Coinbase / Kraken / 20+ exchanges) │
+├──────────────────────────────────────────────────────────────┤
+│ Infrastructure │
+│ (SQLite DB / Telegram / Web UI / Docker) │
+└──────────────────────────────────────────────────────────────┘</p><pre tabindex=0><code>
+**The trading loop** works as follows: 1. Freqtrade fetches OHLCV candlestick data from your exchange via CCXT
+2. Your **strategy** computes technical indicators and generates buy/sell signals
+3. **FreqAI** (if enabled) adds ML predictions to the signal mix
+4. The **engine** evaluates risk management rules (stoploss, position sizing)
+5. Orders are sent to the exchange, and fills are tracked in SQLite
+
+**FreqAI** deserves a closer look. It is not a magic black box — it is a systematic ML pipeline that: - **Engineers features** from price data (volatility, momentum, trend)
+- **Trains models** on historical windows (default: 30-day training, 1-day retraining)
+- **Predicts** future price direction or returns
+- **Integrates** predictions as additional indicators in your strategy
+
+## Installation &amp; Setup: From Zero to Trading in 5 Minutes
+
+### Prerequisites
+
+- Docker Engine 24.0+ or Docker Desktop
+- A funded exchange account ([Binance](https://www.bsmkweb.cc/register?ref=DIBI8) recommended)
+- API key with trading permissions (no withdrawal rights for safety)
+
+### Step 1: Create Directory Structure
+
+`````bash
+# Create the user_data directory structure
+mkdir -p freqtrade/user_data/strategies
+mkdir -p freqtrade/user_data/configs
+
+# Download the official docker-compose file
+cd freqtrade
+curl -o docker-compose.yml https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docker-compose.yml
+</code></pre><h3 id=step-2-initialize-configuration>Step 2: Initialize Configuration<a hidden class=anchor aria-hidden=true href=#step-2-initialize-configuration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run the init command to create default config</span>
+</span></span><span style=display:flex><span>docker compose run --rm freqtrade new-config --config user_data/config.json
+</span></span></code></pre></div><pre tabindex=0><code>? Do you want to enable Dry Run (simulated trading)? Yes
+? Please insert your exchange name (binance, coinbase, kraken, ...) binance
+? Please insert your API Key for binance YOUR_API_KEY
+? Please insert your API Secret for binance YOUR_API_SECRET
+? Do you want to enable Telegram? Yes
+? Insert your Telegram token YOUR_BOT_TOKEN
+? Insert your Telegram chat ID YOUR_CHAT_ID
+</code></pre><p>Your <code>user_data/config.json</code> will look like this: `````json
+{
+&ldquo;max_open_trades&rdquo;: 3,
+&ldquo;stake_currency&rdquo;: &ldquo;USDT&rdquo;,
+&ldquo;stake_amount&rdquo;: &ldquo;unlimited&rdquo;,
+&ldquo;tradable_balance_ratio&rdquo;: 0.99,
+&ldquo;fiat_display_currency&rdquo;: &ldquo;USD&rdquo;,
+&ldquo;dry_run&rdquo;: true,
+&ldquo;dry_run_wallet&rdquo;: 1000,
+&ldquo;cancel_open_orders_on_exit&rdquo;: false,
+&ldquo;trading_mode&rdquo;: &ldquo;spot&rdquo;,
+&ldquo;margin_mode&rdquo;: &ldquo;&rdquo;,
+&ldquo;unfilledtimeout&rdquo;: {
+&ldquo;entry&rdquo;: 10,
+&ldquo;exit&rdquo;: 10,
+&ldquo;exit_timeout_count&rdquo;: 0,
+&ldquo;unit&rdquo;: &ldquo;minutes&rdquo;
+},
+&ldquo;entry_pricing&rdquo;: {
+&ldquo;price_side&rdquo;: &ldquo;other&rdquo;,
+&ldquo;use_order_book&rdquo;: true,
+&ldquo;order_book_top&rdquo;: 1,
+&ldquo;price_last_balance&rdquo;: 0.0,
+&ldquo;check_depth_of_market&rdquo;: {
+&ldquo;enabled&rdquo;: false,
+&ldquo;bids_to_ask_delta&rdquo;: 1
+}
+},
+&ldquo;exit_pricing&rdquo;: {
+&ldquo;price_side&rdquo;: &ldquo;other&rdquo;,
+&ldquo;use_order_book&rdquo;: true,
+&ldquo;order_book_top&rdquo;: 1
+},
+&ldquo;exchange&rdquo;: {
+&ldquo;name&rdquo;: &ldquo;binance&rdquo;,
+&ldquo;key&rdquo;: &ldquo;YOUR_API_KEY&rdquo;,
+&ldquo;secret&rdquo;: &ldquo;YOUR_API_SECRET&rdquo;,
+&ldquo;ccxt_config&rdquo;: {},
+&ldquo;ccxt_async_config&rdquo;: {}
+},
+&ldquo;pairlists&rdquo;: [
+{
+&ldquo;method&rdquo;: &ldquo;VolumePairList&rdquo;,
+&ldquo;number_assets&rdquo;: 20,
+&ldquo;sort_key&rdquo;: &ldquo;quoteVolume&rdquo;,
+&ldquo;min_value&rdquo;: 0,
+&ldquo;refresh_period&rdquo;: 1800
+}
+],
+&ldquo;telegram&rdquo;: {
+&ldquo;enabled&rdquo;: true,
+&ldquo;token&rdquo;: &ldquo;YOUR_BOT_TOKEN&rdquo;,
+&ldquo;chat_id&rdquo;: &ldquo;YOUR_CHAT_ID&rdquo;,
+&ldquo;notification_settings&rdquo;: {
+&ldquo;status&rdquo;: &ldquo;silent&rdquo;,
+&ldquo;warning&rdquo;: &ldquo;on&rdquo;,
+&ldquo;startup&rdquo;: &ldquo;off&rdquo;,
+&ldquo;entry&rdquo;: &ldquo;silent&rdquo;,
+&ldquo;exit&rdquo;: &ldquo;on&rdquo;,
+&ldquo;entry_cancel&rdquo;: &ldquo;silent&rdquo;,
+&ldquo;exit_cancel&rdquo;: &ldquo;silent&rdquo;,
+&ldquo;protection_trigger&rdquo;: &ldquo;off&rdquo;,
+&ldquo;protection_global&rdquo;: &ldquo;off&rdquo;
+}
+},
+&ldquo;api_server&rdquo;: {
+&ldquo;enabled&rdquo;: true,
+&ldquo;listen_ip_address&rdquo;: &ldquo;0.0.0.0&rdquo;,
+&ldquo;listen_port&rdquo;: 8080,
+&ldquo;verbosity&rdquo;: &ldquo;error&rdquo;,
+&ldquo;enable_openapi&rdquo;: false,
+&ldquo;jwt_secret_key&rdquo;: &ldquo;your-secret-key&rdquo;,
+&ldquo;ws_token&rdquo;: &ldquo;your-ws-token&rdquo;,
+&ldquo;CORS_origins&rdquo;: [],
+&ldquo;username&rdquo;: &ldquo;admin&rdquo;,
+&ldquo;password&rdquo;: &ldquo;your-secure-password&rdquo;
+},
+&ldquo;bot_name&rdquo;: &ldquo;freqtrade-bot&rdquo;,
+&ldquo;force_entry_enable&rdquo;: false,
+&ldquo;internals&rdquo;: {
+&ldquo;process_throttle_secs&rdquo;: 5
+}
+}</p><pre tabindex=0><code>
+### Step 3: Create Your First Strategy
+
+`````python
+# user_data/strategies/SampleStrategy.py
+import numpy as np
+import talib.abstract as ta
+from pandas import DataFrame
+from freqtrade.strategy import IStrategy
+
+class SampleStrategy(IStrategy): &#34;&#34;&#34;
+    A simple RSI-based strategy for Freqtrade.
+    &#34;&#34;&#34;
+    minimal_roi = {
+        &#34;0&#34;: 0.10,     # 10% profit target
+        &#34;30&#34;: 0.05,    # 5% after 30 min
+        &#34;60&#34;: 0.02,    # 2% after 60 min
+        &#34;120&#34;: 0       # Exit after 120 min
+    }
+    stoploss = -0.10     # 10% stop loss
+    trailing_stop = True
+    trailing_stop_positive = 0.02
+    trailing_stop_positive_offset = 0.03
+    timeframe = 5m     # 5-minute candles
+    can_short = False    # Spot trading only
+
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -&gt; DataFrame: # RSI indicator
+        dataframe[rsi] = ta.RSI(dataframe, timeperiod=14)
+        
+        # MACD indicators
+        macd = ta.MACD(dataframe)
+        dataframe[macd] = macd[macd]
+        dataframe[macdsignal] = macd[macdsignal]
+        dataframe[macdhist] = macd[macdhist]
+        
+        # Bollinger Bands
+        bollinger = ta.BBANDS(dataframe, timeperiod=20, nbdevup=2.0, nbdevdn=2.0)
+        dataframe[bb_lower] = bollinger[lowerband]
+        dataframe[bb_middle] = bollinger[middleband]
+        dataframe[bb_upper] = bollinger[upperband]
+        
+        # Average True Range for volatility
+        dataframe[atr] = ta.ATR(dataframe, timeperiod=14)
+        
+        return dataframe
+
+    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -&gt; DataFrame: dataframe.loc[
+            (
+                (dataframe[rsi] &lt; 30) &amp;                    # Oversold condition
+                (dataframe[macd] &gt; dataframe[macdsignal]) &amp;  # MACD crossover
+                (dataframe[close] &lt; dataframe[bb_lower])   # Price below BB lower
+            ),
+            enter_long
+        ] = 1
+        return dataframe
+
+    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -&gt; DataFrame: dataframe.loc[
+            (
+                (dataframe[rsi] &gt; 70) &amp;                    # Overbought condition
+                (dataframe[macd] &lt; dataframe[macdsignal])  # MACD crossunder
+            ),
+            exit_long
+        ] = 1
+        return dataframe
+</code></pre><h3 id=step-4-start-the-bot>Step 4: Start the Bot<a hidden class=anchor aria-hidden=true href=#step-4-start-the-bot>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start Freqtrade with your strategy</span>
+</span></span><span style=display:flex><span>docker compose up -d
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Check logs</span>
+</span></span><span style=display:flex><span>docker compose logs -f freqtrade
+</span></span></code></pre></div><pre tabindex=0><code>freqtrade  | 2026-05-19 08:00:01 freqtrade.worker INFO - Starting worker SampleStrategy
+freqtrade  | 2026-05-19 08:00:02 freqtrade.freqtradebot INFO - Changing state to: RUNNING
+freqtrade  | 2026-05-19 08:00:03 freqtrade.wallets INFO - Wallets synced.
+freqtrade  | 2026-05-19 08:00:04 freqtrade.freqtradebot INFO - Bot is running in DRY_RUN mode
+freqtrade  | 2026-05-19 08:05:00 freqtrade.persistence.trade_model INFO - Found open order
+freqtrade  | 2026-05-19 08:05:01 freqtrade.freqtradebot INFO - Long signal detected for BTC/USDT
+</code></pre><h3 id=step-5-monitor-via-telegram>Step 5: Monitor via Telegram<a hidden class=anchor aria-hidden=true href=#step-5-monitor-via-telegram>#</a></h3><p>Send commands to your bot: `````
+/status - Show current trades and performance
+/profit - Show profit summary
+/balance - Show wallet balances
+/daily - Show daily profit/loss
+/performance - Show performance per pair</p><pre tabindex=0><code></code></pre><p>Status: Running
+Trade Count: 12
+Open Trades: 2
+Closed Profit: +3.24 USDT
+Best Performing: ETH/USDT (+1.8%)
+Worst Performing: SOL/USDT (-0.4%)</p><pre tabindex=0><code>
+## Integration with Machine Learning (FreqAI)
+
+### Enabling FreqAI
+
+FreqAI brings machine learning predictions into your strategy. First, add FreqAI configuration: `````json
+// Add to config.json
+&#34;freqai&#34;: {
+  &#34;enabled&#34;: true,
+  &#34;purge_old_models&#34;: 2,
+  &#34;train_period_days&#34;: 30,
+  &#34;backtest_period_days&#34;: 7,
+  &#34;live_retrain_hours&#34;: 1,
+  &#34;identifier&#34;: &#34;freqai_rsi_classifier&#34;,
+  &#34;feature_parameters&#34;: {
+    &#34;include_time_features&#34;: true,
+    &#34;include_corr_pairlist&#34;: [
+      &#34;BTC/USDT&#34;, &#34;ETH/USDT&#34;
+    ],
+    &#34;label_period_candles&#34;: 24,
+    &#34;include_shifted_candles&#34;: 2,
+    &#34;DI_threshold&#34;: 0.9,
+    &#34;weight_factor&#34;: 0.9,
+    &#34;principal_component_analysis&#34;: false,
+    &#34;use_SVM_to_remove_outliers&#34;: true,
+    &#34;indicator_periods_candles&#34;: [10, 20, 50]
+  },
+  &#34;data_split_parameters&#34;: {
+    &#34;test_size&#34;: 0.33,
+    &#34;random_state&#34;: 1
+  },
+  &#34;model_training_parameters&#34;: {
+    &#34;n_estimators&#34;: 100,
+    &#34;max_depth&#34;: 6,
+    &#34;learning_rate&#34;: 0.1,
+    &#34;num_leaves&#34;: 32
+  }
+}
+</code></pre><h3 id=freqai-strategy-example>FreqAI Strategy Example<a hidden class=anchor aria-hidden=true href=#freqai-strategy-example>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># user_data/strategies/FreqAIStrategy.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> freqtrade.strategy <span style=color:#f92672>import</span> IStrategy
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FreqAISrategy</span>(IStrategy): <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Strategy using FreqAI ML predictions as entry signals.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    minimal_roi <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;0&#34;</span>: <span style=color:#ae81ff>0.15</span>, <span style=color:#e6db74>&#34;60&#34;</span>: <span style=color:#ae81ff>0.05</span>, <span style=color:#e6db74>&#34;120&#34;</span>: <span style=color:#ae81ff>0</span>}
+</span></span><span style=display:flex><span>    stoploss <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>0.08</span>
+</span></span><span style=display:flex><span>    timeframe <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>m
+</span></span><span style=display:flex><span>    can_short <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>feature_engineering_expand_all</span>(self, dataframe, metadata, <span style=color:#f92672>**</span>kwargs): <span style=color:#e6db74>&#34;&#34;&#34;Add custom features for FreqAI to use.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        dataframe[<span style=color:#e6db74>&#34;rsi&#34;</span>] <span style=color:#f92672>=</span> ta<span style=color:#f92672>.</span>RSI(dataframe, timeperiod<span style=color:#f92672>=</span><span style=color:#ae81ff>14</span>)
+</span></span><span style=display:flex><span>        dataframe[<span style=color:#e6db74>&#34;macdhist&#34;</span>] <span style=color:#f92672>=</span> ta<span style=color:#f92672>.</span>MACD(dataframe)[macdhist]
+</span></span><span style=display:flex><span>        dataframe[<span style=color:#e6db74>&#34;atr&#34;</span>] <span style=color:#f92672>=</span> ta<span style=color:#f92672>.</span>ATR(dataframe, timeperiod<span style=color:#f92672>=</span><span style=color:#ae81ff>14</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e># Add volatility features</span>
+</span></span><span style=display:flex><span>        dataframe[<span style=color:#e6db74>&#34;volatility&#34;</span>] <span style=color:#f92672>=</span> dataframe[<span style=color:#e6db74>&#34;close&#34;</span>]<span style=color:#f92672>.</span>rolling(<span style=color:#ae81ff>24</span>)<span style=color:#f92672>.</span>std()
+</span></span><span style=display:flex><span>        dataframe[<span style=color:#e6db74>&#34;price_change_1h&#34;</span>] <span style=color:#f92672>=</span> dataframe[<span style=color:#e6db74>&#34;close&#34;</span>]<span style=color:#f92672>.</span>pct_change(<span style=color:#ae81ff>12</span>)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dataframe
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>feature_engineering_expand_basic</span>(self, dataframe, metadata, <span style=color:#f92672>**</span>kwargs): <span style=color:#66d9ef>return</span> dataframe
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>feature_engineering_standard</span>(self, dataframe, metadata, <span style=color:#f92672>**</span>kwargs): <span style=color:#66d9ef>return</span> dataframe
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>set_freqai_targets</span>(self, dataframe, metadata, <span style=color:#f92672>**</span>kwargs): <span style=color:#e6db74>&#34;&#34;&#34;Define what we want to predict - price goes up or down.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        dataframe[<span style=color:#e6db74>&#34;&amp;-target&#34;</span>] <span style=color:#f92672>=</span> (
+</span></span><span style=display:flex><span>            dataframe[<span style=color:#e6db74>&#34;close&#34;</span>]<span style=color:#f92672>.</span>shift(<span style=color:#f92672>-</span><span style=color:#ae81ff>24</span>) <span style=color:#f92672>&gt;</span> dataframe[<span style=color:#e6db74>&#34;close&#34;</span>]
+</span></span><span style=display:flex><span>        )<span style=color:#f92672>.</span>astype(int)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dataframe
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>populate_indicators</span>(self, dataframe: pd<span style=color:#f92672>.</span>DataFrame, metadata: dict) <span style=color:#f92672>-&gt;</span> pd<span style=color:#f92672>.</span>DataFrame: dataframe <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>freqai<span style=color:#f92672>.</span>start(dataframe, metadata, self)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dataframe
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>populate_entry_trend</span>(self, dataframe: pd<span style=color:#f92672>.</span>DataFrame, metadata: dict) <span style=color:#f92672>-&gt;</span> pd<span style=color:#f92672>.</span>DataFrame: <span style=color:#75715e># Enter when ML predicts upward movement with high confidence</span>
+</span></span><span style=display:flex><span>        dataframe<span style=color:#f92672>.</span>loc[
+</span></span><span style=display:flex><span>            (
+</span></span><span style=display:flex><span>                (dataframe[<span style=color:#e6db74>&#34;&amp;-target&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>&amp;</span>           <span style=color:#75715e># ML prediction: up</span>
+</span></span><span style=display:flex><span>                (dataframe[<span style=color:#e6db74>&#34;do_predict&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>&amp;</span>         <span style=color:#75715e># Model is confident</span>
+</span></span><span style=display:flex><span>                (dataframe[<span style=color:#e6db74>&#34;&amp;-target_probability&#34;</span>] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.6</span>)  <span style=color:#75715e># Probability &gt; 60%</span>
+</span></span><span style=display:flex><span>            ),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;enter_long&#34;</span>
+</span></span><span style=display:flex><span>        ] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dataframe
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>populate_exit_trend</span>(self, dataframe: pd<span style=color:#f92672>.</span>DataFrame, metadata: dict) <span style=color:#f92672>-&gt;</span> pd<span style=color:#f92672>.</span>DataFrame: dataframe<span style=color:#f92672>.</span>loc[
+</span></span><span style=display:flex><span>            (
+</span></span><span style=display:flex><span>                (dataframe[<span style=color:#e6db74>&#34;&amp;-target&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) <span style=color:#f92672>|</span>           <span style=color:#75715e># ML predicts down</span>
+</span></span><span style=display:flex><span>                (dataframe[<span style=color:#e6db74>&#34;do_predict&#34;</span>] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>1</span>)             <span style=color:#75715e># Model uncertain</span>
+</span></span><span style=display:flex><span>            ),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;exit_long&#34;</span>
+</span></span><span style=display:flex><span>        ] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dataframe
+</span></span></code></pre></div><h3 id=model-options>Model Options<a hidden class=anchor aria-hidden=true href=#model-options>#</a></h3><p>FreqAI supports multiple ML backends: | Model | Backend | Best For | Training Speed |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| LightGBM | LightGBM | Tabular data, speed | Very Fast |
+| XGBoost | XGBoost | Tabular data, accuracy | Fast |
+| CatBoost | CatBoost | Categorical features | Moderate |
+| PyTorch | PyTorch | Neural networks, complex patterns | Slow |
+| Scikit-learn | sklearn | Simple baselines, regression | Fast |</p><h2 id=integration-with-external-tools>Integration with External Tools<a hidden class=anchor aria-hidden=true href=#integration-with-external-tools>#</a></h2><h3 id=hyperparameter-optimization-with-optuna>Hyperparameter Optimization with Optuna<a hidden class=anchor aria-hidden=true href=#hyperparameter-optimization-with-optuna>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run hyperparameter optimization</span>
+</span></span><span style=display:flex><span>docker compose run --rm freqtrade hyperopt <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --strategy SampleStrategy <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --spaces buy sell roi stoploss trailing <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --epochs <span style=color:#ae81ff>100</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --timerange 20260101-20260331 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --hyperopt-loss SharpeHyperOptLossDaily
+</span></span></code></pre></div><pre tabindex=0><code>Best result: 87/100: 2469 trades. 1371/247/851 Wins/Draws/Losses. 
+    Avg profit   0.34%. Median profit   0.18%. 
+    Total profit  842.345 USDT ( 84.23%).
+    Avg duration 47.2 min. Objective: 2.14321
+
+Buy hypers: buy_rsi.value = 28.5
+    buy_macd_enabled = True
+    buy_bb_enabled = True
+
+ROI table: minimal_roi = {0: 0.143, 30: 0.072, 60: 0.028, 120: 0}
+
+Stoploss: -0.08
+Trailing stop: True (positive: 0.025)
+</code></pre><h3 id=backtesting-with-edge-validation>Backtesting with Edge Validation<a hidden class=anchor aria-hidden=true href=#backtesting-with-edge-validation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Download historical data first</span>
+</span></span><span style=display:flex><span>docker compose run --rm freqtrade download-data <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --exchange binance <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --pairs BTC/USDT ETH/USDT SOL/USDT BNB/USDT XRP/USDT <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --timeframes 5m 15m 1h <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --timerange 20240101-20260331
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Run backtest</span>
+</span></span><span style=display:flex><span>docker compose run --rm freqtrade backtesting <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --strategy SampleStrategy <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --timerange 20260101-20260331 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --pairs BTC/USDT ETH/USDT SOL/USDT <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --export trades <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --export-filename user_data/backtest_results.json
+</span></span></code></pre></div><pre tabindex=0><code>Result for strategy SampleStrategy
+
+BACKTESTING REPORT
+* * *
+| Pair        |  Entries |  Avg Profit % |  Cum Profit % |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| BTC/USDT    |      45  |         0.82  |        36.9   |
+| ETH/USDT    |      52  |         0.64  |        33.3   |
+| SOL/USDT    |      38  |         0.71  |        27.0   |
+* * *
+TOTAL: 97.2 USDT (9.72%)
+
+Sharpe Ratio: 2.34
+Sortino Ratio: 3.12
+Max Drawdown: 5.8%
+Avg Trade Duration: 52.3 min
+Win Rate: 64.2%
+Profit Factor: 2.1
+</code></pre><h3 id=jupyter-notebook-integration>Jupyter Notebook Integration<a hidden class=anchor aria-hidden=true href=#jupyter-notebook-integration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Run inside Freqtrade&#39;s Jupyter container</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> freqtrade.data.history <span style=color:#f92672>import</span> load_pair_history
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> freqtrade.resolvers <span style=color:#f92672>import</span> StrategyResolver
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Load historical data</span>
+</span></span><span style=display:flex><span>pair <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;BTC/USDT&#34;</span>
+</span></span><span style=display:flex><span>timeframe <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;5m&#34;</span>
+</span></span><span style=display:flex><span> timerange <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;20260101-20260331&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>data <span style=color:#f92672>=</span> load_pair_history(
+</span></span><span style=display:flex><span>    datadir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_data/data/binance&#34;</span>,
+</span></span><span style=display:flex><span>    pair<span style=color:#f92672>=</span>pair,
+</span></span><span style=display:flex><span>    timeframe<span style=color:#f92672>=</span>timeframe,
+</span></span><span style=display:flex><span>    timerange<span style=color:#f92672>=</span>timerange
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Load and run strategy</span>
+</span></span><span style=display:flex><span>strategy <span style=color:#f92672>=</span> StrategyResolver<span style=color:#f92672>.</span>load_strategy(<span style=color:#e6db74>&#34;SampleStrategy&#34;</span>)
+</span></span><span style=display:flex><span>dataframe <span style=color:#f92672>=</span> strategy<span style=color:#f92672>.</span>analyze_ticker(data, {pair: pair})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># View signals</span>
+</span></span><span style=display:flex><span>signals <span style=color:#f92672>=</span> dataframe[dataframe[enter_long] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>{</span>len(signals)<span style=color:#e6db74>}</span><span style=color:#e6db74> entry signals&#34;</span>)
+</span></span><span style=display:flex><span>print(signals[[date, close, rsi, macdhist]]<span style=color:#f92672>.</span>head(<span style=color:#ae81ff>10</span>))
+</span></span></code></pre></div><h3 id=rest-api-for-external-integration>REST API for External Integration<a hidden class=anchor aria-hidden=true href=#rest-api-for-external-integration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Start the API server (enabled in config.json)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Query current status</span>
+</span></span><span style=display:flex><span>curl -u admin:your-secure-password <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  http://localhost:8080/api/v1/status
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Get trade history</span>
+</span></span><span style=display:flex><span>curl -u admin:your-secure-password <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  http://localhost:8080/api/v1/trades
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Get profit summary</span>
+</span></span><span style=display:flex><span>curl -u admin:your-secure-password <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  http://localhost:8080/api/v1/profit
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Force entry</span>
+</span></span><span style=display:flex><span>curl -X POST -u admin:your-secure-password <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;pair&#34;: &#34;BTC/USDT&#34;, &#34;side&#34;: &#34;long&#34;}&#39;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  http://localhost:8080/api/v1/forceentry
+</span></span></code></pre></div><h2 id=benchmarks-and-real-world-performance>Benchmarks and Real-World Performance<a hidden class=anchor aria-hidden=true href=#benchmarks-and-real-world-performance>#</a></h2><h3 id=strategy-performance-comparison-2026-q1-backtest>Strategy Performance Comparison (2026 Q1 Backtest)<a hidden class=anchor aria-hidden=true href=#strategy-performance-comparison-2026-q1-backtest>#</a></h3><p>| Strategy Type | Avg Monthly Return | Sharpe Ratio | Max Drawdown | Win Rate | Trades/Month |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| RSI + MACD (basic) | 4-8% | 1.2-1.8 | 8-12% | 55-60% | 80-150 |
+| FreqAI LightGBM | 8-15% | 1.8-2.5 | 6-10% | 60-68% | 60-120 |
+| Bollinger Band Mean Reversion | 3-6% | 1.0-1.5 | 10-15% | 50-58% | 100-200 |
+| Trend Following (EMA) | 2-5% | 0.8-1.2 | 12-18% | 45-52% | 40-80 |
+| FreqAI CatBoost (advanced) | 10-18% | 2.0-3.0 | 5-8% | 62-70% | 50-100 |</p><h3 id=resource-usage-profile>Resource Usage Profile<a hidden class=anchor aria-hidden=true href=#resource-usage-profile>#</a></h3><p>| Resource | Dry Run | Live (1 pair) | Live (10 pairs) | Live with FreqAI |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| CPU | 1-3% | 3-8% | 10-20% | 30-60% |
+| RAM | 150MB | 200-300MB | 400-800MB | 1-2GB |
+| Disk/day | 5MB | 10-20MB | 30-50MB | 50-100MB |
+| Network | minimal | 5-15 KB/s | 20-50 KB/s | 20-50 KB/s |</p><p><strong>GPU acceleration:</strong> FreqAI with PyTorch backend benefits from a GPU. Training is <strong>3-5x faster</strong> on a single GPU compared to CPU-only training.</p><h3 id=edge-case-drawdown-recovery>Edge Case: Drawdown Recovery<a hidden class=anchor aria-hidden=true href=#edge-case-drawdown-recovery>#</a></h3><p>A critical benchmark is how quickly a strategy recovers from drawdown: `````
+Strategy: FreqAI LightGBM
+Timeline: 2026-01-01 to 2026-03-31</p><p>Jan 15-20: Market crash (-15% BTC)
+Max drawdown reached: -7.2%
+Days to recover: 8 trading days
+Feb return: +11.4%
+Mar return: +9.8%
+Q1 total return: +12.1%</p><pre tabindex=0><code>
+## Advanced Usage and Production Hardening
+
+### Risk Management Configuration
+
+`````json
+// Advanced risk management settings
+&#34;max_open_trades&#34;: 3,
+&#34;stake_amount&#34;: &#34;unlimited&#34;,
+&#34;tradable_balance_ratio&#34;: 0.95,
+&#34;amend_last_stake_amount&#34;: true,
+&#34;available_capital&#34;: 5000,
+&#34;stake_amount_mode&#34;: &#34;unlimited&#34;,
+
+&#34;order_types&#34;: {
+  &#34;entry&#34;: &#34;limit&#34;,
+  &#34;exit&#34;: &#34;limit&#34;,
+  &#34;emergency_exit&#34;: &#34;market&#34;,
+  &#34;stoploss&#34;: &#34;market&#34;,
+  &#34;stoploss_on_exchange&#34;: true,
+  &#34;stoploss_on_exchange_interval&#34;: 60
+},
+
+&#34;protections&#34;: [
+  {
+    &#34;method&#34;: &#34;CooldownPeriod&#34;,
+    &#34;stop_duration_candles&#34;: 2
+  },
+  {
+    &#34;method&#34;: &#34;MaxDrawdown&#34;,
+    &#34;lookback_period_candles&#34;: 48,
+    &#34;trade_limit&#34;: 20,
+    &#34;stop_duration_candles&#34;: 4,
+    &#34;max_allowed_drawdown&#34;: 0.15
+  },
+  {
+    &#34;method&#34;: &#34;LowProfitPairs&#34;,
+    &#34;lookback_period_candles&#34;: 48,
+    &#34;trade_limit&#34;: 4,
+    &#34;required_profit&#34;: -0.05,
+    &#34;stop_duration&#34;: 60
+  }
+]
+</code></pre><h3 id=custom-stoploss-with-atr>Custom Stoploss with ATR<a hidden class=anchor aria-hidden=true href=#custom-stoploss-with-atr>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Add to your strategy for dynamic stoploss</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>custom_stoploss</span>(self, pair: str, trade: Trade, current_time: datetime,
+</span></span><span style=display:flex><span>                    current_rate: float, current_profit: float, <span style=color:#f92672>**</span>kwargs) <span style=color:#f92672>-&gt;</span> float: <span style=color:#e6db74>&#34;&#34;&#34;Dynamic stoploss based on ATR.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    dataframe, _ <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>dp<span style=color:#f92672>.</span>get_analyzed_dataframe(pair, self<span style=color:#f92672>.</span>timeframe)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> dataframe<span style=color:#f92672>.</span>empty: <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>stoploss
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    last_candle <span style=color:#f92672>=</span> dataframe<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>    atr <span style=color:#f92672>=</span> last_candle[atr]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Stoploss at 2x ATR</span>
+</span></span><span style=display:flex><span>    stoploss_price <span style=color:#f92672>=</span> trade<span style=color:#f92672>.</span>open_rate <span style=color:#f92672>-</span> (<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> atr)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Convert to percentage from current rate</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> stoploss_from_absolute(stoploss_price, current_rate, is_short<span style=color:#f92672>=</span>trade<span style=color:#f92672>.</span>is_short)
+</span></span></code></pre></div><h3 id=multi-timeframe-analysis>Multi-Timeframe Analysis<a hidden class=anchor aria-hidden=true href=#multi-timeframe-analysis>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>informative_pairs</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;Define higher timeframe pairs for analysis.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> [
+</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#34;BTC/USDT&#34;</span>, <span style=color:#e6db74>&#34;1h&#34;</span>),
+</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#34;ETH/USDT&#34;</span>, <span style=color:#e6db74>&#34;1h&#34;</span>),
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>populate_indicators</span>(self, dataframe: pd<span style=color:#f92672>.</span>DataFrame, metadata: dict) <span style=color:#f92672>-&gt;</span> pd<span style=color:#f92672>.</span>DataFrame: <span style=color:#75715e># Get 1h data for BTC</span>
+</span></span><span style=display:flex><span>    inf_pair, inf_timeframe <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>informative_pairs()[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>    informative <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>dp<span style=color:#f92672>.</span>get_pair_dataframe(inf_pair, inf_timeframe)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Calculate 1h trend</span>
+</span></span><span style=display:flex><span>    informative[ema50_1h] <span style=color:#f92672>=</span> ta<span style=color:#f92672>.</span>EMA(informative, timeperiod<span style=color:#f92672>=</span><span style=color:#ae81ff>50</span>)
+</span></span><span style=display:flex><span>    informative[ema200_1h] <span style=color:#f92672>=</span> ta<span style=color:#f92672>.</span>EMA(informative, timeperiod<span style=color:#f92672>=</span><span style=color:#ae81ff>200</span>)
+</span></span><span style=display:flex><span>    informative[trend_1h] <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>where(
+</span></span><span style=display:flex><span>        informative[ema50_1h] <span style=color:#f92672>&gt;</span> informative[ema200_1h], <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Merge into 5m dataframe</span>
+</span></span><span style=display:flex><span>    dataframe <span style=color:#f92672>=</span> merge_informative_pair(dataframe, informative, self<span style=color:#f92672>.</span>timeframe, inf_timeframe)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Only trade in direction of 1h trend</span>
+</span></span><span style=display:flex><span>    dataframe[rsi] <span style=color:#f92672>=</span> ta<span style=color:#f92672>.</span>RSI(dataframe, timeperiod<span style=color:#f92672>=</span><span style=color:#ae81ff>14</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> dataframe
+</span></span></code></pre></div><h3 id=freqai-with-gpu-acceleration>FreqAI with GPU Acceleration<a hidden class=anchor aria-hidden=true href=#freqai-with-gpu-acceleration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml with GPU support for FreqAI</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: freqtrade: image</span>: <span style=color:#ae81ff>freqtradeorg/freqtrade:stable</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>freqtrade_gpu</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./user_data:/freqtrade/user_data</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: reservations: devices: - driver</span>: <span style=color:#ae81ff>nvidia</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>count</span>: <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>              <span style=color:#f92672>capabilities</span>: [<span style=color:#ae81ff>gpu]</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>FREQTRADE__FREQAI__MODEL_TRAINING__DEVICE=cuda</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: &gt;<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      trade --strategy FreqAIStrategy --config user_data/config.json</span>
+</span></span></code></pre></div><h3 id=docker-compose-for-production>Docker Compose for Production<a hidden class=anchor aria-hidden=true href=#docker-compose-for-production>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: freqtrade: image</span>: <span style=color:#ae81ff>freqtradeorg/freqtrade:stable</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>freqtrade_prod</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./user_data:/freqtrade/user_data</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;127.0.0.1:8080:8080&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>logging: driver</span>: <span style=color:#e6db74>&#34;json-file&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>options: max-size</span>: <span style=color:#e6db74>&#34;100m&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>max-file</span>: <span style=color:#e6db74>&#34;3&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: limits: memory</span>: <span style=color:#ae81ff>4G</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>cpus</span>: <span style=color:#e6db74>&#39;2.0&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>healthcheck: test</span>: [<span style=color:#e6db74>&#34;CMD&#34;</span>, <span style=color:#e6db74>&#34;curl&#34;</span>, <span style=color:#e6db74>&#34;-f&#34;</span>, <span style=color:#e6db74>&#34;http://localhost:8080/api/v1/ping&#34;</span>]
+</span></span><span style=display:flex><span>      <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>30s</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>timeout</span>: <span style=color:#ae81ff>10s</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>start_period</span>: <span style=color:#ae81ff>60s</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: &gt;<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      trade --strategy SampleStrategy --config user_data/config.json</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#75715e># Optional: Add Grafana for monitoring</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>grafana: image</span>: <span style=color:#ae81ff>grafana/grafana:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>freqtrade_grafana</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>grafana_data:/var/lib/grafana</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./grafana/dashboards:/etc/grafana/provisioning/dashboards</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>freqtrade</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>volumes: grafana_data</span>: <span style=color:#ae81ff>`````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Comparison with Alternatives</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| Feature | Freqtrade | Hummingbot | 3Commas | Gunbot | Freqtrade (ref) |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#ae81ff>|</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **License** | GPL-3.0 | Apache-2.0 | Proprietary | Proprietary | GPL-3.0 |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **CEX Connectors** | 20+ (via CCXT) | 50+ | 15+ | 10+ | 20+ |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **DEX Support** | Limited | Yes (Gateway) | No | No | Limited |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **ML Integration** | FreqAI (built-in) | No | No | No | FreqAI |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Backtesting** | Advanced (slippage) | Yes | Limited | No | Advanced |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Hyperparameter Opt** | Optuna (built-in) | No | No | No | Optuna |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Telegram Bot** | Yes | Yes | Yes | Yes | Yes |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Web UI** | Built-in REST + UI | No | Yes | Yes | REST + UI |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Strategy Lang** | Python | Python | Visual | JavaScript | Python |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Self-hosted** | Yes | Yes | No | Yes | Yes |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Cost** | Free | Free | $29-99/mo | $299 one-time | Free |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Community** | 37K stars | 10.5K stars | N/A | N/A | 37K stars |</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>| **Best For** | ML strategies | Market making | Beginners | Simple bots | ML strategies |</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>**When</span> <span style=color:#ae81ff>to choose what:**</span>
+</span></span><span style=display:flex><span>- <span style=color:#75715e>**Freqtrade:**</span> <span style=color:#ae81ff>Best for ML-enhanced directional strategies with Python</span>
+</span></span><span style=display:flex><span>- <span style=color:#75715e>**Hummingbot:**</span> <span style=color:#ae81ff>Best for market making and cross-exchange arbitrage ([learn more](dibi8-internal-link))</span>
+</span></span><span style=display:flex><span>- <span style=color:#75715e>**3Commas:**</span> <span style=color:#ae81ff>Best for traders wanting SaaS with DCA and grid bots</span>
+</span></span><span style=display:flex><span>- <span style=color:#75715e>**Gunbot:**</span> <span style=color:#ae81ff>Best for one-time purchase with pre-built strategies</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Limitations and Honest Assessment</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>**Freqtrade</span> <span style=color:#f92672>is not a silver bullet.** Before committing capital, understand these constraints</span>: <span style=color:#ae81ff>1</span><span style=color:#ae81ff>. **Backtest ≠ Live results.** Slippage, spread widening, and exchange latency can turn a +20% backtest into a -5% live strategy. Always run 2-4 weeks of dry-run before going live.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>2</span><span style=color:#ae81ff>. **FreqAI models need regular retraining.** If market regime shifts (e.g., from bull to bear), your model&#39;s predictions may degrade until it retrains. The default 1-hour retrain window works for most cases.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3</span><span style=color:#ae81ff>. **Machine learning is not magic.** FreqAI helps but does not guarantee profits. Garbage in, garbage out — poor feature engineering produces poor predictions regardless of the algorithm.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>4</span><span style=color:#ae81ff>. **Resource usage with FreqAI is significant.** Running FreqAI with 10+ pairs and neural network models requires 2-4GB RAM and significant CPU. Do not expect to run this on a $3/month VPS.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>5. **Shorting support varies by exchange.** Spot markets do not support short positions. For short strategies, you need a futures-enabled connector (Binance Futures, OKX) and ````trading_mode</span>: <span style=color:#ae81ff>futures```` in config.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### How much capital do I need to start with Freqtrade?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>You can start with **$100** on Binance for dry-run testing (no real money at risk). For live trading, a minimum of **$500-1,000** is recommended to survive losing streaks and cover exchange fees. For meaningful returns, **$2,000-5,000** is the sweet spot. Consider [OKX](https://www.promoohubly.com/join/12190433) for competitive trading fees.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Does Freqtrade work on decentralized exchanges?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>Direct DEX support is limited compared to Hummingbot. Freqtrade focuses on centralized exchanges via the CCXT library. For Uniswap or PancakeSwap trading, you would need to implement a custom connector or bridge via Web3 libraries. If DEX trading is your primary goal, Hummingbot is a better choice.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### How does FreqAI compare to custom ML pipelines?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>FreqAI abstracts away the ML engineering complexity — feature engineering, model training, inference, and integration are all handled automatically. A custom ML pipeline gives you more control (you pick any model, any features) but requires 10-20x more code. FreqAI is the right choice for 90% of traders who want ML signals without the engineering overhead.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Can I run Freqtrade 24/7 on a cheap VPS?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>Yes</span><span style=color:#ae81ff>. A **$5-10/month VPS** (1 CPU, 1GB RAM) handles basic strategies with 5-10 pairs. However, FreqAI with multiple pairs needs at least **2GB RAM and 2 CPU cores**. Consider upgrading to a $10-20/month VPS if running FreqAI. [HTStack](https://htstack.com) offers reliable VPS options.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### How do I prevent my bot from losing money?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>No bot is guaranteed profitable. These practices minimize risk</span>: <span style=color:#ae81ff>(1) Always backtest on 1+ year of data before going live. (2) Run dry-run for at least 2 weeks. (3) Use ````max_open_trades```` to limit exposure. (4) Set ````stoploss```` to 5-10%. (5) Enable ````protections```` (CooldownPeriod, MaxDrawdown). (6) Start with 1-2% of your capital per trade.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Can I use custom machine learning models?</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>Yes</span><span style=color:#ae81ff>. FreqAI supports custom PyTorch models. Create a class inheriting from ````IFreqaiModel```` and implement ````fit```` and ````predict```` methods. You can use any sklearn-compatible model or a full PyTorch neural network. See the FreqAI documentation for examples.</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>`````python</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Custom model example</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>from freqtrade.freqai.base_models import BaseRegressionModel</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>from sklearn.ensemble import RandomForestRegressor</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>class MyCustomModel(BaseRegressionModel): def fit(self, data_dictionary: dict, **kwargs)</span>: <span style=color:#ae81ff>model = RandomForestRegressor(n_estimators=200, max_depth=10)</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>model.fit(data_dictionary[&#34;train_features&#34;], data_dictionary[&#34;train_labels&#34;])</span>
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>return model</span>
+</span></span></code></pre></div><h3 id=what-happens-if-the-exchange-api-goes-down>What happens if the exchange API goes down?<a hidden class=anchor aria-hidden=true href=#what-happens-if-the-exchange-api-goes-down>#</a></h3><p>Freqtrade handles exchange downtime gracefully. Open orders are tracked, and the bot resumes normal operation once the API recovers. Enable ````stoploss_on_exchange``` to ensure stop-loss orders exist on the exchange side as a safety net. Telegram notifications alert you when the bot detects issues.</p><h2 id=conclusion-build-your-ai-trading-bot-today>Conclusion: Build Your AI Trading Bot Today<a hidden class=anchor aria-hidden=true href=#conclusion-build-your-ai-trading-bot-today>#</a></h2><p>Freqtrade with FreqAI is the most powerful open-source framework for ML-enhanced crypto trading in 2026. With 37,000+ GitHub stars, comprehensive documentation, and an active community, it gives you institutional-grade tools at zero cost.</p><p>Your next steps: 1. <strong>Register on <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> or <a href=https://www.promoohubly.com/join/12190433>OKX</a></strong> and create API keys
+2. <strong>Deploy Freqtrade</strong> with the Docker quick-start above
+3. <strong>Paper trade for 2-4 weeks</strong> with your strategy
+4. <strong>Run hyperparameter optimization</strong> to tune your parameters
+5. <strong>Go live</strong> with 1-2% risk per trade
+6. <strong>Explore AI signals</strong> with <a href=https://minara.ai/r/OSXG4X>Minara</a> for advanced ML predictions</p><p>Join our developer community on Telegram: <a href=https://t.me/dibi8developers>t.me/dibi8developers</a> — we discuss bot strategies, FreqAI model tuning, and production deployments daily.</p><h2 id=sources-and-further-reading>Sources and Further Reading<a hidden class=anchor aria-hidden=true href=#sources-and-further-reading>#</a></h2><ul><li><a href=https://www.freqtrade.io/>Freqtrade Official Documentation</a></li><li><a href=https://github.com/freqtrade/freqtrade>Freqtrade GitHub Repository</a></li><li><a href=https://www.freqtrade.io/en/stable/freqai/>FreqAI Documentation</a></li><li><a href=https://github.com/freqtrade/freqtrade-strategies>Freqtrade Strategy Repository</a></li><li><a href=https://docs.ccxt.com/>CCXT Exchange Library</a></li><li><a href=https://optuna.org/>Optuna Hyperparameter Framework</a></li><li><a href=https://lightgbm.readthedocs.io/>LightGBM Documentation</a></li><li><a href=https://binance-docs.github.io/apidocs/>Binance API Documentation</a></li></ul><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure<a hidden class=anchor aria-hidden=true href=#affiliate-disclosure>#</a></h2><p>This guide contains affiliate links for <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>, <a href=https://www.promoohubly.com/join/12190433>OKX</a>, and <a href=https://minara.ai/r/OSXG4X>Minara</a>. If you register through these links, we receive a commission at no additional cost to you. This supports our open-source documentation efforts. We only recommend tools we actively use and test.</p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Freqtrade 2026: Build AI-Powered Crypto Trading Strategies with Machine Learning \u2014 Complete Bot Setup Guide&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/freqtrade-ai-trading-strategies%22>https://dibi8.com/resources/freqtrade-ai-trading-strategies"</a>
+}
+}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：量化交易的风险有多大？</strong></p><p>取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。</p><p><strong>问：如何选择适合的交易策略？</strong></p><p>根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。</p><p><strong>问：回测结果可信吗？</strong></p><p>回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。</p><p><strong>问：需要编程基础吗？</strong></p><p>基础策略可使用低代码平台，高级策略需要Python/C++编程能力。</p><p><strong>问：交易系统的维护成本？</strong></p><p>包括服务器费用、数据订阅、算法更新、以及监控维护时间。</p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

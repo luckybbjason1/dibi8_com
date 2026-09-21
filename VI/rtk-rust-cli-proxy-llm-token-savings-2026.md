@@ -1,6 +1,13 @@
 ---
-title: "rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
-description: "rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claud..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-llm-token-savings-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
@@ -32,7 +39,7 @@ faqs: - q: 'rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?'
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

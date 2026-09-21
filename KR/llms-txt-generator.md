@@ -1,7 +1,10 @@
 ---
-title: "llms.txt 생성기 — AI 크롤러(ChatGPT, Claude, Perplexity)가 사이트를...
-description: "몇 초 만에 유효한 llms.txt 파일을 생성하세요. ChatGPT, Claude, Perplexity 같은 AI 크롤러가 사이트 구조를 이해하고 최고의 콘텐츠를 노출하도록 돕습..."
-tool_id: "llms-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llms-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

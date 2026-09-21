@@ -1,7 +1,10 @@
 ---
-title: "스펙 키트: GitHub"
-description: "GitHub의 Spec Kit 완전 가이드 - 사양 중심 개발을 통해 개발자가 소프트웨어를 구축하는 방식을 변화시키는 오픈 소스 도구 키트. 설치, 워크플로우 및 실제 예제.". ..."
-slug: spec-kit-github-spec-driven-development-toolkit
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "spec-kit-github-spec-driven-development-toolkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

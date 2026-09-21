@@ -1,10 +1,10 @@
 ---
-title: "robots.txt 생성기 — AI 크롤러 제어 (GPTBot, ClaudeBot, Perplexit...
-description: "클릭 한 번으로 깔끔한 robots.txt 생성: sitemap 설정, 차단 경로 지정, GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CC..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-robots-txt-generator"
-tool_id: "robots-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "robots-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

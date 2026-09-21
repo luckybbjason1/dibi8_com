@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crewai-multi-agent-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "CrewAI: Build Multi-Agent AI Teams That Collaborate Auto...
-description: "A hands-on 2026 guide to CrewAI — the Python framework for building multi-agent AI systems with role..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/crewai-multi-agent-orchestration/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: One LLM Call Is Not Enough Anymore
 

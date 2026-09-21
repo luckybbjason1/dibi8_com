@@ -1,13 +1,10 @@
 ---
-title: "AI Coding Agents 2026: Claude Code vs Cursor vs Codex - ..."
-description: "In-depth comparison of the three leading AI coding agents in 2026. Learn which tool fits your workfl..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
 date: 2026-09-20
-lastmod: 2026-09-20
-tags: ["ai-coding", "claude-code", "cursor", "codex", "comparison", "2026"]
-categories: ["llm-frameworks"]
-license_type: Open Source
-source: "Multiple vendors"
-github: "anthropic/claude-code, anysphere/cursor, openai/codex"
+slug: "2026-09-20-ai-coding-agents-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

@@ -1,12 +1,10 @@
 ---
-title: "LLM Model Recommender 2026 — Pick the Right LLM by Use C..."
-description: "Free decision engine for choosing the right LLM in 2026. Answers 5 questions (use case / budget / co..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-llm-recommender"
-tool_id: "llm-recommender"
-aliases:
-  - /posts/llm-recommender/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-recommender"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # LLM Model Recommender 2026 — Pick the Right LLM by Use Case, Budget, Context Length, Privacy

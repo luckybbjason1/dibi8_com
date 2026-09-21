@@ -1,11 +1,10 @@
 ---
-title: "Roboflow 监督：Python计算机视觉标注工具包"
-description: "Roboflow的监督是全面的计算机视觉工具包，简化了CV标注、数据处理和模型评估。通过pip install supervision访问可重复使用的计算机视觉工具用于您的项目。"
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: roboflow-supervision
-category: data-science
-tags: ["supervision", "roboflow", "computer vision", "annotation", "object detection", "CV toolkit", "data-science"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "roboflow-supervision"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness: 1. **Introduction Section**: - Consider including a brief overview of what makes Supervision unique compared to other CV toolkits.

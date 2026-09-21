@@ -1,21 +1,10 @@
 ---
-title: "Cursor vs Windsurf 2026: AI IDE nào tốt hơn?"
-description: "So sánh trực tiếp Cursor và Windsurf (Codeium) — Composer vs Cascade, giá cả, hiệu năng, mẹo chuyển ..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'Cursor hay Windsurf rẻ hơn?'
-    a: 'Windsurf rẻ hơn với $15/tháng cho gói Pro so với $20/tháng Pro của Cursor. Windsurf cũng có gói miễn phí hào phóng hơn (5 credit Cascade/ngày). Về giá thuần Windsurf tiết kiệm $5-$10/tháng; năng lực trên mỗi đô thì sát nhau.'
-  - q: 'Cái nào tốt hơn cho chỉnh sửa đa file kiểu agent?'
-    a: 'Cascade của Windsurf hung hăng và tự chủ hơn ngay khi mặc định — chỉnh sửa nhiều file, chạy lệnh terminal, xem trước browser trong một luồng duy nhất. Composer của Cursor gần với trợ lý chỉnh sửa có kiểm soát hơn. Muốn agent tự chủ hoàn toàn chọn Windsurf; muốn kiểm soát chọn Cursor.'
-  - q: 'Có thể dùng Cursor và Windsurf cùng lúc không?'
-    a: 'Có, nhưng dư thừa — cả hai đều là VS Code fork làm việc tương tự. Đa số chọn một làm IDE chính. Combo hữu ích hơn là một trong hai (coding inline) + Claude Code CLI (refactor nặng).'
-  - q: 'Cái nào xử lý codebase lớn tốt hơn?'
-    a: 'Cả hai đều vất vả với hơn 100K LOC vì dựa vào indexing embedding chứ không phải cửa sổ context khổng lồ. Với monorepo 200K+ LOC cả hai đều không lý tưởng — kết hợp với Claude Code hoặc Aider cho việc nặng. Giữa hai cái thì indexing của Cursor có phần trưởng thành hơn một chút.'
-  - q: 'Công cụ nào tốt hơn cho người mới?'
-    a: 'Cursor — cộng đồng lớn hơn, nhiều tutorial hơn, UX rõ ràng hơn cho người mới. Windsurf mới hơn (2024), nhưng agent Cascade có thể "quá hung hăng" với người mới chưa thiết lập kỷ luật undo. Bắt đầu với Cursor, lên Windsurf khi muốn tự chủ hơn.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-vs-windsurf"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -139,7 +128,7 @@ Dùng không giới hạn: **Windsurf Ultimate $60/tháng** (Cursor không có g
 - Bật lại Cursor Tab sau ngày đầu (ồn hơn Supercomplete nhưng chuẩn hơn)
 
 ### Mẹo Self-Hosting
-Cần sandbox dev để chạy thử cả hai IDE đối với codebase thật? Bật {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — đủ cho 2 tháng đánh giá song song trên staging environment. Rẻ hơn 2 tháng subscribe đồng thời cả hai IDE, và sau khi quyết định bạn vẫn giữ hạ tầng.
+Cần sandbox dev để chạy thử cả hai IDE đối với codebase thật? Bật  — đủ cho 2 tháng đánh giá song song trên staging environment. Rẻ hơn 2 tháng subscribe đồng thời cả hai IDE, và sau khi quyết định bạn vẫn giữ hạ tầng.
 
 * * *
 
@@ -180,7 +169,7 @@ Với indie dev đang launch SaaS một mình? **Windsurf Pro $15/tháng** là R
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

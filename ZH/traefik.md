@@ -1,6 +1,13 @@
 ---
-title: "Traefik: 63,229 GitHub Stars — 云原生边缘路由器 2026 生产部署指南"
-description: "Traefik 是云原生应用代理和边缘路由器，支持自动服务发现。兼容 Docker、Kubernetes、Consul 和 Docker Compose。涵盖安装、中间件、TLS、监控和生产环境加固。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "traefik"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 在容器化环境中管理入口流量是一个持续的难题。每次新的微服务启动时，都需要有人更新反向代理配置、重新加载服务，并祈祷不会出问题。手动编辑 Nginx 配置文件、运行 ```nginx -s reload```` 然后验证路由是否正常工作 —— 这套流程在部署频率较低的时代或许可行，但在如今每天部署数十次甚至上百次的 DevOps 环境中，这种手动方式根本无法持续。配置错误导致的服务中断、证书过期未及时更新、新服务上线等待人工配置路由 —— 这些问题在快速增长的技术团队中屡见不鲜。
 

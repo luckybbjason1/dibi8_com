@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "firecrawl-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
-description: "Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clea..."
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,9 +30,9 @@ faqs: - q: 'How do I install Firecrawl?'
   - q: 'Can I use Firecrawl with languages other than TypeScript?'
     a: 'Yes. Firecrawl is an HTTP API, so any language can call it. There are official SDKs for Node.js and Python, and you can hit the REST endpoints directly from anything else with an HTTP client.'
   - q: 'Do I have to use the hosted API, or can I self-host?'
-    a: 'Both are supported. The hosted API at `api.firecrawl.dev` is the quickest start, but the project is open source and ships a Docker Compose setup so you can run the whole thing on your own server.'
+    a: 'Both are supported. The hosted API at ``api.firecrawl.dev`` is the quickest start, but the project is open source and ships a Docker Compose setup so you can run the whole thing on your own server.'
   - q: 'What is the difference between scrape, crawl, and map?'
-    a: '`scrape` handles one URL. `crawl` follows links to scrape an entire site asynchronously. `map` just returns the list of URLs on a site without scraping their content — useful for planning a crawl.'
+    a: '``scrape`` handles one URL. ``crawl`` follows links to scrape an entire site asynchronously. ``map`` just returns the list of URLs on a site without scraping their content — useful for planning a crawl.'
   - q: 'Is Firecrawl free, and what is its license?'
     a: 'The source code is free and open under AGPL-3.0, with the official SDKs and UI components under MIT. The hosted cloud API has a free tier plus paid plans for higher volume. If you self-host, you run it at your own infrastructure cost.'
 ---
@@ -33,7 +40,7 @@ faqs: - q: 'How do I install Firecrawl?'
 # Firecrawl: Turn Any Website into LLM-Ready Data (127K Stars) — Practical 2026 Guide
 
 
-{{< resource-info >}}
+
 
 ## Introduction
 
@@ -171,7 +178,7 @@ const doc = await app.scrape('https://example.com', {
       type: object,
       properties: {
         title: { type: string },
-        description: { type: string },
+        description: "Technical guide and comparison."
       },
     },
   }],
@@ -218,7 +225,7 @@ jobs: scrape: runs-on: ubuntu-latest
         run: npm install firecrawl
 
       - name: Run scraper
-        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: $
         run: node scrape.js > output.json
 `````
 

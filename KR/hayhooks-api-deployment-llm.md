@@ -1,6 +1,13 @@
 ---
-title: "Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 202...
-description: "Hayhooks를 사용하여 Haystack NLP pipeline을 프로덕션급 REST API로 배포하는 완벽한 가이드. 원클릭 배포, 컨테이너 지원, 자동 OpenAPI 문서 생..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hayhooks-api-deployment-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 당신은 멋진 Haystack pipeline을 만드는 데 사흘을 볃냈다. 문서를 청킹하고, 임베딩을 생성하고, dense retriever를 실행하고, 컨텍스트를 로컬 LLM에 전달한다. Jupyter notebook에서는 완벽하게 작동한다. 그때 프로덕트 매니저가 묻는다: "프론트엔드 팀이 이 API를 언제 호출할 수 있나요?" 당신의 심장이 가라앉는다. pipeline을 Flask로 감싸고, 요청 유효성 검사를 작성하고, OpenAPI 스키마를 생성하고, Docker 이미지를 빌드하고, CI/CD를 설정해야 한다는 것을 알기 때문이다. 30분이면 될 일이 일주일짜리 엔지니어링 sprint가 된다.
 
@@ -81,9 +88,9 @@ doc_store = InMemoryDocumentStore()
 template = """
 다음 문서를 바탕으로 질문에 답하세요.
 문서: {% for doc in documents %}
-  {{ doc.content }}
+  
 {% endfor %}
-질문: {{ question }}
+질문: 
 답변: """
 
 pipeline = Pipeline()

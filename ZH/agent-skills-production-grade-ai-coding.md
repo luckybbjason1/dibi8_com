@@ -1,6 +1,13 @@
 ---
-title: Agent Skills：开发团队如何以5倍速度交付生产级代码
-description: Addy Osmani的Agent Skills提供20个生产级工程技能和7个斜杠命令，将AI编码智能体转变为高级软件工程师。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agent-skills-production-grade-ai-coding"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -26,7 +33,7 @@ faqs: - q: 'Addy Osmani 开发的 Agent Skills 是什么？'
   - q: 'Agent Skills 中的 7 个斜杠命令是什么？'
     a: '这 7 个命令是 /spec（定义要构建什么）、/plan（把工作拆分成小而原子化的任务）、/build（增量构建）、/test（用测试证明它能正常工作）、/review（合并前评审）、/code-simplify（清晰胜过炫技）和 /ship（部署到生产环境）。每个命令都会根据你正在编辑的内容自动激活相关技能。'
   - q: '如何为 Claude Code 安装 Agent Skills？'
-    a: '对于 Claude Code，你可以用 `gh repo clone addyosmani/agent-skills .claude/skills` 把仓库克隆到你的项目中，或者用 `claude plugin install addyosmani/agent-skills` 作为插件安装。'
+    a: '对于 Claude Code，你可以用 ``gh repo clone addyosmani/agent-skills .claude/skills`` 把仓库克隆到你的项目中，或者用 ``claude plugin install addyosmani/agent-skills`` 作为插件安装。'
   - q: 'Agent Skills 中的反合理化表（anti-rationalization table）是什么？'
     a: '反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如"我稍后再加测试"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。'---
 
@@ -367,8 +374,8 @@ Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节�
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

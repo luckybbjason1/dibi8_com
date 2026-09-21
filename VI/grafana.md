@@ -1,6 +1,13 @@
 ---
-title: "Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
-description: "Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Promethe..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "grafana"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Mỗi sự cố production đều bắt đầu bằng một câu hỏi: "Cái gì đã thay đổi?" Không có một góc nhìn tập trung về metrics, logs và traces, câu hỏi đó có thể mất vài phút — đôi khi là vài giờ — để trả lờii. Grafana, nền tảng trực quan hóa mã nguồn mở với 73,876 sao GitHub, biến câu hỏi đó thành một dashboard có thể nhìn thấy trong một cái liếc mắt. Hướng dẫn này đi qua triển khai Docker cấp production, tích hợp nguồn dữ liệu, và các quyết định cứng hóa phân biệt giữa một bằng chứng khái niệm và một stack giám sát sẵn sàng cho production.
 
@@ -253,7 +260,7 @@ Loki tích hợp các dòng log cùng với metrics trong cùng một dashboard.
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # Tìm kiếm các mẫu lỗi cụ thể
-{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
+{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format ""
 `````
 
 ### InfluxDB — Dữ liệu Chuỗi thờii gian
@@ -353,7 +360,7 @@ groups: - orgId: 1
     folder: Infrastructure
     interval: 60s
     rules: - uid: high-cpu-usage
-        title: Mức sử dụng CPU Trên 80%
+        title: "AI Tool Guide"
         condition: B
         data: - refId: A
             relativeTimeRange: from: 300
@@ -363,7 +370,7 @@ groups: - orgId: 1
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations: summary: "Mức sử dụng CPU cao trên {{ $labels.instance }}"
+        annotations: summary: "Mức sử dụng CPU cao trên "
 `````
 
 ### Provisioning Dashboard từ Git

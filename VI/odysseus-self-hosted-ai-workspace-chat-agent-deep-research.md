@@ -1,11 +1,10 @@
 ---
-title: "Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích ...
-description: "Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhâ..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
-category: ai-tools
-tags: ["odysseus", "AI tự lưu trữ", "Không gian AI", "AI cục bộ", "nghiên cứu chuyên sâu", "tác nhân AI", "giao diện trò chuyện", "AI mã nguồn mở", "AI lab tại gia"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI — Đo Thực...
-description: "Đã kiểm thử Ollama, vLLM và LocalAI trên cùng RTX 4090 với Llama 3.3 70B. Tokens/giây thực tế, mức s..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-llm-2026-ollama-vllm-localai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
@@ -29,7 +36,7 @@ faq: - q: "Stack LLM tự lưu trữ nào tốt nhất vào năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # LLM Tự Lưu Trữ 2026: Ollama vs vLLM vs LocalAI
 
@@ -163,8 +170,8 @@ Tối ưu chi phí + lưu lượng cao → vLLM với H100
 
 ## Hạ Tầng Khuyến Nghị
 
-Cho triển khai LLM tự lưu trữ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có droplet GPU H100/L40S
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông, có tùy chọn GPU cho inference
+Cho triển khai LLM tự lưu trữ: - **** — $200 credit, có droplet GPU H100/L40S
+- **** — VPS Hồng Kông, có tùy chọn GPU cho inference
 
 *Link tiếp thị liên kết — cùng giá, hỗ trợ dibi8.com.*
 

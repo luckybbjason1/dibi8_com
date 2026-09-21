@@ -1,6 +1,13 @@
 ---
-title: "Portkey vs LiteLLM vs OpenRouter 2026：诚实的 LLM 网关选型指南（延迟、...
-description: "三家最大的 LLM 网关 2026 实测对比。真实数字：Portkey 增加 <1ms 延迟、LiteLLM 8ms P95、OpenRouter 100-150ms。按场景的 30 秒决策树、$10..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-gateway-portkey-litellm-openrouter-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - Python

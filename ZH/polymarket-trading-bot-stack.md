@@ -1,6 +1,13 @@
 ---
-title: Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元
-description: 深度解析Polymarket预测市场套利机器人的完整技术栈：28个工具、6个层级，以及如何利用延迟套利赚取第一桶金。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "polymarket-trading-bot-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
@@ -272,8 +279,8 @@ CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "binance" "category-footer" "Binance" >}}** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

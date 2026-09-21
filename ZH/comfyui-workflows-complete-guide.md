@@ -1,20 +1,10 @@
 ---
-title: ComfyUI 工作流 — AI 图像生成的可视化编程语言
-description: ComfyUI 完全指南：用于专业 AI 图像生成的节点式工作流。构建复杂管线、管理依赖关系并创建可共享的工作流模板。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["comfyui", "ai-image-generation", "workflow", "nodes", "stable-diffusion", "visual-programming"]
-category: ai-tools
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: comfyui-workflows-complete-guide
--CN---
-
-
-## TL;DR
-
-ComfyUI 是一个强大的节点式图形界面，用于运行 AI 图像生成模型。它让你通过连接节点而不是编写代码来构建自定义管线。支持 Stable Diffusion、Flux、SDXL 和数十种其他模型。本指南涵盖工作流设计模式、节点管理、性能优化以及如何创建专业级图像生成管线。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-workflows-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## ComfyUI 是什么？
 

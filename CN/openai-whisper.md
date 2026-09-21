@@ -1,6 +1,13 @@
 ---
-title: "OpenAI Whisper: 99.8K+ Stars — Complete ASR Setup Tutori...
-description: "OpenAI Whisper (ASR) robust speech recognition via large-scale weak supervision. Compatible with Whi..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-whisper"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/openai-whisper/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

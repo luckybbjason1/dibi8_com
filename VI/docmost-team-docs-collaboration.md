@@ -1,6 +1,13 @@
 ---
-title: "Docmost 2026: Phương án thay thế Notion mã nguồn mở cho ...
-description: "Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian th..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docmost-team-docs-collaboration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao đội của bạn cần phương án thay thế Notion tự host
 
@@ -282,7 +289,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           curl -X POST \
             "https://docs.yourdomain.com/api/pages" \
-            -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d @payload.json
 `````

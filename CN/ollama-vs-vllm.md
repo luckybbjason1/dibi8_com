@@ -1,21 +1,10 @@
 ---
-title: "Ollama vs vLLM in 2026: Local Dev Simplicity vs Producti...
-description: "Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production infere..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["ollama", "vllm", "local-llm", "inference", "llm-serving", "comparison", "dev-tools", "self-hosted"]
-categories: ["vs"]
-faqs: - q: 'Should I use Ollama or vLLM for serving an LLM?'
-    a: 'Use Ollama if you are serving one or a few users locally — on a laptop, Mac, or a single dev box — and you value a one-command setup. Use vLLM if you are serving many concurrent users in production and need high throughput on GPUs. The rule of thumb: Ollama for local development and prototyping, vLLM for production serving at scale. Many teams use Ollama in development and switch to vLLM for the production deployment.'
-  - q: 'Why is vLLM faster than Ollama under load?'
-    a: 'vLLM uses two techniques built for throughput: PagedAttention, which manages the attention KV cache like virtual memory to avoid waste, and continuous batching, which packs many in-flight requests into the GPU efficiently instead of processing them one at a time. Together these let vLLM serve far more tokens per second across concurrent users. Ollama is optimized for simple single-user local use, not for batching dozens of simultaneous requests, so it falls behind under heavy concurrent load.'
-  - q: 'Does Ollama or vLLM need a GPU?'
-    a: 'Ollama runs without a dedicated GPU — it works on CPU and uses Apple Metal or a consumer GPU when available, which is why it runs comfortably on a MacBook. vLLM is GPU-first and effectively requires CUDA-capable NVIDIA GPUs (and benefits from multiple GPUs via tensor parallelism). If you do not have GPU infrastructure, Ollama is the practical choice; if you have GPUs and need throughput, vLLM unlocks them.'
-  - q: 'Can I use the same models in Ollama and vLLM?'
-    a: 'Often yes, but in different formats. Ollama pulls quantized GGUF models from its registry with a single command, optimized to fit limited memory. vLLM typically loads full-precision or quantized models from Hugging Face in safetensors format, tuned for GPU serving. The same base model (for example a Llama or Qwen release) is usually available for both, but you point each tool at the format it expects rather than sharing one file.'
-  - q: 'Is vLLM harder to set up than Ollama?'
-    a: 'Yes. Ollama is famously simple — install the binary and run one command like ollama run to pull and chat with a model. vLLM requires a GPU environment, Python dependencies, and configuration of the model, parallelism, and server settings, though it then exposes an OpenAI-compatible API that is easy to call. Budget minutes for Ollama and an afternoon (plus GPU provisioning) for a first production vLLM deployment.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-vs-vllm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Ollama vs vLLM in 2026: Local Dev Simplicity vs Production Throughput

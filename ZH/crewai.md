@@ -1,6 +1,13 @@
 ---
-title: "CrewAI: 51000+ Star 构建多智能体 AI 团队 — 完整设置指南 2026"
-description: "CrewAI (crewAIInc/crewAI) 是一个用于编排角色扮演、自主 AI 智能体的 Python 框架。兼容 OpenAI、Anthropic、Ollama、LangChain 和 Ll..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 > 如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。
 
@@ -219,7 +226,7 @@ editor: role: >
 `````yaml
 # src/research_crew/config/tasks.yaml
 
-research_task: description: >
+research_task: description: "Technical guide and comparison."
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -228,7 +235,7 @@ research_task: description: >
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task: description: >
+writing_task: description: "Technical guide and comparison."
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -238,7 +245,7 @@ writing_task: description: >
   agent: writer
   context: [research_task]
 
-editing_task: description: >
+editing_task: description: "Technical guide and comparison."
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -347,7 +354,7 @@ python -m research_crew.main
 ...
 [2026-05-20 10:25:18] Working Agent: Senior Content Editor
 ...
-========== FINAL OUTPUT ==========
+
 [完整的编辑后文章显示在此处]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 `````

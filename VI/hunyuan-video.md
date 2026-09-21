@@ -1,6 +1,13 @@
 ---
-title: "HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
-description: "HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hunyuan-video"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Một mô hình tạo video cần 60GB VRAM để tạo ra clip 5 giây ở 720p không phải là đồ chơi — nó là hạ tầng. HunyuanVideo của Tencent, một mô hình Diffusion Transformer 13 tỷ tham số để tạo video, đã tích lũy hơn 12.100 sao trên GitHub và trở thành lựa chọn hàng đầu cho các team cần tổng hợp video chất lượng điện ảnh trên phần cứng tự quản lý. Hướng dẫn này đi qua toàn bộ thiết lập production: từ triển khai Docker hoạt động được đến quantization FP8, suy luận song song đa GPU, tích hợp ComfyUI, và giám sát cần thiết khi phục vụ ở quy mô lớn.
 

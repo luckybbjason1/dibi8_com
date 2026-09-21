@@ -1,9 +1,10 @@
 ---
-title: "2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개"
-description: "2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개". Comprehensive guide covering features, pricing,..."
-draft: false
-aliases:
-  - /posts/ai-agent-skills-2026-developer-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-skills-2026-developer-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

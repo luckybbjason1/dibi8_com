@@ -1,11 +1,10 @@
 ---
-title: "Ruv Pi：自我扩展编码代理CLI多提供商LLM API"
-description: "Ruv Pi 是来自Earendil Works的自扩展编码代理CLI，提供统一的多提供商LLM API，使开发者能够构建、运行和扩展支持Claude、OpenAI、Gemini等的人工智能编码代理。"
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: ruv-pi
-category: llm-frameworks
-tags: ["ruv-pi", "pi-agent", "coding agent", "LLM", "multi-provider", "AI coding", "self-extensible"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ruv-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Ruv Pi：自我扩展编码代理CLI多提供商LLM API

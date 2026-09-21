@@ -1,9 +1,10 @@
 ---
-title: "AI 이미지 생성 도구 완벽 가이드: Midjourney, DALL-E, Stable Diffusio...
-description: "2025년 최신 AI 이미지 생성 도구를 완벽하게 비교합니다. Midjourney v7, DALL-E 3, Stable Diffusion 3.5, FLUX의 특징, 가격, 프롬프트..."
-draft: false
-aliases:
-  - /posts/ai-image-generation-tools-complete-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-image-generation-tools-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

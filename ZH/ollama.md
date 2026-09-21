@@ -1,6 +1,13 @@
 ---
-title: "Ollama: 137K+ Stars — 一条命令本地运行大模型，2026 完整配置指南"
-description: "Ollama 是在本地运行 Llama、DeepSeek、Mistral 等 LLM 的最简单方式。兼容 LangChain、OpenWebUI、Continue.dev 和 Dify。涵盖 Dock..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 运行大语言模型过去意味着与 Python 环境、CUDA 驱动和数 GB 的依赖项搏斗。到了 2026 年，这种摩擦已经消失。[Ollama](https://ollama.com) 让你可以用一条命令拉取、配置并提供生产级 LLM —— 无需安装 PyTorch，无需手动调整 GPU，甚至不需要 Docker。凭借 137,000+ GitHub Stars 和繁荣的集成生态，Ollama 已成为开发者在本地运行推理而不想承受运维负担的默认运行时。
 
@@ -323,13 +330,13 @@ PARAMETER repeat_penalty 1.1
 PARAMETER stop "<|eot_id|>"
 
 # 自定义模板（可选 —— 省略则继承基础模型）
-TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+TEMPLATE """<|start_header_id|>system<|end_header_id|>
 
-{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+<|eot_id|><|start_header_id|>user<|end_header_id|>
 
-{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
-{{ .Response }}<|eot_id|>"""
+<|eot_id|>"""
 `````
 
 构建并运行：

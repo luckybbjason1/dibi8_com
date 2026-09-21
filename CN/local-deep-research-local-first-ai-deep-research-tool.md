@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-deep-research-local-first-ai-deep-research-tool"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Local Deep Research: The Ultimate Local-First AI Deep Re..."
-description: "Master Local Deep Research (LDR) — the local-first AI research assistant. Learn how to perform deep,..."
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -26,7 +33,7 @@ faqs: - q: 'What is Local Deep Research (LDR)?'
   - q: 'What stack is recommended to run Local Deep Research?'
     a: 'The recommended local-first stack uses Ollama as the LLM engine (running Llama 3 or Mistral), SearXNG as the privacy-respecting metasearch engine, and Docker for easy deployment. SearXNG handles web search while Ollama keeps the model local.'
   - q: 'How do I deploy Local Deep Research with Docker?'
-    a: 'Run SearXNG with `docker run -d -p 8080:8080 --name searxng searxng/searxng`, then run LDR with `docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research`. This brings up both the metasearch engine and the research agent.'
+    a: 'Run SearXNG with ``docker run -d -p 8080:8080 --name searxng searxng/searxng``, then run LDR with ``docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research``. This brings up both the metasearch engine and the research agent.'
   - q: 'How does Local Deep Research avoid AI hallucinations and ensure trust?'
     a: 'LDR provides high-fidelity citations, supplying a bibliography for every claim it makes so you can verify the source material instantly. It also performs iterative synthesis, identifying gaps and running follow-up searches rather than relying on a single surface-level answer.'
 ---
@@ -90,8 +97,8 @@ Local Deep Research is more than just a tool; it's a paradigm shift for how we i
 * * *
 ## Recommended Infrastructure for Self-Hosting
 
-If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
 *Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
 

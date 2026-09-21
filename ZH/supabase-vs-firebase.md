@@ -1,6 +1,13 @@
 ---
-title: "Supabase vs Firebase 2026：哪个 BaaS 更值得选？"
-description: "基于 Postgres 的开源 Supabase 和 Google NoSQL Firebase 横向对比 — 数据库、认证、存储、实时、边缘函数、定价、锁定、自托管。2026 年更新。". Comp..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-vs-firebase"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

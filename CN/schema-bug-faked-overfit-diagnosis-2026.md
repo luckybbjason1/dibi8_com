@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "schema-bug-faked-overfit-diagnosis-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Schema Bug Faked My Overfit Diagnosis: The Backtest Post...
-description: "Ran 7 quant experiments, found "textbook overfit" (Train PF 2.08 → OOS 0.94, ratio 2.21). Then disco..."
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
@@ -19,7 +26,7 @@ faq: - q: "What is schema drift and why does it fake backtest results?"
   - q: "How did the original overfit diagnosis look so convincing?"
     a: "Textbook signature: Train PF 2.08, OOS PF 0.94, ratio 2.21. Every quant trader has seen this pattern in literature — the optimizer fits noise that doesn't repeat. The conclusion overfit fit the data shape perfectly. The hidden 10x leverage just amplified everything, making both numbers extreme. With the correct 2x leverage, the same parameters give Train 1.494 / OOS 1.478 ratio 1.01 — boringly stable."
   - q: "What's the meta-lesson for backtest validation?"
-    a: "Before trusting any backtest result, validate that your parameter dictionary actually loaded the values you wrote. `print(vars(params))` after `from_dict()`. If a field silently dropped, you're running a different strategy than you think. This single 5-second check would have saved 7 follow-up experiments."
+    a: "Before trusting any backtest result, validate that your parameter dictionary actually loaded the values you wrote. ``print(vars(params))`` after ``from_dict()``. If a field silently dropped, you're running a different strategy than you think. This single 5-second check would have saved 7 follow-up experiments."
   - q: "Does this mean overfit doesn't exist in this strategy?"
     a: "Not exactly. The corrected version on BTC 304d is stable (ratio 1.01). But cross-asset testing on 8 pairs showed mostly noise (ratio_stdev > mean). One asset (DOT) looked great until walk-forward decomposition revealed IS/OOS ratio 6.47 — actual textbook overfit hiding inside a 'cross-asset success' story. The strategy is break-even, just for different reasons than originally diagnosed."
   - q: "How do you defend against schema drift in production?"
@@ -28,7 +35,7 @@ faq: - q: "What is schema drift and why does it fake backtest results?"
     a: "Expanded from 7 to 13. The new entries: don't trust experiments without schema validation, don't make calls on datasets under 200 trading days, don't accept PF > 3 with under 30 trades, don't ship strategies without cross-asset validation, don't ignore stdev/mean ratio (over 1 = noise), don't report PF without per-segment decomposition, don't accept reports without IS/OOS ratio."
 ---
 
-{{</* resource-info */>}}
+
 
 # Schema Bug Faked My Overfit Diagnosis
 
@@ -186,8 +193,8 @@ If you only take one habit from this postmortem: print your effective params bef
 
 ## Recommended Infrastructure
 
-For walk-forward + multi-asset experiment scaffolding: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, easy GPU/CPU droplets
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency to Asia exchange APIs
+For walk-forward + multi-asset experiment scaffolding: - **** — $200 credit, easy GPU/CPU droplets
+- **** — Hong Kong VPS, low-latency to Asia exchange APIs
 
 *Affiliate links — same price, supports dibi8.com.*
 

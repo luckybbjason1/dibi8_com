@@ -1,6 +1,13 @@
 ---
-title: "Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택"
-description: "다양한 MCP 서버 조합으로 Claude Code를 운영해본 끝에, 성능·보안·시작 시간의 균형을 맞춘 10 서버 프로덕션 스택으로 정착했습니다. 각 서버가 왜 포함되었는지, 무엇..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-mcp-advanced-10-server-stack-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', MCP, TypeScript, Python, Docker]
@@ -25,7 +32,7 @@ faq: - q: "MCP 서버는 몇 개부터 너무 많은가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Claude Code MCP 고급 2026: 프로덕션급 10 서버 스택
 
@@ -157,8 +164,8 @@ Slack과 동일—유용하지만 대부분 사용자에게 매일 돌아오는 
 
 ## 권장 인프라
 
-자체 호스팅 MCP 서버(팀 공유용): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아 저지연
+자체 호스팅 MCP 서버(팀 공유용): - **** — 200달러 크레딧
+- **** — 홍콩 VPS, 아시아 저지연
 
 *제휴 링크—가격은 동일하며 dibi8.com을 후원합니다.*
 

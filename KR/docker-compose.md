@@ -1,16 +1,14 @@
 ---
-title: "Docker Compose: 37,393 GitHub Stars — 멀티 컨테이너 앱 완벽 설정 가이...
-description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comp..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["dev-utils"]
-tags: ["docker-compose", "컨테이너-오케스트레이션", "devops", "docker", "마이크로서비스", "배포", "yaml", "멀티-컨테이너"]
-aliases:
-  - /kr/posts/docker-compose/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docker-compose"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Docker Compose Logo](https://raw.githubusercontent.com/docker/compose/main/logo.png)
 

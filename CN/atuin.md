@@ -1,6 +1,13 @@
 ---
-title: "Atuin: 29,794 GitHub Stars — Shell History Sync Setup Gu...
-description: "Atuin replaces shell history with a SQLite database, records command context (exit code, cwd, durati..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "atuin"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/atuin/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
 

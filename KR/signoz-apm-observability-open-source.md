@@ -1,16 +1,14 @@
 ---
-title: "SigNoz: Datadog 비용의 10%로 대체하는 오픈소스 APM — 분산 추적 설정 가이드 2026"
-description: "5분 만에 SigNoz를 배포하세요. OpenTelemetry 기반 오픈소스 APM으로 분산 추적, 메트릭, 로그 관리를 제공하며 Datadog 비용의 10%만으로 운영 가능합니다..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["signoz", "apm", "가시성", "분산 추적", "opentelemetry", "datadog 대안", "셀프호스팅", "docker", "kubernetes", "메트릭", "로그", "모니터링"]
-aliases:
-  - /kr/posts/signoz-apm-observability-open-source/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "signoz-apm-observability-open-source"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 아묵도 이야기하지 않는 연간 $65,000 가시성 비용
 
@@ -196,7 +194,7 @@ volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````
 
 `````bash
 # 모든 컨테이너가 실행 중인지 확인
-docker ps --format "table {{.Names}}\t{{.Status}}"
+docker ps --format "table \t"
 
 # 예상 출력: # NAMES                        STATUS
 # docker-clickhouse-1          Up 2 minutes (healthy)
@@ -416,19 +414,19 @@ groups: - name: payment_service_alerts
         for: 2m
         labels: severity: critical
         annotations: summary: "결제 서비스 오류율 > 5%"
-          description: "오류율이 {{ $value }}입니다"
+          description: "Technical guide and comparison."
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
         labels: severity: warning
         annotations: summary: "결제 서비스 P95 지연 시간 > 500ms"
-          description: "P95 지연 시간이 {{ $value }}ns입니다"
+          description: "Technical guide and comparison."
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
         labels: severity: warning
         annotations: summary: "로그 오류 스파이크 감지"
-          description: "{{ $value }} 오류/분"
+          description: "Technical guide and comparison."
 `````
 
 SigNoz UI의 설정 → 알림 채널에서 알림 채널(Slack, PagerDuty, 이메일)을 구성합니다.

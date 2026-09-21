@@ -1,21 +1,10 @@
 ---
-title: "Supabase vs Firebase 2026: BaaS nào tốt hơn?"
-description: "So sánh Supabase mã nguồn mở dựa trên Postgres và Firebase NoSQL của Google — database, auth, storag..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["supabase", "firebase", "baas", "postgres", "firestore", "comparison", "backend"]
-categories: ["vs"]
-faqs: - q: 'Supabase hay Firebase rẻ hơn?'
-    a: 'Với dự án nhỏ, cả hai đều có hạn mức miễn phí hào phóng, nhưng Supabase rẻ hơn về cấu trúc khi mở rộng quy mô vì truy vấn Postgres không tính phí theo từng hàng. Firebase Firestore tính phí theo số document đọc — một truy vấn dashboard kéo 10K document tốn tiền thật trên Firebase nhưng miễn phí trên Supabase nếu nằm trong compute đã bao gồm. Với khối lượng nặng về phân tích, hóa đơn hàng tháng của Supabase rẻ hơn 5-10 lần.'
-  - q: 'Cái nào tốt hơn cho dữ liệu quan hệ?'
-    a: 'Supabase thắng cách biệt — nó chính là Postgres bên dưới, nên bạn có JOIN, foreign key, transaction, view, CTE ngay từ đầu. Firebase Firestore là NoSQL/document và buộc bạn phải denormalize hoặc JOIN ở client. Nếu dữ liệu có quan hệ (user, order, product), chọn Supabase.'
-  - q: 'Có thể self-host Supabase hay Firebase không?'
-    a: 'Supabase có, Firebase không. Supabase hoàn toàn mã nguồn mở (Apache 2.0 / PostgreSQL license) và bạn có thể chạy toàn bộ stack trên server của mình bằng Docker Compose. Firebase là dịch vụ đóng của Google — không có tùy chọn self-host, lối thoát duy nhất là di chuyển toàn bộ.'
-  - q: 'Cái nào có realtime tốt hơn?'
-    a: 'Realtime của Firebase trưởng thành hơn — là tính năng chủ lực từ 2012 và xử lý hàng triệu kết nối đồng thời không cần tinh chỉnh. Realtime của Supabase (logical replication Postgres + Phoenix Channels) mới hơn nhưng đang bắt kịp nhanh và hoạt động tốt dưới 10K client đồng thời. Cho app chat/presence dưới 10K user, cả hai đều ổn; trên ngưỡng đó Firebase có lợi thế.'
-  - q: 'Cái nào tốt hơn cho AI / vector search?'
-    a: 'Supabase thắng tuyệt đối — nó có pgvector tích hợp sẵn, bạn có thể lưu embedding và chạy truy vấn cosine-similarity trong cùng database với dữ liệu app. Firebase không hỗ trợ vector native và phải gắn thêm Vertex AI hoặc DB vector riêng. Cho app RAG/AI năm 2026, Supabase là lựa chọn hiển nhiên.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-vs-firebase"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -149,7 +138,7 @@ App nặng phân tích hoặc AI/RAG: **Supabase thắng 5-10 lần** về hóa 
 - Lập ngân sách cho hóa đơn bất ngờ tháng đầu — bật cảnh báo ngân sách GCP ngày đầu
 
 ### Lưu Ý Self-Hosting
-Muốn chạy Supabase trên server riêng để thoát hoàn toàn hóa đơn cloud hoặc giữ dữ liệu on-prem để tuân thủ? Bật một {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — droplet 4 GB $24/tháng xử lý thoải mái stack Supabase self-host (Postgres + GoTrue + Storage + Realtime + Studio) cho SaaS nhỏ-tới-trung bình. Rẻ hơn Supabase Pro từ tháng 4, và dữ liệu không bao giờ rời cơ sở hạ tầng của bạn. Firebase không có cái tương đương — không có cách self-host ra khỏi cloud của Google.
+Muốn chạy Supabase trên server riêng để thoát hoàn toàn hóa đơn cloud hoặc giữ dữ liệu on-prem để tuân thủ? Bật một  — droplet 4 GB $24/tháng xử lý thoải mái stack Supabase self-host (Postgres + GoTrue + Storage + Realtime + Studio) cho SaaS nhỏ-tới-trung bình. Rẻ hơn Supabase Pro từ tháng 4, và dữ liệu không bao giờ rời cơ sở hạ tầng của bạn. Firebase không có cái tương đương — không có cách self-host ra khỏi cloud của Google.
 
 * * *
 
@@ -192,7 +181,7 @@ Indie dev ship một SaaS năm 2026? **Supabase Pro $25/tháng** là ROI thô t�
 
 **Self-host Supabase ở châu Á?** Hong Kong VPS cho bạn Supabase stack với latency thấp nhất cho user ở China và SEA.
 
-- **{{< aff "htstack" "vs-footer" "HTStack" >}}** — Hong Kong VPS, cùng IDC host dibi8.com. Bổ sung DigitalOcean nếu có multi-region user — HTStack cho châu Á, DigitalOcean cho US/EU. Self-host Supabase full stack (Postgres + GoTrue + Storage + Realtime) không bị vendor lock-in.
+- **** — Hong Kong VPS, cùng IDC host dibi8.com. Bổ sung DigitalOcean nếu có multi-region user — HTStack cho châu Á, DigitalOcean cho US/EU. Self-host Supabase full stack (Postgres + GoTrue + Storage + Realtime) không bị vendor lock-in.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

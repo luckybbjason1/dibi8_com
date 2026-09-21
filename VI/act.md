@@ -1,6 +1,13 @@
 ---
-title: "act: 70,410 GitHub Stars — Chạy GitHub Actions Local, Hư...
-description: "act (nektos/act) là công cụ CLI chạy GitHub Actions workflow local bằng Docker container. Tương thíc..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "act"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![act logo](https://raw.githubusercontent.com/nektos/act/master/img/act-logo.png)
 
@@ -359,16 +366,16 @@ Thứ tự ưu tiên cấu hình (cao đến thấp): 1. Tham số CLI
 
 Đánh dấu các step không nên chạy local: `````yaml
 # Trong file workflow của bạn
-jobs: deploy: if: ${{ !github.event.act }}  # Bỏ qua job deploy khi chạy local
+jobs: deploy: if: $  # Bỏ qua job deploy khi chạy local
     runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
 
   notify: runs-on: ubuntu-latest
     steps: - name: Bỏ qua Slack notification khi chạy local
-        if: ${{ !env.ACT }}
+        if: $
         run: |
           curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
+            --data '{"text":"Deployment complete"}' $
 `````
 
 Truyền cờ act qua sự kiện: `````bash

@@ -1,7 +1,11 @@
 ---
-
-## AAVE là Gì?
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aave-v4-defi-lending-protocol"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 AAVE là một giao thức thanh khoản nguồn mở, không giữ tài sản giúp người dùng cung cấp và vay các tài sản tiền điện tử. Ban đầu được ra mắt dưới dạng ETHLend vào năm 2017 và tái định vị thương hiệu thành AAVE vào năm 2018, giao thức này đã phát triển qua nhiều phiên bản chính. Phiên bản AAVE v3 được ra mắt vào năm 2023 với khả năng cửa hàng chuỗi liên kết, và AAVE v4 xuất hiện vào cuối năm 2025 với kiến trúc linh hoạt, hiệu quả vốn cải thiện và hỗ trợ tinh thể lỏng tài khoản nội tại.
 
 Giao thức này hoạt động thông qua một loạt hợp đồng thông minh được triển khai trên Ethereum, Polygon, Arbitrum, Optimism, Avalanche, Base và nhiều mạng lưới khác. Người dùng cung cấp tài sản nhận lại aTokens làm trả, mà lãi suất tăng theo thời gian. Người vay có thể lấy khoản vay quá bảo đảm trong chế độ lãi suất biến đổi hoặc ổn định, với sự linh hoạt để chuyển đổi giữa chúng.

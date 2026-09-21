@@ -1,6 +1,13 @@
 ---
-title: "Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人"
-description: "moss-trade-bot-skills v1.0.26 完整实测：基于 Hyperliquid 永续合约的自然语言量化 agent 工厂。工业级 Decimal 精度回测引擎 + 20 档深度成交..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moss-trade-bot-factory-2026-review"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, ccxt, Hyperliquid]
@@ -33,7 +40,7 @@ faq: - q: "moss-trade-bot-factory 装起来安全吗？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Moss Trade Bot Factory 2026 评测：AI 智能体量化工作台 — 为什么漂亮回测会骗人
 
@@ -263,8 +270,8 @@ skill 本身免费（MIT-0）。漏斗是 moss.site，可以：
 
 如果你想自己跑量化回测流水线 7×24，需要稳定 VPS：
 
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 新用户 60 天 $200 免费额度。独立 quant 原型回测流水线的不二之选。
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，国内访问低延迟。dibi8.com 自己跑在这个 IDC。
+- **** — 新用户 60 天 $200 免费额度。独立 quant 原型回测流水线的不二之选。
+- **** — 香港 VPS，国内访问低延迟。dibi8.com 自己跑在这个 IDC。
 
 *推广链接 — 不增加你的成本，但能支持 dibi8.com 持续运营。*
 

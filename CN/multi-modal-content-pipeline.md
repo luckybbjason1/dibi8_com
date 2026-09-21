@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-modal-content-pipeline"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack...
-description: "Self-hosted multi-modal content stack: faster-whisper (STT) + ChatTTS (dialogue TTS) + Stable Diffus..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -45,7 +52,7 @@ The 2026 creator economy runs on multi-modal content — podcasts with AI co-hos
 | 4 | **ComfyUI** | Text/Image → Image/Video/Audio | Workflow engine for complex multi-modal pipelines | [ComfyUI 2026](/resources/ai-tools/comfyui-node-based-ai-image-2026/) |
 | 5 | **FFmpeg** | Video/Audio assembly | Compose final video / podcast deliverables | (industry standard, no deep-dive needed) |
 
-**Total monthly cost** (rented GPU, 4 hours/day usage): **~$30-50/mo** (Vast.ai or {{< aff "digitalocean" "mm-gpu" "DigitalOcean GPU droplet" >}}) • **Always-on dedicated GPU**: **~$80-150/mo**
+**Total monthly cost** (rented GPU, 4 hours/day usage): **~$30-50/mo** (Vast.ai or ) • **Always-on dedicated GPU**: **~$80-150/mo**
 
 Compare to SaaS equivalents: ElevenLabs ($22) + Midjourney ($30) + Descript ($24) + Pictory ($59) + Adobe Creative Cloud ($55) = $190/mo before any volume premiums.
 
@@ -164,7 +171,7 @@ No deep-dive needed — FFmpeg has a million guides online. Learn these 3 comman
 
 ## 8. Day 1 Setup Order (3-4 hours)
 
-1. **GPU instance** (15 min) — Rent a 24 GB GPU on Vast.ai ($0.50-1/hr) or order a {{< aff "digitalocean" "mm-vps" "DigitalOcean GPU droplet" >}}. 24 GB needed for video; 12 GB enough if skipping video for now
+1. **GPU instance** (15 min) — Rent a 24 GB GPU on Vast.ai ($0.50-1/hr) or order a . 24 GB needed for video; 12 GB enough if skipping video for now
 2. **Install Docker + Python venv basics** (15 min)
 3. **ComfyUI + ComfyUI Manager** (30 min) — Workhorse for all visual work
 4. **ChatTTS** (15 min) — Pre-generate 3-5 stable speakers, save embeddings
@@ -212,7 +219,7 @@ When you outgrow: - **>1 hour of TTS / day** — Switch ChatTTS hosting from Vas
 4. **ComfyUI** — the multi-modal workflow engine (image / video / audio in one place)
 5. **FFmpeg** — boring-but-essential assembly
 
-Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, shut it down when you don"t. The math beats SaaS as soon as you cross ~2 hours/day of active content production.
+Rent a  when you produce, shut it down when you don"t. The math beats SaaS as soon as you cross ~2 hours/day of active content production.
 
 
 * * *

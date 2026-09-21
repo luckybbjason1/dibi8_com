@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "python-context-managers-the-three-cases-you-actually-need"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Python Context Managers: The Three Cases You Actually Need"
-description: "Python context managers: the three cases you actually need. Master with. Comprehensive guide coverin..."
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -24,11 +31,11 @@ faqs: - q: 'When should you write a custom context manager instead of using try/
   - q: 'How do you create a context manager that temporarily sets environment variables and restores them afterward?'
     a: 'Use @contextlib.contextmanager to save each variable''s previous value with os.environ.get(), apply the overrides, yield inside a try, and restore in the finally. Critically, if a variable was absent before (its saved value is None), restore it with os.environ.pop() rather than assigning it, otherwise you write the literal string "None".'
   - q: 'What does contextlib.suppress do and why is it better than try/except: pass?'
-    a: 'contextlib.suppress(ExceptionClass) swallows a specific named exception and continues, e.g. `with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")`. It is clearer than try/except: pass because its limited surface forces you to name the exception class, so you can''t accidentally suppress everything or suppress code below the cleanup.'
+    a: 'contextlib.suppress(ExceptionClass) swallows a specific named exception and continues, e.g. ``with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")``. It is clearer than try/except: pass because its limited surface forces you to name the exception class, so you can''t accidentally suppress everything or suppress code below the cleanup.'
   - q: 'How do you write an async context manager in Python?'
-    a: 'Decorate an async generator with @contextlib.asynccontextmanager and consume it with `async with`. The shape is identical to a synchronous one, except you can await inside the body, which suits patterns like acquiring a connection from a pool, running a query, then releasing it in the finally block.'
+    a: 'Decorate an async generator with @contextlib.asynccontextmanager and consume it with ``async with``. The shape is identical to a synchronous one, except you can await inside the body, which suits patterns like acquiring a connection from a pool, running a query, then releasing it in the finally block.'
   - q: 'When should you NOT use a context manager in Python?'
-    a: 'Avoid them when the acquire half needs no paired release (just call the function), when cleanup is best-effort and a small inline try/finally reads more clearly, or when the resource is already lifecycle-managed by something else, such as a framework Session. Each `with` adds machinery and stacking them hurts readability fast.'---
+    a: 'Avoid them when the acquire half needs no paired release (just call the function), when cleanup is best-effort and a small inline try/finally reads more clearly, or when the resource is already lifecycle-managed by something else, such as a framework Session. Each ``with`` adds machinery and stacking them hurts readability fast.'---
 
 {</* resource-info */>}
 
@@ -165,8 +172,8 @@ it.
 ---
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

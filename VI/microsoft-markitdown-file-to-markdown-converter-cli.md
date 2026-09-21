@@ -1,11 +1,10 @@
 ---
-title: "Microsoft MarkItDown: Hướng dẫn toàn diện để chuyển đổi ...
-description: "Tìm hiểu cách sử dụng MarkItDown của Microsoft để chuyển đổi PDF, tài liệu Word, hình ảnh, HTML, PPT..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
-category: dev-utils
-tags: ["microsoft", "markitdown", "markdown", "python", "cli", "pdf-converter", "document-processing", "AI", "open-source"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

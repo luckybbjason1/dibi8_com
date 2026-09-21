@@ -1,6 +1,13 @@
 ---
-title: "AI Agent 工具链 2026：6 组件 stack 搭生产级自主 agent"
-description: "完整生产级 AI agent stack：LangGraph 状态机编排 + MCP servers 工具 + mem0 记忆 + OpenClaw 多 agent 协调 + Hermes Agent..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-tool-chain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -202,7 +209,7 @@ pip install hermes-agent
 
 ## 9. Day 1 组装顺序（3 小时）
 
-1. **开 VPS + Postgres**（20 分）—— {{< aff "digitalocean" "agent-vps" "DigitalOcean $24/月 droplet（8 GB）" >}} + 托管 Postgres（$15/月）
+1. **开 VPS + Postgres**（20 分）——  + 托管 Postgres（$15/月）
 2. **装 LangGraph + checkpointer**（15 分）—— ````pip install````，写 30 行 hello-world 有状态 agent，验证它熬过 ````kill -9``` 后恢复
 3. **加 MCP servers**（30 分）—— filesystem + git + tavily + e2b-sandbox 加到你 LangGraph node 的 MCP config
 4. **加 mem0 + AgentMemory MCP**（20 分）—— Docker run mem0，agentmemory 加到 MCP toolset
@@ -258,7 +265,7 @@ pip install hermes-agent
 5. **Hermes Agent** —— 自改进循环
 6. **e2b 沙箱** —— 安全代码执行
 
-开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/月 droplet" >}}，跟第 9 节做，你有熬过重启 / 记住上下文 / 安全跑代码 / 随时间自改进的 agent —— 跑在你自己拥有的基础设施上，比单座 Cursor 还便宜。
+开一个 ，跟第 9 节做，你有熬过重启 / 记住上下文 / 安全跑代码 / 随时间自改进的 agent —— 跑在你自己拥有的基础设施上，比单座 Cursor 还便宜。
 
 
 * * *

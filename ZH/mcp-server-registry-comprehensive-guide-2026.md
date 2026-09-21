@@ -1,6 +1,13 @@
 ---
-title: "MCP Server 全目录指南 2026：19,700+ 服务器、7 个官方款、以及 60 秒挑对那一个"
-description: "2026 MCP server 发现完全指南。Anthropic 7 个 reference 服务器、87.3k star 的 awesome list、Smithery vs mcp.so 两大注册..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-registry-comprehensive-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - TypeScript
@@ -168,7 +175,7 @@ aliases:
 - **延迟** —— server 靠近数据（Postgres 跑在同一个 VPC）
 - **成本** —— 规模化时省掉 SaaS per-call 费用
 
-4GB VPS 能舒服跑 10+ 个 stdio-bridge 或 HTTP MCP server。我们把 dibi8 内部 MCP cluster 跑在 {{< aff "htstack" "self-host-vps" "HTStack 的香港 VPS" >}}（对中国大陆延迟 <30ms）。全球分布式部署或更大集群，{{< aff "digitalocean" "self-host-k8s" "DigitalOcean 托管 Kubernetes" >}} 跑 3 副本是生产标配。
+4GB VPS 能舒服跑 10+ 个 stdio-bridge 或 HTTP MCP server。我们把 dibi8 内部 MCP cluster 跑在 （对中国大陆延迟 <30ms）。全球分布式部署或更大集群， 跑 3 副本是生产标配。
 
 ### 何时云托管（Smithery / e2b / vendor 托管）
 
@@ -203,7 +210,7 @@ aliases:
 
 
 * * *
-*想自托管 5+ 个 MCP server（postgres + filesystem + git + memory + tavily-search）不烧云账单？开一个 $6/月的 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}，用 supervisor（systemd 或 PM2）跑起来，把 Claude Desktop 的 ````claude_desktop_config.json``` 指过去。一下午搞定。*
+*想自托管 5+ 个 MCP server（postgres + filesystem + git + memory + tavily-search）不烧云账单？开一个 $6/月的 ，用 supervisor（systemd 或 PM2）跑起来，把 Claude Desktop 的 ````claude_desktop_config.json``` 指过去。一下午搞定。*
 
 
 {

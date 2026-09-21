@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ragflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ ...
-description: "RAGFlow is an open-source retrieval-augmented generation (RAG) engine with deep document understandi..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/ragflow/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
 

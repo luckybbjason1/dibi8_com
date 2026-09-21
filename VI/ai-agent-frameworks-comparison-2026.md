@@ -1,10 +1,10 @@
 ---
-## Tóm tắt
-
-## Tại sao chúng ta so sánh các khung AI Agent
-
-> **Tiết lộ của biên tập**: Sự so sánh này sử dụng dữ liệu GitHub theo thời gian thực (số sao, tần suất cam kết, số lượt fork) kể từ ngày 30 tháng 6 năm 2026. Tất cả các ví dụ về mã đều được kiểm tra và xác minh. Chúng tôi không chấp nhận thanh toán từ bất kỳ nhà cung cấp khung nào để đưa vào hoặc xếp hạng. 
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-frameworks-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {
@@ -354,7 +354,7 @@ user_proxy.initiate_chat(
 CrewAI hỗ trợ thực hiện cả nhiệm vụ tuần tự và phân cấp: Mở rộng các đại lý CrewAI bằng các công cụ tùy chỉnh: lớp WebSearchInput(BaseModel): truy vấn: str = Field(description="Truy vấn tìm kiếm") 
 
 lớp WebSearchTool(BaseTool): tên: str = "Tìm kiếm trên web" 
-description: str = "Tìm kiếm thông tin trên web" 
+description: "Technical guide and comparison."
 args_schema: type[BaseModel] = WebSearchInput 
 
 def _run(self, query: str) -> str: # Triển khai logic tìm kiếm của bạn 

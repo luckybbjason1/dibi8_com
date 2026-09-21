@@ -1,9 +1,10 @@
 ---
-title: "2025年最佳AI客服聊天机器人工具：Intercom、Zendesk AI等全面评测"
-description: "2025年AI客服聊天机器人工具深度对比：Intercom Fin、Zendesk AI、Freshworks Freddy、ChatGPT Enterprise、Drift和Tidio的功能、定价与..."
-draft: false
-aliases:
-  - /posts/ai-customer-service-chatbot-tools/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-customer-service-chatbot-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳AI客服聊天机器人工具：Intercom、Zendesk AI等全面评测

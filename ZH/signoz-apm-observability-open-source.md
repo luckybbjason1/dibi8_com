@@ -1,6 +1,13 @@
 ---
-title: "SigNoz：以Datadog 10%成本替代的开源APM —— 分布式追踪设置指南2026"
-description: "5分钟内部署SigNoz。基于OpenTelemetry构建的开源APM，提供分布式追踪、指标和日志管理——成本仅为Datadog的10%。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "signoz-apm-observability-open-source"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：没人谈论的每年$65,000可观测性账单
 
@@ -217,7 +224,7 @@ volumes: clickhouse-data: kafka-data: zookeeper-data: zookeeper-logs: `````
 
 `````bash
 # 检查所有容器是否运行中
-docker ps --format "table {{.Names}}\t{{.Status}}"
+docker ps --format "table \t"
 
 # 预期输出：
 # NAMES                        STATUS
@@ -458,19 +465,19 @@ groups: - name: payment_service_alerts
         for: 2m
         labels: severity: critical
         annotations: summary: "支付服务错误率 > 5%"
-          description: "错误率为 {{ $value }}"
+description: "Technical guide and comparison."
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
         labels: severity: warning
         annotations: summary: "支付服务P95延迟 > 500ms"
-          description: "P95延迟为 {{ $value }}ns"
+description: "Technical guide and comparison."
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
         labels: severity: warning
         annotations: summary: "检测到日志错误峰值"
-          description: "{{ $value }} 错误/分钟"
+description: "Technical guide and comparison."
 在SigNoz UI的设置 → 告警通道中配置告警通道（Slack、PagerDuty、邮件）。
 
 ### Kubernetes自动埋点

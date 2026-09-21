@@ -1,11 +1,10 @@
 ---
-title: "LLM Inference Cost Optimization: Run Any Model for Penni...
-description: "LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API cost..."
-tags: ["guide", "open-source", "reference", "tutorial"]
-date: 2026-06-16
-lastmod: 2026-06-16
-slug: 'llm-inference-cost-optimization-guide-2026'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-inference-cost-optimization-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![Ollama - Local LLM inference made simple](https://opengraph.github.com/github/ollama/ollama)

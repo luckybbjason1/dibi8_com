@@ -1,16 +1,14 @@
 ---
-title: "Backtrader 2026: Python 백테스팅 엔진으로 전략을 100배 더 빠르게 검증 — 완벽...
-description: "Backtrader 이벤트 기반 백테스팅 엔진 완벽 가이드. Python으로 트레이딩 전략을 구축, 테스트, 최적화. 통합, 벤치마크, 실시간 트레이딩 배포 2026.". Comp..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /kr/posts/backtrader-python-backtesting/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "backtrader-python-backtesting"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 백테스트 없는 모든 전략은 실패한다
 

@@ -1,6 +1,13 @@
 ---
-title: "MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi ...
-description: "Hướng dẫn đầy đủ về MLflow cho theo dõi thử nghiệm ML, model registry và model serving. Bao gồm thiế..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mlflow-experiment-tracking-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Hỗn Loạn Củ Các Thử Nghiệm Không Được Theo Dõi
 
@@ -606,7 +613,7 @@ jobs: train: runs-on: ubuntu-latest
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: $
         run: |
           python train.py --register-model --stage Staging
 

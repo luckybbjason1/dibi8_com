@@ -1,6 +1,13 @@
 ---
-title: "Các Công Cụ Trình Chiếu AI Tốt Nhất 2025: So Sánh Gamma,...
-description: "Tổng hợp các công cụ tạo slide AI hàng đầu năm 2025. So sánh chi tiết Gamma, Beautiful.ai, Tome, Sli..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-presentation-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

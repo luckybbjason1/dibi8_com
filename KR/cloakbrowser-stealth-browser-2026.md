@@ -1,21 +1,10 @@
 ---
-title: "CloakBrowser 완벽 가이드 2026: 무료 오픈소스 스텔스 브라우저로 봇 감지 완벽 우회하기...
-description: "2026년 5월 GitHub Trending 2위 CloakBrowser. C++ 소스코드 레벨 49개 지문 패치, reCAPTCHA v3 0.9점, 30개 이상 봇 감지 통과. ..."
-date: 2026-05-14T00:00:00+08:00
-lastmod: 2026-05-14T00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-14"
-draft: false
-aliases:
-  - /posts/cloakbrowser-stealth-browser-2026/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cloakbrowser-stealth-browser-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "Các Công Cụ Trợ Lý Họp AI Tốt Nhất 2025: So Sánh Otter.a...
-description: "Tổng hợp các công cụ trợ lý họp AI hàng đầu năm 2025. So sánh chi tiết Otter.ai, Fireflies, Fathom, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-meeting-assistant-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

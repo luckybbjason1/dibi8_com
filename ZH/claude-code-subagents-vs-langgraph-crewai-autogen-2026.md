@@ -1,6 +1,13 @@
 ---
-title: "Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：...
-description: "你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagents-vs-langgraph-crewai-autogen-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -122,8 +129,8 @@ faq: - q: "如果我已经在用 Claude Code subagent，还需要 LangGraph 或 
 
 无论你留在 Claude Code subagent 上还是升级到框架，多智能体工作都需要底层有稳定的基础设施：
 
-1. **一台能跑长时运行智能体进程和 CI 的可靠主机。** 框架要部署成服务；就连 subagent 流水线也需要一台为无人值守运行而保持在线的机器。**{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS，对中国大陆低延迟接入，BGP 稳定。与托管 dibi8.com 的是同一个 IDC，我们自己的智能体流水线就跑在那里。$5-12/月的高性价比档位。
-2. **为并行扇出准备的云端余量。** 当智能体大幅扇出时——或者一个 LangGraph 应用与它的可观测性栈并行运行时——你需要富余的 CPU。**{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— 60 天内 $200 免费额度，覆盖 14+ 区域。
+1. **一台能跑长时运行智能体进程和 CI 的可靠主机。** 框架要部署成服务；就连 subagent 流水线也需要一台为无人值守运行而保持在线的机器。**** —— 香港 VPS，对中国大陆低延迟接入，BGP 稳定。与托管 dibi8.com 的是同一个 IDC，我们自己的智能体流水线就跑在那里。$5-12/月的高性价比档位。
+2. **为并行扇出准备的云端余量。** 当智能体大幅扇出时——或者一个 LangGraph 应用与它的可观测性栈并行运行时——你需要富余的 CPU。**** —— 60 天内 $200 免费额度，覆盖 14+ 区域。
 3. **编排实操手册。** 内化「何时委派、何时升级」最快的办法是研究可运行的范例。我们把五个久经实战的 skill 打包成 Gumroad 上的 $19 套件——见角落里那个浮动 CTA——其中包含 dibi8 自己流水线背后的编排器提示词和自定义智能体定义。
 
 ## 延伸阅读

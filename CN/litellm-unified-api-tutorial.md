@@ -1,21 +1,10 @@
 ---
-title: "LiteLLM Tutorial 2025: One API to Access 100+ LLMs"
-description: "Complete LiteLLM tutorial 2025. Learn how to use one unified API to access 100+ LLM providers includ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/litellm-unified-api-tutorial/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "litellm-unified-api-tutorial"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {</* resource-info */>}

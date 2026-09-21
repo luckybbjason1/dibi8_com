@@ -1,6 +1,13 @@
 ---
-title: "Toprank: Claude Code로 SEO·GEO·광고 자동화 — 검색 순위 3배 상승하는 AI ...
-description: "Toprank는 Claude Code 기반 AI 마케팅 도구로 SEO, GEO, 광고 자동화를 한 번에 해결합니다. 검색 순위 상승, 트래픽 증가, 전환율 개선을 원한다면 지금 확..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "toprank"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"
@@ -107,8 +114,8 @@ Toprank는 웹사이트 연동 후 5분이면 바로 사용할 수 있습니다.
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

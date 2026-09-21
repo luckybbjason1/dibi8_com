@@ -52,7 +52,7 @@ MORALIS_API_KEY=your_api_key_here
 require('dotenv').config();
 const apiKey = process.env.MORALIS_API_KEY;
 if (!apiKey) {
-  throw new Error('MORALIS_API_KEY is not defined');
+throw new Error('MORALIS_API_KEY is not defined');
 }
 ```
 ## Cài Đặt SDK Moralis
@@ -70,7 +70,7 @@ npm install moralis
 const Moralis = require('moralis').default;
 
 await Moralis.start({
-  apiKey: process.env.MORALIS_API_KEY,
+apiKey: process.env.MORALIS_API_KEY,
 });
 
 console.log('SDK Moralis đã khởi tạo thành công');
@@ -104,12 +104,12 @@ using MoralisUnity.Web3Api.Client;
 
 async void Start()
 {
-    MoralisClient moralis = new MoralisClient(
-        hostUrl: "https://deep-index.moralis.io/api/v2",
-        applicationId: "your_app_id"
-    );
-    await moralis.StartAsync();
-    Debug.Log("SDK Unity của Moralis đã khởi tạo");
+MoralisClient moralis = new MoralisClient(
+hostUrl: "https://deep-index.moralis.io/api/v2",
+applicationId: "your_app_id"
+);
+await moralis.StartAsync();
+Debug.Log("SDK Unity của Moralis đã khởi tạo");
 }
 ```
 ## Lấy Dữ liệu Token với API Token
@@ -122,8 +122,8 @@ Lấy giá hiện tại của bất kỳ token nào rất đơn giản. Moralis 
 
 ```javascript
 const priceResponse = await Moralis.EvmApi.token.getTokenPrice({
-  address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-  chain: '0x1', // Ethereum mainnet
+address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+chain: "0x1", // Ethereum mainnet
 });
 
 console.log('Giá Token:', priceResponse.result.usdPrice);
@@ -136,28 +136,28 @@ Lấy tất cả các token ERC-20 được giữ bởi một địa chỉ walle
 
 ```javascript
 const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
+address: "0x1234567890123456789012345678901234567890",
+chain: "0x1",
 });
 
 balances.result.forEach((token) => {
-  console.log(`${token.name}: ${token.balance} (${token.symbol})`);
+console.log(`${token.name}: ${token.balance} (${token.symbol})`);
 });
 ```
 
 ### Lấy Lịch Sử Chuyển Nhượng Token
 
- Theo dõi các giao dịch token vào và ra cho một wallet hoặc hợp đồng token cụ thể.
+Theo dõi các giao dịch token vào và ra cho một wallet hoặc hợp đồng token cụ thể.
 
 ```javascript
 const transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
-  limit: 10,
+address: "0x1234567890123456789012345678901234567890",
+chain: "0x1",
+limit: 10,
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`Từ: ${tx.fromAddress} Đến: ${tx.toAddress} Số Lượng: ${tx.value}`);
+console.log(`Từ: ${tx.fromAddress} Đến: ${tx.toAddress} Số Lượng: ${tx.value}`);
 });
 ```
 
@@ -167,15 +167,15 @@ Lấy thông tin mô tả chi tiết cho bất kỳ token ERC-20 nào bao gồm 
 
 ```javascript
 const metadata = await Moralis.EvmApi.token.getTokenMetadata({
-  addresses: [
-    '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-    '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-  ],
-  chain: '0x1',
+addresses: [
+'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+'0x6B175474E89094C44Da98b954EedeAC495271d0F',
+],
+chain: "0x1",
 });
 
 metadata.result.forEach((token) => {
-  console.log(`${token.name} (${token.symbol}) - ${token.decimals} số thập phân`);
+console.log(`${token.name} (${token.symbol}) - ${token.decimals} số thập phân`);
 });
 ```
 ## Làm việc với API NFT
@@ -186,14 +186,14 @@ API NFT cung cấp khả năng truy vấn đầy đủ về sở hữu NFT, thô
 
 ```javascript
 const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
-  address: '0x1234567890123456789012345678901234567890',
-  chain: '0x1',
-  limit: 20,
+address: "0x1234567890123456789012345678901234567890",
+chain: "0x1",
+limit: 20,
 });
 
 nfts.result.forEach((nft) => {
-  console.log(`Collection: ${nft.name} Token ID: ${nft.tokenId}`);
-  console.log(`Metadata: ${nft.metadata}`);
+console.log(`Collection: ${nft.name} Token ID: ${nft.tokenId}`);
+console.log(`Metadata: ${nft.metadata}`);
 });
 ```
 
@@ -201,9 +201,9 @@ nfts.result.forEach((nft) => {
 
 ```javascript
 const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  tokenId: '1',
-  chain: '0x1',
+address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+tokenId: "1",
+chain: "0x1",
 });
 
 console.log('Name:', nftMetadata.result.name);
@@ -215,13 +215,13 @@ console.log('Attributes:', nftMetadata.result.metadata?.attributes);
 
 ```javascript
 const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({
-  address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-  chain: '0x1',
-  limit: 10,
+address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+chain: "0x1",
+limit: 10,
 });
 
 transfers.result.forEach((tx) => {
-  console.log(`Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}`);
+console.log(`Token ${tx.tokenId}: ${tx.fromAddress} -> ${tx.toAddress}`);
 });
 ```
 
@@ -231,13 +231,13 @@ transfers.result.forEach((tx) => {
 from moralis import evm_api
 
 params = {
-    "address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
-    "chain": "eth"
+"address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+"chain": "eth"
 }
 
 result = evm_api.nft.get_nft_floor_price(
-    api_key=api_key,
-    params=params,
+api_key=api_key,
+params=params,
 )
 
 print(f"Floor Price: {result['floor_price']} ETH")
@@ -252,29 +252,27 @@ Một trong những tính năng nổi bật của Moralis là API Streams, cho p
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const stream = {
-  chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
-  description: "Track USDC transfers",. Comprehensive guide covering features, pricing, and best practices for 2026.
-  tag: 'usdc_transfers',
-  includeNativeTxs: false,
-  webhookUrl: 'https://your-app.com/webhooks/moralis',
-  includeContractLogs: true,
-  abi: [
-    {
-      anonymous: false,
-      inputs: [
-        { indexed: true, name: 'from', type: 'address' },
-        { indexed: true, name: 'to', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' },
-      ],
-      name: 'Transfer',
-      type: 'event',
-    },
-  ],
-  topic0: ['Transfer(address,address,uint256)'],
-  filter: {
-    'address': '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-  },
-  includeInternalTxs: false,
+chains: [EvmChain.ETHEREUM, EvmChain.POLYGON],
+tag: "usdc_transfers",
+includeNativeTxs: false,
+webhookUrl: "https://your-app.com/webhooks/moralis",
+includeContractLogs: true,
+abi: [
+{
+anonymous: false,
+inputs: [
+{ indexed: true, name: "from", type: "address" },
+{ indexed: true, name: "to", type: "address" },
+{ indexed: false, name: "value", type: "uint256" },
+],
+name: "Transfer",
+},
+],
+topic0: ['Transfer(address,address,uint256)'],
+filter: {
+'address': "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+},
+includeInternalTxs: false,
 };
 
 const newStream = await Moralis.Streams.add(stream);
@@ -293,29 +291,29 @@ const app = express();
 app.use(express.json());
 
 app.post('/webhooks/moralis', (req, res) => {
-  // Xác minh signature của webhook cho an toàn
-  const signature = req.headers['x-signature'];
-  const body = JSON.stringify(req.body);
-  const hash = crypto
-    .createHmac('sha256', process.env.MORALIS_STREAM_SECRET)
-    .update(body)
-    .digest('hex');
+// Xác minh signature của webhook cho an toàn
+const signature = req.headers['x-signature'];
+const body = JSON.stringify(req.body);
+const hash = crypto
+.createHmac('sha256', process.env.MORALIS_STREAM_SECRET)
+.update(body)
+.digest('hex');
 
-  if (signature !== hash) {
-    return res.status(401).send('Unauthorized');
-  }
+if (signature !== hash) {
+return res.status(401).send('Unauthorized');
+}
 
-  const events = req.body.confirmed || req.body.unconfirmed;
-  events.forEach((event) => {
-    console.log('Transfer detected:', {
-      from: event.from,
-      to: event.to,
-      value: event.value,
-      transactionHash: event.transactionHash,
-    });
-  });
+const events = req.body.confirmed || req.body.unconfirmed;
+events.forEach((event) => {
+console.log('Transfer detected:', {
+from: event.from,
+to: event.to,
+value: event.value,
+transactionHash: event.transactionHash,
+});
+});
 
-  res.status(200).send('OK');
+res.status(200).send('OK');
 });
 
 app.listen(3000, () => console.log('Webhook server running on port 3000'));
@@ -330,14 +328,14 @@ Moralis đơn giản hóa việc xác thực Web3 bằng cách cung cấp một 
 const { EvmChain } = require('@moralisweb3/common-evm-utils');
 
 const authMessage = await Moralis.Auth.requestMessage({
-  chain: EvmChain.ETHEREUM,
-  address: '0x1234567890123456789012345678901234567890',
-  network: 'evm',
-  domain: 'your-app.com',
-  statement: 'Ký thông điệp này để đăng nhập vàoỨng dụng của bạn',
-  uri: 'https://your-app.com/login',
-  expirationTime: new Date(Date.now() + 86400000), // 24 giờ
-  timeout: 60,
+chain: EvmChain.ETHEREUM,
+address: "0x1234567890123456789012345678901234567890",
+network: "evm",
+domain: "your-app.com",
+statement: "Ký thông điệp này để đăng nhập vàoỨng dụng của bạn",
+uri: "https://your-app.com/login",
+expirationTime: new Date(Date.now() + 86400000), // 24 giờ
+timeout: 60,
 });
 
 console.log('Thông điệp đăng nhập:', authMessage.result.message);
@@ -347,9 +345,9 @@ console.log('Thông điệp đăng nhập:', authMessage.result.message);
 
 ```javascript
 const authResult = await Moralis.Auth.verify({
-  network: 'evm',
-  message: authMessage.result.message,
-  signature: '0x...ký_thông_go...',
+network: "evm",
+message: authMessage.result.message,
+signature: "0x...ký_thông_go...",
 });
 
 console.log('Người dùng đã xác thực:', authResult.result.profileId);
@@ -368,21 +366,21 @@ const address = '0x1234567890123456789012345678901234567890';
 const portfolio = {};
 
 for (const chain of chains) {
-  const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
-    address,
-    chain,
-  });
-  
-  const chainName = chain === '0x1' ? 'Ethereum'
-    : chain === '0x89' ? 'Polygon'
-    : chain === '0x38' ? 'BNB Chain'
-    : 'Arbitrum';
-  
-  portfolio[chainName] = balances.result.map((t) => ({
-    symbol: t.symbol,
-    balance: t.balance,
-    usdValue: t.usdPrice ? parseFloat(t.balance) * t.usdPrice : null,
-  }));
+const balances = await Moralis.EvmApi.token.getWalletTokenBalances({
+address,
+chain,
+});
+
+const chainName = chain === '0x1' ? 'Ethereum'
+: chain === '0x89' ? 'Polygon'
+: chain === '0x38' ? 'BNB Chain'
+: "Arbitrum";
+
+portfolio[chainName] = balances.result.map((t) => ({
+symbol: t.symbol,
+balance: t.balance,
+usdValue: t.usdPrice ? parseFloat(t.balance) * t.usdPrice : null,
+}));
 }
 
 console.log('Portfolio Đa Blockchain:', JSON.stringify(portfolio, null, 2));
@@ -400,15 +398,15 @@ let cursor = null;
 const allTransfers = [];
 
 do {
-  const response = await Moralis.EvmApi.token.getWalletTokenTransfers({
-    address: '0x1234567890123456789012345678901234567890',
-    chain: '0x1',
-    limit: 100,
-    cursor,
-  });
+const response = await Moralis.EvmApi.token.getWalletTokenTransfers({
+address: "0x1234567890123456789012345678901234567890",
+chain: "0x1",
+limit: 100,
+cursor,
+});
 
-  allTransfers.push(...response.result);
-  cursor = response.pagination.cursor;
+allTransfers.push(...response.result);
+cursor = response.pagination.cursor;
 } while (cursor);
 
 console.log(`Lấy được ${allTransfers.length} giao dịch`);
@@ -421,21 +419,21 @@ const axios = require('axios');
 const rateLimit = require('axios-rate-limit');
 
 const http = rateLimit(axios.create(), {
-  maxRequests: 25,
-  perMilliseconds: 1000,
+maxRequests: 25,
+perMilliseconds: 1000,
 });
 
 async function safeApiCall(apiFunction) {
-  try {
-    return await apiFunction();
-  } catch (error) {
-    if (error.status === 429) {
-      // Giới hạn tốc độ - thực hiện backoff lũy thừa
-      await new Promise((r) => setTimeout(r, 2000));
-      return safeApiCall(apiFunction);
-    }
-    throw error;
-  }
+try {
+return await apiFunction();
+} catch (error) {
+if (error.status === 429) {
+// Giới hạn tốc độ - thực hiện backoff lũy thừa
+await new Promise((r) => setTimeout(r, 2000));
+return safeApiCall(apiFunction);
+}
+throw error;
+}
 }
 ```
 
@@ -448,21 +446,21 @@ const Redis = require('ioredis');
 const redis = new Redis();
 
 async function getCachedTokenPrice(tokenAddress, chain) {
-  const cacheKey = `price:${chain}:${tokenAddress}`;
-  const cached = await redis.get(cacheKey);
-  
-  if (cached) {
-    return JSON.parse(cached);
-  }
+const cacheKey = `price:${chain}:${tokenAddress}`;
+const cached = await redis.get(cacheKey);
 
-  const price = await Moralis.EvmApi.token.getTokenPrice({
-    address: tokenAddress,
-    chain,
-  });
+if (cached) {
+return JSON.parse(cached);
+}
 
-  // Caching trong 60 giây
-  await redis.setex(cacheKey, 60, JSON.stringify(price.result));
-  return price.result;
+const price = await Moralis.EvmApi.token.getTokenPrice({
+address: tokenAddress,
+chain,
+});
+
+// Caching trong 60 giây
+await redis.setex(cacheKey, 60, JSON.stringify(price.result));
+return price.result;
 }
 ```
 ## Câu Hỏi Thường Gặp
@@ -490,7 +488,6 @@ Moralis ký tất cả các tải trọng webhook với một khóa bí mật m�
 ### Các ngôn ngữ lập trình nào được hỗ trợ chính thức?
 
 Moralis cung cấp SDK cho JavaScript/TypeScript (Node.js và trình duyệt), Python và Unity (C#). Đối với các ngôn ngữ khác, bạn có thể gọi trực tiếp API REST sử dụng các khách HTTP chuẩn. API tuân theo quy định OpenAPI, vì vậy bạn cũng có thể tạo thư viện khách cho Go, Rust, Java hoặc bất kỳ ngôn ngữ nào khác.
-
 ---
 ## Kết luận
 

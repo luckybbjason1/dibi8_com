@@ -1,21 +1,10 @@
 ---
-title: "Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test T...
-description: "Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so ..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "đánh-giá-llm", "ai-lập-trình", "mô-hình-suy-luận"]
-categories: ["review"]
-faqs: - q: 'Claude Opus 4 đắt hơn Sonnet 4 — có đáng không?'
-    a: 'Với hầu hết developer, Sonnet 4 là lựa chọn tối ưu. Opus 4 thực sự tỏa sáng trong chuỗi suy luận nhiều bước, tài liệu pháp lý hoặc nghiên cứu dài, và vòng lặp agent cần độ chính xác liên tục trên 10 bước. Nếu công việc chính là sinh code, tóm tắt hoặc chat, Sonnet 4 đạt 85-90% chất lượng Opus 4 với chi phí API chỉ bằng một nửa. Chỉ nâng cấp Opus 4 khi bạn đo được sự chênh lệch 10-15% chính xác đó trên tác vụ cụ thể của mình.'
-  - q: 'Claude 4 so với GPT-4o thì sao?'
-    a: 'Claude 4 Sonnet nhỉnh hơn GPT-4o về phân tích tài liệu dài, độ chính xác theo dõi hướng dẫn và phiên lập trình nhiều lượt. GPT-4o có bộ tính năng đa phương tiện rộng hơn (giọng nói thời gian thực, sinh ảnh DALL·E) và tích hợp bên thứ ba phổ biến hơn. Về chất lượng văn bản thuần và code, Claude 4 Sonnet là lựa chọn mạnh hơn năm 2026; nếu bạn đang khóa chặt vào hệ sinh thái OpenAI thì GPT-4o vẫn hấp dẫn.'
-  - q: 'Claude Haiku 4 phù hợp nhất cho việc gì?'
-    a: 'Haiku 4 được thiết kế cho ứng dụng thông lượng cao, độ trễ thấp: tự động hoàn thành thời gian thực, bot hỗ trợ khách hàng, pipeline phân loại, và bất kỳ tác vụ nào cần phản hồi dưới 500ms với chi phí thấp. Chất lượng trên tác vụ ngắn khá bất ngờ nhưng không phù hợp cho chuỗi suy luận dài hay phân tích tài liệu — Sonnet 4 là mức tối thiểu cho những trường hợp đó.'
-  - q: 'Claude 4 có hỗ trợ tool use và MCP không?'
-    a: 'Có. Cả ba phiên bản Opus 4, Sonnet 4, Haiku 4 đều hỗ trợ tool use (function calling), computer use và MCP (Model Context Protocol). Opus 4 và Sonnet 4 còn hỗ trợ extended thinking — cho phép model suy luận sâu trước khi đưa ra câu trả lời cuối cùng.'
-  - q: 'Context window của Claude 4 rộng bao nhiêu?'
-    a: 'Tất cả model Claude 4 hỗ trợ context window 200K token, cho phép phân tích cả cuốn sách, codebase lớn hay lịch sử hội thoại dài trong một lần gọi. Output window tối đa 32K token — đủ để sinh báo cáo dài, file đầy đủ hay tài liệu nhiều phần trong một lần.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-4-opus-sonnet-review-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: Browser Harness：让 LLM 自主操控浏览器的自愈型神器
-description: Browser Harness 是一个自愈合型浏览器控制框架，让 LLM 能够自主完成任何网页任务。11K+ Stars，Python 编写，支持. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "browser-harness-self-healing-llm-web-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   Playwright 和 Selenium。
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -346,7 +353,7 @@ Browser Harness 代表了**网页自动化的新范式** —— 从"写死的选
 * * *
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
@@ -354,7 +361,7 @@ For developers building or deploying open-source AI tools, we recommend: - **{{<
 
 **Need stable Claude or OpenAI API access?** Most projects in this space eventually hit the Anthropic/OpenAI rate limit or pricing wall.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

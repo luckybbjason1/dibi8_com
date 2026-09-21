@@ -1,12 +1,10 @@
 ---
-title: "VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, C...
-description: "Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép ..."
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: ai-tools
-tags: ["ai", "giọng-ai", "nhân-bản-giọng", "chuyển-âm-thành-chữ", "chuyển-chữ-thành-âm", "whisper", "qwen3-tts", "cuda", "mlx"]
-slug: voicebox-open-source-ai-voice-studio
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "voicebox-open-source-ai-voice-studio"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

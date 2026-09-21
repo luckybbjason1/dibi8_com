@@ -1,6 +1,13 @@
 ---
-title: SkillSpector：NVIDIA 面向 AI Agent 技能的开源安全扫描工具
-description: 一款专为 AI Agent 技能设计的安全扫描工具，在安装前即可检测漏洞、恶意模式和安全风险。获得 NVIDIA 社区 10K Star 关注。保护 Claude Code、Codex CLI 及其他 Agent 框架。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "skillspector-nvidia-open-source-security-scanner-ai-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false

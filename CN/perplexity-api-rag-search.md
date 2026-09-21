@@ -1,15 +1,13 @@
 ---
-title: "perplexity-api-rag-search"
-description: "{"en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar ..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["perplexity api"]
-aliases:
-  - /posts/perplexity-api-rag-search/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "perplexity-api-rag-search"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
-{{</* resource-info */>}}
+
 
 The race to build intelligent, fact-aware applications reached a pivotal milestone with the Perplexity API — a purpose-built RAG (Retrieval-Augmented Generation) search service that fuses large language models with live web indexing. Unlike traditional LLM APIs that rely solely on static training data, Perplexity's Sonar models query the internet in real time, retrieve authoritative sources, and return structured answers complete with inline citations. For developers building chatbots, research tools, knowledge assistants, and content verification pipelines, this represents a paradigm shift: applications that don't just generate text, but ground every claim in verifiable reality.
 

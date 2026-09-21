@@ -1,16 +1,14 @@
 ---
-title: "Chroma DB 2026：面向开发者的 RAG 向量数据库，嵌入搜索速度提升 50 倍 — Python 实...
-description: "Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。". Comprehensive guide covering f..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["]
-aliases:
-  - /zh/posts/chroma-vector-database-python/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chroma-vector-database-python"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么你的 RAG 流水线需要更好的向量存储
 

@@ -1,6 +1,13 @@
 ---
-title: "OpenAI Whisper: 99.8K+ Stars — 완전한 ASR 설정 튜토리얼 vs Whispe...
-description: "OpenAI Whisper (ASR) 대규모 약한 감독 기반의 강건한 음성 인식. WhisperX, faster-whisper, LibreTranslate와 호환. whisper ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-whisper"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

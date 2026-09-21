@@ -1,11 +1,10 @@
 ---
-title: "Hiểu Mọi Thứ: Đồ Thị Kiến Thức Tương Tác cho Các Cơ Sở M...
-description: "Understand-Anything biến bất kỳ cơ sở mã nào thành đồ thị tri thức tương tác mà bạn có thể khám phá,..."
-date: 2026-06-17
-lastmod: 2026-06-17
-slug: understand-anything-interactive-knowledge-graphs-codebases
-category: ai-tools
-tags: ["understand-anything", "knowledge-graph", "codebase-analysis", "claude-code", "codex", "cursor", "AI-agents", "code-visualization", "semantic-search"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "understand-anything-interactive-knowledge-graphs-codebases"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

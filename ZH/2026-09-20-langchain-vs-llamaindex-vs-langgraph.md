@@ -1,13 +1,10 @@
 ---
-title: "LangChain vs LlamaIndex vs LangGraph 2026: 完整对比指南"
-description: "2026年LangChain、LlamaIndex和LangGraph三大LLM框架的深度对比。从RAG性能、Agent编排到生产部署，帮你选择最适合的项目框架。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
 date: 2026-09-20
-lastmod: 2026-09-20
-tags: ["langchain", "llamaindex", "langgraph", "rag", "ai-frameworks", "2026"]
-categories: ["llm-frameworks"]
-license_type: Open Source
-source: "LangChain, LlamaIndex"
-github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
+slug: "2026-09-20-langchain-vs-llamaindex-vs-langgraph"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

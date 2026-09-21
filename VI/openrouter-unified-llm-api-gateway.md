@@ -1,6 +1,13 @@
 ---
-title: "OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình...
-description: "Hướng dẫn đầy đủ về OpenRouter: truy cập 300+ mô hình AI từ 60+ nhà cung cấp qua một endpoint tương ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openrouter-unified-llm-api-gateway"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt
 

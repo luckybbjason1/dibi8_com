@@ -1,6 +1,13 @@
 ---
-title: "Grafana: 73,876 GitHub Stars — Docker 部署指南 2026"
-description: "Grafana 是开源的可视化与分析平台，用于监控和可观测性。支持 Prometheus、Loki、InfluxDB、Elasticsearch 集成。包含 Docker 部署、生产环境加固、与 Da..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "grafana"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 每一次生产事故都始于一个问题："什么变了？"如果没有一个集中化的指标、日志和追踪视图，回答这个问题可能需要几分钟 —— 有时甚至几小时。Grafana，这个拥有 73,876 个 GitHub Star 的开源可视化平台，将这个问题变成了一眼可见的仪表盘。本指南将带你完成生产级 Docker 部署、数据源集成，以及区分概念验证和生产就绪监控栈的加固决策。
 
@@ -267,7 +274,7 @@ Loki 将日志行与指标并排显示在同一个仪表盘中。用于查找错
 sum by(app) (rate({job="system-logs"} |= "ERROR" [5m]))
 
 # 搜索特定错误模式
-{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format "{{.message}}"
+{job="system-logs"} |~ "(?i)error|exception|fatal" | json | line_format ""
 `````
 
 ### InfluxDB — 时序数据
@@ -385,7 +392,7 @@ groups: - orgId: 1
     folder: Infrastructure
     interval: 60s
     rules: - uid: high-cpu-usage
-        title: CPU 使用率超过 80%
+title: "AI Tool Guide"
         condition: B
         data: - refId: A
             relativeTimeRange: from: 300
@@ -395,7 +402,7 @@ groups: - orgId: 1
         noDataState: NoData
         execErrState: Error
         for: 5m
-        annotations: summary: "{{ $labels.instance }} 上 CPU 使用率过高"
+        annotations: summary: " 上 CPU 使用率过高"
 `````
 
 ### 从 Git 预配置仪表盘

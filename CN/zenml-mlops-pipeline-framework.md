@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zenml-mlops-pipeline-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "ZenML 2026: The MLOps Framework Connecting 20+ Tools int...
-description: "A comprehensive guide to ZenML — the open-source MLOps framework that connects 20+ tools into unifie..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/zenml-mlops-pipeline-framework/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Your ML Pipelines Are Broken
 

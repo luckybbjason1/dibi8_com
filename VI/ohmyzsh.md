@@ -1,11 +1,10 @@
 ---
-title: "Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn t...
-description: "Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Stars..."
-date: 2026-06-11
-lastmod: 2026-06-11
-slug: 'ohmyzsh'
-category: dev-utils
-tags: ["ohmyzsh", "zsh", "dev-tools", "terminal", "bash", "shell", "productivity", "linux"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ohmyzsh"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%
-description: DocuSeal是一个拥有15.7k星的开源平台，可用自托管数字文档签署、PDF表单构建和白标电子签名工作流替代DocuSign。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docuseal-open-source-docusign-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -24,7 +31,7 @@ faqs: - q: 'DocuSeal 是 DocuSign 的免费替代品吗？'
   - q: 'DocuSeal 使用什么许可证？可以用于商业用途吗？'
     a: 'DocuSeal 采用 AGPLv3 许可证发布，并附有 Section 7(b) 附加条款。商业使用是被允许的，但需要遵守相应的许可证条款。白标、SSO/SAML、批量发送等高级 Pro 功能则通过单独的付费商业许可证提供。'
   - q: '如何部署 DocuSeal？'
-    a: '最快的方式是使用 Docker：运行 `docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal`。在生产环境中，当 DNS 指向服务器后，Docker Compose 会通过 Caddy 自动配置 HTTPS；此外，Heroku、Railway、DigitalOcean 和 Render 均提供一键部署按钮。'
+    a: '最快的方式是使用 Docker：运行 ``docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal``。在生产环境中，当 DNS 指向服务器后，Docker Compose 会通过 Caddy 自动配置 HTTPS；此外，Heroku、Railway、DigitalOcean 和 Render 均提供一键部署按钮。'
   - q: 'DocuSeal 的签名具有法律效力吗？'
     a: '是的。DocuSeal 使用符合 ISO 32000-1 标准的数字签名，采用 PKCS#7 分离式签名，包含 SHA-256 文档摘要、可信时间戳令牌以及签署者身份元数据。这些签名在欧盟法院依据 eIDAS 法规以及美国法院依据 ESIGN 和 UETA 法规均具有法律效力。'
   - q: 'DocuSeal 可以将签署后的文档存储在哪里？'
@@ -402,8 +409,8 @@ DocuSeal 是少数能直接替代价值数十亿美元 SaaS 巨头的开源项�
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

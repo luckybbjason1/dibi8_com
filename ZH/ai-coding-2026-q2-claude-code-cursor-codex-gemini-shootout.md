@@ -1,6 +1,13 @@
 ---
-title: "AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Cod...
-description: "2026 年中四大主流 AI 编程 agent 横评：Claude Code 1.0、Cursor Pro、OpenAI Codex CLI、Google Gemini CLI。同一 50K 行 Ty..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
@@ -33,7 +40,7 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI 编程 2026 Q2 终极对决: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI
 
@@ -256,8 +263,8 @@ faq: - q: "2026 Q2 哪个 AI 编程 agent 最好？"
 
 跑 AI 编程 agent 的专用 VPS（团队共享 MCP server / 代码执行 sandbox / 长跑 agent loop）：
 
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60 天 $200 免费 credit。
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，dibi8.com 同 IDC。
+- **** — 60 天 $200 免费 credit。
+- **** — 香港 VPS，dibi8.com 同 IDC。
 
 *推广链接 — 不增加成本，支持 dibi8.com 运营。*
 

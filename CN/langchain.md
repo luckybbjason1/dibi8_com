@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langchain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "LangChain: 3 Ways to Deploy Production-Ready AI Agents w...
-description: "LangChain (LC) is a Python/JS framework for building LLM-powered applications with 700+ integrations..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/llm-frameworks/langchain-complete-guide/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
 

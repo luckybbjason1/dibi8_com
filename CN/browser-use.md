@@ -1,6 +1,13 @@
 ---
-title: "Browser Use: 94K+ Stars — Benchmarking AI Browser Automa...
-description: "Browser Use is an open-source Python framework that connects LLMs to real browsers via Playwright. S..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "browser-use"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/browser-use/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![Browser Use Logo](https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png)
 

@@ -1,9 +1,10 @@
 ---
-title: "Python时序数据分析工具大全：Prophet、sktime、ARIMA与Darts完整教程"
-description: "全面盘点Python时序分析工具库，深度对比Prophet、sktime、statsmodels与Darts的适用场景，含特征工程技巧与完整预测流水线搭建指南。". Comprehensive gui..."
-draft: false
-aliases:
-  - /posts/time-series-analysis-tools-python-libraries/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "time-series-analysis-tools-python-libraries"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

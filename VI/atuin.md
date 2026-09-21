@@ -1,6 +1,13 @@
 ---
-title: "Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ S...
-description: "Atuin thay thế lịch sử shell bằng SQLite, ghi ngữ cảnh lệnh (mã thoát, thư mục, thờ gian), đồng bộ h..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "atuin"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "backtest-overfit-5-patterns-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe...
-description: "After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
@@ -26,7 +33,7 @@ faq: - q: "Why is overfit detection so hard in backtests?"
     a: "No. ML strategies often overfit harder because they have more parameters. The defense is the same: walk-forward validation, parameter regularization (L1/L2), and the discipline to throw away models where OOS performance is  1.5, suspect overfit. If > 2.0, almost certain overfit. Our recent moss-trade-bot run showed Train PF 2.08 / OOS PF 0.94 — ratio 2.21 — textbook overfit. Healthy strategies show ratios under 1.3."
 ---
 
-{{</* resource-info */>}}
+
 
 # Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe Numbers
 
@@ -151,8 +158,8 @@ Honestly: it's annoying and the answers are usually bad news. Most retail trader
 
 ## Recommended Infrastructure
 
-For running long backtests + walk-forward sweeps: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, GPU droplets available
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, low-latency to Asia exchanges
+For running long backtests + walk-forward sweeps: - **** — $200 credit, GPU droplets available
+- **** — Hong Kong VPS, low-latency to Asia exchanges
 
 *Affiliate links — same price, supports dibi8.com.*
 

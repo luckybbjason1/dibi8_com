@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "odysseus-self-hosted-ai-workspace-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G...
-description: "Odysseus is an open-source, privacy-first AI workspace (63 k GitHub stars in 9 days, MIT). One Docke..."
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,13 @@
 ---
-title: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우"
-description: "파이썬 컨텍스트 매니저: 실제로 필요한 세 가지 경우. with 문, contextlib 및 커스텀 컨텍스트 매니저를 마스터하여. Comprehensive guide coverin..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "python-context-managers-the-three-cases-you-actually-need"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -22,11 +29,11 @@ faqs: - q: 'try/finally를 직접 사용하는 대신 커스텀 컨텍스트 매
   - q: '환경 변수를 일시적으로 설정했다가 이후에 복원하는 컨텍스트 매니저를 어떻게 만드나요?'
     a: '@contextlib.contextmanager를 사용해 os.environ.get()으로 각 변수의 이전 값을 저장하고, 오버라이드를 적용한 뒤 try 안에서 yield하고, finally에서 복원합니다. 중요한 점은, 변수가 원래 없었을 경우(저장된 값이 None이면) os.environ.pop()으로 복원해야 합니다. 그냥 대입하면 리터럴 문자열 "None"이 환경 변수에 써집니다.'
   - q: 'contextlib.suppress는 무엇을 하며 왜 try/except: pass보다 나은가요?'
-    a: 'contextlib.suppress(ExceptionClass)는 지정한 예외를 삼키고 계속 실행합니다. 예: `with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")`. 제한된 범위 덕분에 예외 클래스를 명시해야 하므로, try/except: pass보다 명확합니다. 실수로 모든 예외를 잡거나 정리 코드 아래의 코드까지 영향을 줄 수 없어 안전합니다.'
+    a: 'contextlib.suppress(ExceptionClass)는 지정한 예외를 삼키고 계속 실행합니다. 예: ``with suppress(FileNotFoundError): os.unlink("maybe-stale.lock")``. 제한된 범위 덕분에 예외 클래스를 명시해야 하므로, try/except: pass보다 명확합니다. 실수로 모든 예외를 잡거나 정리 코드 아래의 코드까지 영향을 줄 수 없어 안전합니다.'
   - q: 'Python에서 비동기 컨텍스트 매니저는 어떻게 작성하나요?'
-    a: '@contextlib.asynccontextmanager로 비동기 제너레이터를 데코레이트하고 `async with`로 사용합니다. 구조는 동기 버전과 완전히 같으며, 차이점은 본문 내에서 await를 쓸 수 있다는 것입니다. 이는 ''풀에서 연결을 획득하고, 쿼리를 실행한 뒤, finally 블록에서 반환''하는 패턴에 특히 유용합니다.'
+    a: '@contextlib.asynccontextmanager로 비동기 제너레이터를 데코레이트하고 ``async with``로 사용합니다. 구조는 동기 버전과 완전히 같으며, 차이점은 본문 내에서 await를 쓸 수 있다는 것입니다. 이는 ''풀에서 연결을 획득하고, 쿼리를 실행한 뒤, finally 블록에서 반환''하는 패턴에 특히 유용합니다.'
   - q: 'Python에서 컨텍스트 매니저를 사용하지 말아야 할 때는 언제인가요?'
-    a: '다음 경우에는 피하세요: 획득 단계에 대응하는 해제가 필요 없을 때(그냥 함수를 호출하면 됨), 정리가 최선 노력 수준이고 인라인 try/finally가 더 읽기 쉬울 때, 또는 관리 대상 리소스가 이미 다른 것(예: 프레임워크가 자체 생명주기를 관리하는 Session)에 의해 관리될 때입니다. `with`를 쓸 때마다 오버헤드가 생기고, 여러 개를 쌓으면 가독성이 빠르게 나빠집니다.'
+    a: '다음 경우에는 피하세요: 획득 단계에 대응하는 해제가 필요 없을 때(그냥 함수를 호출하면 됨), 정리가 최선 노력 수준이고 인라인 try/finally가 더 읽기 쉬울 때, 또는 관리 대상 리소스가 이미 다른 것(예: 프레임워크가 자체 생명주기를 관리하는 Session)에 의해 관리될 때입니다. ``with``를 쓸 때마다 오버헤드가 생기고, 여러 개를 쌓으면 가독성이 빠르게 나빠집니다.'
 ---
 
 
@@ -130,8 +137,8 @@ async def borrowed(pool): conn = await pool.acquire()
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

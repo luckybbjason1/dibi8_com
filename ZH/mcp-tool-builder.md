@@ -1,10 +1,10 @@
 ---
-title: "MCP Tool Builder — 从 Python / TypeScript 函数生成 Model Cont..."
-description: "免费在线 MCP Tool 定义生成器。粘贴 Python 或 TypeScript 函数签名，自动产出符合 MCP 协议的 tool JSON、完整 Python（FastMCP）和 TypeScr..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-mcp-tool-builder"
-tool_id: "mcp-tool-builder"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-tool-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # MCP Tool Builder — 从 Python / TypeScript 函数生成 Model Context Protocol 工具定义

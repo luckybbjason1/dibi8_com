@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "playwright-browser-automation-testing"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Playwright 2026: The Cross-Browser Automation Tool Testi...
-description: "Master Playwright 1.51 for cross-browser automation. Chrome, Firefox, WebKit support. Auto-wait, tra..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/playwright-browser-automation-testing/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Flakiness Epidemic in Browser Automation
 

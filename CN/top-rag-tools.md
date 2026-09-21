@@ -1,9 +1,10 @@
 ---
-title: "Top RAG Tools for AI Knowledge Bases"
-description: "The best RAG (Retrieval-Augmented Generation) tools for building AI knowledge bases — from LangChain..."
-layout: simple
-date: 2026-06-28T00:00:00+08:00
-lastmod: 2026-06-28T00:00:00+08:00
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "top-rag-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Top RAG Tools for AI Knowledge Bases

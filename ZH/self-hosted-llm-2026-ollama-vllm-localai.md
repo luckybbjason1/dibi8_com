@@ -1,6 +1,13 @@
 ---
-title: "2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI — 吞吐量、成本与部署全对比"
-description: "在同一台 RTX 4090 上用 Llama 3.3 70B 实测 Ollama、vLLM 和 LocalAI。真实的 tokens/秒、显存占用、部署耗时，以及业余玩家与生产环境分别该选哪个。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-llm-2026-ollama-vllm-localai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
@@ -29,7 +36,7 @@ faq: - q: "2026 年最好的自托管 LLM 技术栈是哪个？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 2026 自托管 LLM 实测：Ollama vs vLLM vs LocalAI
 
@@ -189,8 +196,8 @@ OpenAI API 直接替换 → LocalAI
 ## 推荐基础设施
 
 自托管 LLM 部署推荐：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 抵用金，提供 H100/L40S GPU 实例
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，可选推理用 GPU
+- **** — $200 抵用金，提供 H100/L40S GPU 实例
+- **** — 香港 VPS，可选推理用 GPU
 
 *联盟链接 — 价格相同，支持 dibi8.com。*
 

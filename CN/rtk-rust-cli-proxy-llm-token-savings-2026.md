@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rtk-rust-cli-proxy-llm-token-savings-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills...
-description: "rtk is a zero-dependency Rust binary that intercepts and compresses CLI output before it hits your L..."
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Rust, CLI, 'Shell hooks']
@@ -31,7 +38,7 @@ faqs: - q: "What is rtk and how much can it save on AI coding bills?"
     a: "Yes when used in agent workflows. Don't use it in set -e strict-mode pipelines that depend on exact command output text — but for AI agent loops that read output and decide next steps, rtk's compressed output is what the agent actually needs."
 ---
 
-{{< resource-info >}}
+
 
 ## Quick Answer
 

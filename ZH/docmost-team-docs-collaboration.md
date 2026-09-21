@@ -1,16 +1,14 @@
 ---
-title: "Docmost 2026：实时团队协作的开源 Notion 替代方案 —— 自托管指南"
-description: "Docmost 完整自托管指南：支持实时协作编辑、类 Notion 块编辑器、嵌套页面和 PostgreSQL 后端的开源协作 Wiki。5 分钟内部署。". Comprehensive guide ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["docmost", "notion 替代品", "wiki", "实时协作", "自托管", "文档", "postgresql", "docker", "开源", "团队文档"]
-aliases:
-  - /zh/posts/docmost-team-docs-collaboration/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docmost-team-docs-collaboration"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么你的团队需要自托管 Notion 替代方案
 
@@ -287,7 +285,7 @@ jobs: publish: runs-on: ubuntu-latest
         run: |
           curl -X POST \
             "https://docs.yourdomain.com/api/pages" \
-            -H "Authorization: Bearer ${{ secrets.DOCMOST_API_KEY }}" \
+            -H "Authorization: Bearer $" \
             -H "Content-Type: application/json" \
             -d @payload.json
 `````

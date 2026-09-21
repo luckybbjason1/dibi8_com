@@ -1,6 +1,13 @@
 ---
-title: "ds4 리뷰 2026: 개발자들이 전환하는 오픈소스 DeepSeek"
-description: "ds4는 2026년 가장 빠르게 성장하는 오픈소스 DeepSeek 호환 LLM 런타임. Apache-2.0 라이선스, OpenAI API 호환, vLLM 대비 40% 낮은 지연으로..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ds4-open-source-deepseek-alternative-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: []
@@ -32,7 +39,7 @@ faqs: - q: 'ds4란 무엇이며 vLLM이나 Ollama와 어떻게 다른가요?'
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Quick Answer
 

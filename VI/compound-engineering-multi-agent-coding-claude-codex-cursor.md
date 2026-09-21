@@ -1,11 +1,10 @@
 ---
-title: "Compound Engineering: Điều phối Claude Code, Codex và Cu...
-description: "Compound Engineering (20K sao) là một plugin đa agent cho Claude Code, Codex và Cursor. 9 lệnh để độ..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
-category: llm-frameworks
-tags: ["compound-engineering", "multi-agent", "claude-code", "codex", "cursor", "planning", "review"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "compound-engineering-multi-agent-coding-claude-codex-cursor"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

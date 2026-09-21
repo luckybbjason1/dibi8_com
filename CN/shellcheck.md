@@ -1,6 +1,13 @@
 ---
-title: "ShellCheck: 39,456 GitHub Stars — Complete Setup Guide f...
-description: "ShellCheck (SC) is a static analysis tool for bash/sh shell scripts. Integrates with Docker, GitHub ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "shellcheck"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/shellcheck/-
 ---
 
-{{</* resource-info */>}}
+
 
 ShellCheck is the de facto standard for catching bugs in shell scripts before they hit production. With 39,456+ GitHub stars and a maintained open-source community, it is the most widely adopted static analysis tool for bash, sh, dash, and ksh scripts. This guide walks through installing ShellCheck, integrating it with editors and CI/CD pipelines, and hardening it for production use.
 

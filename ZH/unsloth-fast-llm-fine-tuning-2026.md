@@ -1,6 +1,13 @@
 ---
-title: "Unsloth 2026：64.9k 星快速 LLM 微调 —— 2× 速度、70% 少 VRAM、单 GPU 友好"
-description: "Unsloth 微调 LLM 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。GitHub 64.9k 星，双 Apache 2.0 + AGPL-3.0 license。..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "unsloth-fast-llm-fine-tuning-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, Triton]
@@ -61,7 +68,7 @@ aliases:
 
 这是"消费级硬件微调"故事。Llama 70B QLoRA 在 $1500 RTX 4090 上 HF TRL 做不到 —— Unsloth 让它成日常。
 
-云租：Vast.ai 上 H100（~$1.50/小时）能干一切；便宜实验 RTX 4090 实例 $0.40-0.60/小时在 {{< aff "digitalocean" "unsloth-gpu" "DigitalOcean GPU droplet" >}} 上跑得动。
+云租：Vast.ai 上 H100（~$1.50/小时）能干一切；便宜实验 RTX 4090 实例 $0.40-0.60/小时在  上跑得动。
 
 ## 3. 快装（5 分）
 
@@ -199,7 +206,7 @@ Vast.ai 租 RTX 4090 → Unsloth QLoRA 实验 →
 
 Unsloth = **单 GPU LLM 微调速度之王**。64.9k 星，vs HuggingFace TRL 快 2× + 少 70% VRAM，双 Apache/AGPL license。单 RTX 4090 上 Llama 70B QLoRA 现在是日常。
 
-配 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 做生产多 GPU 阶段。要训练时租 {{< aff "digitalocean" "footer-cta" "GPU 实例" >}} 或用 Vast.ai。
+配 [Axolotl](/zh/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 做生产多 GPU 阶段。要训练时租  或用 Vast.ai。
 
 
 * * *

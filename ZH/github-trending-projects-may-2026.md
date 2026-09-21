@@ -1,6 +1,13 @@
 ---
-title: "DeepSeek 终端编程智能体 + Anthropic金融AI：2026年5月GitHub最值得关注的开源项目"
-description: "深度解析GitHub 2026年5月三大热门趋势项目：一夜暴涨5800星的DeepSeek-TUI终端编程智能体、Anthropic首个垂直金融领域Claude智能体套件，以及完全本地化的加密AI研究..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "github-trending-projects-may-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+08:00
 lastmod: 2026-05-15T04:20:25+08:00
 tech_stack: - C++
@@ -20,11 +27,11 @@ draft: false
 aliases:
   - /zh/posts/github-trending-projects-may-2026/
 faqs: - q: 'DeepSeek-TUI 是什么，它和 Cursor 或 GitHub Copilot 有何不同？'
-    a: 'DeepSeek-TUI 是一款基于终端的 AI 编程智能体，通过 `deepseek` 命令在本地运行，会流式输出推理块，并在磁盘上读写文件，在进行任何文件系统更改前都设有审批关卡。与作为完整图形界面编辑器运行的 Cursor 或 Copilot 不同，它专为在 tmux、neovim 或 zsh 中工作的终端用户打造，无需在浏览器和 IDE 之间来回切换上下文。'
+    a: 'DeepSeek-TUI 是一款基于终端的 AI 编程智能体，通过 ``deepseek`` 命令在本地运行，会流式输出推理块，并在磁盘上读写文件，在进行任何文件系统更改前都设有审批关卡。与作为完整图形界面编辑器运行的 Cursor 或 Copilot 不同，它专为在 tmux、neovim 或 zsh 中工作的终端用户打造，无需在浏览器和 IDE 之间来回切换上下文。'
   - q: 'DeepSeek-TUI 的 auto 模式如何节省开支？'
-    a: '在 auto 模式下（`deepseek --model auto`），工具会先用 deepseek-v4-flash 在不开启 thinking 的情况下发起一次极小的路由调用，以评估你的请求，然后选出最便宜且可行的模型和 thinking 级别。简单的重构会用关闭 thinking 的快速模型，而像安全审查这类复杂任务则会触发 pro 模型并采用更高的 thinking 级别，因此简短的提问始终保持低成本。'
+    a: '在 auto 模式下（``deepseek --model auto``），工具会先用 deepseek-v4-flash 在不开启 thinking 的情况下发起一次极小的路由调用，以评估你的请求，然后选出最便宜且可行的模型和 thinking 级别。简单的重构会用关闭 thinking 的快速模型，而像安全审查这类复杂任务则会触发 pro 模型并采用更高的 thinking 级别，因此简短的提问始终保持低成本。'
   - q: '我该如何安装 DeepSeek-TUI？'
-    a: '你可以通过 npm（`npm install -g deepseek-tui`）、Cargo（`cargo install deepseek-tui-cli --locked`）、macOS 上的 Homebrew（`brew tap Hmbown/deepseek-tui && brew install deepseek-tui`）或 Docker 来安装。身份验证通过 `deepseek auth set --provider deepseek` 设置，并从 v0.8.8 起原生支持 ARM64 Linux。'
+    a: '你可以通过 npm（``npm install -g deepseek-tui``）、Cargo（``cargo install deepseek-tui-cli --locked``）、macOS 上的 Homebrew（``brew tap Hmbown/deepseek-tui && brew install deepseek-tui``）或 Docker 来安装。身份验证通过 ``deepseek auth set --provider deepseek`` 设置，并从 v0.8.8 起原生支持 ARM64 Linux。'
   - q: 'Anthropic 的金融服务智能体套件包含哪些内容？'
     a: '它内置 11 个命名智能体，覆盖具体的金融工作流，包括 Pitch Agent（可比公司、先例交易、LBO 到路演材料）、Market Researcher、Earnings Reviewer、GL Reconciler 和 KYC Screener。它还新增了垂直领域的斜杠命令插件，如 /comps、/dcf 和 /earnings，以及由 LSEG 和 S&P Global 构建的合作伙伴连接器。'
   - q: 'Local Deep Research 是否保护隐私，它的准确度如何？'

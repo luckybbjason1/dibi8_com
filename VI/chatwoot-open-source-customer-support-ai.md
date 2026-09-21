@@ -1,6 +1,13 @@
 ---
-title: "Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở vớ...
-description: "Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chatwoot-open-source-customer-support-ai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại Sao Tech Stack Hỗ Trợ Củ Bạn Cần Được Thay Mới
 
@@ -80,7 +87,7 @@ Chatwoot theo kiến trúc Rails monolithic cổ điển với frontend Vue.js S
 
 **Automation Rules** — Luật if-this-then-that kích hoạt khi tạo hội thoại, nhận tin nhắn, hoặc điều kiện dựa trên thờ gian.
 
-**Macros** — Mẫu phản hồi định nghĩa trước mà nhân viên có thể chèn bằng một cú nhấp chuột. Hỗ trợ biến động như ````{{contact.name}}````.
+**Macros** — Mẫu phản hồi định nghĩa trước mà nhân viên có thể chèn bằng một cú nhấp chuột. Hỗ trợ biến động như ````````.
 
 ## Cài đặt & Thiết lập: Từ Zero tớ Chat Trực Tiếp trong 5 Phút
 

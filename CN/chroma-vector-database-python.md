@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chroma-vector-database-python"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Chroma DB 2026: The Developer-Friendly Vector Database f...
-description: "A practical guide to Chroma vector database with Python. Learn installation, RAG integration, embedd..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/chroma-vector-database-python/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your RAG Pipeline Needs a Better Vector Store
 

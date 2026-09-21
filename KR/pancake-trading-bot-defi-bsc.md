@@ -1,6 +1,13 @@
 ---
-title: "PancakeSwap 트레이딩 봇 2026: Python으로 BSC에서 자동화된 DeFi 전략 구축 ...
-description: "Binance Smart Chain에서 프로덕션 수준의 PancakeSwap 트레이딩 봇을 구축하세요. Web3.py 통합, 자동화 전략, 유동성 풀 모니터링, MEV 보호 및 P..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pancake-trading-bot-defi-bsc"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: DeFi 자동화에서 42억 달러의 교훈
 

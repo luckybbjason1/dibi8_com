@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dify"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Dify: Build Production-Grade AI Agents Visually in 5 Min...
-description: "Dify is an open-source LLM application development platform with visual workflow builder, RAG pipeli..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 - /resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-
 ---
 
-{{</* resource-info */>}}
+
 
 Most teams ship AI chatbots the hard way. They wire Flask routes to OpenAI APIs, hand-craft prompt templates in JSON files, and build RAG pipelines from scratch with embedding models, vector stores, and chunking logic. Three months later, the prototype is unmaintainable, the product manager cannot update a prompt without a developer, and the knowledge base sync is a cron job that fails silently.
 

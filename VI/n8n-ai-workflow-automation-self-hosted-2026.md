@@ -1,18 +1,10 @@
 ---
-title: "Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI ...
-description: "Hướng dẫn n8n toàn diện 2026 — nền tảng tự động hóa mã nguồn mở đang bùng nổ. Cài đặt n8n tự host, x..."
-keywords: n8n, hướng dẫn n8n, tự động hóa workflow AI, công cụ tự động hóa mã nguồn mở, n8n tự host, n8n vs Zapier, xây dựng AI Agent, tích hợp LangChain, tự động hóa SEO, cài đặt Docker n8n
-author: Home Hermes
-date: 2026-05-20
-lastmod: 2026-05-20---
-
-
-# Hướng Dẫn n8n Tự Động Hóa Workflow AI 2026: Xây Dựng AI Agent Mã Nguồn Mở, Cài Đặt Tự Host, Tiết Kiệm 70% So Với Zapier
-
-Trong quý 1/2025, một dự án mã nguồn mở đã thu về **18.420 sao GitHub** mới — nhiều hơn tổng của ba nền tảng low-code phát triển nhanh nhất tiếp theo cộng lại. Dự án đó là **n8n**. Đến tháng 3/2026, n8n công bố vòng gọi vốn Series B **60 triệu USD**, khẳng định vị thế là lớp hạ tầng cốt lõi cho tự động hóa AI-native.
-
-Bài viết này không phải một bài đánh giá "thay thế Zapier" đơn thuần. Đây là hướng dẫn thực chiến dành cho lập trình viên, chuyên viên vận hành, và founder kỹ thuật — những người cần xây dựng **workflow do AI điều phối** trên hạ tầng riêng, chi phí gần như bằng không, và tích hợp LLM một cách native.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-workflow-automation-self-hosted-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Tại Sao n8n Đang Bùng Nổ vào 2026
@@ -168,8 +160,8 @@ Hầu hết các đội content tiêu tốn 2+ giờ mỗi ngày cho các tác v
 
 #### Node 1: Google Search Console
 
-Node GSC native trong n8n xử lý xác thực OAuth2. Cấu hình với property Search Console của bạn: - **Ngày bắt đầu**: ````{{ $now.minus(7, 'days').format('YYYY-MM-DD') }}````
-- **Ngày kết thúc**: ````{{ $now.minus(1, 'days').format('YYYY-MM-DD') }}````
+Node GSC native trong n8n xử lý xác thực OAuth2. Cấu hình với property Search Console của bạn: - **Ngày bắt đầu**: ````````
+- **Ngày kết thúc**: ````````
 - **Chiều**: ````query````, ````page````
 - **Kiểu tổng hợp**: ````auto````
 
@@ -220,9 +212,9 @@ return alerts.map(a => ({ json: a }));
 Với mỗi từ khóa tụt hạng, lấy top 3 URL xếp hạng cao qua Serper API hoặc ScraperAPI, sau đó chuyển vào node OpenAI: `````
 System: Bạn là một chiến lược gia SEO nội dung. Phân tích lý do đối thủ xếp cao hơn chúng tôi và đề xuất 3 cải tiến nội dung cụ thể, khả thi.
 
-User: Từ khóa: {{ $json.query }}
-Trang của chúng tôi: {{ $json.page }}
-Trang đối thủ: {{ $json.competitorUrls.join(', ') }}
+User: Từ khóa: 
+Trang của chúng tôi: 
+Trang đối thủ: 
 
 Trả lời theo định dạng: 1. [Phân loại] Đề xuất cụ thể
 2. [Phân loại] Đề xuất cụ thể
@@ -236,21 +228,21 @@ Phân loại: Độ sâu nội dung, Bao phủ ngữ nghĩa, Khớp ý định n
 Dùng pattern **Split In Batches** → **Merge**, hoặc đơn giản kết nối nhiều node vào cùng đầu ra. Mỗi nhánh thực thi độc lập: **Nhánh Slack**: `````
 🚨 *Cảnh Báo SEO Guardian: Phát Hiện Tụt Hạng*
 
-*Từ khóa:* {{ $json.query }}
-*Trang:* {{ $json.page }}
-*Vị trí:* {{ $json.previousPosition }} → {{ $json.currentPosition }} (↓{{ $json.positionDrop }})
+*Từ khóa:* 
+*Trang:* 
+*Vị trí:*  →  (↓)
 
 *Phân tích AI:*
-{{ $json.aiRecommendations }}
+
 
 *Hành động:* Nhiệm vụ Notion đã được tạo. Vui lòng xem xét trước cuối ngày.
 `````
 
-**Nhánh Notion**: Dùng node Notion tạo mục cơ sở dữ liệu: - Tên: "Tối ưu: {{ $json.query }}"
+**Nhánh Notion**: Dùng node Notion tạo mục cơ sở dữ liệu: - Tên: "Tối ưu: "
 - Trạng thái: "Cần làm"
 - Ưu tiên: "Cao"
-- URL: {{ $json.page }}
-- Đề xuất AI: {{ $json.aiRecommendations }}
+- URL: 
+- Đề xuất AI: 
 
 ### Kết Quả Thực Tế
 

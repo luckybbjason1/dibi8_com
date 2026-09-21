@@ -1,6 +1,13 @@
 ---
-title: "Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nha...
-description: "Triển khai Meilisearch 1.12 cho tìm kiếm chịu lỗi với độ trễ dưới 50ms. Hướng dẫn Docker, tích hợp S..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "meilisearch-fast-search-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Truy Vấn ```LIKE```` Cở Cơ Sở Dữ Liệu Đang Giết Chết UX Cở Bạn
 
@@ -280,8 +287,8 @@ function App() {
     <InstantSearch searchClient={searchClient} indexName="products">
       <SearchBox />
       <Stats />
-      <div style={{ display: flex, gap: 20px }}>
-        <aside style={{ width: 200px }}>
+      <div style=>
+        <aside style=>
           <RefinementList attribute="category" />
           <RefinementList attribute="in_stock" />
         </aside>
@@ -295,8 +302,8 @@ function App() {
 
 function ProductHit({ hit }) {
   return (
-    <div style={{ padding: 10px, borderBottom: '1px solid #eee' }}>
-      <h4 dangerouslySetInnerHTML={{ __html: hit._highlightResult.name.value }} />
+    <div style=>
+      <h4 dangerouslySetInnerHTML= />
       <p>${hit.price} — ★ {hit.rating} — {hit.in_stock ? 'Còn hàng' : 'Hết hàng'}</p>
     </div>
   );

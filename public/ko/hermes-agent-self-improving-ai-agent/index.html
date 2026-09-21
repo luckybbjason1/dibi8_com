@@ -1,0 +1,279 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/hermes-agent-self-improving-ai-agent/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/hermes-agent-self-improving-ai-agent/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/hermes-agent-self-improving-ai-agent/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/hermes-agent-self-improving-ai-agent/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/hermes-agent-self-improving-ai-agent/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/hermes-agent-self-improving-ai-agent/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/hermes-agent-self-improving-ai-agent/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” 생성하고, 지속적으로 개선하며, 당신의 선호도를 기억합니다. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python\nTypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: “210.6 MB” file_md5: ’' download_url: https://github.com/NousResearch/hermes-agent backup_url: ’' last_maintained: “2026-05-16” draft: false aliases: /ko/posts/hermes-agent-self-improving-ai-agent/ /posts/genericagent-self-evolving-ai-agent.ko/ faqs: - q: ‘Hermes Agent는 Claude Code, Cursor, GitHub Copilot 같은 도구와 무엇이 다른가요?’ a: ‘Hermes Agent에는 내장된 자가 학습 루프, 세션 간 지속되는 메모리, 그리고 그런 도구들에는 없는 스킬 시스템이 있습니다. 또한 6개의 메시징 플랫폼에서 동작하고, cron 스케줄링과 MCP를 지원하며, 오픈 소스이자 셀프 호스팅이 가능합니다. 반면 다른 도구들은 CLI, 데스크톱, 또는 IDE 전용이며 구독료나 API 요금을 부과합니다.’ q: ‘Hermes Agent의 자기 개선 루프는 어떻게 작동하나요?’ a: ‘작업을 완료한 후 Hermes는 무엇이 효과적이었고 무엇이 그렇지 않았는지 분석하고, 재사용 가능한 패턴을 추출하며, 그 접근 방식을 문서화한 스킬 파일을 생성하고, 유사한 작업에서 해당 스킬을 테스트한 뒤, 결과를 바탕으로 이를 다듬습니다. 시간이 지나면서 이는 사용자만의 고유한 개인 스킬 라이브러리를 구축합니다.’ q: ‘Hermes Agent는 세션 간에 어떤 종류의 메모리를 유지하나요?’ a: ‘Hermes는 두 가지 유형의 메모리를 유지합니다. 사용자 프로필 메모리(코딩 스타일, 프로젝트, 선호하는 도구, 커뮤니케이션 선호도, 자주 하는 실수)와 세션 메모리(현재 프로젝트 컨텍스트, 최근 명령어와 출력, 편집한 파일)입니다. 프로필 메모리는 컴퓨터를 재시작한 후에도 유지됩니다.’ q: ‘Hermes Agent는 어떤 메시징 플랫폼에서 실행할 수 있나요?’ a: ‘Hermes Agent는 Telegram, Discord, Slack, WhatsApp, Signal, Email에서 멀티 플랫폼 메시징 봇으로 동작하며, 모두 hermes gateway setup 명령으로 구성됩니다. 동일한 명령어와 스킬이 모든 플랫폼에서 그대로 작동합니다.’ q: ‘Hermes Agent는 어떻게 설치하고 LLM 제공자를 구성하나요?’ a: ‘Linux, macOS 또는 WSL2에서는 한 줄짜리 curl 스크립트를 bash로 파이프하여 설치하거나, 저장소를 클론한 뒤 ./setup-hermes.sh를 실행할 수 있습니다. 그런 다음 hermes config set provider openai와 hermes config set model gpt-4o 같은 명령으로 제공자를 설정하거나, hermes config set provider ollama를 통해 로컬 모델을 사용할 수 있습니다.’ {\u003c/* resource-info */\u003e}\n문제: 대부분의 AI 에이전트는 당신을 잊어버립니다 AI 어시스턴트에게 당신의 워크플로우, 코딩 스타일, 프로젝트 구조를 가르치는 데 몇 시간을 보냅니다. 그런 다음 새 세션을 시작하면 — 모든 것이 사라집니다. 에이전트는 매번 당신을 낯선 사람처럼 대합니다.\n이것이 오늘날 대부분의 AI 에이전트의 근본적인 한계입니다: 메모리가 없고, 학습이 없고, 성장이 없습니다. 설계상 상태를 유지하지 않으므로, 강력한 도구이지만 끔찍한 장기 파트너입니다.\nHermes Agent는 급진적인 접근 방식으로 이 문제를 해결합니다: 내장 학습 루프를 가진 유일한 에이전트입니다.\nHermes Agent란 무엇인가? Hermes Agent는 Nous Research가 만든 오픈소스 AI 에이전트입니다 — Hermes 오픈소스 대규모 언어 모델 시리즈를 만든 바로 그 팀입니다. GitHub에서 136,579+ 스타와 20,960+ 포크를 보유하고 있으며, 현존하는 가장 인기 있는 AI 에이전트 프레임워크 중 하나입니다.\n프로젝트의 슬로건이 모든 것을 설명합니다: “당신과 함께 성장하는 에이전트.”\n다른 에이전트가 정적인 도구인 것과 달리, Hermes Agent는: - 경험에서 스킬을 생성합니다 — 당신의 워크플로우를 학습하고 재사용 가능한 스킬로 저장합니다\n사용 중에 스킬을 개선합니다 — 피드백을 기반으로 능력을 정제합니다 세션 간에 지식을 유지합니다 — 당신이 누구인지, 무엇을 좋아하는지 기억합니다 당신에 대한 깊은 모델을 구축합니다 — 사용할수록 당신을 더 잘 이해합니다 핵심 기능 1. 내장 학습 루프 Hermes Agent의 핵심 혁신은 자기 개선 사이클입니다: ```` 경험 → 반성 → 스킬 생성 → 실습 → 개선\nHermes로 작업을 완료하면 다음을 수행합니다: 1. **분석** — 무엇이 효과적이었고 무엇이 아니었는지 2. **추출** — 재사용 가능한 패턴 3. **생성** — 접근 방식을 문서화하는 스킬 파일 4. **테스트** — 유사한 작업에서 스킬 테스트 5. **정제** — 결과를 기반으로 개선 시간이 지남에 따라 이것은 당신만의 **개인 스킬 라이브러리**를 만듭니다. ### 2. 40+ 내장 도구 Hermes Agent는 포괄적인 도구 세트와 함께 제공됩니다: | 도구 카테고리 | 예시 | |-------------|---------| | **파일 작업** | 읽기, 쓰기, 검색, 차이 비교, 패치 | | **터미널** | 명령 실행, 셸 세션, 백그라운드 작업 | | **웹** | 브라우징, 스크래핑, 다운로드, API 호출 | | **코드** | 구문 검사, 린트, 포맷팅, 테스트 | | **Git** | 커밋, 브랜치, 차이, 로그, PR 리뷰 | | **시스템** | 프로세스 관리, 파일 모니터링, 크론 작업 | **툴셋 시스템**을 사용하면 필요한 도구만 활성화하여 토큰 사용량을 줄이고 집중력을 높일 수 있습니다. ### 3. 스킬 시스템 (절차적 메모리) 스킬은 Hermes Agent의 비밀 무기입니다. 이들은 다음을 캡처하는 **재사용 가능한 절차 파일**입니다: - **트리거 조건** — 이 스킬을 사용할 시기 - **단계별 지침** — 무엇을 할 것인지 - **함정** — 피해야 할 일반적인 실수 - **검증 단계** — 성공을 확인하는 방법 스킬은 다음과 같은 방식으로 사용할 수 있습니다: - **자동 생성** — 성공적인 작업 완료에서 - **스킬 허브에서 다운로드** — 커뮤니티 기여 스킬 - **수동 작성** — 특정 워크플로우용 - **다른 사용자와 공유** ### 4. 영구 메모리 Hermes Agent는 **두 가지 유형의 메모리**를 유지합니다: **사용자 프로필 메모리**: - 선호하는 코딩 스타일 - 작업 중인 프로젝트 - 좋아하는 도구 - 커뮤니케이션 선호도 - 자주 저지르는 실수 (이를 잡아낼 수 있도록) **세션 메모리**: - 현재 프로젝트 컨텍스트 - 최근 명령과 출력 - 편집 중인 파일 - 이 세션의 대화 이 메모리는 세션 간에 지속되므로 컴퓨터를 다시 시작해도 Hermes는 **당신을 기억합니다**. ### 5. 메시징 게이트웨이 Hermes Agent는 단순한 CLI 도구가 아닙니다 — **멀티플랫폼 메시징 봇**입니다: | 플랫폼 | 설정 | 사용 사례 | |---------|-------|---------| | **Telegram** | ````hermes gateway setup```` | 모바일 AI 어시스턴트 | | **Discord** | ````hermes gateway setup```` | 팀 협업 | | **Slack** | ````hermes gateway setup```` | 직장 통합 | | **WhatsApp** | ````hermes gateway setup```` | 개인 어시스턴트 | | **Signal** | ````hermes gateway setup```` | 프라이버시 중심 | | **Email** | ````hermes gateway setup```` | 비동기 워크플로우 | 구성이 완료되면 이러한 플랫폼 중 하나에서 동일한 명령과 스킬을 사용하여 Hermes와 채팅할 수 있습니다. ### 6. MCP 통합 Hermes Agent는 **모델 컨텍스트 프로토콜(MCP)**을 지원하여 확장 기능을 위해 모든 MCP 서버에 연결할 수 있습니다: - **데이터베이스 서버** — SQL 데이터베이스 쿼리 - **파일 서버** — 원격 파일 시스템에 액세스 - **API 서버** — 모든 REST API와 상호 작용 - **사용자 정의 서버** — 자체 통합 구축 이를 통해 Hermes는 무한하게 확장 가능합니다 — MCP 서버를 구축할 수 있다면 Hermes는 사용할 수 있습니다. ### 7. 크론 스케줄링 Hermes Agent는 내장된 크론 시스템을 통해 **예약된 작업**을 실행할 수 있습니다: `````bash # 매일 오전 9시에 스킬 실행 hermes cron add --skill \"daily-report\" --schedule \"0 9 * * *\" # 매주 백업 실행 hermes cron add --skill \"backup-database\" --schedule \"0 2 * * 0\" # 모든 예약 작업 목록 hermes cron list 일정에 따라 실행되어야 하는 자동화 워크플로우에 적합합니다.\n8. 보안 기능 Hermes Agent는 보안을 중요하게 생각합니다: - 명령 승인 — 위험한 명령은 명시적 확인이 필요합니다\nDM 페어링 — 민감한 작업 전에 신원을 확인합니다 컨테이너 격리 — 신뢰할 수 없는 코드를 격리된 환경에서 실행 감사 로깅 — 모든 작업이 검토를 위해 기록됩니다 빠른 시작 설치 # 한 줄 설치 (Linux, macOS, WSL2) curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash # 또는 수동으로 클론 및 설정 git clone https://github.com/NousResearch/hermes-agent.git cd hermes-agent ./setup-hermes.sh 첫 대화 source ~/.bashrc # 셸 다시 로드 hermes # 채팅 시작 공급자 구성 # 선호하는 LLM 공급자 설정 hermes config set provider openai hermes config set model gpt-4o # 또는 로컬 모델 사용 hermes config set provider ollama hermes config set model llama3.1 유용한 명령 # 새 대화 시작 /new # 즉석에서 모델 변경 /model anthropic:claude-3-5-sonnet # 개성 설정 /personality developer # 사용량 확인 /usage # 사용 가능한 스킬 찾아보기 /skills # 특정 스킬 사용 /hugo-blog-deploy # 토큰 절약을 위해 컨텍스트 압축 /compress 아키텍처 Hermes Agent는 모듈식 아키텍처로 구축되었습니다: ````` Hermes Agent ├── CLI 인터페이스 (터미널 UI) ├── 메시징 게이트웨이 (Telegram, Discord 등) ├── 에이전트 코어 (추론 엔진) ├── 스킬 시스템 (절차적 메모리) ├── 메모리 저장소 (영구 저장) ├── 툴셋 관리자 (40+ 도구) ├── MCP 클라이언트 (외부 통합) ├── 크론 스케줄러 (자동화 작업) └── 보안 계층 (승인, 격리)\n전체 시스템은 **Python** (2800만+ 라인)으로 작성되었으며, 웹 인터페이스에는 TypeScript 구성 요소가 사용됩니다. ## 사용 사례 ### 개발자용 - **코드 리뷰 어시스턴트** — Hermes가 코드베이스를 학습하고 PR을 검토합니다 - **DevOps 자동화** — 인프라 배포, 모니터링 및 문제 해결 - **문서 작성기** — 코드 주석에서 문서 자동 생성 - **버그 헌터** — 과거 버그를 유발한 패턴 검색 ### 팀용 - **공유 스킬 라이브러리** — 팀 전체의 모범 사례를 재사용 가능한 스킬로 - **온보딩 가속기** — 신규 팀원이 팀 지식에 즉시 액세스 - **24/7 운영** — 크론 작업이 일상적인 유지 관리를 처리합니다 - **멀티플랫폼 액세스** — Slack, Discord 또는 Telegram에서 Hermes와 채팅 ### 파워 유저용 - **개인 지식 기반** — Hermes가 가르치는 모든 것을 기억합니다 - **워크플로우 자동화** — 복잡한 다단계 작업이 하나의 명령이 됩니다 - **크로스 플랫폼 어시스턴트** — 데스크톱, 모바일 및 웹에서 동일한 어시스턴트 - **사용자 정의 통합** — 특정 도구용 MCP 서버 구축 ## 성능 비교 | 기능 | Hermes Agent | Claude Code | Cursor | GitHub Copilot | |---------|-------------|-----------|--------|----------------| | **자기 학습** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 | | **영구 메모리** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 | | **스킬 시스템** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 | | **멀티플랫폼** | ✅ 6개 플랫폼 | ❌ CLI 전용 | ❌ 데스크톱 전용 | ❌ IDE 전용 | | **오픈소스** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 | | **크론 스케줄링** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 | | **MCP 지원** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 | | **무료 계층** | ✅ 자체 호스팅 | 💰 API 비용 | 💰 구독 | 💰 구독 | ## 한계 - **학습 곡선** — 스킬 시스템은 사전 투자가 필요합니다 - **로컬 설정** — 자체 호스팅에는 기술 지식이 필요합니다 - **리소스 사용** — 영구 메모리는 시간이 지남에 따라 저장 공간을 소비합니다 - **공급자 비용** — LLM API 호출은 여전히 비용이 듭니다 (로컬 모델을 사용하지 않는 한) ## 결론 Hermes Agent는 AI 어시스턴트에 대해 생각하는 방식의 **근본적인 전환**을 대표합니다. AI를 일회성 도구로 취급하는 대신, Hermes는 **당신과 함께 성장하는 장기 파트너**로 취급합니다. 자기 개선 루프, 영구 메모리 및 스킬 시스템은 복리 효과를 만듭니다: Hermes를 더 많이 사용할수록 더 가치 있게 됩니다. 이것은 시간이 지남에 따라 감소하는 수익을 제공하는 기존 AI 도구와 정반대입니다. 매번 세션마다 AI 어시스턴트에게 같은 것을 다시 가르치는 것에 지쳤다면, Hermes Agent를 탐색해 볼 가치가 있습니다. **GitHub**: [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) **문서**: [hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs/) **스타**: 136,579+ | **포크**: 20,960+ | **라이선스**: 오픈소스 Hermes Agent를 사용해 보셨나요? 자기 개선하는 AI 에이전트에 대한 경험이 있으신가요? 댓글에서 생각을 공유해 주세요. ## 관련 기사 - [Agent Reach: AI 에이전트에 인터넷 슈퍼파워 부여하기](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) - [Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) - [OpenClaw 42개 실제 사용 사례: AI 에이전트가 이미 우리의 삶을 이렇게 바꾸고 있습니다](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) * * * ## 자체 호스팅 추천 인프라 24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합. - **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC. *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hermes Agent：자기 진화하는 AI 에이전트, 사용할수록 당신을 더 잘 이해합니다\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/hermes-agent-self-improving-ai-agent\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1808","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/hermes-agent-self-improving-ai-agent/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/hermes-agent-self-improving-ai-agent/>En</a></li><li><a href=https://dibi8.com/zh/hermes-agent-self-improving-ai-agent/>Zh</a></li><li><a href=https://dibi8.com/vi/hermes-agent-self-improving-ai-agent/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#%eb%ac%b8%ec%a0%9c-%eb%8c%80%eb%b6%80%eb%b6%84%ec%9d%98-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%8a%94-%eb%8b%b9%ec%8b%a0%ec%9d%84-%ec%9e%8a%ec%96%b4%eb%b2%84%eb%a6%bd%eb%8b%88%eb%8b%a4 aria-label="문제: 대부분의 AI 에이전트는 당신을 잊어버립니다">문제: 대부분의 AI 에이전트는 당신을 잊어버립니다</a></li><li><a href=#hermes-agent%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80 aria-label="Hermes Agent란 무엇인가?">Hermes Agent란 무엇인가?</a></li><li><a href=#%ed%95%b5%ec%8b%ac-%ea%b8%b0%eb%8a%a5 aria-label="핵심 기능">핵심 기능</a><ul><li><a href=#1-%eb%82%b4%ec%9e%a5-%ed%95%99%ec%8a%b5-%eb%a3%a8%ed%94%84 aria-label="1. 내장 학습 루프">1. 내장 학습 루프</a></li><li><a href=#8-%eb%b3%b4%ec%95%88-%ea%b8%b0%eb%8a%a5 aria-label="8. 보안 기능">8. 보안 기능</a></li></ul></li><li><a href=#%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91 aria-label="빠른 시작">빠른 시작</a><ul><li><a href=#%ec%84%a4%ec%b9%98 aria-label=설치>설치</a></li><li><a href=#%ec%b2%ab-%eb%8c%80%ed%99%94 aria-label="첫 대화">첫 대화</a></li><li><a href=#%ea%b3%b5%ea%b8%89%ec%9e%90-%ea%b5%ac%ec%84%b1 aria-label="공급자 구성">공급자 구성</a></li><li><a href=#%ec%9c%a0%ec%9a%a9%ed%95%9c-%eb%aa%85%eb%a0%b9 aria-label="유용한 명령">유용한 명령</a></li></ul></li><li><a href=#%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98 aria-label=아키텍처>아키텍처</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+생성하고, 지속적으로 개선하며, 당신의 선호도를 기억합니다.
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - Python</p><ul><li>TypeScript
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &ldquo;210.6 MB&rdquo;
+file_md5: &rsquo;'
+download_url: <a href=https://github.com/NousResearch/hermes-agent>https://github.com/NousResearch/hermes-agent</a>
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-16&rdquo;
+draft: false
+aliases:<ul><li>/ko/posts/hermes-agent-self-improving-ai-agent/</li></ul></li><li>/posts/genericagent-self-evolving-ai-agent.ko/
+faqs: - q: &lsquo;Hermes Agent는 Claude Code, Cursor, GitHub Copilot 같은 도구와 무엇이 다른가요?&rsquo;
+a: &lsquo;Hermes Agent에는 내장된 자가 학습 루프, 세션 간 지속되는 메모리, 그리고 그런 도구들에는 없는 스킬 시스템이 있습니다. 또한 6개의 메시징 플랫폼에서 동작하고, cron 스케줄링과 MCP를 지원하며, 오픈 소스이자 셀프 호스팅이 가능합니다. 반면 다른 도구들은 CLI, 데스크톱, 또는 IDE 전용이며 구독료나 API 요금을 부과합니다.&rsquo;<ul><li>q: &lsquo;Hermes Agent의 자기 개선 루프는 어떻게 작동하나요?&rsquo;
+a: &lsquo;작업을 완료한 후 Hermes는 무엇이 효과적이었고 무엇이 그렇지 않았는지 분석하고, 재사용 가능한 패턴을 추출하며, 그 접근 방식을 문서화한 스킬 파일을 생성하고, 유사한 작업에서 해당 스킬을 테스트한 뒤, 결과를 바탕으로 이를 다듬습니다. 시간이 지나면서 이는 사용자만의 고유한 개인 스킬 라이브러리를 구축합니다.&rsquo;</li><li>q: &lsquo;Hermes Agent는 세션 간에 어떤 종류의 메모리를 유지하나요?&rsquo;
+a: &lsquo;Hermes는 두 가지 유형의 메모리를 유지합니다. 사용자 프로필 메모리(코딩 스타일, 프로젝트, 선호하는 도구, 커뮤니케이션 선호도, 자주 하는 실수)와 세션 메모리(현재 프로젝트 컨텍스트, 최근 명령어와 출력, 편집한 파일)입니다. 프로필 메모리는 컴퓨터를 재시작한 후에도 유지됩니다.&rsquo;</li><li>q: &lsquo;Hermes Agent는 어떤 메시징 플랫폼에서 실행할 수 있나요?&rsquo;
+a: &lsquo;Hermes Agent는 Telegram, Discord, Slack, WhatsApp, Signal, Email에서 멀티 플랫폼 메시징 봇으로 동작하며, 모두 <code>hermes gateway setup</code> 명령으로 구성됩니다. 동일한 명령어와 스킬이 모든 플랫폼에서 그대로 작동합니다.&rsquo;</li><li>q: &lsquo;Hermes Agent는 어떻게 설치하고 LLM 제공자를 구성하나요?&rsquo;
+a: &lsquo;Linux, macOS 또는 WSL2에서는 한 줄짜리 curl 스크립트를 bash로 파이프하여 설치하거나, 저장소를 클론한 뒤 <code>./setup-hermes.sh</code>를 실행할 수 있습니다. 그런 다음 <code>hermes config set provider openai</code>와 <code>hermes config set model gpt-4o</code> 같은 명령으로 제공자를 설정하거나, <code>hermes config set provider ollama</code>를 통해 로컬 모델을 사용할 수 있습니다.&rsquo;</li></ul></li></ul><hr><p>{&lt;/* resource-info */>}</p><h2 id=문제-대부분의-ai-에이전트는-당신을-잊어버립니다>문제: 대부분의 AI 에이전트는 당신을 잊어버립니다<a hidden class=anchor aria-hidden=true href=#문제-대부분의-ai-에이전트는-당신을-잊어버립니다>#</a></h2><p>AI 어시스턴트에게 당신의 워크플로우, 코딩 스타일, 프로젝트 구조를 가르치는 데 몇 시간을 보냅니다. 그런 다음 새 세션을 시작하면 — 모든 것이 사라집니다. 에이전트는 매번 당신을 낯선 사람처럼 대합니다.</p><p>이것이 오늘날 대부분의 AI 에이전트의 근본적인 한계입니다: <strong>메모리가 없고, 학습이 없고, 성장이 없습니다</strong>. 설계상 상태를 유지하지 않으므로, 강력한 도구이지만 끔찍한 장기 파트너입니다.</p><p><strong>Hermes Agent</strong>는 급진적인 접근 방식으로 이 문제를 해결합니다: 내장 학습 루프를 가진 유일한 에이전트입니다.</p><h2 id=hermes-agent란-무엇인가>Hermes Agent란 무엇인가?<a hidden class=anchor aria-hidden=true href=#hermes-agent란-무엇인가>#</a></h2><p><a href=https://github.com/NousResearch/hermes-agent>Hermes Agent</a>는 <a href=https://nousresearch.com>Nous Research</a>가 만든 오픈소스 AI 에이전트입니다 — Hermes 오픈소스 대규모 언어 모델 시리즈를 만든 바로 그 팀입니다. GitHub에서 <strong>136,579+ 스타</strong>와 <strong>20,960+ 포크</strong>를 보유하고 있으며, 현존하는 가장 인기 있는 AI 에이전트 프레임워크 중 하나입니다.</p><p>프로젝트의 슬로건이 모든 것을 설명합니다: <strong>&ldquo;당신과 함께 성장하는 에이전트.&rdquo;</strong></p><p>다른 에이전트가 정적인 도구인 것과 달리, Hermes Agent는: - <strong>경험에서 스킬을 생성합니다</strong> — 당신의 워크플로우를 학습하고 재사용 가능한 스킬로 저장합니다</p><ul><li><strong>사용 중에 스킬을 개선합니다</strong> — 피드백을 기반으로 능력을 정제합니다</li><li><strong>세션 간에 지식을 유지합니다</strong> — 당신이 누구인지, 무엇을 좋아하는지 기억합니다</li><li><strong>당신에 대한 깊은 모델을 구축합니다</strong> — 사용할수록 당신을 더 잘 이해합니다</li></ul><h2 id=핵심-기능>핵심 기능<a hidden class=anchor aria-hidden=true href=#핵심-기능>#</a></h2><h3 id=1-내장-학습-루프>1. 내장 학습 루프<a hidden class=anchor aria-hidden=true href=#1-내장-학습-루프>#</a></h3><p>Hermes Agent의 핵심 혁신은 <strong>자기 개선 사이클</strong>입니다: ````
+경험 → 반성 → 스킬 생성 → 실습 → 개선</p><pre tabindex=0><code>
+Hermes로 작업을 완료하면 다음을 수행합니다: 1. **분석** — 무엇이 효과적이었고 무엇이 아니었는지
+2. **추출** — 재사용 가능한 패턴
+3. **생성** — 접근 방식을 문서화하는 스킬 파일
+4. **테스트** — 유사한 작업에서 스킬 테스트
+5. **정제** — 결과를 기반으로 개선
+
+시간이 지남에 따라 이것은 당신만의 **개인 스킬 라이브러리**를 만듭니다.
+
+### 2. 40+ 내장 도구
+
+Hermes Agent는 포괄적인 도구 세트와 함께 제공됩니다: | 도구 카테고리 | 예시 |
+|-------------|---------|
+| **파일 작업** | 읽기, 쓰기, 검색, 차이 비교, 패치 |
+| **터미널** | 명령 실행, 셸 세션, 백그라운드 작업 |
+| **웹** | 브라우징, 스크래핑, 다운로드, API 호출 |
+| **코드** | 구문 검사, 린트, 포맷팅, 테스트 |
+| **Git** | 커밋, 브랜치, 차이, 로그, PR 리뷰 |
+| **시스템** | 프로세스 관리, 파일 모니터링, 크론 작업 |
+
+**툴셋 시스템**을 사용하면 필요한 도구만 활성화하여 토큰 사용량을 줄이고 집중력을 높일 수 있습니다.
+
+### 3. 스킬 시스템 (절차적 메모리)
+
+스킬은 Hermes Agent의 비밀 무기입니다. 이들은 다음을 캡처하는 **재사용 가능한 절차 파일**입니다: - **트리거 조건** — 이 스킬을 사용할 시기
+- **단계별 지침** — 무엇을 할 것인지
+- **함정** — 피해야 할 일반적인 실수
+- **검증 단계** — 성공을 확인하는 방법
+
+스킬은 다음과 같은 방식으로 사용할 수 있습니다: - **자동 생성** — 성공적인 작업 완료에서
+- **스킬 허브에서 다운로드** — 커뮤니티 기여 스킬
+- **수동 작성** — 특정 워크플로우용
+- **다른 사용자와 공유**
+
+### 4. 영구 메모리
+
+Hermes Agent는 **두 가지 유형의 메모리**를 유지합니다: **사용자 프로필 메모리**: - 선호하는 코딩 스타일
+- 작업 중인 프로젝트
+- 좋아하는 도구
+- 커뮤니케이션 선호도
+- 자주 저지르는 실수 (이를 잡아낼 수 있도록)
+
+**세션 메모리**: - 현재 프로젝트 컨텍스트
+- 최근 명령과 출력
+- 편집 중인 파일
+- 이 세션의 대화
+
+이 메모리는 세션 간에 지속되므로 컴퓨터를 다시 시작해도 Hermes는 **당신을 기억합니다**.
+
+### 5. 메시징 게이트웨이
+
+Hermes Agent는 단순한 CLI 도구가 아닙니다 — **멀티플랫폼 메시징 봇**입니다: | 플랫폼 | 설정 | 사용 사례 |
+|---------|-------|---------|
+| **Telegram** | ````hermes gateway setup```` | 모바일 AI 어시스턴트 |
+| **Discord** | ````hermes gateway setup```` | 팀 협업 |
+| **Slack** | ````hermes gateway setup```` | 직장 통합 |
+| **WhatsApp** | ````hermes gateway setup```` | 개인 어시스턴트 |
+| **Signal** | ````hermes gateway setup```` | 프라이버시 중심 |
+| **Email** | ````hermes gateway setup```` | 비동기 워크플로우 |
+
+구성이 완료되면 이러한 플랫폼 중 하나에서 동일한 명령과 스킬을 사용하여 Hermes와 채팅할 수 있습니다.
+
+### 6. MCP 통합
+
+Hermes Agent는 **모델 컨텍스트 프로토콜(MCP)**을 지원하여 확장 기능을 위해 모든 MCP 서버에 연결할 수 있습니다: - **데이터베이스 서버** — SQL 데이터베이스 쿼리
+- **파일 서버** — 원격 파일 시스템에 액세스
+- **API 서버** — 모든 REST API와 상호 작용
+- **사용자 정의 서버** — 자체 통합 구축
+
+이를 통해 Hermes는 무한하게 확장 가능합니다 — MCP 서버를 구축할 수 있다면 Hermes는 사용할 수 있습니다.
+
+### 7. 크론 스케줄링
+
+Hermes Agent는 내장된 크론 시스템을 통해 **예약된 작업**을 실행할 수 있습니다: `````bash
+# 매일 오전 9시에 스킬 실행
+hermes cron add --skill &#34;daily-report&#34; --schedule &#34;0 9 * * *&#34;
+
+# 매주 백업 실행
+hermes cron add --skill &#34;backup-database&#34; --schedule &#34;0 2 * * 0&#34;
+
+# 모든 예약 작업 목록
+hermes cron list
+</code></pre><p>일정에 따라 실행되어야 하는 자동화 워크플로우에 적합합니다.</p><h3 id=8-보안-기능>8. 보안 기능<a hidden class=anchor aria-hidden=true href=#8-보안-기능>#</a></h3><p>Hermes Agent는 보안을 중요하게 생각합니다: - <strong>명령 승인</strong> — 위험한 명령은 명시적 확인이 필요합니다</p><ul><li><strong>DM 페어링</strong> — 민감한 작업 전에 신원을 확인합니다</li><li><strong>컨테이너 격리</strong> — 신뢰할 수 없는 코드를 격리된 환경에서 실행</li><li><strong>감사 로깅</strong> — 모든 작업이 검토를 위해 기록됩니다</li></ul><h2 id=빠른-시작>빠른 시작<a hidden class=anchor aria-hidden=true href=#빠른-시작>#</a></h2><h3 id=설치>설치<a hidden class=anchor aria-hidden=true href=#설치>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 한 줄 설치 (Linux, macOS, WSL2)</span>
+</span></span><span style=display:flex><span>curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 또는 수동으로 클론 및 설정</span>
+</span></span><span style=display:flex><span>git clone https://github.com/NousResearch/hermes-agent.git
+</span></span><span style=display:flex><span>cd hermes-agent
+</span></span><span style=display:flex><span>./setup-hermes.sh
+</span></span></code></pre></div><h3 id=첫-대화>첫 대화<a hidden class=anchor aria-hidden=true href=#첫-대화>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>source ~/.bashrc    <span style=color:#75715e># 셸 다시 로드</span>
+</span></span><span style=display:flex><span>hermes              <span style=color:#75715e># 채팅 시작</span>
+</span></span></code></pre></div><h3 id=공급자-구성>공급자 구성<a hidden class=anchor aria-hidden=true href=#공급자-구성>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 선호하는 LLM 공급자 설정</span>
+</span></span><span style=display:flex><span>hermes config set provider openai
+</span></span><span style=display:flex><span>hermes config set model gpt-4o
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 또는 로컬 모델 사용</span>
+</span></span><span style=display:flex><span>hermes config set provider ollama
+</span></span><span style=display:flex><span>hermes config set model llama3.1
+</span></span></code></pre></div><h3 id=유용한-명령>유용한 명령<a hidden class=anchor aria-hidden=true href=#유용한-명령>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 새 대화 시작</span>
+</span></span><span style=display:flex><span>/new
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 즉석에서 모델 변경</span>
+</span></span><span style=display:flex><span>/model anthropic:claude-3-5-sonnet
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 개성 설정</span>
+</span></span><span style=display:flex><span>/personality developer
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 사용량 확인</span>
+</span></span><span style=display:flex><span>/usage
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 사용 가능한 스킬 찾아보기</span>
+</span></span><span style=display:flex><span>/skills
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 특정 스킬 사용</span>
+</span></span><span style=display:flex><span>/hugo-blog-deploy
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 토큰 절약을 위해 컨텍스트 압축</span>
+</span></span><span style=display:flex><span>/compress
+</span></span></code></pre></div><h2 id=아키텍처>아키텍처<a hidden class=anchor aria-hidden=true href=#아키텍처>#</a></h2><p>Hermes Agent는 모듈식 아키텍처로 구축되었습니다: `````
+Hermes Agent
+├── CLI 인터페이스 (터미널 UI)
+├── 메시징 게이트웨이 (Telegram, Discord 등)
+├── 에이전트 코어 (추론 엔진)
+├── 스킬 시스템 (절차적 메모리)
+├── 메모리 저장소 (영구 저장)
+├── 툴셋 관리자 (40+ 도구)
+├── MCP 클라이언트 (외부 통합)
+├── 크론 스케줄러 (자동화 작업)
+└── 보안 계층 (승인, 격리)</p><pre tabindex=0><code>
+전체 시스템은 **Python** (2800만+ 라인)으로 작성되었으며, 웹 인터페이스에는 TypeScript 구성 요소가 사용됩니다.
+
+## 사용 사례
+
+### 개발자용
+- **코드 리뷰 어시스턴트** — Hermes가 코드베이스를 학습하고 PR을 검토합니다
+- **DevOps 자동화** — 인프라 배포, 모니터링 및 문제 해결
+- **문서 작성기** — 코드 주석에서 문서 자동 생성
+- **버그 헌터** — 과거 버그를 유발한 패턴 검색
+
+### 팀용
+- **공유 스킬 라이브러리** — 팀 전체의 모범 사례를 재사용 가능한 스킬로
+- **온보딩 가속기** — 신규 팀원이 팀 지식에 즉시 액세스
+- **24/7 운영** — 크론 작업이 일상적인 유지 관리를 처리합니다
+- **멀티플랫폼 액세스** — Slack, Discord 또는 Telegram에서 Hermes와 채팅
+
+### 파워 유저용
+- **개인 지식 기반** — Hermes가 가르치는 모든 것을 기억합니다
+- **워크플로우 자동화** — 복잡한 다단계 작업이 하나의 명령이 됩니다
+- **크로스 플랫폼 어시스턴트** — 데스크톱, 모바일 및 웹에서 동일한 어시스턴트
+- **사용자 정의 통합** — 특정 도구용 MCP 서버 구축
+
+## 성능 비교
+
+| 기능 | Hermes Agent | Claude Code | Cursor | GitHub Copilot |
+|---------|-------------|-----------|--------|----------------|
+| **자기 학습** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 |
+| **영구 메모리** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 |
+| **스킬 시스템** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 |
+| **멀티플랫폼** | ✅ 6개 플랫폼 | ❌ CLI 전용 | ❌ 데스크톱 전용 | ❌ IDE 전용 |
+| **오픈소스** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 |
+| **크론 스케줄링** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 |
+| **MCP 지원** | ✅ 예 | ❌ 아니오 | ❌ 아니오 | ❌ 아니오 |
+| **무료 계층** | ✅ 자체 호스팅 | 💰 API 비용 | 💰 구독 | 💰 구독 |
+
+## 한계
+
+- **학습 곡선** — 스킬 시스템은 사전 투자가 필요합니다
+- **로컬 설정** — 자체 호스팅에는 기술 지식이 필요합니다
+- **리소스 사용** — 영구 메모리는 시간이 지남에 따라 저장 공간을 소비합니다
+- **공급자 비용** — LLM API 호출은 여전히 비용이 듭니다 (로컬 모델을 사용하지 않는 한)
+
+## 결론
+
+Hermes Agent는 AI 어시스턴트에 대해 생각하는 방식의 **근본적인 전환**을 대표합니다. AI를 일회성 도구로 취급하는 대신, Hermes는 **당신과 함께 성장하는 장기 파트너**로 취급합니다.
+
+자기 개선 루프, 영구 메모리 및 스킬 시스템은 복리 효과를 만듭니다: Hermes를 더 많이 사용할수록 더 가치 있게 됩니다. 이것은 시간이 지남에 따라 감소하는 수익을 제공하는 기존 AI 도구와 정반대입니다.
+
+매번 세션마다 AI 어시스턴트에게 같은 것을 다시 가르치는 것에 지쳤다면, Hermes Agent를 탐색해 볼 가치가 있습니다.
+
+**GitHub**: [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)  
+**문서**: [hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs/)  
+**스타**: 136,579+ | **포크**: 20,960+ | **라이선스**: 오픈소스  
+
+Hermes Agent를 사용해 보셨나요? 자기 개선하는 AI 에이전트에 대한 경험이 있으신가요? 댓글에서 생각을 공유해 주세요.
+
+## 관련 기사
+
+- [Agent Reach: AI 에이전트에 인터넷 슈퍼파워 부여하기](/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/)
+- [Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구](/kr/resources/ai-tools/free-claude-code-open-source-proxy/)
+- [OpenClaw 42개 실제 사용 사례: AI 에이전트가 이미 우리의 삶을 이렇게 바꾸고 있습니다](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/)
+
+* * *
+
+## 자체 호스팅 추천 인프라
+
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+
+*추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
+
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Hermes Agent：자기 진화하는 AI 에이전트, 사용할수록 당신을 더 잘 이해합니다&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/hermes-agent-self-improving-ai-agent&#34;
+  }
+}
+&lt;/script&gt;
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

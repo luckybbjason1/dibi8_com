@@ -1,6 +1,13 @@
 ---
-title: "Local Deep Research: 궁극의 로컬 우선 AI 딥 리서치 도구"
-description: "로컬 우선 AI 리서치 어시스턴트인 Local Deep Research(LDR)를 마스터하세요. 100% 개인정보 보호를 유지하면서 Ollama 및 SearXNG를 사용하여 심층적..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-deep-research-local-first-ai-deep-research-tool"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -24,7 +31,7 @@ faqs: - q: 'Local Deep Research (LDR)란 무엇인가요?'
   - q: 'Local Deep Research를 실행하는 데 권장되는 스택은 무엇인가요?'
     a: '권장하는 로컬 우선 스택은 LLM 엔진으로 Ollama(Llama 3 또는 Mistral 실행), 프라이버시를 존중하는 메타검색 엔진으로 SearXNG, 손쉬운 배포를 위한 Docker를 사용합니다. SearXNG가 웹 검색을 처리하고 Ollama가 모델을 로컬에 유지합니다.'
   - q: 'Docker로 Local Deep Research를 어떻게 배포하나요?'
-    a: '`docker run -d -p 8080:8080 --name searxng searxng/searxng`로 SearXNG를 실행한 다음, `docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research`로 LDR을 실행하세요. 이렇게 하면 메타검색 엔진과 연구 에이전트가 모두 구동됩니다.'
+    a: '``docker run -d -p 8080:8080 --name searxng searxng/searxng``로 SearXNG를 실행한 다음, ``docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research``로 LDR을 실행하세요. 이렇게 하면 메타검색 엔진과 연구 에이전트가 모두 구동됩니다.'
   - q: 'Local Deep Research는 AI 환각을 어떻게 방지하고 신뢰성을 보장하나요?'
     a: 'LDR은 고충실도 인용을 제공하여, 제시하는 모든 주장에 참고 문헌을 첨부하므로 출처 자료를 즉시 확인할 수 있습니다. 또한 단일한 표면적 답변에 의존하는 대신, 공백을 식별하고 후속 검색을 수행하는 반복적 종합을 진행합니다.'
 ---
@@ -96,8 +103,8 @@ Local Deep Research는 단순한 도구 그 이상입니다. AI 시대에 우리
 
 ## 자체 호스팅 추천 인프라
 
-24/7 안정 운영을 위해 인프라 선택이 중요하다: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
+24/7 안정 운영을 위해 인프라 선택이 중요하다: - **** — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.
+- **** — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.
 
 *추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

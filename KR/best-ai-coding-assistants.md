@@ -1,6 +1,13 @@
 ---
-title: "2026 최고의 AI 코딩 어시스턴트"
-description: "2026 년 개발자를 위한 최고의 AI 코딩 어시스턴트 — Claude Code와 Cursor부터 GitHub Copilot과 Devin까지. 기능, 가격, 성능을 비교하세요."...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-coding-assistants"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

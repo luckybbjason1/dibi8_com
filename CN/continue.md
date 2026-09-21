@@ -1,6 +1,13 @@
 ---
-title: "Continue.dev: 33K+ Stars — Open-Source AI Code Assistant...
-description: "Continue.dev (open-source AI code assistant) VS Code/JetBrains plugin. Supports any LLM: Ollama, Ope..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "continue"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/continue/-
 ---
 
-{{</* resource-info */>}}
+
 
 ![Continue.dev Banner](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
 
@@ -102,7 +109,7 @@ schema: v1
 models: - name: Claude Sonnet
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -110,7 +117,7 @@ models: - name: Claude Sonnet
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 EOF
 
@@ -204,7 +211,7 @@ models: # Primary: Claude for complex tasks
   - name: Claude Sonnet 4.6
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -213,7 +220,7 @@ models: # Primary: Claude for complex tasks
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat]
 
   # Autocomplete: Local model for zero latency
@@ -261,7 +268,7 @@ With the Ollama config above, all code processing stays on your machine. No netw
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
@@ -275,13 +282,13 @@ Claude models support MCP tool use natively — enabling Continue's Agent mode t
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 
   - name: GPT-4o-mini
     provider: openai
     model: gpt-4o-mini
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
 `````
@@ -311,7 +318,7 @@ mcpServers: - name: filesystem
   - name: github
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-    env: GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env: GITHUB_PERSONAL_ACCESS_TOKEN: $
 
   - name: postgres
     command: npx
@@ -357,7 +364,7 @@ Developer running a mix of local and cloud models: `````yaml
 models: - name: Claude Haiku
     provider: anthropic
     model: claude-haiku-4-5
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat]  # $0.25/1M tokens
 
   - name: Qwen 7B Local
@@ -377,7 +384,7 @@ Continue.dev's 2026 Agent mode can autonomously plan and execute multi-step task
 models: - name: Claude Sonnet Agent
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
@@ -425,9 +432,9 @@ Example in chat: `````
 # Never hardcode API keys. Use environment substitution: models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}  # From env var
+    apiKey: $  # From env var
 
-# For CI/CD, use your runner's secret store: # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
+# For CI/CD, use your runner's secret store: # GitHub Actions: $
 # GitLab CI: $ANTHROPIC_API_KEY (CI/CD variable)
 `````
 

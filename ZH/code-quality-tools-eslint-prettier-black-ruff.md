@@ -1,9 +1,10 @@
 ---
-title: "代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程"
-description: "2025年最全代码质量工具配置指南，涵盖JavaScript/TypeScript的ESLint与Prettier、Python的Black与Ruff、Go与Rust的格式化工具，含pre-commi..."
-draft: false
-aliases:
-  - /posts/code-quality-tools-eslint-prettier-black-ruff/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "code-quality-tools-eslint-prettier-black-ruff"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 代码质量工具指南：ESLint、Prettier、Black、Ruff等完整配置教程

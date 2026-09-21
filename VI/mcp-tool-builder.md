@@ -1,10 +1,10 @@
 ---
-title: "MCP Tool Builder — Tạo Định Nghĩa Model Context Protocol...
-description: "Công cụ tạo MCP Tool Definition trực tuyến miễn phí. Dán signature hàm Python hoặc TypeScript, nhận ..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-mcp-tool-builder"
-tool_id: "mcp-tool-builder"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-tool-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

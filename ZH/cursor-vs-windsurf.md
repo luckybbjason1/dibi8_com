@@ -1,6 +1,13 @@
 ---
-title: "Cursor vs Windsurf 2026：哪款 AI IDE 更值得选？"
-description: "Cursor 和 Windsurf（Codeium 出品）横向对比 — Composer vs Cascade、价格、性能、迁移建议。2026 年更新。". Comprehensive guide c..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-vs-windsurf"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

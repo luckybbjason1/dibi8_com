@@ -1,6 +1,13 @@
 ---
-title: "Kubeflow 2026: Run Complete ML Pipelines on Kubernetes —...
-description: "A complete guide to deploying Kubeflow on Kubernetes for ML pipelines. Covers installation, componen..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "kubeflow-ml-pipeline-kubernetes"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/kubeflow-ml-pipeline-kubernetes/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Kubernetes-Native ML Matters
 

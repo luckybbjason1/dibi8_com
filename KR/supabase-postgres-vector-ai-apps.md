@@ -1,6 +1,13 @@
 ---
-title: "Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Fi...
-description: "Supabase 완벽 가이드: Postgres + pgvector를 갖춘 오픈소스 Firebase 대안. 인증, 스토리지, 실시간, Edge 함수, RAG 파이프라인 통합, 자체 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supabase-postgres-vector-ai-apps"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: AI 앱 빌더가 Firebase에서 Supabase로 전환하는 이유
 

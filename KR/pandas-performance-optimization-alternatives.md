@@ -1,9 +1,10 @@
 ---
-title: "Pandas 성능 최적화 가이드: 2024년 Polars 또는 DuckDB로 전환해야 할 시점과 방법"
-description: "Pandas 성능 한계를 분석하고 최적화 기법을 소개합니다. Polars와 DuckDB의 특징, 벤치마크 비교, 전환 시점과 마이그레이션 전략을 상세히 설명합니다.". Compre..."
-draft: false
-aliases:
-  - /posts/pandas-performance-optimization-alternatives/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pandas-performance-optimization-alternatives"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

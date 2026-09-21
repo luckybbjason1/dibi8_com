@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-presentation-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Best AI Presentation Tools 2025: Gamma, Beautiful.ai, To...
-description: "Compare the best AI presentation tools of 2025. In-depth reviews of Gamma, Beautiful.ai, Tome, Slide..."
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

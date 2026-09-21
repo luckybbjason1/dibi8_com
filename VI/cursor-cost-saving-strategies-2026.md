@@ -1,6 +1,13 @@
 ---
-title: "Chiến lược tiết kiệm chi phí Cursor 2026: Sau khi đổi sa...
-description: "Cursor đã đổi giá năm 2025 — người dùng Pro mất khoảng 55% mức sử dụng hiệu dụng với cùng mức giá. Đ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-cost-saving-strategies-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Cursor, 'Claude Code', 'OpenAI API', 'Anthropic API']
@@ -25,7 +32,7 @@ faq: - q: "Giá Cursor đã thay đổi gì trong 2025?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Chiến lược tiết kiệm chi phí Cursor 2026
 
@@ -95,8 +102,8 @@ Session dài đốt credit kém hiệu quả. Thói quen: đóng Cursor giữa c
 
 ## Hạ tầng được khuyến nghị
 
-Cho setup Cursor + Claude Code kết hợp: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong
+Cho setup Cursor + Claude Code kết hợp: - **** — $200 credit
+- **** — VPS Hong Kong
 
 *Liên kết liên kết — cùng giá, ủng hộ dibi8.com.*
 

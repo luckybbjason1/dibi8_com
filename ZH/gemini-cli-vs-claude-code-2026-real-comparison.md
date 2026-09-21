@@ -1,6 +1,13 @@
 ---
-title: "Gemini CLI vs Claude Code 2026：5 个工作流的真实对比"
-description: "Google 发布了 Gemini CLI 来对标 Claude Code。在同样的 5 个工作流上实测两者：Gemini 胜在哪里（免费额度、1M 上下文），Claude Code 胜在哪里（工具调..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code-2026-real-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
@@ -25,7 +32,7 @@ faq: - q: "Gemini CLI 算得上 Claude Code 的真正竞争对手吗？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Gemini CLI vs Claude Code 2026：5 个工作流的真实对比
 
@@ -164,8 +171,8 @@ Google 于 2026 年初发布 Gemini CLI 与 Claude Code 正面对决。它的免
 ## 推荐的基础设施
 
 Gemini CLI + Claude Code 配套使用建议：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— $200 抵扣
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS
+- **** —— $200 抵扣
+- **** —— 香港 VPS
 
 *联盟链接 —— 同价购买，支持 dibi8.com。*
 

@@ -1,16 +1,14 @@
 ---
-title: "bat: 58K+ Stars 的语法高亮 cat 替代品 — 2026年对比 cat、less"
-description: "bat 是带语法高亮和 Git 集成的 cat(1) 克隆。兼容 Rust、Git、Homebrew、Cargo。涵盖安装教程、性能基准测试、配置文件以及与 cat、less、ccat 的对比。". ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["bat", "cat 替代品", "语法高亮", "命令行工具", "rust", "终端工具", "文件查看器", "cli"]
-aliases:
-  - /zh/posts/bat/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bat"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ```cat```` 命令自 1971 年以来一直是类 Unix 系统的默认文件查看工具。它将原始字节输出到 stdout —— 没有颜色、没有行号、没有 Git 感知能力。当你在凌晨 2 点阅读一个 200 行的 Python 文件时，盯着未格式化的文本会增加不必要的认知负担。````bat```` 用语法高亮、Git 集成和自动分页替代了这种四十年的旧工作流 —— 同时不破坏每位终端用户已有的肌肉记忆。
 

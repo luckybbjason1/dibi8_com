@@ -1,11 +1,10 @@
 ---
-title: "Matt Pocock 的 Skills：赋予 AI Agent 真正超能力的 CLI 框架——npm 安装，零配置"
-description: "了解如何使用 Matt Pocock 的 Skills 框架为 Claude Code、Cursor 和 Gemini CLI 等 AI 编程 Agent 赋予代码之外的真正能力——数据库、文件系统、..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "mattpocock-skills-ai-agent-framework-guide"
-category: dev-utils
-tags: ["matt-pocock", "skills", "AI Agent", "CLI框架", "AI编程工具", "Agent能力", "开发者工具", "开源"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

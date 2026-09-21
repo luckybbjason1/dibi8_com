@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI 2026：114k 星节点式 AI 图像/视频/音频工作流引擎完整指南"
-description: "ComfyUI 是 114k 星节点式可视化工作流引擎，支持 SD/SDXL/Flux/Wan/Hunyuan 等。支持图像、视频、音频、3D 生成。2026 完整安装指南：节点基础、workflow..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-node-based-ai-image-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
@@ -67,7 +74,7 @@ ComfyUI 智能内存管理比 A1111 好得多。同 GPU 在 ComfyUI 干更多事
 | 24 GB（RTX 4090）| ~2 秒 | ~5 秒 | ~45 秒 |
 | 48 GB+（A6000/H100）| ~1 秒 | ~2 秒 | ~15 秒 |
 
-云端：Vast.ai 上 H100 $1.50/小时，或 {{< aff "digitalocean" "comfyui-gpu" "DigitalOcean GPU droplet" >}} 24 GB GPU；只按生成时间付费。
+云端：Vast.ai 上 H100 $1.50/小时，或  24 GB GPU；只按生成时间付费。
 
 ## 3. 快装（10 分钟）
 
@@ -142,8 +149,7 @@ ComfyUI 是唯一主流 UI，最新视频和 3D 模型 day-1 就工作：
 
 `````
    GPU 实例（推荐 24 GB VRAM）
-            │  在 Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}
-            ▼
+            │  在 Vast.ai / RunPod /             ▼
    ComfyUI 加 --listen 0.0.0.0（HTTP API 暴露）
             │
             ▼

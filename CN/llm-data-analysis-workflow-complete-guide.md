@@ -1,21 +1,10 @@
 ---
-title: "Using LLMs for Data Analysis: Complete Workflow with Pan...
-description: "Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build comp..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/llm-data-analysis-workflow-complete-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-data-analysis-workflow-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {</* resource-info */>}

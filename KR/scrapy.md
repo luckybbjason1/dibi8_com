@@ -1,6 +1,13 @@
 ---
-title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: "Scrapy는 Python 기반의 빠른 고수준 웹 크롤링 및 스크래핑 프레임워크이다. Python, Docker, Redis, PostgreSQL과 호환된다. 벤치마크, 아키텍처,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scrapy"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 단일 Python 프레임워크가 전 세계 약 **34%의 프로덕션 스크래핑 프로젝트**를 지원하고 GitHub에서 61,700개의 star를 유지하고 있다면, 깊이 있는 분석이 필요하다. Scrapy는 2008년부터 웹 크롤링의 주력 도구였지만, 2026년에는 Playwright와 같은 현대적인 브라우저 자동화 도구와 BeautifulSoup과 같은 검증된 라이브러리가 시장에 있다. 이제 질문은 "Scrapy가 크롤링할 수 있는가?"가 아니라 "특정 워크로드에 대해 여전히 Scrapy를 대안보다 선택해야 하는가?"이다.
 

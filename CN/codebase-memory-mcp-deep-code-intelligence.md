@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "codebase-memory-mcp-deep-code-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Codebase Memory MCP: 24K+ Star AI Code Intelligence Server"
-description: "Codebase Memory MCP is a high-performance code intelligence server that indexes entire codebases int..."
+description: "Technical guide and comparison."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence
@@ -12,7 +19,6 @@ tech_stack: - C
 
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 
-{{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
 
 ## TL;DR
 

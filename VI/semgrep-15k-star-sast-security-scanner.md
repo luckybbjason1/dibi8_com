@@ -1,11 +1,10 @@
 ---
-title: "Semgrep: Công cụ SAST 15K-Star Tìm 500+ Lỗ Hổng Trong Mã...
-description: "Semgrep là công cụ phân tích tĩnh mã nguồn mã nguồn mở với hơn 15K star trên GitHub, tìm kiếm hơn 50..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'semgrep-15k-star-sast-security-scanner'
-category: dev-utils
-tags: ["semgrep", "sast", "security-scanner", "code-analysis", "vulnerability", "open-source", "ci-cd", "static-analysis"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "semgrep-15k-star-sast-security-scanner"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

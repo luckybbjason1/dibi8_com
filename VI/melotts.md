@@ -1,6 +1,13 @@
 ---
-title: "MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui...
-description: "MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sá..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "melotts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Hầu hết các thư viện TTS mã nguồn mở đều buộc bạn phải lựa chọn: chất lượng cao đòi hỏi GPU, còn tùy chọn thân thiện với CPU nghe như robot. MeloTTS, được phát triển bởi các nhà nghiên cứu từ MIT và MyShell.ai, phá vỡ sự đánh đổi này. Với hơn 7.400 GitHub Stars và giấy phép MIT, nó cung cấp tổng hợp giọng nói đa ngôn ngữ thờ gian thực trên CPU với 6 ngôn ngữ và nhiều giọng Anh khác nhau. Hướng dẫn này sẽ đi qua toàn bộ quá trình thiết lập MeloTTS, đánh giá hiệu năng so với Coqui TTS, ChatTTS và Bark, và cung cấp cấu hình triển khai production-ready.
 

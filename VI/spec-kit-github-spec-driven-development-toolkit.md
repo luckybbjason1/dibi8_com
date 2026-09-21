@@ -1,11 +1,10 @@
 ---
-title: "Bộ công cụ đặc biệt: GitHub"
-description: "Hướng dẫn đầy đủ về Spec Kit của GitHub - bộ công cụ nguồn mở thay đổi cách các nhà phát triển xây d..."
-date: 2026-06-20
-lastmod: 2026-06-20
-(tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
-category: "dev-utils"
-slug: spec-kit-github-spec-driven-development-toolkit
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "spec-kit-github-spec-driven-development-toolkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-node-based-ai-image-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...
-description: "ComfyUI is the 114k-star node-based visual workflow engine for SD/SDXL/Flux/Wan/Hunyuan and more. Su..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -65,7 +72,7 @@ ComfyUI's smart memory management is much better than A1111's. The same GPU does
 | 24 GB (RTX 4090) | ~2s | ~5s | ~45 sec |
 | 48 GB+ (A6000/H100) | ~1s | ~2s | ~15 sec |
 
-Cloud option: spin up an H100 on Vast.ai for $1.50/hr or a 24 GB GPU on {{< aff "digitalocean" "comfyui-gpu" "DigitalOcean GPU droplets" >}}; pay only for time spent generating.
+Cloud option: spin up an H100 on Vast.ai for $1.50/hr or a 24 GB GPU on ; pay only for time spent generating.
 
 ## 3. Quick Install (10 minutes)
 
@@ -131,8 +138,7 @@ A "text → image → video → audio narration" pipeline that would require 4 s
 
 For an "AI media generation API" deploy: `````
    GPU instance (24 GB VRAM recommended)
-            │  on Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}
-            ▼
+            │  on Vast.ai / RunPod /             ▼
    ComfyUI with --listen 0.0.0.0 (HTTP API exposed)
             │
             ▼

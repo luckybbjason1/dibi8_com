@@ -1,21 +1,10 @@
 ---
-title: "Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested"
-description: "Hands-on Claude 4 review covering Opus 4, Sonnet 4, and Haiku 4 — coding, reasoning, context, pricin..."
-date: 2026-06-06T00:00:00+08:00
-lastmod: 2026-06-06T00:00:00+08:00
-draft: false
-tags: ["claude-4", "claude-opus-4", "claude-sonnet-4", "anthropic", "llm-review", "ai-coding", "reasoning"]
-categories: ["review"]
-faqs: - q: 'Is Claude Opus 4 worth the cost over Sonnet 4?'
-    a: 'For most developers, Sonnet 4 is the sweet spot. Opus 4 shines on multi-step reasoning chains, long legal or research documents, and agentic loops that require sustained accuracy over 10+ steps. If your workload is primarily code generation, summarization, or chat, Sonnet 4 delivers 85-90% of Opus 4 quality at roughly half the API cost. Upgrade to Opus 4 when you need the last 10-15% of accuracy on hard tasks.'
-  - q: 'How does Claude 4 compare to GPT-4o?'
-    a: 'Claude 4 Sonnet edges out GPT-4o on long-document analysis, instruction-following precision, and multi-turn coding sessions. GPT-4o has a broader multimodal feature set (real-time voice, image generation via DALL·E) and wider third-party integration. For pure text and code quality, Claude 4 Sonnet is the stronger choice in 2026; for the full OpenAI ecosystem lock-in, GPT-4o remains compelling.'
-  - q: 'What is Claude Haiku 4 best for?'
-    a: 'Claude Haiku 4 is purpose-built for high-throughput, latency-sensitive applications: real-time autocomplete, chat support bots, classification pipelines, and any use case that needs sub-500ms responses at low cost. It handles short tasks with surprising quality but is not suited for long reasoning chains or document analysis where Sonnet 4 is the minimum bar.'
-  - q: 'Does Claude 4 support tool use and function calling?'
-    a: 'Yes. All three Claude 4 tiers — Opus 4, Sonnet 4, Haiku 4 — support tool use (function calling), computer use, and the Model Context Protocol (MCP). Opus 4 and Sonnet 4 also support extended thinking, which allows the model to reason through complex problems before outputting a final answer.'
-  - q: 'What is the context window for Claude 4 models?'
-    a: 'Claude 4 models support a 200K token context window, enabling analysis of books, large codebases, or long conversation histories in a single call. The output window is up to 32K tokens, sufficient for generating long reports, full files, or multi-section documents in one pass.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-4-opus-sonnet-review-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Claude 4 Review 2026: Opus 4, Sonnet 4, Haiku 4 Tested

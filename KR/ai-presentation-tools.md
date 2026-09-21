@@ -1,6 +1,13 @@
 ---
-title: "2025년 최고의 AI 프레젠테이션 도구 비교: Gamma, Beautiful.ai, Tome 등"
-description: "2025년 최신 AI 프레젠테이션 도구를 템플릿, 낸로 옵션, 협업 기능 중심으로 비교합니다. Gamma, Beautiful.ai, Tome, SlidesAI, Canva 등 주요..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-presentation-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

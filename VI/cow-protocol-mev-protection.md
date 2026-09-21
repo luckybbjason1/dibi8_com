@@ -1,6 +1,13 @@
 ---
-title: "CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết k...
-description: "Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cow-protocol-mev-protection"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 **Ngày:** 2026-05-19  
 **Danh mục:** AI Trading  

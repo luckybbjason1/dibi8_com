@@ -1,9 +1,10 @@
 ---
-title: "Git 워크플로우 및 팀 협업 도구: 개발자를 위한 완벽한 가이드"
-description: "GitFlow, GitHub Flow, Trunk-Based Development 등 주요 브랜칭 전략을 비교하고 팀 협업 도구를 소개합니다. 코드 리뷰, 커밋 규칙, 머지 충돌 ..."
-draft: false
-aliases:
-  - /posts/git-workflow-team-collaboration-tools/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "git-workflow-team-collaboration-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

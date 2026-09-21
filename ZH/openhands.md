@@ -1,6 +1,13 @@
 ---
-title: "OpenHands: 74K+ Stars — 能写代码能运行的 AI 软件工程师 (2026 安装教程)"
-description: "OpenHands 是一款 AI 驱动的软件开发平台，可作为软件工程智能体。兼容 VS Code、Docker、GitHub、GitLab、Claude 和 OpenAI。涵盖 Docker 安装、模..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhands"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 
@@ -314,7 +321,7 @@ jobs: fix: if: github.event.label.name == 'auto-fix'
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v $(pwd):/workspace \
-            -e LLM_API_KEY=${{ secrets.ANTHROPIC_API_KEY }} \
+            -e LLM_API_KEY=$ \
             ghcr.io/openhands/openhands:latest \
             openhands --headless --json \
             -f .openhands/task.txt > results.jsonl

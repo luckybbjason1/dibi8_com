@@ -1,21 +1,10 @@
 ---
-title: "Quy Trình Git và Công Cụ Hợp Tác Nhóm: Hướng Dẫn Đầy Đủ ...
-description: "Tìm hiểu các chiến lược branching Git (GitFlow, GitHub Flow, Trunk-Based), công cụ hợp tác nhóm, và ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/git-workflow-team-collaboration-tools/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "git-workflow-team-collaboration-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -389,11 +378,11 @@ Bước 1: Pull latest changes từ main: ````git fetch origin````
 Bước 2: Rebase feature branch: ````git rebase origin/main````
 
 Bước 3: Khi gặp conflict, Git sẽ đánh dấu các file cần resolve: `````
-<<<<<<< HEAD
+
 // Code từ main
-=======
+
 // Code từ feature branch
->>>>>>> feature-branch
+
 `````
 
 Bước 4: Edit file, giữ phần code đúng, xóa conflict markers

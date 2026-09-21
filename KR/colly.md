@@ -1,6 +1,13 @@
 ---
-title: "Colly: 25,302 GitHub Stars — 벤치마크 Go 웹 스크래핑 프레임워크 2026"
-description: "Colly는 1,000+ req/sec 처리량을 제공하는 빠르고 우아한 Go 웹 스크래핑 프레임워크입니다. colly 튜토리얼, colly vs scrapy 벤치마크, Docker..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "colly"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

@@ -1,11 +1,10 @@
 ---
-title: "nanochat: Karpathy의 $100 ChatGPT — 단일 GPU에서 자체 AI 채팅 앱 구...
-description: "nanochat (54,800 GitHub star)은 Andrej Karpathy의 오픈소스 ChatGPT 클론으로, 단일 $100 GPU에서 실행됩니다. SGLang으로 처음부..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
-category: 'ai-tools'
-tags: ["karpathy nanochat", "LLM 처음부터 훈련", "단일 GPU 채팅", "오픈소스 ChatGPT", "SGLang", "vLLM", "로컬 LLM", "AI 채팅 앱"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "nanochat-karpathy-100-chatgpt-single-gpu"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,7 +1,14 @@
 ---
-title: Đánh giá DocuSeal：Giảm 90% chi phí ký tài liệu với lựa ch...
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docuseal-open-source-docusign-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
   mã nguồn mở
-description: DocuSeal là nền tảng mã nguồn mở 15.7k star thay thế DocuSign bằng ký. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   tài liệu kỹ thuật số tự lưu trữ, xây dựng biểu mẫu PDF và quy trình eSignature white-label.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -26,7 +33,7 @@ faqs: - q: 'DocuSeal có phải là lựa chọn thay thế miễn phí cho Docu
   - q: 'DocuSeal sử dụng giấy phép nào và có thể dùng cho mục đích thương mại không?'
     a: 'DocuSeal được phân phối theo giấy phép AGPLv3 kèm Điều khoản Bổ sung Section 7(b). Sử dụng thương mại được phép nhưng phải tuân thủ các điều khoản giấy phép đó; các tính năng Pro nâng cao như white-label, SSO/SAML và gửi hàng loạt được cung cấp qua giấy phép thương mại trả phí riêng.'
   - q: 'Tôi triển khai DocuSeal như thế nào?'
-    a: 'Cách nhanh nhất là dùng Docker: chạy lệnh `docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal`. Trên môi trường production, Docker Compose sẽ tự động cấp phát HTTPS qua Caddy khi DNS trỏ về máy chủ; ngoài ra còn có nút triển khai một nhấp cho Heroku, Railway, DigitalOcean và Render.'
+    a: 'Cách nhanh nhất là dùng Docker: chạy lệnh ``docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal``. Trên môi trường production, Docker Compose sẽ tự động cấp phát HTTPS qua Caddy khi DNS trỏ về máy chủ; ngoài ra còn có nút triển khai một nhấp cho Heroku, Railway, DigitalOcean và Render.'
   - q: 'Chữ ký của DocuSeal có giá trị pháp lý không?'
     a: 'Có. DocuSeal nhúng chữ ký số tuân thủ ISO 32000-1 sử dụng chữ ký tách rời PKCS#7, bao gồm bản tóm lược tài liệu SHA-256, token dấu thời gian đáng tin cậy và siêu dữ liệu danh tính người ký. Những chữ ký này được chấp nhận về mặt pháp lý tại tòa án EU theo quy định eIDAS và tại tòa án Mỹ theo ESIGN và UETA.'
   - q: 'DocuSeal có thể lưu trữ tài liệu đã ký ở đâu?'
@@ -351,9 +358,9 @@ DocuSeal là dự án mã nguồn mở hiếm hoi trực tiếp thay thế một
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

@@ -1,6 +1,13 @@
 ---
-title: "CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu |...
-description: "CC Switch là ứng dụng desktop open source miễn phí giúp quản lý Claude Code, Codex, Gemini CLI, Open..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-unified-ai-cli-control-center-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

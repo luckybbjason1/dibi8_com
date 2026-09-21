@@ -1,21 +1,10 @@
 ---
-title: "OpenAI Codex CLI vs Claude Code 2026: Agent nào tốt hơn?"
-description: "So sánh trực tiếp OpenAI Codex CLI (gpt-5-codex) và Anthropic Claude Code (Sonnet 4.6, ngữ cảnh 1M) ..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["openai-codex-cli", "claude-code", "gpt-5-codex", "sonnet-4-6", "ai-coding", "comparison", "agent-cli"]
-categories: ["vs"]
-faqs: - q: 'OpenAI Codex CLI có miễn phí không?'
-    a: 'Bản thân CLI là mã nguồn mở (Apache 2.0, ra mắt tháng 11/2025) và miễn phí cài đặt. Bạn chỉ trả cho lệnh gọi API mô hình — sử dụng gpt-5-codex được tính qua OpenAI API key của bạn (khoảng $1.50/1M đầu vào, $10/1M đầu ra tính đến 2026). Claude Code cũng miễn phí cài đặt nhưng cần đăng ký Pro/Max ($20-$200/tháng) hoặc trả theo dùng qua Sonnet 4.6.'
-  - q: 'Cửa sổ ngữ cảnh nào lớn hơn?'
-    a: 'Claude Code (Sonnet 4.6) thắng tuyệt đối — cửa sổ ngữ cảnh 1M token so với 400K của gpt-5-codex. Với monorepo 200K+ LOC, suy luận toàn codebase, hoặc task migration dài, Claude Code giữ được toàn bộ repo trong đầu. 400K của Codex CLI vẫn mạnh cho project trung bình (dưới 80K LOC) nhưng buộc bạn chọn lọc file kỹ hơn trên repo lớn.'
-  - q: 'Sandbox nào tốt hơn cho chạy tự động không giám sát?'
-    a: 'OpenAI Codex CLI thắng — nó có sẵn sandbox Seatbelt/Landlock cấp OS trên macOS/Linux, hạn chế ghi file, truy cập mạng, thực thi lệnh theo mặc định. Claude Code dùng mô hình prompt phê duyệt: bạn whitelist lệnh trước, ghi file ngoài project bị chặn nhưng không phải cô lập sandbox. Để chạy agent qua đêm không giám sát, Codex CLI an toàn hơn mặc định.'
-  - q: 'Có thể dùng cả hai trong cùng project không?'
-    a: 'Có, và nhiều dev làm vậy. Combo phổ biến: Claude Code cho refactor nặng cần ngữ cảnh 1M, Codex CLI cho chạy thử nghiệm sandbox không muốn ngồi canh. Chúng không xung đột trên đĩa — cả hai đọc/ghi cùng repo, chỉ cần đừng chạy đồng thời trên cùng file.'
-  - q: 'Doanh nghiệp nên chọn cái nào?'
-    a: 'Claude Code có câu chuyện doanh nghiệp trưởng thành hơn trong 2026 — Anthropic cung cấp SOC 2 Type II, HIPAA qua API, Claude Enterprise với triển khai VPC riêng. OpenAI Codex CLI mới hơn (mở mã nguồn 11/2025), kết nối vào gói OpenAI Enterprise tiêu chuẩn, nhưng bản thân CLI chưa có tầng doanh nghiệp riêng. Cho ngành được quản lý, hôm nay Claude Code thắng; OpenAI đang bám sát nhanh.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-codex-cli-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -147,7 +136,7 @@ Sử dụng nặng không giới hạn: **Claude Max 20x $200/tháng** vượt c
 - Dự trù cửa sổ ngữ cảnh nhỏ hơn — kỷ luật hơn về file nào tải mỗi task
 
 ### Ghi chú tự host
-Chạy cả hai CLI trên codebase thật để quyết định? Spin up {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — droplet thường $12/tháng chạy cả hai CLI thoải mái và để bạn giữ môi trường staging cô lập cho chạy agent không giám sát. Hai tháng đánh giá miễn phí, sau đó $12/tháng. Rẻ hơn duy trì hai môi trường local song song, và bạn giữ hạ tầng khi đã quyết định.
+Chạy cả hai CLI trên codebase thật để quyết định? Spin up  — droplet thường $12/tháng chạy cả hai CLI thoải mái và để bạn giữ môi trường staging cô lập cho chạy agent không giám sát. Hai tháng đánh giá miễn phí, sau đó $12/tháng. Rẻ hơn duy trì hai môi trường local song song, và bạn giữ hạ tầng khi đã quyết định.
 
 * * *
 
@@ -192,7 +181,7 @@ Câu trả lời trung thực cho hầu hết dev trong 2026: thử cả hai m�
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

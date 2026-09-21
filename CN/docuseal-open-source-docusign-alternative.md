@@ -1,7 +1,14 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docuseal-open-source-docusign-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "DocuSeal Review: Cut Document Signing Costs by 90% with ...
   Alternative'
-description: DocuSeal is a 15.7k-star open-source platform that replaces DocuSign. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   with self-hosted digital document signing, PDF form building, and white-label eSignature
   workflows.
 date: 2026-05-15T04:20:25+09:00
@@ -30,7 +37,7 @@ faqs: - q: 'Is DocuSeal a free alternative to DocuSign?'
   - q: 'What license does DocuSeal use, and can I use it commercially?'
     a: 'DocuSeal is distributed under the AGPLv3 license with Section 7(b) Additional Terms. Commercial use is permitted but requires compliance with those license terms, and advanced Pro features (white-label, SSO/SAML, bulk send) are offered under a separate paid commercial license.'
   - q: 'How do I deploy DocuSeal?'
-    a: 'The fastest way is Docker: run `docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal`. For production, Docker Compose automatically provisions HTTPS via Caddy when your DNS points to the server, and one-click deploy buttons exist for Heroku, Railway, DigitalOcean, and Render.'
+    a: 'The fastest way is Docker: run ``docker run --name docuseal -p 3000:3000 -v .:/data docuseal/docuseal``. For production, Docker Compose automatically provisions HTTPS via Caddy when your DNS points to the server, and one-click deploy buttons exist for Heroku, Railway, DigitalOcean, and Render.'
   - q: 'Are DocuSeal signatures legally valid?'
     a: 'Yes. DocuSeal embeds ISO 32000-1 compliant digital signatures using PKCS#7 detached signatures, including a SHA-256 document digest, a trusted timestamp token, and signer identity metadata. These signatures are legally admissible in EU courts under eIDAS and in US courts under ESIGN and UETA.'
   - q: 'Where can DocuSeal store signed documents?'
@@ -377,8 +384,8 @@ DocuSeal is the rare open-source project that directly replaces a multi-billion-
 * * *
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "shiyunapi" "ai-tools-footer" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

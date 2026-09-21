@@ -1,21 +1,10 @@
 ---
-title: "Top 5 Công Cụ Thay Thế Jupyter Notebook Tốt Nhất 2024: S...
-description: "Đánh giá chi tiết 5 công cụ thay thế Jupyter Notebook hàng đầu năm 2024. So sánh JupyterLab, Google ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/jupyter-notebook-alternatives-comparison/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "jupyter-notebook-alternatives-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

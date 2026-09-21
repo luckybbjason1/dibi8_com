@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "strix-ai-open-source-penetration-testing"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
-description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerabilit..."
+description: "Technical guide and comparison."
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
@@ -12,7 +19,6 @@ tech_stack: - Python
 
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 
-{{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
 
 ## TL;DR
 
@@ -237,14 +243,14 @@ class FalsePositiveFilter: def __init__(self, llm_client): self.llm = llm_client
 Define custom detection rules for your specific application: `````yaml
 # custom-rules.yaml
 rules: - name: "Custom SQL Injection"
-    description: "Detects SQL injection in custom API endpoints"
+    description: "Technical guide and comparison."
     pattern: "(?i)(union\s+select|or\s+1\s*=\s*1|drop\s+table)"
     severity: critical
     endpoints: - "/api/v1/search"
       - "/api/v1/users"
   
   - name: "Information Disclosure"
-    description: "Detects exposed environment variables in responses"
+    description: "Technical guide and comparison."
     pattern: "(?i)(password|api_key|secret)\s*[:=]\s*[\w-]+"
     severity: high
     endpoints: - "/api/v1/config"

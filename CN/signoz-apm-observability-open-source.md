@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "signoz-apm-observability-open-source"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "SigNoz: The Open-Source APM Replacing Datadog at 10% Cos...
-description: "Deploy SigNoz in 5 minutes. The open-source APM with distributed tracing, metrics, and logs that rep..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/signoz-apm-observability-open-source/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The $65,000/Year Observability Bill Nobody Talks About
 
@@ -206,7 +213,7 @@ Deploy with ````docker compose -f docker-compose.production.yml up -d````.
 
 `````bash
 # Check all containers are running
-docker ps --format "table {{.Names}}\t{{.Status}}"
+docker ps --format "table \t"
 
 # Expected output: # NAMES                        STATUS
 # docker-clickhouse-1          Up 2 minutes (healthy)
@@ -438,19 +445,19 @@ groups: - name: payment_service_alerts
         for: 2m
         labels: severity: critical
         annotations: summary: "Payment service error rate > 5%"
-          description: "Error rate is {{ $value }} for payment-service"
+          description: "Technical guide and comparison."
       - alert: HighP95Latency
         expr: histogramQuantile(0.95)(rate(signoz_latency_bucket{service_name="payment-service"}[5m])) > 500000000
         for: 5m
         labels: severity: warning
         annotations: summary: "Payment service P95 latency > 500ms"
-          description: "P95 latency is {{ $value }}ns for payment-service"
+          description: "Technical guide and comparison."
       - alert: LogErrorSpike
         expr: rate(signoz_logs_total{severity="ERROR"}[5m]) > 100
         for: 2m
         labels: severity: warning
         annotations: summary: "Log error spike detected"
-          description: "{{ $value }} errors/minute in logs"
+          description: "Technical guide and comparison."
 Configure alert channels (Slack, PagerDuty, email) in the SigNoz UI under Settings → Alert Channels.
 
 ### Kubernetes Auto-Instrumentation

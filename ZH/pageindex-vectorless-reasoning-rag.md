@@ -1,6 +1,13 @@
 ---
-title: "PageIndex：29K⭐革命性 RAG 系统，不用向量数据库也能做文档检索"
-description: "PageIndex 是 VectifyAI Open Source的向量无关、推理驱动 RAG 系统。29K+ Stars，通过构建文档树结构实现人类般的检索，在 FinanceBench 达到 98..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pageindex-vectorless-reasoning-rag"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -24,7 +31,7 @@ faqs: - q: 'PageIndex 是什么？它和传统 RAG 有何不同？'
   - q: 'PageIndex 在 FinanceBench 基准测试上的准确率如何？'
     a: 'PageIndex 搭配 GPT-4 在 FinanceBench 上达到 98.7% 的准确率，属于 state-of-the-art 水平。PageIndex 搭配 Claude-3 达到 97.2%，而传统向量 RAG 在同一基准上的得分约为 79-82%。'
   - q: '我该如何安装 PageIndex 并运行一次基础查询？'
-    a: '用 `pip install pageindex` 安装。然后用 `pi = PageIndex()` 初始化，通过 `pi.load_pdf("file.pdf")` 加载文档，再用 `result = pi.query("your question")` 进行查询。返回结果中既包含答案，也包含页码、章节等引用来源。'
+    a: '用 ``pip install pageindex`` 安装。然后用 ``pi = PageIndex()`` 初始化，通过 ``pi.load_pdf("file.pdf")`` 加载文档，再用 ``result = pi.query("your question")`` 进行查询。返回结果中既包含答案，也包含页码、章节等引用来源。'
   - q: 'PageIndex 最适合处理哪类文档？'
     a: 'PageIndex 专为那些结构很重要、且需要可解释引用的长篇专业文档而设计，例如财报和招股说明书、法律合同和判例法、医学文献和临床试验报告，以及 API 参考、操作手册等技术文档。'---
 
@@ -358,8 +365,8 @@ PageIndex 是 RAG 技术的下一代演进：
 
 要 7×24 稳定跑这套，服务器选择很关键：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。
+- **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。
 
 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。*
 

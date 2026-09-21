@@ -1,6 +1,13 @@
 ---
-title: "CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụn...
-description: "CopilotKit là frontend stack mã nguồn mở cho AI copilot và generative UI trong ứng dụng. Xây dựng Re..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "copilotkit"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 CopilotKit là frontend stack mã nguồn mở biến mọi ứng dụng React hoặc Angular thành sản phẩm AI-native. Với **31.536 GitHub Stars**, hơn 3.300 forks, và khoản Series A 27 triệu USD (tháng 5/2026), nó đã trở thành lựa chọn mặc định cho các team triển khai AI assistant trong ứng dụng — có thể đọc trạng thái ứng dụng, kích hoạt tác vụ frontend, và render component UI generative bên trong giao diện chat.
 
@@ -135,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <CopilotSidebar
         defaultOpen={false}
         labels={{
-          title: "Trợ lý AI",
+          title: "AI Tool Guide"
           initial: "Xin chào! Tôi có thể giúp gì cho bạn?",
           placeholder: "Nhập tin nhắn...",
         }}
@@ -292,7 +299,7 @@ export function TaskManager() {
 
   // Expose task state cho LLM
   useCopilotReadable({
-    description: "Danh sách task hiện tại của ngườ dùng với trạng thái hoàn thành và mức độ ưu tiên",
+    description: "Technical guide and comparison."
     value: tasks..."
 services: app: build: .
     ports: - "3000:3000"

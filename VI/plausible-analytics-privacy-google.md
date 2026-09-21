@@ -1,6 +1,13 @@
 ---
-title: "Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền R...
-description: "Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "plausible-analytics-privacy-google"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Vấn Đề Quyền Riêng Tư Trong Phân Tích Mà Không Ai Nói Đến
 
@@ -290,9 +297,9 @@ export default defineNuxtPlugin(() => {
 ### Static Site Generators (Hugo, Jekyll, Astro)
 
 `````html
-{{ if not hugo.IsServer }}
+
 </script>
-{{ end }}
+
 `````
 
 `````javascript

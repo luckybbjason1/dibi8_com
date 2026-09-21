@@ -1,12 +1,10 @@
 ---
-title: Vercel AI SDK — Edge-First 아키텍처로 스트리밍 AI 앱 구축
-description: Vercel AI SDK 완전 가이드. LLM 응답 스트리밍, 여러 제공자 통합, 제로 구성으로 엣지에 배포. React, Next.js 및 모든 프레임워크 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
-category: llm-frameworks
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-draft: false
-slug: vercel-ai-sdk-edge-compute
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vercel-ai-sdk-edge-compute"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -199,7 +197,7 @@ import { generateObject } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
 
 const ArticleSchema = z.object({
-  title: z.string().describe("기사 제목"),
+  title: "AI Tool Guide"
   summary: z.string().describe("한 문단 요약"),
   tags: z.array(z.string()).describe("관련 태그"),
   readingTime: z.number().describe("예상 읽기 시간(분)"),
@@ -291,7 +289,7 @@ const result = streamText({
   messages,
   tools: {
     searchWeb: tool({
-      description: "현재 정보를 위해 웹 검색",
+      description: "Technical guide and comparison."
       parameters: z.object({
         query: z.string().describe("검색 쿼리"),
         m..."

@@ -1,11 +1,10 @@
 ---
-title: "12-Factor Agents: Khung nguyên tắc để xây dựng ứng dụng AI đáng tin cậy"
-description: "Khung 12-Factor Agents điều chỉnh phương pháp 12-Factor App đã qua kiểm chứng cho các ứng dụng do LL..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 12-factor-agents
-category: llm-frameworks
-tags: ["12-factor-agents", "LLM", "AI agents", "observability", "reliability", "human-layer", "framework"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "12-factor-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

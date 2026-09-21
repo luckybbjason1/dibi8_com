@@ -1,6 +1,13 @@
 ---
-title: "Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교"
-description: "Google이 Claude Code와 경쟁할 Gemini CLI를 출시했습니다. 동일한 5가지 워크플로우로 두 도구를 테스트했습니다. Gemini가 이기는 지점(무료 티어, 1M ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code-2026-real-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
@@ -25,7 +32,7 @@ faq: - q: "Gemini CLI는 Claude Code의 진지한 경쟁자인가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Gemini CLI vs Claude Code 2026: 5가지 워크플로우 실전 비교
 
@@ -125,8 +132,8 @@ Google은 2026년 초 Claude Code와 경쟁할 Gemini CLI를 출시했습니다.
 
 ## 권장 인프라
 
-Gemini CLI + Claude Code 페어 셋업에 추천: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS
+Gemini CLI + Claude Code 페어 셋업에 추천: - **** — $200 크레딧
+- **** — 홍콩 VPS
 
 *제휴 링크 — 동일 가격이며 dibi8.com을 지원해 주세요.*
 

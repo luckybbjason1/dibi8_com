@@ -1,6 +1,13 @@
 ---
-title: "Dify: Xây dựng AI Agent cấp sản xuất bằng giao diện trực...
-description: "Dify là nền tảng phát triển ứng dụng LLM mã nguồn mở với trình xây dựng workflow trực quan, pipeline..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dify"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Hầu hết các đội ngũ phát triển chatbot AI theo cách khó khăn. Họ kết nối các route Flask với API OpenAI, viết template prompt thủ công trong file JSON, và xây dựng pipeline RAG từ đầu với các mô hình embedding, vector store, và logic chunking. Ba tháng sau, prototype không thể bảo trì được, quản lý sản phẩm không thể cập nhật prompt mà không cần lập trình viên, và đồng bộ knowledge base là một cron job thất bại âm thầm.
 

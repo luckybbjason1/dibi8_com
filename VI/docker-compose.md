@@ -1,16 +1,14 @@
 ---
-title: "Docker Compose: 37,393 GitHub Stars — Hướng Dẫn Thiết Lậ...
-description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comp..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["dev-utils"]
-tags: ["docker-compose", "orchestrator-container", "devops", "docker", "microservices", "triển-khai", "yaml", "đa-container"]
-aliases:
-  - /vi/posts/docker-compose/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docker-compose"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Docker Compose Logo](https://raw.githubusercontent.com/docker/compose/main/logo.png)
 

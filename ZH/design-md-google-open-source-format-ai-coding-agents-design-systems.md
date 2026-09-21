@@ -1,11 +1,10 @@
 ---
-title: "DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式"
-description: "DESIGN.md 由 Google Labs Code 提供，是一种开源格式规范，用于向 AI 编码代理描述视觉识别。拥有 20.8k 个 GitHub 星标。了解它如何通过 YAML 令牌和基于文..."
-tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
-date: 2026-06-27
-lastmod: 2026-06-27
-slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "design-md-google-open-source-format-ai-coding-agents-design-systems"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式

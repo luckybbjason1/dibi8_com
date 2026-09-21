@@ -1,21 +1,10 @@
 ---
-title: "2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서"
-description: "2025년 최고의 AI 개발 도구와 IDE 플러그인을 소개합니다. GitHub Copilot, Sourcegraph Cody, Codeium, JetBrains AI 등 코드 작성..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/ai-developer-tools-ide-plugins-2025/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-developer-tools-ide-plugins-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

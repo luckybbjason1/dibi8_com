@@ -1,15 +1,14 @@
 ---
-title: "vanna-ai-sql-generation"
-description: "{"en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to gen..."
-draft: false
-categories: ["llm-frameworks"]
-tags: ["vanna ai"]
-aliases:
-  - /kr/posts/vanna-ai-sql-generation/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vanna-ai-sql-generation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 데이터베이스와 자연어를 사용하여 상호작용하는 능력은 오랫동안 데이터 분석의 성배로 여겨져 왔습니다. 매일 무수한 시간이 비즈니스 질문을 SQL 쿼리로 번역하는 데 낭비됩니다 — 이 과정은 데이터베이스 스키마, 테이블 관계 및 SQL 구문에 대한 깊은 지식을 요구합니다. 2026년, 이 병목 현상은 **Vanna AI** 덕분에 빠르게 사라지고 있습니다. Vanna AI는 데이터베이스 스키마에서 학습하여 평범한 영어로 90% 이상의 정확도로 프로덕션 수준의 SQL을 생성하는 오픈소스 Python 라이브러리입니다.
 

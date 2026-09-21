@@ -1,11 +1,10 @@
 ---
-title: "open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Tr...
-description: "open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nh..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
-category: 'data-science'
-tags: ["open notebook", "notebook lm alternative", "self hosted RAG", "knowledge base AI", "multimodal RAG", "open source notebook", "AI podcast generator", "self hosted LLM"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

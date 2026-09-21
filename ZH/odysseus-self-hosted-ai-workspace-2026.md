@@ -1,6 +1,13 @@
 ---
-title: "Odysseus：9天涨6.3万 GitHub Star 的自部署 AI 工作台 — 2026 完整安装指南"
-description: "Odysseus 是开源、隐私优先的 AI 工作台（9天6.3万 star，MIT 协议）。一条 Docker 命令即可获得聊天、AI 智能体、深度调研、邮件自动分类、日历、笔记和模型 Cookboo..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "odysseus-self-hosted-ai-workspace-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []

@@ -1,9 +1,10 @@
 ---
-title: "LLM微调框架对比2025：LoRA、QLoRA、PEFT与Unsloth深度解析"
-description: "2025年LLM微调技术全面对比：LoRA、QLoRA、PEFT和Unsloth框架的原理、性能、显存占用与实战指南，助你高效微调大语言模型。". Comprehensive guide coveri..."
-draft: false
-aliases:
-  - /posts/llm-fine-tuning-frameworks-comparison/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-fine-tuning-frameworks-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,10 @@
 ---
-title: "paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리...
-description: "paperclip (69,700 GitHub star)은 AI 에이전트를 관리하는 오픈소스 워크플레이스 앱입니다. 멀티 에이전트 조정, 작업 관리, 셀프호스팅 에이전트 워크플로우 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

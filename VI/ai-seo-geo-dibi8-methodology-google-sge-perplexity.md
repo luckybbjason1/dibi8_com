@@ -1,12 +1,10 @@
 ---
-title: "AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương...
-description: "Chúng tôi ngừng viết để lấy clicks. Bắt đầu viết để lấy citations. Sau 72 bài viết trên 4 ngôn ngữ, ..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
-category: dev-utils
-tags: ["AI SEO", "GEO", "AI search", "Google SGE", "structured data", "schema.org", "multi-language", "E-E-A-T", "Perplexity", "ChatGPT", "VUI.AI", "Zalo"]
-geo-------2026-----seo------------------------6-.png
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-seo-geo-dibi8-methodology-google-sge-perplexity"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương Pháp 5 Lớp

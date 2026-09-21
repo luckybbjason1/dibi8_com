@@ -1,6 +1,13 @@
 ---
-title: "Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试"
-description: "Vectara 实战指南，托管 RAG 平台，准确率超 90%。涵盖 Boomerang 检索、API 集成、多语言支持、混合搜索和生产基准。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vectara-rag-as-service-platform"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction：为什么大多数 RAG 系统在生产环境中失败
 

@@ -1,6 +1,13 @@
 ---
-title: "Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）"
-description: "Supertonic（GitHub 9.9K+ stars）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最具说服力的本地多语种 TTS 模型。9900 万参数、31 种..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supertonic-on-device-multilingual-tts-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

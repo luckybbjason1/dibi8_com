@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langchain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "LangChain: 3 Cach Trien Khai AI Agent San Sang Productio...
-description: "LangChain (LC) la framework Python/JS de xay dung ung dung LLM voi 700+ tich hop. Hoc cach cai dat L..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
 

@@ -1,0 +1,530 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/perplexity-api-rag-search/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/perplexity-api-rag-search/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/perplexity-api-rag-search/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/perplexity-api-rag-search/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/perplexity-api-rag-search/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/perplexity-api-rag-search/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/perplexity-api-rag-search/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Perplexity API의 출시로 지능적이고 사실에 기반한 애플리케이션 구축 경쟁은 중요한 이정표에 도달했습니다. 이 API는 대규모 언어 모델과 실시간 웹 인덱싱을 융합한 전문 RAG(검색 증강 생성) 검색 서비스입니다. 정적 학습 데이터에만 의존하는 기존 LLM API와 달리 Perplexity의 Sonar 모델은 실시간으로 인터넷을 쿼리하고, 권위 있는 소스를 검색하며, 인라인 인용이 포함된 구조화된 답변을 반환합니다. 챗봇, 연구 도구, 지식 어시스턴트, 콘텐츠 검증 파이프라인을 구축하는 개발자에게 이는 패러다임의 전환을 의미합니다. 단순히 텍스트를 생성하는 것이 아니라 모든 주장을 검증 가능한 현실에 기반을 두는 애플리케이션입니다.\n이 가이드는 2026년 Perplexity API에 대한 포괄적인 통합 로드맵을 제공합니다. RAG 검색 아키텍처의 작동 방식, 사용 사례에 적합한 Sonar 모델, 스트리밍 챗 완성 구현 방법, 프로그래밍 방식으로 인용 처리, 속도 제한 관리, 정확하고 출처가 있는 답변을 제공하는 프로덕션급 검색 애플리케이션 배포 방법을 알아보겠습니다.\nPerplexity API란 무엇이며 RAG가 중요한 이유는? Perplexity AI는 기존 언어 모델의 근본적인 한계인 환각과 지식 차단을 해결하기 위해 API를 출시했습니다. 표준 LLM은 시간에 얼어붙어 특정 날짜에 데이터 학습이 중단됩니다. 어제의 시장 변동, 속보 뉴스, 최근 출시된 소프트웨어 버전에 대해 물어보면 환각을 일으키거나 무지함을 인정합니다.\nPerplexity API는 내장 RAG를 통해 이 제약을 제거합니다. 쿼리를 본 볼 때 Perplexity의 백엔드는 실시간 웹 검색을 수행하고, 관련 문서를 검색하고, 권위에 따라 순위를 매기고, 언어 모델에 컨텍스트 기반으로 제공합니다. 그런 다음 모델은 특정 URL을 인용하는 답변을 종합하여 사용자가 모든 정보를 검증할 수 있도록 합니다.\n이 아키텍처가 중요한 이유는 LLM을 폐쇄형 시험 응시자에서 개방형 연구자로 근본적으로 변환하기 때문입니다. 검색 계층은 사실적 정확성을 보장합니다. 생성 계층은 가독성과 종합성을 보장합니다. 인용 계층은 신뢰를 보장합니다. 함께 전통적인 검색 엔진에 필적하는 검색 경험을 만들면서도 사용자가 AI 기술을 기대하는 대화적 유창성을 제공합니다.\n개발자에게 실질적인 의미는 심오합니다. 더 이상 자체 검색 파이프라인을 구축하거나, 벡터 데이터베이스를 관리하거나, 청킹 전략을 조정할 필요가 없습니다. Perplexity는 문서 검색, 관련성 평점 및 컨텍스트 주입을 자동으로 처리하여 OpenAI API를 사용핳 본 사람이라면 누구나 친숙하게 느낄 수 있는 깔끔한 챗 완성 인터페이스를 제공합니다.\nSonar 모델군 이해: 선택 방법 Perplexity는 Sonar 브랜드 아래 계층화된 모델 라인업을 제공하며, 각각은 지연 시간, 정확성 및 비용 요구 사항에 최적화되어 있습니다. 올바른 모델을 선택하는 것은 개발자가 내리는 첫 번째 아키텍처 결정입니다.\nSonar (표준) 기본 Sonar 모델은 가장 빠른 응답 시간과 가장 낮은 쿼리당 비용을 제공합니다. 쉽게 접근할 수 있는 웹 콘텐츠에서 답변을 찾을 수 있는 간단한 정보 쿼리에 탁월합니다. 챗봇, FAQ 시스템 및 사용자 경험에서 빠른 회신을 요구하는 애플리케이션에 Sonar를 사용하세요.\nSonar Pro Sonar Pro는 일부 대기 시간을 희생하여 상당히 더 깊은 추론 및 다단계 연구 기능을 제공합니다. 여러 검색 반복을 수행하고, 사고 연쇄 추론을 따륾며, 다양한 소스에서 복잡한 답변을 종합합니다. 연구 어시스턴트, 콘텐츠 분석 도구 및 답변 품질이 속도보다 중요한 모든 애플리케이션에 Sonar Pro를 선택하세요.\nSonar Reasoning 추론 변형은 응답을 생성하기 전에 명시적인 단계별 분석을 적용합니다. 쿼리를 하위 질문으로 분해하고, 각 구성 요소에 대해 검색하고, 논리적으로 엄격한 답변을 구성합니다. 이 모델은 분석 작업, 팩트 체크 워크플로우 및 교육 애플리케이션에 이상적입니다.\nSonar Deep Research 엔터프라이즈급 연구 및 포괄적인 주제 탐색을 위해 Sonar Deep Research는 광범위한 다중 소스 조사를 수행하여 수십 개의 문서를 평가하여 상세하고 잘 구조화된 보고서를 생성합니다. 대기 시간과 토큰 사용량이 더 높을 것으로 예상하지만, 비교할 수 없는 철저함을 제공합니다.\n# 다양한 사용 사례를 위한 모델 선택 매핑 MODEL_MAP = { \"fast_chat\": \"sonar\", # 빠른 Q\u0026A, 낮은 지연 시간 \"deep_research\": \"sonar-pro\", # 철저한 조사 \"analytical\": \"sonar-reasoning\", # 단계별 추론 \"enterprise\": \"sonar-deep-research\" # 포괄적인 보고서 } 시작하기: API 키 및 인증 통합 코드를 작성하기 전에 Perplexity API 키가 필요합니다. Perplexity 개발자 포털을 방문하여 계정을 만들고 대시보드에서 API 키를 생성하세요. Perplexity는 HTTPS를 통한 표준 Bearer 토큰 인증을 사용합니다.\n# API 키를 안전하게 저장 export PERPLEXITY_API_KEY=\"pplx-your-api-key-here\" 모든 API 요청에는 Authorization: Bearer 헤더가 필요합니다. 챗 완성을 위한 기본 엔드포인트는 https://api.perplexity.ai/chat/completions입니다.\nimport os API_KEY = os.environ.get(\"PERPLEXITY_API_KEY\") BASE_URL = \"https://api.perplexity.ai\" HEADERS = { \"Authorization\": f\"Bearer {API_KEY}\", \"Content-Type\": \"application/json\" } Perplexity는 실험을 위해 관대한 묶음 티어를 제공하며, 유료 티어는 쿼리 볼륨 및 모델 선택에 따라 확장됩니다. 가격 구조는 더 간단한 과금을 위해 토큰 기반이 아닌 쿼리 기반이지만, 토큰 소비는 사용량 분석을 위해 추적됩니다.\n기본 챗 완성: 첫 번째 RAG 쿼리 Perplexity API는 OpenAI 호환 챗 완성 인터페이스를 구현하여 이미 GPT 기반 모델을 사용 중인 경우 마이그레이션이 간단합니다. 중요한 차이점은 백그라운드에서 자동으로 발생하는 웹 검색 및 인용 주입입니다.\nimport requests import json def perplexity_query(query: str, model: str = \"sonar-pro\") -\u003e dict: \"\"\"Perplexity API에 단일 RAG 강화 쿼리를 본 볼니다.\"\"\" url = f\"{BASE_URL}/chat/completions\" payload = { \"model\": model, \"messages\": [ { \"role\": \"system\", \"content\": \"당신은 유용한 연구 어시스턴트입니다. 정확하고 잘 출처가 있는 답변을 제공하세요.\" }, { \"role\": \"user\", \"content\": query } ], \"max_tokens\": 1024, \"temperature\": 0.2 } response = requests.post(url, headers=HEADERS, json=payload) response.raise_for_status() return response.json() # 첫 번째 RAG 검색 실행 result = perplexity_query( \"2026년 핵융합 에너지의 최신 발전은 무엇인가요?\" ) print(result[\"choices\"][0][\"message\"][\"content\"]) 검색 매개변수, 문서 ID 또는 검색 구성이 필요하지 않습니다. Perplexity는 웹 검색이 필요한지 자동으로 결정하고, 검색을 실행하고, 출처가 있는 자료에 응답을 기반을 둡니다.\n응답에는 생성된 텍스트뿐만 아니라 인용 메타데이터도 포함됩니다: `````python\n응답에서 인용 추출 message = result[“choices”][0][“message”] answer_text = message[“content”] citations = message.get(“citations”, [])\nprint(f\"답변: {answer_text[:200]}…\") print(f\"\\n인용된 출처: {len(citations)}\") for i, citation in enumerate(citations[:5], 1): print(f\" [{i}] {citation}\")\n* * * ## 인용 작업: 투명성을 통한 신뢰 구축 인용은 Perplexity의 RAG 구현의 결정적 특징입니다. 응답의 모든 사실적 주장은 특정 웹 소스로 추적할 수 있어 사용자가 정보를 검증하고 주제를 깊이 있게 탐색할 수 있습니다. ### 인용 형식 이해 Perplexity는 어시스턴트 메시지의 ````citations```` 필드에서 URL 목록 형태로 인용을 반환합니다. 콘텐츠 텍스트에서 인용은 괄호 안의 색인 ````[1]````, ````[2]```` 등으로 참조되며, 이는 인용 배열의 순서와 일치합니다. `````python def format_response_with_citations(result: dict) -\u003e str: \"\"\"클릭 가능한 인용 링크가 있는 Perplexity 응답을 형식화합니다.\"\"\" message = result[\"choices\"][0][\"message\"] content = message[\"content\"] citations = message.get(\"citations\", []) formatted = f\"{content}\\n\\n---\\n**출처:**\\n\" for i, url in enumerate(citations, 1): formatted += f\"\\n[{i}] [{url}]({url})\" return formatted print(format_response_with_citations(result)) 웹 애플리케이션에서 인용 렌더링 웹 인터페이스를 구축할 때 인용을 대화형 각주 또는 사이드바 참조로 렌더링하세요: `````html function CitedResponse({ content, citations }) { // 콘텐츠에서 [1], [2] 마커 파싱 const parts = content.split(/([\\d+])/g);\nreturn ( {parts.map((part, i) =\u003e { const match = part.match(/[(\\d+)]/); if (match) { const idx = parseInt(match[1]) - 1; return ( {part} ); } return {part}; })} ); }\n* * * ## 실시간 사용자 경험을 위한 스트리밍 응답 대화형 애플리케이션의 경우 Perplexity는 서버 전송 이벤트(SSE) 스트리밍을 지원하여 완전한 응답을 기다리는 대신 생성될 때 토큰을 전달합니다. 이는 속도 인식을 만들고 점진적 인용 표시를 가능하게 합니다. `````python import sseclient import io def perplexity_stream(query: str, model: str = \"sonar-pro\"): \"\"\"토큰별로 RAG 쿼리 응답을 스트리밍합니다.\"\"\" url = f\"{BASE_URL}/chat/completions\" payload = { \"model\": model, \"messages\": [ {\"role\": \"system\", \"content\": \"간결하고 정확하게.\"}, {\"role\": \"user\", \"content\": query} ], \"stream\": True, \"max_tokens\": 1024 } response = requests.post(url, headers=HEADERS, json=payload, stream=True) response.raise_for_status() client = sseclient.SSEClient(response) full_content = [] citations = [] for event in client.events(): if event.data == \"[DONE]\": break chunk = json.loads(event.data) delta = chunk[\"choices\"][0].get(\"delta\", {}) # 콘텐츠 토큰 누적 if \"content\" in delta: token = delta[\"content\"] full_content.append(token) print(token, end=\"\", flush=True) # 마지막 청크에서 인용 캡처 if \"citations\" in delta: citations.extend(delta[\"citations\"]) print(f\"\\n\\n출처: {citations}\") return \"\".join(full_content), citations # 실시간 쿼리 스트리밍 answer, sources = perplexity_stream( \"최근 UN 기후 정상회의의 결과는 무엇인가요?\" ) // fetch를 사용한 Node.js 스트리밍 예제 async function streamPerplexity(query) { const response = await fetch('https://api.perplexity.ai/chat/completions', { method: POST, headers: { Authorization: ````Bearer ${process.env.PERPLEXITY_API_KEY}````, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'sonar-pro', messages: [{ role: user, content: query }], stream: true }) }); const reader = response.body.getReader(); const decoder = new TextDecoder(); while (true) { const { done, value } = await reader.read(); if (done) break; const chunk = decoder.decode(value); const lines = chunk.split('\\n').filter(line =\u003e line.startsWith('data: ')); for (const line of lines) { const data = line.slice(6); if (data === '[DONE]') return; const parsed = JSON.parse(data); const token = parsed.choices[0]?.delta?.content || ''; process.stdout.write(token); } } } 컨텍스트 검색이 있는 다중 턴 대화 Perplexity는 여러 턴에 걸쳐 대화 컨텍스트를 유지하여 이전 교환을 참조하는 후속 질문을 가능하게 합니다. 검색 시스템은 대화 흐름에 적응하여 누적된 컨텍스트를 기반으로 검색을 개선합니다.\nclass PerplexityConversation: \"\"\"RAG 검색 메모리가 있는 상태 저장 대화 처리기.\"\"\" def __init__(self, model: str = \"sonar-pro\", system_prompt: str = None): self.model = model self.messages = [] if system_prompt: self.messages.append({\"role\": \"system\", \"content\": system_prompt}) self.citation_history = [] def ask(self, query: str) -\u003e dict: \"\"\"메시지를 본 볼하고 대화 기록을 유지합니다.\"\"\" self.messages.append({\"role\": \"user\", \"content\": query}) payload = { \"model\": self.model, \"messages\": self.messages, \"max_tokens\": 1024, \"temperature\": 0.2, \"return_citations\": True } response = requests.post( f\"{BASE_URL}/chat/completions\", headers=HEADERS, json=payload ) response.raise_for_status() result = response.json() assistant_msg = result[\"choices\"][0][\"message\"] self.messages.append({ \"role\": \"assistant\", \"content\": assistant_msg[\"content\"] }) self.citation_history.extend(assistant_msg.get(\"citations\", [])) return result def get_conversation_summary(self) -\u003e str: \"\"\"대화 및 사용된 출처의 요약을 생성합니다.\"\"\" unique_sources = list(set(self.citation_history)) return f\"턴: {len(self.messages)//2}, 고유 출처: {len(unique_sources)}\" # 사용법: 다중 턴 연구 세션 conv = PerplexityConversation( model=\"sonar-pro\", system_prompt=\"당신은 기술 동향을 전문으로 하는 시장 연구 분석가입니다.\" ) # 턴 1: 초기 연구 r1 = conv.ask(\"2026년 시가총액 기준 상위 5대 AI 칩 회사는 어디인가요?\") # 턴 2: 컨텍스트 후속 r2 = conv.ask(\"이 중에서 R\u0026D에 가장 많이 투자하는 곳은 어디인가요?\") # 턴 3: 심층 분석 r3 = conv.ask(\"올해 출시하는 구체적인 제품은 무엇인가요?\") print(conv.get_conversation_summary()) 고급 쿼리 패턴: 구조화된 데이터 및 도메인 필터링 기본 Q\u0026A를 넘어 Perplexity API는 개발자가 검색 및 생성 과정을 세밀하게 제어할 수 있는 고급 쿼리 패턴을 지원합니다.\n검색 도메인 타겟팅 전문 분야에서 권위 있는 소싱을 위해 특정 도메인으로 검색을 제한하세요: `````python def targeted_search(query: str, domains: list[str]) -\u003e dict: “““지정된 도메인 내에서 권위 있는 결과를 검색합니다.””” payload = { “model”: “sonar-pro”, “messages”: [ { “role”: “system”, “content”: f\"다음 출처를 우선시합니다: {’, ‘.join(domains)}. 이들을 우선적으로 인용하세요.\" }, {“role”: “user”, “content”: query} ], “search_domain_filter”: domains, “return_citations”: True }\nresponse = requests.post( f\"{BASE_URL}/chat/completions\", headers=HEADERS, json=payload ) return response.json() 권위 있는 의료 도메인으로 제한된 의료 쿼리 medical_result = targeted_search( “최신 mRNA 백신 개발은 무엇인가요?”, domains=[“who.int”, “cdc.gov”, “nejm.org”, \" Lancet.com\"] )\n### 최신성 필터링 웹 검색의 시간적 범위를 제어하여 최신성을 보장하세요: `````python def recent_search(query: str, recency_days: int = 7) -\u003e dict: \"\"\"최근 정볼만 검색합니다.\"\"\" payload = { \"model\": \"sonar-pro\", \"messages\": [{\"role\": \"user\", \"content\": query}], \"search_recency_filter\": f\"{recency_days}d\", \"return_citations\": True } response = requests.post( f\"{BASE_URL}/chat/completions\", headers=HEADERS, json=payload ) return response.json() # 최근 24시간의 뉴스만 가져오기 breaking = recent_search(\"오늘의 주요 기술 인수\", recency_days=1) 자동 파싱을 위한 JSON 모드 데이터 파이프라인을 구축할 때 구조화된 출력을 요청하세요: `````python import json\ndef structured_search(query: str, schema: dict) -\u003e dict: “““검색하고 스키마와 일치하는 구조화된 JSON을 반환합니다.””” payload = { “model”: “sonar-pro”, “messages”: [ { “role”: “system”, “content”: f\"이 스키마와 일치하는 유효한 JSON으로 응답하세요: {json.dumps(schema)}\" }, {“role”: “user”, “content”: query} ], “response_format”: {“type”: “json_object”}, “return_citations”: True }\nresponse = requests.post( f\"{BASE_URL}/chat/completions\", headers=HEADERS, json=payload ) result = response.json() # JSON 콘텐츠 파싱 content = result[\"choices\"][0][\"message\"][\"content\"] result[\"structured\"] = json.loads(content) return result 구조화된 회사 데이터 추출 company_schema = { “company_name”: “string”, “founded_year”: “integer”, “headquarters”: “string”, “key_products”: [“string”], “market_cap_usd”: “string” }\nstructured = structured_search( “Perplexity AI 회사에 대한 세부 정보를 제공하세요”, company_schema ) print(json.dumps(structured[“structured”], indent=2))\n* * * ## 프로덕션 배포: 속도 제한, 오류 처리 및 재시도 로직 프로덕션 통합에는 API 제한과 일시적 오류에 대한 강력한 처리가 필요합니다. Perplexity는 구독 티어에 따라 속도 제한을 시행하며, 일반적인 제한은 분당 20~1000개 요청입니다. `````python import time from functools import wraps class PerplexityClient: \"\"\"재시도 및 속도 제한이 있는 프로덕션 준비 Perplexity API 클라이언트.\"\"\" def __init__(self, api_key: str, model: str = \"sonar-pro\", max_retries: int = 3): self.api_key = api_key self.model = model self.max_retries = max_retries self.headers = { \"Authorization\": f\"Bearer {api_key}\", \"Content-Type\": \"application/json\" } self.request_count = 0 self.last_reset = time.time() def _rate_limit_check(self, rpm_limit: int = 50): \"\"\"티어 제한 내에서 유지하기 위한 기본 속도 제한.\"\"\" now = time.time() if now - self.last_reset \u003e= 60: self.request_count = 0 self.last_reset = now if self.request_count \u003e= rpm_limit: sleep_time = 60 - (now - self.last_reset) if sleep_time \u003e 0: print(f\"속도 제한에 도달했습니다. {sleep_time:.1f}초 대기\") time.sleep(sleep_time) self.request_count = 0 self.last_reset = time.time() def query(self, user_query: str, temperature: float = 0.2, **kwargs) -\u003e dict: \"\"\"오류 발생 시 자동 재시도로 쿼리를 실행합니다.\"\"\" self._rate_limit_check() payload = { \"model\": self.model, \"messages\": [{\"role\": \"user\", \"content\": user_query}], \"temperature\": temperature, \"return_citations\": True, **kwargs } for attempt in range(self.max_retries): try: response = requests.post( f\"{BASE_URL}/chat/completions\", headers=self.headers, json=payload, timeout=30 ) if response.status_code == 429: retry_after = int(response.headers.get(\"Retry-After\", 2 ** attempt)) print(f\"속도 제한됨. {retry_after}초 후 재시도\") time.sleep(retry_after) continue response.raise_for_status() self.request_count += 1 return response.json() except requests.exceptions.Timeout: print(f\"시도 {attempt + 1}에서 시간 초과\") time.sleep(2 ** attempt) except requests.exceptions.HTTPError as e: print(f\"HTTP 오류: {e}\") if attempt \u003c self.max_retries - 1: time.sleep(2 ** attempt) raise Exception(\"최대 재시도 횟수 초과\") # 프로덕션 사용법 client = PerplexityClient(api_key=os.environ[\"PERPLEXITY_API_KEY\"]) # 속도 제한이 있는 일괄 처리 queries = [ \"양자 컴퓨팅 최신 혁신\", \"2026년 재생 에너지 투자\", \"새로운 우주 망원경 발견\" ] results = [] for q in queries: try: result = client.query(q) results.append(result) print(f\"✓ 쿼리 완료: {q[:50]}...\") except Exception as e: print(f\"✗ 쿼리 실패: {q[:50]}... - {e}\") 완전한 RAG 검색 애플리케이션 구축 모든 것을 RAG 기반 검색 서비스의 프로덕션 패턴을 보여주는 완전한 Flask 애플리케이션으로 종합해 보겠습니다.\n# app.py - 완전한 RAG 검색 API from flask import Flask, request, jsonify, Response from flask_cors import CORS import os import json import requests app = Flask(__name__) CORS(app) PERPLEXITY_KEY = os.environ[\"PERPLEXITY_API_KEY\"] BASE_URL = \"https://api.perplexity.ai\" class RAGSearchService: def __init__(self): self.headers = { \"Authorization\": f\"Bearer {PERPLEXITY_KEY}\", \"Content-Type\": \"application/json\" } def search(self, query: str, model: str = \"sonar-pro\", stream: bool = False): \"\"\"선택적 스트리밍이 있는 RAG 검색을 실행합니다.\"\"\" payload = { \"model\": model, \"messages\": [ { \"role\": \"system\", \"content\": \"정확하고 출처가 있는 답변과 인용을 제공하세요.\" }, {\"role\": \"user\", \"content\": query} ], \"stream\": stream, \"return_citations\": True, \"max_tokens\": 2048 } response = requests.post( f\"{BASE_URL}/chat/completions\", headers=self.headers, json=payload, stream=stream ) response.raise_for_status() return response service = RAGSearchService() @app.route(\"/search\", methods=[\"POST\"]) def search(): \"\"\"동기 RAG 검색 엔드포인트.\"\"\" data = request.get_json() query = data.get(\"query\", \"\") model = data.get(\"model\", \"sonar-pro\") if not query: return jsonify({\"error\": \"쿼리가 필요합니다\"}), 400 try: result = service.search(query, model=model) data = result.json() message = data[\"choices\"][0][\"message\"] return jsonify({ \"answer\": message[\"content\"], \"citations\": message.get(\"citations\", []), \"model\": model, \"usage\": data.get(\"usage\", {}) }) except Exception as e: return jsonify({\"error\": str(e)}), 500 @app.route(\"/search/stream\", methods=[\"POST\"]) def search_stream(): \"\"\"서버 전송 이벤트를 사용한 스트리밍 RAG 검색 엔드포인트.\"\"\" data = request.get_json() query = data.get(\"query\", \"\") model = data.get(\"model\", \"sonar-pro\") if not query: return jsonify({\"error\": \"쿼리가 필요합니다\"}), 400 def generate(): response = service.search(query, model=model, stream=True) for line in response.iter_lines(): if line: decoded = line.decode(\"utf-8\") if decoded.startswith(\"data: \"): yield f\"{decoded}\\n\\n\" return Response( generate(), mimetype=\"text/event-stream\", headers={\"Cache-Control\": \"no-cache\"} ) @app.route(\"/health\", methods=[\"GET\"]) def health(): \"\"\"상태 확인 엔드포인트.\"\"\" return jsonify({\"status\": \"healthy\", \"service\": \"rag-search\"}) if __name__ == \"__main__\": app.run(host=\"0.0.0.0\", port=5000, debug=True) # 컨테이너화된 배포를 위한 Dockerfile FROM python:3.11-slim WORKDIR /app COPY requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY app.py . ENV PERPLEXITY_API_KEY=\"\" ENV FLASK_ENV=production EXPOSE 5000 CMD [\"gunicorn\", \"-w\", \"4\", \"-b\", \"0.0.0.0:5000\", \"app:app\"] # docker-compose.yml version: \"3.8\" services: rag-search: build: . ports: - \"5000:5000\" environment: - PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY} restart: unless-stopped healthcheck: test: [\"CMD\", \"curl\", \"-f\", \"http://localhost:5000/health\"] interval: 30s timeout: 10s retries: 3 FAQ Perplexity API는 OpenAI의 GPT API와 어떻게 다릅니까? Perplexity API는 자동으로 실시간 웹 검색과 인용 주입을 수행하는 반면, OpenAI의 API는 외부 벡터 데이터베이스를 사용하여 RAG를 수동으로 구현하지 않는 한 훈련 데이터에 의존합니다. Perplexity는 일체형 RAG 솔루션을 제공하며 검색, 순위 및 기반을 낮부에서 처리합니다.\nPerplexity API의 속도 제한은 무엇입니까? 속도 제한은 구독 티어별로 다릅니다. 묶음 티어는 일반적으로 분당 20개 요청을 허용하고, Pro 및 엔터프라이즈 티어는 100-1000+ RPM으로 확장됩니다. 정확한 제한은 개발자 대시보드에서 확인하세요.\nPerplexity API를 자체 문서와 함께 사용할 수 있습니까? 현재 Perplexity API는 사설 문서 수집이 아닌 웹 검색 RAG에 중점을 둡니다. 사용자 지정 문서 RAG의 경우 Perplexity의 웹 검색을 벡터 데이터베이스 솔루션과 결합하거나 전문 RAG 플랫폼을 사용해야 합니다.\nPerplexity가 제공하는 인용의 정확도는 어느 정도입니까? Perplexity의 인용 시스템은 매우 정확하며, 출처는 검색 단계에서 검색된 URL에 직접 연결됩니다. 응답의 [1], [2] 마커는 인용 배열과 정확히 일치합니다. 그러나 중요한 정보는 반드시 1차 출처 대해 검증하세요.\n스트리밍은 모든 Sonar 모델에서 지원됩니까? 네, 서버 전송 이벤트를 통한 스트리밍은 모든 Sonar 모델 변형에서 지원됩니다. 스트리밍 구현은 OpenAI 호환 형식을 따륾므로 기존 스트리밍 클라이언트를 쉽게 적용할 수 있습니다.\nPerplexity API의 가격 책정 모델은 무엇입니까? Perplexity는 쿼리 볼륨과 토큰 소비를 기반으로 하는 결합 가격 책정 모델을 사용합니다. 기본 Sonar가 가장 경제적이고, Sonar Deep Research는 광범위한 다단계 검색으로 인해 더 높은 비용이 발생합니다. 현재 요금은 Perplexity 가격 페이지를 참조하세요.\n검색을 특정 도메인이나 날짜 범위로 필터링할 수 있습니까? 네, API는 search_domain_filter를 지원하여 특정 도메인으로 쿼리를 제한하고, ````search_recency_filter```는 결과를 최신성으로 제한합니다(예: 지난 7일은 “7d”). 이러한 매개변수는 권위 있고 시기적절한 소싱에 도움이 됩니다.\n추천 호스팅 및 인프라 DigitalOcean — 60일 $200 무료 크레딧. HTStack — 홍콩 VPS, 중국 본토 저지연 접속. 제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.\n결론 Perplexity API는 개발자가 접근할 수 있는 RAG 기술의 중요한 발전을 나타냅니다. 실시간 웹 인덱싱, 여러 전문 Sonar 모델, 투명한 인용, OpenAI 호환 인터페이스를 결합함으로써 벡터 데이터베이스, 임베딩 파이프라인 또는 관련성 조정을 관리할 필요 없이 프로덕션급 RAG로의 직접적인 경로를 제공합니다.\n연구 어시스턴트, 팩트 체크 도구, 동적 지식 베이스, 콘텐츠 검증 시스템을 포함한 차세대 지능형 애플리케이션을 구축하는 개발자에게 Perplexity는 이 기대를 충족할 수 있는 애플리케이션을 배치하여 사용자가 신뢰할 수 있는 경험을 제공합니다. 모든 답변은 실제이며 인용 가능한 출처의 기반 위에 서 있기 때문입니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “perplexity-api-rag-search”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/perplexity-api-rag-search\" } } Related Articles ai-seo-geo-dibi8-methodology-google-sge-perplexity ai-seo-geo-dibi8-methodology-google-sge-perplexity freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 freqtrade-python-crypto-trading-bot-backtest-optimize-deploy Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n","wordCount":"2764","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/perplexity-api-rag-search/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/perplexity-api-rag-search/>En</a></li><li><a href=https://dibi8.com/zh/perplexity-api-rag-search/>Zh</a></li><li><a href=https://dibi8.com/vi/perplexity-api-rag-search/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#perplexity-api%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b4%eb%a9%b0-rag%ea%b0%80-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%9d%b4%ec%9c%a0%eb%8a%94 aria-label="Perplexity API란 무엇이며 RAG가 중요한 이유는?">Perplexity API란 무엇이며 RAG가 중요한 이유는?</a></li><li><a href=#sonar-%eb%aa%a8%eb%8d%b8%ea%b5%b0-%ec%9d%b4%ed%95%b4-%ec%84%a0%ed%83%9d-%eb%b0%a9%eb%b2%95 aria-label="Sonar 모델군 이해: 선택 방법">Sonar 모델군 이해: 선택 방법</a><ul><li><a href=#sonar-%ed%91%9c%ec%a4%80 aria-label="Sonar (표준)">Sonar (표준)</a></li><li><a href=#sonar-pro aria-label="Sonar Pro">Sonar Pro</a></li><li><a href=#sonar-reasoning aria-label="Sonar Reasoning">Sonar Reasoning</a></li><li><a href=#sonar-deep-research aria-label="Sonar Deep Research">Sonar Deep Research</a></li></ul></li><li><a href=#%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0-api-%ed%82%a4-%eb%b0%8f-%ec%9d%b8%ec%a6%9d aria-label="시작하기: API 키 및 인증">시작하기: API 키 및 인증</a></li><li><a href=#%ea%b8%b0%eb%b3%b8-%ec%b1%97-%ec%99%84%ec%84%b1-%ec%b2%ab-%eb%b2%88%ec%a7%b8-rag-%ec%bf%bc%eb%a6%ac aria-label="기본 챗 완성: 첫 번째 RAG 쿼리">기본 챗 완성: 첫 번째 RAG 쿼리</a></li></ul><li><a href=#%ec%9d%91%eb%8b%b5%ec%97%90%ec%84%9c-%ec%9d%b8%ec%9a%a9-%ec%b6%94%ec%b6%9c aria-label="응답에서 인용 추출">응답에서 인용 추출</a><ul><ul><li><a href=#%ec%9b%b9-%ec%95%a0%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%98%ec%97%90%ec%84%9c-%ec%9d%b8%ec%9a%a9-%eb%a0%8c%eb%8d%94%eb%a7%81 aria-label="웹 애플리케이션에서 인용 렌더링">웹 애플리케이션에서 인용 렌더링</a></li></ul><li><a href=#%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8-%ea%b2%80%ec%83%89%ec%9d%b4-%ec%9e%88%eb%8a%94-%eb%8b%a4%ec%a4%91-%ed%84%b4-%eb%8c%80%ed%99%94 aria-label="컨텍스트 검색이 있는 다중 턴 대화">컨텍스트 검색이 있는 다중 턴 대화</a></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%bf%bc%eb%a6%ac-%ed%8c%a8%ed%84%b4-%ea%b5%ac%ec%a1%b0%ed%99%94%eb%90%9c-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%b0%8f-%eb%8f%84%eb%a9%94%ec%9d%b8-%ed%95%84%ed%84%b0%eb%a7%81 aria-label="고급 쿼리 패턴: 구조화된 데이터 및 도메인 필터링">고급 쿼리 패턴: 구조화된 데이터 및 도메인 필터링</a><ul><li><a href=#%ea%b2%80%ec%83%89-%eb%8f%84%eb%a9%94%ec%9d%b8-%ed%83%80%ea%b2%9f%ed%8c%85 aria-label="검색 도메인 타겟팅">검색 도메인 타겟팅</a></li></ul></li></ul></li><li><a href=#%ea%b6%8c%ec%9c%84-%ec%9e%88%eb%8a%94-%ec%9d%98%eb%a3%8c-%eb%8f%84%eb%a9%94%ec%9d%b8%ec%9c%bc%eb%a1%9c-%ec%a0%9c%ed%95%9c%eb%90%9c-%ec%9d%98%eb%a3%8c-%ec%bf%bc%eb%a6%ac aria-label="권위 있는 의료 도메인으로 제한된 의료 쿼리">권위 있는 의료 도메인으로 제한된 의료 쿼리</a><ul><ul><li><a href=#%ec%9e%90%eb%8f%99-%ed%8c%8c%ec%8b%b1%ec%9d%84-%ec%9c%84%ed%95%9c-json-%eb%aa%a8%eb%93%9c aria-label="자동 파싱을 위한 JSON 모드">자동 파싱을 위한 JSON 모드</a></li></ul></ul></li><li><a href=#%ea%b5%ac%ec%a1%b0%ed%99%94%eb%90%9c-%ed%9a%8c%ec%82%ac-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%b6%94%ec%b6%9c aria-label="구조화된 회사 데이터 추출">구조화된 회사 데이터 추출</a><ul><li><a href=#%ec%99%84%ec%a0%84%ed%95%9c-rag-%ea%b2%80%ec%83%89-%ec%95%a0%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%98-%ea%b5%ac%ec%b6%95 aria-label="완전한 RAG 검색 애플리케이션 구축">완전한 RAG 검색 애플리케이션 구축</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#perplexity-api%eb%8a%94-openai%ec%9d%98-gpt-api%ec%99%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%8b%a4%eb%a6%85%eb%8b%88%ea%b9%8c aria-label="Perplexity API는 OpenAI의 GPT API와 어떻게 다릅니까?">Perplexity API는 OpenAI의 GPT API와 어떻게 다릅니까?</a></li><li><a href=#perplexity-api%ec%9d%98-%ec%86%8d%eb%8f%84-%ec%a0%9c%ed%95%9c%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9e%85%eb%8b%88%ea%b9%8c aria-label="Perplexity API의 속도 제한은 무엇입니까?">Perplexity API의 속도 제한은 무엇입니까?</a></li><li><a href=#perplexity-api%eb%a5%bc-%ec%9e%90%ec%b2%b4-%eb%ac%b8%ec%84%9c%ec%99%80-%ed%95%a8%ea%bb%98-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%ec%8a%b5%eb%8b%88%ea%b9%8c aria-label="Perplexity API를 자체 문서와 함께 사용할 수 있습니까?">Perplexity API를 자체 문서와 함께 사용할 수 있습니까?</a></li><li><a href=#perplexity%ea%b0%80-%ec%a0%9c%ea%b3%b5%ed%95%98%eb%8a%94-%ec%9d%b8%ec%9a%a9%ec%9d%98-%ec%a0%95%ed%99%95%eb%8f%84%eb%8a%94-%ec%96%b4%eb%8a%90-%ec%a0%95%eb%8f%84%ec%9e%85%eb%8b%88%ea%b9%8c aria-label="Perplexity가 제공하는 인용의 정확도는 어느 정도입니까?">Perplexity가 제공하는 인용의 정확도는 어느 정도입니까?</a></li><li><a href=#%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d%ec%9d%80-%eb%aa%a8%eb%93%a0-sonar-%eb%aa%a8%eb%8d%b8%ec%97%90%ec%84%9c-%ec%a7%80%ec%9b%90%eb%90%a9%eb%8b%88%ea%b9%8c aria-label="스트리밍은 모든 Sonar 모델에서 지원됩니까?">스트리밍은 모든 Sonar 모델에서 지원됩니까?</a></li><li><a href=#perplexity-api%ec%9d%98-%ea%b0%80%ea%b2%a9-%ec%b1%85%ec%a0%95-%eb%aa%a8%eb%8d%b8%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9e%85%eb%8b%88%ea%b9%8c aria-label="Perplexity API의 가격 책정 모델은 무엇입니까?">Perplexity API의 가격 책정 모델은 무엇입니까?</a></li><li><a href=#%ea%b2%80%ec%83%89%ec%9d%84-%ed%8a%b9%ec%a0%95-%eb%8f%84%eb%a9%94%ec%9d%b8%ec%9d%b4%eb%82%98-%eb%82%a0%ec%a7%9c-%eb%b2%94%ec%9c%84%eb%a1%9c-%ed%95%84%ed%84%b0%eb%a7%81%ed%95%a0-%ec%88%98-%ec%9e%88%ec%8a%b5%eb%8b%88%ea%b9%8c aria-label="검색을 특정 도메인이나 날짜 범위로 필터링할 수 있습니까?">검색을 특정 도메인이나 날짜 범위로 필터링할 수 있습니까?</a></li></ul></li><li><a href=#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>Perplexity API의 출시로 지능적이고 사실에 기반한 애플리케이션 구축 경쟁은 중요한 이정표에 도달했습니다. 이 API는 대규모 언어 모델과 실시간 웹 인덱싱을 융합한 전문 RAG(검색 증강 생성) 검색 서비스입니다. 정적 학습 데이터에만 의존하는 기존 LLM API와 달리 Perplexity의 Sonar 모델은 실시간으로 인터넷을 쿼리하고, 권위 있는 소스를 검색하며, 인라인 인용이 포함된 구조화된 답변을 반환합니다. 챗봇, 연구 도구, 지식 어시스턴트, 콘텐츠 검증 파이프라인을 구축하는 개발자에게 이는 패러다임의 전환을 의미합니다. 단순히 텍스트를 생성하는 것이 아니라 모든 주장을 검증 가능한 현실에 기반을 두는 애플리케이션입니다.</p><p>이 가이드는 2026년 Perplexity API에 대한 포괄적인 통합 로드맵을 제공합니다. RAG 검색 아키텍처의 작동 방식, 사용 사례에 적합한 Sonar 모델, 스트리밍 챗 완성 구현 방법, 프로그래밍 방식으로 인용 처리, 속도 제한 관리, 정확하고 출처가 있는 답변을 제공하는 프로덕션급 검색 애플리케이션 배포 방법을 알아보겠습니다.</p><hr><h2 id=perplexity-api란-무엇이며-rag가-중요한-이유는>Perplexity API란 무엇이며 RAG가 중요한 이유는?<a hidden class=anchor aria-hidden=true href=#perplexity-api란-무엇이며-rag가-중요한-이유는>#</a></h2><p>Perplexity AI는 기존 언어 모델의 근본적인 한계인 환각과 지식 차단을 해결하기 위해 API를 출시했습니다. 표준 LLM은 시간에 얼어붙어 특정 날짜에 데이터 학습이 중단됩니다. 어제의 시장 변동, 속보 뉴스, 최근 출시된 소프트웨어 버전에 대해 물어보면 환각을 일으키거나 무지함을 인정합니다.</p><p>Perplexity API는 내장 RAG를 통해 이 제약을 제거합니다. 쿼리를 본 볼 때 Perplexity의 백엔드는 실시간 웹 검색을 수행하고, 관련 문서를 검색하고, 권위에 따라 순위를 매기고, 언어 모델에 컨텍스트 기반으로 제공합니다. 그런 다음 모델은 특정 URL을 인용하는 답변을 종합하여 사용자가 모든 정보를 검증할 수 있도록 합니다.</p><p>이 아키텍처가 중요한 이유는 LLM을 폐쇄형 시험 응시자에서 개방형 연구자로 근본적으로 변환하기 때문입니다. 검색 계층은 사실적 정확성을 보장합니다. 생성 계층은 가독성과 종합성을 보장합니다. 인용 계층은 신뢰를 보장합니다. 함께 전통적인 검색 엔진에 필적하는 검색 경험을 만들면서도 사용자가 AI 기술을 기대하는 대화적 유창성을 제공합니다.</p><p>개발자에게 실질적인 의미는 심오합니다. 더 이상 자체 검색 파이프라인을 구축하거나, 벡터 데이터베이스를 관리하거나, 청킹 전략을 조정할 필요가 없습니다. Perplexity는 문서 검색, 관련성 평점 및 컨텍스트 주입을 자동으로 처리하여 OpenAI API를 사용핳 본 사람이라면 누구나 친숙하게 느낄 수 있는 깔끔한 챗 완성 인터페이스를 제공합니다.</p><hr><h2 id=sonar-모델군-이해-선택-방법>Sonar 모델군 이해: 선택 방법<a hidden class=anchor aria-hidden=true href=#sonar-모델군-이해-선택-방법>#</a></h2><p>Perplexity는 Sonar 브랜드 아래 계층화된 모델 라인업을 제공하며, 각각은 지연 시간, 정확성 및 비용 요구 사항에 최적화되어 있습니다. 올바른 모델을 선택하는 것은 개발자가 내리는 첫 번째 아키텍처 결정입니다.</p><h3 id=sonar-표준>Sonar (표준)<a hidden class=anchor aria-hidden=true href=#sonar-표준>#</a></h3><p>기본 Sonar 모델은 가장 빠른 응답 시간과 가장 낮은 쿼리당 비용을 제공합니다. 쉽게 접근할 수 있는 웹 콘텐츠에서 답변을 찾을 수 있는 간단한 정보 쿼리에 탁월합니다. 챗봇, FAQ 시스템 및 사용자 경험에서 빠른 회신을 요구하는 애플리케이션에 Sonar를 사용하세요.</p><h3 id=sonar-pro>Sonar Pro<a hidden class=anchor aria-hidden=true href=#sonar-pro>#</a></h3><p>Sonar Pro는 일부 대기 시간을 희생하여 상당히 더 깊은 추론 및 다단계 연구 기능을 제공합니다. 여러 검색 반복을 수행하고, 사고 연쇄 추론을 따륾며, 다양한 소스에서 복잡한 답변을 종합합니다. 연구 어시스턴트, 콘텐츠 분석 도구 및 답변 품질이 속도보다 중요한 모든 애플리케이션에 Sonar Pro를 선택하세요.</p><h3 id=sonar-reasoning>Sonar Reasoning<a hidden class=anchor aria-hidden=true href=#sonar-reasoning>#</a></h3><p>추론 변형은 응답을 생성하기 전에 명시적인 단계별 분석을 적용합니다. 쿼리를 하위 질문으로 분해하고, 각 구성 요소에 대해 검색하고, 논리적으로 엄격한 답변을 구성합니다. 이 모델은 분석 작업, 팩트 체크 워크플로우 및 교육 애플리케이션에 이상적입니다.</p><h3 id=sonar-deep-research>Sonar Deep Research<a hidden class=anchor aria-hidden=true href=#sonar-deep-research>#</a></h3><p>엔터프라이즈급 연구 및 포괄적인 주제 탐색을 위해 Sonar Deep Research는 광범위한 다중 소스 조사를 수행하여 수십 개의 문서를 평가하여 상세하고 잘 구조화된 보고서를 생성합니다. 대기 시간과 토큰 사용량이 더 높을 것으로 예상하지만, 비교할 수 없는 철저함을 제공합니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 다양한 사용 사례를 위한 모델 선택 매핑</span>
+</span></span><span style=display:flex><span>MODEL_MAP <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fast_chat&#34;</span>: <span style=color:#e6db74>&#34;sonar&#34;</span>,           <span style=color:#75715e># 빠른 Q&amp;A, 낮은 지연 시간</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;deep_research&#34;</span>: <span style=color:#e6db74>&#34;sonar-pro&#34;</span>,   <span style=color:#75715e># 철저한 조사</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;analytical&#34;</span>: <span style=color:#e6db74>&#34;sonar-reasoning&#34;</span>, <span style=color:#75715e># 단계별 추론</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;enterprise&#34;</span>: <span style=color:#e6db74>&#34;sonar-deep-research&#34;</span>  <span style=color:#75715e># 포괄적인 보고서</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h2 id=시작하기-api-키-및-인증>시작하기: API 키 및 인증<a hidden class=anchor aria-hidden=true href=#시작하기-api-키-및-인증>#</a></h2><p>통합 코드를 작성하기 전에 Perplexity API 키가 필요합니다. Perplexity 개발자 포털을 방문하여 계정을 만들고 대시보드에서 API 키를 생성하세요. Perplexity는 HTTPS를 통한 표준 Bearer 토큰 인증을 사용합니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># API 키를 안전하게 저장</span>
+</span></span><span style=display:flex><span>export PERPLEXITY_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pplx-your-api-key-here&#34;</span>
+</span></span></code></pre></div><p>모든 API 요청에는 <code>Authorization: Bearer &lt;token></code> 헤더가 필요합니다. 챗 완성을 위한 기본 엔드포인트는 <code>https://api.perplexity.ai/chat/completions</code>입니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>API_KEY <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;PERPLEXITY_API_KEY&#34;</span>)
+</span></span><span style=display:flex><span>BASE_URL <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://api.perplexity.ai&#34;</span>
+</span></span><span style=display:flex><span>HEADERS <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bearer </span><span style=color:#e6db74>{</span>API_KEY<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Content-Type&#34;</span>: <span style=color:#e6db74>&#34;application/json&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Perplexity는 실험을 위해 관대한 묶음 티어를 제공하며, 유료 티어는 쿼리 볼륨 및 모델 선택에 따라 확장됩니다. 가격 구조는 더 간단한 과금을 위해 토큰 기반이 아닌 쿼리 기반이지만, 토큰 소비는 사용량 분석을 위해 추적됩니다.</p><hr><h2 id=기본-챗-완성-첫-번째-rag-쿼리>기본 챗 완성: 첫 번째 RAG 쿼리<a hidden class=anchor aria-hidden=true href=#기본-챗-완성-첫-번째-rag-쿼리>#</a></h2><p>Perplexity API는 OpenAI 호환 챗 완성 인터페이스를 구현하여 이미 GPT 기반 모델을 사용 중인 경우 마이그레이션이 간단합니다. 중요한 차이점은 백그라운드에서 자동으로 발생하는 웹 검색 및 인용 주입입니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> requests
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>perplexity_query</span>(query: str, model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sonar-pro&#34;</span>) <span style=color:#f92672>-&gt;</span> dict: <span style=color:#e6db74>&#34;&#34;&#34;Perplexity API에 단일 RAG 강화 쿼리를 본 볼니다.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    url <span style=color:#f92672>=</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>BASE_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>/chat/completions&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    payload <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;model&#34;</span>: model,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;messages&#34;</span>: [
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;당신은 유용한 연구 어시스턴트입니다. 정확하고 잘 출처가 있는 답변을 제공하세요.&#34;</span>
+</span></span><span style=display:flex><span>            },
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>,
+</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;content&#34;</span>: query
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        ],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>1024</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.2</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(url, headers<span style=color:#f92672>=</span>HEADERS, json<span style=color:#f92672>=</span>payload)
+</span></span><span style=display:flex><span>    response<span style=color:#f92672>.</span>raise_for_status()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 첫 번째 RAG 검색 실행</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> perplexity_query(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;2026년 핵융합 에너지의 최신 발전은 무엇인가요?&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(result[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>][<span style=color:#e6db74>&#34;content&#34;</span>])
+</span></span></code></pre></div><p>검색 매개변수, 문서 ID 또는 검색 구성이 필요하지 않습니다. Perplexity는 웹 검색이 필요한지 자동으로 결정하고, 검색을 실행하고, 출처가 있는 자료에 응답을 기반을 둡니다.</p><p>응답에는 생성된 텍스트뿐만 아니라 인용 메타데이터도 포함됩니다: `````python</p><h1 id=응답에서-인용-추출>응답에서 인용 추출<a hidden class=anchor aria-hidden=true href=#응답에서-인용-추출>#</a></h1><p>message = result[&ldquo;choices&rdquo;][0][&ldquo;message&rdquo;]
+answer_text = message[&ldquo;content&rdquo;]
+citations = message.get(&ldquo;citations&rdquo;, [])</p><p>print(f"답변: {answer_text[:200]}&mldr;")
+print(f"\n인용된 출처: {len(citations)}")
+for i, citation in enumerate(citations[:5], 1): print(f" [{i}] {citation}")</p><pre tabindex=0><code>
+* * *
+
+## 인용 작업: 투명성을 통한 신뢰 구축
+
+인용은 Perplexity의 RAG 구현의 결정적 특징입니다. 응답의 모든 사실적 주장은 특정 웹 소스로 추적할 수 있어 사용자가 정보를 검증하고 주제를 깊이 있게 탐색할 수 있습니다.
+
+### 인용 형식 이해
+
+Perplexity는 어시스턴트 메시지의 ````citations```` 필드에서 URL 목록 형태로 인용을 반환합니다. 콘텐츠 텍스트에서 인용은 괄호 안의 색인 ````[1]````, ````[2]```` 등으로 참조되며, 이는 인용 배열의 순서와 일치합니다.
+
+`````python
+def format_response_with_citations(result: dict) -&gt; str: &#34;&#34;&#34;클릭 가능한 인용 링크가 있는 Perplexity 응답을 형식화합니다.&#34;&#34;&#34;
+    message = result[&#34;choices&#34;][0][&#34;message&#34;]
+    content = message[&#34;content&#34;]
+    citations = message.get(&#34;citations&#34;, [])
+    
+    formatted = f&#34;{content}\n\n---\n**출처:**\n&#34;
+    for i, url in enumerate(citations, 1): formatted += f&#34;\n[{i}] [{url}]({url})&#34;
+    
+    return formatted
+
+print(format_response_with_citations(result))
+</code></pre><h3 id=웹-애플리케이션에서-인용-렌더링>웹 애플리케이션에서 인용 렌더링<a hidden class=anchor aria-hidden=true href=#웹-애플리케이션에서-인용-렌더링>#</a></h3><p>웹 인터페이스를 구축할 때 인용을 대화형 각주 또는 사이드바 참조로 렌더링하세요: `````html
+function CitedResponse({ content, citations }) {
+// 콘텐츠에서 [1], [2] 마커 파싱
+const parts = content.split(/([\d+])/g);</p><p>return (<div classname=cited-response><div classname=answer-text>{parts.map((part, i) => {
+const match = part.match(/[(\d+)]/);
+if (match) {
+const idx = parseInt(match[1]) - 1;
+return (
+<sup key={i} classname=citation-ref><a href={citations[idx]} target=_blank rel=noopener>{part}
+</a></sup>);
+}
+return <span key={i}>{part}</span>;
+})}</div><citationlist citations={citations}></div>);
+}</p><pre tabindex=0><code>
+* * *
+
+## 실시간 사용자 경험을 위한 스트리밍 응답
+
+대화형 애플리케이션의 경우 Perplexity는 서버 전송 이벤트(SSE) 스트리밍을 지원하여 완전한 응답을 기다리는 대신 생성될 때 토큰을 전달합니다. 이는 속도 인식을 만들고 점진적 인용 표시를 가능하게 합니다.
+
+`````python
+import sseclient
+import io
+
+def perplexity_stream(query: str, model: str = &#34;sonar-pro&#34;): &#34;&#34;&#34;토큰별로 RAG 쿼리 응답을 스트리밍합니다.&#34;&#34;&#34;
+    url = f&#34;{BASE_URL}/chat/completions&#34;
+    
+    payload = {
+        &#34;model&#34;: model,
+        &#34;messages&#34;: [
+            {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: &#34;간결하고 정확하게.&#34;},
+            {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: query}
+        ],
+        &#34;stream&#34;: True,
+        &#34;max_tokens&#34;: 1024
+    }
+    
+    response = requests.post(url, headers=HEADERS, json=payload, stream=True)
+    response.raise_for_status()
+    
+    client = sseclient.SSEClient(response)
+    full_content = []
+    citations = []
+    
+    for event in client.events(): if event.data == &#34;[DONE]&#34;: break
+        
+        chunk = json.loads(event.data)
+        delta = chunk[&#34;choices&#34;][0].get(&#34;delta&#34;, {})
+        
+        # 콘텐츠 토큰 누적
+        if &#34;content&#34; in delta: token = delta[&#34;content&#34;]
+            full_content.append(token)
+            print(token, end=&#34;&#34;, flush=True)
+        
+        # 마지막 청크에서 인용 캡처
+        if &#34;citations&#34; in delta: citations.extend(delta[&#34;citations&#34;])
+    
+    print(f&#34;\n\n출처: {citations}&#34;)
+    return &#34;&#34;.join(full_content), citations
+
+# 실시간 쿼리 스트리밍
+answer, sources = perplexity_stream(
+    &#34;최근 UN 기후 정상회의의 결과는 무엇인가요?&#34;
+)
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#75715e>// fetch를 사용한 Node.js 스트리밍 예제
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>streamPerplexity</span>(<span style=color:#a6e22e>query</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;https://api.perplexity.ai/chat/completions&#39;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>POST</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>Authorization</span><span style=color:#f92672>:</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>Bearer</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PERPLEXITY_API_KEY</span>}<span style=color:#e6db74>````</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>model</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;sonar-pro&#39;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>messages</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>role</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>query</span> }],
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>stream</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    })
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>reader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>getReader</span>();
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>decoder</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>TextDecoder</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>done</span>, <span style=color:#a6e22e>value</span> } <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>reader</span>.<span style=color:#a6e22e>read</span>();
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>done</span>) <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>chunk</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>decoder</span>.<span style=color:#a6e22e>decode</span>(<span style=color:#a6e22e>value</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>lines</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>chunk</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#39;\n&#39;</span>).<span style=color:#a6e22e>filter</span>(<span style=color:#a6e22e>line</span> =&gt; <span style=color:#a6e22e>line</span>.<span style=color:#a6e22e>startsWith</span>(<span style=color:#e6db74>&#39;data: &#39;</span>));
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>line</span> <span style=color:#66d9ef>of</span> <span style=color:#a6e22e>lines</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>line</span>.<span style=color:#a6e22e>slice</span>(<span style=color:#ae81ff>6</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;[DONE]&#39;</span>) <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>parsed</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>token</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parsed</span>.<span style=color:#a6e22e>choices</span>[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>?</span>.<span style=color:#a6e22e>delta</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>content</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#39;&#39;</span>;
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>stdout</span>.<span style=color:#a6e22e>write</span>(<span style=color:#a6e22e>token</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h2 id=컨텍스트-검색이-있는-다중-턴-대화>컨텍스트 검색이 있는 다중 턴 대화<a hidden class=anchor aria-hidden=true href=#컨텍스트-검색이-있는-다중-턴-대화>#</a></h2><p>Perplexity는 여러 턴에 걸쳐 대화 컨텍스트를 유지하여 이전 교환을 참조하는 후속 질문을 가능하게 합니다. 검색 시스템은 대화 흐름에 적응하여 누적된 컨텍스트를 기반으로 검색을 개선합니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PerplexityConversation</span>: <span style=color:#e6db74>&#34;&#34;&#34;RAG 검색 메모리가 있는 상태 저장 대화 처리기.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sonar-pro&#34;</span>, system_prompt: str <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> model
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>messages <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> system_prompt: self<span style=color:#f92672>.</span>messages<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: system_prompt})
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>citation_history <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>ask</span>(self, query: str) <span style=color:#f92672>-&gt;</span> dict: <span style=color:#e6db74>&#34;&#34;&#34;메시지를 본 볼하고 대화 기록을 유지합니다.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>messages<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: query})
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        payload <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;model&#34;</span>: self<span style=color:#f92672>.</span>model,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;messages&#34;</span>: self<span style=color:#f92672>.</span>messages,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>1024</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.2</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;return_citations&#34;</span>: <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>BASE_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>/chat/completions&#34;</span>,
+</span></span><span style=display:flex><span>            headers<span style=color:#f92672>=</span>HEADERS,
+</span></span><span style=display:flex><span>            json<span style=color:#f92672>=</span>payload
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        response<span style=color:#f92672>.</span>raise_for_status()
+</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> response<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        assistant_msg <span style=color:#f92672>=</span> result[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>]
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>messages<span style=color:#f92672>.</span>append({
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;content&#34;</span>: assistant_msg[<span style=color:#e6db74>&#34;content&#34;</span>]
+</span></span><span style=display:flex><span>        })
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>citation_history<span style=color:#f92672>.</span>extend(assistant_msg<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;citations&#34;</span>, []))
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_conversation_summary</span>(self) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;대화 및 사용된 출처의 요약을 생성합니다.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        unique_sources <span style=color:#f92672>=</span> list(set(self<span style=color:#f92672>.</span>citation_history))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;턴: </span><span style=color:#e6db74>{</span>len(self<span style=color:#f92672>.</span>messages)<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span><span style=color:#e6db74>}</span><span style=color:#e6db74>, 고유 출처: </span><span style=color:#e6db74>{</span>len(unique_sources)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 사용법: 다중 턴 연구 세션</span>
+</span></span><span style=display:flex><span>conv <span style=color:#f92672>=</span> PerplexityConversation(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sonar-pro&#34;</span>,
+</span></span><span style=display:flex><span>    system_prompt<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;당신은 기술 동향을 전문으로 하는 시장 연구 분석가입니다.&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 턴 1: 초기 연구</span>
+</span></span><span style=display:flex><span>r1 <span style=color:#f92672>=</span> conv<span style=color:#f92672>.</span>ask(<span style=color:#e6db74>&#34;2026년 시가총액 기준 상위 5대 AI 칩 회사는 어디인가요?&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 턴 2: 컨텍스트 후속</span>
+</span></span><span style=display:flex><span>r2 <span style=color:#f92672>=</span> conv<span style=color:#f92672>.</span>ask(<span style=color:#e6db74>&#34;이 중에서 R&amp;D에 가장 많이 투자하는 곳은 어디인가요?&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 턴 3: 심층 분석</span>
+</span></span><span style=display:flex><span>r3 <span style=color:#f92672>=</span> conv<span style=color:#f92672>.</span>ask(<span style=color:#e6db74>&#34;올해 출시하는 구체적인 제품은 무엇인가요?&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(conv<span style=color:#f92672>.</span>get_conversation_summary())
+</span></span></code></pre></div><hr><h2 id=고급-쿼리-패턴-구조화된-데이터-및-도메인-필터링>고급 쿼리 패턴: 구조화된 데이터 및 도메인 필터링<a hidden class=anchor aria-hidden=true href=#고급-쿼리-패턴-구조화된-데이터-및-도메인-필터링>#</a></h2><p>기본 Q&amp;A를 넘어 Perplexity API는 개발자가 검색 및 생성 과정을 세밀하게 제어할 수 있는 고급 쿼리 패턴을 지원합니다.</p><h3 id=검색-도메인-타겟팅>검색 도메인 타겟팅<a hidden class=anchor aria-hidden=true href=#검색-도메인-타겟팅>#</a></h3><p>전문 분야에서 권위 있는 소싱을 위해 특정 도메인으로 검색을 제한하세요: `````python
+def targeted_search(query: str, domains: list[str]) -> dict: &ldquo;&ldquo;&ldquo;지정된 도메인 내에서 권위 있는 결과를 검색합니다.&rdquo;&rdquo;&rdquo;
+payload = {
+&ldquo;model&rdquo;: &ldquo;sonar-pro&rdquo;,
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;system&rdquo;,
+&ldquo;content&rdquo;: f"다음 출처를 우선시합니다: {&rsquo;, &lsquo;.join(domains)}. 이들을 우선적으로 인용하세요."
+},
+{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: query}
+],
+&ldquo;search_domain_filter&rdquo;: domains,
+&ldquo;return_citations&rdquo;: True
+}</p><pre><code>response = requests.post(
+    f&quot;{BASE_URL}/chat/completions&quot;,
+    headers=HEADERS,
+    json=payload
+)
+return response.json()
+</code></pre><h1 id=권위-있는-의료-도메인으로-제한된-의료-쿼리>권위 있는 의료 도메인으로 제한된 의료 쿼리<a hidden class=anchor aria-hidden=true href=#권위-있는-의료-도메인으로-제한된-의료-쿼리>#</a></h1><p>medical_result = targeted_search(
+&ldquo;최신 mRNA 백신 개발은 무엇인가요?&rdquo;,
+domains=[&ldquo;who.int&rdquo;, &ldquo;cdc.gov&rdquo;, &ldquo;nejm.org&rdquo;, " Lancet.com"]
+)</p><pre tabindex=0><code>
+### 최신성 필터링
+
+웹 검색의 시간적 범위를 제어하여 최신성을 보장하세요: `````python
+def recent_search(query: str, recency_days: int = 7) -&gt; dict: &#34;&#34;&#34;최근 정볼만 검색합니다.&#34;&#34;&#34;
+    payload = {
+        &#34;model&#34;: &#34;sonar-pro&#34;,
+        &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: query}],
+        &#34;search_recency_filter&#34;: f&#34;{recency_days}d&#34;,
+        &#34;return_citations&#34;: True
+    }
+    
+    response = requests.post(
+        f&#34;{BASE_URL}/chat/completions&#34;,
+        headers=HEADERS,
+        json=payload
+    )
+    return response.json()
+
+# 최근 24시간의 뉴스만 가져오기
+breaking = recent_search(&#34;오늘의 주요 기술 인수&#34;, recency_days=1)
+</code></pre><h3 id=자동-파싱을-위한-json-모드>자동 파싱을 위한 JSON 모드<a hidden class=anchor aria-hidden=true href=#자동-파싱을-위한-json-모드>#</a></h3><p>데이터 파이프라인을 구축할 때 구조화된 출력을 요청하세요: `````python
+import json</p><p>def structured_search(query: str, schema: dict) -> dict: &ldquo;&ldquo;&ldquo;검색하고 스키마와 일치하는 구조화된 JSON을 반환합니다.&rdquo;&rdquo;&rdquo;
+payload = {
+&ldquo;model&rdquo;: &ldquo;sonar-pro&rdquo;,
+&ldquo;messages&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;system&rdquo;,
+&ldquo;content&rdquo;: f"이 스키마와 일치하는 유효한 JSON으로 응답하세요: {json.dumps(schema)}"
+},
+{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: query}
+],
+&ldquo;response_format&rdquo;: {&ldquo;type&rdquo;: &ldquo;json_object&rdquo;},
+&ldquo;return_citations&rdquo;: True
+}</p><pre><code>response = requests.post(
+    f&quot;{BASE_URL}/chat/completions&quot;,
+    headers=HEADERS,
+    json=payload
+)
+result = response.json()
+
+# JSON 콘텐츠 파싱
+content = result[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot;]
+result[&quot;structured&quot;] = json.loads(content)
+return result
+</code></pre><h1 id=구조화된-회사-데이터-추출>구조화된 회사 데이터 추출<a hidden class=anchor aria-hidden=true href=#구조화된-회사-데이터-추출>#</a></h1><p>company_schema = {
+&ldquo;company_name&rdquo;: &ldquo;string&rdquo;,
+&ldquo;founded_year&rdquo;: &ldquo;integer&rdquo;,
+&ldquo;headquarters&rdquo;: &ldquo;string&rdquo;,
+&ldquo;key_products&rdquo;: [&ldquo;string&rdquo;],
+&ldquo;market_cap_usd&rdquo;: &ldquo;string&rdquo;
+}</p><p>structured = structured_search(
+&ldquo;Perplexity AI 회사에 대한 세부 정보를 제공하세요&rdquo;,
+company_schema
+)
+print(json.dumps(structured[&ldquo;structured&rdquo;], indent=2))</p><pre tabindex=0><code>
+* * *
+
+## 프로덕션 배포: 속도 제한, 오류 처리 및 재시도 로직
+
+프로덕션 통합에는 API 제한과 일시적 오류에 대한 강력한 처리가 필요합니다. Perplexity는 구독 티어에 따라 속도 제한을 시행하며, 일반적인 제한은 분당 20~1000개 요청입니다.
+
+`````python
+import time
+from functools import wraps
+
+class PerplexityClient: &#34;&#34;&#34;재시도 및 속도 제한이 있는 프로덕션 준비 Perplexity API 클라이언트.&#34;&#34;&#34;
+    
+    def __init__(self, api_key: str, model: str = &#34;sonar-pro&#34;, max_retries: int = 3): self.api_key = api_key
+        self.model = model
+        self.max_retries = max_retries
+        self.headers = {
+            &#34;Authorization&#34;: f&#34;Bearer {api_key}&#34;,
+            &#34;Content-Type&#34;: &#34;application/json&#34;
+        }
+        self.request_count = 0
+        self.last_reset = time.time()
+    
+    def _rate_limit_check(self, rpm_limit: int = 50): &#34;&#34;&#34;티어 제한 내에서 유지하기 위한 기본 속도 제한.&#34;&#34;&#34;
+        now = time.time()
+        if now - self.last_reset &gt;= 60: self.request_count = 0
+            self.last_reset = now
+        
+        if self.request_count &gt;= rpm_limit: sleep_time = 60 - (now - self.last_reset)
+            if sleep_time &gt; 0: print(f&#34;속도 제한에 도달했습니다. {sleep_time:.1f}초 대기&#34;)
+                time.sleep(sleep_time)
+            self.request_count = 0
+            self.last_reset = time.time()
+    
+    def query(self, user_query: str, temperature: float = 0.2, **kwargs) -&gt; dict: &#34;&#34;&#34;오류 발생 시 자동 재시도로 쿼리를 실행합니다.&#34;&#34;&#34;
+        self._rate_limit_check()
+        
+        payload = {
+            &#34;model&#34;: self.model,
+            &#34;messages&#34;: [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: user_query}],
+            &#34;temperature&#34;: temperature,
+            &#34;return_citations&#34;: True,
+            **kwargs
+        }
+        
+        for attempt in range(self.max_retries): try: response = requests.post(
+                    f&#34;{BASE_URL}/chat/completions&#34;,
+                    headers=self.headers,
+                    json=payload,
+                    timeout=30
+                )
+                
+                if response.status_code == 429: retry_after = int(response.headers.get(&#34;Retry-After&#34;, 2 ** attempt))
+                    print(f&#34;속도 제한됨. {retry_after}초 후 재시도&#34;)
+                    time.sleep(retry_after)
+                    continue
+                
+                response.raise_for_status()
+                self.request_count += 1
+                return response.json()
+                
+            except requests.exceptions.Timeout: print(f&#34;시도 {attempt + 1}에서 시간 초과&#34;)
+                time.sleep(2 ** attempt)
+            except requests.exceptions.HTTPError as e: print(f&#34;HTTP 오류: {e}&#34;)
+                if attempt &lt; self.max_retries - 1: time.sleep(2 ** attempt)
+        
+        raise Exception(&#34;최대 재시도 횟수 초과&#34;)
+
+# 프로덕션 사용법
+client = PerplexityClient(api_key=os.environ[&#34;PERPLEXITY_API_KEY&#34;])
+
+# 속도 제한이 있는 일괄 처리
+queries = [
+    &#34;양자 컴퓨팅 최신 혁신&#34;,
+    &#34;2026년 재생 에너지 투자&#34;,
+    &#34;새로운 우주 망원경 발견&#34;
+]
+
+results = []
+for q in queries: try: result = client.query(q)
+        results.append(result)
+        print(f&#34;✓ 쿼리 완료: {q[:50]}...&#34;)
+    except Exception as e: print(f&#34;✗ 쿼리 실패: {q[:50]}... - {e}&#34;)
+</code></pre><hr><h2 id=완전한-rag-검색-애플리케이션-구축>완전한 RAG 검색 애플리케이션 구축<a hidden class=anchor aria-hidden=true href=#완전한-rag-검색-애플리케이션-구축>#</a></h2><p>모든 것을 RAG 기반 검색 서비스의 프로덕션 패턴을 보여주는 완전한 Flask 애플리케이션으로 종합해 보겠습니다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># app.py - 완전한 RAG 검색 API</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, request, jsonify, Response
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> flask_cors <span style=color:#f92672>import</span> CORS
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Flask(__name__)
+</span></span><span style=display:flex><span>CORS(app)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>PERPLEXITY_KEY <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;PERPLEXITY_API_KEY&#34;</span>]
+</span></span><span style=display:flex><span>BASE_URL <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;https://api.perplexity.ai&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RAGSearchService</span>: <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self): self<span style=color:#f92672>.</span>headers <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bearer </span><span style=color:#e6db74>{</span>PERPLEXITY_KEY<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Content-Type&#34;</span>: <span style=color:#e6db74>&#34;application/json&#34;</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search</span>(self, query: str, model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;sonar-pro&#34;</span>, stream: bool <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>): <span style=color:#e6db74>&#34;&#34;&#34;선택적 스트리밍이 있는 RAG 검색을 실행합니다.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        payload <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;model&#34;</span>: model,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;messages&#34;</span>: [
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>,
+</span></span><span style=display:flex><span>                    <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;정확하고 출처가 있는 답변과 인용을 제공하세요.&#34;</span>
+</span></span><span style=display:flex><span>                },
+</span></span><span style=display:flex><span>                {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: query}
+</span></span><span style=display:flex><span>            ],
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;stream&#34;</span>: stream,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;return_citations&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>2048</span>
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>BASE_URL<span style=color:#e6db74>}</span><span style=color:#e6db74>/chat/completions&#34;</span>,
+</span></span><span style=display:flex><span>            headers<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>headers,
+</span></span><span style=display:flex><span>            json<span style=color:#f92672>=</span>payload,
+</span></span><span style=display:flex><span>            stream<span style=color:#f92672>=</span>stream
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        response<span style=color:#f92672>.</span>raise_for_status()
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> response
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>service <span style=color:#f92672>=</span> RAGSearchService()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/search&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;POST&#34;</span>])
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search</span>(): <span style=color:#e6db74>&#34;&#34;&#34;동기 RAG 검색 엔드포인트.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    data <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>get_json()
+</span></span><span style=display:flex><span>    query <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;query&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;model&#34;</span>, <span style=color:#e6db74>&#34;sonar-pro&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> query: <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;error&#34;</span>: <span style=color:#e6db74>&#34;쿼리가 필요합니다&#34;</span>}), <span style=color:#ae81ff>400</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>: result <span style=color:#f92672>=</span> service<span style=color:#f92672>.</span>search(query, model<span style=color:#f92672>=</span>model)
+</span></span><span style=display:flex><span>        data <span style=color:#f92672>=</span> result<span style=color:#f92672>.</span>json()
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        message <span style=color:#f92672>=</span> data[<span style=color:#e6db74>&#34;choices&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;message&#34;</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> jsonify({
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;answer&#34;</span>: message[<span style=color:#e6db74>&#34;content&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;citations&#34;</span>: message<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;citations&#34;</span>, []),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;model&#34;</span>: model,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;usage&#34;</span>: data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;usage&#34;</span>, {})
+</span></span><span style=display:flex><span>        })
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;error&#34;</span>: str(e)}), <span style=color:#ae81ff>500</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/search/stream&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;POST&#34;</span>])
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>search_stream</span>(): <span style=color:#e6db74>&#34;&#34;&#34;서버 전송 이벤트를 사용한 스트리밍 RAG 검색 엔드포인트.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    data <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>get_json()
+</span></span><span style=display:flex><span>    query <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;query&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> data<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;model&#34;</span>, <span style=color:#e6db74>&#34;sonar-pro&#34;</span>)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> query: <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;error&#34;</span>: <span style=color:#e6db74>&#34;쿼리가 필요합니다&#34;</span>}), <span style=color:#ae81ff>400</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate</span>(): response <span style=color:#f92672>=</span> service<span style=color:#f92672>.</span>search(query, model<span style=color:#f92672>=</span>model, stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> response<span style=color:#f92672>.</span>iter_lines(): <span style=color:#66d9ef>if</span> line: decoded <span style=color:#f92672>=</span> line<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#34;utf-8&#34;</span>)
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> decoded<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;data: &#34;</span>): <span style=color:#66d9ef>yield</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>decoded<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> Response(
+</span></span><span style=display:flex><span>        generate(),
+</span></span><span style=display:flex><span>        mimetype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/event-stream&#34;</span>,
+</span></span><span style=display:flex><span>        headers<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;Cache-Control&#34;</span>: <span style=color:#e6db74>&#34;no-cache&#34;</span>}
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.route</span>(<span style=color:#e6db74>&#34;/health&#34;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;GET&#34;</span>])
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>health</span>(): <span style=color:#e6db74>&#34;&#34;&#34;상태 확인 엔드포인트.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> jsonify({<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;healthy&#34;</span>, <span style=color:#e6db74>&#34;service&#34;</span>: <span style=color:#e6db74>&#34;rag-search&#34;</span>})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: app<span style=color:#f92672>.</span>run(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>5000</span>, debug<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 컨테이너화된 배포를 위한 Dockerfile</span>
+</span></span><span style=display:flex><span>FROM python:3.11-slim
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>WORKDIR /app
+</span></span><span style=display:flex><span>COPY requirements.txt .
+</span></span><span style=display:flex><span>RUN pip install --no-cache-dir -r requirements.txt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>COPY app.py .
+</span></span><span style=display:flex><span>ENV PERPLEXITY_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>ENV FLASK_ENV<span style=color:#f92672>=</span>production
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>EXPOSE <span style=color:#ae81ff>5000</span>
+</span></span><span style=display:flex><span>CMD <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;gunicorn&#34;</span>, <span style=color:#e6db74>&#34;-w&#34;</span>, <span style=color:#e6db74>&#34;4&#34;</span>, <span style=color:#e6db74>&#34;-b&#34;</span>, <span style=color:#e6db74>&#34;0.0.0.0:5000&#34;</span>, <span style=color:#e6db74>&#34;app:app&#34;</span><span style=color:#f92672>]</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: rag-search: build</span>: <span style=color:#ae81ff>.</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;5000:5000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PERPLEXITY_API_KEY=${PERPLEXITY_API_KEY}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>healthcheck: test</span>: [<span style=color:#e6db74>&#34;CMD&#34;</span>, <span style=color:#e6db74>&#34;curl&#34;</span>, <span style=color:#e6db74>&#34;-f&#34;</span>, <span style=color:#e6db74>&#34;http://localhost:5000/health&#34;</span>]
+</span></span><span style=display:flex><span>      <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>30s</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>timeout</span>: <span style=color:#ae81ff>10s</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
+</span></span></code></pre></div><hr><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=perplexity-api는-openai의-gpt-api와-어떻게-다릅니까>Perplexity API는 OpenAI의 GPT API와 어떻게 다릅니까?<a hidden class=anchor aria-hidden=true href=#perplexity-api는-openai의-gpt-api와-어떻게-다릅니까>#</a></h3><p>Perplexity API는 자동으로 실시간 웹 검색과 인용 주입을 수행하는 반면, OpenAI의 API는 외부 벡터 데이터베이스를 사용하여 RAG를 수동으로 구현하지 않는 한 훈련 데이터에 의존합니다. Perplexity는 일체형 RAG 솔루션을 제공하며 검색, 순위 및 기반을 낮부에서 처리합니다.</p><h3 id=perplexity-api의-속도-제한은-무엇입니까>Perplexity API의 속도 제한은 무엇입니까?<a hidden class=anchor aria-hidden=true href=#perplexity-api의-속도-제한은-무엇입니까>#</a></h3><p>속도 제한은 구독 티어별로 다릅니다. 묶음 티어는 일반적으로 분당 20개 요청을 허용하고, Pro 및 엔터프라이즈 티어는 100-1000+ RPM으로 확장됩니다. 정확한 제한은 개발자 대시보드에서 확인하세요.</p><h3 id=perplexity-api를-자체-문서와-함께-사용할-수-있습니까>Perplexity API를 자체 문서와 함께 사용할 수 있습니까?<a hidden class=anchor aria-hidden=true href=#perplexity-api를-자체-문서와-함께-사용할-수-있습니까>#</a></h3><p>현재 Perplexity API는 사설 문서 수집이 아닌 웹 검색 RAG에 중점을 둡니다. 사용자 지정 문서 RAG의 경우 Perplexity의 웹 검색을 벡터 데이터베이스 솔루션과 결합하거나 전문 RAG 플랫폼을 사용해야 합니다.</p><h3 id=perplexity가-제공하는-인용의-정확도는-어느-정도입니까>Perplexity가 제공하는 인용의 정확도는 어느 정도입니까?<a hidden class=anchor aria-hidden=true href=#perplexity가-제공하는-인용의-정확도는-어느-정도입니까>#</a></h3><p>Perplexity의 인용 시스템은 매우 정확하며, 출처는 검색 단계에서 검색된 URL에 직접 연결됩니다. 응답의 <code>[1]</code>, <code>[2]</code> 마커는 인용 배열과 정확히 일치합니다. 그러나 중요한 정보는 반드시 1차 출처 대해 검증하세요.</p><h3 id=스트리밍은-모든-sonar-모델에서-지원됩니까>스트리밍은 모든 Sonar 모델에서 지원됩니까?<a hidden class=anchor aria-hidden=true href=#스트리밍은-모든-sonar-모델에서-지원됩니까>#</a></h3><p>네, 서버 전송 이벤트를 통한 스트리밍은 모든 Sonar 모델 변형에서 지원됩니다. 스트리밍 구현은 OpenAI 호환 형식을 따륾므로 기존 스트리밍 클라이언트를 쉽게 적용할 수 있습니다.</p><h3 id=perplexity-api의-가격-책정-모델은-무엇입니까>Perplexity API의 가격 책정 모델은 무엇입니까?<a hidden class=anchor aria-hidden=true href=#perplexity-api의-가격-책정-모델은-무엇입니까>#</a></h3><p>Perplexity는 쿼리 볼륨과 토큰 소비를 기반으로 하는 결합 가격 책정 모델을 사용합니다. 기본 Sonar가 가장 경제적이고, Sonar Deep Research는 광범위한 다단계 검색으로 인해 더 높은 비용이 발생합니다. 현재 요금은 Perplexity 가격 페이지를 참조하세요.</p><h3 id=검색을-특정-도메인이나-날짜-범위로-필터링할-수-있습니까>검색을 특정 도메인이나 날짜 범위로 필터링할 수 있습니까?<a hidden class=anchor aria-hidden=true href=#검색을-특정-도메인이나-날짜-범위로-필터링할-수-있습니까>#</a></h3><p>네, API는 <code>search_domain_filter</code>를 지원하여 특정 도메인으로 쿼리를 제한하고, ````search_recency_filter```는 결과를 최신성으로 제한합니다(예: 지난 7일은 &ldquo;7d&rdquo;). 이러한 매개변수는 권위 있고 시기적절한 소싱에 도움이 됩니다.</p><hr><h2 id=추천-호스팅-및-인프라>추천 호스팅 및 인프라<a hidden class=anchor aria-hidden=true href=#추천-호스팅-및-인프라>#</a></h2><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 60일 $200 무료 크레딧.</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속.</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.</em></p><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>Perplexity API는 개발자가 접근할 수 있는 RAG 기술의 중요한 발전을 나타냅니다. 실시간 웹 인덱싱, 여러 전문 Sonar 모델, 투명한 인용, OpenAI 호환 인터페이스를 결합함으로써 벡터 데이터베이스, 임베딩 파이프라인 또는 관련성 조정을 관리할 필요 없이 프로덕션급 RAG로의 직접적인 경로를 제공합니다.</p><p>연구 어시스턴트, 팩트 체크 도구, 동적 지식 베이스, 콘텐츠 검증 시스템을 포함한 차세대 지능형 애플리케이션을 구축하는 개발자에게 Perplexity는 이 기대를 충족할 수 있는 애플리케이션을 배치하여 사용자가 신뢰할 수 있는 경험을 제공합니다. 모든 답변은 실제이며 인용 가능한 출처의 기반 위에 서 있기 때문입니다.</p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;perplexity-api-rag-search&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-20&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/perplexity-api-rag-search%22>https://dibi8.com/kr/resources/perplexity-api-rag-search"</a>
+}
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/perplexity-api-rag-search/>ai-seo-geo-dibi8-methodology-google-sge-perplexity</a></li><li><a href=/ko/perplexity-api-rag-search/>ai-seo-geo-dibi8-methodology-google-sge-perplexity</a></li><li><a href=/ko/perplexity-api-rag-search/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li><li><a href=/ko/perplexity-api-rag-search/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/ko/perplexity-api-rag-search/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

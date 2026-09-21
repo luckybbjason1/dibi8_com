@@ -1,9 +1,10 @@
 ---
-title: "CloakBrowser深度评测：2026年最强开源反检测浏览器，一行代码替换Playwright绕过Cloud...
-description: "CloakBrowser是2026年GitHub最火的反检测浏览器，49个C++源码级补丁、reCAPTCHA v3得分0.9、30项检测全通过。免费开源，完美替代$299/月的商业工具。". Com..."
-draft: false
-aliases:
-  - /posts/cloakbrowser-stealth-browser-2026/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cloakbrowser-stealth-browser-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

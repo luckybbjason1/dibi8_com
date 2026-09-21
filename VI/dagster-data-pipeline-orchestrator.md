@@ -1,6 +1,13 @@
 ---
-title: "Dagster: Trình Điều Phối Pipeline Dữ Liệu Dựa Trên Asset...
-description: "Hướng dẫn production đầy đủ cho Dagster 1.13: điều phối dựa trên asset, lập lịch nhận thức dữ liệu, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagster-data-pipeline-orchestrator"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Cơn Ác Mộng Khi Pipeline Chết Lúc 3 Giờ Sáng
 

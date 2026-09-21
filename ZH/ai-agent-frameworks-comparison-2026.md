@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-frameworks-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap...
-description: "2026 年前五大开源 AI 代理框架的并排比较。真实的收藏量、代码示例、性能基准，以及为您的项目选择合适框架的实用指南。". Comprehensive guide covering feature..."
+description: "Technical guide and comparison."
 " 框架 "
 " 比较 "
 " 语言链 "
@@ -371,7 +378,7 @@ from pydantic import BaseModel, Field
 class WebSearchInput(BaseModel): query: str = Field(description="The search query")
 
 class WebSearchTool(BaseTool): name: str = "Web Search"
-    description: str = "Search the web for information"
+    description: "Technical guide and comparison."
     args_schema: type[BaseModel] = WebSearchInput
 
     def _run(self, query: str) -> str: # Implement your search logic

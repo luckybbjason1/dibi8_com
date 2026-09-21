@@ -1,21 +1,10 @@
 ---
-title: "So Sánh Công Cụ CI/CD: GitHub Actions vs GitLab CI vs Je...
-description: "So sánh chi tiết GitHub Actions, GitLab CI và Jenkins năm 2025. Tìm hiểu ưu nhược điểm, bảng giá, tí..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -145,9 +134,9 @@ on: [push, pull_request]
 jobs: build: runs-on: ubuntu-latest
     strategy: matrix: node-version: [18, 20, 22]
     steps: - uses: actions/checkout@v4
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js $
         uses: actions/setup-node@v4
-        with: node-version: ${{ matrix.node-version }}
+        with: node-version: $
           cache: 'npm'
       - run: npm ci
       - run: npm run lint

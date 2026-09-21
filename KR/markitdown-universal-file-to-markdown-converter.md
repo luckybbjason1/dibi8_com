@@ -1,12 +1,10 @@
 ---
-title: "MarkItDown: 유니버설 파일-투-마크다운 변환기 — LLM 파이프라인을 위한 마이크로소프트의 ...
-description: "Microsoft AutoGen 팀의 MarkItDown은 20개 이상의 파일 유형을 LLM 소비를 위해 Markdown으로 변환합니다. pip install markitdown[..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: markitdown-universal-file-to-markdown-converter
-category: ai-tools
-tags: ["markitdown", "file-to-markdown", "microsoft", "llm-pipelines", "rag", "langchain", "document-processing", "pdf-to-markdown", "office-conversion"]
-th--.png
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-universal-file-to-markdown-converter"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

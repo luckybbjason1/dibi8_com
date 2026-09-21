@@ -1,6 +1,13 @@
 ---
-title: "WhisperX: 22K+ Stars — 生产级ASR部署指南 2026"
-description: "WhisperX 是一个开源ASR工具包，支持词级时间戳和说话人分割。兼容faster-whisper、pyannote.audio和OpenAI Whisper模型。涵盖Docker部署、Pytho..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "whisperx"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 音频转录很简单。但要获得**精确到80毫秒以内的词级时间戳**，并且**准确知道每个词是谁说的**，这就难了。OpenAI Whisper 只提供段落级时间戳，漂移可达数秒。对于播客编辑、视频字幕、会议记录和法律取证来说，这种精度根本无法使用。
 

@@ -1,11 +1,10 @@
 ---
-title: "paperclip: 69,700 星标开源代理工作场所 — 规模化 AI 代理管理 — 2026 实战指南"
-description: "paperclip（69,700 GitHub 星标）是开源的 AI 代理工作场所应用。协调多个代理、管理任务、部署自托管代理工作流。包含安装教程、架构分析和真实基准测试。"
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
-category: 'llm-frameworks'
-tags: ["AI 代理管理", "多代理协调", "paperclip", "开源代理", "代理工作流", "自托管代理", "AI 代理工作场所", "代理编排"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

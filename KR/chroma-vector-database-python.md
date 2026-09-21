@@ -1,16 +1,14 @@
 ---
-title: "Chroma DB 2026: 개발자 친화적 RAG 벡터 데이터베이스, 50배 더 빠른 임베딩 — Py...
-description: "Chroma 벡터 데이터베이스 Python 실전 가이드. 설치, RAG 통합, 임베딩 검색, 프로덕션 배포까지. 벤치마크, 비교 분석, 실제 사례 포함.". Comprehensiv..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["]
-aliases:
-  - /kr/posts/chroma-vector-database-python/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chroma-vector-database-python"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 왜 RAG 파이프라인에 더 나은 벡터 저장소가 필요한가
 

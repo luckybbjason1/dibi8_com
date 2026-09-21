@@ -1,6 +1,13 @@
 ---
-title: "GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu ...
-description: "GPT Researcher là một tác nhân nghiên cứu chuyên sâu mã nguồn mở, thực hiện nghiên cứu trên web và c..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gpt-researcher-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,18 +30,18 @@ faqs: - q: 'Làm sao để cài gpt-researcher?'
   - q: 'Tôi có thể dùng những nhà cung cấp LLM và công cụ tìm kiếm nào?'
     a: 'LLM mặc định là OpenAI và bộ truy hồi mặc định là Tavily", "nhưng cả hai đều đổi được qua biến môi trường và tệp cấu hình", "và tác nhân còn hỗ trợ các bộ truy hồi khác", "bao gồm cả nguồn dựa trên MCP.'
   - q: 'Tôi có cần khóa API để chạy nó không?'
-    a: 'Có. Tối thiểu phải đặt `OPENAI_API_KEY` và `TAVILY_API_KEY` trong tệp `.env` ở thư mục gốc dự án. Thêm `OPENAI_BASE_URL` nếu bạn dùng một điểm cuối tương thích OpenAI.'
+    a: 'Có. Tối thiểu phải đặt ``OPENAI_API_KEY`` và ``TAVILY_API_KEY`` trong tệp ``.env`` ở thư mục gốc dự án. Thêm ``OPENAI_BASE_URL`` nếu bạn dùng một điểm cuối tương thích OpenAI.'
   - q: 'Làm sao chạy ứng dụng đầy đủ có giao diện web?'
-    a: 'Clone kho và chạy `docker-compose up --build`. Lệnh này khởi động máy chủ FastAPI tại `localhost:8000` và giao diện tại `localhost:3000`. Bạn cũng có thể chỉ khởi động máy chủ với `python -m uvicorn main:app --reload`.'
+    a: 'Clone kho và chạy ``docker-compose up --build``. Lệnh này khởi động máy chủ FastAPI tại ``localhost:8000`` và giao diện tại ``localhost:3000``. Bạn cũng có thể chỉ khởi động máy chủ với ``python -m uvicorn main:app --reload``.'
   - q: 'conduct_research() và write_report() có phải là đồng bộ không?'
-    a: 'Không. Cả hai đều là phương thức bất đồng bộ. Hãy gọi chúng bằng `await` bên trong một hàm async", "rồi chạy hàm đó bằng `asyncio.run()`."
+    a: 'Không. Cả hai đều là phương thức bất đồng bộ. Hãy gọi chúng bằng ``await`` bên trong một hàm async", "rồi chạy hàm đó bằng ``asyncio.run()``."
 ---
 
 
 # GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu chuyên sâu — Hướng dẫn thực hành 2026
 
 
-{{< resource-info >}}
+
 
 ## Giới thiệu
 

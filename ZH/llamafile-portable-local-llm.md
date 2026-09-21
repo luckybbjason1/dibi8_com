@@ -1,20 +1,10 @@
 ---
-title: LlamaFile — 用单个可执行文件在本地运行大语言模型
-description: Meta/MLC AI 的 LlamaFile 完全指南。无需安装、GPU 需求或复杂设置即可在本地运行 100+ 开源 LLM。一个二进制文件，任意平台。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["llamafile", "local-llm", "portable-binary", "meta-ai", "mlc-llm", "privacy"]
-category: dev-utils
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: llamafile-portable-local-llm
--CN---
-
-
-## TL;DR
-
-LlamaFile 是一种革命性的在本地运行大型语言模型的方法：将整个 LLM 打包到一个单一的可执行文件中，在任何计算机上运行而无需安装、GPU 或复杂的依赖关系。由 Meta 和 MLC AI 创建，它通过让每个人都能够访问私人、离线的推理能力来使本地 AI 民主化。本指南涵盖其工作原理、模型选择、性能基准测试和实际部署模式。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamafile-portable-local-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## LlamaFile 是什么？
 

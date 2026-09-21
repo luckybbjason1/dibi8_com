@@ -1,9 +1,10 @@
 ---
-title: "2025년 최고의 AI 음성 도구: 텍스트 음성 변환 및 음성 텍스트 변환 비교"
-description: "2025년 최신 AI 음성 도구를 비교합니다. ElevenLabs, Murf.ai, Whisper, Otter.ai의 TTS 및 STT 기능, 정확도, 가격을 상세 분석하고 용도별..."
-draft: false
-aliases:
-  - /posts/ai-voice-tools-text-to-speech-transcription/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-voice-tools-text-to-speech-transcription"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

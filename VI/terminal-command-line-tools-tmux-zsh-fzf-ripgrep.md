@@ -1,21 +1,10 @@
 ---
-title: "Công Cụ Năng Suất Terminal & CLI: tmux, zsh, fzf, ripgre...
-description: "Hướng dẫn thiết lập terminal tối ưu với zsh, tmux, fzf, ripgrep và các công cụ CLI hiện đại. Tăng gấ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "terminal-command-line-tools-tmux-zsh-fzf-ripgrep"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

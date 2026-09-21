@@ -1,16 +1,14 @@
 ---
-title: "Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南"
-description: "Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["directus", "headless cms", "内容管理", "api", "docker", "开源", "ai", "graphql", "rest", "自托管"]
-aliases:
-  - /zh/posts/directus-headless-cms-ai-content/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "directus-headless-cms-ai-content"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么你的 CMS 在 2026 年仍然是瓶颈
 
@@ -281,7 +279,7 @@ console.log(````Found ${articles.length} articles````);
 // 创建文章
 const newArticle = await client.request(
   createItem(articles, {
-    title: 'AI 驱动的内容策略',
+title: "AI Tool Guide"
     content: '使用 GPT-4 生成...',
     status: draft,
     ai_generated: true,

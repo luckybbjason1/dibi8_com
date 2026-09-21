@@ -1,6 +1,10 @@
 ---
-title: "ChatGPT Pro vs Claude Pro 2026: $20(또는 $200) AI 구독 어느 쪽이...
-description: "ChatGPT Plus/Pro 와 Claude Pro/Max 완전 비교 — 모델 라인업, 컨텍스트 윈도우, Projects, Artifacts, 이미지 생성, 음성 모드, 가격. ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chatgpt-pro-vs-claude-pro"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -135,7 +139,7 @@ $200/월: o1-pro 를 매일 쓴다면 ChatGPT Pro 가 약간 더 좋고, Pro 5�
 제가 아는 헤비 유저 대부분이 둘 다 굴립니다. 깊은 작업(작문, 긴 문서, 다중 파일 코드)은 Claude, 나머지(이미지, 음성, Custom GPTs, 빠른 웹 검색)는 ChatGPT. 합쳐 $40/월 — 스트리밍 번들 하나 값으로 지식 노동에는 훨씬 높은 ROI.
 
 ### 기반 스택 셀프 호스팅
-구독과 함께 오픈 모델 — Llama 3.3, Qwen 2.5, DeepSeek V3 — 을 실험하고 싶다면 {{< aff "digitalocean" "footer-cta-legacy" "무료 $200 크레딧으로 DigitalOcean GPU 드롭릿" >}} 을 띄워보세요. 상용 API 와 두 달 동안 옆에 두고 비교하기에 충분합니다. 어떤 워크플로우를 로컬화해 구독비를 줄일 수 있는지 파악하는 데 유용.
+구독과 함께 오픈 모델 — Llama 3.3, Qwen 2.5, DeepSeek V3 — 을 실험하고 싶다면  을 띄워보세요. 상용 API 와 두 달 동안 옆에 두고 비교하기에 충분합니다. 어떤 워크플로우를 로컬화해 구독비를 줄일 수 있는지 파악하는 데 유용.
 
 * * *
 
@@ -178,7 +182,7 @@ AI 도구에 사는 헤비 일일 유저 → **둘 다 ($40/월)** — 분담은
 
 **안정적인 Claude / OpenAI API 액세스가 필요하신가요?** 이 도구들 중 선택하는 대부분의 사용자는 결국 기본 API 키가 필요합니다.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 모델 비교나 직접 API 액세스가 제한된 지역에서 특히 유용.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

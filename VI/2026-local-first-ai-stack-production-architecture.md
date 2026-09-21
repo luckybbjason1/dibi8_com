@@ -1,6 +1,13 @@
 ---
-title: "Local-First AI Stack 2026: Kiến trúc tham chiếu cho prod...
-description: "Kiến trúc tham chiếu hoàn chỉnh để build ứng dụng AI cấp production trong năm 2026 mà không bị khóa ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-local-first-ai-stack-production-architecture"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

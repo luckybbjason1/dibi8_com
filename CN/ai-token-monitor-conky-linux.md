@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-token-monitor-conky-linux"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...
-description: "Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress ..."
+description: "Technical guide and comparison."
 date: 2026-06-06T00:00:00+08:00
 lastmod: 2026-06-06T00:00:00+08:00
 tech_stack: [Python, Conky, Linux]
@@ -29,7 +36,7 @@ faqs: - q: 'Does the AI Token Monitor work on macOS or Windows?'
   - q: 'Why does Grok show "耗尽" (depleted) even when my account has credits?'
     a: 'The Grok check calls GET /v1/models — it returns 200 if authenticated and credits available, 403 if credits are exhausted. A 403 from xAI specifically means account balance is zero. If you have credits but see 403, verify the API key is correct in ~/.config/.ai_monitor_keys.'---
 
-{{< resource-info >}}
+
 
 ## The Problem: Juggling Six AI Services and Never Knowing Which One Is Out
 

@@ -1,6 +1,13 @@
 ---
-title: "RAG vs 파인튜닝 2026: 실제 비용 수치로 보는 데이터 기반 의사결정 프레임워크"
-description: "언제 RAG를, 언제 파인튜닝을, 언제 둘 다 사용할 것인가. 2026년 현재 모델 가격을 반영한 현실: 작업당 비용, 지연시간, 데이터 신선도, 그리고 데이터 양·쿼리 지연 예산..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rag-vs-fine-tuning-2026-decision-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [RAG, 'Fine-Tuning', LangChain, LlamaIndex, OpenAI, Anthropic]
@@ -29,7 +36,7 @@ faq: - q: "2026년에 RAG가 파인튜닝보다 유리한 경우는?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # RAG vs 파인튜닝 2026: 데이터 기반 의사결정 프레임워크
 
@@ -172,8 +179,8 @@ API 대비: $0.003-0.015/1K 토큰. 고볼륨에서 손익분기.
 
 ## 추천 인프라
 
-RAG / 파인튜닝 호스팅용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 파인튜닝용 GPU droplets
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 저지연 벡터 DB 호스팅
+RAG / 파인튜닝 호스팅용: - **** — $200 크레딧, 파인튜닝용 GPU droplets
+- **** — 홍콩 VPS, 저지연 벡터 DB 호스팅
 
 *제휴 링크 — 동일 가격, dibi8.com 지원.*
 

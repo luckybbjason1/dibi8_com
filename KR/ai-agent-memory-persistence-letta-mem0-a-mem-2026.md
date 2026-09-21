@@ -1,6 +1,13 @@
 ---
-title: "AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM 실전 비교"
-description: "영속 메모리가 없는 Agent는 세션마다 처음부터 다시 시작합니다. 동일한 멀티 세션 워크로드에서 Letta, Mem0, A-MEM을 실측 — 누가 진짜로 컨텍스트를 유지하는지, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
@@ -25,7 +32,7 @@ faq: - q: "AI Agent에 영속 메모리가 왜 필요한가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM
 
@@ -136,8 +143,8 @@ Letta는 통합이 더 무겁지만 정교한 계층을 얻을 수 있습니다.
 
 ## 추천 인프라
 
-메모리 프레임워크 + 벡터 DB 호스팅: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS
+메모리 프레임워크 + 벡터 DB 호스팅: - **** — $200 크레딧
+- **** — 홍콩 VPS
 
 *제휴 링크 — 가격 동일, dibi8.com을 지원합니다.*
 

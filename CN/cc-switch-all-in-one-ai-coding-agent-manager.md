@@ -1,11 +1,10 @@
 ---
-title: "CC Switch: The Ultimate AI Coding Agent Manager for Mult...
-description: "Complete guide to CC Switch — the cross-platform desktop app that manages Claude Code, Codex, Gemini..."
-date: 2026-06-20
-lastmod: 2026-06-20
-(tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
-category: "dev-utils"
-slug: cc-switch-all-in-one-ai-coding-agent-manager
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-all-in-one-ai-coding-agent-manager"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development

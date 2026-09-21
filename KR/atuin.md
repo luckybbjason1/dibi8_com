@@ -1,6 +1,13 @@
 ---
-title: "Atuin: 29,794 GitHub Stars — 셸 히스토리 동기화 완벽 설정 가이드 2026"
-description: "Atuin은 셸 히스토리를 SQLite 데이터베이스로 교체하고, 명령어 컨텍스트(종료 코드, 작업 디렉토리, 실행 시간)를 기록하며, E2E 암호화로 여러 머신 간 히스토리를 동기..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "atuin"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
 

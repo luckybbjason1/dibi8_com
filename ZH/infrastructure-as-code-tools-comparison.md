@@ -1,11 +1,10 @@
 ---
-title: "2025年基础设施即代码工具对比：Terraform、Pulumi、AWS CDK、Crossplane全面评测"
-description: "深入对比Terraform、Pulumi、AWS CDK、Crossplane等主流IaC工具，从多云支持、状态管理、开发者体验等维度进行全面评测，助力团队选择最佳基础设施管理方案。". Compre..."
-draft: false
-categories: ["dev-utils"]
-tags: ["iac", "terraform", "pulumi", "aws cdk", "基础设施"]
-aliases:
-  - /zh/posts/infrastructure-as-code-tools-comparison/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "infrastructure-as-code-tools-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年基础设施即代码工具对比：Terraform、Pulumi、AWS CDK、Crossplane全面评测

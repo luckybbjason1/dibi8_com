@@ -1,19 +1,17 @@
 ---
-title: "Activepieces: The Open-Source Zapier Alternative with 20...
-description: "Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integra..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["activepieces", "workflow automation", "zapier alternative", "self-hosted", "docker", "no-code", "open-source", "typescript", "ai actions", "webhooks"]
-aliases:
-  - /posts/activepieces-workflow-automation/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "activepieces-workflow-automation"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)
 
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The $2,340/Year Problem with Workflow Automation
 
@@ -59,7 +57,7 @@ interface FlowRun {
 // and stores output for downstream steps to reference
 `````
 
-Steps can reference outputs from previous steps via ````{{step_name.property}}```` templating, similar to Handlebars. The engine supports branching (````if/else````), loops (````for each````), and sub-flows.
+Steps can reference outputs from previous steps via ```````` templating, similar to Handlebars. The engine supports branching (````if/else````), loops (````for each````), and sub-flows.
 
 ### Pieces: The Plugin System
 
@@ -206,8 +204,8 @@ Trigger: Webhook ("New lead form submission")
   → Step 1: Extract form data (name, email, company, message)
   → Step 2: OpenAI "Ask AI" action
        Prompt: "Evaluate this lead. Return ONLY hot, warm, or cold.
-               Lead: {{step_1.name}}, Company: {{step_1.company}},
-               Message: {{step_1.message}}"
+               Lead: , Company: ,
+               Message: "
        Model: gpt-4.1-mini
   → Step 3: Branch on AI response
        If "hot" → Create high-priority task in HubSpot
@@ -361,7 +359,7 @@ export const myApiPiece = createPiece({
   auth: PieceAuth.SecretText({
     displayName: "API Key",
     required: true,
-    description: "Your internal API authentication key"
+    description: "Technical guide and comparison."
   minimumSupportedRelease: '0.46.0',
   actions: [sendNotification],
   triggers: [],

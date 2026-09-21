@@ -1,6 +1,13 @@
 ---
-title: "2026 年最佳免费 MCP 工具 Top 10：精选 Model Context Protocol 服务器"
-description: "2026 年 10 款最佳免费 MCP 服务器——文件系统、网页搜索、记忆、GitHub、数据库等，全部开源零成本，适配 Claude、Cursor 和所有支持 MCP 的 AI 客户端。". Com..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-mcp-tools-top10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

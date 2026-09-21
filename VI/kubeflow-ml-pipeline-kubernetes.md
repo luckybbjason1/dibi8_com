@@ -1,6 +1,13 @@
 ---
-title: "Kubeflow 2026: Chạy Pipeline ML Hoàn Chỉnh trên Kubernet...
-description: "Hướng dẫn đầy đủ để triển khai Kubeflow trên Kubernetes cho pipeline ML. Bao gồm cài đặt, thành phần..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "kubeflow-ml-pipeline-kubernetes"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại Sao ML Gốc Kubernetes Lại Quan Trọng
 

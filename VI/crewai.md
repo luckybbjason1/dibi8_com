@@ -1,6 +1,13 @@
 ---
-title: "CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướn...
-description: "CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tươ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crewai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 > Cách cài đặt CrewAI, cấu hình vai trò agent, kết nối tác vụ và triển khai hệ thống multi-agent production-ready trong vòng 30 phút.
 
@@ -195,7 +202,7 @@ Các tùy chọn cấu hình chính cho mỗi agent: | Tham số | Mô tả | V�
 Chỉnh sửa ``src/research_crew/config/tasks.yaml``: `````yaml
 # src/research_crew/config/tasks.yaml
 
-research_task: description: >
+research_task: description: "Technical guide and comparison."
     Research the topic: {topic}. Gather at least 10 key data points
     from multiple authoritative sources. Include statistics,
     expert opinions, and recent developments.
@@ -204,7 +211,7 @@ research_task: description: >
     citations, and a summary of key findings.
   agent: researcher
 
-writing_task: description: >
+writing_task: description: "Technical guide and comparison."
     Using the research brief provided, write a comprehensive
     technical article about {topic}. Target 1500 words.
     Use clear headings, examples, and engaging prose.
@@ -214,7 +221,7 @@ writing_task: description: >
   agent: writer
   context: [research_task]
 
-editing_task: description: >
+editing_task: description: "Technical guide and comparison."
     Edit the article for clarity, grammar, factual accuracy,
     and readability. Ensure all claims are supported by the
     research brief.
@@ -317,7 +324,7 @@ python -m research_crew.main
 ...
 [2026-05-20 10:25:18] Working Agent: Senior Content Editor
 ...
-========== FINAL OUTPUT ==========
+
 [Bài viết đã chỉnh sửa hoàn chỉnh xuất hiện ở đây]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 `````

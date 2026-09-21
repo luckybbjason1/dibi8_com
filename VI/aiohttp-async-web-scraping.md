@@ -1,6 +1,13 @@
 ---
-title: "aiohttp 2026: Xây dựng Web Scraper Bất đồng bộ Hiệu suất...
-description: "Làm chủ aiohttp 3.11 để xây dựng web scraper bất đồng bộ hiệu suất cao trong Python. Hỗ trợ connecti..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aiohttp-async-web-scraping"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Điểm nghẽn của Scraping Đồng bộ
 

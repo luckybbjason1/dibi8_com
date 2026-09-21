@@ -1,6 +1,13 @@
 ---
-title: "Claude Code: 125K+ Stars — The Terminal AI Coding Agent ...
-description: "Claude Code is Anthropic agentic coding tool that lives in your terminal. Supports VS Code, Cursor, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/claude-code/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

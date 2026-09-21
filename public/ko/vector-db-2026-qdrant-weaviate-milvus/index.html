@@ -1,0 +1,158 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/vector-db-2026-qdrant-weaviate-milvus/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/vector-db-2026-qdrant-weaviate-milvus/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/vector-db-2026-qdrant-weaviate-milvus/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/vector-db-2026-qdrant-weaviate-milvus/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/vector-db-2026-qdrant-weaviate-milvus/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Qdrant, Weaviate, Milvus, ‘Vector Search’, Embeddings] application_domain: LLM Frameworks source_version: “Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5” licensing_model: Open Source license_type: ‘Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“vector-database”, “qdrant”, “weaviate”, “milvus”, “rag”, “2026”] aliases:\n/kr/posts/vector-db-2026-qdrant-weaviate-milvus/ faq: - q: “2026년에 가장 좋은 벡터 DB는?” a: “개인 또는 소규모 팀 RAG에는 Qdrant(가장 단순하고 단일 노드에서 가장 빠름). 하이브리드 검색(벡터 + 키워드 + 필터)이 필요한 프로덕션에는 Weaviate. 십억 단위 워크로드에는 Milvus(수평 확장 최강). 2026년 기준 세 가지 모두 안정적입니다.” q: “언제 벡터 DB 대신 SQLite FTS5를 써야 하나요?” a: “문서 1만 개 이하에서는 SQLite 전체 텍스트 검색(FTS5)이 관련성 면에서 벡터 DB를 능가하는 경우가 많고 운영 복잡도가 10배 단순합니다. 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요할 때만 벡터 DB의 복잡도가 정당화됩니다.” q: “pgvector는 어떤가요? Postgres만으로 충분할까요?” a: “이미 Postgres를 쓰고 있고 벡터 100만 개 이하라면 pgvector가 훌륭한 선택입니다. 그 이상에서는 성능이 떨어집니다. 신규 프로젝트거나 벡터 100만 개를 넘는다면 전용 벡터 DB가 유리합니다.” q: “하드웨어는 얼마나 필요한가요?” a: “100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다.” 2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus Meta Description: 500만 벡터로 세 가지를 모두 실측. 레이턴시, 처리량, 메모리, 설치 난이도. 언제 벡터 DB를 건너뛰고 SQLite FTS5를 써야 할지.\n벡터 DB 시장은 2026년에 정리되었습니다. Qdrant, Weaviate, Milvus가 주도하고 있습니다. 이 글에서는 500만 벡터 워크로드로 세 가지를 모두 테스트해 어떤 상황에 어느 것을 써야 할지, 그리고 언제는 벡터 DB 자체를 건너뛰어야 할지 알려드립니다.\n⚡ TL;DR Qdrant: 가장 단순한 설치, 단일 노드에서 가장 빠름. 개인/소규모 팀 RAG에 최적.\nWeaviate: 하이브리드 검색(벡터 + 키워드 + 필터) 최강. 복잡한 쿼리가 있는 프로덕션에 최적.\nMilvus: 수평 확장 최강. 십억 단위 워크로드에 최적.\n벡터 DB 건너뛰기: 문서 1만 개 미만이면 SQLite FTS5가 승리하는 경우가 많음.\n테스트 환경 500만 벡터, 768 차원 (BGE-large 임베딩) 순수 유사도 쿼리 + 필터링된 쿼리 혼합 단일 VM: 16 vCPU, 64GB RAM, 1TB NVMe 동시 클라이언트 100개 측정 결과 레이턴시 (p95, ms) 워크로드 Qdrant Weaviate Milvus 순수 유사도 (top 10) 8 12 14 필터링된 유사도 15 10 22 하이브리드 (벡터 + 키워드) N/A 16 N/A 판정: 순수 유사도는 Qdrant가 가장 빠름. 필터링과 하이브리드는 Weaviate 우세.\n처리량 (p95 \u003c 50ms에서 QPS) Qdrant Weaviate Milvus QPS 2400 1800 1200 판정: 단일 노드에서는 Qdrant가 가장 빠름. Milvus는 다중 노드 규모에서 따라잡음.\n500만 벡터에서의 메모리 사용량 Qdrant Weaviate Milvus 사용 RAM 14GB 18GB 22GB 판정: Qdrant가 메모리 효율 최고.\n설치 시간 Qdrant Weaviate Milvus Docker compose 5분 10분 20분 프로덕션 튜닝 1-2시간 2-4시간 4-8시간 판정: Qdrant가 가장 쉬움. Milvus가 가장 복잡.\n벡터 DB를 아예 건너뛰어야 할 때 문서 1만 개 미만에서는 SQLite FTS5가 다음 이유로 벡터 DB보다 나은 경우가 많습니다: - BM25 + 키워드 매칭이 대부분의 실용적 검색을 잘 처리함\n운영 복잡도 100배 단순 (파일 하나, 서버 불필요) 쿼리 레이턴시 \u003c 1ms 파일 외 메모리 오버헤드 없음 먼저 이것부터 해보세요: ````python import sqlite3 conn = sqlite3.connect(“docs.db”) conn.execute(“CREATE VIRTUAL TABLE docs USING fts5(title, content)”)\n문서 삽입, MATCH 연산자로 쿼리 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요해지면 그때 벡터 DB로 전환합니다. ## 세 가지 중 선택하기 단일 노드, 단순 RAG, 소규모 팀 → Qdrant 하이브리드 검색 필요 (벡터 + 키워드 + 필터) → Weaviate 다중 노드, 십억 이상의 벡터 → Milvus 이미 Postgres 있음 → pgvector (벡터 100만 이하) 문서 \u003c 1만 → SQLite FTS5\n## 추천 인프라 벡터 DB 호스팅 추천: - **** — $200 크레딧, NVMe 드롭릿 - **** — 아시아 저지연 쿼리를 위한 홍콩 VPS *Affiliate 링크 — 동일한 가격, dibi8.com을 후원합니다.* ## 결론 2026년 기준 세 가지 벡터 DB 모두 프로덕션 수준입니다. 워크로드에 따라 선택하세요: 단순함은 Qdrant, 하이브리드 검색은 Weaviate, 십억 단위는 Milvus. 소규모 코퍼스라면 아예 건너뛰세요 — SQLite FTS5가 단순성에서 이기고 종종 충분합니다. 진짜 교훈: 대부분의 팀은 검색 계층을 과도하게 설계합니다. 가장 단순하게 작동하는 것부터 시작하고, 실제 천장이 측정될 때 업그레이드하세요. 벡터 DB의 복잡도는 단순 도구의 한계를 넘어서야만 정당화됩니다. * * * **관련 글**: [2026 RAG vs Fine-Tuning 의사결정 프레임워크](https://dibi8.com/kr/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [벡터 데이터베이스 비교](https://dibi8.com/kr/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 서버 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드 테스트)\", \"datePublished\": \"2026-05-25\", \"dateModified\": \"2026-05-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/vector-db-2026-qdrant-weaviate-milvus\" } } ## Why This Matters Understanding 2026 벡터 db 선택 가이드: qdrant vs weaviate vs milvus (실전 워크로드 테스트) is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion 2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드 테스트) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [alpaca-trading-api-stock-broker](vector-db-2026-qdrant-weaviate-milvus) - [appwrite-backend-as-service](vector-db-2026-qdrant-weaviate-milvus) - [arize-ai-observability-llm](vector-db-2026-qdrant-weaviate-milvus) - [cognee-ai-memory-platform](vector-db-2026-qdrant-weaviate-milvus) - [flowise](vector-db-2026-qdrant-weaviate-milvus) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ","wordCount":"962","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/vector-db-2026-qdrant-weaviate-milvus/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/vector-db-2026-qdrant-weaviate-milvus/>En</a></li><li><a href=https://dibi8.com/zh/vector-db-2026-qdrant-weaviate-milvus/>Zh</a></li><li><a href=https://dibi8.com/vi/vector-db-2026-qdrant-weaviate-milvus/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#2026-%eb%b2%a1%ed%84%b0-db-%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c-qdrant-vs-weaviate-vs-milvus aria-label="2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus">2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus</a><ul><li><a href=#-tldr aria-label="⚡ TL;DR">⚡ TL;DR</a></li><li><a href=#%ed%85%8c%ec%8a%a4%ed%8a%b8-%ed%99%98%ea%b2%bd aria-label="테스트 환경">테스트 환경</a></li><li><a href=#%ec%b8%a1%ec%a0%95-%ea%b2%b0%ea%b3%bc aria-label="측정 결과">측정 결과</a><ul><li><a href=#%eb%a0%88%ec%9d%b4%ed%84%b4%ec%8b%9c-p95-ms aria-label="레이턴시 (p95, ms)">레이턴시 (p95, ms)</a></li><li><a href=#%ec%b2%98%eb%a6%ac%eb%9f%89-p95--50ms%ec%97%90%ec%84%9c-qps aria-label="처리량 (p95 < 50ms에서 QPS)">처리량 (p95 &lt; 50ms에서 QPS)</a></li><li><a href=#500%eb%a7%8c-%eb%b2%a1%ed%84%b0%ec%97%90%ec%84%9c%ec%9d%98-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%82%ac%ec%9a%a9%eb%9f%89 aria-label="500만 벡터에서의 메모리 사용량">500만 벡터에서의 메모리 사용량</a></li><li><a href=#%ec%84%a4%ec%b9%98-%ec%8b%9c%ea%b0%84 aria-label="설치 시간">설치 시간</a></li></ul></li><li><a href=#%eb%b2%a1%ed%84%b0-db%eb%a5%bc-%ec%95%84%ec%98%88-%ea%b1%b4%eb%84%88%eb%9b%b0%ec%96%b4%ec%95%bc-%ed%95%a0-%eb%95%8c aria-label="벡터 DB를 아예 건너뛰어야 할 때">벡터 DB를 아예 건너뛰어야 할 때</a></li></ul></li><li><a href=#%eb%ac%b8%ec%84%9c-%ec%82%bd%ec%9e%85-match-%ec%97%b0%ec%82%b0%ec%9e%90%eb%a1%9c-%ec%bf%bc%eb%a6%ac aria-label="문서 삽입, MATCH 연산자로 쿼리">문서 삽입, MATCH 연산자로 쿼리</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
+tech_stack: [Qdrant, Weaviate, Milvus, &lsquo;Vector Search&rsquo;, Embeddings]
+application_domain: LLM Frameworks
+source_version: &ldquo;Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5&rdquo;
+licensing_model: Open Source
+license_type: &lsquo;Apache-2.0&rsquo;
+last_maintained: &ldquo;2026-05-25&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;vector-database&rdquo;, &ldquo;qdrant&rdquo;, &ldquo;weaviate&rdquo;, &ldquo;milvus&rdquo;, &ldquo;rag&rdquo;, &ldquo;2026&rdquo;]
+aliases:</p><ul><li>/kr/posts/vector-db-2026-qdrant-weaviate-milvus/
+faq: - q: &ldquo;2026년에 가장 좋은 벡터 DB는?&rdquo;
+a: &ldquo;개인 또는 소규모 팀 RAG에는 Qdrant(가장 단순하고 단일 노드에서 가장 빠름). 하이브리드 검색(벡터 + 키워드 + 필터)이 필요한 프로덕션에는 Weaviate. 십억 단위 워크로드에는 Milvus(수평 확장 최강). 2026년 기준 세 가지 모두 안정적입니다.&rdquo;</li><li>q: &ldquo;언제 벡터 DB 대신 SQLite FTS5를 써야 하나요?&rdquo;
+a: &ldquo;문서 1만 개 이하에서는 SQLite 전체 텍스트 검색(FTS5)이 관련성 면에서 벡터 DB를 능가하는 경우가 많고 운영 복잡도가 10배 단순합니다. 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요할 때만 벡터 DB의 복잡도가 정당화됩니다.&rdquo;</li><li>q: &ldquo;pgvector는 어떤가요? Postgres만으로 충분할까요?&rdquo;
+a: &ldquo;이미 Postgres를 쓰고 있고 벡터 100만 개 이하라면 pgvector가 훌륭한 선택입니다. 그 이상에서는 성능이 떨어집니다. 신규 프로젝트거나 벡터 100만 개를 넘는다면 전용 벡터 DB가 유리합니다.&rdquo;</li><li>q: &ldquo;하드웨어는 얼마나 필요한가요?&rdquo;
+a: &ldquo;100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다.&rdquo;</li></ul><hr><h1 id=2026-벡터-db-선택-가이드-qdrant-vs-weaviate-vs-milvus>2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus<a hidden class=anchor aria-hidden=true href=#2026-벡터-db-선택-가이드-qdrant-vs-weaviate-vs-milvus>#</a></h1><blockquote><p><strong>Meta Description</strong>: 500만 벡터로 세 가지를 모두 실측. 레이턴시, 처리량, 메모리, 설치 난이도. 언제 벡터 DB를 건너뛰고 SQLite FTS5를 써야 할지.</p></blockquote><p>벡터 DB 시장은 2026년에 정리되었습니다. Qdrant, Weaviate, Milvus가 주도하고 있습니다. 이 글에서는 500만 벡터 워크로드로 세 가지를 모두 테스트해 어떤 상황에 어느 것을 써야 할지, 그리고 언제는 벡터 DB 자체를 건너뛰어야 할지 알려드립니다.</p><h2 id=-tldr>⚡ TL;DR<a hidden class=anchor aria-hidden=true href=#-tldr>#</a></h2><blockquote><p><strong>Qdrant</strong>: 가장 단순한 설치, 단일 노드에서 가장 빠름. 개인/소규모 팀 RAG에 최적.</p><p><strong>Weaviate</strong>: 하이브리드 검색(벡터 + 키워드 + 필터) 최강. 복잡한 쿼리가 있는 프로덕션에 최적.</p><p><strong>Milvus</strong>: 수평 확장 최강. 십억 단위 워크로드에 최적.</p><p><strong>벡터 DB 건너뛰기</strong>: 문서 1만 개 미만이면 SQLite FTS5가 승리하는 경우가 많음.</p></blockquote><h2 id=테스트-환경>테스트 환경<a hidden class=anchor aria-hidden=true href=#테스트-환경>#</a></h2><ul><li>500만 벡터, 768 차원 (BGE-large 임베딩)</li><li>순수 유사도 쿼리 + 필터링된 쿼리 혼합</li><li>단일 VM: 16 vCPU, 64GB RAM, 1TB NVMe</li><li>동시 클라이언트 100개</li></ul><h2 id=측정-결과>측정 결과<a hidden class=anchor aria-hidden=true href=#측정-결과>#</a></h2><h3 id=레이턴시-p95-ms>레이턴시 (p95, ms)<a hidden class=anchor aria-hidden=true href=#레이턴시-p95-ms>#</a></h3><table><thead><tr><th>워크로드</th><th>Qdrant</th><th>Weaviate</th><th>Milvus</th></tr></thead><tbody><tr><td>순수 유사도 (top 10)</td><td>8</td><td>12</td><td>14</td></tr><tr><td>필터링된 유사도</td><td>15</td><td>10</td><td>22</td></tr><tr><td>하이브리드 (벡터 + 키워드)</td><td>N/A</td><td>16</td><td>N/A</td></tr></tbody></table><p><strong>판정</strong>: 순수 유사도는 Qdrant가 가장 빠름. 필터링과 하이브리드는 Weaviate 우세.</p><h3 id=처리량-p95--50ms에서-qps>처리량 (p95 &lt; 50ms에서 QPS)<a hidden class=anchor aria-hidden=true href=#처리량-p95--50ms에서-qps>#</a></h3><table><thead><tr><th></th><th>Qdrant</th><th>Weaviate</th><th>Milvus</th></tr></thead><tbody><tr><td>QPS</td><td>2400</td><td>1800</td><td>1200</td></tr></tbody></table><p><strong>판정</strong>: 단일 노드에서는 Qdrant가 가장 빠름. Milvus는 다중 노드 규모에서 따라잡음.</p><h3 id=500만-벡터에서의-메모리-사용량>500만 벡터에서의 메모리 사용량<a hidden class=anchor aria-hidden=true href=#500만-벡터에서의-메모리-사용량>#</a></h3><table><thead><tr><th></th><th>Qdrant</th><th>Weaviate</th><th>Milvus</th></tr></thead><tbody><tr><td>사용 RAM</td><td>14GB</td><td>18GB</td><td>22GB</td></tr></tbody></table><p><strong>판정</strong>: Qdrant가 메모리 효율 최고.</p><h3 id=설치-시간>설치 시간<a hidden class=anchor aria-hidden=true href=#설치-시간>#</a></h3><table><thead><tr><th></th><th>Qdrant</th><th>Weaviate</th><th>Milvus</th></tr></thead><tbody><tr><td>Docker compose</td><td>5분</td><td>10분</td><td>20분</td></tr><tr><td>프로덕션 튜닝</td><td>1-2시간</td><td>2-4시간</td><td>4-8시간</td></tr></tbody></table><p><strong>판정</strong>: Qdrant가 가장 쉬움. Milvus가 가장 복잡.</p><h2 id=벡터-db를-아예-건너뛰어야-할-때>벡터 DB를 아예 건너뛰어야 할 때<a hidden class=anchor aria-hidden=true href=#벡터-db를-아예-건너뛰어야-할-때>#</a></h2><p>문서 1만 개 미만에서는 <strong>SQLite FTS5</strong>가 다음 이유로 벡터 DB보다 나은 경우가 많습니다: - BM25 + 키워드 매칭이 대부분의 실용적 검색을 잘 처리함</p><ul><li>운영 복잡도 100배 단순 (파일 하나, 서버 불필요)</li><li>쿼리 레이턴시 &lt; 1ms</li><li>파일 외 메모리 오버헤드 없음</li></ul><p>먼저 이것부터 해보세요: ````python
+import sqlite3
+conn = sqlite3.connect(&ldquo;docs.db&rdquo;)
+conn.execute(&ldquo;CREATE VIRTUAL TABLE docs USING fts5(title, content)&rdquo;)</p><h1 id=문서-삽입-match-연산자로-쿼리>문서 삽입, MATCH 연산자로 쿼리<a hidden class=anchor aria-hidden=true href=#문서-삽입-match-연산자로-쿼리>#</a></h1><pre tabindex=0><code>
+문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요해지면 그때 벡터 DB로 전환합니다.
+
+## 세 가지 중 선택하기
+</code></pre><p>단일 노드, 단순 RAG, 소규모 팀 → Qdrant
+하이브리드 검색 필요 (벡터 + 키워드 + 필터) → Weaviate
+다중 노드, 십억 이상의 벡터 → Milvus
+이미 Postgres 있음 → pgvector (벡터 100만 이하)
+문서 &lt; 1만 → SQLite FTS5</p><pre tabindex=0><code>
+## 추천 인프라
+
+벡터 DB 호스팅 추천: - **** — $200 크레딧, NVMe 드롭릿
+- **** — 아시아 저지연 쿼리를 위한 홍콩 VPS
+
+*Affiliate 링크 — 동일한 가격, dibi8.com을 후원합니다.*
+
+## 결론
+
+2026년 기준 세 가지 벡터 DB 모두 프로덕션 수준입니다. 워크로드에 따라 선택하세요: 단순함은 Qdrant, 하이브리드 검색은 Weaviate, 십억 단위는 Milvus. 소규모 코퍼스라면 아예 건너뛰세요 — SQLite FTS5가 단순성에서 이기고 종종 충분합니다.
+
+진짜 교훈: 대부분의 팀은 검색 계층을 과도하게 설계합니다. 가장 단순하게 작동하는 것부터 시작하고, 실제 천장이 측정될 때 업그레이드하세요. 벡터 DB의 복잡도는 단순 도구의 한계를 넘어서야만 정당화됩니다.
+
+* * *
+
+**관련 글**: [2026 RAG vs Fine-Tuning 의사결정 프레임워크](https://dibi8.com/kr/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [벡터 데이터베이스 비교](https://dibi8.com/kr/resources/llm-frameworks/vector-database-comparison/) · [2026 MCP 서버 랭킹](https://dibi8.com/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/)
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드 테스트)&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-25&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-25&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/vector-db-2026-qdrant-weaviate-milvus&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding 2026 벡터 db 선택 가이드: qdrant vs weaviate vs milvus (실전 워크로드 테스트) is crucial for modern AI development. Here&#34;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus (실전 워크로드 테스트) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+* * *
+
+*Last updated: 2026-09-20*
+*Read time: ~5 minutes*
+
+* * *
+
+## Related Articles
+
+- [alpaca-trading-api-stock-broker](vector-db-2026-qdrant-weaviate-milvus)
+- [appwrite-backend-as-service](vector-db-2026-qdrant-weaviate-milvus)
+- [arize-ai-observability-llm](vector-db-2026-qdrant-weaviate-milvus)
+- [cognee-ai-memory-platform](vector-db-2026-qdrant-weaviate-milvus)
+- [flowise](vector-db-2026-qdrant-weaviate-milvus)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：LangChain和LlamaIndex哪个更好？**
+
+LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
+
+**问：如何评估LLM框架的性能？**
+
+基准测试包括：推理速度、准确率、资源消耗、可扩展性。
+
+**问：开源LLM框架的商业使用限制？**
+
+大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
+
+**问：是否需要GPU才能运行LLM框架？**
+
+推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
+
+**问：企业级部署的最佳实践？**
+
+使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,37 +1,10 @@
-
-title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending ..."
-description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent tha..."
-date: 2026-05-15T04:20:25+08:00
-lastmod: 2026-05-15T04:20:25+08:00
-tech_stack: - C++
-  - Docker
-  - Go
-  - JavaScript
-application_domain: "Llm Frameworks"
-source_version: ""
-licensing_model: "Open Source"
-license_type: "MIT"
-file_size: "34.9 MB"
-file_md5: ""
-download_url: "https://github.com/Hmbown/DeepSeek-TUI"
-backup_url: ""
-last_maintained: "2026-05-15"
-draft: false
-aliases:
-  - /posts/github-trending-projects-may-2026/
-faqs: - q: 'What is DeepSeek-TUI and how is it different from Cursor or GitHub Copilot?'
-    a: 'DeepSeek-TUI is a terminal-based AI coding agent that runs locally via the `deepseek` command, streaming reasoning blocks and reading/writing files on disk with approval gates before any filesystem changes. Unlike Cursor or Copilot, which run as full GUI editors, it is built for terminal users working in tmux, neovim, or zsh, with no browser-to-IDE context switching.'
-  - q: 'How does DeepSeek-TUI''s auto mode save money?'
-    a: 'In auto mode (`deepseek --model auto`), the tool first makes a tiny routing call using deepseek-v4-flash with no thinking to evaluate your request, then picks the cheapest viable model and thinking level. Simple refactors use the fast model with thinking off, while complex tasks like security reviews trigger the pro model at higher thinking levels, so short questions stay cheap.'
-  - q: 'How do I install DeepSeek-TUI?'
-    a: 'You can install it via npm (`npm install -g deepseek-tui`), Cargo (`cargo install deepseek-tui-cli --locked`), Homebrew on macOS (`brew tap Hmbown/deepseek-tui && brew install deepseek-tui`), or Docker. Authentication is set with `deepseek auth set --provider deepseek`, and ARM64 Linux is supported natively from v0.8.8 onward.'
-  - q: 'What does Anthropic''s financial-services agent suite include?'
-    a: 'It ships 11 named agents covering specific financial workflows, including a Pitch Agent (comps, precedents, LBO to pitch deck), Market Researcher, Earnings Reviewer, GL Reconciler, and KYC Screener. It also adds vertical slash-command plugins like /comps, /dcf, and /earnings, plus partner-built connectors from LSEG and S&P Global.'
-  - q: 'Is Local Deep Research private, and how accurate is it?'
-    a: 'Local Deep Research runs entirely on your own hardware with zero telemetry and no cloud dependency, storing research history in a SQLCipher-encrypted database. Despite running locally, it reaches roughly 95% accuracy on SimpleQA when paired with Qwen3.6-27B on an RTX 3090, and supports 10+ search engines including arXiv and PubMed.'
 ---
-{</* resource-info */>}
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "github-trending-projects-may-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Introduction
 

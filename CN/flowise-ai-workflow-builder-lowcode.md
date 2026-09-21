@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise-ai-workflow-builder-lowcode"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Flowise: The Low-Code AI Workflow Builder Deploying Lang...
-description: "Complete 2026 guide to Flowise — the open-source low-code AI workflow builder with 100+ integrations..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/flowise-ai-workflow-builder-lowcode/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Writing AI Agents Still Feels Like 2006
 

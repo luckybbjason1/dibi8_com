@@ -1,16 +1,14 @@
 ---
-title: "Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 ...
-description: "엔터프라이즈 규모의 Weaviate 벡터 검색 배포 가이드. Kubernetes 배포, 하이브리드 검색, 멀티모달 지원, RBAC, 모니터링, 100억+ 객체 컬렉션 벤치마크 포함..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["]
-aliases:
-  - /kr/posts/weaviate-vector-search-enterprise/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "weaviate-vector-search-enterprise"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 벡터 데이터베이스가 1억 객체에서 멈출 때
 

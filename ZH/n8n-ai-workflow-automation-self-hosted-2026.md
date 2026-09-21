@@ -1,19 +1,10 @@
 ---
-title: "n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本"
-description: "2026年最热门开源自动化平台n8n完整教程。覆盖n8n自托管部署、AI Agent搭建、LangChain集成、SEO自动化工作流实战，对比Zapier/Make，助你节省70%自动化成本。"
-keywords: n8n, AI工作流自动化, n8n教程2026, 开源自动化工具, AI Agent搭建, n8n自托管部署, 工作流自动化平台, n8n vs Zapier, LangChain集成, 无代码自动化
-author: Home Hermes
-date: 2026-05-20
-lastmod: 2026-05-20---
-
-
-# n8n AI工作流自动化实战指南2026：从零搭建开源智能Agent，替代Zapier省70%成本
-
-2026年，一个开源项目在GitHub上以单季度18,420颗新增Star的速度横扫开发者社区。它不是某个新晋AI模型，而是**n8n**——一个正在重新定义「工作流自动化」的开源平台。同年3月，n8n宣布完成6000万美元融资，正式跻身自动化领域的一线阵营。
-
-如果你还在用Zapier或Make（原Integromat），每月为几百条工作流任务支付上百美元，这篇文章会告诉你：如何用n8n搭建同样甚至更强力的AI驱动自动化系统，同时把成本压到接近零。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-workflow-automation-self-hosted-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## 一、为什么2026年是n8n的爆发年
 
@@ -176,7 +167,7 @@ return result;
 使用n8n内置的"OpenAI"节点：
 - **Model**: gpt-4o-mini（成本优化）
 - **System Prompt**: 你是一位SEO专家，分析竞品内容并提出优化建议。
-- **User Prompt**: 竞品URL: {{$json.url}}\n\n当前页面: {{$json.page}}\n\n请分析两者内容差距，给出3条具体优化建议。
+- **User Prompt**: 竞品URL: \n\n当前页面: \n\n请分析两者内容差距，给出3条具体优化建议。
 
 #### 节点4：Slack通知
 
@@ -185,12 +176,12 @@ return result;
 `````
 🚨 SEO警报：排名下滑检测
 
-关键词：{{$json.query}}
-页面：{{$json.page}}
-排名变化：+{{$json.change}}位
+关键词：
+页面：
+排名变化：+位
 
 AI分析摘要：
-{{$json.ai_summary}}
+
 
 Notion任务已创建，请查看并分配。
 `````

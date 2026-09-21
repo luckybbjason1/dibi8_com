@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI 2026: 114k 별 노드 기반 AI 이미지/비디오/오디오 워크플로우 엔진 완전 가이드"
-description: "ComfyUI는 SD/SDXL/Flux/Wan/Hunyuan 등을 지원하는 114k 별 노드 기반 시각 워크플로우 엔진. 이미지, 비디오, 오디오, 3D 생성 지원. 2026 완전..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-node-based-ai-image-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA]
@@ -56,7 +63,7 @@ ComfyUI의 스마트 메모리 관리가 A1111보다 훨씬 좋음. 같은 GPU�
 | 24 GB (RTX 4090) | ~2초 | ~5초 | ~45초 |
 | 48 GB+ (A6000/H100) | ~1초 | ~2초 | ~15초 |
 
-클라우드 옵션: Vast.ai에 H100을 시간당 $1.50로, 또는 {{< aff "digitalocean" "comfyui-gpu" "DigitalOcean GPU droplet" >}}에 24 GB GPU; 생성 시간만 지불.
+클라우드 옵션: Vast.ai에 H100을 시간당 $1.50로, 또는 에 24 GB GPU; 생성 시간만 지불.
 
 ## 3. 빠른 설치 (10분)
 
@@ -122,7 +129,7 @@ ComfyUI는 최신 비디오와 3D 모델이 day-1 작동하는 유일한 주류 
 
 "AI 미디어 생성 API" 배포: `````
    GPU 인스턴스 (24 GB VRAM 권장)
-            │  Vast.ai / RunPod / {{< aff "digitalocean" "comfyui-droplet" "DigitalOcean GPU" >}}에
+            │  Vast.ai / RunPod / 에
             ▼
    --listen 0.0.0.0 있는 ComfyUI (HTTP API 노출)
             │

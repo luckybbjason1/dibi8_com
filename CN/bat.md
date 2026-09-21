@@ -1,6 +1,13 @@
 ---
-title: "bat: Syntax-Highlighting cat Clone with 58K+ Stars — Com...
-description: "bat is a cat(1) clone with syntax highlighting and Git integration. Compatible with Rust, Git, Homeb..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bat"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/bat/-
 ---
 
-{{</* resource-info */>}}
+
 
 The ```cat```` command has been the default file viewer on Unix-like systems since 1971. It dumps raw bytes to stdout. No colors, no line numbers, no Git awareness. When you are reading a 200-line Python file at 2 AM, staring at unformatted text adds unnecessary friction. ````bat```` replaces this four-decade-old workflow with syntax highlighting, Git integration, and automatic paging — without breaking the muscle memory every terminal user already has.
 

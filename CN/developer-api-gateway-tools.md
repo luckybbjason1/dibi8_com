@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "developer-api-gateway-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Best Developer API Gateway Tools 2025: Kong vs NGINX Plu...
-description: "Compare the top API gateway tools for developers in 2025. In-depth analysis of Kong, NGINX Plus, Tra..."
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

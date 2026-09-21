@@ -1,16 +1,13 @@
 ---
-title: "Portkey AI Gateway 2026: The LLM Gateway Managing 200+ M...
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["portkey ai gateway"]
-aliases:
-  - /posts/portkey-ai-gateway-production/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "portkey-ai-gateway-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
-{{</* resource-info */>}}
+
 
 Managing multiple Large Language Model (LLM) providers in production is a nightmare. Each provider has its own API format, authentication scheme, rate limits, and failure modes. Your application code becomes littered with conditional logic for OpenAI, Anthropic, Google, Azure, and the dozens of new providers emerging every month. Enter **Portkey AI Gateway** — the open-source LLM gateway that unifies 200+ models behind a single API, complete with load balancing, fallback routing, spend tracking, request caching, and enterprise-grade observability.
 
@@ -428,7 +425,7 @@ prompt = portkey.prompts.deploy(
     version="1.2.0",
     prompt=[
         {"role": "system", "content": "You are a support ticket classifier. Categorize the ticket into: Billing, Technical, Feature Request, or Complaint."},
-        {"role": "user", "content": "Ticket: {{ticket_content}}"}
+        {"role": "user", "content": "Ticket: "}
     ],
     model="gpt-4o-mini",
     parameters={

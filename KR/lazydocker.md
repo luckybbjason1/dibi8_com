@@ -1,6 +1,13 @@
 ---
-title: "LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가...
-description: "LazyDocker (LD)는 Docker 컨테이너, 이미지, 볼륨 및 로그를 관리하기 위한 터미널 UI입니다. Docker, Docker Compose, Go 및 Terminal..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lazydocker"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 명령줄에서 Docker를 관리한다는 것은 수십 개의 플래그를 암기하고, ```grep````으로 출력을 파이프하며, ````docker ps````, ````docker logs````, ````docker exec```` 사이를 끊임없이 전환해야 함을 의미합니다. 터미널에서 수 시간을 복하는 개발자에게 이러한 마찰은 누적됩니다. LazyDocker는 단일 바이너리로 Docker 워크플로우를 키보드 중심의 터미널 인터페이스로 감싸서 이 문제를 해결합니다 — 브라우저 없이, 데몬 없이, 설정 오버헤드 없이. 51,000개 이상의 GitHub stars와 번성하는 생태계를 보유한 LazyDocker는 2026년 Docker 관리를 위한 기본 TUI 도구가 되었습니다.
 
@@ -266,21 +273,21 @@ logs: timestamps: true
 ``c`` 키로 액세스할 수 있는 사용자 지정 명령 추가: `````yaml
 customCommands: containers: - name: bash
       attach: true
-      command: "docker exec -it {{ .Container.ID }} bash"
+      command: "docker exec -it  bash"
       serviceNames: []
     - name: debug-network
       attach: false
-      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}""
+      command: "docker inspect  --format=': \n""
 `````
 
-사용 가능한 템플릿 변수: ````{{ .Container.ID }}````, ````{{ .Container.Name }}````, ````{{ .Service.Name }}````, ````{{ .DockerCompose }}````.
+사용 가능한 템플릿 변수: ````````, ````````, ````````, ````````.
 
 ### Podman 지원
 
 명령 템플릿을 교체하여 LazyDocker는 Podman과 함께 작동합니다: `````yaml
 commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
-  containerInspect: "podman inspect {{ .Container.ID }}"
+  containerInspect: "podman inspect "
 `````
 
 ## 인기 도구와의 통합
@@ -375,7 +382,7 @@ jobs: debug: runs-on: ubuntu-latest
         run: |
           lazydocker --version
           # 로그용 컨테이너 목록 낸부
-          docker ps --format "table {{.Names}}\t{{.Status}}"
+          docker ps --format "table \t"
 `````
 
 ## 벤치마크 및 실제 사용 사례
@@ -476,7 +483,7 @@ LazyDocker의 사용자 지정 명령을 통해 이를 바인딩하여 원키 �
 # 60초마다 실행되는 cron 작업
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name="{{.Name}}"} {{.CPUPerc}}\ncontainer_memory_usage{name="{{.Name}}"} {{.MemUsage}}" \
+    "container_cpu_usage{name=""} \ncontainer_memory_usage{name=""} " \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

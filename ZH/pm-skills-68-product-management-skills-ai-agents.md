@@ -1,21 +1,14 @@
 ---
-title: "PM技能：68项产品管理技能和42个AI代理工作流程"
-description: "用于更好产品决策的人工智能操作系统。9 个插件覆盖发现、策略、执行、研究、分析、市场进入（GTM）、营销、工具包和 AI 发布。兼容 Claude Code、Codex、Cursor 以及 50 多个..."
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-tags: ["ai tools", "product management", "claude code", "agent skills", "open source"]
-categories: ["ai-tools"]
-slug: pm-skills-68-product-management-skills-ai-agents
-aliases: ['/pm-skills']
-sources: - name: GitHub
-    url: 'https://github.com/phuryn/pm-skills'
-  - name: 'The Product Compass'
-    url: 'https://www.productcompass.pm'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pm-skills-68-product-management-skills-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 title: "PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
-description: 'The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants.'
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

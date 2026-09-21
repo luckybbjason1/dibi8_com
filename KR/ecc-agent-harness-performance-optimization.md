@@ -1,11 +1,10 @@
 ---
-title: "ECC: 에이전트 허닝 튜닝으로 Claude Code, Codex, Cursor 성능 최적화 — 20...
-description: "ECC (에이전트 허닝 성능 최적화)는 컨텍스트 윈도우 사용량을 줄이고 AI 코딩 에이전트의 응답 속도를 높입니다. Claude Code, Codex, Opencode, Curso..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'ecc-agent-harness-performance-optimization'
-category: dev-utils
-tags: ["ECC", "agent-optimization", "claude-code", "codex", "cursor", "performance", "mcp"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ecc-agent-harness-performance-optimization"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

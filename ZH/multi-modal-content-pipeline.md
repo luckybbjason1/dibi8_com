@@ -1,6 +1,13 @@
 ---
-title: "多模态内容 Pipeline 2026：AI 播客/视频/视觉内容的 5 组件 stack（$30-80/月）"
-description: "自托管多模态内容 stack：faster-whisper（STT）+ ChatTTS（对话式 TTS）+ Stable Diffusion WebUI（图像）+ ComfyUI（工作流引擎 + 视频..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-modal-content-pipeline"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
@@ -43,7 +50,7 @@ aliases:
 | 4 | **ComfyUI** | 文本/图像 → 图像/视频/音频 | 复杂多模态管线的工作流引擎 | [ComfyUI 2026](/zh/resources/ai-tools/comfyui-node-based-ai-image-2026/) |
 | 5 | **FFmpeg** | 视频/音频合成 | 组合最终视频 / 播客交付物 | （行业标准，无需深度文）|
 
-**月成本总计**（租 GPU，每天 4 小时用）：**~$30-50/月**（Vast.ai 或 {{< aff "digitalocean" "mm-gpu" "DigitalOcean GPU droplet" >}}）• **常驻独立 GPU**：**~$80-150/月**
+**月成本总计**（租 GPU，每天 4 小时用）：**~$30-50/月**（Vast.ai 或 ）• **常驻独立 GPU**：**~$80-150/月**
 
 对比 SaaS 等价物：ElevenLabs（$22）+ Midjourney（$30）+ Descript（$24）+ Pictory（$59）+ Adobe Creative Cloud（$55）= $190/月起，且每个都有用量上限。
 
@@ -168,7 +175,7 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 
 ## 8. Day 1 安装顺序（3-4 小时）
 
-1. **GPU 实例**（15 分）—— Vast.ai 租 24 GB GPU（$0.50-1/小时）或订 {{< aff "digitalocean" "mm-vps" "DigitalOcean GPU droplet" >}}。视频需要 24 GB；暂不视频 12 GB 够
+1. **GPU 实例**（15 分）—— Vast.ai 租 24 GB GPU（$0.50-1/小时）或订 。视频需要 24 GB；暂不视频 12 GB 够
 2. **装 Docker + Python venv 基础**（15 分）
 3. **ComfyUI + ComfyUI Manager**（30 分）—— 所有视觉工作主力
 4. **ChatTTS**（15 分）—— 预生成 3-5 个稳定说话人，存 embedding
@@ -219,7 +226,7 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 4. **ComfyUI** —— 多模态工作流引擎（图像 / 视频 / 音频一处搞定）
 5. **FFmpeg** —— 无聊但必需的合成
 
-要生产时租 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}}，不生产关。每天 ~2 小时积极内容生产就开始打赢 SaaS。
+要生产时租 ，不生产关。每天 ~2 小时积极内容生产就开始打赢 SaaS。
 
 
 * * *

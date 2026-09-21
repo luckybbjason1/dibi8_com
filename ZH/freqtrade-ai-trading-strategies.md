@@ -1,16 +1,14 @@
 ---
-title: "Freqtrade 2026：使用机器学习构建AI驱动的加密货币交易策略 — 完整机器人设置指南"
-description: "Freqtrade与FreqAI实战部署指南，开源Python加密货币交易机器人，集成机器学习。涵盖Docker设置、超参数优化、回测、Telegram集成和生产环境部署。". Comprehensi..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /zh/posts/freqtrade-ai-trading-strategies/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freqtrade-ai-trading-strategies"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么90%的自制交易机器人会亏钱
 
@@ -384,7 +382,7 @@ docker compose run --rm freqtrade backtesting \
 
 `````
 Result for strategy SampleStrategy
-===========================================================
+
 BACKTESTING REPORT
 * * *
 | 交易对      |  入场次数 |  平均利润 %   |  累计利润 %   |

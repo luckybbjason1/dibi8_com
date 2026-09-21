@@ -1,6 +1,13 @@
 ---
-title: "AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kim...
-description: "오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-token-monitor-conky-linux"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 licensing_model: Open Source
 license_type: MIT
 file_size: ''
@@ -26,7 +33,7 @@ faqs: - q: 'AI Token Monitor가 macOS나 Windows에서도 작동하나요?'
 ---
 
 
-{{< resource-info >}}
+
 
 ## 문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다
 

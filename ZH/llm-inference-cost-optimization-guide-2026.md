@@ -1,11 +1,10 @@
 ---
-title: "大型语言模型推理成本优化：用几分钱运行任何模型——2026权威指南"
-description: "LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API cost..."
-date: 2026-06-16
-lastmod: 2026-06-16
-slug: 'llm-inference-cost-optimization-guide-2026'
-category: dev-utils
-tags: ["LLM cost optimization", "cheap LLM inference", "quantization", "Ollama", "vLLM", "llama.cpp", "reduce API costs", "local LLM"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-inference-cost-optimization-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 大语言模型推理成本优化：以分运行任何模型——2026年权威指南

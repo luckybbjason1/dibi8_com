@@ -1,16 +1,14 @@
 ---
-title: "NocoDB 2026 完整指南：将任何数据库变成智能电子表格的开源 Airtable 替代品"
-description: "使用 Docker 在 5 分钟内部署 NocoDB。将 MySQL、PostgreSQL 或 SQLite 转换为协作式电子表格，支持自动生成 REST API、看板和基于角色的访问控制。". Co..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["nocodb", "airtable替代品", "开源", "数据库", "电子表格", "自托管", "docker", "mysql", "postgresql"]
-aliases:
-  - /zh/posts/noco-db-airtable-alternative/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "noco-db-airtable-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：当电子表格撞到天花板
 
@@ -183,7 +181,7 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
       "Content-Type": "application/json"
     },
     "body": {
-      "text": "New order #{{Id}} from {{CustomerEmail}} — Amount: ${{Total}}"
+      "text": "New order # from  — Amount: $"
     }
   }
 }

@@ -1,6 +1,13 @@
 ---
-title: "VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 ...
-description: "VoiceCraft는 신경 코덱 언어 모델 기반의 제로샷 음성 편집 및 TTS 모델로, GPT-SoVITS, Coqui TTS, RVC와 호환됩니다. 설치 튜토리얼, 벤치마크, D..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "voicecraft"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 

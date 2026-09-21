@@ -1,9 +1,10 @@
 ---
-title: "Cursor vs Claude Code 2026: Công cụ AI lập trình nào tốt...
-description: "So sánh trực tiếp Cursor và Claude Code — giá cả, hiệu năng, tình huống sử dụng, mẹo chuyển đổi. Cập..."
-### Tình huống 3: Workflow terminal-native
-Nếu bạn sống trong tmux/Vim/JetBrains và không muốn đổi IDE, Claude Code lọt vào workflow terminal hiện có mà không gây gián đoạn.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -58,7 +59,7 @@ Nhiều dev dùng **Cursor làm IDE mặc định** ($20/tháng) và **Claude Co
 - Composer (Cmd+I) là tương đương gần nhất với chế độ agent của Claude Code
 
 ### Ghi chú tự host
-Bạn đang chuẩn bị tự host Aider / cc-switch / Claude Code router? Mở một {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet với $200 credit miễn phí" >}} — đủ cho 2 tháng dùng vừa phải để test stack không rủi ro.
+Bạn đang chuẩn bị tự host Aider / cc-switch / Claude Code router? Mở một  — đủ cho 2 tháng dùng vừa phải để test stack không rủi ro.
 
 * * *
 
@@ -96,7 +97,7 @@ Nếu hiệu quả chi phí tối đa quan trọng nhất → **Aider + cc-switc
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

@@ -1,12 +1,10 @@
 ---
-title: "What Is OpenHuman?"
-description: "content/en/resources/openhuman.md". Comprehensive guide covering features, pricing, and best practic..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'openhuman-local-ai-agent-rust-2026'
-category: 'ai-tools'
-tags: ["openhuman", "local-ai", "ai-agent", "ai-assistant", "memory-tree", "obsidian", "agentic", "open-source", "llm", "desktop-app"]
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openhuman"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026

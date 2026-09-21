@@ -1,16 +1,14 @@
 ---
-title: "Zoxide: 36,752 GitHub Stars — 2026 年完整安装配置指南"
-description: "Zoxide 是一个更智能的 cd 命令，能学习你的目录使用习惯。支持 Bash、Zsh、Fish、Nushell 和 PowerShell。涵盖安装、Shell 集成、fzf 配置、算法原理以及从 ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["zoxide", "命令行", "终端", "cd替代品", "rust", "shell", "效率工具", "fzf"]
-aliases:
-  - /zh/posts/zoxide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zoxide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 普通开发者每天切换目录超过 200 次。如果每次 ```cd```` 都要花 3-5 秒输入完整路径，那么每天就有 10-15 分钟浪费在导航上。Zoxide 彻底消除了这种摩擦：它学习你去过的地方，让你用两个按键就能跳转到目标目录。凭借 36,752 个 GitHub Stars 和 Rust 驱动的核心，Zoxide 已成为开发者社区中传统 ````cd```` 命令的事实替代品。
 

@@ -1,21 +1,10 @@
 ---
-title: "Docker Development Environment Best Practices: A Complet...
-description: "Master Docker development environment best practices in 2025. Learn dev containers, hot reload, mult..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/docker-development-environment-best-practices/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "docker-development-environment-best-practices"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Docker Development Environment Best Practices: A Complete 2025 Guide

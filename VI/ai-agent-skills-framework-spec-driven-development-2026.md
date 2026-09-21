@@ -1,15 +1,10 @@
 ---
-
-## Mở đầu: Claude Code của bạn vẫn còn quá ngây thơ
-
-Dữ liệu GitHub Trending hàng tuần từ ngày 9–15 tháng 5 năm 2026 đã tiết lộ một hiện tượng chưa từng có: **trong top 20 kho lưu trữ tăng trưởng nhanh nhất, hơn 5 cái có chứa từ "skills" trong tên**. Thư mục ``.claude`` cá nhân của Matt Pocock được open-source và đạt +1.618 stars chỉ trong một tuần. Hermes Agent của NousResearch theo sau với +1.332 stars. Ngay cả triết lý kỹ thuật của Andrej Karpathy cũng được đóng gói thành các agent skill có thể tái sử dụng.
-
-Đây không phải là sự trùng hợp. Cộng đồng lập trình viên đang trải qua một sự chuyển đổi paradigm thầm lặng: từ việc coi AI như một **máy phát sinh mã hộp đen**, sang việc **thiết kế các pattern hành vi, rào chắn và workflow có thể tái sử dụng** cho AI agent. Đây chính là **mô hình Kỹ năng AI Agent**.
-
-Đồng thời, **Spec-Kit** chính thức của GitHub báo hiệu sự trỗi dậy của **Phát triển Dựa Trên Spec (Spec-Driven Development, SDD)** — một quy trình ``SPECIFICATION → PLAN → TASKS → IMPLEMENTATION`` mang tính kỷ luật, thay thế sự hỗn loạn của "vibe coding" bằng quy tắc kỹ thuật.
-
-Nếu bạn vẫn đang dùng lệnh "làm cho tôi một trang đăng nhập" để điều khiển AI, bạn đã bị bỏ lại phía sau.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-skills-framework-spec-driven-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

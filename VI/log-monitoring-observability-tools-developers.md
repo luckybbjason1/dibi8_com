@@ -1,21 +1,10 @@
 ---
-title: "Công Cụ Giám Sát Log & Khả Năng Quan Sát cho Nhà Phát Tr...
-description: "Tổng quan công cụ giám sát log và observability năm 2025: Grafana Loki, ELK Stack, Datadog, New Reli..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Dev Utils
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/log-monitoring-observability-tools-developers/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "log-monitoring-observability-tools-developers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -47,7 +36,7 @@ Monitoring truyền thống tập trung vào việc phát hiện các vấn đ�
 
 Promtail — agent đi kèm — chịu trách nhiệm thu thập log từ các file trên server và đẩy lên Loki. LogQL là ngôn ngữ truy vấn của Loki, tương tự PromQL nhưng dành cho log: ````logql
 # Tìm log lỗi trong service api
-{job="api"} |= "ERROR" | json | line_format "{{.message}}"
+{job="api"} |= "ERROR" | json | line_format ""
 
 # Tìm request chậm hơn 1 giây
 {job="nginx"} | json | response_time > 1

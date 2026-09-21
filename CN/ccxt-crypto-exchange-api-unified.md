@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ccxt-crypto-exchange-api-unified"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "CCXT 2026: The Universal Crypto Exchange API Unifying 10...
-description: "Master CCXT, the #1 open-source crypto trading library. Connect to 100+ exchanges with one unified A..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/ccxt-crypto-exchange-api-unified/-
 ---
 
-{{</* resource-info */>}}
+
 
 *Last updated: May 19, 2026*
 

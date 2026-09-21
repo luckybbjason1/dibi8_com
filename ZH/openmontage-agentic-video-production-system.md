@@ -1,8 +1,15 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openmontage-agentic-video-production-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: openmontage-agentic-video-production-system
-title: "OpenMontage 评测：世界上第一个开源自主视频制作系统（52 个工具，12 个流程，500 多项技能）"
-description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. ..."
-date: "2026-06-22 00:00:00+08:00"
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.10+
   - FFmpeg
@@ -29,7 +36,7 @@ faqs: - q: '什么是OpenMontage？'
   - q: 'OpenMontage 与 Sora、Runway 和 Pika 有何不同？'
     a: 'Sora、Runway 和 Pika 是单提示生成视频的工具，它们可以生成短片（5-30 秒），没有叙事结构、没有剧本、也没有音频。OpenMontage 是一个制作编排系统：它进行实时网络研究、撰写剧本、生成或获取素材（图像、视频、音乐、旁白）、将所有内容编辑成连贯的时间线、添加逐字字幕，并进行多点质量验证。它可以制作任意长度的完整视频，而不仅仅是单独的短片。'
   - q: '我使用 OpenMontage 需要付费的 API 密钥吗？'
-    a: '不。开箱即用时，`make setup` 会为你提供 Piper TTS（免费的离线文本转语音）、Archive.org/NASA/Wikimedia Commons 的素材、Remotion 合成、FFmpeg 后期制作，以及自动生成的字幕。你可以零成本制作带真实解说的视频。付费 API 密钥（FLUX、Kling、Google Veo、ElevenLabs、Suno）可以解锁更高质量的素材，但完全可选。系统会在七个维度上评估每个提供商，并选择最适合你预算的最佳匹配。'
+    a: '不。开箱即用时，``make setup`` 会为你提供 Piper TTS（免费的离线文本转语音）、Archive.org/NASA/Wikimedia Commons 的素材、Remotion 合成、FFmpeg 后期制作，以及自动生成的字幕。你可以零成本制作带真实解说的视频。付费 API 密钥（FLUX、Kling、Google Veo、ElevenLabs、Suno）可以解锁更高质量的素材，但完全可选。系统会在七个维度上评估每个提供商，并选择最适合你预算的最佳匹配。'
   - q: '12 个生产流程是什么？'
     a: '这12条流程管道是：动画解说、动画、头像代言人、电影、剪辑工厂、纪录片蒙太奇、混合、本地化与配音、播客再利用、屏幕演示、访谈头部和角色动画。每个流程都遵循相同的结构化流程：研究 → 提案 → 脚本 → 场景计划 → 资产 → 编辑 → 合成。每个阶段都有专门的导演技能（Markdown 指令文件），教导代理如何精确执行该阶段的工作。'
   - q: 'OpenMontage 能用真实素材制作视频，而不仅仅是 AI 图片吗？'

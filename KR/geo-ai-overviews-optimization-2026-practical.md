@@ -1,6 +1,13 @@
 ---
-title: "GEO / AI Overviews 최적화 2026: 실제 사이트 데이터 기반 실전 가이드"
-description: "생성형 엔진 최적화(GEO)는 새로운 SEO입니다. Google AI Overviews, ChatGPT Search, Perplexity 인용을 위한 최적화 방법. dibi8.co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "geo-ai-overviews-optimization-2026-practical"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [SEO, GEO, 'Schema.org', 'JSON-LD', 'llms.txt']
@@ -25,7 +32,7 @@ faq: - q: "GEO란 무엇이며 SEO와 어떻게 다른가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # GEO / AI Overviews 최적화 2026: 실전 가이드
 
@@ -111,8 +118,8 @@ Hugo 템플릿이 FAQPage schema가 포함된 ````<script type="application/ld+j
 
 ## 권장 인프라
 
-schema 검증 + GEO 도구용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200달러 크레딧
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — dibi8 호스팅용 홍콩 VPS
+schema 검증 + GEO 도구용: - **** — 200달러 크레딧
+- **** — dibi8 호스팅용 홍콩 VPS
 
 *제휴 링크 — 가격 동일, dibi8.com을 지원합니다.*
 

@@ -1,11 +1,10 @@
 ---
-title: "DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống t...
-description: "DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho c..."
-tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
-date: 2026-06-27
-lastmod: 2026-06-27
-slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "design-md-google-open-source-format-ai-coding-agents-design-systems"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

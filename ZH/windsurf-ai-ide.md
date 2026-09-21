@@ -1,20 +1,10 @@
 ---
-title: Windsurf AI IDE — 与你一起思考的智能编程编辑器
-description: Windsurf 完全指南：来自 Codeium 的代理式 AI IDE，能够自主编写代码、调试和交付功能。定价、基准测试和实际工作流详解。. Comprehensive guide covering features, pricing, and best practices for 2026.
-tags: ["ai-ide", "coding-agent", "windsurf", "codeium", "cursor-alternative", "agentic-ai"]
-category: dev-utils
-date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00
-draft: false
-slug: windsurf-ai-ide
--CN---
-
-
-## TL;DR
-
-Windsurf 是 Codeium 开发的代理式 AI 集成开发环境（IDE），它超越了传统的自动补全——它能理解你的整个代码库，编写多文件变更，调试复杂问题，并可以自主交付完整功能。凭借深度上下文感知和代理推理能力，Windsurf 无缝融入你的工作流程，无论你是构建初创产品 MVP 还是维护企业级代码。本指南涵盖定价、基准测试、实际工作流，以及它与 Cursor、GitHub Copilot 和 Claude Code 的对比。
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "windsurf-ai-ide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Windsurf 是什么？
 

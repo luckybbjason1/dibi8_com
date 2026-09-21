@@ -1,21 +1,10 @@
 ---
-title: "Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại v...
-description: "So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) ..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["claude-code", "aider", "cli", "ai-coding", "comparison", "dev-tools", "open-source"]
-categories: ["vs"]
-faqs: - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'
-    a: 'Tùy theo mức sử dụng. Claude Code là $20/tháng (Pro) hoặc $200/tháng (Max) cố định, chi phí dự đoán được. Aider miễn phí công cụ nhưng route qua API key của bạn — mức trung bình ($5-$15/tháng tiêu Anthropic API) thì Aider rẻ hơn; mức cao (>$30/tháng API) thì Claude Code Pro rẻ hơn vì subscription hấp thụ chi phí leo thang. Dưới 20 phiên/tuần: Aider thắng; trên 20: Claude Code Pro thắng.'
-  - q: 'Cái nào có quyền tự chủ agent tốt hơn?'
-    a: 'Claude Code thắng về chất lượng vòng lặp agent thuần — nó lập kế hoạch, chỉnh sửa, chạy test, lặp lại khi thất bại, tự sửa qua hàng chục file mà không cần giám sát. Aider chạy vòng lặp chỉnh sửa-commit chặt chẽ và tất định hơn: nó hiển thị diff, chờ phê duyệt, rồi commit. Claude Code tự chủ hơn; Aider dễ kiểm tra hơn.'
-  - q: 'Tôi có thể dùng Claude Code và Aider cùng nhau không?'
-    a: 'Có, và nhiều dev làm vậy. Dùng Aider cho chỉnh sửa tinh tế khi bạn muốn minh bạch mức git diff, và Claude Code cho refactor đa file lớn và vòng lặp lập kế hoạch dài. Chúng chia sẻ filesystem sạch sẽ vì cả hai đều CLI-first và tôn trọng lịch sử git của bạn.'
-  - q: 'Cái nào xử lý monorepo 200K+ LOC tốt hơn?'
-    a: 'Claude Code — đi kèm context window 1M ở tier Sonnet/Opus và hệ thống subagent nội bộ có thể tóm tắt codebase theo thời gian thực. Aider dựa vào repo map (filename + signature) cộng với load file theo yêu cầu; hoạt động trên codebase khổng lồ nhưng bạn phải đưa đúng file. Để "cho AI tự tìm chỗ cần xem", Claude Code thắng.'
-  - q: 'Aider có đủ mã nguồn mở cho dùng doanh nghiệp không?'
-    a: 'Có — Aider giấy phép Apache 2.0 và chạy hoàn toàn trên máy của bạn. Cuộc gọi bên ngoài duy nhất là tới model API bạn cấu hình (OpenAI, Anthropic, Ollama local, v.v.). Cho môi trường air-gapped hoặc nhạy cảm compliance, ghép Aider với model local và bạn có setup AI coding hoàn toàn tự host. Claude Code yêu cầu cloud của Anthropic."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-aider"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -145,7 +134,7 @@ Sử dụng nặng không giới hạn: **Claude Code Max $200/tháng** thắng 
 - Mong lượt đơn dài hơn (10-60 giây) nhưng tổng lượt mỗi tác vụ ít hơn
 
 ### Lưu ý tự host
-Muốn chạy Aider với model local và nhận lợi ích mã nguồn mở mà không thuê GPU? {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean GPU droplet với $200 credit miễn phí" >}} cho bạn đủ runway để test Llama 3.3 70B hoặc DeepSeek V3 trên codebase thật 2-3 tháng trước khi quyết định. Rẻ hơn 2 tháng Claude Code Max, và bạn giữ infrastructure cho workload inference.
+Muốn chạy Aider với model local và nhận lợi ích mã nguồn mở mà không thuê GPU?  cho bạn đủ runway để test Llama 3.3 70B hoặc DeepSeek V3 trên codebase thật 2-3 tháng trước khi quyết định. Rẻ hơn 2 tháng Claude Code Max, và bạn giữ infrastructure cho workload inference.
 
 * * *
 
@@ -213,7 +202,7 @@ Team nhỏ ship nhanh không có thời gian review diff? **Claude Code Max 5x �
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

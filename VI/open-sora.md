@@ -1,6 +1,13 @@
 ---
-title: "Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
-description: "Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-sora"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Hầu hết lập trình viên thử nghiệm tạo video AI đều gặp phải cùng một rào cản: API thương mại tính phí $0.10-$0.50 mỗi giây đầu ra, các giải pháp tự host đòi hỏi kiến thức CUDA chuyên sâu, và số ít dự án mã nguồn mở hiện có thì thiếu tài liệu hoặc yêu cầu GPU cấp doanh nghiệp. Tháng 3/2024, HPC-AI Tech phát hành Open-Sora để thay đổi phương trình này. Mưới lăm tháng và 29.000 sao GitHub sau, dự án đã tiến hóa từ nguyên mẫu nghiên cứu thành framework cấp production có khả năng tạo video 5 giây ở độ phân giải 768p với chất lượng sánh ngang các lựa chọn thương mại — tất cả chạy trên phần cứng bạn có thể thuê theo giờ.
 

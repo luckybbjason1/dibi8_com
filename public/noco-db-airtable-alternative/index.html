@@ -1,0 +1,394 @@
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/noco-db-airtable-alternative/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/noco-db-airtable-alternative/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/noco-db-airtable-alternative/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/noco-db-airtable-alternative/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/noco-db-airtable-alternative/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/noco-db-airtable-alternative/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/noco-db-airtable-alternative/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “NocoDB 2026: The Open-Source Airtable Alternative Turnin… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“nocodb”, “airtable-alternative”, “open-source”, “database”, “spreadsheet”, “self-hosted”, “docker”, “mysql”, “postgresql”] aliases:\n/posts/noco-db-airtable-alternative/- Introduction: When Spreadsheets Hit the Wall Every engineering team has that one “master spreadsheet.” It starts innocently — a Google Sheet tracking customer onboarding, a CSV of inventory SKUs, a shared Excel file for project budgets. Then comes the chaos: someone overwrites a formula, version history becomes unreadable, and the 65,000-row limit looms like a storm cloud.\nAirtable solved this for millions of teams, but at a cost. The Pro plan runs $20 per user per month. A 20-person team pays $4,800/year for what is essentially a fancy spreadsheet. Worse, your data lives on Airtable’s servers, exports are capped, and the API has rate limits that throttle real workloads.\nEnter NocoDB — an open-source platform that transforms any MySQL, PostgreSQL, SQL Server, SQLite, or MariaDB database into a smart, collaborative spreadsheet interface. With 53,000+ GitHub stars, a Docker deployment that takes under 5 minutes, and zero data migration required, NocoDB gives you Airtable’s usability with the power and ownership of a real SQL database.\nThis guide walks you through a complete production setup: local Docker deploy, connecting an existing PostgreSQL database, configuring role-based access, generating REST APIs, and hardening for production. Every command is copy-paste ready.\nWhat Is NocoDB? NocoDB is an open-source no-code database platform that adds a spreadsheet-like interface on top of existing relational databases. Unlike Airtable, which stores your data in its proprietary backend, NocoDB connects to your MySQL, PostgreSQL, SQL Server, SQLite, or MariaDB database and provides grid, Kanban, gallery, form, and calendar views without moving a single row.\nThink of it as a visual admin panel that your non-technical teammates can actually use. Marketing can update campaign data. Operations can edit inventory. HR can manage candidate pipelines. All through a familiar spreadsheet UI, while the data stays in your PostgreSQL database where engineers can query it with SQL, connect it to Metabase, or replicate it to a data warehouse.\nHow NocoDB Works: Architecture Overview NocoDB follows a database-first architecture. It does not store your business data itself. Instead, it introspects your existing database schema, reads table structures, indexes, and relationships, then renders them as interactive views.\nCore components:\nNocoDB Server — Node.js backend that connects to your database via standard drivers (pg, mysql2, sqlite3) Web GUI — Vue.js frontend providing the spreadsheet interface Meta Database — Lightweight SQLite database (default) or dedicated PostgreSQL/MySQL instance storing project metadata, view configurations, user permissions, and webhook settings REST/GraphQL API Layer — Auto-generated endpoints for every table, with Swagger documentation When a user edits a cell in the grid view, NocoDB translates that action into a parameterized SQL ```UPDATE```` statement executed directly against your database. When they create a Kanban view, NocoDB stores the view configuration in its meta database while the underlying data never moves.\nThis separation is key: your data stays in your database. NocoDB is just a smart lens.\nInstallation \u0026 Setup: From Zero to Running in 5 Minutes Option 1: Docker (Recommended for Development) The fastest way to get NocoDB running locally: `````bash\nCreate a directory for NocoDB data mkdir -p ~/nocodb-data \u0026\u0026 cd ~/nocodb-data\nRun NocoDB with Docker (includes SQLite meta DB) docker run -d –name nocodb -p 8080:8080 -v “$(pwd)/nocodb:/usr/app/data” nocodb/nocodb:latest\nVisit ````http://localhost:8080```` and sign up with an admin email and password. Done. ### Option 2: Docker Compose with Existing PostgreSQL For production, connect NocoDB to an existing PostgreSQL database: `````bash # docker-compose.yml version: \"3.8\" services: nocodb: image: nocodb/nocodb:0.260.7 ports: - \"8080:8080\" environment: - NC_DB=\"pg://host.docker.internal:5432?u=postgres\u0026p=yourpassword\u0026d=nocodb_meta\" - DATABASE_URL=\"postgres://postgres:yourpassword@host.docker.internal:5432/myapp_production\" - NC_AUTH_JWT_SECRET=\"change-this-to-a-64-char-random-string\" - NC_PUBLIC_URL=https://nocodb.yourcompany.com volumes: - ./nocodb-data:/usr/app/data restart: unless-stopped Start with: `````bash docker-compose up -d\n### Option 3: Deploy on DigitalOcean (Production) For a production VPS deployment, [spin up a $6/month Droplet on DigitalOcean](https://m.do.co/c/eca87ac14ee0) and run: `````bash # Update system sudo apt update \u0026\u0026 sudo apt upgrade -y # Install Docker curl -fsSL https://get.docker.com | sh sudo usermod -aG docker $USER newgrp docker # Run NocoDB with persistent storage docker run -d \\ --name nocodb \\ -p 8080:8080 \\ -e NC_DB=\"pg://your-db-host:5432?u=nocodb\u0026p=SECURE_PASS\u0026d=nocodb_meta\" \\ -e NC_AUTH_JWT_SECRET=\"$(openssl rand -hex 32)\" \\ -v /opt/nocodb:/usr/app/data \\ --restart unless-stopped \\ nocodb/nocodb:0.260.7 Adding Your First Data Source After logging into the NocoDB UI: 1. Click “Add New Base” → “Connect to Data Source” 2. Select PostgreSQL (or MySQL/SQLite) 3. Enter connection details: `````yaml\nExample connection for a PostgreSQL database Host: db.yourcompany.com Port: 5432 Username: app_readwrite Password: ********** Database: production_app SSL: Require\nNocoDB introspects the schema in ~10 seconds and presents all tables as interactive spreadsheet views. ## Integrations: Connect NocoDB to Your Existing Stack ### REST API Auto-Generation Every table automatically gets a full REST API. Click **\"API\"** on any table to see the Swagger docs: `````bash # List all records in the \"customers\" table curl -X GET \"https://nocodb.yourcompany.com/api/v2/tables/customers/records\" \\ -H \"xc-token: YOUR_API_TOKEN\" \\ -H \"Content-Type: application/json\" # Create a new record curl -X POST \"https://nocodb.yourcompany.com/api/v2/tables/customers/records\" \\ -H \"xc-token: YOUR_API_TOKEN\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"Email\": \"alice@example.com\", \"Status\": \"Active\", \"Plan\": \"Enterprise\" }' # Update with filters curl -X PATCH \"https://nocodb.yourcompany.com/api/v2/tables/customers/records\" \\ -H \"xc-token: YOUR_API_TOKEN\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"id\": 42, \"Status\": \"Churned\" }' Webhook Automations Trigger external workflows on data changes: 1. Go to Base → Automation → Webhooks 2. Click “Add Webhook” 3. Configure the trigger: `````json { “title”: “Notify Slack on New Order”, “event”: “after.insert”, “table”: “orders”, “hook”: { “method”: “POST”, “url”: “https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX\", “headers”: { “Content-Type”: “application/json” }, “body”: { “text”: “New order # from — Amount: $” } } }\n### n8n Integration NocoDB works seamlessly with [n8n workflow automation](n8n-workflow-automation-dibi8-internal-link): `````bash # n8n NocoDB node credentials Host: https://nocodb.yourcompany.com API Token: noco_xxxxxxxxxxxx Base ID: your-base-id Metabase / BI Integration Since your data stays in PostgreSQL, connect Metabase directly to the same database for analytics while NocoDB handles the operational editing layer: `````yaml\nMetabase connects to the same PostgreSQL database NocoDB handles data entry, Metabase handles dashboards Both read from the same source of truth ### Sync to Airtable (Migration Path) Moving from Airtable? Export as CSV, import into NocoDB: 1. **Airtable** → **Download CSV** for each table 2. **NocoDB** → **Add New Table** → **Import CSV** 3. Re-create linked record fields as **Links** in NocoDB 4. Re-create views (Grid, Kanban, Gallery) with NocoDB's view builder ## Benchmarks \u0026 Real-World Use Cases ### Performance: NocoDB vs. Airtable | Metric | NocoDB (Self-Hosted) | Airtable Pro | | * * * | * * * | * * * | | Records per base | **Unlimited** | 50,000 | | File attachments | **Limited by disk** | 20 GB | | API rate limit | **None (your server)** | 10 req/sec | | Concurrent users | **Tested: 200+** | 50 (Pro plan) | | Row update latency | **~15ms** (local PG) | ~200-500ms | | Cost for 20 users | **$6/mo (VPS)** | $400/mo | ### Real-World Deployment Numbers Based on community reports and load testing: - **Startup CRM**: 150,000 customer records, 15 team members, 3 views per table. PostgreSQL 14 on a 4-vCPU VPS. Average query time: **23ms**. - **Inventory Management**: 50,000 SKUs across 8 warehouses. REST API consumed by 3 client applications. **Zero downtime** over 6 months with watchtower auto-updates. - **HR Candidate Tracker**: 12 recruiters, 8,000 candidates, Kanban view by hiring stage. Switched from Airtable saving **$2,880/year**. ### GitHub Stats (May 2026) - **53,000+ stars** on GitHub - **1,200+ contributors** - **Latest release**: v0.260.7 (April 2026) - **Docker pulls**: 5M+ - **Active Discord**: 4,800+ members ## Advanced Usage: Production Hardening ### 1. HTTPS with Nginx Reverse Proxy `````nginx # /etc/nginx/sites-available/nocodb server { listen 443 ssl http2; server_name nocodb.yourcompany.com; ssl_certificate /etc/letsencrypt/live/yourcompany.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourcompany.com/privkey.pem; location / { proxy_pass http://localhost:8080; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } } Enable and restart: `````bash sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl restart nginx\n### 2. Environment Variable Security `````bash # Create a secrets file sudo mkdir -p /opt/nocodb sudo tee /opt/nocodb/.env \u003e /dev/null \u003c\u003c EOF NC_DB=pg://db:5432?u=nocodb\u0026p=CHANGE_ME\u0026d=nocodb_meta NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING NC_REDIS_URL=redis://redis:6379 NC_SENTRY_DSN=https://xxx@sentry.io/yyy NC_PUBLIC_URL=https://nocodb.yourcompany.com EOF sudo chmod 600 /opt/nocodb/.env 3. Role-Based Access Control Configure granular permissions per base: 1. Project Settings → Data Sources → Users 2. Assign roles: - Owner — Full control, can delete base\nCreator — Create tables, views, automations Editor — Edit records, cannot modify schema Commenter — Add comments only Viewer — Read-only access Set column-level permissions to hide sensitive fields (e.g., salary, SSN) from non-HR users.\n4. Database Backup Strategy #!/bin/bash # /opt/backup/nocodb-backup.sh # Backup PostgreSQL data (your actual business data) pg_dump -h db.yourcompany.com -U postgres myapp_db \u003e \\ /backups/postgres-$(date +%Y%m%d).sql # Backup NocoDB meta database docker exec nocodb-db-1 pg_dump -U nocodb nocodb_meta \u003e \\ /backups/nocodb-meta-$(date +%Y%m%d).sql # Sync to S3 (optional) aws s3 sync /backups/ s3://yourcompany-backups/nocodb/ # Keep only 7 days find /backups -name \"*.sql\" -mtime +7 -delete Add to crontab: `````bash 0 2 * * * /opt/backup/nocodb-backup.sh » /var/log/nocodb-backup.log 2\u003e\u00261\n### 5. Monitoring with Prometheus `````yaml # docker-compose.monitoring.yml services: prometheus: image: prom/prometheus:v2.51.0 volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml ports: - \"9090:9090\" grafana: image: grafana/grafana:10.4.0 ports: - \"3000:3000\" volumes: - grafana-data:/var/lib/grafana volumes: grafana-data: ````` ## Comparison with Alternatives | Feature | NocoDB | Airtable | Baserow | Teable | | * * * | * * * | * * * | * * * | * * * | | **License** | AGPL-3.0 | Proprietary | MIT | AGPL-3.0 | | **Self-hosted** | Yes | No | Yes | Yes | | **Connects to existing DB** | **Yes** (PG, MySQL, SQLite) | No | No | Yes | | **REST API** | Auto-generated | Limited rate | Auto-generated | Auto-generated | | **Kanban view** | Yes | Yes | Yes | Yes | | **Form view** | Yes | Yes | Yes | Yes | | **File attachments** | Yes | 20 GB (Pro) | Yes | Yes | | **Role-based access** | Yes | Yes | Yes | Yes | | **Webhook automations** | Yes | Paid plans | Yes | Limited | | **Price (20 users)** | **$6/mo VPS** | **$400/mo** | $100/mo | $0 (self-host) | | **Record limits** | **Unlimited** | 50,000 (Pro) | Unlimited | Unlimited | | **GitHub stars** | **53,000** | N/A | 8,200 | 14,500 | **When to choose NocoDB over each:** - **vs. Airtable**: You want data ownership, lower costs, no record limits, and the ability to connect to an existing database. - **vs. Baserow**: You need to connect to an existing PostgreSQL/MySQL database rather than creating a new one. Baserow has a more polished UI but forces you into its data model. - **vs. Teable**: You want broader database driver support (NocoDB supports SQL Server and MariaDB; Teable focuses on PostgreSQL). Teable has stronger AI integrations; NocoDB has deeper spreadsheet features. ## Limitations: Honest Assessment **NocoDB is not perfect.** Before committing, consider these constraints: 1. **UI polish gap**: Airtable's interface is smoother. NocoDB's grid can feel sluggish with 100,000+ rows in the browser — though the underlying database handles it fine. 2. **No native mobile app**: You get a responsive web UI, but there's no dedicated iOS/Android app like Airtable offers. 3. **Limited formula support**: Formulas use SQL expressions, not Excel syntax. Non-technical users need a short learning curve. 4. **Self-hosting burden**: You handle backups, updates, and security. The Cloud option exists but starts at $8/user/month, eating into the cost advantage. 5. **License considerations**: NocoDB's AGPL-3.0 license requires releasing modifications if you distribute the software. For internal company use, this is a non-issue. For SaaS products built on NocoDB, consult legal. 6. **Single Sign-On (SSO)**: Built-in SSO (SAML, OIDC) requires the Enterprise tier. Self-hosted users can work around this with a reverse proxy auth layer. ## Frequently Asked Questions ### Does NocoDB support connecting to multiple databases simultaneously? Yes. A single NocoDB instance can connect to multiple data sources. You can have one base connected to PostgreSQL, another to MySQL, and a third using the built-in SQLite — all accessible from the same dashboard. Each base is independent with its own permissions and views. ### How does NocoDB handle schema changes in the underlying database? NocoDB syncs schema changes automatically. If you add a column via ````ALTER TABLE```` in PostgreSQL, click **\"Sync Now\"** in the base settings, and the new column appears in NocoDB within seconds. Existing views are preserved; you simply add the new field to whichever views need it. ### Can I use NocoDB as a backend for a customer-facing application? Yes, via the REST API. However, NocoDB is designed as an internal tool, not a public API server. For customer-facing apps, use NocoDB as the admin panel for your team, and build a separate API layer that validates business logic before writing to the same database. ### What happens when NocoDB goes down? Is my data safe? Your data lives in your PostgreSQL/MySQL database, completely separate from NocoDB. If the NocoDB container stops, your data is untouched. Other applications reading the same database continue working normally. NocoDB only stores view configurations, user accounts, and webhook definitions in its meta database. ### How do I migrate from Airtable to NocoDB? Export each Airtable table as CSV. In NocoDB, create tables and use **\"Import CSV\"** to populate them. Re-create Airtable's \"Linked Records\" as NocoDB **\"Links\"** (foreign key relationships). Re-build views (Grid, Kanban, Gallery) manually. The NocoDB community has an Airtable-to-NocoDB migration script available on GitHub that handles bulk conversion. ### Does NocoDB support real-time collaboration like Airtable? Yes, but with caveats. Multiple users can edit the same base simultaneously, and changes appear in real-time via WebSocket. However, conflict resolution is last-write-wins, not operational transforms. For most use cases (different users editing different rows), this is fine. Heavy concurrent editing of the same row can cause overwrites. ### Is there a way to run NocoDB without Docker? Yes. NocoDB provides standalone executables for Linux, macOS, and Windows. Download the latest binary from the GitHub releases page, make it executable, and run ````./nocodb````. However, Docker remains the recommended deployment method for production due to easier updates and dependency management. ## Conclusion: Your Data, Your Rules NocoDB fills a specific gap: giving non-technical teams the usability of Airtable while keeping data in databases that engineers control. The **53,000 GitHub stars**, active release cycle, and growing plugin ecosystem make it a viable choice for 2026 and beyond. If you are paying Airtable $200+/month and have a PostgreSQL or MySQL database already running, NocoDB pays for itself in the first month. The Docker setup takes 5 minutes. The migration from Airtable is a weekend project. The freedom of owning your data is permanent. **Start now**: [Deploy NocoDB on DigitalOcean](https://m.do.co/c/eca87ac14ee0) with a $6 Droplet, or run ````docker run nocodb/nocodb:latest``` locally to explore before committing. **Join the community**: [NocoDB Discord](https://discord.gg/5ZjDgHEG5H) | [GitHub Discussions](https://github.com/nocodb/nocodb/discussions) **Related tools**: [n8n Workflow Automation](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI Setup Guide](metabase-bi-setup-dibi8-internal-link) * * * ## Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.* ## Sources \u0026 Further Reading - [NocoDB Official Documentation](https://docs.nocodb.com/) - [NocoDB GitHub Repository](https://github.com/nocodb/nocodb) — 53,000+ stars - [NocoDB Docker Hub](https://hub.docker.com/r/nocodb/nocodb) - [NocoDB API Reference](https://docs.nocodb.com/developer-resources/rest-APIs/) - [NocoDB vs Airtable: Feature Comparison](https://nocodb.com/compare/airtable) - [PostgreSQL Official Documentation](https://www.postgresql.org/docs/) - [Deploy Docker on Ubuntu — DigitalOcean Docs](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04) * * * *This article may contain affiliate links. If you sign up for DigitalOcean through our referral link, we receive a commission at no extra cost to you. We only recommend services we use ourselves.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"NocoDB 2026: The Open-Source Airtable Alternative Turning Any Database into a Smart Spreadsheet — Complete Setup Guide\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/noco-db-airtable-alternative\" } } * * * ## Related Articles - [database-management-tools-comparison](noco-db-airtable-alternative) - [chroma-vector-database-python](noco-db-airtable-alternative) - [zilliz-milvus-vector-database-scale](noco-db-airtable-alternative) - [qdrant-vector-database-rust](noco-db-airtable-alternative) - [vector-database-comparison](noco-db-airtable-alternative) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2757","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/noco-db-airtable-alternative/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/noco-db-airtable-alternative/>Zh</a></li><li><a href=https://dibi8.com/ko/noco-db-airtable-alternative/>Ko</a></li><li><a href=https://dibi8.com/vi/noco-db-airtable-alternative/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#introduction-when-spreadsheets-hit-the-wall aria-label="Introduction: When Spreadsheets Hit the Wall">Introduction: When Spreadsheets Hit the Wall</a></li><li><a href=#what-is-nocodb aria-label="What Is NocoDB?">What Is NocoDB?</a></li><li><a href=#how-nocodb-works-architecture-overview aria-label="How NocoDB Works: Architecture Overview">How NocoDB Works: Architecture Overview</a></li><li><a href=#installation--setup-from-zero-to-running-in-5-minutes aria-label="Installation & Setup: From Zero to Running in 5 Minutes">Installation & Setup: From Zero to Running in 5 Minutes</a><ul><li><a href=#option-1-docker-recommended-for-development aria-label="Option 1: Docker (Recommended for Development)">Option 1: Docker (Recommended for Development)</a></li></ul></li></ul><li><a href=#create-a-directory-for-nocodb-data aria-label="Create a directory for NocoDB data">Create a directory for NocoDB data</a></li><li><a href=#run-nocodb-with-docker-includes-sqlite-meta-db aria-label="Run NocoDB with Docker (includes SQLite meta DB)">Run NocoDB with Docker (includes SQLite meta DB)</a><ul><ul><li><a href=#adding-your-first-data-source aria-label="Adding Your First Data Source">Adding Your First Data Source</a></li></ul></ul></li><li><a href=#example-connection-for-a-postgresql-database aria-label="Example connection for a PostgreSQL database">Example connection for a PostgreSQL database</a><ul><ul><li><a href=#webhook-automations aria-label="Webhook Automations">Webhook Automations</a></li><li><a href=#metabase--bi-integration aria-label="Metabase / BI Integration">Metabase / BI Integration</a></li></ul></ul></li><li><a href=#metabase-connects-to-the-same-postgresql-database aria-label="Metabase connects to the same PostgreSQL database">Metabase connects to the same PostgreSQL database</a></li><li><a href=#nocodb-handles-data-entry-metabase-handles-dashboards aria-label="NocoDB handles data entry, Metabase handles dashboards">NocoDB handles data entry, Metabase handles dashboards</a></li><li><a href=#both-read-from-the-same-source-of-truth aria-label="Both read from the same source of truth">Both read from the same source of truth</a><ul><ul><li><a href=#3-role-based-access-control aria-label="3. Role-Based Access Control">3. Role-Based Access Control</a></li><li><a href=#4-database-backup-strategy aria-label="4. Database Backup Strategy">4. Database Backup Strategy</a></li></ul></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;NocoDB 2026: The Open-Source Airtable Alternative Turnin&mldr;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Dev Utils
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: AGPL-3.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;nocodb&rdquo;, &ldquo;airtable-alternative&rdquo;, &ldquo;open-source&rdquo;, &ldquo;database&rdquo;, &ldquo;spreadsheet&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;, &ldquo;mysql&rdquo;, &ldquo;postgresql&rdquo;]
+aliases:</p><ul><li>/posts/noco-db-airtable-alternative/-</li></ul><hr><h2 id=introduction-when-spreadsheets-hit-the-wall>Introduction: When Spreadsheets Hit the Wall<a hidden class=anchor aria-hidden=true href=#introduction-when-spreadsheets-hit-the-wall>#</a></h2><p>Every engineering team has that one &ldquo;master spreadsheet.&rdquo; It starts innocently — a Google Sheet tracking customer onboarding, a CSV of inventory SKUs, a shared Excel file for project budgets. Then comes the chaos: someone overwrites a formula, version history becomes unreadable, and the 65,000-row limit looms like a storm cloud.</p><p>Airtable solved this for millions of teams, but at a cost. The Pro plan runs <strong>$20 per user per month</strong>. A 20-person team pays <strong>$4,800/year</strong> for what is essentially a fancy spreadsheet. Worse, your data lives on Airtable&rsquo;s servers, exports are capped, and the API has rate limits that throttle real workloads.</p><p>Enter <strong>NocoDB</strong> — an open-source platform that transforms any MySQL, PostgreSQL, SQL Server, SQLite, or MariaDB database into a smart, collaborative spreadsheet interface. With <strong>53,000+ GitHub stars</strong>, a Docker deployment that takes under 5 minutes, and zero data migration required, NocoDB gives you Airtable&rsquo;s usability with the power and ownership of a real SQL database.</p><p>This guide walks you through a complete production setup: local Docker deploy, connecting an existing PostgreSQL database, configuring role-based access, generating REST APIs, and hardening for production. Every command is copy-paste ready.</p><h2 id=what-is-nocodb>What Is NocoDB?<a hidden class=anchor aria-hidden=true href=#what-is-nocodb>#</a></h2><p><strong>NocoDB</strong> is an open-source no-code database platform that adds a spreadsheet-like interface on top of existing relational databases. Unlike Airtable, which stores your data in its proprietary backend, NocoDB connects to <strong>your</strong> MySQL, PostgreSQL, SQL Server, SQLite, or MariaDB database and provides grid, Kanban, gallery, form, and calendar views without moving a single row.</p><p>Think of it as a visual admin panel that your non-technical teammates can actually use. Marketing can update campaign data. Operations can edit inventory. HR can manage candidate pipelines. All through a familiar spreadsheet UI, while the data stays in your PostgreSQL database where engineers can query it with SQL, connect it to Metabase, or replicate it to a data warehouse.</p><h2 id=how-nocodb-works-architecture-overview>How NocoDB Works: Architecture Overview<a hidden class=anchor aria-hidden=true href=#how-nocodb-works-architecture-overview>#</a></h2><p>NocoDB follows a <strong>database-first architecture</strong>. It does not store your business data itself. Instead, it introspects your existing database schema, reads table structures, indexes, and relationships, then renders them as interactive views.</p><p><strong>Core components:</strong></p><ul><li><strong>NocoDB Server</strong> — Node.js backend that connects to your database via standard drivers (pg, mysql2, sqlite3)</li><li><strong>Web GUI</strong> — Vue.js frontend providing the spreadsheet interface</li><li><strong>Meta Database</strong> — Lightweight SQLite database (default) or dedicated PostgreSQL/MySQL instance storing project metadata, view configurations, user permissions, and webhook settings</li><li><strong>REST/GraphQL API Layer</strong> — Auto-generated endpoints for every table, with Swagger documentation</li></ul><p>When a user edits a cell in the grid view, NocoDB translates that action into a parameterized SQL ```UPDATE```` statement executed directly against your database. When they create a Kanban view, NocoDB stores the view configuration in its meta database while the underlying data never moves.</p><p>This separation is key: your data stays in your database. NocoDB is just a smart lens.</p><h2 id=installation--setup-from-zero-to-running-in-5-minutes>Installation & Setup: From Zero to Running in 5 Minutes<a hidden class=anchor aria-hidden=true href=#installation--setup-from-zero-to-running-in-5-minutes>#</a></h2><h3 id=option-1-docker-recommended-for-development>Option 1: Docker (Recommended for Development)<a hidden class=anchor aria-hidden=true href=#option-1-docker-recommended-for-development>#</a></h3><p>The fastest way to get NocoDB running locally: `````bash</p><h1 id=create-a-directory-for-nocodb-data>Create a directory for NocoDB data<a hidden class=anchor aria-hidden=true href=#create-a-directory-for-nocodb-data>#</a></h1><p>mkdir -p ~/nocodb-data && cd ~/nocodb-data</p><h1 id=run-nocodb-with-docker-includes-sqlite-meta-db>Run NocoDB with Docker (includes SQLite meta DB)<a hidden class=anchor aria-hidden=true href=#run-nocodb-with-docker-includes-sqlite-meta-db>#</a></h1><p>docker run -d<br>&ndash;name nocodb<br>-p 8080:8080<br>-v &ldquo;$(pwd)/nocodb:/usr/app/data&rdquo;<br>nocodb/nocodb:latest</p><pre tabindex=0><code>
+Visit ````http://localhost:8080```` and sign up with an admin email and password. Done.
+
+### Option 2: Docker Compose with Existing PostgreSQL
+
+For production, connect NocoDB to an existing PostgreSQL database: `````bash
+# docker-compose.yml
+version: &#34;3.8&#34;
+
+services: nocodb: image: nocodb/nocodb:0.260.7
+    ports: - &#34;8080:8080&#34;
+    environment: - NC_DB=&#34;pg://host.docker.internal:5432?u=postgres&amp;p=yourpassword&amp;d=nocodb_meta&#34;
+      - DATABASE_URL=&#34;postgres://postgres:yourpassword@host.docker.internal:5432/myapp_production&#34;
+      - NC_AUTH_JWT_SECRET=&#34;change-this-to-a-64-char-random-string&#34;
+      - NC_PUBLIC_URL=https://nocodb.yourcompany.com
+    volumes: - ./nocodb-data:/usr/app/data
+    restart: unless-stopped
+</code></pre><p>Start with: `````bash
+docker-compose up -d</p><pre tabindex=0><code>
+### Option 3: Deploy on DigitalOcean (Production)
+
+For a production VPS deployment, [spin up a $6/month Droplet on DigitalOcean](https://m.do.co/c/eca87ac14ee0) and run: `````bash
+# Update system
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# Install Docker
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Run NocoDB with persistent storage
+docker run -d \
+  --name nocodb \
+  -p 8080:8080 \
+  -e NC_DB=&#34;pg://your-db-host:5432?u=nocodb&amp;p=SECURE_PASS&amp;d=nocodb_meta&#34; \
+  -e NC_AUTH_JWT_SECRET=&#34;$(openssl rand -hex 32)&#34; \
+  -v /opt/nocodb:/usr/app/data \
+  --restart unless-stopped \
+  nocodb/nocodb:0.260.7
+</code></pre><h3 id=adding-your-first-data-source>Adding Your First Data Source<a hidden class=anchor aria-hidden=true href=#adding-your-first-data-source>#</a></h3><p>After logging into the NocoDB UI: 1. Click <strong>&ldquo;Add New Base&rdquo;</strong> → <strong>&ldquo;Connect to Data Source&rdquo;</strong>
+2. Select <strong>PostgreSQL</strong> (or MySQL/SQLite)
+3. Enter connection details: `````yaml</p><h1 id=example-connection-for-a-postgresql-database>Example connection for a PostgreSQL database<a hidden class=anchor aria-hidden=true href=#example-connection-for-a-postgresql-database>#</a></h1><p>Host: db.yourcompany.com
+Port: 5432
+Username: app_readwrite
+Password: **********
+Database: production_app
+SSL: Require</p><pre tabindex=0><code>
+NocoDB introspects the schema in ~10 seconds and presents all tables as interactive spreadsheet views.
+
+## Integrations: Connect NocoDB to Your Existing Stack
+
+### REST API Auto-Generation
+
+Every table automatically gets a full REST API. Click **&#34;API&#34;** on any table to see the Swagger docs: `````bash
+# List all records in the &#34;customers&#34; table
+curl -X GET &#34;https://nocodb.yourcompany.com/api/v2/tables/customers/records&#34; \
+  -H &#34;xc-token: YOUR_API_TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34;
+
+# Create a new record
+curl -X POST &#34;https://nocodb.yourcompany.com/api/v2/tables/customers/records&#34; \
+  -H &#34;xc-token: YOUR_API_TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;Email&#34;: &#34;alice@example.com&#34;,
+    &#34;Status&#34;: &#34;Active&#34;,
+    &#34;Plan&#34;: &#34;Enterprise&#34;
+  }&#39;
+
+# Update with filters
+curl -X PATCH &#34;https://nocodb.yourcompany.com/api/v2/tables/customers/records&#34; \
+  -H &#34;xc-token: YOUR_API_TOKEN&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;id&#34;: 42,
+    &#34;Status&#34;: &#34;Churned&#34;
+  }&#39;
+</code></pre><h3 id=webhook-automations>Webhook Automations<a hidden class=anchor aria-hidden=true href=#webhook-automations>#</a></h3><p>Trigger external workflows on data changes: 1. Go to <strong>Base</strong> → <strong>Automation</strong> → <strong>Webhooks</strong>
+2. Click <strong>&ldquo;Add Webhook&rdquo;</strong>
+3. Configure the trigger: `````json
+{
+&ldquo;title&rdquo;: &ldquo;Notify Slack on New Order&rdquo;,
+&ldquo;event&rdquo;: &ldquo;after.insert&rdquo;,
+&ldquo;table&rdquo;: &ldquo;orders&rdquo;,
+&ldquo;hook&rdquo;: {
+&ldquo;method&rdquo;: &ldquo;POST&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX%22>https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX"</a>,
+&ldquo;headers&rdquo;: {
+&ldquo;Content-Type&rdquo;: &ldquo;application/json&rdquo;
+},
+&ldquo;body&rdquo;: {
+&ldquo;text&rdquo;: &ldquo;New order # from — Amount: $&rdquo;
+}
+}
+}</p><pre tabindex=0><code>
+### n8n Integration
+
+NocoDB works seamlessly with [n8n workflow automation](n8n-workflow-automation-dibi8-internal-link): `````bash
+# n8n NocoDB node credentials
+Host: https://nocodb.yourcompany.com
+API Token: noco_xxxxxxxxxxxx
+Base ID: your-base-id
+</code></pre><h3 id=metabase--bi-integration>Metabase / BI Integration<a hidden class=anchor aria-hidden=true href=#metabase--bi-integration>#</a></h3><p>Since your data stays in PostgreSQL, connect Metabase directly to the same database for analytics while NocoDB handles the operational editing layer: `````yaml</p><h1 id=metabase-connects-to-the-same-postgresql-database>Metabase connects to the same PostgreSQL database<a hidden class=anchor aria-hidden=true href=#metabase-connects-to-the-same-postgresql-database>#</a></h1><h1 id=nocodb-handles-data-entry-metabase-handles-dashboards>NocoDB handles data entry, Metabase handles dashboards<a hidden class=anchor aria-hidden=true href=#nocodb-handles-data-entry-metabase-handles-dashboards>#</a></h1><h1 id=both-read-from-the-same-source-of-truth>Both read from the same source of truth<a hidden class=anchor aria-hidden=true href=#both-read-from-the-same-source-of-truth>#</a></h1><pre tabindex=0><code>
+### Sync to Airtable (Migration Path)
+
+Moving from Airtable? Export as CSV, import into NocoDB: 1. **Airtable** → **Download CSV** for each table
+2. **NocoDB** → **Add New Table** → **Import CSV**
+3. Re-create linked record fields as **Links** in NocoDB
+4. Re-create views (Grid, Kanban, Gallery) with NocoDB&#39;s view builder
+
+## Benchmarks &amp; Real-World Use Cases
+
+### Performance: NocoDB vs. Airtable
+
+| Metric | NocoDB (Self-Hosted) | Airtable Pro |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Records per base | **Unlimited** | 50,000 |
+| File attachments | **Limited by disk** | 20 GB |
+| API rate limit | **None (your server)** | 10 req/sec |
+| Concurrent users | **Tested: 200+** | 50 (Pro plan) |
+| Row update latency | **~15ms** (local PG) | ~200-500ms |
+| Cost for 20 users | **$6/mo (VPS)** | $400/mo |
+
+### Real-World Deployment Numbers
+
+Based on community reports and load testing: - **Startup CRM**: 150,000 customer records, 15 team members, 3 views per table. PostgreSQL 14 on a 4-vCPU VPS. Average query time: **23ms**.
+- **Inventory Management**: 50,000 SKUs across 8 warehouses. REST API consumed by 3 client applications. **Zero downtime** over 6 months with watchtower auto-updates.
+- **HR Candidate Tracker**: 12 recruiters, 8,000 candidates, Kanban view by hiring stage. Switched from Airtable saving **$2,880/year**.
+
+### GitHub Stats (May 2026)
+
+- **53,000+ stars** on GitHub
+- **1,200+ contributors**
+- **Latest release**: v0.260.7 (April 2026)
+- **Docker pulls**: 5M+
+- **Active Discord**: 4,800+ members
+
+## Advanced Usage: Production Hardening
+
+### 1. HTTPS with Nginx Reverse Proxy
+
+`````nginx
+# /etc/nginx/sites-available/nocodb
+server {
+    listen 443 ssl http2;
+    server_name nocodb.yourcompany.com;
+
+    ssl_certificate /etc/letsencrypt/live/yourcompany.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourcompany.com/privkey.pem;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#34;upgrade&#34;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+</code></pre><p>Enable and restart: `````bash
+sudo ln -s /etc/nginx/sites-available/nocodb /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl restart nginx</p><pre tabindex=0><code>
+### 2. Environment Variable Security
+
+`````bash
+# Create a secrets file
+sudo mkdir -p /opt/nocodb
+sudo tee /opt/nocodb/.env &gt; /dev/null &lt;&lt; EOF
+NC_DB=pg://db:5432?u=nocodb&amp;p=CHANGE_ME&amp;d=nocodb_meta
+NC_AUTH_JWT_SECRET=CHANGE_TO_64_CHAR_RANDOM_STRING
+NC_REDIS_URL=redis://redis:6379
+NC_SENTRY_DSN=https://xxx@sentry.io/yyy
+NC_PUBLIC_URL=https://nocodb.yourcompany.com
+EOF
+
+sudo chmod 600 /opt/nocodb/.env
+</code></pre><h3 id=3-role-based-access-control>3. Role-Based Access Control<a hidden class=anchor aria-hidden=true href=#3-role-based-access-control>#</a></h3><p>Configure granular permissions per base: 1. <strong>Project Settings</strong> → <strong>Data Sources</strong> → <strong>Users</strong>
+2. Assign roles: - <strong>Owner</strong> — Full control, can delete base</p><ul><li><strong>Creator</strong> — Create tables, views, automations</li><li><strong>Editor</strong> — Edit records, cannot modify schema</li><li><strong>Commenter</strong> — Add comments only</li><li><strong>Viewer</strong> — Read-only access</li></ul><p>Set <strong>column-level permissions</strong> to hide sensitive fields (e.g., salary, SSN) from non-HR users.</p><h3 id=4-database-backup-strategy>4. Database Backup Strategy<a hidden class=anchor aria-hidden=true href=#4-database-backup-strategy>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/backup/nocodb-backup.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Backup PostgreSQL data (your actual business data)</span>
+</span></span><span style=display:flex><span>pg_dump -h db.yourcompany.com -U postgres myapp_db &gt; <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  /backups/postgres-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.sql
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Backup NocoDB meta database</span>
+</span></span><span style=display:flex><span>docker exec nocodb-db-1 pg_dump -U nocodb nocodb_meta &gt; <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  /backups/nocodb-meta-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.sql
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Sync to S3 (optional)</span>
+</span></span><span style=display:flex><span>aws s3 sync /backups/ s3://yourcompany-backups/nocodb/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Keep only 7 days</span>
+</span></span><span style=display:flex><span>find /backups -name <span style=color:#e6db74>&#34;*.sql&#34;</span> -mtime +7 -delete
+</span></span></code></pre></div><p>Add to crontab: `````bash
+0 2 * * * /opt/backup/nocodb-backup.sh &#187; /var/log/nocodb-backup.log 2>&amp;1</p><pre tabindex=0><code>
+### 5. Monitoring with Prometheus
+
+`````yaml
+# docker-compose.monitoring.yml
+services: prometheus: image: prom/prometheus:v2.51.0
+    volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports: - &#34;9090:9090&#34;
+
+  grafana: image: grafana/grafana:10.4.0
+    ports: - &#34;3000:3000&#34;
+    volumes: - grafana-data:/var/lib/grafana
+
+volumes: grafana-data: `````
+
+## Comparison with Alternatives
+
+| Feature | NocoDB | Airtable | Baserow | Teable |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **License** | AGPL-3.0 | Proprietary | MIT | AGPL-3.0 |
+| **Self-hosted** | Yes | No | Yes | Yes |
+| **Connects to existing DB** | **Yes** (PG, MySQL, SQLite) | No | No | Yes |
+| **REST API** | Auto-generated | Limited rate | Auto-generated | Auto-generated |
+| **Kanban view** | Yes | Yes | Yes | Yes |
+| **Form view** | Yes | Yes | Yes | Yes |
+| **File attachments** | Yes | 20 GB (Pro) | Yes | Yes |
+| **Role-based access** | Yes | Yes | Yes | Yes |
+| **Webhook automations** | Yes | Paid plans | Yes | Limited |
+| **Price (20 users)** | **$6/mo VPS** | **$400/mo** | $100/mo | $0 (self-host) |
+| **Record limits** | **Unlimited** | 50,000 (Pro) | Unlimited | Unlimited |
+| **GitHub stars** | **53,000** | N/A | 8,200 | 14,500 |
+
+**When to choose NocoDB over each:**
+
+- **vs. Airtable**: You want data ownership, lower costs, no record limits, and the ability to connect to an existing database.
+- **vs. Baserow**: You need to connect to an existing PostgreSQL/MySQL database rather than creating a new one. Baserow has a more polished UI but forces you into its data model.
+- **vs. Teable**: You want broader database driver support (NocoDB supports SQL Server and MariaDB; Teable focuses on PostgreSQL). Teable has stronger AI integrations; NocoDB has deeper spreadsheet features.
+
+## Limitations: Honest Assessment
+
+**NocoDB is not perfect.** Before committing, consider these constraints: 1. **UI polish gap**: Airtable&#39;s interface is smoother. NocoDB&#39;s grid can feel sluggish with 100,000+ rows in the browser — though the underlying database handles it fine.
+
+2. **No native mobile app**: You get a responsive web UI, but there&#39;s no dedicated iOS/Android app like Airtable offers.
+
+3. **Limited formula support**: Formulas use SQL expressions, not Excel syntax. Non-technical users need a short learning curve.
+
+4. **Self-hosting burden**: You handle backups, updates, and security. The Cloud option exists but starts at $8/user/month, eating into the cost advantage.
+
+5. **License considerations**: NocoDB&#39;s AGPL-3.0 license requires releasing modifications if you distribute the software. For internal company use, this is a non-issue. For SaaS products built on NocoDB, consult legal.
+
+6. **Single Sign-On (SSO)**: Built-in SSO (SAML, OIDC) requires the Enterprise tier. Self-hosted users can work around this with a reverse proxy auth layer.
+
+## Frequently Asked Questions
+
+### Does NocoDB support connecting to multiple databases simultaneously?
+
+Yes. A single NocoDB instance can connect to multiple data sources. You can have one base connected to PostgreSQL, another to MySQL, and a third using the built-in SQLite — all accessible from the same dashboard. Each base is independent with its own permissions and views.
+
+### How does NocoDB handle schema changes in the underlying database?
+
+NocoDB syncs schema changes automatically. If you add a column via ````ALTER TABLE```` in PostgreSQL, click **&#34;Sync Now&#34;** in the base settings, and the new column appears in NocoDB within seconds. Existing views are preserved; you simply add the new field to whichever views need it.
+
+### Can I use NocoDB as a backend for a customer-facing application?
+
+Yes, via the REST API. However, NocoDB is designed as an internal tool, not a public API server. For customer-facing apps, use NocoDB as the admin panel for your team, and build a separate API layer that validates business logic before writing to the same database.
+
+### What happens when NocoDB goes down? Is my data safe?
+
+Your data lives in your PostgreSQL/MySQL database, completely separate from NocoDB. If the NocoDB container stops, your data is untouched. Other applications reading the same database continue working normally. NocoDB only stores view configurations, user accounts, and webhook definitions in its meta database.
+
+### How do I migrate from Airtable to NocoDB?
+
+Export each Airtable table as CSV. In NocoDB, create tables and use **&#34;Import CSV&#34;** to populate them. Re-create Airtable&#39;s &#34;Linked Records&#34; as NocoDB **&#34;Links&#34;** (foreign key relationships). Re-build views (Grid, Kanban, Gallery) manually. The NocoDB community has an Airtable-to-NocoDB migration script available on GitHub that handles bulk conversion.
+
+### Does NocoDB support real-time collaboration like Airtable?
+
+Yes, but with caveats. Multiple users can edit the same base simultaneously, and changes appear in real-time via WebSocket. However, conflict resolution is last-write-wins, not operational transforms. For most use cases (different users editing different rows), this is fine. Heavy concurrent editing of the same row can cause overwrites.
+
+### Is there a way to run NocoDB without Docker?
+
+Yes. NocoDB provides standalone executables for Linux, macOS, and Windows. Download the latest binary from the GitHub releases page, make it executable, and run ````./nocodb````. However, Docker remains the recommended deployment method for production due to easier updates and dependency management.
+
+## Conclusion: Your Data, Your Rules
+
+NocoDB fills a specific gap: giving non-technical teams the usability of Airtable while keeping data in databases that engineers control. The **53,000 GitHub stars**, active release cycle, and growing plugin ecosystem make it a viable choice for 2026 and beyond.
+
+If you are paying Airtable $200+/month and have a PostgreSQL or MySQL database already running, NocoDB pays for itself in the first month. The Docker setup takes 5 minutes. The migration from Airtable is a weekend project. The freedom of owning your data is permanent.
+
+**Start now**: [Deploy NocoDB on DigitalOcean](https://m.do.co/c/eca87ac14ee0) with a $6 Droplet, or run ````docker run nocodb/nocodb:latest``` locally to explore before committing.
+
+**Join the community**: [NocoDB Discord](https://discord.gg/5ZjDgHEG5H) | [GitHub Discussions](https://github.com/nocodb/nocodb/discussions)
+
+**Related tools**: [n8n Workflow Automation](n8n-workflow-automation-dibi8-internal-link) | [Metabase BI Setup Guide](metabase-bi-setup-dibi8-internal-link)
+
+
+* * *
+## Recommended Hosting &amp; Infrastructure
+
+Before you deploy any of the tools above into production, you&#39;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+
+*Affiliate links — they don&#34;t cost you extra and they help keep dibi8.com running.*
+
+## Sources &amp; Further Reading
+
+- [NocoDB Official Documentation](https://docs.nocodb.com/)
+- [NocoDB GitHub Repository](https://github.com/nocodb/nocodb) — 53,000+ stars
+- [NocoDB Docker Hub](https://hub.docker.com/r/nocodb/nocodb)
+- [NocoDB API Reference](https://docs.nocodb.com/developer-resources/rest-APIs/)
+- [NocoDB vs Airtable: Feature Comparison](https://nocodb.com/compare/airtable)
+- [PostgreSQL Official Documentation](https://www.postgresql.org/docs/)
+- [Deploy Docker on Ubuntu — DigitalOcean Docs](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)
+
+* * *
+
+*This article may contain affiliate links. If you sign up for DigitalOcean through our referral link, we receive a commission at no extra cost to you. We only recommend services we use ourselves.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;NocoDB 2026: The Open-Source Airtable Alternative Turning Any Database into a Smart Spreadsheet — Complete Setup Guide&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/noco-db-airtable-alternative&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [database-management-tools-comparison](noco-db-airtable-alternative)
+- [chroma-vector-database-python](noco-db-airtable-alternative)
+- [zilliz-milvus-vector-database-scale](noco-db-airtable-alternative)
+- [qdrant-vector-database-rust](noco-db-airtable-alternative)
+- [vector-database-comparison](noco-db-airtable-alternative)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

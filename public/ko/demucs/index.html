@@ -1,0 +1,315 @@
+<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/demucs/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/demucs/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/demucs/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/demucs/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/demucs/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/demucs/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/ko/demucs/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“demucs”, “음악소스분리”, “ai오디오”, “스템분리”, “pytorch”, “docker”, “오픈소스”] aliases:\n/kr/posts/demucs/ 믹스된 곡을 보컬, 드럼, 베이스, 기타 등 개별 악기 트랙으로 분리하는 것은 원래 원본 멀티트랙 스튜디오 파일이 필요했다. 딥러닝 모델이 완성된 오디오를 “언믹스(unmix)“하는 방법을 학습하면서 이 상황은 바뀌었다. 오늘날 음악가, 프로듀서, 개발자들은 노래방 트랙 제작, 샘플 추출, 리믹스 준비, 보이스 컨버전 파이프라인을 위해 이러한 도구를 사용한다. 오픈 소스 옵션 중 하나가 대화를 지배하는 모델이 있다: Demucs — Meta의 하이브리드 트랜스포머 아키텍처로 GitHub에서 10,000개 이상의 스타를 보유하고 MUSDB18-HQ 데이터셋에서 최고 수준의 벤치마크를 달성한 모델.\n이 가이드에서는 Demucs의 작동 원리, 로컬 설치 방법, Spleeter 및 Ultimate Vocal Remover와의 비교, 실제 프로덕션 워크플로우에 통합하는 방법을 소개한다.\nDemucs란?** Demucs(Deep Extractor for Music Sources)는 Meta AI Research에서 개발한 오픈 소스 음악 소스 분리 모델이다. 스테레오 오디오 믹스를 입력으로 받아 분리된 “스템(stem)” — 일반적으로 보컬, 드럼, 베이스, 기타와 키보드 등 나머지 악기가 포함된 “기타(other)” 트랙 — 을 출력한다.\n프로젝트는 GitHub의 ```facebookresearch/demucs저장소에 있으며 10,100개 이상의 스타와 1,500개의 포크를 달성했다. 저장소는 2025년 1월 1일에 Meta에 의해 아카이브되었지만, 원작자 Alexandre Defossez가adefossez/demucs````에서 활발한 포크를 유지하고 있다. 최신 안정 버전은 v4.1.0이며 전체 프로젝트는 MIT 라이선스를 따른다.\nDemucs를 이전 도구와 차별화하는 핵심은 하이브리드 접근 방식이다: 동시에 시간 영역(원본 파형)과 주파수 영역(스펙트로그램)에서 오디오를 처리한 뒤 두 표현을 융합한다. 이러한 이중 영역 처리는 순수 스펙트럼 방식이 손실시키는 위상 정보를 보존하여 더 깨끗한 분리와 더 적은 금속성 아티팩트를 제공한다.\nDemucs 작동 방식 아키텍처 개요 Demucs의 현재 세대 — 공식명 Hybrid Transformer Demucs (HTDemucs) — 트랜스포머 레이어가 추가된 U-Net 컨볼루션 백본을 기반으로 한다. 아키텍처는 개념적으로 세 단계로 구성된다: 1. 인코더: 입력 파형이 시간 영역 인코더(1D 컨볼루션)와 주파수 영역 인코더(STFT 후 2D 컨볼루션)를 동시에 통과한다. 이러한 이중 인코딩은 미세한 시간적 세부 정보와 고조파 주파수 구조를 모두 포착한다.\n트랜스포머 병목: U-Net의 가장 깊은 레이어는 각 영역 내에서 자기 주의를, 영역 간에는 교차 주의를 수행하는 교차 영역 트랜스포머 인코더를 사용한다. 이 메커니즘은 장거리 종속성을 모델링한다 — 예를 들어 유사한 음역의 기타 선율과 여러 마디에 걸친 보컬 멜로디를 분리하는 데 매우 중요하다.\n디코더: 별도의 디코더가 두 영역에서 각 소스(드럼, 베이스, 기타, 보컬)를 재구성하고, 융합 레이어가 최종 분리된 파형으로 결합한다.\n사용 가능한 모델 Demucs는 다양한 속도/품질 트레이드오프에 최적화된 여러 사전 학습 모델을 제공한다: | 모델 | 스템 수 | VRAM | SDR (MUSDB) | 사용 사례 | |——|———|——|————-|———–| | htdemucs | 4 | ~5.2 GB | 7.1 dB | 기본값, 속도/품질 최적 균형 | | htdemucs_ft | 4 | ~7.8 GB | 7.8 dB | 최대 품질, ~4배 느림 | | htdemucs_6s | 6 | ~6.5 GB | 6.8 dB | 기타+피아노 분리 | | mdx_extra_q | 4 | ~3.0 GB | 6.5 dB | 저VRAM 시스템 |\nhtdemucs_ft 모델은 MUSDB18-HQ에서 7.8 dB의 전체 SDR을 달성하며, 소스별로는 보컬 8.5 dB, 베이스 7.5 dB, 드럼 8.9 dB, “기타” 카테고리 6.2 dB를 기록한다. 참고로 0 dB는 원본 믹스 대비 분리 개선이 없음을 의미한다.\n설치 및 설정 사전 요구사항 Demucs를 설치하기 전에 환경을 확인한다: `````bash\nPython 3.8+ 필수 python –version\nFFmpeg 설치 필요 ffmpeg -version\n(선택) NVIDIA GPU + CUDA 11.8+ (가속용) nvidia-smi\n### 옵션 1: pip 설치 (가장 빠름) Demucs를 실행하는 가장 간단한 방법: `````bash # 가상 환경 생성 python -m venv demucs-env source demucs-env/bin/activate # Linux/macOS # demucs-env\\Scripts\\activate # Windows # Demucs 설치 pip install -U demucs # 설치 확인 demucs --help 옵션 2: Conda + GPU 지원 (권장) GPU 가속 추론 및 훈련을 위해: `````bash\n저장소 클론 git clone https://github.com/adefossez/demucs.git cd demucs\n공식 명세로 환경 생성 conda env update -f environment-cuda.yml conda activate demucs\n개발 모드 설치 pip install -e .\nGPU 감지 확인 python -c “import torch; print(f’CUDA available: {torch.cuda.is_available()}’)”\n### 옵션 3: Docker (가장 깔끔한 격리) 재현 가능한, 의존성 없는 배포를 위해: `````bash # Dockerfile FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime RUN pip install -U demucs WORKDIR /audio ENTRYPOINT [\"demucs\"] 빌드 및 실행: `````bash docker build -t demucs . docker run –gpus all -v $(pwd):/audio demucs song.mp3\n**Docker Compose (배치 서비스용):** `````yaml version: '3.8' services: demucs: build: . runtime: nvidia environment: - NVIDIA_VISIBLE_DEVICES=all volumes: - ./input:/audio/input:ro - ./output:/audio/output command: [\"-n\", \"htdemucs_ft\", \"--mp3\", \"-o\", \"/audio/output\", \"/audio/input\"] 첫 번째 분리 실행 설치 후 첫 번째 트랙을 분리한다: `````bash\n기본 모델로 4스템 분리 demucs song.mp3\n출력 위치: ./separated/htdemucs/song/ 포함: drums.wav, bass.wav, other.wav, vocals.wav 미세 조정 모델로 더 나은 품질 demucs -n htdemucs_ft song.mp3\n보컬만 분리 demucs –two-stems=vocals song.mp3\nMP3로 출력 (더 작은 파일) demucs –mp3 –mp3-bitrate 320 song.mp3\n### 모델 다운로드 및 캐시 확인 모델은 처음 사용 시 자동으로 다운로드된다. 캐시를 확인하려면: `````bash # 다운로드된 모델 목록 ls ~/.cache/torch/hub/checkpoints/ # 예상 출력: # htdemucs-*.th, htdemucs_ft-*.th # 어떤 모델이 사용될지 확인 demucs -n htdemucs_ft --help | grep \"name\" # 짧은 오디오 파일로 빠른 테스트 ffmpeg -f lavfi -i \"sine=frequency=1000:duration=5\" test_tone.wav demucs -n htdemucs test_tone.wav 인기 도구와의 통합 Ultimate Vocal Remover (UVR) Ultimate Vocal Remover는 Demucs의 가장 인기 있는 GUI 프론트엔드이다. 대부분의 프로듀서는 Demucs를 명령줄이 아닌 UVR을 통해 사용하는데, UVR은 Demucs 모델을 다른 아키텍처와 번들링하고 앙상블 처리를 추가하기 때문이다.\nUVR에서의 구성: 1. 공식 GitHub Releases에서 UVR5 다운로드 2. UI에서 Process Method: “Demucs” 선택 3. 모델 선택: V4 | htdemucs_ft 4. 가능한 경우 GPU Conversion 활성화 5. 최상의 결과를 위해 Ensemble Mode에서 htdemucs_ft + MDX-Net 조합 사용\nUVR의 앙상블 모드는 여러 모델을 병렬로 실행하고 출력을 혼합하며, 어떤 단일 모델보다 일관되게 더 깨끗한 분리 결과를 생성한다. 비용은 처리 시간이다 — 앙상블 실행은 단일 모델보다 대략 3–5배 느리다.\nRVC (Retrieval-based Voice Conversion) RVC 파이프라인은 보이스 추출 전 보컬을 분리하는 전처리 단계로 일반적으로 Demucs를 사용한다: `````python import subprocess import os\ndef preprocess_for_rvc(input_song, output_dir): “““RVC 보이스 컨버전을 위해 깨끗한 보컬 추출.””” os.makedirs(output_dir, exist_ok=True)\n# 단계 1: Demucs로 분리 subprocess.run([ demucs, '-n', htdemucs_ft, '--two-stems=vocals', '-o', output_dir, input_song ], check=True) # 단계 2: 분리된 보컬 경로 반환 base = os.path.splitext(os.path.basename(input_song))[0] vocals_path = os.path.join( output_dir, htdemucs_ft, base, 'vocals.wav' ) return vocals_path 사용 vocals = preprocess_for_rvc(‘input.mp3’, ‘./separated’)\n보컬을 RVC에 입력하여 보이스 컨버전 수행 ### GPT-SoVITS GPT-SoVITS 보이스 클로닝에는 깨끗한 레퍼런스 오디오가 필요하다. Demucs는 샘플을 TTS 파이프라인에 입력하기 전에 배경 음악을 제거한다: `````python from demucs.api import Separator import torchaudio separator = Separator(model=\"htdemucs\", device=\"cuda\") # 분리 및 보컬 추출 origin, separated = separator.separate_audio_file(\"reference.mp3\") vocals = separated[\"vocals\"] # GPT-SoVITS용 24kHz로 저장 torchaudio.save(\"clean_reference.wav\", vocals, 24000) Gradio 웹 인터페이스 자체 호스팅 분리 서비스를 위해: `````python import gradio as gr from demucs.api import Separator\nseparator = Separator(model=“htdemucs_ft”)\ndef separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file) output_path = f”{stem}.wav” separator.save_audio(separated[stem], output_path, samplerate=44100) return output_path\ndemo = gr.Interface( fn=separate, inputs=[ gr.Audio(type=“filepath”, label=“곡 업로드”), gr.Dropdown( choices=[“vocals”, “drums”, “bass”, “other”], value=“vocals”, label=“스템” ) ], outputs=gr.Audio(label=“분리된 스템”), title=“Demucs 소스 분리”, description=“Meta의 Demucs 모델로 음악을 스템으로 분리” )\ndemo.launch(server_name=“0.0.0.0”, server_port=7860)\n## 벤치마크 / 실제 사용 사례 ### MUSDB18-HQ 벤치마크 결과 MUSDB18-HQ는 150개의 전체 길이 곡과 분리된 스템 정답을 포함하는 음악 소스 분리의 표준 벤치마크 데이터셋이다. 더 높은 SDR(신호 왜곡 비율)은 더 깨끗한 분리를 의미한다. | 모델 | 전체 SDR | 보컬 | 드럼 | 베이스 | 기타 | 속도 (RTX 3090) | |------|----------|------|------|--------|------|-----------------| | **HTDemucs FT (v4)** | **7.8 dB** | **8.5 dB** | **8.9 dB** | **7.5 dB** | **6.2 dB** | ~4배 실시간 | | HTDemucs (v4) | 7.1 dB | 7.8 dB | 8.2 dB | 6.9 dB | 5.6 dB | ~16배 실시간 | | Hybrid Demucs (v3) | 7.7 dB | 8.1 dB | 8.5 dB | 7.2 dB | 5.9 dB | ~12배 실시간 | | Spleeter 4stems | 5.9 dB | 6.3 dB | 6.8 dB | 5.4 dB | 4.2 dB | ~100배 실시간 | | Open-Unmix | 5.3 dB | 6.2 dB | 5.9 dB | 4.7 dB | 4.2 dB | ~80배 실시간 | ### 프로덕션 사용 사례 **노래방 트랙 생성**: ````--two-stems=vocals```` 옵션은 drums + bass + other를 혼합하고 보컬 트랙을 버려서 인스트루멘탈을 생성한다. 4분짜리 곡을 GPU에서 30초 이내에 처리한다. **프로듀서 샘플 추출**: 풀 믹스에서 드럼 브레이크, 베이스라인, 멜로딕 엘리먼트를 분리한다. ````htdemucs_6s```` 모델은 기타와 피아노 분리를 추가하지만, 이러한 스템의 품질은 주요 4스템보다 낮다. **보이스 컨버전 전처리**: 깨끗한 보컬 추출은 RVC, GPT-SoVITS 등 보이스 클로닝 파이프라인의 필수 전제조건이다. Demucs는 일관되게 순수 스펙트럼 방식보다 적은 블리드를 생성한다. **오디오 복원**: 기록 보관 전문가는 역사적 녹음을 분리하여 개별 스템에서 노이즈 감소를 수행한 뒤 재믹싱한다. ### 처리 시간 참고 44.1kHz 스테레오 4분 트랙 기준: | 하드웨어 | htdemucs | htdemucs_ft | htdemucs_6s | |----------|----------|-------------|-------------| | RTX 4080 GPU | ~15초 | ~55초 | ~25초 | | RTX 3080 GPU | ~20초 | ~75초 | ~35초 | | Apple M3 (MPS) | ~45초 | ~3분 | ~70초 | | Intel i7-13700 CPU | ~5분 | ~18분 | ~8분 | ## 고급 사용법 / 프로덕션 하드닝 ### 커스텀 파이프라인을 위한 Python API 프로그래밍 제어를 위해 CLI를 우회하고 Python API를 직접 사용한다: `````python import torch import torchaudio from demucs.pretrained import get_model from demucs.apply import apply_model # 모델 로드 device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\") model = get_model(\"htdemucs_ft\") model.to(device) model.eval() # 오디오 로드 wav, sr = torchaudio.load(\"input.mp3\") # 스테레오 확인 if wav.shape[0] == 1: wav = wav.repeat(2, 1) # 배치 차원 추가 mix = wav.unsqueeze(0).to(device) # 최적화된 설정으로 분리 with torch.no_grad(): sources = apply_model( model, mix, shifts=1, # Shift trick: 높을수록 품질 ↑, 속도 ↓ split=True, # 청크 단위 처리 (긴 오디오 필수) overlap=0.25, # 청크 간 오버랩 segment=10, # 세그먼트 길이(초) progress=True, device=device )[0] # sources 형태: (num_sources, channels, samples) source_names = model.sources # [drums, bass, other, vocals] # 개별 스템 저장 for i, name in enumerate(source_names): torchaudio.save(f\"{name}.wav\", sources[i].cpu(), sr) 배치 처리 파이프라인 from pathlib import Path import subprocess import json def batch_separate(input_dir, output_dir, model=\"htdemucs\"): \"\"\"디렉토리의 모든 오디오 파일 처리.\"\"\" input_dir = Path(input_dir) output_dir = Path(output_dir) output_dir.mkdir(parents=True, exist_ok=True) audio_exts = {'.mp3', '.wav', '.flac', '.ogg', '.m4a'} files = [f for f in input_dir.iterdir() if f.suffix in audio_exts] # 단일 Demucs 호출로 모든 파일 처리 subprocess.run([ demucs, '-n', model, '-o', str(output_dir), '--mp3', '--mp3-bitrate', 320, *[str(f) for f in files] ], check=True) # 메타데이터 매니페스트 생성 manifest = {} for f in files: base = f.stem stem_dir = output_dir / model / base manifest[base] = { drums: str(stem_dir / 'drums.mp3'), bass: str(stem_dir / 'bass.mp3'), other: str(stem_dir / 'other.mp3'), vocals: str(stem_dir / 'vocals.mp3'), } with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2) return manifest # 사용 batch_separate('./raw_songs/', './stems/', model=htdemucs_ft) 긴 파일의 메모리 최적화 Demucs는 전체 오디오 파일을 GPU 메모리에 로드한다. 긴 트랙이나 제한된 VRAM의 경우: `````python\n대용량 파일을 위한 CPU 오프로드 강제 import os os.environ[PYTORCH_CUDA_ALLOC_CONF] = ‘max_split_size_mb:128’\n더 작은 세그먼트 사용 sources = apply_model( model, mix, split=True, segment=7, # 기본 ~10초에서 7초로 감소 overlap=0.1, # 오버랩 감소 device=device )[0]\n### 모니터링 및 로깅 `````python import logging import time logging.basicConfig(level=logging.INFO) logger = logging.getLogger(demucs) def separate_with_metrics(input_path, output_dir): start = time.time() separator = Separator(model=\"htdemucs_ft\", device=\"cuda\") origin, separated = separator.separate_audio_file(input_path) duration = time.time() - start logger.info(f\"{input_path} 분리 완료: {duration:.1f}초\") # 스템별 레벨 로깅 for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item() logger.info(f\" {name}: RMS={rms:.4f}\") return separated 대안과의 비교 기능 Demucs (v4) Ultimate Vocal Remover Spleeter Open-Unmix 아키텍처 하이브리드 파형 + 스펙트럼 + Transformer GUI 래퍼 (다중 백엔드) 스펙트럼 U-Net 스펙트럼 LSTM MUSDB SDR 7.8 dB (htdemucs_ft) N/A (Demucs/MDX 사용) 5.9 dB 5.3 dB 최대 스템 수 6 (보컬, 드럼, 베이스, 기타, 피아노, 기타) 4 (모델에 따라 다름) 5 (sides 포함) 4 GPU 필요 여부 권장 권장 선택 선택 처리 속도 ~4–16배 실시간 (GPU) ~3–10배 실시간 (앙상블) ~100배 실시간 ~80배 실시간 VRAM 사용량 5–8 GB 6–12 GB (앙상블) \u003c2 GB \u003c2 GB 활발한 개발 커뮤니티 포크 활발 아카이브 (2021) 유지보수 모드 라이선스 MIT MIT MIT MIT 최적 사용처 품질 우선 분리 쉬운 GUI + 앙상블 빠른 배치 처리 경량 배포 선택 가이드: 최대 분리 품질이 필요하고 자동화된 파이프라인을 구축할 때는 Demucs를 직접 사용한다. GUI와 앙상블 처리를 원할 때는 UVR을 사용한다. 제한된 하드웨어에서 최대 속도가 필요하거나 레거시 코드를 유지할 때만 Spleeter를 사용한다. Open-Unmix는 교육 목적과 자원이 제한된 엣지 배포에 여전히 적합하다.\n한계 / 정직한 평가 Demucs는 모든 오디오 작업에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다: 실시간 분리: 가장 빠른 Demucs 모델(htdemucs)도 RTX 4080에서 약 16배 실시간으로 처리한다. 이는 라이브 공연이나 실시간 스트리밍 애플리케이션에는 너무 느리다. Spleeter나 전문화된 ONNX 익스포트와 같은 지연 시간에 민감한 사용 사례에 더 적합하다.\n기타 및 피아노 분리: htdemucs_6s 모델은 기타와 피아노를 별도의 스템으로 분리하려 시도하지만, 이러한 소스의 SDR은 주요 4스템보다 현저히 낮다. 특정 기타 트랙 분리가 주요 필요라면 Basic Pitch와 같은 전문화된 전사 도구가 더 적합할 수 있다.\n고도로 압축된 마스터링: 무거운 리미팅이 적용된 음량 극대화 트랙(현대 EDM과 팝에서 흔함)은 주파수 마스킹을 생성하여 분리 모델을 혼란스럽게 한다. Demucs는 이러한 트랙에서 더 넓은 다이낙믹 믹스에서는 나타나지 않는 소용돌이 소리나 교차 소스 블리드와 같은 아티팩트를 생성할 수 있다.\n모델 크기: htdemucs_ft는 ~2 GB로 Spleeter(~150 MB)보다 한 차례 더 크다. 이는 엣지 배포, 모바일 앱, 콜드 스타트 제약이 있는 서버리스 환경에서 중요한 요소이다.\n업스트림 아카이브: 원본 facebookresearch/demucs 저장소는 아카이브되어 더 이상 유지되지 않는다. adefossez/demucs가 활발하지만 장기적인 유지보수 방향은 불확실하다. 이를 의존성 계획에 고려하라.\n자주 묻는 질문 Q: Demucs를 실행하려면 어떤 하드웨어가 필요한가? A: Demucs는 CPU에서 실행되지만 6GB 이상 VRAM의 NVIDIA GPU를 강력히 권장한다. htdemucs 모델에는 5.2GB VRAM이면 충분하고 htdemucs_ft에는 8GB가 필요하다. CPU 전용 처리는 가능하지만 4분짜리 곡을 처리하는 데 GPU의 5–20분이 소요된다.\nQ: Demucs를 상업적으로 사용할 수 있나? A: 예. Demucs는 MIT 라이선스로 상업적 사용, 수정, 배포를 제한 없이 허용한다. 분리된 스템은 상업적 릴리스에 사용할 수 있다. MIT 라이선스는 코드와 모델에 적용되며, 처리하는 음악의 저작권에는 적용되지 않는다.\nQ: 왜 Demucs가 Spleeter보다 더 좋게 들리나? A: Demucs는 시간 영역과 주파수 영역에서 동시에 오디오를 처리하여 순수 스펙트럼 방식이 버리는 위상 정보를 보존한다. 트랜스포머 레이어도 Spleeter의 U-Net보다 장거리 음악적 종속성을 더 잘 모델링한다. 이는 더 적은 아티팩트와 더 적은 교차 소스 간섭으로 이어진다.\nQ: 전체 앨범을 효율적으로 처리하려면? A: 여러 파일을 단일 Demucs 호출에 전달한다: demucs -n htdemucs *.mp3. Demucs는 순차적으로 처리하지만 반복적인 모델 로딩 오버헤드를 피한다. 최대 처리량을 위해 서로 다른 GPU에서 여러 Demucs 인스턴스를 실행하거나 고급 사용법 섹션의 배치 처리 스크립트를 사용한다.\nQ: Demucs는 어떤 오디오 형식을 지원하나? A: Demucs는 디코딩용 FFmpeg와 인코딩용 torchaudio를 사용한다. 입력: MP3, WAV, FLAC, OGG, M4A 및 FFmpeg가 지원하는 모든 형식. 출력: WAV(기본, 16비트), float32 WAV(--float32), 24비트 WAV(--int24) 또는 MP3(--mp3, 비트레이트 조절 가능).\nQ: 자체 데이터로 Demucs를 미세 조정할 수 있나? A: 예, 하지만 전체 훈련 파이프라인이 필요하다. 훈련 노래의 분리된 스템(MUSDB18-HQ와 동일한 형식)이 필요하며, Dora 실험 관리자를 사용하여 dora run -d solver=htdemucs dset=your_dataset를 실행한다. 대부분의 사용자는 이것이 필요 없다 — 사전 학습된 모델은 장르 간에 잘 일반화된다.\nQ: htdemucs와 htdemucs_ft의 차이는? A: htdemucs_ft는 추가 훈련 데이터로 소스별로 미세 조정되고 기본적으로 shift trick이 활성화되어 있다. 모든 소스에서 약 0.7 dB 더 높은 SDR을 달성하지만 약 4배 더 느리고 VRAM을 50% 더 사용한다. 빠른 반복에는 htdemucs를, 최종 프로덕션 품질 출력에는 htdemucs_ft를 사용한다.\n결론 Demucs는 2026년 현재 오픈 소스 음악 소스 분리의 기준 구현체로 남아 있다. 하이브리드 트랜스포머 아키텍처는 표준 벤치마크에서 Spleeter보다 20–40% 높은 분리 품질을 제공하며, 보이스 컨버전 파이프라인, 노래방 생성기, 오디오 제작 도구와 깔끔하게 통합된다.\n오디오 파이프라인을 구축하는 개발자에게 Demucs는 문서화된 Python API, Docker 지원, 다양한 속도/품질 트레이드오프를 위한 여러 모델 변형을 제공한다. MIT 라이선스는 상업적 마찰을 제거한다. 주의사항은 하드웨어 요구사항(GPU 강력 권장), 모델 크기(~2 GB), 업스트림 저장소의 아카이브 상태이다.\n실행 항목: pip install -U demucs로 Demucs를 설치하고 ````demucs -n htdemucs_ft song.mp3```로 테스트 트랙에서 첫 분리를 실행한 뒤, 위의 Python API 예제를 사용하여 파이프라인에 통합하라. GUI 환경을 원한다면 Ultimate Vocal Remover를 다운로드하여 앙상블 모드를 사용하라.\ndibi8.com Telegram 그룹에 가입하여 매주 오픈 소스 AI 도구 심층 분석을 받아보세요: https://t.me/dibi8channel\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n참고 및 추가 자료 Demucs GitHub 저장소 (Meta, 아카이브됨) Demucs 활발한 포크 (adefossez) Hybrid Transformers for Music Source Separation (논문) MUSDB18-HQ 벤치마크 데이터셋 Ultimate Vocal Remover GUI Spleeter (Deezer, 아카이브됨) Open-Unmix (Sony) MVSEP 품질 체커 리더보드 Audio Developers Conference 2025 — Demucs ONNX 익스포트 발표 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/demucs\" } } Related Articles wandb-ml-experiment-tracking-platform-2026 wandb-ml-experiment-tracking-platform-2026 egonex-understand-anything-interactive-knowledge-graph-ai bytedance-ui-tars-desktop-ai-agent-guide mattpocock-skills-ai-agent-framework-guide Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"2651","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/demucs/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/demucs/>En</a></li><li><a href=https://dibi8.com/zh/demucs/>Zh</a></li><li><a href=https://dibi8.com/vi/demucs/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#demucs%eb%9e%80 aria-label=Demucs란?**>Demucs란?**</a></li><li><a href=#demucs-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="Demucs 작동 방식">Demucs 작동 방식</a><ul><li><a href=#%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94 aria-label="아키텍처 개요">아키텍처 개요</a></li><li><a href=#%ec%82%ac%ec%9a%a9-%ea%b0%80%eb%8a%a5%ed%95%9c-%eb%aa%a8%eb%8d%b8 aria-label="사용 가능한 모델">사용 가능한 모델</a></li></ul></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95 aria-label="설치 및 설정">설치 및 설정</a><ul><li><a href=#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad aria-label="사전 요구사항">사전 요구사항</a></li></ul></li></ul><li><a href=#python-38-%ed%95%84%ec%88%98 aria-label="Python 3.8+ 필수">Python 3.8+ 필수</a></li><li><a href=#ffmpeg-%ec%84%a4%ec%b9%98-%ed%95%84%ec%9a%94 aria-label="FFmpeg 설치 필요">FFmpeg 설치 필요</a></li><li><a href=#%ec%84%a0%ed%83%9d-nvidia-gpu--cuda-118-%ea%b0%80%ec%86%8d%ec%9a%a9 aria-label="(선택) NVIDIA GPU + CUDA 11.8+ (가속용)">(선택) NVIDIA GPU + CUDA 11.8+ (가속용)</a><ul><ul><li><a href=#%ec%98%b5%ec%85%98-2-conda--gpu-%ec%a7%80%ec%9b%90-%ea%b6%8c%ec%9e%a5 aria-label="옵션 2: Conda + GPU 지원 (권장)">옵션 2: Conda + GPU 지원 (권장)</a></li></ul></ul></li><li><a href=#%ec%a0%80%ec%9e%a5%ec%86%8c-%ed%81%b4%eb%a1%a0 aria-label="저장소 클론">저장소 클론</a></li><li><a href=#%ea%b3%b5%ec%8b%9d-%eb%aa%85%ec%84%b8%eb%a1%9c-%ed%99%98%ea%b2%bd-%ec%83%9d%ec%84%b1 aria-label="공식 명세로 환경 생성">공식 명세로 환경 생성</a></li><li><a href=#%ea%b0%9c%eb%b0%9c-%eb%aa%a8%eb%93%9c-%ec%84%a4%ec%b9%98 aria-label="개발 모드 설치">개발 모드 설치</a></li><li><a href=#gpu-%ea%b0%90%ec%a7%80-%ed%99%95%ec%9d%b8 aria-label="GPU 감지 확인">GPU 감지 확인</a><ul><ul><li><a href=#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%eb%b6%84%eb%a6%ac-%ec%8b%a4%ed%96%89 aria-label="첫 번째 분리 실행">첫 번째 분리 실행</a></li></ul></ul></li><li><a href=#%ea%b8%b0%eb%b3%b8-%eb%aa%a8%eb%8d%b8%eb%a1%9c-4%ec%8a%a4%ed%85%9c-%eb%b6%84%eb%a6%ac aria-label="기본 모델로 4스템 분리">기본 모델로 4스템 분리</a></li><li><a href=#%ec%b6%9c%eb%a0%a5-%ec%9c%84%ec%b9%98-separatedhtdemucssong aria-label="출력 위치: ./separated/htdemucs/song/">출력 위치: ./separated/htdemucs/song/</a></li><li><a href=#%ed%8f%ac%ed%95%a8-drumswav-basswav-otherwav-vocalswav aria-label="포함: drums.wav, bass.wav, other.wav, vocals.wav">포함: drums.wav, bass.wav, other.wav, vocals.wav</a></li><li><a href=#%eb%af%b8%ec%84%b8-%ec%a1%b0%ec%a0%95-%eb%aa%a8%eb%8d%b8%eb%a1%9c-%eb%8d%94-%eb%82%98%ec%9d%80-%ed%92%88%ec%a7%88 aria-label="미세 조정 모델로 더 나은 품질">미세 조정 모델로 더 나은 품질</a></li><li><a href=#%eb%b3%b4%ec%bb%ac%eb%a7%8c-%eb%b6%84%eb%a6%ac aria-label="보컬만 분리">보컬만 분리</a></li><li><a href=#mp3%eb%a1%9c-%ec%b6%9c%eb%a0%a5-%eb%8d%94-%ec%9e%91%ec%9d%80-%ed%8c%8c%ec%9d%bc aria-label="MP3로 출력 (더 작은 파일)">MP3로 출력 (더 작은 파일)</a><ul><li><a href=#%ec%9d%b8%ea%b8%b0-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9 aria-label="인기 도구와의 통합">인기 도구와의 통합</a><ul><li><a href=#ultimate-vocal-remover-uvr aria-label="Ultimate Vocal Remover (UVR)">Ultimate Vocal Remover (UVR)</a></li><li><a href=#rvc-retrieval-based-voice-conversion aria-label="RVC (Retrieval-based Voice Conversion)">RVC (Retrieval-based Voice Conversion)</a></li></ul></li></ul></li><li><a href=#%ec%82%ac%ec%9a%a9 aria-label=사용>사용</a></li><li><a href=#%eb%b3%b4%ec%bb%ac%ec%9d%84-rvc%ec%97%90-%ec%9e%85%eb%a0%a5%ed%95%98%ec%97%ac-%eb%b3%b4%ec%9d%b4%ec%8a%a4-%ec%bb%a8%eb%b2%84%ec%a0%84-%ec%88%98%ed%96%89 aria-label="보컬을 RVC에 입력하여 보이스 컨버전 수행">보컬을 RVC에 입력하여 보이스 컨버전 수행</a><ul><ul><li><a href=#gradio-%ec%9b%b9-%ec%9d%b8%ed%84%b0%ed%8e%98%ec%9d%b4%ec%8a%a4 aria-label="Gradio 웹 인터페이스">Gradio 웹 인터페이스</a></li><li><a href=#%eb%b0%b0%ec%b9%98-%ec%b2%98%eb%a6%ac-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8 aria-label="배치 처리 파이프라인">배치 처리 파이프라인</a></li><li><a href=#%ea%b8%b4-%ed%8c%8c%ec%9d%bc%ec%9d%98-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%b5%9c%ec%a0%81%ed%99%94 aria-label="긴 파일의 메모리 최적화">긴 파일의 메모리 최적화</a></li></ul></ul></li><li><a href=#%eb%8c%80%ec%9a%a9%eb%9f%89-%ed%8c%8c%ec%9d%bc%ec%9d%84-%ec%9c%84%ed%95%9c-cpu-%ec%98%a4%ed%94%84%eb%a1%9c%eb%93%9c-%ea%b0%95%ec%a0%9c aria-label="대용량 파일을 위한 CPU 오프로드 강제">대용량 파일을 위한 CPU 오프로드 강제</a></li><li><a href=#%eb%8d%94-%ec%9e%91%ec%9d%80-%ec%84%b8%ea%b7%b8%eb%a8%bc%ed%8a%b8-%ec%82%ac%ec%9a%a9 aria-label="더 작은 세그먼트 사용">더 작은 세그먼트 사용</a><ul><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대안과의 비교">대안과의 비교</a></li><li><a href=#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li><li><a href=#%ec%b0%b8%ea%b3%a0-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c aria-label="참고 및 추가 자료">참고 및 추가 자료</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-tools&rdquo;]
+tags: [&ldquo;demucs&rdquo;, &ldquo;음악소스분리&rdquo;, &ldquo;ai오디오&rdquo;, &ldquo;스템분리&rdquo;, &ldquo;pytorch&rdquo;, &ldquo;docker&rdquo;, &ldquo;오픈소스&rdquo;]
+aliases:</p><ul><li>/kr/posts/demucs/</li></ul><hr><p>믹스된 곡을 보컬, 드럼, 베이스, 기타 등 개별 악기 트랙으로 분리하는 것은 원래 원본 멀티트랙 스튜디오 파일이 필요했다. 딥러닝 모델이 완성된 오디오를 &ldquo;언믹스(unmix)&ldquo;하는 방법을 학습하면서 이 상황은 바뀌었다. 오늘날 음악가, 프로듀서, 개발자들은 노래방 트랙 제작, 샘플 추출, 리믹스 준비, 보이스 컨버전 파이프라인을 위해 이러한 도구를 사용한다. 오픈 소스 옵션 중 하나가 대화를 지배하는 모델이 있다: <strong>Demucs</strong> — Meta의 하이브리드 트랜스포머 아키텍처로 GitHub에서 10,000개 이상의 스타를 보유하고 MUSDB18-HQ 데이터셋에서 최고 수준의 벤치마크를 달성한 모델.</p><p>이 가이드에서는 Demucs의 작동 원리, 로컬 설치 방법, Spleeter 및 Ultimate Vocal Remover와의 비교, 실제 프로덕션 워크플로우에 통합하는 방법을 소개한다.</p><h2 id=demucs란>Demucs란?**<a hidden class=anchor aria-hidden=true href=#demucs란>#</a></h2><p><strong>Demucs</strong>(Deep Extractor for Music Sources)는 Meta AI Research에서 개발한 오픈 소스 음악 소스 분리 모델이다. 스테레오 오디오 믹스를 입력으로 받아 분리된 &ldquo;스템(stem)&rdquo; — 일반적으로 보컬, 드럼, 베이스, 기타와 키보드 등 나머지 악기가 포함된 &ldquo;기타(other)&rdquo; 트랙 — 을 출력한다.</p><p>프로젝트는 GitHub의 ```facebookresearch/demucs<code>저장소에 있으며 10,100개 이상의 스타와 1,500개의 포크를 달성했다. 저장소는 2025년 1월 1일에 Meta에 의해 아카이브되었지만, 원작자 Alexandre Defossez가</code>adefossez/demucs````에서 활발한 포크를 유지하고 있다. 최신 안정 버전은 v4.1.0이며 전체 프로젝트는 MIT 라이선스를 따른다.</p><p>Demucs를 이전 도구와 차별화하는 핵심은 <strong>하이브리드 접근 방식</strong>이다: 동시에 시간 영역(원본 파형)과 주파수 영역(스펙트로그램)에서 오디오를 처리한 뒤 두 표현을 융합한다. 이러한 이중 영역 처리는 순수 스펙트럼 방식이 손실시키는 위상 정보를 보존하여 더 깨끗한 분리와 더 적은 금속성 아티팩트를 제공한다.</p><h2 id=demucs-작동-방식>Demucs 작동 방식<a hidden class=anchor aria-hidden=true href=#demucs-작동-방식>#</a></h2><h3 id=아키텍처-개요>아키텍처 개요<a hidden class=anchor aria-hidden=true href=#아키텍처-개요>#</a></h3><p>Demucs의 현재 세대 — 공식명 <strong>Hybrid Transformer Demucs (HTDemucs)</strong> — 트랜스포머 레이어가 추가된 U-Net 컨볼루션 백본을 기반으로 한다. 아키텍처는 개념적으로 세 단계로 구성된다: 1. <strong>인코더</strong>: 입력 파형이 시간 영역 인코더(1D 컨볼루션)와 주파수 영역 인코더(STFT 후 2D 컨볼루션)를 동시에 통과한다. 이러한 이중 인코딩은 미세한 시간적 세부 정보와 고조파 주파수 구조를 모두 포착한다.</p><ol start=2><li><p><strong>트랜스포머 병목</strong>: U-Net의 가장 깊은 레이어는 각 영역 내에서 자기 주의를, 영역 간에는 교차 주의를 수행하는 교차 영역 트랜스포머 인코더를 사용한다. 이 메커니즘은 장거리 종속성을 모델링한다 — 예를 들어 유사한 음역의 기타 선율과 여러 마디에 걸친 보컬 멜로디를 분리하는 데 매우 중요하다.</p></li><li><p><strong>디코더</strong>: 별도의 디코더가 두 영역에서 각 소스(드럼, 베이스, 기타, 보컬)를 재구성하고, 융합 레이어가 최종 분리된 파형으로 결합한다.</p></li></ol><p><img alt="Demucs 아키텍처 다이어그램" loading=lazy src=https://raw.githubusercontent.com/facebookresearch/demucs/main/demucs.png></p><h3 id=사용-가능한-모델>사용 가능한 모델<a hidden class=anchor aria-hidden=true href=#사용-가능한-모델>#</a></h3><p>Demucs는 다양한 속도/품질 트레이드오프에 최적화된 여러 사전 학습 모델을 제공한다: | 모델 | 스템 수 | VRAM | SDR (MUSDB) | 사용 사례 |
+|&mdash;&mdash;|&mdash;&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&ndash;|
+| <code>htdemucs</code> | 4 | ~5.2 GB | 7.1 dB | 기본값, 속도/품질 최적 균형 |
+| <code>htdemucs_ft</code> | 4 | ~7.8 GB | 7.8 dB | 최대 품질, ~4배 느림 |
+| <code>htdemucs_6s</code> | 6 | ~6.5 GB | 6.8 dB | 기타+피아노 분리 |
+| <code>mdx_extra_q</code> | 4 | ~3.0 GB | 6.5 dB | 저VRAM 시스템 |</p><p><code>htdemucs_ft</code> 모델은 MUSDB18-HQ에서 7.8 dB의 전체 SDR을 달성하며, 소스별로는 보컬 8.5 dB, 베이스 7.5 dB, 드럼 8.9 dB, &ldquo;기타&rdquo; 카테고리 6.2 dB를 기록한다. 참고로 0 dB는 원본 믹스 대비 분리 개선이 없음을 의미한다.</p><h2 id=설치-및-설정>설치 및 설정<a hidden class=anchor aria-hidden=true href=#설치-및-설정>#</a></h2><h3 id=사전-요구사항>사전 요구사항<a hidden class=anchor aria-hidden=true href=#사전-요구사항>#</a></h3><p>Demucs를 설치하기 전에 환경을 확인한다: `````bash</p><h1 id=python-38-필수>Python 3.8+ 필수<a hidden class=anchor aria-hidden=true href=#python-38-필수>#</a></h1><p>python &ndash;version</p><h1 id=ffmpeg-설치-필요>FFmpeg 설치 필요<a hidden class=anchor aria-hidden=true href=#ffmpeg-설치-필요>#</a></h1><p>ffmpeg -version</p><h1 id=선택-nvidia-gpu--cuda-118-가속용>(선택) NVIDIA GPU + CUDA 11.8+ (가속용)<a hidden class=anchor aria-hidden=true href=#선택-nvidia-gpu--cuda-118-가속용>#</a></h1><p>nvidia-smi</p><pre tabindex=0><code>
+### 옵션 1: pip 설치 (가장 빠름)
+
+Demucs를 실행하는 가장 간단한 방법: `````bash
+# 가상 환경 생성
+python -m venv demucs-env
+source demucs-env/bin/activate  # Linux/macOS
+# demucs-env\Scripts\activate   # Windows
+
+# Demucs 설치
+pip install -U demucs
+
+# 설치 확인
+demucs --help
+</code></pre><h3 id=옵션-2-conda--gpu-지원-권장>옵션 2: Conda + GPU 지원 (권장)<a hidden class=anchor aria-hidden=true href=#옵션-2-conda--gpu-지원-권장>#</a></h3><p>GPU 가속 추론 및 훈련을 위해: `````bash</p><h1 id=저장소-클론>저장소 클론<a hidden class=anchor aria-hidden=true href=#저장소-클론>#</a></h1><p>git clone <a href=https://github.com/adefossez/demucs.git>https://github.com/adefossez/demucs.git</a>
+cd demucs</p><h1 id=공식-명세로-환경-생성>공식 명세로 환경 생성<a hidden class=anchor aria-hidden=true href=#공식-명세로-환경-생성>#</a></h1><p>conda env update -f environment-cuda.yml
+conda activate demucs</p><h1 id=개발-모드-설치>개발 모드 설치<a hidden class=anchor aria-hidden=true href=#개발-모드-설치>#</a></h1><p>pip install -e .</p><h1 id=gpu-감지-확인>GPU 감지 확인<a hidden class=anchor aria-hidden=true href=#gpu-감지-확인>#</a></h1><p>python -c &ldquo;import torch; print(f&rsquo;CUDA available: {torch.cuda.is_available()}&rsquo;)&rdquo;</p><pre tabindex=0><code>
+### 옵션 3: Docker (가장 깔끔한 격리)
+
+재현 가능한, 의존성 없는 배포를 위해: `````bash
+# Dockerfile
+FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+
+RUN pip install -U demucs
+
+WORKDIR /audio
+ENTRYPOINT [&#34;demucs&#34;]
+</code></pre><p>빌드 및 실행: `````bash
+docker build -t demucs .
+docker run &ndash;gpus all -v $(pwd):/audio demucs song.mp3</p><pre tabindex=0><code>
+**Docker Compose (배치 서비스용):**
+
+`````yaml
+version: &#39;3.8&#39;
+
+services: demucs: build: .
+    runtime: nvidia
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    volumes: - ./input:/audio/input:ro
+      - ./output:/audio/output
+    command: [&#34;-n&#34;, &#34;htdemucs_ft&#34;, &#34;--mp3&#34;, &#34;-o&#34;, &#34;/audio/output&#34;, &#34;/audio/input&#34;]
+</code></pre><h3 id=첫-번째-분리-실행>첫 번째 분리 실행<a hidden class=anchor aria-hidden=true href=#첫-번째-분리-실행>#</a></h3><p>설치 후 첫 번째 트랙을 분리한다: `````bash</p><h1 id=기본-모델로-4스템-분리>기본 모델로 4스템 분리<a hidden class=anchor aria-hidden=true href=#기본-모델로-4스템-분리>#</a></h1><p>demucs song.mp3</p><h1 id=출력-위치-separatedhtdemucssong>출력 위치: ./separated/htdemucs/song/<a hidden class=anchor aria-hidden=true href=#출력-위치-separatedhtdemucssong>#</a></h1><h1 id=포함-drumswav-basswav-otherwav-vocalswav>포함: drums.wav, bass.wav, other.wav, vocals.wav<a hidden class=anchor aria-hidden=true href=#포함-drumswav-basswav-otherwav-vocalswav>#</a></h1><h1 id=미세-조정-모델로-더-나은-품질>미세 조정 모델로 더 나은 품질<a hidden class=anchor aria-hidden=true href=#미세-조정-모델로-더-나은-품질>#</a></h1><p>demucs -n htdemucs_ft song.mp3</p><h1 id=보컬만-분리>보컬만 분리<a hidden class=anchor aria-hidden=true href=#보컬만-분리>#</a></h1><p>demucs &ndash;two-stems=vocals song.mp3</p><h1 id=mp3로-출력-더-작은-파일>MP3로 출력 (더 작은 파일)<a hidden class=anchor aria-hidden=true href=#mp3로-출력-더-작은-파일>#</a></h1><p>demucs &ndash;mp3 &ndash;mp3-bitrate 320 song.mp3</p><pre tabindex=0><code>
+### 모델 다운로드 및 캐시 확인
+
+모델은 처음 사용 시 자동으로 다운로드된다. 캐시를 확인하려면: `````bash
+# 다운로드된 모델 목록
+ls ~/.cache/torch/hub/checkpoints/
+
+# 예상 출력: # htdemucs-*.th, htdemucs_ft-*.th
+
+# 어떤 모델이 사용될지 확인
+demucs -n htdemucs_ft --help | grep &#34;name&#34;
+
+# 짧은 오디오 파일로 빠른 테스트
+ffmpeg -f lavfi -i &#34;sine=frequency=1000:duration=5&#34; test_tone.wav
+demucs -n htdemucs test_tone.wav
+</code></pre><h2 id=인기-도구와의-통합>인기 도구와의 통합<a hidden class=anchor aria-hidden=true href=#인기-도구와의-통합>#</a></h2><h3 id=ultimate-vocal-remover-uvr>Ultimate Vocal Remover (UVR)<a hidden class=anchor aria-hidden=true href=#ultimate-vocal-remover-uvr>#</a></h3><p>Ultimate Vocal Remover는 Demucs의 가장 인기 있는 GUI 프론트엔드이다. 대부분의 프로듀서는 Demucs를 명령줄이 아닌 UVR을 통해 사용하는데, UVR은 Demucs 모델을 다른 아키텍처와 번들링하고 앙상블 처리를 추가하기 때문이다.</p><p>UVR에서의 구성: 1. <a href=https://github.com/Anjok07/ultimatevocalremovergui/releases>공식 GitHub Releases</a>에서 UVR5 다운로드
+2. UI에서 <strong>Process Method: &ldquo;Demucs&rdquo;</strong> 선택
+3. 모델 선택: <code>V4 | htdemucs_ft</code>
+4. 가능한 경우 <strong>GPU Conversion</strong> 활성화
+5. 최상의 결과를 위해 <strong>Ensemble Mode</strong>에서 <code>htdemucs_ft</code> + <code>MDX-Net</code> 조합 사용</p><p>UVR의 앙상블 모드는 여러 모델을 병렬로 실행하고 출력을 혼합하며, 어떤 단일 모델보다 일관되게 더 깨끗한 분리 결과를 생성한다. 비용은 처리 시간이다 — 앙상블 실행은 단일 모델보다 대략 3–5배 느리다.</p><h3 id=rvc-retrieval-based-voice-conversion>RVC (Retrieval-based Voice Conversion)<a hidden class=anchor aria-hidden=true href=#rvc-retrieval-based-voice-conversion>#</a></h3><p>RVC 파이프라인은 보이스 추출 전 보컬을 분리하는 전처리 단계로 일반적으로 Demucs를 사용한다: `````python
+import subprocess
+import os</p><p>def preprocess_for_rvc(input_song, output_dir): &ldquo;&ldquo;&ldquo;RVC 보이스 컨버전을 위해 깨끗한 보컬 추출.&rdquo;&rdquo;&rdquo;
+os.makedirs(output_dir, exist_ok=True)</p><pre><code># 단계 1: Demucs로 분리
+subprocess.run([
+    demucs, '-n', htdemucs_ft,
+    '--two-stems=vocals',
+    '-o', output_dir,
+    input_song
+], check=True)
+
+# 단계 2: 분리된 보컬 경로 반환
+base = os.path.splitext(os.path.basename(input_song))[0]
+vocals_path = os.path.join(
+    output_dir, htdemucs_ft, base, 'vocals.wav'
+)
+return vocals_path
+</code></pre><h1 id=사용>사용<a hidden class=anchor aria-hidden=true href=#사용>#</a></h1><p>vocals = preprocess_for_rvc(&lsquo;input.mp3&rsquo;, &lsquo;./separated&rsquo;)</p><h1 id=보컬을-rvc에-입력하여-보이스-컨버전-수행>보컬을 RVC에 입력하여 보이스 컨버전 수행<a hidden class=anchor aria-hidden=true href=#보컬을-rvc에-입력하여-보이스-컨버전-수행>#</a></h1><pre tabindex=0><code>
+### GPT-SoVITS
+
+GPT-SoVITS 보이스 클로닝에는 깨끗한 레퍼런스 오디오가 필요하다. Demucs는 샘플을 TTS 파이프라인에 입력하기 전에 배경 음악을 제거한다: `````python
+from demucs.api import Separator
+import torchaudio
+
+separator = Separator(model=&#34;htdemucs&#34;, device=&#34;cuda&#34;)
+
+# 분리 및 보컬 추출
+origin, separated = separator.separate_audio_file(&#34;reference.mp3&#34;)
+vocals = separated[&#34;vocals&#34;]
+
+# GPT-SoVITS용 24kHz로 저장
+torchaudio.save(&#34;clean_reference.wav&#34;, vocals, 24000)
+</code></pre><h3 id=gradio-웹-인터페이스>Gradio 웹 인터페이스<a hidden class=anchor aria-hidden=true href=#gradio-웹-인터페이스>#</a></h3><p>자체 호스팅 분리 서비스를 위해: `````python
+import gradio as gr
+from demucs.api import Separator</p><p>separator = Separator(model=&ldquo;htdemucs_ft&rdquo;)</p><p>def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
+output_path = f&rdquo;{stem}.wav&rdquo;
+separator.save_audio(separated[stem], output_path, samplerate=44100)
+return output_path</p><p>demo = gr.Interface(
+fn=separate,
+inputs=[
+gr.Audio(type=&ldquo;filepath&rdquo;, label=&ldquo;곡 업로드&rdquo;),
+gr.Dropdown(
+choices=[&ldquo;vocals&rdquo;, &ldquo;drums&rdquo;, &ldquo;bass&rdquo;, &ldquo;other&rdquo;],
+value=&ldquo;vocals&rdquo;,
+label=&ldquo;스템&rdquo;
+)
+],
+outputs=gr.Audio(label=&ldquo;분리된 스템&rdquo;),
+title=&ldquo;Demucs 소스 분리&rdquo;,
+description=&ldquo;Meta의 Demucs 모델로 음악을 스템으로 분리&rdquo;
+)</p><p>demo.launch(server_name=&ldquo;0.0.0.0&rdquo;, server_port=7860)</p><pre tabindex=0><code>
+## 벤치마크 / 실제 사용 사례
+
+### MUSDB18-HQ 벤치마크 결과
+
+MUSDB18-HQ는 150개의 전체 길이 곡과 분리된 스템 정답을 포함하는 음악 소스 분리의 표준 벤치마크 데이터셋이다. 더 높은 SDR(신호 왜곡 비율)은 더 깨끗한 분리를 의미한다.
+
+| 모델 | 전체 SDR | 보컬 | 드럼 | 베이스 | 기타 | 속도 (RTX 3090) |
+|------|----------|------|------|--------|------|-----------------|
+| **HTDemucs FT (v4)** | **7.8 dB** | **8.5 dB** | **8.9 dB** | **7.5 dB** | **6.2 dB** | ~4배 실시간 |
+| HTDemucs (v4) | 7.1 dB | 7.8 dB | 8.2 dB | 6.9 dB | 5.6 dB | ~16배 실시간 |
+| Hybrid Demucs (v3) | 7.7 dB | 8.1 dB | 8.5 dB | 7.2 dB | 5.9 dB | ~12배 실시간 |
+| Spleeter 4stems | 5.9 dB | 6.3 dB | 6.8 dB | 5.4 dB | 4.2 dB | ~100배 실시간 |
+| Open-Unmix | 5.3 dB | 6.2 dB | 5.9 dB | 4.7 dB | 4.2 dB | ~80배 실시간 |
+
+### 프로덕션 사용 사례
+
+**노래방 트랙 생성**: ````--two-stems=vocals```` 옵션은 drums + bass + other를 혼합하고 보컬 트랙을 버려서 인스트루멘탈을 생성한다. 4분짜리 곡을 GPU에서 30초 이내에 처리한다.
+
+**프로듀서 샘플 추출**: 풀 믹스에서 드럼 브레이크, 베이스라인, 멜로딕 엘리먼트를 분리한다. ````htdemucs_6s```` 모델은 기타와 피아노 분리를 추가하지만, 이러한 스템의 품질은 주요 4스템보다 낮다.
+
+**보이스 컨버전 전처리**: 깨끗한 보컬 추출은 RVC, GPT-SoVITS 등 보이스 클로닝 파이프라인의 필수 전제조건이다. Demucs는 일관되게 순수 스펙트럼 방식보다 적은 블리드를 생성한다.
+
+**오디오 복원**: 기록 보관 전문가는 역사적 녹음을 분리하여 개별 스템에서 노이즈 감소를 수행한 뒤 재믹싱한다.
+
+### 처리 시간 참고
+
+44.1kHz 스테레오 4분 트랙 기준: | 하드웨어 | htdemucs | htdemucs_ft | htdemucs_6s |
+|----------|----------|-------------|-------------|
+| RTX 4080 GPU | ~15초 | ~55초 | ~25초 |
+| RTX 3080 GPU | ~20초 | ~75초 | ~35초 |
+| Apple M3 (MPS) | ~45초 | ~3분 | ~70초 |
+| Intel i7-13700 CPU | ~5분 | ~18분 | ~8분 |
+
+## 고급 사용법 / 프로덕션 하드닝
+
+### 커스텀 파이프라인을 위한 Python API
+
+프로그래밍 제어를 위해 CLI를 우회하고 Python API를 직접 사용한다: `````python
+import torch
+import torchaudio
+from demucs.pretrained import get_model
+from demucs.apply import apply_model
+
+# 모델 로드
+device = torch.device(&#34;cuda&#34; if torch.cuda.is_available() else &#34;cpu&#34;)
+model = get_model(&#34;htdemucs_ft&#34;)
+model.to(device)
+model.eval()
+
+# 오디오 로드
+wav, sr = torchaudio.load(&#34;input.mp3&#34;)
+
+# 스테레오 확인
+if wav.shape[0] == 1: wav = wav.repeat(2, 1)
+
+# 배치 차원 추가
+mix = wav.unsqueeze(0).to(device)
+
+# 최적화된 설정으로 분리
+with torch.no_grad(): sources = apply_model(
+        model,
+        mix,
+        shifts=1,       # Shift trick: 높을수록 품질 ↑, 속도 ↓
+        split=True,     # 청크 단위 처리 (긴 오디오 필수)
+        overlap=0.25,   # 청크 간 오버랩
+        segment=10,     # 세그먼트 길이(초)
+        progress=True,
+        device=device
+    )[0]
+
+# sources 형태: (num_sources, channels, samples)
+source_names = model.sources  # [drums, bass, other, vocals]
+
+# 개별 스템 저장
+for i, name in enumerate(source_names): torchaudio.save(f&#34;{name}.wav&#34;, sources[i].cpu(), sr)
+</code></pre><h3 id=배치-처리-파이프라인>배치 처리 파이프라인<a hidden class=anchor aria-hidden=true href=#배치-처리-파이프라인>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pathlib <span style=color:#f92672>import</span> Path
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> subprocess
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>batch_separate</span>(input_dir, output_dir, model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;htdemucs&#34;</span>): <span style=color:#e6db74>&#34;&#34;&#34;디렉토리의 모든 오디오 파일 처리.&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    input_dir <span style=color:#f92672>=</span> Path(input_dir)
+</span></span><span style=display:flex><span>    output_dir <span style=color:#f92672>=</span> Path(output_dir)
+</span></span><span style=display:flex><span>    output_dir<span style=color:#f92672>.</span>mkdir(parents<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, exist_ok<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    audio_exts <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;.mp3&#39;</span>, <span style=color:#e6db74>&#39;.wav&#39;</span>, <span style=color:#e6db74>&#39;.flac&#39;</span>, <span style=color:#e6db74>&#39;.ogg&#39;</span>, <span style=color:#e6db74>&#39;.m4a&#39;</span>}
+</span></span><span style=display:flex><span>    files <span style=color:#f92672>=</span> [f <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> input_dir<span style=color:#f92672>.</span>iterdir() <span style=color:#66d9ef>if</span> f<span style=color:#f92672>.</span>suffix <span style=color:#f92672>in</span> audio_exts]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 단일 Demucs 호출로 모든 파일 처리</span>
+</span></span><span style=display:flex><span>    subprocess<span style=color:#f92672>.</span>run([
+</span></span><span style=display:flex><span>        demucs, <span style=color:#e6db74>&#39;-n&#39;</span>, model,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;-o&#39;</span>, str(output_dir),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;--mp3&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;--mp3-bitrate&#39;</span>, <span style=color:#ae81ff>320</span>,
+</span></span><span style=display:flex><span>        <span style=color:#f92672>*</span>[str(f) <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> files]
+</span></span><span style=display:flex><span>    ], check<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 메타데이터 매니페스트 생성</span>
+</span></span><span style=display:flex><span>    manifest <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> files: base <span style=color:#f92672>=</span> f<span style=color:#f92672>.</span>stem
+</span></span><span style=display:flex><span>        stem_dir <span style=color:#f92672>=</span> output_dir <span style=color:#f92672>/</span> model <span style=color:#f92672>/</span> base
+</span></span><span style=display:flex><span>        manifest[base] <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>            drums: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;drums.mp3&#39;</span>),
+</span></span><span style=display:flex><span>            bass: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;bass.mp3&#39;</span>),
+</span></span><span style=display:flex><span>            other: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;other.mp3&#39;</span>),
+</span></span><span style=display:flex><span>            vocals: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;vocals.mp3&#39;</span>),
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(output_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;manifest.json&#39;</span>, w) <span style=color:#66d9ef>as</span> fp: json<span style=color:#f92672>.</span>dump(manifest, fp, indent<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> manifest
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 사용</span>
+</span></span><span style=display:flex><span>batch_separate(<span style=color:#e6db74>&#39;./raw_songs/&#39;</span>, <span style=color:#e6db74>&#39;./stems/&#39;</span>, model<span style=color:#f92672>=</span>htdemucs_ft)
+</span></span></code></pre></div><h3 id=긴-파일의-메모리-최적화>긴 파일의 메모리 최적화<a hidden class=anchor aria-hidden=true href=#긴-파일의-메모리-최적화>#</a></h3><p>Demucs는 전체 오디오 파일을 GPU 메모리에 로드한다. 긴 트랙이나 제한된 VRAM의 경우: `````python</p><h1 id=대용량-파일을-위한-cpu-오프로드-강제>대용량 파일을 위한 CPU 오프로드 강제<a hidden class=anchor aria-hidden=true href=#대용량-파일을-위한-cpu-오프로드-강제>#</a></h1><p>import os
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = &lsquo;max_split_size_mb:128&rsquo;</p><h1 id=더-작은-세그먼트-사용>더 작은 세그먼트 사용<a hidden class=anchor aria-hidden=true href=#더-작은-세그먼트-사용>#</a></h1><p>sources = apply_model(
+model,
+mix,
+split=True,
+segment=7, # 기본 ~10초에서 7초로 감소
+overlap=0.1, # 오버랩 감소
+device=device
+)[0]</p><pre tabindex=0><code>
+### 모니터링 및 로깅
+
+`````python
+import logging
+import time
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(demucs)
+
+def separate_with_metrics(input_path, output_dir): start = time.time()
+
+    separator = Separator(model=&#34;htdemucs_ft&#34;, device=&#34;cuda&#34;)
+    origin, separated = separator.separate_audio_file(input_path)
+
+    duration = time.time() - start
+    logger.info(f&#34;{input_path} 분리 완료: {duration:.1f}초&#34;)
+
+    # 스템별 레벨 로깅
+    for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item()
+        logger.info(f&#34;  {name}: RMS={rms:.4f}&#34;)
+
+    return separated
+</code></pre><h2 id=대안과의-비교>대안과의 비교<a hidden class=anchor aria-hidden=true href=#대안과의-비교>#</a></h2><table><thead><tr><th>기능</th><th>Demucs (v4)</th><th>Ultimate Vocal Remover</th><th>Spleeter</th><th>Open-Unmix</th></tr></thead><tbody><tr><td><strong>아키텍처</strong></td><td>하이브리드 파형 + 스펙트럼 + Transformer</td><td>GUI 래퍼 (다중 백엔드)</td><td>스펙트럼 U-Net</td><td>스펙트럼 LSTM</td></tr><tr><td><strong>MUSDB SDR</strong></td><td>7.8 dB (htdemucs_ft)</td><td>N/A (Demucs/MDX 사용)</td><td>5.9 dB</td><td>5.3 dB</td></tr><tr><td><strong>최대 스템 수</strong></td><td>6 (보컬, 드럼, 베이스, 기타, 피아노, 기타)</td><td>4 (모델에 따라 다름)</td><td>5 (sides 포함)</td><td>4</td></tr><tr><td><strong>GPU 필요 여부</strong></td><td>권장</td><td>권장</td><td>선택</td><td>선택</td></tr><tr><td><strong>처리 속도</strong></td><td>~4–16배 실시간 (GPU)</td><td>~3–10배 실시간 (앙상블)</td><td>~100배 실시간</td><td>~80배 실시간</td></tr><tr><td><strong>VRAM 사용량</strong></td><td>5–8 GB</td><td>6–12 GB (앙상블)</td><td>&lt;2 GB</td><td>&lt;2 GB</td></tr><tr><td><strong>활발한 개발</strong></td><td>커뮤니티 포크</td><td>활발</td><td>아카이브 (2021)</td><td>유지보수 모드</td></tr><tr><td><strong>라이선스</strong></td><td>MIT</td><td>MIT</td><td>MIT</td><td>MIT</td></tr><tr><td><strong>최적 사용처</strong></td><td>품질 우선 분리</td><td>쉬운 GUI + 앙상블</td><td>빠른 배치 처리</td><td>경량 배포</td></tr></tbody></table><p><strong>선택 가이드</strong>: 최대 분리 품질이 필요하고 자동화된 파이프라인을 구축할 때는 Demucs를 직접 사용한다. GUI와 앙상블 처리를 원할 때는 UVR을 사용한다. 제한된 하드웨어에서 최대 속도가 필요하거나 레거시 코드를 유지할 때만 Spleeter를 사용한다. Open-Unmix는 교육 목적과 자원이 제한된 엣지 배포에 여전히 적합하다.</p><h2 id=한계--정직한-평가>한계 / 정직한 평가<a hidden class=anchor aria-hidden=true href=#한계--정직한-평가>#</a></h2><p>Demucs는 모든 오디오 작업에 적합한 도구가 아니다. 다음은 잘 수행하지 못하는 영역이다: <strong>실시간 분리</strong>: 가장 빠른 Demucs 모델(<code>htdemucs</code>)도 RTX 4080에서 약 16배 실시간으로 처리한다. 이는 라이브 공연이나 실시간 스트리밍 애플리케이션에는 너무 느리다. Spleeter나 전문화된 ONNX 익스포트와 같은 지연 시간에 민감한 사용 사례에 더 적합하다.</p><p><strong>기타 및 피아노 분리</strong>: <code>htdemucs_6s</code> 모델은 기타와 피아노를 별도의 스템으로 분리하려 시도하지만, 이러한 소스의 SDR은 주요 4스템보다 현저히 낮다. 특정 기타 트랙 분리가 주요 필요라면 Basic Pitch와 같은 전문화된 전사 도구가 더 적합할 수 있다.</p><p><strong>고도로 압축된 마스터링</strong>: 무거운 리미팅이 적용된 음량 극대화 트랙(현대 EDM과 팝에서 흔함)은 주파수 마스킹을 생성하여 분리 모델을 혼란스럽게 한다. Demucs는 이러한 트랙에서 더 넓은 다이낙믹 믹스에서는 나타나지 않는 소용돌이 소리나 교차 소스 블리드와 같은 아티팩트를 생성할 수 있다.</p><p><strong>모델 크기</strong>: <code>htdemucs_ft</code>는 ~2 GB로 Spleeter(~150 MB)보다 한 차례 더 크다. 이는 엣지 배포, 모바일 앱, 콜드 스타트 제약이 있는 서버리스 환경에서 중요한 요소이다.</p><p><strong>업스트림 아카이브</strong>: 원본 <code>facebookresearch/demucs</code> 저장소는 아카이브되어 더 이상 유지되지 않는다. <code>adefossez/demucs</code>가 활발하지만 장기적인 유지보수 방향은 불확실하다. 이를 의존성 계획에 고려하라.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><p><strong>Q: Demucs를 실행하려면 어떤 하드웨어가 필요한가?</strong>
+A: Demucs는 CPU에서 실행되지만 6GB 이상 VRAM의 NVIDIA GPU를 강력히 권장한다. <code>htdemucs</code> 모델에는 5.2GB VRAM이면 충분하고 <code>htdemucs_ft</code>에는 8GB가 필요하다. CPU 전용 처리는 가능하지만 4분짜리 곡을 처리하는 데 GPU의 5–20분이 소요된다.</p><p><strong>Q: Demucs를 상업적으로 사용할 수 있나?</strong>
+A: 예. Demucs는 MIT 라이선스로 상업적 사용, 수정, 배포를 제한 없이 허용한다. 분리된 스템은 상업적 릴리스에 사용할 수 있다. MIT 라이선스는 코드와 모델에 적용되며, 처리하는 음악의 저작권에는 적용되지 않는다.</p><p><strong>Q: 왜 Demucs가 Spleeter보다 더 좋게 들리나?</strong>
+A: Demucs는 시간 영역과 주파수 영역에서 동시에 오디오를 처리하여 순수 스펙트럼 방식이 버리는 위상 정보를 보존한다. 트랜스포머 레이어도 Spleeter의 U-Net보다 장거리 음악적 종속성을 더 잘 모델링한다. 이는 더 적은 아티팩트와 더 적은 교차 소스 간섭으로 이어진다.</p><p><strong>Q: 전체 앨범을 효율적으로 처리하려면?</strong>
+A: 여러 파일을 단일 Demucs 호출에 전달한다: <code>demucs -n htdemucs *.mp3</code>. Demucs는 순차적으로 처리하지만 반복적인 모델 로딩 오버헤드를 피한다. 최대 처리량을 위해 서로 다른 GPU에서 여러 Demucs 인스턴스를 실행하거나 고급 사용법 섹션의 배치 처리 스크립트를 사용한다.</p><p><strong>Q: Demucs는 어떤 오디오 형식을 지원하나?</strong>
+A: Demucs는 디코딩용 FFmpeg와 인코딩용 torchaudio를 사용한다. 입력: MP3, WAV, FLAC, OGG, M4A 및 FFmpeg가 지원하는 모든 형식. 출력: WAV(기본, 16비트), float32 WAV(<code>--float32</code>), 24비트 WAV(<code>--int24</code>) 또는 MP3(<code>--mp3</code>, 비트레이트 조절 가능).</p><p><strong>Q: 자체 데이터로 Demucs를 미세 조정할 수 있나?</strong>
+A: 예, 하지만 전체 훈련 파이프라인이 필요하다. 훈련 노래의 분리된 스템(MUSDB18-HQ와 동일한 형식)이 필요하며, Dora 실험 관리자를 사용하여 <code>dora run -d solver=htdemucs dset=your_dataset</code>를 실행한다. 대부분의 사용자는 이것이 필요 없다 — 사전 학습된 모델은 장르 간에 잘 일반화된다.</p><p><strong>Q: <code>htdemucs</code>와 <code>htdemucs_ft</code>의 차이는?</strong>
+A: <code>htdemucs_ft</code>는 추가 훈련 데이터로 소스별로 미세 조정되고 기본적으로 shift trick이 활성화되어 있다. 모든 소스에서 약 0.7 dB 더 높은 SDR을 달성하지만 약 4배 더 느리고 VRAM을 50% 더 사용한다. 빠른 반복에는 <code>htdemucs</code>를, 최종 프로덕션 품질 출력에는 <code>htdemucs_ft</code>를 사용한다.</p><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>Demucs는 2026년 현재 오픈 소스 음악 소스 분리의 기준 구현체로 남아 있다. 하이브리드 트랜스포머 아키텍처는 표준 벤치마크에서 Spleeter보다 20–40% 높은 분리 품질을 제공하며, 보이스 컨버전 파이프라인, 노래방 생성기, 오디오 제작 도구와 깔끔하게 통합된다.</p><p>오디오 파이프라인을 구축하는 개발자에게 Demucs는 문서화된 Python API, Docker 지원, 다양한 속도/품질 트레이드오프를 위한 여러 모델 변형을 제공한다. MIT 라이선스는 상업적 마찰을 제거한다. 주의사항은 하드웨어 요구사항(GPU 강력 권장), 모델 크기(~2 GB), 업스트림 저장소의 아카이브 상태이다.</p><p><strong>실행 항목</strong>: <code>pip install -U demucs</code>로 Demucs를 설치하고 ````demucs -n htdemucs_ft song.mp3```로 테스트 트랙에서 첫 분리를 실행한 뒤, 위의 Python API 예제를 사용하여 파이프라인에 통합하라. GUI 환경을 원한다면 Ultimate Vocal Remover를 다운로드하여 앙상블 모드를 사용하라.</p><p><strong>dibi8.com Telegram 그룹에 가입하여 매주 오픈 소스 AI 도구 심층 분석을 받아보세요: <a href=https://t.me/dibi8channel>https://t.me/dibi8channel</a></strong></p><h2 id=추천-호스팅-및-인프라>추천 호스팅 및 인프라<a hidden class=anchor aria-hidden=true href=#추천-호스팅-및-인프라>#</a></h2><p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p><h2 id=참고-및-추가-자료>참고 및 추가 자료<a hidden class=anchor aria-hidden=true href=#참고-및-추가-자료>#</a></h2><ul><li><a href=https://github.com/facebookresearch/demucs>Demucs GitHub 저장소 (Meta, 아카이브됨)</a></li><li><a href=https://github.com/adefossez/demucs>Demucs 활발한 포크 (adefossez)</a></li><li><a href=https://arxiv.org/abs/2211.08553>Hybrid Transformers for Music Source Separation (논문)</a></li><li><a href=https://zenodo.org/record/3338373>MUSDB18-HQ 벤치마크 데이터셋</a></li><li><a href=https://github.com/Anjok07/ultimatevocalremovergui>Ultimate Vocal Remover GUI</a></li><li><a href=https://github.com/deezer/spleeter>Spleeter (Deezer, 아카이브됨)</a></li><li><a href=https://github.com/sigsep/open-unmix-pytorch>Open-Unmix (Sony)</a></li><li><a href=https://mvsep.com/quality_checker/>MVSEP 품질 체커 리더보드</a></li><li><a href=https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874>Audio Developers Conference 2025 — Demucs ONNX 익스포트 발표</a></li></ul><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Demucs: 10K+ Stars 음악 소스 분리 — UVR, Spleeter 2026 비교&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/demucs%22>https://dibi8.com/kr/resources/demucs"</a>
+}
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/demucs/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/ko/demucs/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/ko/demucs/>egonex-understand-anything-interactive-knowledge-graph-ai</a></li><li><a href=/ko/demucs/>bytedance-ui-tars-desktop-ai-agent-guide</a></li><li><a href=/ko/demucs/>mattpocock-skills-ai-agent-framework-guide</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

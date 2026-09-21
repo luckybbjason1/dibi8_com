@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompt-engineering-frameworks-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Best Prompt Engineering Frameworks & Tools 2025: LangSmi...
-description: "Compare the best prompt engineering frameworks and tools of 2025. In-depth analysis of LangSmith, Pr..."
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

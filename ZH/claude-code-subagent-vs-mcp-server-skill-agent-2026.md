@@ -1,6 +1,13 @@
 ---
-title: "Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
-description: "Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。". ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-vs-mcp-server-skill-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 last_maintained: "2026-05-28"
 draft: false
 categories: ["llm-frameworks"]
@@ -108,9 +115,9 @@ MCP server 回答的是*「Claude 根本触达不了这个系统」*。你的 Po
 
 把这三层都跑起来——尤其是 MCP server——并做到规模化，需要稳定的基础设施：
 
-1. **一台可靠的主机来跑 MCP server 和 CI。** MCP server 是长时运行的进程；你需要一台一直在线的机器。**{{< aff "htstack" "footer-cta" "HTStack" >}}**——香港 VPS，对中国大陆低延迟访问，BGP 稳定。和托管 dibi8.com 的是同一个 IDC，我们自己的 MCP server 和 agent 流水线就跑在上面。$5-12/月的高性价比档位。
+1. **一台可靠的主机来跑 MCP server 和 CI。** MCP server 是长时运行的进程；你需要一台一直在线的机器。****——香港 VPS，对中国大陆低延迟访问，BGP 稳定。和托管 dibi8.com 的是同一个 IDC，我们自己的 MCP server 和 agent 流水线就跑在上面。$5-12/月的高性价比档位。
 
-2. **给并行各层留出云端余量。** 当 subagent 扇出、MCP server 同时运行时，你需要富余的 CPU。**{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}**——14+ 个区域，$200 免费额度，60 天有效。
+2. **给并行各层留出云端余量。** 当 subagent 扇出、MCP server 同时运行时，你需要富余的 CPU。****——14+ 个区域，$200 免费额度，60 天有效。
 
 3. **一份 skills 礼包。** 内化 skill／subagent／server 这套划分最快的方式，就是研究可运行的范例。我们把五个久经实战的 skill 打包成了 Gumroad 上的一份 $19 礼包——见角落里那个浮动的 CTA——其中包含自定义 agent 定义，以及把这三层组合起来的编排（orchestrator）提示词。
 

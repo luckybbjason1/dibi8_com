@@ -1,6 +1,13 @@
 ---
-title: WorldMonitor：面向地缘政治监控的实时全球情报仪表盘
-description: 一个实时的AI驱动全球情报仪表盘，聚合新闻、地缘政治事件和基础设施追踪。59K stars。Palantir Gotham的开源替代方案。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "worldmonitor-real-time-global-intelligence-dashboard"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false

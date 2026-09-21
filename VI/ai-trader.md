@@ -1,6 +1,13 @@
 ---
-title: "AI-Trader: 14K⭐ Hệ thống Giao dịch AI Tự động Hoàn toàn,...
-description: "AI-Trader là hệ thống đại lý giao dịch AI tự động hoàn toàn mã nguồn mở do HKUDS phát triển, 14K+ St..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trader"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
@@ -182,8 +189,8 @@ Dựa trên kết quả backtest (2020-2025): | Chiến lược | Lợi nhuận 
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
@@ -193,7 +200,7 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - 
 
 **Trading với AI agent? Vẫn cần portfolio manager cho phần còn lại.**
 
-- **{{< aff "minara" "llm-footer" "Minara AI" >}}** — Ví crypto AI, tự động hóa DCA, rebalancing và cảnh báo on-chain. Pair với AI trader tùy chỉnh để hands-off portfolio management giữa các session strategy active.
+- **** — Ví crypto AI, tự động hóa DCA, rebalancing và cảnh báo on-chain. Pair với AI trader tùy chỉnh để hands-off portfolio management giữa các session strategy active.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

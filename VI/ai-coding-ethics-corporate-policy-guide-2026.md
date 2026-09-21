@@ -1,6 +1,13 @@
 ---
-title: "Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệ...
-description: "Năm 2026, các doanh nghiệp phân hóa thành ba phe: AI-cho phép / AI-hạn chế / AI-cấm. Hướng dẫn thực ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-ethics-corporate-policy-guide-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Chính sách', 'Tuân thủ', 'Claude Code', Cursor]
@@ -25,7 +32,7 @@ faq: - q: "Các lập trường chính sách AI Coding chính của doanh nghi�
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Đạo đức AI Coding 2026: Hướng dẫn chính sách doanh nghiệp
 
@@ -131,8 +138,8 @@ Cho "Hạn chế ở tier doanh nghiệp": 1. Bộ phận mua sắm vào cuộc 
 
 ## Hạ tầng đề xuất
 
-Cho AI tự host (phe 3): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit $200, GPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong
+Cho AI tự host (phe 3): - **** — credit $200, GPU droplet
+- **** — VPS Hong Kong
 
 *Liên kết tiếp thị liên kết — giá như nhau, ủng hộ dibi8.com.*
 

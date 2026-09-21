@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-stateful-agent-orchestration-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "LangGraph 1.2 in Production: Stateful Agent Orchestratio...
-description: "LangGraph is a low-level orchestration framework for long-running, stateful AI agents. 32.6k GitHub ..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -128,7 +135,7 @@ The 4-component pattern most teams settle on: `````
 └──────────────────────────┘
 `````
 
-A standard prod deploy: containerize the LangGraph app, point it at managed Postgres for checkpoints, configure LangSmith for traces. The {{< aff "digitalocean" "langgraph-vps" "DigitalOcean App Platform" >}} works for stateless tier; for serious workloads grab a {{< aff "htstack" "langgraph-vps-hk" "HTStack Hong Kong VPS" >}} (8 GB minimum) + DO Managed Postgres for low-latency state writes.
+A standard prod deploy: containerize the LangGraph app, point it at managed Postgres for checkpoints, configure LangSmith for traces. The  works for stateless tier; for serious workloads grab a  (8 GB minimum) + DO Managed Postgres for low-latency state writes.
 
 ## 6. LangGraph vs LangChain vs CrewAI vs AutoGen (When to Pick What)
 
@@ -186,7 +193,7 @@ The payoff: durable execution + human-in-loop + replay debugging, with most of y
 
 LangGraph = **graph-based stateful agent runtime** for production workloads that need to survive crashes, support human checkpoints, and run for hours. 32.6k stars, v1.2.1, MIT. Pairs naturally with LangChain (which you probably already use). Pick it over CrewAI when you need control, over LangChain alone when you need durability, over AutoGen for anything outside multi-agent conversation.
 
-Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} with Postgres, run the example in section 3, and you'll see why teams running real agents in production gravitate here.
+Spin up a  with Postgres, run the example in section 3, and you'll see why teams running real agents in production gravitate here.
 
 
 * * *

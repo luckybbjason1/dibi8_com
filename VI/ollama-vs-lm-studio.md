@@ -1,21 +1,10 @@
 ---
-title: "Ollama vs LM Studio 2026: Trình chạy LLM cục bộ nào tốt ...
-description: "So sánh trực tiếp Ollama và LM Studio — CLI vs GUI, thư viện mô hình, hỗ trợ GPU, API tương thích Op..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["ollama", "lm-studio", "local-llm", "gguf", "self-hosting", "comparison"]
-categories: ["vs"]
-faqs: - q: 'Ollama hay LM Studio tốt hơn cho người mới?'
-    a: 'LM Studio thân thiện hơn với người mới hoàn toàn — đi kèm GUI bóng bẩy, trình duyệt mô hình trong ứng dụng và luồng click-to-load. Ollama là CLI-first (kiểu "docker run"); cài một dòng `ollama run llama3` nhanh cho dev nhưng người không dùng CLI sẽ vấp tường. Bắt đầu với LM Studio, chuyển sang Ollama khi muốn script hóa vào pipeline.'
-  - q: 'Cái nào tốt hơn để phục vụ API cho app của tôi?'
-    a: 'Ollama thắng cho phục vụ API. Mặc định nó expose endpoint REST tương thích OpenAI tại `localhost:11434`, hoạt động tốt trong Docker, và là backend chuẩn cho các công cụ như Aider, Continue.dev, Open WebUI. LM Studio cũng có server tương thích OpenAI (toggle trong GUI), nhưng kém ổn định cho triển khai headless lâu dài.'
-  - q: 'Cái nào hỗ trợ GPU tốt hơn?'
-    a: 'Cả hai hỗ trợ CUDA (NVIDIA), ROCm (AMD trên Linux), Metal (Apple Silicon). Ollama tự phát hiện và fallback nhẹ nhàng — chạy được ngay trên box Linux mới. LM Studio cho bạn slider offload GPU chi tiết trong GUI (đẩy bao nhiêu lớp vào VRAM), rất hữu ích để tinh chỉnh trên setup hybrid. Server Linux headless thì Ollama mượt hơn; desktop có thể tinh chỉnh thì LM Studio thắng.'
-  - q: 'Chúng có thể chạy cùng các mô hình không?'
-    a: 'Hầu hết là có — cả hai dùng mô hình lượng tử hóa GGUF. LM Studio kéo trực tiếp từ Hugging Face với tìm kiếm tích hợp. Ollama dùng registry mô hình riêng (`ollama pull llama3`) nhưng cũng hỗ trợ import file GGUF tùy ý qua `Modelfile`. Cùng mô hình nền, đóng gói khác nhau.'
-  - q: 'Cái nào tốt hơn để tự host trên VPS?'
-    a: 'Ollama — không bàn cãi. Chạy headless, expose API trực tiếp, cài một dòng (`curl https://ollama.ai/install.sh | sh`). LM Studio là ứng dụng desktop Electron, không thiết kế cho triển khai server. Kết hợp Ollama với {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet" >}} cho endpoint LLM riêng tư mà app có thể truy cập từ bất kỳ đâu."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-vs-lm-studio"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -146,7 +135,7 @@ Thực tế: cùng mô hình, cùng engine llama.cpp, tốc độ giống nhau. 
 - Bật server cục bộ trong Cài đặt → Developer nếu cần truy cập API
 
 ### Ghi chú tự host
-Muốn endpoint LLM riêng tư truy cập được từ điện thoại, laptop, app ở bất kỳ đâu trên thế giới? Dựng Ollama trên {{< aff "digitalocean" "footer-cta-legacy" "droplet GPU DigitalOcean với $200 credit miễn phí" >}}. Instance VRAM 16 GB chạy Llama 3.1 8B Q4 thoải mái ở ~40 token/giây — đủ cho trợ lý AI cá nhân không rò rỉ dữ liệu cho OpenAI. Thêm Cloudflare Tunnel cho HTTPS không cần cấu hình và bạn có stack LLM riêng tư cấp production dưới $30/tháng.
+Muốn endpoint LLM riêng tư truy cập được từ điện thoại, laptop, app ở bất kỳ đâu trên thế giới? Dựng Ollama trên . Instance VRAM 16 GB chạy Llama 3.1 8B Q4 thoải mái ở ~40 token/giây — đủ cho trợ lý AI cá nhân không rò rỉ dữ liệu cho OpenAI. Thêm Cloudflare Tunnel cho HTTPS không cần cấu hình và bạn có stack LLM riêng tư cấp production dưới $30/tháng.
 
 * * *
 
@@ -188,7 +177,7 @@ Với indie dev hoặc người tự host chạy stack AI riêng tư? **Ollama t
 
 **Cần GPU compute cho local LLM inference?** Chạy Ollama hoặc LM Studio với model lớn (Llama 3.3 70B, Qwen 2.5 72B) cần VRAM khủng.
 
-- **{{< aff "huwangyun" "vs-footer" "HuwangYun GPU Server" >}}** — Cung cấp RTX 4090 / A100 ở mainland China với low-latency access — rẻ hơn US cloud GPU cho người dùng China, lý tưởng cho self-hosted local LLM stack.
+- **** — Cung cấp RTX 4090 / A100 ở mainland China với low-latency access — rẻ hơn US cloud GPU cho người dùng China, lý tưởng cho self-hosted local LLM stack.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

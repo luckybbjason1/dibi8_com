@@ -1,6 +1,13 @@
 ---
-title: "Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
-description: "Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prometheus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -24,7 +31,7 @@ aliases:
 # Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai Docker 2026
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 
@@ -229,32 +236,32 @@ groups: - name: node-alerts
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} sử dụng bộ nhớ cao"
-          description: "Mức sử dụng bộ nhớ trên 85% (giá trị hiện tại: {{ $value }}%)"
+        annotations: summary: " sử dụng bộ nhớ cao"
+          description: "Technical guide and comparison."
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
-        annotations: summary: "{{ $labels.instance }} sử dụng CPU cao"
-          description: "Mức sử dụng CPU trên 80% (giá trị hiện tại: {{ $value }}%)"
+        annotations: summary: " sử dụng CPU cao"
+          description: "Technical guide and comparison."
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} dung lượng đĩa thấp"
-          description: "Dung lượng đĩa dưới 10% (mountpoint: {{ $labels.mountpoint }})"
+        annotations: summary: " dung lượng đĩa thấp"
+          description: "Technical guide and comparison."
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
-        annotations: summary: "Instance {{ $labels.instance }} đã down"
-          description: "Target không thể truy cập trong hơn 3 phút"
+        annotations: summary: "Instance  đã down"
+          description: "Technical guide and comparison."
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
         labels: severity: warning
-        annotations: summary: "{{ $labels.instance }} độ trễ yêu cầu cao"
-          description: "Phân vị 95 độ trễ là {{ $value }} giây"
+        annotations: summary: " độ trễ yêu cầu cao"
+          description: "Technical guide and comparison."
 `````
 
 ### Cấu hình Alertmanager cho Slack
@@ -271,8 +278,8 @@ route: receiver: 'slack-notifications'
 receivers: - name: 'slack-notifications'
     slack_configs: - channel: '#alerts'
         send_resolved: true
-        title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
-        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+        title: ''
+        text: ''
 `````
 
 ### Prometheus + Kubernetes Service Discovery

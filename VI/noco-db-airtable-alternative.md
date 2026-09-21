@@ -1,6 +1,13 @@
 ---
-title: "NocoDB 2026 Hướng Dẫn Đầy Đủ: Giải Pháp Thay Thế Airtabl...
-description: "Triển khai NocoDB trong 5 phút với Docker. Biến MySQL, PostgreSQL hoặc SQLite thành bảng tính cộng t..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "noco-db-airtable-alternative"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Khi Bảng Tính Chạm Giới Hạn
 
@@ -176,7 +183,7 @@ Kích hoạt workflow bên ngoài khi dữ liệu thay đổi: 1. Vào **Base** 
       "Content-Type": "application/json"
     },
     "body": {
-      "text": "New order #{{Id}} from {{CustomerEmail}} — Amount: ${{Total}}"
+      "text": "New order # from  — Amount: $"
     }
   }
 }

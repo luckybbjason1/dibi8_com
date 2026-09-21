@@ -1,16 +1,13 @@
 ---
-title: "pendle-yield-tokenization-defi"
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["pendle"]
-aliases:
-  - /posts/pendle-yield-tokenization-defi/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pendle-yield-tokenization-defi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
-{{</* resource-info */>}}
+
 
 > **Affiliate Disclosure**: This article contains affiliate links to [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) and [OKX](https://www.promoohubly.com/join/12190433). We may earn a commission when you register through these links — at no extra cost to you.
 

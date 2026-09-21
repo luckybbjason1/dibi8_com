@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 对比 Cline（2026）：自主还是掌控？"
-description: "Claude Code 与 Cline 逐项对比——终端自主执行 vs VS Code 逐步审批、模型支持、定价，以及各自的适用场景。智能体编程中"掌控 vs 自主"的抉择。2026 更新。". Co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-cline"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

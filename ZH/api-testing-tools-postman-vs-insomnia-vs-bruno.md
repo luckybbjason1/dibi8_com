@@ -1,9 +1,10 @@
 ---
-title: "Postman vs Insomnia vs Bruno：2025年最佳API测试工具对比"
-description: "2025年三大主流API测试工具深度对比，涵盖Postman、Insomnia和Bruno的功能、定价、协议支持与Git集成，附带迁移指南与CI/CD配置方案。". Comprehensive gui..."
-draft: false
-aliases:
-  - /posts/api-testing-tools-postman-vs-insomnia-vs-bruno/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "api-testing-tools-postman-vs-insomnia-vs-bruno"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Postman vs Insomnia vs Bruno：2025年最佳API测试工具对比
@@ -110,13 +111,13 @@ meta {
 }
 
 get {
-  url: {{baseUrl}}/api/users/{{userId}}
+  url: /api/users/
   body: none
   auth: bearer
 }
 
 auth:bearer {
-  token: {{authToken}}
+  token: 
 }
 
 assert {

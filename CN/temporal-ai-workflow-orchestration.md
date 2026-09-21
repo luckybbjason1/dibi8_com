@@ -1,17 +1,10 @@
 ---
-title: Temporal AI Workflow Orchestration — Reliable Multi-Step ...
-description: Complete guide to Temporal for orchestrating AI/ML workflows. Build reliable LLM pipelines, multi-agent systems, and ML training jobs with built-in durability, retries, and observability.
-tags: ["workflow", "orchestration", "temporal", "machine-learning", "llm", "reliability"]
-category: dev-utils
-date: 2026-07-15T00:00:00+00:00
-lastmod: 2026-07-15T00:00:00+00:00
-slug: temporal-ai-workflow-orchestration---
-
-## TL;DR
-
-Temporal is a durable execution platform that makes it trivially easy to build reliable AI workflows. Instead of wrestling with Kubernetes CronJobs, dead-letter queues, and manual retry logic, you write Python functions decorated as Temporal activities and workflows. Temporal guarantees exactly-once execution, automatic retries with exponential backoff, and full observability out of the box.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "temporal-ai-workflow-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## What Is Temporal?
 

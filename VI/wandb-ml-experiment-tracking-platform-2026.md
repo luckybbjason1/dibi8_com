@@ -1,11 +1,10 @@
 ---
-title: "Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chu...
-description: "Weights & Biases (wandb/wandb) là nền tảng nhà phát triển AI để theo dõi, so sánh và triển khai các ..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'wandb-ml-experiment-tracking-platform-2026'
-category: 'data-science'
-tags: ["ml-ops", "experiment-tracking", "deep-learning", "pytorch", "llm", "model-registry", "mlops"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "wandb-ml-experiment-tracking-platform-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

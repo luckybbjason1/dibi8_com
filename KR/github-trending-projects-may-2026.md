@@ -1,6 +1,13 @@
 ---
-title: "DeepSeek TUI + Anthropic 금융 AI: 2026년 5월 GitHub에서 실제로 수익...
-description: "하루 만에 5,800스타를 기록한 터미널 기반 코딩 에이전트와 Anthropic의 첫 수직형 금융 서비스 프레임워크 — 현재 GitHub에서 실제 상용 가치가 있는 핫한 오픈소스 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "github-trending-projects-may-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"
@@ -13,11 +20,11 @@ draft: false
 aliases:
   - /kr/posts/github-trending-projects-may-2026/
 faqs: - q: 'DeepSeek-TUI는 무엇이며 Cursor나 GitHub Copilot과 어떻게 다른가요?'
-    a: 'DeepSeek-TUI는 `deepseek` 명령어를 통해 로컬에서 실행되는 터미널 기반 AI 코딩 에이전트로, 추론 블록을 스트리밍하고 디스크의 파일을 읽고 쓰며, 파일 시스템을 변경하기 전에 승인 게이트를 거칩니다. 완전한 GUI 에디터로 동작하는 Cursor나 Copilot과 달리, tmux, neovim, zsh에서 작업하는 터미널 사용자를 위해 설계되었으며 브라우저와 IDE 사이를 오가는 컨텍스트 전환이 없습니다.'
+    a: 'DeepSeek-TUI는 ``deepseek`` 명령어를 통해 로컬에서 실행되는 터미널 기반 AI 코딩 에이전트로, 추론 블록을 스트리밍하고 디스크의 파일을 읽고 쓰며, 파일 시스템을 변경하기 전에 승인 게이트를 거칩니다. 완전한 GUI 에디터로 동작하는 Cursor나 Copilot과 달리, tmux, neovim, zsh에서 작업하는 터미널 사용자를 위해 설계되었으며 브라우저와 IDE 사이를 오가는 컨텍스트 전환이 없습니다.'
   - q: 'DeepSeek-TUI의 auto 모드는 어떻게 비용을 절감하나요?'
-    a: 'auto 모드(`deepseek --model auto`)에서는 도구가 먼저 thinking을 끈 deepseek-v4-flash로 아주 작은 라우팅 호출을 보내 요청을 평가한 다음, 가장 저렴하면서도 실행 가능한 모델과 thinking 수준을 선택합니다. 단순한 리팩터링은 thinking을 끈 빠른 모델을 사용하고, 보안 검토 같은 복잡한 작업은 더 높은 thinking 수준의 pro 모델을 트리거하므로 짧은 질문은 계속 저렴하게 유지됩니다.'
+    a: 'auto 모드(``deepseek --model auto``)에서는 도구가 먼저 thinking을 끈 deepseek-v4-flash로 아주 작은 라우팅 호출을 보내 요청을 평가한 다음, 가장 저렴하면서도 실행 가능한 모델과 thinking 수준을 선택합니다. 단순한 리팩터링은 thinking을 끈 빠른 모델을 사용하고, 보안 검토 같은 복잡한 작업은 더 높은 thinking 수준의 pro 모델을 트리거하므로 짧은 질문은 계속 저렴하게 유지됩니다.'
   - q: 'DeepSeek-TUI는 어떻게 설치하나요?'
-    a: 'npm(`npm install -g deepseek-tui`), Cargo(`cargo install deepseek-tui-cli --locked`), macOS의 Homebrew(`brew tap Hmbown/deepseek-tui && brew install deepseek-tui`), 또는 Docker로 설치할 수 있습니다. 인증은 `deepseek auth set --provider deepseek`로 설정하며, v0.8.8부터 ARM64 Linux를 기본 지원합니다.'
+    a: 'npm(``npm install -g deepseek-tui``), Cargo(``cargo install deepseek-tui-cli --locked``), macOS의 Homebrew(``brew tap Hmbown/deepseek-tui && brew install deepseek-tui``), 또는 Docker로 설치할 수 있습니다. 인증은 ``deepseek auth set --provider deepseek``로 설정하며, v0.8.8부터 ARM64 Linux를 기본 지원합니다.'
   - q: 'Anthropic의 금융 서비스 에이전트 제품군에는 무엇이 포함되나요?'
     a: '특정 금융 워크플로를 다루는 11개의 명명된 에이전트가 포함되며, 여기에는 Pitch Agent(comps, precedents, LBO에서 피치 덱까지), Market Researcher, Earnings Reviewer, GL Reconciler, KYC Screener가 있습니다. 또한 /comps, /dcf, /earnings 같은 버티컬 슬래시 명령어 플러그인과 LSEG 및 S&P Global이 구축한 파트너 커넥터도 추가됩니다.'
   - q: 'Local Deep Research는 프라이버시를 보장하나요, 그리고 정확도는 어느 정도인가요?'

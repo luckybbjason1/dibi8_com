@@ -1,11 +1,10 @@
 ---
-title: "MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
-description: "MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves ..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'mempalace-open-source-ai-memory-system'
-category: 'llm-frameworks'
-tags: ["ai-memory", "local-first", "mempalace", "semantic-search", "chromadb", "long-term-memory", "mcp-agent", "verbatim-storage"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mempalace-open-source-ai-memory-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls

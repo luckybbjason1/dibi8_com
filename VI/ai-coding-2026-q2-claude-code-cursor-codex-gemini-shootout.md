@@ -1,6 +1,13 @@
 ---
-title: "AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro...
-description: "Đánh giá ngang hàng 4 AI coding agent hàng đầu giữa 2026: Claude Code 1.0, Cursor Pro, OpenAI Codex ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
@@ -29,7 +36,7 @@ faq: - q: "AI coding agent nào tốt nhất Q2 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI
 
@@ -177,8 +184,8 @@ Ba quy tắc kinh nghiệm: 1. **Đừng đổi nếu tool hiện tại đáp �
 
 ## Hạ Tầng Đề Xuất
 
-Chạy VPS riêng cho AI coding agent (team-shared MCP server, sandbox code execution, agent loop dài): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit miễn phí.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, cùng IDC với dibi8.com hosting.
+Chạy VPS riêng cho AI coding agent (team-shared MCP server, sandbox code execution, agent loop dài): - **** — $200 credit miễn phí.
+- **** — VPS Hong Kong, cùng IDC với dibi8.com hosting.
 
 *Affiliate link — không tốn thêm chi phí, giúp dibi8.com hoạt động.*
 

@@ -1,9 +1,10 @@
 ---
-title: "2025年最佳AI代码生成工具对比：GitHub Copilot、Cursor与Tabnine全面评测"
-description: "2025年AI代码生成工具全面评测，深入对比GitHub Copilot、Cursor、Tabnine、Amazon CodeWhisperer等主流工具的功能、定价与适用场景。". Comprehe..."
-draft: false
-aliases:
-  - /posts/best-ai-code-generators-2025/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-code-generators-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

@@ -1,21 +1,10 @@
 ---
-title: "MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn D...
-description: "Xây dựng MCP server từ con số không với hướng dẫn chi tiết. Nắm vững Model Context Protocol của Anth..."
-date: 2026-05-15T00:00:00+08:00
-lastmod: 2026-05-15T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-15"
-draft: false
-aliases:
-  - /vi/posts/mcp-deep-dive-definitive-2026-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-deep-dive-definitive-2026-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

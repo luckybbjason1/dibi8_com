@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hummingbot-crypto-trading-bot"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Hummingbot 2026: The Open-Source Crypto Trading Bot Runn...
-description: "A hands-on guide to deploying Hummingbot v2, the open-source crypto trading bot with 50+ exchange co..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/hummingbot-crypto-trading-bot/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Most Trading Bots Fail
 
@@ -405,7 +412,7 @@ python scripts/backtest.py \
 
 `````
 Backtest Results (2026-01-01 to 2026-03-31)
-========================================
+
 Total trades: 12,450
 Total return: +5.23%
 Sharpe ratio: 2.14

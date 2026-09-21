@@ -1,6 +1,13 @@
 ---
-title: "Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cun...
-description: "Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go m..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bumblebee-supply-chain-scanner-perplexity-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: [Go, Security, CLI]

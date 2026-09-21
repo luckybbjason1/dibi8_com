@@ -1,20 +1,10 @@
 ---
-title: "Knowledge Work Plugins: Anthropic's Plugin Ecosystem for..."
-description: "Knowledge Work Plugins (20,728 stars) by Anthropic extends Claude with powerful tools for document e..."
-tags: ["architecture", "llm", "open-source", "system"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: knowledge-work-plugins
-category: dev-utils
-images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
-    alt: "Knowledge Work Plugins GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/plugin-diagram.png"
-    alt: "Plugin Architecture"
-    role: architecture
-  - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/tool-use-example.png"
-    alt: "Tool Use Example"
-    role: example
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-work-plugins"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 th--.png

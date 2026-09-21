@@ -1,10 +1,10 @@
 ---
-title: "LLM 模型推荐器 2026 — 按场景、预算、上下文、隐私推荐 GPT/Claude/Gemini/DeepS..."
-description: "免费的 LLM 模型选型决策引擎。回答 5 个问题（使用场景 / 预算 / 上下文长度 / 隐私需求 / 优先级），从 GPT-5、Claude Sonnet 4.6、Gemini 3 Pro、Dee..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-llm-recommender"
-tool_id: "llm-recommender"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-recommender"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # LLM 模型推荐器 2026 — 按场景、预算、上下文、隐私推荐 GPT/Claude/Gemini/DeepSeek 等

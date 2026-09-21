@@ -1,11 +1,10 @@
 ---
-title: "2025年最佳AI演示文稿工具对比：Gamma、Beautiful.ai、Tome等全面评测"
-description: "深入评测Gamma、Beautiful.ai、Tome、SlidesAI、Canva Magic Design等主流AI演示工具，对比模板质量、AI生成能力、导出格式与协作功能，找到最适合你的AI幻灯..."
-draft: false
-categories: ["ai-tools"]
-tags: ["ai演示", "gamma", "beautiful.ai", "tome", "ai ppt"]
-aliases:
-  - /zh/posts/ai-presentation-tools/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-presentation-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳AI演示文稿工具对比：Gamma、Beautiful.ai、Tome等全面评测

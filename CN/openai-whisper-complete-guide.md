@@ -1,11 +1,10 @@
 ---
-title: OpenAI Whisper — The Ultimate Open-Source Speech-to-Text ...
-description: Complete guide to OpenAI Whisper, the state-of-the-art open-source speech recognition system. Supports 99+ languages, multilingual transcription, and speaker diarization.
-category: ai-tools
-tags: ["speech-recognition", "openai", "whisper", "transcription", "multilingual", "voice-to-text"]
-slug: openai-whisper-complete-guide
-date: 2026-07-17T00:00:00+00:00
-lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/openai-whisper-speech-recognition.jpg
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openai-whisper-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

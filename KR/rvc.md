@@ -1,6 +1,13 @@
 ---
-title: "RVC: 35K+ Stars AI 음성 변환 구축 — 2026년 10분 훈련 설정 가이드"
-description: "RVC (Retrieval-based Voice Conversion)는 GPT-SoVITS, Coqui TTS, demucs와 호환되는 VITS 기반 음성 변환 프레임워크입니다. ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "rvc"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![RVC Logo](https://raw.githubusercontent.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/main/assets/rvc_logo.png)
 

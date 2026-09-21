@@ -1,23 +1,14 @@
 ---
-title: "DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
-tags: ["ai-agent", "automation", "cli", "coding", "dev-tools", "development", "open-source", "terminal"]
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-categories: ["ai-tools"]
-slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
-aliases: [/deepseek-reasonix]
-sources: - name: GitHub
-    url: 'https://github.com/esengine/DeepSeek-Reasonix'
-  - name: Website
-    url: 'https://esengine.github.io/DeepSeek-Reasonix/'
-  - name: Discord
-    url: 'https://discord.gg/XF78rEME2D'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepseek-reasonix-terminal-ai-coding-agent-prefix-cache"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered f...
-description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

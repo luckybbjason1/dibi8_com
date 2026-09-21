@@ -1,6 +1,13 @@
 ---
-title: "Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS...
-description: "Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "coqui-tts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言
 

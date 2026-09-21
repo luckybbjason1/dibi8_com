@@ -1,31 +1,10 @@
-
-title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
-draft: false
-description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
-date: 2026-05-25T00:00:00+08:00
-lastmod: 2026-05-25T00:00:00+08:00
-tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
-categories: ["llm-frameworks"]
-slug: this-week-ai-agents-2026-w21
-author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
-showAuthor: true
-showSummary: true
-sources: ["GitHub Search API"]
-methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 ---
-review_status: "AWAITING_FINAL_APPROVAL"
-
-This week's list says something quieter than "AI is everywhere" - it says the **infrastructure layer around agents is starting to thicken**. Five trends to call out: 1. **Agent harnesses are a thing now.** [ECC](https://github.com/affaan-m/ECC) (#1) doesn't try to be another agent - it's a *performance and memory* layer for Claude Code, Codex, Cursor, Opencode. When meta-tooling out-stars the agents themselves, you know the ecosystem matured past "let's build an agent."
-2. **Workflow + agent is converging.** [n8n](https://github.com/n8n-io/n8n) (#2, an older workflow OG) and [Dify](https://github.com/langgenius/dify) (#8, the new agentic-platform challenger) both pitch "agentic workflow" as the unit of work. The wall between cron-job land and autonomous-agent land is dissolving.
-3. **Local-first LLM is mainstream.** [Ollama](https://github.com/ollama/ollama) (#4) now ships Kimi-K2.5, GLM-5, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma in its default model list. Notice the geography there - five of seven default models are from Chinese labs. The center of gravity in open-weights shifted while nobody was watching.
-4. **Open-weights teams are descending the stack.** [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) (#5) is what happens when a model team decides "we should also own the agent layer above our models." Expect more of this.
-5. **Prompts as a primitive haven't died.** [prompts.chat](https://github.com/f/prompts.chat) (#6, formerly Awesome ChatGPT Prompts) still climbs the charts. Reports of prompt-engineering's death were exaggerated; the field just got more mundane.
-
-**One transparency note**: [#7 JavaGuide](https://github.com/Snailclimb/JavaGuide) is a Java backend interview guide that happens to mention "AI application development" in its description - our 'topic:llm' search caught it as a false positive. We're leaving it in this week as a teachable case (and a TODO to add keyword-relevance filtering in our scout script). If you came here for AI agent repos, skip #7.
-
-**If you only try one thing this week - try Ollama.** Install is one command, your first run is 'ollama run qwen3' or 'ollama run deepseek-r1', and you'll have a 7B-to-70B model on your laptop in under five minutes. That's the cheapest way to internalize how much the local-LLM landscape changed in the last twelve months.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-05-25-trending-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Methodology
 

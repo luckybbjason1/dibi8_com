@@ -1,6 +1,13 @@
 ---
-title: "Demucs: Music Source Separation with 10K+ Stars — Compar...
-description: "Demucs is a hybrid spectrogram and waveform source separation model by Meta AI. Compatible with Ulti..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "demucs"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/demucs/-
 ---
 
-{{</* resource-info */>}}
+
 
 Separating a mixed song into individual instrument tracks — vocals, drums, bass, and others — used to require the original multitrack studio files. That changed when deep learning models learned to "unmix" finished audio. Today, musicians, producers, and developers use these tools for karaoke creation, sample isolation, remix preparation, and voice conversion pipelines. Among the open-source options, one model dominates the conversation: **Demucs**, Meta's hybrid transformer architecture with over 10,000 GitHub stars and top-ranked benchmarks on the MUSDB18-HQ dataset.
 

@@ -1,6 +1,13 @@
 ---
-title: "2024 AI工具导航：最佳AI工具完整指南 | Dibi8"
-description: "探索2024年最佳AI工具。完整目录包含200+AI工具，涵盖写作、图像生成、编程、营销等类别。免费和付费选项，附详细评测。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-tools-directory"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Go
@@ -563,8 +570,8 @@ AI工具领域正在快速发展。每天都有新工具出现，现有工具也
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
-- **{{< aff "shiyunapi" "category-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 中转。这种 AI 工具目录里的工具大多需要 LLM key — 中转给你稳定访问, 价格约官方 30%。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — Claude / OpenAI / DeepSeek API 中转。这种 AI 工具目录里的工具大多需要 LLM key — 中转给你稳定访问, 价格约官方 30%。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 

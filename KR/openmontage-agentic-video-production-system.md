@@ -1,8 +1,15 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "openmontage-agentic-video-production-system"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 slug: openmontage-agentic-video-production-system
-title: "OpenMontage 리뷰: 세계 최초의 오픈소스 에이전트 영상 제작 시스템 (52개 도구, 12개 ...
-description: "OpenMontage (8.3K+ GitHub stars) is the world's first open-source, agentic video production system. ..."
-date: "2026-06-22 00:00:00+08:00"
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
+date: 2026-06-22 00:00:00+08:00
 lastmod: "2026-06-22 00:00:00+08:00"
 tech_stack: - Python 3.10+
   - FFmpeg
@@ -29,7 +36,7 @@ faqs: - q: 'OpenMontage란 무엇인가요?'
   - q: 'OpenMontage는 Sora, Runway, Pika와 어떻게 다른가요?'
     a: 'Sora, Runway, 그리고 Pika는 내러티브 구조, 스크립트, 오디오 없이 짧은 클립(5~30초)을 생성하는 단일 프롬프트-투-비디오 생성기입니다. OpenMontage는 제작 조율 시스템으로, 실시간 웹 조사, 스크립트 작성, 자산(이미지, 비디오, 음악, 나레이션) 생성 또는 소싱, 모든 것을 일관된 타임라인으로 편집, 단어 단위 자막 추가, 다중 포인트 품질 검증을 수행합니다. 이는 단편 클립뿐만 아니라 모든 길이의 완성된 비디오를 제작합니다.'
   - q: 'OpenMontage를 사용하려면 유료 API 키가 필요합니까?'
-    a: '아니요. 기본적으로 `make setup`을 실행하면 Piper TTS(무료 오프라인 텍스트-투-스피치), Archive.org/NASA/Wikimedia Commons 영상, Remotion 구성, FFmpeg 후반 제작, 자동 생성 자막을 제공합니다. 비용 없이 실제로 내레이션된 영상을 제작할 수 있습니다. 유료 API 키(FLUX, Kling, Google Veo, ElevenLabs, Suno)는 더 높은 품질의 자산을 제공하지만 완전히 선택 사항입니다. 시스템은 모든 제공자를 7가지 차원에서 평가하고 예산에 맞는 최적의 매치를 선택합니다.'
+    a: '아니요. 기본적으로 ``make setup``을 실행하면 Piper TTS(무료 오프라인 텍스트-투-스피치), Archive.org/NASA/Wikimedia Commons 영상, Remotion 구성, FFmpeg 후반 제작, 자동 생성 자막을 제공합니다. 비용 없이 실제로 내레이션된 영상을 제작할 수 있습니다. 유료 API 키(FLUX, Kling, Google Veo, ElevenLabs, Suno)는 더 높은 품질의 자산을 제공하지만 완전히 선택 사항입니다. 시스템은 모든 제공자를 7가지 차원에서 평가하고 예산에 맞는 최적의 매치를 선택합니다.'
   - q: '12개의 제작 파이프라인은 무엇인가요?'
     a: '12개의 파이프라인은 다음과 같습니다: 애니메이션 설명, 애니메이션, 아바타 대변인, 시네마틱, 클립 팩토리, 다큐멘터리 몽타주, 하이브리드, 현지화 및 더빙, 팟캐스트 재구성, 화면 데모, 토킹 헤드, 캐릭터 애니메이션. 각각은 동일한 구조화된 흐름을 따릅니다: 연구 → 제안 → 스크립트 → 장면 계획 → 자산 → 편집 → 구성. 모든 단계에는 에이전트가 정확히 어떻게 수행해야 하는지 가르치는 전용 디렉터 스킬(Markdown 지침 파일)이 있습니다.'
   - q: 'OpenMontage는 AI 이미지뿐만 아니라 실제 영상으로도 영상을 만들 수 있나요?'

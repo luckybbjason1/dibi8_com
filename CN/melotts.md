@@ -1,6 +1,13 @@
 ---
-title: "MeloTTS: 7.4K+ Stars — Multi-Lingual TTS Benchmark vs Co...
-description: "MeloTTS is a high-quality multi-lingual text-to-speech library with 7.4K+ stars. Compare benchmarks ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "melotts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/melotts/-
 ---
 
-{{</* resource-info */>}}
+
 
 Most open-source TTS libraries force a choice: high quality demands a GPU, and CPU-friendly options sound robotic. [MeloTTS](https://github.com/myshell-ai/MeloTTS), developed by MIT and MyShell.ai researchers, breaks this trade-off. With 7,400+ GitHub stars and an MIT license, it delivers real-time, multi-lingual speech synthesis on CPU across 6 languages and multiple English accents. This guide walks through the complete MeloTTS setup, benchmarks it against Coqui TTS, ChatTTS, and Bark, and provides production-ready deployment configs.
 

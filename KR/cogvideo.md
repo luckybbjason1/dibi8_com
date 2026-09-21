@@ -1,6 +1,13 @@
 ---
-title: "CogVideo: 12.7K Stars — 2026 완전한 텍스트-비디오 설정 가이드"
-description: "CogVideo(CogVideoX)는 Zhipu AI가 개발한 텍스트 및 이미지-비디오 생성 모델입니다. ComfyUI, Diffusers, SAT 및 Wan/HunyuanVide..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cogvideo"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 > Zhipu AI의 오픈소스 확산 트랜스포머로 텍스트와 이미지를 영화 같은 비디오로 변환하세요. 30분 안에 제로에서 프로덕션까지.
 

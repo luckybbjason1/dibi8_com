@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "superagent-ai-agent-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Superagent: Deploy AI Agents to Production with 1 CLI Co...
-description: "A hands-on guide to deploying AI agents with Superagent. One CLI command, multiple LLM support, RAG ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/superagent-ai-agent-framework/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Deployment Gap Nobody Talks About
 
@@ -409,17 +416,17 @@ workflow = client.workflow.create(
     steps=[
         {
             "agent": "research-agent",
-            "input": "Research the topic: {{topic}}",
+            "input": "Research the topic: ",
             "output_key": "research_notes"
         },
         {
             "agent": "writer-agent",
-            "input": "Write a blog post based on: {{research_notes}}",
+            "input": "Write a blog post based on: ",
             "output_key": "draft"
         },
         {
             "agent": "editor-agent",
-            "input": "Review and improve: {{draft}}",
+            "input": "Review and improve: ",
             "output_key": "final_post"
         }
     ]

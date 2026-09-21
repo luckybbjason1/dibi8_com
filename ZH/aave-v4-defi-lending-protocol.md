@@ -1,16 +1,14 @@
 ---
-title: "AAVE v4 2026：管理150亿美元以上存款的DeFi借贷协议 — 智能合约集成指南"
-description: "2026年AAVE v4 DeFi借贷协议集成完整指南。学习如何存入和借入30多种加密资产、使用闪电贷、实施隔离模式，以及在您的DApp中集成GHO稳定币。". Comprehensive guide..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["aave"]
-aliases:
-  - /zh/posts/aave-v4-defi-lending-protocol/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aave-v4-defi-lending-protocol"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 去中心化借贷已成为现代DeFi的基石，而AAVE站在这场革命的最前沿。AAVE在多条链上拥有超过150亿美元的总锁定价值，是加密货币生态系统中最大且经过最多实战检验的借贷协议。2025年底发布的AAVE v4引入了重大的架构改进，使其比以往任何时候都更高效、更安全、更开发者友好。
 

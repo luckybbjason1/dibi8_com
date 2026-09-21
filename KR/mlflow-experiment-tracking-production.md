@@ -1,16 +1,14 @@
 ---
-title: "MLflow 2026: 10,000+ 실험을 추적하는 오픈소스 ML 라이프사이클 플랫폼 — 설정 가이드"
-description: "MLflow를 활용한 ML 실험 추적, 모델 레지스트리, 모델 서빙에 대한 완전한 가이드. 설치, Python SDK, 프로덕션 배포, 10,000+ 실험에 대한 벤치마크를 다룹니..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["mlflow", "머신러닝", "mlops", "실험 추적", "모델 레지스트리", "모델 서빙", "python", "오픈소스", "데이터과학"]
-aliases:
-  - /kr/posts/mlflow-experiment-tracking-production/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mlflow-experiment-tracking-production"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 추적되지 않는 실험의 혼란
 
@@ -595,7 +593,7 @@ jobs: train: runs-on: ubuntu-latest
         run: pip install mlflow==2.22.0 scikit-learn pandas
 
       - name: Train and register model
-        env: MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
+        env: MLFLOW_TRACKING_URI: $
         run: |
           python train.py --register-model --stage Staging
 

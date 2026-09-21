@@ -1,11 +1,10 @@
 ---
-title: "Supermemory: LLM 앱을 구축하기 위한 가장 빠른 오픈소스 AI 메모리 API"
-description: "Supermemory는 AI 애플리케이션을 위한 오픈소스 메모리 엔진 및 앱입니다. 벡터 검색, 그래프 검색, 세션 관리를 갖춘 빠르고 확장 가능한 메모리 API를 제공합니다. L..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'supermemory-open-source-ai-memory-api'
-category: llm-frameworks
-tags: ["ai-memory", "supermemory", "vector-search", "graph-search", "llm-apps", "self-hosted", "langchain", "llamaindex"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supermemory-open-source-ai-memory-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

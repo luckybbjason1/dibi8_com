@@ -1,11 +1,10 @@
 ---
-title: "Supermemory: The Fastest Open-Source AI Memory API for B...
-description: "Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API w..."
-tags: ["ai-agent", "ai-memory", "api", "memory", "open-source", "persistence", "self-hosted"]
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'supermemory-open-source-ai-memory-api'
-category: llm-frameworks
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "supermemory-open-source-ai-memory-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything

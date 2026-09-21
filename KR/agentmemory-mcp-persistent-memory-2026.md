@@ -1,21 +1,10 @@
 ---
-title: "AI 코딩 에이전트 지속 메모리 완벽 가이드: agentmemory + MCP로 Claude Code...
-description: "Claude Code, Cursor를 쓸 때마다 세션 끝나면 기억 초기화되는 문제 해결. agentmemory 오픈소스 프레임워크와 MCP 프로토콜로 AI 코딩 에이전트에 영구 기..."
-date: 2026-05-17T00:00:00+08:00
-lastmod: 2026-05-17T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: Apache-2.0
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-17"
-draft: false
-aliases:
-  - /posts/agentmemory-mcp-persistent-memory-2026/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agentmemory-mcp-persistent-memory-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

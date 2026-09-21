@@ -1,10 +1,10 @@
 ---
-title: "MinerU：70.6K 星 — 将任何文档转换为 LLM 就绪的 Markdown"
-description: "MinerU（70,600+ GitHub star）将 PDF、DOCX、PPTX、XLSX、图像和网页转换为结构化 Markdown 和 JSON，用于 LLM、RAG 和 Agent 工作流程。..."
-tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
-date: 2026-06-27T00:00:00+08:00
-lastmod: 2026-06-27T00:00:00+08:00slug: 'mineru-document-parsing-engine'
-category: ai-tools
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mineru-document-parsing-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

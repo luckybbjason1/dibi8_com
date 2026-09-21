@@ -1,6 +1,13 @@
 ---
-title: "n8n AI 工作流自动化: 18.8万星自托管部署 — 比 Zapier 省 70%"
-description: "n8n（fair-code）是具有原生 AI 能力的可视化工作流自动化平台，支持 400+ 集成。兼容 Claude Code、OpenAI、Anthropic、Slack、Discord、Teleg..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![n8n logo](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 *n8n fair-code 工作流自动化平台 — 188K+ GitHub 星标，400+ 集成。*
@@ -396,7 +403,7 @@ sudo certbot --nginx -d automation.yourdomain.com
           "message": [
             {
               "role": "user",
-              "content": "=Summarize this data: {{ $json.body }}"
+              "content": "=Summarize this data: "
             }
           ]
         }
@@ -409,7 +416,7 @@ sudo certbot --nginx -d automation.yourdomain.com
     {
       "parameters": {
         "channel": "#alerts",
-        "text": "=AI Summary: {{ $json.output }}"
+        "text": "=AI Summary: "
       },
       "name": "Slack Message",
       "type": "n8n-nodes-base.slack",
@@ -457,8 +464,8 @@ sudo certbot --nginx -d automation.yourdomain.com
     },
     {
       "parameters": {
-        "chatId": "={{ $json.message.chat.id }}",
-        "text": "={{ $json.message.text }}",
+        "chatId": "=",
+        "text": "=",
         "additionalOptions": {}
       },
       "name": "Telegram Response",

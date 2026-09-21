@@ -1,21 +1,10 @@
 ---
-title: "MLflow vs Weights & Biases vs Neptune: MLOps Experiment ...
-description: "Compare MLflow, Weights & Biases, and Neptune for MLOps experiment tracking. Pricing, features, depl..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/mlops-platform-comparison-mlflow-wandb-neptune/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mlops-platform-comparison-mlflow-wandb-neptune"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # MLflow vs Weights & Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024

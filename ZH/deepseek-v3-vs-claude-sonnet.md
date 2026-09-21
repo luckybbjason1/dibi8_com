@@ -1,6 +1,13 @@
 ---
-title: "DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万...
-description: "DeepSeek V3.5（685B MoE，开源权重）和 Claude Sonnet 4.6 横向对比 — 每百万 token 价格、上下文窗口、SWE-bench、中文能力、API 可用性。202..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "deepseek-v3-vs-claude-sonnet"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

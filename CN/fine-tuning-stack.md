@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "fine-tuning-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
-description: "Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GP..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -178,12 +185,12 @@ Behind a [LiteLLM gateway](/resources/llm-frameworks/litellm/) for auth + rate l
 ## 8. Day 1 Pipeline Setup (3-4 hours)
 
 1. **Datasets in JSONL format** (varies) — prep ````train.jsonl```` and ````eval.jsonl````, push to HF Hub private
-2. **Rent RTX 4090 GPU** (10 min) — Vast.ai or {{< aff "digitalocean" "ftstack-experiment-gpu" "DigitalOcean GPU droplet" >}} for experiment phase
+2. **Rent RTX 4090 GPU** (10 min) — Vast.ai or  for experiment phase
 3. **Install Unsloth + W&B** (10 min) — ````pip install unsloth wandb```
 4. **First QLoRA run** (60 min) — Section 3 of Unsloth guide, fine-tune Llama 3.2 8B for 1 epoch, verify W&B logs appear
 5. **Iterate 5-10 short experiments** (~half a day) — vary learning rate, LoRA rank, dataset slice. Find the recipe with best eval score
 6. **Translate recipe to Axolotl YAML** (30 min) — same hyperparams in YAML format, git commit
-7. **Rent 8× H100 cluster** for production run (Vast.ai ~$15-20/hr × 6-12 hours = $90-240) on a {{< aff "htstack" "ftstack-prod-vps" "HTStack Hong Kong VPS" >}} for the data + monitoring side
+7. **Rent 8× H100 cluster** for production run (Vast.ai ~$15-20/hr × 6-12 hours = $90-240) on a  for the data + monitoring side
 8. **Run Axolotl production training** — pushes final weights to HF Hub
 9. **Deploy via vLLM** — serve the fine-tuned model on a dedicated 24 GB GPU + LiteLLM gateway
 10. **Eval against base model** — does your fine-tune actually beat the base on your eval set? If not, iterate
@@ -228,7 +235,7 @@ When you outgrow this stack: - **Need to fine-tune > 70B models routinely** — 
 4. **Weights & Biases** — eval tracking
 5. **vLLM** — production serving
 
-Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.
+Rent a  for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.
 
 
 * * *

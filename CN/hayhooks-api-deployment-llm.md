@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hayhooks-api-deployment-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Hayhooks: Deploy Haystack Pipelines as REST APIs with On...
-description: "A complete guide to deploying Haystack NLP pipelines as production REST APIs using Hayhooks. Covers ..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/hayhooks-api-deployment-llm/-
 ---
 
-{{</* resource-info */>}}
+
 
 You spent three days building a beautiful Haystack pipeline. It chunks documents, embeds them, runs a dense retriever, and passes context to a local LLM. It works perfectly in your Jupyter notebook. Then your product manager asks: "When can the frontend team call it?" And your heart sinks. You know the pain: wrapping pipelines in Flask, writing request validation, generating OpenAPI schemas, building Docker images, setting up CI/CD. What should be a 30-minute task becomes a week-long engineering sprint.
 
@@ -80,9 +87,9 @@ doc_store = InMemoryDocumentStore()
 template = """
 Given these documents, answer the question.
 Documents: {% for doc in documents %}
-  {{ doc.content }}
+  
 {% endfor %}
-Question: {{ question }}
+Question: 
 Answer: """
 
 pipeline = Pipeline()

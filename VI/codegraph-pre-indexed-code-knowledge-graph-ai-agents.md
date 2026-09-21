@@ -1,10 +1,10 @@
 ---
-title: "CodeGraph: Xây dựng Đồ thị Kiến thức Mã nguồn từ Toàn bộ...
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
-category: "dev-utils"
-publish_date: "2026-06-10"
-lastmod: "2026-06-10"author: "DIBI8"
-tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

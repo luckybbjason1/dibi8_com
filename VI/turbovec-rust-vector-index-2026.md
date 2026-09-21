@@ -1,11 +1,10 @@
 ---
-title: "TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp...
-description: "TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Py..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'turbovec-rust-vector-index-2026'
-category: 'ai-tools'
-tags: ["vector-search", "rust", "quantization", "langchain", "llamaindex", "RAG", "embeddings", "turboquant"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "turbovec-rust-vector-index-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,10 +1,10 @@
 ---
-title: "Máy Tính Chi Phí LLM API — GPT-4 / Claude / Gemini"
-description: "Tính chi phí API LLM hàng tháng. Nhập số token input/output, số request mỗi ngày, chọn mô hình — nhậ..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-llm-cost-calculator"
-tool_id: "llm-cost-calculator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-cost-calculator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

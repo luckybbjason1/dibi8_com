@@ -1,7 +1,10 @@
 ---
-title: "TimesFM 2.5: 예측을 위한 구글 혁신적 시계열 기초 모델"
-description: "TimesFM 2.5 완전 가이드 - 시계열 예측을 위한 구글 리서치 디코더 전용 기초 모델. 설치, 미세 조정, 벤치마크, 실제 응용 사례를 다룹니다.". Comprehensiv..."
-slug: timesfm-google-time-series-foundation-model
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "timesfm-google-time-series-foundation-model"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

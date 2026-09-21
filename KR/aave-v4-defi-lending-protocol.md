@@ -1,6 +1,13 @@
 ---
-title: "AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트...
-description: "2026년 AAVE v4 DeFi 대출 프로토콜 통합 완벽 가이드. 30개 이상의 암호화폐 자산을 공급하고 차입하며, 플래시 론을 사용하고, 격리 모드를 구현하며, DApp에서 G..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aave-v4-defi-lending-protocol"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 탈중앙화 대출은 현대 DeFi의 초석이 되었으며, AAVE는 이 혁명의 최전선에 서 있습니다. 여러 체인에서 150억 달러 이상의 총 잠긴 가치를 보유한 AAVE는 암호화폐 생태계에서 가장 크고 가장 많은 실전 테스트를 거친 대출 프로토콜입니다. 2025년 말에 출시된 AAVE v4는 중요한 아키텍처 개선을 도입하여 이전보다 더 효율적이고 안전하며 개발자 친화적으로 만들었습니다.
 

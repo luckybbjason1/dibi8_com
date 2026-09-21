@@ -1,6 +1,13 @@
 ---
-title: "Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cun...
-description: "Triển khai Lobe Chat như một giải pháp thay thế ChatGPT tự host. Hỗ trợ 20+ nhà cung cấp LLM, hệ thố..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lobe-chat-openai-alternative-ui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: ChatGPT Không Còn Đủ Nữa
 

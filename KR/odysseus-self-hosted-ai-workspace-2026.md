@@ -1,6 +1,13 @@
 ---
-title: "Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 202...
-description: "Odysseus는 오픈소스 프라이버시 우선 AI 워크스페이스입니다 (9일 63,000 스타, MIT 라이선스). Docker 명령어 하나로 채팅, AI 에이전트, 딥 리서치, 이메..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "odysseus-self-hosted-ai-workspace-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []

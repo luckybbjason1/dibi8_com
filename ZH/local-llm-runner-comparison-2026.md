@@ -1,11 +1,10 @@
 ---
-title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026：诚实的本地 LLM ...
-description: "2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王..."
-draft: false
-categories: ["llm-frameworks"]
-tags: ["local llm", "ollama", "vllm", "llama.cpp", "lm studio", "对比", "hub文章"]
-aliases:
-  - /posts/local-llm-runner-comparison-2026/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-llm-runner-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -157,7 +156,7 @@ vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000
 
 **场景 A —— 单干 founder 用 AI 编程**：Ollama 在你笔记本。完事。通过 OpenAI 兼容 API 接 OpenCode / Continue / Cursor。看 [自托管 AI 编程工作流](/zh/collections/self-hosted-ai-coding-workflow/) 拿全 stack。
 
-**场景 B —— 50 员工公司内部 chatbot**：vLLM 跑在独立 24 GB GPU（RTX 4090 或 A5000）上，{{< aff "htstack" "vllm-vps-hk" "HTStack 香港 VPS" >}} 或 {{< aff "digitalocean" "vllm-droplet" "DigitalOcean GPU droplet" >}}。前置 [LiteLLM 网关](/zh/resources/llm-frameworks/litellm/) 做认证 + 按用户账单。
+**场景 B —— 50 员工公司内部 chatbot**：vLLM 跑在独立 24 GB GPU（RTX 4090 或 A5000）上， 或 。前置 [LiteLLM 网关](/zh/resources/llm-frameworks/litellm/) 做认证 + 按用户账单。
 
 **场景 C —— 你的市场副总想跟文档 chat**：LM Studio。他拖 PDF 进 RAG 界面。零培训。把工程时间留给真需要工程的用例。
 

@@ -1,11 +1,10 @@
 ---
-title: "CloakBrowser: 通过所有机器人检测测试的隐身 Chromium 浏览器 — 25,000 星的抓取利...
-description: "CloakBrowser（25,077 GitHub 星标）是一款通过所有机器人检测测试的隐身 Chromium 浏览器。即插即用的 Playwright 替代品，具有源码级指纹修补。30/30 测试..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
-category: 'ai-trading'
-tags: ["stealth browser", "CloakBrowser", "bot detection", "web scraping", "fingerprint spoofing", "Playwright replacement", "anti-detection", "scraping tool"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cloakbrowser-stealth-chromium-bot-detection-scraping"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

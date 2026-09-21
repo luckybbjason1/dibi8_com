@@ -1,11 +1,10 @@
 ---
-title: "NVIDIA Cosmos: Các mô hình thế giới mã nguồn mở cho Phys...
-description: "NVIDIA Cosmos là một nền tảng mã nguồn mở của các mô hình thế giới, tập dữ liệu và công cụ để xây dự..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'nvidia-cosmos-world-models-platform-2026'
-category: ai-tools
-tags: ["nvidia-cosmos", "world-models", "physical-ai", "robotics", "video-generation", "multimodal", "mixture-of-transformers", "open-source", "ai-simulation"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "nvidia-cosmos-world-models-platform-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Đ...
-description: "Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-servers-2026-rankings-selection-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
@@ -27,7 +34,7 @@ faq: - q: "MCP là gì và tại sao quan trọng năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn
 
@@ -134,8 +141,8 @@ Anthropic reference servers: [github.com/modelcontextprotocol/servers](https://g
 
 ## Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers
 
-Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit 60 ngày.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, cùng IDC với dibi8.com.
+Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **** — $200 credit 60 ngày.
+- **** — VPS Hong Kong, cùng IDC với dibi8.com.
 
 *Affiliate links — không tốn thêm chi phí, giúp dibi8.com hoạt động.*
 

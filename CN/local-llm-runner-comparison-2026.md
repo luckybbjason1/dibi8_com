@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-llm-runner-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026: The Hones...
-description: "Direct comparison of the four local LLM runners that matter in 2026. Real numbers: Ollama (137k star..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -164,7 +171,7 @@ Read by row, pick by dominant constraint.
 
 **Scenario A — Solo founder coding with AI**: Ollama on your laptop. Done. Connect to OpenCode / Continue / Cursor via OpenAI-compatible API. See our [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for the full stack.
 
-**Scenario B — Internal company chatbot for 50 employees**: vLLM on a dedicated 24 GB GPU (RTX 4090 or A5000) on a {{< aff "htstack" "vllm-vps-hk" "HTStack Hong Kong VPS" >}} or {{< aff "digitalocean" "vllm-droplet" "DigitalOcean GPU droplet" >}}. Fronted by [LiteLLM gateway](/resources/llm-frameworks/litellm/) for auth + per-user spend tracking.
+**Scenario B — Internal company chatbot for 50 employees**: vLLM on a dedicated 24 GB GPU (RTX 4090 or A5000) on a  or . Fronted by [LiteLLM gateway](/resources/llm-frameworks/litellm/) for auth + per-user spend tracking.
 
 **Scenario C — Your VP of Marketing wants to chat with documents**: LM Studio. They drag and drop PDFs into the RAG interface. Zero training needed. Save your engineering time for the use cases that actually need engineering.
 

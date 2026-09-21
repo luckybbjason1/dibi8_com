@@ -1,6 +1,13 @@
 ---
-title: "Local Deep Research: Công Cụ Nghiên Cứu Sâu AI Ưu Tiên L...
-description: "Làm chủ Local Deep Research (LDR) — trợ lý nghiên cứu AI ưu tiên local. Tìm hiểu cách thực hiện nghi..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "local-deep-research-local-first-ai-deep-research-tool"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Docker
@@ -24,7 +31,7 @@ faqs: - q: 'Local Deep Research (LDR) là gì?'
   - q: 'Nên dùng stack nào để chạy Local Deep Research?'
     a: 'Stack ưu tiên cục bộ được khuyến nghị sử dụng Ollama làm engine LLM (chạy Llama 3 hoặc Mistral), SearXNG làm công cụ siêu tìm kiếm tôn trọng quyền riêng tư, và Docker để triển khai dễ dàng. SearXNG xử lý việc tìm kiếm web còn Ollama giữ mô hình ở cục bộ.'
   - q: 'Làm thế nào để triển khai Local Deep Research bằng Docker?'
-    a: 'Chạy SearXNG với `docker run -d -p 8080:8080 --name searxng searxng/searxng`, sau đó chạy LDR với `docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research`. Việc này khởi chạy cả công cụ siêu tìm kiếm lẫn agent nghiên cứu.'
+    a: 'Chạy SearXNG với ``docker run -d -p 8080:8080 --name searxng searxng/searxng``, sau đó chạy LDR với ``docker run -d -p 5000:5000 --name ldr localdeepresearch/local-deep-research``. Việc này khởi chạy cả công cụ siêu tìm kiếm lẫn agent nghiên cứu.'
   - q: 'Local Deep Research tránh ảo giác AI và đảm bảo độ tin cậy như thế nào?'
     a: 'LDR cung cấp các trích dẫn có độ trung thực cao, đính kèm danh mục tài liệu tham khảo cho mọi khẳng định mà nó đưa ra để bạn có thể kiểm chứng nguồn tài liệu ngay lập tức. Nó cũng thực hiện tổng hợp lặp đi lặp lại, xác định các khoảng trống và chạy các tìm kiếm tiếp theo thay vì dựa vào một câu trả lời hời hợt duy nhất.'
 ---
@@ -89,9 +96,9 @@ Local Deep Research không chỉ là một công cụ; đó là một sự thay 
 
 ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ
 
-Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
-- **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
+Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập.
+- **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên.
 
 *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.*
 

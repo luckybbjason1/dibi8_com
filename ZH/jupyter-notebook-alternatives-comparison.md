@@ -1,9 +1,10 @@
 ---
-title: "2026年最佳Jupyter Notebook替代工具对比：JupyterLab、Google Colab、De...
-description: "深度对比JupyterLab、Google Colab、Deepnote和Hex四大Notebook工具，从协作、计算资源、定价等维度帮你选出最适合的数据科学工作平台。". Comprehensive..."
-draft: false
-aliases:
-  - /posts/jupyter-notebook-alternatives-comparison/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "jupyter-notebook-alternatives-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2026年最佳Jupyter Notebook替代工具对比：JupyterLab、Google Colab、Deepnote、Hex全面评测

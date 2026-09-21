@@ -1,11 +1,10 @@
 ---
-title: "open-notebook: The Open-Source Notebook LM Alternative T...
-description: "open-notebook (28,200 GitHub stars) is the open-source alternative to Google NotebookLM with support..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
-category: 'data-science'
-tags: ["open notebook", "notebook lm alternative", "self hosted RAG", "knowledge base AI", "multimodal RAG", "open source notebook", "AI podcast generator", "self hosted LLM"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-notebook-open-source-notebooklm-alternative-15-ai-providers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026

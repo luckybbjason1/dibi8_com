@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "faster-whisper"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
-description: "faster-whisper (SYSTRAN) reimplements OpenAI Whisper via CTranslate2 for 4x speedup. Covers faster w..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/faster-whisper/-
 ---
 
-{{</* resource-info */>}}
+
 
 OpenAI's Whisper changed speech-to-text in 2022, but the original Python implementation left significant performance on the table. For a 13-minute audio file, ```openai/whisper```` with the large-v2 model takes over 4 minutes on a Tesla V100 GPU — unacceptable for production pipelines processing hundreds of hours daily. SYSTRAN's **faster-whisper** reimplements Whisper inference using CTranslate2, delivering up to 4x speedup at identical accuracy while cutting VRAM usage by nearly 70%. With 23,000+ GitHub stars, it has become the de facto runtime for production speech-to-text in Python environments.
 

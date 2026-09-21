@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagents-vs-langgraph-crewai-autogen-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (...
-description: "당신은 이미 Claude Code 안에서 subagent를 오케스트레이션하고 있다. 정말 LangGraph, CrewAI, AutoGen이 필요할까? 실제 벤치마크, GitHub ..."
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -103,8 +110,8 @@ faq: - q: "이미 Claude Code subagent를 쓰고 있다면 LangGraph나 CrewAI�
 
 ## 프로덕션급 에이전트 인프라 구축하기
 
-Claude Code subagent에 머무르든 프레임워크로 넘어가든, 멀티 에이전트 작업은 그 아래에 안정적인 인프라를 원한다: 1. **장시간 실행되는 에이전트 프로세스와 CI를 위한 신뢰할 수 있는 호스트.** 프레임워크는 서비스로 배포되고, subagent 파이프라인조차 무인 실행을 위해 계속 떠 있는 머신을 원한다. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 중국 본토에 대한 저지연 접근과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC이며, 우리 자체 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.
-2. **병렬 fan-out을 위한 클라우드 여유분.** 에이전트가 넓게 fan-out하거나 — LangGraph 앱이 관측성 스택과 나란히 돌아갈 때 — 여분의 CPU가 필요하다. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 14개 이상 리전에 걸쳐 60일간 $200 무료 크레딧.
+Claude Code subagent에 머무르든 프레임워크로 넘어가든, 멀티 에이전트 작업은 그 아래에 안정적인 인프라를 원한다: 1. **장시간 실행되는 에이전트 프로세스와 CI를 위한 신뢰할 수 있는 호스트.** 프레임워크는 서비스로 배포되고, subagent 파이프라인조차 무인 실행을 위해 계속 떠 있는 머신을 원한다. **** — 중국 본토에 대한 저지연 접근과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC이며, 우리 자체 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.
+2. **병렬 fan-out을 위한 클라우드 여유분.** 에이전트가 넓게 fan-out하거나 — LangGraph 앱이 관측성 스택과 나란히 돌아갈 때 — 여분의 CPU가 필요하다. **** — 14개 이상 리전에 걸쳐 60일간 $200 무료 크레딧.
 3. **오케스트레이션 플레이북.** 언제 위임하고 언제 넘어갈지 체화하는 가장 빠른 길은 작동하는 예제를 연구하는 것이다. 우리는 실전에서 검증된 다섯 개의 스킬을 Gumroad에서 $19 번들로 패키징했다 — 모서리의 떠 있는 CTA를 보라 — dibi8 자체 파이프라인 뒤에 있는 오케스트레이터 프롬프트와 커스텀 에이전트 정의를 포함한다.
 
 ## 함께 읽기

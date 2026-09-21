@@ -1,6 +1,13 @@
 ---
-title: "Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab...
-description: "Dagger는 컨테이너에서 파이프라인을 실행하는 프로그래머블 CI/CD 엔진입니다. Docker, Go, Python, TypeScript와 호환됩니다. Dagger 설치, 튜토리..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagger"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 
@@ -473,7 +480,7 @@ jobs: ci: runs-on: ubuntu-latest
           verb: call
           module: .
           args: run --source=.
-        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env: GITHUB_TOKEN: $
 `````
 
 ### CI 통합 — GitLab CI

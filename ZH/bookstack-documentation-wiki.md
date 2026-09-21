@@ -1,16 +1,14 @@
 ---
-title: "BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测"
-description: "完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。". Com..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["bookstack", "文档", "wiki", "自托管", "php", "laravel", "知识库", "markdown", "docker", "开源"]
-aliases:
-  - /zh/posts/bookstack-documentation-wiki/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bookstack-documentation-wiki"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：每个团队都面临的文档混乱
 
@@ -278,7 +276,7 @@ jobs: publish: runs-on: ubuntu-latest
       - name: Upload to BookStack via API
         run: |
           curl -X PUT \
-            -H "Authorization: Token ${{ secrets.BOOKSTACK_API_TOKEN }}" \
+            -H "Authorization: Token $" \
             -H "Content-Type: application/json" \
             -d '{"name": "API Documentation", "html": "'"$(cat docs/api.html | base64 -w 0)"'"}' \
             "https://docs.yourdomain.com/api/pages/42"
@@ -374,7 +372,7 @@ Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeView
 });
 
 # views/welcome.blade.php
-Welcome, {{ user()->name }}! Check out the onboarding docs.
+Welcome, ! Check out the onboarding docs.
 </div>
 `````
 

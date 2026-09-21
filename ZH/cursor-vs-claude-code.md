@@ -1,6 +1,13 @@
 ---
-title: "Cursor vs Claude Code 2026：哪个 AI 编程工具更好？"
-description: "Cursor 和 Claude Code 横向对比 — 价格、性能、适用场景、迁移建议。2026 年更新。". Comprehensive guide covering features, prici..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-vs-claude-code"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

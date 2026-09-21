@@ -1,6 +1,13 @@
 ---
-title: "스키마 버그가 가짜로 만든 Overfit 진단: 아무도 말하지 않는 백테스트 사후 분석"
-description: "7번의 퀀트 실험을 돌려 「교과서적 overfit」을 발견했습니다 (Train PF 2.08 → OOS 0.94, ratio 2.21). 그런데 진단 자체가 틀렸다는 사실이 밝혀졌..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "schema-bug-faked-overfit-diagnosis-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
@@ -19,7 +26,7 @@ faq: - q: "schema drift 란 무엇이며 왜 백테스트 결과를 가짜로 �
   - q: "원본 overfit 진단은 어떻게 그렇게 설득력 있어 보였습니까?"
     a: "교과서적 시그니처입니다: Train PF 2.08, OOS PF 0.94, ratio 2.21. 모든 퀀트 트레이더는 문헌에서 이 패턴을 본 적이 있습니다 — 옵티마이저가 반복되지 않는 노이즈에 핏 되는 현상입니다. 「overfit」이라는 결론은 데이터 모양에 완벽하게 맞았습니다. 숨겨진 10x leverage 가 모든 것을 증폭시켜 양쪽 숫자를 극단적으로 만들었습니다. 올바른 2x leverage 로는 동일한 파라미터가 Train 1.494 / OOS 1.478, ratio 1.01 — 지루할 정도로 안정적입니다."
   - q: "백테스트 검증의 메타 교훈은 무엇입니까?"
-    a: "어떤 백테스트 결과라도 신뢰하기 전에, 파라미터 딕셔너리가 실제로 작성한 값을 로드했는지 검증해야 합니다. `from_dict()` 이후에 `print(vars(params))` 를 호출하면 됩니다. 필드가 조용히 누락되었다면, 생각한 것과 다른 전략을 돌리고 있는 셈입니다. 이 5초짜리 체크 하나가 7개의 후속 실험을 절약했을 것입니다."
+    a: "어떤 백테스트 결과라도 신뢰하기 전에, 파라미터 딕셔너리가 실제로 작성한 값을 로드했는지 검증해야 합니다. ``from_dict()`` 이후에 ``print(vars(params))`` 를 호출하면 됩니다. 필드가 조용히 누락되었다면, 생각한 것과 다른 전략을 돌리고 있는 셈입니다. 이 5초짜리 체크 하나가 7개의 후속 실험을 절약했을 것입니다."
   - q: "그렇다면 이 전략에 overfit 이 존재하지 않는다는 뜻입니까?"
     a: "정확히 그렇지는 않습니다. BTC 304일 데이터에서 교정된 버전은 안정적입니다 (ratio 1.01). 그러나 8개 페어에 대한 크로스에셋 테스트는 대부분 노이즈를 보였습니다 (ratio_stdev > mean). 한 자산 (DOT) 은 좋아 보였지만 워크포워드 분해를 거치자 IS/OOS ratio 6.47 이 드러났습니다 — 「크로스에셋 성공」이라는 이야기 속에 실제 교과서적 overfit 이 숨어 있었던 것입니다. 전략은 손익분기 수준이며, 다만 원래 진단된 이유와는 다른 이유로 그렇습니다."
   - q: "프로덕션에서 schema drift 를 어떻게 방어합니까?"
@@ -29,7 +36,7 @@ faq: - q: "schema drift 란 무엇이며 왜 백테스트 결과를 가짜로 �
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 스키마 버그가 가짜로 만든 Overfit 진단
 
@@ -179,8 +186,8 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 ## 권장 인프라
 
-워크포워드 + 멀티에셋 실험 스캐폴딩용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, 손쉬운 GPU/CPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아 거래소 API 까지 저지연
+워크포워드 + 멀티에셋 실험 스캐폴딩용: - **** — $200 크레딧, 손쉬운 GPU/CPU droplet
+- **** — 홍콩 VPS, 아시아 거래소 API 까지 저지연
 
 *제휴 링크 — 가격은 동일하며, dibi8.com 을 후원합니다.*
 

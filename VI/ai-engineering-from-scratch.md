@@ -1,20 +1,10 @@
 ---
-title: "Kỹ Thuật AI Từ Đầu: Xây Dựng Hệ Thống LLM Sản Xuất — Hướ...
-description: "Kỹ Thuật AI Từ Đầu (32.771 sao) là một chương trình giảng dạy toàn diện bao gồm tinh chỉnh LLM, RAG,..."
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: ai-engineering-from-scratch
-category: llm-frameworks
-tags: ["kỹ thuật ai", "llm", "tinh chỉnh", "rag", "khung tác nhân", "triển khai sản xuất", "học máy"]
-images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
-    alt: "Kỹ Thuật AI Từ Đầu GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/rohitg00/ai-engineering-from-scratch/main/README.md"
-    alt: "README Kho Lưu Trữ"
-    role: reference
-  - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
-    alt: "Lịch Sử Sao"
-    role: reference
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-engineering-from-scratch"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

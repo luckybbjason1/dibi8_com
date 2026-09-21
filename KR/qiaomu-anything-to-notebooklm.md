@@ -1,11 +1,10 @@
 ---
-title: "Qiaomu Anything to NotebookLM：任意コンテンツソースを Google Noteboo...
-description: "Qiaomu Anything to NotebookLM は、YouTube ビデオ、ポッドキャスト、記事、PDF など 15 種類以上のコンテンツソースを Google NotebookLM のナ..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
-category: data-science
-tags: ["qiaomu-notebooklm", "notebooklm", "コンテンツ変換", "Claude Code", "ナレッジマネジメント", "AI ツール"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "qiaomu-anything-to-notebooklm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

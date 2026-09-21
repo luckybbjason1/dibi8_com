@@ -1,6 +1,13 @@
 ---
-title: "Claude 4 실전 리뷰 2026: Opus 4, Sonnet 4, Haiku 4 심층 테스트"
-description: "Claude 4 전 라인업 심층 리뷰 — Opus 4, Sonnet 4, Haiku 4 코딩·추론·컨텍스트·가격, GPT-4o·Gemini 1.5 Pro 비교까지. 2026년 6월..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-4-opus-sonnet-review-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

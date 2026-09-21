@@ -1,6 +1,13 @@
 ---
-title: "AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor ...
-description: "Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agent-monthly-bill-2026-real-receipts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
@@ -29,7 +36,7 @@ faq: - q: "Claude Max($200)는 API 종량제 대비 가치가 있나요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # AI 코딩 에이전트 월 청구서 2026: 실측 30일 영수증
 
@@ -146,8 +153,8 @@ Effective cost per hour: $0.98
 
 ## 추천 인프라
 
-장시간 에이전트 루프, MCP 서버, 로컬 LLM 런타임용 VPS: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧으로 초기 세팅 커버
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, dibi8.com과 동일 IDC
+장시간 에이전트 루프, MCP 서버, 로컬 LLM 런타임용 VPS: - **** — $200 크레딧으로 초기 세팅 커버
+- **** — 홍콩 VPS, dibi8.com과 동일 IDC
 
 *제휴 링크 — 가격 동일, dibi8.com 운영에 도움이 됩니다.*
 

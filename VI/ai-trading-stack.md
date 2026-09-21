@@ -1,6 +1,13 @@
 ---
-title: "AI Trading Stack 2026: 7-Thành Phần Workflow Quant Mã Ng...
-description: "Stack AI trading self-host: ta-lib (tín hiệu) + vectorbt (backtest) + freqtrade (thực thi) + AI Trad..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trading-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
@@ -131,7 +138,7 @@ Hướng dẫn đầy đủ walk-forward và Monte Carlo: [vectorbt backtesting 
 docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d
 `````
 
-Deploy trên VPS độ trễ thấp — chúng tôi chạy instance freqtrade nội bộ trên {{< aff "htstack" "trading-vps-hk" "VPS Hong Kong của HTStack" >}} cho độ trễ sub-50ms tới các exchange Châu Á, hoặc {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplet" >}} ở NYC cho venue thiên Mỹ.
+Deploy trên VPS độ trễ thấp — chúng tôi chạy instance freqtrade nội bộ trên  cho độ trễ sub-50ms tới các exchange Châu Á, hoặc  ở NYC cho venue thiên Mỹ.
 
 Setup đầy đủ pattern chiến lược AI: [Chiến lược AI trading freqtrade](/vi/resources/llm-frameworks/freqtrade-ai-trading-strategies/).
 
@@ -173,19 +180,19 @@ Setup đầy đủ: [Polymarket Agents — framework bot AI trading](/vi/resourc
 
 **Vì sao phù hợp stack này**: Thậm chí quant hardcore cần công cụ "màn hình thứ hai" cho check-in thị trường nhanh, câu hỏi ad-hoc, hedge thủ công. Minara là câu trả lời AI-native (vs charting truyền thống TradingView). Cho user thuần phi-coder muốn trading do AI dẫn: Minara là điểm vào độc lập.
 
-**Bắt đầu**: {{< aff "minara" "minara-trading-platform" "Đăng ký tại Minara" >}} — xây trên Hyperliquid nên thực thi cơ bản là cùng rail DEX như stack kỹ thuật ở trên. Dùng nó làm layer hội thoại; dùng stack kỹ thuật (thành phần 1-6) cho chiến lược hệ thống.
+**Bắt đầu**:  — xây trên Hyperliquid nên thực thi cơ bản là cùng rail DEX như stack kỹ thuật ở trên. Dùng nó làm layer hội thoại; dùng stack kỹ thuật (thành phần 1-6) cho chiến lược hệ thống.
 
 Đánh giá đầy đủ: [Đánh giá Minara Hyperliquid AI trading 2026](/vi/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/).
 
 ## 10. Thứ Tự Setup Day 1 (4-5 giờ, trước bất kỳ vốn thực)
 
-1. **VPS + môi trường Python** (15 phút) — {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB, cài Python 3.11 + Docker
+1. **VPS + môi trường Python** (15 phút) —  4 GB, cài Python 3.11 + Docker
 2. **ta-lib + vectorbt** (15 phút) — ````pip install```, chạy backtest mẫu trên 1 năm dữ liệu BTC
 3. **freqtrade dry-run** (30 phút) — Docker compose, cấu hình với API key Binance chỉ đọc, deploy chiến lược Bollinger cơ bản trên paper 2 tuần trước khi đi live
 4. **Hyperliquid testnet** (30 phút) — Lấy USDC testnet, cài SDK, đặt order test trên testnet, verify thực thi
 5. **Tích hợp AI Trader** (45 phút) — Cấu hình với DeepSeek (rẻ) hoặc Claude (premium) API key, trỏ vào log dry-run freqtrade
 6. **Polymarket Agents** (30 phút) — Setup ví, fund $50 USDC test, deploy agent "dự đoán do tin tức dẫn"
-7. **Tài khoản Minara** (10 phút) — {{< aff "minara" "minara-day1-signup" "Đăng ký" >}} cho UI hội thoại; hữu ích cho check-in thị trường ad-hoc dù bạn đi systematic
+7. **Tài khoản Minara** (10 phút) —  cho UI hội thoại; hữu ích cho check-in thị trường ad-hoc dù bạn đi systematic
 8. **Tối thiểu 2 tuần paper trading** (thời gian thực) — Trước khi triển khai vốn thực, chạy mọi thực thi live trong dry-run/testnet 2 tuần, chứng minh bạn không phá vỡ điều gì rõ ràng
 
 Sau 5 giờ setup + 2 tuần paper trading, bạn có stack quant cấp production thực trên hạ tầng bạn sở hữu.
@@ -230,9 +237,9 @@ Xây stack. Paper trade 1-3 tháng. Bắt đầu với vốn bạn có thể m�
 4. **AI Trader** — vòng điều chỉnh chiến lược AI
 5. **Hyperliquid** — venue perp DEX on-chain
 6. **Polymarket Agents** — alpha thị trường dự đoán
-7. **Minara** — hub hội thoại AI+crypto cho người không code ({{< aff "minara" "footer-minara" "đăng ký ở đây" >}})
+7. **Minara** — hub hội thoại AI+crypto cho người không code ()
 
-Bật {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} cho thực thi độ trễ thấp, paper trade 2-4 tuần trước khi đi live, bắt đầu với vốn bạn có thể mất, scale chỉ sau khi hiệu suất live khớp kỳ vọng backtest.
+Bật  cho thực thi độ trễ thấp, paper trade 2-4 tuần trước khi đi live, bắt đầu với vốn bạn có thể mất, scale chỉ sau khi hiệu suất live khớp kỳ vọng backtest.
 
 * * *
 

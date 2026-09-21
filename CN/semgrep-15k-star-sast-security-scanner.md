@@ -1,11 +1,10 @@
 ---
-title: "Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
-description: "Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability ..."
-tags: ["open-source", "sast", "scanner", "security"]
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'semgrep-15k-star-sast-security-scanner'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "semgrep-15k-star-sast-security-scanner"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready

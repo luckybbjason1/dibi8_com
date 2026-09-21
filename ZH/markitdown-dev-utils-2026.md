@@ -1,6 +1,13 @@
 ---
-title: "markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实...
-description: "markitdown 是微软出品的 Python 工具，用于把各类文件和 Office 文档转换成 Markdown。141,153 个 GitHub star，MIT 协议。涵盖安装、核心命令行与 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,7 +30,7 @@ faqs: - q: '怎么安装 markitdown？'
   - q: 'markitdown 能转换所有类型的 Office 文档吗？'
     a: '它支持很多种格式——Word（.docx）、Excel（.xlsx）、PowerPoint（.pptx）、PDF、HTML、图片和音频——但并非每种格式的每个特性都会被保留。具体支持哪些类型、需要哪些 extras，请查阅文档。'
   - q: 'markitdown 采用什么开源协议？'
-    a: '`markitdown` 采用 MIT 协议发布，可自由用于任何用途并进行修改。'
+    a: '``markitdown`` 采用 MIT 协议发布，可自由用于任何用途并进行修改。'
   - q: '怎么为这个项目做贡献？'
     a: '你可以提交 issue 或发起 pull request。贡献指南请查看 [GitHub 仓库](https://github.com/microsoft/markitdown)。'
   - q: 'markitdown 有哪些已知的局限？'
@@ -32,7 +39,7 @@ faqs: - q: '怎么安装 markitdown？'
 # markitdown：把文件和 Office 文档转成 Markdown（141K Stars）——2026 实战指南
 
 
-{{< resource-info >}}
+
 
 ## 引言
 

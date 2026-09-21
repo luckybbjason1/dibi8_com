@@ -1,11 +1,10 @@
 ---
-title: "2025年最佳知识图谱构建工具与框架对比：Neo4j、RDFlib、Amazon Neptune、Stardog...
-description: "深入对比Neo4j、RDFlib、Amazon Neptune、Stardog、TigerGraph、Dgraph等主流知识图谱工具与框架，从查询语言、可扩展性、AI集成等维度进行全面评测。". Co..."
-draft: false
-categories: ["data-science"]
-tags: ["知识图谱", "图数据库", "neo4j", "图神经网络", "语义网"]
-aliases:
-  - /zh/posts/knowledge-graph-tools-frameworks/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "knowledge-graph-tools-frameworks"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳知识图谱构建工具与框架对比：Neo4j、RDFlib、Amazon Neptune、Stardog全面评测

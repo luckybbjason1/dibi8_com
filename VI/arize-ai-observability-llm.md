@@ -1,6 +1,13 @@
 ---
-title: "Arize AI Phoenix: Công cụ Giám sát LLM Mã nguồn mở Truy ...
-description: "Hướng dẫn đầy đủ về Arize Phoenix năm 2026: giám sát LLM mã nguồn mở, truy vết RAG, quản lý phiên bả..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "arize-ai-observability-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Bạn Không Thể Sửa Những Gì Bạn Không Thấy
 

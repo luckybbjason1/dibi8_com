@@ -1,11 +1,10 @@
 ---
-title: "Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường P...
-description: "Trivy (aquasecurity/trivy) là công cụ quét bảo mật mã nguồn mở cho container, IaC và mã. Tương thích..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'trivy-production-security-scanner-2026'
-category: 'dev-utils'
-tags: ["security", "containers", "vulnerability-scanning", "devops", "kubernetes", "sast", "iac", "supply-chain"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "trivy-production-security-scanner-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

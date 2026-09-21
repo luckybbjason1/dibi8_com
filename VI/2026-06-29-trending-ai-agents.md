@@ -1,18 +1,10 @@
 ---
-title: "This Week in Open-Source AI Agents - Top Trending GitHub Repos"
-description: "Weekly curated AI agent trends from GitHub"
-tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
-date: 2026-06-29T00:00:00+08:00
-lastmod: 2026-06-29T00:00:00+08:00
-categories: ["llm-frameworks"]
-slug: this-week-ai-agents-2026-w26
-author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
-showAuthor: true
-showSummary: true
-sources: ["GitHub Trending"]
-source_url: "https://github.com/trending"
-methodology: "Open-source script at home-hermes/scripts/tribe-os-intel.sh"
-review_status: "AWAITING_EDITOR_REVIEW"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-06-29-trending-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

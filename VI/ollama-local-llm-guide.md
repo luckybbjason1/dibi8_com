@@ -1,21 +1,10 @@
 ---
-title: "Hướng Dẫn Toàn Diện Ollama 2025: Chạy LLM Local Trên Mọi...
-description: "Hướng dẫn chi tiết Ollama 2025: cài đặt trên macOS/Windows/Linux/Docker, chạy Llama 3 và Mistral loc..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/ollama-local-llm-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama-local-llm-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

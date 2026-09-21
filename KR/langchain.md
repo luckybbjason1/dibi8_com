@@ -1,6 +1,13 @@
 ---
-title: "LangChain: 137K+ 스타로 프로덕션 준비된 AI 에이전트를 배포하는 3가지 방법 — 202...
-description: "LangChain (LC)는 700개 이상의 통합을 갖춘 LLM 기반 애플리케이션 구축을 위한 Python/JS 프레임워크입니다. LangChain 설치 방법, Docker를 사용..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langchain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LangChain Logo](https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png)
 

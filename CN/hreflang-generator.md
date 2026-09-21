@@ -1,10 +1,10 @@
 ---
-title: "Hreflang Tags Generator — Multi-Language & International..."
-description: "Generate copy-paste-ready hreflang link tags for multi-language and international SEO. Map each lang..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-hreflang-generator"
-tool_id: "hreflang-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hreflang-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

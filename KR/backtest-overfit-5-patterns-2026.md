@@ -1,6 +1,13 @@
 ---
-title: "백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴 (2026)"
-description: "옵티마이저 산출 전략 50+ 건의 실거래 결과를 바탕으로 5가지 뚜렷한 과적합 패턴을 정리했다: walk-forward 괴리, 레짐 플립, 파라미터 절벽, 인디케이터 스태킹, 생존..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "backtest-overfit-5-patterns-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader]
@@ -29,7 +36,7 @@ faq: - q: "백테스트에서 과적합 탐지가 왜 그렇게 어려운가요?
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 백테스트 과적합: 실제 PF/Sharpe 수치로 보는 5가지 전형 패턴
 
@@ -148,8 +155,8 @@ lookback=16: PF 0.87
 
 ## 추천 인프라
 
-긴 백테스트 + walk-forward 스윕을 돌리려면: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, GPU droplet 사용 가능
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 아시아 거래소까지 저지연
+긴 백테스트 + walk-forward 스윕을 돌리려면: - **** — $200 크레딧, GPU droplet 사용 가능
+- **** — 홍콩 VPS, 아시아 거래소까지 저지연
 
 *제휴 링크 — 가격은 동일, dibi8.com을 후원합니다.*
 

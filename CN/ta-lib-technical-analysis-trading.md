@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ta-lib-technical-analysis-trading"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "TA-Lib: The Industry Standard Technical Analysis Library...
-description: "Complete guide to TA-Lib Python wrapper with 200+ technical indicators. Install, benchmark, and depl..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/ta-lib-technical-analysis-trading/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why 87% of Quant Traders Still Reach for TA-Lib in 2026
 

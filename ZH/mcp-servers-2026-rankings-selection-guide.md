@@ -1,6 +1,13 @@
 ---
-title: "MCP 服务器 2026: 100+ 生态地图 + 选型决策树"
-description: "Model Context Protocol 生态在 2026 年中突破 1000+ 公开服务器。本指南按类目排名前 30 个，解释 stdio、HTTP/SSE 和 OAuth-bridged 服务..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-servers-2026-rankings-selection-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [MCP, 'Claude Code', Cursor, TypeScript, Python]
@@ -33,7 +40,7 @@ faq: - q: "什么是 MCP？为什么 2026 年这么重要？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # MCP 服务器 2026: 100+ 生态地图 + 选型决策树
 
@@ -272,8 +279,8 @@ Anthropic 维护参考服务器：[github.com/modelcontextprotocol/servers](http
 
 如果你跑团队共享 MCP 服务器（HTTP/SSE），稳定 VPS 比本地 stdio 服务器需要的更多：
 
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 60 天 $200 免费 credit。原型 HTTP MCP 服务器 commit 固定基础设施前好选择。
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，dibi8.com 自家所在的 IDC。
+- **** — 60 天 $200 免费 credit。原型 HTTP MCP 服务器 commit 固定基础设施前好选择。
+- **** — 香港 VPS，dibi8.com 自家所在的 IDC。
 
 *推广链接 — 不增加你的成本，但能支持 dibi8.com 持续运营。*
 

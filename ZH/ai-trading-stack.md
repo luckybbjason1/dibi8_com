@@ -1,6 +1,13 @@
 ---
-title: "AI 量化交易 Stack 2026：7 组件开源量化工作流（加密 + 预测市场）"
-description: "自托管 AI 交易 stack：ta-lib（信号）+ vectorbt（回测）+ freqtrade（执行）+ AI Trader（AI 策略层）+ Hyperliquid（perp DEX 场所）..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trading-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, Docker, PostgreSQL, WebSocket]
@@ -171,7 +178,7 @@ docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compo
 
 策略 ````.py```` 丢进 ````user_data/strategies/````，配交易所 API key，dry-run 起步，验证 2 周，切实盘。
 
-部署在低延迟 VPS —— 我们内部 freqtrade 实例跑在 {{< aff "htstack" "trading-vps-hk" "HTStack 的香港 VPS" >}} 上拿亚洲交易所 sub-50ms 延迟，或 {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplet" >}} 在纽约给偏美场所。
+部署在低延迟 VPS —— 我们内部 freqtrade 实例跑在  上拿亚洲交易所 sub-50ms 延迟，或  在纽约给偏美场所。
 
 完整设置含 AI 策略模式：[freqtrade AI 交易策略](/zh/resources/llm-frameworks/freqtrade-ai-trading-strategies/)。
 
@@ -232,19 +239,19 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 
 **为什么适合这个 stack**：哪怕硬核量化也需要"第二屏"工具做快速市场检查、临时问题、手动对冲。Minara 是 AI 原生答案（vs TradingView 传统制图）。纯非程序员想 AI 驱动交易：Minara 是独立入口。
 
-**开始**：{{< aff "minara" "minara-trading-platform" "Minara 注册" >}} —— 基于 Hyperliquid，底层执行和上面技术 stack 用同一 DEX 通道。把它当对话层用；技术 stack（1-6 组件）做系统化策略。
+**开始**： —— 基于 Hyperliquid，底层执行和上面技术 stack 用同一 DEX 通道。把它当对话层用；技术 stack（1-6 组件）做系统化策略。
 
 完整评测：[Minara Hyperliquid AI 交易 2026 评测](/zh/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/)。
 
 ## 10. Day 1 安装顺序（4-5 小时，投真金之前）
 
-1. **VPS + Python 环境**（15 分）—— {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB，装 Python 3.11 + Docker
+1. **VPS + Python 环境**（15 分）——  4 GB，装 Python 3.11 + Docker
 2. **ta-lib + vectorbt**（15 分）—— ````pip install```，在 1 年 BTC 数据上跑样本回测
 3. **freqtrade dry-run**（30 分）—— Docker compose，用只读 Binance API key 配置，纸面跑基础 Bollinger 策略 2 周后再实盘
 4. **Hyperliquid testnet**（30 分）—— 拿 testnet USDC，装 SDK，testnet 上下测试订单验证执行
 5. **AI Trader 集成**（45 分）—— 配 DeepSeek（便宜）或 Claude（premium）API key，指向你 freqtrade dry-run 日志
 6. **Polymarket Agents**（30 分）—— 钱包配置，注 $50 USDC 测试，部署一个"新闻驱动预测"agent
-7. **Minara 账户**（10 分）—— {{< aff "minara" "minara-day1-signup" "注册" >}} 拿对话 UI；做系统化也建议留个临时市场检查工具
+7. **Minara 账户**（10 分）——  拿对话 UI；做系统化也建议留个临时市场检查工具
 8. **2 周纸面交易最少**（实时）—— 部署真金前，所有实盘执行 dry-run / testnet 跑 2 周，证明你没把明显的事搞砸
 
 5 小时设置 + 2 周纸面交易后，你有真生产级量化 stack 跑在自己拥有的基础设施上。
@@ -304,9 +311,9 @@ print(info.l2_snapshot("BTC"))  # 实时 order book
 4. **AI Trader** —— AI 策略调整循环
 5. **Hyperliquid** —— 链上 perp DEX 场所
 6. **Polymarket Agents** —— 预测市场 alpha
-7. **Minara** —— 非程序员的 AI+crypto 对话 hub（{{< aff "minara" "footer-minara" "在这注册" >}}）
+7. **Minara** —— 非程序员的 AI+crypto 对话 hub（）
 
-开一个 {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} 拿低延迟执行，部署真金前纸面交易 2-4 周，从你能损失的资本起步，实盘表现匹配回测预期后才扩。
+开一个  拿低延迟执行，部署真金前纸面交易 2-4 周，从你能损失的资本起步，实盘表现匹配回测预期后才扩。
 
 
 * * *

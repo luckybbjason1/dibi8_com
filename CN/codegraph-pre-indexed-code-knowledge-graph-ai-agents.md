@@ -1,11 +1,10 @@
 ---
-title: "Codegraph: The Code Knowledge Graph That Slashes LLM Tok...
-description: "Codegraph (45,555 GitHub stars) creates pre-indexed code knowledge graphs for Claude Code, Codex, Ge..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'codegraph-pre-indexed-code-knowledge-graph-ai-agents'
-category: 'dev-utils'
-tags: ["code knowledge graph", "Codegraph", "LLM token reduction", "code indexing", "AI coding agents", "local code search", "codebase understanding", "developer tool"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "codegraph-pre-indexed-code-knowledge-graph-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026

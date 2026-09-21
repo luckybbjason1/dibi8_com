@@ -1,6 +1,13 @@
 ---
-title: "Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南"
-description: "Flowise 是一个开源可视化 LLM 工作流与 AI Agent 构建工具。支持 LangChain、Ollama、OpenAI、Qdrant、Weaviate、Chroma 等 200+ 集成。..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言
 
@@ -358,7 +365,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
         size: medium
       },
       chatWindow: {
-        title: 客服助手,
+title: "AI Tool Guide"
         welcomeMessage: '你好！有什么可以帮您的？',
         backgroundColor: '#ffffff',
         height: 700,

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zilliz-milvus-vector-database-scale"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Milvus/Zilliz 2026: The Vector Database Handling 10 Bill...
-description: "Production guide for Milvus 2.5: billion-scale vector search, GPU-accelerated indexing, Kubernetes d..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/zilliz-milvus-vector-database-scale/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Billion-Vector Problem
 

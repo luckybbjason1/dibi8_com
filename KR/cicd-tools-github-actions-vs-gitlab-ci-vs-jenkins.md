@@ -1,9 +1,10 @@
 ---
-title: "CI/CD 도구 비교: GitHub Actions vs GitLab CI vs Jenkins 2025...
-description: "2025년 최신 기준으로 GitHub Actions, GitLab CI, Jenkins를 기능, 가격, 성능, 보안 관점에서 심층 비교합니다. 팀 규모별 최적의 CI/CD 도구 선..."
-draft: false
-aliases:
-  - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -117,7 +118,7 @@ jobs: test: runs-on: ubuntu-latest
     strategy: matrix: node-version: [18, 20, 22]
     steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: node-version: ${{ matrix.node-version }}
+        with: node-version: $
           cache: 'npm'
       - run: npm ci
       - run: npm test

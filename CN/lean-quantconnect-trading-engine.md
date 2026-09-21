@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lean-quantconnect-trading-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Lean: The Open-Source Algorithmic Trading Engine Powerin...
-description: "Complete 2026 guide to Lean, the algorithmic trading engine behind QuantConnect. Multi-asset backtes..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/lean-quantconnect-trading-engine/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Most Trading Engines Fail at Scale
 

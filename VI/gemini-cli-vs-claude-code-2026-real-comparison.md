@@ -1,6 +1,13 @@
 ---
-title: "Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 q...
-description: "Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code-2026-real-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
@@ -25,7 +32,7 @@ faq: - q: "Gemini CLI có phải là đối thủ thực sự của Claude Code 
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 quy trình làm việc
 
@@ -125,8 +132,8 @@ Hầu hết lập trình viên có kinh nghiệm đều chạy cả hai. Gemini 
 
 ## Hạ tầng được khuyến nghị
 
-Cho cấu hình kết hợp Gemini CLI + Claude Code: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — Credit $200
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong
+Cho cấu hình kết hợp Gemini CLI + Claude Code: - **** — Credit $200
+- **** — VPS Hong Kong
 
 *Liên kết liên kết — giá như nhau, hỗ trợ dibi8.com.*
 

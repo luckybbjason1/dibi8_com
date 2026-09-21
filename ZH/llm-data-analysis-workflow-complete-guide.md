@@ -1,9 +1,10 @@
 ---
-title: "使用大语言模型进行数据分析的完整工作流：PandasAI、Code Interpreter与OpenAI实战指南"
-description: "全面解析LLM数据分析工作流，深度对比PandasAI、ChatGPT Code Interpreter与OpenAI API三种方案，含实战代码与安全最佳实践。". Comprehensive gu..."
-draft: false
-aliases:
-  - /posts/llm-data-analysis-workflow-complete-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-data-analysis-workflow-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

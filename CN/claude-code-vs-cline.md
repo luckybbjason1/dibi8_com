@@ -1,21 +1,10 @@
 ---
-title: "Claude Code vs Cline in 2026: Autonomy or Control?"
-description: "Side-by-side breakdown of Claude Code and Cline — terminal autonomy vs VS Code step-by-step approval..."
-date: 2026-05-29T00:00:00+08:00
-lastmod: 2026-05-29T00:00:00+08:00
-draft: false
-tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'What is the core difference between Claude Code and Cline?'
-    a: 'Philosophy. Claude Code is Anthropic''s terminal-native agent, tuned for Claude models and built to run autonomously — plan, edit, run tests, retry, all in one loop. Cline is an open-source VS Code extension that works with any model and asks you to approve every diff, command, and web fetch before it runs. Claude Code optimizes for autonomy and per-token quality; Cline optimizes for control and model freedom. It''s the autonomy-vs-control trade-off in two tools.'
-  - q: 'Is Cline cheaper than Claude Code?'
-    a: 'It can be, because Cline lets you route to cheaper models. The Cline extension itself is free — you pay only for AI inference, and a developer using Cline with Claude Sonnet 4.6 via API typically spends $5-15/month. The moment you route work to DeepSeek, Gemini Flash, or a local Ollama model, it gets cheaper still. Claude Code is bundled with a Claude Pro/Max subscription or billed pay-per-token via the Anthropic API; heavy API users spend more, but you get Claude Code''s token-efficiency and the integrated tooling.'
-  - q: 'Can Cline use Claude models?'
-    a: 'Yes — Cline is model-agnostic. It works with Claude, GPT, DeepSeek, Gemini, or local models via Ollama. Running Cline with Anthropic models gives excellent results; the nuance is that Claude Code squeezes more useful work out of each token of the same model, because it''s purpose-tuned for them. If you want Claude quality but with per-step approval and the option to swap to a cheaper model anytime, Cline-with-Claude is a legitimate middle path.'
-  - q: 'Which is better for running unattended / scheduled tasks?'
-    a: 'Claude Code, thanks to its Routines feature (May 2026). It lets you configure things like "run nightly migration check," "respond to a webhook with a PR," or "every Friday clean up TODO comments" without writing your own scheduler — a real lead over open-source agents that haven''t productized scheduled runs yet. Cline''s approve-every-step model is the opposite design: built for a human in the loop, not unattended autonomy.'
-  - q: 'Should a beginner pick Claude Code or Cline?'
-    a: 'Cline, if you want to watch and approve everything while you learn — it lives inside VS Code with a familiar GUI, and every diff/command/web fetch is reviewed before it runs, so nothing happens you didn''t okay. Claude Code assumes terminal comfort and trusts the agent to ship multi-step changes autonomously, which is more powerful but less hand-holding. Start with Cline for visibility and control; graduate to Claude Code when you trust the loop and want speed.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-cline"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Claude Code vs Cline in 2026: Autonomy or Control?
@@ -134,8 +123,8 @@ Honest decision tree: - Trust the loop, on Claude, want speed + Routines → **C
 
 **Cline lets you use any model — which means you'll want flexible API access**, especially when routing between Claude, GPT, and DeepSeek to balance cost and quality.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. One key for multiple top models at ~30% of official pricing; perfect for Cline's multi-model routing, or when direct Anthropic/OpenAI access is rate-limited in your region.
-- **{{< aff "htstack" "vs-footer" "HTStack" >}}** — Hong Kong VPS if you want to self-host a local model (Ollama) for Cline to route to. Same IDC behind dibi8.com.
+- **** — Claude / OpenAI / DeepSeek API proxy. One key for multiple top models at ~30% of official pricing; perfect for Cline's multi-model routing, or when direct Anthropic/OpenAI access is rate-limited in your region.
+- **** — Hong Kong VPS if you want to self-host a local model (Ollama) for Cline to route to. Same IDC behind dibi8.com.
 
 *Affiliate links — support dibi8.com at no extra cost to you.*
 

@@ -1,21 +1,14 @@
 ---
-title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
-tags: ["open-source"]
-date: 2026-06-22
-lastmod: 2026-06-22
-draft: false
-categories: ["ai-tools"]
-slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
-aliases: [/freellmapi]
-sources: - name: GitHub
-    url: 'https://github.com/tashfeenahmed/freellmapi'
-  - name: 'Official Site'
-    url: 'https://freellmapi.co'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freellmapi-openai-compatible-proxy-free-llm-tiers-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
-description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single prox..."
+description: "Technical guide and comparison."
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false

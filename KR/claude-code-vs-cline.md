@@ -1,21 +1,10 @@
 ---
-title: "2026년 Claude Code vs Cline: 자율성이냐 통제냐?"
-description: "Claude Code와 Cline을 나란히 분석 — 터미널 자율성 vs VS Code 단계별 승인, 모델 지원, 가격, 그리고 각각을 언제 선택할지. 에이전트형 코딩의 통제 대 자..."
-date: 2026-05-29T00:00:00+08:00
-lastmod: 2026-05-29T00:00:00+08:00
-draft: false
-tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'Claude Code와 Cline의 핵심 차이는 무엇인가요?'
-    a: '철학입니다. Claude Code는 Anthropic의 터미널 네이티브 에이전트로, Claude 모델에 맞춰 튜닝되어 자율적으로 동작하도록 만들어졌습니다 — 계획하고, 편집하고, 테스트를 실행하고, 재시도하는 모든 과정을 하나의 루프 안에서 처리합니다. Cline은 어떤 모델과도 동작하는 오픈소스 VS Code 확장으로, 모든 diff, 명령, 웹 페치를 실행하기 전에 사용자에게 승인을 요청합니다. Claude Code는 자율성과 토큰당 품질에 최적화되어 있고, Cline은 통제와 모델 자유도에 최적화되어 있습니다. 두 도구로 표현된 자율성 대 통제의 트레이드오프인 셈입니다.'
-  - q: 'Cline이 Claude Code보다 저렴한가요?'
-    a: '그럴 수 있습니다. Cline은 더 저렴한 모델로 라우팅할 수 있기 때문입니다. Cline 확장 자체는 무료이며 — AI 추론 비용만 지불하면 되고, Claude Sonnet 4.6을 API로 사용하는 개발자는 보통 월 $5-15을 씁니다. DeepSeek, Gemini Flash, 또는 로컬 Ollama 모델로 작업을 라우팅하는 순간 더 저렴해집니다. Claude Code는 Claude Pro/Max 구독에 번들로 포함되거나 Anthropic API를 통해 토큰당 과금됩니다. 헤비 API 사용자는 비용이 더 들지만, 그 대신 Claude Code의 토큰 효율성과 통합 툴링을 얻습니다.'
-  - q: 'Cline이 Claude 모델을 사용할 수 있나요?'
-    a: '네 — Cline은 모델에 구애받지 않습니다. Claude, GPT, DeepSeek, Gemini, 또는 Ollama를 통한 로컬 모델과 동작합니다. Anthropic 모델로 Cline을 돌리면 훌륭한 결과가 나옵니다. 다만 미묘한 점은, Claude Code가 같은 모델에서도 토큰 하나하나로부터 더 많은 유용한 작업을 짜낸다는 것입니다. Claude 모델 전용으로 튜닝되어 있기 때문이죠. Claude 품질을 원하면서도 단계별 승인과 언제든 더 저렴한 모델로 전환할 수 있는 옵션을 원한다면, Claude를 쓰는 Cline은 정당한 중간 경로입니다.'
-  - q: '무인/예약 작업 실행에는 어느 쪽이 더 나은가요?'
-    a: 'Claude Code입니다. Routines 기능(2026년 5월) 덕분입니다. 직접 스케줄러를 작성하지 않고도 "야간 마이그레이션 점검 실행", "웹훅에 PR로 응답", "매주 금요일 TODO 주석 정리" 같은 것을 설정할 수 있습니다 — 예약 실행을 아직 제품화하지 못한 오픈소스 에이전트 대비 실질적인 우위입니다. Cline의 모든 단계 승인 모델은 정반대 설계입니다. 무인 자율성이 아니라 사람이 루프에 개입하도록 만들어졌습니다.'
-  - q: '초보자는 Claude Code와 Cline 중 무엇을 골라야 하나요?'
-    a: '배우면서 모든 것을 지켜보고 승인하고 싶다면 Cline입니다 — 익숙한 GUI와 함께 VS Code 안에서 동작하고, 모든 diff/명령/웹 페치가 실행 전에 검토되므로 당신이 승인하지 않은 일은 일어나지 않습니다. Claude Code는 터미널에 익숙하다고 가정하고 에이전트가 여러 단계 변경을 자율적으로 처리하도록 신뢰합니다. 더 강력하지만 손을 덜 잡아줍니다. 가시성과 통제를 위해 Cline으로 시작하고, 루프를 신뢰하게 되고 속도를 원할 때 Claude Code로 넘어가세요.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-cline"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -129,8 +118,8 @@ Cline은 모델에 구애받지 않습니다: Claude, GPT, DeepSeek, Gemini, 또
 
 **Cline은 어떤 모델이든 사용할 수 있게 해줍니다 — 즉, 유연한 API 액세스가 필요해진다는 뜻입니다**, 특히 비용과 품질의 균형을 맞추기 위해 Claude, GPT, DeepSeek 사이를 라우팅할 때 그렇습니다.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 프록시. 공식 가격의 ~30%로 여러 최상위 모델을 키 하나로; Cline의 멀티 모델 라우팅에 완벽하며, 당신의 지역에서 Anthropic/OpenAI 직접 액세스가 속도 제한될 때도 유용합니다.
-- **{{< aff "htstack" "vs-footer" "HTStack" >}}** — Cline이 라우팅할 로컬 모델(Ollama)을 직접 호스팅하고 싶다면 홍콩 VPS. dibi8.com을 뒷받침하는 것과 같은 IDC.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 공식 가격의 ~30%로 여러 최상위 모델을 키 하나로; Cline의 멀티 모델 라우팅에 완벽하며, 당신의 지역에서 Anthropic/OpenAI 직접 액세스가 속도 제한될 때도 유용합니다.
+- **** — Cline이 라우팅할 로컬 모델(Ollama)을 직접 호스팅하고 싶다면 홍콩 VPS. dibi8.com을 뒷받침하는 것과 같은 IDC.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

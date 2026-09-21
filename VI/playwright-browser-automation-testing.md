@@ -1,6 +1,13 @@
 ---
-title: "Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhan...
-description: "Làm chủ Playwright 1.51 để tự động hóa đa trình duyệt. Hỗ trợ Chrome, Firefox, WebKit. Tự động chờ, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "playwright-browser-automation-testing"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Dịch bệnh Không ổn định trong Tự động hóa Trình duyệt
 

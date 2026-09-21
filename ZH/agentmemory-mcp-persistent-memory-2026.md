@@ -1,10 +1,10 @@
 ---
-title: "AgentMemory + MCP：2026 年 AI 编码代理持久化记忆的实战指南"
-description: "解决 Claude Code、Cursor 每次关闭后记忆清零的问题。详解 agentmemory 开源框架与 MCP 协议如何实现 AI 编码代理的跨会话持久化记忆，附部署教程与团队共享记忆方案。"..."
-last_maintained: "2026-05-17"
-draft: false
-aliases:
-  - /posts/agentmemory-mcp-persistent-memory-2026/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agentmemory-mcp-persistent-memory-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

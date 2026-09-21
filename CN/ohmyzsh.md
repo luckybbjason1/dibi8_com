@@ -1,11 +1,10 @@
 ---
-title: "Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026"
-description: "Master Oh My Zsh with real benchmarks, plugin configs, and setup guides. Compare with Starship, Prez..."
-tags: ["open-source"]
-date: 2026-06-11
-lastmod: 2026-06-11
-slug: 'ohmyzsh'
-category: dev-utils
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ohmyzsh"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026

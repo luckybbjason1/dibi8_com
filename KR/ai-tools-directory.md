@@ -1,6 +1,13 @@
 ---
-title: "2024 AI 도구 디렉토리: 최고의 AI 도구 완벽 가이드 | Dibi8"
-description: "2024년 최고의 AI 도구를 찾아보세요. 글쓰기, 이미지 생성, 코딩, 마케팅 등 200개 이상의 AI 도구가 포함된 완전한 디렉토리. 무료 및 유료 옵션, 상세 리뷰 포함."...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-tools-directory"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 source_version: ""
 licensing_model: "Open Source"
 license_type: "MIT"
@@ -408,8 +415,8 @@ AI 도구 분야는 빠르게 진화하고 있습니다. 매일 새로운 도구
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **{{< aff "shiyunapi" "category-footer" "Shiyunapi Claude API" >}}** — Claude / OpenAI / DeepSeek API 프록시. 이런 디렉토리의 AI 도구 대부분 LLM 키 필요 — 프록시로 안정적인 액세스, 공식 가격의 ~30%.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 이런 디렉토리의 AI 도구 대부분 LLM 키 필요 — 프록시로 안정적인 액세스, 공식 가격의 ~30%.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 

@@ -1,6 +1,13 @@
 ---
-title: "ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026）"
-description: "ViMax（GitHub 7.1K+ stars）由香港大学数据科学实验室推出，是首个被广泛采纳的开源智能体视频生成框架。不再像 Sora、Runway 那样一句 prompt 直出短片，它把四个 A..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vimax-agentic-video-generation-multi-agent-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

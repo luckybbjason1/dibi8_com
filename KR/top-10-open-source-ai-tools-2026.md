@@ -1,21 +1,10 @@
 ---
-title: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10"
-description: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10". Comprehensive guide covering features, pricing, and bes..."
-draft: false
-aliases:
-  - /ko/posts/top-ai-developer-productivity-tools-2026/
-- /ko/posts/top-open-source-document-management-tools-2026/
-- /ko/posts/top-open-source-fintech-tools-2026/
-faqs: - q: '2026년 Midjourney의 가장 좋은 오픈소스 대안은 무엇인가요?'
-    a: 'ComfyUI는 Midjourney를 대체하는 대표적인 오픈소스 대안입니다. 블랙박스 같은 Discord bot에 의존하는 대신, Stable Diffusion과 Flux 모델을 위한 노드 기반의 제약 없는 워크플로를 제공하며 전적으로 로컬 GPU에서 실행됩니다.'
-  - q: '자율 코딩을 위해 Devin을 대체할 수 있는 오픈소스 도구는 무엇인가요?'
-    a: 'OpenHands는 Devin의 오픈소스 대안입니다. 안전한 Docker 샌드박스 안에서 웹을 탐색하고, 코드를 작성하고, 테스트를 실행하며, 버그를 자율적으로 수정할 수 있습니다.'
-  - q: '로컬 LLM이 회사의 비공개 문서에 접근하도록 하려면 어떻게 해야 하나요?'
-    a: 'AnythingLLM을 사용하면 모든 문서, 데이터베이스 또는 웹사이트를 대화형 AI 지식 베이스로 전환할 수 있습니다. 이는 로컬 LLM이 회사의 비공개 데이터에 접근할 수 있게 해주는 엔터프라이즈 RAG 도구입니다.'
-  - q: 'AI 워크플로를 구축할 때 LangChain이나 Coze를 대체하는 오픈소스 대안은 무엇인가요?'
-    a: 'Dify는 하드코딩된 API 호출을 대체하는 시각적 LLM 엔진입니다. 드래그 앤 드롭 방식의 시각적 인터페이스를 사용해 복잡한 RAG 파이프라인과 멀티 에이전트 워크플로를 구축할 수 있습니다.'
-  - q: 'AI 코딩 에이전트가 API 호출 없이 세션 간에 메모리를 유지하려면 어떻게 해야 하나요?'
-    a: 'MemPalace는 MCP(Model Context Protocol) 서버 역할을 하여 Claude Code 같은 로컬 코딩 에이전트에 영구적인 메모리를 제공합니다. MCP 서버로 로컬에서 실행되기 때문에 외부 API 호출 없이도 지속적인 컨텍스트를 제공합니다.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "top-10-open-source-ai-tools-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -90,7 +79,7 @@ faqs: - q: '2026년 Midjourney의 가장 좋은 오픈소스 대안은 무엇인
 
 ## 추천 도구
 
-오픈소스 AI 도구 개발/배포 시 권장: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
 
 *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
 
@@ -98,7 +87,7 @@ faqs: - q: '2026년 Midjourney의 가장 좋은 오픈소스 대안은 무엇인
 
 **안정적인 Claude / OpenAI API 액세스가 필요?** 이 분야 프로젝트는 결국 Anthropic / OpenAI 레이트 리밋이나 가격 벽에 부딪힙니다.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용.
+- **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용.
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.*
 

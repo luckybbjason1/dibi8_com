@@ -1,6 +1,13 @@
 ---
-title: "Crawl4AI 深度实战教程：2026 年 GitHub 最火开源爬虫，零成本搭建 LLM 数据采集与 RAG...
-description: "Crawl4AI 是 2026 年 GitHub 排名第一的开源网页爬虫，63k+ Stars，专为 LLM、AI Agent 和 RAG 管道设计。本文提供完整中文教程，涵盖安装、LLM 结构化提取..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "crawl4ai-tutorial-llm-ready-web-scraping-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []

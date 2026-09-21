@@ -1,6 +1,13 @@
 ---
-title: "Hayhooks: Triển khai Haystack Pipeline thành REST API ch...
-description: "Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. B..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hayhooks-api-deployment-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Bạn dành ba ngày để xây dựng một Haystack pipeline tuyệt đẹp. Nó chia nhỏ tài liệu, tạo embedding, chạy dense retriever, và truyền context cho một LLM local. Nó hoạt động hoàn hảo trong Jupyter notebook. Rồi product manager hỏi: "Team frontend khi nào có thể gọi API này?" Và tim bạn thắt lại. Bạn biết cái đau đớn đó: bọc pipeline trong Flask, viết request validation, tạo OpenAPI schema, build Docker image, setup CI/CD. Việc đáng ra chỉ 30 phút lại thành một sprint kéo dài cả tuần.
 
@@ -81,9 +88,9 @@ doc_store = InMemoryDocumentStore()
 template = """
 Dựa vào các tài liệu sau, trả lờ câu hỏi.
 Tài liệu: {% for doc in documents %}
-  {{ doc.content }}
+  
 {% endfor %}
-Câu hỏi: {{ question }}
+Câu hỏi: 
 Trả lờ: """
 
 pipeline = Pipeline()

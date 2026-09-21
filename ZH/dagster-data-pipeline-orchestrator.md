@@ -1,16 +1,14 @@
 ---
-title: "Dagster: 基于资产的数据管道编排器 —— 2026生产环境部署指南"
-description: "Dagster 1.13完整生产指南：基于资产的编排、数据感知调度、分区、回填以及使用Docker Compose自托管部署。". Comprehensive guide covering featu..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["dagster", "data-pipeline", "orchestration", "etl", "apache-airflow", "dbt", "python", "docker", "data-engineering", "asset-centric", "数据管道", "数据编排"]
-aliases:
-  - /zh/posts/dagster-data-pipeline-orchestrator/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dagster-data-pipeline-orchestrator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：凌晨三点数据管道失效的噩梦
 

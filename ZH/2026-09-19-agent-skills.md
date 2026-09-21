@@ -1,11 +1,10 @@
 ---
-title: "Addy Osmani 的 Agent Skills：96K Stars 级生产环境 AI 编程工作流框架'
-description: '了解 Addy Osmani 如何构建一套 skills 体系，将 Claude Code、Cursor 等 AI 编辑器升级为强大、可组合的生产级工作空间。完整实施、部署与高阶用法指南。'
-date: 2026-09-19
-slug: 'addy-osmani-agent-skills-production-guide-2026'
-category: 'llm-frameworks'
-tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
-lang: zh
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-09-19-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -168,7 +167,7 @@ skills/
 `````markdown
 * * *
 name: my-skill
-description: "一行描述这个 skill 做什么"
+description: "Technical guide and comparison."
 version: 1.0.0
 author: your-name
 * * *

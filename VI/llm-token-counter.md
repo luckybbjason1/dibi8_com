@@ -1,10 +1,10 @@
 ---
-title: "LLM Token Counter — So Sánh Token Hóa GPT-4 / Claude / G...
-description: "Công cụ đếm token LLM trực tuyến miễn phí. So sánh cách OpenAI GPT-4 / GPT-4o, Anthropic Claude và G..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-llm-token-counter"
-tool_id: "llm-token-counter"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-token-counter"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

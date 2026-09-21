@@ -1,6 +1,13 @@
 ---
-title: "schema bug 伪造了我的 overfit 诊断：没人愿意谈的回测复盘"
-description: "跑了 7 个量化实验，发现「教科书级 overfit」（Train PF 2.08 → OOS 0.94，比值 2.21）。然后才发现诊断本身就是错的 —— schema 字段静默错配导致 optim..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "schema-bug-faked-overfit-diagnosis-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: [Python, pandas, numpy, vectorbt, backtrader, pydantic]
@@ -19,7 +26,7 @@ faq: - q: "什么是 schema drift？为什么它能伪造回测结果？"
   - q: "原始的 overfit 诊断为什么看起来那么有说服力？"
     a: "教科书级特征：Train PF 2.08、OOS PF 0.94、比值 2.21。每个量化交易员都在文献里见过这个模式 —— optimizer 拟合了不会重复的噪音。「overfit」这个结论跟数据形状契合得天衣无缝。隐藏的 10x leverage 只是把所有东西都放大，让两个数字都变得极端。换成正确的 2x leverage，同样参数得到 Train 1.494 / OOS 1.478，比值 1.01 —— 无聊地稳定。"
   - q: "对于回测验证，meta 教训是什么？"
-    a: "在信任任何回测结果之前，先验证你的参数字典确实加载了你写下的值。`from_dict()` 之后 `print(vars(params))`。如果某个字段被静默丢掉，你跑的就是另一个策略而不是你以为的那个。这一个 5 秒钟的检查本可以省下 7 次后续实验。"
+    a: "在信任任何回测结果之前，先验证你的参数字典确实加载了你写下的值。``from_dict()`` 之后 ``print(vars(params))``。如果某个字段被静默丢掉，你跑的就是另一个策略而不是你以为的那个。这一个 5 秒钟的检查本可以省下 7 次后续实验。"
   - q: "这是不是意味着这个策略其实没有 overfit？"
     a: "不完全。BTC 304 天的修正版本是稳定的（比值 1.01）。但跨资产在 8 个交易对上测试主要显示噪音（ratio_stdev > mean）。其中一个资产（DOT）看起来很棒，直到滚动前推分解暴露出 IS/OOS 比值 6.47 —— 真正教科书级的 overfit 藏在「跨资产成功」故事里面。这个策略只能算盈亏平衡，只不过原因跟最初诊断的不一样。"
   - q: "在生产环境里如何防御 schema drift？"
@@ -29,7 +36,7 @@ faq: - q: "什么是 schema drift？为什么它能伪造回测结果？"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # schema bug 伪造了我的 overfit 诊断
 
@@ -206,8 +213,8 @@ assert params.base_leverage == raw.get("base_leverage", raw.get("leverage")), "l
 
 用于滚动前推 + 多资产实验的脚手架：
 
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** —— 200 美元额度，方便开 GPU/CPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** —— 香港 VPS，到亚洲交易所 API 低延迟
+- **** —— 200 美元额度，方便开 GPU/CPU droplet
+- **** —— 香港 VPS，到亚洲交易所 API 低延迟
 
 *Affiliate 链接 —— 价格相同，支持 dibi8.com。*
 

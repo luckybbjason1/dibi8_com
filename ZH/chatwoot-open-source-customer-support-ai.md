@@ -1,16 +1,14 @@
 ---
-title: "Chatwoot 2026：开源客户支持平台与AI智能体集成 — 自建部署完整指南"
-description: "Chatwoot v4 完整指南 — 开源客户支持平台。使用Docker自建部署，集成AI智能体，连接多渠道。真实基准测试和生产环境配置。". Comprehensive guide covering..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["chatwoot", "客户支持", "开源", "ai聊天机器人", "自建部署", "docker", "ruby-on-rails", "在线客服"]
-aliases:
-  - /zh/posts/chatwoot-open-source-customer-support-ai/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chatwoot-open-source-customer-support-ai"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：为什么你的客服技术栈需要重构
 
@@ -75,7 +73,7 @@ Chatwoot采用经典的单体Rails架构，配合Vue.js单页应用前端和Side
 
 **自动化规则（Automation Rules）** —— 如果-那么工作流，在会话创建、收到消息或基于时间的条件时触发。
 
-**宏（Macros）** —— 客服可一键插入的预定义回复模板。支持 ````{{contact.name}}```` 等动态变量。
+**宏（Macros）** —— 客服可一键插入的预定义回复模板。支持 ```````` 等动态变量。
 
 ## 安装与配置：5分钟从零到在线客服
 

@@ -1,6 +1,13 @@
 ---
-title: "Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướn...
-description: "Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thíc..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ollama"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Chạy các mô hình ngôn ngữ lớn từng đồng nghĩa với việc vật lộn với môi trường Python, driver CUDA và hàng gigabyte dependency. Đến năm 2026, ma sát đó đã biến mất. [Ollama](https://ollama.com) cho phép bạn pull, cấu hình và serve các LLM production-grade chỉ bằng một lệnh — không cần cài PyTorch, không cần tune GPU thủ công, thậm chí không bắt buộc Docker. Với 137.000+ sao GitHub và hệ sinh thái tích hợp phát triển mạnh, Ollama đã trở thành runtime mặc định cho developer muốn chạy inference local mà không gánh nặng vận hành.
 
@@ -311,13 +318,13 @@ PARAMETER repeat_penalty 1.1
 PARAMETER stop "<|eot_id|>"
 
 # Template tùy chỉnh (tùy chọn — bỏ qua sẽ kế thừa từ base model)
-TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+TEMPLATE """<|start_header_id|>system<|end_header_id|>
 
-{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+<|eot_id|><|start_header_id|>user<|end_header_id|>
 
-{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
-{{ .Response }}<|eot_id|>"""
+<|eot_id|>"""
 `````
 
 Build và chạy: `````bash

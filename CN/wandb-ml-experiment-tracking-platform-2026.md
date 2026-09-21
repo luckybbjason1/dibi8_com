@@ -1,11 +1,10 @@
 ---
-title: "Weights & Biases (W&B): Track Every Experiment Like a Pr...
-description: "Weights & Biases (wandb/wandb) is the AI developer platform for tracking, comparing, and deploying M..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'wandb-ml-experiment-tracking-platform-2026'
-category: 'data-science'
-tags: ["ml-ops", "experiment-tracking", "deep-learning", "pytorch", "llm", "model-registry", "mlops"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "wandb-ml-experiment-tracking-platform-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)

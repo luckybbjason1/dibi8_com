@@ -1,6 +1,13 @@
 ---
-title: "act: 70,410 GitHub Stars — 로컬에서 GitHub Actions 실행, 2026 ...
-description: "act (nektos/act)는 Docker 컨테이너에서 GitHub Actions 워크플로우를 로컬로 실행하는 CLI 도구입니다. Docker, GitHub Actions, Go..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "act"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![act logo](https://raw.githubusercontent.com/nektos/act/master/img/act-logo.png)
 
@@ -359,16 +366,16 @@ EOF
 
 로컬에서 실행하지 않을 단계 표시: `````yaml
 # 워크플로우 파일에서
-jobs: deploy: if: ${{ !github.event.act }}  # 로컬 실행 시 배포 작업 건 skipped
+jobs: deploy: if: $  # 로컬 실행 시 배포 작업 건 skipped
     runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
 
   notify: runs-on: ubuntu-latest
     steps: - name: 로컬에서 Slack 알림 건 skipped
-        if: ${{ !env.ACT }}
+        if: $
         run: |
           curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"Deployment complete"}' ${{ secrets.SLACK_WEBHOOK }}
+            --data '{"text":"Deployment complete"}' $
 `````
 
 이벤트를 통해 act 플래그 전달: `````bash

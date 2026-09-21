@@ -1,6 +1,13 @@
 ---
-title: "Tabby: Self-Hosted AI Coding Assistant with 33K+ Stars —...
-description: "Tabby is a self-hosted AI coding assistant. VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. Docke..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tabby"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/tabby/-
 ---
 
-{{</* resource-info */>}}
+
 
 GitHub Copilot sends your proprietary code to Microsoft's cloud. For teams handling sensitive IP — fintech, healthcare, defense, enterprise SaaS — that is a non-starter. Tabby is the open-source answer: a self-hosted AI coding assistant that runs entirely on your own hardware, with zero external data leakage. With 33,530+ GitHub stars and an active release cadence (v0.32.0 shipped January 2026), Tabby has matured from an experimental project into a production-grade alternative to Copilot. This **tabby tutorial** walks through a complete Tabby setup, from Docker deployment to IDE integration and production hardening. If you are specifically comparing **tabby vs copilot**, the comparison table in Section 8 breaks down feature parity and trade-offs.
 

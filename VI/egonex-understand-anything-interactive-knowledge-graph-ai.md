@@ -1,11 +1,10 @@
 ---
-title: "Egonex Understand-Anything: Biểu Đồ Tri Thức Tương Tác T...
-description: "Tìm hiểu cách sử dụng Understand-Anything của Egonex để tạo biểu đồ tri thức tương tác từ bất kỳ chủ..."
-date: 2026-06-10
-lastmod: 2026-06-10
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
-category: llm-frameworks
-tags: ["egonex", "understand-anything", "knowledge-graph", "AI", "interactive", "open-source", "research", "visualization", "llm"]
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

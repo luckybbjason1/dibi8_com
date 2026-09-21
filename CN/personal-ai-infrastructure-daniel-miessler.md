@@ -1,11 +1,10 @@
 ---
-title: "Personal AI Infrastructure: Daniel Miessler'"
-description: "Personal AI Infrastructure (PAI) by Daniel Miessler is a Life Operating System with 45 skills, 171 w..."
-tags: ["ai-agent", "automation", "guide", "open-source", "reference", "tutorial"]
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: 'personal-ai-infrastructure-daniel-miessler'
-category: data-science
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "personal-ai-infrastructure-daniel-miessler"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide

@@ -1,9 +1,10 @@
 ---
-title: "Trợ Lý Lập Trình AI Tốt Nhất 2026"
-description: "Những trợ lý lập trình AI tốt nhất cho nhà phát triển năm 2026 — từ Claude Code và Cursor đến GitHub..."
-layout: simple
-date: 2026-06-28T00:00:00+08:00
-lastmod: 2026-06-28T00:00:00+08:00
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-coding-assistants"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

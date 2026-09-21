@@ -1,11 +1,10 @@
 ---
-title: "MarkItDown: Universal File-to-Markdown Converter — Micro..."
-description: "MarkItDown by Microsoft AutoGen team converts 20+ file types to Markdown for LLM consumption. pip in..."
-tags: ["converter", "file", "markdown", "open-source", "self-hosted"]
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: markitdown-universal-file-to-markdown-converter
-category: ai-tools
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-universal-file-to-markdown-converter"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 th--.png

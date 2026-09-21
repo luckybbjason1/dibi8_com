@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagents-vs-langgraph-crewai-autogen-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
-description: "You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or Aut..."
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: ['Claude Code', 'Agent SDK', LangGraph, CrewAI, AutoGen, Python]
@@ -116,9 +123,9 @@ The line is clean: **subagents are for getting work done inside Claude Code; fra
 
 ## Setting Up Production-Ready Agent Infrastructure
 
-Whether you stay on Claude Code subagents or graduate to a framework, multi-agent work wants stable infrastructure underneath: 1. **A reliable host for long-running agent processes and CI.** Frameworks deploy as services; even subagent pipelines want a box that stays up for unattended runs. **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own agent pipelines. $5-12/month value tier.
+Whether you stay on Claude Code subagents or graduate to a framework, multi-agent work wants stable infrastructure underneath: 1. **A reliable host for long-running agent processes and CI.** Frameworks deploy as services; even subagent pipelines want a box that stays up for unattended runs. **** — Hong Kong VPS with low-latency mainland-China access and stable BGP. Same IDC that hosts dibi8.com, where we run our own agent pipelines. $5-12/month value tier.
 
-2. **Cloud headroom for parallel fan-out.** When agents fan out wide — or a LangGraph app runs alongside its observability stack — you want spare CPU. **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ regions.
+2. **Cloud headroom for parallel fan-out.** When agents fan out wide — or a LangGraph app runs alongside its observability stack — you want spare CPU. **** — $200 free credit for 60 days across 14+ regions.
 
 3. **The orchestration playbook.** The fastest way to internalize when to delegate and when to graduate is to study working examples. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — including the orchestrator prompts and custom agent definitions behind dibi8's own pipeline.
 

@@ -1,10 +1,10 @@
 ---
-title: "Trình Tạo robots.txt — Kiểm Soát AI Crawler (GPTBot, Cla...
-description: "Tạo robots.txt gọn gàng chỉ với một cú nhấp: đặt sitemap, chặn đường dẫn và chặn các AI crawler như ..."
-date: 2026-05-18
-lastmod: 2026-05-19
-layout: "tool-robots-txt-generator"
-tool_id: "robots-txt-generator"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "robots-txt-generator"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 {

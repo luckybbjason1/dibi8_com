@@ -1,6 +1,13 @@
 ---
-title: "Tabby: Trợ lý Lập trình AI Tự lưu trữ 33K+ Stars — Hướng...
-description: "Tabby là trợ lý lập trình AI tự lưu trữ. Hỗ trợ VS Code, JetBrains, Vim, Neovim, Ollama, DeepSeek. C..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "tabby"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 GitHub Copilot gửi code độc quyền của bạn lên cloud của Microsoft. Với các team xử lý IP nhạy cảm — fintech, chăm sóc sức khỏe, quốc phòng, doanh nghiệp SaaS — điều đó là không thể chấp nhận được. Tabby là câu trả lờ từ mã nguồn mở: một trợ lý lập trình AI tự lưu trữ chạy hoàn toàn trên phần cứng của chính bạn, không có rò rỉ dữ liệu bên ngoài. Với hơn 33.530 sao GitHub và chu kỳ phát hành tích cực (v0.32.0 ra mắt tháng 1/2026), Tabby đã trưởng thành từ dự án thử nghiệm thành giải pháp thay thế Copilot cấp production. Hướng dẫn này đi qua cài đặt Tabby hoàn chỉnh, từ triển khai Docker đến tích hợp IDE và hardening production.
 

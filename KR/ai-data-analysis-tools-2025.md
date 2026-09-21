@@ -1,21 +1,10 @@
 ---
-title: "2025년 최고의 AI 데이터 분석 도구: ChatGPT, Julius, Tableau AI 등"
-description: "2025년 최고의 AI 데이터 분석 도구를 소개합니다. ChatGPT Advanced Data Analysis, Julius AI, Tableau Einstein AI, Excel..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Ai Tools
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/ai-data-analysis-tools-2025/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-data-analysis-tools-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,6 +1,13 @@
 ---
-title: "2026 최고의 AI 이미지 생성기"
-description: "2026 년 최고의 오픈소스 및 무료 AI 이미지 생성기 — Stable Diffusion부터 Flux, ComfyUI부터 SDXL까지. 품질, 속도, 가격을 비교하세요.". Co..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-image-generators"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

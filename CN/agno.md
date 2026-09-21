@@ -1,6 +1,13 @@
 ---
-title: "Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
-description: "Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars...."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "agno"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/agno/-
 ---
 
-{{</* resource-info */>}}
+
 
 Choosing an AI agent framework in 2026 feels like navigating a minefield. Over the past 18 months, dozens of libraries have emerged promising to "simplify" agent development, yet most introduce more abstraction than value. Teams report spending weeks learning graph-based orchestration semantics only to discover their use case needed nothing more than a lightweight tool-calling loop. Agno (formerly Phidata) cuts through this noise with a runtime-first philosophy: build agents fast, serve them as services, and own your entire stack. With **40,233 GitHub stars**, **452 contributors**, and a fresh Apache-2.0 license, it has become the go-to framework for Python teams shipping production agent systems. This guide — a practical **agno tutorial** for 2026 — walks through **agno setup**, architecture, real code examples, benchmarks in the **agno vs crewai** debate, and the hard truths about where this **lightweight ai framework** falls short.
 

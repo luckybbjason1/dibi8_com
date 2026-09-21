@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-systems-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin...
-description: "Stateless AI agents forget everything between sessions — fatal for production use. Compare the 4 lea..."
+description: "Technical guide and comparison."
 date: 2026-05-22T00:00:00+08:00
 lastmod: 2026-05-22T00:00:00+08:00
 tech_stack: [Python, TypeScript, PostgreSQL, 'Vector databases', MCP]
@@ -34,7 +41,7 @@ faqs: - q: What's the difference between Mem0, agentmemory, Hindsight, and MemPa
 # AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hindsight vs MemPalace (Open-Source Compared)
 
 
-{{< resource-info >}}
+
 
 ## Quick Answer
 

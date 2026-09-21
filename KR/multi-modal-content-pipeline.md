@@ -1,6 +1,13 @@
 ---
-title: "멀티모달 콘텐츠 파이프라인 2026: AI 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-...
-description: "셀프호스트 멀티모달 콘텐츠 스택: faster-whisper (STT) + ChatTTS (대화 TTS) + Stable Diffusion WebUI (이미지) + ComfyUI ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "multi-modal-content-pipeline"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, FFmpeg]
@@ -33,7 +40,7 @@ aliases:
 | 4 | **ComfyUI** | 텍스트/이미지 → 이미지/비디오/오디오 | 복잡 멀티모달 파이프라인용 워크플로우 엔진 | [ComfyUI 2026](/kr/resources/ai-tools/comfyui-node-based-ai-image-2026/) |
 | 5 | **FFmpeg** | 비디오/오디오 조립 | 최종 비디오 / 팟캐스트 결과물 작성 | (산업 표준, 심층 가이드 불필요) |
 
-**월 총 비용** (빌린 GPU, 하루 4시간 사용): **~$30-50/월** (Vast.ai 또는 {{< aff "digitalocean" "mm-gpu" "DigitalOcean GPU droplet" >}}) • **항상 켜진 전용 GPU**: **~$80-150/월**
+**월 총 비용** (빌린 GPU, 하루 4시간 사용): **~$30-50/월** (Vast.ai 또는 ) • **항상 켜진 전용 GPU**: **~$80-150/월**
 
 SaaS 등가물 비교: ElevenLabs ($22) + Midjourney ($30) + Descript ($24) + Pictory ($59) + Adobe Creative Cloud ($55) = 볼륨 프리미엄 전 $190/월.
 
@@ -152,7 +159,7 @@ ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload
 
 ## 8. Day 1 셋업 순서 (3-4시간)
 
-1. **GPU 인스턴스** (15분) — Vast.ai에 24 GB GPU 임대 ($0.50-1/시간) 또는 {{< aff "digitalocean" "mm-vps" "DigitalOcean GPU droplet" >}} 주문. 비디오에 24 GB 필요; 지금 비디오 스킵하면 12 GB 충분
+1. **GPU 인스턴스** (15분) — Vast.ai에 24 GB GPU 임대 ($0.50-1/시간) 또는  주문. 비디오에 24 GB 필요; 지금 비디오 스킵하면 12 GB 충분
 2. **Docker + Python venv 기초 설치** (15분)
 3. **ComfyUI + ComfyUI Manager** (30분) — 모든 비주얼 작업의 일꾼
 4. **ChatTTS** (15분) — 안정 스피커 3-5개 사전 생성, 임베딩 저장
@@ -192,7 +199,7 @@ SaaS 등가물 비교: ElevenLabs Creator ($22) + Midjourney Standard ($30) + De
 4. **ComfyUI** — 멀티모달 워크플로우 엔진 (이미지 / 비디오 / 오디오 한 곳에서)
 5. **FFmpeg** — 지루하지만 필수 조립
 
-생산할 때 {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} 임대, 안 할 때 종료. 활성 콘텐츠 프로덕션 하루 ~2시간 넘으면 수학이 SaaS를 이김.
+생산할 때  임대, 안 할 때 종료. 활성 콘텐츠 프로덕션 하루 ~2시간 넘으면 수학이 SaaS를 이김.
 
 * * *
 

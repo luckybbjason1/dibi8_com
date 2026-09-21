@@ -1,6 +1,13 @@
 ---
-title: "AI Agent Tool Chain 2026: Stack 6 Thành Phần Để Xây Agen...
-description: "Stack AI agent production hoàn chỉnh: LangGraph cho orchestration có trạng thái + MCP servers cho to..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-tool-chain"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -182,7 +189,7 @@ Pattern: Hermes xem trace log LangGraph (qua xuất LangSmith), tương quan đi
 
 ## 9. Thứ Tự Lắp Ráp Day 1 (3 giờ)
 
-1. **Khởi động VPS + Postgres** (20 phút) — {{< aff "digitalocean" "agent-vps" "DigitalOcean $24/tháng droplet (8 GB)" >}} + Managed Postgres ($15/tháng)
+1. **Khởi động VPS + Postgres** (20 phút) —  + Managed Postgres ($15/tháng)
 2. **Cài LangGraph + checkpointer** (15 phút) — ````pip install````, viết agent có trạng thái hello-world 30 dòng, xác minh nó sống sót ````kill -9``` và resume
 3. **Thêm MCP servers** (30 phút) — filesystem + git + tavily + e2b-sandbox trong MCP config của node LangGraph
 4. **Thêm mem0 + AgentMemory MCP** (20 phút) — Docker run mem0, thêm agentmemory vào MCP toolset
@@ -227,7 +234,7 @@ Khi vượt stack này: - **Hơn 10 agent đồng thời** — Di chuyển LangG
 5. **Hermes Agent** — vòng tự cải thiện
 6. **e2b sandbox** — thực thi code an toàn
 
-Bật {{< aff "digitalocean" "footer-cta" "DigitalOcean $24/tháng droplet" >}}, theo mục 9, và bạn có agent sống sót restart, nhớ context, chạy code an toàn, và tự cải thiện theo thời gian — trên hạ tầng bạn sở hữu với chi phí ít hơn một seat Cursor.
+Bật , theo mục 9, và bạn có agent sống sót restart, nhớ context, chạy code an toàn, và tự cải thiện theo thời gian — trên hạ tầng bạn sở hữu với chi phí ít hơn một seat Cursor.
 
 * * *
 

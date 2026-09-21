@@ -1,9 +1,10 @@
 ---
-title: "LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기"
-description: "LiteLLM으로 OpenAI, Anthropic, Google, 오픈소스 모델을 하나의 통합 API로 호출하는 방법을 상세히 설명합니다. 프록시 서버 설정, 라우팅, 폴리백 전략..."
-draft: false
-aliases:
-  - /posts/litellm-unified-api-tutorial/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "litellm-unified-api-tutorial"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

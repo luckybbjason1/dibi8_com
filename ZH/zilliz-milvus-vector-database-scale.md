@@ -1,6 +1,13 @@
 ---
-title: "Milvus/Zilliz 2026：毫秒级延迟处理百亿向量的向量数据库——部署指南"
-description: "Milvus 2.5 生产指南：十亿级向量检索、GPU 加速索引构建、Kubernetes 部署、混合搜索与 Zilliz Cloud 配置。"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zilliz-milvus-vector-database-scale"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：十亿向量难题
 

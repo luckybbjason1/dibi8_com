@@ -1,11 +1,10 @@
 ---
-title: "Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 202...
-description: "Headroom (19,745 GitHub stars) 压缩工具输出、日志、文件、RAG 块后再送入 LLM。节省 60-95% token，答案不变。含 Python 库、代理、MCP 服务器..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'headroom-token-compression-proxy-library-mcp-server'
-category: 'llm-frameworks'
-tags: ["Token 压缩", "LLM 节省 Token", "MCP 服务器", "RAG 压缩", "Headroom", "上下文优化", "Token 成本降低", "AI 代理"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "headroom-token-compression-proxy-library-mcp-server"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

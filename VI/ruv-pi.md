@@ -1,11 +1,10 @@
 ---
-title: "Ruv Pi: CLI Đại diện Mã tự mở rộng với API LLM Đa nhà cu...
-description: "Ruv Pi là CLI đại diện mã tự mở rộng từ Earendil Works, cung cấp API LLM đa nhà cung cấp thống nhất,..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: ruv-pi
-category: llm-frameworks
-tags: ["ruv-pi", "pi-agent", "coding agent", "LLM", "multi-provider", "AI coding", "self-extensible"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ruv-pi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

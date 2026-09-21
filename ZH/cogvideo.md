@@ -1,6 +1,13 @@
 ---
-title: "CogVideo: 12.7K Stars — 2026 完整文本生成视频安装教程"
-description: "CogVideo (CogVideoX) 是智谱 AI 开发的文本及图像生成视频模型。支持 ComfyUI、Diffusers、SAT，以及 Wan/HunyuanVideo/Open-Sora 集成..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cogvideo"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 > 使用智谱 AI 的开源扩散 Transformer 将文本和图像转换为电影级视频。30 分钟内从零搭建到生产环境。
 

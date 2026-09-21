@@ -1,6 +1,13 @@
 ---
-title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
-description: "Scrapy là một framework web crawling và scraping cấp cao, nhanh chóng cho Python. Tương thích với Py..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "scrapy"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 Khi một framework Python cung cấp năng lượng cho khoảng **34% dự án scraping production** trên toàn thế giới và duy trì kho lưu trữ GitHub 61,700 star, nó đáng được nghiên cứu kỹ lưỡng. Scrapy đã là công cụ chủ lực cho web crawling từ năm 2008, nhưng trong năm 2026, bối cảnh bao gồm các công cụ tự động hóa trình duyệt hiện đại như Playwright và các thư viện đã được chứng minh như BeautifulSoup. Câu hỏi không còn là "Scrapy có thể crawl không?" — mà là "Bạn có nên vẫn chọn Scrapy thay vì các lựa chọn thay thế cho khối lượng công việc cụ thể của mình không?"
 

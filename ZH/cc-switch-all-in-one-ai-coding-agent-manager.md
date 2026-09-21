@@ -1,11 +1,10 @@
 ---
-title: "CC Switch：终极 AI 编程代理管理器，用于多平台开发"
-description: "CC Switch 完整指南 —— 这款跨平台桌面应用程序可以在一个统一界面中管理 Claude Code、Codex、Gemini CLI、OpenCode、OpenClaw 和 Hermes Ag..."
-date: 2026-06-20
-lastmod: 2026-06-20
-(tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
-category: "dev-utils"
-slug: cc-switch-all-in-one-ai-coding-agent-manager
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-all-in-one-ai-coding-agent-manager"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

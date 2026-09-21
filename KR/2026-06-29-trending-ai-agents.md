@@ -1,12 +1,10 @@
 ---
-title: "이번 주 오픈소스 AI 에이전트 소식 - 인기 GitHub 저장소 순위 (2026년 6월 29일 주)"
-description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 - 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집..."
-showAuthor: true
-showSummary: true
-sources: ["GitHub Trending"]
-source_url: "https://github.com/trending"
-methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
-review_status: "AWAITING_EDITOR_REVIEW"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-06-29-trending-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

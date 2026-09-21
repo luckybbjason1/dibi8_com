@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-gateway-portkey-litellm-openrouter-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
-description: "Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - Python

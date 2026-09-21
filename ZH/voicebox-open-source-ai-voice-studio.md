@@ -1,6 +1,13 @@
 ---
-title: VoiceBox：开源AI语音工作室，用于克隆、听写和生成
-description: 一个全栈开源AI语音工作室，让您克隆任意语音、生成语音并听写到任何应用。33K stars。在您的机器上本地运行，支持CUDA或Apple Silicon。. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "voicebox-open-source-ai-voice-studio"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false

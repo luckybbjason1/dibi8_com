@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "stable-diffusion-webui-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S...
-description: "AUTOMATIC1111 stable-diffusion-webui is the 163k-star de-facto standard self-hosted UI for SD/SDXL i..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -65,7 +72,7 @@ If you're new to local image generation: start here. Migrate to ComfyUI when you
 | 12 GB (RTX 3060 12GB / 4070) | ~3s | ~6s | ~15s |
 | 16-24 GB (RTX 4080 / 4090) | ~1.5s | ~3s | ~6s |
 
-For cloud usage, $0.30-0.50/hr GPU instances on Vast.ai or {{< aff "digitalocean" "sd-gpu" "DigitalOcean GPU droplets" >}} are cheaper than Midjourney at any meaningful volume.
+For cloud usage, $0.30-0.50/hr GPU instances on Vast.ai or  are cheaper than Midjourney at any meaningful volume.
 
 ## 3. Quick Install (15 minutes)
 
@@ -121,7 +128,7 @@ For a 2026 setup that uses SDXL day-to-day: A1111 mainline works. For Flux-first
 ## 8. Production Self-Host Pattern
 
 For a "personal image API" deploy: `````
-   {{< aff "digitalocean" "sd-droplet" "GPU droplet" >}} (RTX 6000 Ada at $0.50/hr or rent on Vast.ai)
+    (RTX 6000 Ada at $0.50/hr or rent on Vast.ai)
             │
             ▼
    A1111 with --api flag enabled

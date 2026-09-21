@@ -1,6 +1,13 @@
 ---
-title: "Dify vs Flowise 2026 对比：全栈 AI 应用平台 vs 轻量 LLM 节点画布"
-description: "全面对比 Dify（企业级 RAG、多模型路由、提示词管理、可自托管）与 Flowise（可视化 LangChain 节点构建器、轻量、开源）— 功能、自托管、AI 流水线及 2026 年适用场景。"..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "dify-vs-flowise-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   },
   "publisher": {
     "@type": "Organization",

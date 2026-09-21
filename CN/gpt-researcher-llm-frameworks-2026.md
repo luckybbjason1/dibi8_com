@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gpt-researcher-llm-frameworks-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "GPT Researcher: Autonomous Agent for Deep Research Repor...
-description: "GPT Researcher is an open deep-research agent that runs web and local research on any task and write..."
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,17 +30,17 @@ faqs: - q: 'How do I install gpt-researcher?'
   - q: 'Which LLM providers and search engines can I use?'
     a: 'OpenAI is the default LLM and Tavily is the default retriever", "but both are configurable through environment variables and the config file", "and the agent supports additional retrievers including MCP-based sources.'
   - q: 'Do I need API keys to run it?'
-    a: 'Yes. At minimum set `OPENAI_API_KEY` and `TAVILY_API_KEY` in a `.env` file in your project root. Add `OPENAI_BASE_URL` if you use an OpenAI-compatible endpoint.'
+    a: 'Yes. At minimum set ``OPENAI_API_KEY`` and ``TAVILY_API_KEY`` in a ``.env`` file in your project root. Add ``OPENAI_BASE_URL`` if you use an OpenAI-compatible endpoint.'
   - q: 'How do I run the full app with a web UI?'
-    a: 'Clone the repo and run `docker-compose up --build`. This starts the FastAPI server on `localhost:8000` and the frontend on `localhost:3000`. You can also start just the server with `python -m uvicorn main:app --reload`.'
+    a: 'Clone the repo and run ``docker-compose up --build``. This starts the FastAPI server on ``localhost:8000`` and the frontend on ``localhost:3000``. You can also start just the server with ``python -m uvicorn main:app --reload``.'
   - q: 'Are conduct_research() and write_report() synchronous?'
-    a: 'No. Both are async methods. Call them with `await` inside an async function", "and run that function with `asyncio.run()`."
+    a: 'No. Both are async methods. Call them with ``await`` inside an async function", "and run that function with ``asyncio.run()``."
 ---
 
 # GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide
 
 
-{{< resource-info >}}
+
 
 ## Introduction
 

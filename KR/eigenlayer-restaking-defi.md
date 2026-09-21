@@ -1,17 +1,14 @@
 ---
-title: "eigenlayer-restaking-defi"
-description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
-date: 2026-05-20 00:..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["eigenlayer"]
-aliases:
-  - /kr/posts/eigenlayer-restaking-defi/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "eigenlayer-restaking-defi"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 > **제휴 공개**: 본 문서에는 [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) 및 [Minara](https://minara.ai/r/OSXG4X) 제휴 링크가 포함되어 있습니다. 이 링크를 통해 등록하시면 커미션을 받을 수 있으며, 추가 비용은 발생하지 않습니다.
 

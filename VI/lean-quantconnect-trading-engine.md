@@ -1,6 +1,13 @@
 ---
-title: "Lean: Cỗ Máy Giao dịch Thuật toán Mã nguồn Mở đằng sau Q...
-description: "Hướng dẫn đầy đủ 2026 về Lean, engine giao dịch thuật toán của QuantConnect. Backtest đa tài sản, gi..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lean-quantconnect-trading-engine"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao Hầu hết Engine Giao dịch Thất bại khi Mở rộng
 

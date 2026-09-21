@@ -1,6 +1,13 @@
 ---
-title: "Netdata: 78K+ Star 的实时监控 — 2026 性能调优指南"
-description: "Netdata (ND) 是一款高性能实时监控 Agent，支持每秒指标采集与可视化。兼容 Docker、Kubernetes、Prometheus 和 Grafana。涵盖 netdata 教程、n..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "netdata"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 简介
 

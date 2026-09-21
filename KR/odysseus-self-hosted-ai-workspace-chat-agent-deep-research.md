@@ -1,11 +1,10 @@
 ---
-title: "Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 20...
-description: "Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLL..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: odysseus-self-hosted-ai-workspace-chat-agent-deep-research
-category: ai-tools
-tags: ["odysseus", "자체 호스팅 AI", "AI 워크스페이스", "로컬 AI", "딥 리서치", "AI 에이전트", "채팅 인터페이스", "오픈소스 AI", "홈랩 AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "odysseus-self-hosted-ai-workspace-chat-agent-deep-research"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

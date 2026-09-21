@@ -1,6 +1,13 @@
 ---
-title: "Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치...
-description: "Directus 11.x 완벽 가이드 — 동적 API 생성, 콘텐츠 버전 관리, AI 콘텐츠 워크플로우, 셀프호스팅 Docker 배포를 갖춘 오픈소스 Headless CMS. RE..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "directus-headless-cms-ai-content"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 2026년에도 CMS가 여전히 병목 현상인 이유
 
@@ -286,7 +293,7 @@ console.log(````${articles.length}개의 아티클을 찾았습니다````);
 // 아티클 생성
 const newArticle = await client.request(
   createItem(articles, {
-    title: 'AI 기반 콘텐츠 전략',
+    title: "AI Tool Guide"
     content: 'GPT-4로 생성...',
     status: draft,
     ai_generated: true,

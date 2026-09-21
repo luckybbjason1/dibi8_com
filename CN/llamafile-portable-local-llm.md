@@ -1,6 +1,13 @@
 ---
-title: LlamaFile — Run Local LLMs with a Single Portable Binary
-description: Complete guide to LlamaFile by Meta/MLC AI. Run 100+ open-source LLMs. Comprehensive guide covering features, pricing, and best practices for 2026.
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llamafile-portable-local-llm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
   locally without installation, GPU requirements, or complex setup. One binary, any
   platform.
 tags: - llamafile

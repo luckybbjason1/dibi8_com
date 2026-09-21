@@ -1,40 +1,10 @@
-
-title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
-description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
-date: 2026-06-29T00:00:00+08:00
-lastmod: 2026-06-29T00:00:00+08:00
-draft: false
-tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
-categories: ["llm-frameworks"]
-slug: this-week-ai-agents-2026-w26
-author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
-showAuthor: true
-showSummary: true
-sources: ["GitHub Search API"]
-methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
-review_status: "PUBLISHED"
-![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
-
-
-# This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of June 29, 2026)
-
-**Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
-
-## Editor's Take
-
-Three clear trends emerge from this week's trending open-source AI agent repos on GitHub: **First, Agent Harness is becoming new infrastructure.** affaan-m/ECC (223k stars) and NousResearch/hermes-agent (206k stars) represent two directions of agent harness systems - the former focuses on performance optimization for coding assistants like Claude Code, Codex, and Cursor, while the latter is our own Hermes Agent, emphasizing a general-purpose agent that "grows with you." Both gained massive stars within a week, signaling developer interest in "agents on top of agents."
-
-**Second, traditional AI tools are fully embracing agent capabilities.** n8n (195k stars), AutoGPT (185k stars), and Dify (147k stars) have all significantly strengthened their agent features recently. n8n added `.agents/skills` for skill references, AutoGPT launched the AutoPilot skills library, and Dify focuses on production-grade agentic workflows. This shows agents are no longer standalone products but standard features of existing platforms.
-
-**Third, local AI and prompt management remain essentials.** ollama (175k stars) continues expanding its supported model list (most recently adding Kimi-K2.6 and GLM-5.1), while prompts.chat (165k stars) maintains its core value as a community prompt-sharing platform. JavaGuide (157k stars) on the list reminds us that foundational knowledge still matters - it has added an AI application development section.
-
-**Most worth trying: ECC.** It directly targets mainstream coding agents like Claude Code, Codex, and Cursor, providing performance optimization across skills, instincts, memory, and security dimensions. For developers using coding agents daily, it delivers immediate efficiency gains.
-
-
 ---
-(Editor's perspective filled in)
-* * *
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "2026-06-29-trending-ai-agents"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## Methodology
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "bumblebee-supply-chain-scanner-perplexity-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Bumblebee 2026: Perplexity AI Open-Sources Its Internal ...
-description: "Bumblebee is Perplexity AI"'s open-source, read-only supply-chain scanner that checks npm, PyPI, Go ..."
+description: "Technical guide and comparison."
 licensing_model: Open Source
 license_type: Apache-2.0
 file_size: ''

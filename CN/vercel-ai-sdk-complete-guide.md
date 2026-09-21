@@ -1,11 +1,10 @@
 ---
-title: Vercel AI SDK — The Universal Framework for Building AI-P...
-description: Complete guide to Vercel AI SDK, the provider-agnostic framework for building AI-powered chat interfaces, streaming responses, and tool calling. Works with React Server Components, Next.js, SvelteKit, and more.
-category: llm-frameworks
-tags: ["ai-sdk", "vercel", "react-server-components", "streaming", "tool-calling", "llm-integration"]
-slug: vercel-ai-sdk-complete-guide
-date: 2026-07-17T00:00:00+00:00
-lastmod: 2026-07-17T00:00:00+00:00featureImage: /images/articles/vercel-ai-sdk.jpg
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vercel-ai-sdk-complete-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -276,7 +275,7 @@ const result = await generateText({
   ],
   tools: {
     getWeather: tool({
-      description: "Get the current weather for a location",
+      description: "Technical guide and comparison."
       parameters: z.object({
         location: z.string().d..."
   },

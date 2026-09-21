@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
-description: "ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, g..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui-workflow-2026-5-production-templates"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [ComfyUI, 'Stable Diffusion', Python, CUDA]
@@ -25,7 +32,7 @@ faq: - q: "Năm 2026, ComfyUI có tốt hơn Stable Diffusion WebUI không?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # ComfyUI Workflow 2026: Cài đặt + 5 Template Production
 
@@ -114,8 +121,8 @@ Mang 2-3 workflow cộng đồng vào và tùy biến theo phong cách của b�
 
 ## Hạ Tầng Khuyến Nghị
 
-Cho công việc ComfyUI nghiêm túc: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — credit $200, GPU droplet (H100/L40S/A100)
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hồng Kông để sinh ảnh độ trễ thấp tại châu Á
+Cho công việc ComfyUI nghiêm túc: - **** — credit $200, GPU droplet (H100/L40S/A100)
+- **** — VPS Hồng Kông để sinh ảnh độ trễ thấp tại châu Á
 
 *Liên kết tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
 

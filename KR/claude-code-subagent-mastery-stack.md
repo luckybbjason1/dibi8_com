@@ -1,6 +1,13 @@
 ---
-title: "Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로"
-description: "Claude Code 멀티 에이전트 워크플로를 마스터하기 위한 완전한 학습 + 도구 스택: 5가지 서브에이전트 패턴 + 커스텀 에이전트 작성 + 스킬/서브에이전트/MCP 의사결정 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-mastery-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - Claude Code

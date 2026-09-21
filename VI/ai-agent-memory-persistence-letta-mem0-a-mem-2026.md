@@ -1,6 +1,13 @@
 ---
-title: "Bộ nhớ bền vững cho AI Agent 2026: So sánh thực chiến Le...
-description: "Agent không có bộ nhớ bền vững sẽ khởi động lại từ con số không mỗi phiên. Đã kiểm thử Letta, Mem0, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Letta, Mem0, 'A-MEM', 'Vector DB', Python]
@@ -25,7 +32,7 @@ faq: - q: "Tại sao AI Agent cần bộ nhớ bền vững?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Bộ nhớ bền vững cho AI Agent 2026: Letta vs Mem0 vs A-MEM
 
@@ -136,8 +143,8 @@ Với Agent phục vụ người dùng trả tiền: không đáng kể so với
 
 ## Hạ tầng đề xuất
 
-Cho framework bộ nhớ + lưu trữ vector DB: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong
+Cho framework bộ nhớ + lưu trữ vector DB: - **** — $200 credit
+- **** — VPS Hong Kong
 
 *Liên kết tiếp thị liên kết — cùng giá, hỗ trợ dibi8.com.*
 

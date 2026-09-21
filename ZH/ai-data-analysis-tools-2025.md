@@ -1,9 +1,10 @@
 ---
-title: "2025年最佳AI数据分析工具：ChatGPT、Julius、Tableau AI等全面评测"
-description: "2025年AI数据分析工具深度对比：ChatGPT Advanced Data Analysis、Julius AI、Tableau Einstein、Excel Copilot的功能、定价与适用场景..."
-draft: false
-aliases:
-  - /posts/ai-data-analysis-tools-2025/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-data-analysis-tools-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # 2025年最佳AI数据分析工具：ChatGPT、Julius、Tableau AI等全面评测

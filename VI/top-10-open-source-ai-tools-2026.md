@@ -1,21 +1,10 @@
 ---
-title: "Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn P...
-description: "Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn Phí Cho Dev". Comprehensive guide covering fe..."
-draft: false
-aliases:
-  - /vi/posts/top-ai-developer-productivity-tools-2026/
-- /vi/posts/top-open-source-document-management-tools-2026/
-- /vi/posts/top-open-source-fintech-tools-2026/
-faqs: - q: 'Giải pháp mã nguồn mở thay thế Midjourney tốt nhất năm 2026 là gì?'
-    a: 'ComfyUI là giải pháp mã nguồn mở hàng đầu thay thế cho Midjourney. Nó cung cấp một quy trình làm việc dựa trên node, không giới hạn cho các mô hình Stable Diffusion và Flux, chạy hoàn toàn trên GPU cục bộ của bạn, thay vì phụ thuộc vào một Discord bot kiểu hộp đen.'
-  - q: 'Công cụ mã nguồn mở nào có thể thay thế Devin cho việc lập trình tự động?'
-    a: 'OpenHands là giải pháp mã nguồn mở thay thế cho Devin. Nó có thể duyệt web, viết code, chạy test và sửa lỗi một cách tự động bên trong một Docker sandbox an toàn.'
-  - q: 'Làm thế nào để cấp cho một LLM cục bộ quyền truy cập vào tài liệu nội bộ của công ty tôi?'
-    a: 'AnythingLLM cho phép bạn biến bất kỳ tài liệu, cơ sở dữ liệu hoặc website nào thành một cơ sở tri thức AI có thể tương tác. Đây là một công cụ RAG cấp doanh nghiệp giúp các LLM cục bộ truy cập dữ liệu nội bộ của công ty.'
-  - q: 'Giải pháp mã nguồn mở thay thế LangChain hoặc Coze để xây dựng quy trình AI là gì?'
-    a: 'Dify là một công cụ LLM trực quan thay thế cho việc gọi API được viết cứng. Nó cho phép bạn xây dựng các pipeline RAG phức tạp và quy trình đa tác tử bằng giao diện trực quan kéo-thả.'
-  - q: 'Làm thế nào để các tác tử lập trình AI duy trì bộ nhớ qua các phiên làm việc mà không cần gọi API?'
-    a: 'MemPalace hoạt động như một máy chủ MCP (Model Context Protocol) mang lại bộ nhớ vĩnh viễn cho các tác tử lập trình cục bộ như Claude Code. Vì nó chạy cục bộ dưới dạng máy chủ MCP, nó cung cấp ngữ cảnh bền vững mà không cần thực hiện bất kỳ lệnh gọi API bên ngoài nào.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "top-10-open-source-ai-tools-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -90,8 +79,8 @@ Trong cẩm nang tối thượng này, chúng tôi xếp hạng **Top 10 Công C
 
 ## Công Cụ Đề Xuất
 
-Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
-- **{{< aff "hostinger" "footer-cta-legacy" "Hostinger" >}}** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
+Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.
+- **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.
 
 *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.*
 
@@ -99,7 +88,7 @@ Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - 
 
 **Cần access Claude hoặc OpenAI API ổn định?** Hầu hết project trong space này cuối cùng đều hit rate limit hoặc giá wall của Anthropic / OpenAI.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region.
+- **** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region.
 
 *Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.*
 

@@ -1,21 +1,10 @@
 ---
-title: "Hướng Dẫn AutoGen 2025: Xây Dựng Hệ Thống AI Đa Agent Dễ...
-description: "Hướng dẫn chi tiết Microsoft AutoGen 2025: kiến trúc multi-agent, ConversableAgent, GroupChat, code ..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/autogen-multi-agent-framework/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "autogen-multi-agent-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

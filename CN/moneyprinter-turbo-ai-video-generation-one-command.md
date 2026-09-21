@@ -1,11 +1,10 @@
 ---
-title: "MoneyPrinterTurbo: Generate HD Short Videos with AI in O...
-description: "MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Scrip..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'moneyprinter-turbo-ai-video-generation-one-command'
-category: 'ai-tools'
-tags: ["AI video generation", "MoneyPrinterTurbo", "short video AI", "automated video creation", "AI video tool", "video automation", "content generation", "video editing AI"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "moneyprinter-turbo-ai-video-generation-one-command"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026

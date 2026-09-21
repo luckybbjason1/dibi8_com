@@ -1,20 +1,10 @@
 ---
-title: "学术研究技能：用 AI 自动化文献综述——31K 星框架 2026"
-description: "Academic Research Skills（31,628 颗星）自动化研究流水线：搜索论文、提取洞察、综合发现并撰写文献综述。专为 Claude Code 构建，采用模块化技能架构。"
-date: 2026-06-15
-lastmod: 2026-06-15
-slug: academic-research-skills
-category: dev-utils
-tags: ["学术研究", "文献综述", "AI 研究", "论文分析", "综合", "claude code", "研究自动化"]
-images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
-    alt: "Academic Research Skills GitHub OG"
-    role: reference
-  - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/research-pipeline.png"
-    alt: "研究流水线图"
-    role: diagram
-  - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
-    alt: "技能架构"
-    role: architecture
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "academic-research-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

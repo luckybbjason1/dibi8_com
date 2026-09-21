@@ -1,15 +1,10 @@
 ---
-
-## 서론: 당신의 클로드 코드는 아직도 너무 순진하다
-
-2026년 5월 9일~15일 GitHub 주간 트렌딩 데이터에 이례적인 현상이 나타났다. **상위 20개 최고 성장 저장소 중 5개 이상이 이름에 "skills"를 포함**하고 있었다. Matt Pocock의 개인 ``.claude`` 디렉토리를 오픈소스로 공개한 후 단 일주일 만에 +1,618 stars를 획득했다. NousResearch의 Hermes Agent은 +1,332 stars로 뒤를 이었고, Andrej Karpathy의 엔지니어링 철학까지 재사용 가능한 에이전트 스킬로 패키징되었다.
-
-이것은 우연이 아니다. 개발자 커뮤니티는 조용한 패러다임 전환을 겪고 있다: AI를 **블랙박스 코드 생성기**로 취급하는 것에서, AI 에이전트를 위한 **재사용 가능한 행동 패턴, 제약 조건, 워크플로우를 엔지니어링**하는 방향으로. 이것이 **AI 에이전트 스킬 패턴**이다.
-
-동시에 GitHub의 공식 **Spec-Kit**은 **스펙 기반 개발(Spec-Driven Development, SDD)**의 부상을 알린다. ``SPECIFICATION → PLAN → TASKS → IMPLEMENTATION``의 4단계 워크플로우는 "바이브 코딩"의 혼란을 엔지니어링적 규율로 바꾼다.
-
-아직도 AI에게 "로그인 페이지 만들어줘"라고 프롬프트를 던지고 있다면, 당신은 이미 뒤처져 있다.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-skills-framework-spec-driven-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,21 +1,10 @@
 ---
-title: "Cursor vs Windsurf in 2026: Which AI IDE Wins?"
-description: "Side-by-side breakdown of Cursor and Windsurf (Codeium) — Composer vs Cascade, pricing, performance,..."
-date: 2026-05-22T00:00:00+08:00
-lastmod: 2026-05-22T00:00:00+08:00
-draft: false
-tags: ["cursor", "windsurf", "codeium", "ai-coding", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'Is Cursor or Windsurf cheaper?'
-    a: 'Windsurf is cheaper at $15/month Pro versus Cursor''s $20/month Pro. Windsurf also offers a more generous free tier with limited Cascade credits. For pure cost optimization, Windsurf wins by $5-$10/month; for raw capability per dollar, it''s close.'
-  - q: 'Which is better for agentic multi-file edits?'
-    a: Windsurf's Cascade is more aggressive and autonomous out of the box — it edits multiple files, runs terminal commands, and previews browser changes in one flow. Cursor''s Composer is closer to a guided edit assistant. For full agent autonomy, Windsurf wins; for control, Cursor wins.'
-  - q: 'Can Cursor and Windsurf be used together?'
-    a: 'Yes, but it''s redundant — both are VS Code forks doing similar jobs. Most devs pick one as primary IDE. A more useful combo is one of them (for inline coding) plus Claude Code CLI (for heavy refactors).'
-  - q: 'Which handles large codebases better?'
-    a: 'Both struggle past 100K LOC because they rely on embedding-based indexing rather than huge context windows. For 200K+ LOC monorepos, neither is ideal — pair with Claude Code or Aider for the heavy lifts. Between the two, Cursor''s indexing is slightly more mature.'
-  - q: 'Which tool is better for beginners?'
-    a: 'Cursor — it has a larger community, more tutorials, and clearer UX for newcomers. Windsurf is newer (2024) but its Cascade agent can feel "too aggressive" for first-timers who haven''t set up undo discipline. Start with Cursor, graduate to Windsurf when you want more autonomy.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cursor-vs-windsurf"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Cursor vs Windsurf in 2026: Which AI IDE Wins?
@@ -150,7 +139,7 @@ For unlimited usage: **Windsurf Ultimate $60/mo** (Cursor has no unlimited tier)
 - Re-enable Cursor Tab after first day (it's noisier than Supercomplete, but better)
 
 ### Self-Hosting Note
-Running your own dev sandbox to test both IDEs against a real codebase? Spin up a {{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean droplet with $200 free credit" >}} — enough for 2 months of side-by-side evaluation against a staging environment. Cheaper than two months of dual subscriptions, and you keep the infrastructure when you decide.
+Running your own dev sandbox to test both IDEs against a real codebase? Spin up a  — enough for 2 months of side-by-side evaluation against a staging environment. Cheaper than two months of dual subscriptions, and you keep the infrastructure when you decide.
 
 * * *
 
@@ -191,7 +180,7 @@ For an indie dev shipping a SaaS solo? **Windsurf Pro $15/mo** is the best raw R
 
 **Need stable Claude or OpenAI API access?** Most users picking between these tools end up needing the underlying API key.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 

@@ -1,11 +1,10 @@
 ---
-title: "Cleanlab: 데이터 주석 비용을 80% 절감해주는 11K+ 스타 AI 툴킷 — 파이썬 기반 오픈...
-description: "Cleanlab은 ML 데이터셋의 데이터 품질 문제를 찾아주고 수정하는 11K+ GitHub 스타를 가진 오픈소스 AI 툴킷입니다. 분류, 회귀, 클러스터링 작업을 위한 자동 레이..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: 'cleanlab-11k-star-ai-data-cleaning'
-category: data-science
-tags: ["cleanlab", "data-cleaning", "machine-learning", "data-quality", "label-errors", "open-source", "python", "ml-data"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cleanlab-11k-star-ai-data-cleaning"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

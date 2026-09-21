@@ -1,9 +1,10 @@
 ---
-title: "개발자를 위한 로그 모니터링 및 관측 가능성 도구: 2025년 완벽 가이드"
-description: "Grafana Loki, ELK Stack, Datadog, New Relic 등 2025년 주요 로그 모니터링 및 관측 가능성 도구를 기능, 가격, 설치 난이도 관점에서 비교합니..."
-draft: false
-aliases:
-  - /posts/log-monitoring-observability-tools-developers/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "log-monitoring-observability-tools-developers"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

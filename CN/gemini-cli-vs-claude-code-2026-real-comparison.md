@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "gemini-cli-vs-claude-code-2026-real-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...
-description: "Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Ge..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Gemini CLI', 'Claude Code', Google, Anthropic]
@@ -24,7 +31,7 @@ faq: - q: "Is Gemini CLI a serious Claude Code competitor?"
     a: "Many developers do. Gemini CLI for free tier exploration + long-context work. Claude Code for production agentic loops + reliable tool use. The combination covers more workflows than either alone, and Gemini's free tier means it's effectively zero added cost."
 ---
 
-{{</* resource-info */>}}
+
 
 # Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows
 
@@ -160,8 +167,8 @@ Most experienced developers run both. Gemini CLI for free-tier exploration + hug
 
 ## Recommended Infrastructure
 
-For paired Gemini CLI + Claude Code setups: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS
+For paired Gemini CLI + Claude Code setups: - **** — $200 credit
+- **** — Hong Kong VPS
 
 *Affiliate links — same price, supports dibi8.com.*
 

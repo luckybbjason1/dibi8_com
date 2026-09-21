@@ -1,6 +1,13 @@
 ---
-title: "LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
-description: "LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "litellm"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![LiteLLM Logo](https://raw.githubusercontent.com/BerriAI/litellm/main/docs/my-assets/logo.png)
 

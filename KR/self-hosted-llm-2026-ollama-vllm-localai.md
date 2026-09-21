@@ -1,6 +1,13 @@
 ---
-title: "2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI — 처리량·비용·구...
-description: "동일한 RTX 4090에서 Llama 3.3 70B로 Ollama, vLLM, LocalAI를 테스트했습니다. 실제 토큰/초, 메모리 사용량, 구축 시간, 그리고 취미용과 프로덕션..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-llm-2026-ollama-vllm-localai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Ollama, vLLM, LocalAI, 'Llama 3.3', CUDA]
@@ -29,7 +36,7 @@ faq: - q: "2026년 최고의 셀프 호스팅 LLM 스택은 무엇인가요?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # 2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI
 
@@ -163,8 +170,8 @@ OpenAI API 직접 교체 → LocalAI
 
 ## 추천 인프라
 
-셀프 호스팅 LLM 배포용: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧, H100/L40S GPU 드롭릿 제공
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 홍콩 VPS, 추론용 GPU 옵션
+셀프 호스팅 LLM 배포용: - **** — $200 크레딧, H100/L40S GPU 드롭릿 제공
+- **** — 홍콩 VPS, 추론용 GPU 옵션
 
 *제휴 링크 — 가격 동일, dibi8.com을 후원합니다.*
 

@@ -1,6 +1,13 @@
 ---
-title: "Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
-description: "Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu b..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aider-cline-openhands-2026-honest-comparison"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript]
@@ -29,7 +36,7 @@ faq: - q: "Coding agent mã nguồn mở nào tốt nhất năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Aider vs Cline vs OpenHands 2026: So sánh OSS trung thực 3 bên
 
@@ -178,8 +185,8 @@ OpenHands mặc định sandbox Docker — an toàn nhất. Aider hỏi từng l
 
 ## Cơ sở hạ tầng đề xuất
 
-Cho OpenHands tự host hoặc chạy model fine-tuned cục bộ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, có sẵn GPU droplet
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, độ trễ thấp
+Cho OpenHands tự host hoặc chạy model fine-tuned cục bộ: - **** — $200 credit, có sẵn GPU droplet
+- **** — VPS Hong Kong, độ trễ thấp
 
 *Liên kết affiliate — cùng giá, ủng hộ dibi8.com.*
 

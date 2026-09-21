@@ -1,6 +1,13 @@
 ---
-title: "Appwrite 2026: Giải Pháp Thay Thế Firebase Mã Nguồn Mở v...
-description: "Hướng dẫn đầy đủ về Appwrite 1.6 — backend mã nguồn mở tự host với xác thực, database, storage, clou..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "appwrite-backend-as-service"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Vấn đề 8.5 tỷ USD mà Firebase tạo ra
 
@@ -253,8 +260,8 @@ Trong workflow, sử dụng node Appwrite để: 1. **Trigger**: Theo dõi colle
       "databaseId": "prod-db",
       "collectionId": "events",
       "data": {
-        "event_type": "={{ $json.type }}",
-        "payload": "={{ JSON.stringify($json) }}"
+        "event_type": "=",
+        "payload": "="
       }
     },
     "name": "Appwrite Log",

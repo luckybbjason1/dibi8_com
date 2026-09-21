@@ -1,6 +1,13 @@
 ---
-title: "Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cur...
-description: "Continue.dev(오픈소스 AI 코딩 어시스턴트) VS Code/JetBrains 플러그인. Ollama, OpenAI, Anthropic, Gemini 등 모든 LLM 지원..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "continue"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Continue.dev 배너](https://raw.githubusercontent.com/continuedev/continue/main/media/banner.png)
 
@@ -99,7 +106,7 @@ schema: v1
 models: - name: Claude Sonnet
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -107,7 +114,7 @@ models: - name: Claude Sonnet
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 EOF
 
@@ -201,7 +208,7 @@ models: # 주력: 복잡한 작업용 Claude
   - name: Claude Sonnet 4.6
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.1
       maxTokens: 8192
@@ -210,7 +217,7 @@ models: # 주력: 복잡한 작업용 Claude
   - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat]
 
   # 자동완성: 제로 지연 로컬 모델
@@ -258,7 +265,7 @@ curl http://localhost:11434/api/tags
 models: - name: Claude Opus
     provider: anthropic
     model: claude-opus-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     defaultCompletionOptions: temperature: 0.2
       maxTokens: 16384
@@ -272,13 +279,13 @@ Claude 모델은 MCP 도구 사용을 네이티브 지원하여 Continue의 Agen
 models: - name: GPT-4o
     provider: openai
     model: gpt-4o
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [chat, edit]
 
   - name: GPT-4o-mini
     provider: openai
     model: gpt-4o-mini
-    apiKey: ${{ secrets.OPENAI_API_KEY }}
+    apiKey: $
     roles: [autocomplete]
     defaultCompletionOptions: maxTokens: 1024
 `````
@@ -308,7 +315,7 @@ mcpServers: - name: filesystem
   - name: github
     command: npx
     args: ["-y", "@modelcontextprotocol/server-github"]
-    env: GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env: GITHUB_PERSONAL_ACCESS_TOKEN: $
 
   - name: postgres
     command: npx
@@ -344,7 +351,7 @@ mcpServers: - name: filesystem
 models: - name: Claude Haiku
     provider: anthropic
     model: claude-haiku-4-5
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat]  # $0.25/백만 토큰
 
   - name: Qwen 7B 로컬
@@ -364,7 +371,7 @@ Continue.dev의 2026년 Agent 모드는 자율적으로 다단계 작업을 계�
 models: - name: Claude Sonnet Agent
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}
+    apiKey: $
     roles: [chat, edit, agent]
     capabilities: - tool_use
       - image_input
@@ -412,9 +419,9 @@ Continue의 ``@`` 명령은 AI에 정확한 컨텍스트를 제공한다: `````
 # API 키를 절대 하드코딩하지 마라. 환경 변수 대체 사용: models: - name: Claude
     provider: anthropic
     model: claude-sonnet-4-6
-    apiKey: ${{ secrets.ANTHROPIC_API_KEY }}  # 환경 변수에서
+    apiKey: $  # 환경 변수에서
 
-# CI/CD에서는 러너의 시크릿 저장소 사용: # GitHub Actions: ${{ secrets.ANTHROPIC_API_KEY }}
+# CI/CD에서는 러너의 시크릿 저장소 사용: # GitHub Actions: $
 # GitLab CI: $ANTHROPIC_API_KEY (CI/CD 변수)
 `````
 

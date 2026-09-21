@@ -1,6 +1,13 @@
 ---
-title: "Axolotl 2026：12k 星 YAML 驱动的 LLM 微调框架完整指南"
-description: "Axolotl 是开源 LLM 微调框架，单 YAML 配置覆盖 full / LoRA / QLoRA / DPO / GRPO。GitHub 12k 星，Apache 2.0。支持 Llama /..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "axolotl-llm-fine-tuning-framework-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: [Python, PyTorch, CUDA, YAML]
@@ -60,7 +67,7 @@ Axolotl 给你"云平台" UX（一份 config 文件 / 一条命令），同时�
 | 2× 80 GB（2× H100）| Llama 3.3 70B LoRA, Mixtral full fine-tune |
 | 8× H100 集群 | 前沿级 full fine-tune |
 
-云租选项：Vast.ai H100 $1.50-2/小时，持续负载用 {{< aff "digitalocean" "axolotl-gpu" "DigitalOcean GPU droplet" >}}。数据预处理 + 监控用 {{< aff "htstack" "axolotl-vps-hk" "HTStack 香港" >}} 给中国友好延迟（实际训练在租 GPU 上）。
+云租选项：Vast.ai H100 $1.50-2/小时，持续负载用 。数据预处理 + 监控用  给中国友好延迟（实际训练在租 GPU 上）。
 
 ## 3. 快装（15 分）
 

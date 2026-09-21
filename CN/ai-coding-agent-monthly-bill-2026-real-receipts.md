@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-agent-monthly-bill-2026-real-receipts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
-description: "Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API (..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'OpenAI API', 'Anthropic API']
@@ -28,7 +35,7 @@ faq: - q: "Is Claude Max ($200) worth it vs API pay-as-you-go?"
     a: "Anthropic adjusted Max plan rate limits in late April (looser, more headroom). OpenAI's Codex CLI moved fully to pay-as-you-go (no Pro tier). Cursor added a $50 Business tier with API credits bundled. All three changes shift the threshold math compared to Q1 reviews."
 ---
 
-{{</* resource-info */>}}
+
 
 # AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts
 
@@ -153,8 +160,8 @@ If your bill is higher than the numbers above: 1. **Check Cursor API overflow** 
 
 ## Recommended Infrastructure
 
-VPS for long-running agent loops, MCP servers, or local LLM runtime: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit covers initial setup
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, same IDC as dibi8.com hosting
+VPS for long-running agent loops, MCP servers, or local LLM runtime: - **** — $200 credit covers initial setup
+- **** — Hong Kong VPS, same IDC as dibi8.com hosting
 
 *Affiliate links — same price for you, supports dibi8.com.*
 

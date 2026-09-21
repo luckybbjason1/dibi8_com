@@ -1,6 +1,13 @@
 ---
-title: "markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전...
-description: "markitdown은 각종 파일과 오피스 문서를 마크다운으로 변환해 주는 마이크로소프트의 파이썬 도구입니다. GitHub 스타 141,153개, MIT 라이선스. 설치, 핵심 CL..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,7 +30,7 @@ faqs: - q: 'markitdown은 어떻게 설치하나요?'
   - q: 'markitdown은 모든 종류의 오피스 문서를 변환할 수 있나요?'
     a: 'Word(.docx), Excel(.xlsx), PowerPoint(.pptx), PDF, HTML, 이미지, 오디오 등 매우 다양한 포맷을 지원하지만, 모든 포맷의 모든 기능이 보존되는 것은 아닙니다. 지원되는 유형과 필요한 extras는 문서를 확인하세요.'
   - q: 'markitdown은 어떤 라이선스로 배포되나요?'
-    a: '`markitdown`은 MIT 라이선스로 배포되어, 어떤 용도로든 자유롭게 사용하고 수정할 수 있습니다.'
+    a: '``markitdown``은 MIT 라이선스로 배포되어, 어떤 용도로든 자유롭게 사용하고 수정할 수 있습니다.'
   - q: '프로젝트에 어떻게 기여하나요?'
     a: '이슈를 보고하거나 풀 리퀘스트를 보낼 수 있습니다. 기여 가이드라인은 [GitHub 저장소](https://github.com/microsoft/markitdown)를 확인하세요.'
   - q: 'markitdown에 알려진 한계가 있나요?'
@@ -34,7 +41,7 @@ faqs: - q: 'markitdown은 어떻게 설치하나요?'
 # markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드
 
 
-{{< resource-info >}}
+
 
 ## 들어가며
 

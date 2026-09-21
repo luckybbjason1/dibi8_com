@@ -1,6 +1,13 @@
 ---
-title: "Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2...
-description: "Atuin 将 shell 历史记录替换为 SQLite 数据库，记录命令上下文（退出码、工作目录、执行时长），并通过端到端加密在多台机器间同步历史记录。支持 Bash、Zsh、Fish、Nushel..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "atuin"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![Atuin Shell History](https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png)
 

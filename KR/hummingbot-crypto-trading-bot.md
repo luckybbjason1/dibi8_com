@@ -1,16 +1,14 @@
 ---
-title: "Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 —...
-description: "Hummingbot v2 실전 배포 가이드. 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇. Docker 설치, 커스텀 전략, 백테스팅, DEX 게이트웨이, ..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["ai-trading"]
-tags: ["]
-aliases:
-  - /kr/posts/hummingbot-crypto-trading-bot/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "hummingbot-crypto-trading-bot"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 대부분의 트레이딩 봇이 실패하는 이유
 
@@ -377,7 +375,7 @@ python scripts/backtest.py \
 
 `````
 백테스트 결과 (2026-01-01 ~ 2026-03-31)
-========================================
+
 총 거래 횟수: 12,450
 총 수익률: +5.23%
 샤프 비율: 2.14

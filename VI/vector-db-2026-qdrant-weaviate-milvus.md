@@ -1,6 +1,13 @@
 ---
-title: "Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (T...
-description: "Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ p..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "vector-db-2026-qdrant-weaviate-milvus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [Qdrant, Weaviate, Milvus, 'Vector Search', Embeddings]
@@ -25,7 +32,7 @@ faq: - q: "Vector DB nào tốt nhất năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus
 
@@ -115,8 +122,8 @@ Cần hybrid search (vector + keyword + filter) → Weaviate
 
 ## Hạ Tầng Đề Xuất
 
-Cho hosting vector DB: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplet NVMe
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong cho truy vấn độ trễ thấp ở châu Á
+Cho hosting vector DB: - **** — $200 credit, droplet NVMe
+- **** — VPS Hong Kong cho truy vấn độ trễ thấp ở châu Á
 
 *Affiliate link — cùng giá, ủng hộ dibi8.com.*
 

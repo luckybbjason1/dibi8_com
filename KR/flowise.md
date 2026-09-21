@@ -1,6 +1,13 @@
 ---
-title: "Flowise: 52K+ Stars 시각적 드래그 앤 드롭 AI Agent 구축 — 2026 5분 완...
-description: "Flowise는 오픈소스 시각적 LLM 워크플로우 및 AI Agent 빌더입니다. LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma 등 ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "flowise"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개
 
@@ -336,7 +343,7 @@ import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
         size: medium
       },
       chatWindow: {
-        title: '고객 지원 봇',
+        title: "AI Tool Guide"
         welcomeMessage: '안녕하세요! 무엇을 도와드릴까요?',
         backgroundColor: '#ffffff',
         height: 700,

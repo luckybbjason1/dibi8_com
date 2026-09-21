@@ -1,6 +1,13 @@
 ---
-title: "Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1...
-description: "Thiết lập Typesense 27.1 cho tìm kiếm tức thì với khả năng chịu lỗi chính tả, thởi gian phản hồi dướ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "typesense-instant-search-api"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm
 

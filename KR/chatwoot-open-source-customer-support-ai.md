@@ -1,16 +1,14 @@
 ---
-title: "Chatwoot 2026: 오픈소스 AI 통합 고객 지원 플랫폼 — 셀프 호스팅 완벽 가이드"
-description: "Chatwoot v4 완벽 가이드 — 오픈소스 고객 지원 플랫폼. Docker로 셀프 호스팅하고 AI 에이전트를 통합하며 다중 채널을 연결하세요. 실제 벤치마크와 프로덕션 설정."..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["dev-utils"]
-tags: ["chatwoot", "고객지원", "오픈소스", "ai챗봇", "셀프호스팅", "docker", "ruby-on-rails", "라이브챗"]
-aliases:
-  - /kr/posts/chatwoot-open-source-customer-support-ai/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chatwoot-open-source-customer-support-ai"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 왜 지원 도구 스택을 재검토해야 하는가
 
@@ -69,7 +67,7 @@ Chatwoot은 Vue.js SPA 프론트엔드와 백그라운드 작업 처리를 위�
 
 **자동화 규칙(Automation Rules)** — 대화 생성, 메시지 수신 또는 시간 기반 조건에서 트리거되는 "이면-저것" 워크플로우이다.
 
-**매크로(Macros)** — 상담원이 클릭 한 번으로 삽입할 수 있는 미리 정의된 응답 템플릿. ````{{contact.name}}````과 같은 동적 변수를 지원한다.
+**매크로(Macros)** — 상담원이 클릭 한 번으로 삽입할 수 있는 미리 정의된 응답 템플릿. ````````과 같은 동적 변수를 지원한다.
 
 ## 설치 및 설정: 5분 만에 라이브 채팅 가동
 

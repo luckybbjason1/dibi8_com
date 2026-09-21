@@ -1,21 +1,10 @@
 ---
-title: "Claude Code và Cline năm 2026: Tự chủ hay Kiểm soát?"
-description: "So sánh trực tiếp Claude Code và Cline — tính tự chủ trên terminal so với cách phê duyệt từng bước t..."
-date: 2026-05-29T00:00:00+08:00
-lastmod: 2026-05-29T00:00:00+08:00
-draft: false
-tags: ["claude-code", "cline", "ai-coding", "agentic", "comparison", "dev-tools"]
-categories: ["vs"]
-faqs: - q: 'Sự khác biệt cốt lõi giữa Claude Code và Cline là gì?'
-    a: 'Triết lý. Claude Code là agent gốc terminal của Anthropic, được tinh chỉnh cho các mô hình Claude và xây dựng để chạy tự chủ — lập kế hoạch, chỉnh sửa, chạy kiểm thử, thử lại, tất cả trong một vòng lặp. Cline là một tiện ích mở rộng VS Code mã nguồn mở hoạt động với bất kỳ mô hình nào và yêu cầu bạn phê duyệt mọi diff, lệnh và lượt tải web trước khi nó chạy. Claude Code tối ưu cho tính tự chủ và chất lượng trên mỗi token; Cline tối ưu cho khả năng kiểm soát và tự do chọn mô hình. Đó là sự đánh đổi tự chủ-hay-kiểm soát trong hai công cụ.'
-  - q: 'Cline có rẻ hơn Claude Code không?'
-    a: 'Có thể, vì Cline cho phép bạn định tuyến tới các mô hình rẻ hơn. Bản thân tiện ích mở rộng Cline là miễn phí — bạn chỉ trả tiền cho suy luận AI, và một lập trình viên dùng Cline với Claude Sonnet 4.6 qua API thường chi $5-15/tháng. Ngay khi bạn định tuyến công việc sang DeepSeek, Gemini Flash hoặc một mô hình Ollama cục bộ, chi phí còn rẻ hơn nữa. Claude Code được gói trong gói đăng ký Claude Pro/Max hoặc tính phí trả-theo-token qua API của Anthropic; người dùng API nặng chi nhiều hơn, nhưng bạn nhận được hiệu suất token của Claude Code cùng bộ công cụ tích hợp.'
-  - q: 'Cline có dùng được các mô hình Claude không?'
-    a: 'Có — Cline không phụ thuộc vào mô hình. Nó hoạt động với Claude, GPT, DeepSeek, Gemini hoặc các mô hình cục bộ qua Ollama. Chạy Cline với các mô hình của Anthropic cho kết quả xuất sắc; điểm tinh tế là Claude Code khai thác được nhiều việc hữu ích hơn từ mỗi token của cùng một mô hình, vì nó được tinh chỉnh chuyên dụng cho chúng. Nếu bạn muốn chất lượng Claude nhưng có phê duyệt từng bước và tùy chọn chuyển sang mô hình rẻ hơn bất cứ lúc nào, Cline-với-Claude là một con đường trung gian hợp lý.'
-  - q: 'Cái nào tốt hơn cho việc chạy không giám sát / theo lịch?'
-    a: 'Claude Code, nhờ tính năng Routines của nó (tháng 5/2026). Nó cho phép bạn cấu hình những việc như "chạy kiểm tra migration hàng đêm", "phản hồi một webhook bằng một PR" hay "mỗi thứ Sáu dọn dẹp các comment TODO" mà không cần tự viết bộ lập lịch — một lợi thế thực sự so với các agent mã nguồn mở chưa sản phẩm hóa được việc chạy theo lịch. Mô hình phê-duyệt-từng-bước của Cline là thiết kế ngược lại: xây dựng cho việc có con người trong vòng lặp, không phải tự chủ không giám sát.'
-  - q: 'Người mới bắt đầu nên chọn Claude Code hay Cline?'
-    a: 'Cline, nếu bạn muốn quan sát và phê duyệt mọi thứ trong khi học — nó nằm bên trong VS Code với một giao diện đồ họa quen thuộc, và mọi diff/lệnh/lượt tải web đều được xem xét trước khi chạy, nên không có gì xảy ra mà bạn chưa đồng ý. Claude Code giả định bạn thoải mái với terminal và tin tưởng agent triển khai các thay đổi nhiều bước một cách tự chủ, điều này mạnh mẽ hơn nhưng ít dắt tay hơn. Hãy bắt đầu với Cline để có khả năng quan sát và kiểm soát; nâng cấp lên Claude Code khi bạn tin tưởng vòng lặp và muốn tốc độ.'
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-vs-cline"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -129,8 +118,8 @@ Cây quyết định thành thật: - Tin tưởng vòng lặp, dùng Claude, mu
 
 **Cline cho phép bạn dùng bất kỳ mô hình nào — điều đó nghĩa là bạn sẽ muốn quyền truy cập API linh hoạt**, đặc biệt khi định tuyến giữa Claude, GPT và DeepSeek để cân bằng chi phí và chất lượng.
 
-- **{{< aff "shiyunapi" "vs-footer" "Shiyunapi" >}}** — Proxy API Claude / OpenAI / DeepSeek. Một khóa cho nhiều mô hình hàng đầu ở mức ~30% giá chính thức; hoàn hảo cho việc định tuyến đa mô hình của Cline, hoặc khi quyền truy cập trực tiếp Anthropic/OpenAI bị giới hạn tốc độ ở khu vực của bạn.
-- **{{< aff "htstack" "vs-footer" "HTStack" >}}** — VPS Hồng Kông nếu bạn muốn tự host một mô hình cục bộ (Ollama) để Cline định tuyến tới. Cùng IDC đứng sau dibi8.com.
+- **** — Proxy API Claude / OpenAI / DeepSeek. Một khóa cho nhiều mô hình hàng đầu ở mức ~30% giá chính thức; hoàn hảo cho việc định tuyến đa mô hình của Cline, hoặc khi quyền truy cập trực tiếp Anthropic/OpenAI bị giới hạn tốc độ ở khu vực của bạn.
+- **** — VPS Hồng Kông nếu bạn muốn tự host một mô hình cục bộ (Ollama) để Cline định tuyến tới. Cùng IDC đứng sau dibi8.com.
 
 *Liên kết tiếp thị liên kết — ủng hộ dibi8.com mà không tốn thêm chi phí cho bạn.*
 

@@ -1,12 +1,10 @@
 ---
-title: "MCP Tool Builder — Generate Model Context Protocol Tool ..."
-description: "Free online MCP Tool Definition Generator. Paste a Python or TypeScript function signature and get s..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-mcp-tool-builder"
-tool_id: "mcp-tool-builder"
-aliases:
-  - /posts/mcp-tool-builder/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-tool-builder"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # MCP Tool Builder — Generate Model Context Protocol Tool Definitions from Python / TypeScript

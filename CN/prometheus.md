@@ -1,6 +1,13 @@
 ---
-title: "Prometheus: 64,094 GitHub Stars — Docker Deployment Guid...
-description: "Prometheus (Prom) is an open-source monitoring system and time series database. Compatible with Dock..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prometheus"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/prometheus/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 
@@ -237,32 +244,32 @@ groups: - name: node-alerts
         expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
         for: 5m
         labels: severity: warning
-        annotations: summary: "High memory usage on {{ $labels.instance }}"
-          description: "Memory usage is above 85% (current value: {{ $value }}%)"
+        annotations: summary: "High memory usage on "
+          description: "Technical guide and comparison."
       - alert: HighCPUUsage
         expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
         for: 5m
         labels: severity: critical
-        annotations: summary: "High CPU usage on {{ $labels.instance }}"
-          description: "CPU usage is above 80% (current value: {{ $value }}%)"
+        annotations: summary: "High CPU usage on "
+          description: "Technical guide and comparison."
       - alert: DiskSpaceLow
         expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) * 100 < 10
         for: 5m
         labels: severity: warning
-        annotations: summary: "Low disk space on {{ $labels.instance }}"
-          description: "Disk space is below 10% (mountpoint: {{ $labels.mountpoint }})"
+        annotations: summary: "Low disk space on "
+          description: "Technical guide and comparison."
       - alert: InstanceDown
         expr: up == 0
         for: 3m
         labels: severity: critical
-        annotations: summary: "Instance {{ $labels.instance }} is down"
-          description: "Target has been unreachable for more than 3 minutes"
+        annotations: summary: "Instance  is down"
+          description: "Technical guide and comparison."
       - alert: HighRequestLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
         for: 5m
         labels: severity: warning
-        annotations: summary: "High request latency on {{ $labels.instance }}"
-          description: "95th percentile latency is {{ $value }}s"
+        annotations: summary: "High request latency on "
+          description: "Technical guide and comparison."
 Reference the rules in ``prometheus.yml``: `````yaml
 rule_files: - '/etc/prometheus/alert-rules.yml'
 
@@ -283,8 +290,8 @@ route: receiver: 'slack-notifications'
 receivers: - name: 'slack-notifications'
     slack_configs: - channel: '#alerts'
         send_resolved: true
-        title: '{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}'
-        text: '{{ range .Alerts }}{{ .Annotations.description }}{{ end }}'
+        title: ''
+        text: ''
 `````
 
 ### Prometheus + Kubernetes Service Discovery

@@ -1,12 +1,10 @@
 ---
-title: "WorldMonitor: Bảng Điều Khiển Thông Tình Báo Toàn Cầu Th...
-description: "Một bảng điều khiển thông tình báo toàn cầu theo thời gian thực do AI hỗ trợ, tổng hợp tin tức, sự k..."
-date: 2026-06-25
-lastmod: 2026-06-25
-draft: false
-category: ai-tools
-tags: ["ai", "bảng điều khiển", "địa chính trị", "giám sát", "tin tức", "mã nguồn mở", "osint", "palantir", "nhận thức tình huống"]
-slug: worldmonitor-real-time-global-intelligence-dashboard
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "worldmonitor-real-time-global-intelligence-dashboard"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

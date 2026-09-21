@@ -1,6 +1,13 @@
 ---
-title: "Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
-description: "Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, re..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prefect-workflow-orchestration"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới Thiệu: Cron Jobs Củɑ Bạn Là Một Quả Bom Hẹn Giờ
 
@@ -564,8 +571,8 @@ jobs: deploy: runs-on: ubuntu-latest
       
       - name: Authenticate with Prefect Cloud
         run: |
-          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
-          prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
+          prefect config set PREFECT_API_URL=$
+          prefect config set PREFECT_API_KEY=$
       
       - name: Deploy flows
         run: |
@@ -585,13 +592,13 @@ prefect-version: 3.3.0
 
 build: - prefect_docker.deployments.steps.build_docker_image: requires: prefect-docker
       image_name: my-pipeline
-      tag: "{{ sha }}"
+      tag: ""
       dockerfile: Dockerfile
 
 push: - prefect_docker.deployments.steps.push_docker_image: requires: prefect-docker
       image_name: my-pipeline
-      tag: "{{ sha }}"
-      credentials: "{{ prefect.blocks.docker-registry-credentials.prod-registry }}"
+      tag: ""
+      credentials: ""
 
 pull: - prefect.deployments.steps.set_working_directory: directory: /opt/prefect
 

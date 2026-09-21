@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "aave-v4-defi-lending-protocol"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AAVE v4 2026: The DeFi Lending Protocol Managing $15B+ i...
-description: "Complete guide to integrating AAVE v4 DeFi lending protocol in 2026. Learn how to supply and borrow ..."
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: []
@@ -24,7 +31,7 @@ aliases:
 
 
 
-{{</* resource-info */>}}
+
 
 Decentralized lending has become the cornerstone of modern DeFi, and AAVE stands at the forefront of this revolution. With over $15 billion in total value locked across multiple chains, AAVE is the largest and most battle-tested lending protocol in the cryptocurrency ecosystem. The release of AAVE v4 in late 2025 introduced significant architectural improvements, making it more efficient, secure, and developer-friendly than ever before.
 

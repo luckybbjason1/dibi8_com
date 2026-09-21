@@ -1,21 +1,10 @@
 ---
-# AI Agent Skills Framework Explained: From Matt Pocock's Skills to GitHub Spec-Kit and Spec-Driven Development in 2026
-
-**Published:** May 20, 2026  
-**Reading Time:** 15 minutes  
-**Audience:** Full-stack developers, tech leads, AI tooling enthusiasts---
-
-## The Problem: Your Claude Code Is Still Too Naive
-
-GitHub's weekly trending data for May 9–15, 2026, revealed something unprecedented: **5 of the top 20 fastest-growing repositories contained "skills" in their names**. Matt Pocock's personal ``.claude`` directory went open-source and gained +1,618 stars in a single week. NousResearch's Hermes Agent followed with +1,332 stars. Even Andrej Karpathy's engineering philosophy got packaged into reusable agent skills.
-
-This is not a coincidence. The developer community is undergoing a quiet paradigm shift: from treating AI as a **black-box code generator** to **engineering reusable behavioral patterns, constraints, and workflows** for AI agents. This is the **AI Agent Skills pattern**.
-
-Simultaneously, GitHub's official **Spec-Kit** signals the rise of **Spec-Driven Development (SDD)** — a disciplined ``SPECIFICATION → PLAN → TASKS → IMPLEMENTATION`` workflow that replaces the chaos of "vibe coding" with engineering rigor.
-
-If you're still prompting your AI with "build me a login page," you're already behind.
-
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-skills-framework-spec-driven-development-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 ## What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego
 

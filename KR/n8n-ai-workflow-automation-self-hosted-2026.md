@@ -1,18 +1,10 @@
 ---
-title: "n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치...
-description: "2026년 가장 주목받는 오픈소스 자동화 플랫폼 n8n의 완벽 튜토리얼. n8n 자체 호스팅 배포, AI 에이전트 워크플로우 구축, LangChain 연동, SEO 자동화 실전 사..."
-keywords: n8n, n8n 튜토리얼, AI 워크플로우 자동화, 오픈소스 자동화 도구, n8n 자체 호스팅, n8n vs Zapier, AI 에이전트 구축, LangChain 연동, 노코드 자동화, 워크플로우 오케스트레이션
-author: Home Hermes
-date: 2026-05-20
-lastmod: 2026-05-20---
-
-
-# n8n AI 워크플로우 자동화 완벽 가이드 2026: 오픈소스 AI 에이전트 구축, 자체 호스팅 설치, Zapier 대비 70% 비용 절감
-
-2025년 1분기, GitHub에서 단 한 분기 만에 **18,420개의 새로운 Star**를 획득한 오픈소스 프로젝트가 있었다. 그것은 바로 **n8n**이다. 2026년 3월에는 **6,000만 달러(약 800억 원)의 시리즈 B 투자**를 유치하며, 워크플로우 자동화 분야의 주요 인프라로 자리매김했다.
-
-이 글은 단순한 "Zapier 대안" 리뷰가 아니다. 개발자, 운영 담당자, 기술 중심의 창업자를 위한 **AI 기반 워크플로우 오케스트레이션** 실전 가이드다. 자체 인프라에서 실행하고, 비용은 거의 들지 않으며, LLM과 네이티브하게 통합되는 시스템을 구축하는 방법을 다룬다.
-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "n8n-ai-workflow-automation-self-hosted-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## 2026년, n8n이 폭발적으로 성장하는 이유
@@ -170,8 +162,8 @@ helm install n8n-production n8n/n8n \
 
 #### 노드 1: Google Search Console
 
-n8n의 네이티브 GSC 노드는 OAuth2 인증을 처리한다. Search Console 속성으로 설정하고 다음 파라미터를 사용: - **시작일**: ````{{ $now.minus(7, 'days').format('YYYY-MM-DD') }}````
-- **종료일**: ````{{ $now.minus(1, 'days').format('YYYY-MM-DD') }}````
+n8n의 네이티브 GSC 노드는 OAuth2 인증을 처리한다. Search Console 속성으로 설정하고 다음 파라미터를 사용: - **시작일**: ````````
+- **종료일**: ````````
 - **차원**: ````query````, ````page````
 - **집계 유형**: ````auto````
 
@@ -222,9 +214,9 @@ return alerts.map(a => ({ json: a }));
 각 하락 키워드에 대해 Serper API나 ScraperAPI로 상위 3개 랭킹 URL을 가져온 후 OpenAI 노드로 전달: `````
 System: 당신은 SEO 콘텐츠 전략가입니다. 경쟁사가 우리를 이기는 이유를 분석하고 3가지 구체적이고 실행 가능한 콘텐츠 개선안을 제시하세요.
 
-User: 키워드: {{ $json.query }}
-우리 페이지: {{ $json.page }}
-경쟁사 페이지: {{ $json.competitorUrls.join(', ') }}
+User: 키워드: 
+우리 페이지: 
+경쟁사 페이지: 
 
 다음 형식으로 응답: 1. [카테고리] 구체적 추천
 2. [카테고리] 구체적 추천
@@ -238,21 +230,21 @@ User: 키워드: {{ $json.query }}
 n8n의 **Split In Batches** → **Merge** 패턴을 사용하거나, 동일한 출력에 여러 노드를 연결한다. 각 브랜치는 독립적으로 실행: **Slack 브랜치**: `````
 🚨 *SEO 가디언 알림: 순위 하락 감지*
 
-*키워드:* {{ $json.query }}
-*페이지:* {{ $json.page }}
-*순위:* {{ $json.previousPosition }} → {{ $json.currentPosition }} (↓{{ $json.positionDrop }})
+*키워드:* 
+*페이지:* 
+*순위:*  →  (↓)
 
 *AI 분석:*
-{{ $json.aiRecommendations }}
+
 
 *액션:* Notion 태스크가 생성되었습니다. 오늘까지 검토하세요.
 `````
 
-**Notion 브랜치**: Notion 노드로 데이터베이스 항목 생성: - 이름: "최적화: {{ $json.query }}"
+**Notion 브랜치**: Notion 노드로 데이터베이스 항목 생성: - 이름: "최적화: "
 - 상태: "할 일"
 - 우선순위: "높음"
-- URL: {{ $json.page }}
-- AI 추천: {{ $json.aiRecommendations }}
+- URL: 
+- AI 추천: 
 
 ### 결과
 

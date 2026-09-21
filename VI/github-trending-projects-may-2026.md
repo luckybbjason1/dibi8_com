@@ -1,6 +1,13 @@
 ---
-title: "DeepSeek TUI + Anthropic Financial AI: 3 Dự Án GitHub Tr...
-description: "Phân tích chuyên sâu 3 dự án GitHub trending hot nhất tháng 5/2026: DeepSeek-TUI tăng 5.800 stars tr..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "github-trending-projects-may-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+08:00
 lastmod: 2026-05-15T04:20:25+08:00
 tech_stack: - C++
@@ -20,11 +27,11 @@ draft: false
 aliases:
   - /vi/posts/github-trending-projects-may-2026/
 faqs: - q: 'DeepSeek-TUI là gì và nó khác với Cursor hay GitHub Copilot như thế nào?'
-    a: 'DeepSeek-TUI là một AI agent lập trình chạy trên terminal, hoạt động cục bộ thông qua lệnh `deepseek`, truyền trực tiếp các khối suy luận đồng thời đọc/ghi tệp trên ổ đĩa với các cổng phê duyệt trước bất kỳ thay đổi nào trên hệ thống tệp. Khác với Cursor hay Copilot vốn chạy như những trình soạn thảo GUI đầy đủ, nó được xây dựng cho người dùng terminal làm việc trong tmux, neovim hoặc zsh, không cần chuyển đổi ngữ cảnh giữa trình duyệt và IDE.'
+    a: 'DeepSeek-TUI là một AI agent lập trình chạy trên terminal, hoạt động cục bộ thông qua lệnh ``deepseek``, truyền trực tiếp các khối suy luận đồng thời đọc/ghi tệp trên ổ đĩa với các cổng phê duyệt trước bất kỳ thay đổi nào trên hệ thống tệp. Khác với Cursor hay Copilot vốn chạy như những trình soạn thảo GUI đầy đủ, nó được xây dựng cho người dùng terminal làm việc trong tmux, neovim hoặc zsh, không cần chuyển đổi ngữ cảnh giữa trình duyệt và IDE.'
   - q: 'Chế độ auto của DeepSeek-TUI tiết kiệm chi phí như thế nào?'
-    a: 'Ở chế độ auto (`deepseek --model auto`), công cụ trước tiên thực hiện một lệnh gọi định tuyến nhỏ bằng deepseek-v4-flash với thinking tắt để đánh giá yêu cầu của bạn, rồi chọn mô hình khả thi rẻ nhất và mức thinking phù hợp. Các tác vụ tái cấu trúc đơn giản dùng mô hình nhanh với thinking tắt, trong khi các tác vụ phức tạp như rà soát bảo mật sẽ kích hoạt mô hình pro ở mức thinking cao hơn, nhờ vậy những câu hỏi ngắn vẫn giữ chi phí thấp.'
+    a: 'Ở chế độ auto (``deepseek --model auto``), công cụ trước tiên thực hiện một lệnh gọi định tuyến nhỏ bằng deepseek-v4-flash với thinking tắt để đánh giá yêu cầu của bạn, rồi chọn mô hình khả thi rẻ nhất và mức thinking phù hợp. Các tác vụ tái cấu trúc đơn giản dùng mô hình nhanh với thinking tắt, trong khi các tác vụ phức tạp như rà soát bảo mật sẽ kích hoạt mô hình pro ở mức thinking cao hơn, nhờ vậy những câu hỏi ngắn vẫn giữ chi phí thấp.'
   - q: 'Làm thế nào để cài đặt DeepSeek-TUI?'
-    a: 'Bạn có thể cài đặt qua npm (`npm install -g deepseek-tui`), Cargo (`cargo install deepseek-tui-cli --locked`), Homebrew trên macOS (`brew tap Hmbown/deepseek-tui && brew install deepseek-tui`), hoặc Docker. Xác thực được thiết lập bằng `deepseek auth set --provider deepseek`, và ARM64 Linux được hỗ trợ nguyên bản kể từ v0.8.8 trở đi.'
+    a: 'Bạn có thể cài đặt qua npm (``npm install -g deepseek-tui``), Cargo (``cargo install deepseek-tui-cli --locked``), Homebrew trên macOS (``brew tap Hmbown/deepseek-tui && brew install deepseek-tui``), hoặc Docker. Xác thực được thiết lập bằng ``deepseek auth set --provider deepseek``, và ARM64 Linux được hỗ trợ nguyên bản kể từ v0.8.8 trở đi.'
   - q: 'Bộ agent dịch vụ tài chính của Anthropic bao gồm những gì?'
     a: 'Nó đi kèm 11 agent được đặt tên, bao quát các quy trình tài chính cụ thể, gồm Pitch Agent (comps, precedents, LBO đến pitch deck), Market Researcher, Earnings Reviewer, GL Reconciler và KYC Screener. Nó cũng bổ sung các plugin lệnh slash chuyên ngành như /comps, /dcf và /earnings, cùng các connector do đối tác xây dựng từ LSEG và S&P Global.'
   - q: 'Local Deep Research có riêng tư không, và độ chính xác ra sao?'

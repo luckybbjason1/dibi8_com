@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-source-ai-agent-framework-top-10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Open Source AI Agent Framework Top 10 (2026): Ranked by ...
-description: "Ten OSS AI agent frameworks ranked by 2026 production adoption: LangGraph, CrewAI, AutoGen, Mastra, ..."
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
@@ -24,7 +31,7 @@ faq: - q: "Which AI agent framework should I pick in 2026?"
     a: "Possible but painful. Each framework has its own tool-calling API, state model, and observability hooks. Plan to commit for 6+ months once you pick. The cost of switching is roughly equal to the cost of building 1-2 new agent workflows."
 ---
 
-{{</* resource-info */>}}
+
 
 # Open Source AI Agent Framework Top 10 (2026)
 
@@ -117,8 +124,8 @@ Renamed to Agno in 2026 — same project.
 
 ## Recommended Infrastructure
 
-For agent framework deployment: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplets for self-hosted platforms
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, agent workload hosting
+For agent framework deployment: - **** — $200 credit, droplets for self-hosted platforms
+- **** — Hong Kong VPS, agent workload hosting
 
 *Affiliate links — same price, supports dibi8.com.*
 

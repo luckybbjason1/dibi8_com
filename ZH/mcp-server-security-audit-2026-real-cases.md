@@ -1,6 +1,13 @@
 ---
-title: "MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式"
-description: "生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-server-security-audit-2026-real-cases"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 licensing_model: Open Source / Mixed
 license_type: Various
 last_maintained: "2026-05-25"
@@ -12,7 +19,7 @@ aliases:
 faq: - q: "Anthropic 官方维护的 MCP 服务器是否比社区版更安全？"
     a: "是的，差距明显。Anthropic 参考实现（filesystem、git、github、fetch、sequentialthinking）经过内部审查、有签名发布、有明确的安全模型。社区服务器质量参差不齐——少数经过审计，多数没有。只要 Anthropic 提供了对应版本，默认选 Anthropic；社区替代品在你证明它安全前，要按「拥有完整本地权限的不可信代码」来对待。"
   - q: "2026 年最常见的 MCP 真实攻击模式是什么？"
-    a: "三类并列第一：(1) 抢注仿冒——`github-mcp-server-v2` 这种假包窃取 token。(2) 维护者易主 + 遥测——热门社区服务器换了主人，悄悄加上「分析」功能泄露文件路径或环境变量。(3) 通过抓取内容的 prompt injection——`fetch` 服务器拉到恶意 markdown，agent 被提示词诱导后泄露 `~/.ssh/id_rsa`。"
+    a: "三类并列第一：(1) 抢注仿冒——``github-mcp-server-v2`` 这种假包窃取 token。(2) 维护者易主 + 遥测——热门社区服务器换了主人，悄悄加上「分析」功能泄露文件路径或环境变量。(3) 通过抓取内容的 prompt injection——``fetch`` 服务器拉到恶意 markdown，agent 被提示词诱导后泄露 ``~/.ssh/id_rsa``。"
   - q: "一次完整的装前审计要花多长时间？"
     a: "如果你知道该看哪里，5 分钟就够。本文的 8 点清单覆盖维护者活跃度、依赖树、网络调用、文件系统范围、密钥处理、供应链痕迹、漏洞历史、沙箱兼容性。多数社区服务器至少踩中其中 2 项。"
   - q: "MCP 服务器该用细粒度 GitHub PAT 吗？"
@@ -24,7 +31,7 @@ faq: - q: "Anthropic 官方维护的 MCP 服务器是否比社区版更安全？
 ---
 
 
-{{</* resource-info */>}}
+
 
 # MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷阱模式
 
@@ -132,8 +139,8 @@ faq: - q: "Anthropic 官方维护的 MCP 服务器是否比社区版更安全？
 
 如果你在跑团队共享的 MCP 服务器（HTTP/SSE），加固过的 VPS 让沙箱化变得可行：
 
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 美元免费额度，每个 droplet 单独防火墙规则
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，与 dibi8.com 同 IDC
+- **** — 200 美元免费额度，每个 droplet 单独防火墙规则
+- **** — 香港 VPS，与 dibi8.com 同 IDC
 
 *Affiliate 链接 — 价格相同，支持 dibi8.com。*
 

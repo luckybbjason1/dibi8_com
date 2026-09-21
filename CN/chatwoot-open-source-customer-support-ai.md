@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chatwoot-open-source-customer-support-ai"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Chatwoot 2026: The Open-Source Customer Support Platform...
-description: "Complete guide to Chatwoot v4 — open-source customer support platform. Self-host with Docker, integr..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/chatwoot-open-source-customer-support-ai/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Your Support Stack Needs a Reset
 
@@ -85,7 +92,7 @@ Chatwoot follows a classic monolithic Rails architecture with a Vue.js SPA front
 
 **Automation Rules** — If-this-then-that workflows that trigger on conversation creation, message received, or time-based conditions.
 
-**Macros** — Predefined response templates agents can insert with one click. Supports dynamic variables like ````{{contact.name}}````.
+**Macros** — Predefined response templates agents can insert with one click. Supports dynamic variables like ````````.
 
 ## Installation & Setup: From Zero to Live Chat in 5 Minutes
 

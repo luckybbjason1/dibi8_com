@@ -1,6 +1,13 @@
 ---
-title: "Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập ...
-description: "Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiế..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chroma-vector-database-python"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu: Tại sao pipeline RAG của bạn cần kho lưu trữ vector tốt hơn
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "affine-knowledge-base-whiteboard"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
-description: "Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edge..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -24,7 +31,7 @@ aliases:
 
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction: The Knowledge Management Mess of 2026
 

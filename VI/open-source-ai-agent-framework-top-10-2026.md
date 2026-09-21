@@ -1,6 +1,13 @@
 ---
-title: "Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
-description: "Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, Cr..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "open-source-ai-agent-framework-top-10-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
 tech_stack: [LangGraph, CrewAI, AutoGen, Python, TypeScript]
@@ -25,7 +32,7 @@ faq: - q: "Nên chọn framework AI agent nào vào năm 2026?"
 ---
 
 
-{{</* resource-info */>}}
+
 
 # Top 10 Framework AI Agent Mã Nguồn Mở (2026)
 
@@ -114,8 +121,8 @@ Bối cảnh framework AI agent đã được củng cố vào năm 2026. Từ h
 
 ## Hạ Tầng Đề Xuất
 
-Để triển khai framework agent: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 credit, droplet cho nền tảng tự host
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — VPS Hong Kong, host workload agent
+Để triển khai framework agent: - **** — $200 credit, droplet cho nền tảng tự host
+- **** — VPS Hong Kong, host workload agent
 
 *Link tiếp thị liên kết — cùng giá, ủng hộ dibi8.com.*
 

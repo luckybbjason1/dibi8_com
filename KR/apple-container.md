@@ -1,11 +1,10 @@
 ---
-title: "Apple Container: macOS 용 Docker — 애플이 컨테이너 대신 VM을 선택한 이유...
-description: "Apple Container는 경량 VM을 사용해 Mac에서 Linux 컨테이너를 실행하는 오픈소스 도구입니다. 표준 OCI 이미지를 생성하고 macOS 프레임워크와 통합되며, L..."
-date: 2026-06-13
-lastmod: 2026-06-13
-slug: apple-container-mac-vm-tool-2026
-category: dev-utils
-tags: ["apple-container", "macos-dev", "linux-containers", "vm-vs-docker", "oci", "apple-silicon", "swift", "virtualization", "devtools"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "apple-container"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

@@ -1,9 +1,10 @@
 ---
-title: "2026年AI Agent Skills完全指南：Claude Code技能包实战教程与热门仓库盘点"
-description: "2026年AI Agent Skills完全指南：Claude Code技能包实战教程与热门仓库盘点". Comprehensive guide covering features, pricing,..."
-draft: false
-aliases:
-  - /posts/ai-agent-skills-2026-developer-guide/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-agent-skills-2026-developer-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

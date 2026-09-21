@@ -1,6 +1,13 @@
 ---
-title: "ComfyUI: 87K+ Stars — 노드 기반 Stable Diffusion 설정 가이드 2026"
-description: "ComfyUI (COMFY)는 가장 강력한 노드 기반 Stable Diffusion GUI입니다. SD 1.5, SDXL, Flux, Wan, LTXV를 지원합니다. Docker ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "comfyui"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Introduction
 

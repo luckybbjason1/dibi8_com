@@ -1,6 +1,13 @@
 ---
-title: "Mem0: 56K+ Stars — Hướng Dẫn Tinh Chỉnh Hiệu Suất Bộ Nhớ...
-description: "Mem0 (mem0ai) là lớp bộ nhớ phổ quát cho AI agent. Tương thích với Claude Code, OpenAI, LangChain, C..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mem0"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 
@@ -351,7 +358,7 @@ researcher = Agent(
 
 # Task sử dụng bộ nhớ
 task = Task(
-    description="""Research travel options for user {{user_id}}.
+    description="""Research travel options for user .
     First retrieve their preferences, then provide personalized recommendations.
     Query: travel preferences""",
     expected_output="Personalized travel recommendations",

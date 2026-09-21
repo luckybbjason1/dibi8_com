@@ -1,21 +1,10 @@
 ---
-title: "Hướng Dẫn Tối Ưu Hiệu Suất Pandas: Khi Nào Chuyển Sang P...
-description: "Hướng dẫn tối ưu hiệu suất Pandas và so sánh chi tiết với Polars, DuckDB. Bảng benchmark, kỹ thuật t..."
-date: 2026-05-18T00:00:00+08:00
-lastmod: 2026-05-18T00:00:00+08:00
-tech_stack: []
-application_domain: Data Science
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-18"
-draft: false
-aliases:
-  - /posts/pandas-performance-optimization-alternatives/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "pandas-performance-optimization-alternatives"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

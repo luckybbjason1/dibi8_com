@@ -1,16 +1,14 @@
 ---
-title: "Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배...
-description: "Milvus 2.5 프로덕션 가이드: 10억 규모 벡터 검색, GPU 가속 인덱싱, Kubernetes 배포, 하이브리드 검색, Zilliz Cloud 설정.". Comprehen..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["milvus", "zilliz", "벡터-데이터베이스", "ann", "유사도-검색", "kubernetes", "gpu-인덱싱", "ai-인프라"]
-aliases:
-  - /kr/posts/zilliz-milvus-vector-database-scale/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "zilliz-milvus-vector-database-scale"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 10억 벡터 문제
 

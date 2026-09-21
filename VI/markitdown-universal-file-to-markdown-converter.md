@@ -1,12 +1,10 @@
 ---
-title: "MarkItDown: Bộ Chuyển Đổi Tệp Sang Markdown Toàn Diện — ...
-description: "MarkItDown của nhóm Microsoft AutoGen chuyển đổi hơn 20 loại tệp sang Markdown để LLM sử dụng. pip i..."
-date: 2026-06-17
-lastmod: 2026-06-17
-slug: markitdown-universal-file-to-markdown-converter
-category: ai-tools
-tags: ["markitdown", "file-to-markdown", "microsoft", "llm-pipelines", "rag", "langchain", "document-processing", "pdf-to-markdown", "office-conversion"]
-th--.png
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "markitdown-universal-file-to-markdown-converter"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Giới thiệu

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "free-llm-api-resources-ai-development"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Free LLM API Resources: Access AI Models Without Breakin...
-description: A curated list of free LLM inference resources accessible via API. Build. Comprehensive guide covering features, pricing, and best practices for 2026.
+description: "Technical guide and comparison."
   AI applications without API costs using these community-maintained free tiers.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
@@ -303,8 +310,8 @@ The repository is community-maintained: 1. **Star** the repo to support
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-- **{{< aff "shiyunapi" "footer-cta-legacy" "Shiyunapi Claude API" >}}** — Anthropic Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models or when direct API access is rate-limited in your region.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models or when direct API access is rate-limited in your region.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 

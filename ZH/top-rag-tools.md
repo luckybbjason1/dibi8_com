@@ -1,7 +1,14 @@
 ---
-title: "AI 知识库最佳 RAG 工具"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "top-rag-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
 -cn
-description: "构建 AI 知识库的最佳 RAG（检索增强生成）工具 — 从 LangChain 到 LlamaIndex，ChromaDB 到 Weaviate。"
+description: "Technical guide and comparison."
 layout: simple
 date: 2026-06-28T00:00:00+08:00
 lastmod: 2026-06-28T00:00:00+08:00---

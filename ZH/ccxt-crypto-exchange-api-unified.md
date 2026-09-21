@@ -1,16 +1,14 @@
 ---
-title: "CCXT 2026：统一100+加密货币交易所的通用API —— 交易机器人集成指南"
-description: "掌握CCXT，第一开源加密货币交易库。使用统一API连接100+交易所。使用Python构建具有实时WebSocket数据、内置速率限制和回测支持的交易机器人。". Comprehensive gui..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["ccxt"]
-aliases:
-  - /zh/posts/ccxt-crypto-exchange-api-unified/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ccxt-crypto-exchange-api-unified"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 *最后更新：2026年5月19日*
 

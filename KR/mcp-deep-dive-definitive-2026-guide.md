@@ -1,21 +1,10 @@
 ---
-title: "MCP(Model Context Protocol) 완벽 실전 가이드: 2026년 개발자가 반드시 익혀...
-description: "제로부터 MCP 서버를 구축하는 완벽 튜토리얼. Anthropic의 Model Context Protocol을 마스터하여 AI 에이전트가 데이터베이스, GitHub, Slack 등..."
-date: 2026-05-15T00:00:00+08:00
-lastmod: 2026-05-15T00:00:00+08:00
-tech_stack: []
-application_domain: Llm Frameworks
-source_version: ''
-licensing_model: Open Source
-license_type: MIT
-file_size: ''
-file_md5: ''
-download_url: ''
-backup_url: ''
-last_maintained: "2026-05-15"
-draft: false
-aliases:
-  - /kr/posts/mcp-deep-dive-definitive-2026-guide/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "mcp-deep-dive-definitive-2026-guide"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

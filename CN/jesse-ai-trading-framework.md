@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "jesse-ai-trading-framework"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Jesse: The Advanced Python Crypto Trading Framework with...
-description: "A production-ready guide to Jesse AI trading framework — install, backtest with 30+ indicators, buil..."
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/jesse-ai-trading-framework/-
 ---
 
-{{</* resource-info */>}}
+
 
 ## Introduction: Why Most Trading Bots Fail in Production
 
@@ -188,13 +195,13 @@ jesse backtest 2025-01-01 2025-12-31
 You will see output like this: `````
 Loading candles...
 Executing backtest...
-=====================================
+
 Total Trades: 142
 Win Rate: 58.45%
 Net Profit: 23.7%
 Max Drawdown: -8.2%
 Sharpe Ratio: 1.34
-=====================================
+
 `````
 
 ## Integration with Mainstream Tools

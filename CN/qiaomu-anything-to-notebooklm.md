@@ -1,11 +1,10 @@
 ---
-title: "Qiaomu Anything to NotebookLM: Convert Any Content Sourc..."
-description: "Qiaomu Anything to NotebookLM is a Claude Code Skill and Python toolkit that converts 15+ content so..."
-date: 2026-06-10
-lastmod: 2026-06-10
-slug: qiaomu-anything-to-notebooklm
-category: data-science
-tags: ["qiaomu-notebooklm", "notebooklm", "content conversion", "Claude Code", "knowledge management", "AI tools"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "qiaomu-anything-to-notebooklm"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 ## Introduction

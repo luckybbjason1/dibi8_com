@@ -1,6 +1,13 @@
 ---
-title: "LangGraph 1.2 生产实战：能熬过崩溃的有状态 Agent 编排（2026 完整指南）"
-description: "LangGraph 是长跑、有状态 AI agent 的底层编排框架。GitHub 32.6k stars，v1.2.1。真实部署指南覆盖图设计、持久化执行、human-in-loop 检查点、Lan..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "langgraph-stateful-agent-orchestration-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -136,7 +143,7 @@ def approval_gate(state): user_decision = interrupt({"proposed_action": state["p
 └──────────────────────────┘
 `````
 
-标准生产部署：容器化 LangGraph app，指向托管 Postgres 做 checkpoint，配 LangSmith 拿 trace。无状态档用 {{< aff "digitalocean" "langgraph-vps" "DigitalOcean App Platform" >}} 即可；正经负载抓个 {{< aff "htstack" "langgraph-vps-hk" "HTStack 香港 VPS" >}}（8 GB 起）+ DO 托管 Postgres 拿低延迟状态写。
+标准生产部署：容器化 LangGraph app，指向托管 Postgres 做 checkpoint，配 LangSmith 拿 trace。无状态档用  即可；正经负载抓个 （8 GB 起）+ DO 托管 Postgres 拿低延迟状态写。
 
 ## 6. LangGraph vs LangChain vs CrewAI vs AutoGen（什么时候挑哪个）
 
@@ -196,7 +203,7 @@ def approval_gate(state): user_decision = interrupt({"proposed_action": state["p
 
 LangGraph = **基于图的有状态 agent 运行时**，针对要熬过崩溃、支持人审 checkpoint、跑数小时的生产负载。32.6k stars，v1.2.1，MIT。和 LangChain 天然搭配（你大概率已经在用）。比 CrewAI 多控制力，比 LangChain 单用多持久化，比 AutoGen 在非多 agent 对话外都强。
 
-开一个 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} 配 Postgres，跑第 3 节的例子，你就明白为啥跑真生产 agent 的团队最后都汇到这里。
+开一个  配 Postgres，跑第 3 节的例子，你就明白为啥跑真生产 agent 的团队最后都汇到这里。
 
 
 * * *

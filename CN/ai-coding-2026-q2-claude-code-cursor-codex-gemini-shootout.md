@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
-description: "Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro,..."
+description: "Technical guide and comparison."
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
 tech_stack: ['Claude Code', Cursor, 'Codex CLI', 'Gemini CLI', MCP]
@@ -32,7 +39,7 @@ faq: - q: "Which AI coding agent is the best in 2026 Q2?"
     a: "Gemini CLI with Gemini 2.5 Pro supports 1M+ token context (the largest by far). Claude Code 1.0 with Claude Sonnet 4.6 (or Opus 4.7) supports 1M tokens via the 1M-context tier. Cursor Pro defaults to 200K. Codex CLI with GPT-5 supports 256K. For very large monorepos, Gemini CLI's context advantage is real but its tool-use reliability lags."
 ---
 
-{{</* resource-info */>}}
+
 
 # AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI — The Honest Comparison
 
@@ -261,8 +268,8 @@ Three rules of thumb based on what we've seen pros do: 1. **Don't switch if your
 
 ## Recommended Infrastructure for AI Coding Workflows
 
-If you run AI coding agents on a dedicated VPS (for team-shared MCP servers, code execution sandboxes, or long-running agent loops): - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 free credit. Great starting point for team-shared MCP server infra.
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — Hong Kong VPS, same IDC that hosts dibi8.com.
+If you run AI coding agents on a dedicated VPS (for team-shared MCP servers, code execution sandboxes, or long-running agent loops): - **** — $200 free credit. Great starting point for team-shared MCP server infra.
+- **** — Hong Kong VPS, same IDC that hosts dibi8.com.
 
 *Affiliate links — they don't cost you extra and help keep dibi8.com running.*
 

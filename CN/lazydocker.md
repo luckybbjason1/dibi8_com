@@ -1,6 +1,13 @@
 ---
-title: "LazyDocker: 51,092 GitHub Stars — Complete Terminal Dock...
-description: "LazyDocker (LD) is a terminal UI for managing Docker containers, images, volumes, and logs. Compatib..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "lazydocker"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -20,7 +27,7 @@ aliases:
   - /posts/lazydocker/-
 ---
 
-{{</* resource-info */>}}
+
 
 Managing Docker from the command line means memorizing dozens of flags, piping output through ```grep````, and constantly switching between ````docker ps````, ````docker logs````, and ````docker exec````. For developers who spend hours in the terminal, this friction adds up. LazyDocker solves this with a single binary that wraps your Docker workflow into a keyboard-driven terminal interface — no browser, no daemon, no setup overhead. With over 51,000 GitHub stars and a thriving ecosystem, it has become the default TUI tool for Docker management in 2026.
 
@@ -291,21 +298,21 @@ logs: timestamps: true
 Add your own commands accessible via the ``c`` key: `````yaml
 customCommands: containers: - name: bash
       attach: true
-      command: "docker exec -it {{ .Container.ID }} bash"
+      command: "docker exec -it  bash"
       serviceNames: []
     - name: debug-network
       attach: false
-      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}'"
+      command: "docker inspect  --format=': \n'"
 `````
 
-Available template variables: ````{{ .Container.ID }}````, ````{{ .Container.Name }}````, ````{{ .Service.Name }}````, ````{{ .DockerCompose }}````.
+Available template variables: ````````, ````````, ````````, ````````.
 
 ### Podman Support
 
 LazyDocker works with Podman by swapping the command templates: `````yaml
 commandTemplates: docker: "podman"
   dockerCompose: "podman-compose"
-  containerInspect: "podman inspect {{ .Container.ID }}"
+  containerInspect: "podman inspect "
 `````
 
 ## Integration with Popular Tools
@@ -400,7 +407,7 @@ jobs: debug: runs-on: ubuntu-latest
         run: |
           lazydocker --version
           # Export container list for logs
-          docker ps --format "table {{.Names}}\t{{.Status}}"
+          docker ps --format "table \t"
 `````
 
 ## Benchmarks & Real-World Use Cases
@@ -511,7 +518,7 @@ Export LazyDocker stats to external monitoring by piping ``docker stats`` to Pro
 # cron job every 60 seconds
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name=\"{{.Name}}\"} {{.CPUPerc}}\ncontainer_memory_usage{name=\"{{.Name}}\"} {{.MemUsage}}" \
+    "container_cpu_usage{name=\"\"} \ncontainer_memory_usage{name=\"\"} " \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

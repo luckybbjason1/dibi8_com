@@ -1,11 +1,10 @@
 ---
-title: "cc-switch: The Cross-Platform Desktop CLI Control Center...
-description: "cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, Op..."
-date: 2026-06-08
-lastmod: 2026-06-08
-slug: 'cc-switch-unified-ai-cli-control-center'
-category: 'dev-utils'
-tags: ["AI CLI management", "Claude Code alternative", "ai coding tools", "developer productivity", "multi-agent CLI", "cc-switch", "ai coding agent", "CLI proxy"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "cc-switch-unified-ai-cli-control-center"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026

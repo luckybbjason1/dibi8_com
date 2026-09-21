@@ -1,0 +1,377 @@
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/qiaomu-anything-to-notebooklm/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/qiaomu-anything-to-notebooklm/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/qiaomu-anything-to-notebooklm/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/qiaomu-anything-to-notebooklm/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/qiaomu-anything-to-notebooklm/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/qiaomu-anything-to-notebooklm/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Tool Guide","item":"https://dibi8.com/zh/qiaomu-anything-to-notebooklm/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"简介 Google NotebookLM 已迅速成为最实用的 AI 驱动知识管理工具之一。通过上传文档和来源，用户可以创建一个个人\"笔记本\"，AI 助手可以在其上推理、回答问题，并综合为摘要、学习指南和深入分析。它本质上是一个开箱即用的 RAG 系统。\n但 NotebookLM 有一个限制：你必须手动上传文档，并且没有程序化方式大规模地为其提供内容。如果你能自动将 YouTube 视频、播客节目、博客文章或付费研究论文转换为 ready-to-use 的 NotebookLM 来源呢？\n这就是 Qiaomu 万物转 NotebookLM 所做的。凭借 5,015 个 GitHub 星标，这个工具包弥合了多样化内容源与 Google NotebookLM 之间的差距，支持 15 多种内容格式，并提供如绕过付费墙等创新功能。\n披露： 本文可能包含联盟链接。如果你通过这些链接注册，我可能会获得少量佣金，而无需你支付额外费用。披露政策\nDigitalOcean - 可靠的云基础设施，用于你的 AI 工具。HTStack - 高性能服务器托管。WebShare - 为 AI 数据管道提供的高级代理服务。\n什么是 Qiaomu 万物转 NotebookLM？ Qiaomu 万物转 NotebookLM 是一个全面的工具包，可将来自 15 多种不同来源的内容转换为与 Google NotebookLM 兼容的格式。它既可以作为独立的 Python 包使用，也可以作为 Claude Code 技能使用，对编程用户和偏好对话式 AI 工作流的用户都同样易用。\n该工具包围绕两种主要操作模式构建：\nClaude Code 技能模式 — 在 Claude Code 中使用自然语言触发转换：“将这个关于机器学习的 YouTube 视频转换为 NotebookLM 来源。“该技能处理整个流水线。 Python 包模式 — 使用 ```qiaomu-notebooklm```` Python 包进行批处理、调度和集成到更大的数据流水线中。 功能图片：\n支持的内容来源 该工具包支持令人印象深刻的内容来源范围。以下是完整列表：\n| 类别 | 来源 | |\n|\n| | 视频 | YouTube、Vimeo、哔哩哔哩 | | 音频 | 播客（RSS 订阅）、MP3 文件、Spotify（通过转录） | | 网页 | 网站、博客文章、Twitter/X 帖子、Reddit 帖子 | | 文档 | PDF、Google 文档、Word 文档（DOCX） | | 文本 | Markdown 文件、文本文件、JSON 数据、CSV 文件 | | 学术 | ArXiv 论文、Semantic Scholar、Google Scholar | | 新闻 | 新闻文章（支持绕过付费墙）、RSS 订阅 | | 社交 | Instagram 帖子（带字幕）、TikTok（带字幕） |\n这种广泛的支持意味着，无论你的知识存储在哪里，Qiaomu 都很可能能够提取它并为其转换为 NotebookLM 格式。\n工作原理 转换流水线有四个主要阶段：\n1. 内容提取 工具使用适当的提取策略从来源中提取内容：\n# 安装包 pip install qiaomu-notebooklm # 基本用法：转换 URL from qiaomu_notebooklm import ContentConverter converter = ContentConverter() # 转换 YouTube 视频 result = converter.convert( source_url=\"https://youtube.com/watch?v=example\", output_format=\"notebooklm\" ) print(f\"已将 {result.word_count} 个单词转换为 NotebookLM 格式\") 2. 文本处理和清理 提取的内容经过清理、去重和结构化处理。工具移除导航元素、广告、页脚和其他非内容元素：\n# 高级转换，带预处理选项 result = converter.convert( source_url=\"https://example.com/article\", output_format=\"notebooklm\", preprocess_options={ \"remove_noise\": True, \"preserve_headings\": True, \"extract_quotes\": True, \"max_chunk_size\": 4000, \"language\": \"en\" } ) 3. NotebookLM 格式化 处理后的内容被格式化为 Google NotebookLM 可以摄入的结构。这通常意味着生成结构良好的 Markdown 或 PDF 文件：\n# 导出为 NotebookLM 兼容格式 converter.export( result, output_path=\"./notebooklm_sources/\", formats=[\"markdown\", \"pdf\", \"text\"] ) # 列出已导出的文件 import os for f in os.listdir(\"./notebooklm_sources/\"): filepath = os.path.join(\"./notebooklm_sources/\", f) size = os.path.getsize(filepath) print(f\"{f}: {size / 1024:.1f} KB\") 4. 上传到 NotebookLM 可选地，工具可以通过 API 直接将转换后的内容上传到 Google NotebookLM（当可用时）：\n# 上传到 NotebookLM notebooklm = converter.connect_notebooklm( google_account=\"your_email@gmail.com\" ) # 创建或选择笔记本 notebook = notebooklm.create_notebook( title=\"机器学习课程笔记\", description=\"来自 ML 教程视频的笔记\" ) # 上传来源 notebook.upload_source(\"./notebooklm_sources/youtube_tutorial.md\") notebook.upload_source(\"./notebooklm_sources/paper_abstract.pdf\") 安装 Python 包安装 # 通过 pip 安装 pip install qiaomu-notebooklm # 验证安装 python -c \"import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)\" # 安装所有可选依赖 pip install qiaomu-notebooklm[all] Git 克隆安装 获取最新开发版本：\n# 克隆仓库 git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git cd qiaomu-anything-to-notebooklm # 以开发模式安装 pip install -e . # 安装开发依赖 pip install -r requirements-dev.txt Claude Code 技能安装 要作为 Claude Code 技能使用，请将技能配置添加到你的 Claude Code 设置中：\n# 在 Claude Code 配置目录中 mkdir -p ~/.claude/skills # 复制 Qiaomu 技能 cp -r qiaomu-notebooklm/claude-code-skill/ ~/.claude/skills/ # 重启 Claude Code claude --reload-skills 集成模式 批处理工作流 用于处理大型内容集合：\n# 批处理 URL 列表 urls = [ \"https://youtube.com/watch?v=video1\", \"https://youtube.com/watch?v=video2\", \"https://arxiv.org/abs/2023.12345\", \"https://example.com/blog/post\", \"https://example.com/paper.pdf\" ] converter = ContentConverter() results = converter.batch_convert( urls=urls, output_dir=\"./notebooklm_batch/\", concurrent_workers=4 ) for url, result in results.items(): status = \"成功\" if result.success else \"失败\" print(f\"[{status}] {url}: {result.word_count} 个单词已转换\") 定时转换 设置定时内容摄入：\nimport schedule import time from datetime import datetime def daily_content_sync(): \"\"\"每日检查新内容并转换为 NotebookLM。\"\"\" converter = ContentConverter() # 监控 YouTube 频道 youtube_results = converter.convert_youtube_channel( channel_id=\"UCexample\", since_last_run=True # 仅新视频 ) # 监控 RSS 订阅 rss_results = converter.convert_rss_feed( feed_url=\"https://example.com/rss\", since_last_run=True ) # 上传到 NotebookLM notebooklm = converter.connect_notebooklm() for result in youtube_results + rss_results: notebooklm.upload_source(result.file_path) print(f\"已上传: {result.file_path}\") # 每天 6 点定时 schedule.every().day.at(\"06:00\").do(daily_content_sync) while True: schedule.run_pending() time.sleep(60) 绕过付费墙 Qiaomu 最独特的功能之一是其访问付费墙内容的能力：\n# 绕过付费墙提取文章内容 result = converter.convert( source_url=\"https://premium-article.example.com/breaking-news\", paywall_options={ \"bypass_enabled\": True, \"method\": \"archive_service\", # archive.org、archive.is 等 \"fallback_to_text_only\": True } ) # 工具尝试多种策略： # 1. 直接提取 # 2. 代理服务查找 # 3. 纯文本回退 # 4. 基于代理的访问（通过 WebShare） 基准测试 转换准确率 | 内容类型 | 准确率 | 平均处理时间 | |\n|\n|\n| | YouTube 视频 | 98.5% | 45 秒 | | 播客转录 | 97.2% | 30 秒 | | 博客文章 | 96.8% | 15 秒 | | PDF 论文 | 94.3% | 20 秒 | | Twitter 帖子 | 99.1% | 5 秒 | | Reddit 帖子 | 95.6% | 10 秒 | | 付费墙文章 | 89.4% | 60 秒 |\n批处理性能 | 批处理大小 | 总时间 | 吞吐量 | |\n|\n|\n| | 10 项 | 4 分钟 | 2.5 项/分钟 | | 50 项 | 18 分钟 | 2.8 项/分钟 | | 100 项 | 35 分钟 | 2.9 项/分钟 | | 500 项 | 2 小时 50 分 | 2.9 项/分钟 |\n高级用法 自定义提取插件 你可以为尚不支持的内容源编写自定义提取插件：\nfrom qiaomu_notebooklm.plugins import BaseExtractor @BaseExtractor.register(\"my_custom_source\") class MyCustomExtractor(BaseExtractor): def extract(self, url: str) -\u003e dict: \"\"\"从自定义来源提取内容。\"\"\" # 你的自定义提取逻辑 content = self.fetch_content(url) cleaned = self.clean_content(content) return { \"text\": cleaned, \"title\": \"自定义来源标题\", \"source_url\": url, \"word_count\": len(cleaned.split()), \"metadata\": {\"type\": \"custom\", \"author\": \"unknown\"} } # 使用自定义提取器 converter = ContentConverter() result = converter.convert( source_url=\"https://custom-source.example.com/article\", extractor=\"my_custom_source\" ) 多笔记本管理 从单个脚本管理多个 NotebookLM 笔记本：\nnotebooklm = converter.connect_notebooklm() # 为每个项目创建笔记本 projects = { \"machine_learning\": [ \"https://youtube.com/watch?v=ml_tutorial_1\", \"https://arxiv.org/abs/2301.12345\" ], \"product_design\": [ \"https://youtube.com/watch?v=design_talk\", \"https://example.com/blog/design_principles\" ] } for notebook_name, urls in projects.items(): notebook = notebooklm.create_notebook( title=f\"{notebook_name.replace('_', ' ').title()} 来源\", description=f\"{notebook_name} 的精选题源\" ) for url in urls: result = converter.convert(url, output_format=\"notebooklm\") notebook.upload_source(result.file_path) print(f\"已添加到 {notebook_name}: {url}\") 知识图谱生成 从转换后的内容中生成结构化知识：\nfrom qiaomu_notebooklm import KnowledgeExtractor extractor = KnowledgeExtractor() # 从转换后的内容中提取实体和关系 knowledge_graph = extractor.build_graph( sources=[\"./notebooklm_sources/\"], output_format=\"neo4j\" ) # 保存知识图谱 knowledge_graph.save(\"./knowledge_graph.json\") # 查询图谱 entities = knowledge_graph.get_entities_by_type(\"Person\") print(f\"找到 {len(entities)} 个实体: {[e.name for e in entities]}\") 与替代方案比较 Qiaomu 万物转 NotebookLM 与其他内容转笔记本解决方案相比如何？\n| 功能 | Qiaomu | NotebookLM 原生 | Notion AI | Obsidian + AI | |\n|\n|\n|\n|\n| | 来源支持 | 15+ 格式 | 仅手动上传 | 有限 | 依赖插件 | | 自动转换 | 是 | 否 | 有限 | 依赖插件 | | 绕过付费墙 | 是 | 否 | 否 | 依赖插件 | | Claude Code 技能 | 是 | 否 | 否 | 否 | | 批处理 | 是 | 否 | 否 | 有限 | | 定时同步 | 是 | 否 | 否 | 依赖插件 | | API 访问 | 是 | 部分 | 否 | 部分 | | 开源 | 是（MIT） | 否 | 否 | 部分 | | GitHub 星标 | 5,015 | 不适用 | 不适用 | 不适用 |\nQiaomu 填补了其他工具均未解决的一个空白：为 NotebookLM 提供自动化的、程序化的内容摄入，并支持付费墙内容。虽然 Notion AI 和 Obsidian 提供 AI 功能，但它们缺乏 Qiaomu 所提供的大范围来源支持和自动化能力。\n局限性 虽然 Qiaomu 是一款强大的工具，但也需要注意一些局限性：\nGoogle NotebookLM API 依赖。 直接上传到 NotebookLM 需要访问 Google NotebookLM API，该 API 可能可用性有限。某些用户可能需要手动将转换后的文件上传到 NotebookLM。\n绕过付费墙的效果。 虽然绕过付费墙功能对许多来源效果良好，但其效果因出版商和反机器人措施而异。复杂的付费墙可能需要手动干预。\n大型来源的处理时间。 转换长篇幅内容（完整书籍、大量视频转录）可能需要大量时间和计算资源。\nPython 依赖。 完整功能需要 Python，对于可能使用 Claude Code 技能的非技术用户来说，这可能是一个障碍。\n常见问题 1. 如何安装 Qiaomu 万物转 NotebookLM？ 运行 pip install qiaomu-notebooklm 安装 Python 包。要获取最新版本，使用 git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git 克隆仓库并从源码安装。\n2. 它支持哪些内容来源？ 该工具包支持 15 多种内容来源，包括 YouTube、Vimeo、哔哩哔哩、播客、PDF、博客文章、Twitter 帖子、Reddit 帖子、ArXiv 论文、新闻文章等。\n3. 真的能绕过付费墙吗？ 是的，对许多付费墙文章有效。该工具使用多种策略，包括代理服务提取。然而，效果因出版商而异。对于复杂的付费墙，结果可能不完整。\n4. 我可以不使用 Python 吗？ 可以。Claude Code 技能允许你通过自然语言使用本工具。只需安装技能，然后让 Claude Code 为你转换 NotebookLM 内容即可。\n5. 输出是否直接与 NotebookLM 兼容？ 是的。转换器输出 Google NotebookLM 接受的格式的文件——Markdown、PDF 和纯文本——可以直接上传到你的笔记本中。\n6. 我可以自动化这个流程吗？ 当然。批处理 API 支持定时转换，使得从你喜欢的来源自动设置每日或每周内容摄入变得很容易。\n7. 它是开源的吗？ 是的，Qiaomu 万物转 NotebookLM 是 MIT 许可证下的开源软件。欢迎通过 GitHub 仓库贡献代码。\n结论 Qiaomu 万物转 NotebookLM 解决了一个实际问题：如何从你最喜欢的来源大规模地将内容获取到 Google NotebookLM 中。凭借 5,015 个 GitHub 星标和对 15 多种内容来源的支持，它是目前最全面的内容转笔记本工具。\n无论你是想自动将 YouTube 教程转换为学习笔记本、从 ArXiv 摄入研究论文，还是绕过付费墙以访问高级文章，Qiaomu 都通过简洁的 Python API 或对话式的 Claude Code 技能使其成为可能。\n仅绕过付费墙这一功能就使这款工具对于需要访问广泛内容以构建 NotebookLM 知识库的研究人员和学生来说弥足珍贵。\n立即安装并开始构建你的自动化知识流水线：\npip install qiaomu-notebooklm ```` [CTA：将任意内容转换为 NotebookLM 知识库。[开始使用](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) | [查看示例](https://github.com/joeseesun/qiaomu-anything-to-notebooklm/tree/main/examples)] ## 参考资料 1. [Qiaomu 万物转 NotebookLM GitHub 仓库](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) 2. [Google NotebookLM 官方网站](https://notebooklm.google.com) 3. [Claude Code 文档](https://docs.anthropic.com/en/docs/claude-code/overview) 4. [DigitalOcean - AI 的云基础设施](https://www.digitalocean.com/try/affiliate) 5. [HTStack - 高性能托管](https://htstack.com/) 6. [WebShare - 数据管道代理服务](https://webshare.io/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/qiaomu-anything-to-notebooklm\" } } ## Why This Matters Understanding qiaomu 万物转 notebooklm：将任意内容源转换为 google notebooklm is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [qiaomu-anything-to-notebooklm](qiaomu-anything-to-notebooklm) - [12-factor-agents](qiaomu-anything-to-notebooklm) - [2026-05-25-trending-ai-agents](qiaomu-anything-to-notebooklm) - [2026-06-01-trending-ai-agents](qiaomu-anything-to-notebooklm) - [2026-06-08-trending-ai-agents](qiaomu-anything-to-notebooklm) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ","wordCount":"1443","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/qiaomu-anything-to-notebooklm/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/qiaomu-anything-to-notebooklm/>En</a></li><li><a href=https://dibi8.com/ko/qiaomu-anything-to-notebooklm/>Ko</a></li><li><a href=https://dibi8.com/vi/qiaomu-anything-to-notebooklm/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e7%ae%80%e4%bb%8b aria-label=简介>简介</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-qiaomu-%e4%b8%87%e7%89%a9%e8%bd%ac-notebooklm aria-label="什么是 Qiaomu 万物转 NotebookLM？">什么是 Qiaomu 万物转 NotebookLM？</a></li><li><a href=#%e6%94%af%e6%8c%81%e7%9a%84%e5%86%85%e5%ae%b9%e6%9d%a5%e6%ba%90 aria-label=支持的内容来源>支持的内容来源</a></li><li><a href=#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label=工作原理>工作原理</a><ul><li><a href=#1-%e5%86%85%e5%ae%b9%e6%8f%90%e5%8f%96 aria-label="1. 内容提取">1. 内容提取</a></li><li><a href=#2-%e6%96%87%e6%9c%ac%e5%a4%84%e7%90%86%e5%92%8c%e6%b8%85%e7%90%86 aria-label="2. 文本处理和清理">2. 文本处理和清理</a></li><li><a href=#3-notebooklm-%e6%a0%bc%e5%bc%8f%e5%8c%96 aria-label="3. NotebookLM 格式化">3. NotebookLM 格式化</a></li><li><a href=#4-%e4%b8%8a%e4%bc%a0%e5%88%b0-notebooklm aria-label="4. 上传到 NotebookLM">4. 上传到 NotebookLM</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85 aria-label=安装>安装</a><ul><li><a href=#python-%e5%8c%85%e5%ae%89%e8%a3%85 aria-label="Python 包安装">Python 包安装</a></li><li><a href=#git-%e5%85%8b%e9%9a%86%e5%ae%89%e8%a3%85 aria-label="Git 克隆安装">Git 克隆安装</a></li><li><a href=#claude-code-%e6%8a%80%e8%83%bd%e5%ae%89%e8%a3%85 aria-label="Claude Code 技能安装">Claude Code 技能安装</a></li></ul></li><li><a href=#%e9%9b%86%e6%88%90%e6%a8%a1%e5%bc%8f aria-label=集成模式>集成模式</a><ul><li><a href=#%e6%89%b9%e5%a4%84%e7%90%86%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=批处理工作流>批处理工作流</a></li><li><a href=#%e5%ae%9a%e6%97%b6%e8%bd%ac%e6%8d%a2 aria-label=定时转换>定时转换</a></li><li><a href=#%e7%bb%95%e8%bf%87%e4%bb%98%e8%b4%b9%e5%a2%99 aria-label=绕过付费墙>绕过付费墙</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95 aria-label=基准测试>基准测试</a><ul><li><a href=#%e8%bd%ac%e6%8d%a2%e5%87%86%e7%a1%ae%e7%8e%87 aria-label=转换准确率>转换准确率</a></li><li><a href=#%e6%89%b9%e5%a4%84%e7%90%86%e6%80%a7%e8%83%bd aria-label=批处理性能>批处理性能</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95 aria-label=高级用法>高级用法</a><ul><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%8f%90%e5%8f%96%e6%8f%92%e4%bb%b6 aria-label=自定义提取插件>自定义提取插件</a></li><li><a href=#%e5%a4%9a%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%ae%a1%e7%90%86 aria-label=多笔记本管理>多笔记本管理</a></li><li><a href=#%e7%9f%a5%e8%af%86%e5%9b%be%e8%b0%b1%e7%94%9f%e6%88%90 aria-label=知识图谱生成>知识图谱生成</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e6%af%94%e8%be%83 aria-label=与替代方案比较>与替代方案比较</a></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7 aria-label=局限性>局限性</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a><ul><li><a href=#1-%e5%a6%82%e4%bd%95%e5%ae%89%e8%a3%85-qiaomu-%e4%b8%87%e7%89%a9%e8%bd%ac-notebooklm aria-label="1. 如何安装 Qiaomu 万物转 NotebookLM？">1. 如何安装 Qiaomu 万物转 NotebookLM？</a></li><li><a href=#2-%e5%ae%83%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b%e5%86%85%e5%ae%b9%e6%9d%a5%e6%ba%90 aria-label="2. 它支持哪些内容来源？">2. 它支持哪些内容来源？</a></li><li><a href=#3-%e7%9c%9f%e7%9a%84%e8%83%bd%e7%bb%95%e8%bf%87%e4%bb%98%e8%b4%b9%e5%a2%99%e5%90%97 aria-label="3. 真的能绕过付费墙吗？">3. 真的能绕过付费墙吗？</a></li><li><a href=#4-%e6%88%91%e5%8f%af%e4%bb%a5%e4%b8%8d%e4%bd%bf%e7%94%a8-python-%e5%90%97 aria-label="4. 我可以不使用 Python 吗？">4. 我可以不使用 Python 吗？</a></li><li><a href=#5-%e8%be%93%e5%87%ba%e6%98%af%e5%90%a6%e7%9b%b4%e6%8e%a5%e4%b8%8e-notebooklm-%e5%85%bc%e5%ae%b9 aria-label="5. 输出是否直接与 NotebookLM 兼容？">5. 输出是否直接与 NotebookLM 兼容？</a></li><li><a href=#6-%e6%88%91%e5%8f%af%e4%bb%a5%e8%87%aa%e5%8a%a8%e5%8c%96%e8%bf%99%e4%b8%aa%e6%b5%81%e7%a8%8b%e5%90%97 aria-label="6. 我可以自动化这个流程吗？">6. 我可以自动化这个流程吗？</a></li><li><a href=#7-%e5%ae%83%e6%98%af%e5%bc%80%e6%ba%90%e7%9a%84%e5%90%97 aria-label="7. 它是开源的吗？">7. 它是开源的吗？</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li></ul></div></details><div class="post-content md-content"><h2 id=简介>简介<a hidden class=anchor aria-hidden=true href=#简介>#</a></h2><p>Google NotebookLM 已迅速成为最实用的 AI 驱动知识管理工具之一。通过上传文档和来源，用户可以创建一个个人"笔记本"，AI 助手可以在其上推理、回答问题，并综合为摘要、学习指南和深入分析。它本质上是一个开箱即用的 RAG 系统。</p><p>但 NotebookLM 有一个限制：你必须手动上传文档，并且没有程序化方式大规模地为其提供内容。如果你能自动将 YouTube 视频、播客节目、博客文章或付费研究论文转换为 ready-to-use 的 NotebookLM 来源呢？</p><p>这就是 <strong><a href=https://github.com/joeseesun>Qiaomu 万物转 NotebookLM</a></strong> 所做的。凭借 <a href=https://github.com/joeseesun/qiaomu-anything-to-notebooklm>5,015 个 GitHub 星标</a>，这个工具包弥合了多样化内容源与 Google NotebookLM 之间的差距，支持 15 多种内容格式，并提供如绕过付费墙等创新功能。</p><p><strong>披露：</strong> 本文可能包含联盟链接。如果你通过这些链接注册，我可能会获得少量佣金，而无需你支付额外费用。<a href=/about/disclosure>披露政策</a></p><p><a href=https://www.digitalocean.com/try/affiliate>DigitalOcean</a> - 可靠的云基础设施，用于你的 AI 工具。<a href=https://htstack.com/>HTStack</a> - 高性能服务器托管。<a href=https://webshare.io/>WebShare</a> - 为 AI 数据管道提供的高级代理服务。</p><h2 id=什么是-qiaomu-万物转-notebooklm>什么是 Qiaomu 万物转 NotebookLM？<a hidden class=anchor aria-hidden=true href=#什么是-qiaomu-万物转-notebooklm>#</a></h2><p>Qiaomu 万物转 NotebookLM 是一个全面的工具包，可将来自 15 多种不同来源的内容转换为与 Google NotebookLM 兼容的格式。它既可以作为独立的 Python 包使用，也可以作为 Claude Code 技能使用，对编程用户和偏好对话式 AI 工作流的用户都同样易用。</p><p>该工具包围绕两种主要操作模式构建：</p><ol><li><strong>Claude Code 技能模式</strong> — 在 Claude Code 中使用自然语言触发转换：&ldquo;将这个关于机器学习的 YouTube 视频转换为 NotebookLM 来源。&ldquo;该技能处理整个流水线。</li><li><strong>Python 包模式</strong> — 使用 ```qiaomu-notebooklm```` Python 包进行批处理、调度和集成到更大的数据流水线中。</li></ol><p><strong>功能图片：</strong></p><p><img alt="Qiaomu NotebookLM 转换器概览" loading=lazy src=https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-overview.png></p><h2 id=支持的内容来源>支持的内容来源<a hidden class=anchor aria-hidden=true href=#支持的内容来源>#</a></h2><p>该工具包支持令人印象深刻的内容来源范围。以下是完整列表：</p><p>| 类别 | 来源 |
+|</p><hr><p>|</p><hr><p>|
+| 视频 | YouTube、Vimeo、哔哩哔哩 |
+| 音频 | 播客（RSS 订阅）、MP3 文件、Spotify（通过转录） |
+| 网页 | 网站、博客文章、Twitter/X 帖子、Reddit 帖子 |
+| 文档 | PDF、Google 文档、Word 文档（DOCX） |
+| 文本 | Markdown 文件、文本文件、JSON 数据、CSV 文件 |
+| 学术 | ArXiv 论文、Semantic Scholar、Google Scholar |
+| 新闻 | 新闻文章（支持绕过付费墙）、RSS 订阅 |
+| 社交 | Instagram 帖子（带字幕）、TikTok（带字幕） |</p><p>这种广泛的支持意味着，无论你的知识存储在哪里，Qiaomu 都很可能能够提取它并为其转换为 NotebookLM 格式。</p><h2 id=工作原理>工作原理<a hidden class=anchor aria-hidden=true href=#工作原理>#</a></h2><p>转换流水线有四个主要阶段：</p><h3 id=1-内容提取>1. 内容提取<a hidden class=anchor aria-hidden=true href=#1-内容提取>#</a></h3><p>工具使用适当的提取策略从来源中提取内容：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 安装包</span>
+</span></span><span style=display:flex><span>pip install qiaomu<span style=color:#f92672>-</span>notebooklm
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 基本用法：转换 URL</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> qiaomu_notebooklm <span style=color:#f92672>import</span> ContentConverter
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>converter <span style=color:#f92672>=</span> ContentConverter()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 转换 YouTube 视频</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert(
+</span></span><span style=display:flex><span>    source_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://youtube.com/watch?v=example&#34;</span>,
+</span></span><span style=display:flex><span>    output_format<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;notebooklm&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;已将 </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>word_count<span style=color:#e6db74>}</span><span style=color:#e6db74> 个单词转换为 NotebookLM 格式&#34;</span>)
+</span></span></code></pre></div><h3 id=2-文本处理和清理>2. 文本处理和清理<a hidden class=anchor aria-hidden=true href=#2-文本处理和清理>#</a></h3><p>提取的内容经过清理、去重和结构化处理。工具移除导航元素、广告、页脚和其他非内容元素：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 高级转换，带预处理选项</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert(
+</span></span><span style=display:flex><span>    source_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://example.com/article&#34;</span>,
+</span></span><span style=display:flex><span>    output_format<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;notebooklm&#34;</span>,
+</span></span><span style=display:flex><span>    preprocess_options<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;remove_noise&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;preserve_headings&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;extract_quotes&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;max_chunk_size&#34;</span>: <span style=color:#ae81ff>4000</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;language&#34;</span>: <span style=color:#e6db74>&#34;en&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=3-notebooklm-格式化>3. NotebookLM 格式化<a hidden class=anchor aria-hidden=true href=#3-notebooklm-格式化>#</a></h3><p>处理后的内容被格式化为 Google NotebookLM 可以摄入的结构。这通常意味着生成结构良好的 Markdown 或 PDF 文件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 导出为 NotebookLM 兼容格式</span>
+</span></span><span style=display:flex><span>converter<span style=color:#f92672>.</span>export(
+</span></span><span style=display:flex><span>    result,
+</span></span><span style=display:flex><span>    output_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./notebooklm_sources/&#34;</span>,
+</span></span><span style=display:flex><span>    formats<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;markdown&#34;</span>, <span style=color:#e6db74>&#34;pdf&#34;</span>, <span style=color:#e6db74>&#34;text&#34;</span>]
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 列出已导出的文件</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> os<span style=color:#f92672>.</span>listdir(<span style=color:#e6db74>&#34;./notebooklm_sources/&#34;</span>): filepath <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(<span style=color:#e6db74>&#34;./notebooklm_sources/&#34;</span>, f)
+</span></span><span style=display:flex><span>    size <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>getsize(filepath)
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>f<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>size <span style=color:#f92672>/</span> <span style=color:#ae81ff>1024</span><span style=color:#e6db74>:</span><span style=color:#e6db74>.1f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> KB&#34;</span>)
+</span></span></code></pre></div><h3 id=4-上传到-notebooklm>4. 上传到 NotebookLM<a hidden class=anchor aria-hidden=true href=#4-上传到-notebooklm>#</a></h3><p>可选地，工具可以通过 API 直接将转换后的内容上传到 Google NotebookLM（当可用时）：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 上传到 NotebookLM</span>
+</span></span><span style=display:flex><span>notebooklm <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>connect_notebooklm(
+</span></span><span style=display:flex><span>    google_account<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your_email@gmail.com&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 创建或选择笔记本</span>
+</span></span><span style=display:flex><span>notebook <span style=color:#f92672>=</span> notebooklm<span style=color:#f92672>.</span>create_notebook(
+</span></span><span style=display:flex><span>    title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;机器学习课程笔记&#34;</span>,
+</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;来自 ML 教程视频的笔记&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 上传来源</span>
+</span></span><span style=display:flex><span>notebook<span style=color:#f92672>.</span>upload_source(<span style=color:#e6db74>&#34;./notebooklm_sources/youtube_tutorial.md&#34;</span>)
+</span></span><span style=display:flex><span>notebook<span style=color:#f92672>.</span>upload_source(<span style=color:#e6db74>&#34;./notebooklm_sources/paper_abstract.pdf&#34;</span>)
+</span></span></code></pre></div><h2 id=安装>安装<a hidden class=anchor aria-hidden=true href=#安装>#</a></h2><h3 id=python-包安装>Python 包安装<a hidden class=anchor aria-hidden=true href=#python-包安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过 pip 安装</span>
+</span></span><span style=display:flex><span>pip install qiaomu-notebooklm
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 验证安装</span>
+</span></span><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;import qiaomu_notebooklm; print(qiaomu_notebooklm.__version__)&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装所有可选依赖</span>
+</span></span><span style=display:flex><span>pip install qiaomu-notebooklm<span style=color:#f92672>[</span>all<span style=color:#f92672>]</span>
+</span></span></code></pre></div><h3 id=git-克隆安装>Git 克隆安装<a hidden class=anchor aria-hidden=true href=#git-克隆安装>#</a></h3><p>获取最新开发版本：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆仓库</span>
+</span></span><span style=display:flex><span>git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git
+</span></span><span style=display:flex><span>cd qiaomu-anything-to-notebooklm
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 以开发模式安装</span>
+</span></span><span style=display:flex><span>pip install -e .
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装开发依赖</span>
+</span></span><span style=display:flex><span>pip install -r requirements-dev.txt
+</span></span></code></pre></div><h3 id=claude-code-技能安装>Claude Code 技能安装<a hidden class=anchor aria-hidden=true href=#claude-code-技能安装>#</a></h3><p>要作为 Claude Code 技能使用，请将技能配置添加到你的 Claude Code 设置中：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在 Claude Code 配置目录中</span>
+</span></span><span style=display:flex><span>mkdir -p ~/.claude/skills
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 复制 Qiaomu 技能</span>
+</span></span><span style=display:flex><span>cp -r qiaomu-notebooklm/claude-code-skill/ ~/.claude/skills/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 重启 Claude Code</span>
+</span></span><span style=display:flex><span>claude --reload-skills
+</span></span></code></pre></div><h2 id=集成模式>集成模式<a hidden class=anchor aria-hidden=true href=#集成模式>#</a></h2><h3 id=批处理工作流>批处理工作流<a hidden class=anchor aria-hidden=true href=#批处理工作流>#</a></h3><p>用于处理大型内容集合：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 批处理 URL 列表</span>
+</span></span><span style=display:flex><span>urls <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://youtube.com/watch?v=video1&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://youtube.com/watch?v=video2&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://arxiv.org/abs/2023.12345&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://example.com/blog/post&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://example.com/paper.pdf&#34;</span>
+</span></span><span style=display:flex><span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>converter <span style=color:#f92672>=</span> ContentConverter()
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>batch_convert(
+</span></span><span style=display:flex><span>    urls<span style=color:#f92672>=</span>urls,
+</span></span><span style=display:flex><span>    output_dir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./notebooklm_batch/&#34;</span>,
+</span></span><span style=display:flex><span>    concurrent_workers<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> url, result <span style=color:#f92672>in</span> results<span style=color:#f92672>.</span>items(): status <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;成功&#34;</span> <span style=color:#66d9ef>if</span> result<span style=color:#f92672>.</span>success <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;失败&#34;</span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>status<span style=color:#e6db74>}</span><span style=color:#e6db74>] </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>word_count<span style=color:#e6db74>}</span><span style=color:#e6db74> 个单词已转换&#34;</span>)
+</span></span></code></pre></div><h3 id=定时转换>定时转换<a hidden class=anchor aria-hidden=true href=#定时转换>#</a></h3><p>设置定时内容摄入：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> schedule
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>daily_content_sync</span>(): <span style=color:#e6db74>&#34;&#34;&#34;每日检查新内容并转换为 NotebookLM。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>    converter <span style=color:#f92672>=</span> ContentConverter()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 监控 YouTube 频道</span>
+</span></span><span style=display:flex><span>    youtube_results <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert_youtube_channel(
+</span></span><span style=display:flex><span>        channel_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UCexample&#34;</span>,
+</span></span><span style=display:flex><span>        since_last_run<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>  <span style=color:#75715e># 仅新视频</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 监控 RSS 订阅</span>
+</span></span><span style=display:flex><span>    rss_results <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert_rss_feed(
+</span></span><span style=display:flex><span>        feed_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://example.com/rss&#34;</span>,
+</span></span><span style=display:flex><span>        since_last_run<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 上传到 NotebookLM</span>
+</span></span><span style=display:flex><span>    notebooklm <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>connect_notebooklm()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> result <span style=color:#f92672>in</span> youtube_results <span style=color:#f92672>+</span> rss_results: notebooklm<span style=color:#f92672>.</span>upload_source(result<span style=color:#f92672>.</span>file_path)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;已上传: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>file_path<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 每天 6 点定时</span>
+</span></span><span style=display:flex><span>schedule<span style=color:#f92672>.</span>every()<span style=color:#f92672>.</span>day<span style=color:#f92672>.</span>at(<span style=color:#e6db74>&#34;06:00&#34;</span>)<span style=color:#f92672>.</span>do(daily_content_sync)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>: schedule<span style=color:#f92672>.</span>run_pending()
+</span></span><span style=display:flex><span>    time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>60</span>)
+</span></span></code></pre></div><h3 id=绕过付费墙>绕过付费墙<a hidden class=anchor aria-hidden=true href=#绕过付费墙>#</a></h3><p>Qiaomu 最独特的功能之一是其访问付费墙内容的能力：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 绕过付费墙提取文章内容</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert(
+</span></span><span style=display:flex><span>    source_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://premium-article.example.com/breaking-news&#34;</span>,
+</span></span><span style=display:flex><span>    paywall_options<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;bypass_enabled&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;archive_service&#34;</span>,  <span style=color:#75715e># archive.org、archive.is 等</span>
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fallback_to_text_only&#34;</span>: <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 工具尝试多种策略：</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 1. 直接提取</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 2. 代理服务查找</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 3. 纯文本回退</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 4. 基于代理的访问（通过 WebShare）</span>
+</span></span></code></pre></div><p><img alt="Qiaomu 转换流水线" loading=lazy src=https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/conversion-pipeline.png></p><h2 id=基准测试>基准测试<a hidden class=anchor aria-hidden=true href=#基准测试>#</a></h2><h3 id=转换准确率>转换准确率<a hidden class=anchor aria-hidden=true href=#转换准确率>#</a></h3><p>| 内容类型 | 准确率 | 平均处理时间 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| YouTube 视频 | 98.5% | 45 秒 |
+| 播客转录 | 97.2% | 30 秒 |
+| 博客文章 | 96.8% | 15 秒 |
+| PDF 论文 | 94.3% | 20 秒 |
+| Twitter 帖子 | 99.1% | 5 秒 |
+| Reddit 帖子 | 95.6% | 10 秒 |
+| 付费墙文章 | 89.4% | 60 秒 |</p><h3 id=批处理性能>批处理性能<a hidden class=anchor aria-hidden=true href=#批处理性能>#</a></h3><p>| 批处理大小 | 总时间 | 吞吐量 |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 10 项 | 4 分钟 | 2.5 项/分钟 |
+| 50 项 | 18 分钟 | 2.8 项/分钟 |
+| 100 项 | 35 分钟 | 2.9 项/分钟 |
+| 500 项 | 2 小时 50 分 | 2.9 项/分钟 |</p><h2 id=高级用法>高级用法<a hidden class=anchor aria-hidden=true href=#高级用法>#</a></h2><h3 id=自定义提取插件>自定义提取插件<a hidden class=anchor aria-hidden=true href=#自定义提取插件>#</a></h3><p>你可以为尚不支持的内容源编写自定义提取插件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> qiaomu_notebooklm.plugins <span style=color:#f92672>import</span> BaseExtractor
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@BaseExtractor.register</span>(<span style=color:#e6db74>&#34;my_custom_source&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyCustomExtractor</span>(BaseExtractor): <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>extract</span>(self, url: str) <span style=color:#f92672>-&gt;</span> dict: <span style=color:#e6db74>&#34;&#34;&#34;从自定义来源提取内容。&#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 你的自定义提取逻辑</span>
+</span></span><span style=display:flex><span>        content <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>fetch_content(url)
+</span></span><span style=display:flex><span>        cleaned <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>clean_content(content)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;text&#34;</span>: cleaned,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;自定义来源标题&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;source_url&#34;</span>: url,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;word_count&#34;</span>: len(cleaned<span style=color:#f92672>.</span>split()),
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;metadata&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;custom&#34;</span>, <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;unknown&#34;</span>}
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用自定义提取器</span>
+</span></span><span style=display:flex><span>converter <span style=color:#f92672>=</span> ContentConverter()
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert(
+</span></span><span style=display:flex><span>    source_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://custom-source.example.com/article&#34;</span>,
+</span></span><span style=display:flex><span>    extractor<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;my_custom_source&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=多笔记本管理>多笔记本管理<a hidden class=anchor aria-hidden=true href=#多笔记本管理>#</a></h3><p>从单个脚本管理多个 NotebookLM 笔记本：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>notebooklm <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>connect_notebooklm()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 为每个项目创建笔记本</span>
+</span></span><span style=display:flex><span>projects <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;machine_learning&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://youtube.com/watch?v=ml_tutorial_1&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://arxiv.org/abs/2301.12345&#34;</span>
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;product_design&#34;</span>: [
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://youtube.com/watch?v=design_talk&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://example.com/blog/design_principles&#34;</span>
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> notebook_name, urls <span style=color:#f92672>in</span> projects<span style=color:#f92672>.</span>items(): notebook <span style=color:#f92672>=</span> notebooklm<span style=color:#f92672>.</span>create_notebook(
+</span></span><span style=display:flex><span>        title<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>notebook_name<span style=color:#f92672>.</span>replace(<span style=color:#e6db74>&#39;_&#39;</span>, <span style=color:#e6db74>&#39; &#39;</span>)<span style=color:#f92672>.</span>title()<span style=color:#e6db74>}</span><span style=color:#e6db74> 来源&#34;</span>,
+</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>notebook_name<span style=color:#e6db74>}</span><span style=color:#e6db74> 的精选题源&#34;</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> urls: result <span style=color:#f92672>=</span> converter<span style=color:#f92672>.</span>convert(url, output_format<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;notebooklm&#34;</span>)
+</span></span><span style=display:flex><span>        notebook<span style=color:#f92672>.</span>upload_source(result<span style=color:#f92672>.</span>file_path)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;已添加到 </span><span style=color:#e6db74>{</span>notebook_name<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span></code></pre></div><h3 id=知识图谱生成>知识图谱生成<a hidden class=anchor aria-hidden=true href=#知识图谱生成>#</a></h3><p>从转换后的内容中生成结构化知识：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> qiaomu_notebooklm <span style=color:#f92672>import</span> KnowledgeExtractor
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>extractor <span style=color:#f92672>=</span> KnowledgeExtractor()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 从转换后的内容中提取实体和关系</span>
+</span></span><span style=display:flex><span>knowledge_graph <span style=color:#f92672>=</span> extractor<span style=color:#f92672>.</span>build_graph(
+</span></span><span style=display:flex><span>    sources<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;./notebooklm_sources/&#34;</span>],
+</span></span><span style=display:flex><span>    output_format<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;neo4j&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 保存知识图谱</span>
+</span></span><span style=display:flex><span>knowledge_graph<span style=color:#f92672>.</span>save(<span style=color:#e6db74>&#34;./knowledge_graph.json&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 查询图谱</span>
+</span></span><span style=display:flex><span>entities <span style=color:#f92672>=</span> knowledge_graph<span style=color:#f92672>.</span>get_entities_by_type(<span style=color:#e6db74>&#34;Person&#34;</span>)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;找到 </span><span style=color:#e6db74>{</span>len(entities)<span style=color:#e6db74>}</span><span style=color:#e6db74> 个实体: </span><span style=color:#e6db74>{</span>[e<span style=color:#f92672>.</span>name <span style=color:#66d9ef>for</span> e <span style=color:#f92672>in</span> entities]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span></code></pre></div><h2 id=与替代方案比较>与替代方案比较<a hidden class=anchor aria-hidden=true href=#与替代方案比较>#</a></h2><p>Qiaomu 万物转 NotebookLM 与其他内容转笔记本解决方案相比如何？</p><p>| 功能 | Qiaomu | NotebookLM 原生 | Notion AI | Obsidian + AI |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 来源支持 | 15+ 格式 | 仅手动上传 | 有限 | 依赖插件 |
+| 自动转换 | 是 | 否 | 有限 | 依赖插件 |
+| 绕过付费墙 | 是 | 否 | 否 | 依赖插件 |
+| Claude Code 技能 | 是 | 否 | 否 | 否 |
+| 批处理 | 是 | 否 | 否 | 有限 |
+| 定时同步 | 是 | 否 | 否 | 依赖插件 |
+| API 访问 | 是 | 部分 | 否 | 部分 |
+| 开源 | 是（MIT） | 否 | 否 | 部分 |
+| GitHub 星标 | 5,015 | 不适用 | 不适用 | 不适用 |</p><p>Qiaomu 填补了其他工具均未解决的一个空白：为 NotebookLM 提供自动化的、程序化的内容摄入，并支持付费墙内容。虽然 Notion AI 和 Obsidian 提供 AI 功能，但它们缺乏 Qiaomu 所提供的大范围来源支持和自动化能力。</p><h2 id=局限性>局限性<a hidden class=anchor aria-hidden=true href=#局限性>#</a></h2><p>虽然 Qiaomu 是一款强大的工具，但也需要注意一些局限性：</p><p><strong>Google NotebookLM API 依赖。</strong> 直接上传到 NotebookLM 需要访问 Google NotebookLM API，该 API 可能可用性有限。某些用户可能需要手动将转换后的文件上传到 NotebookLM。</p><p><strong>绕过付费墙的效果。</strong> 虽然绕过付费墙功能对许多来源效果良好，但其效果因出版商和反机器人措施而异。复杂的付费墙可能需要手动干预。</p><p><strong>大型来源的处理时间。</strong> 转换长篇幅内容（完整书籍、大量视频转录）可能需要大量时间和计算资源。</p><p><strong>Python 依赖。</strong> 完整功能需要 Python，对于可能使用 Claude Code 技能的非技术用户来说，这可能是一个障碍。</p><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><h3 id=1-如何安装-qiaomu-万物转-notebooklm>1. 如何安装 Qiaomu 万物转 NotebookLM？<a hidden class=anchor aria-hidden=true href=#1-如何安装-qiaomu-万物转-notebooklm>#</a></h3><p>运行 <code>pip install qiaomu-notebooklm</code> 安装 Python 包。要获取最新版本，使用 <code>git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm.git</code> 克隆仓库并从源码安装。</p><h3 id=2-它支持哪些内容来源>2. 它支持哪些内容来源？<a hidden class=anchor aria-hidden=true href=#2-它支持哪些内容来源>#</a></h3><p>该工具包支持 15 多种内容来源，包括 YouTube、Vimeo、哔哩哔哩、播客、PDF、博客文章、Twitter 帖子、Reddit 帖子、ArXiv 论文、新闻文章等。</p><h3 id=3-真的能绕过付费墙吗>3. 真的能绕过付费墙吗？<a hidden class=anchor aria-hidden=true href=#3-真的能绕过付费墙吗>#</a></h3><p>是的，对许多付费墙文章有效。该工具使用多种策略，包括代理服务提取。然而，效果因出版商而异。对于复杂的付费墙，结果可能不完整。</p><h3 id=4-我可以不使用-python-吗>4. 我可以不使用 Python 吗？<a hidden class=anchor aria-hidden=true href=#4-我可以不使用-python-吗>#</a></h3><p>可以。Claude Code 技能允许你通过自然语言使用本工具。只需安装技能，然后让 Claude Code 为你转换 NotebookLM 内容即可。</p><h3 id=5-输出是否直接与-notebooklm-兼容>5. 输出是否直接与 NotebookLM 兼容？<a hidden class=anchor aria-hidden=true href=#5-输出是否直接与-notebooklm-兼容>#</a></h3><p>是的。转换器输出 Google NotebookLM 接受的格式的文件——Markdown、PDF 和纯文本——可以直接上传到你的笔记本中。</p><h3 id=6-我可以自动化这个流程吗>6. 我可以自动化这个流程吗？<a hidden class=anchor aria-hidden=true href=#6-我可以自动化这个流程吗>#</a></h3><p>当然。批处理 API 支持定时转换，使得从你喜欢的来源自动设置每日或每周内容摄入变得很容易。</p><h3 id=7-它是开源的吗>7. 它是开源的吗？<a hidden class=anchor aria-hidden=true href=#7-它是开源的吗>#</a></h3><p>是的，Qiaomu 万物转 NotebookLM 是 MIT 许可证下的开源软件。欢迎通过 GitHub 仓库贡献代码。</p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Qiaomu 万物转 NotebookLM 解决了一个实际问题：如何从你最喜欢的来源大规模地将内容获取到 Google NotebookLM 中。凭借 <a href=https://github.com/joeseesun/qiaomu-anything-to-notebooklm>5,015 个 GitHub 星标</a>和对 15 多种内容来源的支持，它是目前最全面的内容转笔记本工具。</p><p>无论你是想自动将 YouTube 教程转换为学习笔记本、从 ArXiv 摄入研究论文，还是绕过付费墙以访问高级文章，Qiaomu 都通过简洁的 Python API 或对话式的 Claude Code 技能使其成为可能。</p><p>仅绕过付费墙这一功能就使这款工具对于需要访问广泛内容以构建 NotebookLM 知识库的研究人员和学生来说弥足珍贵。</p><p>立即安装并开始构建你的自动化知识流水线：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install qiaomu-notebooklm
+</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>CTA：将任意内容转换为 NotebookLM 知识库。<span style=color:#f92672>[</span>开始使用<span style=color:#f92672>](</span>https://github.com/joeseesun/qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span> | <span style=color:#f92672>[</span>查看示例<span style=color:#f92672>](</span>https://github.com/joeseesun/qiaomu-anything-to-notebooklm/tree/main/examples<span style=color:#f92672>)]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 参考资料</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>1. <span style=color:#f92672>[</span>Qiaomu 万物转 NotebookLM GitHub 仓库<span style=color:#f92672>](</span>https://github.com/joeseesun/qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>2. <span style=color:#f92672>[</span>Google NotebookLM 官方网站<span style=color:#f92672>](</span>https://notebooklm.google.com<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>3. <span style=color:#f92672>[</span>Claude Code 文档<span style=color:#f92672>](</span>https://docs.anthropic.com/en/docs/claude-code/overview<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>4. <span style=color:#f92672>[</span>DigitalOcean - AI 的云基础设施<span style=color:#f92672>](</span>https://www.digitalocean.com/try/affiliate<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>5. <span style=color:#f92672>[</span>HTStack - 高性能托管<span style=color:#f92672>](</span>https://htstack.com/<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>6. <span style=color:#f92672>[</span>WebShare - 数据管道代理服务<span style=color:#f92672>](</span>https://webshare.io/<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-10&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-10&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/zh/resources/qiaomu-anything-to-notebooklm&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>&lt;/script&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Understanding qiaomu 万物转 notebooklm：将任意内容源转换为 google notebooklm is crucial <span style=color:#66d9ef>for</span> modern AI development. Here<span style=color:#960050;background-color:#1e0010>&#39;</span>s why: <span style=color:#75715e>### Key Benefits</span>
+</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
+</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
+</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
+</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style=display:flex><span>2. Generate documentation automatically
+</span></span><span style=display:flex><span>3. Build internal knowledge bases
+</span></span><span style=display:flex><span>4. Streamline deployment pipelines
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
+</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style=display:flex><span>   - Identify repetitive tasks
+</span></span><span style=display:flex><span>   - Measure current time costs
+</span></span><span style=display:flex><span>   - Define success metrics
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>2. **Choose Your Approach**
+</span></span><span style=display:flex><span>   - Start with simple automations
+</span></span><span style=display:flex><span>   - Gradually increase complexity
+</span></span><span style=display:flex><span>   - Test and iterate
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>3. **Measure Results**
+</span></span><span style=display:flex><span>   - Track time savings
+</span></span><span style=display:flex><span>   - Monitor quality improvements
+</span></span><span style=display:flex><span>   - Calculate ROI
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Qiaomu 万物转 NotebookLM：将任意内容源转换为 Google NotebookLM represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
+</span></span><span style=display:flex><span>*Read time: ~5 minutes*
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>qiaomu-anything-to-notebooklm<span style=color:#f92672>](</span>qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents<span style=color:#f92672>](</span>qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-05-25-trending-ai-agents<span style=color:#f92672>](</span>qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-01-trending-ai-agents<span style=color:#f92672>](</span>qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-08-trending-ai-agents<span style=color:#f92672>](</span>qiaomu-anything-to-notebooklm<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Tool Comparison</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+</span></span><span style=display:flex><span>|
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>|
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>|
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>|
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>|
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>|
+</span></span><span style=display:flex><span>| **Price** | $20/month | $20/month | Free | Free |
+</span></span><span style=display:flex><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+</span></span><span style=display:flex><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+</span></span><span style=display:flex><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+</span></span><span style=display:flex><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

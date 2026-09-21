@@ -1,6 +1,13 @@
 ---
-title: "Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
-description: "FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅,..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "freqtrade-ai-trading-strategies"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 소개: 90%의 DIY 트레이딩 봇이 돈을 잃는 이유
 

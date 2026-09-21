@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ai-trading-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "The AI Trading Stack 2026: 7-Component Open-Source Quant...
-description: "Self-hosted AI trading stack: ta-lib (signals) + vectorbt (backtest) + freqtrade (execution) + AI Tr..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Python
@@ -166,7 +173,7 @@ docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compo
 
 Drop your strategy ````.py```` into ````user_data/strategies/````, configure exchange API keys, start in dry-run, validate for 2 weeks, switch to live.
 
-Deploy on a low-latency VPS — we run our internal freqtrade instances on {{< aff "htstack" "trading-vps-hk" "HTStack's Hong Kong VPS" >}} for sub-50ms latency to Asian exchanges, or {{< aff "digitalocean" "trading-vps-us" "DigitalOcean droplets" >}} in NYC for US-leaning venues.
+Deploy on a low-latency VPS — we run our internal freqtrade instances on  for sub-50ms latency to Asian exchanges, or  in NYC for US-leaning venues.
 
 Full setup including AI strategy patterns: [freqtrade AI trading strategies](/resources/llm-frameworks/freqtrade-ai-trading-strategies/).
 
@@ -224,19 +231,19 @@ Full setup: [Polymarket Agents — AI trading bot framework](/resources/llm-fram
 
 **Why this fits the stack**: Even hardcore quants need a "second monitor" tool for fast market check-ins, ad-hoc questions, manual hedges. Minara is the AI-native answer (vs TradingView's traditional charting). For pure non-coder users wanting AI-driven trading: Minara is the standalone entry point.
 
-**Getting started**: {{< aff "minara" "minara-trading-platform" "Sign up at Minara" >}} — built on Hyperliquid so the underlying execution is the same DEX rails as the technical stack above. Use it as the conversational layer; use the technical stack (components 1-6) for systematic strategies.
+**Getting started**:  — built on Hyperliquid so the underlying execution is the same DEX rails as the technical stack above. Use it as the conversational layer; use the technical stack (components 1-6) for systematic strategies.
 
 Full review: [Minara AI trading on Hyperliquid 2026 review](/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/).
 
 ## 10. Day 1 Setup Order (4-5 hours, before any real capital)
 
-1. **VPS + Python env** (15 min) — {{< aff "htstack" "trading-vps-setup" "HTStack HK VPS" >}} 4 GB, install Python 3.11 + Docker
+1. **VPS + Python env** (15 min) —  4 GB, install Python 3.11 + Docker
 2. **ta-lib + vectorbt** (15 min) — ````pip install```, run sample backtest on 1 year of BTC data
 3. **freqtrade in dry-run** (30 min) — Docker compose, configure with read-only Binance API key, deploy a basic Bollinger strategy on paper for 2 weeks before going live
 4. **Hyperliquid testnet** (30 min) — Get testnet USDC, install SDK, place a test order on testnet, verify execution
 5. **AI Trader integration** (45 min) — Configure with DeepSeek (cheap) or Claude (premium) API key, point at your freqtrade dry-run logs
 6. **Polymarket Agents** (30 min) — Wallet setup, fund with $50 USDC for testing, deploy a "news-driven prediction" agent
-7. **Minara account** (10 min) — {{< aff "minara" "minara-day1-signup" "Sign up" >}} for the conversational UI; useful for ad-hoc market checks even if you're going systematic
+7. **Minara account** (10 min) —  for the conversational UI; useful for ad-hoc market checks even if you're going systematic
 8. **2-week paper trading minimum** (real-time) — Before deploying real capital, run all live execution in dry-run / testnet for 2 weeks, prove you didn't break anything obvious
 
 After 5 hours of setup + 2 weeks of paper trading, you have a real production-grade quant stack on infrastructure you own.
@@ -291,9 +298,9 @@ Build the stack. Paper trade for 1-3 months. Start with capital you can afford t
 4. **AI Trader** — AI strategy adjustment loop
 5. **Hyperliquid** — on-chain perp DEX venue
 6. **Polymarket Agents** — prediction market alpha
-7. **Minara** — AI+crypto conversational hub for non-coders ({{< aff "minara" "footer-minara" "sign up here" >}})
+7. **Minara** — AI+crypto conversational hub for non-coders ()
 
-Spin up an {{< aff "htstack" "footer-htstack" "HTStack HK VPS" >}} for low-latency execution, paper trade for 2-4 weeks before going live, start with capital you can lose, scale only after live performance matches backtest expectations.
+Spin up an  for low-latency execution, paper trade for 2-4 weeks before going live, start with capital you can lose, scale only after live performance matches backtest expectations.
 
 
 * * *

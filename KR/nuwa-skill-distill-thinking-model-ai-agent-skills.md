@@ -1,11 +1,10 @@
 ---
-title: "Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南"
-description: "Nuwa-Skill（23,508 顆 GitHub 星）將歷史人物、專家和影響者的思維模型提煉為可複用的 AI Agent 技能。相容 Claude Code、Codex、Cursor、Hermes..."
-date: 2026-06-09
-lastmod: 2026-06-09
-slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
-category: 'llm-frameworks'
-tags: ["nuwa-skill", "Agent 技能", "思維模型", "COT 提煉", "AI Agent 框架", "Claude Code 技能", "Codex 技能", "MCP 替代方案", "Agent 記憶體"]
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "nuwa-skill-distill-thinking-model-ai-agent-skills"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
@@ -120,7 +119,7 @@ Musk      ❯ 別急著想如何降低。先算出物理極限。
 `````yaml
 # Nuwa 生成的範例 SKILL.md 結構
 name: "Steve Jobs"
-description: "Steve Jobs 思維模型——專注、簡潔、現實扭曲"
+description: "Technical guide and comparison."
 cognitive_layers: expression: tone: "直接、自信、有時尖銳"
     patterns: ["隱喻", "二元框架", "重複"]
     signature_phrases: - "insanely great"

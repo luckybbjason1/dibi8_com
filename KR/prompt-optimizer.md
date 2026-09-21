@@ -1,10 +1,10 @@
 ---
-title: "Prompt 최적화기 — 5단계 재구성, 불필요 표현 제거, 토큰 절약 (GPT / Claude / ...
-description: "무료 온라인 Prompt 최적화 도구. 불필요 표현 감지, 5단계 프레임(역할 / 작업 / 컨텍스트 / 제약 / 예시 / 출력)으로 재구성, GPT-4o / Claude Sonne..."
-date: 2026-05-19
-lastmod: 2026-05-19
-layout: "tool-prompt-optimizer"
-tool_id: "prompt-optimizer"
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "prompt-optimizer"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

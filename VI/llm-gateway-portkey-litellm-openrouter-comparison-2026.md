@@ -1,6 +1,13 @@
 ---
-title: "Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LL...
-description: "So sánh trực tiếp 3 LLM gateway lớn nhất năm 2026. Số liệu thực: Portkey thêm <1ms độ trễ, LiteLLM 8..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-gateway-portkey-litellm-openrouter-comparison-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
 tech_stack: - Python

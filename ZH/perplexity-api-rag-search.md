@@ -1,16 +1,14 @@
 ---
-title: "perplexity-api-rag-search"
-description: "{"en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar ..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["llm-frameworks"]
-tags: ["perplexity api"]
-aliases:
-  - /zh/posts/perplexity-api-rag-search/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "perplexity-api-rag-search"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 随着Perplexity API的推出，构建智能、事实感知型应用的比赛达到了一个关键里程碑——这是一个专门构建的RAG（检索增强生成）搜索服务，将大型语言模型与实时网络索引融合在一起。与传统的仅依赖静态训练数据的LLM API不同，Perplexity的Sonar模型实时查询互联网，检索权威来源，并返回带有内联引用的结构化答案。对于构建聊天机器人、研究工具、知识助手和内容验证管道的开发人员来说，这代表了一个范式转变：应用不仅能生成文本，而且能将每个声明建立在可验证的现实基础之上。
 

@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "daily-stock-analysis-llm-powered-multi-market-stock-intelligence"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
-  description: "An LLM-driven multi-market stock analysis system with real-time news, decision dashboards, and autom..."
+  description: "Technical guide and comparison."
   date: 2026-06-25
   lastmod: 2026-06-25
 draft: false

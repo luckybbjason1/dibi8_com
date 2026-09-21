@@ -1,6 +1,13 @@
 ---
-title: "Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh Eleuth...
-description: "Khám phá các framework đánh giá và chuẩn hóa LLM hàng đầu 2025. So sánh EleutherAI LM Eval Harness, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "llm-evaluation-benchmarking-frameworks"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-18T00:00:00+08:00
 lastmod: 2026-05-18T00:00:00+08:00
 tech_stack: []

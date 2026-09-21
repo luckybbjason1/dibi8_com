@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "claude-code-subagent-mastery-stack"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Claude Code Subagent Mastery Stack 2026: From One Conver...
-description: "The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent pa..."
+description: "Technical guide and comparison."
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
 tech_stack: - Claude Code

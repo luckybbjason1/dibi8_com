@@ -1,9 +1,10 @@
 ---
-title: "2025년 최고의 AI 글쓰기 어시스턴트: Jasper, Copy.ai, Writesonic 및 Ch...
-description: "2025년 최신 AI 글쓰기 도구를 비교합니다. Jasper, Copy.ai, Writesonic, ChatGPT, Claude의 기능, 가격, 콘텐츠 품질을 분석하고 용도별 추천..."
-draft: false
-aliases:
-  - /posts/best-ai-writing-assistants-2025/
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "best-ai-writing-assistants-2025"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

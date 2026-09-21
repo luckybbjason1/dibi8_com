@@ -1,6 +1,13 @@
 ---
-title: "RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars —...
-description: "RAGFlow là engine RAG mã nguồn mở với khả năng hiểu sâu tài liệu và tích hợp Agent. Tương thích với ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "ragflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ![RAGFlow Logo](https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg)
 

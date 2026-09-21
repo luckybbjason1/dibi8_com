@@ -1,6 +1,13 @@
 ---
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "self-hosted-ai-coding-workflow"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
 title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St...
-description: "A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + C..."
+description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
 tech_stack: - Docker
@@ -129,7 +136,7 @@ LiteLLM picks up Ollama as a provider automatically.
 
 **Why this pick**: 47.8k stars, the most-starred LLM gateway. 8ms P95 latency at 1k RPS. Free if self-hosted. Compared in detail in our [Portkey vs LiteLLM vs OpenRouter 2026 guide](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/).
 
-**Quick deploy on a 4GB VPS** (we recommend {{< aff "htstack" "stack-vps" "HTStack's Hong Kong VPS" >}} for sub-30ms latency to mainland China users, or {{< aff "digitalocean" "stack-droplet" "DigitalOcean's $6 droplet" >}} for everywhere else): `````bash
+**Quick deploy on a 4GB VPS** (we recommend  for sub-30ms latency to mainland China users, or  for everywhere else): `````bash
 docker run -d --name litellm -p 4000:4000 \
   -e LITELLM_MASTER_KEY=sk-your-secret \
   -e OLLAMA_API_BASE=http://host.docker.internal:11434 \
@@ -213,7 +220,7 @@ Tavily has a generous free tier (1,000 searches/mo) so this stays within the $6 
 
 ## 10. Assembly Order — Day 1 Setup (90 minutes)
 
-If you're starting from scratch, do it in this order: 1. **Spin up infrastructure** (15 min) — Order a {{< aff "digitalocean" "assembly-vps" "DigitalOcean $6 droplet" >}}, install Docker, open ports 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
+If you're starting from scratch, do it in this order: 1. **Spin up infrastructure** (15 min) — Order a , install Docker, open ports 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
 2. **Ollama first** (10 min) — Install + pull ````qwen3-coder:14b```` (~9 GB). Confirm ````curl localhost:11434/api/tags```` works
 3. **LiteLLM second** (15 min) — Docker run with the env vars from sec. 5. Confirm ````curl localhost:4000/v1/models -H "Authorization: Bearer sk-your-secret"```` lists Ollama models
 4. **9Router third** (10 min) — Optional but recommended. Add to LiteLLM's premium provider config
@@ -248,7 +255,7 @@ Compare against $289/month for Cursor + Claude Code Pro + Copilot + Replit + Ope
 
 ## 12. Upgrade Path
 
-When your stack outgrows the $6 tier (more than 1 dev, more than 1 project, persistent state matters): - **Add Postgres** for LiteLLM spend tracking + virtual keys per project ({{< aff "digitalocean" "upgrade-postgres" "DigitalOcean Managed Postgres" >}} $15/mo)
+When your stack outgrows the $6 tier (more than 1 dev, more than 1 project, persistent state matters): - **Add Postgres** for LiteLLM spend tracking + virtual keys per project ( $15/mo)
 - **Add Redis** for LiteLLM caching (1 GB managed Redis $10/mo)
 - **Move LiteLLM behind a load balancer** with 3 replicas — see [Portkey vs LiteLLM 2026 guide](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/) sec. 4 for the Kubernetes pattern
 - **Add Grafana + Loki** for full observability — log every prompt, every fallback, every cost spike
@@ -268,7 +275,7 @@ The point: you started with $6/mo and *own the entire stack*. Every upgrade is a
 
 Total: $6/month. Total: 90 minutes to assemble. Total: zero vendor lock-in.
 
-If you"re spending $200+/mo on AI coding SaaS, this stack pays for itself in week 1. Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}}, follow sec. 10, and report back next week.
+If you"re spending $200+/mo on AI coding SaaS, this stack pays for itself in week 1. Spin up a , follow sec. 10, and report back next week.
 
 
 * * *

@@ -1,6 +1,13 @@
 ---
-title: "ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại ...
-description: "ChatTTS (AGPL-3.0) là mô hình giọng nói tạo sinh cho kịch bản hội thoại. Tương thích với Coqui TTS, ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "chattts"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -22,7 +29,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## Giới thiệu
 

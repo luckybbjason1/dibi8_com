@@ -1,16 +1,14 @@
 ---
-title: "Feast: 开源特征存储亚秒级特征服务 — 2026 完整部署指南"
-description: "Feast 完整指南 — 领先的开源特征存储。涵盖特征注册中心、在线/离线存储、亚秒级服务、Redis/BigQuery 后端、批处理与实时特征以及生产部署。". Comprehensive guid..."
-last_maintained: "2026-05-19"
-draft: false
-categories: ["data-science"]
-tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "在线存储", "离线存储", "实时ml", "特征工程"]
-aliases:
-  - /zh/posts/feast-feature-store-ml/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "feast-feature-store-ml"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 ## 引言：200 毫秒的特征工程危机
 
@@ -461,7 +459,7 @@ with DAG(
         task_id="materialize_features",
         bash_command="""
             cd /opt/feast/fraud_detection_feature_store && \
-            feast materialize-incremental {{ ds }}T{{ ts_nodash_with_tz }}
+            feast materialize-incremental T
         """,
     )
     

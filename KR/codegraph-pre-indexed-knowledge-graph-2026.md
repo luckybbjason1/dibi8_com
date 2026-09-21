@@ -1,6 +1,13 @@
 ---
-title: "CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄...
-description: "CodeGraph (GitHub 20.2K+ stars)는 Claude Code, Cursor, Codex CLI, OpenCode, Hermes Agent를 위해 코드 지식 그래..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "codegraph-pre-indexed-knowledge-graph-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
 tech_stack: []

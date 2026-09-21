@@ -1,16 +1,14 @@
 ---
-title: "Alpaca交易API 2026：面向算法交易的零佣金股票经纪API — 设置指南"
-description: "零佣金算法交易的Alpaca交易API完整指南。学习设置、下单、WebSocket实时流、碎股交易和模拟交易，附Python代码示例。". Comprehensive guide covering f..."
-last_maintained: "2026-05-20"
-draft: false
-categories: ["ai-trading"]
-tags: ["alpaca trading api"]
-aliases:
-  - /zh/posts/alpaca-trading-api-stock-broker/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "alpaca-trading-api-stock-broker"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 
-{{</* resource-info */>}}
+
 
 > 📌 **联盟营销披露**：本文包含联盟营销链接。如果您通过我们的链接注册，我们可能会获得佣金——不会给您带来额外费用。我们的评测独立且基于深入研究。
 > 

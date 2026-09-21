@@ -1,9 +1,10 @@
 ---
-title: "Git工作流与团队协作工具：开发者完整指南"
-description: "完整对比GitFlow、GitHub Flow、Trunk-Based Development三大工作流，涵盖代码审查、Git平台选型、Commit规范、冲突解决等团队协作最佳实践。". Compre..."
-draft: false
-aliases:
-  - /posts/git-workflow-team-collaboration-tools/-
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "git-workflow-team-collaboration-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 # Git工作流与团队协作工具：开发者完整指南

@@ -1,6 +1,13 @@
 ---
-title: "Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南"
-description: "Firecrawl 是开源的网页数据 API，能把网页抓取、爬取、映射、搜索成干净、可直接喂给 LLM 的 Markdown 或结构化 JSON。127,747 GitHub stars，AGPL-3..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "firecrawl-dev-utils-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
 tech_stack: []
@@ -23,16 +30,16 @@ faqs: - q: '如何安装 Firecrawl？'
   - q: '除了 TypeScript，我能用别的语言使用 Firecrawl 吗？'
     a: '可以。Firecrawl 是一个 HTTP API，因此任何语言都能调用它。官方提供了 Node.js 和 Python 的 SDK，其他语言也可以用任意 HTTP 客户端直接请求 REST 端点。'
   - q: '我必须用托管 API，还是可以自托管？'
-    a: '两者都支持。位于 `api.firecrawl.dev` 的托管 API 是最快的上手方式，但该项目本身是开源的，并附带 Docker Compose 配置，因此你可以把整套东西跑在自己的服务器上。'
+    a: '两者都支持。位于 ``api.firecrawl.dev`` 的托管 API 是最快的上手方式，但该项目本身是开源的，并附带 Docker Compose 配置，因此你可以把整套东西跑在自己的服务器上。'
   - q: 'scrape、crawl 和 map 有什么区别？'
-    a: '`scrape` 处理单个 URL。`crawl` 会沿链接异步抓取整个站点。`map` 只返回站点上的 URL 列表，而不抓取其内容——适合用来规划爬取。'
+    a: '``scrape`` 处理单个 URL。``crawl`` 会沿链接异步抓取整个站点。``map`` 只返回站点上的 URL 列表，而不抓取其内容——适合用来规划爬取。'
   - q: 'Firecrawl 免费吗？它用什么协议？'
     a: '源代码在 AGPL-3.0 下免费且开源，官方 SDK 与 UI 组件则采用 MIT。托管云端 API 有免费额度，并提供更高用量的付费套餐。如果自托管，你需自行承担运行的基础设施成本。'---
 
 # Firecrawl：把任意网站变成 LLM 可直接使用的数据（127K Stars）——2026 实战指南
 
 
-{{< resource-info >}}
+
 
 ## 引言
 
@@ -184,7 +191,7 @@ const doc = await app.scrape('https://example.com', {
       type: object,
       properties: {
         title: { type: string },
-        description: { type: string },
+        description: "Technical guide and comparison."
       },
     },
   }],
@@ -235,7 +242,7 @@ jobs: scrape: runs-on: ubuntu-latest
         run: npm install firecrawl
 
       - name: Run scraper
-        env: FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        env: FIRECRAWL_API_KEY: $
         run: node scrape.js > output.json
 `````
 

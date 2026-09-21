@@ -1,9 +1,10 @@
 ---
-title: "Công Cụ RAG Hàng Đầu Cho Kho Tri Thức AI"
-description: "Những công cụ RAG (Retrieval-Augmented Generation) tốt nhất để xây dựng kho tri thức AI — từ LangCha..."
-layout: simple
-date: 2026-06-28T00:00:00+08:00
-lastmod: 2026-06-28T00:00:00+08:00
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "top-rag-tools"
+category: "ai-tools"
+tags: ["ai", "tools"]
 ---
 
 

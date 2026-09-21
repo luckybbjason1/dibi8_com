@@ -1,6 +1,13 @@
 ---
-title: "Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
-description: "Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấ..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "odysseus-self-hosted-ai-workspace-2026"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
 tech_stack: []

@@ -1,6 +1,13 @@
 ---
-title: "faster-whisper: 4 倍速语音转文本，23K+ Stars — 2026 年对比 WhisperX...
-description: "faster-whisper（SYSTRAN）通过 CTranslate2 重新实现 OpenAI Whisper，提速 4 倍。涵盖 faster whisper 教程、基准数据、Docker 部署..."
+title: "AI Tool Guide"
+description: "Technical guide and comparison"
+date: 2026-09-20
+slug: "faster-whisper"
+category: "ai-tools"
+tags: ["ai", "tools"]
+---
+title: "AI Tool Guide"
+description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
 tech_stack: []
@@ -21,7 +28,7 @@ aliases:
 ---
 
 
-{{</* resource-info */>}}
+
 
 OpenAI 的 Whisper 在 2022 年改变了语音转文本领域，但原始 Python 实现并未充分利用硬件性能。对于一个 13 分钟的音频文件，使用 large-v2 模型的 ```openai/whisper```` 在 Tesla V100 GPU 上需要超过 4 分钟 —— 对于每天处理数百小时音频的生产流水线来说是不可接受的。SYSTRAN 的 **faster-whisper** 使用 CTranslate2 重新实现了 Whisper 推理，在保持相同准确率的同时实现了高达 4 倍的加速，并将显存使用减少了近 70%。凭借 GitHub 上 23,000+ stars，它已成为 Python 环境中生产级语音转文本的事实标准运行时。
 
