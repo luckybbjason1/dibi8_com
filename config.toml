@@ -16,7 +16,7 @@ enableGitInfo = false
 
 # Sitemap configuration
 [sitemap]
-  changefreq = "monthly"
+  changefreq = "weekly"
   filename = "sitemap.xml"
   priority = 0.5
 
@@ -74,7 +74,7 @@ enableGitInfo = false
 # Params
 [params]
   env = "production"
-  description = "Curated rankings of the best open-source AI coding agents, LLM frameworks, and developer utilities"
+  description = "Hand-tested AI coding agent tools and open-source LLM frameworks"
   defaultTheme = "dark"
   ShowReadingTime = true
   ShowShareButtons = false
