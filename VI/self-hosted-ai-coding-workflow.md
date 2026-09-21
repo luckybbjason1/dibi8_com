@@ -1,5 +1,5 @@
 ---
-title: 'Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng ...
+title: "Workflow AI Coding Self-Host: Stack Hoàn Chỉnh $6/Tháng ...
 description: "Stack AI coding self-host 7 thành phần thay thế $290/tháng đăng ký SaaS (Cursor + Claude Code Pro + Copilot + Replit) bằng $6/tháng hạ tầng. Số liệu thực, config thực, hướng dẫn lắp ráp từng bước đầy đủ."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -19,7 +19,7 @@ github_repo: ''
 stars: 0
 maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["collections"]
 tags: ["self-host", "ai coding", "stack", "workflow", "collection"]

@@ -186,7 +186,7 @@ USER sduser
 
 EXPOSE 7860
 
-ENTRYPOINT ["bash", "-c", \". venv/bin/activate && python3 launch.py --listen --api --xformers"]
+ENTRYPOINT ["bash", "-c", ". venv/bin/activate && python3 launch.py --listen --api --xformers"]
 ```
 
 构建并运行：

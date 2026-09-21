@@ -1,5 +1,5 @@
 ---
-title: 'Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Li...
+title: "Trino 2026: Cỗ Máy Truy Vấn SQL Phân Tán Phân Tích Dữ Li...
 description: "Triển khai Trino 464+ để phân tích SQL phân tán quy mô PB. Hướng dẫn từng bước thiết lập cluster, cấu hình 40+ connector, tối ưu hiệu suất và benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -529,7 +529,7 @@ Bắt đầu với cluster 3 node trên [DigitalOcean](https://m.do.co/c/eca87ac
 
 1. [Trino Official Documentation](https://trino.io/docs/current/)
 2. [Trino GitHub Repository](https://github.com/trinodb/trino)
-3. [Trino: The Definitive Guide](https://www.oreilly.com/library/view/trino-the-definitive/9781098137233/) — O'Reilly, 2023
+3. [Trino: The Definitive Guide](https://www.oreilly.com/library/view/trino-the-definitive/9781098137233/) — O"Reilly, 2023
 4. [TPC-DS Benchmark Specification](https://www.tpc.org/tpcds/)
 5. [Iceberg Table Format Documentation](https://iceberg.apache.org/docs/latest/)
 6. [Starburst Enterprise Platform](https://www.starburst.io/) — Bản phân phối Trino thương mại

@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek-Reasonix: Động cơ Đại lý Lập trình AI Terminal ...
+title: "DeepSeek-Reasonix: Động cơ Đại lý Lập trình AI Terminal ...
 description: "Một tác nhân lập trình AI gốc của DeepSeek với độ ổn định bộ nhớ đệm tiền tố được thiết kế — tỷ lệ trúng bộ nhớ đệm 99,82%, ~12 USD/ngày cho sử dụng nặng so với ~61 USD nếu không dùng bộ nhớ đệm. Được cấp phép MIT. Lựa chọn thay thế Claude Code sử dụng các mô hình DeepSeek."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -476,7 +476,7 @@ Reasonix has an active bilingual Discord community with channels for setup help 
 
 ---
 
-**Want to code with AI at a fraction of the cost?** Reasonix's engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
+**Want to code with AI at a fraction of the cost?** Reasonix"s engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 

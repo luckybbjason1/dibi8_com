@@ -1,5 +1,5 @@
 ---
-title: 'Langflow: 148k sao cho các quy trình làm việc LLM trực q...
+title: "Langflow: 148k sao cho các quy trình làm việc LLM trực q...
 description: "Langflow (LF) đơn giản hóa việc xây dựng tác nhân AI và quy trình làm việc. Tích hợp với LangChain, OpenAI, Hugging Face, Anthropic. Bao gồm thiết lập, tích hợp, điểm chuẩn và củng cố sản xuất."
 date: 2026-05-23
 lastmod: 2026-05-23
@@ -288,7 +288,7 @@ curl -X POST "http://localhost:7860/api/v1/run/{flow_id}" \
              "question": "What is the capital of France?"
            },
            "stream": false
-         }'
+         }"
 ```
 Thay thế `{flow_id}` bằng ID thực tế từ luồng đã triển khai của bạn. Cấu trúc JSON `input` phụ thuộc vào các biến đầu vào được định nghĩa trong các nút "Input" của luồng của bạn.
 

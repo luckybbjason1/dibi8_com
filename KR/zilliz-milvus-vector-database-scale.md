@@ -1,5 +1,5 @@
 ---
-title: 'Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배...
+title: "Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배...
 description: "Milvus 2.5 프로덕션 가이드: 10억 규모 벡터 검색, GPU 가속 인덱싱, Kubernetes 배포, 하이브리드 검색, Zilliz Cloud 설정.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -224,7 +224,7 @@ for hit in results[0]: print(f"ID: {hit.id}, 거리: {hit.distance:.4f}, 텍스�
 # 하이브리드 검색: 벡터 유사도 + 메타데이터 필터
 from pymilvus import Filter
 
-expr = 'category == "tech" AND text like "%neural%"'
+expr = 'category == "tech" AND text like "%neural%""
 
 results = collection.search(
     data=[np.random.randn(1536).tolist()],

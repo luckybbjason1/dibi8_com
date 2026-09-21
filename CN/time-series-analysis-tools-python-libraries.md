@@ -1,5 +1,5 @@
 ---
-title: 'Time Series Analysis in Python: Complete Toolkit with Pr...
+title: "Time Series Analysis in Python: Complete Toolkit with Pr...
 description: "Master Python time series analysis with Prophet, sktime, statsmodels ARIMA, and Darts. Compare tools, build forecasting pipelines, and avoid common pitfalls."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -170,7 +170,7 @@ Follow three rules strictly. First, never use future information to compute feat
 
 ### Which library is best for real-time forecasting?
 
-Real-time forecasting (sub-second predictions on streaming data) requires specific architectural choices. Prophet is unsuitable — it refits models from scratch and has no incremental update mechanism. statsmodels ARIMA supports `apply` for updating fitted models with new observations, making it viable for moderate-frequency updates. Darts' deep learning models can score single observations quickly on GPU once trained, but model retraining remains batch-oriented. For true real-time systems, consider dedicated streaming libraries like River (formerly creme) for online learning, or deploy Darts/Prophet models with scheduled batch retraining rather than continuous updates.
+Real-time forecasting (sub-second predictions on streaming data) requires specific architectural choices. Prophet is unsuitable — it refits models from scratch and has no incremental update mechanism. statsmodels ARIMA supports `apply` for updating fitted models with new observations, making it viable for moderate-frequency updates. Darts" deep learning models can score single observations quickly on GPU once trained, but model retraining remains batch-oriented. For true real-time systems, consider dedicated streaming libraries like River (formerly creme) for online learning, or deploy Darts/Prophet models with scheduled batch retraining rather than continuous updates.
 
 
 ---

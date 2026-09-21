@@ -1,5 +1,5 @@
 ---
-title: 'CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra...
+title: "CloakBrowser: Chromium Ẩn Danh Vượt Qua Mọi Bài Kiểm Tra...
 description: "CloakBrowser (25.077 sao GitHub) là Chromium ẩn danh vượt qua mọi bài kiểm tra bot. Thay thế Playwright trực tiếp với vá cấp nguồn gốc. 30/30 bài kiểm tra vượt qua. Bao gồm hướng dẫn cài đặt, phân tích chống phát hiện và benchmark."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -404,7 +404,7 @@ CloakBrowser is not a silver bullet: 1. **Detection evolves** — Bot detection 
 
 CloakBrowser represents the gold standard in anti-detection browsers. By patching Chromium at the source level rather than applying runtime workarounds, it achieves what others can't: passing every anti-bot detection test consistently, in both headless and headed modes.
 
-Whether you're scraping e-commerce sites, collecting SEO data, running integration tests, or automating workflows that require human-like browser behavior, CloakBrowser gives you the highest pass rate with minimal setup — and it's completely free and open-source.
+Whether you're scraping e-commerce sites, collecting SEO data, running integration tests, or automating workflows that require human-like browser behavior, CloakBrowser gives you the highest pass rate with minimal setup — and it"s completely free and open-source.
 
 Tham gia [nhóm Telegram tiếng Việt dibi8](https://t.me/DIBI8_Group/18) để thảo luận cấu hình CloakBrowser. Xem hướng dẫn của chúng tôi về [headroom token compression](dibi8-internal-link) và [agentmemory persistent memory](dibi8-internal-link) cho các công cụ AI bổ trợ. Thử CloakBrowser ngay hôm nay — build nó, drop nó vào Playwright script của bạn, và xem block rate của bạn giảm gần về 0.
 

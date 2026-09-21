@@ -1,5 +1,5 @@
 ---
-title: 'Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối ...
+title: "Hyperliquid 2026: Sàn Perpetual DEX On-Chain Xử Lý Khối ...
 description: "Hướng dẫn toàn diện về Hyperliquid, sàn Perpetual DEX hoàn toàn on-chain xử lý khối lượng $2B+ hàng ngày với 100+ cặp giao dịch, đòn bẩy 50x, HyperEVM và Python SDK."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -492,7 +492,7 @@ Hyperliquid cung cấp **dữ liệu lịch sử miễn phí** qua API. Sử d�
 ## Công Cụ Được Đề Xuất
 
 Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này: - **[Minara](https://minara.ai/r/OSXG4X)** — AI-powered automated trading bot
-- **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World's leading cryptocurrency exchange
+- **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World"s leading cryptocurrency exchange
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
 

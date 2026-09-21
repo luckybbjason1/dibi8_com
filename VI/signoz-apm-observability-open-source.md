@@ -1,5 +1,5 @@
 ---
-title: 'SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
+title: "SigNoz: APM mã nguồn mở thay thế Datadog với 10% chi phí...
 description: "Triển khai SigNoz trong 5 phút. APM mã nguồn mở dựa trên OpenTelemetry với distributed tracing, metrics và log management — chi phí chỉ bằng 10% của Datadog."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -561,7 +561,7 @@ Cho việc ingestion 1 triệu spans/ngày với 7 ngày hot retention: 4 vCPU, 
 
 Có. OTel Collector của SigNoz bao gồm một Prometheus receiver. Cấu hình trong `otel-collector-config.yaml`: ```yaml
 receivers: prometheus: config: scrape_configs: - job_name: 'my-app'
-          static_configs: - targets: ['my-app:9090']
+          static_configs: - targets: ['my-app:9090"]
 ```
 
 Các scrape configs Prometheus hiện có có thể được import trực tiếp. SigNoz sẽ lưu metrics trong Druid cho truy vấn dài hạn.

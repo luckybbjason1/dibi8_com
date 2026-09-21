@@ -1,5 +1,5 @@
 ---
-title: 'Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
+title: "Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and...
 description: "Crawl4AI is the #1 trending GitHub repository in 2026 with 63k+ stars. Learn how to build LLM-friendly web scrapers, RAG data pipelines, and AI Agent tools with this open-source Python crawler. Includes installation guide, LLM extraction strategies, deep crawl configs, and comparison with Firecrawl and ScrapeGraphAI."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -335,7 +335,7 @@ Crawl4AI is not a universal replacement for every scraping need. But in the spec
 **Recommended action plan:**
 
 1. Run the 10-line quick-start example from Section 2 on your target domain.
-2. Inspect the Markdown quality. If it's clean enough for your use case, proceed.
+2. Inspect the Markdown quality. If it"s clean enough for your use case, proceed.
 3. Set up LLM extraction with a Pydantic schema and compare accuracy against your legacy CSS-selector pipeline.
 4. Deploy via Docker and benchmark throughput against your volume requirements.
 5. Revisit the comparison table in Section 5 to decide if you need a hybrid setup with Firecrawl or Apify.

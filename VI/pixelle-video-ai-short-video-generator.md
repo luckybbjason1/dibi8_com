@@ -1,5 +1,5 @@
 ---
-title: 'Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động B...
+title: "Pixelle-Video Đánh Giá: Công Cụ Tạo Video Ngắn Tự Động B...
   Nhận Video Hoàn Chỉnh'
 description: Pixelle-Video là công cụ tạo video ngắn tự động hoàn toàn bằng AI mã. Comprehensive guide covering features, pricing, and best practices for 2026.
   nguồn mở. Nhập chủ đề để tự động tạo kịch bản, hình ảnh AI, lời thuyết minh và nhạc
@@ -205,7 +205,7 @@ Mở `http://localhost:7860` trong trình duyệt.
 | **Kể chuyện** | "Hành trình của một nhà sáng lập startup" |
 | **Nội dung giáo dục** | "Blockchain hoạt động như thế nào?" |
 | **Bình luận tin tức** | "Xu hướng AI năm 2026" |
-| **Đánh giá sách/phim** | "Bài học từ 'Thói quen nguyên tử'" |
+| **Đánh giá sách/phim** | "Bài học từ 'Thói quen nguyên tử"" |
 
 ---
 

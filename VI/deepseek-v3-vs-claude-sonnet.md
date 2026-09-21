@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weight...
+title: "DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weight...
 description: "So sánh chi tiết DeepSeek V3.5 (685B MoE, open weights) và Claude Sonnet 4.6 — giá mỗi MTok, cửa sổ context, SWE-bench, đa ngôn ngữ, khả dụng API. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -14,7 +14,7 @@ faqs: - q: 'DeepSeek V3.5 có thực sự rẻ hơn Claude Sonnet 4.6 gấp 10 l
   - q: 'DeepSeek xử lý tiếng Việt so với Claude Sonnet thế nào?'
     a: 'Claude Sonnet 4.6 có chất lượng tiếng Việt mượt mà hơn — ngữ pháp, dấu thanh, phong cách viết tự nhiên hơn cho người Việt. DeepSeek V3.5 hiểu tiếng Việt nhưng văn phong đôi khi cứng vì corpus huấn luyện thiên về tiếng Trung. Cho sản phẩm tiếng Việt, Sonnet có lợi thế rõ rệt; cho sản phẩm tiếng Trung thì ngược lại.'
   - q: 'Cửa sổ context nào lớn hơn?'
-    a: 'Claude Sonnet 4.6 hỗ trợ tới 1M token (1.000.000) context ở biến thể [1M] — đủ chứa cả codebase trung bình hoặc 750K từ tài liệu. DeepSeek V3.5 giới hạn 128K token (khoảng 100K từ). Cho monorepo lớn, tài liệu pháp lý dài, Q&A trọn cuốn sách, Sonnet 1M ở đẳng cấp khác hẳn.'
+    a: 'Claude Sonnet 4.6 hỗ trợ tới 1M token (1.000.000) context ở biến thể [1M] — đủ chứa cả codebase trung bình hoặc 750K từ tài liệu. DeepSeek V3.5 giới hạn 128K token (khoảng 100K từ). Cho monorepo lớn, tài liệu pháp lý dài, Q&A trọn cuốn sách, Sonnet 1M ở đẳng cấp khác hẳn."
 ---
 
 # DeepSeek V3.5 vs Claude Sonnet 4.6 năm 2026: Open Weights so với 1M Context

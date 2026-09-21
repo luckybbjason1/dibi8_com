@@ -1,5 +1,5 @@
 ---
-title: 'Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cun...
+title: "Bumblebee 2026: Perplexity AI Mở Nguồn Bộ Quét Chuỗi Cun...
 description: "Bumblebee là bộ quét chuỗi cung ứng chỉ đọc, mã nguồn mở của Perplexity AI, kiểm tra npm, PyPI, Go module, cấu hình MCP, extension editor và extension trình duyệt tìm các gói đã bị xâm phạm — không thực thi bất kỳ dòng code nào."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -113,7 +113,7 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 
 ## Why This Matters
 
-Understanding bumblebee 2026: perplexity ai mở nguồn bộ quét chuỗi cung ứng nội bộ — hỗ trợ mcp và extension editor is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding bumblebee 2026: perplexity ai mở nguồn bộ quét chuỗi cung ứng nội bộ — hỗ trợ mcp và extension editor is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

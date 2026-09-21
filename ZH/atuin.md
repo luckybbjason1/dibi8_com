@@ -1,5 +1,5 @@
 ---
-title: 'Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2...
+title: "Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2...
 description: "Atuin 将 shell 历史记录替换为 SQLite 数据库，记录命令上下文（退出码、工作目录、执行时长），并通过端到端加密在多台机器间同步历史记录。支持 Bash、Zsh、Fish、Nushell。涵盖安装、自托管、配置，以及 Atuin vs mcfly vs fzf vs Hstr 对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -714,7 +714,7 @@ atuin search --delete "sensitive-command"
 Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移植的数据库。凭借 29,794 个 GitHub Stars、端到端加密同步和对所有主流 shell 的支持，它是任何活在终端里的开发者的实用升级。
 
 **后续步骤：**
-1. 运行 `curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh` 安装
+1. 运行 `curl --proto '=https" --tlsv1.2 -LsSf https://setup.atuin.sh | sh` 安装
 2. 使用 `atuin import auto` 导入现有历史
 3. 注册同步或配置自托管服务器
 4. 加入 [Telegram 开发者社区](https://t.me/dibi8dev) 获取技巧和故障排除

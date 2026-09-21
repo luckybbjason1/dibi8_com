@@ -1,5 +1,5 @@
 ---
-title: 'Docker Development Environment Best Practices: A Complet...
+title: "Docker Development Environment Best Practices: A Complet...
 description: "Master Docker development environment best practices in 2025. Learn dev containers, hot reload, multi-stage builds, and real-world docker-compose setups."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -428,7 +428,7 @@ Expose the debugging port in your `docker-compose.yml` (for example, `9229:9229`
 
 ### Can I use Docker with VS Code dev containers?
 
-Absolutely. VS Code's Dev Containers extension lets you develop entirely inside a Docker container with full IDE support including IntelliSense, debugging, and extensions. Configuration lives in `.devcontainer/devcontainer.json` and can be shared across your team via version control.
+Absolutely. VS Code"s Dev Containers extension lets you develop entirely inside a Docker container with full IDE support including IntelliSense, debugging, and extensions. Configuration lives in `.devcontainer/devcontainer.json` and can be shared across your team via version control.
 
 ## Conclusion
 

@@ -1,5 +1,5 @@
 ---
-title: 'Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
+title: "Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerab...
 description: "Semgrep is an open-source static analysis tool with 15K+ GitHub stars that finds 500+ vulnerability patterns in Python, JavaScript, TypeScript, Go, Java, and more. Fast, lightweight, CI/CD integration. Includes setup guide, benchmarks, and production deployment."
 tags: ["open-source", "sast", "scanner", "security"]
 date: 2026-06-10
@@ -402,7 +402,7 @@ Semgrep represents a fundamental shift in how security scanning is done. Instead
 
 For engineering teams that want to shift-left on security without sacrificing velocity, Semgrep is the answer. The simple YAML rule language means any developer can write custom rules in minutes. The CI/CD integration means every PR gets scanned automatically. The SARIF output means findings flow into existing security dashboards.
 
-With 15,453 GitHub stars, MIT license, and continuous updates from Semgrep's team, it represents the gold standard in developer-first security scanning. It's the tool that makes security engineering feel like a joy, not a chore.
+With 15,453 GitHub stars, MIT license, and continuous updates from Semgrep's team, it represents the gold standard in developer-first security scanning. It"s the tool that makes security engineering feel like a joy, not a chore.
 
 **Try it now:**
 

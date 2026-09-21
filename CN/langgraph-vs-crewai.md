@@ -1,5 +1,5 @@
 ---
-title: 'LangGraph vs CrewAI in 2026: Control-First State Graphs ...
+title: "LangGraph vs CrewAI in 2026: Control-First State Graphs ...
 description: "Side-by-side breakdown of LangGraph (low-level stateful agent graphs) and CrewAI (high-level role-based multi-agent crews) — control, learning curve, state, multi-agent design, and production durability. Updated 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -153,7 +153,7 @@ External references: [LangGraph](https://www.langchain.com/langgraph) · [LangGr
 
 ## Why This Matters
 
-Understanding langgraph vs crewai in 2026: control-first state graphs vs role-based agent crews is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding langgraph vs crewai in 2026: control-first state graphs vs role-based agent crews is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

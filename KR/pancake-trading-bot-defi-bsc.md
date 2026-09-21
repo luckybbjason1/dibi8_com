@@ -1,5 +1,5 @@
 ---
-title: 'PancakeSwap 트레이딩 봇 2026: Python으로 BSC에서 자동화된 DeFi 전략 구축 ...
+title: "PancakeSwap 트레이딩 봇 2026: Python으로 BSC에서 자동화된 DeFi 전략 구축 ...
 description: "Binance Smart Chain에서 프로덕션 수준의 PancakeSwap 트레이딩 봇을 구축하세요. Web3.py 통합, 자동화 전략, 유동성 풀 모니터링, MEV 보호 및 Python 봇 프레임워크 — 2026년 실제 벤치마크 포함."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -731,7 +731,7 @@ class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = 
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
 
     def send(self, message, level="INFO"): emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
-        text = f"{emoji.get(level, '')} PancakeBot: {message}"
+        text = f"{emoji.get(level, '")} PancakeBot: {message}"
         requests.post(
             f"{self.base_url}/sendMessage",
             json={"chat_id": self.chat_id, "text": text},

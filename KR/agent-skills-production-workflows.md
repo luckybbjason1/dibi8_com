@@ -1,5 +1,5 @@
 ---
-title: 'Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 ...
+title: "Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 ...
 description: "Addy Osmani가 Claude Code, Cursor 및 기타 AI 에디터를 강력하고 구성된 작업 공간으로 변환하는 스킬 시스템을 어떻게 구축했는지 배우세요. 완전한 구현, 배포 및 고급 패턴 가이드.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-09-19
 lastmod: 2026-09-19
@@ -411,7 +411,7 @@ npm run build
 export default {
   memory: {
     maxTokens: 4096,
-    gcInterval: '5m'
+    gcInterval: '5m"
   }
 };
 ```

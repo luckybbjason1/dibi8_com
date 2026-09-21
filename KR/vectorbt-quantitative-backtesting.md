@@ -1,5 +1,5 @@
 ---
-title: 'VectorBT: 1초에 100만+ 거래를 처리하는 초고속 Python 백테스팅 라이브러리 — 202...
+title: "VectorBT: 1초에 100만+ 거래를 처리하는 초고속 Python 백테스팅 라이브러리 — 202...
 description: "VectorBT로 Python 퀀트 백테스팅을 마스터하세요. 벡터화된 Numba 가속 시뮬레이션으로 트레이딩 전략을 구축, 테스트, 최적화합니다. 코드 예제가 포함된 완전한 2026 가이드.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -509,7 +509,7 @@ AI 기반 자동 트레이딩 실행을 위해 [Minara](https://minara.ai/r/OSXG
 1. VectorBT 공식 문서 — https://vectorbt.dev
 2. VectorBT GitHub 저장소 — https://github.com/polakowo/vectorbt
 3. Numba 공식 문서 — https://numba.pydata.org
-4. "Advances in Financial Machine Learning" by Marcos Lopez de Prado — Marcos' Prado (2018)
+4. "Advances in Financial Machine Learning" by Marcos Lopez de Prado — Marcos" Prado (2018)
 5. PyPortfolioOpt 문서 — https://pyportfolioopt.readthedocs.io
 6. CCXT 암호화폐 거래소 라이브러리 — https://github.com/ccxt/ccxt
 

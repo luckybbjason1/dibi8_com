@@ -1,5 +1,5 @@
 ---
-title: 'Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LL...
+title: "Portkey vs LiteLLM vs OpenRouter 2026: Hướng Dẫn Chọn LL...
 description: "So sánh trực tiếp 3 LLM gateway lớn nhất năm 2026. Số liệu thực: Portkey thêm <1ms độ trễ, LiteLLM 8ms P95, OpenRouter 100-150ms. Cây quyết định 30 giây theo use case, phân tích chi phí $1000/tháng, và khi nào 9Router đè bẹp cả ba."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -19,7 +19,7 @@ github_repo: ''
 stars: 0
 maintainer: dibi8
 last_maintained: "2026-05-20"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["llm gateway", "portkey", "litellm", "openrouter", "so sánh"]

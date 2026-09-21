@@ -1,5 +1,5 @@
 ---
-title: 'ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·...
+title: "ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·...
 description: "홍콩과학기술대 데이터사이언스랩이 만든 ViMax(GitHub 7.1K+ stars)는 본격적으로 채택되기 시작한 첫 오픈소스 에이전트 기반 영상 생성 프레임워크다. Sora나 Runway처럼 프롬프트 한 방으로 영상을 만드는 대신, 감독·작가·프로듀서·영상 생성기 네 개의 AI 역할을 오케스트레이션해 단 하나의 아이디어에서 멀티 신 장편 영상을 뽑아낸다. 에이전트 파이프라인 구조, 지원 백엔드(Gemini Flash, MiniMax, Google Veo), 설치, idea-to-video 및 script-to-video 워크플로, Sora·OpenSora·Runway와의 정직한 비교까지 한 번에 정리."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
@@ -199,7 +199,7 @@ MIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 star
 
 ## Why This Matters
 
-Understanding vimax 리뷰: hkuds가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding vimax 리뷰: hkuds가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

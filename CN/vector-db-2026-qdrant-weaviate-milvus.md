@@ -1,5 +1,5 @@
 ---
-title: 'Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
+title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (...
 description: "Tested Qdrant, Weaviate, Milvus on the same 5M-vector workload. Latency, throughput, memory, setup pain. Which is right for prototype vs production, and when to skip vector DB entirely for SQLite FTS5."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -192,7 +192,7 @@ The real lesson: most teams over-engineer their retrieval layer. Start with the 
 
 ## Why This Matters
 
-Understanding vector db 2026 selection: qdrant vs weaviate vs milvus (real workload test) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding vector db 2026 selection: qdrant vs weaviate vs milvus (real workload test) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

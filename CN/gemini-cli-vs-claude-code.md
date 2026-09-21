@@ -1,5 +1,5 @@
 ---
-title: 'Gemini CLI vs Claude Code in 2026: Which AI Coding Agent...
+title: "Gemini CLI vs Claude Code in 2026: Which AI Coding Agent...
 description: "Side-by-side breakdown of Google Gemini CLI and Anthropic Claude Code — free tier, context window, agent style, multi-modal, tool use, migration tips. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -177,7 +177,7 @@ If you're budget-constrained or just exploring → **Gemini CLI free tier**, no 
 If you ship production code daily → **Claude Code Max 5x ($100/month)**, the agent loop quality alone earns it back.
 If you want both → **Gemini CLI free + Claude Pro $20** combo. Use Gemini for reconnaissance (read code, scan PRs, OCR screenshots), Claude for execution (refactor, ship, review). Total: $20/month for top-tier AI coding.
 
-For an indie dev shipping a SaaS solo on the **last-bet budget**? **Gemini CLI free tier** is the most ROI-positive choice in AI coding right now — there's literally no cheaper way to ship code with AI assistance. The only reason to graduate to Claude Code is when you start losing hours to Gemini's weaker multi-file refactor quality. Until then, free is free.
+For an indie dev shipping a SaaS solo on the **last-bet budget**? **Gemini CLI free tier** is the most ROI-positive choice in AI coding right now — there's literally no cheaper way to ship code with AI assistance. The only reason to graduate to Claude Code is when you start losing hours to Gemini"s weaker multi-file refactor quality. Until then, free is free.
 
 ---
 

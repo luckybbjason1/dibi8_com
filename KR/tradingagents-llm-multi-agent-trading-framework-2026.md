@@ -1,5 +1,5 @@
 ---
-title: 'TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전...
+title: "TradingAgents: 8.2만 스타의 LLM 멀티 에이전트 트레이딩 프레임워크 — 2026 실전...
 description: "TradingAgents는 오픈소스 LLM 멀티 에이전트 프레임워크입니다(82,254 GitHub stars, Apache-2.0). 트레이딩 회사를 시뮬레이션해 분석가·리서처·트레이더·리스크 에이전트가 BUY/SELL/HOLD 결정을 토론합니다. LangGraph 기반. 설치, 에이전트 파이프라인, CLI + Python API, Qlib·단일 에이전트 봇과의 솔직한 비교를 다룹니다."
 date: 2026-06-02
 lastmod: 2026-06-02
@@ -81,7 +81,7 @@ OPENAI_API_KEY=sk-your-key-here
 FINNHUB_API_KEY=your-finnhub-key
 ```
 
-`KeyError: 'FINNHUB_API_KEY'`가 보이면 현재 셸에 변수가 export되지 않은 것입니다. LLM 호출이 429를 반환하면 OpenAI 쪽에서 레이트 리밋이 걸린 것이니 — 속도를 늦추거나 설정에서 모델을 바꾸세요(아래).
+`KeyError: 'FINNHUB_API_KEY"`가 보이면 현재 셸에 변수가 export되지 않은 것입니다. LLM 호출이 429를 반환하면 OpenAI 쪽에서 레이트 리밋이 걸린 것이니 — 속도를 늦추거나 설정에서 모델을 바꾸세요(아래).
 
 ## 핵심 사용법
 

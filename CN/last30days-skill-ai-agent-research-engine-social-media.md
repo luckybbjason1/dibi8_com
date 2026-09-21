@@ -1,5 +1,5 @@
 ---
-title: 'Last30Days-Skill: AI Agent Search Engine That Scores Soc...
+title: "Last30Days-Skill: AI Agent Search Engine That Scores Soc...
 description: "Search Reddit, X, YouTube, TikTok, Polymarket, GitHub and more in parallel. Scores results by upvotes, likes, and real money — not editors. Works with Claude Code, Codex, Cursor, and 50+ agent hosts."
 tags: ["ai-agent", "automation", "dev-tools", "engine", "open-source", "search"]
 date: 2026-06-22
@@ -251,7 +251,7 @@ The symlink keeps the install in sync with your working tree as you edit.
 4. **The depth nobody else has.** Full YouTube transcripts from reaction videos. Top Reddit comments with upvote counts. TikTok captions. Polymarket odds. Not just titles and links.
 5. **Same story, merged.** Wireless Festival announced on Reddit, discussed on X, ticket prices on TikTok = one cluster, not three separate items.
 6. **Synthesized into one brief.** Grounded in specific data. Cited by source. Ranked by what people actually engage with.
-7. **Then it becomes your expert.** After one run, your Claude session knows everything the community knows. Ask follow-up questions. Have it write prompts, draft emails, plan trips, architect systems — all grounded in what's real right now.
+7. **Then it becomes your expert.** After one run, your Claude session knows everything the community knows. Ask follow-up questions. Have it write prompts, draft emails, plan trips, architect systems — all grounded in what"s real right now.
 
 ## Configuration
 

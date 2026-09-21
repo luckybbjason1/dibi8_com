@@ -1,5 +1,5 @@
 ---
-title: 'Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
+title: "Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
 description: "Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -167,7 +167,7 @@ MCP server 回答的是*「Claude 根本触达不了这个系统」*。你的 Po
 
 ## Why This Matters
 
-Understanding subagent、mcp server 与 skill 对比：何时该为 claude code 构建哪种扩展（2026） is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding subagent、mcp server 与 skill 对比：何时该为 claude code 构建哪种扩展（2026） is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

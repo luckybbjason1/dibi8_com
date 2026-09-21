@@ -1,5 +1,5 @@
 ---
-title: 'Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成...
+title: "Stable Diffusion WebUI 2026（AUTOMATIC1111）：163k 星自托管图像生成...
 description: "AUTOMATIC1111 stable-diffusion-webui 是 163k 星的自托管 SD/SDXL 图像生成事实标准 UI。2026 完整安装+生产指南：txt2img / img2img / 修复 / 扩展 / LoRA / ControlNet、硬件要求、替代品（Forge / SD.Next）。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -201,7 +201,7 @@ AUTOMATIC1111 SD WebUI = **2026 个人创作者自托管图像生成默认**。1
 
 ## Why This Matters
 
-Understanding stable diffusion webui 2026（automatic1111）：163k 星自托管图像生成完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding stable diffusion webui 2026（automatic1111）：163k 星自托管图像生成完整指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

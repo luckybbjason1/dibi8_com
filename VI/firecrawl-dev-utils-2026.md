@@ -1,5 +1,5 @@
 ---
-title: 'Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
+title: "Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho L...
 description: "Firecrawl là API dữ liệu web mã nguồn mở giúp scrape, crawl, map và search web thành Markdown sạch hoặc JSON có cấu trúc, sẵn sàng cho LLM. 127,747 sao GitHub, giấy phép AGPL-3.0. Bao gồm cài đặt, các SDK chính thức, code thực tế, self-host và so sánh thẳng thắn với Puppeteer, Scrapy, Axios."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -168,7 +168,7 @@ for (const page of result.data) {
 ### Rút trích dữ liệu có cấu trúc
 
 Truyền vào một JSON schema và Firecrawl trả về dữ liệu có kiểu thay vì văn bản thô — lý tưởng để lấy tiêu đề, giá, hay bất kỳ trường cố định nào: ```typescript
-const doc = await app.scrape('https://example.com', {
+const doc = await app.scrape('https://example.com", {
   formats: [{
     type: json,
     schema: {

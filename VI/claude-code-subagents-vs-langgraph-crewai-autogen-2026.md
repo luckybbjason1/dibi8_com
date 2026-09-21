@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Subagent so với LangGraph, CrewAI và AutoGen...
+title: "Claude Code Subagent so với LangGraph, CrewAI và AutoGen...
 description: "Bạn đã điều phối subagent ngay trong Claude Code. Liệu bạn có thực sự cần LangGraph, CrewAI hay AutoGen? Một hướng dẫn ra quyết định cho năm 2026 với benchmark thực tế, bức tranh thật về số sao GitHub, và ranh giới trung thực giữa "tính năng tích hợp sẵn là đủ" và "đã đến lúc tốt nghiệp"."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -23,7 +23,7 @@ tags: ["claude-code", "langgraph", "crewai", "autogen", "multi-agent", "agent-sd
 aliases:
   - /posts/claude-subagents-vs-langgraph-crewai-autogen/
 faq: - q: "Tôi có cần LangGraph hay CrewAI không nếu tôi đã dùng subagent của Claude Code?"
-    a: "Có lẽ là chưa. Subagent của Claude Code đã cho bạn khả năng triển khai song song (fan-out), cửa sổ ngữ cảnh tách biệt, và ủy thác cho chuyên gia — vốn bao quát phần lớn công việc multi-agent thực tế. Bạn chuyển sang một framework độc lập như LangGraph hay CrewAI khi cần những thứ mà subagent không cung cấp sẵn: checkpointing trạng thái bền vững giữa các lần chạy, các cổng phê duyệt human-in-the-loop, kết hợp nhiều nhà cung cấp model trong một pipeline, hoặc dấu vết kiểm toán phục vụ tuân thủ. Nếu nhu cầu của bạn là 'chạy năm người nghiên cứu song song rồi gộp kết quả lại,' thì subagent tích hợp sẵn làm được ngay hôm nay mà không cần hạ tầng mới nào."
+    a: "Có lẽ là chưa. Subagent của Claude Code đã cho bạn khả năng triển khai song song (fan-out), cửa sổ ngữ cảnh tách biệt, và ủy thác cho chuyên gia — vốn bao quát phần lớn công việc multi-agent thực tế. Bạn chuyển sang một framework độc lập như LangGraph hay CrewAI khi cần những thứ mà subagent không cung cấp sẵn: checkpointing trạng thái bền vững giữa các lần chạy, các cổng phê duyệt human-in-the-loop, kết hợp nhiều nhà cung cấp model trong một pipeline, hoặc dấu vết kiểm toán phục vụ tuân thủ. Nếu nhu cầu của bạn là 'chạy năm người nghiên cứu song song rồi gộp kết quả lại," thì subagent tích hợp sẵn làm được ngay hôm nay mà không cần hạ tầng mới nào."
   - q: "Framework multi-agent nào có nhiều sao GitHub nhất vào năm 2026?"
     a: "Tính đến tháng 4 năm 2026, AutoGen dẫn đầu với khoảng 42,000 sao, CrewAI ở mức khoảng 31,200, còn LangGraph gần 12,800 — nhưng số sao là một chỉ số phù phiếm có độ trễ. LangGraph đã vượt CrewAI về mức độ áp dụng trong doanh nghiệp vào đầu năm 2026 nhờ khả năng kiểm soát dựa trên đồ thị và khả năng quan sát (observability) của LangSmith, dù có ít sao hơn. Số sao cho bạn biết mức độ phổ biến trong quá khứ; sự sẵn sàng cho môi trường production và hình dạng workflow của bạn mới nên dẫn dắt lựa chọn thực sự."
   - q: "AutoGen còn đáng dùng vào năm 2026 không, hay đã chết?"

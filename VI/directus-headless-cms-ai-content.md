@@ -1,5 +1,5 @@
 ---
-title: 'Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng c...
+title: "Directus: Headless CMS Mã Nguồn Mở Cung Cấp Năng Lượng c...
 description: "Hướng dẫn đầy đủ về Directus 11.x — Headless CMS mã nguồn mở với API động, quản lý phiên bản nội dung, AI content workflows, và triển khai Docker tự host. Benchmark API REST và GraphQL."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -539,7 +539,7 @@ export default defineEndpoint((router, { database }) => {
       output += `directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n`;
     });
 
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Type', 'text/plain");
     res.send(output);
   });
 });

@@ -1,5 +1,5 @@
 ---
-title: 'nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,00...
+title: "nanochat 2026: Andrej Karpathy의 오픈소스 ChatGPT $100 — 8,00...
 description: "Andrej Karpathy의 nanochat는 토크나이저, 사전학습, 파인튜닝, 평가, 추론, 채팅 UI를 포함한 전체 LLM 훈련 파이프라인으로, 단일 8×H100 노드에서 $100 미만으로 GPT-2 수준의 챗봇을 처음부터 훈련하도록 설계되었습니다."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -115,7 +115,7 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 
 ## Why This Matters
 
-Understanding nanochat 2026: andrej karpathy의 오픈소스 chatgpt $100 — 8,000줄 전체 llm 파이프라인 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding nanochat 2026: andrej karpathy의 오픈소스 chatgpt $100 — 8,000줄 전체 llm 파이프라인 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

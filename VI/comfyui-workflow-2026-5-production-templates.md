@@ -1,5 +1,5 @@
 ---
-title: 'ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
+title: "ComfyUI Workflow 2026: Hướng dẫn cài đặt cho người mới +...
 description: "ComfyUI cán mốc 106K stars trên GitHub trong năm 2026. Hướng dẫn cài đặt thân thiện với người mới, gợi ý mô hình cho năm 2026, và 5 template workflow sẵn sàng đưa vào production (text-to-image, inpaint, upscale, video, nhất quán nhân vật)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -160,7 +160,7 @@ Bắt đầu với 5 template ở trên. Tùy biến. Chia sẻ. Hiệu ứng l�
 
 ## Why This Matters
 
-Understanding comfyui workflow 2026: hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding comfyui workflow 2026: hướng dẫn cài đặt cho người mới + 5 template sẵn sàng production is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

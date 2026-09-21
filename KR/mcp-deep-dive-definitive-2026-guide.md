@@ -1,5 +1,5 @@
 ---
-title: 'MCP(Model Context Protocol) 완벽 실전 가이드: 2026년 개발자가 반드시 익혀...
+title: "MCP(Model Context Protocol) 완벽 실전 가이드: 2026년 개발자가 반드시 익혀...
 description: "제로부터 MCP 서버를 구축하는 완벽 튜토리얼. Anthropic의 Model Context Protocol을 마스터하여 AI 에이전트가 데이터베이스, GitHub, Slack 등 수천 개의 도구와 원클릭 연결되도록 만들어보세요. 반복적인 통합 코드는 이제 그만."
 date: 2026-05-15 00:00:00+08:00
 lastmod: 2026-05-15 00:00:00+08:00
@@ -210,7 +210,7 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """도메인 
                     f"{status}\n"
                     f"• 도메인: {hostname}\n"
                     f"• 발급자: {cert.get('issuer', '알 수 없음')}\n"
-                    f"• 만료 시간: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\n"
+                    f"• 만료 시간: {expiry.strftime('%Y-%m-%d %H:%M UTC")}\n"
                     f"• 잔여 일수: {days_left}일\n"
                 )
     except Exception as e: return f"❌ SSL 확인 실패: {type(e).__name__}: {str(e)}"

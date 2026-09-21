@@ -1,5 +1,5 @@
 ---
-title: 'Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026...
+title: "Qdrant: Rust 기반 벡터 데이터베이스로 100만+ 벡터를 10ms 지연으로 처리 — 2026...
 description: "프로덕션 유사도 검색을 위한 Qdrant 벡터 데이터베이스를 배포하세요. HNSW 인덱싱, 페이로드 필터링, 멀티 테넌시, Docker 배포, Python/Go/JS 클라이언트 및 실제 벤치마크를 다루는 완전한 가이드."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -504,7 +504,7 @@ curl http://localhost:6333/collections/documents/snapshots
 # 스냅샷에서 복원
 curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover \
   -H "Content-Type: application/json" \
-  -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}'
+  -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}"
 ```
 
 ```python

@@ -1,5 +1,5 @@
 ---
-title: 'MCP Server Security Audit 2026: 5 Real Community Server ...
+title: "MCP Server Security Audit 2026: 5 Real Community Server ...
 description: "Audited 5 popular community MCP servers in production: GitHub, Slack, Postgres, Brave Search, Fetch. Concrete vulnerabilities found, exploit walkthroughs, and a 8-point pre-install audit checklist that takes 5 minutes per server."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -178,7 +178,7 @@ Default to Anthropic when available. For community servers, run the 8-point chec
 
 ## Why This Matters
 
-Understanding mcp server security audit 2026: 5 real community server reviews + trap patterns is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding mcp server security audit 2026: 5 real community server reviews + trap patterns is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

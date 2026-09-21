@@ -1,5 +1,5 @@
 ---
-title: 'Model Context Protocol (MCP) Deep Dive: The Definitive 2...
+title: "Model Context Protocol (MCP) Deep Dive: The Definitive 2...
 description: "Build your first MCP server from scratch. Learn Anthropic"'s Model Context Protocol with hands-on Python & TypeScript examples. Connect AI agents to real APIs, databases, and tools using the open standard adopted by OpenAI, Google, and Microsoft.'
 date: 2026-05-15 00:00:00+08:00
 lastmod: 2026-05-15 00:00:00+08:00
@@ -494,7 +494,7 @@ Writing JSON Schema by hand for every tool is the most tedious part of MCP devel
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 *Published May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).*
 

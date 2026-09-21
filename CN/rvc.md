@@ -1,5 +1,5 @@
 ---
-title: 'RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Min...
+title: "RVC: Deploy AI Voice Conversion with 35K+ Stars — 10-Min...
 description: "RVC (Retrieval-based Voice Conversion) is a VITS-based voice conversion framework compatible with GPT-SoVITS, Coqui TTS, and demucs. This tutorial covers Docker deployment, training pipelines, API integration, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -626,7 +626,7 @@ RVC delivers production-grade voice conversion with training times under 20 minu
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

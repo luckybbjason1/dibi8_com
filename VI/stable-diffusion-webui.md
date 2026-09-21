@@ -1,5 +1,5 @@
 ---
-title: 'Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt ...
+title: "Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt ...
 description: "Stable Diffusion WebUI (AUTOMATIC1111) là giao diện web tạo ảnh AI cục bộ phổ biến nhất. Tương thích với ControlNet, LoRA, ComfyUI. Bao gồm cài đặt Windows, Linux, Docker, cấu hình mở rộng, tối ưu production và benchmark GPU."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -182,7 +182,7 @@ docker run -d \
 
 Docker Compose: ```yaml
 # docker-compose.yml
-version: '3.8'
+version: '3.8"
 
 services: stable-diffusion-webui: build: context: .
       dockerfile: Dockerfile.stable-diffusion-webui

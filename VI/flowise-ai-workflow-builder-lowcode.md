@@ -1,5 +1,5 @@
 ---
-title: 'Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
+title: "Flowise 2026: Công cụ Xây dựng AI Workflow Low-Code Triể...
 description: "Hướng dẫn đầy đủ Flowise 2026 — công cụ xây dựng AI workflow low-code mã nguồn mở với 100+ tích hợp. Tạo LangChain Agent trực quan, triển khai Docker, API endpoint và benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -476,7 +476,7 @@ curl -s http://localhost:3000/api/v1/chatflows \
 # Export credentials (đã mã hóa)
 curl -s http://localhost:3000/api/v1/credentials \
   -u "admin:your-password" \
-  | jq '.' > "$BACKUP_DIR/credentials.json"
+  | jq '." > "$BACKUP_DIR/credentials.json"
 
 # Database backup (PostgreSQL)
 docker exec flowise-postgres pg_dump -U flowise flowise > "$BACKUP_DIR/database.sql"

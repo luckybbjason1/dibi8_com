@@ -1,5 +1,5 @@
 ---
-title: 'Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ S...
+title: "Atuin: 29,794 GitHub Stars — Hướng Dẫn Cài Đặt Đồng Bộ S...
 description: "Atuin thay thế lịch sử shell bằng SQLite, ghi ngữ cảnh lệnh (mã thoát, thư mục, thờ gian), đồng bộ hóa lịch sử qua nhiều máy với mã hóa E2E. Hỗ trợ Bash, Zsh, Fish, Nushell. Bao gồm cài đặt, tự host, cấu hình và so sánh Atuin vs mcfly vs fzf vs Hstr."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -633,7 +633,7 @@ atuin search --delete "sensitive-command"
 Atuin biến lịch sử shell từ file text phẳng thành cơ sở dữ liệu có cấu trúc, có thể tìm kiếm và di động. Với 29.794 GitHub Stars, đồng bộ mã hóa đầu cuối, và hỗ trợ mọi shell chính, đây là nâng cấp thực tế cho mọi developer sống trong terminal.
 
 **Các bước tiếp theo:**
-1. Chạy `curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh` để cài đặt
+1. Chạy `curl --proto '=https" --tlsv1.2 -LsSf https://setup.atuin.sh | sh` để cài đặt
 2. Nhập lịch sử hiện có bằng `atuin import auto`
 3. Đăng ký đồng bộ hoặc cấu hình server tự host
 4. Tham gia [cộng đồng developer Telegram](https://t.me/dibi8dev) để tips và khắc phục sự cố

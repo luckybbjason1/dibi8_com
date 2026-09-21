@@ -1,5 +1,5 @@
 ---
-title: 'Docker GenAI Stack: LangChain, 벡터 DB, LLM을 하나의 Docker Co...
+title: "Docker GenAI Stack: LangChain, 벡터 DB, LLM을 하나의 Docker Co...
 description: "Docker GenAI Stack으로 완전한 로컬 GenAI 개발 환경을 구축하세요. LangChain, Neo4j, Ollama, 벡터 데이터베이스를 단일 docker-compose에 포함. 2026년 프로덕션 준비 튜토리얼."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/docker/genai-stack"
 stars: 5500
 maintainer: docker
 last_maintained: "2026-05-20"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["dev-utils"]
 tags: ["docker genai stack"]

@@ -1,5 +1,5 @@
 ---
-title: 'CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụn...
+title: "CopilotKit: 31K+ Stars — Thêm AI Copilot vào Mọi Ứng Dụn...
 description: "CopilotKit là frontend stack mã nguồn mở cho AI copilot và generative UI trong ứng dụng. Xây dựng React Angular AI assistant với components có sẵn, hooks useCopilotAction, và triển khai production. Bao gồm cài đặt, tích hợp LangChain, self-hosting, và so sánh hiệu suất với Vercel AI SDK."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/CopilotKit/CopilotKit"
 stars: 31536
 maintainer: CopilotKit
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["copilotkit", "react-ai", "generative-ui", "ai-copilot", "langchain", "frontend-agents", "typescript", "open-source"]

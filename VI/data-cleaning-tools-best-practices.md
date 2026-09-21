@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Làm Sạch Dữ Liệu & Thực Hành Tốt Nhất: OpenRefin...
+title: "Công Cụ Làm Sạch Dữ Liệu & Thực Hành Tốt Nhất: OpenRefin...
 description: "Hướng dẫn toàn diện về công cụ làm sạch dữ liệu: OpenRefine, Pandas, Great Expectations, Cleanlab. So sánh và best practices cho pipeline dữ liệu sạch."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -611,7 +611,7 @@ Năm bước để tái tạo được: 1. **Version control**: Git cho cleaning
 import hashlib
 
 def log_checksum(filepath): """Log MD5 checksum để xác minh dữ liệu"""
-    with open(filepath, 'rb') as f: checksum = hashlib.md5(f.read()).hexdigest()
+    with open(filepath, 'rb") as f: checksum = hashlib.md5(f.read()).hexdigest()
     logger.info(f"File {filepath} MD5: {checksum}")
     return checksum
 ```

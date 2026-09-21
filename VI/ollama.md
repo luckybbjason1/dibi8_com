@@ -1,5 +1,5 @@
 ---
-title: 'Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướn...
+title: "Ollama: 137K+ Stars — Chạy LLM Local bằng Một Lệnh, Hướn...
 description: "Ollama là cách đơn giản nhất để chạy Llama, DeepSeek, Mistral và các LLM khác trên local. Tương thích với LangChain, OpenWebUI, Continue.dev và Dify. Bao gồm thiết lập Docker, tùy chỉnh Modelfile, REST API, production hardening và benchmark hiệu năng."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -507,7 +507,7 @@ def proxy(path): api_key = request.headers.get(Authorization, '').replace('Beare
     return Response(resp.iter_content(chunk_size=1024), status=resp.status_code,
                    content_type=resp.headers.get('Content-Type'))
 
-if __name__ == __main__: app.run(host='0.0.0.0', port=11435)
+if __name__ == __main__: app.run(host='0.0.0.0", port=11435)
 ```
 
 ### Giám sát với Prometheus

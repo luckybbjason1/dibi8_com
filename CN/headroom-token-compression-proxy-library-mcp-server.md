@@ -1,5 +1,5 @@
 ---
-title: 'Headroom: Compress LLM Inputs by 60-95% — A Token-Saving...
+title: "Headroom: Compress LLM Inputs by 60-95% — A Token-Saving...
 description: "Headroom (19,745 GitHub stars) compresses tool outputs, logs, files, and RAG chunks before they reach the LLM. 60-95% fewer tokens, same answers. Library, proxy, and MCP server. Includes setup tutorial, architecture breakdown, and real benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -438,7 +438,7 @@ A: Headroom includes a `rag_compress` function that scores, deduplicates, and pr
 
 Headroom is the missing infrastructure layer that every AI agent pipeline needs. Instead of paying for bloated context, you compress it before it reaches the model. The library gives you programmatic control, the proxy gives you zero-code integration, and the MCP server gives you seamless Claude Code compatibility.
 
-Whether you're a single developer trying to reduce Claude API bills, a team running AI-powered CI/CD, or building a production RAG system, Headroom delivers measurable cost savings without sacrificing answer quality.
+Whether you"re a single developer trying to reduce Claude API bills, a team running AI-powered CI/CD, or building a production RAG system, Headroom delivers measurable cost savings without sacrificing answer quality.
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Headroom configurations. Check out our guides on [本地ChatGPT](https://dibi8.com/nanochat-karpathy-100-chatg[AI Agent平台](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-link) for complementary AI tooling. Try Headroom today — install it, point your proxy, and watch your token bills drop.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Odysseus: Self-Hosted AI Workspace with 10+ Built-in Too...
+title: "Odysseus: Self-Hosted AI Workspace with 10+ Built-in Too...
 description: "Odysseus (65,243 GitHub stars) is a self-hosted AI workspace combining chat, agent automation, deep research, document editing, email triage, calendar, and more. Supports vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, and GitHub Copilot. Docker and native Linux/macOS installs available."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -466,7 +466,7 @@ A: You need to create an "App Password" in your Google Account settings (under S
 
 ## Conclusion
 
-Odysseus represents one of the most ambitious self-hosted AI projects on GitHub — combining chat, agent automation, deep research, document editing, email triage, calendar management, and local model serving into a single, privacy-first workspace. At 65,000+ stars with only weeks since creation, it's clearly resonating with users who want the convenience of ChatGPT's interface without the data trade-offs.
+Odysseus represents one of the most ambitious self-hosted AI projects on GitHub — combining chat, agent automation, deep research, document editing, email triage, calendar management, and local model serving into a single, privacy-first workspace. At 65,000+ stars with only weeks since creation, it's clearly resonating with users who want the convenience of ChatGPT"s interface without the data trade-offs.
 
 The Docker-based installation makes it accessible even to users without deep Linux expertise, while the native install and Apple Silicon support provide options for those who prefer running directly on their hardware.
 

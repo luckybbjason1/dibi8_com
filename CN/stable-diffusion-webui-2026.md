@@ -1,5 +1,5 @@
 ---
-title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S...
+title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star S...
 description: "AUTOMATIC1111 stable-diffusion-webui is the 163k-star de-facto standard self-hosted UI for SD/SDXL image generation. Complete 2026 install + production guide covering txt2img / img2img / inpainting / outpainting / LoRA / ControlNet, hardware requirements, alternatives (Forge, SD.Next)."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -191,7 +191,7 @@ Spin up a GPU instance, run section 3's install, and 15 minutes later you have l
 
 ## Why This Matters
 
-Understanding stable diffusion webui 2026 (automatic1111): 163k-star self-hosted image generation — complete guide is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding stable diffusion webui 2026 (automatic1111): 163k-star self-hosted image generation — complete guide is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

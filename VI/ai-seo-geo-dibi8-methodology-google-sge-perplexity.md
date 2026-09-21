@@ -1,5 +1,5 @@
 ---
-title: 'AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương...
+title: "AI SEO & GEO: Cách dibi8 Ngừng Theo Đuổi Clicks — Phương...
 description: "Chúng tôi ngừng viết để lấy clicks. Bắt đầu viết để lấy citations. Sau 72 bài viết trên 4 ngôn ngữ, đây là phương pháp 5 lớp giúp chúng tôi được Google SGE, Perplexity và ChatGPT trích dẫn."
 date: 2026-06-15
 lastmod: 2026-06-15
@@ -43,7 +43,7 @@ featureImage: /images/articles/ai-seo---geo-------2026-----seo------------------
 
 ## Why This Matters
 
-Understanding ai seo & geo: cách dibi8 ngừng theo đuổi clicks — phương pháp 5 lớp is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai seo & geo: cách dibi8 ngừng theo đuổi clicks — phương pháp 5 lớp is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

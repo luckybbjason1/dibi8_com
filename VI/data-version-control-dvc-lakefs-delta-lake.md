@@ -1,5 +1,5 @@
 ---
-title: 'DVC vs LakeFS vs Delta Lake: Hướng Dẫn Chọn Công Cụ Quản...
+title: "DVC vs LakeFS vs Delta Lake: Hướng Dẫn Chọn Công Cụ Quản...
 description: "So sánh chi tiết DVC, LakeFS và Delta Lake - 3 công cụ quản lý phiên bản dữ liệu hàng đầu cho ML. Tìm hiểu tính năng, kiến trúc và cách chọn công cụ phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -146,7 +146,7 @@ Delta Lake lưu trữ dữ liệu dưới dạng **Parquet files** cùng với *
 SELECT * FROM my_table VERSION AS OF 5;
 
 -- Hoặc truy vấn theo thờI gian
-SELECT * FROM my_table TIMESTAMP AS OF '2024-06-01T00:00:00Z';
+SELECT * FROM my_table TIMESTAMP AS OF '2024-06-01T00:00:00Z";
 
 -- Tối ưu hóa và Z-ordering
 OPTIMIZE my_table ZORDER BY (user_id);

@@ -1,5 +1,5 @@
 ---
-title: 'Lobe Chat: 支持 20+ LLM 提供商与插件系统的开源 ChatGPT UI 替代品 —— 2026...
+title: "Lobe Chat: 支持 20+ LLM 提供商与插件系统的开源 ChatGPT UI 替代品 —— 2026...
 description: "将 Lobe Chat 部署为自托管的 ChatGPT 替代品。支持 20+ LLM 提供商、插件系统、PWA、多语言 UI。包含基准测试和对比的完整 Docker 部署指南。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "lobehub/lobe-chat"
 stars: 60000
 maintainer: lobehub
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["lobe chat", "chatgpt", "openai 替代品", "llm", "自托管", "docker", "pwa", "插件系统", "ai", "聊天 ui"]

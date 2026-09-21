@@ -1,5 +1,5 @@
 ---
-title: 'Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo r...
+title: "Impeccable: Ngôn ngữ thiết kế giúp giao diện do AI tạo r...
 description: "Impeccable (37K sao) là một ngôn ngữ thiết kế dành cho các tác nhân mã hóa AI với 23 lệnh, 41 quy tắc kiểm tra, và khả năng lặp trực tiếp trên trình duyệt. Khắc phục vấn đề giao diện AI tạo ra trông giống template với các kiểm tra chất lượng thiết kế xác định. Tương thích với Claude Code, Cursor và Codex."
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -7,7 +7,7 @@ slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
 github_repo: "https://github.com/pbakaus/impeccable"
-license: 'Apache-2.0'
+license: 'Apache-2.0"
 featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
 

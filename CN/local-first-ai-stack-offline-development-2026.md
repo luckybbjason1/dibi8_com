@@ -1,5 +1,5 @@
 ---
-title: 'Local-First AI Stack 2026: Fully Offline AI Development ...
+title: "Local-First AI Stack 2026: Fully Offline AI Development ...
 description: "Building a fully offline AI coding environment in 2026: Ollama for LLM, Aider for coding agent, ChromaDB for RAG, all local. Setup guide, hardware reality, and where offline matters (privacy, compliance, air-gapped, travel)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -186,7 +186,7 @@ The right hybrid is local default + commercial fallback. Most "local-first" deve
 
 ## Why This Matters
 
-Understanding local-first ai stack 2026: fully offline ai development environment is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding local-first ai stack 2026: fully offline ai development environment is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

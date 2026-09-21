@@ -1,5 +1,5 @@
 ---
-title: 'Activepieces: Giải pháp thay thế Zapier mã nguồn mở với ...
+title: "Activepieces: Giải pháp thay thế Zapier mã nguồn mở với ...
 description: "Triển khai Activepieces trong 5 phút. Nền tảng tự động hóa workflow mã nguồn mở với 200+ tích hợp ứng dụng, AI actions và trình xây dựng trực quan — chi phí chỉ bằng một phần nhỏ của Zapier."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -352,7 +352,7 @@ export const myApiPiece = createPiece({
     required: true,
     description: "Your internal API authentication key"
   }),
-  minimumSupportedRelease: '0.46.0',
+  minimumSupportedRelease: '0.46.0",
   actions: [sendNotification],
   triggers: [],
 });

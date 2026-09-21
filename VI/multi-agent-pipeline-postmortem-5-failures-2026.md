@@ -1,5 +1,5 @@
 ---
-title: 'Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
+title: "Báo cáo phân tích sự cố Pipeline đa tác tử: 5 kiểu điều ...
 description: "Năm kiểu lỗi thực tế của pipeline đa tác tử Claude Code — tin vào báo cáo chưa kiểm chứng, rò rỉ ngữ cảnh, fan-out mất kiểm soát, cắt cụt âm thầm, và worktree mồ côi — mỗi kiểu kèm triệu chứng, nguyên nhân gốc và cách khắc phục."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "subagents", "multi-agent", "agent-sdk", "debugging", "llm-frameworks", "developer-tools"]

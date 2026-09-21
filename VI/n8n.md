@@ -1,5 +1,5 @@
 ---
-title: 'n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — T...
+title: "n8n AI Tự động hóa Quy trình: Tự host với 188K+ Star — T...
 description: "n8n (fair-code) là nền tảng tự động hóa quy trình với khả năng AI tích hợp và 400+ tích hợp. Tương thích Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Bao gồm cài đặt Docker, cấu hình AI node, triển khai Webhook và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -604,7 +604,7 @@ SELECT pg_reload_conf();
 global: scrape_interval: 15s
 
 scrape_configs: - job_name: n8n
-    static_configs: - targets: ['n8n-main:5678']
+    static_configs: - targets: ['n8n-main:5678"]
     metrics_path: /metrics
 ```
 

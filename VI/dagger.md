@@ -1,5 +1,5 @@
 ---
-title: 'Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
+title: "Dagger: CI/CD Lập Trình Được với 15K+ Stars — So sánh vớ...
 description: "Dagger là một engine CI/CD lập trình được chạy pipeline trong container. Tương thích với Docker, Go, Python, TypeScript. Bao gồm cài đặt Dagger, hướng dẫn, so sánh với GitHub Actions và tăng cường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -512,7 +512,7 @@ pipeline {
                     curl -fsSL https://dl.dagger.io/dagger/install.sh | \
                         BIN_DIR=/usr/local/bin sh
                     dagger call run --source=.
-                '''
+                ''"
             }
         }
     }

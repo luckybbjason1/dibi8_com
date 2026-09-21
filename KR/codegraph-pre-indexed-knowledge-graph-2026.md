@@ -1,5 +1,5 @@
 ---
-title: 'CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄...
+title: "CodeGraph 리뷰: Claude Code · Cursor · Codex의 토큰 비용을 35% 줄...
 description: "CodeGraph (GitHub 20.2K+ stars)는 Claude Code, Cursor, Codex CLI, OpenCode, Hermes Agent를 위해 코드 지식 그래프를 사전 인덱싱하는 오픈소스 도구입니다. SQLite 로컬 저장, 19개 언어, 14개 framework 라우팅 인식, 외부 API 제로. 원시 grep/glob/Read 대비 약 35% 토큰 절감, 약 70% 도구 호출 감소. 기능 분석·설치·실전 워크플로·LSP/MCP 서비스 비교까지 정리."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
@@ -208,7 +208,7 @@ MIT 라이선스, 로컬 우선 아키텍처, 제로 외부 의존성 — 코딩
 
 ## Why This Matters
 
-Understanding codegraph 리뷰: claude code · cursor · codex의 토큰 비용을 35% 줄인 로컬 코드 그래프 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding codegraph 리뷰: claude code · cursor · codex의 토큰 비용을 35% 줄인 로컬 코드 그래프 (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

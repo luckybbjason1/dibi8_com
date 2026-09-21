@@ -1,5 +1,5 @@
 ---
-title: 'Dagster: The Data Pipeline Orchestrator with Asset-Based...
+title: "Dagster: The Data Pipeline Orchestrator with Asset-Based...
 description: "Complete production guide to Dagster 1.13: asset-based orchestration, data-aware scheduling, partitioning, backfills, and self-hosted deployment with Docker Compose."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -578,7 +578,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [Airflow vs Dagster: Detailed Comparison](https://docs.dagster.io/guides/migrate/airflow)
 - [Software-Defined Assets Concept](https://docs.dagster.io/concepts/assets/software-defined-assets)
 - [Dagster 1.13 Release Notes](https://github.com/dagster-io/dagster/releases)
-- [Stripe's Data Platform Migration Story](https://dagster.io/case-studies)
+- [Stripe"s Data Platform Migration Story](https://dagster.io/case-studies)
 
 *Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up using our referral link, we receive a commission at no extra cost to you. All opinions and benchmarks are independent and based on hands-on testing.*
 

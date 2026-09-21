@@ -1,5 +1,5 @@
 ---
-title: 'Multi-Modal Content Pipeline 2026: The 5-Component Stack...
+title: "Multi-Modal Content Pipeline 2026: The 5-Component Stack...
 description: "Self-hosted multi-modal content stack: faster-whisper (STT) + ChatTTS (dialogue TTS) + Stable Diffusion WebUI (images) + ComfyUI (workflow engine + video) + FFmpeg (assembly). Produce podcasts, short videos, AI-illustrated articles for $30-80/mo vs $200-500/mo of SaaS."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -215,7 +215,7 @@ When you outgrow: - **>1 hour of TTS / day** — Switch ChatTTS hosting from Vas
 4. **ComfyUI** — the multi-modal workflow engine (image / video / audio in one place)
 5. **FFmpeg** — boring-but-essential assembly
 
-Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, shut it down when you don't. The math beats SaaS as soon as you cross ~2 hours/day of active content production.
+Rent a {{< aff "digitalocean" "footer-cta" "GPU droplet" >}} when you produce, shut it down when you don"t. The math beats SaaS as soon as you cross ~2 hours/day of active content production.
 
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney,...
+title: "Công Cụ Tạo Hình Ảnh AI: Hướng Dẫn Đầy Đủ Về Midjourney,...
 description: "Hướng dẫn toàn diện về công cụ tạo hình ảnh AI 2025: so sánh Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX và Leonardo.ai. Bảng giá, tính năng và cách sử dụng."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/ai-image-generation-tools-complete-guide/

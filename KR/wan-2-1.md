@@ -1,5 +1,5 @@
 ---
-title: 'Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVide...
+title: "Wan 2.1: 16.1K+ Stars — 오픈소스 비디오 생성 심층 분석 vs HunyuanVide...
 description: "Wan 2.1은 Alibaba의 오픈소스 비디오 기반 모델로 SOTA 성능 제공. ComfyUI, Diffusers, Gradio 지원. T2V, I2V, 비디오 편집, 텍스트 생성을 1.3B 및 14B 파라미터로 제공."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/Wan-Video/Wan2.1"
 stars: 16100
 maintainer: 'Wan-Video'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["wan-2-1", "비디오-생성", "디퓨전-트랜스포머", "ai-비디오", "오픈소스", "알리바바", "comfyui", "diffusers"]

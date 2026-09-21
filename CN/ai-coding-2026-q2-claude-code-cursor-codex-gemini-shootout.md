@@ -1,5 +1,5 @@
 ---
-title: 'AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
+title: "AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr...
 description: "Side-by-side comparison of the four major AI coding agents in mid-2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, and Google Gemini CLI. Real benchmarks on a 50K-LOC TypeScript codebase, MCP support, context window economics, pricing breakdown, and where each one actually wins."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -275,7 +275,7 @@ The AI coding shootout in mid-2026 is genuinely competitive in a way it wasn't 1
 
 For most professional developers we've talked to in Q2 2026: Claude Code + Cursor is the de facto answer ($220/mo for one IDE + one agentic CLI). For indies: Gemini CLI free tier alone is enough to ship. For enterprise: depends on procurement (Codex CLI integrates best with existing OpenAI contracts).
 
-The biggest mistake we see: developers chasing the latest release because Hacker News said so. Don't switch on hype. Run your own three-workflow benchmark. The right tool is the one that makes your specific work measurably faster — not the one with the biggest model.
+The biggest mistake we see: developers chasing the latest release because Hacker News said so. Don"t switch on hype. Run your own three-workflow benchmark. The right tool is the one that makes your specific work measurably faster — not the one with the biggest model.
 
 
 ---

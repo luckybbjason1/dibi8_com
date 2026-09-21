@@ -1,5 +1,5 @@
 ---
-title: 'AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트...
+title: "AAVE v4 2026: 150억 달러 이상의 예금을 관리하는 DeFi 대출 프로토콜 — 스마트 컨트...
 description: "2026년 AAVE v4 DeFi 대출 프로토콜 통합 완벽 가이드. 30개 이상의 암호화폐 자산을 공급하고 차입하며, 플래시 론을 사용하고, 격리 모드를 구현하며, DApp에서 GHO 스테이블코인을 통합하는 방법을 배우세요."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -722,7 +722,7 @@ export function SupplyButton({ asset, amount }: { asset: string; amount: string 
       disabled={isLoading}
       className="supply-btn"
     >
-      {isLoading ? '공급 중...' : 'AAVE에 공급'}
+      {isLoading ? '공급 중...' : 'AAVE에 공급"}
     </button>
   );
 }

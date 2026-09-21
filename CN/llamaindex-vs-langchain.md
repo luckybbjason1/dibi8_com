@@ -1,5 +1,5 @@
 ---
-title: 'LlamaIndex vs LangChain (2025): Which LLM Framework Shou...
+title: "LlamaIndex vs LangChain (2025): Which LLM Framework Shou...
 description: "Compare LlamaIndex and LangChain in 2025. Architecture, RAG capabilities, performance benchmarks, and decision guide to pick the right LLM framework."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -364,7 +364,7 @@ Performance depends on the metric. LlamaIndex typically achieves higher retrieva
 
 ### Is LlamaIndex easier to learn than LangChain?
 
-Generally yes. LlamaIndex's higher-level abstractions mean you can build a working RAG application in fewer lines of code. The `load-index-query` pattern is intuitive. LangChain has a steeper learning curve due to its more granular component model and larger API surface. However, LangChain's flexibility pays off for complex applications.
+Generally yes. LlamaIndex's higher-level abstractions mean you can build a working RAG application in fewer lines of code. The `load-index-query` pattern is intuitive. LangChain has a steeper learning curve due to its more granular component model and larger API surface. However, LangChain"s flexibility pays off for complex applications.
 
 ### Which one has better enterprise support?
 

@@ -1,5 +1,5 @@
 ---
-title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
+title: "Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
 description: "Traefik is a cloud-native application proxy and edge router with automatic service discovery. Compatible with Docker, Kubernetes, Consul, and Docker Compose. Covers installation, middleware, TLS, monitoring, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -565,7 +565,7 @@ For hosting Traefik on production infrastructure, [DigitalOcean](https://www.dig
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

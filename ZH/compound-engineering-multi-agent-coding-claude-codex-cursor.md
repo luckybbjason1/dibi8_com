@@ -1,5 +1,5 @@
 ---
-title: 'Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多...
+title: "Compound Engineering：联合编排 Claude Code、Codex 和 Cursor — 多...
 description: "Compound Engineering（2 万星标）是用于 Claude Code、Codex 和 Cursor 的多代理插件。9 个命令用于头脑风暴、规划、审查和复合学习。80% 规划、20% 执行的工作流。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -537,7 +537,7 @@ Compound Engineering 解决了 AI 辅助开发中的一个根本性空白：缺�
 
 ## Why This Matters
 
-Understanding compound engineering：联合编排 claude code、codex 和 cursor — 多代理插件指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding compound engineering：联合编排 claude code、codex 和 cursor — 多代理插件指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

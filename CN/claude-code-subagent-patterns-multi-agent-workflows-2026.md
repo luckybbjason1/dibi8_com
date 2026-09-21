@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
+title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows T...
 description: "Five battle-tested Claude Code subagent patterns — parallel research, isolated worktrees, specialist delegation, context protection, and pipeline orchestration — with real prompts and tradeoffs from production use."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -156,7 +156,7 @@ To run multi-agent workflows at scale you need three pieces of infrastructure: 1
 
 Subagents are not optional in 2026. If you're still doing every task in a single Claude conversation, you're paying for the privilege of premature context compression and lost reasoning state. The five patterns above — parallel fan-out, worktree isolation, specialist delegation, context protection, pipeline orchestration — each cost roughly an hour to learn and each saves multiples of that per week.
 
-Start with Pattern 1 (parallel research fan-out) — it's the lowest friction adoption point and the gains are immediate. Layer in the others as your sessions get longer and your tasks get heavier.
+Start with Pattern 1 (parallel research fan-out) — it"s the lowest friction adoption point and the gains are immediate. Layer in the others as your sessions get longer and your tasks get heavier.
 
 The instinct to "just keep typing into the main session" dies hard. Override it. Spawn the subagent.
 

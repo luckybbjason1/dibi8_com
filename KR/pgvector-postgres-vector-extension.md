@@ -1,5 +1,5 @@
 ---
-title: 'pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 ...
+title: "pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 ...
 description: "pgvector 0.8.2 프로덕션 가이드: HNSW/IVFFlat 인덱스, 벡터 유사도 검색, 성능 튜닝, LangChain 및 LlamaIndex와의 RAG 통합.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -624,7 +624,7 @@ SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
   AND created_at > NOW() - INTERVAL '7 days'
-  AND metadata @> '{"status": "published"}'
+  AND metadata @> '{"status": "published"}"
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
 ```

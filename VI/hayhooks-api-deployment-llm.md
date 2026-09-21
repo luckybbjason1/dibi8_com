@@ -1,5 +1,5 @@
 ---
-title: 'Hayhooks: Triển khai Haystack Pipeline thành REST API ch...
+title: "Hayhooks: Triển khai Haystack Pipeline thành REST API ch...
 description: "Hướng dẫn đầy đủ về việc triển khai Haystack NLP pipeline thành REST API production bằng Hayhooks. Bao gồm triển khai một lệnh, hỗ trợ container, tài liệu OpenAPI tự động và benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -327,7 +327,7 @@ Test với xác thực: ```bash
 curl -X POST http://localhost:8000/search \
   -H "Content-Type: application/json" \
   -H "X-API-Key: dev-key" \
-  -d '{"query": "What is RAG?"}'
+  -d '{"query": "What is RAG?"}"
 ```
 
 ### Background Task Queue

@@ -1,5 +1,5 @@
 ---
-title: 'Cleanlab: 데이터 주석 비용을 80% 절감해주는 11K+ 스타 AI 툴킷 — 파이썬 기반 오픈...
+title: "Cleanlab: 데이터 주석 비용을 80% 절감해주는 11K+ 스타 AI 툴킷 — 파이썬 기반 오픈...
 description: "Cleanlab은 ML 데이터셋의 데이터 품질 문제를 찾아주고 수정하는 11K+ GitHub 스타를 가진 오픈소스 AI 툴킷입니다. 분류, 회귀, 클러스터링 작업을 위한 자동 레이블 오류 감지, 누락 값 채우기, 데이터 클리닝을 제공합니다. 설정 가이드, 벤치마크, 프로덕션 배포 방법을 포함합니다."
 date: 2026-06-10
 lastmod: 2026-06-10
@@ -40,7 +40,7 @@ featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-datase
 
 ## Why This Matters
 
-Understanding cleanlab: 데이터 주석 비용을 80% 절감해주는 11k+ 스타 ai 툴킷 — 파이썬 기반 오픈소스 데이터 클리닝 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding cleanlab: 데이터 주석 비용을 80% 절감해주는 11k+ 스타 ai 툴킷 — 파이썬 기반 오픈소스 데이터 클리닝 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

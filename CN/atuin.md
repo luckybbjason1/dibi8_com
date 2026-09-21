@@ -1,5 +1,5 @@
 ---
-title: 'Atuin: 29,794 GitHub Stars — Shell History Sync Setup Gu...
+title: "Atuin: 29,794 GitHub Stars — Shell History Sync Setup Gu...
 description: "Atuin replaces shell history with a SQLite database, records command context (exit code, cwd, duration), and syncs encrypted history across machines. Supports Bash, Zsh, Fish, Nushell. Covers install, self-hosting, config, and Atuin vs mcfly vs fzf vs Hstr."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -735,7 +735,7 @@ Atuin turns shell history from a flat text file into a structured, searchable, a
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

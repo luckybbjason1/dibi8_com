@@ -1,5 +1,5 @@
 ---
-title: 'Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS...
+title: "Coqui TTS: 45.3K+ Stars — 深度学习语音合成工具包，对比 ChatTTS、MeloTTS...
 description: "Coqui TTS 是开源深度学习文本转语音工具包。支持 1100+ 种语言、XTTS v2 语音克隆、VITS 端到端合成。与 ChatTTS、MeloTTS、Bark 的真实 RTF 性能基准对比，含 Docker 部署方案和生产环境配置。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -445,7 +445,7 @@ python TTS/bin/train_tts.py \
 from prometheus_client import Counter, Histogram, generate_latest
 
 # 指标
-TTS_REQUESTS = Counter(tts_requests_total, '总 TTS 请求数', [language])
+TTS_REQUESTS = Counter(tts_requests_total, '总 TTS 请求数", [language])
 TTS_LATENCY = Histogram(tts_latency_seconds, 请求延迟)
 TTS_ERRORS = Counter(tts_errors_total, 总错误数, [error_type])
 

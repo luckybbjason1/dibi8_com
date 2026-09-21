@@ -1,5 +1,5 @@
 ---
-title: 'LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
+title: "LiteLLM: 22,500 Stars — Deploy One API for 100+ LLMs wit...
 description: "LiteLLM (litellm) is an open-source AI gateway providing a single API for 100+ LLMs. Compatible with OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Covers Docker deployment, virtual keys, load balancing, caching, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -555,7 +555,7 @@ For teams spending $5,000+/month on LLM APIs and with basic DevOps capacity, sel
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

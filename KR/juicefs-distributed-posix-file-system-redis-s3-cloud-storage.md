@@ -1,5 +1,5 @@
 ---
-title: 'JuiceFS (14K⭐): The Distributed POSIX File System That T...
+title: "JuiceFS (14K⭐): The Distributed POSIX File System That T...
 description: "JuiceFS (13,900+ stars) transforms any S3-compatible object storage into a POSIX-compliant distributed file system. Powered by Redis for metadata, it delivers cloud-native performance with local filesystem semantics — perfect for AI training, big data, and cloud workloads."
 date: 2026-06-15
 lastmod: 2026-06-15
@@ -53,7 +53,7 @@ license: 'Apache-2.0'
 
 ## Why This Matters
 
-Understanding juicefs (14k⭐): the distributed posix file system that turns cloud storage into local storage is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding juicefs (14k⭐): the distributed posix file system that turns cloud storage into local storage is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

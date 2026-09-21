@@ -1,5 +1,5 @@
 ---
-title: '2025年最佳API文档自动生成工具对比：Swagger、Postman Docs、ReadMe、Mintlif...
+title: "2025年最佳API文档自动生成工具对比：Swagger、Postman Docs、ReadMe、Mintlif...
 description: "深入对比2025年主流API文档生成工具，包括Swagger、Postman Docs、ReadMe、Mintlify、Stoplight和Redocly，帮助开发团队选择最适合的文档自动化方案。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -263,7 +263,7 @@ GraphQL和gRPC的普及也推动了文档工具的演进，支持多协议文档
 
 ## Why This Matters
 
-Understanding 2025年最佳api文档自动生成工具对比：swagger、postman docs、readme、mintlify全面评测 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 2025年最佳api文档自动生成工具对比：swagger、postman docs、readme、mintlify全面评测 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'WorldMonitor: Real-Time Global Intelligence Dashboard fo...
+title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo...
   description: "A real-time AI-powered global intelligence dashboard aggregating news, geopolitical events, and infrastructure tracking. 59K stars. Open-source alternative to Palantir Gotham."
   date: 2026-06-25
   lastmod: 2026-06-25
@@ -392,7 +392,7 @@ curl -X POST "https://your-worldmonitor/api/v1/metrics/grafana" \
   -d '{
     "datasource": "prometheus",
     "dashboard_template": "worldmonitor-overview"
-  }'
+  }"
 ```
 
 ### ELK Stack / Elasticsearch

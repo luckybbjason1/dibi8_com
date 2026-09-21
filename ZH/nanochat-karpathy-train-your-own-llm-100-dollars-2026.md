@@ -1,5 +1,5 @@
 ---
-title: 'nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L...
+title: "nanochat 2026：Andrej Karpathy 开源「百元 ChatGPT」——8000 行全栈 L...
 description: "由 Andrej Karpathy 开发的 nanochat 是完整的 LLM 训练管道——分词器、预训练、微调、评估、推理和聊天 UI，设计目标：在单节点 8×H100 上用不到 100 美元从零训练一个 GPT-2 级聊天机器人。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -126,7 +126,7 @@ python serve.py --checkpoint checkpoints/sft_final.pt --port 8000
 
 ## Why This Matters
 
-Understanding nanochat 2026：andrej karpathy 开源「百元 chatgpt」——8000 行全栈 llm 训练管道 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding nanochat 2026：andrej karpathy 开源「百元 chatgpt」——8000 行全栈 llm 训练管道 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

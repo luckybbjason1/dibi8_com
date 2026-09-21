@@ -1,5 +1,5 @@
 ---
-title: 'Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn t...
+title: "Oh My Zsh: 7 Bước để Có Quy Trình Phát Triển Nhanh Hơn t...
 description: "Làm chủ Oh My Zsh với các benchmark thực tế, cấu hình plugin và hướng dẫn cài đặt. So sánh với Starship, Prezto và các thiết lập Zsh thuần. Hơn 187k sao."
 date: 2026-06-11
 lastmod: 2026-06-11
@@ -420,7 +420,7 @@ touch ~/.oh-my-zsh/custom/plugins/my-custom-plugin/my-custom-plugin.plugin.zsh
 Trong `my-custom-plugin.plugin.zsh`: ```zsh
 # Alias tùy chỉnh cho công cụ nội bộ
 alias deploy-staging='ssh staging-server "cd /app && ./deploy.sh"'
-alias deploy-prod='ssh prod-server "cd /app && ./deploy.sh"'
+alias deploy-prod='ssh prod-server "cd /app && ./deploy.sh""
 ```
 
 ## So Sánh Với Các Giải Pháp Thay Thế

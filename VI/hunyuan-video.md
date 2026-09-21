@@ -1,5 +1,5 @@
 ---
-title: 'HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
+title: "HunyuanVideo: 12.1K+ Stars — Hướng Dẫn Triển Khai Produc...
 description: "HunyuanVideo (HYV) là framework tạo video nguồn mở 13B tham số do Tencent phát triển. Hỗ trợ ComfyUI, Diffusers, Gradio API. Bao gồm Docker, FP8 quantization, đa GPU, và production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -345,7 +345,7 @@ import time
 
 inference_count = Counter(hunyuan_inferences_total, 'Tổng số suy luận')
 inference_duration = Histogram(hunyuan_inference_seconds, 'Độ trễ suy luận')
-queue_depth = Gauge(hunyuan_queue_depth, 'Độ sâu hàng đợi hiện tại')
+queue_depth = Gauge(hunyuan_queue_depth, 'Độ sâu hàng đợi hiện tại")
 
 @inference_duration.time()
 def generate_video(prompt, height, width, frames, steps): inference_count.inc()

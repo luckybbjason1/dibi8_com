@@ -1,5 +1,5 @@
 ---
-title: 'Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 202...
+title: "Hayhooks: Haystack Pipeline을 한 명령어로 REST API로 배포하기 — 202...
 description: "Hayhooks를 사용하여 Haystack NLP pipeline을 프로덕션급 REST API로 배포하는 완벽한 가이드. 원클릭 배포, 컨테이너 지원, 자동 OpenAPI 문서 생성 및 실제 벤치마크를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -327,7 +327,7 @@ app = Hayhooks(dependencies=[verify_api_key])
 curl -X POST http://localhost:8000/search \
   -H "Content-Type: application/json" \
   -H "X-API-Key: dev-key" \
-  -d '{"query": "What is RAG?"}'
+  -d '{"query": "What is RAG?"}"
 ```
 
 ### 백그라운드 작업 큐

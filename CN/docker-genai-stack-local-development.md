@@ -1,5 +1,5 @@
 ---
-title: 'Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM i...
+title: "Docker GenAI Stack: Spin Up LangChain, Vector DB & LLM i...
 description: "Set up a complete local GenAI development environment with Docker GenAI Stack. Includes LangChain, Neo4j, Ollama, and vector databases in a single docker-compose. Production-ready tutorial for 2026."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -428,7 +428,7 @@ Join our developer community on Telegram: **@dibi8dev** — share your GenAI sta
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Affiliate Disclosure
 

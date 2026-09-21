@@ -1,5 +1,5 @@
 ---
-title: 'MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn D...
+title: "MCP (Model Context Protocol) Hướng Dẫn Thực Chiến Toàn D...
 description: "Xây dựng MCP server từ con số không với hướng dẫn chi tiết. Nắm vững Model Context Protocol của Anthropic để AI Agent kết nối ngay lập tức với database, GitHub, Slack và hàng nghìn công cụ khác — không còn code tích hợp lặp đi lặp lại."
 date: 2026-05-15 00:00:00+08:00
 lastmod: 2026-05-15 00:00:00+08:00
@@ -204,7 +204,7 @@ async def check_ssl_expiry(hostname: str, port: int = 443) -> str: """Kiểm tra
                     f"{status}\n"
                     f"• Tên miền: {hostname}\n"
                     f"• Đơn vị cấp phát: {cert.get('issuer', 'không rõ')}\n"
-                    f"• Thời điểm hết hạn: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\n"
+                    f"• Thời điểm hết hạn: {expiry.strftime('%Y-%m-%d %H:%M UTC")}\n"
                     f"• Số ngày còn lại: {days_left} ngày\n"
                 )
     except Exception as e: return f"❌ Kiểm tra SSL thất bại: {type(e).__name__}: {str(e)}"

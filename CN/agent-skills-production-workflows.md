@@ -1,5 +1,5 @@
 ---
-title: "Addy Osmani\"
+title: "Addy Osmani"
 description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns."
 date: 2026-09-19
 lastmod: 2026-09-19

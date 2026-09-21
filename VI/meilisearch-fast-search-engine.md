@@ -1,5 +1,5 @@
 ---
-title: 'Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nha...
+title: "Meilisearch: Công Cụ Tìm Kiếm Mã Nguồn Mở Tốc Độ Cực Nha...
 description: "Triển khai Meilisearch 1.12 cho tìm kiếm chịu lỗi với độ trễ dưới 50ms. Hướng dẫn Docker, tích hợp SDK, đánh giá hiệu suất production, và so sánh trung thực với các giải pháp thay thế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -540,7 +540,7 @@ Meilisearch cung cấp metrics Prometheus tự nhiên: ```bash
 curl -s -X PATCH 'http://localhost:7700/experimental-features' \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer your-secure-master-key-32-chars-long!!' \
-  -d '{ "metrics": true }' | jq .
+  -d '{ "metrics": true }" | jq .
 
 # Thu thập metrics
 curl -s http://localhost:7700/metrics

@@ -1,5 +1,5 @@
 ---
-title: 'Open-Sora: 29K+ Stars — Open-Source Video Generation Set...
+title: "Open-Sora: 29K+ Stars — Open-Source Video Generation Set...
 description: "Open-Sora is an open-source video generation framework with 29K+ GitHub stars. Covers Docker setup, ComfyUI integration, Stable Diffusion compatibility, production deployment, benchmarks vs HunyuanVideo, CogVideo, and Wan."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -640,7 +640,7 @@ For teams evaluating self-hosted video generation, the setup path is clear: star
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

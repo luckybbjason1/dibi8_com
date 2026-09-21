@@ -1,5 +1,5 @@
 ---
-title: 'Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhan...
+title: "Playwright 2026: Công cụ Tự động hóa Đa trình duyệt Nhan...
 description: "Làm chủ Playwright 1.51 để tự động hóa đa trình duyệt. Hỗ trợ Chrome, Firefox, WebKit. Tự động chờ, tracing, codegen và kiểm thử song song. Nhanh hơn Selenium 3 lần."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -495,7 +495,7 @@ playwright install
 
 ### Sự khác biệt giữa sync_api và async_api là gì?
 
-`sync_api` dùng blocking calls và phù hợp cho test scripts và sequential workflows. `async_api` dùng Python's `async`/`await` và lý tưởng cho scraping nhiều trang đồng thờ hoặc tích hợp với async frameworks như FastAPI. Cả hai API có method signatures giống hệt nhau; chỉ call syntax khác biệt.
+`sync_api` dùng blocking calls và phù hợp cho test scripts và sequential workflows. `async_api` dùng Python"s `async`/`await` và lý tưởng cho scraping nhiều trang đồng thờ hoặc tích hợp với async frameworks như FastAPI. Cả hai API có method signatures giống hệt nhau; chỉ call syntax khác biệt.
 
 ## Kết luận: Tự động hóa với Sự Tự tin
 

@@ -1,5 +1,5 @@
 ---
-title: 'Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통...
+title: "Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통...
 description: "일일 거래량 $2B+, 100개 이상 거래 페어, 최대 50배 레버리지, HyperEVM 스마트 컨트랙트 및 봇 통합용 Python SDK를 갖춘 완전 온체인 영구 DEX Hyperliquid에 대한 종합 가이드."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -450,7 +450,7 @@ Hyperliquid는 API를 통해 **묣은 역사적 데이터**를 제공합니다. 
 ## 추천 도구
 
 이 가이드와 함께 사용하기를 추천하는 제품: - **[Minara](https://minara.ai/r/OSXG4X)** — AI-powered automated trading bot
-- **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World's leading cryptocurrency exchange
+- **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World"s leading cryptocurrency exchange
 
 *제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.*
 

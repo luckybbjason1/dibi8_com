@@ -1,5 +1,5 @@
 ---
-title: 'LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
+title: "LibreTranslate: Self-Hosted Translation API with 14.4K+ ...
 description: "LibreTranslate (LT) is a free, open-source machine translation API powered by Argos Translate. Supports Docker, CUDA GPU, 30+ languages, and offline deployment. Covers setup, benchmarks, monitoring, and integration with OpenAI Whisper, Coqui TTS, and Argos Translate."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -729,7 +729,7 @@ Join the [LibreTranslate Telegram group](https://t.me/libretranslate) for commun
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

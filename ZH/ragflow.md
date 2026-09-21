@@ -1,5 +1,5 @@
 ---
-title: 'RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与...
+title: "RAGFlow: 部署拥有 80K+ Stars 的生产级 RAG 引擎 — 2026 年 Docker 搭建与...
 description: "RAGFlow 是具备深度文档理解和内置 Agent 能力的开源检索增强生成（RAG）引擎。兼容 Ollama、OpenAI、Qdrant、Elasticsearch、Redis。涵盖 Docker 部署、文档导入、检索调优和生产环境加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -445,7 +445,7 @@ docker exec ragflow-mysql mysqldump -u root -p$MYSQL_PASSWORD ragflow > $BACKUP_
 # 备份 Elasticsearch 索引
 docker exec ragflow-es curl -sX POST "localhost:9200/_snapshot/backup" \
   -H 'Content-Type: application/json' \
-  -d'{"indices": "ragflow_*"}'
+  -d'{"indices": "ragflow_*"}"
 
 # 备份 MinIO 对象
 docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio

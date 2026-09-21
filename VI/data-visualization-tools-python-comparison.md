@@ -1,5 +1,5 @@
 ---
-title: 'Matplotlib vs Seaborn vs Plotly vs Observable: Hướng Dẫn...
+title: "Matplotlib vs Seaborn vs Plotly vs Observable: Hướng Dẫn...
 description: "So sánh chi tiết Matplotlib, Seaborn, Plotly và Observable. Bảng tính năng, ví dụ code, hướng dẫn chọn công cụ trực quan hóa dữ liệu Python phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -180,7 +180,7 @@ plt.title('Scatter Plot'); plt.show()
 **Plotly:**
 ```python
 import plotly.express as px
-fig = px.scatter(df, x='x', y='y', color='category', opacity=0.6, title='Scatter Plot')
+fig = px.scatter(df, x='x', y='y', color='category', opacity=0.6, title='Scatter Plot")
 fig.show()
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: 'GEO Optimization Checklist: Make ChatGPT Cite You Using ...
+title: "GEO Optimization Checklist: Make ChatGPT Cite You Using ...
   Agent)'
 description: "GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free. Comprehensive guide covering features, pricing, and best practices for 2026.
   AI SEO Agent)"
@@ -111,7 +111,7 @@ For developers building or deploying open-source AI tools, we recommend: - **{{<
 
 ## Why This Matters
 
-Understanding geo optimization checklist: make chatgpt cite you using toprank (free ai seo is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding geo optimization checklist: make chatgpt cite you using toprank (free ai seo is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

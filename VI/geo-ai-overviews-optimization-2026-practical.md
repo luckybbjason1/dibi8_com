@@ -1,5 +1,5 @@
 ---
-title: 'Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ ...
+title: "Tối ưu GEO / AI Overviews 2026: Hướng dẫn thực chiến từ ...
 description: "Tối ưu hóa Engine Sinh (GEO) chính là SEO mới. Cách tối ưu cho Google AI Overviews, ChatGPT Search và trích dẫn Perplexity. Kỹ thuật thực tế từ tối ưu hóa dibi8.com — FAQ schema, chấm điểm khả năng được trích dẫn, llms.txt."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -157,7 +157,7 @@ Bắt đầu với FAQ schema trên top 10 trang. Đo tỷ lệ trích dẫn sau
 
 ## Why This Matters
 
-Understanding tối ưu geo / ai overviews 2026: hướng dẫn thực chiến từ dữ liệu site thực tế is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding tối ưu geo / ai overviews 2026: hướng dẫn thực chiến từ dữ liệu site thực tế is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

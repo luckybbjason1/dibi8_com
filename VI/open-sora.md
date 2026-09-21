@@ -1,5 +1,5 @@
 ---
-title: 'Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
+title: "Open-Sora: 29K+ Stars — Hướng Dẫn Cài Đặt Video Generati...
 description: "Open-Sora là framework tạo video mã nguồn mở với 29K+ stars GitHub. Bao gồm cài đặt Docker, tích hợp ComfyUI, triển khai production, so sánh hiệu suất với HunyuanVideo, CogVideo, và Wan."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -476,7 +476,7 @@ from prometheus_client import Counter, Histogram, start_http_server
 # Metrics
 GENERATION_COUNTER = Counter(opensora_generations_total, 'Tổng số video tạo')
 GENERATION_DURATION = Histogram(opensora_generation_seconds, 'Thờ gian tạo')
-VRAM_USAGE = Histogram(opensora_vram_usage_bytes, 'VRAM sử dụng đỉnh')
+VRAM_USAGE = Histogram(opensora_vram_usage_bytes, 'VRAM sử dụng đỉnh")
 
 def generate_with_monitoring(prompt, config): process = psutil.Process()
     start_mem = process.memory_info().rss

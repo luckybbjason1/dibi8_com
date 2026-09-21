@@ -1,5 +1,5 @@
 ---
-title: 'LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전...
+title: "LangGraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전...
 description: "LangGraph는 장기 실행, 상태 유지 AI 에이전트용 저수준 오케스트레이션 프레임워크. GitHub 32.6k stars, v1.2.1. 그래프 디자인, 영구 실행, human-in-loop 체크포인트, LangSmith 디버깅, LangGraph가 CrewAI / AutoGen / 순수 LangChain을 이기는 때까지 다루는 실제 배포 가이드."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -220,7 +220,7 @@ Postgres 있는 {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} �
 
 ## Why This Matters
 
-Understanding langgraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전 가이드) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding langgraph 1.2 프로덕션: 크래시를 견디는 상태 유지 에이전트 오케스트레이션 (2026 완전 가이드) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết k...
+title: "CoW Protocol 2026: Bộ Tổng hợp DEX Chống MEV Giúp Tiết k...
 description: "Hướng dẫn toàn diện về CoW Protocol, bộ tổng hợp DEX chống MEV sử dụng đấu giá theo lô và cạnh tranh solver để giúp tiết kiệm $100M+ phí trượt giá. Bao gồm tích hợp SDK, thiết lập bot giao dịch."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -547,7 +547,7 @@ CoW Protocol hỗ trợ **bất kỳ cặp ERC-20 token** nào có đủ thanh k
 
 ## Công Cụ Được Đề Xuất
 
-Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này: - **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World's leading cryptocurrency exchange
+Các sản phẩm chúng tôi đề xuất bổ sung cho hướng dẫn này: - **[Binance](https://www.bsmkweb.cc/register?ref=DIBI8)** — World"s leading cryptocurrency exchange
 
 *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
 

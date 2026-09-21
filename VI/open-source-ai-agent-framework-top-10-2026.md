@@ -1,5 +1,5 @@
 ---
-title: 'Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
+title: "Top 10 Framework AI Agent Mã Nguồn Mở (2026): Xếp Hạng T...
 description: "Mười framework AI agent OSS được xếp hạng theo mức độ áp dụng trong sản xuất năm 2026: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Điểm mạnh, lưu ý, và lựa chọn theo từng trường hợp sử dụng."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -158,7 +158,7 @@ Chọn theo stack ngôn ngữ và phong cách workflow. Năng lực đã hội t
 
 ## Why This Matters
 
-Understanding top 10 framework ai agent mã nguồn mở (2026): xếp hạng theo mức độ áp dụng trong sản xuất is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding top 10 framework ai agent mã nguồn mở (2026): xếp hạng theo mức độ áp dụng trong sản xuất is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

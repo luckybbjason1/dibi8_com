@@ -1,5 +1,5 @@
 ---
-title: 'AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro...
+title: "AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro...
 description: "Đánh giá ngang hàng 4 AI coding agent hàng đầu giữa 2026: Claude Code 1.0, Cursor Pro, OpenAI Codex CLI, Google Gemini CLI. Test thực tế 5 workflow trên cùng codebase 50K LOC TypeScript, hỗ trợ MCP, kinh tế context window, phân tích giá."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -12,7 +12,7 @@ github_repo: ''
 stars: 0
 maintainer: 'Anthropic / Anysphere / OpenAI / Google'
 last_maintained: "2026-05-25"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["dev-utils"]
 tags: ["claude-code", "cursor", "codex-cli", "gemini-cli", "ai-coding", "agent", "2026"]

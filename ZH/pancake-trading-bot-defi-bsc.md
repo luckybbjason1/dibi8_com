@@ -1,5 +1,5 @@
 ---
-title: 'PancakeSwap 交易机器人 2026：使用 Python 在 BSC 上构建自动化 DeFi 策略 — ...
+title: "PancakeSwap 交易机器人 2026：使用 Python 在 BSC 上构建自动化 DeFi 策略 — ...
 description: "在币安智能链上构建生产级 PancakeSwap 交易机器人。Web3.py 集成、自动化策略、流动性池监控、MEV 保护以及 Python 机器人框架 — 附带 2026 年真实基准测试。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -776,7 +776,7 @@ class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = 
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
 
     def send(self, message, level="INFO"): emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
-        text = f"{emoji.get(level, '')} PancakeBot: {message}"
+        text = f"{emoji.get(level, '")} PancakeBot: {message}"
         requests.post(
             f"{self.base_url}/sendMessage",
             json={"chat_id": self.chat_id, "text": text},

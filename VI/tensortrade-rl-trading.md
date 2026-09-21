@@ -1,5 +1,5 @@
 ---
-title: 'TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi ...
+title: "TensorTrade: Framework Giao Dịch Học Tăng Cường với Môi ...
 description: "Làm chủ TensorTrade để giao dịch thuật toán dựa trên RL. Xây dựng môi trường Gym tùy chỉnh, tích hợp Stable Baselines3, triển khai chiến lược quản lý danh mục sẵn sàng production với benchmark thực."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "tensortrade-org/tensortrade"
 stars: 4300
 maintainer: 'tensortrade-org'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["ai-trading"]
 tags: ["tensortrade", "học tăng cường", "giao dịch thuật toán", "openai gym", "stable baselines3", "quản lý danh mục", "python", "machine learning", "giao dịch crypto", "tài chính định lượng"]

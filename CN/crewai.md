@@ -1,5 +1,5 @@
 ---
-title: 'CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
+title: "CrewAI: Build Multi-Agent AI Teams with 51K+ Stars — Com...
 description: "CrewAI (crewAIInc/crewAI) is a Python framework for orchestrating role-playing, autonomous AI agents. Compatible with OpenAI, Anthropic, Ollama, LangChain, and LlamaIndex. Covers installation, agent roles, task workflows, production deployment, and benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -639,7 +639,7 @@ Join the discussion on Telegram: [Join dibi8.com community](https://t.me/dibi8te
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

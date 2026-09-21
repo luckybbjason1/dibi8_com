@@ -1,5 +1,5 @@
 ---
-title: 'MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui...
+title: "MeloTTS: 7.4K+ Stars — TTS Đa Ngôn Ngữ So Sánh với Coqui...
 description: "MeloTTS là thư viện chuyển văn bản thành giọng nói đa ngôn ngữ chất lượng cao với 7.4K+ Stars. So sánh hiệu năng với Coqui TTS, ChatTTS và Bark. Hướng dẫn cài đặt Python, triển khai Docker, suy luận thờ gian thực và cứng hóa production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -460,7 +460,7 @@ from fastapi import Response
 
 # Metrics
 tts_requests = Counter(melotts_requests_total, 'Tổng yêu cầu TTS', [language, speaker])
-tts_duration = Histogram(melotts_duration_seconds, 'Thờ gian tạo TTS')
+tts_duration = Histogram(melotts_duration_seconds, 'Thờ gian tạo TTS")
 
 @app.get("/metrics")
 async def metrics(): return Response(content=generate_latest(), media_type="text/plain")

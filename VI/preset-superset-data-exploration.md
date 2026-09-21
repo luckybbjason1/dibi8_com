@@ -1,5 +1,5 @@
 ---
-title: 'Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn...
+title: "Apache Superset 2026: Nền tảng khám phá dữ liệu mã nguồn...
 description: "Hướng dẫn đầy đủ Apache Superset 2026 — cài đặt qua Docker trong 5 phút, kết nối 30+ nguồn dữ liệu, xây dựng 50+ loại biểu đồ, và triển khai dashboard sẵn sàng production với phân quyền theo vai trò."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -216,7 +216,7 @@ Superset hỗ trợ chính sách row-level security lọc dữ liệu dựa trê
 ROW_LEVEL_SECURITY_FILTERING = True
 
 # Định nghĩa filter trong UI: # Table: orders
-# Filter clause: region = '{{ current_username() }}'
+# Filter clause: region = '{{ current_username() }}"
 # Group: Sales Team
 ```
 

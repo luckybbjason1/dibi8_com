@@ -1,5 +1,5 @@
 ---
-title: 'Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·...
+title: "Bumblebee 2026: Perplexity AI 내부 공급망 스캐너 오픈소스화 — MCP 설정·...
 description: "Bumblebee는 Perplexity AI의 오픈소스 읽기 전용 공급망 스캐너입니다. npm, PyPI, Go 모듈, MCP 설정, 에디터 확장, 브라우저 확장에서 알려진 침해 패키지를 검사하며, 코드를 단 한 줄도 실행하지 않습니다."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -115,7 +115,7 @@ go install github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1
 
 ## Why This Matters
 
-Understanding bumblebee 2026: perplexity ai 내부 공급망 스캐너 오픈소스화 — mcp 설정·에디터 확장 지원 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding bumblebee 2026: perplexity ai 내부 공급망 스캐너 오픈소스화 — mcp 설정·에디터 확장 지원 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

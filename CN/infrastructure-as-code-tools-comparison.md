@@ -1,5 +1,5 @@
 ---
-title: 'Infrastructure as Code Tools 2025: Terraform vs Pulumi v...
+title: "Infrastructure as Code Tools 2025: Terraform vs Pulumi v...
 description: "Compare the top IaC tools of 2025. In-depth analysis of Terraform, Pulumi, AWS CDK, Crossplane, Puppet, and Ansible with feature comparison tables, pricing, security best practices, and FAQs."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -305,7 +305,7 @@ Yes. Crossplane is purpose-built for Kubernetes-native infrastructure management
 Ansible has the gentlest learning curve due to its YAML syntax and agentless architecture. For cloud provisioning, AWS CDK is accessible if you already know TypeScript or Python. Terraform requires learning HCL but has excellent documentation.
 
 ### How do I migrate from Terraform to Pulumi?
-Pulumi provides the `tf2pulumi` tool that converts Terraform HCL to Pulumi code in your chosen language. Alternatively, you can use Pulumi's Terraform bridge to reference existing Terraform state and providers incrementally.
+Pulumi provides the `tf2pulumi` tool that converts Terraform HCL to Pulumi code in your chosen language. Alternatively, you can use Pulumi"s Terraform bridge to reference existing Terraform state and providers incrementally.
 
 
 {

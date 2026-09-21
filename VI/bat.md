@@ -1,5 +1,5 @@
 ---
-title: 'bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So...
+title: "bat: Bản sao cat với Syntax Highlighting 58K+ Stars — So...
 description: "bat là bản sao cat(1) với syntax highlighting và tích hợp Git. Tương thích với Rust, Git, Homebrew, Cargo. Hướng dẫn cài đặt, benchmark hiệu năng, file cấu hình và so sánh với cat, less, ccat."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -380,7 +380,7 @@ Có. Cài đặt qua `scoop install bat`, `choco install bat`, hoặc tải bina
 **Các bước tiếp theo:**
 
 1. Cài `bat` qua package manager (30 giây).
-2. Thêm `alias cat='bat --paging=never'` vào shell config.
+2. Thêm `alias cat='bat --paging=never"` vào shell config.
 3. Đặt theme: `bat --list-themes` sau đó cấu hình theme bạn thích.
 4. Tham gia [cộng đồng lập trình viên dibi8 trên Telegram](https://t.me/dibi8) để được giới thiệu công cụ CLI và thảo luận.
 

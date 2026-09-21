@@ -1,5 +1,5 @@
 ---
-title: 'MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Đ...
+title: "MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Đ...
 description: "Hệ sinh thái Model Context Protocol vượt mốc 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30 theo category, giải thích trade-off kiến trúc giữa stdio / HTTP-SSE / OAuth-bridged, và cây quyết định để chọn servers mà không chết đuối trong registries."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -182,7 +182,7 @@ Sai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi a
 
 ## Why This Matters
 
-Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

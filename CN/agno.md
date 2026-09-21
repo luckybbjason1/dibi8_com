@@ -1,5 +1,5 @@
 ---
-title: 'Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
+title: "Agno: 40K+ Stars — Lightweight AI Agent Framework Deep D...
 description: "Agno is a lightweight open-source Python SDK for building AI agent platforms with 40K+ GitHub stars. Supports OpenAI, Anthropic, Ollama, Docker, AWS. Covers installation, multi-agent systems, benchmarks, production hardening, and comparison with CrewAI, AutoGen, and LangChain."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -484,7 +484,7 @@ The 40,233 GitHub stars and 452-contributor community signal that Agno has cross
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

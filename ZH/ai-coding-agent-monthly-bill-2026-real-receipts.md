@@ -1,5 +1,5 @@
 ---
-title: 'AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro...
+title: "AI 编码 Agent 月度账单 2026：Claude Max、ChatGPT Plus、Cursor Pro...
 description: "实测追踪 30 天 Claude Max（$200）、ChatGPT Plus + Codex CLI API（实际 $165）、Cursor Pro + API 溢出（$87）的真实使用与账单。每任务成本拆解、各家何时回本、切换的临界点。"
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -207,7 +207,7 @@ Effective cost per hour: $0.98
 
 ## Why This Matters
 
-Understanding ai 编码 agent 月度账单 2026：claude max、chatgpt plus、cursor pro 的 30 天真实账单 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai 编码 agent 月度账单 2026：claude max、chatgpt plus、cursor pro 的 30 天真实账单 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

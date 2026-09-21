@@ -1,5 +1,5 @@
 ---
-title: 'rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
+title: "rtk Review: Công cụ Rust giúp giảm 80% chi phí AI Coding...
 description: "rtk là proxy CLI viết bằng Rust, single binary không phụ thuộc, giảm 60-90% token tiêu thụ cho Claude Code / Cursor / Copilot / Codex / Gemini CLI và 9 công cụ AI khác. <10ms overhead, MIT open source, cài đặt 30 giây không cấu hình."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
@@ -32,7 +32,7 @@ faqs: - q: 'rtk là gì và tiết kiệm bao nhiêu chi phí AI coding?'
   - q: 'rtk có hỏng khi Claude Code/Cursor cập nhật không?'
     a: 'Cơ chế hook khá ổn định. rtk đã theo sát hook API của Claude Code từ phiên bản 0.10. Nếu có breaking change, cập nhật rtk thường ra trong 24-48h.'
   - q: 'rtk có an toàn cho production CI/CD không?'
-    a: 'An toàn trong agent workflow. Không dùng trong pipeline set -e nghiêm ngặt phụ thuộc văn bản output chính xác. Nhưng trong vòng lặp AI agent đọc output để quyết định bước tiếp theo, output nén của rtk chính là cái agent cần.'
+    a: 'An toàn trong agent workflow. Không dùng trong pipeline set -e nghiêm ngặt phụ thuộc văn bản output chính xác. Nhưng trong vòng lặp AI agent đọc output để quyết định bước tiếp theo, output nén của rtk chính là cái agent cần."
 ---
 
 {{</* resource-info */>}}

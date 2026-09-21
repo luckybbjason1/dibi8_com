@@ -1,5 +1,5 @@
 ---
-title: 'Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI...
+title: "Supabase 2026: 开源 Firebase 替代品，Postgres 向量搜索驱动 100 万+ AI...
 description: "Supabase 完整指南：带有 Postgres + pgvector 的开源 Firebase 替代方案。认证、存储、实时、Edge 函数、RAG 流水线集成、自托管 Docker 部署、行级安全。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -595,7 +595,7 @@ services: db: image: supabase/postgres:15.8.1.040
     volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
-        -c shared_preload_libraries='pg_stat_statements,pgvector'
+        -c shared_preload_libraries='pg_stat_statements,pgvector"
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB

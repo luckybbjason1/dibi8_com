@@ -1,5 +1,5 @@
 ---
-title: 'Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: ...
+title: "Các Framework Và Công Cụ Kỹ Thuật Prompt Tốt Nhất 2025: ...
 description: "Khám phá các framework và công cụ quản lý prompt hàng đầu năm 2025. So sánh chi tiết LangSmith, PromptLayer, Weights & Biases Prompts, Pezzo, Prompt Flow và Helicone cho kỹ thuật prompt quy mô lớn."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["prompt engineering", "kỹ thuật prompt", "langsmith", "promptlayer", "weights & biases", "pezzo", "prompt flow", "helicone"]

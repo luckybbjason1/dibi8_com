@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
+title: "Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen ...
 description: "You already orchestrate subagents inside Claude Code. Do you actually need LangGraph, CrewAI, or AutoGen? A 2026 decision guide with real benchmarks, GitHub-star reality, and the honest line between "built-in is enough" and "time to graduate.""
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -134,7 +134,7 @@ Whether you stay on Claude Code subagents or graduate to a framework, multi-agen
 
 ## Verdict
 
-Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone frameworks live in different worlds: one gets work done inside your agent, the other ships a multi-agent application. **Stay on subagents** for parallel research, specialist delegation, context protection, and dev pipelines — they cover most real work with zero infrastructure, exactly as dibi8's own multilingual pipeline proves. **Graduate to a framework** the moment you need durable state, human-in-the-loop, multi-vendor models, or audit trails — and when you do, default to **LangGraph** for control, **CrewAI** for speed, the **Claude Agent SDK** for Anthropic-native production. The cheapest layer that solves your problem wins every time.
+Stop framing it as "Claude Code vs LangGraph." Built-in subagents and standalone frameworks live in different worlds: one gets work done inside your agent, the other ships a multi-agent application. **Stay on subagents** for parallel research, specialist delegation, context protection, and dev pipelines — they cover most real work with zero infrastructure, exactly as dibi8"s own multilingual pipeline proves. **Graduate to a framework** the moment you need durable state, human-in-the-loop, multi-vendor models, or audit trails — and when you do, default to **LangGraph** for control, **CrewAI** for speed, the **Claude Agent SDK** for Anthropic-native production. The cheapest layer that solves your problem wins every time.
 
 
 {

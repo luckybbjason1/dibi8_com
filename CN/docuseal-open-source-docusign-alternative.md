@@ -1,5 +1,5 @@
 ---
-title: 'DocuSeal Review: Cut Document Signing Costs by 90% with ...
+title: "DocuSeal Review: Cut Document Signing Costs by 90% with ...
   Alternative'
 description: DocuSeal is a 15.7k-star open-source platform that replaces DocuSign. Comprehensive guide covering features, pricing, and best practices for 2026.
   with self-hosted digital document signing, PDF form building, and white-label eSignature
@@ -323,7 +323,7 @@ For enterprise deployments, the DocuSeal team recommends: - 2 CPU cores and 4GB 
 
 ## Cost Analysis: DocuSeal vs Commercial Alternatives
 
-Let's break down the true cost of ownership for a 100-person company over 3 years: | Cost Category | DocuSeal (Self-Hosted) | DocuSign Business Pro | PandaDoc Business |
+Let"s break down the true cost of ownership for a 100-person company over 3 years: | Cost Category | DocuSeal (Self-Hosted) | DocuSign Business Pro | PandaDoc Business |
 |
 ---
 |

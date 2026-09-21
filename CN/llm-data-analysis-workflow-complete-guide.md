@@ -1,5 +1,5 @@
 ---
-title: 'Using LLMs for Data Analysis: Complete Workflow with Pan...
+title: "Using LLMs for Data Analysis: Complete Workflow with Pan...
 description: "Master LLM-powered data analysis with PandasAI, ChatGPT Code Interpreter, and OpenAI API. Build complete workflows for conversational data science."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -160,7 +160,7 @@ No. LLMs excel at accelerating mechanical analysis tasks — generating code, pr
 
 ### Is PandasAI free to use?
 
-The PandasAI library itself is open-source and free. However, using it with OpenAI's GPT models requires an API key and incurs per-token charges. A typical analysis session with a moderately sized dataset costs between $0.10 and $1.00 in API fees. PandasAI's BambooLLM offers a freemium tier with usage limits, and running local models through Ollama is entirely free beyond the hardware electricity cost. For teams processing hundreds of datasets monthly, local LLM deployment becomes cost-competitive within weeks.
+The PandasAI library itself is open-source and free. However, using it with OpenAI's GPT models requires an API key and incurs per-token charges. A typical analysis session with a moderately sized dataset costs between $0.10 and $1.00 in API fees. PandasAI"s BambooLLM offers a freemium tier with usage limits, and running local models through Ollama is entirely free beyond the hardware electricity cost. For teams processing hundreds of datasets monthly, local LLM deployment becomes cost-competitive within weeks.
 
 ### How accurate is ChatGPT at data analysis?
 

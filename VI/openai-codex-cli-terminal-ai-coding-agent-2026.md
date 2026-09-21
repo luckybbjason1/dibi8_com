@@ -1,5 +1,5 @@
 ---
-title: 'OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding ...
+title: "OpenAI Codex CLI: Hướng Dẫn Toàn Diện 2026 về AI Coding ...
 description: "Làm chủ OpenAI Codex CLI—agent coding AI mã nguồn mở tăng trưởng nhanh nhất 2026. Hướng dẫn toàn diện từ cài đặt zero-to-hero, cấu hình AGENTS.md, phát triển song song đa agent, tích hợp MCP, sandbox bảo mật, và so sánh trực diện với Claude Code. Nâng cao năng suất developer ngay hôm nay."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/openai/codex"
 stars: 83000
 maintainer: 'openai'
 last_maintained: "2026-05-17"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/

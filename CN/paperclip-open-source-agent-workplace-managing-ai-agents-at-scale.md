@@ -1,5 +1,5 @@
 ---
-title: 'paperclip: 69,700 Stars for Open-Source Agent Workplace ...
+title: "paperclip: 69,700 Stars for Open-Source Agent Workplace ...
 description: "paperclip (69,700 GitHub stars) is the open-source app for managing AI agents at work. Coordinate multiple agents, manage tasks, and deploy self-hosted agent workflows. Includes setup tutorial, architecture breakdown, and real benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -391,7 +391,7 @@ Sources & Further Reading
 
 paperclip solves a real problem that most developers hit at scale: coordinating multiple AI agents becomes chaotic without a management layer. At 69,700 stars and growing, the demand for structured agent management is clearly real.
 
-If you're juggling 2+ AI agents daily — coding, reviewing, researching — paperclip gives you a Kanban board, conversation history, and deployment pipeline that turns chaos into a managed workflow. The self-hosted option means no vendor lock-in, no data leaving your infrastructure.
+If you"re juggling 2+ AI agents daily — coding, reviewing, researching — paperclip gives you a Kanban board, conversation history, and deployment pipeline that turns chaos into a managed workflow. The self-hosted option means no vendor lock-in, no data leaving your infrastructure.
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss paperclip setups and agent templates. Check out our guides on [持久记忆增强Agent](https://dibi8.com/agentmemory-persi[CLI统一管理](https://dibi8.com/cc-switch-unified-ai-cli-control-center)ual workflows]([agentmemory guide](https://dibi8.com/agentmemory-*) for related tooling. Try paperclip today — `docker compose up`, add two agents, and see your first multi-agent pipeline run.
 

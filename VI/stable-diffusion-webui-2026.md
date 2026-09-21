@@ -1,5 +1,5 @@
 ---
-title: 'Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đ...
+title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): Hướng Dẫn Đ...
 description: "AUTOMATIC1111 stable-diffusion-webui là UI self-host tiêu chuẩn de-facto 163k sao cho sinh ảnh SD/SDXL. Hướng dẫn cài đặt + production 2026 đầy đủ: txt2img / img2img / inpainting / outpainting / LoRA / ControlNet, yêu cầu phần cứng, lựa chọn thay thế (Forge, SD.Next)."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -177,7 +177,7 @@ Bật instance GPU, chạy cài đặt mục 3, và 15 phút sau bạn có sinh 
 
 ## Why This Matters
 
-Understanding stable diffusion webui 2026 (automatic1111): hướng dẫn đầy đủ sinh ảnh self-host 163k sao is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding stable diffusion webui 2026 (automatic1111): hướng dẫn đầy đủ sinh ảnh self-host 163k sao is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

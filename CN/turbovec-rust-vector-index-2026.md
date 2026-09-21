@@ -1,5 +1,5 @@
 ---
-title: 'TurboVec: Rust-Powered Vector Index 10x Faster Than FAIS...
+title: "TurboVec: Rust-Powered Vector Index 10x Faster Than FAIS...
 description: "TurboVec (RyanCodrai/turbovec) is a vector index built on TurboQuant, written in Rust with Python bindings. Drop-in replacements for LangChain, LlamaIndex, Haystack, and Agno. Delivers 10x speedup with quantization. Covers Python integration, benchmarks, and production deployment."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -382,7 +382,7 @@ For teams requiring enterprise proxy solutions: [HTStack](https://www.htstack.co
 
 For financial AI research teams: [OKX](https://promoohubly.com) offers market data APIs and trading infrastructure.
 
-For institutional-grade crypto trading: [Binance](https://bsmkweb.cc) provides the world's largest exchange API.
+For institutional-grade crypto trading: [Binance](https://bsmkweb.cc) provides the world"s largest exchange API.
 
 Read more about [Building RAG Pipelines with Vector Search](dibi8-internal-link) and [Rust Tools for Python Developers](dibi8-internal-link) for deeper technical content.
 

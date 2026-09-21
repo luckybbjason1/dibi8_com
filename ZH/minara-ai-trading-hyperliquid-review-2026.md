@@ -1,5 +1,5 @@
 ---
-title: 'Minara 深度评测 2026：基于 Hyperliquid 的 AI 交易平台，把 Bloomberg 终端...
+title: "Minara 深度评测 2026：基于 Hyperliquid 的 AI 交易平台，把 Bloomberg 终端...
 description: "Minara 是构建在 Hyperliquid 之上的 AI 原生交易平台，在一个聊天界面内完成市场问答、实时分析和加密 / 股票 / 商品交易。两周实测：注册流程、五大真实使用场景、定价剖析，以及 10% 推荐佣金 + 20% Spark 代币返佣的经济模型。"
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -406,7 +406,7 @@ Spark 有市场价、可流通，所以返佣有真实现金价值，不只是�
 
 ## Why This Matters
 
-Understanding minara 深度评测 2026：基于 hyperliquid 的 ai 交易平台，把 bloomberg 终端压缩到一个聊天框 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding minara 深度评测 2026：基于 hyperliquid 的 ai 交易平台，把 bloomberg 终端压缩到一个聊天框 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

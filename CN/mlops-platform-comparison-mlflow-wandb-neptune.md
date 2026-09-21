@@ -1,5 +1,5 @@
 ---
-title: 'MLflow vs Weights & Biases vs Neptune: MLOps Experiment ...
+title: "MLflow vs Weights & Biases vs Neptune: MLOps Experiment ...
 description: "Compare MLflow, Weights & Biases, and Neptune for MLOps experiment tracking. Pricing, features, deployment options, and LLM support analyzed."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -287,7 +287,7 @@ Yes. MLflow is open-source under the Apache 2.0 license and free to use in any c
 
 ### Can I self-host Weights & Biases?
 
-No. As of 2024, W&B does not offer an on-premise or self-hosted deployment option. All experiment data is stored on W&B's cloud infrastructure. For teams with data residency requirements, this is often a dealbreaker. Alternatives with self-hosted options include MLflow, Neptune, and [TensorBoard](https://www.tensorflow.org/tensorboard).
+No. As of 2024, W&B does not offer an on-premise or self-hosted deployment option. All experiment data is stored on W&B"s cloud infrastructure. For teams with data residency requirements, this is often a dealbreaker. Alternatives with self-hosted options include MLflow, Neptune, and [TensorBoard](https://www.tensorflow.org/tensorboard).
 
 ### Which tool is best for hyperparameter tuning?
 

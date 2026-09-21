@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (...
+title: "Claude Code Subagent vs LangGraph vs CrewAI vs AutoGen (...
 description: "당신은 이미 Claude Code 안에서 subagent를 오케스트레이션하고 있다. 정말 LangGraph, CrewAI, AutoGen이 필요할까? 실제 벤치마크, GitHub 스타의 현실, 그리고 "내장 기능으로 충분하다"와 "이제 넘어갈 때다" 사이의 솔직한 경계선을 담은 2026 의사결정 가이드."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -149,7 +149,7 @@ Claude Code subagent에 머무르든 프레임워크로 넘어가든, 멀티 에
 
 ## Why This Matters
 
-Understanding claude code subagent vs langgraph vs crewai vs autogen (2026): 언제 독립 프레임워크로 넘어가야 하는가 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude code subagent vs langgraph vs crewai vs autogen (2026): 언제 독립 프레임워크로 넘어가야 하는가 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

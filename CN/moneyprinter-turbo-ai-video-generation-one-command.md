@@ -1,5 +1,5 @@
 ---
-title: 'MoneyPrinterTurbo: Generate HD Short Videos with AI in O...
+title: "MoneyPrinterTurbo: Generate HD Short Videos with AI in O...
 description: "MoneyPrinterTurbo (83,031 GitHub stars) generates HD short videos with one click using AI LLM. Script, voice, subtitles, background music — all automated. Includes setup tutorial, pipeline breakdown, and real video benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -398,7 +398,7 @@ ffmpeg -i ./output/video.mp4 -vf "scale=iw:ih*9/16:force_original_aspect_ratio=d
 
 MoneyPrinterTurbo proves that AI video generation doesn't need a $500/month subscription. It's a full production pipeline in a Python package: script writing, voice synthesis, subtitle generation, media selection, and video assembly — all automated.
 
-Whether you're a content creator looking to scale your YouTube channel, an educator producing course materials, or just curious about AI video generation, MoneyPrinterTurbo gives you professional-quality output at a fraction of the cost.
+Whether you"re a content creator looking to scale your YouTube channel, an educator producing course materials, or just curious about AI video generation, MoneyPrinterTurbo gives you professional-quality output at a fraction of the cost.
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss MoneyPrinterTurbo tips. Check out our guides on [本地ChatGPT工具](https://dibi8.com/nanochat-karpathy-100-[AI笔记本](https://dibi8.com/open-notebook-open-source-notebooklm-alternative-15-ai-providers)ry]([nanochat guide](https://dibi8.com/nanochat-*) for complementary AI tooling. Try it today — install, set your API keys, and generate your first AI video.
 

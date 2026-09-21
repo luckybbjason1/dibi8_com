@@ -3,7 +3,7 @@ Superpowers: 200000+ Stars -- Agentic Skills Framework & Methodology 2026
 
 Meta description: Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.
 ---
-title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
+title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: "Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen."
 date: 2026-05-23
 lastmod: 2026-05-23
@@ -706,7 +706,7 @@ A3: Skills are typically individual scripts (e.g., `.sh` files). You can share t
 A4: The primary difference lies in their implementation language and philosophy. Superpowers is Shell-native, emphasizing portability and integration with existing command-line tools. LangChain is Python-native, offering a vast Python ecosystem, more abstract components (like "chains" and "agents" as Python classes), and a different paradigm for building LLM applications. Superpowers is often simpler to set up for existing shell environments, while LangChain offers deeper Python integration and a richer set of pre-built abstractions.
 
 **Q5: Is Superpowers suitable for complex, multi-agent conversational systems?**
-A5: While Superpowers can orchestrate agents, its core strength isn't in complex, emergent multi-agent conversations like AutoGen. Superpowers is more geared towards defining sequential or conditional execution of skills by an agent, potentially with LLM guidance. For highly sophisticated agent-to-agent dialogue and collaboration, you might need to explore frameworks like AutoGen or build custom communication layers on top of Superpowers.
+A5: While Superpowers can orchestrate agents, its core strength isn"t in complex, emergent multi-agent conversations like AutoGen. Superpowers is more geared towards defining sequential or conditional execution of skills by an agent, potentially with LLM guidance. For highly sophisticated agent-to-agent dialogue and collaboration, you might need to explore frameworks like AutoGen or build custom communication layers on top of Superpowers.
 
 ## Conclusion
 

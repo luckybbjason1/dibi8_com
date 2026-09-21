@@ -1,5 +1,5 @@
 ---
-title: 'Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
+title: "Top 10 Công Cụ MCP Miễn Phí 2026: Server Model Context P...
 description: "10 MCP server miễn phí tốt nhất cho Claude, Cursor và mọi AI client tương thích MCP — filesystem, tìm kiếm web, bộ nhớ, GitHub, database và nhiều hơn nữa. Toàn bộ mã nguồn mở, không tốn phí."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -265,7 +265,7 @@ Tất cả server có tại [kho GitHub MCP chính thức](https://github.com/mo
 
 ## Why This Matters
 
-Understanding top 10 công cụ mcp miễn phí 2026: server model context protocol tốt nhất is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding top 10 công cụ mcp miễn phí 2026: server model context protocol tốt nhất is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'Vector Database Comparison 2025: Pinecone vs Weaviate vs...
+title: "Vector Database Comparison 2025: Pinecone vs Weaviate vs...
 description: "Compare the top vector databases of 2025: Pinecone, Weaviate, Chroma, and Milvus. Find the best vector DB for your RAG application with benchmarks, pricing, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -454,7 +454,7 @@ Yes, through the pgvector extension. pgvector adds HNSW and IVFFlat indexes to P
 
 **What is the difference between Chroma and Pinecone?**
 
-Chroma is an open-source, local-first vector database optimized for developer productivity and rapid prototyping. Pinecone is a fully managed cloud service designed for production scalability. Chroma runs on your machine; Pinecone runs on Pinecone's infrastructure. Many teams prototype with Chroma and migrate to Pinecone for production deployment.
+Chroma is an open-source, local-first vector database optimized for developer productivity and rapid prototyping. Pinecone is a fully managed cloud service designed for production scalability. Chroma runs on your machine; Pinecone runs on Pinecone"s infrastructure. Many teams prototype with Chroma and migrate to Pinecone for production deployment.
 
 **Which vector database has the best performance?**
 

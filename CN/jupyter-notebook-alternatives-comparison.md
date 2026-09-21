@@ -1,5 +1,5 @@
 ---
-title: 'Top Jupyter Notebook Alternatives in 2024: JupyterLab vs...
+title: "Top Jupyter Notebook Alternatives in 2024: JupyterLab vs...
 description: "Compare the best Jupyter Notebook alternatives for 2024 — JupyterLab, Google Colab, Deepnote, and Hex — with pricing, features, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -121,7 +121,7 @@ This makes Hex particularly valuable for data teams that build dashboards and re
 
 Hex pricing starts with a free tier for individual use. Team plans begin at $39/user/month and include collaboration features, app publishing, and priority support. Enterprise plans add SAML SSO, audit logs, and dedicated infrastructure.
 
-The trade-off is that Hex's reactive model requires adjusting your mental model from imperative (Jupyter-style) to declarative programming. Users accustomed to fine-grained cell execution control may find the automatic recomputation jarring at first.
+The trade-off is that Hex"s reactive model requires adjusting your mental model from imperative (Jupyter-style) to declarative programming. Users accustomed to fine-grained cell execution control may find the automatic recomputation jarring at first.
 
 ## Detailed Comparison Table
 

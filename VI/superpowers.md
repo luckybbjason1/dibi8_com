@@ -1,5 +1,5 @@
 ---
-title: 'Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luậ...
+title: "Superpowers: Hơn 200000 Stars -- Khung & Phương pháp luậ...
 description: "Khám phá Superpowers, framework kỹ năng tác nhân với hơn 200k stars. Thiết lập trong vài phút, có benchmark và sẵn sàng cho sản xuất. So sánh với LangChain, LlamaIndex và AutoGen."
 date: 2026-05-23
 lastmod: 2026-05-23
@@ -555,7 +555,7 @@ log_with_timestamp "Kỹ năng my_skill.sh kết thúc với mã thoát $EXIT_CO
 **Ví dụ: Kích hoạt tác nhân Superpowers qua cron:**
 
 ```bash
-# Trong crontab của bạn (chạy 'crontab -e')
+# Trong crontab của bạn (chạy 'crontab -e")
 # Chạy tác vụ tác nhân hàng ngày lúc 3 giờ sáng
 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf >> /var/log/superpowers_agent.log 2>&1
 ```

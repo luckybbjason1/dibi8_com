@@ -1,5 +1,5 @@
 ---
-title: 'Pixelle-Video Review: AI Auto Short Video Generator — On...
+title: "Pixelle-Video Review: AI Auto Short Video Generator — On...
 description: Pixelle-Video is an AI-powered automatic short video engine. Input a. Comprehensive guide covering features, pricing, and best practices for 2026.
   topic and get a complete video with script, AI images, voiceover, and BGM.
 date: 2026-05-15 04:20:25+09:00
@@ -308,7 +308,7 @@ Recommended setup for beginners: - LLM: DeepSeek API (cheap, good quality)
 
 **Pixelle-Video** democratizes video creation by combining LLM, image generation, TTS, and video editing into a single automated pipeline. Whether you're a content creator, educator, marketer, or developer, this tool can save hours of video production time.
 
-The ComfyUI-based architecture means it's not just a black-box tool — you can customize every component, swap models, and build your own video generation workflows.
+The ComfyUI-based architecture means it"s not just a black-box tool — you can customize every component, swap models, and build your own video generation workflows.
 
 **Best for**: Content creators, educators, marketers, developers who need quick video production
 

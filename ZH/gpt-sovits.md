@@ -497,12 +497,12 @@ for txt_file in "$INPUT_DIR"/*.txt; do
     curl -X POST http://localhost:9880/tts \
         -H "Content-Type: application/json" \
         -d "{
-            \"text\": $(jq -Rs . < "$txt_file"),
-            \"text_lang\": \"zh\",
-            \"ref_audio_path\": \"$REF_AUDIO\",
-            \"prompt_text\": \"$REF_TEXT\",
-            \"prompt_lang\": \"zh\",
-            \"media_type\": \"wav\"
+            "text": $(jq -Rs . < "$txt_file"),
+            "text_lang": "zh",
+            "ref_audio_path": "$REF_AUDIO",
+            "prompt_text": "$REF_TEXT",
+            "prompt_lang": "zh",
+            "media_type": "wav"
         }" \
         --output "$OUTPUT_DIR/${filename}.wav"
     

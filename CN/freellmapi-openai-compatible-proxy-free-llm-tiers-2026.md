@@ -1,5 +1,5 @@
 ---
-title: 'FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
+title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co...
 description: "Aggregate Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter and more free tiers into a single proxy. ~1.7B tokens/month. Docker install, Claude Code integration, tool calling, streaming, fallback chains."
 tags: ["open-source"]
 date: 2026-06-22
@@ -391,7 +391,7 @@ Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/yea
 ## Docker Compose Setup
 
 For teams that prefer Docker Compose over the install script: ```yaml
-version: '3.8'
+version: '3.8"
 services: freellmapi: image: freellmapi/server:latest
     ports: - "3001:3001"
     volumes: - ./data:/app/data

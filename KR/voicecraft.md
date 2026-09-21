@@ -1,5 +1,5 @@
 ---
-title: 'VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 ...
+title: "VoiceCraft: 8.5K+ Stars — GPT-SoVITS, XTTS 대비 제로샷 음성 편집 ...
 description: "VoiceCraft는 신경 코덱 언어 모델 기반의 제로샷 음성 편집 및 TTS 모델로, GPT-SoVITS, Coqui TTS, RVC와 호환됩니다. 설치 튜토리얼, 벤치마크, Docker 배포, 비교표를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -277,7 +277,7 @@ model_path = hf_hub_download(
 
 # ModelScope를 통한 다운로드 (중국 지역용)
 from modelscope import snapshot_download
-model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
+model_dir = snapshot_download('AI-ModelScope/VoiceCraft")
 ```
 
 ## 벤치마크 / 실제 사용 사례

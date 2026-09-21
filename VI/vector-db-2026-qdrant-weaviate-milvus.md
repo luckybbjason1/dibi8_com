@@ -1,5 +1,5 @@
 ---
-title: 'Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (T...
+title: "Lựa Chọn Vector DB 2026: Qdrant vs Weaviate vs Milvus (T...
 description: "Đã test Qdrant, Weaviate, Milvus trên cùng workload 5 triệu vector. Độ trễ, throughput, bộ nhớ, độ phức tạp cài đặt. Loại nào hợp cho prototype vs production, và khi nào nên bỏ qua vector DB để dùng SQLite FTS5."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -161,7 +161,7 @@ Bài học thực sự: hầu hết các đội thiết kế quá mức tầng r
 
 ## Why This Matters
 
-Understanding lựa chọn vector db 2026: qdrant vs weaviate vs milvus (test workload thực tế) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding lựa chọn vector db 2026: qdrant vs weaviate vs milvus (test workload thực tế) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

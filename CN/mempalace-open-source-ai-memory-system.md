@@ -1,5 +1,5 @@
 ---
-title: 'MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
+title: "MemPalace: The Best-Benchmarked Open-Source AI Memory Sy...
 description: "MemPalace is a local-first AI memory system that stores verbatim conversation history and retrieves it with semantic search. Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent. ChromaDB backend, pluggable storage, 0 external API calls. Includes setup guide, benchmarks, and architecture breakdown."
 date: 2026-06-10
 lastmod: 2026-06-10
@@ -403,7 +403,7 @@ MemPalace's 96.6% R@5 raw on LongMemEval is the best benchmarked score for open-
 Yes. The retrieval layer is pluggable. The default is ChromaDB, but you can drop in any backend that implements `mempalace/backends/base.py`. Custom backends are supported.
 
 ### Q5: What happens if I delete my memory files?
-Since MemPalace is local-first, there's no cloud recovery. If you delete your memory files, the data is gone unless you've manually backed it up. Consider setting up automatic backups if your memory is valuable.
+Since MemPalace is local-first, there's no cloud recovery. If you delete your memory files, the data is gone unless you"ve manually backed it up. Consider setting up automatic backups if your memory is valuable.
 
 ---
 

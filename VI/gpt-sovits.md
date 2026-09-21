@@ -1,5 +1,5 @@
 ---
-title: 'GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
+title: "GPT-SoVITS: 57.5K+ Stars — Hướng Dẫn Triển Khai AI Voice...
 description: "GPT-SoVITS (GSV) là công cụ few-shot voice cloning và TTS với khả năng zero-shot. Tích hợp với ComfyUI, RVC và MeloTTS. Bao gồm triển khai Docker, huấn luyện giọng nói, thiết lập API và hardening production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/RVC-Boss/GPT-SoVITS"
 stars: 57500
 maintainer: 'RVC-Boss'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["voice-cloning", "text-to-speech", "gpt-sovits", "tts", "ai-giong-noi", "docker", "rvc", "python"]
@@ -441,12 +441,12 @@ for txt_file in "$INPUT_DIR"/*.txt; do
     curl -X POST http://localhost:9880/tts \
         -H "Content-Type: application/json" \
         -d "{
-            \"text\": $(jq -Rs . < "$txt_file"),
-            \"text_lang\": \"vi\",
-            \"ref_audio_path\": \"$REF_AUDIO\",
-            \"prompt_text\": \"$REF_TEXT\",
-            \"prompt_lang\": \"vi\",
-            \"media_type\": \"wav\"
+            "text": $(jq -Rs . < "$txt_file"),
+            "text_lang": "vi",
+            "ref_audio_path": "$REF_AUDIO",
+            "prompt_text": "$REF_TEXT",
+            "prompt_lang": "vi",
+            "media_type": "wav"
         }" \
         --output "$OUTPUT_DIR/${filename}.wav"
     

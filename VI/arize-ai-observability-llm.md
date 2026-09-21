@@ -1,5 +1,5 @@
 ---
-title: 'Arize AI Phoenix: Công cụ Giám sát LLM Mã nguồn mở Truy ...
+title: "Arize AI Phoenix: Công cụ Giám sát LLM Mã nguồn mở Truy ...
 description: "Hướng dẫn đầy đủ về Arize Phoenix năm 2026: giám sát LLM mã nguồn mở, truy vết RAG, quản lý phiên bản prompt, theo dõi token, và triển khai sản xuất với LangChain và LlamaIndex."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "Arize-ai/phoenix"
 stars: 6500
 maintainer: 'Arize AI'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["llm", "giám sát", "arize phoenix", "rag", "langchain", "llamaindex", "opentelemetry", "python", "docker", "hạ tầng ai"]

@@ -1,5 +1,5 @@
 ---
-title: 'Backtrader 2026: The Python Backtesting Engine Validatin...
+title: "Backtrader 2026: The Python Backtesting Engine Validatin...
 description: "Full guide to Backtrader event-driven backtesting engine. Build, test, and optimize trading strategies in Python. Integrations, benchmarks, and live trading deployment 2026."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -578,7 +578,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 2. Backtrader GitHub: https://github.com/mementum/backtrader
 3. Backtrader2 Community Fork: https://github.com/backtrader2/backtrader
 4. VectorBT (for fast research): https://github.com/polakowo/vectorbt
-5. "Python for Finance" — Yves Hilpisch (O'Reilly, 2018)
+5. "Python for Finance" — Yves Hilpisch (O"Reilly, 2018)
 6. "Advances in Financial Machine Learning" — Marcos Lopez de Prado (Wiley, 2018)
 
 ---

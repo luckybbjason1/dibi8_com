@@ -1,5 +1,5 @@
 ---
-title: 'Bộ nhớ bền vững cho AI Agent 2026: So sánh thực chiến Le...
+title: "Bộ nhớ bền vững cho AI Agent 2026: So sánh thực chiến Le...
 description: "Agent không có bộ nhớ bền vững sẽ khởi động lại từ con số không mỗi phiên. Đã kiểm thử Letta, Mem0, A-MEM trên cùng một workload đa phiên: ai thực sự giữ được ngữ cảnh, ai rẻ hơn, khi nào nên tự viết."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -182,7 +182,7 @@ Với case đơn giản, MCP memory server là đủ. Đừng over-engineer. Đ�
 
 ## Why This Matters
 
-Understanding bộ nhớ bền vững cho ai agent 2026: so sánh thực chiến letta vs mem0 vs a-mem is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding bộ nhớ bền vững cho ai agent 2026: so sánh thực chiến letta vs mem0 vs a-mem is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

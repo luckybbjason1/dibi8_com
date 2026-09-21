@@ -1,5 +1,5 @@
 ---
-title: 'Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Fi...
+title: "Supabase 2026: Postgres 벡터 검색으로 100만+ AI 앱을 구동하는 오픈소스 Fi...
 description: "Supabase 완벽 가이드: Postgres + pgvector를 갖춘 오픈소스 Firebase 대안. 인증, 스토리지, 실시간, Edge 함수, RAG 파이프라인 통합, 자체 호스팅 Docker 배포, 행 수준 보안."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -577,7 +577,7 @@ services: db: image: supabase/postgres:15.8.1.040
     volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
-        -c shared_preload_libraries='pg_stat_statements,pgvector'
+        -c shared_preload_libraries='pg_stat_statements,pgvector"
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB

@@ -1,5 +1,5 @@
 ---
-title: 'Ultimate Vocal Remover: 24.7K+ Stars — Hướng Dẫn Cài Đặt...
+title: "Ultimate Vocal Remover: 24.7K+ Stars — Hướng Dẫn Cài Đặt...
 description: "Ultimate Vocal Remover (UVR) là ứng dụng GUI tách giọng hát bằng mạng nơ-ron sâu. Tương thích với demucs, RVC, GPT-SoVITS. Bao gồm cài đặt Windows, macOS, Linux, chọn model, xử lý hàng loạt và tăng cường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -517,7 +517,7 @@ from datetime import datetime
 log_file = f"uvr_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
+    format='%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.FileHandler(log_file),
         logging.StreamHandler(sys.stdout)

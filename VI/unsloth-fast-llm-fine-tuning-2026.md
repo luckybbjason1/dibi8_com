@@ -1,5 +1,5 @@
 ---
-title: 'Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2...
+title: "Unsloth 2026: Fine-Tuning LLM Nhanh 64.9k Sao — Tốc Độ 2...
 description: "Unsloth fine-tune LLM nhanh hơn 2× với ít hơn 70% VRAM so với baseline HuggingFace TRL. 64.9k GitHub sao, dual Apache 2.0 + AGPL-3.0 license. Hỗ trợ Llama 3, Mistral, Qwen 3, Gemma, DeepSeek cho LoRA / QLoRA / DPO / GRPO. Hướng dẫn fine-tuning single-GPU đầy đủ 2026."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -216,7 +216,7 @@ Pair với [Axolotl](/vi/resources/llm-frameworks/axolotl-llm-fine-tuning-framew
 
 ## Why This Matters
 
-Understanding unsloth 2026: fine-tuning llm nhanh 64.9k sao — tốc độ 2×, vram ít hơn 70%, thân thiện single-gpu is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding unsloth 2026: fine-tuning llm nhanh 64.9k sao — tốc độ 2×, vram ít hơn 70%, thân thiện single-gpu is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

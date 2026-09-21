@@ -1,5 +1,5 @@
 ---
-title: 'TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp...
+title: "TurboVec: Chỉ Số Vector Được Đưa Mạnh Bởi Rust Nhanh Gấp...
 description: "TurboVec (RyanCodrai/turbovec) là chỉ số vector được xây dựng trên TurboQuant, viết bằng Rust với Python bindings. Thay thế trực tiếp cho LangChain, LlamaIndex, Haystack và Agno. Tăng tốc 10 lần với quantization. Bao gồm tích hợp Python, benchmark và triển khai sản xuất."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -293,7 +293,7 @@ for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chu
 **Docker Compose Cho Production Serving**
 
 ```yaml
-version: '3.8'
+version: '3.8"
 services: turbovec: image: ryan-codrai/turbovec:latest
     ports: - "8000:8000"
     volumes: - ./index:/data

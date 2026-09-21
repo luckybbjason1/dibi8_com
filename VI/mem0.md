@@ -1,5 +1,5 @@
 ---
-title: 'Mem0: 56K+ Stars — Hướng Dẫn Tinh Chỉnh Hiệu Suất Bộ Nhớ...
+title: "Mem0: 56K+ Stars — Hướng Dẫn Tinh Chỉnh Hiệu Suất Bộ Nhớ...
 description: "Mem0 (mem0ai) là lớp bộ nhớ phổ quát cho AI agent. Tương thích với Claude Code, OpenAI, LangChain, CrewAI, Cursor. Bao gồm hướng dẫn mem0, thiết lập bộ nhớ liên tục, tinh chỉnh vector store và benchmark triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -405,7 +405,7 @@ memory_agent = Agent(
 async def run_agent(): context = UserContext(user_id="user_42")
     result = await Runner.run(
         memory_agent,
-        "I'm a vegetarian who loves Italian food.",
+        "I"m a vegetarian who loves Italian food.",
         context=context
     )
     print(result.final_output)

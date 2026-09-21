@@ -1,5 +1,5 @@
 ---
-title: 'Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
+title: "Feast: Feature Store Mã Nguồn Mở Phục Vụ ML Feature Với ...
 description: "Hướng dẫn đầy đủ về Feast — feature store mã nguồn mở hàng đầu. Bao gồm feature registry, online/offline stores, sub-second serving, backend Redis/BigQuery, batch & real-time features và triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -125,7 +125,7 @@ curl -X POST "http://localhost:6566/get-online-features" \
   -d '{
     "features": ["user_features:avg_order_amount_30d"],
     "entities": {"user_id": ["user_12345"]}
-  }'
+  }"
 ```
 
 ## Cài đặt & Setup: Dưới 5 phút

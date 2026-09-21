@@ -1,5 +1,5 @@
 ---
-title: 'LLM Inference Cost Optimization: Run Any Model for Penni...
+title: "LLM Inference Cost Optimization: Run Any Model for Penni...
 description: "LLM inference cost optimization guide. Compare Ollama, vLLM, llama.cpp quantization. Reduce API costs by 90%+. 3 benchmarks, 6 deployment methods."
 tags: ["guide", "open-source", "reference", "tutorial"]
 date: 2026-06-16
@@ -456,7 +456,7 @@ After 3 months of measuring, benchmarking, and building routing systems, I disco
 
 The real secret? Route wisely. Use local quantized models for 80% of routine requests. Save the API budget for the 20% of tasks that actually need GPT-4o or Claude. Do this, and your bill drops 90% without anyone noticing the difference.
 
-**The insight that took me 3 months to learn:** Quantization isn't "compromised quality." It's "perfectly adequate quality at 1/100th the cost." Once you accept that most tasks don't need full precision, you've unlocked the entire optimization game.
+**The insight that took me 3 months to learn:** Quantization isn't "compromised quality." It's "perfectly adequate quality at 1/100th the cost." Once you accept that most tasks don't need full precision, you"ve unlocked the entire optimization game.
 
 For more on cost optimization, try: - [Ollama official docs](https://docs.ollama.com/) — setup and model management
 - [vLLM documentation](https://docs.vllm.ai/) — production inference at scale

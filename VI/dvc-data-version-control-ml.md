@@ -1,5 +1,5 @@
 ---
-title: 'DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipelin...
+title: "DVC: Git cho Dữ Liệu — Quản Lý Phiên Bản Data ML Pipelin...
 description: "Hướng dẫn đầy đủ về DVC (Data Version Control) — quản lý phiên bản dataset, model, ML pipeline với workflow kiểu Git. Bao gồm cài đặt, backend S3/GCS/Azure, tích hợp CI/CD, benchmark và hardening production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -519,7 +519,7 @@ Git LFS lưu large files trên server riêng nhưng vẫn track file versions qu
 Có. Dùng `dvc.api` để đọc datasets trực tiếp từ DVC remotes bên trong notebooks mà không cần manual `dvc pull`: ```python
 import dvc.api
 
-with dvc.api.open('data/dataset.csv', remote=myremote) as f: df = pd.read_csv(f)
+with dvc.api.open('data/dataset.csv", remote=myremote) as f: df = pd.read_csv(f)
 ```
 
 **Q: Tôi có thể dùng DVC với private Git repository không?**

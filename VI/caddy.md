@@ -1,5 +1,5 @@
 ---
-title: 'Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
+title: "Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
 description: "Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương thích Docker, Let"'''s Encrypt, Prometheus, Grafana. Bao gồm hướng dẫn Caddyfile, cài đặt Docker, production hardening và giám sát.'
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -614,7 +614,7 @@ Với khoảng 90% workload web — site tĩnh, API gateway, reverse proxy micro
 
 ### Caddy xử lý lỗi gia hạn chứng chỉ như thế nào?
 
-Caddy triển khai multi-issuer fallback: nếu Let's Encrypt thất bại, nó tự động thử lại với ZeroSSL. Chứng chỉ được gia hạn 60 ngày trước khi hết hạn, và Caddy retry với exponential backoff cho các lỗi tạm thờ. Endpoint API admin `/certificates` hiển thị trạng thái của tất cả chứng chỉ được quản lý, cho phép monitoring và alerting.
+Caddy triển khai multi-issuer fallback: nếu Let"s Encrypt thất bại, nó tự động thử lại với ZeroSSL. Chứng chỉ được gia hạn 60 ngày trước khi hết hạn, và Caddy retry với exponential backoff cho các lỗi tạm thờ. Endpoint API admin `/certificates` hiển thị trạng thái của tất cả chứng chỉ được quản lý, cho phép monitoring và alerting.
 
 ### Trade-off giữa Caddyfile và JSON configuration là gì?
 

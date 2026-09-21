@@ -1,5 +1,5 @@
 ---
-title: 'Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI...
+title: "Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI...
 description: "Flowise 2026 완벽 가이드 — 100개 이상의 통합을 갖춘 오픈소스 로우코드 AI 워크플로우 빌더. 시각적 LangChain 에이전트 생성, Docker 배포, API 엔드포인트 및 실제 벤치마크.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -475,7 +475,7 @@ curl -s http://localhost:3000/api/v1/chatflows \
 # 자격 증명 날추 (암호화됨)
 curl -s http://localhost:3000/api/v1/credentials \
   -u "admin:your-password" \
-  | jq '.' > "$BACKUP_DIR/credentials.json"
+  | jq '." > "$BACKUP_DIR/credentials.json"
 
 # 데이터베이스 백업 (PostgreSQL)
 docker exec flowise-postgres pg_dump -U flowise flowise > "$BACKUP_DIR/database.sql"

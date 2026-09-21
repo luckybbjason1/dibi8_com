@@ -1,5 +1,5 @@
 ---
-title: 'act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 ...
+title: "act: 70,410 GitHub Stars — 本地运行 GitHub Actions，2026 生产级 ...
 description: "act (nektos/act) 是一个使用 Docker 容器在本地运行 GitHub Actions 工作流的 CLI 工具。兼容 Docker、GitHub Actions、Go 和 VS Code。涵盖安装、配置、密钥管理、runner 镜像和生产环境加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -584,7 +584,7 @@ choco upgrade act-cli
 scoop update act
 
 # Bash 脚本（重新运行安装器）
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+curl --proto '=https" --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 ```
 
 ## 结论

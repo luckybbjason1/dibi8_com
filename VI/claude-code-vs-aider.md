@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại v...
+title: "Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại v...
 description: "So sánh chi tiết Claude Code (CLI thương mại của Anthropic) và Aider (mã nguồn mở, tự mang API key) — giá cả, context, phong cách agent, hiệu quả chi phí. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -14,7 +14,7 @@ faqs: - q: 'Claude Code hay Aider rẻ hơn cho sử dụng hàng ngày?'
   - q: 'Cái nào xử lý monorepo 200K+ LOC tốt hơn?'
     a: 'Claude Code — đi kèm context window 1M ở tier Sonnet/Opus và hệ thống subagent nội bộ có thể tóm tắt codebase theo thời gian thực. Aider dựa vào repo map (filename + signature) cộng với load file theo yêu cầu; hoạt động trên codebase khổng lồ nhưng bạn phải đưa đúng file. Để "cho AI tự tìm chỗ cần xem", Claude Code thắng.'
   - q: 'Aider có đủ mã nguồn mở cho dùng doanh nghiệp không?'
-    a: 'Có — Aider giấy phép Apache 2.0 và chạy hoàn toàn trên máy của bạn. Cuộc gọi bên ngoài duy nhất là tới model API bạn cấu hình (OpenAI, Anthropic, Ollama local, v.v.). Cho môi trường air-gapped hoặc nhạy cảm compliance, ghép Aider với model local và bạn có setup AI coding hoàn toàn tự host. Claude Code yêu cầu cloud của Anthropic.'
+    a: 'Có — Aider giấy phép Apache 2.0 và chạy hoàn toàn trên máy của bạn. Cuộc gọi bên ngoài duy nhất là tới model API bạn cấu hình (OpenAI, Anthropic, Ollama local, v.v.). Cho môi trường air-gapped hoặc nhạy cảm compliance, ghép Aider với model local và bạn có setup AI coding hoàn toàn tự host. Claude Code yêu cầu cloud của Anthropic."
 ---
 
 # Claude Code vs Aider 2026: Cuộc đối đầu CLI thương mại vs mã nguồn mở

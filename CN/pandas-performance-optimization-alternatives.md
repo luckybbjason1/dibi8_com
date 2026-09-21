@@ -1,5 +1,5 @@
 ---
-title: 'Pandas Performance Optimization Guide: When to Switch to...
+title: "Pandas Performance Optimization Guide: When to Switch to...
 description: "Optimize Pandas performance or switch to Polars or DuckDB. Benchmarks, migration strategies, and decision frameworks for faster data processing in Python."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -226,7 +226,7 @@ Yes. Both are Arrow-native and interoperate seamlessly. A typical hybrid workflo
 
 ### How much faster is Polars than Pandas?
 
-Speedups vary by operation but typically range from 5x to 50x on single-node workloads. Filter operations see 10-30x speedups due to vectorized execution and predicate pushdown. Groupby aggregations improve 5-20x through multithreading and hash-optimized aggregation. Memory usage drops by 50-70% due to Arrow's compact columnar format. On the h2oai db-benchmark suite, Polars ranks consistently in the top three across all tested operations.
+Speedups vary by operation but typically range from 5x to 50x on single-node workloads. Filter operations see 10-30x speedups due to vectorized execution and predicate pushdown. Groupby aggregations improve 5-20x through multithreading and hash-optimized aggregation. Memory usage drops by 50-70% due to Arrow"s compact columnar format. On the h2oai db-benchmark suite, Polars ranks consistently in the top three across all tested operations.
 
 ### Should beginners learn Pandas or Polars first?
 

@@ -1,7 +1,7 @@
 ---
 好的，这是为您翻译的英文技术文章，遵循了您提供的所有规则：
 ---
-title: 'Superpowers: 200000+ Stars -- Agentic Skills Framework &...
+title: "Superpowers: 200000+ Stars -- Agentic Skills Framework &...
 description: '探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。'
 date: 2026-05-23
 lastmod: 2026-05-23
@@ -622,7 +622,7 @@ log_with_timestamp "Skill my_skill.sh finished with exit code $EXIT_CODE"
 **示例：通过 cron 触发 Superpowers 代理：**
 
 ```bash
-# 在您的 crontab 中（运行 'crontab -e'）
+# 在您的 crontab 中（运行 'crontab -e"）
 # 每天凌晨 3 点运行一个每日代理任务
 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf >> /var/log/superpowers_agent.log 2>&1
 ```

@@ -1,5 +1,5 @@
 ---
-title: 'Matplotlib vs Seaborn vs Plotly vs Observable: Data Visu...
+title: "Matplotlib vs Seaborn vs Plotly vs Observable: Data Visu...
 description: "Compare Matplotlib, Seaborn, Plotly, and Observable Plot for Python data visualization. Features, code examples, and use-case recommendations."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -206,7 +206,7 @@ Observable's platform (observablehq.com) is free for public notebooks. Anyone ca
 
 ### Which library is best for large datasets?
 
-For datasets exceeding 1 million points, raw Matplotlib and Seaborn become impractically slow. Plotly with WebGL scatter (`render_mode='webgl'`) handles up to ~10 million points. For truly massive datasets (100M+ points), consider [Datashader](https://datashader.org) (integrates with Plotly), [hvPlot](https://hvplot.holoviz.org), or server-side rendering with [Apache Superset](https://superset.apache.org). Observable Plot performs well up to ~1 million points via Canvas rendering, beyond which aggregation or sampling becomes necessary.
+For datasets exceeding 1 million points, raw Matplotlib and Seaborn become impractically slow. Plotly with WebGL scatter (`render_mode='webgl"`) handles up to ~10 million points. For truly massive datasets (100M+ points), consider [Datashader](https://datashader.org) (integrates with Plotly), [hvPlot](https://hvplot.holoviz.org), or server-side rendering with [Apache Superset](https://superset.apache.org). Observable Plot performs well up to ~1 million points via Canvas rendering, beyond which aggregation or sampling becomes necessary.
 
 
 ---

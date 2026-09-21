@@ -1,5 +1,5 @@
 ---
-title: 'Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị...
+title: "Phân Tích Cổ Phiếu Hàng Ngày: Hệ Thống Thông Minh Đa Thị...
 description: "Hệ thống phân tích cổ phiếu đa thị trường do LLM điều khiển với tin tức thời gian thực, bảng điều khiển ra quyết định và thông báo tự động. 48K sao. Hỗ trợ chạy theo lịch trình miễn phí."
 date: 2026-06-25
 lastmod: 2026-06-25
@@ -237,7 +237,7 @@ analysis = llm.analyze_market(
 
 print(f"Cảm Xúc Tổng Thể: {analysis.sentiment}")
 print(f"Độ Tin Cậy: {analysis.confidence:.1%}")
-print(f"Yếu Tố Chính: {', '.join(analysis.key_factors)}")
+print(f"Yếu Tố Chính: {', ".join(analysis.key_factors)}")
 print(f"Mức Độ Rủi Ro: {analysis.risk_level}")
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
+title: "Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
 description: "Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026."
 date: 2026-09-19
 lastmod: 2026-09-19
@@ -373,7 +373,7 @@ Có, bạn có thể提供 cookies cho logged-in platforms. Xem docs cho cookie-
 
 Agent-Reach đã dân chủ hóa internet access cho AI agents. Trước công cụ này, tôi đã chi $200/tháng cho API calls chỉ để giữ agent của tôi informed. Giờ tôi trả không gì cả.
 
-The speed trade-off là thực tế, nhưng cho most use cases — weekly reports, research aggregation, competitive analysis — it's more than adequate. Team tôi chạy một daily research pipeline quét 10+ sources và generate comprehensive reports ở zero cost.
+The speed trade-off là thực tế, nhưng cho most use cases — weekly reports, research aggregation, competitive analysis — it"s more than adequate. Team tôi chạy một daily research pipeline quét 10+ sources và generate comprehensive reports ở zero cost.
 
 **Bài học:** Đừng để budget constraints ngăn bạn xây dựng smart agents. Đôi khi solution tốt nhất là một simple Python script với good scraping logic.
 

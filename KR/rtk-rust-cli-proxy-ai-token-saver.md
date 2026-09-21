@@ -1,5 +1,5 @@
 ---
-title: 'RTK: AI 코딩 에이전트 토큰 비용을 60-90% 절감하는 오픈소스 Rust CLI 프록시 — 설...
+title: "RTK: AI 코딩 에이전트 토큰 비용을 60-90% 절감하는 오픈소스 Rust CLI 프록시 — 설...
 description: "RTK(Rust Token Killer)는 Claude Code, Cursor, Copilot, Codex, Gemini CLI 등 AI 코딩 에이전트의 LLM 토큰 소비를 60-90% 줄여주는 Rust 기반 오픈소스 CLI 프록시입니다. 단일 바이너리, 제로 의존성, 한 줄 설치. 아키텍처 분석과 실측 벤치마크 포함."
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
@@ -112,7 +112,7 @@ cd rtk && cargo install --path .
 RTK는 셸 후크를 통해 AI 에이전트 명령을 가로챕니다. 셸에 맞게 선택하세요: **Bash / Zsh:**
 ```bash
 echo 'eval "$(rtk hook bash)"' >> ~/.bashrc
-echo 'eval "$(rtk hook zsh)"' >> ~/.zshrc
+echo 'eval "$(rtk hook zsh)"" >> ~/.zshrc
 ```
 
 **Fish:**

@@ -1,5 +1,5 @@
 ---
-title: 'DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe...
+title: "DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe...
   128GB Mac'
 description: Discover DS4 by antirez (Redis creator) — a native inference engine for. Comprehensive guide covering features, pricing, and best practices for 2026.
   DeepSeek V4 Flash. Learn installation, benchmarks vs Ollama/llama.cpp, code examples,
@@ -418,7 +418,7 @@ As the project matures from alpha to stable, DS4 could become the definitive way
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 *Published by the dibi8 Tech Team. For more guides on AI tools, developer resources, and open-source software, visit [dibi8.com](https://dibi8.com).*
 

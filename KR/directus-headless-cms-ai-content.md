@@ -1,5 +1,5 @@
 ---
-title: 'Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치...
+title: "Directus: AI 콘텐츠 워크플로우를 구동하는 오픈소스 Headless CMS — 2026 설치...
 description: "Directus 11.x 완벽 가이드 — 동적 API 생성, 콘텐츠 버전 관리, AI 콘텐츠 워크플로우, 셀프호스팅 Docker 배포를 갖춘 오픈소스 Headless CMS. REST 및 GraphQL API 벤치마크."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -539,7 +539,7 @@ export default defineEndpoint((router, { database }) => {
       output += `directus_table_updates{table="${row.tablename}"} ${row.n_tup_upd}\n`;
     });
 
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Type', 'text/plain");
     res.send(output);
   });
 });

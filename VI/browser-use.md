@@ -1,5 +1,5 @@
 ---
-title: 'Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser ...
+title: "Browser Use: 94K+ Stars — Đánh Giá Hiệu Suất AI Browser ...
 description: "Browser Use là framework Python mã nguồn mở kết nối LLM với trình duyệt thực qua Playwright. Hỗ trợ OpenAI, Anthropic, Gemini và mô hình local. Bao gồm cài đặt, benchmark WebVoyager, so sánh Selenium, hardening production và triển khai Docker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -167,7 +167,7 @@ CMD ["python", "agent.py"]
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: '3.8"
 services: browser-use: build: .
     environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}

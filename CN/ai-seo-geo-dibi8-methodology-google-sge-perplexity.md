@@ -1,5 +1,5 @@
 ---
-title: 'AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks —...
+title: "AI SEO & GEO: How dibi8 Learned to Stop Chasing Clicks —...
 description: "We stopped writing for clicks. Started writing for citations. After 72 articles across 4 languages, here is the 5-layer method that got us cited by Google SGE, Perplexity, and ChatGPT."
 tags: ["open-source"]
 date: 2026-06-15
@@ -404,7 +404,7 @@ A: Direct measurement is hard. You can monitor Perplexity.com for domain mention
 
 Here's what writing 72 articles taught me that no blog post or course or guide told me: **Writing for AI isn't about gaming a system. It's about writing better.**
 
-When you force yourself to include comparison tables with real numbers, you're forced to actually compare things instead of hand-waving. When you force yourself to write honest limitations, you're forced to actually *think* about what your content doesn't cover. When you force yourself to structure your article with clear H2 sections, you're forced to actually *organize your thoughts.*
+When you force yourself to include comparison tables with real numbers, you're forced to actually compare things instead of hand-waving. When you force yourself to write honest limitations, you're forced to actually *think* about what your content doesn't cover. When you force yourself to structure your article with clear H2 sections, you"re forced to actually *organize your thoughts.*
 
 The AI optimization layers are just forced discipline. The discipline that good writers apply instinctively.
 

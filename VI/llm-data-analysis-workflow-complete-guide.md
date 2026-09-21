@@ -1,5 +1,5 @@
 ---
-title: 'Sử Dụng LLM Để Phân Tích Dữ Liệu: Hướng Dẫn Toàn Diện Vớ...
+title: "Sử Dụng LLM Để Phân Tích Dữ Liệu: Hướng Dẫn Toàn Diện Vớ...
 description: "Khám phá cách sử dụng LLM để phân tích dữ liệu hiệu quả với PandasAI, ChatGPT Code Interpreter và OpenAI API. So sánh ưu nhược điểm và hướng dẫn thực hành chi tiết."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -207,7 +207,7 @@ assistant = client.beta.assistants.create(
 )
 
 # Upload file
-file = client.files.create(file=open("data.csv", "rb"), purpose='assistants')
+file = client.files.create(file=open("data.csv", "rb"), purpose='assistants")
 
 # Tạo thread và chạy
 thread = client.beta.threads.create()

@@ -1,5 +1,5 @@
 ---
-title: 'MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零A...
+title: "MemPalace：基准测试表现最佳的开源AI记忆系统，在LongMemEval上节省96.6%的R@5——零A...
 description: "MemPalace是一个本地优先的AI记忆系统，以逐字形式存储对话历史，并通过语义搜索进行检索。与Claude Code、Cursor、Windsurf及任何MCP兼容的智能体集成。基于ChromaDB后端，支持可插拔存储，零外部API调用。包含设置指南、基准测试和架构解析。"
 date: 2026-06-10
 lastmod: 2026-06-10
@@ -492,7 +492,7 @@ mempalace init ~/projects/myapp
 
 ## Why This Matters
 
-Understanding mempalace：基准测试表现最佳的开源ai记忆系统，在longmemeval上节省96.6%的r@5——零api调用 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding mempalace：基准测试表现最佳的开源ai记忆系统，在longmemeval上节省96.6%的r@5——零api调用 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

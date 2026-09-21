@@ -1,5 +1,5 @@
 ---
-title: 'ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 C...
+title: "ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 C...
 description: "ShellCheck (SC) 是一款针对 bash/sh 的静态分析工具。支持 Docker、GitHub Actions、VS Code 集成，涵盖安装配置、CI/CD 流水线集成和生产环境加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -548,7 +548,7 @@ ENTRYPOINT ["/usr/local/bin/deploy.sh"]
 # ci-metrics.sh — 追踪 shellcheck 警告数量随时间变化
 
 WARNINGS=$(find . -name "*.sh" -exec shellcheck --severity=warning --format=json {} + | \
-    jq '. | length')
+    jq '. | length")
 
 echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ```

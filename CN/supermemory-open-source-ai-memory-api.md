@@ -1,5 +1,5 @@
 ---
-title: 'Supermemory: The Fastest Open-Source AI Memory API for B...
+title: "Supermemory: The Fastest Open-Source AI Memory API for B...
 description: "Supermemory is an open-source memory engine and app for AI applications. Fast, scalable memory API with vector search, graph search, and session management. Integrates with LangChain, LlamaIndex, CrewAI, and any Python/JS app. Self-hosted, zero external dependencies. Includes setup guide, benchmarks, and production deployment."
 tags: ["ai-agent", "ai-memory", "api", "memory", "open-source", "persistence", "self-hosted"]
 date: 2026-06-10
@@ -435,7 +435,7 @@ print(m.search('test'))
 
 This command demonstrates how to initialize Supermemory, add a test memory, and search for it — all in one command. It's perfect for getting started quickly with your own LLM applications.
 
-Supermemory solves the "goldfish LLM app" problem by providing persistent memory that actually remembers everything your users say. It's the most scalable memory solution for AI applications, with support for 1M+ entries, 50+ languages, and 3+ search modes (vector, graph, full-text).
+Supermemory solves the "goldfish LLM app" problem by providing persistent memory that actually remembers everything your users say. It"s the most scalable memory solution for AI applications, with support for 1M+ entries, 50+ languages, and 3+ search modes (vector, graph, full-text).
 
 Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI memory systems and LLM app architecture.
 

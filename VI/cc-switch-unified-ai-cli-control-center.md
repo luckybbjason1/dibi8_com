@@ -1,5 +1,5 @@
 ---
-title: 'cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất ...
+title: "cc-switch: Trung tâm CLI Desktop đa nền tảng thống nhất ...
 description: "cc-switch (95.900 sao GitHub) là công cụ desktop đa nền tảng thống nhất Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw và Hermes Agent vào một trung tâm điều khiển. Một binary duy nhất, không phụ thuộc. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -88,7 +88,7 @@ cc-switch --version  # Xác nhận cài đặt
 git clone https://github.com/farion1231/cc-switch.git
 cd cc-switch
 # Cài đặt Rust toolchain
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Cài đặt Tauri CLI
 cargo install tauri-cli
 # Build

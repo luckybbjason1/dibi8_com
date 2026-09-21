@@ -1,5 +1,5 @@
 ---
-title: 'markitdown: Convert Files & Office Docs to Markdown (141...
+title: "markitdown: Convert Files & Office Docs to Markdown (141...
 description: "markitdown is Microsoft"'''s Python tool for converting files and office documents to Markdown. 141,153 GitHub stars, MIT license. Covers installation, core CLI and Python usage, real code examples, and an honest comparison with pandoc and docx2txt.'
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -252,7 +252,7 @@ In short, if you need broad format coverage and Markdown that's ready for LLM an
 While `markitdown` is a capable tool, it has limitations and trade-offs. Here are some scenarios where you might find it less suitable: 1. **Complex Document Structures**: For documents with deeply nested tables or intricate cross-referencing, `markitdown` may not reproduce the original structure exactly.
 2. **Custom Office Macros and VBA Scripts**: If a document relies on macros or VBA for its behavior, that logic is not carried over — Markdown has no equivalent, so expect manual rework.
 3. **Visual Fidelity**: Documents that lean heavily on custom styles, exact layout, or complex formatting will lose visual detail, since `markitdown` targets text and structure rather than appearance.
-4. **Collaboration Features**: Office formats include comments, tracked changes, and real-time collaboration that don't map cleanly to Markdown. If those features matter, keep the original format.
+4. **Collaboration Features**: Office formats include comments, tracked changes, and real-time collaboration that don"t map cleanly to Markdown. If those features matter, keep the original format.
 5. **Large Volumes**: For very large documents or big batches, conversion can be resource-intensive and slower, which may matter on lower-end machines.
 
 These limitations are worth weighing when deciding whether `markitdown` fits your specific needs.

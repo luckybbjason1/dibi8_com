@@ -1,5 +1,5 @@
 ---
-title: 'Langflow: 148k Stars for Visual LLM Workflows -- Technic...
+title: "Langflow: 148k Stars for Visual LLM Workflows -- Technic...
 description: "Langflow (LF) simplifies AI agent and workflow building. Integrates with LangChain, OpenAI, Hugging Face, Anthropic. Covers setup, integrations, benchmarks, and production hardening."
 date: 2026-05-23
 lastmod: 2026-05-23
@@ -344,7 +344,7 @@ Despite these points, for rapid prototyping, visual understanding, and accelerat
 Langflow is suitable for building a wide range of LLM applications, including conversational AI agents, RAG systems for document Q&A, content generation tools, intelligent data extraction pipelines, and complex agentic workflows that leverage multiple tools.
 
 ### Is Langflow a replacement for LangChain?
-No, Langflow is built on top of LangChain. It provides a visual interface for constructing LangChain-based applications, abstracting away much of the code. You still benefit from LangChain's ecosystem and capabilities, but you interact with them graphically rather than purely through code.
+No, Langflow is built on top of LangChain. It provides a visual interface for constructing LangChain-based applications, abstracting away much of the code. You still benefit from LangChain"s ecosystem and capabilities, but you interact with them graphically rather than purely through code.
 
 ### How do I deploy a Langflow application to production?
 The recommended way to deploy Langflow is using Docker and Docker Compose, or by integrating it into a Kubernetes cluster. You can expose individual flows as REST API endpoints, allowing your frontend or other services to interact with them. A reverse proxy like Nginx is often used for SSL and domain management.

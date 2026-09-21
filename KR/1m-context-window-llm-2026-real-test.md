@@ -1,5 +1,5 @@
 ---
-title: '1M 컨텍스트 윈도우 LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4....
+title: "1M 컨텍스트 윈도우 LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4....
 description: "두 모델 모두 1M 토큰 컨텍스트를 표방한다. 950K 토큰 코드베이스를 각각 로드해 측정했다: 검색 품질, 지연 시간, 비용, 그리고 1M 약속을 실제로 지키는 쪽과 롱테일 구간에서 무너지는 쪽.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -143,7 +143,7 @@ Corpus size?
 
 ## Why This Matters
 
-Understanding 1m 컨텍스트 윈도우 llm 2026: gemini 2.5 pro vs claude sonnet 4.6 실전 테스트 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 1m 컨텍스트 윈도우 llm 2026: gemini 2.5 pro vs claude sonnet 4.6 실전 테스트 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

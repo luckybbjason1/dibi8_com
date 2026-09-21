@@ -1,5 +1,5 @@
 ---
-title: 'ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 pro...
+title: "ChatTTS 2026: 39.3k 별 오픈소스 대화 TTS, 웃음 / 일시정지 / 토큰 레벨 pro...
 description: "ChatTTS는 대화(내레이션 아님) 전용 오픈소스 TTS. GitHub 39.3k 별, 4 GB VRAM 최소, RTX 4090에서 RTF 0.3, 웃음과 일시정지 포함 정밀 prosody 제어. 2026 완전 설치 + 프로덕션 셋업 가이드."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -207,7 +207,7 @@ GPU 인스턴스 띄우고, 3절의 10줄 설치 실행, 5분 안에 왜 이게 
 
 ## Why This Matters
 
-Understanding chattts 2026: 39.3k 별 오픈소스 대화 tts, 웃음 / 일시정지 / 토큰 레벨 prosody 제어 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding chattts 2026: 39.3k 별 오픈소스 대화 tts, 웃음 / 일시정지 / 토큰 레벨 prosody 제어 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

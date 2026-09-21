@@ -1,5 +1,5 @@
 ---
-title: 'Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
+title: "Mastra: 24K+ Stars — Framework TypeScript AI Giảm Chi Ph...
 description: "Mastra la framework TypeScript native tu Gatsby team de xay dung ung dung AI va agent. Bao gom Mastra vs LangChain, huong dan cai dat, workflow, RAG, bo nho, observability, benchmark va hardening san xuat."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -549,7 +549,7 @@ CMD ["node", ".mastra/output/index.mjs"]
 
 ```yaml
 // docker-compose.yml
-version: '3.8'
+version: '3.8"
 services: mastra: build: .
     ports: - "4111:4111"
     environment: - OPENAI_API_KEY=${OPENAI_API_KEY}

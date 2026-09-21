@@ -1,5 +1,5 @@
 ---
-title: 'Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
+title: "Skyvern: Tự động hóa quy trình duyệt web bằng AI Agent (...
 description: "Skyvern tự động hóa các quy trình trên trình duyệt bằng mô hình ngôn ngữ lớn và thị giác máy tính (21.803 sao GitHub, AGPL-3.0). Bao gồm cài đặt, API Python thực tế, ví dụ mã chạy được và so sánh thẳng thắn với Selenium và Playwright."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -31,7 +31,7 @@ faqs: - q: 'Tôi cài Skyvern-AI/skyvern như thế nào?'
   - q: 'Tôi đóng góp cho dự án Skyvern-AI/skyvern bằng cách nào?'
     a: 'Rất hoan nghênh đóng góp. Bạn có thể báo lỗi hoặc mở pull request trên GitHub; cộng đồng rất tích cực và phản hồi nhanh với các bản sửa lỗi và tính năng mới.'
   - q: 'Tôi có thể tìm thêm thông tin về cách dùng Skyvern-AI/skyvern ở đâu?'
-    a: 'Xem trang chính thức tại <https://www.skyvern.com> và README trên GitHub, cả hai đều trình bày chi tiết về cài đặt, API và các quy trình mẫu.'
+    a: 'Xem trang chính thức tại <https://www.skyvern.com> và README trên GitHub, cả hai đều trình bày chi tiết về cài đặt, API và các quy trình mẫu."
 ---
 
 {{< resource-info >}}

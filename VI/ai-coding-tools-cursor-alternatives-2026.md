@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa ...
+title: "Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa ...
 description: "Cursor chuyển sang định giá credit năm 2025 làm mất lòng tin. So sánh 7 lựa chọn thay thế mạnh nhất năm 2026: Claude Code (80.8% SWE-bench), Cline (5M+ cài đặt, miễn phí), GitHub Copilot ($10/tháng), Windsurf ($15/tháng), Continue.dev, Zed. Bao gồm giá, hiệu suất, agent mode, chiến lược chuyển đổi."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
@@ -32,7 +32,7 @@ faqs: - q: 'Tại sao developer rời Cursor vào năm 2026?'
   - q: 'Công cụ AI coding trả phí rẻ nhất?'
     a: 'GitHub Copilot ($10/tháng) là tier trả phí rẻ nhất với 2K completion + 50 chat request miễn phí mỗi tháng. Cline hoàn toàn miễn phí nếu BYOK với API key riêng.'
   - q: 'Có thể chạy công cụ AI coding hoàn toàn offline không?'
-    a: 'Có - với Cline + model local Ollama/LM Studio. Continue.dev cũng hỗ trợ model local. Không subscription, riêng tư hoàn toàn, nhưng cần 32GB RAM + 16GB VRAM (RTX 4080 / Apple M2 Max) cho chất lượng production.'
+    a: 'Có - với Cline + model local Ollama/LM Studio. Continue.dev cũng hỗ trợ model local. Không subscription, riêng tư hoàn toàn, nhưng cần 32GB RAM + 16GB VRAM (RTX 4080 / Apple M2 Max) cho chất lượng production."
 ---
 
 # Công Cụ Lập Trình AI 2026: Cursor Hết Độc Quyền — 7 Lựa Chọn Thay Thế Hàng Đầu

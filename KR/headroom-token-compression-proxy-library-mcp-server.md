@@ -1,5 +1,5 @@
 ---
-title: 'Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 —...
+title: "Headroom: LLM 입력 60-95% 압축 — 토큰 절약 프록시, 라이브러리 & MCP 서버 —...
 description: "Headroom (19,745 GitHub stars)는 도구 출력, 로그, 파일, RAG 청크를 LLM에 전달하기 전 압축합니다. 60-95% 적은 토큰, 동일한 답변. Python 라이브러리, 프록시, MCP 서버 포함. 설치 튜토리얼, 아키텍처 분석, 실제 벤치마킹 포함."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -145,7 +145,7 @@ headroom serve --host 0.0.0.0 --port 8787
 # 압축 테스트
 curl -X POST http://localhost:8787/compress \
   -H "Content-Type: application/json" \
-  -d '{"input": "매우 긴 컨텍스트..."}' | jq
+  -d '{"input": "매우 긴 컨텍스트..."}" | jq
 
 # 예상 응답: # {
 #   "original_tokens": 4523,

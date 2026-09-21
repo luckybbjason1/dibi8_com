@@ -1,5 +1,5 @@
 ---
-title: 'GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft ...
+title: "GraphRAG: Hệ RAG dựa trên đồ thị tri thức của Microsoft ...
 description: "GraphRAG là hệ thống RAG mô-đun, dựa trên đồ thị tri thức của Microsoft (33.403 sao GitHub, giấy phép MIT). Hướng dẫn này trình bày cách cài đặt, quy trình init/index/query, ví dụ CLI thực tế và so sánh thẳng thắn với LangChain và Haystack."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -31,7 +31,7 @@ faqs: - q: 'Cài graphrag thế nào?'
   - q: 'Báo lỗi hoặc sự cố thế nào?'
     a: 'Dùng trang GitHub Issues của kho mã. Hãy đưa càng nhiều chi tiết càng tốt — thông báo lỗi, cấu hình của bạn và các bước tái hiện vấn đề.'
   - q: 'GraphRAG khác RAG vector thông thường ở điểm nào?'
-    a: 'RAG thông thường lấy về vài đoạn tương đồng rồi trả lời dựa trên đó. GraphRAG còn xây thêm một đồ thị tri thức và các bản tóm tắt cộng đồng từ tài liệu của bạn, nhờ đó nó trả lời được cả câu hỏi rộng bao trùm cả kho (tìm kiếm toàn cục) lẫn câu hỏi tập trung vào thực thể (tìm kiếm cục bộ).'
+    a: 'RAG thông thường lấy về vài đoạn tương đồng rồi trả lời dựa trên đó. GraphRAG còn xây thêm một đồ thị tri thức và các bản tóm tắt cộng đồng từ tài liệu của bạn, nhờ đó nó trả lời được cả câu hỏi rộng bao trùm cả kho (tìm kiếm toàn cục) lẫn câu hỏi tập trung vào thực thể (tìm kiếm cục bộ)."
 ---
 
 {{< resource-info >}}

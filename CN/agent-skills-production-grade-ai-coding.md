@@ -1,5 +1,5 @@
 ---
-title: 'Agent Skills: How Development Teams Can Ship Production-...
+title: "Agent Skills: How Development Teams Can Ship Production-...
 description: Agent Skills by Addy Osmani delivers 20 production-grade engineering. Comprehensive guide covering features, pricing, and best practices for 2026.
   skills and 7 slash commands that turn AI coding agents into senior software engineers.
 date: 2026-05-15 04:20:25+09:00
@@ -359,7 +359,7 @@ Agent Skills is the missing link between "AI can code" and "AI can ship producti
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 
 

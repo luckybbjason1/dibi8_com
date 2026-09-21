@@ -1,5 +1,5 @@
 ---
-title: 'Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
+title: "Scrapy: Benchmark 61K+ Star Web Crawler — Performance vs...
 description: "Scrapy 是一个基于 Python 的快速高级网络爬虫和抓取框架。兼容 Python、Docker、Redis、PostgreSQL。涵盖基准测试、架构、生产部署以及与 BeautifulSoup、Selenium 和 Playwright 的对比。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -440,7 +440,7 @@ class StatsCollector: def __init__(self): self.requests_count = 0
 # settings.py
 LOG_LEVEL = INFO
 LOG_FILE = 'logs/scrapy.log'
-LOG_FORMAT = '%(asctime)s [%(name)s] %(levelname)s: %(message)s'
+LOG_FORMAT = '%(asctime)s [%(name)s] %(levelname)s: %(message)s"
 LOG_STDOUT = False
 ```
 

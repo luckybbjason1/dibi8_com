@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
+title: "DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
 description: "DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes."
 date: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026'
@@ -453,7 +453,7 @@ DeepSeek Harness represents a fundamental shift in how we think about AI coding 
 
 The real power isn't in the framework itself — it's in the community building plugins that solve real problems. Last week, I found a plugin that automatically generates commit messages based on my coding style. That saved me 20 minutes per day.
 
-**The lesson:** Don't just use AI tools. Extend them. Build the capabilities you wish they had natively.
+**The lesson:** Don"t just use AI tools. Extend them. Build the capabilities you wish they had natively.
 
 Your turn: What plugin would you build first? Share your ideas in the comments or open an issue on GitHub.
 

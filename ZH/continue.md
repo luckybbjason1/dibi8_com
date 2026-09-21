@@ -1,5 +1,5 @@
 ---
-title: 'Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2...
+title: "Continue.dev: 33K+ Stars — 开源 AI 编程助手对比 Copilot、Cursor 2...
 description: "Continue.dev（开源 AI 编程助手）VS Code/JetBrains 插件。支持任意 LLM：Ollama、OpenAI、Anthropic、Gemini。对比 GitHub Copilot、Cursor、Tabby。安装教程、配置示例、基准测试。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -194,7 +194,7 @@ CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
 
 ```yaml
 # docker-compose.yml 团队 Ollama + Continue
-version: '3.8'
+version: '3.8"
 services: ollama: image: ollama/ollama:latest
     volumes: - ollama-data:/root/.ollama
     ports: - "11434:11434"

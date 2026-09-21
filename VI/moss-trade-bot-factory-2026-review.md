@@ -1,5 +1,5 @@
 ---
-title: 'Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
+title: "Moss Trade Bot Factory 2026 Review: AI Agent Workbench Q...
 description: "Moss-trade-bot-skills v1.0.26 review thực chiến: AI agent builder ngôn ngữ tự nhiên cho Hyperliquid perpetuals. Engine backtest cấp công nghiệp với độ chính xác Decimal — nhưng có bug Sharpe annualization và trap OVERFIT giáo khoa khi bật evolution. Quy trình setup, fix bug, so sánh 5 chiến lược, và validation 70/30 train/OOS."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -226,7 +226,7 @@ Nhưng marketing emphasis trên evolution loop misleads beginners vào shipping 
 
 Install it, fix Sharpe bug, run five hand-crafted strategies để see how engine behaves, then write own train/OOS splitter. Last step — one nobody teaches và Moss không enforce — là single most important habit trong quant.
 
-Bots aren't going to teach bạn to be honest about your edge. Bạn phải do that yourself.
+Bots aren"t going to teach bạn to be honest about your edge. Bạn phải do that yourself.
 
 ---
 

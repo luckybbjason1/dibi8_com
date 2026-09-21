@@ -580,7 +580,7 @@ docker system df
 # 每 60 秒的 cron 任务
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name=\"{{.Name}}\"} {{.CPUPerc}}\ncontainer_memory_usage{name=\"{{.Name}}\"} {{.MemUsage}}" \
+    "container_cpu_usage{name="{{.Name}}"} {{.CPUPerc}}\ncontainer_memory_usage{name="{{.Name}}"} {{.MemUsage}}" \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

@@ -1,5 +1,5 @@
 ---
-title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so vớ...
+title: "VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so vớ...
 description: "VoiceCraft là mô hình ngôn ngữ codec thần kinh zero-shot speech editing và TTS, tương thích với GPT-SoVITS, Coqui TTS, RVC. Hướng dẫn cài đặt, benchmark, triển khai Docker và bảng so sánh."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -277,7 +277,7 @@ model_path = hf_hub_download(
 
 # Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)
 from modelscope import snapshot_download
-model_dir = snapshot_download('AI-ModelScope/VoiceCraft')
+model_dir = snapshot_download('AI-ModelScope/VoiceCraft")
 ```
 
 ## Benchmark / Use case thực tế

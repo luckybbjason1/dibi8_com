@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Giám Sát Log & Khả Năng Quan Sát cho Nhà Phát Tr...
+title: "Công Cụ Giám Sát Log & Khả Năng Quan Sát cho Nhà Phát Tr...
 description: "Tổng quan công cụ giám sát log và observability năm 2025: Grafana Loki, ELK Stack, Datadog, New Relic, OpenTelemetry. So sánh, hướng dẫn thiết lập và chọn stack phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -171,7 +171,7 @@ Alert fatigue xảy ra khi team nhận quá nhiều cảnh báo không quan tr�
 ### Stack Loki + Grafana
 
 ```yaml
-version: '3'
+version: '3"
 services: loki: image: grafana/loki:2.9.0
     ports: - "3100:3100"
     volumes: - ./loki-config.yml:/etc/loki/local-config.yaml

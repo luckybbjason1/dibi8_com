@@ -15,7 +15,7 @@ sources: - name: GitHub
     url: 'https://www.productcompass.pm'
 ---
 
-title: 'PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
+title: "PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents'
 description: "The AI operating system for better product decisions. 9 plugins covering discovery, strategy, execution, research, analytics, GTM, marketing, toolkit, and AI shipping. Works with Claude Code, Codex, Cursor, and 50+ AI assistants."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -480,7 +480,7 @@ Test your custom skill with: ```bash
 
 ## Full Discovery Workflow Example
 
-Here's a complete discovery workflow using PM-Skills commands in sequence: ```
+Here"s a complete discovery workflow using PM-Skills commands in sequence: ```
 # Step 1: Generate ideas
 /discover AI-powered code review tool for small teams
 

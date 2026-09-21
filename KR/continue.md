@@ -1,5 +1,5 @@
 ---
-title: 'Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cur...
+title: "Continue.dev: 33K+ Stars — 오픈소스 AI 코딩 어시스턴트, Copilot·Cur...
 description: "Continue.dev(오픈소스 AI 코딩 어시스턴트) VS Code/JetBrains 플러그인. Ollama, OpenAI, Anthropic, Gemini 등 모든 LLM 지원. GitHub Copilot, Cursor, Tabby와 비교. 설치 튜토리얼, 설정 예제, 벤치마크."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -180,7 +180,7 @@ CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
 
 ```yaml
 # docker-compose.yml 팀 Ollama + Continue
-version: '3.8'
+version: '3.8"
 services: ollama: image: ollama/ollama:latest
     volumes: - ollama-data:/root/.ollama
     ports: - "11434:11434"

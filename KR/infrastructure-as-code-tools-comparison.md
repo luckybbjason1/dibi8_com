@@ -1,5 +1,5 @@
 ---
-title: '2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, C...
+title: "2025년 인프라스트럭처 as 코드 도구 비교: Terraform, Pulumi, AWS CDK, C...
 description: "IaC 도구를 비교합니다. Terraform, Pulumi, AWS CDK, Crossplane, Ansible의 특징과 장단점을 알아보고 프로젝트에 맞는 인프라 관리 도구를 선택하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -163,7 +163,7 @@ Pulumi는 `pulumi import` 명령어와 Terraform 상태 파일 변환 도구를 
 
 ## Why This Matters
 
-Understanding 2025년 인프라스트럭처 as 코드 도구 비교: terraform, pulumi, aws cdk, crossplane is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 2025년 인프라스트럭처 as 코드 도구 비교: terraform, pulumi, aws cdk, crossplane is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

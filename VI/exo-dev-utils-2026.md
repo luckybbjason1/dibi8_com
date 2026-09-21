@@ -1,5 +1,5 @@
 ---
-title: 'exo: Chạy AI tiên phong trên chính các thiết bị của bạn ...
+title: "exo: Chạy AI tiên phong trên chính các thiết bị của bạn ...
 description: "exo biến các máy Mac, PC và cả điện thoại của bạn thành một cụm duy nhất để chạy các mô hình AI tiên phong ngay tại chỗ. 45.088 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, bảng điều khiển, API tương thích OpenAI/Claude/Ollama, các lệnh thực tế và một so sánh thẳng thắn."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -116,7 +116,7 @@ Bạn sẽ thấy mọi thiết bị mà exo đã phát hiện, mô hình hiện
 exo cung cấp một API HTTP tương thích với các định dạng OpenAI, Claude (Anthropic Messages) và Ollama, nên hầu hết mã client sẵn có dùng được mà không phải sửa. Một yêu cầu chat dạng streaming trông như sau: ```bash
 curl -X POST http://localhost:52415/v1/chat/completions \
   -H 'Content-Type: application/json' \
-  -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}'
+  -d '{"model": "model-id", "messages": [{"role": "user", "content": "prompt"}], "stream": true}"
 ```
 
 Cùng điểm cuối đó cũng hiểu Claude Messages API tại `/v1/messages` và Ollama API tại `/ollama/api/chat`.

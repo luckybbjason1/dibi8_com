@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights...
+title: "DeepSeek V3.5 vs Claude Sonnet 4.6 in 2026: Open Weights...
 description: "Side-by-side breakdown of DeepSeek V3.5 (685B MoE, open weights) and Claude Sonnet 4.6 — pricing per MTok, context window, SWE-bench, multilingual, API availability. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -173,7 +173,7 @@ If your bottleneck is **token cost** (high-volume agents, freemium SaaS, scrapin
 
 If your bottleneck is **quality on hard tasks** (multi-file coding, long-context analysis, enterprise tool use) → **Claude Sonnet 4.6**. The benchmark gap on SWE-bench and long-context recall is real, and the time saved retrying DeepSeek often eats the cost difference.
 
-If you're building a **Chinese-language product** → **DeepSeek V3.5**, no contest. The corpus advantage is too large to ignore.
+If you"re building a **Chinese-language product** → **DeepSeek V3.5**, no contest. The corpus advantage is too large to ignore.
 
 For most indie devs in 2026, the smart move is a **router pattern**: cheap default (DeepSeek) with Sonnet fallback for the hardest 10-20% of requests, routed by complexity heuristics. Tools like [cc-switch](https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/) and OpenRouter make this trivial to set up — and it gets you DeepSeek economics with Sonnet quality on the cases that actually matter.
 

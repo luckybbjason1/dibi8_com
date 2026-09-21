@@ -1,5 +1,5 @@
 ---
-title: 'Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产...
+title: "Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产...
 description: "完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -378,7 +378,7 @@ app = Hayhooks(dependencies=[verify_api_key])
 curl -X POST http://localhost:8000/search \
   -H "Content-Type: application/json" \
   -H "X-API-Key: dev-key" \
-  -d '{"query": "What is RAG?"}'
+  -d '{"query": "What is RAG?"}"
 ```
 
 ### 后台任务队列

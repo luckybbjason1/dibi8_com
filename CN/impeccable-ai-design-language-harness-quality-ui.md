@@ -1,5 +1,5 @@
 ---
-title: 'Impeccable: The Design Language That Makes AI-Generated ...
+title: "Impeccable: The Design Language That Makes AI-Generated ...
 description: "Impeccable (37K stars) is a design language for AI coding agents with 23 commands, 41 detector rules, and live browser iteration. Fixes AI-generated UI slop with deterministic design quality checks. Compatible with Claude Code, Cursor, and Codex."
 tags: ["ai-tools", "automation", "design-language", "generation", "open-source", "quality"]
 date: 2026-06-13
@@ -373,7 +373,7 @@ A: The `init` command writes a `PRODUCT.md` and `DESIGN.md` that serve as the si
 
 **Q: Is Impeccable compatible with no-code/low-code tools?**
 
-A: Impeccable is designed for AI coding agents (Claude Code, Codex, Cursor, etc.) that generate actual code. It doesn't integrate with no-code platforms like Webflow or Framer, though the design principles still apply if you're manually building in those tools.
+A: Impeccable is designed for AI coding agents (Claude Code, Codex, Cursor, etc.) that generate actual code. It doesn't integrate with no-code platforms like Webflow or Framer, though the design principles still apply if you"re manually building in those tools.
 
 **Q: Can I create my own detector rules?**
 

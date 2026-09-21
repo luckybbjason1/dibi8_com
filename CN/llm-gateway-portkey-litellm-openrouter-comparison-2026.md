@@ -1,5 +1,5 @@
 ---
-title: 'Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
+title: "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga...
 description: "Direct comparison of the three biggest LLM gateways in 2026. Real numbers: Portkey adds <1ms latency, LiteLLM 8ms P95, OpenRouter 100-150ms. Decision tree by use case, cost breakdown at $1K/mo spend, and when 9Router beats all three."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -159,7 +159,7 @@ Three gateways. Three honest defaults: - **You're an enterprise** → Portkey
 - **You're moving fast and want everything** → OpenRouter
 - **You're burning tokens on coding agents** → 9Router
 
-There's no universally best LLM gateway. There's the one that matches your row in section 2's decision tree. Pick that one, ship, and re-evaluate when your monthly inference bill crosses $5,000.
+There's no universally best LLM gateway. There's the one that matches your row in section 2"s decision tree. Pick that one, ship, and re-evaluate when your monthly inference bill crosses $5,000.
 
 
 ---

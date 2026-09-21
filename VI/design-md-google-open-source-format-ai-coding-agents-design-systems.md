@@ -1,5 +1,5 @@
 ---
-title: 'DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống t...
+title: "DESIGN.md: Các tác nhân AI lập trình cung cấp hệ thống t...
 description: "DESIGN.md của Google Labs Code là một đặc tả định dạng mã nguồn mở để mô tả nhận diện hình ảnh cho các tác nhân lập trình AI. 20,8 nghìn sao trên GitHub. Tìm hiểu cách nó kết nối các hệ thống thiết kế và tạo mã AI với các token YAML và các ràng buộc dựa trên văn bản."
 tags: ["guide", "open-source", "ai-agents", "design-systems", "reference", "google"]
 date: 2026-06-27
@@ -175,7 +175,7 @@ Kho lưu trữ bao gồm một số tệp DESIGN.md mẫu minh họa các phươ
 
 DESIGN.md giải quyết một nút thắt cơ bản trong phát triển hỗ trợ AI: **tính nhất quán trong thiết kế ở quy mô lớn**.
 
-Nếu không có một đặc tả thiết kế, mỗi trang, thành phần hoặc màn hình do AI tạo ra đều là một bài tập sáng tạo mới. Tác nhân không biết màu sắc thương hiệu của bạn ngoài những gì có trong gợi ý, không hiểu triết lý về khoảng cách của bạn và không có ký ức về việc 'hoàn thành' trông như thế nào đối với dự án của bạn.
+Nếu không có một đặc tả thiết kế, mỗi trang, thành phần hoặc màn hình do AI tạo ra đều là một bài tập sáng tạo mới. Tác nhân không biết màu sắc thương hiệu của bạn ngoài những gì có trong gợi ý, không hiểu triết lý về khoảng cách của bạn và không có ký ức về việc 'hoàn thành" trông như thế nào đối với dự án của bạn.
 
 Với DESIGN.md: - **Các tác nhân có bộ nhớ thiết kế liên tục** — tệp tồn tại trong kho của bạn, được kiểm soát phiên bản và xem xét
 - **Nhiều tác nhân giữ sự nhất quán** — Claude, ChatGPT và Codex đều đọc cùng một tệp

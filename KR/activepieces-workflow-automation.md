@@ -1,5 +1,5 @@
 ---
-title: 'Activepieces: 200+ 앱과 AI 액션을 갖춘 오픈소스 Zapier 대안 — 2026년 셀...
+title: "Activepieces: 200+ 앱과 AI 액션을 갖춘 오픈소스 Zapier 대안 — 2026년 셀...
 description: "5분 만에 Activepieces를 배포하세요. 200+ 앱 통합, AI 액션, 비주얼 빌더를 갖춘 오픈소스 워크플로우 자동화 플랫폼으로 Zapier 비용의 일부만으로 운영할 수 있습니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -352,7 +352,7 @@ export const myApiPiece = createPiece({
     required: true,
     description: "Your internal API authentication key"
   }),
-  minimumSupportedRelease: '0.46.0',
+  minimumSupportedRelease: '0.46.0",
   actions: [sendNotification],
   triggers: [],
 });

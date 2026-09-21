@@ -1,5 +1,5 @@
 ---
-title: 'Zed vs Cursor in 2026: Native Speed vs AI Depth — Honest...
+title: "Zed vs Cursor in 2026: Native Speed vs AI Depth — Honest...
 description: "Side-by-side breakdown of Zed (Rust-native, GPU-accelerated, open-source) and Cursor (VS Code fork, AI-first) — speed, AI features, pricing, ecosystem, platforms. Updated 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -171,7 +171,7 @@ A practical rule: pick **Zed** if you optimize for speed and openness, pick **Cu
 
 ## Why This Matters
 
-Understanding zed vs cursor in 2026: native speed vs ai depth — honest comparison is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding zed vs cursor in 2026: native speed vs ai depth — honest comparison is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

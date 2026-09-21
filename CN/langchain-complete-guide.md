@@ -1,5 +1,5 @@
 ---
-title: 'LangChain Complete Guide 2025: From Zero to Production-R...
+title: "LangChain Complete Guide 2025: From Zero to Production-R...
 description: "Master LangChain in 2025 with this complete guide. Learn core components, build RAG apps, create agents, and deploy production-ready AI applications."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -347,7 +347,7 @@ LangChain has evolved from a simple chaining utility into a comprehensive ecosys
 
 Start with a simple chain, add retrieval when you need domain knowledge, introduce agents for complex decision-making, and use LangGraph when you need stateful multi-actor workflows. Monitor everything with LangSmith, optimize based on real usage data, and iterate.
 
-The best way to learn LangChain is to build something. Pick a problem you have — summarizing research papers, answering questions over your company's documentation, automating a repetitive analysis task — and implement it. The framework's modular design means you can start simple and add complexity only when you need it.
+The best way to learn LangChain is to build something. Pick a problem you have — summarizing research papers, answering questions over your company's documentation, automating a repetitive analysis task — and implement it. The framework"s modular design means you can start simple and add complexity only when you need it.
 
 For the latest updates, follow the [LangChain blog](https://blog.langchain.dev) and explore the ever-growing collection of integrations and templates in the official documentation.
 

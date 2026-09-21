@@ -1,5 +1,5 @@
 ---
-title: 'Portkey AI Gateway 2026: The LLM Gateway Managing 200+ M...
+title: "Portkey AI Gateway 2026: The LLM Gateway Managing 200+ M...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -744,7 +744,7 @@ Portkey AI Gateway transforms the complexity of managing multiple LLM providers 
 
 Whether you choose the managed cloud option or self-host on your own infrastructure (consider [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for an easy Kubernetes deployment), Portkey provides the reliability, cost control, and visibility that production AI systems demand.
 
-Start with the Docker quick-start, configure your providers, set up load balancing with fallback routes, enable caching, and connect your observability stack. In under an hour, you'll have a production-grade LLM gateway handling 200+ models with full observability.
+Start with the Docker quick-start, configure your providers, set up load balancing with fallback routes, enable caching, and connect your observability stack. In under an hour, you"ll have a production-grade LLM gateway handling 200+ models with full observability.
 
 ---
 

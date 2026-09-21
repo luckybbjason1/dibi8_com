@@ -1,5 +1,5 @@
 ---
-title: 'ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...
+title: "ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea...
 description: "ComfyUI hit 106K GitHub stars in 2026. Beginner-friendly setup guide, model recommendations for 2026, and 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -159,7 +159,7 @@ Start with the 5 templates above. Customize. Share. The compound returns of reus
 
 ## Why This Matters
 
-Understanding comfyui workflow 2026: beginner setup + 5 production-ready templates is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding comfyui workflow 2026: beginner setup + 5 production-ready templates is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

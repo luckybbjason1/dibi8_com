@@ -1,5 +1,5 @@
 ---
-title: 'Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
+title: "Fine-Tuning Stack 2026: 5-Component Pipeline From Datase...
 description: "Complete LLM fine-tuning stack: Unsloth (fast single-GPU experiments) + Axolotl (production multi-GPU) + HuggingFace datasets/Hub + Weights & Biases (eval tracking) + vLLM (serving). $50-300/mo training infra. Full pipeline: dataset prep → experiment → production fine-tune → eval → deploy."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -164,7 +164,7 @@ Now every Unsloth / Axolotl training run auto-logs to your W&B dashboard.
 
 ## 7. Component 5 — vLLM (Serving Phase)
 
-**The role**: Once you've fine-tuned a model, serve it to your users. vLLM is the production multi-tenant serving choice — PagedAttention + continuous batching make it the throughput champion.
+**The role**: Once you"ve fine-tuned a model, serve it to your users. vLLM is the production multi-tenant serving choice — PagedAttention + continuous batching make it the throughput champion.
 
 See our [Local LLM Runner comparison](/resources/llm-frameworks/local-llm-runner-comparison-2026/) for the full rundown of why vLLM beats Ollama / LM Studio / llama.cpp for production multi-user serving.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Haystack 2026: Framework NLP End-to-End cho Pipeline RAG...
+title: "Haystack 2026: Framework NLP End-to-End cho Pipeline RAG...
 description: "Hướng dẫn đầy đủ Haystack 2026: framework NLP mã nguồn mở cho pipeline RAG sản xuất, document store, retriever, agent, công cụ đánh giá và triển khai Docker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "deepset-ai/haystack"
 stars: 21000
 maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["haystack", "nlp", "rag", "python", "llm", "document store", "retriever", "agent", "openai", "docker", "pipeline"]

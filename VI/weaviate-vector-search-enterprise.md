@@ -1,5 +1,5 @@
 ---
-title: 'Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10...
+title: "Weaviate 2026: Cỗ Máy Tìm Kiếm Vector AI-Native Xử Lý 10...
 description: "Hướng dẫn triển khai Weaviate vector search ở quy mô doanh nghiệp. Bao gồm Kubernetes, hybrid search, multi-modal, RBAC, monitoring, và benchmarks cho 10B+ đối tượng."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -351,7 +351,7 @@ curl -X POST http://localhost:8080/v1/backups/s3 \
       "bucket": "weaviate-backups",
       "path": "production/"
     }
-  }'
+  }"
 ```
 
 Tự động hóa với CronJob: ```yaml
@@ -367,7 +367,7 @@ spec: schedule: "0 2 * * *"  # Hàng ngày lúc 2 AM
             - |
               curl -X POST http://weaviate:8080/v1/backups/s3 \
                 -H "Content-Type: application/json" \
-                -d "{\"id\":\"backup-$(date +%Y%m%d)\"}"
+                -d "{"id":"backup-$(date +%Y%m%d)"}"
           restartPolicy: OnFailure
 ```
 

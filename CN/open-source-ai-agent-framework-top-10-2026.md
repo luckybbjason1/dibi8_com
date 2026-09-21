@@ -1,5 +1,5 @@
 ---
-title: 'Open Source AI Agent Framework Top 10 (2026): Ranked by ...
+title: "Open Source AI Agent Framework Top 10 (2026): Ranked by ...
 description: "Ten OSS AI agent frameworks ranked by 2026 production adoption: LangGraph, CrewAI, AutoGen, Mastra, Agno, Superagent, OpenHands, Smol Agents, Phidata, OpenAI Swarm. Strengths, gotchas, and which to pick by use case."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -161,7 +161,7 @@ Pick by language stack and workflow style. Capabilities have converged enough th
 
 ## Why This Matters
 
-Understanding open source ai agent framework top 10 (2026): ranked by production adoption is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding open source ai agent framework top 10 (2026): ranked by production adoption is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

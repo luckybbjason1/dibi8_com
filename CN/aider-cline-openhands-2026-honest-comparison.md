@@ -1,5 +1,5 @@
 ---
-title: 'Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
+title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin...
 description: "Tested all three open-source AI coding agents on the same 5K-LOC TypeScript codebase. Concrete benchmark numbers, where each wins, where each falls short, and the BYO-API-key cost reality vs commercial alternatives."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -261,7 +261,7 @@ The commercial-vs-OSS choice isn't price (they're closer than marketing suggests
 
 ## Why This Matters
 
-Understanding aider vs cline vs openhands 2026: honest 3-way oss coding agent comparison is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding aider vs cline vs openhands 2026: honest 3-way oss coding agent comparison is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

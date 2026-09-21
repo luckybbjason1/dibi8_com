@@ -1,5 +1,5 @@
 ---
-title: 'HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wg...
+title: "HTTPie: 38,200 GitHub Stars — 현대 CLI HTTP 클라이언트 curl, wg...
 description: "HTTPie는 JSON 지원, 구문 강조 및 세션 관리를 갖춘 API 시대의 현대적인 CLI HTTP 클라이언트다. Python, pip, Homebrew, Docker와 호환. 설치, 벤치마크 비교, 프로덕션 강화 및 FAQ 다룸."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -561,7 +561,7 @@ http POST api.example.com/users \
     age:=29 \
     active:=true \
     roles:='["admin", "editor"]' \
-    profile:='{"city": "Boston", "timezone": "EST"}'
+    profile:='{"city": "Boston", "timezone": "EST"}"
 ```
 
 HTTPie는 `Content-Type: application/json`을 자동 설정하고 데이터를 직렬화한다.

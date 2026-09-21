@@ -1,5 +1,5 @@
 ---
-title: 'Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu v...
+title: "Agno: 40K+ Stars — Framework AI Agent Nhẹ, So Sánh Sâu v...
 description: "Agno là SDK Python mã nguồn mở để xây dựng nền tảng AI Agent, có 40K+ Star trên GitHub. Hỗ trợ OpenAI, Anthropic, Ollama, Docker, AWS. Bao gồm cài đặt, hệ thống đa Agent, benchmark, so sánh với CrewAI, AutoGen, LangChain."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -357,7 +357,7 @@ python workbench.py
 # Kiểm tra qua curl
 curl -X POST http://localhost:8000/v1/agents/workbench/run \
   -H "Content-Type: application/json" \
-  -d '{"message": "Tổ chức thư mục tải xuống của tôi", "session_id": "user-123"}'
+  -d '{"message": "Tổ chức thư mục tải xuống của tôi", "session_id": "user-123"}"
 ```
 
 ### Bảo Mật & Giám Sát

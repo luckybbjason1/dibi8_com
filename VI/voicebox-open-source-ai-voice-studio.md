@@ -1,5 +1,5 @@
 ---
-title: 'VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, C...
+title: "VoiceBox: Studio Giọng Nói AI Mã Nguồn Mở Để Nhân Bản, C...
 description: "Một studio giọng nói AI mã nguồn mở toàndiện cho phép bạn nhân bản mọi giọng, tạo giọng nói và chép vào bất kỳ ứng dụng nào. 33K sao. Chạy cục bộ trên máy của bạn với hỗ trợ CUDA hoặc Apple Silicon."
 date: 2026-06-25
 lastmod: 2026-06-25
@@ -307,7 +307,7 @@ Dành cho ứng dụng phát âm thanh thời gian thực: ```bash
 # Phát âm thanh theo chunk
 curl -N -X POST "https://your-voicebox/api/v1/tts/stream" \
   -H "Content-Type: application/json" \
-  -d '{"text": "Âm thanh này sẽ được phát trực tiếp...", "voice": "cloned-voice"}' \
+  -d '{"text": "Âm thanh này sẽ được phát trực tiếp...", "voice": "cloned-voice"}" \
   --output - | aplay
 ```
 

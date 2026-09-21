@@ -1,5 +1,5 @@
 ---
-title: 'Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá R...
+title: "Tối Ưu Chi Phí Inference LLM: Chạy Mọi Mô Hình Với Giá R...
 description: "Hướng dẫn tối ưu chi phí inference LLM. So sánh Ollama, vLLM, quantization llama.cpp. Giảm 90%+ chi phí API. 3 benchmark, 6 phương pháp triển khai."
 date: 2026-06-16
 lastmod: 2026-06-16
@@ -335,7 +335,7 @@ python3 -c "
 from openai import OpenAI
 client = OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
 models = [m for m in client.models.list().data if m.id != 'embedding']
-for m in models: print(f'{m.id}')
+for m in models: print(f'{m.id}")
 "
 ```
 

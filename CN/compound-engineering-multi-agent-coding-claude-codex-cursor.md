@@ -1,5 +1,5 @@
 ---
-title: 'Compound Engineering: Orchestrate Claude Code, Codex, an...
+title: "Compound Engineering: Orchestrate Claude Code, Codex, an...
 description: "Compound Engineering (20K stars) is a multi-agent plugin for Claude Code, Codex, and Cursor. 9 commands for brainstorm, plan, review, debug, and compound learnings. 80% planning, 20% execution workflow."
 tags: ["ai-agent", "ai-editor", "anthropic", "automation", "claude", "coding-agent", "cursor", "guide", "open-source", "reference", "tutorial"]
 date: 2026-06-13
@@ -412,7 +412,7 @@ A: Yes, Compound Engineering is licensed under MIT. There are no usage restricti
 
 **Q: Can I customize the brainstorm and planning templates?**
 
-A: Yes. The brainstorm and planning outputs are generated from templates stored in `.compound-engineering/`. You can customize these templates to match your team's conventions and project requirements.
+A: Yes. The brainstorm and planning outputs are generated from templates stored in `.compound-engineering/`. You can customize these templates to match your team"s conventions and project requirements.
 
 **Q: How does the multi-agent review work?**
 

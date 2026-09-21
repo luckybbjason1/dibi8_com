@@ -1,5 +1,5 @@
 ---
-title: 'BookStack: The Developer-Friendly Documentation Wiki wit...
+title: "BookStack: The Developer-Friendly Documentation Wiki wit...
 description: "A complete guide to installing and running BookStack, the open-source documentation wiki with WYSIWYG + Markdown editing, book/chapter/page structure, and LDAP/SSO support. Self-hosted in under 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -499,7 +499,7 @@ Join the dibi8.com community: [Telegram group](https://t.me/dibi8opensource) for
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Affiliate Disclosure
 

@@ -1,5 +1,5 @@
 ---
-title: 'So Sánh Công Cụ AutoML: Hướng Dẫn AutoGluon, H2O, TPOT, ...
+title: "So Sánh Công Cụ AutoML: Hướng Dẫn AutoGluon, H2O, TPOT, ...
 description: "Đánh giá chi tiết 5 công cụ AutoML hàng đầu: AutoGluon, H2O, TPOT, Auto-sklearn, Google AutoML. So sánh tính năng, tốc độ, khả năng triển khai và chi phí."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -158,7 +158,7 @@ tpot = TPOTClassifier(
 tpot.fit(X_train, y_train)
 
 # Xuất pipeline tốt nhất thành code Python
-tpot.export('best_pipeline.py')
+tpot.export('best_pipeline.py")
 ```
 
 ### Điểm Độc Đáo: Pipeline Transparency

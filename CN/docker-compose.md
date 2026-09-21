@@ -1,5 +1,5 @@
 ---
-title: 'Docker Compose: 37,393 GitHub Stars — Multi-Container Se...
+title: "Docker Compose: 37,393 GitHub Stars — Multi-Container Se...
 description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -439,7 +439,7 @@ Join our [Telegram group](https://t.me/dibi8dev) to share your Docker Compose co
 Products we recommend that complement this guide: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — DigitalOcean
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — HTStack
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

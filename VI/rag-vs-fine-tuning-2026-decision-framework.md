@@ -1,5 +1,5 @@
 ---
-title: 'RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
+title: "RAG vs Fine-Tuning 2026: Khung Quyết Định Dựa Trên Dữ Li...
 description: "Khi nào dùng RAG, khi nào fine-tune, khi nào kết hợp cả hai. Thực tế 2026 với giá mô hình hiện tại: chi phí mỗi tác vụ, độ trễ, độ tươi của dữ liệu, và cây quyết định rõ ràng dựa trên khối lượng dữ liệu, ngân sách độ trễ truy vấn và tần suất cập nhật."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -218,7 +218,7 @@ Với hầu hết hệ thống sản xuất năm 2026: bắt đầu với RAG, t
 
 ## Why This Matters
 
-Understanding rag vs fine-tuning 2026: khung quyết định dựa trên dữ liệu với con số chi phí thực tế is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding rag vs fine-tuning 2026: khung quyết định dựa trên dữ liệu với con số chi phí thực tế is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

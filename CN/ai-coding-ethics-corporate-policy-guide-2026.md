@@ -1,5 +1,5 @@
 ---
-title: 'AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
+title: "AI Coding Ethics 2026: Corporate Policy Guide for Allow ...
 description: "Companies in 2026 split into AI-allow / AI-restrict / AI-forbid camps. Practical guide for what each policy looks like, how to choose, and the legal/IP/compliance gotchas — based on real corporate adoption patterns we tracked."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -176,7 +176,7 @@ The worst outcome is no policy at all — developers will use AI tools regardles
 
 ## Why This Matters
 
-Understanding ai coding ethics 2026: corporate policy guide for allow vs restrict is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai coding ethics 2026: corporate policy guide for allow vs restrict is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

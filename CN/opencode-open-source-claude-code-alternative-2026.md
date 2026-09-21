@@ -1,5 +1,5 @@
 ---
-title: 'OpenCode: The Open-Source AI Coding Agent That Overtook ...
+title: "OpenCode: The Open-Source AI Coding Agent That Overtook ...
 description: "OpenCode hit 160K+ GitHub stars in 2026, surpassing Claude Code as the most popular open-source AI coding agent. This guide covers installation, multi-model routing, LSP integration, and real-world workflows for professional developers."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -350,7 +350,7 @@ Before deploying these tools into production, you'll need solid infrastructure. 
 
 The 2025-2026 AI coding tool wars reveal a clear pattern: as frontier models converge in capability (GPT-5.5, Claude Sonnet 4.6, Gemini 3.1 Pro now score within 5% of each other on SWE-bench), **the differentiation shifts to the orchestration layer**. OpenCode's bet is that developers want to own this layer—to mix, match, and migrate models as the market evolves.
 
-160,000 stars later, that bet appears to be paying off. OpenCode won't replace senior engineers, but it eliminates the boilerplate tax that consumes 30-40% of a developer's week. The remaining time is for architecture, for taste, for the decisions that only humans can make.
+160,000 stars later, that bet appears to be paying off. OpenCode won't replace senior engineers, but it eliminates the boilerplate tax that consumes 30-40% of a developer"s week. The remaining time is for architecture, for taste, for the decisions that only humans can make.
 
 Install it today. Your terminal is already open.
 

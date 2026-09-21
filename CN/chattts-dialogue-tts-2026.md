@@ -1,5 +1,5 @@
 ---
-title: 'ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
+title: "ChatTTS 2026: 39.3k-Star Open-Source Dialogue TTS with L...
 description: "ChatTTS is the open-source TTS purpose-built for dialogue (not narration). 39.3k GitHub stars, 4 GB VRAM minimum, RTF 0.3 on RTX 4090, fine-grained prosodic control including laughter and pauses. Complete 2026 install + production setup guide."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -220,7 +220,7 @@ Spin up a GPU instance, run the 10-line install in section 3, and you'll hear in
 
 ## Why This Matters
 
-Understanding chattts 2026: 39.3k-star open-source dialogue tts with laughter, pauses, and token-level prosody control is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding chattts 2026: 39.3k-star open-source dialogue tts with laughter, pauses, and token-level prosody control is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

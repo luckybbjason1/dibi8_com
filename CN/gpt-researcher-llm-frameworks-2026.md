@@ -1,5 +1,5 @@
 ---
-title: 'GPT Researcher: Autonomous Agent for Deep Research Repor...
+title: "GPT Researcher: Autonomous Agent for Deep Research Repor...
 description: "GPT Researcher is an open deep-research agent that runs web and local research on any task and writes cited reports. 27,473 GitHub stars, Apache-2.0. Covers installation, the async Python API, Docker, and real code examples."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -31,7 +31,7 @@ faqs: - q: 'How do I install gpt-researcher?'
   - q: 'How do I run the full app with a web UI?'
     a: 'Clone the repo and run `docker-compose up --build`. This starts the FastAPI server on `localhost:8000` and the frontend on `localhost:3000`. You can also start just the server with `python -m uvicorn main:app --reload`.'
   - q: 'Are conduct_research() and write_report() synchronous?'
-    a: 'No. Both are async methods. Call them with `await` inside an async function", "and run that function with `asyncio.run()`.'
+    a: 'No. Both are async methods. Call them with `await` inside an async function", "and run that function with `asyncio.run()`."
 ---
 # GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide
 

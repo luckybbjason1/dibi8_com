@@ -1,5 +1,5 @@
 ---
-title: 'OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
+title: "OpenHands: 74K+ Stars — Kỹ sư phần mềm AI viết và chạy c...
 description: "OpenHands là nền tảng phát triển AI đóng vai trò agent kỹ sư phần mềm. Tương thích với VS Code, Docker, GitHub, GitLab, Claude và OpenAI. Bao gồm thiết lập Docker, cấu hình model, chế độ headless CI/CD và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -398,7 +398,7 @@ jq 'select(.type == "llm")' openhands.log | wc -l
 jq 'select(.type == "error")' openhands.log
 
 # Tính thờii gian task
-jq 'select(.type == "finish") | .timestamp' openhands.log
+jq 'select(.type == "finish") | .timestamp" openhands.log
 ```
 
 ### Mở rộng với Kubernetes

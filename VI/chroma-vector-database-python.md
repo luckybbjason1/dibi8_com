@@ -1,5 +1,5 @@
 ---
-title: 'Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập ...
+title: "Chroma DB 2026: Cơ sở dữ liệu Vector thân thiện với lập ...
 description: "Hướng dẫn thực tế về cơ sở dữ liệu vector Chroma với Python. Học cách cài đặt, tích hợp RAG, tìm kiếm embedding và triển khai production. Bao gồm benchmark, so sánh và trường hợp sử dụng thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -436,7 +436,7 @@ user_a = get_user_collection("alice")
 user_b = get_user_collection("bob")
 
 user_a.add(documents=["Alice's private document"], ids=["alice_1"])
-user_b.add(documents=["Bob's private document"], ids=["bob_1"])
+user_b.add(documents=["Bob"s private document"], ids=["bob_1"])
 ```
 
 ### Docker Compose cho Production

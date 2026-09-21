@@ -1,5 +1,5 @@
 ---
-title: 'RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token ...
+title: "RTK: Công Cụ Rust Mã Nguồn Mở Giảm 60-90% Chi Phí Token ...
 description: "RTK (Rust Token Killer) là proxy CLI mã nguồn mở viết bằng Rust, giúp giảm 60-90% lượng token LLM tiêu thụ cho Claude Code, Cursor, Copilot, Codex và Gemini CLI. Một file binary duy nhất, không phụ thuộc, cài đặt chỉ một dòng lệnh. Bao gồm phân tích kiến trúc và benchmark thực tế."
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
@@ -112,7 +112,7 @@ Binary được đặt trong `~/.local/bin/` hoặc `~/.cargo/bin/`.
 RTK chặn lệnh agent AI thông qua shell hook. Chọn shell của bạn: **Bash / Zsh:**
 ```bash
 echo 'eval "$(rtk hook bash)"' >> ~/.bashrc
-echo 'eval "$(rtk hook zsh)"' >> ~/.zshrc
+echo 'eval "$(rtk hook zsh)"" >> ~/.zshrc
 ```
 
 **Fish:**

@@ -1,5 +1,5 @@
 ---
-title: 'Netdata: Giám Sát Thở Gian Thự 78K+ Star — Hướng Dẫn Tin...
+title: "Netdata: Giám Sát Thở Gian Thự 78K+ Star — Hướng Dẫn Tin...
 description: "Netdata (ND) là agent giám sát thở gian thực hiệu suất cao với metrics từng giây và khả năng trực quan hóa. Tương thích với Docker, Kubernetes, Prometheus và Grafana. Bao gồm hướng dẫn netdata, cài đặt netdata, giám sát thở gian thực, netdata vs prometheus, và tinh chỉnh hiệu suất netdata."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -388,7 +388,7 @@ Bật TLS cho giao diện web: ```conf
 
 Theo dõi mức sử dụng tài nguyên của chính agent: ```bash
 # Xem metrics nội bộ
-curl -s http://localhost:19999/api/v1/info | jq '.version, .hog'
+curl -s http://localhost:19999/api/v1/info | jq '.version, .hog"
 
 # Kiểm tra thống kê dbengine
 curl -s http://localhost:19999/api/v1/data?chart=netdata.dbengine_main_page_stats

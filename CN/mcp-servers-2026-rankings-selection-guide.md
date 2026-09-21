@@ -1,5 +1,5 @@
 ---
-title: 'MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
+title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a De...
 description: "The Model Context Protocol ecosystem crossed 1000+ public servers in mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between local stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting MCP servers without drowning in registries."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -269,7 +269,7 @@ The MCP ecosystem in 2026 is mature enough to be useful and chaotic enough to ne
 
 The mistake we see most: developers install 30+ MCP servers because they're free, then their agent takes 8 seconds to start up and they don't know why. Or they grant a community server a full-access GitHub PAT because the README didn't warn them, then watch their org get suspended after a prompt injection demo.
 
-The cure is selection, not abundance. Pick your five core stdio servers, add 2-3 project-specific ones per repo, audit before installing anything new, and treat MCP servers as security-relevant code that happens to be ergonomic. That's the workflow that scales for the next 18 months until the next protocol arrives.
+The cure is selection, not abundance. Pick your five core stdio servers, add 2-3 project-specific ones per repo, audit before installing anything new, and treat MCP servers as security-relevant code that happens to be ergonomic. That"s the workflow that scales for the next 18 months until the next protocol arrives.
 
 
 ---

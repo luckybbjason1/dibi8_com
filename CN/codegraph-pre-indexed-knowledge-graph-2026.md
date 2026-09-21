@@ -1,5 +1,5 @@
 ---
-title: 'CodeGraph 评测：让 Claude Code / Cursor / Codex 省 35% Token ...
+title: "CodeGraph 评测：让 Claude Code / Cursor / Codex 省 35% Token ...
 description: "CodeGraph（GitHub 20.2K+ stars）是一个为 Claude Code、Cursor、Codex CLI、OpenCode、Hermes Agent 预索引代码知识图谱的开源工具。SQLite 本地存储、19 种语言、14 个 framework 路由识别、零外部 API，相比原生 grep/glob/Read 减少约 35% token 消耗、约 70% 工具调用。完整功能拆解、安装步骤、真实工作流以及与 LSP、MCP 服务的对比。"
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
@@ -230,7 +230,7 @@ MIT 协议、本地优先架构、零外部依赖，使它对任何规模化跑�
 
 ## Why This Matters
 
-Understanding codegraph 评测：让 claude code / cursor / codex 省 35% token 的本地代码图谱（2026） is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding codegraph 评测：让 claude code / cursor / codex 省 35% token 的本地代码图谱（2026） is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

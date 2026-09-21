@@ -1,5 +1,5 @@
 ---
-title: 'RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars —...
+title: "RAGFlow: Triển khai RAG Engine sản xuất với 80K+ Stars —...
 description: "RAGFlow là engine RAG mã nguồn mở với khả năng hiểu sâu tài liệu và tích hợp Agent. Tương thích với Ollama, OpenAI, Qdrant, Elasticsearch, Redis. Bao gồm triển khai Docker, nhập tài liệu, tối ưu tìm kiếm và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -370,7 +370,7 @@ docker exec ragflow-mysql mysqldump -u root -p$MYSQL_PASSWORD ragflow > $BACKUP_
 # Sao lưu chỉ mục Elasticsearch
 docker exec ragflow-es curl -sX POST "localhost:9200/_snapshot/backup" \
   -H 'Content-Type: application/json' \
-  -d'{"indices": "ragflow_*"}'
+  -d'{"indices": "ragflow_*"}"
 
 # Sao lưu đối tượng MinIO
 docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio

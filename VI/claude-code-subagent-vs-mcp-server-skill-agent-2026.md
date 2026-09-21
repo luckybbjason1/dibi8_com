@@ -1,5 +1,5 @@
 ---
-title: 'Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
+title: "Subagent vs MCP Server vs Skill: Khi nào nên xây từng lo...
 description: "Claude Code có ba điểm mở rộng — skill, subagent và MCP server — và chúng giải quyết những bài toán khác nhau. Một khung quyết định để chọn đúng loại, kèm các kịch bản thực tế và những anti-pattern khiến bạn mất thời gian vô ích."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "mcp", "subagents", "skills", "agent-sdk", "llm-frameworks", "developer-tools"]

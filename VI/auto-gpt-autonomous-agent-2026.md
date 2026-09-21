@@ -1,5 +1,5 @@
 ---
-title: 'Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm t...
+title: "Auto-GPT 2026 Hồi sinh: Framework Agent Tự chủ OG giảm t...
 description: "Hướng dẫn đầy đủ năm 2026 về tác nhân tự chủ Auto-GPT. Cài đặt mới, giao thức tác nhân, duyệt web, điều phối đa tác nhân, triển khai Docker, benchmark so với tác nhân mới hơn, và đánh giá trung thực về hạn chế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "Significant-Gravitas/AutoGPT"
 stars: 172000
 maintainer: 'Significant-Gravitas'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["]

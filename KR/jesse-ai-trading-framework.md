@@ -1,5 +1,5 @@
 ---
-title: 'Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026...
+title: "Jesse: 30개 이상 기술 지표를 갖춘 고급 Python 암호화폐 트레이딩 프레임워크 — 2026...
 description: "Jesse AI 트레이딩 프레임워크의 프로덕션 가이드 — 설치, 30개 이상 지표로 백테스팅, 커스텀 전략 구축, Python으로 라이브 암호화폐 트레이딩 봇 배포.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -356,7 +356,7 @@ RISK_MANAGEMENT = {
 ```python
 # 다중 타임프레임 전략 예제
 class MultiTFStrategy(Strategy): def prepare(self): # 트렌드 편향을 위해 4시간 캔들 사용
-        self.h4_candles = self.get_candles(Binance, 'BTC-USDT', 4h)
+        self.h4_candles = self.get_candles(Binance, 'BTC-USDT", 4h)
 
     def should_long(self): h4_sma50 = ta.sma(self.h4_candles, 50)
         h1_sma20 = ta.sma(self.candles, 20)

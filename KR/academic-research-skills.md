@@ -112,7 +112,7 @@ resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', par
     'query': 'transformer attention',
     'limit': 1
 })
-print(f'Status: {resp.status_code}, Results: {len(resp.json().get(\"data\", []))}')
+print(f'Status: {resp.status_code}, Results: {len(resp.json().get("data", []))}')
 "
 ```
 

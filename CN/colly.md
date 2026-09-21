@@ -1,5 +1,5 @@
 ---
-title: 'Colly: 25,302 GitHub Stars — Benchmark Go Web Scraping F...
+title: "Colly: 25,302 GitHub Stars — Benchmark Go Web Scraping F...
 description: "Colly is a fast, elegant scraping framework for Go with 1k+ req/sec throughput. Covers colly tutorial, colly vs scrapy benchmarks, Docker setup, Redis caching, proxy rotation, and production deployment patterns for large-scale data extraction."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -584,7 +584,7 @@ Colly delivers exactly what Go developers need from a scraping framework: speed,
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

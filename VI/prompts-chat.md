@@ -1,5 +1,5 @@
 ---
-title: 'prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
+title: "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
 description: "Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library."
 date: 2026-06-12
 lastmod: 2026-06-12
@@ -53,7 +53,7 @@ license: NOASSERTION
 
 ## Why This Matters
 
-Understanding prompts.chat: 163k+ prompts -- the open-source prompt library guide 2026 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding prompts.chat: 163k+ prompts -- the open-source prompt library guide 2026 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

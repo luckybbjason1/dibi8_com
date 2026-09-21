@@ -1,5 +1,5 @@
 ---
-title: 'Ollama vs vLLM in 2026: Local Dev Simplicity vs Producti...
+title: "Ollama vs vLLM in 2026: Local Dev Simplicity vs Producti...
 description: "Side-by-side breakdown of Ollama (easy local LLM runner) and vLLM (high-throughput production inference engine) — ease of use, throughput, hardware, concurrency, cost at scale. Updated 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -150,7 +150,7 @@ External references: [Ollama](https://ollama.com/) · [vLLM docs](https://docs.v
 
 ## Why This Matters
 
-Understanding ollama vs vllm in 2026: local dev simplicity vs production throughput is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ollama vs vllm in 2026: local dev simplicity vs production throughput is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

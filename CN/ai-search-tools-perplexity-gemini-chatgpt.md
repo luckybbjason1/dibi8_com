@@ -1,5 +1,5 @@
 ---
-title: 'AI Search Tools Compared: Perplexity vs Google Gemini vs...
+title: "AI Search Tools Compared: Perplexity vs Google Gemini vs...
 description: "Compare the top AI search engines of 2025 — Perplexity, Google Gemini, ChatGPT Search, Copilot, and more. See accuracy, speed, and source coverage side by side."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -304,7 +304,7 @@ No. AI search engines can hallucinate, misinterpret sources, or retrieve outdate
 
 **Which AI search tool is best for coding questions?**
 
-ChatGPT Search ranks first for coding queries due to its integration with OpenAI's code-trained models and access to GitHub, Stack Overflow, and documentation sites. Perplexity is excellent for conceptual computer science questions. Microsoft Copilot works best for developers using Visual Studio Code who want IDE-integrated search.
+ChatGPT Search ranks first for coding queries due to its integration with OpenAI"s code-trained models and access to GitHub, Stack Overflow, and documentation sites. Perplexity is excellent for conceptual computer science questions. Microsoft Copilot works best for developers using Visual Studio Code who want IDE-integrated search.
 
 **Is my data private when using AI search tools?**
 

@@ -1,5 +1,5 @@
 ---
-title: 'Dagger: 可编程 CI/CD 15K+ Stars — 对比 GitHub Actions、GitLab ...
+title: "Dagger: 可编程 CI/CD 15K+ Stars — 对比 GitHub Actions、GitLab ...
 description: "Dagger 是一个可编程 CI/CD 引擎，在容器中运行流水线。兼容 Docker、Go、Python、TypeScript。涵盖 Dagger 安装配置、教程、与 GitHub Actions 对比以及生产环境加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -544,7 +544,7 @@ pipeline {
                     curl -fsSL https://dl.dagger.io/dagger/install.sh | \
                         BIN_DIR=/usr/local/bin sh
                     dagger call run --source=.
-                '''
+                ''"
             }
         }
     }

@@ -1,5 +1,5 @@
 ---
-title: 'Claude Agent SDK vs OpenAI Agents SDK năm 2026: Nên xây ...
+title: "Claude Agent SDK vs OpenAI Agents SDK năm 2026: Nên xây ...
 description: "Phân tích song song hai SDK agent hàng đầu — kiến trúc (hooks+subagents vs handoffs+guardrails), công cụ tích hợp sẵn, quyền truy cập OS, giọng nói, khóa nhà cung cấp, và khi nào chọn loại nào. Cập nhật 2026."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
@@ -91,7 +91,7 @@ Không cái nào "tốt hơn". Kết hợp ngầm định tạo mẫu nhanh hơn
 
 ---
 
-## dibi8's Take
+## dibi8"s Take
 
 Chúng tôi xây dựng các pipeline riêng của dibi8 ở phía Claude của hàng rào này — pipeline bài viết đa ngôn ngữ của chúng tôi chạy trên subagents của Claude Code, theo mô hình "giao cho agent một chiếc máy tính", bởi công việc của chúng tôi nặng về tệp và shell (đọc nội dung, build bằng Hugo, triển khai, kiểm chứng). Đối với hình thù công việc đó, SDK có quyền truy cập OS sâu nhất thắng tuyệt đối.
 

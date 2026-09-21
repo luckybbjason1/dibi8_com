@@ -1,5 +1,5 @@
 ---
-title: 'Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 20...
+title: "Odysseus: 내장 도구 10+ 개의 자체 호스팅 AI 워크스페이스 — 65,000 스타 — 20...
 description: "Odysseus(65,243개 GitHub 스타)는 채팅, 에이전트 자동화, 딥 리서치, 문서 편집, 이메일 분류, 캘린더 등을 결합한 자체 호스팅 AI 워크스페이스입니다. vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot을 지원합니다. Docker 및 네이티브 Linux/macOS 설치가 가능합니다."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -58,7 +58,7 @@ Odysseus는 Python(FastAPI 백엔드, 반응형 웹 프론트엔드)으로 구�
 | Chat | Multi-model conversations | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | Agent | Tool-using autonomous agent | OpenCode, MCP, web, files, shell, skills, memory |
 | Cookbook | Hardware-aware model downloader and server | llmfit, VRAM-aware, GGUF/FP8/AWQ |
-| Deep Research | Multi-step research with source synthesis | Adapted from Alibaba's Tongyi DeepResearch |
+| Deep Research | Multi-step research with source synthesis | Adapted from Alibaba"s Tongyi DeepResearch |
 | Compare | Blind multi-model comparison tests | Multi-model synthesis |
 | Documents | Multi-tab text editor with AI assistance | Markdown, HTML, CSV, syntax highlighting |
 | Memory/Skills | Persistent memory with vector + keyword retrieval | ChromaDB, fastembed (ONNX) |

@@ -1,5 +1,5 @@
 ---
-title: 'Các Trợ Lý Viết AI Tốt Nhất 2025: So Sánh Jasper, Copy.a...
+title: "Các Trợ Lý Viết AI Tốt Nhất 2025: So Sánh Jasper, Copy.a...
 description: "Đánh giá chi tiết 6 trợ lý viết AI hàng đầu 2025: Jasper, Copy.ai, Writesonic, ChatGPT, Claude và Notion AI. So sánh tính năng, giá cả và hiệu quả cho từng loại nội dung."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/best-ai-writing-assistants-2025/

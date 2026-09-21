@@ -1,5 +1,5 @@
 ---
-title: 'repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
+title: "repomix 2026: Pack Your Entire Codebase into One LLM-Rea...
 description: "repomix (formerly repopack) turns any Git repository into a single, structured plain-text file optimized for LLM context windows — supporting Claude, ChatGPT, Gemini, and Cursor. 14k+ stars, zero config, runs in seconds with npx."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -214,7 +214,7 @@ repomix doesn't replace any of these — it complements them by providing clean 
 
 ## Why This Matters
 
-Understanding repomix 2026: pack your entire codebase into one llm-ready file — zero config is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding repomix 2026: pack your entire codebase into one llm-ready file — zero config is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướn...
+title: "CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướn...
 description: "CrewAI (crewAIInc/crewAI) là framework Python để điều phối các AI agent tự chủ dựa trên vai trò. Tương thích với OpenAI, Anthropic, Ollama, LangChain và LlamaIndex. Bao gồm cài đặt, vai trò agent, luồng công việc, triển khai production và benchmark."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -223,7 +223,7 @@ editing_task: description: >
     research brief.
   expected_output: >
     A polished final article ready for publication.
-    Include an editor's note summarizing changes made.
+    Include an editor"s note summarizing changes made.
   agent: editor
   context: [writing_task]
   output_file: output/final_article.md

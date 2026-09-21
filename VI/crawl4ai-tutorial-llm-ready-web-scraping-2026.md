@@ -1,5 +1,5 @@
 ---
-title: 'Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã ...
+title: "Crawl4AI Hướng Dẫn Toàn Diện 2026: Công Cụ Crawl Web Mã ...
 description: "Crawl4AI là công cụ crawl web mã nguồn mở đứng đầu GitHub Trending 2026 với 63k+ stars. Hướng dẫn tiếng Việt chi tiết về cài đặt, trích xuất dữ liệu bằng LLM (GPT-4o, Claude, DeepSeek), crawl sâu toàn site, so sánh với Firecrawl và ScrapeGraphAI, triển khai Docker production."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -254,7 +254,7 @@ docker run -p 8000:8000 \
 Gọi từ ứng dụng của bạn: ```bash
 curl -X POST http://localhost:8000/crawl \
   -H "Authorization: Bearer your_jwt_secret" \
-  -d '{"url": "https://example.com", "output_format": "markdown"}'
+  -d '{"url": "https://example.com", "output_format": "markdown"}"
 ```
 
 ### Cấu Hình Proxy và Đồng Thời

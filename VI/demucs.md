@@ -1,5 +1,5 @@
 ---
-title: 'Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
+title: "Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Sp...
 description: "Demucs là mô hình tách nguồn nhạc hybrid spectrogram và waveform từ Meta AI. Tương thích với Ultimate Vocal Remover, RVC, GPT-SoVITS. Hướng dẫn demucs, demucs vs uvr, cài đặt docker demucs, và benchmark production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -389,7 +389,7 @@ batch_separate('./raw_songs/', './stems/', model=htdemucs_ft)
 Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế: ```python
 # Ép offload CPU cho file lớn
 import os
-os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128'
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = 'max_split_size_mb:128"
 
 # Dùng segment nhỏ hơn
 sources = apply_model(

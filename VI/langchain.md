@@ -1,5 +1,5 @@
 ---
-title: 'LangChain: 3 Cach Trien Khai AI Agent San Sang Productio...
+title: "LangChain: 3 Cach Trien Khai AI Agent San Sang Productio...
 description: "LangChain (LC) la framework Python/JS de xay dung ung dung LLM voi 700+ tich hop. Hoc cach cai dat LangChain, trien khai voi Docker, tich hop voi OpenAI, Anthropic, Ollama, va mo rong production voi LangSmith, LangGraph agents, va Kubernetes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -327,7 +327,7 @@ from langchain_openai import ChatOpenAI
 # Dinh nghia cac cong cu tuy chinh
 @tool
 def search_knowledge_base(query: str) -> str: """Search internal knowledge base for technical documentation."""
-    return f"Results for '{query}': Found 3 relevant documents."
+    return f"Results for '{query}": Found 3 relevant documents."
 
 @tool
 def calculate(expression: str) -> str: """Evaluate a mathematical expression."""

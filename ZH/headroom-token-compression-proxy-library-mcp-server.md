@@ -1,5 +1,5 @@
 ---
-title: 'Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 202...
+title: "Headroom: 压缩 LLM 输入 60-95% — 省 Token 代理、库与 MCP 服务器 — 202...
 description: "Headroom (19,745 GitHub stars) 压缩工具输出、日志、文件、RAG 块后再送入 LLM。节省 60-95% token，答案不变。含 Python 库、代理、MCP 服务器。附设置教程、架构解析和真实基准数据。"
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -391,7 +391,7 @@ Headroom 是每个 AI 代理流水线都需要的缺失基础设施层。与其�
 
 ## Why This Matters
 
-Understanding headroom: 压缩 llm 输入 60-95% — 省 token 代理、库与 mcp 服务器 — 2026 实用指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding headroom: 压缩 llm 输入 60-95% — 省 token 代理、库与 mcp 服务器 — 2026 实用指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

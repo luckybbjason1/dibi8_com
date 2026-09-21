@@ -1,5 +1,5 @@
 ---
-title: 'Codebase-Memory-MCP: High-Performance Code Intelligence ...
+title: "Codebase-Memory-MCP: High-Performance Code Intelligence ...
 description: "Deep dive into codebase-memory-mcp — the fastest code intelligence MCP server that indexes entire repositories in milliseconds. Full installation guide, comparison with alternatives, and real-world usage."
 tags: ["ai-agent", "ai-tools", "automation", "coding", "development", "mcp", "memory", "model-context-protocol", "open-source", "persistence"]
 date: 2026-06-19
@@ -447,7 +447,7 @@ Codebase-memory-mcp represents a quantum leap in how AI coding agents interact w
 
 With its impressive performance benchmarks, extensive language support, and seamless integration with popular AI coding agents, it's no wonder this project has gained 7,100+ stars in just a few months.
 
-For developers serious about leveraging AI for software development, codebase-memory-mcp is not just a nice-to-have — it's becoming essential infrastructure.
+For developers serious about leveraging AI for software development, codebase-memory-mcp is not just a nice-to-have — it"s becoming essential infrastructure.
 
 
 ---

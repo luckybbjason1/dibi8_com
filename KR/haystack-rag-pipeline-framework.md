@@ -1,5 +1,5 @@
 ---
-title: 'Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d...
+title: "Haystack 2026: \ud504\ub85c\ub355\uc158 RAG \ubc0f \uc5d...
 description: "2026\ub144 Haystack \uc644\ubcbd \uac00\uc774\ub4dc: \ud504\ub85c\ub355\uc158 RAG \ud30c\uc774\ud504\ub77c\uc778, \ubb38\uc11c \uc800\uc7a5\uc18c, \ub9ac\ud2b8\ub9ac\ubc84, \uc5d0\uc774\uc804\ud2b8, \ud3c9\uac00 \ub3c4\uad6c, \ubc0f Docker \ubc30\ud3ec\ub97c \uc704\ud55c \uc624\ud508\uc18c\uc2a4 NLP \ud504\ub808\uc784\uc6cc\ud06c."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "deepset-ai/haystack"
 stars: 21000
 maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["haystack", "nlp", "rag", "python", "llm", "\ubb38\uc11c \uc800\uc7a5\uc18c", "\ub9ac\ud2b8\ub9ac\ubc84", "\uc5d0\uc774\uc804\ud2b8", "openai", "docker", "\ud30c\uc774\ud504\ub77c\uc778"]

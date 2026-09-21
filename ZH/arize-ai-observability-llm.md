@@ -1,5 +1,5 @@
 ---
-title: 'Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水线 —— 2026...
+title: "Arize AI Phoenix：开源 LLM 可观测性工具，100% 追踪你的 RAG 流水线 —— 2026...
 description: "2026 年 Arize Phoenix 完整指南：开源 LLM 可观测性、RAG 追踪、Prompt 版本管理、Token 用量追踪，以及与 LangChain 和 LlamaIndex 的生产级部署。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -527,7 +527,7 @@ LLM 可观测性不是奢侈品——它是**基础设施**。能够交付可靠
 
 ## Why This Matters
 
-Understanding arize ai phoenix：开源 llm 可观测性工具，100% 追踪你的 rag 流水线 —— 2026 指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding arize ai phoenix：开源 llm 可观测性工具，100% 追踪你的 rag 流水线 —— 2026 指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
+title: "Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
 description: "Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026."
 date: 2026-09-19
 slug: 'agent-reach-internet-access-for-ai-agents-2026'
@@ -469,7 +469,7 @@ The speed trade-off is real, but for most use cases — weekly reports, research
 
 **The lesson:** Don't let budget constraints prevent you from building smart agents. Sometimes the best solution is a simple Python script with good scraping logic.
 
-Have you tried Agent-Reach? What's your favorite use case? Share in the comments or open an issue on GitHub.
+Have you tried Agent-Reach? What"s your favorite use case? Share in the comments or open an issue on GitHub.
 
 
 ---

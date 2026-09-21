@@ -1,5 +1,5 @@
 ---
-title: 'Skyvern: Automate Browser Workflows with AI Agents (21K ...
+title: "Skyvern: Automate Browser Workflows with AI Agents (21K ...
 description: "Skyvern automates browser-based workflows using LLMs and computer vision (21,803 GitHub stars, AGPL-3.0). Covers installation, the real Python API, working code examples, and an honest comparison with Selenium and Playwright."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -295,7 +295,7 @@ These limitations mean Skyvern is excellent for resilient, cross-site automation
 
 ## Conclusion
 
-Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with AI, boasting over 21,800 stars and active maintenance. If your automation has to survive changing layouts or work across many sites you don't control, its LLM-plus-vision approach is a genuine step up from selector-based scripting. Head to the GitHub repo, run `skyvern quickstart`, and try a prompt of your own.
+Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with AI, boasting over 21,800 stars and active maintenance. If your automation has to survive changing layouts or work across many sites you don"t control, its LLM-plus-vision approach is a genuine step up from selector-based scripting. Head to the GitHub repo, run `skyvern quickstart`, and try a prompt of your own.
 
 - Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) for open-source AI tool drops.
 - Read next: [related guides on dibi8](dibi8-internal-link).

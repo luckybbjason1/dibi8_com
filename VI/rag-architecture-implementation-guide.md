@@ -1,5 +1,5 @@
 ---
-title: 'Hướng Dẫn Triển Khai Kiến Trúc RAG 2025: Xây Dựng Hệ Thố...
+title: "Hướng Dẫn Triển Khai Kiến Trúc RAG 2025: Xây Dựng Hệ Thố...
 description: "Hướng dẫn triển khai kiến trúc RAG production 2025: từ Naive RAG đến Agentic RAG. So sánh framework, chiến lược chunking và đánh giá hiệu suất."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -410,7 +410,7 @@ RAGFlow là giải pháp RAG end-to-end mới nhất, tập trung vào "deep doc
 
 ### Xử Lý Các Trường Hợp Đặc Biệt
 
-- **Câu hỏi không liên quan đến dữ liệu**: Thiết lập ngưỡng similarity, trả về "I don't know"
+- **Câu hỏi không liên quan đến dữ liệu**: Thiết lập ngưỡng similarity, trả về "I don"t know"
 - **Thông tin mâu thuẫn trong documents**: Thêm bước conflict resolution
 - **Documents dài và phức tạp**: Dùng hierarchical RAG
 

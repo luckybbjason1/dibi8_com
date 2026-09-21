@@ -1,5 +1,5 @@
 ---
-title: 'Backtrader 2026: Công Cụ Backtesting Python Xác Thực Chi...
+title: "Backtrader 2026: Công Cụ Backtesting Python Xác Thực Chi...
 description: "Hướng dẫn đầy đủ về Backtrader event-driven backtesting engine. Xây dựng, kiểm thử, và tối ưu hóa chiến lược giao dịch bằng Python. Tích hợp, benchmark, và triển khai live trading 2026."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -563,7 +563,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 2. Backtrader GitHub: https://github.com/mementum/backtrader
 3. Backtrader2 Community Fork: https://github.com/backtrader2/backtrader
 4. VectorBT (cho nghiên cứu nhanh): https://github.com/polakowo/vectorbt
-5. "Python for Finance" — Yves Hilpisch (O'Reilly, 2018)
+5. "Python for Finance" — Yves Hilpisch (O"Reilly, 2018)
 6. "Advances in Financial Machine Learning" — Marcos Lopez de Prado (Wiley, 2018)
 
 ---

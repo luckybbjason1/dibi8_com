@@ -1,5 +1,5 @@
 ---
-title: 'ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh...
+title: "ComfyUI 2026: Engine Workflow AI Hình Ảnh/Video/Âm Thanh...
 description: "ComfyUI là engine workflow trực quan dựa node 114k sao cho SD/SDXL/Flux/Wan/Hunyuan và hơn nữa. Hỗ trợ sinh hình ảnh, video, âm thanh, và 3D. Hướng dẫn cài đặt 2026 đầy đủ bao gồm cơ bản node, import workflow JSON, ComfyUI Manager, và khi ComfyUI thắng AUTOMATIC1111."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -193,7 +193,7 @@ Cài ComfyUI + ComfyUI Manager (~15 phút tổng), thả workflow cộng đồng
 
 ## Why This Matters
 
-Understanding comfyui 2026: engine workflow ai hình ảnh/video/âm thanh dựa node 114k sao — hướng dẫn đầy đủ is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding comfyui 2026: engine workflow ai hình ảnh/video/âm thanh dựa node 114k sao — hướng dẫn đầy đủ is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

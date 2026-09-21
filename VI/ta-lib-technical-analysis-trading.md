@@ -1,5 +1,5 @@
 ---
-title: 'TA-Lib: Thư Viện Phân Tích Kỹ Thuật Chuẩn Ngành với 200+...
+title: "TA-Lib: Thư Viện Phân Tích Kỹ Thuật Chuẩn Ngành với 200+...
 description: "Hướng dẫn đầy đủ về TA-Lib Python wrapper với 200+ chỉ báo kỹ thuật. Cài đặt, benchmark, và triển khai SMA, EMA, RSI, MACD, Bollinger Bands cho giao dịch thuật toán 2026."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -459,7 +459,7 @@ functions = talib.get_functions()  # 200+ tên
 
 # Trợ giúp hàm (ví dụ: RSI)
 print(talib.abstract.RSI.info)
-# Hiển thị: {name: RSI, group: 'Momentum Indicators',
+# Hiển thị: {name: RSI, group: 'Momentum Indicators",
 #         input: [close], parameters: {timeperiod: 14}, ...}
 ```
 

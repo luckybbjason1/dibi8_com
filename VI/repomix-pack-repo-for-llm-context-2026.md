@@ -1,5 +1,5 @@
 ---
-title: 'repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
+title: "repomix 2026: Đóng Gói Toàn Bộ Codebase Thành File Duy N...
 description: "repomix (tên cũ repopack) chuyển đổi repository Git thành một file text có cấu trúc duy nhất, tối ưu cho cửa sổ ngữ cảnh của Claude, ChatGPT, Gemini. 14k+ sao, không cần cấu hình, chạy ngay với npx."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -117,7 +117,7 @@ config/credentials.json
 
 ## Why This Matters
 
-Understanding repomix 2026: đóng gói toàn bộ codebase thành file duy nhất cho llm — không cần cấu hình is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding repomix 2026: đóng gói toàn bộ codebase thành file duy nhất cho llm — không cần cấu hình is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

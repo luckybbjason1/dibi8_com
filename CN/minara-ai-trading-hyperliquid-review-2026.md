@@ -1,5 +1,5 @@
 ---
-title: 'Minara Review 2026: The AI Trading Platform on Hyperliqu...
+title: "Minara Review 2026: The AI Trading Platform on Hyperliqu...
 description: "Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-time market analysis, and execute crypto / stocks / commodities trades in a single chat interface. Hands-on review: setup walkthrough, five real use cases, honest pricing breakdown, and how Spark token rebates stack with the 10% referral commission."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -349,7 +349,7 @@ If you're going to ignore the rest of this review, at least remember this: **the
 - [AI Agent Skills Explained — 2026 Developer's Guide](/resources/llm-frameworks/ai-agent-skills-2026-developer-guide/)
 - [RTK — Open-Source Rust CLI Proxy for AI Coding](/resources/dev-utils/rtk-rust-cli-proxy-ai-token-saver/)
 
-*Last updated: 2026-05-17. Affiliate disclosure: this article contains referral links to Minara. If you sign up via these links, dibi8 earns a commission at no extra cost to you. We only review tools we'd recommend regardless of the commission.*
+*Last updated: 2026-05-17. Affiliate disclosure: this article contains referral links to Minara. If you sign up via these links, dibi8 earns a commission at no extra cost to you. We only review tools we"d recommend regardless of the commission.*
 
 
 {

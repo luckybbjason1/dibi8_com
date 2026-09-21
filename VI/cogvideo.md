@@ -1,5 +1,5 @@
 ---
-title: 'CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video ...
+title: "CogVideo: 12.7K Stars — Hướng Dẫn Cài Đặt Text-to-Video ...
 description: "CogVideo (CogVideoX) là mô hình tạo video từ văn bản và hình ảnh của Zhipu AI. Hỗ trợ ComfyUI, Diffusers, SAT, và tích hợp Wan/HunyuanVideo/Open-Sora. Bao gồm cài đặt, Docker, inference, fine-tuning và benchmark."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -469,7 +469,7 @@ import time
 
 INFERENCE_COUNT = Counter(cogvideo_inferences_total, 'Tổng số inference')
 INFERENCE_TIME = Histogram(cogvideo_inference_seconds, 'Độ trễ inference')
-VRAM_USAGE = Histogram(cogvideo_vram_bytes, 'VRAM peak')
+VRAM_USAGE = Histogram(cogvideo_vram_bytes, 'VRAM peak")
 
 start_http_server(9090)
 

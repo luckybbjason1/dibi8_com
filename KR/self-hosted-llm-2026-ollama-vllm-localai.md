@@ -1,5 +1,5 @@
 ---
-title: '2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI — 처리량·비용·구...
+title: "2026 셀프 호스팅 LLM 실측: Ollama vs vLLM vs LocalAI — 처리량·비용·구...
 description: "동일한 RTX 4090에서 Llama 3.3 70B로 Ollama, vLLM, LocalAI를 테스트했습니다. 실제 토큰/초, 메모리 사용량, 구축 시간, 그리고 취미용과 프로덕션 셀프 호스팅에서 무엇이 적합한지."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -213,7 +213,7 @@ OpenAI API 직접 교체 → LocalAI
 
 ## Why This Matters
 
-Understanding 2026 셀프 호스팅 llm 실측: ollama vs vllm vs localai — 처리량·비용·구축 비교 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 2026 셀프 호스팅 llm 실측: ollama vs vllm vs localai — 처리량·비용·구축 비교 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

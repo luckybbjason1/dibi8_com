@@ -1,5 +1,5 @@
 ---
-title: 'Lean: Cỗ Máy Giao dịch Thuật toán Mã nguồn Mở đằng sau Q...
+title: "Lean: Cỗ Máy Giao dịch Thuật toán Mã nguồn Mở đằng sau Q...
 description: "Hướng dẫn đầy đủ 2026 về Lean, engine giao dịch thuật toán của QuantConnect. Backtest đa tài sản, giao dịch thực, API C# & Python, và triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -126,7 +126,7 @@ pip install pythonnet
 pip install quantconnect-stubs
 
 # Xác minh cài đặt
-python -c "from Algorithm.Python import *; print('Lean Python ready')"
+python -c "from Algorithm.Python import *; print('Lean Python ready")"
 ```
 
 ### Triển khai Docker (Nhanh nhất)

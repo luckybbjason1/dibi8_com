@@ -1,10 +1,10 @@
 ---
-title: 'prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
+title: "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Li...
 description: "Deploy prompts.chat in 5 mins. 163,640 stars. Works with ChatGPT, Claude, Gemini. Self-host for privacy. No-cost, open-source prompt library."
 tags: ["ai-tools", "collection", "guide", "library", "llm", "open-source", "prompt-engineering", "reference", "self-hosted", "tutorial"]
 date: 2026-06-12
 lastmod: 2026-06-12
-slug: 'prompts-chat'
+slug: 'prompts-chat"
 category: llm-frameworks
 github_repo: "https://github.com/f/prompts.chat"
 license: NOASSERTION

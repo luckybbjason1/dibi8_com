@@ -1,5 +1,5 @@
 ---
-title: 'Mistral AI 2026: Triển khai LLM Local Cấp Production với...
+title: "Mistral AI 2026: Triển khai LLM Local Cấp Production với...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -430,7 +430,7 @@ curl http://localhost:8080/completion \
     "n_predict": 128,
     "temperature": 0.7,
     "stop": ["</s>"]
-  }'
+  }"
 ```
 
 ---

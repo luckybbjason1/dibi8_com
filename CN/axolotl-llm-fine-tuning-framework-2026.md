@@ -1,5 +1,5 @@
 ---
-title: 'Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...
+title: "Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F...
 description: "Axolotl is the open-source LLM fine-tuning framework with single-YAML config across full / LoRA / QLoRA / DPO / GRPO. 12k GitHub stars, Apache 2.0. Supports Llama / Mistral / Qwen / GLM / 10+ families. Complete 2026 install guide + when Axolotl beats Unsloth and raw HuggingFace TRL."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -215,7 +215,7 @@ Spin up an H100 instance, write the 20-line YAML in section 3, and 15 minutes la
 
 ## Why This Matters
 
-Understanding axolotl 2026: the 12k-star yaml-driven llm fine-tuning framework — complete production guide is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding axolotl 2026: the 12k-star yaml-driven llm fine-tuning framework — complete production guide is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

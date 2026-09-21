@@ -1,5 +1,5 @@
 ---
-title: 'LangGraph 1.2 in Production: Stateful Agent Orchestratio...
+title: "LangGraph 1.2 in Production: Stateful Agent Orchestratio...
 description: "LangGraph is a low-level orchestration framework for long-running, stateful AI agents. 32.6k GitHub stars, v1.2.1. Real deploy guide covering graph design, durable execution, human-in-loop checkpoints, LangSmith debugging, and when LangGraph beats CrewAI / AutoGen / pure LangChain."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -223,7 +223,7 @@ Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}} with Po
 
 ## Why This Matters
 
-Understanding langgraph 1.2 in production: stateful agent orchestration that survives crashes (complete 2026 guide) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding langgraph 1.2 in production: stateful agent orchestration that survives crashes (complete 2026 guide) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

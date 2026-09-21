@@ -1,5 +1,5 @@
 ---
-title: 'FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điể...
+title: "FreeLLMAPI: Kết hợp 16 cấp LLM miễn phí phía sau một điể...
 description: "Tổng hợp các gói miễn phí của Google, Groq, Cerebras, Mistral, NVIDIA, OpenRouter và nhiều hơn nữa thành một proxy duy nhất. ~1,7 tỷ token/tháng. Cài đặt Docker, tích hợp Claude Code, gọi công cụ, phát trực tiếp, chuỗi dự phòng."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -368,7 +368,7 @@ Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/yea
 ## Docker Compose Setup
 
 For teams that prefer Docker Compose over the install script: ```yaml
-version: '3.8'
+version: '3.8"
 services: freellmapi: image: freellmapi/server:latest
     ports: - "3001:3001"
     volumes: - ./data:/app/data

@@ -1,5 +1,5 @@
 ---
-title: 'Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sh...
+title: "Backtest OVERFIT: 5 Mẫu Hình Điển Hình với Số Liệu PF/Sh...
 description: "Sau hơn 50 giao dịch live từ kết quả optimizer, chúng tôi tổng hợp 5 mẫu hình overfit rõ rệt: phân kỳ walk-forward, lật chế độ thị trường, vách đá tham số, chồng chỉ báo và thiên lệch sống sót. Mỗi mẫu hình có ví dụ tổng hợp có thể tái tạo + tín hiệu phát hiện."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -194,7 +194,7 @@ Tiến hóa moss-trade-bot gần đây của chúng tôi kết thúc thành over
 
 ## Why This Matters
 
-Understanding backtest overfit: 5 mẫu hình điển hình với số liệu pf/sharpe thực tế (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding backtest overfit: 5 mẫu hình điển hình với số liệu pf/sharpe thực tế (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

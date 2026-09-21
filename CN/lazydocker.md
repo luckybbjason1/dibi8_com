@@ -1,5 +1,5 @@
 ---
-title: 'LazyDocker: 51,092 GitHub Stars — Complete Terminal Dock...
+title: "LazyDocker: 51,092 GitHub Stars — Complete Terminal Dock...
 description: "LazyDocker (LD) is a terminal UI for managing Docker containers, images, volumes, and logs. Compatible with Docker, Docker Compose, Go, and Terminal. Covers installation, keybindings, configuration, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -608,7 +608,7 @@ Join the [dibi8 Telegram community](https://t.me/dibi8_chat) to share your LazyD
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

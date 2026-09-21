@@ -1,5 +1,5 @@
 ---
-title: 'AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
+title: "AI Token Monitor: Theo dõi hạn ngạch Claude, Gemini, Gro...
 description: "Widget desktop Linux mã nguồn mở hiển thị hạn ngạch AI token theo thời gian thực bằng thanh tiến trình kiểu HP bar trong Conky. Hỗ trợ Claude, Gemini, Grok, Kimi với polling API thực và đếm ngược reset."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
@@ -176,7 +176,7 @@ Nếu công cụ này giúp bạn tránh được bất ngờ rate limit giữa 
 
 ## Why This Matters
 
-Understanding ai token monitor: theo dõi hạn ngạch claude, gemini, grok, kimi trực tiếp trên linux is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai token monitor: theo dõi hạn ngạch claude, gemini, grok, kimi trực tiếp trên linux is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

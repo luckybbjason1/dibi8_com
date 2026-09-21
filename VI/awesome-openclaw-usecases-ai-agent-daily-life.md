@@ -1,5 +1,5 @@
 ---
-title: '42 Trường Hợp Sử Dụng OpenClaw Thực Tế: Cách Mọi Người S...
+title: "42 Trường Hợp Sử Dụng OpenClaw Thực Tế: Cách Mọi Người S...
   Trong Cuộc Sống Hàng Ngày'
 description: Khám phá 42 trường hợp sử dụng thực tế cho tác nhân AI OpenClaw — từ. Comprehensive guide covering features, pricing, and best practices for 2026.
   tự động hóa mạng xã hội đến phát triển game, sản xuất podcast và giao dịch tự động.
@@ -32,7 +32,7 @@ faqs: - q: 'OpenClaw được dùng để làm gì?'
   - q: 'Tác nhân OpenClaw có thể chỉnh sửa video hoặc làm game không?'
     a: 'Có. OpenClaw hỗ trợ chỉnh sửa video bằng AI thông qua các lệnh chat ngôn ngữ tự nhiên như ''trim first 30 seconds'' hoặc ''generate subtitles'' mà không cần timeline hay GUI, và nó có thể chạy một quy trình phát triển game tự động xử lý việc chọn backlog, triển khai theo chính sách ''Bugs First'', tự động lập tài liệu và git commits.'
   - q: 'Cài đặt các skill OpenClaw và phụ thuộc bên thứ ba có an toàn không?'
-    a: 'Các skill OpenClaw và phụ thuộc bên thứ ba có thể chứa lỗ hổng bảo mật, vì vậy bạn nên xem xét mã nguồn của skill trước khi cài đặt, kiểm tra các quyền được yêu cầu, tránh hardcode API key hoặc thông tin xác thực, và sử dụng biến môi trường cho dữ liệu nhạy cảm.'
+    a: 'Các skill OpenClaw và phụ thuộc bên thứ ba có thể chứa lỗ hổng bảo mật, vì vậy bạn nên xem xét mã nguồn của skill trước khi cài đặt, kiểm tra các quyền được yêu cầu, tránh hardcode API key hoặc thông tin xác thực, và sử dụng biến môi trường cho dữ liệu nhạy cảm."
 ---
 
 # 42 Trường Hợp Sử Dụng OpenClaw Thực Tế: Cách Mọi Người Sử Dụng Tác Nhân AI

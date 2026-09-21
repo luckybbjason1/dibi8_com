@@ -1,5 +1,5 @@
 ---
-title: 'Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
+title: "Strix AI: 31K+ Star Open-Source Penetration Testing Fram...
 description: "Strix AI is an open-source penetration testing framework powered by AI agents. Automate vulnerability discovery, exploit development, and security reporting with state-of-the-art AI."
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00
@@ -427,7 +427,7 @@ A: Strix AI supports HTML, PDF, JSON, and SARIF (Static Analysis Results Interch
     },
     {
       "question": "Can I use it for bug bounty programs?",
-      "answer": "Yes. Many bug bounty platforms explicitly allow AI-assisted scanning. Always check the program's scope and rules before using Strix AI."
+      "answer": "Yes. Many bug bounty platforms explicitly allow AI-assisted scanning. Always check the program"s scope and rules before using Strix AI."
     },
     {
       "question": "Does it work offline?",

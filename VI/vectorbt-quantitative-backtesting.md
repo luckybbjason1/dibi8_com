@@ -1,5 +1,5 @@
 ---
-title: 'VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh X...
+title: "VectorBT: Thư viện Python Backtesting Tốc độ Cực nhanh X...
 description: "Làm chủ VectorBT để backtest quantitative bằng Python. Xây dựng, kiểm thử và tối ưu chiến lược giao dịch với mô phỏng tốc độ Numba vectorized. Hướng dẫn đầy đủ 2026 với ví dụ code."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -509,7 +509,7 @@ Tham gia cộng đồng quantitative trading Telegram để thảo luận chiế
 1. Tài liệu VectorBT — https://vectorbt.dev
 2. Repository GitHub VectorBT — https://github.com/polakowo/vectorbt
 3. Tài liệu Numba — https://numba.pydata.org
-4. "Advances in Financial Machine Learning" của Marcos Lopez de Prado — Marcos' Prado (2018)
+4. "Advances in Financial Machine Learning" của Marcos Lopez de Prado — Marcos" Prado (2018)
 5. Tài liệu PyPortfolioOpt — https://pyportfolioopt.readthedocs.io
 6. Thư viện sàn giao dịch Crypto CCXT — https://github.com/ccxt/ccxt
 

@@ -1,5 +1,5 @@
 ---
-title: 'LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên ...
+title: "LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên ...
 description: "So sánh trực tiếp LangGraph (đồ thị agent có trạng thái, cấp thấp) và CrewAI (nhóm đa agent theo vai trò, cấp cao) — kiểm soát, đường cong học tập, trạng thái, thiết kế đa agent và độ bền khi chạy production. Cập nhật 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -14,7 +14,7 @@ faqs: - q: 'Tôi nên dùng LangGraph hay CrewAI?'
   - q: 'Cái nào tốt hơn cho hệ đa agent?'
     a: 'CrewAI được thiết kế quanh ẩn dụ đa agent — nhiều agent với vai trò riêng cùng cộng tác làm việc theo quy trình tuần tự hoặc phân cấp — nên đây là con đường nhanh hơn để có một "nhóm chuyên gia" cổ điển. LangGraph cũng hoàn toàn dựng được hệ đa agent, nhưng nó mô hình hóa chúng thành các node trong một đồ thị tường minh, nghĩa là nhiều việc hơn và nhiều kiểm soát hơn. Chọn CrewAI cho cộng tác theo vai trò nhanh gọn, chọn LangGraph khi chính logic điều phối phức tạp và phải chính xác.'
   - q: 'CrewAI có được xây trên LangChain hay LangGraph không?'
-    a: 'CrewAI là một framework độc lập, không phải một lớp nằm trên LangGraph, dù nó có thể tương tác với công cụ LangChain. Ngược lại, LangGraph là một phần chính thức của hệ sinh thái LangChain và do nhóm LangChain duy trì như lớp điều phối cấp thấp. Vậy nên chúng có nguồn gốc khác nhau: LangGraph mở rộng LangChain xuống thành các đồ thị kiểm soát được, còn CrewAI là một cách diễn giải độc lập, ở cấp cao hơn, về "nhóm agent".'
+    a: 'CrewAI là một framework độc lập, không phải một lớp nằm trên LangGraph, dù nó có thể tương tác với công cụ LangChain. Ngược lại, LangGraph là một phần chính thức của hệ sinh thái LangChain và do nhóm LangChain duy trì như lớp điều phối cấp thấp. Vậy nên chúng có nguồn gốc khác nhau: LangGraph mở rộng LangChain xuống thành các đồ thị kiểm soát được, còn CrewAI là một cách diễn giải độc lập, ở cấp cao hơn, về "nhóm agent"."
 ---
 
 # LangGraph vs CrewAI năm 2026: Đồ Thị Trạng Thái Ưu Tiên Kiểm Soát vs Nhóm Agent Theo Vai Trò

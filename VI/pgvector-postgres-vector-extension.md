@@ -1,5 +1,5 @@
 ---
-title: 'pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vecto...
+title: "pgvector 2026: Biến PostgreSQL thành Cơ sở dữ liệu Vecto...
 description: "Hướng dẫn sản xuất cho pgvector 0.8.2: chỉ mục HNSW/IVFFlat, tìm kiếm tương tự vector, tối ưu hiệu năng, và tích hợp RAG với LangChain và LlamaIndex."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -624,7 +624,7 @@ SELECT title, embedding <-> $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
   AND created_at > NOW() - INTERVAL '7 days'
-  AND metadata @> '{"status": "published"}'
+  AND metadata @> '{"status": "published"}"
 ORDER BY embedding <-> $1::vector
 LIMIT 10;
 ```

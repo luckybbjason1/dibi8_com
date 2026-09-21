@@ -1,5 +1,5 @@
 ---
-title: 'Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 —...
+title: "Hummingbot 2026: 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇 —...
 description: "Hummingbot v2 실전 배포 가이드. 50개 이상 거래소 커넥터를 지원하는 오픈소스 암호화폐 트레이딩 봇. Docker 설치, 커스텀 전략, 백테스팅, DEX 게이트웨이, 프로덕션 하드닝을 다룹니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -434,7 +434,7 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
         max-file: "5"
     deploy: resources: limits: memory: 2G
           cpus: '1.0'
-    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
+    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/")"]
       interval: 30s
       timeout: 10s
       retries: 3

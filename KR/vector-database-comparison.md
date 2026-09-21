@@ -1,5 +1,5 @@
 ---
-title: '벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Mil...
+title: "벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Mil...
 description: "Pinecone, Weaviate, Chroma, Milvus 벡터 데이터베이스를 기능, 성능, 가격 측면에서 상세 비교합니다. RAG 프로젝트에 최적의 벡터 DB 선택 가이드.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -219,7 +219,7 @@ Milvus가 ANN-Benchmarks에서 일관되게 상위 성능을 보입니다. GPU �
 
 ## Why This Matters
 
-Understanding 벡터 데이터베이스 비교 2025: pinecone vs weaviate vs chroma vs milvus is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 벡터 데이터베이스 비교 2025: pinecone vs weaviate vs chroma vs milvus is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

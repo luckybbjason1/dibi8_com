@@ -1,5 +1,5 @@
 ---
-title: 'LLM Cửa sổ Ngữ cảnh 1M 2026: Gemini 2.5 Pro vs Claude So...
+title: "LLM Cửa sổ Ngữ cảnh 1M 2026: Gemini 2.5 Pro vs Claude So...
 description: "Cả hai đều tuyên bố ngữ cảnh 1M token. Chúng tôi nạp một codebase 950K token vào mỗi mô hình và đo: chất lượng truy xuất, độ trễ, chi phí, và bên nào thực sự giữ lời hứa 1M so với bên nào sụp đổ ở đuôi dài."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -143,7 +143,7 @@ Với hầu hết công việc sản xuất năm 2026: đừng dùng cái nào �
 
 ## Why This Matters
 
-Understanding llm cửa sổ ngữ cảnh 1m 2026: gemini 2.5 pro vs claude sonnet 4.6 thử nghiệm thực tế is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding llm cửa sổ ngữ cảnh 1m 2026: gemini 2.5 pro vs claude sonnet 4.6 thử nghiệm thực tế is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

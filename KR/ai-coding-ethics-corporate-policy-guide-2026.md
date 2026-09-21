@@ -1,5 +1,5 @@
 ---
-title: 'AI 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드'
+title: "AI 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드'
 description: "2026년 기업은 AI 허용 / AI 제한 / AI 금지 세 진영으로 갈립니다. 우리가 추적한 실제 기업 도입 패턴을 바탕으로 각 정책의 모습, 선택 기준, 법률/IP/컴플라이언스 함정을 실무적으로 정리합니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -177,7 +177,7 @@ AI가 GPL 코드를 독점 코드베이스에 토해낼 수 있고, 그 결과 �
 
 ## Why This Matters
 
-Understanding ai 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự C...
+title: "CrewAI: Xây Dựng Đội Ngũ AI Đa Tác Tự Collaboration Tự C...
 description: "Hướng dẫn thực hành 2026 về CrewAI — framework Python để xây dựng hệ thống AI đa tác tự với các tác tự dựa trên vai trò, phân công nhiệm vụ, chia sẻ bộ nhớ và các mẫu hợp tác tự chủ."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "joaomdmoura/crewAI"
 stars: 28000
 maintainer: joaomdmoura
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crewai", "multi-agent", "ai-agents", "orchestration", "autonomous-agents", "llm", "python", "mã-nguồn-mở"]

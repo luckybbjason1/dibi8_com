@@ -1,5 +1,5 @@
 ---
-title: 'VideoReTalking: 7.2K+ Stars — AI Lip-Sync Video Editing ...
+title: "VideoReTalking: 7.2K+ Stars — AI Lip-Sync Video Editing ...
 description: "VideoReTalking (VRT) is an audio-based lip synchronization system for talking head video editing. Compatible with RVC, GPT-SoVITS, and Coqui TTS. Covers installation, inference, Gradio WebUI, production deployment, and benchmarks vs Wav2Lip and SadTalker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -445,7 +445,7 @@ Join the [dibi8 developer community on Telegram](https://t.me/dibi8tech) to shar
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

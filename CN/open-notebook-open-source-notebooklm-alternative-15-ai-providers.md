@@ -1,5 +1,5 @@
 ---
-title: 'open-notebook: The Open-Source Notebook LM Alternative T...
+title: "open-notebook: The Open-Source Notebook LM Alternative T...
 description: "open-notebook (28,200 GitHub stars) is the open-source alternative to Google NotebookLM with support for 15+ AI providers. Self-hosted RAG knowledge base with multimodal audio episodes. Includes setup guide, provider comparison, and real benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -409,7 +409,7 @@ Sources & Further Reading
 
 open-notebook proves that a personal AI research assistant doesn't need to live on Google's servers. With 28,200 stars and a growing community, it's clear developers want a self-hosted alternative to NotebookLM that supports multiple AI providers and keeps their data private.
 
-Whether you're a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.
+Whether you"re a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](https://dibi8.com/agentmemory-persistent-m[知识图谱](https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory guide](https://dibi8.com/agentmemory-*) for complementary knowledge. Try open-notebook today — `docker compose up`, upload a PDF, and ask it a question.
 

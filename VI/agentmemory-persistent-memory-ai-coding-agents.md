@@ -1,5 +1,5 @@
 ---
-title: 'AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã...
+title: "AgentMemory: Hệ Thống Bộ Nhớ Bền Vững Số 1 cho Đại Lý Mã...
 description: "AgentMemory (22.038 sao GitHub) cung cấp bộ nhớ bền vững cho đại lý mã hóa AI dựa trên các đánh giá thực tế. Nhớ các phiên trước, duy trì ngữ cảnh qua nhiều ngày, học từ các tương tác trước. Hỗ trợ Claude Code, Codex CLI, OpenCode và hơn thế. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và đánh giá."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -157,7 +157,7 @@ docker run -d \
 # Truy vấn bộ nhớ qua API
 curl -X POST http://localhost:9090/query \
   -H "Content-Type: application/json" \
-  -d '{"query": "What bugs were fixed last week?", "top_k": 5}' | jq
+  -d '{"query": "What bugs were fixed last week?", "top_k": 5}" | jq
 ```
 
 ### Tùy chọn Lưu trữ Bộ nhớ

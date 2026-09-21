@@ -1,5 +1,5 @@
 ---
-title: 'Aider: 45K+ Stars — Lập Trình Cặp AI trong Terminal vs C...
+title: "Aider: 45K+ Stars — Lập Trình Cặp AI trong Terminal vs C...
 description: "Aider là công cụ lập trình cặp AI trong terminal, chỉnh sửa code trong git repository cục bộ. Hỗ trợ OpenAI, Claude, DeepSeek, Gemini. Hướng dẫn cài đặt Aider, tutorial, tích hợp Git, benchmark và so sánh với Claude Code, Cursor, Codex CLI."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -139,7 +139,7 @@ Aider phù hợp tự nhiên với luồng làm việc Vim. Chạy nó trong m�
 tmux new-session -d -s aider-vim
 tmux split-window -h -t aider-vim
 tmux send-keys -t aider-vim.0 'vim .' C-m
-tmux send-keys -t aider-vim.1 'aider --model sonnet' C-m
+tmux send-keys -t aider-vim.1 'aider --model sonnet" C-m
 tmux attach -t aider-vim
 ```
 

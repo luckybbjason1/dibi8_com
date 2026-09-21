@@ -1,5 +1,5 @@
 ---
-title: 'Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M ...
+title: "Đánh giá Supertonic: TTS đa ngôn ngữ chạy on-device 99M ...
 description: "Supertonic (9.9K+ stars trên GitHub) của Supertone Inc. là model text-to-speech đa ngôn ngữ siêu nhanh chạy local trên CPU qua ONNX Runtime — không cloud, không API, không cần GPU. 99M tham số, 31 ngôn ngữ bao gồm tiếng Hàn/Nhật/Việt/Trung, audio chất lượng studio 44.1kHz, 10 expression tag, runtime cho Python, Node.js, browser (WebGPU/WASM), iOS, Android, Rust, Flutter. Phân tích đầy đủ tính năng, hướng dẫn cài đặt, ví dụ code và so sánh bối cảnh TTS on-device 2026."
 date: 2026-05-23 00:00:00+08:00
 lastmod: 2026-05-23 00:00:00+08:00
@@ -106,7 +106,7 @@ tts.save_audio(wav, "output.wav")
 Với tiếng Hàn, đổi `lang="en"` → `lang="ko"`. Tương tự với `ja`, `vi`, `zh`. Voice style (`M1` ở đây) nhất quán giữa các ngôn ngữ — hữu ích nếu bạn đang xây giọng nhân vật đa ngôn ngữ.
 
 Với expression tag: ```python
-text = "I can't believe it. <laugh> That's incredible. <breath> Let me explain."
+text = "I can't believe it. <laugh> That"s incredible. <breath> Let me explain."
 ```
 
 Model diễn giải tag inline và tạo biểu cảm tương ứng trong audio.

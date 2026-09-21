@@ -1,5 +1,5 @@
 ---
-title: 'cc-switch: The Cross-Platform Desktop CLI Control Center...
+title: "cc-switch: The Cross-Platform Desktop CLI Control Center...
 description: "cc-switch (95,900 GitHub stars) is a cross-platform desktop tool that unifies Claude Code, Codex, OpenCode, Gemini CLI, OpenClaw, and Hermes Agent into one control center. Single binary, zero dependencies. Includes setup tutorial, architecture breakdown, and real benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -408,7 +408,7 @@ Sources & Further Reading
 
 cc-switch fills a gap that no other tool addresses: **unified management of multiple AI coding agents**. At 95,900 stars and growing, it's clearly solving a real pain point for developers who juggle between Claude Code, Codex, OpenCode, and others.
 
-If you're using 2+ AI coding agents, switching between them 10+ times a day, cc-switch will save you 15-20 minutes daily — that's 60-80 hours per year just on switching. The preset system alone is worth the install.
+If you're using 2+ AI coding agents, switching between them 10+ times a day, cc-switch will save you 15-20 minutes daily — that"s 60-80 hours per year just on switching. The preset system alone is worth the install.
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss cc-switch tips and presets. Check out our guides on [代码知识图谱工具](https://dibi8.com/codegraph-pre[Token压缩代理](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server)nts) and [本地ChatGPT](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu) for related tooling. Try cc-switch today — install it, set up two agent presets, and see how much time you save in a week.
 

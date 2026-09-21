@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Skill Authoring: How to Package Procedures C...
+title: "Claude Code Skill Authoring: How to Package Procedures C...
 description: "A complete guide to authoring Claude Code skills — SKILL.md structure, the trigger description that controls loading, progressive disclosure, and when a skill beats CLAUDE.md or a subagent. With worked examples and the mistakes to avoid."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -182,7 +182,7 @@ Skills shine most in a stable, shared environment: 1. **A reliable host for team
 
 ## Verdict
 
-Skills are the cheapest, most underrated extension point — a directory with a markdown file that turns situational expertise into just-in-time context. The whole craft reduces to two things: a **description** packed with the real trigger phrases so it fires at the right moment, and **progressive disclosure** so it stays light until the task needs its depth. Write those two well and you've packaged a procedure your whole team — and every CI run — gets for free, exactly when it's relevant. That completes the trio: skill for knowledge, subagent for context, MCP server for capability.
+Skills are the cheapest, most underrated extension point — a directory with a markdown file that turns situational expertise into just-in-time context. The whole craft reduces to two things: a **description** packed with the real trigger phrases so it fires at the right moment, and **progressive disclosure** so it stays light until the task needs its depth. Write those two well and you've packaged a procedure your whole team — and every CI run — gets for free, exactly when it"s relevant. That completes the trio: skill for knowledge, subagent for context, MCP server for capability.
 
 
 {

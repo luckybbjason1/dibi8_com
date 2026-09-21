@@ -1,5 +1,5 @@
 ---
-title: 'Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canva...
+title: "Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canva...
 description: "So sánh chi tiết Dify (RAG doanh nghiệp, đa mô hình, quản lý prompt, tự host) và Flowise (xây dựng LangChain trực quan, nhẹ, mã nguồn mở) — tính năng, tự host, pipeline AI và lựa chọn phù hợp năm 2026."
 date: 2026-06-07 00:00:00+08:00
 lastmod: 2026-06-07 00:00:00+08:00draft: false
@@ -14,7 +14,7 @@ faqs: - q: 'Sự khác biệt giữa Dify và Flowise là gì?'
   - q: 'Công cụ nào hỗ trợ đa mô hình tốt hơn — Dify hay Flowise?'
     a: 'Dify có hỗ trợ đa mô hình có cấu trúc hơn. Nó bao gồm lớp quản lý model provider nơi bạn cấu hình nhiều provider (OpenAI, Anthropic, Azure OpenAI, Hugging Face, Ollama cục bộ) rồi định tuyến các pipeline khác nhau đến các mô hình khác nhau từ một UI trung tâm. Flowise hỗ trợ nhiều LLM node (OpenAI, Anthropic, Ollama, v.v.) nhưng chuyển đổi mô hình có nghĩa là chỉnh sửa trực tiếp node trên canvas — không có lớp định tuyến mô hình trung tâm.'
   - q: 'Flowise chỉ là một LangChain builder trực quan thôi sao?'
-    a: 'Flowise bắt đầu là giao diện LangChain kéo thả và đó vẫn là bản sắc cốt lõi, nhưng nó đã phát triển vượt ra ngoài một wrapper đơn giản. Nó hỗ trợ cả thành phần LlamaIndex ngoài LangChain, thêm widget nhúng chatbot riêng, xuất bản API endpoint và đã xây dựng hệ sinh thái node cộng đồng. Mô tả chính xác nhất là công cụ xây dựng pipeline LLM trực quan trừu tượng hóa LangChain và LlamaIndex, không phải wrapper LangChain thuần túy.'
+    a: 'Flowise bắt đầu là giao diện LangChain kéo thả và đó vẫn là bản sắc cốt lõi, nhưng nó đã phát triển vượt ra ngoài một wrapper đơn giản. Nó hỗ trợ cả thành phần LlamaIndex ngoài LangChain, thêm widget nhúng chatbot riêng, xuất bản API endpoint và đã xây dựng hệ sinh thái node cộng đồng. Mô tả chính xác nhất là công cụ xây dựng pipeline LLM trực quan trừu tượng hóa LangChain và LlamaIndex, không phải wrapper LangChain thuần túy."
 ---
 
 # Dify vs Flowise 2026: Nền Tảng AI App Toàn Diện vs Canvas LLM Nhẹ

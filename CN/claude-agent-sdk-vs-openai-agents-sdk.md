@@ -1,5 +1,5 @@
 ---
-title: 'Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to ...
+title: "Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to ...
 description: "Side-by-side breakdown of the two leading agent SDKs — architecture (hooks+subagents vs handoffs+guardrails), built-in tools, OS access, voice, lock-in, and when to pick each. Updated 2026."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00draft: false
@@ -158,7 +158,7 @@ The honest decision tree: - Coding / OS-heavy agent, all-in on Claude → **Clau
 
 ## Why This Matters
 
-Understanding claude agent sdk vs openai agents sdk in 2026: which to build on? is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude agent sdk vs openai agents sdk in 2026: which to build on? is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

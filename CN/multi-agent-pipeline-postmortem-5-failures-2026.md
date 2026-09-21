@@ -1,5 +1,5 @@
 ---
-title: 'Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
+title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchest...
 description: "Five real failure modes of Claude Code multi-agent pipelines — trusting unverified reports, context bleed, runaway fan-out, silent truncation, and orphaned worktrees — each with the symptom, the root cause, and the fix."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -135,7 +135,7 @@ Multi-agent orchestration is worth it when the task genuinely exceeds one contex
 
 ## Why This Matters
 
-Understanding multi-agent pipeline postmortem: 5 ways subagent orchestration goes wrong (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding multi-agent pipeline postmortem: 5 ways subagent orchestration goes wrong (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector v...
+title: "Qdrant: Vector Database Dựa Trên Rust Xử Lý 1M+ Vector v...
 description: "Triển khai Qdrant vector database cho tìm kiếm tương đồng production. Hướng dẫn đầy đủ về HNSW indexing, payload filtering, multi-tenancy, Docker deployment, client Python/Go/JS với benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -504,7 +504,7 @@ curl http://localhost:6333/collections/documents/snapshots
 # Khôi phục từ snapshot
 curl -X PUT http://localhost:6333/collections/documents_from_backup/snapshots/recover \
   -H "Content-Type: application/json" \
-  -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}'
+  -d '{"location": "/qdrant/snapshots/documents-2026-05-19-10-30-00.snapshot"}"
 ```
 
 ```python

@@ -1,5 +1,5 @@
 ---
-title: 'Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
+title: "Stack AI Local-First 2026: Môi Trường Phát Triển AI Hoàn...
 description: "Xây dựng môi trường lập trình AI hoàn toàn offline năm 2026: Ollama cho LLM, Aider làm coding agent, ChromaDB cho RAG — tất cả chạy local. Hướng dẫn cài đặt, thực tế phần cứng, và những tình huống offline thực sự quan trọng (riêng tư, tuân thủ, air-gapped, đi công tác)."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -181,7 +181,7 @@ Hybrid đúng đắn là local mặc định + API thương mại dự phòng. P
 
 ## Why This Matters
 
-Understanding stack ai local-first 2026: môi trường phát triển ai hoàn toàn offline is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding stack ai local-first 2026: môi trường phát triển ai hoàn toàn offline is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

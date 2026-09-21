@@ -1,5 +1,5 @@
 ---
-title: 'AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs...
+title: "AutoGen: 58K+ Stars — Multi-Agent Framework Deep Dive vs...
 description: "AutoGen (Microsoft) is an event-driven programming framework for building multi-agent AI systems. Compatible with OpenAI, Azure, Ollama, Docker, and VS Code. Covers installation, group chat setup, production hardening, and honest comparison with alternatives."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -520,7 +520,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [AutoGen Official Documentation](https://microsoft.github.io/autogen/stable/)
 - [AutoGen GitHub Repository](https://github.com/microsoft/autogen)
 - [AutoGen AgentChat API Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.html)
-- [Magentic-One: AutoGen's Generalist Multi-Agent System](https://arxiv.org/pdf/2411.04468v1)
+- [Magentic-One: AutoGen"s Generalist Multi-Agent System](https://arxiv.org/pdf/2411.04468v1)
 - [Open Agent Specification Benchmark Results](https://arxiv.org/html/2510.04173v3)
 - [Multi-Agent Framework Evaluation Study](https://arxiv.org/html/2604.16646v1)
 - [CrewAI Documentation](https://docs.crewai.com/)

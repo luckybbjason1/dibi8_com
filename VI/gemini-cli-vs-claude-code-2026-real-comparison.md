@@ -1,5 +1,5 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 q...
+title: "Gemini CLI vs Claude Code 2026: So sánh thực tế trên 5 q...
 description: "Google ra mắt Gemini CLI để cạnh tranh với Claude Code. Đã thử nghiệm cả hai trên cùng 5 quy trình: nơi Gemini thắng (gói miễn phí, ngữ cảnh 1M), nơi Claude Code thắng (độ tin cậy khi dùng công cụ, vòng lặp agentic) và khi nào nên dùng cái nào."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -171,7 +171,7 @@ Stack tốt nhất 2026 cho hầu hết lập trình viên chuyên nghiệp: Cla
 
 ## Why This Matters
 
-Understanding gemini cli vs claude code 2026: so sánh thực tế trên 5 quy trình làm việc is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding gemini cli vs claude code 2026: so sánh thực tế trên 5 quy trình làm việc is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

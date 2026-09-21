@@ -1,5 +1,5 @@
 ---
-title: 'LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hư...
+title: "LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hư...
 description: "LibreTranslate (LT) là API dịch máy mã nguồn mở miễn phí dựa trên Argos Translate. Hỗ trợ Docker, CUDA GPU, 30+ ngôn ngữ và triển khai offline. Bao gồm cài đặt, benchmark hiệu suất, giám sát và tích hợp với OpenAI Whisper, Coqui TTS, Argos Translate."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -493,7 +493,7 @@ import requests
 import time
 
 TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 'Tổng số bản dịch')
-LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Độ trễ dịch')
+LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Độ trễ dịch")
 
 def monitor(): start_http_server(9090)
     while True: start = time.time()

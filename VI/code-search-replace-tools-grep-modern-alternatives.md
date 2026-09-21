@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd...
+title: "Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd...
 description: "Hướng dẫn đầy đủ về công cụ tìm kiếm và thay thế code: so sánh grep, ack, ag, ripgrep, fzf, sd. Bảng benchmark, workflow thực tế và cách xây dựng bộ công cụ tìm kiếm hiệu quả."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -358,7 +358,7 @@ ripgrep (`rg`) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều 
 
 ### Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?
 
-Sử dụng **sd** cho cú pháp đơn giản nhất: `sd "oldText" "newText" $(rg "oldText" -l)`. Lệnh `rg -l` liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag `-p` (preview) trước để xem thay đổi: `sd -p "old" "new" $(rg "old" -l)`. Nếu không có sd, dùng `perl -pi -e 's/old/new/g' $(rg "old" -l)`.
+Sử dụng **sd** cho cú pháp đơn giản nhất: `sd "oldText" "newText" $(rg "oldText" -l)`. Lệnh `rg -l` liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag `-p` (preview) trước để xem thay đổi: `sd -p "old" "new" $(rg "old" -l)`. Nếu không có sd, dùng `perl -pi -e 's/old/new/g" $(rg "old" -l)`.
 
 ### Có thể dùng ripgrep với VS Code không?
 

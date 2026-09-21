@@ -1,5 +1,5 @@
 ---
-title: 'AutoGen Tutorial 2025: Building Multi-Agent AI Systems M...
+title: "AutoGen Tutorial 2025: Building Multi-Agent AI Systems M...
 description: "Learn Microsoft AutoGen in 2025. Build multi-agent AI systems, create conversational agents, and deploy autonomous workflows with code examples."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -395,7 +395,7 @@ AutoGen separates code generation from execution. The `AssistantAgent` writes co
 
 ## Conclusion and Getting Started Resources
 
-AutoGen represents a fundamental shift in how we build AI applications — from single-model prompts to collaborative agent networks. The framework's native support for code execution, flexible conversation patterns, and human-in-the-loop integration makes it uniquely capable for tasks that require actual problem-solving rather than just text generation.
+AutoGen represents a fundamental shift in how we build AI applications — from single-model prompts to collaborative agent networks. The framework"s native support for code execution, flexible conversation patterns, and human-in-the-loop integration makes it uniquely capable for tasks that require actual problem-solving rather than just text generation.
 
 Start with a simple two-agent setup: a `UserProxyAgent` and an `AssistantAgent`. Give them a coding task and observe the collaboration loop. Then experiment with `GroupChat` for multi-agent scenarios, add custom tools for domain-specific capabilities, and configure local models to control costs.
 

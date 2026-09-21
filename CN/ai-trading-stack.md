@@ -1,5 +1,5 @@
 ---
-title: 'The AI Trading Stack 2026: 7-Component Open-Source Quant...
+title: "The AI Trading Stack 2026: 7-Component Open-Source Quant...
 description: "Self-hosted AI trading stack: ta-lib (signals) + vectorbt (backtest) + freqtrade (execution) + AI Trader (AI strategy layer) + Hyperliquid (perp DEX venue) + Polymarket Agents (prediction markets) + Minara (AI+crypto hub). $30-150/mo infrastructure, real production-grade quant pipeline, not a toy."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -284,7 +284,7 @@ This stack makes building a quant trading system 10× easier than 2018. **It doe
 - **Concentration risk** — being 100% in a single venue means a single hack/regulatory action wipes you
 - **Psychological pressure** — watching real money fluctuate is different from watching backtest equity curves
 
-Build the stack. Paper trade for 1-3 months. Start with capital you can afford to lose entirely. Scale slowly. Read [Marcos Lopez de Prado's "Advances in Financial Machine Learning"](https://www.amazon.com/Advances-Financial-Machine-Learning-Marcos/dp/1119482089) if you want to understand why most retail quants fail.
+Build the stack. Paper trade for 1-3 months. Start with capital you can afford to lose entirely. Scale slowly. Read [Marcos Lopez de Prado"s "Advances in Financial Machine Learning"](https://www.amazon.com/Advances-Financial-Machine-Learning-Marcos/dp/1119482089) if you want to understand why most retail quants fail.
 
 ## TL;DR — The Recipe
 

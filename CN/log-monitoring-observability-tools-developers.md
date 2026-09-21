@@ -1,5 +1,5 @@
 ---
-title: 'Log Monitoring & Observability Tools for Developers: 202...
+title: "Log Monitoring & Observability Tools for Developers: 202...
 description: "Compare Grafana Loki, ELK, Datadog, New Relic, and open-source observability stacks. Setup guides, pricing, and benchmarks for developer monitoring in 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -193,7 +193,7 @@ Choose Loki if you are already using Prometheus and Grafana, want lower operatio
 
 **Is Datadog worth the cost for small teams?**
 
-For teams under 10 engineers with straightforward architectures, Datadog is usually not worth the cost. New Relic's 100 GB free tier, SigNoz's open-source stack, or a self-hosted Loki + Prometheus setup provides 80% of the functionality at a fraction of the price. Datadog becomes valuable when you have 20+ services, complex dependencies, and the cost of outages exceeds the platform cost. A single prevented outage often pays for months of Datadog subscription.
+For teams under 10 engineers with straightforward architectures, Datadog is usually not worth the cost. New Relic's 100 GB free tier, SigNoz"s open-source stack, or a self-hosted Loki + Prometheus setup provides 80% of the functionality at a fraction of the price. Datadog becomes valuable when you have 20+ services, complex dependencies, and the cost of outages exceeds the platform cost. A single prevented outage often pays for months of Datadog subscription.
 
 **What is OpenTelemetry and why should I use it?**
 

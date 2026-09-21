@@ -1,5 +1,5 @@
 ---
-title: 'Kỹ Năng PM: 68 Kỹ Năng Quản Lý Sản Phẩm và 42 Quy Trình ...
+title: "Kỹ Năng PM: 68 Kỹ Năng Quản Lý Sản Phẩm và 42 Quy Trình ...
 description: "Hệ điều hành AI cho các quyết định sản phẩm tốt hơn. 9 plugin bao gồm khám phá, chiến lược, triển khai, nghiên cứu, phân tích, GTM, tiếp thị, bộ công cụ và vận chuyển AI. Hoạt động với Claude Code, Codex, Cursor và hơn 50 trợ lý AI."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -480,7 +480,7 @@ Test your custom skill with: ```bash
 
 ## Full Discovery Workflow Example
 
-Here's a complete discovery workflow using PM-Skills commands in sequence: ```
+Here"s a complete discovery workflow using PM-Skills commands in sequence: ```
 # Step 1: Generate ideas
 /discover AI-powered code review tool for small teams
 

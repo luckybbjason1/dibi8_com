@@ -16,7 +16,7 @@ sources: - name: GitHub
   - name: Discord
     url: 'https://discord.gg/XF78rEME2D'
 ---
-title: 'DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
+title: "DeepSeek-Reasonix: Terminal AI Coding Agent Engineered for DeepSeek Prefix-Cache Stability'
 description: "A DeepSeek-native AI coding agent with engineered prefix-cache stability — 99.82% cache hit rate, ~$12/day for heavy usage vs ~$61 without cache. MIT licensed. Claude Code alternative using DeepSeek models."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -501,7 +501,7 @@ Reasonix has an active bilingual Discord community with channels for setup help 
 
 ---
 
-**Want to code with AI at a fraction of the cost?** Reasonix's engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
+**Want to code with AI at a fraction of the cost?** Reasonix"s engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 

@@ -1,5 +1,5 @@
 ---
-title: 'Open Codesign: The Open-Source Claude Design Alternative...
+title: "Open Codesign: The Open-Source Claude Design Alternative...
 description: Discover Open Codesign, the MIT-licensed open-source alternative to Claude. Comprehensive guide covering features, pricing, and best practices for 2026.
   Design. Multi-model AI design tool with BYOK, local-first architecture, and instant
   prototype generation from natural language prompts.
@@ -356,7 +356,7 @@ If you have not yet explored Open Codesign, the setup takes less than 90 seconds
 If you want to run this stack reliably 24/7, infrastructure choice matters: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **{{< aff "htstack" "footer-cta-legacy" "HTStack" >}}** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 *Written by the dibi8 Tech Team. For more deep dives into AI developer tools, open-source workflows, and design engineering, follow our blog at [dibi8.com](https://dibi8.com).*
 

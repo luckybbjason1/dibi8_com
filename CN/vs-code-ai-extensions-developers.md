@@ -1,5 +1,5 @@
 ---
-title: 'Best VS Code AI Extensions for Developers in 2025: Boost...
+title: "Best VS Code AI Extensions for Developers in 2025: Boost...
 description: "Discover the best VS Code AI extensions for 2025. Compare GitHub Copilot, Codeium, Tabnine, Cody, and more with pricing, features, and privacy breakdowns."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -260,7 +260,7 @@ Yes. Continue supports local LLMs through Ollama, allowing completely offline AI
 
 ### Do VS Code AI extensions work offline?
 
-Only extensions with local model support work offline. Tabnine's local mode and Continue with Ollama function without internet connectivity. Cloud-based assistants like Copilot, Codeium (cloud mode), and Amazon Q require an active connection. Check each extension's offline capabilities before relying on them in connectivity-constrained environments.
+Only extensions with local model support work offline. Tabnine's local mode and Continue with Ollama function without internet connectivity. Cloud-based assistants like Copilot, Codeium (cloud mode), and Amazon Q require an active connection. Check each extension"s offline capabilities before relying on them in connectivity-constrained environments.
 
 ### Are AI coding assistants worth it for beginner programmers?
 

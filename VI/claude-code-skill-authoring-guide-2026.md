@@ -1,5 +1,5 @@
 ---
-title: 'Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà C...
+title: "Viết Skill cho Claude Code: Cách Đóng Gói Quy Trình Mà C...
 description: "Hướng dẫn đầy đủ về việc viết skill cho Claude Code — cấu trúc SKILL.md, trường description điều khiển việc nạp, tiết lộ tăng dần (progressive disclosure), và khi nào một skill vượt trội hơn CLAUDE.md hay một subagent. Kèm ví dụ thực tế và những sai lầm cần tránh."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -87,7 +87,7 @@ Kebab-case, mang tính mô tả. Đây là danh tính của skill.
 Claude đọc các description của skill để định tuyến: nó quét chúng, quyết định skill nào hợp với nhiệm vụ hiện tại, rồi nạp phần thân của skill đó. Vậy nên description không phải là một cái nhãn — nó là một **điều kiện khi-nào-kích-hoạt**. Hãy nhồi vào đó những trigger cụ thể: > ❌ `description: Release helper.`
 > ✅ `description: Use when cutting a release, publishing a version, tagging a build, or writing release notes. Covers version bump, changelog generation, git tag, and publish.`
 
-Cái đầu tiên không bao giờ kích hoạt vì chẳng có gì trong một nhiệm vụ thực tế khớp với "release helper." Cái thứ hai kích hoạt ngay khoảnh khắc người dùng nói "let's ship 2.4.0." Nếu skill của bạn tồn tại nhưng không bao giờ kích hoạt, thủ phạm chính là description — lần nào cũng vậy.
+Cái đầu tiên không bao giờ kích hoạt vì chẳng có gì trong một nhiệm vụ thực tế khớp với "release helper." Cái thứ hai kích hoạt ngay khoảnh khắc người dùng nói "let"s ship 2.4.0." Nếu skill của bạn tồn tại nhưng không bao giờ kích hoạt, thủ phạm chính là description — lần nào cũng vậy.
 
 ## Viết Phần Thân: Một Quy Trình, Không Phải Một Bài Luận
 

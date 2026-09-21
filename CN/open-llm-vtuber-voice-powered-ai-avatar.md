@@ -1,5 +1,5 @@
 ---
-title: 'Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Char...
+title: "Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Char...
 description: "Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. Includes quick start guide, full integration list, and production deployment options."
 tags: ["ai-avatar", "ai-tools", "open-source", "self-hosted", "speech", "tts", "voice", "voice-ai", "vtuber"]
 date: 2026-06-10
@@ -485,7 +485,7 @@ This clones, installs dependencies, and launches the VTuber in one command. It w
 
 ---
 
-Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it's the most complete open-source AI avatar platform available today.
+Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it"s the most complete open-source AI avatar platform available today.
 
 For self-hosted deployment on a VPS, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for easy cloud setup.
 

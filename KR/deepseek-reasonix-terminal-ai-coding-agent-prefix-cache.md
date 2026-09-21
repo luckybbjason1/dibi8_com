@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek-Reasonix: DeepSeek 접두사 캐시 안정성을 위해 설계된 터미널 AI 코딩...
+title: "DeepSeek-Reasonix: DeepSeek 접두사 캐시 안정성을 위해 설계된 터미널 AI 코딩...
 description: "DeepSeek 네이티브 AI 코딩 에이전트로 설계된 프리픽스-캐시 안정성 — 캐시 적중률 99.82%, 캐시 사용 시 하루 약 $12, 캐시 미사용 시 약 $61. MIT 라이선스. DeepSeek 모델을 사용한 Claude Code 대안."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -476,7 +476,7 @@ Reasonix has an active bilingual Discord community with channels for setup help 
 
 ---
 
-**Want to code with AI at a fraction of the cost?** Reasonix's engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
+**Want to code with AI at a fraction of the cost?** Reasonix"s engineered prefix-cache stability delivers 99%+ cache hit rates — turning $61/day into $12.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
 

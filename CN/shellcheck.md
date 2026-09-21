@@ -1,5 +1,5 @@
 ---
-title: 'ShellCheck: 39,456 GitHub Stars — Complete Setup Guide f...
+title: "ShellCheck: 39,456 GitHub Stars — Complete Setup Guide f...
 description: "ShellCheck (SC) is a static analysis tool for bash/sh shell scripts. Integrates with Docker, GitHub Actions, VS Code, and CI/CD pipelines. Covers installation, configuration, CI integration, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -643,7 +643,7 @@ Join the [dibi8 Telegram group](https://t.me/dibi8) for discussions on developer
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources and Further Reading
 

@@ -1,5 +1,5 @@
 ---
-title: 'Puppeteer: 94,300 GitHub Stars — Production Browser Auto...
+title: "Puppeteer: 94,300 GitHub Stars — Production Browser Auto...
 description: "Puppeteer is a Node.js library for headless Chrome and Firefox automation. Supports Docker, GitHub Actions, Jest, Mocha, TypeScript. Covers puppeteer docker setup, production deployment, browser automation tutorial, and CI/CD integration."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -667,7 +667,7 @@ Puppeteer remains a solid choice for teams that need programmatic Chrome control
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

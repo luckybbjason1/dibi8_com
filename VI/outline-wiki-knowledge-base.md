@@ -1,5 +1,5 @@
 ---
-title: 'Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
+title: "Outline Hướng Dẫn Đầy Đủ: Wiki & Knowledge Base Mã Nguồn...
 description: "Triển khai Outline với Docker trong 10 phút. Xây dựng wiki cộng tác real-time cho team kỹ sư với Markdown editor, Slack integration, full-text search và phân quyền chi tiết."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -425,7 +425,7 @@ services: prometheus: image: prom/prometheus:v2.51.0
       - /:/rootfs:ro
     command: - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
-      - '--path.sysfs=/host/sys'
+      - '--path.sysfs=/host/sys"
     restart: unless-stopped
 
 volumes: prometheus-data: grafana-data: ```

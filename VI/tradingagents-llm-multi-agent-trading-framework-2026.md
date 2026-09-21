@@ -1,5 +1,5 @@
 ---
-title: 'TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 ...
+title: "TradingAgents: Framework Giao Dịch Đa Tác Tử LLM 82.000 ...
 description: "TradingAgents là framework đa tác tử LLM mã nguồn mở (82,254 GitHub stars, Apache-2.0) mô phỏng một công ty giao dịch: các tác tử phân tích, nghiên cứu, trader và quản trị rủi ro tranh luận ra quyết định BUY/SELL/HOLD. Dựa trên LangGraph. Bao gồm cài đặt, pipeline tác tử, CLI + Python API, và so sánh thẳng thắn với Qlib và bot đơn tác tử."
 date: 2026-06-02
 lastmod: 2026-06-02
@@ -81,7 +81,7 @@ OPENAI_API_KEY=sk-your-key-here
 FINNHUB_API_KEY=your-finnhub-key
 ```
 
-Nếu thấy `KeyError: 'FINNHUB_API_KEY'`, biến chưa được export trong shell hiện tại. Nếu lệnh gọi LLM trả về 429, bạn bị giới hạn tốc độ phía OpenAI — chậm lại hoặc đổi mô hình trong config (bên dưới).
+Nếu thấy `KeyError: 'FINNHUB_API_KEY"`, biến chưa được export trong shell hiện tại. Nếu lệnh gọi LLM trả về 429, bạn bị giới hạn tốc độ phía OpenAI — chậm lại hoặc đổi mô hình trong config (bên dưới).
 
 ## Cách dùng cốt lõi
 

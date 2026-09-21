@@ -1,5 +1,5 @@
 ---
-title: 'Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black...
+title: "Hướng Dẫn Công Cụ Chất Lượng Mã: ESLint, Prettier, Black...
 description: "Hướng dẫn cấu hình chi tiết ESLint, Prettier, Black, Ruff cho JavaScript, TypeScript và Python. Tìm hiểu pre-commit hooks và CI/CD integration năm 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -425,7 +425,7 @@ jobs: python: runs-on: ubuntu-latest
   javascript: runs-on: ubuntu-latest
     steps: - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: node-version: '20'
+        with: node-version: '20"
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check

@@ -1,5 +1,5 @@
 ---
-title: 'Auto-GPT 2026 부활: OG 자율 에이전트 프레임워크가 설정 시간을 80% 줄인 방법 — 신...
+title: "Auto-GPT 2026 부활: OG 자율 에이전트 프레임워크가 설정 시간을 80% 줄인 방법 — 신...
 description: "2026년 Auto-GPT 자율 에이전트 완벽 가이드. 새로운 설치, 에이전트 프로토콜, 웹 브라우징, 멀티 에이전트 오케스트레이션, Docker 배포, 신규 에이전트 대비 벤치마크, 정직한 한계 평가.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "Significant-Gravitas/AutoGPT"
 stars: 172000
 maintainer: 'Significant-Gravitas'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["]

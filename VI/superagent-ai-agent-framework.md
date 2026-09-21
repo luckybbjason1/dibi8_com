@@ -1,5 +1,5 @@
 ---
-title: 'Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1...
+title: "Superagent: Triển Khai AI Agent Lên Production Chỉ Với 1...
 description: "Hướng dẫn thực hành triển khai AI Agent với Superagent. Một lệnh CLI, hỗ trợ nhiều LLM, workflow RAG, tích hợp vector DB, và triển khai REST API. Kèm benchmark thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -155,7 +155,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   -d '{
     "input": "What are the key features of Superagent?",
     "enableStreaming": false
-  }'
+  }"
 ```
 
 Phản hồi bao gồm câu trả lờ được tạo, trích dẫn nguồn nếu RAG được bật, và metadata thực thi: ```json

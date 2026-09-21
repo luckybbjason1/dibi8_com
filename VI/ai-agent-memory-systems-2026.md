@@ -1,5 +1,5 @@
 ---
-title: 'Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemor...
+title: "Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemor...
 description: "AI agent quên hết sau mỗi phiên là lỗi kiến trúc chí mạng trong production 2026. So sánh chuyên sâu 4 hệ thống memory layer mã nguồn mở hàng đầu: Mem0 (48K+ stars, 21 framework integration, LoCoMo 92.5%), agentmemory (MCP native cho Claude Code/Cursor, giảm 60% giải thích lặp), Hindsight (3 loại bộ nhớ sinh học + 4 chiến lược truy xuất), MemPalace (52K+ stars community leader). Bao gồm benchmark, pitfall, decision tree."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
@@ -32,7 +32,7 @@ faqs: - q: 'Sự khác biệt giữa Mem0, agentmemory, Hindsight, MemPalace?'
   - q: 'Chi phí memory layer cho AI agent?'
     a: 'Cả 4 giải pháp hàng đầu (Mem0, agentmemory, Hindsight, MemPalace) đều mã nguồn mở Apache-2.0 hoặc MIT. Chỉ trả phí hosting (vector DB + Postgres) và token LLM API cho retrieval. Mem0 còn có tier cloud managed.'
   - q: 'Memory layer có giảm hóa đơn token LLM không?'
-    a: 'Có — nâng cấp thuật toán Mem0 tháng 4 2026 cho độ chính xác LoCoMo 92.5% với ~7K token/query so với ~26K token full-context. Giảm 73% token đồng thời độ chính xác cao hơn. Ở quy mô inference, đây là khác biệt mô hình kinh doanh, không phải cải tiến biên.'
+    a: 'Có — nâng cấp thuật toán Mem0 tháng 4 2026 cho độ chính xác LoCoMo 92.5% với ~7K token/query so với ~26K token full-context. Giảm 73% token đồng thời độ chính xác cao hơn. Ở quy mô inference, đây là khác biệt mô hình kinh doanh, không phải cải tiến biên."
 ---
 
 # Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemory / Hindsight / MemPalace

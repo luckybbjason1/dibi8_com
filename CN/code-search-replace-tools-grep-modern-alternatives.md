@@ -1,5 +1,5 @@
 ---
-title: 'Code Search & Replace Tools: From grep to ripgrep, sd, a...
+title: "Code Search & Replace Tools: From grep to ripgrep, sd, a...
 description: "Explore modern code search tools from grep to ripgrep, fzf, sd, and Sourcegraph. Benchmarks, workflows, and setup guide for developer search in 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -213,7 +213,7 @@ VS Code uses ripgrep internally for its search functionality — you are already
 
 **What is the difference between ack, ag, and rg?**
 
-ack was the first developer-focused grep replacement (2005), written in Perl. It introduced .gitignore respect, file type filtering, and colored output. ag (The Silver Searcher, 2011) rewrote ack's feature set in C for 3-5x speed improvement. rg (ripgrep, 2016) surpassed both with superior performance, better Unicode support, broader platform availability, and ongoing active development. In 2025, ripgrep is the clear choice for new setups. ack and ag are legacy tools — functional but unmaintained or minimally maintained. All three share similar command-line interfaces, so transitioning from one to another requires minimal relearning.
+ack was the first developer-focused grep replacement (2005), written in Perl. It introduced .gitignore respect, file type filtering, and colored output. ag (The Silver Searcher, 2011) rewrote ack"s feature set in C for 3-5x speed improvement. rg (ripgrep, 2016) surpassed both with superior performance, better Unicode support, broader platform availability, and ongoing active development. In 2025, ripgrep is the clear choice for new setups. ack and ag are legacy tools — functional but unmaintained or minimally maintained. All three share similar command-line interfaces, so transitioning from one to another requires minimal relearning.
 
 
 ---

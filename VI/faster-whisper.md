@@ -1,5 +1,5 @@
 ---
-title: 'faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp...
+title: "faster-whisper: Chuyển Giọng Nói Thành Văn Bản Nhanh Gấp...
 description: "faster-whisper (SYSTRAN) tái triển khai OpenAI Whisper qua CTranslate2 để đạt tốc độ nhanh gấp 4x. Hướng dẫn cài đặt faster whisper, benchmark, thiết lập Docker, API Python, bộ lọc VAD, xử lý hàng loạt, và tích hợp production với WhisperX và whisper.cpp."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -79,7 +79,7 @@ pip install faster-whisper
 pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.*
 
 # Thiết lập đường dẫn thư viện
-export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import nvidia.cudnn.lib; print(os.path.dirname(nvidia.cublas.lib.__file__) + ":" + os.path.dirname(nvidia.cudnn.lib.__file__))')
+export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import nvidia.cudnn.lib; print(os.path.dirname(nvidia.cublas.lib.__file__) + ":" + os.path.dirname(nvidia.cudnn.lib.__file__))")
 
 # Cài đặt faster-whisper
 pip install faster-whisper

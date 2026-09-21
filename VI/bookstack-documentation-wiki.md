@@ -1,5 +1,5 @@
 ---
-title: 'BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, ...
+title: "BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, ...
 description: "Hướng dẫn đầy đủ cài đặt và vận hành BookStack, wiki tài liệu mã nguồn mở với chỉnh sửa WYSIWYG + Markdown, cấu trúc kệ sách/chương/trang, và hỗ trợ LDAP/SSO. Tự host trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -368,7 +368,7 @@ use BookStack\Theming\ThemeEvents;
 use BookStack\Theming\ThemeViews;
 
 Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) {
-    $themeViews->renderAfter('layouts.parts.header', welcome, 10);
+    $themeViews->renderAfter('layouts.parts.header", welcome, 10);
 });
 
 # views/welcome.blade.php

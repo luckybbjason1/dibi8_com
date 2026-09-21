@@ -1,5 +1,5 @@
 ---
-title: 'Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
+title: "Bộ Kỹ Năng Làm Chủ Subagent Claude Code 2026: Từ Một Cuộ...
 description: "Bộ học tập + công cụ hoàn chỉnh để làm chủ quy trình đa agent của Claude Code: 5 mô hình subagent + cách viết agent tùy chỉnh + khung quyết định skill/subagent/MCP + các kiểu thất bại khi điều phối + cách viết skill. Lộ trình đầy đủ từ lập trình đơn luồng đến một pipeline agent đáng tin cậy."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -116,7 +116,7 @@ Hãy làm chủ các mô hình trước; rồi dùng bộ ba bài này để quy
 
 ## Why This Matters
 
-Understanding bộ kỹ năng làm chủ subagent claude code 2026: từ một cuộc hội thoại đến một hội đồng agent phối hợp nhịp nhàng is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding bộ kỹ năng làm chủ subagent claude code 2026: từ một cuộc hội thoại đến một hội đồng agent phối hợp nhịp nhàng is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

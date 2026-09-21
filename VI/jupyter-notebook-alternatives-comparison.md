@@ -1,5 +1,5 @@
 ---
-title: 'Top 5 Công Cụ Thay Thế Jupyter Notebook Tốt Nhất 2024: S...
+title: "Top 5 Công Cụ Thay Thế Jupyter Notebook Tốt Nhất 2024: S...
 description: "Đánh giá chi tiết 5 công cụ thay thế Jupyter Notebook hàng đầu năm 2024. So sánh JupyterLab, Google Colab, Deepnote và Hex về tính năng, giá cả, khả năng cộng tác."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/jupyter-notebook-alternatives-comparison/

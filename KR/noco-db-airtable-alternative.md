@@ -1,5 +1,5 @@
 ---
-title: 'NocoDB 2026 완벽 가이드: 모든 데이터베이스를 스마트 스프레드시트로 만드는 오픈소스 Airt...
+title: "NocoDB 2026 완벽 가이드: 모든 데이터베이스를 스마트 스프레드시트로 만드는 오픈소스 Airt...
 description: "Docker로 5분 만에 NocoDB 배포. MySQL, PostgreSQL, SQLite를 협업형 스프레드시트로 변환하고 REST API, 칸반 보드, 역할 기반 접근 제어를 자동 생성하세요.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -160,7 +160,7 @@ curl -X PATCH "https://nocodb.yourcompany.com/api/v2/tables/customers/records" \
   -d '{
     "id": 42,
     "Status": "Churned"
-  }'
+  }"
 ```
 
 ### Webhook 자동화

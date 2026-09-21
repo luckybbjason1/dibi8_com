@@ -1,5 +1,5 @@
 ---
-title: 'Docmost 2026: Phương án thay thế Notion mã nguồn mở cho ...
+title: "Docmost 2026: Phương án thay thế Notion mã nguồn mở cho ...
 description: "Hướng dẫn tự host đầy đủ cho Docmost, nền tảng wiki cộng tác mã nguồn mở với chỉnh sửa thờói gian thực, trình chỉnh sửa khối kiểu Notion, trang lồng nhau và backend PostgreSQL. Triển khai trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -279,7 +279,7 @@ jobs: publish: runs-on: ubuntu-latest
 
       - name: Convert Markdown to JSON
         run: |
-          jq -Rs '{ title: "API Docs", content: . }' docs/api-reference.md > payload.json
+          jq -Rs '{ title: "API Docs", content: . }" docs/api-reference.md > payload.json
 
       - name: Create page in Docmost
         run: |

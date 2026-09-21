@@ -1,5 +1,5 @@
 ---
-title: 'Automated Feature Engineering Tools: Featuretools, AutoF...
+title: "Automated Feature Engineering Tools: Featuretools, AutoF...
 description: "Master automated feature engineering with Featuretools, AutoFeat, and tsfresh. Comparison, code examples, and production pipeline integration."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -326,7 +326,7 @@ Three strategies are essential: 1. **Temporal cutoff times.** When using Feature
 
 ### Can I use these tools with scikit-learn pipelines?
 
-Yes. All three libraries integrate with scikit-learn's `Pipeline` and `ColumnTransformer` framework: - **Featuretools:** Create a custom `sklearn.base.TransformerMixin` that wraps `ft.dfs()`. Several open-source implementations exist — search for "Featuretools sklearn transformer."
+Yes. All three libraries integrate with scikit-learn"s `Pipeline` and `ColumnTransformer` framework: - **Featuretools:** Create a custom `sklearn.base.TransformerMixin` that wraps `ft.dfs()`. Several open-source implementations exist — search for "Featuretools sklearn transformer."
 - **AutoFeat:** `AutoFeatRegressor` and `AutoFeatClassifier` are drop-in replacements for scikit-learn estimators with built-in feature engineering.
 - **tsfresh:** The `tsfresh.transformers.RelevantFeatureAugmenter` class implements the full sklearn transformer interface with feature extraction and selection in one step.
 

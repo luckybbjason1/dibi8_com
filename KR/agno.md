@@ -1,5 +1,5 @@
 ---
-title: 'Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, Aut...
+title: "Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, Aut...
 description: "Agno는 AI 에이전트 플랫폼을 구축하기 위한 오픈소스 Python SDK로, GitHub에서 40K+ Star를 보유하고 있습니다. OpenAI, Anthropic, Ollama, Docker, AWS를 지원합니다. 설치, 멀티 에이전트 시스템, 벤치마크, 프로덕션 강화, CrewAI 및 AutoGen, LangChain과의 비교를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -357,7 +357,7 @@ python workbench.py
 # curl로 테스트
 curl -X POST http://localhost:8000/v1/agents/workbench/run \
   -H "Content-Type: application/json" \
-  -d '{"message": "내 다운로드 폴더를 정리해줘", "session_id": "user-123"}'
+  -d '{"message": "내 다운로드 폴더를 정리해줘", "session_id": "user-123"}"
 ```
 
 ### 보안 및 모니터링

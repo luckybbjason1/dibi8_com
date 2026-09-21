@@ -1,5 +1,5 @@
 ---
-title: 'GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu ...
+title: "GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu ...
 description: "GPT Researcher là một tác nhân nghiên cứu chuyên sâu mã nguồn mở, thực hiện nghiên cứu trên web và cục bộ cho mọi tác vụ rồi viết báo cáo có trích dẫn. 27.473 sao GitHub, giấy phép Apache-2.0. Bao gồm cài đặt, API Python bất đồng bộ, Docker và ví dụ mã thực tế."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -31,7 +31,7 @@ faqs: - q: 'Làm sao để cài gpt-researcher?'
   - q: 'Làm sao chạy ứng dụng đầy đủ có giao diện web?'
     a: 'Clone kho và chạy `docker-compose up --build`. Lệnh này khởi động máy chủ FastAPI tại `localhost:8000` và giao diện tại `localhost:3000`. Bạn cũng có thể chỉ khởi động máy chủ với `python -m uvicorn main:app --reload`.'
   - q: 'conduct_research() và write_report() có phải là đồng bộ không?'
-    a: 'Không. Cả hai đều là phương thức bất đồng bộ. Hãy gọi chúng bằng `await` bên trong một hàm async", "rồi chạy hàm đó bằng `asyncio.run()`.'
+    a: 'Không. Cả hai đều là phương thức bất đồng bộ. Hãy gọi chúng bằng `await` bên trong một hàm async", "rồi chạy hàm đó bằng `asyncio.run()`."
 ---
 
 # GPT Researcher: Tác nhân tự động tạo báo cáo nghiên cứu chuyên sâu — Hướng dẫn thực hành 2026

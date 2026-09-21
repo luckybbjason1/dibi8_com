@@ -1,5 +1,5 @@
 ---
-title: 'Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotat...
+title: "Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotat...
 description: "Cleanlab is an open-source AI toolkit with 11K+ GitHub stars that finds and fixes data quality issues in ML datasets. Automatic label error detection, missing value imputation, and data cleansing for classification, regression, and clustering tasks. Includes setup guide, benchmarks, and production deployment."
 tags: ["ai", "data-cleaning", "ml", "open-source", "self-hosted"]
 date: 2026-06-10
@@ -427,7 +427,7 @@ pip install cleanlab
 python -c "from cleanlab.filter import find_label_issues; print('Cleanlab ready!')"
 ```
 
-Cleanlab's installation takes less than 10 seconds on any Python 3.8+ environment. No configuration needed — it just works.
+Cleanlab"s installation takes less than 10 seconds on any Python 3.8+ environment. No configuration needed — it just works.
 
 For hosting ML training jobs, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for GPU instances, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for cloud deployment.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cun...
+title: "Lobe Chat: Giao Diện ChatGPT Mã Nguồn Mở với 20+ Nhà Cun...
 description: "Triển khai Lobe Chat như một giải pháp thay thế ChatGPT tự host. Hỗ trợ 20+ nhà cung cấp LLM, hệ thống plugin, PWA, giao diện đa ngôn ngữ. Hướng dẫn Docker đầy đủ với benchmark và so sánh."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "lobehub/lobe-chat"
 stars: 60000
 maintainer: lobehub
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["lobe chat", "chatgpt", "thay thế openai", "llm", "tự host", "docker", "pwa", "hệ thống plugin", "ai", "ui chat"]

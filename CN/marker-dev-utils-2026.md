@@ -1,5 +1,5 @@
 ---
-title: 'Marker: Convert PDF, DOCX & EPUB to Markdown/JSON Fast —...
+title: "Marker: Convert PDF, DOCX & EPUB to Markdown/JSON Fast —...
 description: "Marker (datalab-to/marker) converts PDF, DOCX, EPUB and more to Markdown, JSON, HTML and chunks quickly and accurately. 35,694 GitHub stars, GPL-3.0 code license. Covers installation, the CLI and Python API, real code examples, LLM mode, and an honest comparison with alternatives."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -237,7 +237,7 @@ When choosing a PDF-to-Markdown tool, weigh accuracy, format coverage, speed and
 
 While `marker` is strong on complex documents, it has real tradeoffs worth knowing up front: 1. **Heavier dependencies & hardware**: Marker relies on deep-learning models, so a GPU makes a big difference. On CPU-only machines it works but is much slower, and the install is heavier than rule-based libraries.
 2. **Complex tables aren't perfect**: Tables that span pages or have deeply nested/merged cells can still come out misaligned and may need manual cleanup.
-3. **LLM mode adds cost and latency**: `--use_llm` improves accuracy but introduces an external model call (and API cost, unless you run a local Ollama model), so it's slower and not free.
+3. **LLM mode adds cost and latency**: `--use_llm` improves accuracy but introduces an external model call (and API cost, unless you run a local Ollama model), so it"s slower and not free.
 4. **Speed varies widely**: Headline throughput numbers assume high-end GPUs and batch processing; on modest hardware or with LLM mode on, expect substantially slower runs.
 5. **Licensing nuance**: The code is GPL-3.0, but the model weights ship under a modified AI Pubs Open Rail-M license that is free for research, personal use and smaller companies, with commercial licensing for larger organizations — check the terms before deploying at scale.
 

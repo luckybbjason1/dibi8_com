@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Năng Suất Terminal & CLI: tmux, zsh, fzf, ripgre...
+title: "Công Cụ Năng Suất Terminal & CLI: tmux, zsh, fzf, ripgre...
 description: "Hướng dẫn thiết lập terminal tối ưu với zsh, tmux, fzf, ripgrep và các công cụ CLI hiện đại. Tăng gấp đôi năng suất lập trình với terminal workflow chuyên nghiệp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -299,7 +299,7 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 alias gl='git pull'
-alias gs='git status'
+alias gs='git status"
 ```
 
 ## Kết Luận

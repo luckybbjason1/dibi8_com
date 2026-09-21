@@ -1,5 +1,5 @@
 ---
-title: 'CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu |...
+title: "CC Switch: Giải Pháp Quản Lý AI CLI Đa Nền Tảng Tối Ưu |...
 description: "CC Switch là ứng dụng desktop open source miễn phí giúp quản lý Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode trong một giao diện duy nhất. 74K+ stars GitHub, Rust+Tauri, 50+ nhà cung cấp tích hợp, đồng bộ MCP server. Hướng dẫn cài đặt và đánh giá chi tiết."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/farion1231/cc-switch"
 stars: 74754
 maintainer: farion1231
 last_maintained: "2026-05-20"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["dev-utils"]
 tags: ["cc-switch", "ai-cli", "meta-tool", "claude-code", "developer-productivity"]

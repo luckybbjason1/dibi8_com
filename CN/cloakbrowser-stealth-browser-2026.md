@@ -1,5 +1,5 @@
 ---
-title: 'CloakBrowser Review 2026: The Open-Source Stealth Browse...
+title: "CloakBrowser Review 2026: The Open-Source Stealth Browse...
 description: "CloakBrowser is the fastest-growing GitHub repo of May 2026: 49 C++ source-level patches, reCAPTCHA v3 score 0.9, passes 30+ detection services. Free, open-source replacement for $299/month anti-detect browsers."
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
@@ -262,7 +262,7 @@ CloakBrowser represents a fundamental shift from *runtime masking* to *source-le
 
 For developers building scrapers, AI agents, and automation pipelines in 2026, CloakBrowser is now the default choice for any project that needs to interact with protected websites. The combination of zero cost, native Playwright compatibility, and genuinely undetectable operation makes commercial anti-detect browsers hard to justify.
 
-If you're still fighting with `playwright-stealth` or paying monthly subscriptions for browser profiles, try CloakBrowser. Three lines of code. Thirty seconds. Problem solved.
+If you"re still fighting with `playwright-stealth` or paying monthly subscriptions for browser profiles, try CloakBrowser. Three lines of code. Thirty seconds. Problem solved.
 
 ---
 

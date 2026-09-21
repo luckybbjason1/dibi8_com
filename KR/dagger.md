@@ -1,5 +1,5 @@
 ---
-title: 'Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab...
+title: "Dagger: 15K+ Stars 프로그래머블 CI/CD — GitHub Actions, GitLab...
 description: "Dagger는 컨테이너에서 파이프라인을 실행하는 프로그래머블 CI/CD 엔진입니다. Docker, Go, Python, TypeScript와 호환됩니다. Dagger 설치, 튜토리얼, GitHub Actions와의 비교, 프로덕션 하드닝을 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -512,7 +512,7 @@ pipeline {
                     curl -fsSL https://dl.dagger.io/dagger/install.sh | \
                         BIN_DIR=/usr/local/bin sh
                     dagger call run --source=.
-                '''
+                ''"
             }
         }
     }

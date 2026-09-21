@@ -1,5 +1,5 @@
 ---
-title: 'Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 202...
+title: "Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 202...
 description: "Odysseus는 오픈소스 프라이버시 우선 AI 워크스페이스입니다 (9일 63,000 스타, MIT 라이선스). Docker 명령어 하나로 채팅, AI 에이전트, 딥 리서치, 이메일 분류, 캘린더, 메모, 모델 쿡북을 내 서버에서 직접 실행할 수 있습니다. 설치 방법, 주요 기능, ChatGPT Plus 비교를 상세히 정리했습니다."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -138,7 +138,7 @@ Odysseus는 현재 버전 1.0으로, 출시된 지 2주도 채 되지 않았습�
 
 ## Why This Matters
 
-Understanding odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 ai 워크스페이스 — 2026 설치 가이드 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 ai 워크스페이스 — 2026 설치 가이드 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

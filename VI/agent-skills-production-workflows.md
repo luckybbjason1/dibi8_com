@@ -1,5 +1,5 @@
 ---
-title: 'Addy Osmani Agent Skills: 96K-Star Framework For Product...
+title: "Addy Osmani Agent Skills: 96K-Star Framework For Product...
 description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns."
 date: 2026-09-19
 lastmod: 2026-09-19
@@ -486,7 +486,7 @@ Browse GitHub repository's topics tag, hoặc search npm cho "agent-skills" pack
 
 Agent Skills đại diện cho những gì xảy ra khi một performance engineer build tooling cho AI. Nó không phải về adding features — nó là về making sure features thực sự hoạt động reliably.
 
-Sau khi implement Addy's framework tại công ty tôi, team chúng tôi đã thấy: - Giảm 40% AI-related bugs
+Sau khi implement Addy"s framework tại công ty tôi, team chúng tôi đã thấy: - Giảm 40% AI-related bugs
 - Tăng tốc 60% onboarding cho new team members
 - Zero production incidents từ AI-generated code
 

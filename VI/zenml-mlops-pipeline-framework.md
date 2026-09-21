@@ -1,5 +1,5 @@
 ---
-title: 'ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pi...
+title: "ZenML 2026: Framework MLOps Kết Nối 20+ Công Cụ Thành Pi...
 description: "Hướng dẫn toàn diện về ZenML — framework MLOps mã nguồn mở kết nối 20+ công cụ thành pipeline ML thống nhất, có thể tái tạo. Tự host, benchmark thực tế, triển khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -476,7 +476,7 @@ jobs: train: runs-on: ubuntu-latest
         if: failure()
         run: |
           curl -X POST $SLACK_WEBHOOK \
-            -d '{"text":"Pipeline failed! Check ZenML dashboard."}'
+            -d '{"text":"Pipeline failed! Check ZenML dashboard."}"
 ```
 
 ## So Sánh Với Các Lựa Chọn Khác

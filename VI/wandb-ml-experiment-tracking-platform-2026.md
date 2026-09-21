@@ -1,5 +1,5 @@
 ---
-title: 'Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chu...
+title: "Weights & Biases (W&B): Theo Dõi Mọi Thực Nghiệm Như Chu...
 description: "Weights & Biases (wandb/wandb) là nền tảng nhà phát triển AI để theo dõi, so sánh và triển khai các thực nghiệm ML. Hỗ trợ PyTorch, TensorFlow, Hugging Face và tinh chỉnh LLM. Bao gồm theo dõi thực nghiệm, versioning tập dữ liệu, model registry và giám sát sản xuất."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -10,7 +10,7 @@ github_repo: "https://github.com/wandb/wandb"
 stars: 11114
 maintainer: 'wandb'
 license: MIT
-featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png'
+featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png"
 ---
 
 ![Weights & Biases Dashboard](https://opengraph.github.com/github/wandb/wandb)

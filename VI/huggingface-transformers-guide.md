@@ -1,5 +1,5 @@
 ---
-title: 'Hướng Dẫn Sử Dụng Hugging Face Transformers 2025: Dành C...
+title: "Hướng Dẫn Sử Dụng Hugging Face Transformers 2025: Dành C...
 description: "Hướng dẫn chi tiết thư viện Hugging Face Transformers 2025: Pipeline API, fine-tuning BERT/GPT, tokenization, tối ưu model và triển khai production."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -437,7 +437,7 @@ training_args = TrainingArguments(
 from transformers import AutoConfig
 config = AutoConfig.from_pretrained("model_name")
 print(config.architectures)  # ['BertForSequenceClassification']
-print(config.model_type)     # 'bert'
+print(config.model_type)     # 'bert"
 ```
 
 ### Giới Hạn Độ Dài Token

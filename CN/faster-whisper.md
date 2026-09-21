@@ -1,5 +1,5 @@
 ---
-title: 'faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
+title: "faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars...
 description: "faster-whisper (SYSTRAN) reimplements OpenAI Whisper via CTranslate2 for 4x speedup. Covers faster whisper tutorial, benchmark data, Docker setup, Python API, VAD filter, batch processing, and production hardening with WhisperX and whisper.cpp integration."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -586,7 +586,7 @@ The data is clear: in any whisper vs faster whisper comparison, the performance 
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

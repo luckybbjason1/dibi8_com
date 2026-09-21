@@ -1,5 +1,5 @@
 ---
-title: 'TA-Lib: 200개 이상의 지표를 가진 업계 표준 기술 분석 라이브러리 — Python 트레이딩 ...
+title: "TA-Lib: 200개 이상의 지표를 가진 업계 표준 기술 분석 라이브러리 — Python 트레이딩 ...
 description: "TA-Lib Python 래퍼 완벽 가이드. 200개 이상의 기술적 지표 설치, 벤치마크, SMA/EMA/RSI/MACD/볼린저 밴드 알고리즘 트레이딩 배포 방법을 2026년 기준으로 상세히 설명.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -459,7 +459,7 @@ functions = talib.get_functions()  # 200개 이상의 이름
 
 # 함수 도움말 (예: RSI)
 print(talib.abstract.RSI.info)
-# 표시: {name: RSI, group: 'Momentum Indicators',
+# 표시: {name: RSI, group: 'Momentum Indicators",
 #         input: [close], parameters: {timeperiod: 14}, ...}
 ```
 

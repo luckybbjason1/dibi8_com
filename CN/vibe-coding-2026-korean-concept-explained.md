@@ -1,5 +1,5 @@
 ---
-title: 'Vibe Coding 2026: The Korean Developer Concept Explained...
+title: "Vibe Coding 2026: The Korean Developer Concept Explained...
 description: "Vibe coding (바이브 코딩) is the Korean developer term for natural-language-first programming where AI handles syntax. Toss and Kakao engineers use it daily. Here is what it means, the workflow, and why it matters outside Korea."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -162,7 +162,7 @@ The strongest adoption isn't "vibe code everything." It's "vibe code where it fi
 
 ## Why This Matters
 
-Understanding vibe coding 2026: the korean developer concept explained for the rest of us is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding vibe coding 2026: the korean developer concept explained for the rest of us is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

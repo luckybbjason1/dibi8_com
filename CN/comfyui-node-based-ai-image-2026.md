@@ -1,5 +1,5 @@
 ---
-title: 'ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...
+title: "ComfyUI 2026: 114k-Star Node-Based AI Image/Video/Audio ...
 description: "ComfyUI is the 114k-star node-based visual workflow engine for SD/SDXL/Flux/Wan/Hunyuan and more. Supports image, video, audio, and 3D generation. Complete 2026 install guide covering node basics, workflow JSON import, ComfyUI Manager, and when ComfyUI beats AUTOMATIC1111."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -206,7 +206,7 @@ Install ComfyUI + ComfyUI Manager (~15 minutes total), drop a community workflow
 
 ## Why This Matters
 
-Understanding comfyui 2026: 114k-star node-based ai image/video/audio workflow engine — complete guide is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding comfyui 2026: 114k-star node-based ai image/video/audio workflow engine — complete guide is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cư...
+title: "ChatTTS 2026: TTS Hội Thoại Mã Nguồn Mở 39.3k Sao Với Cư...
 description: "ChatTTS là TTS mã nguồn mở được xây riêng cho hội thoại (không phải thuyết minh). GitHub 39.3k sao, tối thiểu 4 GB VRAM, RTF 0.3 trên RTX 4090, điều khiển prosody tinh tế bao gồm cười và tạm dừng. Hướng dẫn cài đặt + thiết lập production 2026 đầy đủ."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -207,7 +207,7 @@ Bật instance GPU, chạy cài đặt 10 dòng ở mục 3, và bạn sẽ nghe
 
 ## Why This Matters
 
-Understanding chattts 2026: tts hội thoại mã nguồn mở 39.3k sao với cười, tạm dừng, điều khiển prosody cấp token is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding chattts 2026: tts hội thoại mã nguồn mở 39.3k sao với cười, tạm dừng, điều khiển prosody cấp token is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

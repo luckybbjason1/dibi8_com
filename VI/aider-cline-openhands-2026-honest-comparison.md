@@ -1,5 +1,5 @@
 ---
-title: 'Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
+title: "Aider vs Cline vs OpenHands 2026: So sánh trung thực 3 C...
 description: "Đã thử nghiệm cả ba AI coding agent mã nguồn mở trên cùng một codebase TypeScript 5K dòng. Số liệu benchmark cụ thể, nơi mỗi cái thắng, nơi mỗi cái thua, và thực tế chi phí BYO API key so với các phương án thương mại."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -25,7 +25,7 @@ faq: - q: "Coding agent mã nguồn mở nào tốt nhất năm 2026?"
   - q: "Có an toàn khi cấp quyền shell cho các agent này không?"
     a: "Aider yêu cầu xác nhận với mọi lệnh shell — an toàn nhất. Cline có chế độ tự động phê duyệt tiện lợi nhưng rủi ro. OpenHands chạy trong Docker sandbox mặc định — an toàn nhất cho vòng lặp tự động. Trong công việc production luôn tắt tự động phê duyệt và xem xét mọi commit."
   - q: "Cái nào được phát triển tích cực nhất năm 2026?"
-    a: "Cline theo khối lượng commit (release hàng tuần, cộng đồng Discord lớn). OpenHands theo GitHub stars và trích dẫn trong các bài báo học thuật. Aider theo 'chất lượng code của chính công cụ' — các tinh chỉnh tăng dần của paul-gauthier là huyền thoại. Cả ba đều là dự án lành mạnh khó có thể biến mất."
+    a: "Cline theo khối lượng commit (release hàng tuần, cộng đồng Discord lớn). OpenHands theo GitHub stars và trích dẫn trong các bài báo học thuật. Aider theo 'chất lượng code của chính công cụ" — các tinh chỉnh tăng dần của paul-gauthier là huyền thoại. Cả ba đều là dự án lành mạnh khó có thể biến mất."
   - q: "Chúng có thể thay thế hoàn toàn Claude Code hoặc Cursor không?"
     a: "Với các nhà phát triển độc lập thoải mái với terminal: có. Aider thay thế chế độ CLI của Claude Code cho 80% công việc. Cline thay thế chế độ agent của Cursor trong VS Code với chất lượng tương đương. OpenHands xử lý các tác vụ tự động dài mà Cursor không thể. Khoảng cách nằm ở độ hoàn thiện — phục hồi lỗi, chi tiết UX, tự động chọn model."
   - q: "Đường cong học tập cho mỗi cái như thế nào?"

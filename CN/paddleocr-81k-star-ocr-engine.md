@@ -1,5 +1,5 @@
 ---
-title: 'PaddleOCR: The 81K-Star Open-Source OCR Engine That Outp...
+title: "PaddleOCR: The 81K-Star Open-Source OCR Engine That Outp...
 description: "PaddleOCR is a multi-language open-source OCR toolkit with 96.3%+ accuracy for text detection and recognition. Supports 80+ languages, document AI, table recognition, and layout analysis. 81K+ GitHub stars. Includes setup guide, benchmarks, and production deployment."
 tags: ["ocr", "open-source", "paddlepaddle", "self-hosted", "text-detection"]
 date: 2026-06-10
@@ -444,7 +444,7 @@ PaddleOCR represents the pinnacle of open-source OCR technology. With 81,710 Git
 
 ```bash
 pip install paddleocr
-python -c "from paddleocr import PaddleOCR; ocr = PaddleOCR(); print(ocr.ocr('test.jpg')[0][0][1][0] if ocr.ocr('test.jpg')[0] else 'No text')"
+python -c "from paddleocr import PaddleOCR; ocr = PaddleOCR(); print(ocr.ocr('test.jpg')[0][0][1][0] if ocr.ocr('test.jpg')[0] else 'No text")"
 ```
 
 For self-hosted OCR processing at scale, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for cloud deployment.

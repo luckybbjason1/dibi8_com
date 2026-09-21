@@ -1,5 +1,5 @@
 ---
-title: 'Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở v...
+title: "Supabase 2026: Giải pháp thay thế Firebase mã nguồn mở v...
 description: "Hướng dẫn đầy đủ về Supabase: giải pháp thay thế Firebase mã nguồn mở với Postgres + pgvector cho ứng dụng AI. Xác thực, lưu trữ, realtime, edge functions, tích hợp RAG, triển khai Docker tự host, Row Level Security."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -575,7 +575,7 @@ services: db: image: supabase/postgres:15.8.1.040
     volumes: - pgdata:/var/lib/postgresql/data
     command: >
       postgres
-        -c shared_preload_libraries='pg_stat_statements,pgvector'
+        -c shared_preload_libraries='pg_stat_statements,pgvector"
         -c max_connections=200
         -c shared_buffers=2GB
         -c effective_cache_size=6GB

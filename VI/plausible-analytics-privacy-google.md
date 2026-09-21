@@ -1,5 +1,5 @@
 ---
-title: 'Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền R...
+title: "Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền R...
 description: "Hướng dẫn triển khai tự host đầy đủ cho Plausible Analytics. Ưu tiên quyền riêng tư, tuân thủ GDPR, script tracking <1KB. Nhanh hơn Google Analytics 45 lần. Benchmark thực tế và Docker deployment."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -599,7 +599,7 @@ Có. Plausible cung cấp trình nhập Google Analytics kéo dữ liệu qua GA
 ```bash
 # Chạy trình nhập GA (từ container Plausible)
 docker compose exec plausible bin/plausible \
-  "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
+  "Plausible.Google.Import.start('your-ga-property-id", YOUR_API_KEY)"
 ```
 
 **Điều gì xảy ra khi trang web của tôi vượt quá dung lượng VPS?**

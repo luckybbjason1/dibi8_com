@@ -1,5 +1,5 @@
 ---
-title: 'Data Cleaning Tools & Best Practices: OpenRefine, Python...
+title: "Data Cleaning Tools & Best Practices: OpenRefine, Python...
 description: "Master data cleaning with OpenRefine, Pandas, Great Expectations & automated tools. Learn best practices for production-ready data quality workflows."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -165,7 +165,7 @@ The choice depends on your workflow context. Use OpenRefine when you need visual
 
 ### How do I handle missing data without biasing my model?
 
-First, analyze the missingness mechanism. Use missing value visualization (missingno library), pattern analysis, and Little's MCAR test to understand why data is missing. If data is MCAR, listwise deletion produces unbiased estimates. If MAR, use multiple imputation (IterativeImputer in scikit-learn, MICE) rather than single imputation to preserve uncertainty. If MNAR, consult domain experts — the missingness itself may be informative and require special modeling. Never default to mean imputation without understanding the missingness pattern; it artificially reduces variance and distorts correlations. For categorical features, consider adding a "Missing" category rather than imputing the mode, which preserves the information that missingness itself conveys.
+First, analyze the missingness mechanism. Use missing value visualization (missingno library), pattern analysis, and Little"s MCAR test to understand why data is missing. If data is MCAR, listwise deletion produces unbiased estimates. If MAR, use multiple imputation (IterativeImputer in scikit-learn, MICE) rather than single imputation to preserve uncertainty. If MNAR, consult domain experts — the missingness itself may be informative and require special modeling. Never default to mean imputation without understanding the missingness pattern; it artificially reduces variance and distorts correlations. For categorical features, consider adding a "Missing" category rather than imputing the mode, which preserves the information that missingness itself conveys.
 
 ### What is the best way to detect outliers in large datasets?
 

@@ -1,5 +1,5 @@
 ---
-title: 'Công Cụ Kỹ Thuật Đặc Trưng Tự Động: Hướng Dẫn Featuretoo...
+title: "Công Cụ Kỹ Thuật Đặc Trưng Tự Động: Hướng Dẫn Featuretoo...
 description: "Hướng dẫn sử dụng Featuretools, AutoFeat và tsfresh cho kỹ thuật đặc trưng tự động. So sánh tính năng, ví dụ code, chiến lược kết hợp với ML pipeline."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -40,7 +40,7 @@ Automated feature engineering giải quyết những vấn đề này bằng cá
 
 Cốt lõi của Featuretools là khái niệm **EntitySet** — một tập hợp các entities (bảng dữ liệu) và relationships (mối quan hệ giữa chúng). Featuretools hiểu cấu trúc quan hệ giữa các bảng và tự động áp dụng các phép toán thích hợp: - **Aggregation primitives:** `mean`, `sum`, `count`, `max`, `min`, `std`, `trend` — áp dụng trên quan hệ one-to-many.
 - **Transformation primitives:** `year`, `month`, `diff`, `absolute` — áp dụng trên cột trong cùng entity.
-- **Where clauses:** Lọc dữ liệu trước khi tính toán — ví dụ: `mean(spending where category='food')`.
+- **Where clauses:** Lọc dữ liệu trước khi tính toán — ví dụ: `mean(spending where category='food")`.
 - **Stacking:** DFS có thể xếp chồng nhiều lớp phép toán — từ đơn giản đến phức tạp, tạo ra đặc trưng đa tầng.
 
 ### Xây Dựng Pipeline Tự Động Với Featuretools

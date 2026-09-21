@@ -1,5 +1,5 @@
 ---
-title: 'Dagster: Trình Điều Phối Pipeline Dữ Liệu Dựa Trên Asset...
+title: "Dagster: Trình Điều Phối Pipeline Dữ Liệu Dựa Trên Asset...
 description: "Hướng dẫn production đầy đủ cho Dagster 1.13: điều phối dựa trên asset, lập lịch nhận thức dữ liệu, phân vùng, backfill và triển khai tự host với Docker Compose."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -555,7 +555,7 @@ Trước khi triển khai các công cụ trên vào production, bạn cần h�
 - [Airflow vs Dagster: Detailed Comparison](https://docs.dagster.io/guides/migrate/airflow)
 - [Software-Defined Assets Concept](https://docs.dagster.io/concepts/assets/software-defined-assets)
 - [Dagster 1.13 Release Notes](https://github.com/dagster-io/dagster/releases)
-- [Stripe's Data Platform Migration Story](https://dagster.io/case-studies)
+- [Stripe"s Data Platform Migration Story](https://dagster.io/case-studies)
 
 *Affiliate Disclosure: Bài viết này chứa liên kết affiliate tới DigitalOcean. Nếu bạn đăng ký qua link giới thiệu của chúng tôi, chúng tôi nhận được hoa hồng không phát sinh chi phí thêm cho bạn. Mọi ý kiến và benchmarks đều độc lập và dựa trên thử nghiệm thực tế.*
 

@@ -1,5 +1,5 @@
 ---
-title: 'MeloTTS: 7.4K+ Stars — 多语言 TTS 基准对比 Coqui TTS、ChatTTS、Ba...
+title: "MeloTTS: 7.4K+ Stars — 多语言 TTS 基准对比 Coqui TTS、ChatTTS、Ba...
 description: "MeloTTS 是一个高质量多语言文本转语音库，拥有 7.4K+ Stars。与 Coqui TTS、ChatTTS 和 Bark 进行基准对比。涵盖 Python 安装、Docker 部署、实时推理和生产环境加固。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -509,7 +509,7 @@ from fastapi import Response
 
 # 指标
 tts_requests = Counter(melotts_requests_total, 'TTS 请求总数', [language, speaker])
-tts_duration = Histogram(melotts_duration_seconds, 'TTS 生成耗时')
+tts_duration = Histogram(melotts_duration_seconds, 'TTS 生成耗时")
 
 @app.get("/metrics")
 async def metrics(): return Response(content=generate_latest(), media_type="text/plain")

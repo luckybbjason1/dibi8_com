@@ -1,5 +1,5 @@
 ---
-title: 'Các Công Cụ Phát Hiện Nội Dung AI Tốt Nhất 2025: So Sánh...
+title: "Các Công Cụ Phát Hiện Nội Dung AI Tốt Nhất 2025: So Sánh...
 description: "Khám phá các công cụ phát hiện nội dung AI hàng đầu năm 2025. So sánh chi tiết GPTZero, Turnitin AI, Copyleaks, Originality.ai về độ chính xác, tốc độ và giá cả để chọn công cụ phù hợp nhất."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["ai content detector", "gptzero", "turnitin", "copyleaks", "originality.ai", "phát hiện văn bản ai"]

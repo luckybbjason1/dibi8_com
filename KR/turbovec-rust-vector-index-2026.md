@@ -1,5 +1,5 @@
 ---
-title: 'TurboVec: Rust 기반 벡터 인덱스가 FAISS 보다 10 배 빠름 — AI 검색 가이드 2...
+title: "TurboVec: Rust 기반 벡터 인덱스가 FAISS 보다 10 배 빠름 — AI 검색 가이드 2...
 description: "TurboVec (RyanCodrai/turbovec)은 TurboQuant 위에 구축된 벡터 인덱스이며, Python 바인딩과 함께 Rust 로 작성되었습니다. LangChain, LlamaIndex, Haystack, Agno 에 대한 드롭인 대체품입니다. 양자화와 함께 10 배 속도를 제공합니다. Python 통합, 벤치마크, 프로덕션 배포를 다룹니다."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -293,7 +293,7 @@ for i, (idx, score) in enumerate(results): print(f"  [{i}] score={score:.4f} chu
 **프로덕션 서빙을 위한 Docker Compose**
 
 ```yaml
-version: '3.8'
+version: '3.8"
 services: turbovec: image: ryan-codrai/turbovec:latest
     ports: - "8000:8000"
     volumes: - ./index:/data

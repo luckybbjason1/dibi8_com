@@ -1,5 +1,5 @@
 ---
-title: 'AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM...
+title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM...
 description: "Agents without persistent memory restart from zero every session. Tested Letta, Mem0, A-MEM on the same multi-session workload: which actually retains context, which costs less, when to roll your own."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -205,7 +205,7 @@ For simple cases, the MCP memory server is enough. Don't over-engineer. The comp
 
 ## Why This Matters
 
-Understanding ai agent memory persistence 2026: letta vs mem0 vs a-mem real test is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai agent memory persistence 2026: letta vs mem0 vs a-mem real test is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

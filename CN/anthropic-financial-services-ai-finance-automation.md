@@ -1,5 +1,5 @@
 ---
-title: 'Anthropic Financial Services: How Financial Teams Can Au...
+title: "Anthropic Financial Services: How Financial Teams Can Au...
   Boost ROI by 300%'
 description: Discover how Anthropic Financial Services helps investment banks, equity. Comprehensive guide covering features, pricing, and best practices for 2026.
   research, and wealth management teams automate pitch decks, DCF models, and KYC
@@ -202,7 +202,7 @@ The business value is clear: firms using these agents report **60-80% time savin
 
 The Pitch Agent is not a simple template filler. It uses a multi-step reasoning pipeline: 1. **Data Ingestion**: Connects to LSEG and S&P Global APIs to pull real-time market data, comparable company financials, and precedent transaction histories.
 2. **Analysis Layer**: Runs LBO modeling with variable debt assumptions, calculates IRR and MOIC scenarios, and generates sensitivity tables.
-3. **Narrative Generation**: Uses Claude's long-context window (200K tokens) to synthesize a compelling investment thesis, risk factors, and market positioning narrative.
+3. **Narrative Generation**: Uses Claude"s long-context window (200K tokens) to synthesize a compelling investment thesis, risk factors, and market positioning narrative.
 4. **Formatting**: Outputs a PowerPoint-compatible structure with slide titles, bullet points, and chart placeholders.
 5. **Human Review Gate**: Stages the output in a review queue where senior analysts can edit, approve, or reject before client delivery.
 

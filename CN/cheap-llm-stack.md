@@ -1,5 +1,5 @@
 ---
-title: 'The Cheap LLM Stack 2026: How to Run Production AI on $0...
+title: "The Cheap LLM Stack 2026: How to Run Production AI on $0...
 description: "5-component stack to run real AI workloads on $0-15/month: Ollama local + DeepSeek API + Gemini free tier + RTK compression + 9Router orchestration. Real cost math, model picks per task type, assembly order."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -214,7 +214,7 @@ The $0-15 stack works until you hit any of: - **Latency requirement < 500ms** �
 - **Bulk workload requires SLA** — Add a managed LiteLLM gateway with multiple paid providers + retry logic (see [LiteLLM gateway 2026](/resources/llm-frameworks/litellm/))
 - **You want full observability** — Add Portkey ($49 platform fee at $1k spend, see [Portkey vs LiteLLM 2026](/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/))
 
-The point: this stack is *not* the ceiling. It's the floor that lets you scale spend deliberately instead of being forced into $200/mo SaaS bundles from day one.
+The point: this stack is *not* the ceiling. It"s the floor that lets you scale spend deliberately instead of being forced into $200/mo SaaS bundles from day one.
 
 ## TL;DR — The Recipe
 

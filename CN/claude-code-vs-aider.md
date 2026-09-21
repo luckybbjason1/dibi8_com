@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code vs Aider in 2026: Commercial vs Open Source ...
+title: "Claude Code vs Aider in 2026: Commercial vs Open Source ...
 description: "Side-by-side breakdown of Claude Code (Anthropic commercial CLI) and Aider (open source, BYO key) — pricing, context, agent style, cost efficiency. Updated 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -204,7 +204,7 @@ If you want flat-fee predictability + maximum agent autonomy → **Claude Code P
 If you want open-source + per-token cost control + git-disciplined edits → **Aider + cached Sonnet (~$15/mo)**.
 If you want both → **Aider for surgical commits + Claude Code for refactors** (~$35-$220/mo combined).
 
-For an indie dev shipping a SaaS solo on a tight budget? **Aider with Sonnet 1M and prompt caching** is the best $/value in the CLI category. You'll spend $10-$20/month and get 80% of Claude Code's capability with full transparency.
+For an indie dev shipping a SaaS solo on a tight budget? **Aider with Sonnet 1M and prompt caching** is the best $/value in the CLI category. You'll spend $10-$20/month and get 80% of Claude Code"s capability with full transparency.
 
 For a small team shipping fast with no time for diff review? **Claude Code Max 5x at $100/month** pays for itself in saved engineering hours within the first week.
 

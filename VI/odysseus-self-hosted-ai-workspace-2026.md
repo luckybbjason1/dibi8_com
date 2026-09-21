@@ -1,5 +1,5 @@
 ---
-title: 'Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
+title: "Odysseus: Không Gian Làm Việc AI Tự Lưu Trữ Đạt 63.000 S...
 description: "Odysseus là không gian làm việc AI mã nguồn mở, ưu tiên quyền riêng tư (63.000 sao trong 9 ngày, giấy phép MIT). Một lệnh Docker duy nhất giúp bạn có chat, AI agent, nghiên cứu chuyên sâu, phân loại email, lịch, ghi chú và Cookbook mô hình — tất cả chạy trên phần cứng của bạn. Bài viết hướng dẫn cài đặt, tính năng chính và so sánh với ChatGPT Plus."
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -138,7 +138,7 @@ Nếu bạn muốn trải nghiệm AI như ChatGPT trên phần cứng của ch�
 
 ## Why This Matters
 
-Understanding odysseus: không gian làm việc ai tự lưu trữ đạt 63.000 sao github trong 9 ngày — hướng dẫn 2026 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding odysseus: không gian làm việc ai tự lưu trữ đạt 63.000 sao github trong 9 ngày — hướng dẫn 2026 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So S...
+title: "Zed vs Cursor 2026: Tốc Độ Native vs Chiều Sâu AI — So S...
 description: "So sánh chi tiết Zed (Rust native, tăng tốc GPU, mã nguồn mở) và Cursor (fork VS Code, ưu tiên AI) — tốc độ, tính năng AI, giá, hệ sinh thái, nền tảng. Cập nhật 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -154,7 +154,7 @@ Một quy tắc thực dụng: chọn **Zed** nếu tối ưu tốc độ và t�
 
 ## Why This Matters
 
-Understanding zed vs cursor 2026: tốc độ native vs chiều sâu ai — so sánh thẳng thắn is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding zed vs cursor 2026: tốc độ native vs chiều sâu ai — so sánh thẳng thắn is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

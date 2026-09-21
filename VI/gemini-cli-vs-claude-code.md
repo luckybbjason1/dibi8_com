@@ -1,5 +1,5 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt ...
+title: "Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt ...
 description: "So sánh trực tiếp Google Gemini CLI và Anthropic Claude Code — gói miễn phí, cửa sổ context, phong cách agent, đa phương thức, sử dụng tool, mẹo chuyển đổi. Cập nhật 2026."
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -14,7 +14,7 @@ faqs: - q: 'Gemini CLI có thực sự miễn phí không?'
   - q: 'Tôi có thể chạy cả Gemini CLI và Claude Code trên cùng dự án không?'
     a: 'Có — chúng không xung đột. Nhiều developer dùng Gemini CLI cho công việc khám phá miễn phí (đọc codebase, tạo docs, prompt nháp) và Claude Code cho việc nặng có trả phí (refactor đa file, code production, vòng agent). Combo cho bạn trinh sát gần miễn phí + thực thi cao cấp với tổng chi phí thấp hơn so với chỉ dùng Claude Code.'
   - q: 'Hỗ trợ đa phương thức bên nào tốt hơn?'
-    a: 'Gemini CLI thắng đa phương thức trong terminal — nhận hình ảnh, PDF, khung video gốc thông qua flag (ví dụ `--image screenshot.png`). Claude Code hỗ trợ ảnh qua hội thoại nhưng thiên về text trước. Với luồng kiểu "nhìn screenshot UI này và viết component React", Gemini CLI nhanh hơn ngay khi mở hộp.'
+    a: 'Gemini CLI thắng đa phương thức trong terminal — nhận hình ảnh, PDF, khung video gốc thông qua flag (ví dụ `--image screenshot.png`). Claude Code hỗ trợ ảnh qua hội thoại nhưng thiên về text trước. Với luồng kiểu "nhìn screenshot UI này và viết component React", Gemini CLI nhanh hơn ngay khi mở hộp."
 ---
 
 # Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?

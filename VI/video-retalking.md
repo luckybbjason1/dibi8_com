@@ -1,5 +1,5 @@
 ---
-title: 'VideoReTalking: 7.2K+ Stars — Hướng Dẫn Cài Đặt Chỉnh Sử...
+title: "VideoReTalking: 7.2K+ Stars — Hướng Dẫn Cài Đặt Chỉnh Sử...
 description: "VideoReTalking (VRT) là hệ thống đồng bộ môi dựa trên âm thanh để chỉnh sửa video talking head. Tương thích với RVC, GPT-SoVITS và Coqui TTS. Bao gồm cài đặt, inference, Gradio WebUI, triển khai production và so sánh benchmark với Wav2Lip và SadTalker."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -315,7 +315,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('videoretalking.log'),
+        logging.FileHandler('videoretalking.log"),
         logging.StreamHandler()
     ]
 )

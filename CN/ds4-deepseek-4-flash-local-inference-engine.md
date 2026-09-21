@@ -1,5 +1,5 @@
 ---
-title: 'ds4: The Open-Source DeepSeek That Developers Are Switch...
+title: "ds4: The Open-Source DeepSeek That Developers Are Switch...
 description: "ds4 is DeepSeek 4 Flash local inference engine for Metal and CUDA. Compatible with Claude Code, Cursor, GitHub Copilot, and VS Code. Includes installation tutor"
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -263,7 +263,7 @@ With 10,913 developers already using it in production, the question isn't whethe
 
 ## Why This Matters
 
-Understanding ds4: the open-source deepseek that developers are switching  is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ds4: the open-source deepseek that developers are switching  is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

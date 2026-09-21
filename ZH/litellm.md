@@ -1,5 +1,5 @@
 ---
-title: 'LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
+title: "LiteLLM: 22,500 Stars — 部署一个 API 调用 100+ LLM，内置故障转移 — 20...
 description: "LiteLLM (litellm) 是开源 AI 网关，提供统一 API 调用 100+ LLM。兼容 OpenAI、Anthropic、Ollama、Cohere、Gemini、Bedrock。涵盖 Docker 部署、虚拟密钥、负载均衡、缓存和生产加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -608,7 +608,7 @@ LiteLLM 解决了生产多 LLM 部署的混乱现实：多个 SDK、分散的 AP
 
 ## Why This Matters
 
-Understanding litellm: 22,500 stars — 部署一个 api 调用 100+ llm，内置故障转移 — 2026 生产级网关配置 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding litellm: 22,500 stars — 部署一个 api 调用 100+ llm，内置故障转移 — 2026 生产级网关配置 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

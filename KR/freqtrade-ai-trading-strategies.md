@@ -1,5 +1,5 @@
 ---
-title: 'Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
+title: "Freqtrade 2026: 머신러닝으로 AI 기반 암호화폐 트레이딩 전략 구축하기 \u2014 완전...
 description: "FreqAI를 활용한 Freqtrade 배포 실전 가이드. ML 통합 기능을 갖춘 오픈소스 Python 암호화폐 트레이딩 봇. Docker 설정, 하이퍼파라미터 최적화, 백테스팅, Telegram 통합 및 프로덕션 배포를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -523,7 +523,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
       options: max-size: "100m"
         max-file: "3"
     deploy: resources: limits: memory: 4G
-          cpus: '2.0'
+          cpus: '2.0"
     healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/ping"]
       interval: 30s
       timeout: 10s

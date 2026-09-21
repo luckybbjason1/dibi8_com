@@ -1,5 +1,5 @@
 ---
-title: 'open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Tr...
+title: "open-notebook: Alternativa Notebook LM Mã Nguồn Mở Hỗ Tr...
 description: "open-notebook (28.200 sao GitHub) là giải pháp mã nguồn mở thay thế Google NotebookLM, hỗ trợ 15+ nhà cung cấp AI. Thư viện kiến thức RAG self-hosted với podcast audio đa phương tiện. Bao gồm hướng dẫn cài đặt, so sánh nhà cung cấp và benchmark thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -202,7 +202,7 @@ Một số liên kết bên trên là liên kết tiếp thị. Nếu bạn đă
 
 ## Why This Matters
 
-Understanding open-notebook: alternativa notebook lm mã nguồn mở hỗ trợ 15+ nhà cung cấp ai — self-hosted, 28.000 sao — hướng dẫn cài đặt 2026 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding open-notebook: alternativa notebook lm mã nguồn mở hỗ trợ 15+ nhà cung cấp ai — self-hosted, 28.000 sao — hướng dẫn cài đặt 2026 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

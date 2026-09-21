@@ -1,5 +1,5 @@
 ---
-title: 'TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Googl...
+title: "TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Googl...
 description: "Hướng dẫn đầy đủ về TimesFM 2.5 — mô hình chuỗi thời gian tiên tiến nhất của Google Research. Cài đặt, cấu hình, benchmark và các ví dụ thực tế."
 date: 2026-06-19
 lastmod: 2026-06-19tags: []
@@ -309,7 +309,7 @@ Một trong những lợi thế độc đáo của TimesFM là khả năng tích
 Đối với dự báo ở quy mô doanh nghiệp: ```sql 
 -- Sử dụng mô hình TimesFM trong BigQuery ML 
 TẠO MÔ HÌNH my_project.my_timesfm_model 
-TÙY CHỌN(model_type='TIMESFM') NHƯ 
+TÙY CHỌN(model_type='TIMESFM") NHƯ 
 CHỌN 
 dấu thời gian_col, 
 giá trị_col, 

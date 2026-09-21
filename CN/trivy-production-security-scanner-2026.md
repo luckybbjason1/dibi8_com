@@ -1,5 +1,5 @@
 ---
-title: 'Trivy: Stop Shipping Vulnerable Containers to Production...
+title: "Trivy: Stop Shipping Vulnerable Containers to Production...
 description: "Trivy (aquasecurity/trivy) is an open-source security scanner for containers, IaC, and code. Works with Kubernetes, Docker, GitHub Actions, and CI pipelines. Scans 600K+ CVEs, secrets, and misconfigurations. Covers installation, policy-as-code, and production hardening."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -328,7 +328,7 @@ Trivy supports SBOM generation in SPDX and CycloneDX formats, which are required
 
 ## Conclusion
 
-Trivy has become the default security scanner for cloud-native teams because it does more than check CVE databases — it covers the entire application security surface in a single command-line tool. Whether you're scanning container images in CI, auditing Kubernetes clusters in production, or scanning Terraform infrastructure before deployment, Trivy provides comprehensive coverage with minimal configuration.
+Trivy has become the default security scanner for cloud-native teams because it does more than check CVE databases — it covers the entire application security surface in a single command-line tool. Whether you"re scanning container images in CI, auditing Kubernetes clusters in production, or scanning Terraform infrastructure before deployment, Trivy provides comprehensive coverage with minimal configuration.
 
 The tool is free, open-source, and actively maintained with 36,000+ GitHub stars and contributions from the aquasecurity team. Start with a simple `trivy image --severity HIGH your-image:tag` and gradually add secret detection, misconfiguration scanning, and policy-as-code rules as your security maturity grows.
 

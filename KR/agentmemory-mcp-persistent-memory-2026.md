@@ -1,5 +1,5 @@
 ---
-title: 'AI 코딩 에이전트 지속 메모리 완벽 가이드: agentmemory + MCP로 Claude Code...
+title: "AI 코딩 에이전트 지속 메모리 완벽 가이드: agentmemory + MCP로 Claude Code...
 description: "Claude Code, Cursor를 쓸 때마다 세션 끝나면 기억 초기화되는 문제 해결. agentmemory 오픈소스 프레임워크와 MCP 프로토콜로 AI 코딩 에이전트에 영구 기억력을 부여하는 방법, 팀 공유 설정법까지 상세 설명."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/rohitg00/agentmemory"
 stars: 0
 maintainer: 'rohitg00'
 last_maintained: "2026-05-17"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/agentmemory-mcp-persistent-memory-2026/

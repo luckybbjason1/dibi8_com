@@ -1,5 +1,5 @@
 ---
-title: 'Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...
+title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Wor...
 description: "Google released Gemini CLI competing with Claude Code. Tested both on the same 5 workflows: where Gemini wins (free tier, 1M context), where Claude Code wins (tool-use reliability, agentic loops), and which to use when."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -206,7 +206,7 @@ The best 2026 stack for most professional developers: Claude Code as primary + G
 
 ## Why This Matters
 
-Understanding gemini cli vs claude code 2026: real comparison on 5 workflows is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding gemini cli vs claude code 2026: real comparison on 5 workflows is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

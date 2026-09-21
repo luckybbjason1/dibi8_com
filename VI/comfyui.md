@@ -1,5 +1,5 @@
 ---
-title: 'ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusi...
+title: "ComfyUI: 87K+ Stars — Hướng Dẫn Thiết Lập Stable Diffusi...
 description: "ComfyUI (COMFY) là GUI Stable Diffusion dạng node mạnh nhất. Hỗ trợ SD 1.5, SDXL, Flux, Wan, LTXV. Triển khai Docker production, node tùy chỉnh, tích hợp API, so sánh hiệu năng với AUTOMATIC1111 và InvokeAI."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -405,7 +405,7 @@ __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS"]
 watch -n 1 nvidia-smi
 
 # Log độ sâu queue
-curl -s http://localhost:8188/queue | jq '.queue_running | length'
+curl -s http://localhost:8188/queue | jq '.queue_running | length"
 
 # Giám sát dung lượng đĩa cho model storage
 df -h models/ output/

@@ -1,5 +1,5 @@
 ---
-title: 'Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh...
+title: "Continue.dev: 33K+ Stars — Trợ Lý Mã Nguồn Mở AI so sánh...
 description: "Continue.dev (trợ lý mã nguồn mở AI) plugin VS Code/JetBrains. Hỗ trợ mọi LLM: Ollama, OpenAI, Anthropic, Gemini. So sánh với GitHub Copilot, Cursor, Tabby. Hướng dẫn cài đặt, ví dụ cấu hình, benchmark."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -180,7 +180,7 @@ CMD ["continue", "check", "--config", "/root/.continue/config.yaml"]
 
 ```yaml
 # docker-compose.yml cho team Ollama + Continue
-version: '3.8'
+version: '3.8"
 services: ollama: image: ollama/ollama:latest
     volumes: - ollama-data:/root/.ollama
     ports: - "11434:11434"

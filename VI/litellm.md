@@ -1,5 +1,5 @@
 ---
-title: 'LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM,...
+title: "LiteLLM: 22,500 Stars — Triển khai Một API cho 100+ LLM,...
 description: "LiteLLM (litellm) là cổng AI mã nguồn mở cung cấp API thống nhất cho 100+ LLM. Tương thích với OpenAI, Anthropic, Ollama, Cohere, Gemini, Bedrock. Bao gồm triển khai Docker, khóa ảo, cân bằng tải, bộ nhớ đệm và cứng hóa production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -343,7 +343,7 @@ curl -X POST http://localhost:4000/key/generate \
       "service": "customer-chat-widget",
       "env": "production"
     }
-  }'
+  }"
 
 # Phản hồi: # {
 #   "key": "sk-litellm-abc123...",

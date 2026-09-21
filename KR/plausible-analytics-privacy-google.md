@@ -1,5 +1,5 @@
 ---
-title: 'Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
+title: "Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 ...
 description: "Plausible Analytics 셀프 호스팅 설정 완벽 가이드. 프라이버시 우선, GDPR 준수, 1KB 미만 추적 스크립트. Google Analytics보다 45배 빠름. 실제 벤치마크와 Docker 배포."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -592,7 +592,7 @@ Plausible은 일반적으로 GA4보다 **5-15% 높은 방문자 수**를 보고�
 ```bash
 # GA 가져오기 실행 (Plausible 컨테이너에서)
 docker compose exec plausible bin/plausible \
-  "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
+  "Plausible.Google.Import.start('your-ga-property-id", YOUR_API_KEY)"
 ```
 
 **사이트가 VPS 용량을 초과하면 어떻게 되나요?**

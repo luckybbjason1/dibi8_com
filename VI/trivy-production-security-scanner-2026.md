@@ -1,5 +1,5 @@
 ---
-title: 'Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường P...
+title: "Trivy: Dừng Gửi Container Thiếu An Toàn Vào Môi Trường P...
 description: "Trivy (aquasecurity/trivy) là công cụ quét bảo mật mã nguồn mở cho container, IaC và mã. Tương thích với Kubernetes, Docker, GitHub Actions và CI pipelines. Quét 600K+ CVE, khóa bí mật và cấu hình sai. Bao gồm cài đặt, policy-as-code và hardening production."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -249,7 +249,7 @@ trivy image --format sarif --output results.sarif my-app:latest
 curl -X POST \
   https://api.github.com/repos/owner/repo/code-scans \
   -H "Authorization: token $GITHUB_TOKEN" \
-  -d '{"commit_sha":"HEAD","ref":"refs/heads/main","source":{"name":"Trivy"}}'
+  -d '{"commit_sha":"HEAD","ref":"refs/heads/main","source":{"name":"Trivy"}}"
 
 # Sau đó upload results
 curl -X POST \

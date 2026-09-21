@@ -1,5 +1,5 @@
 ---
-title: 'open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅...
+title: "open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅...
 description: "open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, 멀티모달 오디오 에피소드 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -206,7 +206,7 @@ open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없�
 
 ## Why This Matters
 
-Understanding open-notebook: 15+ ai 제공자 지원 오픈소스 notebook lm 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding open-notebook: 15+ ai 제공자 지원 오픈소스 notebook lm 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

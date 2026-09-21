@@ -1,5 +1,5 @@
 ---
-title: 'AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản...
+title: "AFFiNE 2026: Bộ hỗn hợp Notion+Miro mã nguồn mở cho quản...
 description: "Triển khai AFFiNE v0.26.3 làm lựa chọn thay thế Notion+Miro tự lưu trữ. Hợp tác CRDT ưu tiên cục bộ, bảng vẽ edgeless, trợ lý viết AI, triển khai Docker trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -229,7 +229,7 @@ tar czf "$BACKUP_DIR/storage.tar.gz" -C ./storage .
 # Cấu hình
 cp -r ./config "$BACKUP_DIR/"
 # Giữ lại: 14 ngày
-find /backups -maxdepth 1 -name 'affine-*' -mtime +14 -exec rm -rf {} +
+find /backups -maxdepth 1 -name 'affine-*" -mtime +14 -exec rm -rf {} +
 EOF
 chmod +x backup-affine.sh
 # Chạy lúc 2 giờ sáng mỗi ngày

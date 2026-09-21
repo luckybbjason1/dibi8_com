@@ -1,5 +1,5 @@
 ---
-title: 'AI 编码伦理 2026：企业"允许 vs 限制"策略指南'
+title: "AI 编码伦理 2026：企业"允许 vs 限制"策略指南'
 description: "2026 年的企业分化为"AI 允许 / AI 限制 / AI 禁止"三大阵营。基于我们追踪的真实企业落地模式，实用解读每种策略的样貌、如何抉择，以及法律/知识产权/合规上的暗礁。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -184,7 +184,7 @@ AI 可能将 GPL 代码"反刍"进你的专有代码库，从而可能强制要�
 
 ## Why This Matters
 
-Understanding ai 编码伦理 2026：企业"允许 vs 限制"策略指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai 编码伦理 2026：企业"允许 vs 限制"策略指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: '30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá...
+title: "30 Ngày Qua-Kỹ Năng: Công Cụ Tìm Kiếm Đại Lý AI Đánh Giá...
 description: "Tìm kiếm Reddit, X, YouTube, TikTok, Polymarket, GitHub và nhiều nền tảng khác cùng lúc. Đánh giá kết quả bằng lượt upvote, lượt thích và tiền thật — không phải biên tập viên. Hoạt động với Claude Code, Codex, Cursor và hơn 50 máy chủ tác nhân."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -240,7 +240,7 @@ The symlink keeps the install in sync with your working tree as you edit.
 4. **The depth nobody else has.** Full YouTube transcripts from reaction videos. Top Reddit comments with upvote counts. TikTok captions. Polymarket odds. Not just titles and links.
 5. **Same story, merged.** Wireless Festival announced on Reddit, discussed on X, ticket prices on TikTok = one cluster, not three separate items.
 6. **Synthesized into one brief.** Grounded in specific data. Cited by source. Ranked by what people actually engage with.
-7. **Then it becomes your expert.** After one run, your Claude session knows everything the community knows. Ask follow-up questions. Have it write prompts, draft emails, plan trips, architect systems — all grounded in what's real right now.
+7. **Then it becomes your expert.** After one run, your Claude session knows everything the community knows. Ask follow-up questions. Have it write prompts, draft emails, plan trips, architect systems — all grounded in what"s real right now.
 
 ## Configuration
 

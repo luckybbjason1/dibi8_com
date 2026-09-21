@@ -1,5 +1,5 @@
 ---
-title: 'Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe...
+title: "Backtest OVERFIT: 5 Typical Patterns with Real PF/Sharpe...
 description: "After 50+ live trades from optimizer outputs, we cataloged 5 distinct overfit patterns: walk-forward divergence, regime-flip, parameter-cliff, indicator-stacking, and survivorship. Each with reproducible synthetic example + the detection signal."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -197,7 +197,7 @@ Our recent moss-trade-bot evolution ended up textbook overfit (2.21 ratio). That
 
 ## Why This Matters
 
-Understanding backtest overfit: 5 typical patterns with real pf/sharpe numbers (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding backtest overfit: 5 typical patterns with real pf/sharpe numbers (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

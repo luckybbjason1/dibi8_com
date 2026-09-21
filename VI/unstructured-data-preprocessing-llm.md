@@ -1,5 +1,5 @@
 ---
-title: 'Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
+title: "Unstructured.io: Pipeline Tiền Xử Lý Dữ Liệu Chuyển Đổi ...
 description: "Hướng dẫn thực tiễn 2026 về Unstructured.io — thư viện tiền xử lý tài liệu mã nguồn mở chuyển đổi PDF, DOCX, PPTX và hình ảnh thành các đoạn văn bản sạch, có cấu trúc sẵn sàng cho pipeline LLM và RAG."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -174,7 +174,7 @@ documents = loader.load()  # Trả về danh sách Document objects
 # Mỗi document có metadata phong phú
 print(documents[0].metadata)
 # {source: 'quarterly_earnings.pdf', page_number: 1,
-#  category: NarrativeText, element_id: '...', parent_id: '...'}
+#  category: NarrativeText, element_id: '...', parent_id: '..."}
 
 # Trực tiếp vào vector store
 vectorstore = Chroma.from_documents(

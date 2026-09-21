@@ -1,5 +1,5 @@
 ---
-title: '2026년 AI 코딩 에이전트 혁명: 클로드 코드 스킬 생태계 폭발, MCP 표준화, 그리고 오픈소스...
+title: "2026년 AI 코딩 에이전트 혁명: 클로드 코드 스킬 생태계 폭발, MCP 표준화, 그리고 오픈소스...
 description: "2026년 AI 코딩 보조 도구 시장이 중대 기로에 섰다. 클로드 코드 스킬이 3,000개를 돌파하고 MCP 프로토콜이 표준이 되는 가운데, 오픈소스 대안 OpenCode와 헤르메스 에이전트가 급성장하고 있다. 벤더 종속에서 벗어나는 실전 전략과 MCP 기반 워크플로우 구축법을 상세히 다룬다."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/

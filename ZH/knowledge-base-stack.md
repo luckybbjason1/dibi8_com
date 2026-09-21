@@ -1,5 +1,5 @@
 ---
-title: '知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$1...
+title: "知识库 Stack 2026：用 AnythingLLM + RAGFlow + mem0 搭"第二大脑"（$1...
 description: "5 组件自托管知识库 stack，给个人或团队用。AnythingLLM（UI + RAG）+ RAGFlow（深度文档解析）+ mem0（agent 记忆）+ AgentMemory MCP（暴露给 MCP host）+ 向量库选型。替代 $50-200/月 SaaS（Notion AI + Mem + Glean），$10-25/月自托管。"
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -285,7 +285,7 @@ npm install -g @mem0/mem0-mcp
 
 ## Why This Matters
 
-Understanding 知识库 stack 2026：用 anythingllm + ragflow + mem0 搭"第二大脑"（$10-25/月） is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 知识库 stack 2026：用 anythingllm + ragflow + mem0 搭"第二大脑"（$10-25/月） is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

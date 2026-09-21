@@ -1,5 +1,5 @@
 ---
-title: 'Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
+title: "Marker: Chuyển PDF, DOCX & EPUB sang Markdown/JSON nhanh...
 description: "Marker (datalab-to/marker) chuyển PDF, DOCX, EPUB và nhiều định dạng khác sang Markdown, JSON, HTML và chunks một cách nhanh chóng, chính xác. 35.694 sao GitHub, mã nguồn theo giấy phép GPL-3.0. Bao gồm cài đặt, CLI và Python API, ví dụ mã thực tế, chế độ LLM, cùng so sánh khách quan với các công cụ thay thế."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -184,7 +184,7 @@ jobs: convert-pdf: runs-on: ubuntu-latest
 
       - name: Set up Python
         uses: actions/setup-python@v5
-        with: python-version: '3.11'
+        with: python-version: '3.11"
 
       - name: Install marker
         run: pip install marker-pdf

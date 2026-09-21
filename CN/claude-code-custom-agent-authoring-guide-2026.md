@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Custom Agent Authoring: Build Reusable Subag...
+title: "Claude Code Custom Agent Authoring: Build Reusable Subag...
 description: "A complete guide to authoring custom Claude Code subagents — frontmatter fields, system prompt design, tool allowlists, and two production-ready examples (migration reviewer, security gate) with the mistakes to avoid."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -210,7 +210,7 @@ To run custom-agent pipelines at scale you want stable infrastructure: 1. **A re
 
 ## Verdict
 
-Custom agents turn your team's best practices from documentation nobody reads into checks that run on every change. The recipe: a sharp **description** so it triggers, a **least-privilege tool allowlist** so it stays in its lane, and a **system prompt with an explicit checklist and output contract** so it produces a report you can act on.
+Custom agents turn your team"s best practices from documentation nobody reads into checks that run on every change. The recipe: a sharp **description** so it triggers, a **least-privilege tool allowlist** so it stays in its lane, and a **system prompt with an explicit checklist and output contract** so it produces a report you can act on.
 
 Start with one — the migration reviewer above is the highest-leverage first agent for most teams. Plant a bug, confirm it catches it, then commit the file. From that moment, every teammate has a reviewer that never gets tired and never skips a step.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Persistent Memory for AI Coding Agents in 2026: A Comple...
+title: "Persistent Memory for AI Coding Agents in 2026: A Comple...
 description: "Stop re-teaching Claude Code your project conventions. Learn how agentmemory and the Model Context Protocol (MCP) give AI coding agents persistent cross-session memory, with setup tutorials and team sharing strategies."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -309,7 +309,7 @@ Tested on an M3 MacBook Pro: - Retrieval from 10K-entry memory: **< 50ms**
 
 agentmemory's bet on MCP is particularly smart. Instead of building proprietary SDKs that lock users into an ecosystem, it plugs into the standard port that every major tool already supports. The result: 5 minutes of setup, and your Claude Code instance finally remembers who you are, what you're building, and where the bodies are buried.
 
-If you haven't configured persistent memory yet, today is the day.
+If you haven"t configured persistent memory yet, today is the day.
 
 ---
 

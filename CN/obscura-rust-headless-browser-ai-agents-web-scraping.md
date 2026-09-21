@@ -1,5 +1,5 @@
 ---
-title: 'Obscura: Rust Headless Browser for AI Agents — 14,000 St...
+title: "Obscura: Rust Headless Browser for AI Agents — 14,000 St...
 description: "Obscura (14,788 GitHub stars) is a Rust headless browser engine for AI agents and web scraping. 30MB memory, 85ms page load, built-in anti-detection. Drop-in replacement for headless Chrome with Puppeteer and Playwright support. Docker and binary installs."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -522,7 +522,7 @@ A: Obscura uses the V8 engine, the same engine as Chrome. JavaScript compatibili
 
 **Q: Can I run Obscura on serverless platforms?**
 
-A: Since it's a single binary with zero dependencies, you can run it anywhere that supports statically compiled Rust binaries — Lambda, Cloud Functions, Fly.io, etc.
+A: Since it"s a single binary with zero dependencies, you can run it anywhere that supports statically compiled Rust binaries — Lambda, Cloud Functions, Fly.io, etc.
 
 ## Conclusion
 

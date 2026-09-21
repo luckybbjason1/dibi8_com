@@ -1,5 +1,5 @@
 ---
-title: 'Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
+title: "Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng ...
 description: "Flowise là công cụ xây dựng workflow LLM và AI Agent trực quan mã nguồn mở. Tích hợp LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Hướng dẫn cài đặt Docker, bảo mật production, triển khai API và đánh giá trung thực."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -436,7 +436,7 @@ CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
 
 ```yaml
 # docker-compose-queue.yml
-version: '3.8'
+version: '3.8"
 services: redis: image: redis:alpine
     restart: unless-stopped
 

@@ -1,5 +1,5 @@
 ---
-title: 'Promptfoo: Test, Evaluate & Red-Team Your LLM Prompts — ...
+title: "Promptfoo: Test, Evaluate & Red-Team Your LLM Prompts — ...
 description: "Promptfoo is an open-source CLI and library for evaluating and red-teaming LLM apps. Compare GPT, Claude, Gemini, and DeepSeek with simple declarative configs that plug into your CLI and CI/CD. This 2026 guide covers install, promptfooconfig.yaml, assertions, and red teaming."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -255,7 +255,7 @@ When you're choosing an LLM evaluation and red-teaming tool, promptfoo's combina
 
 ## Limitations & Honest Assessment
 
-Promptfoo is a capable tool, but it's worth knowing the tradeoffs: 1. **Config grows with complexity** — the declarative format is great for the common case, but large suites with many providers, dynamic vars, and custom assertions get verbose. You'll often factor prompts and test cases into separate files.
+Promptfoo is a capable tool, but it's worth knowing the tradeoffs: 1. **Config grows with complexity** — the declarative format is great for the common case, but large suites with many providers, dynamic vars, and custom assertions get verbose. You"ll often factor prompts and test cases into separate files.
 2. **You bring your own model access** — promptfoo orchestrates evals but relies on your provider API keys and quotas. Costs and rate limits are on you.
 3. **Eval runs cost tokens and time** — a broad suite across several providers makes a lot of API calls. On large test sets that adds up in both latency and spend.
 4. **Assertion design takes thought** — LLM-graded rubrics (`llm-rubric`) and semantic checks are powerful but non-deterministic; getting reliable, meaningful assertions takes iteration.

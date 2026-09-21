@@ -1,5 +1,5 @@
 ---
-title: 'So Sánh Vector Database 2025: Pinecone vs Weaviate vs Ch...
+title: "So Sánh Vector Database 2025: Pinecone vs Weaviate vs Ch...
 description: "So sánh chi tiết 4 vector database hàng đầu 2025: Pinecone, Weaviate, Chroma, Milvus. Bảng benchmark, tính năng và hướng dẫn chọn database phù hợp cho RAG."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -34,7 +34,7 @@ Embedding vector là một mảng số thực (thường có 384, 768, hoặc 15
 
 ### Tại Sao Cơ Sở Dữ Liệu Truyền Thống Không Đủ?
 
-Các database truyền thống như PostgreSQL, MySQL thiếu khả năng tìm kiếm theo độ tương đồng ngữ nghĩa. Truy vấn `SELECT * WHERE content LIKE '%keyword%'` không thể tìm được văn bản liên quan nếu không chứa đúng từ khóa. Vector database giải quyết vấn đề này bằng cách tìm kiếm theo ý nghĩa, không phải theo từ khóa.
+Các database truyền thống như PostgreSQL, MySQL thiếu khả năng tìm kiếm theo độ tương đồng ngữ nghĩa. Truy vấn `SELECT * WHERE content LIKE '%keyword%"` không thể tìm được văn bản liên quan nếu không chứa đúng từ khóa. Vector database giải quyết vấn đề này bằng cách tìm kiếm theo ý nghĩa, không phải theo từ khóa.
 
 ### Vai Trò Cứa Vector Database Trong Ứng Dụng RAG
 

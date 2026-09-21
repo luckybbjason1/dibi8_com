@@ -1,5 +1,5 @@
 ---
-title: 'Codegraph: The Code Knowledge Graph That Slashes LLM Tok...
+title: "Codegraph: The Code Knowledge Graph That Slashes LLM Tok...
 description: "Codegraph (45,555 GitHub stars) creates pre-indexed code knowledge graphs for Claude Code, Codex, Gemini, Cursor, OpenCode, AntiGravity, Kiro, and Hermes Agent — fewer tokens, fewer tool calls, 100% local. Includes setup tutorial, architecture breakdown, and real benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -388,7 +388,7 @@ Codegraph is the infrastructure layer every codebase-heavy AI agent workflow nee
 
 Whether you're maintaining a 50K-line monorepo, building with Cursor, or just tired of Claude Code reading every file in your project, Codegraph delivers measurable token savings and faster, more accurate answers.
 
-Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Codegraph configurations. Check out our guides on [CLI代理管理](https://dibi8.com/cc-switch-unified-ai-cli-c[AI Agent管理](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-link) for complementary tooling. Try Codegraph today — index your project, run a query, and see how much context you don't need.
+Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss Codegraph configurations. Check out our guides on [CLI代理管理](https://dibi8.com/cc-switch-unified-ai-cli-c[AI Agent管理](https://dibi8.com/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale)ibi8-internal-link) for complementary tooling. Try Codegraph today — index your project, run a query, and see how much context you don"t need.
 
 Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.
 

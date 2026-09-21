@@ -1,5 +1,5 @@
 ---
-title: 'Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python...
+title: "Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python...
 description: "2026년 Lean 완벽 가이드, QuantConnect의 알고리즘 트레이딩 엔진. 다중 자산 백테스팅, 실제 트레이딩, C# 및 Python API, 프로덕션 배포 튜토리얼.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -126,7 +126,7 @@ pip install pythonnet
 pip install quantconnect-stubs
 
 # 설치 확인
-python -c "from Algorithm.Python import *; print('Lean Python ready')"
+python -c "from Algorithm.Python import *; print('Lean Python ready")"
 ```
 
 ### Docker 배포 (가장 빠름)

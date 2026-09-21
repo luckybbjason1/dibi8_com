@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
+title: "DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes ...
 description: "DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes."
 date: 2026-09-19
 lastmod: 2026-09-19
@@ -286,7 +286,7 @@ Enable memory limits trong plugin config: ```typescript
 export default {
   memory: {
     maxTokens: 4096,
-    gcInterval: '5m'
+    gcInterval: '5m"
   }
 };
 ```

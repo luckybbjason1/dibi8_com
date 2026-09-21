@@ -1,5 +1,5 @@
 ---
-title: 'RAG Architecture Implementation Guide 2025: Build Produc...
+title: "RAG Architecture Implementation Guide 2025: Build Produc...
 description: "Complete RAG architecture implementation guide. Learn to build production-ready Retrieval-Augmented Generation systems with advanced techniques, evaluation frameworks, and optimization strategies."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -617,7 +617,7 @@ Yes. A fully local RAG stack uses Ollama or vLLM for the LLM, local embedding mo
 
 **What is Agentic RAG and how is it different?**
 
-Agentic RAG gives the LLM autonomous control over the retrieval process. Instead of a fixed pipeline (retrieve top-k chunks, then generate), the LLM decides whether to retrieve, what to search for, whether results are sufficient, and when to stop retrieving. Agentic RAG handles complex multi-step questions ("What company did the founder of Tesla's main competitor start after leaving that company?") but adds 5-30 seconds of latency. It is implemented with frameworks like LangGraph, LlamaIndex agents, and ReAct patterns.
+Agentic RAG gives the LLM autonomous control over the retrieval process. Instead of a fixed pipeline (retrieve top-k chunks, then generate), the LLM decides whether to retrieve, what to search for, whether results are sufficient, and when to stop retrieving. Agentic RAG handles complex multi-step questions ("What company did the founder of Tesla"s main competitor start after leaving that company?") but adds 5-30 seconds of latency. It is implemented with frameworks like LangGraph, LlamaIndex agents, and ReAct patterns.
 
 
 ---

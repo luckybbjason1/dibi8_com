@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code MCP Advanced 2026: The 10-Server Production ...
+title: "Claude Code MCP Advanced 2026: The 10-Server Production ...
 description: "After running Claude Code with various MCP server combinations, settled on a 10-server production stack that balances power, security, and startup time. Each server, why it is in, what it does, and how to configure for solo vs team use."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -202,7 +202,7 @@ Per-project overrides matter more than global config. Keep sensitive tokens scop
 
 ## Why This Matters
 
-Understanding claude code mcp advanced 2026: the 10-server production stack is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude code mcp advanced 2026: the 10-server production stack is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

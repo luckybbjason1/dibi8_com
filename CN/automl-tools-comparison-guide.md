@@ -1,5 +1,5 @@
 ---
-title: 'AutoML Tools Compared: AutoGluon, H2O, TPOT, Auto-sklear...
+title: "AutoML Tools Compared: AutoGluon, H2O, TPOT, Auto-sklear...
 description: "Compare top AutoML tools including AutoGluon, H2O AutoML, TPOT, Auto-sklearn, and Google AutoML. Find the best automated machine learning framework for your needs."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -178,7 +178,7 @@ Yes, with appropriate safeguards. Production AutoML requires rigorous validation
 
 ### How much does Google AutoML cost?
 
-Google AutoML pricing has three components. Training costs range from $3.15 to $25.20 per node hour depending on model type and region, with typical training jobs consuming 1-10 node hours. Batch prediction costs approximately $2.02 per thousand images (vision) or $0.025 per thousand records (tabular). Online prediction for deployed endpoints adds ongoing hourly costs for node provisioning plus per-prediction fees. A typical tabular ML project — training, evaluation, and one month of light prediction traffic — costs between $50 and $500. Heavy usage or large-scale vision projects can reach thousands of dollars monthly. Always use Google Cloud's pricing calculator before committing to training jobs.
+Google AutoML pricing has three components. Training costs range from $3.15 to $25.20 per node hour depending on model type and region, with typical training jobs consuming 1-10 node hours. Batch prediction costs approximately $2.02 per thousand images (vision) or $0.025 per thousand records (tabular). Online prediction for deployed endpoints adds ongoing hourly costs for node provisioning plus per-prediction fees. A typical tabular ML project — training, evaluation, and one month of light prediction traffic — costs between $50 and $500. Heavy usage or large-scale vision projects can reach thousands of dollars monthly. Always use Google Cloud"s pricing calculator before committing to training jobs.
 
 
 ---

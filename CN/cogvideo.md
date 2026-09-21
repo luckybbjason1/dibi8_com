@@ -1,5 +1,5 @@
 ---
-title: 'CogVideo: 12.7K Stars — Complete Text-to-Video Setup Gui...
+title: "CogVideo: 12.7K Stars — Complete Text-to-Video Setup Gui...
 description: "CogVideo (CogVideoX) is a text and image-to-video generation model from Zhipu AI. Supports ComfyUI, Diffusers, SAT, and Wan/HunyuanVideo/Open-Sora integration. Covers installation, Docker, inference, fine-tuning, and benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -631,7 +631,7 @@ For production deployments, start with the Docker setup, add FastAPI wrapping, a
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

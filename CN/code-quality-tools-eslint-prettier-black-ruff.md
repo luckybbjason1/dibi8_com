@@ -1,5 +1,5 @@
 ---
-title: 'Code Quality Tools Guide: ESLint, Prettier, Black, Ruff ...
+title: "Code Quality Tools Guide: ESLint, Prettier, Black, Ruff ...
 description: "Set up code quality tools for any language: ESLint, Prettier, Black, Ruff, golangci-lint, and rustfmt. Complete configs, CI integration, and pre-commit hooks."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -618,7 +618,7 @@ Yes. ESLint handles code quality (correctness, best practices) while Prettier ha
 
 ### Is Ruff better than Black for Python?
 
-Ruff is faster and more comprehensive than Black. It replaces Black (formatting), Flake8 (linting), isort (import sorting), and numerous plugins in a single tool. Ruff's formatter produces Black-compatible output. For new projects, Ruff is the recommended choice. For existing Black users, switching to Ruff format is straightforward and yields significant performance improvements.
+Ruff is faster and more comprehensive than Black. It replaces Black (formatting), Flake8 (linting), isort (import sorting), and numerous plugins in a single tool. Ruff"s formatter produces Black-compatible output. For new projects, Ruff is the recommended choice. For existing Black users, switching to Ruff format is straightforward and yields significant performance improvements.
 
 ### How do I set up pre-commit hooks?
 

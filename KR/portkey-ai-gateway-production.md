@@ -1,5 +1,5 @@
 ---
-title: 'Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성...
+title: "Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -637,7 +637,7 @@ services: gateway: image: portkeyai/gateway:latest
       - postgres
     deploy: replicas: 3
       resources: limits: memory: 2G
-          cpus: '1.0'
+          cpus: '1.0"
   
   redis: image: redis:7-alpine
     volumes: - redis-data:/data

@@ -1,5 +1,5 @@
 ---
-title: 'AI Image Generation Tools: Complete Guide to Midjourney,...
+title: "AI Image Generation Tools: Complete Guide to Midjourney,...
 description: "Complete guide to AI image generation tools in 2025. Compare Midjourney v7, DALL-E 3, Stable Diffusion 3.5, Adobe Firefly, FLUX, and Leonardo.ai with features and pricing."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -204,7 +204,7 @@ For your first AI-generated image, follow these steps: 1. **Choose your tool.** 
 
 ### What is the best free AI image generator?
 
-Stable Diffusion 3.5 Medium is the best free option for users with capable hardware (NVIDIA GPU with 8GB+ VRAM). It offers quality comparable to paid tools and imposes no usage limits. For users without GPUs, Leonardo.ai provides the best free tier with 150 daily tokens (approximately 15-30 images), and Microsoft's Copilot offers free DALL-E 3 generations with a Microsoft account.
+Stable Diffusion 3.5 Medium is the best free option for users with capable hardware (NVIDIA GPU with 8GB+ VRAM). It offers quality comparable to paid tools and imposes no usage limits. For users without GPUs, Leonardo.ai provides the best free tier with 150 daily tokens (approximately 15-30 images), and Microsoft"s Copilot offers free DALL-E 3 generations with a Microsoft account.
 
 ### Can I use AI-generated images commercially?
 

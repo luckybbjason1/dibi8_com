@@ -1,5 +1,5 @@
 ---
-title: 'Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO...
+title: "Bộ công cụ AI-SEO & GEO 2026: 6 công cụ miễn phí cho SEO...
 description: "Bộ công cụ miễn phí hoàn chỉnh cho SEO trong kỷ nguyên AI: trình tạo llms.txt + robots.txt cho AI-crawler + meta tags + Schema.org JSON-LD + hreflang + xem trước OG card. Bao quát cả tìm kiếm cổ điển (Google/Bing) lẫn các công cụ tạo sinh (ChatGPT, Claude, Perplexity). Tất cả chạy trên trình duyệt, không cần đăng ký."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -102,7 +102,7 @@ SEO năm 2026 = on-page cổ điển **cộng với** tối ưu hóa cho công c
 
 ## Why This Matters
 
-Understanding bộ công cụ ai-seo & geo 2026: 6 công cụ miễn phí cho seo truyền thống + tối ưu hóa cho công cụ tạo sinh is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding bộ công cụ ai-seo & geo 2026: 6 công cụ miễn phí cho seo truyền thống + tối ưu hóa cho công cụ tạo sinh is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

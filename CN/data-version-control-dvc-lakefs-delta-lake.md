@@ -1,5 +1,5 @@
 ---
-title: 'DVC vs LakeFS vs Delta Lake: Choosing the Right Data Ver...
+title: "DVC vs LakeFS vs Delta Lake: Choosing the Right Data Ver...
 description: "Compare DVC, LakeFS, and Delta Lake for ML data versioning. Learn which data version control tool fits your stack with architecture, features, and decision framework."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -175,7 +175,7 @@ Yes, and some teams do exactly that. LakeFS manages the data lake infrastructure
 
 ### Does Delta Lake require Apache Spark?
 
-Historically yes, but the ecosystem has expanded. Delta Lake's native implementation is tightly coupled to Spark, but the [Delta Lake](https://delta.io/) project now includes connectors for Python (via `deltalake` library), Rust, and other engines. The `deltalake` Python package enables reading and writing Delta tables without a Spark cluster, though advanced features like streaming and Z-ordering still require Spark. For small-to-medium workloads, the standalone Python library removes the Spark dependency entirely.
+Historically yes, but the ecosystem has expanded. Delta Lake"s native implementation is tightly coupled to Spark, but the [Delta Lake](https://delta.io/) project now includes connectors for Python (via `deltalake` library), Rust, and other engines. The `deltalake` Python package enables reading and writing Delta tables without a Spark cluster, though advanced features like streaming and Z-ordering still require Spark. For small-to-medium workloads, the standalone Python library removes the Spark dependency entirely.
 
 ### How much storage overhead does data versioning add?
 

@@ -1,5 +1,5 @@
 ---
-title: 'Compound Engineering: Claude Code, Codex, Cursor를 함께 오케스...
+title: "Compound Engineering: Claude Code, Codex, Cursor를 함께 오케스...
 description: "Compound Engineering(스타 2만 개)는 Claude Code, Codex, Cursor를 위한 멀티 에이전트 오케스트레이션 플러그인입니다. 아이디어 탐색, 계획, 검토, 디버깅, 지식 축적을 위한 9개의 명령어. 80% 계획, 20% 실행 워크플로우."
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -7,7 +7,7 @@ slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
 tags: ["compound-engineering", "multi-agent", "claude-code", "codex", "cursor", "planning", "review"]
 github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
-license: 'MIT'
+license: 'MIT"
 featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
 ---
 

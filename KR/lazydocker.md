@@ -1,5 +1,5 @@
 ---
-title: 'LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가...
+title: "LazyDocker: 51,092 GitHub Stars — 완전한 터미널 Docker UI 설정 가...
 description: "LazyDocker (LD)는 Docker 컨테이너, 이미지, 볼륨 및 로그를 관리하기 위한 터미널 UI입니다. Docker, Docker Compose, Go 및 Terminal과 호환됩니다. 설치, 키바인딩, 구성 및 프로덕션 강화를 다룹니다."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -273,7 +273,7 @@ customCommands: containers: - name: bash
       serviceNames: []
     - name: debug-network
       attach: false
-      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}'"
+      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}""
 ```
 
 사용 가능한 템플릿 변수: `{{ .Container.ID }}`, `{{ .Container.Name }}`, `{{ .Service.Name }}`, `{{ .DockerCompose }}`.
@@ -479,7 +479,7 @@ LazyDocker의 사용자 지정 명령을 통해 이를 바인딩하여 원키 �
 # 60초마다 실행되는 cron 작업
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name=\"{{.Name}}\"} {{.CPUPerc}}\ncontainer_memory_usage{name=\"{{.Name}}\"} {{.MemUsage}}" \
+    "container_cpu_usage{name="{{.Name}}"} {{.CPUPerc}}\ncontainer_memory_usage{name="{{.Name}}"} {{.MemUsage}}" \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

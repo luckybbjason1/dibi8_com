@@ -1,5 +1,5 @@
 ---
-title: 'So Sánh Công Cụ Quản Lý Cơ Sở Dữ Liệu Tốt Nhất: Ứng Dụng...
+title: "So Sánh Công Cụ Quản Lý Cơ Sở Dữ Liệu Tốt Nhất: Ứng Dụng...
 description: "Đánh giá chi tiết TablePlus, DBeaver, DataGrip, Beekeeper Studio và các công cụ quản lý database GUI tốt nhất 2025. So sánh tính năng, giá cả, hỗ trợ database để chọn công cụ phù hợp."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/database-management-tools-comparison/

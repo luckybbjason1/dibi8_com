@@ -1,5 +1,5 @@
 ---
-title: 'Ollama: 137K+ Stars — Run LLMs Locally with One Command,...
+title: "Ollama: 137K+ Stars — Run LLMs Locally with One Command,...
 description: "Ollama is the simplest way to run Llama, DeepSeek, Mistral, and other LLMs locally. Compatible with LangChain, OpenWebUI, Continue.dev, and Dify. Covers Docker setup, Modelfile customization, REST API, production hardening, and performance benchmarks."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -683,7 +683,7 @@ For solo developers and small teams, Ollama is the pragmatic starting point. Whe
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

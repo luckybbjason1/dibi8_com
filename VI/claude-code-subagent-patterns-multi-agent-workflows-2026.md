@@ -1,5 +1,5 @@
 ---
-title: 'Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
+title: "Mẫu Subagent Claude Code: 5 Quy Trình Multi-Agent Tiết K...
 description: "5 mẫu Claude Code subagent đã kiểm chứng trong production — nghiên cứu song song, cô lập worktree, ủy thác chuyên gia, bảo vệ context, điều phối pipeline. Kèm prompt thực và đánh đổi."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -31,7 +31,7 @@ faq: - q: "Subagent trong Claude Code chính xác là gì, và khác gì với v
   - q: "Mode thất bại nào tôi cần đề phòng trong phát triển dựa trên subagent?"
     a: "Subagent trả về tóm tắt — chúng mô tả điều chúng định làm, không nhất thiết là điều chúng đã làm. Thất bại phổ biến nhất là coi báo cáo subagent là sự thật mà không xác minh. Luôn kiểm tra các thay đổi file thực tế (git diff) hoặc kết quả test, không phải tóm tắt văn xuôi. Một subagent tuyên bố 'tôi đã refactor module auth' có thể chỉ làm các chỉnh sửa nông pass type check nhưng phá hoạt động runtime."
   - q: "Tôi có thể tự xây dựng subagent chuyên biệt, hay phải bám vào các loại có sẵn?"
-    a: "Claude Code hỗ trợ định nghĩa agent tùy chỉnh thông qua Agent SDK và file frontmatter agent. Bạn có thể ship một 'database-migration-reviewer' hay 'security-auditor' đặc thù cho team dưới dạng file markdown với description, system prompt và whitelist công cụ. Khi agent cha quyết định ủy thác, nó có thể chọn loại tùy chỉnh của bạn. Đây là cách team mã hóa các checklist review, cổng tuân thủ và chuyên môn lĩnh vực thành các persona agent tái sử dụng."
+    a: "Claude Code hỗ trợ định nghĩa agent tùy chỉnh thông qua Agent SDK và file frontmatter agent. Bạn có thể ship một 'database-migration-reviewer' hay 'security-auditor" đặc thù cho team dưới dạng file markdown với description, system prompt và whitelist công cụ. Khi agent cha quyết định ủy thác, nó có thể chọn loại tùy chỉnh của bạn. Đây là cách team mã hóa các checklist review, cổng tuân thủ và chuyên môn lĩnh vực thành các persona agent tái sử dụng."
   - q: "Giá cả của Claude Code subagent hoạt động ra sao — tôi có trả riêng cho mỗi cái không?"
     a: "Mỗi lần gọi subagent tiêu thụ token như bất kỳ cuộc trò chuyện Claude nào khác. Chi phí xấp xỉ context đầy đủ của subagent (system prompt + schema công cụ + task prompt + suy nghĩ + báo cáo cuối). Trên gói Pro và Max, sử dụng subagent tính vào cùng quota sử dụng với phiên cha. Với người dùng API, chi phí là tính phí trực tiếp theo token. Tiết kiệm đến từ việc chuyển bớt khám phá đáng lẽ làm phình context cha — bạn trả cho subagent, nhưng phiên chính giữ được nhanh và tập trung."
 ---

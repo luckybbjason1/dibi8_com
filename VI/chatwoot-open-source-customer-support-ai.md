@@ -1,5 +1,5 @@
 ---
-title: 'Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở vớ...
+title: "Chatwoot 2026: Nền Tảng Hỗ Trợ Khách Hàng Mã Nguồn Mở vớ...
 description: "Hướng dẫn đầy đủ về Chatwoot v4 — nền tảng hỗ trợ khách hàng mã nguồn mở. Tự host bằng Docker, tích hợp AI agent, kết nối đa kênh. Benchmark thực tế và cấu hình production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -442,7 +442,7 @@ find /backup/chatwoot -maxdepth 1 -type d -mtime +14 -exec rm -rf {} \;
 
 scrape_configs: - job_name: chatwoot
     static_configs: - targets: ['support.yourdomain.com:3000']
-    metrics_path: '/metrics'
+    metrics_path: '/metrics"
     scrape_interval: 30s
 ```
 

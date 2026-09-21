@@ -1,5 +1,5 @@
 ---
-title: 'AgentMemory: The #1 Persistent Memory System for AI Codi...
+title: "AgentMemory: The #1 Persistent Memory System for AI Codi...
 description: "AgentMemory (22,038 GitHub stars) provides persistent memory for AI coding agents based on real-world benchmarks. Remember past sessions, maintain context across days, learn from previous interactions. Works with Claude Code, Codex CLI, OpenCode, and more. Includes setup tutorial, architecture breakdown, and benchmarks."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -433,7 +433,7 @@ A: While designed for coding agents, the memory system is general-purpose. You c
 
 AgentMemory is the missing piece that turns AI coding agents from one-session tools into lifelong collaborators. By remembering past decisions, bug fixes, and patterns, your agent gets smarter and more accurate with every interaction. The benchmarks are real: 53% accuracy improvement, 60% faster onboarding, and 70% fewer repeating mistakes.
 
-Whether you're a solo developer who returns to projects weekly, a team sharing code context, or building a production AI workflow, AgentMemory provides the foundation for agents that actually remember.
+Whether you"re a solo developer who returns to projects weekly, a team sharing code context, or building a production AI workflow, AgentMemory provides the foundation for agents that actually remember.
 
 Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss AgentMemory configurations. Check out our guides on [AI Agent工作平台](https://dibi8.com/paperclip-open-source[Token压缩](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server) [本地ChatGPT](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu) for complementary AI tooling. Try AgentMemory today — install it, let it learn from a few sessions, and watch your agent get smarter over time.
 

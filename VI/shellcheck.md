@@ -1,5 +1,5 @@
 ---
-title: 'ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
+title: "ShellCheck: 39,456 GitHub Stars — Hướng Dẫn Cài Đặt và T...
 description: "ShellCheck (SC) là công cụ phân tích tĩnh cho bash/sh shell script. Tích hợp với Docker, GitHub Actions, VS Code. Bao gồm cài đặt, cấu hình CI/CD, và tăng cường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -516,7 +516,7 @@ Theo dõi số lượng lỗi ShellCheck như một team metric: ```bash
 # ci-metrics.sh — theo dõi số warning shellcheck theo thờI gian
 
 WARNINGS=$(find . -name "*.sh" -exec shellcheck --severity=warning --format=json {} + | \
-    jq '. | length')
+    jq '. | length")
 
 echo "shellcheck_warnings $WARNINGS" >> metrics.txt
 ```

@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
+title: "Claude Code MCP Nâng Cao 2026: Stack 10 Server Cho Produ...
 description: "Sau khi chạy Claude Code với nhiều tổ hợp MCP server khác nhau, chúng tôi đã chốt một stack 10 server cấp production, cân bằng giữa sức mạnh, bảo mật và thời gian khởi động. Bài viết phân tích từng server, lý do được chọn, chức năng, và cách cấu hình cho cá nhân so với nhóm."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -203,7 +203,7 @@ Ghi đè theo dự án quan trọng hơn cấu hình toàn cục. Hãy giới h�
 
 ## Why This Matters
 
-Understanding claude code mcp nâng cao 2026: stack 10 server cho production is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude code mcp nâng cao 2026: stack 10 server cho production is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

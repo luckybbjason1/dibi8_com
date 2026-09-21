@@ -1,5 +1,5 @@
 ---
-title: 'AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
+title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts ...
 description: "Tracked 30 days of actual usage and billing across Claude Max ($200), ChatGPT Plus + Codex CLI API ($165 effective), and Cursor Pro + API overflow ($87). Per-task cost breakdown, when each pays off, and the threshold where switching makes sense."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -199,7 +199,7 @@ Track your own usage for 30 days before you optimize. The receipts above are one
 
 ## Why This Matters
 
-Understanding ai coding agent monthly bill 2026: real 30-day receipts from claude max, chatgpt plus, cursor pro is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai coding agent monthly bill 2026: real 30-day receipts from claude max, chatgpt plus, cursor pro is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

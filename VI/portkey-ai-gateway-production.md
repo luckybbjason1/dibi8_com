@@ -1,5 +1,5 @@
 ---
-title: 'Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình v...
+title: "Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình v...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -637,7 +637,7 @@ services: gateway: image: portkeyai/gateway:latest
       - postgres
     deploy: replicas: 3
       resources: limits: memory: 2G
-          cpus: '1.0'
+          cpus: '1.0"
   
   redis: image: redis:7-alpine
     volumes: - redis-data:/data

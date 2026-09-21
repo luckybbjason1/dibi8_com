@@ -1,5 +1,5 @@
 ---
-title: '멀티모달 콘텐츠 파이프라인 2026: AI 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-...
+title: "멀티모달 콘텐츠 파이프라인 2026: AI 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-...
 description: "셀프호스트 멀티모달 콘텐츠 스택: faster-whisper (STT) + ChatTTS (대화 TTS) + Stable Diffusion WebUI (이미지) + ComfyUI (워크플로우 엔진 + 비디오) + FFmpeg (조립). $30-80/월로 팟캐스트, 짧은 비디오, AI 일러스트 글 제작 vs $200-500/월 SaaS."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -229,7 +229,7 @@ SaaS 등가물 비교: ElevenLabs Creator ($22) + Midjourney Standard ($30) + De
 
 ## Why This Matters
 
-Understanding 멀티모달 콘텐츠 파이프라인 2026: ai 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-80/월) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 멀티모달 콘텐츠 파이프라인 2026: ai 팟캐스트/비디오/비주얼 콘텐츠용 5컴포넌트 스택 ($30-80/월) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

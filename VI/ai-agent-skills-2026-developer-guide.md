@@ -1,5 +1,5 @@
 ---
-title: 'Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Clau...
+title: "Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Clau...
 description: "Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Claude Code Skills và Các Repository Đang Hot Trên GitHub". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-16 00:00:00+08:00
 lastmod: 2026-05-16 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: ''
 last_maintained: "2026-05-16"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/ai-agent-skills-2026-developer-guide/

@@ -1,5 +1,5 @@
 ---
-title: 'OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-...
+title: "OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-...
 description: "Master OpenAI Codex CLI—the fastest-growing open-source AI coding agent of 2026. This complete guide covers zero-to-hero installation, AGENTS.md configuration, multi-agent parallel development, MCP integration, sandbox security, and head-to-head comparison with Claude Code. Boost your developer productivity today."
 date: 2026-05-17 00:00:00+08:00
 lastmod: 2026-05-17 00:00:00+08:00
@@ -290,7 +290,7 @@ For regulated industries, additional enterprise controls include: - **Hook Engin
 
 ## Model Selection: GPT-5.3-Codex vs. GPT-5.3-Codex-Spark
 
-Codex CLI defaults to `gpt-5.3-codex`, OpenAI's flagship coding-optimized model. A second variant, **Spark**, was introduced in early 2026 for latency-critical workflows.
+Codex CLI defaults to `gpt-5.3-codex`, OpenAI"s flagship coding-optimized model. A second variant, **Spark**, was introduced in early 2026 for latency-critical workflows.
 
 | Model | Strength | Ideal Use Case | Availability |
 |

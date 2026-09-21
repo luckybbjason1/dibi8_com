@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
+title: "Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
 description: "프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프트와 트레이드오프 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -189,7 +189,7 @@ Agent({
 
 ## Why This Matters
 
-Understanding claude code 서브에이전트(subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude code 서브에이전트(subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전트 워크플로 (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

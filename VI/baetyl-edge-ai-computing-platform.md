@@ -1,5 +1,5 @@
 ---
-title: 'Baetyl: Nền tảng điện toán AI biên cloud-native triển kh...
+title: "Baetyl: Nền tảng điện toán AI biên cloud-native triển kh...
 description: "Triển khai Baetyl v2.4 để mang điện toán biên Kubernetes-native đến thiết bị IoT. Suy luận mô hình AI, hỗ trợ MQTT/BACnet, cập nhật OTA, runtime K3s, đồng bộ cloud-biên."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -334,7 +334,7 @@ curl -X POST http://cloud:30004/v1/nodes/edge-prod-01/secrets \
       "cert.pem": "'$(base64 -w0 edge-cert.pem)'",
       "key.pem": "'$(base64 -w0 edge-key.pem)'"
     }
-  }'
+  }"
 ```
 
 ## So sánh với các lựa chọn thay thế

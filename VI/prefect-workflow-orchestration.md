@@ -1,5 +1,5 @@
 ---
-title: 'Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
+title: "Prefect 2026: Công Cụ Điều Phối Workflow Hiện Đại cho Pi...
 description: "Hướng dẫn thực hành về Prefect 3.x — công cụ điều phối workflow Python-native với thực thi async, retry tự động, và server tự host. Triển khai pipeline dữ liệu trong 5 phút."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "PrefectHQ/prefect"
 stars: 18000
 maintainer: PrefectHQ
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["]

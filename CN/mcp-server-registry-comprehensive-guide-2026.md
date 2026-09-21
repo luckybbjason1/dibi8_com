@@ -1,5 +1,5 @@
 ---
-title: 'The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O...
+title: "The MCP Server Registry Guide 2026: 19,700+ Servers, 7 O...
 description: "Complete guide to discovering MCP servers in 2026. The 7 Anthropic reference servers, the 87.3k-star awesome list, Smithery vs mcp.so registry comparison, top servers per category, and a decision tree for picking one — not what MCP is, but what you can plug into yours."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -192,7 +192,7 @@ The hard part is no longer finding a server. It's **picking the right one** — 
 
 
 ---
-*Want to self-host 5+ MCP servers (postgres + filesystem + git + memory + tavily-search) without touching cloud bills? Spin up a $6/month {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}, run them under a single supervisor (systemd or PM2), and point Claude Desktop's `claude_desktop_config.json` at the host. Done in an afternoon.*
+*Want to self-host 5+ MCP servers (postgres + filesystem + git + memory + tavily-search) without touching cloud bills? Spin up a $6/month {{< aff "digitalocean" "footer-cta" "DigitalOcean droplet" >}}, run them under a single supervisor (systemd or PM2), and point Claude Desktop"s `claude_desktop_config.json` at the host. Done in an afternoon.*
 
 
 {

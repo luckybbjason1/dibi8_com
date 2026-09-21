@@ -1,5 +1,5 @@
 ---
-title: 'n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
+title: "n8n AI Workflow Automation: Self-Hosted Setup with 188K+...
 description: "n8n (fair-code) is a workflow automation platform with native AI capabilities and 400+ integrations. Compatible with Claude Code, OpenAI, Anthropic, Slack, Discord, Telegram. Covers Docker setup, AI node configuration, webhook deployment, and production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -784,7 +784,7 @@ n8n delivers workflow automation with AI capabilities at a fraction of commercia
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

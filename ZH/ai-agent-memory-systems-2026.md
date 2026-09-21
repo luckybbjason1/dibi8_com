@@ -1,5 +1,5 @@
 ---
-title: '2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / M...
+title: "2026 AI Agent 记忆系统全对比：Mem0 / agentmemory / Hindsight / M...
 description: "AI Agent 每次新会话就失忆是 2026 年生产环境的硬伤。4 大开源记忆层深度对比：Mem0（48K+ stars，21 框架集成，LoCoMo 92.5%）、agentmemory（MCP 原生，Claude Code/Cursor 神器，re-explanation -60%）、Hindsight（biomimetic 三类记忆 + 4 策略检索）、MemPalace（52K+ stars 社区领军）。含基准 / pitfall / 决策树。"
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00
@@ -292,7 +292,7 @@ MemPalace是2026年GitHub上Star数最高的开源记忆系统之一。它的定
 
 ## Why This Matters
 
-Understanding 2026 ai agent 记忆系统全对比：mem0 / agentmemory / hindsight / mempalace 实战选型 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 2026 ai agent 记忆系统全对比：mem0 / agentmemory / hindsight / mempalace 实战选型 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

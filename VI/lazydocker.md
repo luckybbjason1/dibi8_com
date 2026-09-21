@@ -1,5 +1,5 @@
 ---
-title: 'LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
+title: "LazyDocker: 51,092 GitHub Stars — Hướng Dẫn Thiết Lập UI...
 description: "LazyDocker (LD) là UI terminal để quản lý container, image, volume và log Docker. Tương thích với Docker, Docker Compose, Go và Terminal. Bao gồm cài đặt, phím tắt, cấu hình và bảo mật production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -273,7 +273,7 @@ customCommands: containers: - name: bash
       serviceNames: []
     - name: debug-network
       attach: false
-      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}'"
+      command: "docker inspect {{ .Container.ID }} --format='{{range $k, $v := .NetworkSettings.Networks}}{{$k}}: {{.IPAddress}}\n{{end}}""
 ```
 
 Các biến template khả dụng: `{{ .Container.ID }}`, `{{ .Container.Name }}`, `{{ .Service.Name }}`, `{{ .DockerCompose }}`.
@@ -479,7 +479,7 @@ Xuất stats LazyDocker ra monitoring bên ngoài bằng cách pipe `docker stat
 # cron job mỗi 60 giây
 while true; do
   docker stats --no-stream --format \
-    "container_cpu_usage{name=\"{{.Name}}\"} {{.CPUPerc}}\ncontainer_memory_usage{name=\"{{.Name}}\"} {{.MemUsage}}" \
+    "container_cpu_usage{name="{{.Name}}"} {{.CPUPerc}}\ncontainer_memory_usage{name="{{.Name}}"} {{.MemUsage}}" \
     > /var/lib/node_exporter/textfile_collector/docker_stats.prom
   sleep 60
 done

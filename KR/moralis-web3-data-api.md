@@ -1,5 +1,5 @@
 ---
-title: 'Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API...
+title: "Moralis 2026: 100K+ DApp에 실시간 온체인 데이터를 제공하는 Web3 데이터 API...
 description: "2026년 Moralis Web3 Data API 완벽 가이드. JavaScript, Python, Unity SDK로 10개 이상의 체인에서 실시간 블록체인 데이터, NFT 메타데이터, 토큰 가격, 지갑 잔액을 가져오는 방법을 배우세요."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -476,7 +476,7 @@ console.log(`Retrieved ${allTransfers.length} transfers`);
 
 ```javascript
 const axios = require(axios);
-const rateLimit = require('axios-rate-limit');
+const rateLimit = require('axios-rate-limit");
 
 const http = rateLimit(axios.create(), {
   maxRequests: 25,

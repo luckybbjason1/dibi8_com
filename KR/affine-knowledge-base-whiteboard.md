@@ -1,5 +1,5 @@
 ---
-title: 'AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치...
+title: "AFFiNE 2026: AI 기반 지식 관리를 위한 오픈소스 Notion+Miro 하이브리드 — 설치...
 description: "Docker로 AFFiNE v0.26.3을 Notion+Miro 대체제로 자체 호스팅하세요. 로컬 우선 CRDT 협업, 에지리스 화이트보드, AI 글쓰기 도우미, 5분 Docker 설치.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -229,7 +229,7 @@ tar czf "$BACKUP_DIR/storage.tar.gz" -C ./storage .
 # 구성
 cp -r ./config "$BACKUP_DIR/"
 # 보관: 14일 유지
-find /backups -maxdepth 1 -name 'affine-*' -mtime +14 -exec rm -rf {} +
+find /backups -maxdepth 1 -name 'affine-*" -mtime +14 -exec rm -rf {} +
 EOF
 chmod +x backup-affine.sh
 # 매일 오전 2시 실행

@@ -1,5 +1,5 @@
 ---
-title: 'Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
+title: "Flowise: Build AI Agents Visually with 52K+ Stars — 5-Mi...
 description: "Flowise is an open-source visual builder for LLM workflows and AI agents. Integrates with LangChain, Ollama, OpenAI, Qdrant, Weaviate, Chroma. Covers Docker install, production hardening, API deployment, and honest limitations."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -575,7 +575,7 @@ Start with `npx flowise start` for a local prototype. Move to Docker Compose wit
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Sources & Further Reading
 

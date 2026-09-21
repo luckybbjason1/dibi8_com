@@ -1,5 +1,5 @@
 ---
-title: 'Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trư...
+title: "Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trư...
 description: Polymarket Agents là một khung phát triển mã nguồn mở để xây dựng các. Comprehensive guide covering features, pricing, and best practices for 2026.
   tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket.
 date: 2026-05-15 04:20:25+09:00
@@ -32,7 +32,7 @@ faqs: - q: 'Polymarket Agents là gì?'
   - q: 'Polymarket Agents hỗ trợ những chiến lược giao dịch nào?'
     a: 'Framework này hỗ trợ giao dịch dựa trên tin tức (LLM phân tích cảm xúc về các sự kiện), phát hiện chênh lệch giá (arbitrage) giữa các thị trường liên quan, giao dịch theo xu hướng dựa trên khối lượng và biến động giá, cùng phân tích cơ bản sử dụng RAG để truy vấn dữ liệu lịch sử.'
   - q: 'Làm thế nào để thực hiện một giao dịch bằng Polymarket Agents CLI?'
-    a: 'Chạy lệnh CLI ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''. Bạn cũng có thể liệt kê các thị trường bằng ''get-all-markets --sort-by volume'' hoặc xem một thị trường cụ thể bằng ''get-market --market-id <MARKET_ID>''.'
+    a: 'Chạy lệnh CLI ''python scripts/python/cli.py trade --market-id <MARKET_ID> --side buy --size <SIZE>''. Bạn cũng có thể liệt kê các thị trường bằng ''get-all-markets --sort-by volume'' hoặc xem một thị trường cụ thể bằng ''get-market --market-id <MARKET_ID>''."
 ---
 
 {</* resource-info */>}

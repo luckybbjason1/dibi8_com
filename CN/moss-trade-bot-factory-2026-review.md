@@ -1,5 +1,5 @@
 ---
-title: 'Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...
+title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workb...
 description: "Hands-on review of moss-trade-bot-skills v1.0.26: a natural-language quant agent builder for Hyperliquid perps. Industrial-grade backtest engine with Decimal precision and depth-book modeling — but a Sharpe annualization bug and a textbook OVERFIT trap once you enable evolution. Setup walkthrough, OOS validation results, and the honest take on whether evolved params survive out-of-sample."
 date: 2026-05-26 00:00:00+08:00
 lastmod: 2026-05-26 00:00:00+08:00
@@ -251,7 +251,7 @@ But the marketing emphasis on the evolution loop misleads beginners into shippin
 
 Install it, fix the Sharpe bug, run five hand-crafted strategies to see how the engine behaves, then write your own train/OOS splitter. That last step — the one nobody teaches and Moss doesn't enforce — is the single most important habit in quant.
 
-The bots aren't going to teach you to be honest about your edge. You have to do that yourself.
+The bots aren"t going to teach you to be honest about your edge. You have to do that yourself.
 
 
 ---

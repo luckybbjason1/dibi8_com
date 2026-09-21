@@ -1,5 +1,5 @@
 ---
-title: 'RTK: The Open-Source Rust CLI Proxy That Slashes AI Codi...
+title: "RTK: The Open-Source Rust CLI Proxy That Slashes AI Codi...
 description: "RTK (Rust Token Killer) is an open-source CLI proxy written in Rust that reduces LLM token consumption by 60-90% for Claude Code, Cursor, Copilot, Codex, and Gemini CLI. Single binary, zero dependencies, install in one command. Includes setup tutorial, architecture breakdown, and real benchmarks."
 date: 2026-05-14 00:00:00+08:00
 lastmod: 2026-05-14 00:00:00+08:00
@@ -267,7 +267,7 @@ RTK's defining advantage is **zero intrusiveness**. You do not rewrite prompts, 
 
 ## Frequently Asked Questions
 
-**Q: Does RTK degrade the AI's ability to understand my codebase?**
+**Q: Does RTK degrade the AI"s ability to understand my codebase?**
 
 No. RTK compresses command **output** (passing tests, duplicate git paths, progress bars)—never source code. The model still receives accurate file contents, error traces, and critical status. If filtering is ever too aggressive, `rtk discover` flags anomalies for rule tuning.
 

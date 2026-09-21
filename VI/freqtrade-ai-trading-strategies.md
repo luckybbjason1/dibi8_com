@@ -1,5 +1,5 @@
 ---
-title: 'Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1...
+title: "Freqtrade 2026: X\u00e2y D\u1ef1ng Chi\u1ebfn L\u01b0\u1...
 description: "H\u01b0\u1edbng d\u1eabn tri\u1ec3n khai th\u1ef1c t\u1ebf Freqtrade v\u1edbi FreqAI, bot giao d\u1ecbch ti\u1ec1n m\u00e3 h\u00f3a Python m\u00e3 ngu\u1ed3n m\u1edf v\u1edbi t\u00edch h\u1ee3p ML. Bao g\u1ed3m thi\u1ebft l\u1eadp Docker, t\u1ed1i \u01b0u hyperparameter, backtest, t\u00edch h\u1ee3p Telegram v\u00e0 tri\u1ec3n khai production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -564,7 +564,7 @@ services: freqtrade: image: freqtradeorg/freqtrade:stable
       options: max-size: "100m"
         max-file: "3"
     deploy: resources: limits: memory: 4G
-          cpus: '2.0'
+          cpus: '2.0"
     healthcheck: test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/ping"]
       interval: 30s
       timeout: 10s

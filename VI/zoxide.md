@@ -1,5 +1,5 @@
 ---
-title: 'Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
+title: "Zoxide: 36,752 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2...
 description: "Zoxide là lệnh cd thông minh học thói quen thư mục của bạn. Hỗ trợ Bash, Zsh, Fish, Nushell, PowerShell. Bao gồm cài đặt, tích hợp shell, cấu hình fzf, thuật toán bên trong, và chuyển đổi từ autojump/fasd."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -201,7 +201,7 @@ zi                 # duyệt toàn bộ lịch sử thư mục
 ```
 
 Tùy chỉnh hành vi fzf cho zoxide: ```bash
-export _ZO_FZF_OPTS="--height 40% --reverse --preview 'ls -la {}'"
+export _ZO_FZF_OPTS="--height 40% --reverse --preview 'ls -la {}""
 ```
 
 ### Trình Quản Lý File nnn

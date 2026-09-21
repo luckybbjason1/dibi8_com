@@ -1,5 +1,5 @@
 ---
-title: 'Mastra: 24K+ Stars — 节省 Token 成本 4-10 倍的 TypeScript AI 框...
+title: "Mastra: 24K+ Stars — 节省 Token 成本 4-10 倍的 TypeScript AI 框...
 description: "Mastra 是 Gatsby 团队打造的 TypeScript 原生 AI 框架，用于构建 AI 驱动的应用和智能体。涵盖 Mastra vs LangChain、安装教程、工作流、RAG、记忆系统、可观测性、基准测试和生产加固。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -578,7 +578,7 @@ CMD ["node", ".mastra/output/index.mjs"]
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: '3.8"
 services: mastra: build: .
     ports: - "4111:4111"
     environment: - OPENAI_API_KEY=${OPENAI_API_KEY}

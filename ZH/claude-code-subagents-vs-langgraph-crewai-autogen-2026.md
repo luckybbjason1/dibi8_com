@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：...
+title: "Claude Code Subagents 对比 LangGraph、CrewAI、AutoGen（2026）：...
 description: "你已经在 Claude Code 里编排 subagent 了。那你真的还需要 LangGraph、CrewAI 或 AutoGen 吗？这是一份 2026 年的决策指南，带真实基准测试、GitHub 星标的真相，以及"内置已经够用"与"该升级了"之间那条诚实的分界线。"
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -168,7 +168,7 @@ faq: - q: "如果我已经在用 Claude Code subagent，还需要 LangGraph 或 
 
 ## Why This Matters
 
-Understanding claude code subagents 对比 langgraph、crewai、autogen（2026）：什么时候该升级到独立框架 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude code subagents 对比 langgraph、crewai、autogen（2026）：什么时候该升级到独立框架 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

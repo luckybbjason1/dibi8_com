@@ -1,5 +1,5 @@
 ---
-title: 'Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실...
+title: "Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실...
 description: "Firecrawl은 웹을 스크래핑·크롤링·매핑·검색해 LLM이 바로 쓸 수 있는 깔끔한 마크다운이나 구조화 JSON으로 바꿔주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,747개, AGPL-3.0. 설치, 공식 SDK, 실제 코드, 셀프 호스팅, 그리고 Puppeteer·Scrapy·Axios와의 솔직한 비교를 다룹니다."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -293,7 +293,7 @@ Firecrawl은 강력하지만 모든 작업에 맞는 것은 아닙니다: 1. **�
 
 ## 맺음말
 
-Firecrawl은 열린 웹을 'LLM이 실제로 쓸 수 있는 데이터'로 바꾸는 가장 실용적인 방법 중 하나로, GitHub stars 127k+와 활발한 팀이 뒷받침합니다. API 우선 설계 — scrape, crawl, map, search, extract — 덕분에 호스팅형 클라우드를 쓰든 Docker로 셀프 호스팅하든, 코드 몇 줄이면 URL 하나에서 깔끔한 마크다운까지 갈 수 있습니다. 자연스러운 다음 단계는 API 키를 받아, 관심 있는 페이지에 스크래핑을 한 번 돌려 정리된 출력을 직접 눈으로 확인하는 것입니다.
+Firecrawl은 열린 웹을 'LLM이 실제로 쓸 수 있는 데이터"로 바꾸는 가장 실용적인 방법 중 하나로, GitHub stars 127k+와 활발한 팀이 뒷받침합니다. API 우선 설계 — scrape, crawl, map, search, extract — 덕분에 호스팅형 클라우드를 쓰든 Docker로 셀프 호스팅하든, 코드 몇 줄이면 URL 하나에서 깔끔한 마크다운까지 갈 수 있습니다. 자연스러운 다음 단계는 API 키를 받아, 관심 있는 페이지에 스크래핑을 한 번 돌려 정리된 출력을 직접 눈으로 확인하는 것입니다.
 
 대규모 스크래핑에는 회전형 프록시가 필요합니다 — [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f)가 업계 표준 선택지입니다.
 

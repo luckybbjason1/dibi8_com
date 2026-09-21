@@ -1,5 +1,5 @@
 ---
-title: 'The Knowledge Base Stack 2026: Build Your "Second Brain"...
+title: "The Knowledge Base Stack 2026: Build Your "Second Brain"...
 description: "A 5-component self-hosted knowledge base stack for personal or team use. AnythingLLM (UI + RAG) + RAGFlow (deep doc parsing) + mem0 (agent memory) + AgentMemory MCP (MCP exposure) + vector DB pick. Replaces $50-200/mo SaaS (Notion AI + Mem + Glean) with $10-25/mo self-hosted."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -216,7 +216,7 @@ After 90 minutes you have a personal Glean-equivalent running on a $12/mo drople
 | Backup storage | $1 | $2 | $20 |
 | **Total** | **~$13-18/mo** | **~$26-36/mo** | **~$160-170/mo** |
 
-Compare against SaaS equivalents: - Solo: Notion AI ($10) + Mem.ai ($15) = $25/mo, can't see local files
+Compare against SaaS equivalents: - Solo: Notion AI ($10) + Mem.ai ($15) = $25/mo, can"t see local files
 - Small team: same × 5 users = $125/mo
 - Org: Glean Lite ~$30/user/mo × 50 = $1,500/mo
 
@@ -248,7 +248,7 @@ Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $12/mo droplet" >}} 
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "The Knowledge Base Stack 2026: Build Your \"Second Brain\" with AnythingLLM + RAGFlow + mem0 ($10-25/Month)",
+  "headline": "The Knowledge Base Stack 2026: Build Your "Second Brain" with AnythingLLM + RAGFlow + mem0 ($10-25/Month)",
   "datePublished": "2026-05-21",
   "dateModified": "2026-05-21",
   "author": {

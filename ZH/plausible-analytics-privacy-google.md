@@ -1,5 +1,5 @@
 ---
-title: 'Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
+title: "Plausible Analytics：隐私优先的Google Analytics替代品 — 加载速度提升45倍...
 description: "Plausible Analytics完整自建部署指南。隐私优先、GDPR合规、追踪脚本<1KB。比Google Analytics快45倍。真实基准测试和Docker部署。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -659,7 +659,7 @@ Plausible通常报告的 **访客数比GA4高5-15%**，因为它被广告拦截�
 ```bash
 # 运行GA导入器（从Plausible容器）
 docker compose exec plausible bin/plausible \
-  "Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)"
+  "Plausible.Google.Import.start('your-ga-property-id", YOUR_API_KEY)"
 ```
 
 **当我的站点超出VPS容量时会发生什么？**

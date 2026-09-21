@@ -1,5 +1,5 @@
 ---
-title: 'CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jen...
+title: "CI/CD Tools Compared: GitHub Actions vs GitLab CI vs Jen...
 description: "Compare GitHub Actions, GitLab CI, and Jenkins for 2025. Side-by-side pricing, setup complexity, and feature breakdown to choose the right CI/CD platform."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -172,7 +172,7 @@ For public repositories, GitHub Actions is free and unlimited. For private repos
 
 **How do I migrate from Jenkins to GitHub Actions?**
 
-Start by auditing your existing Jenkins pipelines and identifying equivalent GitHub Actions. The GitHub Actions importer tool (available on GitHub Enterprise) can automate much of the conversion. Replace Jenkins plugins with GitHub Marketplace actions. Migrate secrets to GitHub's encrypted secrets storage. Plan the runner infrastructure — GitHub-hosted runners work for most workloads, but self-hosted runners may be needed for custom requirements. A typical migration takes 2-4 weeks for a medium-sized project.
+Start by auditing your existing Jenkins pipelines and identifying equivalent GitHub Actions. The GitHub Actions importer tool (available on GitHub Enterprise) can automate much of the conversion. Replace Jenkins plugins with GitHub Marketplace actions. Migrate secrets to GitHub"s encrypted secrets storage. Plan the runner infrastructure — GitHub-hosted runners work for most workloads, but self-hosted runners may be needed for custom requirements. A typical migration takes 2-4 weeks for a medium-sized project.
 
 
 ---

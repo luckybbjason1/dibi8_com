@@ -1,5 +1,5 @@
 ---
-title: 'HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại S...
+title: "HTTPie: 38,200 GitHub Stars — CLI HTTP Client Hiện Đại S...
 description: "HTTPie là CLI HTTP client hiện đại cho kỷ nguyên API với hỗ trợ JSON, màu sắc và quản lý session. Tương thích Python, pip, Homebrew, Docker. Bao gồm cài đặt, so sánh benchmark, bảo mật production và FAQ."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -561,7 +561,7 @@ http POST api.example.com/users \
     age:=29 \
     active:=true \
     roles:='["admin", "editor"]' \
-    profile:='{"city": "Boston", "timezone": "EST"}'
+    profile:='{"city": "Boston", "timezone": "EST"}"
 ```
 
 HTTPie tự động đặt `Content-Type: application/json` và tuần tự hóa dữ liệu.

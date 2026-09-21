@@ -231,7 +231,7 @@ class OpenSoraTextToVideo: """Open-Sora 텍스트-비디오 생성용 ComfyUI �
     CATEGORY = "video_generation"
     
     def generate_video(self, prompt, resolution, num_frames, steps): # 프롬프트를 CSV에 쓰기
-        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,\"{prompt}\"\n")
+        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,"{prompt}"\n")
         
         # 추론 실행
         cmd = [

@@ -11,7 +11,7 @@ featureImage: /articles/what-is-openhuman.jpg/images/articles/what-is-openhuman.
 
 
 ---
-title: 'OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026'
+title: "OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026'
 description: "OpenHuman is an open-source local AI agent with Memory Tree, Obsidian vault, 118+ integrations, and built-in model routing. Install via Homebrew or apt. Compare with Claude Cowork, OpenClaw, and Hermes Agent."
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -394,7 +394,7 @@ OpenHuman is the best thing to happen to local AI assistants in 2026, and that's
 
 No other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.
 
-If you're tired of AI assistants that forget everything when you restart, OpenHuman is the answer.
+If you"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.
 
 ---
 **Sources & Further Reading**: - Official docs: https://tinyhumans.gitbook.io/openhuman/

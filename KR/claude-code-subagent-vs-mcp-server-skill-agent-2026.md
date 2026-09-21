@@ -1,5 +1,5 @@
 ---
-title: '서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
+title: "서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2...
 description: "Claude Code에는 세 가지 확장 지점 — 스킬, 서브에이전트, MCP 서버 — 이 있으며, 각각 서로 다른 문제를 해결한다. 실제 시나리오와 시간을 낭비하게 만드는 안티패턴을 곁들여, 올바른 확장을 선택하기 위한 의사결정 프레임워크를 제시한다."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -164,7 +164,7 @@ MCP 서버는 *"Claude가 이 시스템에 말 그대로 닿을 수 없다"*에 
 
 ## Why This Matters
 
-Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

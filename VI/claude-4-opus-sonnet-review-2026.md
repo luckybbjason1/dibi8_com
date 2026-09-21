@@ -1,5 +1,5 @@
 ---
-title: 'Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test T...
+title: "Đánh Giá Claude 4 2026: Opus 4, Sonnet 4, Haiku 4 Test T...
 description: "Đánh giá toàn diện Claude 4 — Opus 4, Sonnet 4, Haiku 4: lập trình, suy luận, context, giá cả và so sánh với GPT-4o, Gemini 1.5 Pro. Cập nhật tháng 6/2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -172,7 +172,7 @@ Tìm hiểu cách dùng Claude 4 với [Model Context Protocol](mcp-deep-dive-de
 
 ## Why This Matters
 
-Understanding đánh giá claude 4 2026: opus 4, sonnet 4, haiku 4 test thực chiến is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding đánh giá claude 4 2026: opus 4, sonnet 4, haiku 4 test thực chiến is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

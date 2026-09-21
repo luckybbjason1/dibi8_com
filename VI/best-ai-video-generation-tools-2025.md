@@ -1,5 +1,5 @@
 ---
-title: 'Các Công Cụ Tạo Video AI Tốt Nhất 2025: So Sánh Sora, Ru...
+title: "Các Công Cụ Tạo Video AI Tốt Nhất 2025: So Sánh Sora, Ru...
 description: "Đánh giá chi tiết 6 công cụ tạo video AI hàng đầu 2025: OpenAI Sora, Runway Gen-3 Alpha, Pika 2.0, Kling AI, HeyGen và Luma Dream Machine. So sánh chất lượng, giá cả."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/best-ai-video-generation-tools-2025/

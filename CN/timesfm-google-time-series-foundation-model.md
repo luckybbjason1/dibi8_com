@@ -1,5 +1,5 @@
 ---
-title: 'TimesFM 2.5: Google Revolutionary Time Series Foundation...
+title: "TimesFM 2.5: Google Revolutionary Time Series Foundation...
 description: "Complete guide to TimesFM 2.5 - Google Research decoder-only foundation model for time series forecasting. Covers installation, fine-tuning, benchmarks, and real-world applications."
 tags: ["open-source"]
 date: 2026-06-19
@@ -582,7 +582,7 @@ TimesFM 2.5 represents a quantum leap in time series forecasting. By combining t
 
 With its integration into Google's ecosystem, active development community, and continuous improvements, TimesFM is poised to become the standard for time series forecasting across industries.
 
-For anyone working with temporal data, investing time in learning and deploying TimesFM is not just beneficial — it's becoming essential.
+For anyone working with temporal data, investing time in learning and deploying TimesFM is not just beneficial — it"s becoming essential.
 
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: 'Terminal & CLI Productivity Tools: tmux, zsh, fzf, ripgr...
+title: "Terminal & CLI Productivity Tools: tmux, zsh, fzf, ripgr...
 description: "Transform your terminal with zsh, tmux, fzf, ripgrep, and modern CLI alternatives. Step-by-step setup guide for macOS and Linux in 2025."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -253,7 +253,7 @@ Start with a good terminal emulator (iTerm2 on macOS, Alacritty on Linux). Insta
 
 **What is the difference between fzf and ripgrep?**
 
-fzf is an interactive fuzzy finder — it filters lists interactively but does not search file contents. ripgrep is a content search tool — it searches inside files for regex patterns but is not interactive. They are complementary: use ripgrep to find files containing a pattern, pipe the results to fzf for interactive selection, and use bat for preview. The combination `rg --files | fzf --preview 'bat {}'` gives you a complete interactive search workflow.
+fzf is an interactive fuzzy finder — it filters lists interactively but does not search file contents. ripgrep is a content search tool — it searches inside files for regex patterns but is not interactive. They are complementary: use ripgrep to find files containing a pattern, pipe the results to fzf for interactive selection, and use bat for preview. The combination `rg --files | fzf --preview 'bat {}"` gives you a complete interactive search workflow.
 
 **Can I use these tools on Windows?**
 

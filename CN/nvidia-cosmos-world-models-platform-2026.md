@@ -1,5 +1,5 @@
 ---
-title: 'NVIDIA Cosmos: Open-Source World Models for Physical AI ...
+title: "NVIDIA Cosmos: Open-Source World Models for Physical AI ...
 description: "NVIDIA Cosmos is an open platform of world models, datasets, and tools for building Physical AI â€” robots, autonomous vehicles, smart infrastructure. Cosmos 3 uses Mixture-of-Transformers for unified language, image, video, audio, and action generation. 16B and 64B models available."
 tags: ["open-source", "self-hosted"]
 date: 2026-06-13
@@ -451,7 +451,7 @@ The combination of Reasoner Mode (understanding) and Generator Mode (creation) â
 
 For robotics, autonomous driving, and smart infrastructure, Cosmos is not just another AI model. It's infrastructure.
 
-If you're building Physical AI systems, Cosmos should be at the top of your research list.
+If you"re building Physical AI systems, Cosmos should be at the top of your research list.
 
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: 'AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
+title: "AI Agent Tool Chain 2026: The 6-Component Stack for Buil...
 description: "Complete production AI agent stack: LangGraph for stateful orchestration + MCP servers for tools + mem0 for memory + OpenClaw for multi-agent coordination + Hermes Agent for self-improvement + e2b for sandboxed code execution. $20-60/mo self-hosted. Real assembly with internal-linked deep dives."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -200,7 +200,7 @@ The pattern: Hermes watches LangGraph trace logs (via LangSmith export), correla
 4. **Add mem0 + AgentMemory MCP** (20 min) — Docker run mem0, add agentmemory to the MCP toolset
 5. **Test first useful agent** (45 min) — A "research → summarize → write to file" pipeline that survives restart, uses 3 tools, persists memory
 6. **Add OpenClaw** (30 min) — Only if you actually need multi-agent. Otherwise skip
-7. **Wire Hermes Agent observer** (20 min) — Only after you have a stable single-agent baseline. Otherwise you're optimizing noise
+7. **Wire Hermes Agent observer** (20 min) — Only after you have a stable single-agent baseline. Otherwise you"re optimizing noise
 
 3 hours from zero to a working multi-tool stateful agent on infrastructure you own.
 

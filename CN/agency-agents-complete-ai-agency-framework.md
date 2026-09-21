@@ -409,7 +409,7 @@ docker exec -it agency-agents python agency.py --project "Build a web app"
     },
     {
       "question": "Is there a Docker setup?",
-      "answer": "Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with:\n\n```bash\ndocker-compose up -d\ndocker exec -it agency-agents python agency.py --project \"Build a web app\"\n```"
+      "answer": "Yes. The repository includes a `Dockerfile` and `docker-compose.yml` for easy deployment. You can run the entire agency with:\n\n```bash\ndocker-compose up -d\ndocker exec -it agency-agents python agency.py --project "Build a web app"\n```"
     }
   ]
 }

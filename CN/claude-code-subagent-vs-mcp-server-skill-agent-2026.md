@@ -1,5 +1,5 @@
 ---
-title: 'Subagent vs MCP Server vs Skill: When to Build Each Clau...
+title: "Subagent vs MCP Server vs Skill: When to Build Each Clau...
 description: "Claude Code has three extension points — skills, subagents, and MCP servers — and they solve different problems. A decision framework for choosing the right one, with worked scenarios and the anti-patterns that waste your time."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -163,7 +163,7 @@ Stop asking "skill, subagent, or MCP server?" as if they compete. Ask instead: a
 
 ## Why This Matters
 
-Understanding subagent vs mcp server vs skill: when to build each claude code extension (2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding subagent vs mcp server vs skill: when to build each claude code extension (2026) is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

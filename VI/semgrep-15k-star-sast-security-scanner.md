@@ -1,5 +1,5 @@
 ---
-title: 'Semgrep: Công cụ SAST 15K-Star Tìm 500+ Lỗ Hổng Trong Mã...
+title: "Semgrep: Công cụ SAST 15K-Star Tìm 500+ Lỗ Hổng Trong Mã...
 description: "Semgrep là công cụ phân tích tĩnh mã nguồn mã nguồn mở với hơn 15K star trên GitHub, tìm kiếm hơn 500 mẫu lỗ hổng trong Python, JavaScript, TypeScript, Go, Java và nhiều ngôn ngữ khác. Nhanh, nhẹ, tích hợp CI/CD. Bao gồm hướng dẫn thiết lập, benchmark và triển khai sản xuất."
 date: 2026-06-10
 lastmod: 2026-06-10
@@ -269,7 +269,7 @@ def validate_input(user_input: str) -> bool: # Check length
         '</script>',
         'SELECT.*FROM',
         'UNION.*SELECT',
-        'DROP TABLE'
+        'DROP TABLE"
     ]
     
     for pattern in suspicious_patterns: if re.search(pattern, user_input, re.IGNORECASE): return False

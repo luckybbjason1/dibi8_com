@@ -1,5 +1,5 @@
 ---
-title: 'VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GP...
+title: "VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing vs GP...
 description: "VoiceCraft is a token infilling neural codec language model for zero-shot speech editing and TTS. Compatible with GPT-SoVITS, Coqui TTS, and RVC. Covers setup, benchmarks, Docker deployment, and comparison tables."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -528,7 +528,7 @@ Before you deploy any of the tools above into production, you'll need solid infr
 - [HuggingFace Model Weights](https://huggingface.co/pyp1/VoiceCraft)
 - [GPT-SoVITS Repository](https://github.com/RVC-Boss/GPT-SoVITS)
 - [Coqui TTS / XTTS v2](https://github.com/coqui-ai/TTS)
-- [EnCodec — Meta's Neural Codec](https://github.com/facebookresearch/audiocraft)
+- [EnCodec — Meta"s Neural Codec](https://github.com/facebookresearch/audiocraft)
 - [RealEdit Dataset Information](https://github.com/jasonppy/VoiceCraft/blob/master/RealEdit.txt)
 - [VoiceCraft Docker Setup Guide](https://github.com/jasonppy/VoiceCraft#quickstart-docker)
 - [VoiceCraft_API — FastAPI Wrapper](https://github.com/GPU-Net/VoiceCraft_API)

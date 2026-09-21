@@ -1,5 +1,5 @@
 ---
-title: 'Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vec...
+title: "Milvus/Zilliz 2026: Cơ sở dữ liệu Vector xử lý 10 tỷ Vec...
 description: "Hướng dẫn sản xuất cho Milvus 2.5: tìm kiếm vector quy mô tỷ, xây dựng chỉ mục GPU, triển khai Kubernetes, tìm kiếm lai, và thiết lập Zilliz Cloud."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -224,7 +224,7 @@ for hit in results[0]: print(f"ID: {hit.id}, Khoảng cách: {hit.distance:.4f},
 # Tìm kiếm lai: vector similarity + bộ lọc metadata
 from pymilvus import Filter
 
-expr = 'category == "tech" AND text like "%neural%"'
+expr = 'category == "tech" AND text like "%neural%""
 
 results = collection.search(
     data=[np.random.randn(1536).tolist()],

@@ -1,5 +1,5 @@
 ---
-title: 'MoneyPrinterTurbo: Trình Tạo Video AI Chỉ Với Một Nhấp C...
+title: "MoneyPrinterTurbo: Trình Tạo Video AI Chỉ Với Một Nhấp C...
 description: "Đưa cho MoneyPrinterTurbo một chủ đề video hoặc từ khóa và nó tự động tạo kịch bản, video có sẵn, phụ đề, nhạc nền và video ngắn HD. Hỗ trợ TikTok, YouTube Shorts, Instagram Reels. Hơn 90.000 sao trên GitHub."
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -292,7 +292,7 @@ Switch modes in `config.toml`: ```toml
 provider = "edge"  # or "whisper"
 ```
 
-For Whisper mode, download the model from HuggingFace. If you're in China and can't access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9
+For Whisper mode, download the model from HuggingFace. If you're in China and can"t access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9
 - **Quark Pan:** https://pan.quark.cn/s/3ee3d991d64b
 
 Extract and place in `MoneyPrinterTurbo/models/whisper-large-v3/`: ```

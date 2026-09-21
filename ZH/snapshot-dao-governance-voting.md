@@ -200,7 +200,7 @@ await snapshot.utils.subgraphRequest(
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
-    "query": "query { space(id: \"mydao.eth\") { id name about network symbol strategies { name params } } }"
+    "query": "query { space(id: "mydao.eth") { id name about network symbol strategies { name params } } }"
   }'
 ```
 
@@ -475,7 +475,7 @@ query GetDelegations($space: String!, $delegate: String!) {
 curl -X POST https://hub.snapshot.org/graphql \
   -H "Content-Type: application/json" \
   -d '{
-    "query": "query { delegations(where: {space: \"uniswap.eth\", delegate: \"0x2775b1c75658Be0F640272CCb8c72ac986009e38\"}) { delegator timestamp } }"
+    "query": "query { delegations(where: {space: "uniswap.eth", delegate: "0x2775b1c75658Be0F640272CCb8c72ac986009e38"}) { delegator timestamp } }"
   }'
 ```
 

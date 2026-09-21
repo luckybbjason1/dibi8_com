@@ -1,5 +1,5 @@
 ---
-title: 'Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
+title: "Grafana: 73,876 GitHub Stars — Hướng Dẫn Triển Khai Dock...
 description: "Grafana là nền tảng trực quan hóa và phân tích mã nguồn mở cho giám sát và quan sát. Hỗ trợ Prometheus, Loki, InfluxDB, Elasticsearch. Bao gồm thiết lập Docker, cứng hóa production, so sánh với Datadog, Kibana, New Relic."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -377,7 +377,7 @@ apiVersion: 1
 
 providers: - name: default
     orgId: 1
-    folder: ''
+    folder: '"
     type: file
     disableDeletion: false
     editable: false

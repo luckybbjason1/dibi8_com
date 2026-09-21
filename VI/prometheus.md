@@ -1,5 +1,5 @@
 ---
-title: 'Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
+title: "Prometheus: 64,094 GitHub Stars — Hướng Dẫn Triển Khai D...
 description: "Prometheus (Prom) là hệ thống giám sát và cơ sở dữ liệu chuỗi thờ gian mã nguồn mở. Tương thích với Docker, Kubernetes, Grafana và Alertmanager. Bao gồm hướng dẫn cài đặt, truy vấn PromQL, cung cố hóa sản xuất và điểm chuẩn hiệu suất."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -383,7 +383,7 @@ htpasswd -nBC 10 "" | tr -d ':\n'
 
 2. **Sử dụng TLS cho target scrape:**
 ```yaml
-scrape_configs: - job_name: 'secure-target'
+scrape_configs: - job_name: 'secure-target"
     scheme: https
     tls_config: ca_file: /etc/prometheus/certs/ca.crt
       cert_file: /etc/prometheus/certs/client.crt

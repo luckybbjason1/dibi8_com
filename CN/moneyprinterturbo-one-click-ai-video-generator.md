@@ -1,5 +1,5 @@
 ---
-title: 'MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
+title: "MoneyPrinterTurbo: One-Click AI Video Generator with 90K...
 description: "Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars."
 tags: ["ai-tools", "automation", "generator", "open-source", "video-generation"]
 date: 2026-06-22
@@ -308,7 +308,7 @@ Switch modes in `config.toml`: ```toml
 provider = "edge"  # or "whisper"
 ```
 
-For Whisper mode, download the model from HuggingFace. If you're in China and can't access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9
+For Whisper mode, download the model from HuggingFace. If you're in China and can"t access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9
 - **Quark Pan:** https://pan.quark.cn/s/3ee3d991d64b
 
 Extract and place in `MoneyPrinterTurbo/models/whisper-large-v3/`: ```

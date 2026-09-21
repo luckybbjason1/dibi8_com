@@ -1,5 +1,5 @@
 ---
-title: 'Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa B...
+title: "Puppeteer: 94,300 GitHub Stars — Hướng Dẫn Tự Động Hóa B...
 description: "Puppeteer là thư viện Node.js tự động hóa Chrome và Firefox headless. Hỗ trợ Docker, GitHub Actions, Jest, Mocha, TypeScript. Bao gồm cài đặt puppeteer docker, triển khai production, hướng dẫn tự động hóa browser, tích hợp CI/CD."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -556,7 +556,7 @@ setInterval(async () => {
     if (!healthy) {
       console.warn('Phát hiện browser không khỏe, đang khởi động lại...');
       await entry.browser.close();
-      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox'] });
+      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox"] });
       entry.inUse = false;
     }
   }

@@ -1,5 +1,5 @@
 ---
-title: 'Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
+title: "Firecrawl: Turn Any Website into LLM-Ready Data (127K St...
 description: "Firecrawl is the open-source web data API that scrapes, crawls, maps, and searches the web into clean, LLM-ready markdown or structured JSON. 127,747 GitHub stars, AGPL-3.0. Covers install, the official SDKs, real code, self-hosting, and an honest comparison with Puppeteer, Scrapy, and Axios."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -290,7 +290,7 @@ For developers who want LLM-ready web data with the least amount of glue code, F
 
 Firecrawl is a strong tool, but it is not the right fit for every job: 1. **Not a real-time, low-latency layer**: Crawls run as asynchronous jobs you poll for, and even a single scrape involves rendering and cleanup. If you need sub-100ms responses on every request, put a cache in front or rethink the architecture.
 
-2. **Anti-scraping is still hard**: Firecrawl handles many anti-bot measures and offers proxy options, but no tool reliably bypasses sites with strict protections or aggressive rate limits. Expect some targets to block or throttle you, and respect each site's terms of service.
+2. **Anti-scraping is still hard**: Firecrawl handles many anti-bot measures and offers proxy options, but no tool reliably bypasses sites with strict protections or aggressive rate limits. Expect some targets to block or throttle you, and respect each site"s terms of service.
 
 3. **AGPL-3.0 on the core**: The hosted API and the MIT-licensed SDKs are fine for closed-source apps, but if you self-host and modify the AGPL-3.0 core, the copyleft terms apply. Review the license with your team before building on a forked core.
 

@@ -1,5 +1,5 @@
 ---
-title: 'Nuwa-Skill: Distill Any Person Thinking Model into AI Ag...
+title: "Nuwa-Skill: Distill Any Person Thinking Model into AI Ag...
 description: "Nuwa-Skill (23,508 GitHub stars) distills thinking models of historical figures, experts, and influencers into reusable AI Agent Skills. Compatible with Claude Code, Codex, Cursor, Hermes, and 50+ runtimes. Install via npx skills add."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -428,7 +428,7 @@ The beauty of Nuwa-Skill is its simplicity: one command, 50+ runtimes, and infin
 
 **Related articles:**
 - [Headroom](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server) — Compress LLM inputs by 60-95%
-- [Matt Pocock's Skills](https://dibi8.com/mattpocock-skills-ai-agent-framework-guide) — CLI framework for AI agent superpowers
+- [Matt Pocock"s Skills](https://dibi8.com/mattpocock-skills-ai-agent-framework-guide) — CLI framework for AI agent superpowers
 
 **Sources & Further Reading:**
 - Agent Skills protocol: https://agentskills.io

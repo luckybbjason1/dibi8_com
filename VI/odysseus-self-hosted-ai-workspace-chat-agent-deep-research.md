@@ -1,5 +1,5 @@
 ---
-title: 'Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích ...
+title: "Odysseus: Không gian AI tự lưu trữ với 10+ Công cụ Tích ...
 description: "Odysseus (65.243 sao GitHub) là một không gian AI tự lưu trữ kết hợp trò chuyện, tự động hóa tác nhân, nghiên cứu chuyên sâu, chỉnh sửa tài liệu, phân loại email, lịch và hơn nữa. Hỗ trợ vLLM, llama.cpp, Ollama, OpenRouter, OpenAI và GitHub Copilot. Có sẵn cài đặt Docker và native Linux/macOS."
 date: 2026-06-09
 lastmod: 2026-06-09
@@ -58,7 +58,7 @@ Dự án tích hợp các khả năng sau trong một ứng dụng web duy nhấ
 | Chat | Multi-model conversations | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | Agent | Tool-using autonomous agent | OpenCode, MCP, web, files, shell, skills, memory |
 | Cookbook | Hardware-aware model downloader and server | llmfit, VRAM-aware, GGUF/FP8/AWQ |
-| Deep Research | Multi-step research with source synthesis | Adapted from Alibaba's Tongyi DeepResearch |
+| Deep Research | Multi-step research with source synthesis | Adapted from Alibaba"s Tongyi DeepResearch |
 | Compare | Blind multi-model comparison tests | Multi-model synthesis |
 | Documents | Multi-tab text editor with AI assistance | Markdown, HTML, CSV, syntax highlighting |
 | Memory/Skills | Persistent memory with vector + keyword retrieval | ChromaDB, fastembed (ONNX) |

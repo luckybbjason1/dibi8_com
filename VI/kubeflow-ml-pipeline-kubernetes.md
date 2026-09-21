@@ -1,5 +1,5 @@
 ---
-title: 'Kubeflow 2026: Chạy Pipeline ML Hoàn Chỉnh trên Kubernet...
+title: "Kubeflow 2026: Chạy Pipeline ML Hoàn Chỉnh trên Kubernet...
 description: "Hướng dẫn đầy đủ để triển khai Kubeflow trên Kubernetes cho pipeline ML. Bao gồm cài đặt, thành phần, benchmark, cứng hóa production và mô hình triển khai thực tế."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -406,7 +406,7 @@ kubectl get trials -n kubeflow-user-example-com
 # Xem trial tốt nhất
 kubectl get experiment iris-hp-tuning \
   -n kubeflow-user-example-com \
-  -o jsonpath='{.status.currentOptimalTrial}'
+  -o jsonpath='{.status.currentOptimalTrial}"
 ```
 
 ## Benchmark & Các Trường Hợp Sử Dụng Thực Tế

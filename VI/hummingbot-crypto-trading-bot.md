@@ -1,5 +1,5 @@
 ---
-title: 'Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở V...
+title: "Hummingbot 2026: Bot Giao Dịch Tiền Mã Hóa Mã Nguồn Mở V...
 description: "Hướng dẫn triển khai thực tế Hummingbot v2, bot giao dịch tiền mã hóa mã nguồn mở với 50+ sàn giao dịch. Bao gồm thiết lập Docker, chiến lược tùy chỉnh, backtest, gateway DEX và củng cố môi trường production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -434,7 +434,7 @@ services: hummingbot: image: hummingbot/hummingbot:2.0.0
         max-file: "5"
     deploy: resources: limits: memory: 2G
           cpus: '1.0'
-    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/')"]
+    healthcheck: test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:15888/")"]
       interval: 30s
       timeout: 10s
       retries: 3

@@ -1,5 +1,5 @@
 ---
-title: 'Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 ...
+title: "Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 ...
 description: "엔터프라이즈 규모의 Weaviate 벡터 검색 배포 가이드. Kubernetes 배포, 하이브리드 검색, 멀티모달 지원, RBAC, 모니터링, 100억+ 객체 컬렉션 벤치마크 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -351,7 +351,7 @@ curl -X POST http://localhost:8080/v1/backups/s3 \
       "bucket": "weaviate-backups",
       "path": "production/"
     }
-  }'
+  }"
 ```
 
 CronJob으로 자동화: ```yaml
@@ -367,7 +367,7 @@ spec: schedule: "0 2 * * *"  # 매일 오전 2시
             - |
               curl -X POST http://weaviate:8080/v1/backups/s3 \
                 -H "Content-Type: application/json" \
-                -d "{\"id\":\"backup-$(date +%Y%m%d)\"}"
+                -d "{"id":"backup-$(date +%Y%m%d)"}"
           restartPolicy: OnFailure
 ```
 

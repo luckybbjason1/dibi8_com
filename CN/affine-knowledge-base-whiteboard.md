@@ -1,5 +1,5 @@
 ---
-title: 'AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
+title: "AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E...
 description: "Deploy AFFiNE v0.26.3 as a self-hosted Notion+Miro alternative. Local-first CRDT collaboration, edgeless whiteboard, AI writing assistant, Docker setup in 5 minutes."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -390,7 +390,7 @@ For teams currently paying $15-20 per user per month for Notion or Miro, the eco
 Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
 
-*Affiliate links — they don't cost you extra and they help keep dibi8.com running.*
+*Affiliate links — they don"t cost you extra and they help keep dibi8.com running.*
 
 ## Affiliate Disclosure
 

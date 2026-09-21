@@ -1,5 +1,5 @@
 ---
-title: 'exo: Run Frontier AI Across Your Own Devices (45K Stars)...
+title: "exo: Run Frontier AI Across Your Own Devices (45K Stars)...
 description: "exo turns your Macs, PCs and phones into a single cluster that runs frontier AI models locally. 45,088 GitHub stars, Apache-2.0. Covers installation, the dashboard, the OpenAI/Claude/Ollama-compatible API, real commands, and an honest comparison."
 date: 2026-06-02 00:00:00+08:00
 lastmod: 2026-06-02 00:00:00+08:00
@@ -224,7 +224,7 @@ The honest summary: if your model fits comfortably on one machine, a single-mach
 
 exo is genuinely useful, but it is a young and fast-moving project. A few honest caveats: 1. **Apple Silicon is the strong path.** GPU acceleration today targets Apple Silicon. Linux runs CPU-only for now (GPU support is in progress), so a Linux-GPU box will not be as fast as you might expect.
 
-2. **It is built for big-model clusters.** If your model already fits on one machine, exo's distributed machinery is more than you need — a single-machine tool will be simpler.
+2. **It is built for big-model clusters.** If your model already fits on one machine, exo"s distributed machinery is more than you need — a single-machine tool will be simpler.
 
 3. **Source builds have real prerequisites.** Running from source needs `uv`, Node, a nightly Rust toolchain and (on macOS) Xcode and extra tools. The macOS app avoids this, but source users should expect a heavier setup than a one-line installer.
 

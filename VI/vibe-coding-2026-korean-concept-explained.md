@@ -1,5 +1,5 @@
 ---
-title: 'Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc,...
+title: "Vibe Coding 2026: Khái niệm của lập trình viên Hàn Quốc,...
 description: "Vibe coding (바이브 코딩) là thuật ngữ của lập trình viên Hàn Quốc cho lối lập trình ưu tiên ngôn ngữ tự nhiên, trong đó AI xử lý cú pháp. Kỹ sư Toss và Kakao dùng hằng ngày. Đây là ý nghĩa, quy trình làm việc và lý do nó quan trọng ngoài Hàn Quốc."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -164,7 +164,7 @@ Mô hình áp dụng mạnh nhất không phải "vibe code mọi thứ." Mà l�
 
 ## Why This Matters
 
-Understanding vibe coding 2026: khái niệm của lập trình viên hàn quốc, giải thích cho phần còn lại is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding vibe coding 2026: khái niệm của lập trình viên hàn quốc, giải thích cho phần còn lại is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

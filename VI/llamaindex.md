@@ -1,5 +1,5 @@
 ---
-title: 'LlamaIndex: 49K+ Stars — Hướng Dẫn Triển Khai RAG Produc...
+title: "LlamaIndex: 49K+ Stars — Hướng Dẫn Triển Khai RAG Produc...
 description: "LlamaIndex là framework dữ liệu để xây dựng hệ thống RAG production với LLM. Hỗ trợ OpenAI, Anthropic, Ollama, Qdrant, Weaviate, Chroma. Bao gồm triển khai Docker, query engine, agent, và benchmark so với LangChain/Haystack/RAGFlow."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/run-llama/llama_index"
 stars: 49517
 maintainer: 'run-llama'
 last_maintained: "2026-05-19"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["llamaindex", "rag", "llm", "vector-database", "retrieval-augmented-generation", "openai", "ollama", "qdrant", "python", "docker"]

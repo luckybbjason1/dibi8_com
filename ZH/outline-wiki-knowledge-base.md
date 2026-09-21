@@ -304,9 +304,9 @@ jobs: publish: runs-on: ubuntu-latest
             -H "Authorization: Bearer ${{ secrets.OUTLINE_API_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d "{
-              \"id\": \"DOC_ID_HERE\",
-              \"text\": $(echo "$DOCS" | jq -R -s .),
-              \"append\": false
+              "id": "DOC_ID_HERE",
+              "text": $(echo "$DOCS" | jq -R -s .),
+              "append": false
             }"
 ```
 

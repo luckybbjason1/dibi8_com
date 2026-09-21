@@ -1,5 +1,5 @@
 ---
-title: '2025년 최고의 API 문서 자동 생성 도구 비교: Swagger, Postman Docs, Rea...
+title: "2025년 최고의 API 문서 자동 생성 도구 비교: Swagger, Postman Docs, Rea...
 description: "API 문서 자동 생성 도구를 비교합니다. Swagger, Postman Docs, ReadMe, Mintlify, Stoplight, Redocly의 특징, 장단점, 가격을 알아보고 프로젝트에 맞는 도구를 선택하세요."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -166,7 +166,7 @@ OpenAPI는 API를 기술하는 표준 사양이고", "Swagger는 그 사양을 �
 
 ## Why This Matters
 
-Understanding 2025년 최고의 api 문서 자동 생성 도구 비교: swagger, postman docs, readme, mintlify is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding 2025년 최고의 api 문서 자동 생성 도구 비교: swagger, postman docs, readme, mintlify is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

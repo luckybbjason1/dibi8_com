@@ -1,5 +1,5 @@
 ---
-title: 'Instructor: The Python Library That Forces LLMs to Outpu...
+title: "Instructor: The Python Library That Forces LLMs to Outpu...
 description: "Stop wrestling with inconsistent LLM outputs. Learn how Instructor patches the OpenAI client to guarantee valid, type-safe JSON responses using Pydantic models. Features retry logic, multi-provider support, and streaming."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -653,7 +653,7 @@ Instructor transforms LLMs from unpredictable text generators into reliable stru
 
 The library's multi-provider support means you're never locked into a single LLM vendor. Its seamless integration with FastAPI, async patterns, and streaming makes it suitable for everything from background batch jobs to real-time APIs. With 11,000+ stars and an active community, Instructor has earned its place as an essential tool in the modern AI developer's toolkit.
 
-If you're still parsing raw LLM outputs with `json.loads()` and crossing your fingers, it's time to upgrade. Install Instructor today and experience what it means to have **100% valid JSON, 100% of the time**.
+If you're still parsing raw LLM outputs with `json.loads()` and crossing your fingers, it"s time to upgrade. Install Instructor today and experience what it means to have **100% valid JSON, 100% of the time**.
 
 
 {

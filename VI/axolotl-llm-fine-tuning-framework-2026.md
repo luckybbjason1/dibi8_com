@@ -1,5 +1,5 @@
 ---
-title: 'Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao...
+title: "Axolotl 2026: Framework Fine-Tuning LLM Dựa YAML 12k Sao...
 description: "Axolotl là framework fine-tuning LLM mã nguồn mở với config YAML đơn cho full / LoRA / QLoRA / DPO / GRPO. 12k GitHub sao, Apache 2.0. Hỗ trợ Llama / Mistral / Qwen / GLM / 10+ họ. Hướng dẫn cài đặt 2026 đầy đủ + khi nào Axolotl thắng Unsloth và HuggingFace TRL raw."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -199,7 +199,7 @@ Bật instance H100, viết YAML 20 dòng ở mục 3, và 15 phút sau bạn c�
 
 ## Why This Matters
 
-Understanding axolotl 2026: framework fine-tuning llm dựa yaml 12k sao — hướng dẫn production đầy đủ is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding axolotl 2026: framework fine-tuning llm dựa yaml 12k sao — hướng dẫn production đầy đủ is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

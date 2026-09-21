@@ -1,5 +1,5 @@
 ---
-title: 'ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 ...
+title: "ECC：使用 Agent Harness 调优优化 Claude Code、Codex 和 Cursor 性能 ...
 description: "ECC（Agent Harness 性能优化）可减少上下文窗口用量并加快 AI 编码代理的响应速度。兼容 Claude Code、Codex、Opencode、Cursor 等。涵盖性能调优、技能系统和 MCP 服务器配置。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -407,7 +407,7 @@ ECC 代表了一种实用的方法来解决每个 AI 编码代理用户都面临
 
 ## Why This Matters
 
-Understanding ecc：使用 agent harness 调优优化 claude code、codex 和 cursor 性能 — 2026 指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ecc：使用 agent harness 调优优化 claude code、codex 和 cursor 性能 — 2026 指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

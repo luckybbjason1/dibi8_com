@@ -1,5 +1,5 @@
 ---
-title: 'AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kim...
+title: "AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kim...
 description: "오픈소스 Linux 데스크탑 위젯으로 Conky 안에서 AI 토큰 쿼터를 HP 바 스타일 진행 막대로 실시간 표시. Claude, Gemini, Grok, Kimi 실제 API 폴링 및 리셋 카운트다운 지원.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
@@ -176,7 +176,7 @@ MIT 라이선스 완전 오픈소스입니다.
 
 ## Why This Matters
 
-Understanding ai token monitor: linux 데스크탑에서 claude, gemini, grok, kimi 쿼터 실시간 추적 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai token monitor: linux 데스크탑에서 claude, gemini, grok, kimi 쿼터 실시간 추적 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

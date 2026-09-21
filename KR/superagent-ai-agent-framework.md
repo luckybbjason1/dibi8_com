@@ -1,5 +1,5 @@
 ---
-title: 'Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설...
+title: "Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설...
 description: "Superagent로 AI 에이전트를 배포하는 실전 가이드. 하나의 CLI 명령, 다중 LLM 지원, RAG 워크플로우, 벡터 DB 통합, REST API 배포. 실제 벤치마크 데이터 포함.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -155,7 +155,7 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   -d '{
     "input": "What are the key features of Superagent?",
     "enableStreaming": false
-  }'
+  }"
 ```
 
 응답에는 생성된 답변, RAG가 활성화된 경우 출처 인용, 실행 메타데이터가 포함된다: ```json

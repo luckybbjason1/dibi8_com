@@ -1,5 +1,5 @@
 ---
-title: 'LangGraph 1.2 Trong Production: Orchestration Agent Có T...
+title: "LangGraph 1.2 Trong Production: Orchestration Agent Có T...
 description: "LangGraph là framework orchestration cấp thấp cho agent AI có trạng thái dài hạn. 32.6k GitHub stars, v1.2.1. Hướng dẫn deploy thực tế bao gồm thiết kế graph, thực thi bền vững, checkpoint human-in-loop, debug LangSmith, và khi nào LangGraph thắng CrewAI / AutoGen / LangChain thuần."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -19,7 +19,7 @@ github_repo: "https://github.com/langchain-ai/langgraph"
 stars: 32600
 maintainer: 'langchain-ai'
 last_maintained: "2026-05-21"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["langgraph", "agent", "có trạng thái", "orchestration", "langchain", "production"]

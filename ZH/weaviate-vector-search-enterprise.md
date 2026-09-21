@@ -419,7 +419,7 @@ spec: schedule: "0 2 * * *"  # 每天凌晨 2 点
             - |
               curl -X POST http://weaviate:8080/v1/backups/s3 \
                 -H "Content-Type: application/json" \
-                -d "{\"id\":\"backup-$(date +%Y%m%d)\"}"
+                -d "{"id":"backup-$(date +%Y%m%d)"}"
           restartPolicy: OnFailure
 ```
 

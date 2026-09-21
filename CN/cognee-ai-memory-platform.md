@@ -1,5 +1,5 @@
 ---
-title: 'Cognee: 26K+ Star Open-Source AI Memory Platform for Age...
+title: "Cognee: 26K+ Star Open-Source AI Memory Platform for Age...
 description: "Cognee is the open-source AI memory platform that gives agents persistent knowledge. Build intelligent agents that remember, reason, and evolve over time."
 date: 2026-07-03 09:00:00+09:00
 lastmod: 2026-07-03 09:00:00+09:00
@@ -512,7 +512,7 @@ A: Yes. Cognee's ingestion pipeline supports both batch and streaming modes. You
     },
     {
       "question": "Does it support real-time memory updates?",
-      "answer": "Yes. Cognee's ingestion pipeline supports both batch and streaming modes. You can add memories in real-time as conversations happen, and they'll be immediately available for queries."
+      "answer": "Yes. Cognee's ingestion pipeline supports both batch and streaming modes. You can add memories in real-time as conversations happen, and they"ll be immediately available for queries."
     }
   ]
 }

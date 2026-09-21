@@ -1,5 +1,5 @@
 ---
-title: 'Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSe...
+title: "Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSe...
 description: "Discover the best open-source LLMs of 2025. Compare Llama 3, Mistral, Qwen, DeepSeek, Gemma, and Phi with benchmarks, hardware requirements, and use cases."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -352,7 +352,7 @@ For most applications, Llama 3.1 8B is the best starting point due to its balanc
 
 **Can I use open-source LLMs for commercial purposes?**
 
-It depends on the model's license. Mistral models use Apache 2.0, permitting unrestricted commercial use. Llama 3 permits commercial use for applications under 700 million monthly active users. Qwen has commercial use restrictions. Gemma has usage restrictions for harmful applications. Always review the specific license before deploying commercially.
+It depends on the model"s license. Mistral models use Apache 2.0, permitting unrestricted commercial use. Llama 3 permits commercial use for applications under 700 million monthly active users. Qwen has commercial use restrictions. Gemma has usage restrictions for harmful applications. Always review the specific license before deploying commercially.
 
 **Which open-source LLM is best for coding?**
 

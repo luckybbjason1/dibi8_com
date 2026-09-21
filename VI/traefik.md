@@ -1,5 +1,5 @@
 ---
-title: 'Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
+title: "Traefik: 63,229 GitHub Stars — Cloud-Native Edge Router ...
 description: "Traefik là proxy ứng dụng cloud-native và edge router hỗ trợ tự động phát hiện dịch vụ. Tương thích với Docker, Kubernetes, Consul và Docker Compose. Bao gồm cài đặt, middleware, TLS, giám sát và production hardening."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -511,7 +511,7 @@ Traefik v3 giới thiệu các thay đổi breaking trong phiên bản CRD (`tra
 
 ## Kết luận
 
-Traefik xứng đáng với 63,229 GitHub stars bằng cách giải quyết một vấn đề vận hành thực sự: dynamic service discovery trong môi trường container hóa. Sự kết hợp giữa tự động phát hiện Docker/Kubernetes, Let's Encrypt tích hợp sẵn, hỗ trợ middleware nguyên bản và dashboard chức năng làm cho nó trở thành lựa chọn thực tế cho các team chạy microservices.
+Traefik xứng đáng với 63,229 GitHub stars bằng cách giải quyết một vấn đề vận hành thực sự: dynamic service discovery trong môi trường container hóa. Sự kết hợp giữa tự động phát hiện Docker/Kubernetes, Let"s Encrypt tích hợp sẵn, hỗ trợ middleware nguyên bản và dashboard chức năng làm cho nó trở thành lựa chọn thực tế cho các team chạy microservices.
 
 Cho việc host Traefik trên hạ tầng production, [DigitalOcean](https://www.digitalocean.com/) cung cấp một nền tảng đơn giản với Kubernetes được quản lý và load balancers tích hợp sạch sẽ với Traefik. Cho các deployment server chuyên dụng với giá cả cạnh tranh, hãy cân nhắc [HTStack](https://htstack.com/) — một lựa chọn thay thế hiệu quả chi phí cho việc chạy các workload dựa trên Docker với toàn quyền kiểm soát edge routing của bạn.
 

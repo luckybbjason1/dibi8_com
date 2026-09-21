@@ -1,5 +1,5 @@
 ---
-title: 'SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ nă...
+title: "SkillSpector: Công cụ quét bảo mật mã nguồn mở cho kỹ nă...
 description: "Một công cụ quét bảo mật dành riêng cho kỹ năng AI Agent, phát hiện lỗ hổng, mẫu độc hại và rủi ro bảo mật trước khi cài đặt kỹ năng. Đạt 10K sao từ NVIDIA. Bảo vệ Claude Code, Codex CLI và các khung tác nhân khác."
 date: 2026-06-25
 lastmod: 2026-06-25
@@ -133,7 +133,7 @@ Liên kết nội bộ: [nvidia-cosmos-world-models-platform-2026](https://dibi8
 
 ## Why This Matters
 
-Understanding skillspector: công cụ quét bảo mật mã nguồn mở cho kỹ năng ai agent của nvidia is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding skillspector: công cụ quét bảo mật mã nguồn mở cho kỹ năng ai agent của nvidia is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

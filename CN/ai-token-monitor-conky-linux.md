@@ -1,5 +1,5 @@
 ---
-title: 'AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...
+title: "AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota...
 description: "Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00
@@ -188,7 +188,7 @@ Star the repo if it saved you from a mid-task rate-limit surprise. Issues and PR
 
 ## Why This Matters
 
-Understanding ai token monitor: track claude, gemini, grok, kimi quota live on your linux desktop is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai token monitor: track claude, gemini, grok, kimi quota live on your linux desktop is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

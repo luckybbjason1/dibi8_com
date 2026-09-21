@@ -1,5 +1,5 @@
 ---
-title: 'CC Switch Review: The Missing Control Center for AI Codi...
+title: "CC Switch Review: The Missing Control Center for AI Codi...
 description: "CC Switch is an open-source cross-platform desktop app that unifies Claude Code, Codex, Gemini CLI, OpenClaw, OpenCode & Hermes Agent management. 74K+ GitHub stars, Rust+Tauri stack, 50+ provider presets, unified MCP server sync. Full feature breakdown, setup guide, and workflow tips."
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -259,7 +259,7 @@ Once you've got CC Switch managing all your AI CLI tools, you'll still need soli
 
 CC Switch doesn't make any individual AI tool better. What it does is prevent the **management overhead of multiple tools** from canceling out their individual productivity gains.
 
-In 2026, the question isn't "which AI coding agent should I use?" — it's "how do I use all of them without drowning in configuration?" CC Switch is the first credible answer to that second question, and its 74K stars suggest developers were waiting for exactly this.
+In 2026, the question isn't "which AI coding agent should I use?" — it"s "how do I use all of them without drowning in configuration?" CC Switch is the first credible answer to that second question, and its 74K stars suggest developers were waiting for exactly this.
 
 **Resources**: - GitHub: https://github.com/farion1231/cc-switch
 - Website: https://ccswitch.io

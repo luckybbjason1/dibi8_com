@@ -1,5 +1,5 @@
 ---
-title: 'Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel...
+title: "Cơ sở hạ tầng AI Cá nhân: Thiết lập AI tác tử của Daniel...
 description: "Cơ sở hạ tầng AI Cá nhân (PAI) của Daniel Miessler là Hệ điều hành Cuộc sống với 45 kỹ năng, 171 quy trình làm việc, daemon Pulse và Algorithm v6.3.0. Cài đặt bằng một lệnh, giấy phép MIT. Kết hợp chiến lược, thực thi và phản ánh thành một hệ thống duy nhất."
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -386,7 +386,7 @@ Usage examples
 
 ```bash
 # Configure Pulse hooks
-pulse hooks create --trigger git-push --action notify --config '{"channels": ["telegram"]}'
+pulse hooks create --trigger git-push --action notify --config '{"channels": ["telegram"]}"
 
 # Set up cron jobs
 pulse cron add --schedule "0 9 * * *" --action "pulse standup" --name "morning-review"

@@ -1,5 +1,5 @@
 ---
-title: 'ECC: Optimize Claude Code, Codex, and Cursor Performance...
+title: "ECC: Optimize Claude Code, Codex, and Cursor Performance...
 description: "ECC (Agent Harness Performance Optimization) reduces context window usage and speeds up AI coding agent responses. Compatible with Claude Code, Codex, Opencode, Cursor, and more. Performance tuning, skill system, and MCP server setup covered."
 tags: ["ai-agent", "ai-editor", "anthropic", "automation", "claude", "coding-agent", "cursor", "guide", "open-source", "reference", "tutorial"]
 date: 2026-06-13
@@ -316,7 +316,7 @@ A: Yes, ECC is licensed under MIT. There are no usage limits, subscription fees,
 
 **Q: What about security? Does ECC intercept sensitive data?**
 
-A: ECC only processes data that flows through the agent's tool pipeline. It does not intercept keystrokes, clipboard content, or network traffic outside the agent's operations. Compression profiles can be configured to exclude sensitive file patterns (e.g., `.env`, `*.key`) from any processing.
+A: ECC only processes data that flows through the agent's tool pipeline. It does not intercept keystrokes, clipboard content, or network traffic outside the agent"s operations. Compression profiles can be configured to exclude sensitive file patterns (e.g., `.env`, `*.key`) from any processing.
 
 ## Conclusion
 

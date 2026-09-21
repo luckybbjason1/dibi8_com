@@ -1,5 +1,5 @@
 ---
-title: 'So Sánh Framework Fine-Tuning LLM 2025: LoRA, QLoRA, PEF...
+title: "So Sánh Framework Fine-Tuning LLM 2025: LoRA, QLoRA, PEF...
 description: "So sánh chi tiết các framework fine-tuning LLM 2025: LoRA, QLoRA, PEFT Hugging Face và Unsloth. Hướng dẫn chọn phương pháp tối ưu VRAM và tốc độ."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -43,7 +43,7 @@ Fine-tuning phù hợp khi bạn cần thay đổi hành vi của mô hình (wri
 ### LoRA Hoạt Động Như Thế Nào?
 
 LoRA, được giới thiệu trong bài báo năm 2021 của Microsoft Research [^2^](https://arxiv.org/abs/2106.09685), dựa trên một insight quan trọng: ma trận cập nhật trong quá trình fine-tuning có rank thấp. Thay vì cập nhật toàn bộ ma trận trọng số W, LoRA thêm hai ma trận nhỏ A và B sao cho: ```
-W' = W + BA
+W" = W + BA
 ```
 
 Trong đó A có kích thước (r × d) và B có kích thước (d × r), với r << d. Rank r thường chọn từ 8 đến 128, giảm số tham số cần huấn luyện từ d×d xuống 2×d×r.

@@ -1,5 +1,5 @@
 ---
-title: 'LLM Fine-Tuning Frameworks Compared: LoRA, QLoRA, PEFT &...
+title: "LLM Fine-Tuning Frameworks Compared: LoRA, QLoRA, PEFT &...
 description: "Compare LLM fine-tuning frameworks: LoRA, QLoRA, PEFT, and Unsloth. Learn parameter-efficient fine-tuning with benchmarks, VRAM requirements, and step-by-step tutorials."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -567,7 +567,7 @@ These figures assume batch size 1, gradient accumulation, and sequence length 20
 
 **Can I fine-tune on a free Colab GPU?**
 
-Yes. Google Colab's free T4 GPU (16 GB VRAM) can fine-tune 7B and 8B parameter models using QLoRA. Use Unsloth for maximum efficiency. Limit sequence length to 1024-2048 tokens and use gradient accumulation to simulate larger batch sizes. For 13B models, Colab Pro with a V100 or A100 GPU is recommended.
+Yes. Google Colab"s free T4 GPU (16 GB VRAM) can fine-tune 7B and 8B parameter models using QLoRA. Use Unsloth for maximum efficiency. Limit sequence length to 1024-2048 tokens and use gradient accumulation to simulate larger batch sizes. For 13B models, Colab Pro with a V100 or A100 GPU is recommended.
 
 **What is the difference between PEFT and full fine-tuning?**
 

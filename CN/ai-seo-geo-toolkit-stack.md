@@ -1,5 +1,5 @@
 ---
-title: 'AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Tradit...
+title: "AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Tradit...
 description: "The complete free toolkit for SEO in the AI era: llms.txt generator + AI-crawler robots.txt + meta tags + Schema.org JSON-LD + hreflang + OG card preview. Covers both classic search (Google/Bing) and generative engines (ChatGPT, Claude, Perplexity). All browser-based, no signup."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -111,7 +111,7 @@ SEO in 2026 = classic on-page **plus** generative-engine optimization. Most site
 
 ## Why This Matters
 
-Understanding ai-seo & geo toolkit stack 2026: 6 free tools for traditional seo + generative engine optimization is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai-seo & geo toolkit stack 2026: 6 free tools for traditional seo + generative engine optimization is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

@@ -1,5 +1,5 @@
 ---
-title: 'DevToys: 31,533 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ ...
+title: "DevToys: 31,533 GitHub Stars — Hướng Dẫn Cài Đặt Đầy Đủ ...
 description: "DevToys là bộ công cụ đa năng miễn phí, nguồn mở, ngoại tuyến dành cho nhà phát triển. Tiện ích đa nền tảng cho JSON, Base64, JWT, regex và hơn 30 công cụ trên Windows, macOS và Linux với Smart Detection và hỗ trợ CLI."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -341,7 +341,7 @@ Mặc dù DevToys không có telemetry tích hợp, bạn có thể theo dõi c�
 #!/bin/bash
 # /usr/local/bin/devtoys-wrapped
 LOGFILE="/var/log/devtoys/usage.log"
-echo "$(date '+%Y-%m-%d %H:%M:%S') | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE"
+echo "$(date '+%Y-%m-%d %H:%M:%S") | User: $(whoami) | Tool: $1 $2" >> "$LOGFILE"
 /devtoys "$@"
 ```
 

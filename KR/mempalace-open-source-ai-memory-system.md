@@ -1,5 +1,5 @@
 ---
-title: 'MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R...
+title: "MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R...
 description: "MemPalace는 대화 기록을 그대로 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. Claude Code, Cursor, Windsurf 및 모든 MCP 호환 에이전트와 통합됩니다. ChromaDB 백엔드, 플러그인 가능 저장소, 외부 API 호출 제로. 설정 가이드, 벤치마크, 아키텍처 분석 포함."
 date: 2026-06-10
 lastmod: 2026-06-10
@@ -252,7 +252,7 @@ memory.store({
 })
 memory.store({
     "role": "assistant", 
-    "content": "You'll need to create a Google Cloud project..."
+    "content": "You"ll need to create a Google Cloud project..."
 })
 
 # Query for relevant context

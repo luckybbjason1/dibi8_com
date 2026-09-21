@@ -1,5 +1,5 @@
 ---
-title: 'The AI Agent Code of Ethics (2026): A Practical Governan...
+title: "The AI Agent Code of Ethics (2026): A Practical Governan...
 description: "A working code of ethics for autonomous AI agents — not abstract principles, but seven enforceable rules with engineering controls: least-privilege authorization, full auditability, human-in-the-loop reversibility, bounded autonomy, an unbroken accountability chain, fail-safe defaults, and privacy by design. Includes a pre-deployment checklist for developers shipping agents in 2026."
 date: 2026-06-04 00:00:00+08:00
 lastmod: 2026-06-04 00:00:00+08:00
@@ -140,7 +140,7 @@ If you cannot answer "what is the maximum damage this agent can do right now?", 
 
 **Why agents force this.** Agents accumulate context — conversation history, file contents, credentials, personal data — and persist it across runs. Every byte retained is a byte that can leak, be subpoenaed, or be misused. An agent's memory is an attack surface.
 
-**The control.** Minimize what enters context. Scope memory to the task and expire it. Redact secrets and personal data before they hit logs or model providers. Be explicit about what leaves your boundary to a third-party model API. Treat the agent's persistent memory with the same care as a production database, because that is what it is.
+**The control.** Minimize what enters context. Scope memory to the task and expire it. Redact secrets and personal data before they hit logs or model providers. Be explicit about what leaves your boundary to a third-party model API. Treat the agent"s persistent memory with the same care as a production database, because that is what it is.
 
 ## The Pre-Deployment Checklist
 

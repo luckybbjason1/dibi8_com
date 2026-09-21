@@ -1,5 +1,5 @@
 ---
-title: 'DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万...
+title: "DeepSeek V3.5 vs Claude Sonnet 4.6 2026 横评：开源权重 vs 100 万...
 description: "DeepSeek V3.5（685B MoE，开源权重）和 Claude Sonnet 4.6 横向对比 — 每百万 token 价格、上下文窗口、SWE-bench、中文能力、API 可用性。2026 年更新。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-22 00:00:00+08:00
 lastmod: 2026-05-22 00:00:00+08:00draft: false
@@ -230,7 +230,7 @@ Anthropic 在 tool use 可靠性上投入很重 — 并行工具调用、结构�
 
 ## Why This Matters
 
-Understanding deepseek v3.5 vs claude sonnet 4.6 2026 横评：开源权重 vs 100 万上下文 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding deepseek v3.5 vs claude sonnet 4.6 2026 横评：开源权重 vs 100 万上下文 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

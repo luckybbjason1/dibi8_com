@@ -1,5 +1,5 @@
 ---
-title: 'Claude Code Subagent Mastery Stack 2026: From One Conver...
+title: "Claude Code Subagent Mastery Stack 2026: From One Conver...
 description: "The complete learning + tooling stack for mastering Claude Code multi-agent workflows: 5 subagent patterns + custom agent authoring + the skill/subagent/MCP decision framework + orchestration failure modes + skill authoring. The full path from single-threaded coding to a reliable agent pipeline."
 date: 2026-05-29 00:00:00+08:00
 lastmod: 2026-05-30 00:00:00+08:00
@@ -136,7 +136,7 @@ Don't learn subagents as five disconnected tricks. Walk the stack in order — p
 
 ## Why This Matters
 
-Understanding claude code subagent mastery stack 2026: from one conversation to a coordinated agent council is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding claude code subagent mastery stack 2026: from one conversation to a coordinated agent council is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

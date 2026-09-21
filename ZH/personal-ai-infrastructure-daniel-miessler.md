@@ -1,5 +1,5 @@
 ---
-title: 'Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agenti...
+title: "Personal AI Infrastructure：Daniel Miessler 为人类打造的 Agenti...
 description: "Daniel Miessler 的个人 AI 基础设施（PAI）是一个生活操作系统，包含 45 个技能、171 个工作流、Pulse 守护进程和 Algorithm v6.3.0。一键安装，MIT 许可。将策略、执行和反思融为一体。"
 date: 2026-06-13
 lastmod: 2026-06-13
@@ -586,7 +586,7 @@ Personal AI Infrastructure 代表了创建综合 AI 操作系统的最雄心勃�
 
 ## Why This Matters
 
-Understanding personal ai infrastructure：daniel miessler 为人类打造的 agentic ai 设置 — 2026 完整指南 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding personal ai infrastructure：daniel miessler 为人类打造的 agentic ai 设置 — 2026 完整指南 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

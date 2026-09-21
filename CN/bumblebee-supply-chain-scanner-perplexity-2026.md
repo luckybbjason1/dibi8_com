@@ -1,5 +1,5 @@
 ---
-title: 'Bumblebee 2026: Perplexity AI Open-Sources Its Internal ...
+title: "Bumblebee 2026: Perplexity AI Open-Sources Its Internal ...
 description: "Bumblebee is Perplexity AI"'s open-source, read-only supply-chain scanner that checks npm, PyPI, Go modules, MCP configs, editor extensions, and browser extensions for known compromised packages — without executing a single line of your code.'
 date: 2026-06-09 00:00:00+08:00
 lastmod: 2026-06-09 00:00:00+08:00
@@ -171,7 +171,7 @@ Bumblebee solves a specific, underserved problem: auditing the full surface of a
 
 ## Why This Matters
 
-Understanding bumblebee 2026: perplexity ai open-sources its internal supply-chain scanner for developer machines is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding bumblebee 2026: perplexity ai open-sources its internal supply-chain scanner for developer machines is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

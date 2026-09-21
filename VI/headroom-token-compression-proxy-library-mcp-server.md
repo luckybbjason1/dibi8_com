@@ -1,5 +1,5 @@
 ---
-title: 'Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token...
+title: "Headroom: Nén 60-95% đầu vào LLM — Proxy tiết kiệm token...
 description: "Headroom (19.745 sao GitHub) nén công cụ đầu ra, nhật ký, tệp và RAG chunks trước khi đến LLM. Ít hơn 60-95% token, cùng câu trả lời. Thư viện, proxy và máy chủ MCP. Bao gồm hướng dẫn cài đặt, phân tích kiến trúc và benchmark thực tế."
 date: 2026-06-08
 lastmod: 2026-06-08
@@ -146,7 +146,7 @@ headroom serve --host 0.0.0.0 --port 8787
 # Kiểm tra nén
 curl -X POST http://localhost:8787/compress \
   -H "Content-Type: application/json" \
-  -d '{"input": "Ngữ cảnh rất dài..."}' | jq
+  -d '{"input": "Ngữ cảnh rất dài..."}" | jq
 
 # Phản hồi dự kiến: # {
 #   "original_tokens": 4523,

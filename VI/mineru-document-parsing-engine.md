@@ -1,9 +1,9 @@
 ---
-title: 'MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang ...
+title: "MinerU: 70,6K sao — Chuyển đổi bất kỳ tài liệu nào sang ...
 description: "MinerU (70.600+ sao GitHub) chuyển đổi PDF, DOCX, PPTX, XLSX, hình ảnh và trang web thành Markdown và JSON có cấu trúc cho quy trình làm việc LLM, RAG và Đại lý. Hỗ trợ OCR 109 ngôn ngữ, chuyển công thức sang LaTeX, chuyển bảng sang HTML và chạy trên CPU hoặc GPU."
 tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "tutorial"]
 date: 2026-06-27 00:00:00+08:00
-lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine'
+lastmod: 2026-06-27 00:00:00+08:00slug: 'mineru-document-parsing-engine"
 category: ai-tools
 github_repo: "https://github.com/opendatalab/MinerU"
 license: MinerU Open Source License (Apache 2.0-based)

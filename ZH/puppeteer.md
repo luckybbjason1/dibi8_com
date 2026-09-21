@@ -1,5 +1,5 @@
 ---
-title: 'Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2...
+title: "Puppeteer: 94,300 GitHub Stars — 生产级浏览器自动化 Docker 部署指南 2...
 description: "Puppeteer 是一个用于 Chrome 和 Firefox 的无头浏览器自动化 Node.js 库。支持 Docker、GitHub Actions、Jest、Mocha、TypeScript。涵盖 puppeteer docker 配置、生产环境部署、浏览器自动化教程、CI/CD 集成。"
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -598,7 +598,7 @@ setInterval(async () => {
     if (!healthy) {
       console.warn('检测到不健康的浏览器，正在重启...');
       await entry.browser.close();
-      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox'] });
+      entry.browser = await puppeteer.launch({ headless: new, args: ['--no-sandbox"] });
       entry.inUse = false;
     }
   }

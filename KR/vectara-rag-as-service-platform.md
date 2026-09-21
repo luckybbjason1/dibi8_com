@@ -1,5 +1,5 @@
 ---
-title: 'Vectara 2026: 90%+ 답변 정확도를 가진 RAG-as-a-Service 플랫폼 — API...
+title: "Vectara 2026: 90%+ 답변 정확도를 가진 RAG-as-a-Service 플랫폼 — API...
 description: "관리형 RAG 플랫폼 Vectara의 실전 가이드. 90%+ 정확도, Boomerang 검색, API 통합, 다국어 지원, 하이브리드 검색 및 프로덕션 벤치마크를 다룹니다.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -281,7 +281,7 @@ response = client.query(
 response = client.query(
     corpus_id="your-corpus-id",
     query="Recent security updates",
-    metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin'",
+    metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin"",
     generate=True
 )
 ```

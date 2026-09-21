@@ -245,7 +245,7 @@ class OpenSoraTextToVideo: """ComfyUI 节点，用于 Open-Sora 文生视频生�
     CATEGORY = "video_generation"
     
     def generate_video(self, prompt, resolution, num_frames, steps): # 将提示词写入 CSV 用于批量处理
-        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,\"{prompt}\"\n")
+        with open("/tmp/opensora_input.csv", "w") as f: f.write(f"id,text\n0,"{prompt}"\n")
         
         # 启动推理
         cmd = [

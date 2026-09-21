@@ -1,5 +1,5 @@
 ---
-title: 'Docker Compose: 37,393 GitHub Stars — 멀티 컨테이너 앱 완벽 설정 가이...
+title: "Docker Compose: 37,393 GitHub Stars — 멀티 컨테이너 앱 완벽 설정 가이...
 description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:00:00+08:00
 lastmod: 2026-05-20 00:00:00+08:00
@@ -274,7 +274,7 @@ services: api: image: myapp:v1.2.3
 services: worker: image: myapp-worker:v1.2.3
     deploy: resources: limits: cpus: '1.0'
           memory: 512M
-        reservations: cpus: '0.25'
+        reservations: cpus: '0.25"
           memory: 128M
 ```
 

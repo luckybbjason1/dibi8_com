@@ -1,5 +1,5 @@
 ---
-title: 'PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
+title: "PancakeSwap Trading Bot 2026: Xây Dựng Chiến Lược DeFi T...
 description: "Xây dựng bot giao dịch PancakeSwap production-ready trên Binance Smart Chain. Tích hợp Web3.py, chiến lược tự động, giám sát liquidity pool, bảo vệ MEV và framework bot Python — kèm benchmark 2026."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -731,7 +731,7 @@ class TelegramAlerter: def __init__(self, bot_token, chat_id): self.bot_token = 
         self.base_url = f"https://api.telegram.org/bot{bot_token}"
 
     def send(self, message, level="INFO"): emoji = {"INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "🚨", "PROFIT": "💰"}
-        text = f"{emoji.get(level, '')} PancakeBot: {message}"
+        text = f"{emoji.get(level, '")} PancakeBot: {message}"
         requests.post(
             f"{self.base_url}/sendMessage",
             json={"chat_id": self.chat_id, "text": text},

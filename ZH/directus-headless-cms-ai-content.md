@@ -256,7 +256,7 @@ curl -X POST http://localhost:8055/graphql \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <token>" \
   -d '{
-    "query": "query { articles(filter: { status: { _eq: \"published\" } }, sort: [\"-published_at\"], limit: 10) { id title seo_score published_at } }"
+    "query": "query { articles(filter: { status: { _eq: "published" } }, sort: ["-published_at"], limit: 10) { id title seo_score published_at } }"
   }' | jq .
 
 # 变更：创建文章
@@ -264,7 +264,7 @@ curl -X POST http://localhost:8055/graphql \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <token>" \
   -d '{
-    "query": "mutation { create_articles_item(data: { title: \"GraphQL 指南\", content: \"内容在此...\", status: \"draft\", seo_score: 90 }) { id title } }"
+    "query": "mutation { create_articles_item(data: { title: "GraphQL 指南", content: "内容在此...", status: "draft", seo_score: 90 }) { id title } }"
   }' | jq .
 ```
 

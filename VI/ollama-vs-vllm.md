@@ -1,5 +1,5 @@
 ---
-title: 'Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughpu...
+title: "Ollama vs vLLM 2026: Đơn Giản Cho Dev Local vs Throughpu...
 description: "So sánh chi tiết Ollama (trình chạy LLM local đơn giản) và vLLM (engine suy luận production throughput cao) — dễ dùng, throughput, phần cứng, đồng thời, chi phí ở quy mô. Cập nhật 2026."
 date: 2026-06-06 00:00:00+08:00
 lastmod: 2026-06-06 00:00:00+08:00draft: false
@@ -139,7 +139,7 @@ Tham khảo ngoài: [Ollama](https://ollama.com/) · [Tài liệu vLLM](https://
 
 ## Why This Matters
 
-Understanding ollama vs vllm 2026: đơn giản cho dev local vs throughput production is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ollama vs vllm 2026: đơn giản cho dev local vs throughput production is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

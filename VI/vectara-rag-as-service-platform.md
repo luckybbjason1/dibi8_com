@@ -1,5 +1,5 @@
 ---
-title: 'Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
+title: "Vectara 2026: Nền Tảng RAG-as-a-Service với Độ Chính Xác...
 description: "Hướng dẫn thực hành về Vectara, nền tảng RAG được quản lý với độ chính xác 90%+. Bao gồm Boomerang retrieval, tích hợp API, hỗ trợ đa ngôn ngữ, tìm kiếm hybrid và benchmark production."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -281,7 +281,7 @@ response = client.query(
 response = client.query(
     corpus_id="your-corpus-id",
     query="Recent security updates",
-    metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin'",
+    metadata_filter="doc.date >= '2026-01-01' AND doc.type = 'security-bulletin"",
     generate=True
 )
 ```

@@ -1,5 +1,5 @@
 ---
-title: 'Self-Hosted AI Coding Workflow: The Complete $6/Month St...
+title: "Self-Hosted AI Coding Workflow: The Complete $6/Month St...
 description: "A 7-component self-hosted AI coding stack that replaces $290/month of SaaS subscriptions (Cursor + Claude Code Pro + Copilot + Replit) with $6/month of infrastructure. Real numbers, real config, full step-by-step assembly."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -271,7 +271,7 @@ The point: you started with $6/mo and *own the entire stack*. Every upgrade is a
 
 Total: $6/month. Total: 90 minutes to assemble. Total: zero vendor lock-in.
 
-If you're spending $200+/mo on AI coding SaaS, this stack pays for itself in week 1. Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}}, follow sec. 10, and report back next week.
+If you"re spending $200+/mo on AI coding SaaS, this stack pays for itself in week 1. Spin up a {{< aff "digitalocean" "footer-cta" "DigitalOcean $6 droplet" >}}, follow sec. 10, and report back next week.
 
 
 ---

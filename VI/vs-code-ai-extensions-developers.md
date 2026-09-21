@@ -1,5 +1,5 @@
 ---
-title: 'Các Tiện Ích Mở Rộng AI Tốt Nhất cho VS Code Dành cho Nh...
+title: "Các Tiện Ích Mở Rộng AI Tốt Nhất cho VS Code Dành cho Nh...
 description: "So sánh chi tiết 7 tiện ích AI hàng đầu cho VS Code năm 2025: GitHub Copilot, Codeium, Tabnine, Cody, CodeWhisperer, Continue và Mintlify."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: 'dibi8'
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 aliases:
   - /posts/vs-code-ai-extensions-developers/

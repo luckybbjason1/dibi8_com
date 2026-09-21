@@ -1,5 +1,5 @@
 ---
-title: 'MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi ...
+title: "MLflow 2026: Nền Tảng ML Lifecycle Mã Nguồn Mở Theo Dõi ...
 description: "Hướng dẫn đầy đủ về MLflow cho theo dõi thử nghiệm ML, model registry và model serving. Bao gồm thiết lập, Python SDK, triển khai production và benchmark cho 10,000+ thử nghiệm."
 date: 2026-05-19 00:00:00+08:00
 lastmod: 2026-05-19 00:00:00+08:00
@@ -603,7 +603,7 @@ jobs: train: runs-on: ubuntu-latest
 
       - name: Setup Python
         uses: actions/setup-python@v5
-        with: python-version: '3.11'
+        with: python-version: '3.11"
 
       - name: Install dependencies
         run: pip install mlflow==2.22.0 scikit-learn pandas

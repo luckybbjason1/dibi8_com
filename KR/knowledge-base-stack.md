@@ -1,5 +1,5 @@
 ---
-title: '지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구...
+title: "지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구...
 description: "개인 또는 팀용 5컴포넌트 셀프호스트 지식 베이스 스택. AnythingLLM(UI + RAG) + RAGFlow(심층 문서 파싱) + mem0(에이전트 메모리) + AgentMemory MCP(MCP 노출) + 벡터 DB 픽. $50-200/월 SaaS(Notion AI + Mem + Glean)를 $10-25/월 셀프호스트로 대체."
 date: 2026-05-21 00:00:00+08:00
 lastmod: 2026-05-21 00:00:00+08:00
@@ -19,7 +19,7 @@ github_repo: ''
 stars: 0
 maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["collections"]
 tags: ["지식 베이스", "rag", "두 번째 뇌", "스택", "컬렉션"]
@@ -231,7 +231,7 @@ $50-200/월 SaaS(Notion AI + Mem + Glean Lite)를 본인 소유 셀프호스트�
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 \"두 번째 뇌\" 구축 ($10-25/월)",
+  "headline": "지식 베이스 스택 2026: AnythingLLM + RAGFlow + mem0로 "두 번째 뇌" 구축 ($10-25/월)",
   "datePublished": "2026-05-21",
   "dateModified": "2026-05-21",
   "author": {

@@ -1,5 +1,5 @@
 ---
-title: 'AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor ...
+title: "AI 코딩 에이전트 월 청구서 2026: Claude Max, ChatGPT Plus, Cursor ...
 description: "Claude Max($200), ChatGPT Plus + Codex CLI API(실효 $165), Cursor Pro + API 초과($87)의 30일 실사용·청구 데이터를 추적했습니다. 작업별 비용 분해, 각 도구의 손익분기점, 전환이 의미 있는 임계치까지."
 date: 2026-05-25 00:00:00+08:00
 lastmod: 2026-05-25 00:00:00+08:00
@@ -192,7 +192,7 @@ Effective cost per hour: $0.98
 
 ## Why This Matters
 
-Understanding ai 코딩 에이전트 월 청구서 2026: claude max, chatgpt plus, cursor pro 실측 30일 영수증 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai 코딩 에이전트 월 청구서 2026: claude max, chatgpt plus, cursor pro 실측 30일 영수증 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

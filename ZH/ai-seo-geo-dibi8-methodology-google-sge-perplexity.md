@@ -1,5 +1,5 @@
 ---
-title: 'AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引...
+title: "AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引...
 description: "我们不再为点击率写作，我们为引用率写作。72 篇文章、4 种语言之后，这是 dibi8 总结出的 AI SEO 五层方法论。". Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-06-15
 lastmod: 2026-06-15
@@ -54,7 +54,7 @@ seo
 
 ## Why This Matters
 
-Understanding ai seo 与 geo：dibi8 如何让 google sge、perplexity 和 chatgpt 引用你的内容 — 五层方法论 is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding ai seo 与 geo：dibi8 如何让 google sge、perplexity 和 chatgpt 引用你的内容 — 五层方法论 is crucial for modern AI development. Here"s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads

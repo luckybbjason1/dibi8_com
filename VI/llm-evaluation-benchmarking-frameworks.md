@@ -1,5 +1,5 @@
 ---
-title: 'Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh Eleuth...
+title: "Framework Đánh Giá Và Chuẩn Hóa LLM 2025: So Sánh Eleuth...
 description: "Khám phá các framework đánh giá và chuẩn hóa LLM hàng đầu 2025. So sánh EleutherAI LM Eval Harness, OpenCompass, BIG-bench, HELM, AlpacaEval, DeepEval về phạm vi chuẩn mực, dễ sử dụng và hỗ trợ cộng đồng."
 date: 2026-05-18 00:00:00+08:00
 lastmod: 2026-05-18 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: ''
 stars: 0
 maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["llm evaluation", "benchmarking", "framework đánh giá llm", "eleutherai", "opencompass", "big-bench", "helm", "alpacaeval", "deepeval"]

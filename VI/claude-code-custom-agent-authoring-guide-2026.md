@@ -1,5 +1,5 @@
 ---
-title: 'Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
+title: "Viết Custom Agent cho Claude Code: Tạo Subagent Tái Sử D...
 description: "Hướng dẫn đầy đủ về cách viết custom subagent cho Claude Code — các trường frontmatter, thiết kế system prompt, danh sách công cụ được phép, và hai ví dụ sẵn sàng đưa vào sản xuất (trình duyệt migration, cổng bảo mật) cùng những lỗi cần tránh."
 date: 2026-05-28 00:00:00+08:00
 lastmod: 2026-05-29 00:00:00+08:00
@@ -16,7 +16,7 @@ github_repo: "https://github.com/anthropics/claude-code"
 stars: 0
 maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
+featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools"]
