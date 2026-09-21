@@ -100,8 +100,8 @@ Corpus size?
 
 ## Hạ tầng Khuyến nghị
 
-Để host RAG khi 1M không đủ: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** - Credit $200 đủ để dựng vector DB
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** - VPS Hồng Kông cho truy xuất độ trễ thấp
+Để host RAG khi 1M không đủ: - **** - Credit $200 đủ để dựng vector DB
+- **** - VPS Hồng Kông cho truy xuất độ trễ thấp
 
 *Liên kết affiliate - cùng giá, hỗ trợ dibi8.com.*
 

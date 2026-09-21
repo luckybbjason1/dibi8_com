@@ -139,8 +139,8 @@ Corpus size?
 ## 推荐基础设施
 
 当 1M 不够、需要做 RAG 托管时：
-- **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — 200 美元额度足够搭好向量数据库
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 香港 VPS，低延迟检索
+- **** — 200 美元额度足够搭好向量数据库
+- **** — 香港 VPS，低延迟检索
 
 *联盟链接——价格相同，支持 dibi8.com。*
 

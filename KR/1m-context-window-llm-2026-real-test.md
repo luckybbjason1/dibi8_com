@@ -128,8 +128,8 @@ Corpus size?
 
 ## 추천 인프라
 
-1M이 부족할 때 RAG 호스팅용으로: - **{{< aff "digitalocean" "footer-cta" "DigitalOcean" >}}** — $200 크레딧으로 벡터 DB 설정 가능
-- **{{< aff "htstack" "footer-cta" "HTStack" >}}** — 저지연 검색을 위한 홍콩 VPS
+1M이 부족할 때 RAG 호스팅용으로: - **** — $200 크레딧으로 벡터 DB 설정 가능
+- **** — 저지연 검색을 위한 홍콩 VPS
 
 *제휴 링크 — 동일 가격, dibi8.com을 지원합니다.*
 
